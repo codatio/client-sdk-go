@@ -1,0 +1,14 @@
+package shared
+
+type CodatDataContractsDatasetsCommercePlatformTransactionTypeEnum string
+
+const (
+	CodatDataContractsDatasetsCommercePlatformTransactionTypeEnumUnknown          CodatDataContractsDatasetsCommercePlatformTransactionTypeEnum = "Unknown"
+	CodatDataContractsDatasetsCommercePlatformTransactionTypeEnumPayment          CodatDataContractsDatasetsCommercePlatformTransactionTypeEnum = "Payment"
+	CodatDataContractsDatasetsCommercePlatformTransactionTypeEnumRefund           CodatDataContractsDatasetsCommercePlatformTransactionTypeEnum = "Refund"
+	CodatDataContractsDatasetsCommercePlatformTransactionTypeEnumPayout           CodatDataContractsDatasetsCommercePlatformTransactionTypeEnum = "Payout"
+	CodatDataContractsDatasetsCommercePlatformTransactionTypeEnumFailedPayout     CodatDataContractsDatasetsCommercePlatformTransactionTypeEnum = "FailedPayout"
+	CodatDataContractsDatasetsCommercePlatformTransactionTypeEnumTransfer         CodatDataContractsDatasetsCommercePlatformTransactionTypeEnum = "Transfer"
+	CodatDataContractsDatasetsCommercePlatformTransactionTypeEnumPaymentFee       CodatDataContractsDatasetsCommercePlatformTransactionTypeEnum = "PaymentFee"
+	CodatDataContractsDatasetsCommercePlatformTransactionTypeEnumPaymentFeeRefund CodatDataContractsDatasetsCommercePlatformTransactionTypeEnum = "PaymentFeeRefund"
+)

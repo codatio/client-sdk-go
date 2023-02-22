@@ -1,0 +1,12 @@
+package shared
+
+type Onecompanies1Percent7BcompanyIDPercent7D1connections1Percent7BconnectionIDPercent7D1options1Percent7BdataTypePercent7DGetResponses200ContentApplication1jsonSchemaPropertiesValidationPushFieldValidation struct {
+	Details string  `json:"details"`
+	Field   string  `json:"field"`
+	Ref     *string `json:"ref,omitempty"`
+}
+
+type Onecompanies1Percent7BcompanyIDPercent7D1connections1Percent7BconnectionIDPercent7D1options1Percent7BdataTypePercent7DGetResponses200ContentApplication1jsonSchemaPropertiesValidation struct {
+	Information []Onecompanies1Percent7BcompanyIDPercent7D1connections1Percent7BconnectionIDPercent7D1options1Percent7BdataTypePercent7DGetResponses200ContentApplication1jsonSchemaPropertiesValidationPropertiesWarningsItems `json:"information,omitempty"`
+	Warnings    []Onecompanies1Percent7BcompanyIDPercent7D1connections1Percent7BconnectionIDPercent7D1options1Percent7BdataTypePercent7DGetResponses200ContentApplication1jsonSchemaPropertiesValidationPushFieldValidation     `json:"warnings,omitempty"`
+}

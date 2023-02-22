@@ -1,0 +1,10 @@
+package shared
+
+type CodatDataContractsDatasetsCommerceServiceChargeTypeEnum string
+
+const (
+	CodatDataContractsDatasetsCommerceServiceChargeTypeEnumUnknown     CodatDataContractsDatasetsCommerceServiceChargeTypeEnum = "Unknown"
+	CodatDataContractsDatasetsCommerceServiceChargeTypeEnumGeneric     CodatDataContractsDatasetsCommerceServiceChargeTypeEnum = "Generic"
+	CodatDataContractsDatasetsCommerceServiceChargeTypeEnumShipping    CodatDataContractsDatasetsCommerceServiceChargeTypeEnum = "Shipping"
+	CodatDataContractsDatasetsCommerceServiceChargeTypeEnumOverpayment CodatDataContractsDatasetsCommerceServiceChargeTypeEnum = "Overpayment"
+)

@@ -1,0 +1,10 @@
+package shared
+
+type CodatClientsAPIClientContractIntegrationSupportedEnvironmentsEnum string
+
+const (
+	CodatClientsAPIClientContractIntegrationSupportedEnvironmentsEnumUnknown        CodatClientsAPIClientContractIntegrationSupportedEnvironmentsEnum = "Unknown"
+	CodatClientsAPIClientContractIntegrationSupportedEnvironmentsEnumSandboxOnly    CodatClientsAPIClientContractIntegrationSupportedEnvironmentsEnum = "SandboxOnly"
+	CodatClientsAPIClientContractIntegrationSupportedEnvironmentsEnumLiveOnly       CodatClientsAPIClientContractIntegrationSupportedEnvironmentsEnum = "LiveOnly"
+	CodatClientsAPIClientContractIntegrationSupportedEnvironmentsEnumLiveAndSandbox CodatClientsAPIClientContractIntegrationSupportedEnvironmentsEnum = "LiveAndSandbox"
+)

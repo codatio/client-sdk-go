@@ -1,0 +1,4 @@
+go:
+  version: 0.0.0
+  packagename: github.com/codatio/client-sdk-go/synccommerce
+sdkclassname: codatio

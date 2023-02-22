@@ -1,0 +1,13 @@
+package shared
+
+type CodatClientsAPIClientContractSourceTypeEnum string
+
+const (
+	CodatClientsAPIClientContractSourceTypeEnumUnknown    CodatClientsAPIClientContractSourceTypeEnum = "Unknown"
+	CodatClientsAPIClientContractSourceTypeEnumAccounting CodatClientsAPIClientContractSourceTypeEnum = "Accounting"
+	CodatClientsAPIClientContractSourceTypeEnumBanking    CodatClientsAPIClientContractSourceTypeEnum = "Banking"
+	CodatClientsAPIClientContractSourceTypeEnumBankFeed   CodatClientsAPIClientContractSourceTypeEnum = "BankFeed"
+	CodatClientsAPIClientContractSourceTypeEnumCommerce   CodatClientsAPIClientContractSourceTypeEnum = "Commerce"
+	CodatClientsAPIClientContractSourceTypeEnumExpense    CodatClientsAPIClientContractSourceTypeEnum = "Expense"
+	CodatClientsAPIClientContractSourceTypeEnumOther      CodatClientsAPIClientContractSourceTypeEnum = "Other"
+)

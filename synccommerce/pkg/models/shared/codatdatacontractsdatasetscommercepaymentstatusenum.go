@@ -1,0 +1,12 @@
+package shared
+
+type CodatDataContractsDatasetsCommercePaymentStatusEnum string
+
+const (
+	CodatDataContractsDatasetsCommercePaymentStatusEnumUnknown    CodatDataContractsDatasetsCommercePaymentStatusEnum = "Unknown"
+	CodatDataContractsDatasetsCommercePaymentStatusEnumPending    CodatDataContractsDatasetsCommercePaymentStatusEnum = "Pending"
+	CodatDataContractsDatasetsCommercePaymentStatusEnumAuthorized CodatDataContractsDatasetsCommercePaymentStatusEnum = "Authorized"
+	CodatDataContractsDatasetsCommercePaymentStatusEnumPaid       CodatDataContractsDatasetsCommercePaymentStatusEnum = "Paid"
+	CodatDataContractsDatasetsCommercePaymentStatusEnumFailed     CodatDataContractsDatasetsCommercePaymentStatusEnum = "Failed"
+	CodatDataContractsDatasetsCommercePaymentStatusEnumCancelled  CodatDataContractsDatasetsCommercePaymentStatusEnum = "Cancelled"
+)
