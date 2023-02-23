@@ -2,6 +2,7 @@ package operations
 
 import (
 	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"time"
 )
 
 type ListBankTransactionsPathParams struct {
@@ -49,14 +50,51 @@ type ListBankTransactionsLinksLinks struct {
 	Self     ListBankTransactionsLinksLinksSelf      `json:"self"`
 }
 
+type ListBankTransactionsLinksResultsTransactionTypeEnum string
+
+const (
+	ListBankTransactionsLinksResultsTransactionTypeEnumUnknown     ListBankTransactionsLinksResultsTransactionTypeEnum = "Unknown"
+	ListBankTransactionsLinksResultsTransactionTypeEnumCredit      ListBankTransactionsLinksResultsTransactionTypeEnum = "Credit"
+	ListBankTransactionsLinksResultsTransactionTypeEnumDebit       ListBankTransactionsLinksResultsTransactionTypeEnum = "Debit"
+	ListBankTransactionsLinksResultsTransactionTypeEnumInt         ListBankTransactionsLinksResultsTransactionTypeEnum = "Int"
+	ListBankTransactionsLinksResultsTransactionTypeEnumDiv         ListBankTransactionsLinksResultsTransactionTypeEnum = "Div"
+	ListBankTransactionsLinksResultsTransactionTypeEnumFee         ListBankTransactionsLinksResultsTransactionTypeEnum = "Fee"
+	ListBankTransactionsLinksResultsTransactionTypeEnumSerChg      ListBankTransactionsLinksResultsTransactionTypeEnum = "SerChg"
+	ListBankTransactionsLinksResultsTransactionTypeEnumDep         ListBankTransactionsLinksResultsTransactionTypeEnum = "Dep"
+	ListBankTransactionsLinksResultsTransactionTypeEnumAtm         ListBankTransactionsLinksResultsTransactionTypeEnum = "Atm"
+	ListBankTransactionsLinksResultsTransactionTypeEnumPos         ListBankTransactionsLinksResultsTransactionTypeEnum = "Pos"
+	ListBankTransactionsLinksResultsTransactionTypeEnumXfer        ListBankTransactionsLinksResultsTransactionTypeEnum = "Xfer"
+	ListBankTransactionsLinksResultsTransactionTypeEnumCheck       ListBankTransactionsLinksResultsTransactionTypeEnum = "Check"
+	ListBankTransactionsLinksResultsTransactionTypeEnumPayment     ListBankTransactionsLinksResultsTransactionTypeEnum = "Payment"
+	ListBankTransactionsLinksResultsTransactionTypeEnumCash        ListBankTransactionsLinksResultsTransactionTypeEnum = "Cash"
+	ListBankTransactionsLinksResultsTransactionTypeEnumDirectDep   ListBankTransactionsLinksResultsTransactionTypeEnum = "DirectDep"
+	ListBankTransactionsLinksResultsTransactionTypeEnumDirectDebit ListBankTransactionsLinksResultsTransactionTypeEnum = "DirectDebit"
+	ListBankTransactionsLinksResultsTransactionTypeEnumRepeatPmt   ListBankTransactionsLinksResultsTransactionTypeEnum = "RepeatPmt"
+	ListBankTransactionsLinksResultsTransactionTypeEnumOther       ListBankTransactionsLinksResultsTransactionTypeEnum = "Other"
+)
+
+type ListBankTransactionsLinksResults struct {
+	Amount             float64                                             `json:"amount"`
+	Balance            float64                                             `json:"balance"`
+	Counterparty       *string                                             `json:"counterparty,omitempty"`
+	Date               time.Time                                           `json:"date"`
+	Description        *string                                             `json:"description,omitempty"`
+	ID                 *string                                             `json:"id,omitempty"`
+	ModifiedDate       *time.Time                                          `json:"modifiedDate,omitempty"`
+	Reconciled         bool                                                `json:"reconciled"`
+	Reference          *string                                             `json:"reference,omitempty"`
+	SourceModifiedDate *time.Time                                          `json:"sourceModifiedDate,omitempty"`
+	TransactionType    ListBankTransactionsLinksResultsTransactionTypeEnum `json:"transactionType"`
+}
+
 // ListBankTransactionsLinks
 // Codat's Paging Model
 type ListBankTransactionsLinks struct {
-	Links        ListBankTransactionsLinksLinks `json:"_links"`
-	PageNumber   int64                          `json:"pageNumber"`
-	PageSize     int64                          `json:"pageSize"`
-	Results      []shared.BankStatementLine     `json:"results,omitempty"`
-	TotalResults int64                          `json:"totalResults"`
+	Links        ListBankTransactionsLinksLinks     `json:"_links"`
+	PageNumber   int64                              `json:"pageNumber"`
+	PageSize     int64                              `json:"pageSize"`
+	Results      []ListBankTransactionsLinksResults `json:"results,omitempty"`
+	TotalResults int64                              `json:"totalResults"`
 }
 
 type ListBankTransactionsResponse struct {

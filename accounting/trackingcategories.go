@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/accounting/pkg/utils"
 	"net/http"
 )
@@ -61,12 +60,12 @@ func (s *trackingCategories) GetTrackingCategory(ctx context.Context, request op
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.TrackingCategoryTree
+			var out *operations.GetTrackingCategorySourceModifiedDate
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.TrackingCategoryTree = out
+			res.SourceModifiedDate = out
 		}
 	}
 

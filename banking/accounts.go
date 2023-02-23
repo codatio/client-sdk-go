@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/banking/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/banking/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/banking/pkg/utils"
 	"net/http"
 )
@@ -61,12 +60,12 @@ func (s *accounts) GetBankAccount(ctx context.Context, request operations.GetBan
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Account
+			var out *operations.GetBankAccountSourceModifiedDate
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Account = out
+			res.SourceModifiedDate = out
 		}
 	}
 

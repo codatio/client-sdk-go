@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/commerce/pkg/models/shared"
+	"time"
 )
 
 type ListCommercePaymentsPathParams struct {
@@ -44,14 +44,47 @@ type ListCommercePaymentsLinksLinks struct {
 	Self     ListCommercePaymentsLinksLinksSelf      `json:"self"`
 }
 
+// ListCommercePaymentsLinksSourceModifiedDateNameRef
+// The payment method the payment is linked to in the commerce platform.
+type ListCommercePaymentsLinksSourceModifiedDateNameRef struct {
+	ID   string `json:"id"`
+	Name string `json:"name"`
+}
+
+type ListCommercePaymentsLinksSourceModifiedDateStatusEnum string
+
+const (
+	ListCommercePaymentsLinksSourceModifiedDateStatusEnumPending    ListCommercePaymentsLinksSourceModifiedDateStatusEnum = "Pending"
+	ListCommercePaymentsLinksSourceModifiedDateStatusEnumAuthorized ListCommercePaymentsLinksSourceModifiedDateStatusEnum = "Authorized"
+	ListCommercePaymentsLinksSourceModifiedDateStatusEnumPaid       ListCommercePaymentsLinksSourceModifiedDateStatusEnum = "Paid"
+	ListCommercePaymentsLinksSourceModifiedDateStatusEnumFailed     ListCommercePaymentsLinksSourceModifiedDateStatusEnum = "Failed"
+	ListCommercePaymentsLinksSourceModifiedDateStatusEnumCancelled  ListCommercePaymentsLinksSourceModifiedDateStatusEnum = "Cancelled"
+	ListCommercePaymentsLinksSourceModifiedDateStatusEnumUnknown    ListCommercePaymentsLinksSourceModifiedDateStatusEnum = "Unknown"
+)
+
+// ListCommercePaymentsLinksSourceModifiedDate
+// A payment made in a commerce platform
+type ListCommercePaymentsLinksSourceModifiedDate struct {
+	Amount             *float64                                               `json:"amount,omitempty"`
+	CreatedDate        *time.Time                                             `json:"createdDate,omitempty"`
+	Currency           *string                                                `json:"currency,omitempty"`
+	DueDate            *time.Time                                             `json:"dueDate,omitempty"`
+	ID                 string                                                 `json:"id"`
+	ModifiedDate       *time.Time                                             `json:"modifiedDate,omitempty"`
+	PaymentMethodRef   *ListCommercePaymentsLinksSourceModifiedDateNameRef    `json:"paymentMethodRef,omitempty"`
+	PaymentProvider    *string                                                `json:"paymentProvider,omitempty"`
+	SourceModifiedDate *time.Time                                             `json:"sourceModifiedDate,omitempty"`
+	Status             *ListCommercePaymentsLinksSourceModifiedDateStatusEnum `json:"status,omitempty"`
+}
+
 // ListCommercePaymentsLinks
 // Codat's Paging Model
 type ListCommercePaymentsLinks struct {
-	Links        ListCommercePaymentsLinksLinks `json:"_links"`
-	PageNumber   int64                          `json:"pageNumber"`
-	PageSize     int64                          `json:"pageSize"`
-	Results      []shared.Payment               `json:"results,omitempty"`
-	TotalResults int64                          `json:"totalResults"`
+	Links        ListCommercePaymentsLinksLinks                `json:"_links"`
+	PageNumber   int64                                         `json:"pageNumber"`
+	PageSize     int64                                         `json:"pageSize"`
+	Results      []ListCommercePaymentsLinksSourceModifiedDate `json:"results,omitempty"`
+	TotalResults int64                                         `json:"totalResults"`
 }
 
 type ListCommercePaymentsResponse struct {

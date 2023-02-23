@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/expenses/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/expenses/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/expenses/pkg/utils"
+	"io"
 	"net/http"
 )
 
@@ -61,12 +61,27 @@ func (s *configuration) GetCompanyConfiguration(ctx context.Context, request ope
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.CompanyConfigResourceRepresentation
+			var out *operations.GetCompanyConfiguration200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.CompanyConfigResourceRepresentation = out
+			res.GetCompanyConfiguration200ApplicationJSONObject = out
+		case utils.MatchContentType(contentType, `text/json`):
+			var out *operations.GetCompanyConfiguration200TextJSON
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.GetCompanyConfiguration200TextJSONObject = out
+		case utils.MatchContentType(contentType, `text/plain`):
+			data, err := io.ReadAll(httpRes.Body)
+			if err != nil {
+				return nil, fmt.Errorf("error reading response body: %w", err)
+			}
+
+			out := string(data)
+			res.GetCompanyConfiguration200TextPlainObject = &out
 		}
 	}
 
@@ -112,22 +127,37 @@ func (s *configuration) SaveCompanyConfiguration(ctx context.Context, request op
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.CompanyConfigResourceRepresentation
+			var out *operations.SaveCompanyConfiguration200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.CompanyConfigResourceRepresentation = out
+			res.SaveCompanyConfiguration200ApplicationJSONObject = out
+		case utils.MatchContentType(contentType, `text/json`):
+			var out *operations.SaveCompanyConfiguration200TextJSON
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.SaveCompanyConfiguration200TextJSONObject = out
+		case utils.MatchContentType(contentType, `text/plain`):
+			data, err := io.ReadAll(httpRes.Body)
+			if err != nil {
+				return nil, fmt.Errorf("error reading response body: %w", err)
+			}
+
+			out := string(data)
+			res.SaveCompanyConfiguration200TextPlainObject = &out
 		}
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.CodatErrorMessage
+			var out *operations.SaveCompanyConfiguration400ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.CodatErrorMessage = out
+			res.SaveCompanyConfiguration400ApplicationJSONObject = out
 		}
 	}
 

@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/commerce/pkg/models/shared"
+	"time"
 )
 
 type ListCommerceTransactionsPathParams struct {
@@ -44,14 +44,47 @@ type ListCommerceTransactionsLinksLinks struct {
 	Self     ListCommerceTransactionsLinksLinksSelf      `json:"self"`
 }
 
+type ListCommerceTransactionsLinksSourceModifiedDateRecordRef struct {
+	ID   string      `json:"id"`
+	Type interface{} `json:"type"`
+}
+
+type ListCommerceTransactionsLinksSourceModifiedDateTypeEnum string
+
+const (
+	ListCommerceTransactionsLinksSourceModifiedDateTypeEnumPayment          ListCommerceTransactionsLinksSourceModifiedDateTypeEnum = "Payment"
+	ListCommerceTransactionsLinksSourceModifiedDateTypeEnumRefund           ListCommerceTransactionsLinksSourceModifiedDateTypeEnum = "Refund"
+	ListCommerceTransactionsLinksSourceModifiedDateTypeEnumPayout           ListCommerceTransactionsLinksSourceModifiedDateTypeEnum = "Payout"
+	ListCommerceTransactionsLinksSourceModifiedDateTypeEnumFailedPayout     ListCommerceTransactionsLinksSourceModifiedDateTypeEnum = "FailedPayout"
+	ListCommerceTransactionsLinksSourceModifiedDateTypeEnumTransfer         ListCommerceTransactionsLinksSourceModifiedDateTypeEnum = "Transfer"
+	ListCommerceTransactionsLinksSourceModifiedDateTypeEnumPaymentFee       ListCommerceTransactionsLinksSourceModifiedDateTypeEnum = "PaymentFee"
+	ListCommerceTransactionsLinksSourceModifiedDateTypeEnumPaymentFeeRefund ListCommerceTransactionsLinksSourceModifiedDateTypeEnum = "PaymentFeeRefund"
+	ListCommerceTransactionsLinksSourceModifiedDateTypeEnumUnknown          ListCommerceTransactionsLinksSourceModifiedDateTypeEnum = "Unknown"
+)
+
+// ListCommerceTransactionsLinksSourceModifiedDate
+// A financial transaction recorded in the commerce or point of sale system
+type ListCommerceTransactionsLinksSourceModifiedDate struct {
+	CreatedDate          *time.Time                                                `json:"createdDate,omitempty"`
+	Currency             *string                                                   `json:"currency,omitempty"`
+	ID                   string                                                    `json:"id"`
+	ModifiedDate         *time.Time                                                `json:"modifiedDate,omitempty"`
+	SourceCreatedDate    *time.Time                                                `json:"sourceCreatedDate,omitempty"`
+	SourceModifiedDate   *time.Time                                                `json:"sourceModifiedDate,omitempty"`
+	SubType              *string                                                   `json:"subType,omitempty"`
+	TotalAmount          *float64                                                  `json:"totalAmount,omitempty"`
+	TransactionSourceRef *ListCommerceTransactionsLinksSourceModifiedDateRecordRef `json:"transactionSourceRef,omitempty"`
+	Type                 *ListCommerceTransactionsLinksSourceModifiedDateTypeEnum  `json:"type,omitempty"`
+}
+
 // ListCommerceTransactionsLinks
 // Codat's Paging Model
 type ListCommerceTransactionsLinks struct {
-	Links        ListCommerceTransactionsLinksLinks `json:"_links"`
-	PageNumber   int64                              `json:"pageNumber"`
-	PageSize     int64                              `json:"pageSize"`
-	Results      []shared.Transaction               `json:"results,omitempty"`
-	TotalResults int64                              `json:"totalResults"`
+	Links        ListCommerceTransactionsLinksLinks                `json:"_links"`
+	PageNumber   int64                                             `json:"pageNumber"`
+	PageSize     int64                                             `json:"pageSize"`
+	Results      []ListCommerceTransactionsLinksSourceModifiedDate `json:"results,omitempty"`
+	TotalResults int64                                             `json:"totalResults"`
 }
 
 type ListCommerceTransactionsResponse struct {

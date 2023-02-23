@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/accounting/pkg/utils"
 	"net/http"
 )
@@ -65,12 +64,12 @@ func (s *bankAccounts) GetAllBankAccount(ctx context.Context, request operations
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.BankStatementAccount
+			var out *operations.GetAllBankAccount200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.BankStatementAccount = out
+			res.GetAllBankAccount200ApplicationJSONObject = out
 		}
 	}
 
@@ -109,12 +108,12 @@ func (s *bankAccounts) GetBankAccount(ctx context.Context, request operations.Ge
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.BankAccount
+			var out *operations.GetBankAccountSourceModifiedDate
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.BankAccount = out
+			res.SourceModifiedDate = out
 		}
 	}
 

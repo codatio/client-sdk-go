@@ -13,7 +13,7 @@ func main() {
     opts := []codatio.SDKOption{
         codatio.WithSecurity(
             shared.Security{
-                APIKey: shared.SchemeAPIKey{
+                Authorization: shared.SchemeAuthorization{
                     APIKey: "YOUR_API_KEY_HERE",
                 },
             }
@@ -33,7 +33,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.CompanyConfigResourceRepresentation != nil {
+    if res.GetCompanyConfiguration200ApplicationJSONObject != nil {
         // handle response
     }
 ```

@@ -2,6 +2,7 @@ package operations
 
 import (
 	"github.com/codatio/client-sdk-go/banking/pkg/models/shared"
+	"time"
 )
 
 type ListBankTransactionCategoriesPathParams struct {
@@ -49,14 +50,34 @@ type ListBankTransactionCategoriesLinksLinks struct {
 	Self     ListBankTransactionCategoriesLinksLinksSelf      `json:"self"`
 }
 
+type ListBankTransactionCategoriesLinksSourceModifiedDateStatusEnum string
+
+const (
+	ListBankTransactionCategoriesLinksSourceModifiedDateStatusEnumUnknown  ListBankTransactionCategoriesLinksSourceModifiedDateStatusEnum = "Unknown"
+	ListBankTransactionCategoriesLinksSourceModifiedDateStatusEnumActive   ListBankTransactionCategoriesLinksSourceModifiedDateStatusEnum = "Active"
+	ListBankTransactionCategoriesLinksSourceModifiedDateStatusEnumArchived ListBankTransactionCategoriesLinksSourceModifiedDateStatusEnum = "Archived"
+)
+
+// ListBankTransactionCategoriesLinksSourceModifiedDate
+// The Banking Transaction Categories data type provides a list of hierarchical categories associated with a transaction for greater contextual meaning to transaction activity.
+type ListBankTransactionCategoriesLinksSourceModifiedDate struct {
+	HasChildren        *bool                                                           `json:"hasChildren,omitempty"`
+	ID                 string                                                          `json:"id"`
+	ModifiedDate       *time.Time                                                      `json:"modifiedDate,omitempty"`
+	Name               string                                                          `json:"name"`
+	ParentID           *string                                                         `json:"parentId,omitempty"`
+	SourceModifiedDate *time.Time                                                      `json:"sourceModifiedDate,omitempty"`
+	Status             *ListBankTransactionCategoriesLinksSourceModifiedDateStatusEnum `json:"status,omitempty"`
+}
+
 // ListBankTransactionCategoriesLinks
 // Codat's Paging Model
 type ListBankTransactionCategoriesLinks struct {
-	Links        ListBankTransactionCategoriesLinksLinks `json:"_links"`
-	PageNumber   int64                                   `json:"pageNumber"`
-	PageSize     int64                                   `json:"pageSize"`
-	Results      *shared.TransactionCategory             `json:"results,omitempty"`
-	TotalResults int64                                   `json:"totalResults"`
+	Links        ListBankTransactionCategoriesLinksLinks               `json:"_links"`
+	PageNumber   int64                                                 `json:"pageNumber"`
+	PageSize     int64                                                 `json:"pageSize"`
+	Results      *ListBankTransactionCategoriesLinksSourceModifiedDate `json:"results,omitempty"`
+	TotalResults int64                                                 `json:"totalResults"`
 }
 
 type ListBankTransactionCategoriesResponse struct {

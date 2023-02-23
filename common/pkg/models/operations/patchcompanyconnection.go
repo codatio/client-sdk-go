@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
+	"time"
 )
 
 type PatchCompanyConnectionPathParams struct {
@@ -36,8 +36,57 @@ type PatchCompanyConnection401ApplicationJSON struct {
 	StatusCode        *int64  `json:"statusCode,omitempty"`
 }
 
+type PatchCompanyConnectionConnectionConnectionInfo struct {
+	AdditionalProp1 *string `json:"additionalProp1,omitempty"`
+	AdditionalProp2 *string `json:"additionalProp2,omitempty"`
+	AdditionalProp3 *string `json:"additionalProp3,omitempty"`
+}
+
+type PatchCompanyConnectionConnectionDataConnectionErrors struct {
+	ErrorMessage *string    `json:"errorMessage,omitempty"`
+	ErroredOnUtc *time.Time `json:"erroredOnUtc,omitempty"`
+	StatusCode   *string    `json:"statusCode,omitempty"`
+	StatusText   *string    `json:"statusText,omitempty"`
+}
+
+type PatchCompanyConnectionConnectionSourceTypeEnum string
+
+const (
+	PatchCompanyConnectionConnectionSourceTypeEnumAccounting PatchCompanyConnectionConnectionSourceTypeEnum = "Accounting"
+	PatchCompanyConnectionConnectionSourceTypeEnumBanking    PatchCompanyConnectionConnectionSourceTypeEnum = "Banking"
+	PatchCompanyConnectionConnectionSourceTypeEnumCommerce   PatchCompanyConnectionConnectionSourceTypeEnum = "Commerce"
+	PatchCompanyConnectionConnectionSourceTypeEnumOther      PatchCompanyConnectionConnectionSourceTypeEnum = "Other"
+	PatchCompanyConnectionConnectionSourceTypeEnumUnknown    PatchCompanyConnectionConnectionSourceTypeEnum = "Unknown"
+)
+
+type PatchCompanyConnectionConnectionStatusEnum string
+
+const (
+	PatchCompanyConnectionConnectionStatusEnumPendingAuth  PatchCompanyConnectionConnectionStatusEnum = "PendingAuth"
+	PatchCompanyConnectionConnectionStatusEnumLinked       PatchCompanyConnectionConnectionStatusEnum = "Linked"
+	PatchCompanyConnectionConnectionStatusEnumUnlinked     PatchCompanyConnectionConnectionStatusEnum = "Unlinked"
+	PatchCompanyConnectionConnectionStatusEnumDeauthorized PatchCompanyConnectionConnectionStatusEnum = "Deauthorized"
+)
+
+// PatchCompanyConnectionConnection
+// A connection represents the link between a `company` and a source of data.
+type PatchCompanyConnectionConnection struct {
+	ConnectionInfo       *PatchCompanyConnectionConnectionConnectionInfo        `json:"connectionInfo,omitempty"`
+	Created              time.Time                                              `json:"created"`
+	DataConnectionErrors []PatchCompanyConnectionConnectionDataConnectionErrors `json:"dataConnectionErrors,omitempty"`
+	ID                   string                                                 `json:"id"`
+	IntegrationID        string                                                 `json:"integrationId"`
+	IntegrationKey       string                                                 `json:"integrationKey"`
+	LastSync             *time.Time                                             `json:"lastSync,omitempty"`
+	LinkURL              string                                                 `json:"linkUrl"`
+	PlatformName         string                                                 `json:"platformName"`
+	SourceID             string                                                 `json:"sourceId"`
+	SourceType           PatchCompanyConnectionConnectionSourceTypeEnum         `json:"sourceType"`
+	Status               PatchCompanyConnectionConnectionStatusEnum             `json:"status"`
+}
+
 type PatchCompanyConnectionResponse struct {
-	Connection                                     *shared.Connection
+	Connection                                     *PatchCompanyConnectionConnection
 	ContentType                                    string
 	StatusCode                                     int
 	PatchCompanyConnection401ApplicationJSONObject *PatchCompanyConnection401ApplicationJSON

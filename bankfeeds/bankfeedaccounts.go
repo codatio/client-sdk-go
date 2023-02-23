@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/bankfeeds/pkg/utils"
 	"net/http"
 )
@@ -61,7 +60,7 @@ func (s *bankFeedAccounts) GetBankFeeds(ctx context.Context, request operations.
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out []shared.BankFeedBankAccount
+			var out []operations.GetBankFeedsBankFeedBankAccount
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -112,7 +111,7 @@ func (s *bankFeedAccounts) PutBankFeeds(ctx context.Context, request operations.
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out []shared.BankFeedBankAccount
+			var out []operations.PutBankFeedsBankFeedBankAccount
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -163,7 +162,7 @@ func (s *bankFeedAccounts) UpdateBankFeed(ctx context.Context, request operation
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.BankFeedBankAccount
+			var out *operations.UpdateBankFeedBankFeedBankAccount
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}

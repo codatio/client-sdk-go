@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/shared"
+	"time"
 )
 
 type UpdateDataConnectionPathParams struct {
@@ -9,13 +9,37 @@ type UpdateDataConnectionPathParams struct {
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
+type UpdateDataConnectionRequestBody struct {
+	Status *string `json:"status,omitempty"`
+}
+
 type UpdateDataConnectionRequest struct {
 	PathParams UpdateDataConnectionPathParams
-	Request    *shared.CodatPublicAPIModelsCompanyPatchDataConnectionModel `request:"mediaType=application/json"`
+	Request    *UpdateDataConnectionRequestBody `request:"mediaType=application/json"`
+}
+
+type UpdateDataConnection200ApplicationJSONDataConnectionErrors struct {
+	ErrorMessage *string    `json:"errorMessage,omitempty"`
+	ErroredOnUtc *time.Time `json:"erroredOnUtc,omitempty"`
+	StatusCode   *string    `json:"statusCode,omitempty"`
+	StatusText   *string    `json:"statusText,omitempty"`
+}
+
+type UpdateDataConnection200ApplicationJSON struct {
+	Created              *time.Time                                                   `json:"created,omitempty"`
+	DataConnectionErrors []UpdateDataConnection200ApplicationJSONDataConnectionErrors `json:"dataConnectionErrors,omitempty"`
+	ID                   string                                                       `json:"id"`
+	IntegrationID        string                                                       `json:"integrationId"`
+	LastSync             *time.Time                                                   `json:"lastSync,omitempty"`
+	LinkURL              string                                                       `json:"linkUrl"`
+	PlatformName         string                                                       `json:"platformName"`
+	SourceID             string                                                       `json:"sourceId"`
+	SourceType           *string                                                      `json:"sourceType,omitempty"`
+	Status               *string                                                      `json:"status,omitempty"`
 }
 
 type UpdateDataConnectionResponse struct {
-	CodatPublicAPIModelsCompanyDataConnection *shared.CodatPublicAPIModelsCompanyDataConnection
-	ContentType                               string
-	StatusCode                                int
+	ContentType                                  string
+	StatusCode                                   int
+	UpdateDataConnection200ApplicationJSONObject *UpdateDataConnection200ApplicationJSON
 }

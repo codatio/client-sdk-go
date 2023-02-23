@@ -1,11 +1,21 @@
 package operations
 
-import (
-	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
-)
+type PostRulesWebhookNotifiers struct {
+	Emails  []string `json:"emails,omitempty"`
+	Webhook *string  `json:"webhook,omitempty"`
+}
+
+// PostRulesWebhook
+// Configuration to alert to a url or list of email addresses based on the given type / condition.
+type PostRulesWebhook struct {
+	CompanyID *string                   `json:"companyId,omitempty"`
+	ID        string                    `json:"id"`
+	Notifiers PostRulesWebhookNotifiers `json:"notifiers"`
+	Type      string                    `json:"type"`
+}
 
 type PostRulesRequest struct {
-	Request *shared.Rule `request:"mediaType=application/json"`
+	Request *PostRulesWebhook `request:"mediaType=application/json"`
 }
 
 type PostRules401ApplicationJSON struct {
@@ -19,7 +29,7 @@ type PostRules401ApplicationJSON struct {
 
 type PostRulesResponse struct {
 	ContentType                       string
-	Rule                              *shared.Rule
 	StatusCode                        int
+	Webhook                           *PostRulesWebhook
 	PostRules401ApplicationJSONObject *PostRules401ApplicationJSON
 }

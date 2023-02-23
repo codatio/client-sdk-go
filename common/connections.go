@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/common/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/common/pkg/utils"
 	"net/http"
 )
@@ -159,7 +158,7 @@ func (s *connections) GetCompaniesCompanyIDConnectionsConnectionIDAuthorization(
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Connection
+			var out *operations.GetCompaniesCompanyIDConnectionsConnectionIDAuthorizationConnection
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -210,7 +209,7 @@ func (s *connections) GetCompanyConnection(ctx context.Context, request operatio
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Connection
+			var out *operations.GetCompanyConnectionConnection
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -349,7 +348,7 @@ func (s *connections) PatchCompanyConnection(ctx context.Context, request operat
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Connection
+			var out *operations.PatchCompanyConnectionConnection
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}

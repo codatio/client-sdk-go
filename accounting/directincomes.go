@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/accounting/pkg/utils"
 	"net/http"
 )
@@ -96,12 +95,12 @@ func (s *directIncomes) GetDirectIncome(ctx context.Context, request operations.
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.DirectIncome
+			var out *operations.GetDirectIncomeSourceModifiedDate
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.DirectIncome = out
+			res.SourceModifiedDate = out
 		}
 	}
 
@@ -144,7 +143,7 @@ func (s *directIncomes) GetDirectIncomeAttachment(ctx context.Context, request o
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Attachment
+			var out *operations.GetDirectIncomeAttachmentAttachment
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -236,12 +235,12 @@ func (s *directIncomes) ListDirectIncomeAttachments(ctx context.Context, request
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.AttachmentsDataset
+			var out *operations.ListDirectIncomeAttachmentsAttachments
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.AttachmentsDataset = out
+			res.Attachments = out
 		}
 	}
 

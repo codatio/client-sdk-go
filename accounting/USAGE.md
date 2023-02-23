@@ -40,7 +40,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.AccountTransaction != nil {
+    if res.SourceModifiedDate != nil {
         // handle response
     }
 ```

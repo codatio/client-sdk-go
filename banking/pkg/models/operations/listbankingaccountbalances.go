@@ -2,6 +2,7 @@ package operations
 
 import (
 	"github.com/codatio/client-sdk-go/banking/pkg/models/shared"
+	"time"
 )
 
 type ListBankingAccountBalancesPathParams struct {
@@ -49,14 +50,32 @@ type ListBankingAccountBalancesLinksLinks struct {
 	Self     ListBankingAccountBalancesLinksLinksSelf      `json:"self"`
 }
 
+// ListBankingAccountBalancesLinksSourceModifiedDateBalance
+// An object containing bank balance data.
+type ListBankingAccountBalancesLinksSourceModifiedDateBalance struct {
+	Available *float64 `json:"available,omitempty"`
+	Current   float64  `json:"current"`
+	Limit     *float64 `json:"limit,omitempty"`
+}
+
+// ListBankingAccountBalancesLinksSourceModifiedDate
+// The Banking Account Balances data type provides a list of balances for a bank account including end-of-day batch balance or running balances per transaction.
+type ListBankingAccountBalancesLinksSourceModifiedDate struct {
+	AccountID          string                                                   `json:"accountId"`
+	Balance            ListBankingAccountBalancesLinksSourceModifiedDateBalance `json:"balance"`
+	Date               time.Time                                                `json:"date"`
+	ModifiedDate       *time.Time                                               `json:"modifiedDate,omitempty"`
+	SourceModifiedDate *time.Time                                               `json:"sourceModifiedDate,omitempty"`
+}
+
 // ListBankingAccountBalancesLinks
 // Codat's Paging Model
 type ListBankingAccountBalancesLinks struct {
-	Links        ListBankingAccountBalancesLinksLinks `json:"_links"`
-	PageNumber   int64                                `json:"pageNumber"`
-	PageSize     int64                                `json:"pageSize"`
-	Results      *shared.AccountBalance               `json:"results,omitempty"`
-	TotalResults int64                                `json:"totalResults"`
+	Links        ListBankingAccountBalancesLinksLinks               `json:"_links"`
+	PageNumber   int64                                              `json:"pageNumber"`
+	PageSize     int64                                              `json:"pageSize"`
+	Results      *ListBankingAccountBalancesLinksSourceModifiedDate `json:"results,omitempty"`
+	TotalResults int64                                              `json:"totalResults"`
 }
 
 type ListBankingAccountBalancesResponse struct {

@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/commerce/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/commerce/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/commerce/pkg/utils"
 	"net/http"
 )
@@ -63,12 +62,12 @@ func (s *companyInfo) GetCommerceInfo(ctx context.Context, request operations.Ge
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.CompanyInfo
+			var out *operations.GetCommerceInfoSourceModifiedDate
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.CompanyInfo = out
+			res.SourceModifiedDate = out
 		}
 	}
 

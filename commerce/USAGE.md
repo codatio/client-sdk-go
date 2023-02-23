@@ -34,7 +34,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.CompanyInfo != nil {
+    if res.SourceModifiedDate != nil {
         // handle response
     }
 ```

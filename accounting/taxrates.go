@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/accounting/pkg/utils"
 	"net/http"
 )
@@ -61,12 +60,12 @@ func (s *taxRates) GetTaxRate(ctx context.Context, request operations.GetTaxRate
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.TaxRate
+			var out *operations.GetTaxRate200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.TaxRate = out
+			res.GetTaxRate200ApplicationJSONObject = out
 		}
 	}
 

@@ -1,15 +1,46 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/shared"
+	"time"
 )
 
+type PostCompaniesRequestBody struct {
+	Name string `json:"name"`
+}
+
 type PostCompaniesRequest struct {
-	Request *shared.CodatSyncDirectAPIModelsAddCompanyModel `request:"mediaType=application/json"`
+	Request *PostCompaniesRequestBody `request:"mediaType=application/json"`
+}
+
+type PostCompanies200ApplicationJSONDataConnectionsDataConnectionErrors struct {
+	ErrorMessage *string    `json:"errorMessage,omitempty"`
+	ErroredOnUtc *time.Time `json:"erroredOnUtc,omitempty"`
+	StatusCode   *string    `json:"statusCode,omitempty"`
+	StatusText   *string    `json:"statusText,omitempty"`
+}
+
+type PostCompanies200ApplicationJSONDataConnections struct {
+	Created              *time.Time                                                           `json:"created,omitempty"`
+	DataConnectionErrors []PostCompanies200ApplicationJSONDataConnectionsDataConnectionErrors `json:"dataConnectionErrors,omitempty"`
+	ID                   string                                                               `json:"id"`
+	IntegrationID        string                                                               `json:"integrationId"`
+	LastSync             *time.Time                                                           `json:"lastSync,omitempty"`
+	LinkURL              string                                                               `json:"linkUrl"`
+	PlatformName         string                                                               `json:"platformName"`
+	SourceID             string                                                               `json:"sourceId"`
+	SourceType           *string                                                              `json:"sourceType,omitempty"`
+	Status               *string                                                              `json:"status,omitempty"`
+}
+
+type PostCompanies200ApplicationJSON struct {
+	Created         *time.Time                                       `json:"created,omitempty"`
+	DataConnections []PostCompanies200ApplicationJSONDataConnections `json:"dataConnections,omitempty"`
+	ID              string                                           `json:"id"`
+	Name            string                                           `json:"name"`
 }
 
 type PostCompaniesResponse struct {
-	CodatSyncDirectAPIModelsCompany *shared.CodatSyncDirectAPIModelsCompany
-	ContentType                     string
-	StatusCode                      int
+	ContentType                           string
+	StatusCode                            int
+	PostCompanies200ApplicationJSONObject *PostCompanies200ApplicationJSON
 }

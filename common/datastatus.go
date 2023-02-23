@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/common/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/common/pkg/utils"
 	"net/http"
 )
@@ -203,7 +202,7 @@ func (s *dataStatus) GetPullOperation(ctx context.Context, request operations.Ge
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.PullOperation
+			var out *operations.GetPullOperationPullOperation
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}

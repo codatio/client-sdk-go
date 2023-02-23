@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/assess/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/assess/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/assess/pkg/utils"
 	"net/http"
 	"strings"
@@ -62,12 +61,12 @@ func (s *categories) GetDataAssessAccountsCategories(ctx context.Context) (*oper
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out []shared.Categories
+			var out []operations.GetDataAssessAccountsCategoriesChartOfAccountCategory
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Categories = out
+			res.GetDataAssessAccountsCategoriesChartOfAccountCategoryAllOfs = out
 		}
 	}
 
@@ -106,7 +105,7 @@ func (s *categories) GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAccou
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.CategorisedAccount
+			var out *operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsAccountIDCategoriesCategorisedAccount
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -205,7 +204,7 @@ func (s *categories) PatchDataCompaniesCompanyIDConnectionsConnectionIDAssessAcc
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.CategorisedAccount
+			var out *operations.PatchDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsAccountIDCategoriesCategorisedAccount
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -256,7 +255,7 @@ func (s *categories) PatchDataCompaniesCompanyIDConnectionsConnectionIDAssessAcc
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out []shared.CategorisedAccount
+			var out []operations.PatchDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsCategoriesCategorisedAccount
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}

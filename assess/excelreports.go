@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/assess/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/assess/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/assess/pkg/utils"
 	"io"
 	"net/http"
@@ -66,12 +65,12 @@ func (s *excelReports) GetDataCompaniesCompanyIDAssessExcel(ctx context.Context,
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ExcelStatus
+			var out *operations.GetDataCompaniesCompanyIDAssessExcel200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.ExcelStatus = out
+			res.GetDataCompaniesCompanyIDAssessExcel200ApplicationJSONObject = out
 		}
 	}
 
@@ -114,12 +113,12 @@ func (s *excelReports) GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAcc
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Report
+			var out *operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountingMetricsMarketing200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Report = out
+			res.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountingMetricsMarketing200ApplicationJSONObject = out
 		}
 	}
 
@@ -162,12 +161,12 @@ func (s *excelReports) PostDataCompaniesCompanyIDAssessExcel(ctx context.Context
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ExcelStatus
+			var out *operations.PostDataCompaniesCompanyIDAssessExcel200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.ExcelStatus = out
+			res.PostDataCompaniesCompanyIDAssessExcel200ApplicationJSONObject = out
 		}
 	}
 

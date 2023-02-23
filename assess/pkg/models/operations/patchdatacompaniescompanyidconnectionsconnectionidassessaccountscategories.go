@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/assess/pkg/models/shared"
+	"time"
 )
 
 type PatchDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsCategoriesPathParams struct {
@@ -27,8 +27,28 @@ type PatchDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsCategoriesR
 	Request    *PatchDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsCategoriesRequestBody `request:"mediaType=application/json"`
 }
 
+// PatchDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsCategoriesCategorisedAccountAccountRef
+// An object containing account reference data.
+type PatchDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsCategoriesCategorisedAccountAccountRef struct {
+	ID   *string `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type PatchDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsCategoriesCategorisedAccountModifiedDate struct {
+	DetailType   *string    `json:"detailType,omitempty"`
+	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	Subtype      *string    `json:"subtype,omitempty"`
+	Type         *string    `json:"type,omitempty"`
+}
+
+type PatchDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsCategoriesCategorisedAccount struct {
+	AccountRef *PatchDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsCategoriesCategorisedAccountAccountRef   `json:"accountRef,omitempty"`
+	Confirmed  *PatchDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsCategoriesCategorisedAccountModifiedDate `json:"confirmed,omitempty"`
+	Suggested  *PatchDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsCategoriesCategorisedAccountModifiedDate `json:"suggested,omitempty"`
+}
+
 type PatchDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsCategoriesResponse struct {
-	CategorisedAccounts []shared.CategorisedAccount
+	CategorisedAccounts []PatchDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsCategoriesCategorisedAccount
 	ContentType         string
 	StatusCode          int
 }

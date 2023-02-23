@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/synccommerce/pkg/utils"
 	"net/http"
 	"strings"
@@ -69,12 +68,12 @@ func (s *companyManagement) AddDataConnection(ctx context.Context, request opera
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.CodatPublicAPIModelsCompanyDataConnection
+			var out *operations.AddDataConnection200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.CodatPublicAPIModelsCompanyDataConnection = out
+			res.AddDataConnection200ApplicationJSONObject = out
 		}
 	}
 
@@ -117,12 +116,12 @@ func (s *companyManagement) Companies(ctx context.Context, request operations.Co
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.CodatPublicAPIModelsCompanyCompanyPagedResponseModel
+			var out *operations.Companies200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.CodatPublicAPIModelsCompanyCompanyPagedResponseModel = out
+			res.Companies200ApplicationJSONObject = out
 		}
 	}
 
@@ -165,12 +164,12 @@ func (s *companyManagement) GetDataconnections(ctx context.Context, request oper
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.CodatPublicAPIModelsCompanyDataConnectionPagedResponseModel
+			var out *operations.GetDataconnections200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.CodatPublicAPIModelsCompanyDataConnectionPagedResponseModel = out
+			res.GetDataconnections200ApplicationJSONObject = out
 		}
 	}
 
@@ -216,12 +215,12 @@ func (s *companyManagement) PostCompanies(ctx context.Context, request operation
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.CodatSyncDirectAPIModelsCompany
+			var out *operations.PostCompanies200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.CodatSyncDirectAPIModelsCompany = out
+			res.PostCompanies200ApplicationJSONObject = out
 		}
 	}
 
@@ -267,12 +266,12 @@ func (s *companyManagement) UpdateDataConnection(ctx context.Context, request op
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.CodatPublicAPIModelsCompanyDataConnection
+			var out *operations.UpdateDataConnection200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.CodatPublicAPIModelsCompanyDataConnection = out
+			res.UpdateDataConnection200ApplicationJSONObject = out
 		}
 	}
 

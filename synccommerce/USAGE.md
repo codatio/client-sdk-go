@@ -34,7 +34,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.CodatPublicAPIModelsCompanyDataConnection != nil {
+    if res.AddDataConnection200ApplicationJSONObject != nil {
         // handle response
     }
 ```

@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/expenses/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/expenses/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/expenses/pkg/utils"
+	"io"
 	"net/http"
 )
 
@@ -61,12 +61,27 @@ func (s *syncStatus) GetLastSuccessfulSync(ctx context.Context, request operatio
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.CompanySyncStatus
+			var out *operations.GetLastSuccessfulSync200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.CompanySyncStatus = out
+			res.GetLastSuccessfulSync200ApplicationJSONObject = out
+		case utils.MatchContentType(contentType, `text/json`):
+			var out *operations.GetLastSuccessfulSync200TextJSON
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.GetLastSuccessfulSync200TextJSONObject = out
+		case utils.MatchContentType(contentType, `text/plain`):
+			data, err := io.ReadAll(httpRes.Body)
+			if err != nil {
+				return nil, fmt.Errorf("error reading response body: %w", err)
+			}
+
+			out := string(data)
+			res.GetLastSuccessfulSync200TextPlainObject = &out
 		}
 	}
 
@@ -105,12 +120,27 @@ func (s *syncStatus) GetLatestSync(ctx context.Context, request operations.GetLa
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.CompanySyncStatus
+			var out *operations.GetLatestSync200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.CompanySyncStatus = out
+			res.GetLatestSync200ApplicationJSONObject = out
+		case utils.MatchContentType(contentType, `text/json`):
+			var out *operations.GetLatestSync200TextJSON
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.GetLatestSync200TextJSONObject = out
+		case utils.MatchContentType(contentType, `text/plain`):
+			data, err := io.ReadAll(httpRes.Body)
+			if err != nil {
+				return nil, fmt.Errorf("error reading response body: %w", err)
+			}
+
+			out := string(data)
+			res.GetLatestSync200TextPlainObject = &out
 		}
 	}
 
@@ -149,12 +179,27 @@ func (s *syncStatus) GetSyncByID(ctx context.Context, request operations.GetSync
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.CompanySyncStatus
+			var out *operations.GetSyncByID200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.CompanySyncStatus = out
+			res.GetSyncByID200ApplicationJSONObject = out
+		case utils.MatchContentType(contentType, `text/json`):
+			var out *operations.GetSyncByID200TextJSON
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.GetSyncByID200TextJSONObject = out
+		case utils.MatchContentType(contentType, `text/plain`):
+			data, err := io.ReadAll(httpRes.Body)
+			if err != nil {
+				return nil, fmt.Errorf("error reading response body: %w", err)
+			}
+
+			out := string(data)
+			res.GetSyncByID200TextPlainObject = &out
 		}
 	}
 
@@ -193,12 +238,27 @@ func (s *syncStatus) ListSyncs(ctx context.Context, request operations.ListSyncs
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out []shared.CompanySyncStatus
+			var out []operations.ListSyncs200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.CompanySyncStatuses = out
+			res.ListSyncs200ApplicationJSONObjects = out
+		case utils.MatchContentType(contentType, `text/json`):
+			var out []operations.ListSyncs200TextJSON
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.ListSyncs200TextJSONObjects = out
+		case utils.MatchContentType(contentType, `text/plain`):
+			data, err := io.ReadAll(httpRes.Body)
+			if err != nil {
+				return nil, fmt.Errorf("error reading response body: %w", err)
+			}
+
+			out := string(data)
+			res.ListSyncs200TextPlainArray = &out
 		}
 	}
 

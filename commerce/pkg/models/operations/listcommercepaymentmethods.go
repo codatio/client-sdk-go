@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/commerce/pkg/models/shared"
+	"time"
 )
 
 type ListCommercePaymentMethodsPathParams struct {
@@ -44,14 +44,30 @@ type ListCommercePaymentMethodsLinksLinks struct {
 	Self     ListCommercePaymentMethodsLinksLinksSelf      `json:"self"`
 }
 
+type ListCommercePaymentMethodsLinksSourceModifiedDateStatusEnum string
+
+const (
+	ListCommercePaymentMethodsLinksSourceModifiedDateStatusEnumActive   ListCommercePaymentMethodsLinksSourceModifiedDateStatusEnum = "Active"
+	ListCommercePaymentMethodsLinksSourceModifiedDateStatusEnumArchived ListCommercePaymentMethodsLinksSourceModifiedDateStatusEnum = "Archived"
+	ListCommercePaymentMethodsLinksSourceModifiedDateStatusEnumUnknown  ListCommercePaymentMethodsLinksSourceModifiedDateStatusEnum = "Unknown"
+)
+
+type ListCommercePaymentMethodsLinksSourceModifiedDate struct {
+	ID                 string                                                       `json:"id"`
+	ModifiedDate       *time.Time                                                   `json:"modifiedDate,omitempty"`
+	Name               *string                                                      `json:"name,omitempty"`
+	SourceModifiedDate *time.Time                                                   `json:"sourceModifiedDate,omitempty"`
+	Status             *ListCommercePaymentMethodsLinksSourceModifiedDateStatusEnum `json:"status,omitempty"`
+}
+
 // ListCommercePaymentMethodsLinks
 // Codat's Paging Model
 type ListCommercePaymentMethodsLinks struct {
-	Links        ListCommercePaymentMethodsLinksLinks `json:"_links"`
-	PageNumber   int64                                `json:"pageNumber"`
-	PageSize     int64                                `json:"pageSize"`
-	Results      []shared.PaymentMethod               `json:"results,omitempty"`
-	TotalResults int64                                `json:"totalResults"`
+	Links        ListCommercePaymentMethodsLinksLinks                `json:"_links"`
+	PageNumber   int64                                               `json:"pageNumber"`
+	PageSize     int64                                               `json:"pageSize"`
+	Results      []ListCommercePaymentMethodsLinksSourceModifiedDate `json:"results,omitempty"`
+	TotalResults int64                                               `json:"totalResults"`
 }
 
 type ListCommercePaymentMethodsResponse struct {

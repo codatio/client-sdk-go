@@ -23,9 +23,5 @@ pkg/models/operations/listbanktransactioncategories.go
 pkg/models/operations/getbankingtransaction.go
 pkg/models/operations/listallbankingtransactions.go
 pkg/models/operations/listbankingtransactions.go
-pkg/models/shared/accountbalance.go
-pkg/models/shared/account.go
-pkg/models/shared/transactioncategory.go
-pkg/models/shared/transaction.go
 pkg/models/shared/security.go
 USAGE.md

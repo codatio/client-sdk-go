@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/common/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/common/pkg/utils"
 	"net/http"
 )
@@ -30,7 +29,7 @@ func newRefreshData(defaultClient, securityClient HTTPClient, serverURL, languag
 }
 
 // CreateManyPullOperations - Queue pull operations
-// Initiate the pull of all data types that are enabled for this company
+// Refreshes all data types marked Fetch on first link.
 func (s *refreshData) CreateManyPullOperations(ctx context.Context, request operations.CreateManyPullOperationsRequest) (*operations.CreateManyPullOperationsResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/all", request.PathParams)
@@ -122,7 +121,7 @@ func (s *refreshData) CreatePullOperation(ctx context.Context, request operation
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.PullOperation
+			var out *operations.CreatePullOperationPullOperation
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}

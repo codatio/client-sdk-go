@@ -1,9 +1,5 @@
 package operations
 
-import (
-	"github.com/codatio/client-sdk-go/expenses/pkg/models/shared"
-)
-
 type UploadAttachmentPathParams struct {
 	CompanyID     string `pathParam:"style=simple,explode=false,name=companyId"`
 	SyncID        string `pathParam:"style=simple,explode=false,name=syncId"`
@@ -14,8 +10,14 @@ type UploadAttachmentRequest struct {
 	PathParams UploadAttachmentPathParams
 }
 
+type UploadAttachment200ApplicationJSON struct {
+	CompanyID     *string `json:"companyId,omitempty"`
+	ID            *string `json:"id,omitempty"`
+	TransactionID *string `json:"transactionId,omitempty"`
+}
+
 type UploadAttachmentResponse struct {
-	ContentType string
-	StatusCode  int
-	Attachment  *shared.Attachment
+	ContentType                              string
+	StatusCode                               int
+	UploadAttachment200ApplicationJSONObject *UploadAttachment200ApplicationJSON
 }

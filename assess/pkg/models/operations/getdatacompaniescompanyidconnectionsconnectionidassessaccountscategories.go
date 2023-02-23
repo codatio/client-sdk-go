@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/assess/pkg/models/shared"
+	"time"
 )
 
 type GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsCategoriesPathParams struct {
@@ -44,14 +44,34 @@ type GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsCategoriesLin
 	Self     GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsCategoriesLinksLinksSelf      `json:"self"`
 }
 
+// GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsCategoriesLinksCategorisedAccountAccountRef
+// An object containing account reference data.
+type GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsCategoriesLinksCategorisedAccountAccountRef struct {
+	ID   *string `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsCategoriesLinksCategorisedAccountModifiedDate struct {
+	DetailType   *string    `json:"detailType,omitempty"`
+	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	Subtype      *string    `json:"subtype,omitempty"`
+	Type         *string    `json:"type,omitempty"`
+}
+
+type GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsCategoriesLinksCategorisedAccount struct {
+	AccountRef *GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsCategoriesLinksCategorisedAccountAccountRef   `json:"accountRef,omitempty"`
+	Confirmed  *GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsCategoriesLinksCategorisedAccountModifiedDate `json:"confirmed,omitempty"`
+	Suggested  *GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsCategoriesLinksCategorisedAccountModifiedDate `json:"suggested,omitempty"`
+}
+
 // GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsCategoriesLinks
 // Codat's Paging Model
 type GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsCategoriesLinks struct {
-	Links        GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsCategoriesLinksLinks `json:"_links"`
-	PageNumber   int64                                                                              `json:"pageNumber"`
-	PageSize     int64                                                                              `json:"pageSize"`
-	Results      []shared.CategorisedAccount                                                        `json:"results,omitempty"`
-	TotalResults int64                                                                              `json:"totalResults"`
+	Links        GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsCategoriesLinksLinks                `json:"_links"`
+	PageNumber   int64                                                                                             `json:"pageNumber"`
+	PageSize     int64                                                                                             `json:"pageSize"`
+	Results      []GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsCategoriesLinksCategorisedAccount `json:"results,omitempty"`
+	TotalResults int64                                                                                             `json:"totalResults"`
 }
 
 type GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsCategoriesResponse struct {

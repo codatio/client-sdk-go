@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/common/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/common/pkg/utils"
 	"net/http"
 	"strings"
@@ -116,7 +115,7 @@ func (s *settings) GetSettingsProfile(ctx context.Context) (*operations.GetSetti
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Profile
+			var out *operations.GetSettingsProfileProfile
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -229,7 +228,7 @@ func (s *settings) PutProfile(ctx context.Context, request operations.PutProfile
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Profile
+			var out *operations.PutProfileProfile
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}

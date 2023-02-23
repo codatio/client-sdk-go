@@ -1,12 +1,21 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/assess/pkg/models/shared"
+	"time"
+)
+
+type GetDataCompaniesCompanyIDAssessDataTypesDataTypeDataIntegrityDetailsDataTypeEnum string
+
+const (
+	GetDataCompaniesCompanyIDAssessDataTypesDataTypeDataIntegrityDetailsDataTypeEnumBankingAccounts     GetDataCompaniesCompanyIDAssessDataTypesDataTypeDataIntegrityDetailsDataTypeEnum = "banking-accounts"
+	GetDataCompaniesCompanyIDAssessDataTypesDataTypeDataIntegrityDetailsDataTypeEnumBankingTransactions GetDataCompaniesCompanyIDAssessDataTypesDataTypeDataIntegrityDetailsDataTypeEnum = "banking-transactions"
+	GetDataCompaniesCompanyIDAssessDataTypesDataTypeDataIntegrityDetailsDataTypeEnumBankAccounts        GetDataCompaniesCompanyIDAssessDataTypesDataTypeDataIntegrityDetailsDataTypeEnum = "bankAccounts"
+	GetDataCompaniesCompanyIDAssessDataTypesDataTypeDataIntegrityDetailsDataTypeEnumAccountTransactions GetDataCompaniesCompanyIDAssessDataTypesDataTypeDataIntegrityDetailsDataTypeEnum = "accountTransactions"
 )
 
 type GetDataCompaniesCompanyIDAssessDataTypesDataTypeDataIntegrityDetailsPathParams struct {
-	CompanyID string                           `pathParam:"style=simple,explode=false,name=companyId"`
-	DataType  shared.DataIntegritydataTypeEnum `pathParam:"style=simple,explode=false,name=dataType"`
+	CompanyID string                                                                           `pathParam:"style=simple,explode=false,name=companyId"`
+	DataType  GetDataCompaniesCompanyIDAssessDataTypesDataTypeDataIntegrityDetailsDataTypeEnum `pathParam:"style=simple,explode=false,name=dataType"`
 }
 
 type GetDataCompaniesCompanyIDAssessDataTypesDataTypeDataIntegrityDetailsQueryParams struct {
@@ -44,14 +53,35 @@ type GetDataCompaniesCompanyIDAssessDataTypesDataTypeDataIntegrityDetailsLinksLi
 	Self     GetDataCompaniesCompanyIDAssessDataTypesDataTypeDataIntegrityDetailsLinksLinksSelf      `json:"self"`
 }
 
+type GetDataCompaniesCompanyIDAssessDataTypesDataTypeDataIntegrityDetailsLinksDataIntegrityDetailsMatches struct {
+	Amount       *string `json:"amount,omitempty"`
+	ConnectionID *string `json:"connectionId,omitempty"`
+	Currency     *string `json:"currency,omitempty"`
+	Date         *string `json:"date,omitempty"`
+	Description  *string `json:"description,omitempty"`
+	ID           *string `json:"id,omitempty"`
+	Type         *string `json:"type,omitempty"`
+}
+
+type GetDataCompaniesCompanyIDAssessDataTypesDataTypeDataIntegrityDetailsLinksDataIntegrityDetails struct {
+	Amount       *float64                                                                                               `json:"amount,omitempty"`
+	ConnectionID *string                                                                                                `json:"connectionId,omitempty"`
+	Currency     *string                                                                                                `json:"currency,omitempty"`
+	Date         *time.Time                                                                                             `json:"date,omitempty"`
+	Description  *string                                                                                                `json:"description,omitempty"`
+	ID           *string                                                                                                `json:"id,omitempty"`
+	Matches      []GetDataCompaniesCompanyIDAssessDataTypesDataTypeDataIntegrityDetailsLinksDataIntegrityDetailsMatches `json:"matches,omitempty"`
+	Type         *string                                                                                                `json:"type,omitempty"`
+}
+
 // GetDataCompaniesCompanyIDAssessDataTypesDataTypeDataIntegrityDetailsLinks
 // Codat's Paging Model
 type GetDataCompaniesCompanyIDAssessDataTypesDataTypeDataIntegrityDetailsLinks struct {
-	Links        GetDataCompaniesCompanyIDAssessDataTypesDataTypeDataIntegrityDetailsLinksLinks `json:"_links"`
-	PageNumber   int64                                                                          `json:"pageNumber"`
-	PageSize     int64                                                                          `json:"pageSize"`
-	Results      []shared.DataIntegrityDetails                                                  `json:"results,omitempty"`
-	TotalResults int64                                                                          `json:"totalResults"`
+	Links        GetDataCompaniesCompanyIDAssessDataTypesDataTypeDataIntegrityDetailsLinksLinks                  `json:"_links"`
+	PageNumber   int64                                                                                           `json:"pageNumber"`
+	PageSize     int64                                                                                           `json:"pageSize"`
+	Results      []GetDataCompaniesCompanyIDAssessDataTypesDataTypeDataIntegrityDetailsLinksDataIntegrityDetails `json:"results,omitempty"`
+	TotalResults int64                                                                                           `json:"totalResults"`
 }
 
 type GetDataCompaniesCompanyIDAssessDataTypesDataTypeDataIntegrityDetailsResponse struct {

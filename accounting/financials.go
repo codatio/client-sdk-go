@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/accounting/pkg/utils"
 	"net/http"
 )
@@ -65,12 +64,12 @@ func (s *financials) GetBalanceSheet(ctx context.Context, request operations.Get
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.BalanceSheetResponse
+			var out *operations.GetBalanceSheet200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.BalanceSheetResponse = out
+			res.GetBalanceSheet200ApplicationJSONObject = out
 		}
 	}
 
@@ -113,12 +112,12 @@ func (s *financials) GetCashFlowStatement(ctx context.Context, request operation
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.CashFlowStatementResponse
+			var out *operations.GetCashFlowStatement200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.CashFlowStatementResponse = out
+			res.GetCashFlowStatement200ApplicationJSONObject = out
 		}
 	}
 
@@ -161,12 +160,12 @@ func (s *financials) GetProfitAndLoss(ctx context.Context, request operations.Ge
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ProfitAndLossResponse
+			var out *operations.GetProfitAndLoss200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.ProfitAndLossResponse = out
+			res.GetProfitAndLoss200ApplicationJSONObject = out
 		}
 	}
 

@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/expenses/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/expenses/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/expenses/pkg/utils"
+	"io"
 	"net/http"
 )
 
@@ -33,7 +33,7 @@ func newTransactionStatus(defaultClient, securityClient HTTPClient, serverURL, l
 // Gets the status of a transaction for a sync
 func (s *transactionStatus) GetSyncTransaction(ctx context.Context, request operations.GetSyncTransactionRequest) (*operations.GetSyncTransactionResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/syncs/{syncId}/transactions/{TransactionId}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/syncs/{syncId}/transactions/{transactionId}", request.PathParams)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -61,12 +61,27 @@ func (s *transactionStatus) GetSyncTransaction(ctx context.Context, request oper
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out []shared.TransactionMetadata
+			var out []operations.GetSyncTransaction200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.TransactionMetadata = out
+			res.GetSyncTransaction200ApplicationJSONObjects = out
+		case utils.MatchContentType(contentType, `text/json`):
+			var out []operations.GetSyncTransaction200TextJSON
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.GetSyncTransaction200TextJSONObjects = out
+		case utils.MatchContentType(contentType, `text/plain`):
+			data, err := io.ReadAll(httpRes.Body)
+			if err != nil {
+				return nil, fmt.Errorf("error reading response body: %w", err)
+			}
+
+			out := string(data)
+			res.GetSyncTransaction200TextPlainArray = &out
 		}
 	}
 
@@ -109,12 +124,27 @@ func (s *transactionStatus) GetSyncTransactions(ctx context.Context, request ope
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.TransactionMetadataPagedResponse
+			var out *operations.GetSyncTransactions200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.TransactionMetadataPagedResponse = out
+			res.GetSyncTransactions200ApplicationJSONObject = out
+		case utils.MatchContentType(contentType, `text/json`):
+			var out *operations.GetSyncTransactions200TextJSON
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.GetSyncTransactions200TextJSONObject = out
+		case utils.MatchContentType(contentType, `text/plain`):
+			data, err := io.ReadAll(httpRes.Body)
+			if err != nil {
+				return nil, fmt.Errorf("error reading response body: %w", err)
+			}
+
+			out := string(data)
+			res.GetSyncTransactions200TextPlainObject = &out
 		}
 	}
 

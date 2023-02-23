@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
+	"time"
 )
 
 type GetProfileSyncSettings401ApplicationJSON struct {
@@ -13,10 +13,23 @@ type GetProfileSyncSettings401ApplicationJSON struct {
 	StatusCode        *int64  `json:"statusCode,omitempty"`
 }
 
+// GetProfileSyncSettings200ApplicationJSONSyncSetting
+// Describes how often, and how much history, should be fetched for the given data type when a pull operation is queued.
+type GetProfileSyncSettings200ApplicationJSONSyncSetting struct {
+	DataType         string     `json:"dataType"`
+	FetchOnFirstLink bool       `json:"fetchOnFirstLink"`
+	IsLocked         *bool      `json:"isLocked,omitempty"`
+	MonthsToSync     *int64     `json:"monthsToSync,omitempty"`
+	SyncFromUtc      *time.Time `json:"syncFromUtc,omitempty"`
+	SyncFromWindow   *int64     `json:"syncFromWindow,omitempty"`
+	SyncOrder        int64      `json:"syncOrder"`
+	SyncSchedule     int64      `json:"syncSchedule"`
+}
+
 type GetProfileSyncSettings200ApplicationJSON struct {
-	ClientID          *string              `json:"clientId,omitempty"`
-	OverridesDefaults *bool                `json:"overridesDefaults,omitempty"`
-	Settings          []shared.SyncSetting `json:"settings,omitempty"`
+	ClientID          *string                                               `json:"clientId,omitempty"`
+	OverridesDefaults *bool                                                 `json:"overridesDefaults,omitempty"`
+	Settings          []GetProfileSyncSettings200ApplicationJSONSyncSetting `json:"settings,omitempty"`
 }
 
 type GetProfileSyncSettingsResponse struct {

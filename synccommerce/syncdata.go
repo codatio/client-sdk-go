@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/synccommerce/pkg/utils"
 	"net/http"
 )
@@ -103,12 +102,12 @@ func (s *syncData) SendOrdersData(ctx context.Context, request operations.SendOr
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.CodatDataContractsDatasetsCommerceOrdersDatasetSyncOperation
+			var out *operations.SendOrdersData200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.CodatDataContractsDatasetsCommerceOrdersDatasetSyncOperation = out
+			res.SendOrdersData200ApplicationJSONObject = out
 		}
 	}
 
@@ -154,12 +153,12 @@ func (s *syncData) SendPaymentsData(ctx context.Context, request operations.Send
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.CodatDataContractsDatasetsCommercePaymentsDatasetSyncOperation
+			var out *operations.SendPaymentsData200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.CodatDataContractsDatasetsCommercePaymentsDatasetSyncOperation = out
+			res.SendPaymentsData200ApplicationJSONObject = out
 		}
 	}
 
@@ -205,12 +204,12 @@ func (s *syncData) SendTransactionsData(ctx context.Context, request operations.
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.CodatDataContractsDatasetsCommerceTransactionsDatasetSyncOperation
+			var out *operations.SendTransactionsData200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.CodatDataContractsDatasetsCommerceTransactionsDatasetSyncOperation = out
+			res.SendTransactionsData200ApplicationJSONObject = out
 		}
 	}
 

@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/assess/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/assess/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/assess/pkg/utils"
 	"net/http"
 )
@@ -65,7 +64,7 @@ func (s *reports) GetCompaniesCompanyIDReportsEnhancedBalanaceSheetAccounts(ctx 
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.EnhancedReport
+			var out *operations.GetCompaniesCompanyIDReportsEnhancedBalanaceSheetAccountsEnhancedReport
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -113,7 +112,7 @@ func (s *reports) GetCompaniesCompanyIDReportsEnhancedCashFlowTransactions(ctx c
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.EnhancedCashFlowTransactions
+			var out *operations.GetCompaniesCompanyIDReportsEnhancedCashFlowTransactionsEnhancedCashFlowTransactions
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -161,7 +160,7 @@ func (s *reports) GetCompaniesCompanyIDReportsEnhancedProfitAndLossAccounts(ctx 
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.EnhancedReport
+			var out *operations.GetCompaniesCompanyIDReportsEnhancedProfitAndLossAccountsEnhancedReport
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -209,12 +208,12 @@ func (s *reports) GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerce
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Report
+			var out *operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsCustomerRetention200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Report = out
+			res.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsCustomerRetention200ApplicationJSONObject = out
 		}
 	}
 
@@ -257,12 +256,12 @@ func (s *reports) GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerce
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Report
+			var out *operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsLifetimeValue200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Report = out
+			res.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsLifetimeValue200ApplicationJSONObject = out
 		}
 	}
 
@@ -305,12 +304,12 @@ func (s *reports) GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerce
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Report
+			var out *operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsOrders200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Report = out
+			res.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsOrders200ApplicationJSONObject = out
 		}
 	}
 
@@ -353,12 +352,12 @@ func (s *reports) GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerce
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Report
+			var out *operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsRefunds200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Report = out
+			res.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsRefunds200ApplicationJSONObject = out
 		}
 	}
 
@@ -401,12 +400,12 @@ func (s *reports) GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerce
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Report
+			var out *operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsRevenue200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Report = out
+			res.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsRevenue200ApplicationJSONObject = out
 		}
 	}
 
@@ -449,12 +448,12 @@ func (s *reports) GetDataCompaniesCompanyIDConnectionsConnectionIDAssessEnhanced
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Report
+			var out *operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessEnhancedBalanceSheet200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Report = out
+			res.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessEnhancedBalanceSheet200ApplicationJSONObject = out
 		}
 	}
 
@@ -497,12 +496,12 @@ func (s *reports) GetDataCompaniesCompanyIDConnectionsConnectionIDAssessEnhanced
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Report
+			var out *operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessEnhancedProfitAndLoss200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Report = out
+			res.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessEnhancedProfitAndLoss200ApplicationJSONObject = out
 		}
 	}
 
@@ -589,12 +588,12 @@ func (s *reports) GetDataCompaniesCompanyIDConnectionsConnectionIDAssessSubscrip
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Report
+			var out *operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessSubscriptionsMrr200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Report = out
+			res.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessSubscriptionsMrr200ApplicationJSONObject = out
 		}
 	}
 
@@ -633,12 +632,12 @@ func (s *reports) GetDataCompaniesCompanyIDConnectionsConnectionIDAssessSubscrip
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Report
+			var out *operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessSubscriptionsProcess200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Report = out
+			res.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessSubscriptionsProcess200ApplicationJSONObject = out
 		}
 	}
 

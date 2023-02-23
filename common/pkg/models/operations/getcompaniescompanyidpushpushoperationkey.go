@@ -1,7 +1,6 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
 	"time"
 )
 
@@ -53,8 +52,8 @@ type GetCompaniesCompanyIDPushPushOperationKey200ApplicationJSONValidationValida
 // GetCompaniesCompanyIDPushPushOperationKey200ApplicationJSONValidation
 // A human-readable object describing validation decisions Codat has made when pushing data into the platform. If a push has failed because of validation errors, they will be detailed here.
 type GetCompaniesCompanyIDPushPushOperationKey200ApplicationJSONValidation struct {
-	Errors   []GetCompaniesCompanyIDPushPushOperationKey200ApplicationJSONValidationValidationItem                                                                                                `json:"errors,omitempty"`
-	Warnings []shared.Onecompanies1Percent7BcompanyIDPercent7D1push1Percent7BpushOperationKeyPercent7DGetResponses200ContentApplication1jsonSchemaAllOf1PropertiesValidationPropertiesErrorsItems `json:"warnings,omitempty"`
+	Errors   []GetCompaniesCompanyIDPushPushOperationKey200ApplicationJSONValidationValidationItem `json:"errors,omitempty"`
+	Warnings []GetCompaniesCompanyIDPushPushOperationKey200ApplicationJSONValidationValidationItem `json:"warnings,omitempty"`
 }
 
 type GetCompaniesCompanyIDPushPushOperationKey200ApplicationJSON struct {

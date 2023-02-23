@@ -1,9 +1,5 @@
 package operations
 
-import (
-	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
-)
-
 type ListRulesQueryParams struct {
 	OrderBy  *string  `queryParam:"style=form,explode=true,name=orderBy"`
 	Page     float64  `queryParam:"style=form,explode=true,name=page"`
@@ -56,14 +52,28 @@ type ListRulesLinksLinks struct {
 	Self     ListRulesLinksLinksSelf      `json:"self"`
 }
 
+type ListRulesLinksWebhookNotifiers struct {
+	Emails  []string `json:"emails,omitempty"`
+	Webhook *string  `json:"webhook,omitempty"`
+}
+
+// ListRulesLinksWebhook
+// Configuration to alert to a url or list of email addresses based on the given type / condition.
+type ListRulesLinksWebhook struct {
+	CompanyID *string                        `json:"companyId,omitempty"`
+	ID        string                         `json:"id"`
+	Notifiers ListRulesLinksWebhookNotifiers `json:"notifiers"`
+	Type      string                         `json:"type"`
+}
+
 // ListRulesLinks
 // Codat's Paging Model
 type ListRulesLinks struct {
-	Links        ListRulesLinksLinks `json:"_links"`
-	PageNumber   int64               `json:"pageNumber"`
-	PageSize     int64               `json:"pageSize"`
-	Results      []shared.Rule       `json:"results,omitempty"`
-	TotalResults int64               `json:"totalResults"`
+	Links        ListRulesLinksLinks     `json:"_links"`
+	PageNumber   int64                   `json:"pageNumber"`
+	PageSize     int64                   `json:"pageSize"`
+	Results      []ListRulesLinksWebhook `json:"results,omitempty"`
+	TotalResults int64                   `json:"totalResults"`
 }
 
 type ListRulesResponse struct {

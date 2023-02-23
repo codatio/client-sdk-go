@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/accounting/pkg/utils"
 	"net/http"
 )
@@ -96,12 +95,12 @@ func (s *directCosts) GetDirectCost(ctx context.Context, request operations.GetD
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.DirectCost
+			var out *operations.GetDirectCostSourceModifiedDate
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.DirectCost = out
+			res.SourceModifiedDate = out
 		}
 	}
 
@@ -140,7 +139,7 @@ func (s *directCosts) GetDirectCostAttachment(ctx context.Context, request opera
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Attachment
+			var out *operations.GetDirectCostAttachmentAttachment
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -232,12 +231,12 @@ func (s *directCosts) ListDirectCostAttachments(ctx context.Context, request ope
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.AttachmentsDataset
+			var out *operations.ListDirectCostAttachmentsAttachments
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.AttachmentsDataset = out
+			res.Attachments = out
 		}
 	}
 

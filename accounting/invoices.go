@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/accounting/pkg/utils"
 	"net/http"
 )
@@ -96,12 +95,12 @@ func (s *invoices) GetInvoice(ctx context.Context, request operations.GetInvoice
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Invoice
+			var out *operations.GetInvoiceSourceModifiedDate
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Invoice = out
+			res.SourceModifiedDate = out
 		}
 	}
 
@@ -140,7 +139,7 @@ func (s *invoices) GetInvoiceAttachment(ctx context.Context, request operations.
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Attachment
+			var out *operations.GetInvoiceAttachmentAttachment
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -184,12 +183,12 @@ func (s *invoices) GetInvoiceAttachments(ctx context.Context, request operations
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.AttachmentsDataset
+			var out *operations.GetInvoiceAttachmentsAttachments
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.AttachmentsDataset = out
+			res.Attachments = out
 		}
 	}
 

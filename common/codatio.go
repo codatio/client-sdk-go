@@ -63,7 +63,7 @@ func New(opts ...SDKOption) *Codatio {
 	sdk := &Codatio{
 		_language:   "go",
 		_sdkVersion: "0.0.0",
-		_genVersion: "1.4.7",
+		_genVersion: "1.4.8",
 	}
 	for _, opt := range opts {
 		opt(sdk)

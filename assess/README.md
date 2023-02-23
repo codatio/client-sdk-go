@@ -38,7 +38,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.Categories != nil {
+    if res.GetDataAssessAccountsCategoriesChartOfAccountCategoryAllOfs != nil {
         // handle response
     }
 ```

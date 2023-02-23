@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/synccommerce/pkg/utils"
 	"net/http"
 	"strings"
@@ -101,12 +100,12 @@ func (s *integrations) GetIntegrations(ctx context.Context, request operations.G
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.CodatPublicAPIModelsPlatformCredentialsPlatformSourceModelPagedResponseModel
+			var out *operations.GetIntegrations200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.CodatPublicAPIModelsPlatformCredentialsPlatformSourceModelPagedResponseModel = out
+			res.GetIntegrations200ApplicationJSONObject = out
 		}
 	}
 

@@ -27,15 +27,143 @@ type GetBankAccountPushOptionsRequest struct {
 	Security    GetBankAccountPushOptionsSecurity
 }
 
+type GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnum string
+
+const (
+	GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnumArray     GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnum = "Array"
+	GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnumObject    GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnum = "Object"
+	GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnumString    GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnum = "String"
+	GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnumNumber    GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnum = "Number"
+	GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnumBoolean   GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnum = "Boolean"
+	GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnumDateTime  GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnum = "DateTime"
+	GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnumFile      GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnum = "File"
+	GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnumMultiPart GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnum = "MultiPart"
+)
+
+type GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoicePushValidationInfoPushFieldValidation struct {
+	Details string  `json:"details"`
+	Field   string  `json:"field"`
+	Ref     *string `json:"ref,omitempty"`
+}
+
+type GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoicePushValidationInfo struct {
+	Information []GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoicePushValidationInfoPushFieldValidation `json:"information,omitempty"`
+	Warnings    []GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoicePushValidationInfoPushFieldValidation `json:"warnings,omitempty"`
+}
+
+type GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoice struct {
+	Description string                                                                                                                 `json:"description"`
+	DisplayName string                                                                                                                 `json:"displayName"`
+	Rel         *string                                                                                                                `json:"rel,omitempty"`
+	Required    bool                                                                                                                   `json:"required"`
+	Type        GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnum      `json:"type"`
+	Validation  *GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoicePushValidationInfo `json:"validation,omitempty"`
+	Value       string                                                                                                                 `json:"value"`
+}
+
+type GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnum string
+
+const (
+	GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnumArray     GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnum = "Array"
+	GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnumObject    GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnum = "Object"
+	GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnumString    GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnum = "String"
+	GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnumNumber    GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnum = "Number"
+	GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnumBoolean   GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnum = "Boolean"
+	GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnumDateTime  GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnum = "DateTime"
+	GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnumFile      GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnum = "File"
+	GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnumMultiPart GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnum = "MultiPart"
+)
+
+type GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushValidationInfoPushFieldValidation struct {
+	Details string  `json:"details"`
+	Field   string  `json:"field"`
+	Ref     *string `json:"ref,omitempty"`
+}
+
+type GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushValidationInfo struct {
+	Information []GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushValidationInfoPushFieldValidation `json:"information,omitempty"`
+	Warnings    []GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushValidationInfoPushFieldValidation `json:"warnings,omitempty"`
+}
+
+type GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoice struct {
+	Description string                                                                                                 `json:"description"`
+	DisplayName string                                                                                                 `json:"displayName"`
+	Options     []GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoice  `json:"options,omitempty"`
+	Rel         *string                                                                                                `json:"rel,omitempty"`
+	Required    bool                                                                                                   `json:"required"`
+	Type        GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnum      `json:"type"`
+	Validation  *GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushValidationInfo `json:"validation,omitempty"`
+	Value       string                                                                                                 `json:"value"`
+}
+
+type GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoiceOptionTypeEnum string
+
+const (
+	GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoiceOptionTypeEnumArray     GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoiceOptionTypeEnum = "Array"
+	GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoiceOptionTypeEnumObject    GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoiceOptionTypeEnum = "Object"
+	GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoiceOptionTypeEnumString    GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoiceOptionTypeEnum = "String"
+	GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoiceOptionTypeEnumNumber    GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoiceOptionTypeEnum = "Number"
+	GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoiceOptionTypeEnumBoolean   GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoiceOptionTypeEnum = "Boolean"
+	GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoiceOptionTypeEnumDateTime  GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoiceOptionTypeEnum = "DateTime"
+	GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoiceOptionTypeEnumFile      GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoiceOptionTypeEnum = "File"
+	GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoiceOptionTypeEnumMultiPart GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoiceOptionTypeEnum = "MultiPart"
+)
+
+type GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushValidationInfoPushFieldValidation struct {
+	Details string  `json:"details"`
+	Field   string  `json:"field"`
+	Ref     *string `json:"ref,omitempty"`
+}
+
+type GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushValidationInfo struct {
+	Information []GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushValidationInfoPushFieldValidation `json:"information,omitempty"`
+	Warnings    []GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushValidationInfoPushFieldValidation `json:"warnings,omitempty"`
+}
+
+type GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoice struct {
+	Description string                                                                                 `json:"description"`
+	DisplayName string                                                                                 `json:"displayName"`
+	Options     []GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoice  `json:"options,omitempty"`
+	Rel         *string                                                                                `json:"rel,omitempty"`
+	Required    bool                                                                                   `json:"required"`
+	Type        GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoiceOptionTypeEnum      `json:"type"`
+	Validation  *GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushValidationInfo `json:"validation,omitempty"`
+	Value       string                                                                                 `json:"value"`
+}
+
+type GetBankAccountPushOptionsPushOptionPushOptionChoiceOptionTypeEnum string
+
+const (
+	GetBankAccountPushOptionsPushOptionPushOptionChoiceOptionTypeEnumArray     GetBankAccountPushOptionsPushOptionPushOptionChoiceOptionTypeEnum = "Array"
+	GetBankAccountPushOptionsPushOptionPushOptionChoiceOptionTypeEnumObject    GetBankAccountPushOptionsPushOptionPushOptionChoiceOptionTypeEnum = "Object"
+	GetBankAccountPushOptionsPushOptionPushOptionChoiceOptionTypeEnumString    GetBankAccountPushOptionsPushOptionPushOptionChoiceOptionTypeEnum = "String"
+	GetBankAccountPushOptionsPushOptionPushOptionChoiceOptionTypeEnumNumber    GetBankAccountPushOptionsPushOptionPushOptionChoiceOptionTypeEnum = "Number"
+	GetBankAccountPushOptionsPushOptionPushOptionChoiceOptionTypeEnumBoolean   GetBankAccountPushOptionsPushOptionPushOptionChoiceOptionTypeEnum = "Boolean"
+	GetBankAccountPushOptionsPushOptionPushOptionChoiceOptionTypeEnumDateTime  GetBankAccountPushOptionsPushOptionPushOptionChoiceOptionTypeEnum = "DateTime"
+	GetBankAccountPushOptionsPushOptionPushOptionChoiceOptionTypeEnumFile      GetBankAccountPushOptionsPushOptionPushOptionChoiceOptionTypeEnum = "File"
+	GetBankAccountPushOptionsPushOptionPushOptionChoiceOptionTypeEnumMultiPart GetBankAccountPushOptionsPushOptionPushOptionChoiceOptionTypeEnum = "MultiPart"
+)
+
+type GetBankAccountPushOptionsPushOptionPushOptionChoicePushValidationInfoPushFieldValidation struct {
+	Details string  `json:"details"`
+	Field   string  `json:"field"`
+	Ref     *string `json:"ref,omitempty"`
+}
+
+type GetBankAccountPushOptionsPushOptionPushOptionChoicePushValidationInfo struct {
+	Information []GetBankAccountPushOptionsPushOptionPushOptionChoicePushValidationInfoPushFieldValidation `json:"information,omitempty"`
+	Warnings    []GetBankAccountPushOptionsPushOptionPushOptionChoicePushValidationInfoPushFieldValidation `json:"warnings,omitempty"`
+}
+
 type GetBankAccountPushOptionsPushOptionPushOptionChoice struct {
-	Description string                                                                                                                                                                                                                           `json:"description"`
-	DisplayName string                                                                                                                                                                                                                           `json:"displayName"`
-	Options     []shared.Onecompanies1Percent7BcompanyIDPercent7D1connections1Percent7BconnectionIDPercent7D1options1bankAccounts1Percent7BaccountIDPercent7D1bankTransactionsGetResponses200ContentApplication1jsonSchemaPropertiesOptionsItems `json:"options,omitempty"`
-	Rel         *string                                                                                                                                                                                                                          `json:"rel,omitempty"`
-	Required    bool                                                                                                                                                                                                                             `json:"required"`
-	Type        shared.Onecompanies1Percent7BcompanyIDPercent7D1connections1Percent7BconnectionIDPercent7D1options1bankAccounts1Percent7BaccountIDPercent7D1bankTransactionsGetResponses200ContentApplication1jsonSchemaPropertiesTypeEnum       `json:"type"`
-	Validation  *shared.Onecompanies1Percent7BcompanyIDPercent7D1connections1Percent7BconnectionIDPercent7D1options1bankAccounts1Percent7BaccountIDPercent7D1bankTransactionsGetResponses200ContentApplication1jsonSchemaPropertiesValidation    `json:"validation,omitempty"`
-	Value       string                                                                                                                                                                                                                           `json:"value"`
+	Description string                                                                 `json:"description"`
+	DisplayName string                                                                 `json:"displayName"`
+	Options     []GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoice  `json:"options,omitempty"`
+	Rel         *string                                                                `json:"rel,omitempty"`
+	Required    bool                                                                   `json:"required"`
+	Type        GetBankAccountPushOptionsPushOptionPushOptionChoiceOptionTypeEnum      `json:"type"`
+	Validation  *GetBankAccountPushOptionsPushOptionPushOptionChoicePushValidationInfo `json:"validation,omitempty"`
+	Value       string                                                                 `json:"value"`
 }
 
 type GetBankAccountPushOptionsPushOptionOptionTypeEnum string
@@ -58,8 +186,8 @@ type GetBankAccountPushOptionsPushOptionPushValidationInfoPushFieldValidation st
 }
 
 type GetBankAccountPushOptionsPushOptionPushValidationInfo struct {
-	Information []shared.Onecompanies1Percent7BcompanyIDPercent7D1connections1Percent7BconnectionIDPercent7D1options1bankAccounts1Percent7BaccountIDPercent7D1bankTransactionsGetResponses200ContentApplication1jsonSchemaPropertiesValidationPropertiesWarningsItems `json:"information,omitempty"`
-	Warnings    []GetBankAccountPushOptionsPushOptionPushValidationInfoPushFieldValidation                                                                                                                                                                            `json:"warnings,omitempty"`
+	Information []GetBankAccountPushOptionsPushOptionPushValidationInfoPushFieldValidation `json:"information,omitempty"`
+	Warnings    []GetBankAccountPushOptionsPushOptionPushValidationInfoPushFieldValidation `json:"warnings,omitempty"`
 }
 
 type GetBankAccountPushOptionsPushOption struct {

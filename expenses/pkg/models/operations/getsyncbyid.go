@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/expenses/pkg/models/shared"
+	"time"
 )
 
 type GetSyncByIDPathParams struct {
@@ -13,8 +13,32 @@ type GetSyncByIDRequest struct {
 	PathParams GetSyncByIDPathParams
 }
 
+type GetSyncByID200TextJSON struct {
+	CompanyID            *string    `json:"companyId,omitempty"`
+	DataPushed           *bool      `json:"dataPushed,omitempty"`
+	ErrorMessage         *string    `json:"errorMessage,omitempty"`
+	SyncExceptionMessage *string    `json:"syncExceptionMessage,omitempty"`
+	SyncID               *string    `json:"syncId,omitempty"`
+	SyncStatus           *string    `json:"syncStatus,omitempty"`
+	SyncStatusCode       *int       `json:"syncStatusCode,omitempty"`
+	SyncUtc              *time.Time `json:"syncUtc,omitempty"`
+}
+
+type GetSyncByID200ApplicationJSON struct {
+	CompanyID            *string    `json:"companyId,omitempty"`
+	DataPushed           *bool      `json:"dataPushed,omitempty"`
+	ErrorMessage         *string    `json:"errorMessage,omitempty"`
+	SyncExceptionMessage *string    `json:"syncExceptionMessage,omitempty"`
+	SyncID               *string    `json:"syncId,omitempty"`
+	SyncStatus           *string    `json:"syncStatus,omitempty"`
+	SyncStatusCode       *int       `json:"syncStatusCode,omitempty"`
+	SyncUtc              *time.Time `json:"syncUtc,omitempty"`
+}
+
 type GetSyncByIDResponse struct {
-	CompanySyncStatus *shared.CompanySyncStatus
-	ContentType       string
-	StatusCode        int
+	ContentType                         string
+	StatusCode                          int
+	GetSyncByID200ApplicationJSONObject *GetSyncByID200ApplicationJSON
+	GetSyncByID200TextJSONObject        *GetSyncByID200TextJSON
+	GetSyncByID200TextPlainObject       *string
 }

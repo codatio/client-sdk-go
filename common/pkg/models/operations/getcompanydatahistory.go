@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
+	"time"
 )
 
 type GetCompanyDataHistoryPathParams struct {
@@ -70,14 +70,57 @@ type GetCompanyDataHistoryLinksLinks struct {
 	Self     GetCompanyDataHistoryLinksLinksSelf      `json:"self"`
 }
 
+type GetCompanyDataHistoryLinksPullOperationStatusEnum string
+
+const (
+	GetCompanyDataHistoryLinksPullOperationStatusEnumInitial            GetCompanyDataHistoryLinksPullOperationStatusEnum = "Initial"
+	GetCompanyDataHistoryLinksPullOperationStatusEnumQueued             GetCompanyDataHistoryLinksPullOperationStatusEnum = "Queued"
+	GetCompanyDataHistoryLinksPullOperationStatusEnumFetching           GetCompanyDataHistoryLinksPullOperationStatusEnum = "Fetching"
+	GetCompanyDataHistoryLinksPullOperationStatusEnumMapQueued          GetCompanyDataHistoryLinksPullOperationStatusEnum = "MapQueued"
+	GetCompanyDataHistoryLinksPullOperationStatusEnumMapping            GetCompanyDataHistoryLinksPullOperationStatusEnum = "Mapping"
+	GetCompanyDataHistoryLinksPullOperationStatusEnumComplete           GetCompanyDataHistoryLinksPullOperationStatusEnum = "Complete"
+	GetCompanyDataHistoryLinksPullOperationStatusEnumFetchError         GetCompanyDataHistoryLinksPullOperationStatusEnum = "FetchError"
+	GetCompanyDataHistoryLinksPullOperationStatusEnumMapError           GetCompanyDataHistoryLinksPullOperationStatusEnum = "MapError"
+	GetCompanyDataHistoryLinksPullOperationStatusEnumInternalError      GetCompanyDataHistoryLinksPullOperationStatusEnum = "InternalError"
+	GetCompanyDataHistoryLinksPullOperationStatusEnumProcessingQueued   GetCompanyDataHistoryLinksPullOperationStatusEnum = "ProcessingQueued"
+	GetCompanyDataHistoryLinksPullOperationStatusEnumProcessing         GetCompanyDataHistoryLinksPullOperationStatusEnum = "Processing"
+	GetCompanyDataHistoryLinksPullOperationStatusEnumProcessingError    GetCompanyDataHistoryLinksPullOperationStatusEnum = "ProcessingError"
+	GetCompanyDataHistoryLinksPullOperationStatusEnumValidationQueued   GetCompanyDataHistoryLinksPullOperationStatusEnum = "ValidationQueued"
+	GetCompanyDataHistoryLinksPullOperationStatusEnumValidating         GetCompanyDataHistoryLinksPullOperationStatusEnum = "Validating"
+	GetCompanyDataHistoryLinksPullOperationStatusEnumValidationError    GetCompanyDataHistoryLinksPullOperationStatusEnum = "ValidationError"
+	GetCompanyDataHistoryLinksPullOperationStatusEnumAuthError          GetCompanyDataHistoryLinksPullOperationStatusEnum = "AuthError"
+	GetCompanyDataHistoryLinksPullOperationStatusEnumCancelled          GetCompanyDataHistoryLinksPullOperationStatusEnum = "Cancelled"
+	GetCompanyDataHistoryLinksPullOperationStatusEnumRouting            GetCompanyDataHistoryLinksPullOperationStatusEnum = "Routing"
+	GetCompanyDataHistoryLinksPullOperationStatusEnumRoutingError       GetCompanyDataHistoryLinksPullOperationStatusEnum = "RoutingError"
+	GetCompanyDataHistoryLinksPullOperationStatusEnumNotSupported       GetCompanyDataHistoryLinksPullOperationStatusEnum = "NotSupported"
+	GetCompanyDataHistoryLinksPullOperationStatusEnumRateLimitError     GetCompanyDataHistoryLinksPullOperationStatusEnum = "RateLimitError"
+	GetCompanyDataHistoryLinksPullOperationStatusEnumPermissionsError   GetCompanyDataHistoryLinksPullOperationStatusEnum = "PermissionsError"
+	GetCompanyDataHistoryLinksPullOperationStatusEnumPrerequisiteNotMet GetCompanyDataHistoryLinksPullOperationStatusEnum = "PrerequisiteNotMet"
+)
+
+// GetCompanyDataHistoryLinksPullOperation
+// Information about a queued, in progress or completed pull operation.
+// *Formally called `dataset`*
+type GetCompanyDataHistoryLinksPullOperation struct {
+	CompanyID    string                                            `json:"companyId"`
+	ConnectionID string                                            `json:"connectionId"`
+	DataType     string                                            `json:"dataType"`
+	ID           string                                            `json:"id"`
+	IsCompleted  bool                                              `json:"isCompleted"`
+	IsErrored    bool                                              `json:"isErrored"`
+	Progress     int64                                             `json:"progress"`
+	Requested    time.Time                                         `json:"requested"`
+	Status       GetCompanyDataHistoryLinksPullOperationStatusEnum `json:"status"`
+}
+
 // GetCompanyDataHistoryLinks
 // Codat's Paging Model
 type GetCompanyDataHistoryLinks struct {
-	Links        GetCompanyDataHistoryLinksLinks `json:"_links"`
-	PageNumber   int64                           `json:"pageNumber"`
-	PageSize     int64                           `json:"pageSize"`
-	Results      []shared.PullOperation          `json:"results,omitempty"`
-	TotalResults int64                           `json:"totalResults"`
+	Links        GetCompanyDataHistoryLinksLinks           `json:"_links"`
+	PageNumber   int64                                     `json:"pageNumber"`
+	PageSize     int64                                     `json:"pageSize"`
+	Results      []GetCompanyDataHistoryLinksPullOperation `json:"results,omitempty"`
+	TotalResults int64                                     `json:"totalResults"`
 }
 
 type GetCompanyDataHistoryResponse struct {

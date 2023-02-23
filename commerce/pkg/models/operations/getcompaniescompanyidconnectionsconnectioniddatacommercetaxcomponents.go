@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/commerce/pkg/models/shared"
+	"time"
 )
 
 type GetCompaniesCompanyIDConnectionsConnectionIDDataCommerceTaxComponentsPathParams struct {
@@ -13,8 +13,17 @@ type GetCompaniesCompanyIDConnectionsConnectionIDDataCommerceTaxComponentsReques
 	PathParams GetCompaniesCompanyIDConnectionsConnectionIDDataCommerceTaxComponentsPathParams
 }
 
+type GetCompaniesCompanyIDConnectionsConnectionIDDataCommerceTaxComponents200ApplicationJSONSourceModifiedDate struct {
+	ID                 string     `json:"id"`
+	IsCompound         *bool      `json:"isCompound,omitempty"`
+	ModifiedDate       *time.Time `json:"modifiedDate,omitempty"`
+	Name               string     `json:"name"`
+	Rate               *float32   `json:"rate,omitempty"`
+	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+}
+
 type GetCompaniesCompanyIDConnectionsConnectionIDDataCommerceTaxComponents200ApplicationJSON struct {
-	TaxComponents []shared.TaxComponent `json:"taxComponents,omitempty"`
+	TaxComponents []GetCompaniesCompanyIDConnectionsConnectionIDDataCommerceTaxComponents200ApplicationJSONSourceModifiedDate `json:"taxComponents,omitempty"`
 }
 
 type GetCompaniesCompanyIDConnectionsConnectionIDDataCommerceTaxComponentsResponse struct {

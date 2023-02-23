@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
+	"time"
 )
 
 type ListCompanyConnectionsPathParams struct {
@@ -61,14 +61,63 @@ type ListCompanyConnectionsLinksLinks struct {
 	Self     ListCompanyConnectionsLinksLinksSelf      `json:"self"`
 }
 
+type ListCompanyConnectionsLinksConnectionConnectionInfo struct {
+	AdditionalProp1 *string `json:"additionalProp1,omitempty"`
+	AdditionalProp2 *string `json:"additionalProp2,omitempty"`
+	AdditionalProp3 *string `json:"additionalProp3,omitempty"`
+}
+
+type ListCompanyConnectionsLinksConnectionDataConnectionErrors struct {
+	ErrorMessage *string    `json:"errorMessage,omitempty"`
+	ErroredOnUtc *time.Time `json:"erroredOnUtc,omitempty"`
+	StatusCode   *string    `json:"statusCode,omitempty"`
+	StatusText   *string    `json:"statusText,omitempty"`
+}
+
+type ListCompanyConnectionsLinksConnectionSourceTypeEnum string
+
+const (
+	ListCompanyConnectionsLinksConnectionSourceTypeEnumAccounting ListCompanyConnectionsLinksConnectionSourceTypeEnum = "Accounting"
+	ListCompanyConnectionsLinksConnectionSourceTypeEnumBanking    ListCompanyConnectionsLinksConnectionSourceTypeEnum = "Banking"
+	ListCompanyConnectionsLinksConnectionSourceTypeEnumCommerce   ListCompanyConnectionsLinksConnectionSourceTypeEnum = "Commerce"
+	ListCompanyConnectionsLinksConnectionSourceTypeEnumOther      ListCompanyConnectionsLinksConnectionSourceTypeEnum = "Other"
+	ListCompanyConnectionsLinksConnectionSourceTypeEnumUnknown    ListCompanyConnectionsLinksConnectionSourceTypeEnum = "Unknown"
+)
+
+type ListCompanyConnectionsLinksConnectionStatusEnum string
+
+const (
+	ListCompanyConnectionsLinksConnectionStatusEnumPendingAuth  ListCompanyConnectionsLinksConnectionStatusEnum = "PendingAuth"
+	ListCompanyConnectionsLinksConnectionStatusEnumLinked       ListCompanyConnectionsLinksConnectionStatusEnum = "Linked"
+	ListCompanyConnectionsLinksConnectionStatusEnumUnlinked     ListCompanyConnectionsLinksConnectionStatusEnum = "Unlinked"
+	ListCompanyConnectionsLinksConnectionStatusEnumDeauthorized ListCompanyConnectionsLinksConnectionStatusEnum = "Deauthorized"
+)
+
+// ListCompanyConnectionsLinksConnection
+// A connection represents the link between a `company` and a source of data.
+type ListCompanyConnectionsLinksConnection struct {
+	ConnectionInfo       *ListCompanyConnectionsLinksConnectionConnectionInfo        `json:"connectionInfo,omitempty"`
+	Created              time.Time                                                   `json:"created"`
+	DataConnectionErrors []ListCompanyConnectionsLinksConnectionDataConnectionErrors `json:"dataConnectionErrors,omitempty"`
+	ID                   string                                                      `json:"id"`
+	IntegrationID        string                                                      `json:"integrationId"`
+	IntegrationKey       string                                                      `json:"integrationKey"`
+	LastSync             *time.Time                                                  `json:"lastSync,omitempty"`
+	LinkURL              string                                                      `json:"linkUrl"`
+	PlatformName         string                                                      `json:"platformName"`
+	SourceID             string                                                      `json:"sourceId"`
+	SourceType           ListCompanyConnectionsLinksConnectionSourceTypeEnum         `json:"sourceType"`
+	Status               ListCompanyConnectionsLinksConnectionStatusEnum             `json:"status"`
+}
+
 // ListCompanyConnectionsLinks
 // Codat's Paging Model
 type ListCompanyConnectionsLinks struct {
-	Links        ListCompanyConnectionsLinksLinks `json:"_links"`
-	PageNumber   int64                            `json:"pageNumber"`
-	PageSize     int64                            `json:"pageSize"`
-	Results      []shared.Connection              `json:"results,omitempty"`
-	TotalResults int64                            `json:"totalResults"`
+	Links        ListCompanyConnectionsLinksLinks        `json:"_links"`
+	PageNumber   int64                                   `json:"pageNumber"`
+	PageSize     int64                                   `json:"pageSize"`
+	Results      []ListCompanyConnectionsLinksConnection `json:"results,omitempty"`
+	TotalResults int64                                   `json:"totalResults"`
 }
 
 type ListCompanyConnectionsResponse struct {

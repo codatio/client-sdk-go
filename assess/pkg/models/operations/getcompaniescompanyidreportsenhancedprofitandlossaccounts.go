@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/assess/pkg/models/shared"
+	"time"
 )
 
 type GetCompaniesCompanyIDReportsEnhancedProfitAndLossAccountsPathParams struct {
@@ -18,8 +18,38 @@ type GetCompaniesCompanyIDReportsEnhancedProfitAndLossAccountsRequest struct {
 	QueryParams GetCompaniesCompanyIDReportsEnhancedProfitAndLossAccountsQueryParams
 }
 
+type GetCompaniesCompanyIDReportsEnhancedProfitAndLossAccountsEnhancedReportReportInfo struct {
+	CompanyName   *string    `json:"companyName,omitempty"`
+	Currency      *string    `json:"currency,omitempty"`
+	GeneratedDate *time.Time `json:"generatedDate,omitempty"`
+	ReportName    *string    `json:"reportName,omitempty"`
+}
+
+type GetCompaniesCompanyIDReportsEnhancedProfitAndLossAccountsEnhancedReportReportItemsAccountCategoryLevels struct {
+	Confidence *float64 `json:"confidence,omitempty"`
+	LevelName  *string  `json:"levelName,omitempty"`
+}
+
+type GetCompaniesCompanyIDReportsEnhancedProfitAndLossAccountsEnhancedReportReportItemsAccountCategory struct {
+	Levels []GetCompaniesCompanyIDReportsEnhancedProfitAndLossAccountsEnhancedReportReportItemsAccountCategoryLevels `json:"levels,omitempty"`
+	Status *string                                                                                                   `json:"status,omitempty"`
+}
+
+type GetCompaniesCompanyIDReportsEnhancedProfitAndLossAccountsEnhancedReportReportItems struct {
+	AccountCategory *GetCompaniesCompanyIDReportsEnhancedProfitAndLossAccountsEnhancedReportReportItemsAccountCategory `json:"accountCategory,omitempty"`
+	AccountID       *string                                                                                            `json:"accountId,omitempty"`
+	AccountName     *string                                                                                            `json:"accountName,omitempty"`
+	Balance         *string                                                                                            `json:"balance,omitempty"`
+	Date            *time.Time                                                                                         `json:"date,omitempty"`
+}
+
+type GetCompaniesCompanyIDReportsEnhancedProfitAndLossAccountsEnhancedReport struct {
+	ReportInfo  *GetCompaniesCompanyIDReportsEnhancedProfitAndLossAccountsEnhancedReportReportInfo   `json:"reportInfo,omitempty"`
+	ReportItems []GetCompaniesCompanyIDReportsEnhancedProfitAndLossAccountsEnhancedReportReportItems `json:"reportItems,omitempty"`
+}
+
 type GetCompaniesCompanyIDReportsEnhancedProfitAndLossAccountsResponse struct {
 	ContentType    string
-	EnhancedReport *shared.EnhancedReport
+	EnhancedReport *GetCompaniesCompanyIDReportsEnhancedProfitAndLossAccountsEnhancedReport
 	StatusCode     int
 }

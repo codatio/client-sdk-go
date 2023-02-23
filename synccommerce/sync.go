@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/synccommerce/pkg/utils"
+	"io"
 	"net/http"
 )
 
@@ -69,12 +69,27 @@ func (s *sync) PostSyncLatest(ctx context.Context, request operations.PostSyncLa
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.CodatCommerceDataContractsModelsCommerceSyncCreateSyncResponse
+			var out *operations.PostSyncLatest200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.CodatCommerceDataContractsModelsCommerceSyncCreateSyncResponse = out
+			res.PostSyncLatest200ApplicationJSONObject = out
+		case utils.MatchContentType(contentType, `text/json`):
+			var out *operations.PostSyncLatest200TextJSON
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.PostSyncLatest200TextJSONObject = out
+		case utils.MatchContentType(contentType, `text/plain`):
+			data, err := io.ReadAll(httpRes.Body)
+			if err != nil {
+				return nil, fmt.Errorf("error reading response body: %w", err)
+			}
+
+			out := string(data)
+			res.PostSyncLatest200TextPlainObject = &out
 		}
 	}
 

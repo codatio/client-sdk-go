@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
+	"time"
 )
 
 type GetCompaniesCompanyIDDataStatusPathParams struct {
@@ -30,9 +30,19 @@ type GetCompaniesCompanyIDDataStatus401ApplicationJSON struct {
 	StatusCode        *int64  `json:"statusCode,omitempty"`
 }
 
+// GetCompaniesCompanyIDDataStatus200ApplicationJSONDataStatus
+// Describes the state of data in the Codat cache for a company and data type
+type GetCompaniesCompanyIDDataStatus200ApplicationJSONDataStatus struct {
+	CurrentStatus          string    `json:"currentStatus"`
+	DataType               string    `json:"dataType"`
+	LastSuccessfulSync     time.Time `json:"lastSuccessfulSync"`
+	LatestSuccessfulSyncID *string   `json:"latestSuccessfulSyncId,omitempty"`
+	LatestSyncID           *string   `json:"latestSyncId,omitempty"`
+}
+
 type GetCompaniesCompanyIDDataStatus200ApplicationJSON struct {
-	DataType1 *shared.DataStatus `json:"dataType1,omitempty"`
-	DataType2 *shared.DataStatus `json:"dataType2,omitempty"`
+	DataType1 *GetCompaniesCompanyIDDataStatus200ApplicationJSONDataStatus `json:"dataType1,omitempty"`
+	DataType2 *GetCompaniesCompanyIDDataStatus200ApplicationJSONDataStatus `json:"dataType2,omitempty"`
 }
 
 type GetCompaniesCompanyIDDataStatusResponse struct {

@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/commerce/pkg/models/shared"
+	"time"
 )
 
 type ListCommerceProductCategoriesPathParams struct {
@@ -44,14 +44,30 @@ type ListCommerceProductCategoriesLinksLinks struct {
 	Self     ListCommerceProductCategoriesLinksLinksSelf      `json:"self"`
 }
 
+type ListCommerceProductCategoriesLinksProductCategoryRecordRef struct {
+	ID   string `json:"id"`
+	Type string `json:"type"`
+}
+
+// ListCommerceProductCategoriesLinksProductCategory
+// Product categories are used to classify a group of products together, either by type (eg "Furniture"), or sometimes by tax profile.
+type ListCommerceProductCategoriesLinksProductCategory struct {
+	AncestorRefs       []ListCommerceProductCategoriesLinksProductCategoryRecordRef `json:"ancestorRefs,omitempty"`
+	HasChildren        *bool                                                        `json:"hasChildren,omitempty"`
+	ID                 *string                                                      `json:"id,omitempty"`
+	ModifiedDate       *time.Time                                                   `json:"modifiedDate,omitempty"`
+	Name               *string                                                      `json:"name,omitempty"`
+	SourceModifiedDate *time.Time                                                   `json:"sourceModifiedDate,omitempty"`
+}
+
 // ListCommerceProductCategoriesLinks
 // Codat's Paging Model
 type ListCommerceProductCategoriesLinks struct {
-	Links        ListCommerceProductCategoriesLinksLinks `json:"_links"`
-	PageNumber   int64                                   `json:"pageNumber"`
-	PageSize     int64                                   `json:"pageSize"`
-	Results      []shared.ProductCategory                `json:"results,omitempty"`
-	TotalResults int64                                   `json:"totalResults"`
+	Links        ListCommerceProductCategoriesLinksLinks             `json:"_links"`
+	PageNumber   int64                                               `json:"pageNumber"`
+	PageSize     int64                                               `json:"pageSize"`
+	Results      []ListCommerceProductCategoriesLinksProductCategory `json:"results,omitempty"`
+	TotalResults int64                                               `json:"totalResults"`
 }
 
 type ListCommerceProductCategoriesResponse struct {

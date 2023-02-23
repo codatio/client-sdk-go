@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/common/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/common/pkg/utils"
 	"net/http"
 	"strings"
@@ -62,12 +61,12 @@ func (s *webhooks) GetWebhook(ctx context.Context, request operations.GetWebhook
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Rule
+			var out *operations.GetWebhookWebhook
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Rule = out
+			res.Webhook = out
 		}
 	case httpRes.StatusCode == 401:
 		switch {
@@ -201,12 +200,12 @@ func (s *webhooks) PostRules(ctx context.Context, request operations.PostRulesRe
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Rule
+			var out *operations.PostRulesWebhook
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Rule = out
+			res.Webhook = out
 		}
 	case httpRes.StatusCode == 401:
 		switch {

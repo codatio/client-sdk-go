@@ -1,11 +1,16 @@
 package operations
 
-import (
-	"github.com/codatio/client-sdk-go/assess/pkg/models/shared"
-)
+type GetDataAssessAccountsCategoriesChartOfAccountCategory struct {
+	DetailType            *string `json:"detailType,omitempty"`
+	DetailTypeDescription *string `json:"detailTypeDescription,omitempty"`
+	DetailTypeDisplayName *string `json:"detailTypeDisplayName,omitempty"`
+	Subtype               *string `json:"subtype,omitempty"`
+	SubtypeDisplayName    *string `json:"subtypeDisplayName,omitempty"`
+	Type                  *string `json:"type,omitempty"`
+}
 
 type GetDataAssessAccountsCategoriesResponse struct {
-	Categories  []shared.Categories
-	ContentType string
-	StatusCode  int
+	ContentType                                                 string
+	StatusCode                                                  int
+	GetDataAssessAccountsCategoriesChartOfAccountCategoryAllOfs []GetDataAssessAccountsCategoriesChartOfAccountCategory
 }

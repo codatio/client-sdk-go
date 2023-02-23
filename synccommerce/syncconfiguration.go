@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/synccommerce/pkg/utils"
 	"net/http"
 )
@@ -68,12 +67,12 @@ func (s *syncConfiguration) ConfigureSync(ctx context.Context, request operation
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.CodatCommerceDataContractsConfigCompanyConfiguration
+			var out *operations.ConfigureSync200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.CodatCommerceDataContractsConfigCompanyConfiguration = out
+			res.ConfigureSync200ApplicationJSONObject = out
 		}
 	}
 
@@ -186,12 +185,12 @@ func (s *syncConfiguration) GetSyncOptions(ctx context.Context, request operatio
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.CodatCommerceDataContractsConfigCompanyConfiguration
+			var out *operations.GetSyncOptions200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.CodatCommerceDataContractsConfigCompanyConfiguration = out
+			res.GetSyncOptions200ApplicationJSONObject = out
 		}
 	}
 

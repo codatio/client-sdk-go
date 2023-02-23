@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/commerce/pkg/models/shared"
+	"time"
 )
 
 type ListCommerceCustomersPathParams struct {
@@ -44,14 +44,39 @@ type ListCommerceCustomersLinksLinks struct {
 	Self     ListCommerceCustomersLinksLinksSelf      `json:"self"`
 }
 
+type ListCommerceCustomersLinksSourceModifiedDateAddress struct {
+	City       *string      `json:"city,omitempty"`
+	Country    *string      `json:"country,omitempty"`
+	Line1      *string      `json:"line1,omitempty"`
+	Line2      *string      `json:"line2,omitempty"`
+	PostalCode *string      `json:"postalCode,omitempty"`
+	Region     *string      `json:"region,omitempty"`
+	Type       *interface{} `json:"type,omitempty"`
+}
+
+// ListCommerceCustomersLinksSourceModifiedDate
+// Represents a customer who has placed an order in the commerce system"
+type ListCommerceCustomersLinksSourceModifiedDate struct {
+	Addresses          []ListCommerceCustomersLinksSourceModifiedDateAddress `json:"addresses,omitempty"`
+	CreatedDate        *time.Time                                            `json:"createdDate,omitempty"`
+	CustomerName       *string                                               `json:"customerName,omitempty"`
+	DefaultCurrency    map[string]interface{}                                `json:"defaultCurrency,omitempty"`
+	EmailAddress       *string                                               `json:"emailAddress,omitempty"`
+	ID                 string                                                `json:"id"`
+	ModifiedDate       *time.Time                                            `json:"modifiedDate,omitempty"`
+	Note               *string                                               `json:"note,omitempty"`
+	Phone              *string                                               `json:"phone,omitempty"`
+	SourceModifiedDate *time.Time                                            `json:"sourceModifiedDate,omitempty"`
+}
+
 // ListCommerceCustomersLinks
 // Codat's Paging Model
 type ListCommerceCustomersLinks struct {
-	Links        ListCommerceCustomersLinksLinks `json:"_links"`
-	PageNumber   int64                           `json:"pageNumber"`
-	PageSize     int64                           `json:"pageSize"`
-	Results      []shared.Customer               `json:"results,omitempty"`
-	TotalResults int64                           `json:"totalResults"`
+	Links        ListCommerceCustomersLinksLinks                `json:"_links"`
+	PageNumber   int64                                          `json:"pageNumber"`
+	PageSize     int64                                          `json:"pageSize"`
+	Results      []ListCommerceCustomersLinksSourceModifiedDate `json:"results,omitempty"`
+	TotalResults int64                                          `json:"totalResults"`
 }
 
 type ListCommerceCustomersResponse struct {

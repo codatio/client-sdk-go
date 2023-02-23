@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/expenses/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/expenses/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/expenses/pkg/utils"
+	"io"
 	"net/http"
 )
 
@@ -61,12 +61,27 @@ func (s *mappingOptions) GetMappingOptions(ctx context.Context, request operatio
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.MappingOptions
+			var out *operations.GetMappingOptions200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.MappingOptions = out
+			res.GetMappingOptions200ApplicationJSONObject = out
+		case utils.MatchContentType(contentType, `text/json`):
+			var out *operations.GetMappingOptions200TextJSON
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.GetMappingOptions200TextJSONObject = out
+		case utils.MatchContentType(contentType, `text/plain`):
+			data, err := io.ReadAll(httpRes.Body)
+			if err != nil {
+				return nil, fmt.Errorf("error reading response body: %w", err)
+			}
+
+			out := string(data)
+			res.GetMappingOptions200TextPlainObject = &out
 		}
 	}
 
