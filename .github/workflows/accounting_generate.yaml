@@ -1,0 +1,26 @@
+name: Generate Accounting SDK
+
+on:
+  workflow_dispatch: # Allows manual triggering of the workflow to generate SDK
+    inputs:
+      force:
+        description: "Force generation of SDKs"
+        type: boolean
+        default: false
+  schedule:
+    - cron: 0 0 * * * # Runs every day at midnight
+
+jobs:
+  generate:
+    uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-generation.yaml@v12 # Import the sdk generation workflow which will handle the generation of the SDKs and publishing to the package managers in 'direct' mode.
+    with:
+      speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
+      speakeasy_version: latest
+      openapi_doc_location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Accounting.yaml
+      languages: |-
+        - go: ./accounting
+      create_release: true
+      mode: pr
+      force: ${{ github.event.inputs.force }}
+    secrets:
+      github_access_token: ${{ secrets.GITHUB_TOKEN }}
