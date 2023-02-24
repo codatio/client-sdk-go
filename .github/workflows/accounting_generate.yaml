@@ -14,7 +14,6 @@ jobs:
   generate:
     uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-generation.yaml@v12 # Import the sdk generation workflow which will handle the generation of the SDKs and publishing to the package managers in 'direct' mode.
     with:
-      speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
       speakeasy_version: latest
       openapi_doc_location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Accounting.yaml
       languages: |-
@@ -24,3 +23,4 @@ jobs:
       force: ${{ github.event.inputs.force }}
     secrets:
       github_access_token: ${{ secrets.GITHUB_TOKEN }}
+      speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
