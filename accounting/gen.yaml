@@ -8,5 +8,5 @@ generation:
   sdkClassName: codatio
   sdkFlattening: false
 go:
-  version: 0.1.1
+  version: 0.1.2
   packageName: github.com/codatio/client-sdk-go/accounting
