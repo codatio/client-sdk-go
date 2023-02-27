@@ -1,4 +1,4 @@
-name: Generate Accounting SDK
+name: Generate Banking SDK
 
 on:
   workflow_dispatch: # Allows manual triggering of the workflow to generate SDK
@@ -15,9 +15,9 @@ jobs:
     uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-generation.yaml@v13 # Import the sdk generation workflow which will handle the generation of the SDKs and publishing to the package managers in 'direct' mode.
     with:
       speakeasy_version: latest
-      openapi_doc_location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Accounting.yaml
+      openapi_doc_location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Banking.yaml
       languages: |-
-        - go: ./accounting
+        - go: ./banking
       create_release: true
       mode: pr
       force: ${{ github.event.inputs.force }}

@@ -1,0 +1,7 @@
+configVersion: 1.0.0
+generation:
+  telemetryEnabled: false
+  sdkClassName: codatio
+go:
+  version: 0.0.1
+  packageName: github.com/codatio/client-sdk-go/synccommerce
