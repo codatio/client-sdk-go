@@ -11,3 +11,23 @@
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge" /></a>
 </div>
 
+## Authentication
+
+Codat uses API keys to control access to the API.
+
+You must keep the API key secret, so make sure it isn't available in publicly accessible areas, such as GitHub and client-side code. Codat recommends the API key is only inserted at release time, and the number of people at your organization with access to your API key is minimised.
+
+Codat expects the API key to be included in all API requests to the server, Base64 encoded within an 'Authorization' header.
+
+```bash
+Authorization: Basic YOUR_ENCODED_API_KEY
+```
+
+### Getting your Authorization Header
+
+To get your authorization header from the Codat Portal:
+
+1. In the navigation bar, click **Developers > API keys**.
+2. In the **API Keys** section, copy your authorization header rather than the API key itself.
+
+## Codat APIs
