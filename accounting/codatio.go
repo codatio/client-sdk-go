@@ -36,6 +36,7 @@ type Codatio struct {
 	PaymentMethods          *paymentMethods
 	Payments                *payments
 	PurchaseOrders          *purchaseOrders
+	Reports                 *reports
 	SalesOrders             *salesOrders
 	Suppliers               *suppliers
 	TaxRates                *taxRates
@@ -79,8 +80,8 @@ func WithSecurity(security shared.Security) SDKOption {
 func New(opts ...SDKOption) *Codatio {
 	sdk := &Codatio{
 		_language:   "go",
-		_sdkVersion: "0.1.0",
-		_genVersion: "1.5.3",
+		_sdkVersion: "0.1.1",
+		_genVersion: "1.5.4",
 	}
 	for _, opt := range opts {
 		opt(sdk)
@@ -276,6 +277,15 @@ func New(opts ...SDKOption) *Codatio {
 	)
 
 	sdk.PurchaseOrders = newPurchaseOrders(
+		sdk._defaultClient,
+		sdk._securityClient,
+		sdk._serverURL,
+		sdk._language,
+		sdk._sdkVersion,
+		sdk._genVersion,
+	)
+
+	sdk.Reports = newReports(
 		sdk._defaultClient,
 		sdk._securityClient,
 		sdk._serverURL,

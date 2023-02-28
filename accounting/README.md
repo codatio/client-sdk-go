@@ -210,6 +210,13 @@ func main() {
 * `PostPurchaseOrder` - Create purchase order
 * `UpdatePurchaseOrder` - Update purchase order
 
+### Reports
+
+* `GetAgedCreditorsReport` - Aged creditors report
+* `GetAgedDebtorsReport` - Aged debtors report
+* `IsAgedCreditorsReportAvailable` - Aged creditors report available
+* `IsAgedDebtorReportAvailable` - Aged debtors report available
+
 ### SalesOrders
 
 * `GetSalesOrder` - Get sales order

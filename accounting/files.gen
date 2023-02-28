@@ -18,6 +18,7 @@ journals.go
 paymentmethods.go
 payments.go
 purchaseorders.go
+reports.go
 salesorders.go
 suppliers.go
 taxrates.go
@@ -122,6 +123,10 @@ pkg/models/operations/getpurchaseorder.go
 pkg/models/operations/listpurchaseorders.go
 pkg/models/operations/postpurchaseorder.go
 pkg/models/operations/updatepurchaseorder.go
+pkg/models/operations/getagedcreditorsreport.go
+pkg/models/operations/getageddebtorsreport.go
+pkg/models/operations/isagedcreditorsreportavailable.go
+pkg/models/operations/isageddebtorreportavailable.go
 pkg/models/operations/getsalesorder.go
 pkg/models/operations/listsalesorders.go
 pkg/models/operations/downloadsupplierattachment.go
