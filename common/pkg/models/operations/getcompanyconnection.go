@@ -11,7 +11,6 @@ type GetCompanyConnectionPathParams struct {
 
 type GetCompanyConnectionRequest struct {
 	PathParams GetCompanyConnectionPathParams
-	Request    *bool `request:"mediaType=application/json"`
 }
 
 type GetCompanyConnection404ApplicationJSON struct {

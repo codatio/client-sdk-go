@@ -176,17 +176,10 @@ func (s *connections) GetCompanyConnection(ctx context.Context, request operatio
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}", request.PathParams)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
-	if err != nil {
-		return nil, fmt.Errorf("error serializing request body: %w", err)
-	}
-
-	req, err := http.NewRequestWithContext(ctx, "GET", url, bodyReader)
+	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-
-	req.Header.Set("Content-Type", reqContentType)
 
 	client := s.securityClient
 
