@@ -7,7 +7,6 @@
    <p><strong>The universal API for small business data</strong></p>
    <p>Codat solves the connectivity challenge for developers building the next generation of financial products for small businesses. We're experts in how your application interacts with the other software your customer use, so you can focus on what makes you superior.</p>
   <a href="https://docs.codat.io/using-the-api/overview"><img src="https://img.shields.io/static/v1?label=Docs&message=API Ref&color=4c2cec&style=for-the-badge" /></a>
-  <a href="https://github.com/codatio/client-sdk-go/releases"><img src="https://img.shields.io/github/v/release/codatio/client-sdk-go?sort=semver&style=for-the-badge" /></a>
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge" /></a>
 </div>
 
