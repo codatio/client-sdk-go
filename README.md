@@ -31,3 +31,13 @@ To get your authorization header from the Codat Portal:
 2. In the **API Keys** section, copy your authorization header rather than the API key itself.
 
 ## Codat APIs
+
+- [**/Common API**](https://github.com/codatio/client-sdk-go/tree/main/common) - Manage the building blocks of Codat, including companies, connections, and more.
+- [**/Accounting API**](https://github.com/codatio/client-sdk-go/tree/main/accounting) - Access standardized accounting data from our accounting integrations.
+- [**/Banking API**](https://github.com/codatio/client-sdk-go/tree/main/banking) - Access standardized banking data from our banking integrations.
+- [**/Commerce API**](https://github.com/codatio/client-sdk-go/tree/main/commerce) - Access standardized commerce data from our commerce integrations.
+- [**/Bank Feeds API**](https://github.com/codatio/client-sdk-go/tree/main/bankfeeds) - Set up bank feeds from accounts in your application to supported accounting platforms.
+- [**/Assess API**](https://github.com/codatio/client-sdk-go/tree/main/assess) - Make credit decisions backed by enhanced financials, metrics, reports, and data integrity features.
+- [**/Sync for Commerce API**](https://github.com/codatio/client-sdk-go/tree/main/synccommerce) - Push merchants' data from your ecommerce or point-of-sale (POS) platform into your merchants' accounting platform.
+- [**/Sync for Expenses API**](https://github.com/codatio/client-sdk-go/tree/main/expenses) - Push expenses to accounting platforms.
+- [**/Files API**](https://github.com/codatio/client-sdk-go/tree/main/files) - Capture your SMB's business documents with our file upload functionality.
