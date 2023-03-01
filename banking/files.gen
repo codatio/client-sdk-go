@@ -15,6 +15,7 @@ pkg/utils/requestbody.go
 pkg/utils/retries.go
 pkg/utils/security.go
 pkg/utils/utils.go
+strings.go
 pkg/models/operations/listbankingaccountbalances.go
 pkg/models/operations/getbankaccount.go
 pkg/models/operations/listbankingaccounts.go
