@@ -16,6 +16,7 @@ pkg/utils/requestbody.go
 pkg/utils/retries.go
 pkg/utils/security.go
 pkg/utils/utils.go
+strings.go
 pkg/models/operations/adddataconnection.go
 pkg/models/operations/companies.go
 pkg/models/operations/getdataconnections.go
@@ -33,4 +34,5 @@ pkg/models/operations/sendordersdata.go
 pkg/models/operations/sendpaymentsdata.go
 pkg/models/operations/sendtransactionsdata.go
 pkg/models/shared/security.go
+pkg/models/webhooks/syncconnectiondeleted.go
 USAGE.md
