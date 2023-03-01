@@ -20,6 +20,7 @@ pkg/utils/requestbody.go
 pkg/utils/retries.go
 pkg/utils/security.go
 pkg/utils/utils.go
+strings.go
 pkg/models/operations/getcommerceinfo.go
 pkg/models/operations/listcommercecustomers.go
 pkg/models/operations/listcommercedisputes.go
