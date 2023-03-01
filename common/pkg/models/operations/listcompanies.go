@@ -79,30 +79,30 @@ const (
 	ListCompaniesLinksCompanyConnectionSourceTypeEnumUnknown    ListCompaniesLinksCompanyConnectionSourceTypeEnum = "Unknown"
 )
 
-type ListCompaniesLinksCompanyConnectionStatusEnum string
+type ListCompaniesLinksCompanyConnectionDataConnectionStatusEnum string
 
 const (
-	ListCompaniesLinksCompanyConnectionStatusEnumPendingAuth  ListCompaniesLinksCompanyConnectionStatusEnum = "PendingAuth"
-	ListCompaniesLinksCompanyConnectionStatusEnumLinked       ListCompaniesLinksCompanyConnectionStatusEnum = "Linked"
-	ListCompaniesLinksCompanyConnectionStatusEnumUnlinked     ListCompaniesLinksCompanyConnectionStatusEnum = "Unlinked"
-	ListCompaniesLinksCompanyConnectionStatusEnumDeauthorized ListCompaniesLinksCompanyConnectionStatusEnum = "Deauthorized"
+	ListCompaniesLinksCompanyConnectionDataConnectionStatusEnumPendingAuth  ListCompaniesLinksCompanyConnectionDataConnectionStatusEnum = "PendingAuth"
+	ListCompaniesLinksCompanyConnectionDataConnectionStatusEnumLinked       ListCompaniesLinksCompanyConnectionDataConnectionStatusEnum = "Linked"
+	ListCompaniesLinksCompanyConnectionDataConnectionStatusEnumUnlinked     ListCompaniesLinksCompanyConnectionDataConnectionStatusEnum = "Unlinked"
+	ListCompaniesLinksCompanyConnectionDataConnectionStatusEnumDeauthorized ListCompaniesLinksCompanyConnectionDataConnectionStatusEnum = "Deauthorized"
 )
 
 // ListCompaniesLinksCompanyConnection
 // A connection represents the link between a `company` and a source of data.
 type ListCompaniesLinksCompanyConnection struct {
-	ConnectionInfo       *ListCompaniesLinksCompanyConnectionConnectionInfo        `json:"connectionInfo,omitempty"`
-	Created              time.Time                                                 `json:"created"`
-	DataConnectionErrors []ListCompaniesLinksCompanyConnectionDataConnectionErrors `json:"dataConnectionErrors,omitempty"`
-	ID                   string                                                    `json:"id"`
-	IntegrationID        string                                                    `json:"integrationId"`
-	IntegrationKey       string                                                    `json:"integrationKey"`
-	LastSync             *time.Time                                                `json:"lastSync,omitempty"`
-	LinkURL              string                                                    `json:"linkUrl"`
-	PlatformName         string                                                    `json:"platformName"`
-	SourceID             string                                                    `json:"sourceId"`
-	SourceType           ListCompaniesLinksCompanyConnectionSourceTypeEnum         `json:"sourceType"`
-	Status               ListCompaniesLinksCompanyConnectionStatusEnum             `json:"status"`
+	ConnectionInfo       *ListCompaniesLinksCompanyConnectionConnectionInfo          `json:"connectionInfo,omitempty"`
+	Created              time.Time                                                   `json:"created"`
+	DataConnectionErrors []ListCompaniesLinksCompanyConnectionDataConnectionErrors   `json:"dataConnectionErrors,omitempty"`
+	ID                   string                                                      `json:"id"`
+	IntegrationID        string                                                      `json:"integrationId"`
+	IntegrationKey       string                                                      `json:"integrationKey"`
+	LastSync             *time.Time                                                  `json:"lastSync,omitempty"`
+	LinkURL              string                                                      `json:"linkUrl"`
+	PlatformName         string                                                      `json:"platformName"`
+	SourceID             string                                                      `json:"sourceId"`
+	SourceType           ListCompaniesLinksCompanyConnectionSourceTypeEnum           `json:"sourceType"`
+	Status               ListCompaniesLinksCompanyConnectionDataConnectionStatusEnum `json:"status"`
 }
 
 // ListCompaniesLinksCompany

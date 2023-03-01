@@ -59,30 +59,30 @@ const (
 	PatchCompanyConnectionConnectionSourceTypeEnumUnknown    PatchCompanyConnectionConnectionSourceTypeEnum = "Unknown"
 )
 
-type PatchCompanyConnectionConnectionStatusEnum string
+type PatchCompanyConnectionConnectionDataConnectionStatusEnum string
 
 const (
-	PatchCompanyConnectionConnectionStatusEnumPendingAuth  PatchCompanyConnectionConnectionStatusEnum = "PendingAuth"
-	PatchCompanyConnectionConnectionStatusEnumLinked       PatchCompanyConnectionConnectionStatusEnum = "Linked"
-	PatchCompanyConnectionConnectionStatusEnumUnlinked     PatchCompanyConnectionConnectionStatusEnum = "Unlinked"
-	PatchCompanyConnectionConnectionStatusEnumDeauthorized PatchCompanyConnectionConnectionStatusEnum = "Deauthorized"
+	PatchCompanyConnectionConnectionDataConnectionStatusEnumPendingAuth  PatchCompanyConnectionConnectionDataConnectionStatusEnum = "PendingAuth"
+	PatchCompanyConnectionConnectionDataConnectionStatusEnumLinked       PatchCompanyConnectionConnectionDataConnectionStatusEnum = "Linked"
+	PatchCompanyConnectionConnectionDataConnectionStatusEnumUnlinked     PatchCompanyConnectionConnectionDataConnectionStatusEnum = "Unlinked"
+	PatchCompanyConnectionConnectionDataConnectionStatusEnumDeauthorized PatchCompanyConnectionConnectionDataConnectionStatusEnum = "Deauthorized"
 )
 
 // PatchCompanyConnectionConnection
 // A connection represents the link between a `company` and a source of data.
 type PatchCompanyConnectionConnection struct {
-	ConnectionInfo       *PatchCompanyConnectionConnectionConnectionInfo        `json:"connectionInfo,omitempty"`
-	Created              time.Time                                              `json:"created"`
-	DataConnectionErrors []PatchCompanyConnectionConnectionDataConnectionErrors `json:"dataConnectionErrors,omitempty"`
-	ID                   string                                                 `json:"id"`
-	IntegrationID        string                                                 `json:"integrationId"`
-	IntegrationKey       string                                                 `json:"integrationKey"`
-	LastSync             *time.Time                                             `json:"lastSync,omitempty"`
-	LinkURL              string                                                 `json:"linkUrl"`
-	PlatformName         string                                                 `json:"platformName"`
-	SourceID             string                                                 `json:"sourceId"`
-	SourceType           PatchCompanyConnectionConnectionSourceTypeEnum         `json:"sourceType"`
-	Status               PatchCompanyConnectionConnectionStatusEnum             `json:"status"`
+	ConnectionInfo       *PatchCompanyConnectionConnectionConnectionInfo          `json:"connectionInfo,omitempty"`
+	Created              time.Time                                                `json:"created"`
+	DataConnectionErrors []PatchCompanyConnectionConnectionDataConnectionErrors   `json:"dataConnectionErrors,omitempty"`
+	ID                   string                                                   `json:"id"`
+	IntegrationID        string                                                   `json:"integrationId"`
+	IntegrationKey       string                                                   `json:"integrationKey"`
+	LastSync             *time.Time                                               `json:"lastSync,omitempty"`
+	LinkURL              string                                                   `json:"linkUrl"`
+	PlatformName         string                                                   `json:"platformName"`
+	SourceID             string                                                   `json:"sourceId"`
+	SourceType           PatchCompanyConnectionConnectionSourceTypeEnum           `json:"sourceType"`
+	Status               PatchCompanyConnectionConnectionDataConnectionStatusEnum `json:"status"`
 }
 
 type PatchCompanyConnectionResponse struct {

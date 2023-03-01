@@ -22,17 +22,13 @@ import (
 )
 
 func main() {
-    opts := []codatio.SDKOption{
-        codatio.WithSecurity(
-            shared.Security{
-                APIKey: shared.SchemeAPIKey{
-                    APIKey: "YOUR_API_KEY_HERE",
-                },
+    s := codatio.New(codatio.WithSecurity(
+        shared.Security{
+            APIKey: shared.SchemeAPIKey{
+                APIKey: "YOUR_API_KEY_HERE",
             },
-        ),
-    }
-
-    s := codatio.New(opts...)
+        },
+    ))
     
     req := operations.CreateCompanyRequest{
         Request: &operations.CreateCompanyRequestBody{
@@ -90,7 +86,7 @@ func main() {
 ### PushData
 
 * `GetCompaniesCompanyIDConnectionsConnectionIDPush` - List push options
-* `GetCompaniesCompanyIDPush` - Lists push operations
+* `GetCompaniesCompanyIDPush` - List push operations
 * `GetCompaniesCompanyIDPushPushOperationKey` - Get push operation
 
 ### RefreshData

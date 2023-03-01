@@ -43,30 +43,30 @@ const (
 	GetCompaniesCompanyIDConnectionsConnectionIDAuthorizationConnectionSourceTypeEnumUnknown    GetCompaniesCompanyIDConnectionsConnectionIDAuthorizationConnectionSourceTypeEnum = "Unknown"
 )
 
-type GetCompaniesCompanyIDConnectionsConnectionIDAuthorizationConnectionStatusEnum string
+type GetCompaniesCompanyIDConnectionsConnectionIDAuthorizationConnectionDataConnectionStatusEnum string
 
 const (
-	GetCompaniesCompanyIDConnectionsConnectionIDAuthorizationConnectionStatusEnumPendingAuth  GetCompaniesCompanyIDConnectionsConnectionIDAuthorizationConnectionStatusEnum = "PendingAuth"
-	GetCompaniesCompanyIDConnectionsConnectionIDAuthorizationConnectionStatusEnumLinked       GetCompaniesCompanyIDConnectionsConnectionIDAuthorizationConnectionStatusEnum = "Linked"
-	GetCompaniesCompanyIDConnectionsConnectionIDAuthorizationConnectionStatusEnumUnlinked     GetCompaniesCompanyIDConnectionsConnectionIDAuthorizationConnectionStatusEnum = "Unlinked"
-	GetCompaniesCompanyIDConnectionsConnectionIDAuthorizationConnectionStatusEnumDeauthorized GetCompaniesCompanyIDConnectionsConnectionIDAuthorizationConnectionStatusEnum = "Deauthorized"
+	GetCompaniesCompanyIDConnectionsConnectionIDAuthorizationConnectionDataConnectionStatusEnumPendingAuth  GetCompaniesCompanyIDConnectionsConnectionIDAuthorizationConnectionDataConnectionStatusEnum = "PendingAuth"
+	GetCompaniesCompanyIDConnectionsConnectionIDAuthorizationConnectionDataConnectionStatusEnumLinked       GetCompaniesCompanyIDConnectionsConnectionIDAuthorizationConnectionDataConnectionStatusEnum = "Linked"
+	GetCompaniesCompanyIDConnectionsConnectionIDAuthorizationConnectionDataConnectionStatusEnumUnlinked     GetCompaniesCompanyIDConnectionsConnectionIDAuthorizationConnectionDataConnectionStatusEnum = "Unlinked"
+	GetCompaniesCompanyIDConnectionsConnectionIDAuthorizationConnectionDataConnectionStatusEnumDeauthorized GetCompaniesCompanyIDConnectionsConnectionIDAuthorizationConnectionDataConnectionStatusEnum = "Deauthorized"
 )
 
 // GetCompaniesCompanyIDConnectionsConnectionIDAuthorizationConnection
 // A connection represents the link between a `company` and a source of data.
 type GetCompaniesCompanyIDConnectionsConnectionIDAuthorizationConnection struct {
-	ConnectionInfo       *GetCompaniesCompanyIDConnectionsConnectionIDAuthorizationConnectionConnectionInfo        `json:"connectionInfo,omitempty"`
-	Created              time.Time                                                                                 `json:"created"`
-	DataConnectionErrors []GetCompaniesCompanyIDConnectionsConnectionIDAuthorizationConnectionDataConnectionErrors `json:"dataConnectionErrors,omitempty"`
-	ID                   string                                                                                    `json:"id"`
-	IntegrationID        string                                                                                    `json:"integrationId"`
-	IntegrationKey       string                                                                                    `json:"integrationKey"`
-	LastSync             *time.Time                                                                                `json:"lastSync,omitempty"`
-	LinkURL              string                                                                                    `json:"linkUrl"`
-	PlatformName         string                                                                                    `json:"platformName"`
-	SourceID             string                                                                                    `json:"sourceId"`
-	SourceType           GetCompaniesCompanyIDConnectionsConnectionIDAuthorizationConnectionSourceTypeEnum         `json:"sourceType"`
-	Status               GetCompaniesCompanyIDConnectionsConnectionIDAuthorizationConnectionStatusEnum             `json:"status"`
+	ConnectionInfo       *GetCompaniesCompanyIDConnectionsConnectionIDAuthorizationConnectionConnectionInfo          `json:"connectionInfo,omitempty"`
+	Created              time.Time                                                                                   `json:"created"`
+	DataConnectionErrors []GetCompaniesCompanyIDConnectionsConnectionIDAuthorizationConnectionDataConnectionErrors   `json:"dataConnectionErrors,omitempty"`
+	ID                   string                                                                                      `json:"id"`
+	IntegrationID        string                                                                                      `json:"integrationId"`
+	IntegrationKey       string                                                                                      `json:"integrationKey"`
+	LastSync             *time.Time                                                                                  `json:"lastSync,omitempty"`
+	LinkURL              string                                                                                      `json:"linkUrl"`
+	PlatformName         string                                                                                      `json:"platformName"`
+	SourceID             string                                                                                      `json:"sourceId"`
+	SourceType           GetCompaniesCompanyIDConnectionsConnectionIDAuthorizationConnectionSourceTypeEnum           `json:"sourceType"`
+	Status               GetCompaniesCompanyIDConnectionsConnectionIDAuthorizationConnectionDataConnectionStatusEnum `json:"status"`
 }
 
 type GetCompaniesCompanyIDConnectionsConnectionIDAuthorizationResponse struct {

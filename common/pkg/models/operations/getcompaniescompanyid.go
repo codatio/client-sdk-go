@@ -44,30 +44,30 @@ const (
 	GetCompaniesCompanyIDCompanyConnectionSourceTypeEnumUnknown    GetCompaniesCompanyIDCompanyConnectionSourceTypeEnum = "Unknown"
 )
 
-type GetCompaniesCompanyIDCompanyConnectionStatusEnum string
+type GetCompaniesCompanyIDCompanyConnectionDataConnectionStatusEnum string
 
 const (
-	GetCompaniesCompanyIDCompanyConnectionStatusEnumPendingAuth  GetCompaniesCompanyIDCompanyConnectionStatusEnum = "PendingAuth"
-	GetCompaniesCompanyIDCompanyConnectionStatusEnumLinked       GetCompaniesCompanyIDCompanyConnectionStatusEnum = "Linked"
-	GetCompaniesCompanyIDCompanyConnectionStatusEnumUnlinked     GetCompaniesCompanyIDCompanyConnectionStatusEnum = "Unlinked"
-	GetCompaniesCompanyIDCompanyConnectionStatusEnumDeauthorized GetCompaniesCompanyIDCompanyConnectionStatusEnum = "Deauthorized"
+	GetCompaniesCompanyIDCompanyConnectionDataConnectionStatusEnumPendingAuth  GetCompaniesCompanyIDCompanyConnectionDataConnectionStatusEnum = "PendingAuth"
+	GetCompaniesCompanyIDCompanyConnectionDataConnectionStatusEnumLinked       GetCompaniesCompanyIDCompanyConnectionDataConnectionStatusEnum = "Linked"
+	GetCompaniesCompanyIDCompanyConnectionDataConnectionStatusEnumUnlinked     GetCompaniesCompanyIDCompanyConnectionDataConnectionStatusEnum = "Unlinked"
+	GetCompaniesCompanyIDCompanyConnectionDataConnectionStatusEnumDeauthorized GetCompaniesCompanyIDCompanyConnectionDataConnectionStatusEnum = "Deauthorized"
 )
 
 // GetCompaniesCompanyIDCompanyConnection
 // A connection represents the link between a `company` and a source of data.
 type GetCompaniesCompanyIDCompanyConnection struct {
-	ConnectionInfo       *GetCompaniesCompanyIDCompanyConnectionConnectionInfo        `json:"connectionInfo,omitempty"`
-	Created              time.Time                                                    `json:"created"`
-	DataConnectionErrors []GetCompaniesCompanyIDCompanyConnectionDataConnectionErrors `json:"dataConnectionErrors,omitempty"`
-	ID                   string                                                       `json:"id"`
-	IntegrationID        string                                                       `json:"integrationId"`
-	IntegrationKey       string                                                       `json:"integrationKey"`
-	LastSync             *time.Time                                                   `json:"lastSync,omitempty"`
-	LinkURL              string                                                       `json:"linkUrl"`
-	PlatformName         string                                                       `json:"platformName"`
-	SourceID             string                                                       `json:"sourceId"`
-	SourceType           GetCompaniesCompanyIDCompanyConnectionSourceTypeEnum         `json:"sourceType"`
-	Status               GetCompaniesCompanyIDCompanyConnectionStatusEnum             `json:"status"`
+	ConnectionInfo       *GetCompaniesCompanyIDCompanyConnectionConnectionInfo          `json:"connectionInfo,omitempty"`
+	Created              time.Time                                                      `json:"created"`
+	DataConnectionErrors []GetCompaniesCompanyIDCompanyConnectionDataConnectionErrors   `json:"dataConnectionErrors,omitempty"`
+	ID                   string                                                         `json:"id"`
+	IntegrationID        string                                                         `json:"integrationId"`
+	IntegrationKey       string                                                         `json:"integrationKey"`
+	LastSync             *time.Time                                                     `json:"lastSync,omitempty"`
+	LinkURL              string                                                         `json:"linkUrl"`
+	PlatformName         string                                                         `json:"platformName"`
+	SourceID             string                                                         `json:"sourceId"`
+	SourceType           GetCompaniesCompanyIDCompanyConnectionSourceTypeEnum           `json:"sourceType"`
+	Status               GetCompaniesCompanyIDCompanyConnectionDataConnectionStatusEnum `json:"status"`
 }
 
 // GetCompaniesCompanyIDCompany

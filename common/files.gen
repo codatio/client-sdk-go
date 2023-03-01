@@ -19,6 +19,7 @@ pkg/utils/requestbody.go
 pkg/utils/retries.go
 pkg/utils/security.go
 pkg/utils/utils.go
+strings.go
 pkg/models/operations/createcompany.go
 pkg/models/operations/deletecompaniescompanyid.go
 pkg/models/operations/getcompaniescompanyid.go
@@ -49,4 +50,11 @@ pkg/models/operations/getwebhook.go
 pkg/models/operations/listrules.go
 pkg/models/operations/postrules.go
 pkg/models/shared/security.go
+pkg/models/webhooks/companydataconnectionstatuschanged.go
+pkg/models/webhooks/datasynccompleted.go
+pkg/models/webhooks/datasetdatachanged.go
+pkg/models/webhooks/datasetstatushaschangedtoanerrorstate.go
+pkg/models/webhooks/newcompanysynchronized.go
+pkg/models/webhooks/pushoperationhastimedout.go
+pkg/models/webhooks/pushoperationstatushaschanged.go
 USAGE.md
