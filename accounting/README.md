@@ -22,17 +22,13 @@ import (
 )
 
 func main() {
-    opts := []codatio.SDKOption{
-        codatio.WithSecurity(
-            shared.Security{
-                APIKey: shared.SchemeAPIKey{
-                    APIKey: "YOUR_API_KEY_HERE",
-                },
+    s := codatio.New(codatio.WithSecurity(
+        shared.Security{
+            APIKey: shared.SchemeAPIKey{
+                APIKey: "YOUR_API_KEY_HERE",
             },
-        ),
-    }
-
-    s := codatio.New(opts...)
+        },
+    ))
     
     req := operations.GetAccountTransactionRequest{
         Security: operations.GetAccountTransactionSecurity{
@@ -134,16 +130,16 @@ func main() {
 ### DirectCosts
 
 * `DownloadDirectCostAttachment` - Download direct cost attachment
-* `GetDirectCost` - Get directCost
-* `GetDirectCostAttachment` - Get directCost attachment
-* `GetDirectCosts` - List directCosts
+* `GetDirectCost` - Get direct cost
+* `GetDirectCostAttachment` - Get direct cost attachment
+* `GetDirectCosts` - List direct costs
 * `ListDirectCostAttachments` - List direct cost attachments
 * `PostDirectCost` - Create direct cost
 * `PostDirectCostAttachment` - Create direct cost attachment
 
 ### DirectIncomes
 
-* `DownloadDirectIncomeAttachment` - Download directIncome attachment
+* `DownloadDirectIncomeAttachment` - Download direct income attachment
 * `GetDirectIncome` - Get direct income
 * `GetDirectIncomeAttachment` - Get direct income attachment
 * `GetDirectIncomes` - Get direct incomes

@@ -63,7 +63,7 @@ func (s *directCosts) DownloadDirectCostAttachment(ctx context.Context, request 
 	return res, nil
 }
 
-// GetDirectCost - Get directCost
+// GetDirectCost - Get direct cost
 // Gets the specified direct cost for a given company.
 func (s *directCosts) GetDirectCost(ctx context.Context, request operations.GetDirectCostRequest) (*operations.GetDirectCostResponse, error) {
 	baseURL := s.serverURL
@@ -107,7 +107,7 @@ func (s *directCosts) GetDirectCost(ctx context.Context, request operations.GetD
 	return res, nil
 }
 
-// GetDirectCostAttachment - Get directCost attachment
+// GetDirectCostAttachment - Get direct cost attachment
 // Gets the specified direct cost attachment for a given company.
 func (s *directCosts) GetDirectCostAttachment(ctx context.Context, request operations.GetDirectCostAttachmentRequest) (*operations.GetDirectCostAttachmentResponse, error) {
 	baseURL := s.serverURL
@@ -151,7 +151,7 @@ func (s *directCosts) GetDirectCostAttachment(ctx context.Context, request opera
 	return res, nil
 }
 
-// GetDirectCosts - List directCosts
+// GetDirectCosts - List direct costs
 // Gets the direct costs for the company.
 func (s *directCosts) GetDirectCosts(ctx context.Context, request operations.GetDirectCostsRequest) (*operations.GetDirectCostsResponse, error) {
 	baseURL := s.serverURL

@@ -28,7 +28,7 @@ func newDirectIncomes(defaultClient, securityClient HTTPClient, serverURL, langu
 	}
 }
 
-// DownloadDirectIncomeAttachment - Download directIncome attachment
+// DownloadDirectIncomeAttachment - Download direct income attachment
 // Downloads an attachment for the specified direct income for a given company.
 func (s *directIncomes) DownloadDirectIncomeAttachment(ctx context.Context, request operations.DownloadDirectIncomeAttachmentRequest) (*operations.DownloadDirectIncomeAttachmentResponse, error) {
 	baseURL := s.serverURL
