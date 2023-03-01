@@ -22,17 +22,13 @@ import (
 )
 
 func main() {
-    opts := []codatio.SDKOption{
-        codatio.WithSecurity(
-            shared.Security{
-                APIKey: shared.SchemeAPIKey{
-                    APIKey: "YOUR_API_KEY_HERE",
-                },
+    s := codatio.New(codatio.WithSecurity(
+        shared.Security{
+            APIKey: shared.SchemeAPIKey{
+                APIKey: "YOUR_API_KEY_HERE",
             },
-        ),
-    }
-
-    s := codatio.New(opts...)
+        },
+    ))
     
     req := operations.DownloadFilesRequest{
         Security: operations.DownloadFilesSecurity{
@@ -44,7 +40,7 @@ func main() {
             CompanyID: "unde",
         },
         QueryParams: operations.DownloadFilesQueryParams{
-            Date: "2022-07-26T14:52:37.700Z",
+            Date: "2022-07-27T14:55:01.932Z",
         },
     }
 
