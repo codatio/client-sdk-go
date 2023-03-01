@@ -116,7 +116,7 @@ func (s *syncStatus) GetLatestSync(ctx context.Context, request operations.GetLa
 	return res, nil
 }
 
-// GetSyncByID - Get Sync Status
+// GetSyncByID - Get Sync status
 // Get the sync status for a specified sync
 func (s *syncStatus) GetSyncByID(ctx context.Context, request operations.GetSyncByIDRequest) (*operations.GetSyncByIDResponse, error) {
 	baseURL := s.serverURL

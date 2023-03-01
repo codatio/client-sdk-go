@@ -72,7 +72,7 @@ func (s *transactionStatus) GetSyncTransaction(ctx context.Context, request oper
 	return res, nil
 }
 
-// GetSyncTransactions - Get Sync Transactions
+// GetSyncTransactions - Get Sync transactions
 // Get's the transactions and status for a sync
 func (s *transactionStatus) GetSyncTransactions(ctx context.Context, request operations.GetSyncTransactionsRequest) (*operations.GetSyncTransactionsResponse, error) {
 	baseURL := s.serverURL

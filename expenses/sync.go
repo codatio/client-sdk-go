@@ -28,7 +28,7 @@ func newSync(defaultClient, securityClient HTTPClient, serverURL, language, sdkV
 	}
 }
 
-// IntiateSync - Initiate Sync
+// IntiateSync - Initiate sync
 // Initiate sync of pending transactions.
 func (s *sync) IntiateSync(ctx context.Context, request operations.IntiateSyncRequest) (*operations.IntiateSyncResponse, error) {
 	baseURL := s.serverURL

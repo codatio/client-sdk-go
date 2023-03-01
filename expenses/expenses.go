@@ -79,7 +79,7 @@ func (s *expenses) CreateExpenseDataset(ctx context.Context, request operations.
 	return res, nil
 }
 
-// UploadAttachment - Upload Attachment
+// UploadAttachment - Upload attachment
 // Creates an attachment in the accounting software against the given transactionId
 func (s *expenses) UploadAttachment(ctx context.Context, request operations.UploadAttachmentRequest) (*operations.UploadAttachmentResponse, error) {
 	baseURL := s.serverURL

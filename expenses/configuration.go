@@ -28,7 +28,7 @@ func newConfiguration(defaultClient, securityClient HTTPClient, serverURL, langu
 	}
 }
 
-// GetCompanyConfiguration - Get Company Configuration
+// GetCompanyConfiguration - Get Company configuration
 // Gets a companies expense sync configuration
 func (s *configuration) GetCompanyConfiguration(ctx context.Context, request operations.GetCompanyConfigurationRequest) (*operations.GetCompanyConfigurationResponse, error) {
 	baseURL := s.serverURL
@@ -72,7 +72,7 @@ func (s *configuration) GetCompanyConfiguration(ctx context.Context, request ope
 	return res, nil
 }
 
-// SaveCompanyConfiguration - Set Company Configuration
+// SaveCompanyConfiguration - Set Company configuration
 // Sets a companies expense sync configuration
 func (s *configuration) SaveCompanyConfiguration(ctx context.Context, request operations.SaveCompanyConfigurationRequest) (*operations.SaveCompanyConfigurationResponse, error) {
 	baseURL := s.serverURL
