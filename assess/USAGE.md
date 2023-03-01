@@ -11,17 +11,13 @@ import (
 )
 
 func main() {
-    opts := []codatio.SDKOption{
-        codatio.WithSecurity(
-            shared.Security{
-                APIKey: shared.SchemeAPIKey{
-                    APIKey: "YOUR_API_KEY_HERE",
-                },
+    s := codatio.New(codatio.WithSecurity(
+        shared.Security{
+            APIKey: shared.SchemeAPIKey{
+                APIKey: "YOUR_API_KEY_HERE",
             },
-        ),
-    }
-
-    s := codatio.New(opts...)
+        },
+    ))
 
     ctx := context.Background()
     res, err := s.Categories.GetDataAssessAccountsCategories(ctx)

@@ -15,6 +15,7 @@ pkg/utils/requestbody.go
 pkg/utils/retries.go
 pkg/utils/security.go
 pkg/utils/utils.go
+strings.go
 pkg/models/operations/getdataassessaccountscategories.go
 pkg/models/operations/getdatacompaniescompanyidconnectionsconnectionidassessaccountsaccountidcategories.go
 pkg/models/operations/getdatacompaniescompanyidconnectionsconnectionidassessaccountscategories.go
@@ -41,4 +42,5 @@ pkg/models/operations/getdatacompaniescompanyidconnectionsconnectionidassessfina
 pkg/models/operations/getdatacompaniescompanyidconnectionsconnectionidassesssubscriptionsmrr.go
 pkg/models/operations/getdatacompaniescompanyidconnectionsconnectionidassesssubscriptionsprocess.go
 pkg/models/shared/security.go
+pkg/models/webhooks/accountcategoriesupdated.go
 USAGE.md
