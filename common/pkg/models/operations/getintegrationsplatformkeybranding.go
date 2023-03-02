@@ -27,7 +27,7 @@ type GetIntegrationsPlatformKeyBrandingBrandingLogo struct {
 }
 
 type GetIntegrationsPlatformKeyBrandingBranding struct {
-	Button   *interface{}                                    `json:"button,omitempty"`
+	Button   interface{}                                     `json:"button,omitempty"`
 	Logo     *GetIntegrationsPlatformKeyBrandingBrandingLogo `json:"logo,omitempty"`
 	SourceID *string                                         `json:"sourceId,omitempty"`
 }
