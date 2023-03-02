@@ -58,6 +58,10 @@ func main() {
 * `GetCompanyConfiguration` - Get Company configuration
 * `SaveCompanyConfiguration` - Set Company configuration
 
+### Connections
+
+* `CreatePartnerexpenseConnection` - Create Partner Expense connection
+
 ### Expenses
 
 * `CreateExpenseDataset` - Create expense-transactions

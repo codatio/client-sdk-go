@@ -8,7 +8,7 @@ import (
 	"net/http"
 )
 
-type mappingOptions struct {
+type connections struct {
 	defaultClient  HTTPClient
 	securityClient HTTPClient
 	serverURL      string
@@ -17,8 +17,8 @@ type mappingOptions struct {
 	genVersion     string
 }
 
-func newMappingOptions(defaultClient, securityClient HTTPClient, serverURL, language, sdkVersion, genVersion string) *mappingOptions {
-	return &mappingOptions{
+func newConnections(defaultClient, securityClient HTTPClient, serverURL, language, sdkVersion, genVersion string) *connections {
+	return &connections{
 		defaultClient:  defaultClient,
 		securityClient: securityClient,
 		serverURL:      serverURL,
@@ -28,13 +28,13 @@ func newMappingOptions(defaultClient, securityClient HTTPClient, serverURL, lang
 	}
 }
 
-// GetMappingOptions - Mapping options
-// Gets the expense mapping options for a companies accounting software
-func (s *mappingOptions) GetMappingOptions(ctx context.Context, request operations.GetMappingOptionsRequest) (*operations.GetMappingOptionsResponse, error) {
+// CreatePartnerexpenseConnection - Create Partner Expense connection
+// Creates a Partner Expense data connection
+func (s *connections) CreatePartnerexpenseConnection(ctx context.Context, request operations.CreatePartnerexpenseConnectionRequest) (*operations.CreatePartnerexpenseConnectionResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/mappingOptions", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/partnerExpense", request.PathParams)
 
-	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
+	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -52,7 +52,7 @@ func (s *mappingOptions) GetMappingOptions(ctx context.Context, request operatio
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetMappingOptionsResponse{
+	res := &operations.CreatePartnerexpenseConnectionResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
@@ -60,12 +60,12 @@ func (s *mappingOptions) GetMappingOptions(ctx context.Context, request operatio
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetMappingOptions200ApplicationJSON
+			var out *operations.CreatePartnerexpenseConnectionConnection
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.GetMappingOptions200ApplicationJSONObject = out
+			res.Connection = out
 		}
 	}
 

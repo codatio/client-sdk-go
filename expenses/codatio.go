@@ -17,6 +17,7 @@ type HTTPClient interface {
 
 type Codatio struct {
 	Configuration     *configuration
+	Connections       *connections
 	Expenses          *expenses
 	MappingOptions    *mappingOptions
 	Sync              *sync
@@ -60,8 +61,8 @@ func WithSecurity(security shared.Security) SDKOption {
 func New(opts ...SDKOption) *Codatio {
 	sdk := &Codatio{
 		_language:   "go",
-		_sdkVersion: "0.2.0",
-		_genVersion: "1.6.0",
+		_sdkVersion: "0.3.0",
+		_genVersion: "1.7.1",
 	}
 	for _, opt := range opts {
 		opt(sdk)
@@ -86,6 +87,15 @@ func New(opts ...SDKOption) *Codatio {
 	}
 
 	sdk.Configuration = newConfiguration(
+		sdk._defaultClient,
+		sdk._securityClient,
+		sdk._serverURL,
+		sdk._language,
+		sdk._sdkVersion,
+		sdk._genVersion,
+	)
+
+	sdk.Connections = newConnections(
 		sdk._defaultClient,
 		sdk._securityClient,
 		sdk._serverURL,
