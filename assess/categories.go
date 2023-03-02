@@ -29,53 +29,9 @@ func newCategories(defaultClient, securityClient HTTPClient, serverURL, language
 	}
 }
 
-// GetDataAssessAccountsCategories - List account categories
-// Lists available account categories Codat's categorisation engine can provide.
-func (s *categories) GetDataAssessAccountsCategories(ctx context.Context) (*operations.GetDataAssessAccountsCategoriesResponse, error) {
-	baseURL := s.serverURL
-	url := strings.TrimSuffix(baseURL, "/") + "/data/assess/accounts/categories"
-
-	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error creating request: %w", err)
-	}
-
-	client := s.securityClient
-
-	httpRes, err := client.Do(req)
-	if err != nil {
-		return nil, fmt.Errorf("error sending request: %w", err)
-	}
-	if httpRes == nil {
-		return nil, fmt.Errorf("error sending request: no response")
-	}
-	defer httpRes.Body.Close()
-
-	contentType := httpRes.Header.Get("Content-Type")
-
-	res := &operations.GetDataAssessAccountsCategoriesResponse{
-		StatusCode:  httpRes.StatusCode,
-		ContentType: contentType,
-	}
-	switch {
-	case httpRes.StatusCode == 200:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out []operations.GetDataAssessAccountsCategoriesChartOfAccountCategory
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
-				return nil, err
-			}
-
-			res.GetDataAssessAccountsCategoriesChartOfAccountCategoryAllOfs = out
-		}
-	}
-
-	return res, nil
-}
-
-// GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsAccountIDCategories - Get suggested and/or confirmed category for a specific account
+// GetAccountCategory - Get suggested and/or confirmed category for a specific account
 // Get category for specific nominal account.
-func (s *categories) GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsAccountIDCategories(ctx context.Context, request operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsAccountIDCategoriesRequest) (*operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsAccountIDCategoriesResponse, error) {
+func (s *categories) GetAccountCategory(ctx context.Context, request operations.GetAccountCategoryRequest) (*operations.GetAccountCategoryResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/connections/{connectionId}/assess/accounts/{accountId}/categories", request.PathParams)
 
@@ -97,7 +53,7 @@ func (s *categories) GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAccou
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsAccountIDCategoriesResponse{
+	res := &operations.GetAccountCategoryResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
@@ -105,7 +61,7 @@ func (s *categories) GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAccou
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsAccountIDCategoriesCategorisedAccount
+			var out *operations.GetAccountCategoryCategorisedAccount
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -117,9 +73,9 @@ func (s *categories) GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAccou
 	return res, nil
 }
 
-// GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsCategories - List suggested and confirmed account categories
+// ListAccountsCategories - List suggested and confirmed account categories
 // Lists suggested and confirmed chart of account categories for the given company and data connection.
-func (s *categories) GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsCategories(ctx context.Context, request operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsCategoriesRequest) (*operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsCategoriesResponse, error) {
+func (s *categories) ListAccountsCategories(ctx context.Context, request operations.ListAccountsCategoriesRequest) (*operations.ListAccountsCategoriesResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/connections/{connectionId}/assess/accounts/categories", request.PathParams)
 
@@ -145,7 +101,7 @@ func (s *categories) GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAccou
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsCategoriesResponse{
+	res := &operations.ListAccountsCategoriesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
@@ -153,7 +109,7 @@ func (s *categories) GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAccou
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsCategoriesLinks
+			var out *operations.ListAccountsCategoriesLinks
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -165,9 +121,53 @@ func (s *categories) GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAccou
 	return res, nil
 }
 
-// PatchDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsAccountIDCategories - Patch account categories
+// ListAvailableAccountCategories - List account categories
+// Lists available account categories Codat's categorisation engine can provide.
+func (s *categories) ListAvailableAccountCategories(ctx context.Context) (*operations.ListAvailableAccountCategoriesResponse, error) {
+	baseURL := s.serverURL
+	url := strings.TrimSuffix(baseURL, "/") + "/data/assess/accounts/categories"
+
+	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+
+	client := s.securityClient
+
+	httpRes, err := client.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
+	}
+	defer httpRes.Body.Close()
+
+	contentType := httpRes.Header.Get("Content-Type")
+
+	res := &operations.ListAvailableAccountCategoriesResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: contentType,
+	}
+	switch {
+	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out []operations.ListAvailableAccountCategoriesChartOfAccountCategory
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.ListAvailableAccountCategoriesChartOfAccountCategoryAllOfs = out
+		}
+	}
+
+	return res, nil
+}
+
+// UpdateAccountCategory - Patch account categories
 // Update category for a specific nominal account
-func (s *categories) PatchDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsAccountIDCategories(ctx context.Context, request operations.PatchDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsAccountIDCategoriesRequest) (*operations.PatchDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsAccountIDCategoriesResponse, error) {
+func (s *categories) UpdateAccountCategory(ctx context.Context, request operations.UpdateAccountCategoryRequest) (*operations.UpdateAccountCategoryResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/connections/{connectionId}/assess/accounts/{accountId}/categories", request.PathParams)
 
@@ -196,7 +196,7 @@ func (s *categories) PatchDataCompaniesCompanyIDConnectionsConnectionIDAssessAcc
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.PatchDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsAccountIDCategoriesResponse{
+	res := &operations.UpdateAccountCategoryResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
@@ -204,7 +204,7 @@ func (s *categories) PatchDataCompaniesCompanyIDConnectionsConnectionIDAssessAcc
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.PatchDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsAccountIDCategoriesCategorisedAccount
+			var out *operations.UpdateAccountCategoryCategorisedAccount
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -216,9 +216,9 @@ func (s *categories) PatchDataCompaniesCompanyIDConnectionsConnectionIDAssessAcc
 	return res, nil
 }
 
-// PatchDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsCategories - Confirm categories for accounts
+// UpdateAccountsCategories - Confirm categories for accounts
 // Comfirms the categories for all or a batch of accounts for a specific connection.
-func (s *categories) PatchDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsCategories(ctx context.Context, request operations.PatchDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsCategoriesRequest) (*operations.PatchDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsCategoriesResponse, error) {
+func (s *categories) UpdateAccountsCategories(ctx context.Context, request operations.UpdateAccountsCategoriesRequest) (*operations.UpdateAccountsCategoriesResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/connections/{connectionId}/assess/accounts/categories", request.PathParams)
 
@@ -247,7 +247,7 @@ func (s *categories) PatchDataCompaniesCompanyIDConnectionsConnectionIDAssessAcc
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.PatchDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsCategoriesResponse{
+	res := &operations.UpdateAccountsCategoriesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
@@ -255,7 +255,7 @@ func (s *categories) PatchDataCompaniesCompanyIDConnectionsConnectionIDAssessAcc
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out []operations.PatchDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsCategoriesCategorisedAccount
+			var out []operations.UpdateAccountsCategoriesCategorisedAccount
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}

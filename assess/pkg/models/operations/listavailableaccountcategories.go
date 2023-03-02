@@ -1,6 +1,6 @@
 package operations
 
-type GetDataAssessAccountsCategoriesChartOfAccountCategory struct {
+type ListAvailableAccountCategoriesChartOfAccountCategory struct {
 	DetailType            *string `json:"detailType,omitempty"`
 	DetailTypeDescription *string `json:"detailTypeDescription,omitempty"`
 	DetailTypeDisplayName *string `json:"detailTypeDisplayName,omitempty"`
@@ -9,8 +9,8 @@ type GetDataAssessAccountsCategoriesChartOfAccountCategory struct {
 	Type                  *string `json:"type,omitempty"`
 }
 
-type GetDataAssessAccountsCategoriesResponse struct {
-	ContentType                                                 string
-	StatusCode                                                  int
-	GetDataAssessAccountsCategoriesChartOfAccountCategoryAllOfs []GetDataAssessAccountsCategoriesChartOfAccountCategory
+type ListAvailableAccountCategoriesResponse struct {
+	ContentType                                                string
+	StatusCode                                                 int
+	ListAvailableAccountCategoriesChartOfAccountCategoryAllOfs []ListAvailableAccountCategoriesChartOfAccountCategory
 }

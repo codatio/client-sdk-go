@@ -18,14 +18,22 @@ func main() {
             },
         },
     ))
+    
+    req := operations.GetAccountCategoryRequest{
+        PathParams: operations.GetAccountCategoryPathParams{
+            AccountID: "unde",
+            CompanyID: "deserunt",
+            ConnectionID: "porro",
+        },
+    }
 
     ctx := context.Background()
-    res, err := s.Categories.GetDataAssessAccountsCategories(ctx)
+    res, err := s.Categories.GetAccountCategory(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.GetDataAssessAccountsCategoriesChartOfAccountCategoryAllOfs != nil {
+    if res.CategorisedAccount != nil {
         // handle response
     }
 }

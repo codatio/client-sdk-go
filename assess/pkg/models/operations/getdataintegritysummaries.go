@@ -1,0 +1,55 @@
+package operations
+
+type GetDataIntegritySummariesDataTypeEnum string
+
+const (
+	GetDataIntegritySummariesDataTypeEnumBankingAccounts     GetDataIntegritySummariesDataTypeEnum = "banking-accounts"
+	GetDataIntegritySummariesDataTypeEnumBankingTransactions GetDataIntegritySummariesDataTypeEnum = "banking-transactions"
+	GetDataIntegritySummariesDataTypeEnumBankAccounts        GetDataIntegritySummariesDataTypeEnum = "bankAccounts"
+	GetDataIntegritySummariesDataTypeEnumAccountTransactions GetDataIntegritySummariesDataTypeEnum = "accountTransactions"
+)
+
+type GetDataIntegritySummariesPathParams struct {
+	CompanyID string                                `pathParam:"style=simple,explode=false,name=companyId"`
+	DataType  GetDataIntegritySummariesDataTypeEnum `pathParam:"style=simple,explode=false,name=dataType"`
+}
+
+type GetDataIntegritySummariesQueryParams struct {
+	Query *string `queryParam:"style=form,explode=true,name=query"`
+}
+
+type GetDataIntegritySummariesRequest struct {
+	PathParams  GetDataIntegritySummariesPathParams
+	QueryParams GetDataIntegritySummariesQueryParams
+}
+
+type GetDataIntegritySummaries200ApplicationJSONDataIntegrityTypeByAmount struct {
+	Currency        *string  `json:"currency,omitempty"`
+	MatchPercentage *float64 `json:"matchPercentage,omitempty"`
+	Matched         *float64 `json:"matched,omitempty"`
+	Total           *float64 `json:"total,omitempty"`
+	Unmatched       *float64 `json:"unmatched,omitempty"`
+}
+
+type GetDataIntegritySummaries200ApplicationJSONDataIntegrityTypeByCount struct {
+	MatchPercentage *float64 `json:"matchPercentage,omitempty"`
+	Matched         *float64 `json:"matched,omitempty"`
+	Total           *float64 `json:"total,omitempty"`
+	Unmatched       *float64 `json:"unmatched,omitempty"`
+}
+
+type GetDataIntegritySummaries200ApplicationJSONDataIntegrityType struct {
+	ByAmount *GetDataIntegritySummaries200ApplicationJSONDataIntegrityTypeByAmount `json:"byAmount,omitempty"`
+	ByCount  *GetDataIntegritySummaries200ApplicationJSONDataIntegrityTypeByCount  `json:"byCount,omitempty"`
+	Type     *string                                                               `json:"type,omitempty"`
+}
+
+type GetDataIntegritySummaries200ApplicationJSON struct {
+	Summaries []GetDataIntegritySummaries200ApplicationJSONDataIntegrityType `json:"summaries,omitempty"`
+}
+
+type GetDataIntegritySummariesResponse struct {
+	ContentType                                       string
+	StatusCode                                        int
+	GetDataIntegritySummaries200ApplicationJSONObject *GetDataIntegritySummaries200ApplicationJSON
+}
