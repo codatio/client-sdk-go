@@ -29,7 +29,7 @@ func newReports(defaultClient, securityClient HTTPClient, serverURL, language, s
 }
 
 // GetAgedCreditorsReport - Aged creditors report
-// Returns aged creditors report for company
+// Returns aged creditors report for company that shows the total balance owed by a business to its suppliers over time.
 func (s *reports) GetAgedCreditorsReport(ctx context.Context, request operations.GetAgedCreditorsReportRequest) (*operations.GetAgedCreditorsReportResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/reports/agedCreditor", request.PathParams)
@@ -77,7 +77,7 @@ func (s *reports) GetAgedCreditorsReport(ctx context.Context, request operations
 }
 
 // GetAgedDebtorsReport - Aged debtors report
-// Returns aged debtors report for company.
+// Returns aged debtors report for company that shows the total outstanding balance due from customers to the business over time.
 func (s *reports) GetAgedDebtorsReport(ctx context.Context, request operations.GetAgedDebtorsReportRequest) (*operations.GetAgedDebtorsReportResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/reports/agedDebtor", request.PathParams)
