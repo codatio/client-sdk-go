@@ -1,6 +1,7 @@
 package operations
 
 import (
+	"net/http"
 	"time"
 )
 
@@ -113,5 +114,6 @@ type SendPaymentsData200ApplicationJSON struct {
 type SendPaymentsDataResponse struct {
 	ContentType                              string
 	StatusCode                               int
+	RawResponse                              *http.Response
 	SendPaymentsData200ApplicationJSONObject *SendPaymentsData200ApplicationJSON
 }

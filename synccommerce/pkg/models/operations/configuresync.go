@@ -1,6 +1,7 @@
 package operations
 
 import (
+	"net/http"
 	"time"
 )
 
@@ -412,5 +413,6 @@ type ConfigureSync200ApplicationJSON struct {
 type ConfigureSyncResponse struct {
 	ContentType                           string
 	StatusCode                            int
+	RawResponse                           *http.Response
 	ConfigureSync200ApplicationJSONObject *ConfigureSync200ApplicationJSON
 }

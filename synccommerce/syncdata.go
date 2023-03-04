@@ -55,6 +55,7 @@ func (s *syncData) CheckDataStatus(ctx context.Context, request operations.Check
 	res := &operations.CheckDataStatusResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -97,6 +98,7 @@ func (s *syncData) SendOrdersData(ctx context.Context, request operations.SendOr
 	res := &operations.SendOrdersDataResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -148,6 +150,7 @@ func (s *syncData) SendPaymentsData(ctx context.Context, request operations.Send
 	res := &operations.SendPaymentsDataResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -199,6 +202,7 @@ func (s *syncData) SendTransactionsData(ctx context.Context, request operations.
 	res := &operations.SendTransactionsDataResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

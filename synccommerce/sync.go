@@ -63,6 +63,7 @@ func (s *sync) PostSyncLatest(ctx context.Context, request operations.PostSyncLa
 	res := &operations.PostSyncLatestResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

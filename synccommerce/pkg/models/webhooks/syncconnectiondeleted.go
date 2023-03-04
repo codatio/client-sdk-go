@@ -1,8 +1,13 @@
 package webhooks
 
+import (
+	"net/http"
+)
+
 type SyncConnectionDeletedResponse struct {
 	ContentType string
 	StatusCode  int
+	RawResponse *http.Response
 }
 
 // SyncConnectionDeletedAccountCategoriesUpdatedWebhook

@@ -63,6 +63,7 @@ func (s *companyManagement) AddDataConnection(ctx context.Context, request opera
 	res := &operations.AddDataConnectionResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -111,6 +112,7 @@ func (s *companyManagement) Companies(ctx context.Context, request operations.Co
 	res := &operations.CompaniesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -159,6 +161,7 @@ func (s *companyManagement) GetDataconnections(ctx context.Context, request oper
 	res := &operations.GetDataconnectionsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -210,6 +213,7 @@ func (s *companyManagement) PostCompanies(ctx context.Context, request operation
 	res := &operations.PostCompaniesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -261,6 +265,7 @@ func (s *companyManagement) UpdateDataConnection(ctx context.Context, request op
 	res := &operations.UpdateDataConnectionResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

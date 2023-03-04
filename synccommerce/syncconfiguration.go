@@ -62,6 +62,7 @@ func (s *syncConfiguration) ConfigureSync(ctx context.Context, request operation
 	res := &operations.ConfigureSyncResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -106,6 +107,7 @@ func (s *syncConfiguration) GetCompanyCommerceSyncStatus(ctx context.Context, re
 	res := &operations.GetCompanyCommerceSyncStatusResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -145,6 +147,7 @@ func (s *syncConfiguration) GetSyncFlowURL(ctx context.Context, request operatio
 	res := &operations.GetSyncFlowURLResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -180,6 +183,7 @@ func (s *syncConfiguration) GetSyncOptions(ctx context.Context, request operatio
 	res := &operations.GetSyncOptionsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
