@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -11,13 +11,8 @@ type GetDirectIncomePathParams struct {
 	DirectIncomeID string `pathParam:"style=simple,explode=false,name=directIncomeId"`
 }
 
-type GetDirectIncomeSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type GetDirectIncomeRequest struct {
 	PathParams GetDirectIncomePathParams
-	Security   GetDirectIncomeSecurity
 }
 
 // GetDirectIncomeSourceModifiedDateContactRef
@@ -150,4 +145,5 @@ type GetDirectIncomeResponse struct {
 	ContentType        string
 	SourceModifiedDate *GetDirectIncomeSourceModifiedDate
 	StatusCode         int
+	RawResponse        *http.Response
 }

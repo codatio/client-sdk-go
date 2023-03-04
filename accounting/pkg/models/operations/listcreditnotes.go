@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -16,14 +16,9 @@ type ListCreditNotesQueryParams struct {
 	Query    *string  `queryParam:"style=form,explode=true,name=query"`
 }
 
-type ListCreditNotesSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type ListCreditNotesRequest struct {
 	PathParams  ListCreditNotesPathParams
 	QueryParams ListCreditNotesQueryParams
-	Security    ListCreditNotesSecurity
 }
 
 type ListCreditNotesLinksLinksCurrent struct {
@@ -241,5 +236,6 @@ type ListCreditNotesLinks struct {
 type ListCreditNotesResponse struct {
 	ContentType string
 	StatusCode  int
+	RawResponse *http.Response
 	Links       *ListCreditNotesLinks
 }

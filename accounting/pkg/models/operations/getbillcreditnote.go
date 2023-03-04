@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -10,13 +10,8 @@ type GetBillCreditNotePathParams struct {
 	CompanyID        string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
-type GetBillCreditNoteSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type GetBillCreditNoteRequest struct {
 	PathParams GetBillCreditNotePathParams
-	Security   GetBillCreditNoteSecurity
 }
 
 // GetBillCreditNoteSourceModifiedDateLineItemsAccountRef
@@ -205,4 +200,5 @@ type GetBillCreditNoteResponse struct {
 	ContentType        string
 	SourceModifiedDate *GetBillCreditNoteSourceModifiedDate
 	StatusCode         int
+	RawResponse        *http.Response
 }

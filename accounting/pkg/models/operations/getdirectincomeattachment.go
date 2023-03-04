@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -16,14 +16,9 @@ type GetDirectIncomeAttachmentQueryParams struct {
 	TimeoutInMinutes *int `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
 }
 
-type GetDirectIncomeAttachmentSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type GetDirectIncomeAttachmentRequest struct {
 	PathParams  GetDirectIncomeAttachmentPathParams
 	QueryParams GetDirectIncomeAttachmentQueryParams
-	Security    GetDirectIncomeAttachmentSecurity
 }
 
 type GetDirectIncomeAttachmentAttachment struct {
@@ -41,4 +36,5 @@ type GetDirectIncomeAttachmentResponse struct {
 	Attachment  *GetDirectIncomeAttachmentAttachment
 	ContentType string
 	StatusCode  int
+	RawResponse *http.Response
 }

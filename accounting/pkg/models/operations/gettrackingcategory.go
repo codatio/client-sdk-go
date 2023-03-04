@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -10,13 +10,8 @@ type GetTrackingCategoryPathParams struct {
 	TrackingCategoryID string `pathParam:"style=simple,explode=false,name=trackingCategoryId"`
 }
 
-type GetTrackingCategorySecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type GetTrackingCategoryRequest struct {
 	PathParams GetTrackingCategoryPathParams
-	Security   GetTrackingCategorySecurity
 }
 
 type GetTrackingCategorySourceModifiedDateTrackingCategoryStatusEnum string
@@ -97,4 +92,5 @@ type GetTrackingCategoryResponse struct {
 	ContentType        string
 	SourceModifiedDate *GetTrackingCategorySourceModifiedDate
 	StatusCode         int
+	RawResponse        *http.Response
 }

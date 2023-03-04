@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -10,13 +10,8 @@ type GetTaxRatePathParams struct {
 	TaxRateID string `pathParam:"style=simple,explode=false,name=taxRateId"`
 }
 
-type GetTaxRateSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type GetTaxRateRequest struct {
 	PathParams GetTaxRatePathParams
-	Security   GetTaxRateSecurity
 }
 
 type GetTaxRate200ApplicationJSONComponents struct {
@@ -120,5 +115,6 @@ type GetTaxRate200ApplicationJSON struct {
 type GetTaxRateResponse struct {
 	ContentType                        string
 	StatusCode                         int
+	RawResponse                        *http.Response
 	GetTaxRate200ApplicationJSONObject *GetTaxRate200ApplicationJSON
 }

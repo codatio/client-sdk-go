@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -10,13 +10,8 @@ type GetPurchaseOrderPathParams struct {
 	PurchaseOrderID string `pathParam:"style=simple,explode=false,name=purchaseOrderId"`
 }
 
-type GetPurchaseOrderSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type GetPurchaseOrderRequest struct {
 	PathParams GetPurchaseOrderPathParams
-	Security   GetPurchaseOrderSecurity
 }
 
 // GetPurchaseOrderSourceModifiedDateLineItemsAccountRef
@@ -152,4 +147,5 @@ type GetPurchaseOrderResponse struct {
 	ContentType        string
 	SourceModifiedDate *GetPurchaseOrderSourceModifiedDate
 	StatusCode         int
+	RawResponse        *http.Response
 }

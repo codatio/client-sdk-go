@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -10,13 +10,8 @@ type GetJournalEntryPathParams struct {
 	JournalEntryID string `pathParam:"style=simple,explode=false,name=journalEntryId"`
 }
 
-type GetJournalEntrySecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type GetJournalEntryRequest struct {
 	PathParams GetJournalEntryPathParams
-	Security   GetJournalEntrySecurity
 }
 
 // GetJournalEntrySourceModifiedDateJournalLinesAccountRef
@@ -111,4 +106,5 @@ type GetJournalEntryResponse struct {
 	ContentType        string
 	SourceModifiedDate *GetJournalEntrySourceModifiedDate
 	StatusCode         int
+	RawResponse        *http.Response
 }

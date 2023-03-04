@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -15,14 +15,9 @@ type GetProfitAndLossQueryParams struct {
 	StartMonth       *time.Time `queryParam:"style=form,explode=true,name=startMonth"`
 }
 
-type GetProfitAndLossSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type GetProfitAndLossRequest struct {
 	PathParams  GetProfitAndLossPathParams
 	QueryParams GetProfitAndLossQueryParams
-	Security    GetProfitAndLossSecurity
 }
 
 type GetProfitAndLoss200ApplicationJSONReportBasisEnum string
@@ -109,5 +104,6 @@ type GetProfitAndLoss200ApplicationJSON struct {
 type GetProfitAndLossResponse struct {
 	ContentType                              string
 	StatusCode                               int
+	RawResponse                              *http.Response
 	GetProfitAndLoss200ApplicationJSONObject *GetProfitAndLoss200ApplicationJSON
 }

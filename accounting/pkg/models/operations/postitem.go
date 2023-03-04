@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -104,15 +104,10 @@ type PostItemSourceModifiedDate struct {
 	Type               PostItemSourceModifiedDateTypeEnum       `json:"type"`
 }
 
-type PostItemSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type PostItemRequest struct {
 	PathParams  PostItemPathParams
 	QueryParams PostItemQueryParams
 	Request     *PostItemSourceModifiedDate `request:"mediaType=application/json"`
-	Security    PostItemSecurity
 }
 
 type PostItem200ApplicationJSONChangesPushOperationRecordRef struct {
@@ -268,5 +263,6 @@ type PostItem200ApplicationJSON struct {
 type PostItemResponse struct {
 	ContentType                      string
 	StatusCode                       int
+	RawResponse                      *http.Response
 	PostItem200ApplicationJSONObject *PostItem200ApplicationJSON
 }

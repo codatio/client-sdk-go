@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -70,14 +70,9 @@ type PostTransferSourceModifiedDate struct {
 	TrackingCategoryRefs []PostTransferSourceModifiedDateTrackingCategoryRefs `json:"trackingCategoryRefs,omitempty"`
 }
 
-type PostTransferSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type PostTransferRequest struct {
 	PathParams PostTransferPathParams
 	Request    *PostTransferSourceModifiedDate `request:"mediaType=application/json"`
-	Security   PostTransferSecurity
 }
 
 type PostTransfer200ApplicationJSONChangesPushOperationRecordRef struct {
@@ -203,5 +198,6 @@ type PostTransfer200ApplicationJSON struct {
 type PostTransferResponse struct {
 	ContentType                          string
 	StatusCode                           int
+	RawResponse                          *http.Response
 	PostTransfer200ApplicationJSONObject *PostTransfer200ApplicationJSON
 }

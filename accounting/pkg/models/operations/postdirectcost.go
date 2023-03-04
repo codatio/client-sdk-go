@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -146,15 +146,10 @@ type PostDirectCostSourceModifiedDate struct {
 	TotalAmount        float64                                              `json:"totalAmount"`
 }
 
-type PostDirectCostSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type PostDirectCostRequest struct {
 	PathParams  PostDirectCostPathParams
 	QueryParams PostDirectCostQueryParams
 	Request     *PostDirectCostSourceModifiedDate `request:"mediaType=application/json"`
-	Security    PostDirectCostSecurity
 }
 
 type PostDirectCost200ApplicationJSONChangesPushOperationRecordRef struct {
@@ -352,5 +347,6 @@ type PostDirectCost200ApplicationJSON struct {
 type PostDirectCostResponse struct {
 	ContentType                            string
 	StatusCode                             int
+	RawResponse                            *http.Response
 	PostDirectCost200ApplicationJSONObject *PostDirectCost200ApplicationJSON
 }

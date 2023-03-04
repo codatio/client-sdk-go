@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -143,15 +143,10 @@ type PostPurchaseOrderSourceModifiedDate struct {
 	TotalTaxAmount       *float64                                        `json:"totalTaxAmount,omitempty"`
 }
 
-type PostPurchaseOrderSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type PostPurchaseOrderRequest struct {
 	PathParams  PostPurchaseOrderPathParams
 	QueryParams PostPurchaseOrderQueryParams
 	Request     *PostPurchaseOrderSourceModifiedDate `request:"mediaType=application/json"`
-	Security    PostPurchaseOrderSecurity
 }
 
 type PostPurchaseOrder200ApplicationJSONChangesPushOperationRecordRef struct {
@@ -346,5 +341,6 @@ type PostPurchaseOrder200ApplicationJSON struct {
 type PostPurchaseOrderResponse struct {
 	ContentType                               string
 	StatusCode                                int
+	RawResponse                               *http.Response
 	PostPurchaseOrder200ApplicationJSONObject *PostPurchaseOrder200ApplicationJSON
 }

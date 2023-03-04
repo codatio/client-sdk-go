@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -11,13 +11,8 @@ type GetTransferPathParams struct {
 	TransferID   string `pathParam:"style=simple,explode=false,name=transferId"`
 }
 
-type GetTransferSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type GetTransferRequest struct {
 	PathParams GetTransferPathParams
-	Security   GetTransferSecurity
 }
 
 // GetTransferSourceModifiedDateContactRef
@@ -84,4 +79,5 @@ type GetTransferResponse struct {
 	ContentType        string
 	SourceModifiedDate *GetTransferSourceModifiedDate
 	StatusCode         int
+	RawResponse        *http.Response
 }

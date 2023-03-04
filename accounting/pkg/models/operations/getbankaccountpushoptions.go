@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 )
 
 type GetBankAccountPushOptionsPathParams struct {
@@ -17,14 +17,9 @@ type GetBankAccountPushOptionsQueryParams struct {
 	Query    *string  `queryParam:"style=form,explode=true,name=query"`
 }
 
-type GetBankAccountPushOptionsSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type GetBankAccountPushOptionsRequest struct {
 	PathParams  GetBankAccountPushOptionsPathParams
 	QueryParams GetBankAccountPushOptionsQueryParams
-	Security    GetBankAccountPushOptionsSecurity
 }
 
 type GetBankAccountPushOptionsPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnum string
@@ -204,4 +199,5 @@ type GetBankAccountPushOptionsResponse struct {
 	ContentType string
 	PushOption  *GetBankAccountPushOptionsPushOption
 	StatusCode  int
+	RawResponse *http.Response
 }

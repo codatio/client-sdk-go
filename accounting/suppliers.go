@@ -39,7 +39,7 @@ func (s *suppliers) DownloadSupplierAttachment(ctx context.Context, request oper
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -55,6 +55,7 @@ func (s *suppliers) DownloadSupplierAttachment(ctx context.Context, request oper
 	res := &operations.DownloadSupplierAttachmentResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -74,7 +75,7 @@ func (s *suppliers) GetSupplier(ctx context.Context, request operations.GetSuppl
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -90,6 +91,7 @@ func (s *suppliers) GetSupplier(ctx context.Context, request operations.GetSuppl
 	res := &operations.GetSupplierResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -118,7 +120,7 @@ func (s *suppliers) GetSupplierAttachment(ctx context.Context, request operation
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -134,6 +136,7 @@ func (s *suppliers) GetSupplierAttachment(ctx context.Context, request operation
 	res := &operations.GetSupplierAttachmentResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -162,7 +165,7 @@ func (s *suppliers) ListSupplierAttachments(ctx context.Context, request operati
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -178,6 +181,7 @@ func (s *suppliers) ListSupplierAttachments(ctx context.Context, request operati
 	res := &operations.ListSupplierAttachmentsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -210,7 +214,7 @@ func (s *suppliers) ListSuppliers(ctx context.Context, request operations.ListSu
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -226,6 +230,7 @@ func (s *suppliers) ListSuppliers(ctx context.Context, request operations.ListSu
 	res := &operations.ListSuppliersResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -269,7 +274,7 @@ func (s *suppliers) PostSuppliers(ctx context.Context, request operations.PostSu
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -285,6 +290,7 @@ func (s *suppliers) PostSuppliers(ctx context.Context, request operations.PostSu
 	res := &operations.PostSuppliersResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -328,7 +334,7 @@ func (s *suppliers) PutSupplier(ctx context.Context, request operations.PutSuppl
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -344,6 +350,7 @@ func (s *suppliers) PutSupplier(ctx context.Context, request operations.PutSuppl
 	res := &operations.PutSupplierResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -193,15 +193,10 @@ type PushCreditNoteSourceModifiedDate struct {
 	WithholdingTax          []PushCreditNoteSourceModifiedDateWithholdingTax     `json:"withholdingTax,omitempty"`
 }
 
-type PushCreditNoteSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type PushCreditNoteRequest struct {
 	PathParams  PushCreditNotePathParams
 	QueryParams PushCreditNoteQueryParams
 	Request     *PushCreditNoteSourceModifiedDate `request:"mediaType=application/json"`
-	Security    PushCreditNoteSecurity
 }
 
 type PushCreditNote200ApplicationJSONChangesPushOperationRecordRef struct {
@@ -446,5 +441,6 @@ type PushCreditNote200ApplicationJSON struct {
 type PushCreditNoteResponse struct {
 	ContentType                            string
 	StatusCode                             int
+	RawResponse                            *http.Response
 	PushCreditNote200ApplicationJSONObject *PushCreditNote200ApplicationJSON
 }

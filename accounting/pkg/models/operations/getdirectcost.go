@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -11,13 +11,8 @@ type GetDirectCostPathParams struct {
 	DirectCostID string `pathParam:"style=simple,explode=false,name=directCostId"`
 }
 
-type GetDirectCostSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type GetDirectCostRequest struct {
 	PathParams GetDirectCostPathParams
-	Security   GetDirectCostSecurity
 }
 
 // GetDirectCostSourceModifiedDateContactRef
@@ -156,4 +151,5 @@ type GetDirectCostResponse struct {
 	ContentType        string
 	SourceModifiedDate *GetDirectCostSourceModifiedDate
 	StatusCode         int
+	RawResponse        *http.Response
 }

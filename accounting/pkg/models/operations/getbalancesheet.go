@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -15,14 +15,9 @@ type GetBalanceSheetQueryParams struct {
 	StartMonth       *time.Time `queryParam:"style=form,explode=true,name=startMonth"`
 }
 
-type GetBalanceSheetSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type GetBalanceSheetRequest struct {
 	PathParams  GetBalanceSheetPathParams
 	QueryParams GetBalanceSheetQueryParams
-	Security    GetBalanceSheetSecurity
 }
 
 type GetBalanceSheet200ApplicationJSONBalanceSheetReportLineReportLineReportLineReportLine struct {
@@ -91,5 +86,6 @@ type GetBalanceSheet200ApplicationJSON struct {
 type GetBalanceSheetResponse struct {
 	ContentType                             string
 	StatusCode                              int
+	RawResponse                             *http.Response
 	GetBalanceSheet200ApplicationJSONObject *GetBalanceSheet200ApplicationJSON
 }

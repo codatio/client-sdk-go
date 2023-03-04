@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -10,13 +10,8 @@ type GetAccountPathParams struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
-type GetAccountSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type GetAccountRequest struct {
 	PathParams GetAccountPathParams
-	Security   GetAccountSecurity
 }
 
 type GetAccountSourceModifiedDateMetadata struct {
@@ -134,4 +129,5 @@ type GetAccountResponse struct {
 	ContentType        string
 	SourceModifiedDate *GetAccountSourceModifiedDate
 	StatusCode         int
+	RawResponse        *http.Response
 }

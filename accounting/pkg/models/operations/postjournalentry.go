@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -102,15 +102,10 @@ type PostJournalEntrySourceModifiedDate struct {
 	UpdatedOn          *time.Time                                          `json:"updatedOn,omitempty"`
 }
 
-type PostJournalEntrySecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type PostJournalEntryRequest struct {
 	PathParams  PostJournalEntryPathParams
 	QueryParams PostJournalEntryQueryParams
 	Request     *PostJournalEntrySourceModifiedDate `request:"mediaType=application/json"`
-	Security    PostJournalEntrySecurity
 }
 
 type PostJournalEntry200ApplicationJSONChangesPushOperationRecordRef struct {
@@ -264,5 +259,6 @@ type PostJournalEntry200ApplicationJSON struct {
 type PostJournalEntryResponse struct {
 	ContentType                              string
 	StatusCode                               int
+	RawResponse                              *http.Response
 	PostJournalEntry200ApplicationJSONObject *PostJournalEntry200ApplicationJSON
 }

@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 )
 
 type DownloadDirectIncomeAttachmentPathParams struct {
@@ -11,16 +11,12 @@ type DownloadDirectIncomeAttachmentPathParams struct {
 	DirectIncomeID string `pathParam:"style=simple,explode=false,name=directIncomeId"`
 }
 
-type DownloadDirectIncomeAttachmentSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type DownloadDirectIncomeAttachmentRequest struct {
 	PathParams DownloadDirectIncomeAttachmentPathParams
-	Security   DownloadDirectIncomeAttachmentSecurity
 }
 
 type DownloadDirectIncomeAttachmentResponse struct {
 	ContentType string
 	StatusCode  int
+	RawResponse *http.Response
 }

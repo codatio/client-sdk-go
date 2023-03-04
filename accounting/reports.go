@@ -59,6 +59,7 @@ func (s *reports) GetAgedCreditorsReport(ctx context.Context, request operations
 	res := &operations.GetAgedCreditorsReportResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -107,6 +108,7 @@ func (s *reports) GetAgedDebtorsReport(ctx context.Context, request operations.G
 	res := &operations.GetAgedDebtorsReportResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -151,6 +153,7 @@ func (s *reports) IsAgedCreditorsReportAvailable(ctx context.Context, request op
 	res := &operations.IsAgedCreditorsReportAvailableResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -195,6 +198,7 @@ func (s *reports) IsAgedDebtorReportAvailable(ctx context.Context, request opera
 	res := &operations.IsAgedDebtorReportAvailableResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

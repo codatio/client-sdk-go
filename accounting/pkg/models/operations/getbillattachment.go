@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -12,13 +12,8 @@ type GetBillAttachmentPathParams struct {
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
-type GetBillAttachmentSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type GetBillAttachmentRequest struct {
 	PathParams GetBillAttachmentPathParams
-	Security   GetBillAttachmentSecurity
 }
 
 type GetBillAttachmentAttachment struct {
@@ -36,4 +31,5 @@ type GetBillAttachmentResponse struct {
 	Attachment  *GetBillAttachmentAttachment
 	ContentType string
 	StatusCode  int
+	RawResponse *http.Response
 }

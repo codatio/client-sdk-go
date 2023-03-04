@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -9,13 +9,8 @@ type GetCompanyInfoPathParams struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
-type GetCompanyInfoSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type GetCompanyInfoRequest struct {
 	PathParams GetCompanyInfoPathParams
-	Security   GetCompanyInfoSecurity
 }
 
 type GetCompanyInfoCompanyInfoAddressesTypeEnum string
@@ -84,4 +79,5 @@ type GetCompanyInfoResponse struct {
 	CompanyInfo *GetCompanyInfoCompanyInfo
 	ContentType string
 	StatusCode  int
+	RawResponse *http.Response
 }

@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -62,15 +62,10 @@ type PostBankAccountSourceModifiedDate struct {
 	SourceModifiedDate *time.Time                                        `json:"sourceModifiedDate,omitempty"`
 }
 
-type PostBankAccountSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type PostBankAccountRequest struct {
 	PathParams  PostBankAccountPathParams
 	QueryParams PostBankAccountQueryParams
 	Request     *PostBankAccountSourceModifiedDate `request:"mediaType=application/json"`
-	Security    PostBankAccountSecurity
 }
 
 type PostBankAccount200ApplicationJSONChangesPushOperationRecordRef struct {
@@ -183,5 +178,6 @@ type PostBankAccount200ApplicationJSON struct {
 type PostBankAccountResponse struct {
 	ContentType                             string
 	StatusCode                              int
+	RawResponse                             *http.Response
 	PostBankAccount200ApplicationJSONObject *PostBankAccount200ApplicationJSON
 }

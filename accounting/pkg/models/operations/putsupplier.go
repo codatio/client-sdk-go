@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -73,15 +73,10 @@ type PutSupplierSourceModifiedDate struct {
 	TaxNumber          *string                                        `json:"taxNumber,omitempty"`
 }
 
-type PutSupplierSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type PutSupplierRequest struct {
 	PathParams  PutSupplierPathParams
 	QueryParams PutSupplierQueryParams
 	Request     *PutSupplierSourceModifiedDate `request:"mediaType=application/json"`
-	Security    PutSupplierSecurity
 }
 
 type PutSupplier200ApplicationJSONChangesPushOperationRecordRef struct {
@@ -204,5 +199,6 @@ type PutSupplier200ApplicationJSON struct {
 type PutSupplierResponse struct {
 	ContentType                         string
 	StatusCode                          int
+	RawResponse                         *http.Response
 	PutSupplier200ApplicationJSONObject *PutSupplier200ApplicationJSON
 }

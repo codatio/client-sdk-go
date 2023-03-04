@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -206,15 +206,10 @@ type PostInvoiceSourceModifiedDate struct {
 	WithholdingTax          []PostInvoiceSourceModifiedDateWithholdingTax     `json:"withholdingTax,omitempty"`
 }
 
-type PostInvoiceSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type PostInvoiceRequest struct {
 	PathParams  PostInvoicePathParams
 	QueryParams PostInvoiceQueryParams
 	Request     *PostInvoiceSourceModifiedDate `request:"mediaType=application/json"`
-	Security    PostInvoiceSecurity
 }
 
 type PostInvoice200ApplicationJSONChangesPushOperationRecordRef struct {
@@ -472,5 +467,6 @@ type PostInvoice200ApplicationJSON struct {
 type PostInvoiceResponse struct {
 	ContentType                         string
 	StatusCode                          int
+	RawResponse                         *http.Response
 	PostInvoice200ApplicationJSONObject *PostInvoice200ApplicationJSON
 }

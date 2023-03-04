@@ -24,18 +24,13 @@ import (
 func main() {
     s := codatio.New(codatio.WithSecurity(
         shared.Security{
-            APIKey: shared.SchemeAPIKey{
+            AuthHeader: shared.SchemeAuthHeader{
                 APIKey: "YOUR_API_KEY_HERE",
             },
         },
     ))
     
     req := operations.GetAccountTransactionRequest{
-        Security: operations.GetAccountTransactionSecurity{
-            APIKey: shared.SchemeAPIKey{
-                APIKey: "YOUR_API_KEY_HERE",
-            },
-        },
         PathParams: operations.GetAccountTransactionPathParams{
             AccountTransactionID: "unde",
             CompanyID: "deserunt",
@@ -74,7 +69,7 @@ func main() {
 ### BankAccountTransactions
 
 * `GetBankAccountPushOptions` - List push options for bank account bank transactions
-* `ListAllBankTransactionscount` - List bank transactions for bank account
+* `ListBankAccountTransactions` - List bank transactions for bank account
 * `ListBankTransactions` - List all bank transactions
 * `PostBankTransactions` - Create bank transactions
 
@@ -88,26 +83,26 @@ func main() {
 
 ### BillCreditNotes
 
+* `CreateBillCreditNote` - Create bill credit note
 * `GetBillCreditNote` - Get bill credit note
 * `ListBillCreditNotes` - List bill credit notes
-* `PostBillCreditNote` - Create bill credit note
 * `UpdateBillCreditNote` - Update bill credit note
 
 ### BillPayments
 
+* `CreateBillPayment` - Create bill payment
 * `GetBillPayments` - Get bill payment
 * `ListBillPayments` - List bill payments
-* `PostBillPayment` - Create bill payment
 
 ### Bills
 
+* `CreateBill` - Create bill
+* `CreateBillAttachments` - Create bill attachments
 * `DownloadBillAttachment` - Download bill attachment
 * `GetBill` - Get bill
 * `GetBillAttachment` - Get bill attachment
 * `GetBillAttachments` - List bill attachments
 * `ListBills` - List bills
-* `PostBill` - Create bill
-* `PostBillAttachments` - Create bill attachments
 * `UpdateBill` - Update bill
 
 ### CreditNotes

@@ -43,7 +43,7 @@ func (s *financials) GetBalanceSheet(ctx context.Context, request operations.Get
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -59,6 +59,7 @@ func (s *financials) GetBalanceSheet(ctx context.Context, request operations.Get
 	res := &operations.GetBalanceSheetResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -91,7 +92,7 @@ func (s *financials) GetCashFlowStatement(ctx context.Context, request operation
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -107,6 +108,7 @@ func (s *financials) GetCashFlowStatement(ctx context.Context, request operation
 	res := &operations.GetCashFlowStatementResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -139,7 +141,7 @@ func (s *financials) GetProfitAndLoss(ctx context.Context, request operations.Ge
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -155,6 +157,7 @@ func (s *financials) GetProfitAndLoss(ctx context.Context, request operations.Ge
 	res := &operations.GetProfitAndLossResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

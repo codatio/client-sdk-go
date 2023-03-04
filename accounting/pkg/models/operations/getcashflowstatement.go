@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -15,14 +15,9 @@ type GetCashFlowStatementQueryParams struct {
 	StartMonth       *time.Time `queryParam:"style=form,explode=true,name=startMonth"`
 }
 
-type GetCashFlowStatementSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type GetCashFlowStatementRequest struct {
 	PathParams  GetCashFlowStatementPathParams
 	QueryParams GetCashFlowStatementQueryParams
-	Security    GetCashFlowStatementSecurity
 }
 
 type GetCashFlowStatement200ApplicationJSONReportBasisEnum string
@@ -103,5 +98,6 @@ type GetCashFlowStatement200ApplicationJSON struct {
 type GetCashFlowStatementResponse struct {
 	ContentType                                  string
 	StatusCode                                   int
+	RawResponse                                  *http.Response
 	GetCashFlowStatement200ApplicationJSONObject *GetCashFlowStatement200ApplicationJSON
 }

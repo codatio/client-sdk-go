@@ -2,6 +2,7 @@ package operations
 
 import (
 	"github.com/codatio/client-sdk-go/accounting/pkg/types"
+	"net/http"
 	"time"
 )
 
@@ -53,4 +54,5 @@ type GetAgedDebtorsReportResponse struct {
 	AgedDebtorsReport *GetAgedDebtorsReportAgedDebtorsReport
 	ContentType       string
 	StatusCode        int
+	RawResponse       *http.Response
 }
