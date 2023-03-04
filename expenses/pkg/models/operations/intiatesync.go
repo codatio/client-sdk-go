@@ -1,5 +1,9 @@
 package operations
 
+import (
+	"net/http"
+)
+
 type IntiateSyncPathParams struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
@@ -143,6 +147,7 @@ type IntiateSync202ApplicationJSON struct {
 type IntiateSyncResponse struct {
 	ContentType                         string
 	StatusCode                          int
+	RawResponse                         *http.Response
 	IntiateSync202ApplicationJSONObject *IntiateSync202ApplicationJSON
 	IntiateSync400ApplicationJSONObject *IntiateSync400ApplicationJSON
 	IntiateSync404ApplicationJSONObject *IntiateSync404ApplicationJSON

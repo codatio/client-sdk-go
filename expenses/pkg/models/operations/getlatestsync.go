@@ -1,6 +1,7 @@
 package operations
 
 import (
+	"net/http"
 	"time"
 )
 
@@ -26,5 +27,6 @@ type GetLatestSync200ApplicationJSON struct {
 type GetLatestSyncResponse struct {
 	ContentType                           string
 	StatusCode                            int
+	RawResponse                           *http.Response
 	GetLatestSync200ApplicationJSONObject *GetLatestSync200ApplicationJSON
 }

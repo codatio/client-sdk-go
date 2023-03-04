@@ -55,6 +55,7 @@ func (s *mappingOptions) GetMappingOptions(ctx context.Context, request operatio
 	res := &operations.GetMappingOptionsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

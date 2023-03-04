@@ -55,6 +55,7 @@ func (s *syncStatus) GetLastSuccessfulSync(ctx context.Context, request operatio
 	res := &operations.GetLastSuccessfulSyncResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -99,6 +100,7 @@ func (s *syncStatus) GetLatestSync(ctx context.Context, request operations.GetLa
 	res := &operations.GetLatestSyncResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -143,6 +145,7 @@ func (s *syncStatus) GetSyncByID(ctx context.Context, request operations.GetSync
 	res := &operations.GetSyncByIDResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -187,6 +190,7 @@ func (s *syncStatus) ListSyncs(ctx context.Context, request operations.ListSyncs
 	res := &operations.ListSyncsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

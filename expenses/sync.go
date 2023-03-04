@@ -62,6 +62,7 @@ func (s *sync) IntiateSync(ctx context.Context, request operations.IntiateSyncRe
 	res := &operations.IntiateSyncResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 202:

@@ -1,5 +1,9 @@
 package operations
 
+import (
+	"net/http"
+)
+
 type UploadAttachmentPathParams struct {
 	CompanyID     string `pathParam:"style=simple,explode=false,name=companyId"`
 	SyncID        string `pathParam:"style=simple,explode=false,name=syncId"`
@@ -19,5 +23,6 @@ type UploadAttachment200ApplicationJSON struct {
 type UploadAttachmentResponse struct {
 	ContentType                              string
 	StatusCode                               int
+	RawResponse                              *http.Response
 	UploadAttachment200ApplicationJSONObject *UploadAttachment200ApplicationJSON
 }

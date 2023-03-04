@@ -1,5 +1,9 @@
 package operations
 
+import (
+	"net/http"
+)
+
 type GetSyncTransactionsPathParams struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	SyncID    string `pathParam:"style=simple,explode=false,name=syncId"`
@@ -54,5 +58,6 @@ type GetSyncTransactions200ApplicationJSON struct {
 type GetSyncTransactionsResponse struct {
 	ContentType                                 string
 	StatusCode                                  int
+	RawResponse                                 *http.Response
 	GetSyncTransactions200ApplicationJSONObject *GetSyncTransactions200ApplicationJSON
 }

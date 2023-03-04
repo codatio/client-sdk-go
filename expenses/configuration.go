@@ -55,6 +55,7 @@ func (s *configuration) GetCompanyConfiguration(ctx context.Context, request ope
 	res := &operations.GetCompanyConfigurationResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -106,6 +107,7 @@ func (s *configuration) SaveCompanyConfiguration(ctx context.Context, request op
 	res := &operations.SaveCompanyConfigurationResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

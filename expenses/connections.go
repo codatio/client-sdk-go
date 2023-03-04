@@ -55,6 +55,7 @@ func (s *connections) CreatePartnerexpenseConnection(ctx context.Context, reques
 	res := &operations.CreatePartnerexpenseConnectionResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

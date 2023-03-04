@@ -62,6 +62,7 @@ func (s *expenses) CreateExpenseDataset(ctx context.Context, request operations.
 	res := &operations.CreateExpenseDatasetResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -106,6 +107,7 @@ func (s *expenses) UploadAttachment(ctx context.Context, request operations.Uplo
 	res := &operations.UploadAttachmentResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

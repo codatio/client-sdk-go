@@ -18,7 +18,6 @@ pkg/utils/requestbody.go
 pkg/utils/retries.go
 pkg/utils/security.go
 pkg/utils/utils.go
-strings.go
 pkg/models/operations/getcompanyconfiguration.go
 pkg/models/operations/savecompanyconfiguration.go
 pkg/models/operations/createpartnerexpenseconnection.go
