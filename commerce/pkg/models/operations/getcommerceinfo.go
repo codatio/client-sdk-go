@@ -1,6 +1,7 @@
 package operations
 
 import (
+	"net/http"
 	"time"
 )
 
@@ -68,4 +69,5 @@ type GetCommerceInfoResponse struct {
 	ContentType        string
 	SourceModifiedDate *GetCommerceInfoSourceModifiedDate
 	StatusCode         int
+	RawResponse        *http.Response
 }

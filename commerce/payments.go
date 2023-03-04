@@ -59,6 +59,7 @@ func (s *payments) ListCommercePaymentMethods(ctx context.Context, request opera
 	res := &operations.ListCommercePaymentMethodsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -107,6 +108,7 @@ func (s *payments) ListCommercePayments(ctx context.Context, request operations.
 	res := &operations.ListCommercePaymentsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
