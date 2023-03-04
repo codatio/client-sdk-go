@@ -1,12 +1,12 @@
 configVersion: 1.0.0
 management:
-  docChecksum: cca5233035a11c68cfe55b187722a245
+  docChecksum: 8b2b9fb7c9bd240fe75c67d3ccc67589
   docVersion: 2.1.0
-  speakeasyVersion: 1.7.1
+  speakeasyVersion: 1.8.2
 generation:
   telemetryEnabled: false
   sdkClassName: codatio
   sdkFlattening: false
 go:
-  version: 0.3.0
+  version: 0.4.0
   packageName: github.com/codatio/client-sdk-go/files

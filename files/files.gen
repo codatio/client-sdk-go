@@ -12,7 +12,6 @@ pkg/utils/requestbody.go
 pkg/utils/retries.go
 pkg/utils/security.go
 pkg/utils/utils.go
-strings.go
 pkg/models/operations/downloadfiles.go
 pkg/models/operations/listfiles.go
 pkg/models/operations/uploadfiles.go

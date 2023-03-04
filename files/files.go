@@ -43,7 +43,7 @@ func (s *files) DownloadFiles(ctx context.Context, request operations.DownloadFi
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -59,6 +59,7 @@ func (s *files) DownloadFiles(ctx context.Context, request operations.DownloadFi
 	res := &operations.DownloadFilesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -78,7 +79,7 @@ func (s *files) ListFiles(ctx context.Context, request operations.ListFilesReque
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -94,6 +95,7 @@ func (s *files) ListFiles(ctx context.Context, request operations.ListFilesReque
 	res := &operations.ListFilesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -122,7 +124,7 @@ func (s *files) UploadFiles(ctx context.Context, request operations.UploadFilesR
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -138,6 +140,7 @@ func (s *files) UploadFiles(ctx context.Context, request operations.UploadFilesR
 	res := &operations.UploadFilesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

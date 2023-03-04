@@ -15,6 +15,16 @@ type HTTPClient interface {
 	Do(req *http.Request) (*http.Response, error)
 }
 
+// String provides a helper function to return a pointer to a string
+func String(s string) *string { return &s }
+
+// SDK Documentation: An API for uploading and downloading files from 'File Upload' Integrations.
+//
+// The Accounting file upload, Banking file upload, and Business documents file upload integrations provide simple file upload functionality.
+//
+// [Read more...](https://docs.codat.io/other/file-upload)
+//
+// [See our OpenAPI spec](https://github.com/codatio/oas)
 type Codatio struct {
 	Files *files
 
@@ -30,7 +40,13 @@ type Codatio struct {
 
 type SDKOption func(*Codatio)
 
-func WithServerURL(serverURL string, params map[string]string) SDKOption {
+func WithServerURL(serverURL string) SDKOption {
+	return func(sdk *Codatio) {
+		sdk._serverURL = serverURL
+	}
+}
+
+func WithTemplatedServerURL(serverURL string, params map[string]string) SDKOption {
 	return func(sdk *Codatio) {
 		if params != nil {
 			serverURL = utils.ReplaceParameters(serverURL, params)
@@ -55,8 +71,8 @@ func WithSecurity(security shared.Security) SDKOption {
 func New(opts ...SDKOption) *Codatio {
 	sdk := &Codatio{
 		_language:   "go",
-		_sdkVersion: "0.3.0",
-		_genVersion: "1.7.1",
+		_sdkVersion: "0.4.0",
+		_genVersion: "1.8.2",
 	}
 	for _, opt := range opts {
 		opt(sdk)

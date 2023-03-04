@@ -24,23 +24,18 @@ import (
 func main() {
     s := codatio.New(codatio.WithSecurity(
         shared.Security{
-            APIKey: shared.SchemeAPIKey{
+            AuthHeader: shared.SchemeAuthHeader{
                 APIKey: "YOUR_API_KEY_HERE",
             },
         },
     ))
     
     req := operations.DownloadFilesRequest{
-        Security: operations.DownloadFilesSecurity{
-            APIKey: shared.SchemeAPIKey{
-                APIKey: "YOUR_API_KEY_HERE",
-            },
-        },
         PathParams: operations.DownloadFilesPathParams{
             CompanyID: "unde",
         },
         QueryParams: operations.DownloadFilesQueryParams{
-            Date: "2022-07-28T14:53:26.263Z",
+            Date: "2022-07-30T14:51:52.577Z",
         },
     }
 
