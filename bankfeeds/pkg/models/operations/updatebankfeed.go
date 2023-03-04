@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -34,18 +34,14 @@ type UpdateBankFeedBankFeedBankAccount struct {
 	Status        *string                                           `json:"status,omitempty"`
 }
 
-type UpdateBankFeedSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type UpdateBankFeedRequest struct {
 	PathParams UpdateBankFeedPathParams
 	Request    *UpdateBankFeedBankFeedBankAccount `request:"mediaType=application/json"`
-	Security   UpdateBankFeedSecurity
 }
 
 type UpdateBankFeedResponse struct {
 	BankFeedBankAccount *UpdateBankFeedBankFeedBankAccount
 	ContentType         string
 	StatusCode          int
+	RawResponse         *http.Response
 }

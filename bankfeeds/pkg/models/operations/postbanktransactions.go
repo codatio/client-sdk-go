@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -76,15 +76,10 @@ type PostBankTransactionsRequestBody struct {
 	Transactions    []PostBankTransactionsRequestBodyTransactions `json:"transactions,omitempty"`
 }
 
-type PostBankTransactionsSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type PostBankTransactionsRequest struct {
 	PathParams  PostBankTransactionsPathParams
 	QueryParams PostBankTransactionsQueryParams
 	Request     *PostBankTransactionsRequestBody `request:"mediaType=application/json"`
-	Security    PostBankTransactionsSecurity
 }
 
 type PostBankTransactions200ApplicationJSONChangesPushOperationRecordRef struct {
@@ -210,5 +205,6 @@ type PostBankTransactions200ApplicationJSON struct {
 type PostBankTransactionsResponse struct {
 	ContentType                                  string
 	StatusCode                                   int
+	RawResponse                                  *http.Response
 	PostBankTransactions200ApplicationJSONObject *PostBankTransactions200ApplicationJSON
 }

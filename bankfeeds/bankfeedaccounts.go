@@ -28,53 +28,9 @@ func newBankFeedAccounts(defaultClient, securityClient HTTPClient, serverURL, la
 	}
 }
 
-// GetBankFeeds - List bank feed bank accounts
-// Get BankFeed BankAccounts for a single data source connected to a single company.
-func (s *bankFeedAccounts) GetBankFeeds(ctx context.Context, request operations.GetBankFeedsRequest) (*operations.GetBankFeedsResponse, error) {
-	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/connectionInfo/bankFeedAccounts", request.PathParams)
-
-	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error creating request: %w", err)
-	}
-
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
-
-	httpRes, err := client.Do(req)
-	if err != nil {
-		return nil, fmt.Errorf("error sending request: %w", err)
-	}
-	if httpRes == nil {
-		return nil, fmt.Errorf("error sending request: no response")
-	}
-	defer httpRes.Body.Close()
-
-	contentType := httpRes.Header.Get("Content-Type")
-
-	res := &operations.GetBankFeedsResponse{
-		StatusCode:  httpRes.StatusCode,
-		ContentType: contentType,
-	}
-	switch {
-	case httpRes.StatusCode == 200:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out []operations.GetBankFeedsBankFeedBankAccount
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
-				return nil, err
-			}
-
-			res.BankFeedBankAccounts = out
-		}
-	}
-
-	return res, nil
-}
-
-// PutBankFeeds - Update bank feed bank accounts
+// CreateBankFeed - Create bank feed bank accounts
 // Put BankFeed BankAccounts for a single data source connected to a single company.
-func (s *bankFeedAccounts) PutBankFeeds(ctx context.Context, request operations.PutBankFeedsRequest) (*operations.PutBankFeedsResponse, error) {
+func (s *bankFeedAccounts) CreateBankFeed(ctx context.Context, request operations.CreateBankFeedRequest) (*operations.CreateBankFeedResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/connectionInfo/bankFeedAccounts", request.PathParams)
 
@@ -90,7 +46,7 @@ func (s *bankFeedAccounts) PutBankFeeds(ctx context.Context, request operations.
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -103,15 +59,61 @@ func (s *bankFeedAccounts) PutBankFeeds(ctx context.Context, request operations.
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.PutBankFeedsResponse{
+	res := &operations.CreateBankFeedResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out []operations.PutBankFeedsBankFeedBankAccount
+			var out []operations.CreateBankFeedBankFeedBankAccount
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.BankFeedBankAccounts = out
+		}
+	}
+
+	return res, nil
+}
+
+// GetBankFeeds - List bank feed bank accounts
+// Get BankFeed BankAccounts for a single data source connected to a single company.
+func (s *bankFeedAccounts) GetBankFeeds(ctx context.Context, request operations.GetBankFeedsRequest) (*operations.GetBankFeedsResponse, error) {
+	baseURL := s.serverURL
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/connectionInfo/bankFeedAccounts", request.PathParams)
+
+	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+
+	client := s.securityClient
+
+	httpRes, err := client.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
+	}
+	defer httpRes.Body.Close()
+
+	contentType := httpRes.Header.Get("Content-Type")
+
+	res := &operations.GetBankFeedsResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: contentType,
+		RawResponse: httpRes,
+	}
+	switch {
+	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out []operations.GetBankFeedsBankFeedBankAccount
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -141,7 +143,7 @@ func (s *bankFeedAccounts) UpdateBankFeed(ctx context.Context, request operation
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -157,6 +159,7 @@ func (s *bankFeedAccounts) UpdateBankFeed(ctx context.Context, request operation
 	res := &operations.UpdateBankFeedResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

@@ -13,12 +13,11 @@ pkg/utils/requestbody.go
 pkg/utils/retries.go
 pkg/utils/security.go
 pkg/utils/utils.go
-strings.go
 pkg/models/operations/getbankaccountpushoptions.go
-pkg/models/operations/listallbanktransactionscount.go
+pkg/models/operations/listbankaccounttransactions.go
 pkg/models/operations/postbanktransactions.go
+pkg/models/operations/createbankfeed.go
 pkg/models/operations/getbankfeeds.go
-pkg/models/operations/putbankfeeds.go
 pkg/models/operations/updatebankfeed.go
 pkg/models/shared/security.go
 USAGE.md

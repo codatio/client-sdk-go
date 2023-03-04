@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -10,13 +10,8 @@ type GetBankFeedsPathParams struct {
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
-type GetBankFeedsSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type GetBankFeedsRequest struct {
 	PathParams GetBankFeedsPathParams
-	Security   GetBankFeedsSecurity
 }
 
 type GetBankFeedsBankFeedBankAccountAccountTypeEnum string
@@ -46,4 +41,5 @@ type GetBankFeedsResponse struct {
 	BankFeedBankAccounts []GetBankFeedsBankFeedBankAccount
 	ContentType          string
 	StatusCode           int
+	RawResponse          *http.Response
 }

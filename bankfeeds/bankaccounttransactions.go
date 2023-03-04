@@ -43,7 +43,7 @@ func (s *bankAccountTransactions) GetBankAccountPushOptions(ctx context.Context,
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -59,6 +59,7 @@ func (s *bankAccountTransactions) GetBankAccountPushOptions(ctx context.Context,
 	res := &operations.GetBankAccountPushOptionsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -76,9 +77,9 @@ func (s *bankAccountTransactions) GetBankAccountPushOptions(ctx context.Context,
 	return res, nil
 }
 
-// ListAllBankTransactionscount - List bank transactions for bank account
+// ListBankAccountTransactions - List bank transactions for bank account
 // Gets bank transactions for a given bank account ID
-func (s *bankAccountTransactions) ListAllBankTransactionscount(ctx context.Context, request operations.ListAllBankTransactionscountRequest) (*operations.ListAllBankTransactionscountResponse, error) {
+func (s *bankAccountTransactions) ListBankAccountTransactions(ctx context.Context, request operations.ListBankAccountTransactionsRequest) (*operations.ListBankAccountTransactionsResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/bankAccounts/{accountId}/bankTransactions", request.PathParams)
 
@@ -91,7 +92,7 @@ func (s *bankAccountTransactions) ListAllBankTransactionscount(ctx context.Conte
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -104,15 +105,16 @@ func (s *bankAccountTransactions) ListAllBankTransactionscount(ctx context.Conte
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.ListAllBankTransactionscountResponse{
+	res := &operations.ListBankAccountTransactionsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListAllBankTransactionscountLinks
+			var out *operations.ListBankAccountTransactionsLinks
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -150,7 +152,7 @@ func (s *bankAccountTransactions) PostBankTransactions(ctx context.Context, requ
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -166,6 +168,7 @@ func (s *bankAccountTransactions) PostBankTransactions(ctx context.Context, requ
 	res := &operations.PostBankTransactionsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
