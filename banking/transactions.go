@@ -39,7 +39,7 @@ func (s *transactions) GetBankingTransaction(ctx context.Context, request operat
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -55,6 +55,7 @@ func (s *transactions) GetBankingTransaction(ctx context.Context, request operat
 	res := &operations.GetBankingTransactionResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -87,7 +88,7 @@ func (s *transactions) ListAllBankingTransactions(ctx context.Context, request o
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -103,6 +104,7 @@ func (s *transactions) ListAllBankingTransactions(ctx context.Context, request o
 	res := &operations.ListAllBankingTransactionsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -135,7 +137,7 @@ func (s *transactions) ListBankingTransactions(ctx context.Context, request oper
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -151,6 +153,7 @@ func (s *transactions) ListBankingTransactions(ctx context.Context, request oper
 	res := &operations.ListBankingTransactionsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

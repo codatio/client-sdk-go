@@ -24,18 +24,13 @@ import (
 func main() {
     s := codatio.New(codatio.WithSecurity(
         shared.Security{
-            APIKey: shared.SchemeAPIKey{
+            AuthHeader: shared.SchemeAuthHeader{
                 APIKey: "YOUR_API_KEY_HERE",
             },
         },
     ))
     
     req := operations.ListBankingAccountBalancesRequest{
-        Security: operations.ListBankingAccountBalancesSecurity{
-            APIKey: shared.SchemeAPIKey{
-                APIKey: "YOUR_API_KEY_HERE",
-            },
-        },
         PathParams: operations.ListBankingAccountBalancesPathParams{
             CompanyID: "unde",
             ConnectionID: "deserunt",
@@ -67,12 +62,12 @@ func main() {
 
 ### AccountBalances
 
-* `ListBankingAccountBalances` - List bank balances
+* `ListBankingAccountBalances` - List account balances
 
 ### Accounts
 
-* `GetBankAccount` - Get bank account
-* `ListBankingAccounts` - List bank accounts
+* `GetBankingAccount` - Get account
+* `ListBankingAccounts` - List accounts
 
 ### TransactionCategories
 

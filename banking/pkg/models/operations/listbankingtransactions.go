@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/banking/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -17,14 +17,9 @@ type ListBankingTransactionsQueryParams struct {
 	Query    *string  `queryParam:"style=form,explode=true,name=query"`
 }
 
-type ListBankingTransactionsSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type ListBankingTransactionsRequest struct {
 	PathParams  ListBankingTransactionsPathParams
 	QueryParams ListBankingTransactionsQueryParams
-	Security    ListBankingTransactionsSecurity
 }
 
 type ListBankingTransactions200ApplicationJSONSourceModifiedDateCodeEnum string
@@ -80,5 +75,6 @@ type ListBankingTransactions200ApplicationJSON struct {
 type ListBankingTransactionsResponse struct {
 	ContentType                                     string
 	StatusCode                                      int
+	RawResponse                                     *http.Response
 	ListBankingTransactions200ApplicationJSONObject *ListBankingTransactions200ApplicationJSON
 }

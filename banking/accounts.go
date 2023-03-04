@@ -28,9 +28,9 @@ func newAccounts(defaultClient, securityClient HTTPClient, serverURL, language, 
 	}
 }
 
-// GetBankAccount - Get bank account
+// GetBankingAccount - Get account
 // Gets a specified bank account for a given company
-func (s *accounts) GetBankAccount(ctx context.Context, request operations.GetBankAccountRequest) (*operations.GetBankAccountResponse, error) {
+func (s *accounts) GetBankingAccount(ctx context.Context, request operations.GetBankingAccountRequest) (*operations.GetBankingAccountResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/banking-accounts/{accountId}", request.PathParams)
 
@@ -39,7 +39,7 @@ func (s *accounts) GetBankAccount(ctx context.Context, request operations.GetBan
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -52,15 +52,16 @@ func (s *accounts) GetBankAccount(ctx context.Context, request operations.GetBan
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetBankAccountResponse{
+	res := &operations.GetBankingAccountResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetBankAccountSourceModifiedDate
+			var out *operations.GetBankingAccountSourceModifiedDate
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -72,7 +73,7 @@ func (s *accounts) GetBankAccount(ctx context.Context, request operations.GetBan
 	return res, nil
 }
 
-// ListBankingAccounts - List bank accounts
+// ListBankingAccounts - List accounts
 // Gets a list of all bank accounts of the SMB, with rich data like balances, account numbers and institutions holdingthe accounts.
 func (s *accounts) ListBankingAccounts(ctx context.Context, request operations.ListBankingAccountsRequest) (*operations.ListBankingAccountsResponse, error) {
 	baseURL := s.serverURL
@@ -87,7 +88,7 @@ func (s *accounts) ListBankingAccounts(ctx context.Context, request operations.L
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -103,6 +104,7 @@ func (s *accounts) ListBankingAccounts(ctx context.Context, request operations.L
 	res := &operations.ListBankingAccountsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

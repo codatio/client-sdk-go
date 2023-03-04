@@ -28,7 +28,7 @@ func newAccountBalances(defaultClient, securityClient HTTPClient, serverURL, lan
 	}
 }
 
-// ListBankingAccountBalances - List bank balances
+// ListBankingAccountBalances - List account balances
 // Gets a list of balances for a bank account including end-of-day batch balance or running balances per transaction.
 func (s *accountBalances) ListBankingAccountBalances(ctx context.Context, request operations.ListBankingAccountBalancesRequest) (*operations.ListBankingAccountBalancesResponse, error) {
 	baseURL := s.serverURL
@@ -43,7 +43,7 @@ func (s *accountBalances) ListBankingAccountBalances(ctx context.Context, reques
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -59,6 +59,7 @@ func (s *accountBalances) ListBankingAccountBalances(ctx context.Context, reques
 	res := &operations.ListBankingAccountBalancesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

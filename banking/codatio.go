@@ -15,6 +15,16 @@ type HTTPClient interface {
 	Do(req *http.Request) (*http.Response, error)
 }
 
+// String provides a helper function to return a pointer to a string
+func String(s string) *string { return &s }
+
+// SDK Documentation: Codat's Banking API allows you to access standardised data from over bank accounts via third party providers.
+//
+// Standardize how you connect to your customers’ bank accounts. Retrieve bank account and bank transaction data in the same way via our partnerships with Plaid and TrueLayer.
+//
+// [Read more...](https://docs.codat.io/banking-api/overview)
+//
+// [See our OpenAPI spec](https://github.com/codatio/oas)
 type Codatio struct {
 	AccountBalances       *accountBalances
 	Accounts              *accounts
@@ -33,7 +43,13 @@ type Codatio struct {
 
 type SDKOption func(*Codatio)
 
-func WithServerURL(serverURL string, params map[string]string) SDKOption {
+func WithServerURL(serverURL string) SDKOption {
+	return func(sdk *Codatio) {
+		sdk._serverURL = serverURL
+	}
+}
+
+func WithTemplatedServerURL(serverURL string, params map[string]string) SDKOption {
 	return func(sdk *Codatio) {
 		if params != nil {
 			serverURL = utils.ReplaceParameters(serverURL, params)
@@ -58,8 +74,8 @@ func WithSecurity(security shared.Security) SDKOption {
 func New(opts ...SDKOption) *Codatio {
 	sdk := &Codatio{
 		_language:   "go",
-		_sdkVersion: "0.3.0",
-		_genVersion: "1.7.1",
+		_sdkVersion: "0.4.0",
+		_genVersion: "1.8.2",
 	}
 	for _, opt := range opts {
 		opt(sdk)
