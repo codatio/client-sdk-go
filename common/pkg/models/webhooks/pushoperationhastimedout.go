@@ -1,8 +1,13 @@
 package webhooks
 
+import (
+	"net/http"
+)
+
 type PushOperationHasTimedOutResponse struct {
 	ContentType string
 	StatusCode  int
+	RawResponse *http.Response
 }
 
 type PushOperationHasTimedOutPushOperationTimedOutWebhookData struct {

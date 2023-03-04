@@ -61,6 +61,7 @@ func (s *pushData) GetCompaniesCompanyIDConnectionsConnectionIDPush(ctx context.
 	res := &operations.GetCompaniesCompanyIDConnectionsConnectionIDPushResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -109,6 +110,7 @@ func (s *pushData) GetCompaniesCompanyIDPush(ctx context.Context, request operat
 	res := &operations.GetCompaniesCompanyIDPushResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -153,6 +155,7 @@ func (s *pushData) GetCompaniesCompanyIDPushPushOperationKey(ctx context.Context
 	res := &operations.GetCompaniesCompanyIDPushPushOperationKeyResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

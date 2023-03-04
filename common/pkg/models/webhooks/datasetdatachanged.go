@@ -1,8 +1,13 @@
 package webhooks
 
+import (
+	"net/http"
+)
+
 type DatasetDataChangedResponse struct {
 	ContentType string
 	StatusCode  int
+	RawResponse *http.Response
 }
 
 type DatasetDataChangedDatasetDataChangedWebhookData struct {

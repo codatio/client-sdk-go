@@ -1,6 +1,7 @@
 package operations
 
 import (
+	"net/http"
 	"time"
 )
 
@@ -65,4 +66,5 @@ type CreateDataConnectionResponse struct {
 	Connection  *CreateDataConnectionConnection
 	ContentType string
 	StatusCode  int
+	RawResponse *http.Response
 }

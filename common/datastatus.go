@@ -55,6 +55,7 @@ func (s *dataStatus) GetCompaniesCompanyIDDataStatus(ctx context.Context, reques
 	res := &operations.GetCompaniesCompanyIDDataStatusResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -123,6 +124,7 @@ func (s *dataStatus) GetCompanyDataHistory(ctx context.Context, request operatio
 	res := &operations.GetCompanyDataHistoryResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -197,6 +199,7 @@ func (s *dataStatus) GetPullOperation(ctx context.Context, request operations.Ge
 	res := &operations.GetPullOperationResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

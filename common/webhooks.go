@@ -29,6 +29,68 @@ func newWebhooks(defaultClient, securityClient HTTPClient, serverURL, language, 
 	}
 }
 
+// CreateRule - Create webhook
+// Create a new webhook configuration
+func (s *webhooks) CreateRule(ctx context.Context, request operations.CreateRuleRequest) (*operations.CreateRuleResponse, error) {
+	baseURL := s.serverURL
+	url := strings.TrimSuffix(baseURL, "/") + "/rules"
+
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	if err != nil {
+		return nil, fmt.Errorf("error serializing request body: %w", err)
+	}
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+
+	req.Header.Set("Content-Type", reqContentType)
+
+	client := s.securityClient
+
+	httpRes, err := client.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
+	}
+	defer httpRes.Body.Close()
+
+	contentType := httpRes.Header.Get("Content-Type")
+
+	res := &operations.CreateRuleResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: contentType,
+		RawResponse: httpRes,
+	}
+	switch {
+	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *operations.CreateRuleWebhook
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.Webhook = out
+		}
+	case httpRes.StatusCode == 401:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *operations.CreateRule401ApplicationJSON
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.CreateRule401ApplicationJSONObject = out
+		}
+	}
+
+	return res, nil
+}
+
 // GetWebhook - Get webhook
 // Get a single webhook
 func (s *webhooks) GetWebhook(ctx context.Context, request operations.GetWebhookRequest) (*operations.GetWebhookResponse, error) {
@@ -56,6 +118,7 @@ func (s *webhooks) GetWebhook(ctx context.Context, request operations.GetWebhook
 	res := &operations.GetWebhookResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -124,6 +187,7 @@ func (s *webhooks) ListRules(ctx context.Context, request operations.ListRulesRe
 	res := &operations.ListRulesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -155,67 +219,6 @@ func (s *webhooks) ListRules(ctx context.Context, request operations.ListRulesRe
 			}
 
 			res.ListRules401ApplicationJSONObject = out
-		}
-	}
-
-	return res, nil
-}
-
-// PostRules - Create webhook
-// Create a new webhook configuration
-func (s *webhooks) PostRules(ctx context.Context, request operations.PostRulesRequest) (*operations.PostRulesResponse, error) {
-	baseURL := s.serverURL
-	url := strings.TrimSuffix(baseURL, "/") + "/rules"
-
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
-	if err != nil {
-		return nil, fmt.Errorf("error serializing request body: %w", err)
-	}
-
-	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
-	if err != nil {
-		return nil, fmt.Errorf("error creating request: %w", err)
-	}
-
-	req.Header.Set("Content-Type", reqContentType)
-
-	client := s.securityClient
-
-	httpRes, err := client.Do(req)
-	if err != nil {
-		return nil, fmt.Errorf("error sending request: %w", err)
-	}
-	if httpRes == nil {
-		return nil, fmt.Errorf("error sending request: no response")
-	}
-	defer httpRes.Body.Close()
-
-	contentType := httpRes.Header.Get("Content-Type")
-
-	res := &operations.PostRulesResponse{
-		StatusCode:  httpRes.StatusCode,
-		ContentType: contentType,
-	}
-	switch {
-	case httpRes.StatusCode == 200:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.PostRulesWebhook
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
-				return nil, err
-			}
-
-			res.Webhook = out
-		}
-	case httpRes.StatusCode == 401:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.PostRules401ApplicationJSON
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
-				return nil, err
-			}
-
-			res.PostRules401ApplicationJSONObject = out
 		}
 	}
 

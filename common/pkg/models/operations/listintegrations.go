@@ -1,5 +1,9 @@
 package operations
 
+import (
+	"net/http"
+)
+
 type ListIntegrationsQueryParams struct {
 	OrderBy  *string  `queryParam:"style=form,explode=true,name=orderBy"`
 	Page     float64  `queryParam:"style=form,explode=true,name=page"`
@@ -128,6 +132,7 @@ type ListIntegrationsLinks struct {
 type ListIntegrationsResponse struct {
 	ContentType                              string
 	StatusCode                               int
+	RawResponse                              *http.Response
 	Links                                    *ListIntegrationsLinks
 	ListIntegrations400ApplicationJSONObject *ListIntegrations400ApplicationJSON
 	ListIntegrations401ApplicationJSONObject *ListIntegrations401ApplicationJSON

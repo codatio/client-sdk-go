@@ -1,5 +1,9 @@
 package operations
 
+import (
+	"net/http"
+)
+
 type CreateManyPullOperationsPathParams struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
@@ -29,6 +33,7 @@ type CreateManyPullOperations401ApplicationJSON struct {
 type CreateManyPullOperationsResponse struct {
 	ContentType                                      string
 	StatusCode                                       int
+	RawResponse                                      *http.Response
 	CreateManyPullOperations401ApplicationJSONObject *CreateManyPullOperations401ApplicationJSON
 	CreateManyPullOperations404ApplicationJSONObject *CreateManyPullOperations404ApplicationJSON
 }

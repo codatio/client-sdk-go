@@ -55,6 +55,7 @@ func (s *refreshData) CreateManyPullOperations(ctx context.Context, request oper
 	res := &operations.CreateManyPullOperationsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 204:
@@ -116,6 +117,7 @@ func (s *refreshData) CreatePullOperation(ctx context.Context, request operation
 	res := &operations.CreatePullOperationResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

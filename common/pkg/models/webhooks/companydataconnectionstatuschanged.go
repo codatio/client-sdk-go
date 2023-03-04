@@ -1,8 +1,13 @@
 package webhooks
 
+import (
+	"net/http"
+)
+
 type CompanyDataConnectionStatusChangedResponse struct {
 	ContentType string
 	StatusCode  int
+	RawResponse *http.Response
 }
 
 type CompanyDataConnectionStatusChangedCompanyDataConnectionStatusChangedWebhookDataDataConnectionStatusEnum string

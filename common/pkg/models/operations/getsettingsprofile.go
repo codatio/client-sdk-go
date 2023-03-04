@@ -1,5 +1,9 @@
 package operations
 
+import (
+	"net/http"
+)
+
 type GetSettingsProfile401ApplicationJSON struct {
 	CanBeRetried      *string `json:"canBeRetried,omitempty"`
 	CorrelationID     *string `json:"correlationId,omitempty"`
@@ -26,5 +30,6 @@ type GetSettingsProfileResponse struct {
 	ContentType                                string
 	Profile                                    *GetSettingsProfileProfile
 	StatusCode                                 int
+	RawResponse                                *http.Response
 	GetSettingsProfile401ApplicationJSONObject *GetSettingsProfile401ApplicationJSON
 }

@@ -1,5 +1,9 @@
 package operations
 
+import (
+	"net/http"
+)
+
 type CreateCompanyRequestBody struct {
 	Description *string `json:"description,omitempty"`
 	Name        string  `json:"name"`
@@ -32,6 +36,7 @@ type CreateCompany200ApplicationJSON struct {
 type CreateCompanyResponse struct {
 	ContentType                           string
 	StatusCode                            int
+	RawResponse                           *http.Response
 	CreateCompany200ApplicationJSONObject *CreateCompany200ApplicationJSON
 	CreateCompany401ApplicationJSONObject *CreateCompany401ApplicationJSON
 }

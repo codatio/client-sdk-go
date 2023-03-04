@@ -56,6 +56,7 @@ func (s *settings) GetProfileSyncSettings(ctx context.Context) (*operations.GetP
 	res := &operations.GetProfileSyncSettingsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -110,6 +111,7 @@ func (s *settings) GetSettingsProfile(ctx context.Context) (*operations.GetSetti
 	res := &operations.GetSettingsProfileResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -171,6 +173,7 @@ func (s *settings) PostProfileSyncSettings(ctx context.Context, request operatio
 	res := &operations.PostProfileSyncSettingsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 204:
@@ -223,6 +226,7 @@ func (s *settings) PutProfile(ctx context.Context, request operations.PutProfile
 	res := &operations.PutProfileResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

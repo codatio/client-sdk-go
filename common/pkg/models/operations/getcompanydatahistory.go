@@ -1,6 +1,7 @@
 package operations
 
 import (
+	"net/http"
 	"time"
 )
 
@@ -126,6 +127,7 @@ type GetCompanyDataHistoryLinks struct {
 type GetCompanyDataHistoryResponse struct {
 	ContentType                                   string
 	StatusCode                                    int
+	RawResponse                                   *http.Response
 	Links                                         *GetCompanyDataHistoryLinks
 	GetCompanyDataHistory400ApplicationJSONObject *GetCompanyDataHistory400ApplicationJSON
 	GetCompanyDataHistory401ApplicationJSONObject *GetCompanyDataHistory401ApplicationJSON

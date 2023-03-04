@@ -1,5 +1,9 @@
 package operations
 
+import (
+	"net/http"
+)
+
 // PutProfileProfile
 // Describes your Codat client instance
 type PutProfileProfile struct {
@@ -30,5 +34,6 @@ type PutProfileResponse struct {
 	ContentType                        string
 	Profile                            *PutProfileProfile
 	StatusCode                         int
+	RawResponse                        *http.Response
 	PutProfile401ApplicationJSONObject *PutProfile401ApplicationJSON
 }
