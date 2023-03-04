@@ -1,12 +1,14 @@
 package webhooks
 
 import (
+	"net/http"
 	"time"
 )
 
 type AccountCategoriesUpdatedResponse struct {
 	ContentType string
 	StatusCode  int
+	RawResponse *http.Response
 }
 
 type AccountCategoriesUpdatedAccountCategoriesUpdatedWebhookData struct {

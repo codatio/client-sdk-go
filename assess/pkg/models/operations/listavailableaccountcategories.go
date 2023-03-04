@@ -1,5 +1,9 @@
 package operations
 
+import (
+	"net/http"
+)
+
 type ListAvailableAccountCategoriesChartOfAccountCategory struct {
 	DetailType            *string `json:"detailType,omitempty"`
 	DetailTypeDescription *string `json:"detailTypeDescription,omitempty"`
@@ -12,5 +16,6 @@ type ListAvailableAccountCategoriesChartOfAccountCategory struct {
 type ListAvailableAccountCategoriesResponse struct {
 	ContentType                                                string
 	StatusCode                                                 int
+	RawResponse                                                *http.Response
 	ListAvailableAccountCategoriesChartOfAccountCategoryAllOfs []ListAvailableAccountCategoriesChartOfAccountCategory
 }

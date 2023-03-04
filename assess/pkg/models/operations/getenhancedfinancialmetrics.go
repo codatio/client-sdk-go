@@ -2,6 +2,7 @@ package operations
 
 import (
 	"github.com/codatio/client-sdk-go/assess/pkg/types"
+	"net/http"
 )
 
 type GetEnhancedFinancialMetricsPathParams struct {
@@ -150,5 +151,6 @@ type GetEnhancedFinancialMetrics200ApplicationJSON struct {
 type GetEnhancedFinancialMetricsResponse struct {
 	ContentType                                         string
 	StatusCode                                          int
+	RawResponse                                         *http.Response
 	GetEnhancedFinancialMetrics200ApplicationJSONObject *GetEnhancedFinancialMetrics200ApplicationJSON
 }

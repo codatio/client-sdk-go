@@ -1,5 +1,9 @@
 package operations
 
+import (
+	"net/http"
+)
+
 type GetCommerceOrdersMetricsPathParams struct {
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
@@ -164,5 +168,6 @@ type GetCommerceOrdersMetrics200ApplicationJSON struct {
 type GetCommerceOrdersMetricsResponse struct {
 	ContentType                                      string
 	StatusCode                                       int
+	RawResponse                                      *http.Response
 	GetCommerceOrdersMetrics200ApplicationJSONObject *GetCommerceOrdersMetrics200ApplicationJSON
 }

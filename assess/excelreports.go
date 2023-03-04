@@ -60,6 +60,7 @@ func (s *excelReports) GetAccountingMarketingMetrics(ctx context.Context, reques
 	res := &operations.GetAccountingMarketingMetricsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -108,6 +109,7 @@ func (s *excelReports) GetExcelReport(ctx context.Context, request operations.Ge
 	res := &operations.GetExcelReportResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -156,6 +158,7 @@ func (s *excelReports) MakeRequestToDownloadExcelReport(ctx context.Context, req
 	res := &operations.MakeRequestToDownloadExcelReportResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -204,6 +207,7 @@ func (s *excelReports) RequestExcelReportForDownload(ctx context.Context, reques
 	res := &operations.RequestExcelReportForDownloadResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

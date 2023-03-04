@@ -15,7 +15,6 @@ pkg/utils/requestbody.go
 pkg/utils/retries.go
 pkg/utils/security.go
 pkg/utils/utils.go
-strings.go
 pkg/models/operations/getaccountcategory.go
 pkg/models/operations/listaccountscategories.go
 pkg/models/operations/listavailableaccountcategories.go

@@ -1,5 +1,9 @@
 package operations
 
+import (
+	"net/http"
+)
+
 type GetDataIntegritySummariesDataTypeEnum string
 
 const (
@@ -51,5 +55,6 @@ type GetDataIntegritySummaries200ApplicationJSON struct {
 type GetDataIntegritySummariesResponse struct {
 	ContentType                                       string
 	StatusCode                                        int
+	RawResponse                                       *http.Response
 	GetDataIntegritySummaries200ApplicationJSONObject *GetDataIntegritySummaries200ApplicationJSON
 }

@@ -1,6 +1,7 @@
 package operations
 
 import (
+	"net/http"
 	"time"
 )
 
@@ -79,4 +80,5 @@ type GetEnhancedCashFlowTransactionsResponse struct {
 	ContentType                  string
 	EnhancedCashFlowTransactions *GetEnhancedCashFlowTransactionsEnhancedCashFlowTransactions
 	StatusCode                   int
+	RawResponse                  *http.Response
 }

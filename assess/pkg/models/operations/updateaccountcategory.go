@@ -1,6 +1,7 @@
 package operations
 
 import (
+	"net/http"
 	"time"
 )
 
@@ -49,4 +50,5 @@ type UpdateAccountCategoryResponse struct {
 	CategorisedAccount *UpdateAccountCategoryCategorisedAccount
 	ContentType        string
 	StatusCode         int
+	RawResponse        *http.Response
 }

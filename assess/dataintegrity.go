@@ -59,6 +59,7 @@ func (s *dataIntegrity) GetDataIntegrityDetails(ctx context.Context, request ope
 	res := &operations.GetDataIntegrityDetailsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -103,6 +104,7 @@ func (s *dataIntegrity) GetDataIntegrityStatus(ctx context.Context, request oper
 	res := &operations.GetDataIntegrityStatusResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -151,6 +153,7 @@ func (s *dataIntegrity) GetDataIntegritySummaries(ctx context.Context, request o
 	res := &operations.GetDataIntegritySummariesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

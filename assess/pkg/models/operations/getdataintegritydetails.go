@@ -1,6 +1,7 @@
 package operations
 
 import (
+	"net/http"
 	"time"
 )
 
@@ -87,5 +88,6 @@ type GetDataIntegrityDetailsLinks struct {
 type GetDataIntegrityDetailsResponse struct {
 	ContentType string
 	StatusCode  int
+	RawResponse *http.Response
 	Links       *GetDataIntegrityDetailsLinks
 }

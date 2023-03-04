@@ -1,6 +1,7 @@
 package operations
 
 import (
+	"net/http"
 	"time"
 )
 
@@ -52,4 +53,5 @@ type GetAccountsForEnhancedBalanceSheetResponse struct {
 	ContentType    string
 	EnhancedReport *GetAccountsForEnhancedBalanceSheetEnhancedReport
 	StatusCode     int
+	RawResponse    *http.Response
 }

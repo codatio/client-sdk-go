@@ -1,6 +1,7 @@
 package operations
 
 import (
+	"net/http"
 	"time"
 )
 
@@ -74,5 +75,6 @@ type GetDataIntegrityStatus200ApplicationJSON struct {
 type GetDataIntegrityStatusResponse struct {
 	ContentType                                    string
 	StatusCode                                     int
+	RawResponse                                    *http.Response
 	GetDataIntegrityStatus200ApplicationJSONObject *GetDataIntegrityStatus200ApplicationJSON
 }

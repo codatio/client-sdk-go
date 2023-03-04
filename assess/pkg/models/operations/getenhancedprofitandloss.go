@@ -1,5 +1,9 @@
 package operations
 
+import (
+	"net/http"
+)
+
 type GetEnhancedProfitAndLossPathParams struct {
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
@@ -154,5 +158,6 @@ type GetEnhancedProfitAndLoss200ApplicationJSON struct {
 type GetEnhancedProfitAndLossResponse struct {
 	ContentType                                      string
 	StatusCode                                       int
+	RawResponse                                      *http.Response
 	GetEnhancedProfitAndLoss200ApplicationJSONObject *GetEnhancedProfitAndLoss200ApplicationJSON
 }

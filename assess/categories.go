@@ -56,6 +56,7 @@ func (s *categories) GetAccountCategory(ctx context.Context, request operations.
 	res := &operations.GetAccountCategoryResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -104,6 +105,7 @@ func (s *categories) ListAccountsCategories(ctx context.Context, request operati
 	res := &operations.ListAccountsCategoriesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -148,6 +150,7 @@ func (s *categories) ListAvailableAccountCategories(ctx context.Context) (*opera
 	res := &operations.ListAvailableAccountCategoriesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -199,6 +202,7 @@ func (s *categories) UpdateAccountCategory(ctx context.Context, request operatio
 	res := &operations.UpdateAccountCategoryResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -250,6 +254,7 @@ func (s *categories) UpdateAccountsCategories(ctx context.Context, request opera
 	res := &operations.UpdateAccountsCategoriesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

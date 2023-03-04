@@ -59,6 +59,7 @@ func (s *reports) GetAccountsForEnhancedBalanceSheet(ctx context.Context, reques
 	res := &operations.GetAccountsForEnhancedBalanceSheetResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -107,6 +108,7 @@ func (s *reports) GetAccountsForEnhancedProfitAndLoss(ctx context.Context, reque
 	res := &operations.GetAccountsForEnhancedProfitAndLossResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -155,6 +157,7 @@ func (s *reports) GetCommerceCustomerRetentionMetrics(ctx context.Context, reque
 	res := &operations.GetCommerceCustomerRetentionMetricsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -203,6 +206,7 @@ func (s *reports) GetCommerceLifetimeValueMetrics(ctx context.Context, request o
 	res := &operations.GetCommerceLifetimeValueMetricsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -251,6 +255,7 @@ func (s *reports) GetCommerceOrdersMetrics(ctx context.Context, request operatio
 	res := &operations.GetCommerceOrdersMetricsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -299,6 +304,7 @@ func (s *reports) GetCommerceRefundsMetrics(ctx context.Context, request operati
 	res := &operations.GetCommerceRefundsMetricsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -347,6 +353,7 @@ func (s *reports) GetCommerceRevenueMetrics(ctx context.Context, request operati
 	res := &operations.GetCommerceRevenueMetricsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -395,6 +402,7 @@ func (s *reports) GetEnhancedBalanceSheet(ctx context.Context, request operation
 	res := &operations.GetEnhancedBalanceSheetResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -443,6 +451,7 @@ func (s *reports) GetEnhancedCashFlowTransactions(ctx context.Context, request o
 	res := &operations.GetEnhancedCashFlowTransactionsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -491,6 +500,7 @@ func (s *reports) GetEnhancedFinancialMetrics(ctx context.Context, request opera
 	res := &operations.GetEnhancedFinancialMetricsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -539,6 +549,7 @@ func (s *reports) GetEnhancedProfitAndLoss(ctx context.Context, request operatio
 	res := &operations.GetEnhancedProfitAndLossResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -583,6 +594,7 @@ func (s *reports) GetRecurringRevenueMetrics(ctx context.Context, request operat
 	res := &operations.GetRecurringRevenueMetricsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -627,6 +639,7 @@ func (s *reports) RequestRecurringRevenueMetrics(ctx context.Context, request op
 	res := &operations.RequestRecurringRevenueMetricsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

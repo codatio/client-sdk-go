@@ -13,7 +13,7 @@ import (
 func main() {
     s := codatio.New(codatio.WithSecurity(
         shared.Security{
-            APIKey: shared.SchemeAPIKey{
+            AuthHeader: shared.SchemeAuthHeader{
                 APIKey: "YOUR_API_KEY_HERE",
             },
         },

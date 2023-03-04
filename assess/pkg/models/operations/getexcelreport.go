@@ -1,5 +1,9 @@
 package operations
 
+import (
+	"net/http"
+)
+
 type GetExcelReportPathParams struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
@@ -23,4 +27,5 @@ type GetExcelReportResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
+	RawResponse *http.Response
 }

@@ -1,5 +1,9 @@
 package operations
 
+import (
+	"net/http"
+)
+
 type GetEnhancedBalanceSheetPathParams struct {
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
@@ -154,5 +158,6 @@ type GetEnhancedBalanceSheet200ApplicationJSON struct {
 type GetEnhancedBalanceSheetResponse struct {
 	ContentType                                     string
 	StatusCode                                      int
+	RawResponse                                     *http.Response
 	GetEnhancedBalanceSheet200ApplicationJSONObject *GetEnhancedBalanceSheet200ApplicationJSON
 }

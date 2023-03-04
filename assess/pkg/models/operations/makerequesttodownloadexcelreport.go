@@ -1,6 +1,7 @@
 package operations
 
 import (
+	"net/http"
 	"time"
 )
 
@@ -37,5 +38,6 @@ type MakeRequestToDownloadExcelReport200ApplicationJSON struct {
 type MakeRequestToDownloadExcelReportResponse struct {
 	ContentType                                              string
 	StatusCode                                               int
+	RawResponse                                              *http.Response
 	MakeRequestToDownloadExcelReport200ApplicationJSONObject *MakeRequestToDownloadExcelReport200ApplicationJSON
 }

@@ -1,5 +1,9 @@
 package operations
 
+import (
+	"net/http"
+)
+
 type RequestRecurringRevenueMetricsPathParams struct {
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
@@ -146,5 +150,6 @@ type RequestRecurringRevenueMetrics200ApplicationJSON struct {
 type RequestRecurringRevenueMetricsResponse struct {
 	ContentType                                            string
 	StatusCode                                             int
+	RawResponse                                            *http.Response
 	RequestRecurringRevenueMetrics200ApplicationJSONObject *RequestRecurringRevenueMetrics200ApplicationJSON
 }
