@@ -161,7 +161,7 @@ func (s *categories) ListAvailableAccountCategories(ctx context.Context) (*opera
 				return nil, err
 			}
 
-			res.ListAvailableAccountCategoriesChartOfAccountCategoryAllOfs = out
+			res.ListAvailableAccountCategoriesChartOfAccountCategoryAnies = out
 		}
 	}
 

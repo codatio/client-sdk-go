@@ -14,8 +14,8 @@ type ListAvailableAccountCategoriesChartOfAccountCategory struct {
 }
 
 type ListAvailableAccountCategoriesResponse struct {
-	ContentType                                                string
-	StatusCode                                                 int
-	RawResponse                                                *http.Response
-	ListAvailableAccountCategoriesChartOfAccountCategoryAllOfs []ListAvailableAccountCategoriesChartOfAccountCategory
+	ContentType                                               string
+	StatusCode                                                int
+	RawResponse                                               *http.Response
+	ListAvailableAccountCategoriesChartOfAccountCategoryAnies []ListAvailableAccountCategoriesChartOfAccountCategory
 }
