@@ -2,11 +2,11 @@ configVersion: 1.0.0
 management:
   docChecksum: 259b149106f47d9de9efe243f42c410e
   docVersion: prealpha
-  speakeasyVersion: 1.8.2
+  speakeasyVersion: 1.8.4
 generation:
   telemetryEnabled: false
   sdkClassName: codatio
   sdkFlattening: false
 go:
-  version: 0.4.0
+  version: 0.4.1
   packageName: github.com/codatio/client-sdk-go/expenses
