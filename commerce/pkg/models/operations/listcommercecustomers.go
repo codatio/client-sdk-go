@@ -61,7 +61,7 @@ type ListCommerceCustomersLinksSourceModifiedDate struct {
 	Addresses          []ListCommerceCustomersLinksSourceModifiedDateAddress `json:"addresses,omitempty"`
 	CreatedDate        *time.Time                                            `json:"createdDate,omitempty"`
 	CustomerName       *string                                               `json:"customerName,omitempty"`
-	DefaultCurrency    map[string]interface{}                                `json:"defaultCurrency,omitempty"`
+	DefaultCurrency    *string                                               `json:"defaultCurrency,omitempty"`
 	EmailAddress       *string                                               `json:"emailAddress,omitempty"`
 	ID                 string                                                `json:"id"`
 	ModifiedDate       *time.Time                                            `json:"modifiedDate,omitempty"`
