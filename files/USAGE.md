@@ -24,7 +24,7 @@ func main() {
             CompanyID: "unde",
         },
         QueryParams: operations.DownloadFilesQueryParams{
-            Date: "2022-08-01T14:52:54.502Z",
+            Date: "2022-08-02T14:53:32.137Z",
         },
     }
 
