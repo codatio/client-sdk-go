@@ -138,6 +138,8 @@ const (
 	CreateBillCreditNoteSourceModifiedDateStatusEnumPartiallyPaid CreateBillCreditNoteSourceModifiedDateStatusEnum = "PartiallyPaid"
 )
 
+// CreateBillCreditNoteSourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type CreateBillCreditNoteSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
@@ -347,6 +349,8 @@ const (
 	CreateBillCreditNote200ApplicationJSONSourceModifiedDateStatusEnumPartiallyPaid CreateBillCreditNote200ApplicationJSONSourceModifiedDateStatusEnum = "PartiallyPaid"
 )
 
+// CreateBillCreditNote200ApplicationJSONSourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type CreateBillCreditNote200ApplicationJSONSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }

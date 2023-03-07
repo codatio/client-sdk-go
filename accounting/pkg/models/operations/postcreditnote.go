@@ -146,6 +146,8 @@ const (
 	PostCreditNoteSourceModifiedDateStatusEnumPartiallyPaid PostCreditNoteSourceModifiedDateStatusEnum = "PartiallyPaid"
 )
 
+// PostCreditNoteSourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type PostCreditNoteSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
@@ -352,6 +354,8 @@ const (
 	PostCreditNote200ApplicationJSONSourceModifiedDateStatusEnumPartiallyPaid PostCreditNote200ApplicationJSONSourceModifiedDateStatusEnum = "PartiallyPaid"
 )
 
+// PostCreditNote200ApplicationJSONSourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type PostCreditNote200ApplicationJSONSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }

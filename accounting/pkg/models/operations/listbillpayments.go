@@ -90,6 +90,8 @@ type ListBillPaymentsLinksSourceModifiedDatePaymentMethodRef struct {
 	Name *string `json:"name,omitempty"`
 }
 
+// ListBillPaymentsLinksSourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type ListBillPaymentsLinksSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
@@ -110,7 +112,7 @@ type ListBillPaymentsLinksSourceModifiedDateSupplierRef struct {
 //
 // ## Overview
 //
-// Bill payments include all accounts payable transaction data. This includes [bills](https://docs.codat.io/accounting-api#/schemas/Bill) and [credit notes against bills](https://docs.codat.io/docs/datamodel-accounting-billcreditnotes).
+// Bill payments include all accounts payable transaction data. This includes [bills](https://docs.codat.io/accounting-api#/schemas/Bill) and [credit notes against bills](https://docs.codat.io/accounting-api#/schemas/BillCreditNote).
 //
 // A bill payment in Codat usually represents an allocation of money within any customer accounts payable account. This includes but is not strictly limited to:
 //

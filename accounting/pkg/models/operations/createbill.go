@@ -144,6 +144,8 @@ const (
 	CreateBillSourceModifiedDateStatusEnumDraft         CreateBillSourceModifiedDateStatusEnum = "Draft"
 )
 
+// CreateBillSourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type CreateBillSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
@@ -359,6 +361,8 @@ const (
 	CreateBill200ApplicationJSONSourceModifiedDateStatusEnumDraft         CreateBill200ApplicationJSONSourceModifiedDateStatusEnum = "Draft"
 )
 
+// CreateBill200ApplicationJSONSourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type CreateBill200ApplicationJSONSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }

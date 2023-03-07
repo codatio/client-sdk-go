@@ -44,6 +44,8 @@ const (
 	PostSuppliersSourceModifiedDateStatusEnumArchived PostSuppliersSourceModifiedDateStatusEnum = "Archived"
 )
 
+// PostSuppliersSourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type PostSuppliersSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
@@ -128,6 +130,8 @@ const (
 	PostSuppliers200ApplicationJSONSourceModifiedDateStatusEnumArchived PostSuppliers200ApplicationJSONSourceModifiedDateStatusEnum = "Archived"
 )
 
+// PostSuppliers200ApplicationJSONSourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type PostSuppliers200ApplicationJSONSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }

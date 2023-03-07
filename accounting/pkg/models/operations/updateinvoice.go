@@ -146,6 +146,8 @@ const (
 	UpdateInvoiceSourceModifiedDateStatusEnumVoid          UpdateInvoiceSourceModifiedDateStatusEnum = "Void"
 )
 
+// UpdateInvoiceSourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type UpdateInvoiceSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
@@ -365,6 +367,8 @@ const (
 	UpdateInvoice200ApplicationJSONSourceModifiedDateStatusEnumVoid          UpdateInvoice200ApplicationJSONSourceModifiedDateStatusEnum = "Void"
 )
 
+// UpdateInvoice200ApplicationJSONSourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type UpdateInvoice200ApplicationJSONSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }

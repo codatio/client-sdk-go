@@ -103,6 +103,8 @@ type PostDirectCostSourceModifiedDatePaymentAllocations struct {
 	Payment    PostDirectCostSourceModifiedDatePaymentAllocationsPayment    `json:"payment"`
 }
 
+// PostDirectCostSourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type PostDirectCostSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
@@ -262,6 +264,8 @@ type PostDirectCost200ApplicationJSONSourceModifiedDatePaymentAllocations struct
 	Payment    PostDirectCost200ApplicationJSONSourceModifiedDatePaymentAllocationsPayment    `json:"payment"`
 }
 
+// PostDirectCost200ApplicationJSONSourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type PostDirectCost200ApplicationJSONSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
