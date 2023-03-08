@@ -22,24 +22,15 @@ import (
 )
 
 func main() {
-    opts := []codatio.SDKOption{
-        codatio.WithSecurity(
-            shared.Security{
-                APIKey: shared.SchemeAPIKey{
-                    APIKey: "YOUR_API_KEY_HERE",
-                },
-            },
-        ),
-    }
-
-    s := codatio.New(opts...)
-    
-    req := operations.GetBankAccountPushOptionsRequest{
-        Security: operations.GetBankAccountPushOptionsSecurity{
-            APIKey: shared.SchemeAPIKey{
+    s := codatio.New(codatio.WithSecurity(
+        shared.Security{
+            AuthHeader: shared.SchemeAuthHeader{
                 APIKey: "YOUR_API_KEY_HERE",
             },
         },
+    ))
+    
+    req := operations.GetBankAccountPushOptionsRequest{
         PathParams: operations.GetBankAccountPushOptionsPathParams{
             AccountID: "unde",
             CompanyID: "deserunt",
@@ -73,13 +64,13 @@ func main() {
 ### BankAccountTransactions
 
 * `GetBankAccountPushOptions` - List push options for bank account bank transactions
-* `ListAllBankTransactionscount` - List bank transactions for bank account
+* `ListBankAccountTransactions` - List bank transactions for bank account
 * `PostBankTransactions` - Create bank transactions
 
 ### BankFeedAccounts
 
+* `CreateBankFeed` - Create bank feed bank accounts
 * `GetBankFeeds` - List bank feed bank accounts
-* `PutBankFeeds` - Update bank feed bank accounts
 * `UpdateBankFeed` - Update bank feed bank account
 <!-- End SDK Available Operations -->
 

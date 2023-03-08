@@ -15,6 +15,16 @@ type HTTPClient interface {
 	Do(req *http.Request) (*http.Response, error)
 }
 
+// String provides a helper function to return a pointer to a string
+func String(s string) *string { return &s }
+
+// SDK Documentation: Bank Feeds API enables your SMB users to set up bank feeds from accounts in your application to supported accounting platforms.
+//
+// A bank feed is a connection between a source bank account—in your application—and a target bank account in a supported accounting package.
+//
+// [Read more...](https://docs.codat.io/bank-feeds-api/overview)
+//
+// [See our OpenAPI spec](https://github.com/codatio/oas)
 type Codatio struct {
 	BankAccountTransactions *bankAccountTransactions
 	BankFeedAccounts        *bankFeedAccounts
@@ -31,7 +41,13 @@ type Codatio struct {
 
 type SDKOption func(*Codatio)
 
-func WithServerURL(serverURL string, params map[string]string) SDKOption {
+func WithServerURL(serverURL string) SDKOption {
+	return func(sdk *Codatio) {
+		sdk._serverURL = serverURL
+	}
+}
+
+func WithTemplatedServerURL(serverURL string, params map[string]string) SDKOption {
 	return func(sdk *Codatio) {
 		if params != nil {
 			serverURL = utils.ReplaceParameters(serverURL, params)
@@ -56,8 +72,8 @@ func WithSecurity(security shared.Security) SDKOption {
 func New(opts ...SDKOption) *Codatio {
 	sdk := &Codatio{
 		_language:   "go",
-		_sdkVersion: "0.1.0",
-		_genVersion: "1.5.3",
+		_sdkVersion: "0.4.3",
+		_genVersion: "1.8.6",
 	}
 	for _, opt := range opts {
 		opt(sdk)

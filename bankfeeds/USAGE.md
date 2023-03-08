@@ -11,24 +11,15 @@ import (
 )
 
 func main() {
-    opts := []codatio.SDKOption{
-        codatio.WithSecurity(
-            shared.Security{
-                APIKey: shared.SchemeAPIKey{
-                    APIKey: "YOUR_API_KEY_HERE",
-                },
-            },
-        ),
-    }
-
-    s := codatio.New(opts...)
-    
-    req := operations.GetBankAccountPushOptionsRequest{
-        Security: operations.GetBankAccountPushOptionsSecurity{
-            APIKey: shared.SchemeAPIKey{
+    s := codatio.New(codatio.WithSecurity(
+        shared.Security{
+            AuthHeader: shared.SchemeAuthHeader{
                 APIKey: "YOUR_API_KEY_HERE",
             },
         },
+    ))
+    
+    req := operations.GetBankAccountPushOptionsRequest{
         PathParams: operations.GetBankAccountPushOptionsPathParams{
             AccountID: "unde",
             CompanyID: "deserunt",
