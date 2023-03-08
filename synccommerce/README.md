@@ -22,17 +22,13 @@ import (
 )
 
 func main() {
-    opts := []codatio.SDKOption{
-        codatio.WithSecurity(
-            shared.Security{
-                APIKey: shared.SchemeAPIKey{
-                    APIKey: "YOUR_API_KEY_HERE",
-                },
+    s := codatio.New(codatio.WithSecurity(
+        shared.Security{
+            AuthHeader: shared.SchemeAuthHeader{
+                APIKey: "YOUR_API_KEY_HERE",
             },
-        ),
-    }
-
-    s := codatio.New(opts...)
+        },
+    ))
     
     req := operations.AddDataConnectionRequest{
         PathParams: operations.AddDataConnectionPathParams{

@@ -1,5 +1,9 @@
 package operations
 
+import (
+	"net/http"
+)
+
 type GetSyncFlowURLPathParams struct {
 	AccountingKey string `pathParam:"style=simple,explode=false,name=accountingKey"`
 	CommerceKey   string `pathParam:"style=simple,explode=false,name=commerceKey"`
@@ -17,4 +21,5 @@ type GetSyncFlowURLRequest struct {
 type GetSyncFlowURLResponse struct {
 	ContentType string
 	StatusCode  int
+	RawResponse *http.Response
 }

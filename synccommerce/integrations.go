@@ -56,6 +56,7 @@ func (s *integrations) GetIntegrationBranding(ctx context.Context, request opera
 	res := &operations.GetIntegrationBrandingResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -95,6 +96,7 @@ func (s *integrations) GetIntegrations(ctx context.Context, request operations.G
 	res := &operations.GetIntegrationsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

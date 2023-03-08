@@ -15,6 +15,12 @@ type HTTPClient interface {
 	Do(req *http.Request) (*http.Response, error)
 }
 
+// String provides a helper function to return a pointer to a string
+func String(s string) *string { return &s }
+
+// SDK Documentation: The API for Sync for Commerce. Sync for Commerce is an API and a set of supporting tools. It has been built to enable e-commerce, point of sale platforms to provide high-quality integrations with numerous accounting platform through standardized API, seamlessly transforming business sale's data into accounting artefacts.
+//
+// [Read More...](https://docs.codat.io/sfc/overview)
 type Codatio struct {
 	CompanyManagement *companyManagement
 	Integrations      *integrations
@@ -34,7 +40,13 @@ type Codatio struct {
 
 type SDKOption func(*Codatio)
 
-func WithServerURL(serverURL string, params map[string]string) SDKOption {
+func WithServerURL(serverURL string) SDKOption {
+	return func(sdk *Codatio) {
+		sdk._serverURL = serverURL
+	}
+}
+
+func WithTemplatedServerURL(serverURL string, params map[string]string) SDKOption {
 	return func(sdk *Codatio) {
 		if params != nil {
 			serverURL = utils.ReplaceParameters(serverURL, params)
@@ -59,8 +71,8 @@ func WithSecurity(security shared.Security) SDKOption {
 func New(opts ...SDKOption) *Codatio {
 	sdk := &Codatio{
 		_language:   "go",
-		_sdkVersion: "0.1.0",
-		_genVersion: "1.5.3",
+		_sdkVersion: "0.4.3",
+		_genVersion: "1.8.6",
 	}
 	for _, opt := range opts {
 		opt(sdk)

@@ -33,4 +33,5 @@ pkg/models/operations/sendordersdata.go
 pkg/models/operations/sendpaymentsdata.go
 pkg/models/operations/sendtransactionsdata.go
 pkg/models/shared/security.go
+pkg/models/webhooks/syncconnectiondeleted.go
 USAGE.md

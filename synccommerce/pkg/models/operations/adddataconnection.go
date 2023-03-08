@@ -1,6 +1,7 @@
 package operations
 
 import (
+	"net/http"
 	"time"
 )
 
@@ -36,5 +37,6 @@ type AddDataConnection200ApplicationJSON struct {
 type AddDataConnectionResponse struct {
 	ContentType                               string
 	StatusCode                                int
+	RawResponse                               *http.Response
 	AddDataConnection200ApplicationJSONObject *AddDataConnection200ApplicationJSON
 }
