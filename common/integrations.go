@@ -56,6 +56,7 @@ func (s *integrations) GetIntegrationsPlatformKey(ctx context.Context, request o
 	res := &operations.GetIntegrationsPlatformKeyResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -120,6 +121,7 @@ func (s *integrations) GetIntegrationsPlatformKeyBranding(ctx context.Context, r
 	res := &operations.GetIntegrationsPlatformKeyBrandingResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -168,6 +170,7 @@ func (s *integrations) ListIntegrations(ctx context.Context, request operations.
 	res := &operations.ListIntegrationsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

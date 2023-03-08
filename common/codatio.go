@@ -15,6 +15,16 @@ type HTTPClient interface {
 	Do(req *http.Request) (*http.Response, error)
 }
 
+// String provides a helper function to return a pointer to a string
+func String(s string) *string { return &s }
+
+// SDK Documentation: An API for the common components of all of Codat's products.
+//
+// These end points cover creating and managing your companies, data connections, and integrations.
+//
+// [Read about the building blocks of Codat...](https://docs.codat.io/core-concepts/companies)
+//
+// [See our OpenAPI spec](https://github.com/codatio/oas)
 type Codatio struct {
 	Companies    *companies
 	Connections  *connections
@@ -37,7 +47,13 @@ type Codatio struct {
 
 type SDKOption func(*Codatio)
 
-func WithServerURL(serverURL string, params map[string]string) SDKOption {
+func WithServerURL(serverURL string) SDKOption {
+	return func(sdk *Codatio) {
+		sdk._serverURL = serverURL
+	}
+}
+
+func WithTemplatedServerURL(serverURL string, params map[string]string) SDKOption {
 	return func(sdk *Codatio) {
 		if params != nil {
 			serverURL = utils.ReplaceParameters(serverURL, params)
@@ -62,8 +78,8 @@ func WithSecurity(security shared.Security) SDKOption {
 func New(opts ...SDKOption) *Codatio {
 	sdk := &Codatio{
 		_language:   "go",
-		_sdkVersion: "0.1.0",
-		_genVersion: "1.5.3",
+		_sdkVersion: "0.4.3",
+		_genVersion: "1.8.6",
 	}
 	for _, opt := range opts {
 		opt(sdk)

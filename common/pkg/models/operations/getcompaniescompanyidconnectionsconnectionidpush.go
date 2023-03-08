@@ -1,5 +1,9 @@
 package operations
 
+import (
+	"net/http"
+)
+
 type GetCompaniesCompanyIDConnectionsConnectionIDPushDataTypeEnum string
 
 const (
@@ -201,4 +205,5 @@ type GetCompaniesCompanyIDConnectionsConnectionIDPushResponse struct {
 	ContentType string
 	PushOption  *GetCompaniesCompanyIDConnectionsConnectionIDPushPushOption
 	StatusCode  int
+	RawResponse *http.Response
 }

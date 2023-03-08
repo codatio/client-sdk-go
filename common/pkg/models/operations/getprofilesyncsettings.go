@@ -1,6 +1,7 @@
 package operations
 
 import (
+	"net/http"
 	"time"
 )
 
@@ -35,6 +36,7 @@ type GetProfileSyncSettings200ApplicationJSON struct {
 type GetProfileSyncSettingsResponse struct {
 	ContentType                                    string
 	StatusCode                                     int
+	RawResponse                                    *http.Response
 	GetProfileSyncSettings200ApplicationJSONObject *GetProfileSyncSettings200ApplicationJSON
 	GetProfileSyncSettings401ApplicationJSONObject *GetProfileSyncSettings401ApplicationJSON
 }

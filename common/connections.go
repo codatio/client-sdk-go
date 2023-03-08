@@ -55,9 +55,19 @@ func (s *connections) CreateDataConnection(ctx context.Context, request operatio
 	res := &operations.CreateDataConnectionResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *operations.CreateDataConnectionConnection
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.Connection = out
+		}
 	}
 
 	return res, nil
@@ -91,6 +101,7 @@ func (s *connections) DeleteCompanyConnection(ctx context.Context, request opera
 	res := &operations.DeleteCompanyConnectionResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -119,9 +130,9 @@ func (s *connections) DeleteCompanyConnection(ctx context.Context, request opera
 	return res, nil
 }
 
-// GetCompaniesCompanyIDConnectionsConnectionIDAuthorization - Update authorization
+// GetCompanyAuthorization - Update authorization
 // Update data connection's authorization.
-func (s *connections) GetCompaniesCompanyIDConnectionsConnectionIDAuthorization(ctx context.Context, request operations.GetCompaniesCompanyIDConnectionsConnectionIDAuthorizationRequest) (*operations.GetCompaniesCompanyIDConnectionsConnectionIDAuthorizationResponse, error) {
+func (s *connections) GetCompanyAuthorization(ctx context.Context, request operations.GetCompanyAuthorizationRequest) (*operations.GetCompanyAuthorizationResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/authorization", request.PathParams)
 
@@ -150,15 +161,16 @@ func (s *connections) GetCompaniesCompanyIDConnectionsConnectionIDAuthorization(
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetCompaniesCompanyIDConnectionsConnectionIDAuthorizationResponse{
+	res := &operations.GetCompanyAuthorizationResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetCompaniesCompanyIDConnectionsConnectionIDAuthorizationConnection
+			var out *operations.GetCompanyAuthorizationConnection
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -176,17 +188,10 @@ func (s *connections) GetCompanyConnection(ctx context.Context, request operatio
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}", request.PathParams)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
-	if err != nil {
-		return nil, fmt.Errorf("error serializing request body: %w", err)
-	}
-
-	req, err := http.NewRequestWithContext(ctx, "GET", url, bodyReader)
+	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-
-	req.Header.Set("Content-Type", reqContentType)
 
 	client := s.securityClient
 
@@ -204,6 +209,7 @@ func (s *connections) GetCompanyConnection(ctx context.Context, request operatio
 	res := &operations.GetCompanyConnectionResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -272,6 +278,7 @@ func (s *connections) ListCompanyConnections(ctx context.Context, request operat
 	res := &operations.ListCompanyConnectionsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -309,9 +316,9 @@ func (s *connections) ListCompanyConnections(ctx context.Context, request operat
 	return res, nil
 }
 
-// PatchCompanyConnection - Unlink connection
+// UnlinkCompanyConnection - Unlink connection
 // This allows you to deauthorize a connection, without deleting it from Codat. This means you can still view any data that has previously been pulled into Codat, and also lets you re-authorize in future if your customer wishes to resume sharing their data.
-func (s *connections) PatchCompanyConnection(ctx context.Context, request operations.PatchCompanyConnectionRequest) (*operations.PatchCompanyConnectionResponse, error) {
+func (s *connections) UnlinkCompanyConnection(ctx context.Context, request operations.UnlinkCompanyConnectionRequest) (*operations.UnlinkCompanyConnectionResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}", request.PathParams)
 
@@ -340,15 +347,16 @@ func (s *connections) PatchCompanyConnection(ctx context.Context, request operat
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.PatchCompanyConnectionResponse{
+	res := &operations.UnlinkCompanyConnectionResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.PatchCompanyConnectionConnection
+			var out *operations.UnlinkCompanyConnectionConnection
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -358,22 +366,22 @@ func (s *connections) PatchCompanyConnection(ctx context.Context, request operat
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.PatchCompanyConnection401ApplicationJSON
+			var out *operations.UnlinkCompanyConnection401ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.PatchCompanyConnection401ApplicationJSONObject = out
+			res.UnlinkCompanyConnection401ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.PatchCompanyConnection404ApplicationJSON
+			var out *operations.UnlinkCompanyConnection404ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.PatchCompanyConnection404ApplicationJSONObject = out
+			res.UnlinkCompanyConnection404ApplicationJSONObject = out
 		}
 	}
 

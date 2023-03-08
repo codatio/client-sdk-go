@@ -1,6 +1,7 @@
 package operations
 
 import (
+	"net/http"
 	"time"
 )
 
@@ -97,6 +98,7 @@ type CreatePullOperationResponse struct {
 	ContentType                                 string
 	PullOperation                               *CreatePullOperationPullOperation
 	StatusCode                                  int
+	RawResponse                                 *http.Response
 	CreatePullOperation401ApplicationJSONObject *CreatePullOperation401ApplicationJSON
 	CreatePullOperation404ApplicationJSONObject *CreatePullOperation404ApplicationJSON
 }

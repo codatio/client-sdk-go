@@ -1,5 +1,9 @@
 package operations
 
+import (
+	"net/http"
+)
+
 type ListRulesQueryParams struct {
 	OrderBy  *string  `queryParam:"style=form,explode=true,name=orderBy"`
 	Page     float64  `queryParam:"style=form,explode=true,name=page"`
@@ -79,6 +83,7 @@ type ListRulesLinks struct {
 type ListRulesResponse struct {
 	ContentType                       string
 	StatusCode                        int
+	RawResponse                       *http.Response
 	Links                             *ListRulesLinks
 	ListRules400ApplicationJSONObject *ListRules400ApplicationJSON
 	ListRules401ApplicationJSONObject *ListRules401ApplicationJSON

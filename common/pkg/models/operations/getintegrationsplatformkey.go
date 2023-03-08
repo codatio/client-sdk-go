@@ -1,5 +1,9 @@
 package operations
 
+import (
+	"net/http"
+)
+
 type GetIntegrationsPlatformKeyPathParams struct {
 	PlatformKey string `pathParam:"style=simple,explode=false,name=platformKey"`
 }
@@ -93,6 +97,7 @@ type GetIntegrationsPlatformKeyResponse struct {
 	ContentType                                        string
 	Integration                                        *GetIntegrationsPlatformKeyIntegration
 	StatusCode                                         int
+	RawResponse                                        *http.Response
 	GetIntegrationsPlatformKey401ApplicationJSONObject *GetIntegrationsPlatformKey401ApplicationJSON
 	GetIntegrationsPlatformKey404ApplicationJSONObject *GetIntegrationsPlatformKey404ApplicationJSON
 }

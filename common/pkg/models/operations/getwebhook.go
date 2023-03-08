@@ -1,5 +1,9 @@
 package operations
 
+import (
+	"net/http"
+)
+
 type GetWebhookPathParams struct {
 	RuleID string `pathParam:"style=simple,explode=false,name=ruleId"`
 }
@@ -43,6 +47,7 @@ type GetWebhookWebhook struct {
 type GetWebhookResponse struct {
 	ContentType                        string
 	StatusCode                         int
+	RawResponse                        *http.Response
 	Webhook                            *GetWebhookWebhook
 	GetWebhook401ApplicationJSONObject *GetWebhook401ApplicationJSON
 	GetWebhook404ApplicationJSONObject *GetWebhook404ApplicationJSON

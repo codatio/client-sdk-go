@@ -1,5 +1,9 @@
 package operations
 
+import (
+	"net/http"
+)
+
 type DeleteCompanyConnectionPathParams struct {
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
@@ -30,6 +34,7 @@ type DeleteCompanyConnection401ApplicationJSON struct {
 type DeleteCompanyConnectionResponse struct {
 	ContentType                                     string
 	StatusCode                                      int
+	RawResponse                                     *http.Response
 	DeleteCompanyConnection401ApplicationJSONObject *DeleteCompanyConnection401ApplicationJSON
 	DeleteCompanyConnection404ApplicationJSONObject *DeleteCompanyConnection404ApplicationJSON
 }

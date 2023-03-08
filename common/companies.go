@@ -29,7 +29,7 @@ func newCompanies(defaultClient, securityClient HTTPClient, serverURL, language,
 	}
 }
 
-// CreateCompany - Create a company
+// CreateCompany - Create company
 // Create a new company
 func (s *companies) CreateCompany(ctx context.Context, request operations.CreateCompanyRequest) (*operations.CreateCompanyResponse, error) {
 	baseURL := s.serverURL
@@ -63,6 +63,7 @@ func (s *companies) CreateCompany(ctx context.Context, request operations.Create
 	res := &operations.CreateCompanyResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -90,10 +91,10 @@ func (s *companies) CreateCompany(ctx context.Context, request operations.Create
 	return res, nil
 }
 
-// DeleteCompaniesCompanyID - Delete a company
+// DeleteCompany - Delete a company
 // Delete the given company from Codat.
 // This operation is not reversible.
-func (s *companies) DeleteCompaniesCompanyID(ctx context.Context, request operations.DeleteCompaniesCompanyIDRequest) (*operations.DeleteCompaniesCompanyIDResponse, error) {
+func (s *companies) DeleteCompany(ctx context.Context, request operations.DeleteCompanyRequest) (*operations.DeleteCompanyResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}", request.PathParams)
 
@@ -115,30 +116,31 @@ func (s *companies) DeleteCompaniesCompanyID(ctx context.Context, request operat
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.DeleteCompaniesCompanyIDResponse{
+	res := &operations.DeleteCompanyResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 204:
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.DeleteCompaniesCompanyID401ApplicationJSON
+			var out *operations.DeleteCompany401ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.DeleteCompaniesCompanyID401ApplicationJSONObject = out
+			res.DeleteCompany401ApplicationJSONObject = out
 		}
 	}
 
 	return res, nil
 }
 
-// GetCompaniesCompanyID - Get company
+// GetCompany - Get company
 // Get metadata for a single company
-func (s *companies) GetCompaniesCompanyID(ctx context.Context, request operations.GetCompaniesCompanyIDRequest) (*operations.GetCompaniesCompanyIDResponse, error) {
+func (s *companies) GetCompany(ctx context.Context, request operations.GetCompanyRequest) (*operations.GetCompanyResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}", request.PathParams)
 
@@ -160,15 +162,16 @@ func (s *companies) GetCompaniesCompanyID(ctx context.Context, request operation
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetCompaniesCompanyIDResponse{
+	res := &operations.GetCompanyResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetCompaniesCompanyIDCompany
+			var out *operations.GetCompanyCompany
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -178,12 +181,12 @@ func (s *companies) GetCompaniesCompanyID(ctx context.Context, request operation
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetCompaniesCompanyID401ApplicationJSON
+			var out *operations.GetCompany401ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.GetCompaniesCompanyID401ApplicationJSONObject = out
+			res.GetCompany401ApplicationJSONObject = out
 		}
 	}
 
@@ -221,6 +224,7 @@ func (s *companies) ListCompanies(ctx context.Context, request operations.ListCo
 	res := &operations.ListCompaniesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -258,9 +262,9 @@ func (s *companies) ListCompanies(ctx context.Context, request operations.ListCo
 	return res, nil
 }
 
-// PutCompaniesCompanyID - Update a company
+// UpdateCompany - Update company
 // Updates the given company with a new name and description
-func (s *companies) PutCompaniesCompanyID(ctx context.Context, request operations.PutCompaniesCompanyIDRequest) (*operations.PutCompaniesCompanyIDResponse, error) {
+func (s *companies) UpdateCompany(ctx context.Context, request operations.UpdateCompanyRequest) (*operations.UpdateCompanyResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}", request.PathParams)
 
@@ -289,15 +293,16 @@ func (s *companies) PutCompaniesCompanyID(ctx context.Context, request operation
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.PutCompaniesCompanyIDResponse{
+	res := &operations.UpdateCompanyResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.PutCompaniesCompanyIDCompany
+			var out *operations.UpdateCompanyCompany
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -307,12 +312,12 @@ func (s *companies) PutCompaniesCompanyID(ctx context.Context, request operation
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.PutCompaniesCompanyID401ApplicationJSON
+			var out *operations.UpdateCompany401ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.PutCompaniesCompanyID401ApplicationJSONObject = out
+			res.UpdateCompany401ApplicationJSONObject = out
 		}
 	}
 

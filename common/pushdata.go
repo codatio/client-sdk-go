@@ -61,6 +61,7 @@ func (s *pushData) GetCompaniesCompanyIDConnectionsConnectionIDPush(ctx context.
 	res := &operations.GetCompaniesCompanyIDConnectionsConnectionIDPushResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -78,7 +79,7 @@ func (s *pushData) GetCompaniesCompanyIDConnectionsConnectionIDPush(ctx context.
 	return res, nil
 }
 
-// GetCompaniesCompanyIDPush - Lists push operations
+// GetCompaniesCompanyIDPush - List push operations
 // List push operation records.
 func (s *pushData) GetCompaniesCompanyIDPush(ctx context.Context, request operations.GetCompaniesCompanyIDPushRequest) (*operations.GetCompaniesCompanyIDPushResponse, error) {
 	baseURL := s.serverURL
@@ -109,6 +110,7 @@ func (s *pushData) GetCompaniesCompanyIDPush(ctx context.Context, request operat
 	res := &operations.GetCompaniesCompanyIDPushResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -127,7 +129,7 @@ func (s *pushData) GetCompaniesCompanyIDPush(ctx context.Context, request operat
 }
 
 // GetCompaniesCompanyIDPushPushOperationKey - Get push operation
-// Retreive push operation.
+// Retrieve push operation.
 func (s *pushData) GetCompaniesCompanyIDPushPushOperationKey(ctx context.Context, request operations.GetCompaniesCompanyIDPushPushOperationKeyRequest) (*operations.GetCompaniesCompanyIDPushPushOperationKeyResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/push/{pushOperationKey}", request.PathParams)
@@ -153,6 +155,7 @@ func (s *pushData) GetCompaniesCompanyIDPushPushOperationKey(ctx context.Context
 	res := &operations.GetCompaniesCompanyIDPushPushOperationKeyResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

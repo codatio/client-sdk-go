@@ -1,6 +1,7 @@
 package operations
 
 import (
+	"net/http"
 	"time"
 )
 
@@ -84,30 +85,30 @@ const (
 	ListCompanyConnectionsLinksConnectionSourceTypeEnumUnknown    ListCompanyConnectionsLinksConnectionSourceTypeEnum = "Unknown"
 )
 
-type ListCompanyConnectionsLinksConnectionStatusEnum string
+type ListCompanyConnectionsLinksConnectionDataConnectionStatusEnum string
 
 const (
-	ListCompanyConnectionsLinksConnectionStatusEnumPendingAuth  ListCompanyConnectionsLinksConnectionStatusEnum = "PendingAuth"
-	ListCompanyConnectionsLinksConnectionStatusEnumLinked       ListCompanyConnectionsLinksConnectionStatusEnum = "Linked"
-	ListCompanyConnectionsLinksConnectionStatusEnumUnlinked     ListCompanyConnectionsLinksConnectionStatusEnum = "Unlinked"
-	ListCompanyConnectionsLinksConnectionStatusEnumDeauthorized ListCompanyConnectionsLinksConnectionStatusEnum = "Deauthorized"
+	ListCompanyConnectionsLinksConnectionDataConnectionStatusEnumPendingAuth  ListCompanyConnectionsLinksConnectionDataConnectionStatusEnum = "PendingAuth"
+	ListCompanyConnectionsLinksConnectionDataConnectionStatusEnumLinked       ListCompanyConnectionsLinksConnectionDataConnectionStatusEnum = "Linked"
+	ListCompanyConnectionsLinksConnectionDataConnectionStatusEnumUnlinked     ListCompanyConnectionsLinksConnectionDataConnectionStatusEnum = "Unlinked"
+	ListCompanyConnectionsLinksConnectionDataConnectionStatusEnumDeauthorized ListCompanyConnectionsLinksConnectionDataConnectionStatusEnum = "Deauthorized"
 )
 
 // ListCompanyConnectionsLinksConnection
 // A connection represents the link between a `company` and a source of data.
 type ListCompanyConnectionsLinksConnection struct {
-	ConnectionInfo       *ListCompanyConnectionsLinksConnectionConnectionInfo        `json:"connectionInfo,omitempty"`
-	Created              time.Time                                                   `json:"created"`
-	DataConnectionErrors []ListCompanyConnectionsLinksConnectionDataConnectionErrors `json:"dataConnectionErrors,omitempty"`
-	ID                   string                                                      `json:"id"`
-	IntegrationID        string                                                      `json:"integrationId"`
-	IntegrationKey       string                                                      `json:"integrationKey"`
-	LastSync             *time.Time                                                  `json:"lastSync,omitempty"`
-	LinkURL              string                                                      `json:"linkUrl"`
-	PlatformName         string                                                      `json:"platformName"`
-	SourceID             string                                                      `json:"sourceId"`
-	SourceType           ListCompanyConnectionsLinksConnectionSourceTypeEnum         `json:"sourceType"`
-	Status               ListCompanyConnectionsLinksConnectionStatusEnum             `json:"status"`
+	ConnectionInfo       *ListCompanyConnectionsLinksConnectionConnectionInfo          `json:"connectionInfo,omitempty"`
+	Created              time.Time                                                     `json:"created"`
+	DataConnectionErrors []ListCompanyConnectionsLinksConnectionDataConnectionErrors   `json:"dataConnectionErrors,omitempty"`
+	ID                   string                                                        `json:"id"`
+	IntegrationID        string                                                        `json:"integrationId"`
+	IntegrationKey       string                                                        `json:"integrationKey"`
+	LastSync             *time.Time                                                    `json:"lastSync,omitempty"`
+	LinkURL              string                                                        `json:"linkUrl"`
+	PlatformName         string                                                        `json:"platformName"`
+	SourceID             string                                                        `json:"sourceId"`
+	SourceType           ListCompanyConnectionsLinksConnectionSourceTypeEnum           `json:"sourceType"`
+	Status               ListCompanyConnectionsLinksConnectionDataConnectionStatusEnum `json:"status"`
 }
 
 // ListCompanyConnectionsLinks
@@ -123,6 +124,7 @@ type ListCompanyConnectionsLinks struct {
 type ListCompanyConnectionsResponse struct {
 	ContentType                                    string
 	StatusCode                                     int
+	RawResponse                                    *http.Response
 	Links                                          *ListCompanyConnectionsLinks
 	ListCompanyConnections400ApplicationJSONObject *ListCompanyConnections400ApplicationJSON
 	ListCompanyConnections401ApplicationJSONObject *ListCompanyConnections401ApplicationJSON

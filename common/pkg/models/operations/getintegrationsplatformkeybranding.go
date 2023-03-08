@@ -1,5 +1,9 @@
 package operations
 
+import (
+	"net/http"
+)
+
 type GetIntegrationsPlatformKeyBrandingPathParams struct {
 	PlatformKey string `pathParam:"style=simple,explode=false,name=platformKey"`
 }
@@ -27,7 +31,7 @@ type GetIntegrationsPlatformKeyBrandingBrandingLogo struct {
 }
 
 type GetIntegrationsPlatformKeyBrandingBranding struct {
-	Button   *interface{}                                    `json:"button,omitempty"`
+	Button   interface{}                                     `json:"button,omitempty"`
 	Logo     *GetIntegrationsPlatformKeyBrandingBrandingLogo `json:"logo,omitempty"`
 	SourceID *string                                         `json:"sourceId,omitempty"`
 }
@@ -36,4 +40,5 @@ type GetIntegrationsPlatformKeyBrandingResponse struct {
 	Branding    *GetIntegrationsPlatformKeyBrandingBranding
 	ContentType string
 	StatusCode  int
+	RawResponse *http.Response
 }

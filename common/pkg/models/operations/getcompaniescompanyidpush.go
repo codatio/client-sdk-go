@@ -1,6 +1,7 @@
 package operations
 
 import (
+	"net/http"
 	"time"
 )
 
@@ -115,5 +116,6 @@ type GetCompaniesCompanyIDPushLinks struct {
 type GetCompaniesCompanyIDPushResponse struct {
 	ContentType string
 	StatusCode  int
+	RawResponse *http.Response
 	Links       *GetCompaniesCompanyIDPushLinks
 }
