@@ -28,9 +28,9 @@ func newReports(defaultClient, securityClient HTTPClient, serverURL, language, s
 	}
 }
 
-// GetCompaniesCompanyIDReportsEnhancedBalanaceSheetAccounts - Enhanced Balance Sheet Accounts
+// GetAccountsForEnhancedBalanceSheet - Enhanced Balance Sheet Accounts
 // Gets a list of accounts with account categories per statement period, specific to balance sheet
-func (s *reports) GetCompaniesCompanyIDReportsEnhancedBalanaceSheetAccounts(ctx context.Context, request operations.GetCompaniesCompanyIDReportsEnhancedBalanaceSheetAccountsRequest) (*operations.GetCompaniesCompanyIDReportsEnhancedBalanaceSheetAccountsResponse, error) {
+func (s *reports) GetAccountsForEnhancedBalanceSheet(ctx context.Context, request operations.GetAccountsForEnhancedBalanceSheetRequest) (*operations.GetAccountsForEnhancedBalanceSheetResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/reports/enhancedBalanceSheet/accounts", request.PathParams)
 
@@ -56,15 +56,16 @@ func (s *reports) GetCompaniesCompanyIDReportsEnhancedBalanaceSheetAccounts(ctx 
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetCompaniesCompanyIDReportsEnhancedBalanaceSheetAccountsResponse{
+	res := &operations.GetAccountsForEnhancedBalanceSheetResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetCompaniesCompanyIDReportsEnhancedBalanaceSheetAccountsEnhancedReport
+			var out *operations.GetAccountsForEnhancedBalanceSheetEnhancedReport
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -76,57 +77,9 @@ func (s *reports) GetCompaniesCompanyIDReportsEnhancedBalanaceSheetAccounts(ctx 
 	return res, nil
 }
 
-// GetCompaniesCompanyIDReportsEnhancedCashFlowTransactions - Get enhanced cash flow report
-// Gets a list of banking transactions and their categories.
-func (s *reports) GetCompaniesCompanyIDReportsEnhancedCashFlowTransactions(ctx context.Context, request operations.GetCompaniesCompanyIDReportsEnhancedCashFlowTransactionsRequest) (*operations.GetCompaniesCompanyIDReportsEnhancedCashFlowTransactionsResponse, error) {
-	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/reports/enhancedCashFlow/transactions", request.PathParams)
-
-	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error creating request: %w", err)
-	}
-
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
-		return nil, fmt.Errorf("error populating query params: %w", err)
-	}
-
-	client := s.securityClient
-
-	httpRes, err := client.Do(req)
-	if err != nil {
-		return nil, fmt.Errorf("error sending request: %w", err)
-	}
-	if httpRes == nil {
-		return nil, fmt.Errorf("error sending request: no response")
-	}
-	defer httpRes.Body.Close()
-
-	contentType := httpRes.Header.Get("Content-Type")
-
-	res := &operations.GetCompaniesCompanyIDReportsEnhancedCashFlowTransactionsResponse{
-		StatusCode:  httpRes.StatusCode,
-		ContentType: contentType,
-	}
-	switch {
-	case httpRes.StatusCode == 200:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetCompaniesCompanyIDReportsEnhancedCashFlowTransactionsEnhancedCashFlowTransactions
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
-				return nil, err
-			}
-
-			res.EnhancedCashFlowTransactions = out
-		}
-	}
-
-	return res, nil
-}
-
-// GetCompaniesCompanyIDReportsEnhancedProfitAndLossAccounts - Enhanced Profit and Loss Accounts
+// GetAccountsForEnhancedProfitAndLoss - Enhanced Profit and Loss Accounts
 // Gets a list of accounts with account categories per statement period, specific to profit and loss
-func (s *reports) GetCompaniesCompanyIDReportsEnhancedProfitAndLossAccounts(ctx context.Context, request operations.GetCompaniesCompanyIDReportsEnhancedProfitAndLossAccountsRequest) (*operations.GetCompaniesCompanyIDReportsEnhancedProfitAndLossAccountsResponse, error) {
+func (s *reports) GetAccountsForEnhancedProfitAndLoss(ctx context.Context, request operations.GetAccountsForEnhancedProfitAndLossRequest) (*operations.GetAccountsForEnhancedProfitAndLossResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/reports/enhancedProfitAndLoss/accounts", request.PathParams)
 
@@ -152,15 +105,16 @@ func (s *reports) GetCompaniesCompanyIDReportsEnhancedProfitAndLossAccounts(ctx 
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetCompaniesCompanyIDReportsEnhancedProfitAndLossAccountsResponse{
+	res := &operations.GetAccountsForEnhancedProfitAndLossResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetCompaniesCompanyIDReportsEnhancedProfitAndLossAccountsEnhancedReport
+			var out *operations.GetAccountsForEnhancedProfitAndLossEnhancedReport
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -172,9 +126,9 @@ func (s *reports) GetCompaniesCompanyIDReportsEnhancedProfitAndLossAccounts(ctx 
 	return res, nil
 }
 
-// GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsCustomerRetention - Get the customer retention metrics for a specific company.
+// GetCommerceCustomerRetentionMetrics - Get the customer retention metrics for a specific company.
 // Gets the customer retention metrics for a specific company connection, over one or more periods of time.
-func (s *reports) GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsCustomerRetention(ctx context.Context, request operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsCustomerRetentionRequest) (*operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsCustomerRetentionResponse, error) {
+func (s *reports) GetCommerceCustomerRetentionMetrics(ctx context.Context, request operations.GetCommerceCustomerRetentionMetricsRequest) (*operations.GetCommerceCustomerRetentionMetricsResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/connections/{connectionId}/assess/commerceMetrics/customerRetention", request.PathParams)
 
@@ -200,29 +154,30 @@ func (s *reports) GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerce
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsCustomerRetentionResponse{
+	res := &operations.GetCommerceCustomerRetentionMetricsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsCustomerRetention200ApplicationJSON
+			var out *operations.GetCommerceCustomerRetentionMetrics200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsCustomerRetention200ApplicationJSONObject = out
+			res.GetCommerceCustomerRetentionMetrics200ApplicationJSONObject = out
 		}
 	}
 
 	return res, nil
 }
 
-// GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsLifetimeValue - Get the lifetime value metric for a specific company.
+// GetCommerceLifetimeValueMetrics - Get the lifetime value metric for a specific company.
 // Gets the lifetime value metric for a specific company connection, over one or more periods of time.
-func (s *reports) GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsLifetimeValue(ctx context.Context, request operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsLifetimeValueRequest) (*operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsLifetimeValueResponse, error) {
+func (s *reports) GetCommerceLifetimeValueMetrics(ctx context.Context, request operations.GetCommerceLifetimeValueMetricsRequest) (*operations.GetCommerceLifetimeValueMetricsResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/connections/{connectionId}/assess/commerceMetrics/lifetimeValue", request.PathParams)
 
@@ -248,29 +203,30 @@ func (s *reports) GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerce
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsLifetimeValueResponse{
+	res := &operations.GetCommerceLifetimeValueMetricsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsLifetimeValue200ApplicationJSON
+			var out *operations.GetCommerceLifetimeValueMetrics200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsLifetimeValue200ApplicationJSONObject = out
+			res.GetCommerceLifetimeValueMetrics200ApplicationJSONObject = out
 		}
 	}
 
 	return res, nil
 }
 
-// GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsOrders - Get order information for a specific company
+// GetCommerceOrdersMetrics - Get order information for a specific company
 // Gets the order information for a specific company connection, over one or more periods of time.
-func (s *reports) GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsOrders(ctx context.Context, request operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsOrdersRequest) (*operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsOrdersResponse, error) {
+func (s *reports) GetCommerceOrdersMetrics(ctx context.Context, request operations.GetCommerceOrdersMetricsRequest) (*operations.GetCommerceOrdersMetricsResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/connections/{connectionId}/assess/commerceMetrics/orders", request.PathParams)
 
@@ -296,29 +252,30 @@ func (s *reports) GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerce
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsOrdersResponse{
+	res := &operations.GetCommerceOrdersMetricsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsOrders200ApplicationJSON
+			var out *operations.GetCommerceOrdersMetrics200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsOrders200ApplicationJSONObject = out
+			res.GetCommerceOrdersMetrics200ApplicationJSONObject = out
 		}
 	}
 
 	return res, nil
 }
 
-// GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsRefunds - Get the refunds information for a specific company
+// GetCommerceRefundsMetrics - Get the refunds information for a specific company
 // Gets the refunds information for a specific company connection, over one or more periods of time.
-func (s *reports) GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsRefunds(ctx context.Context, request operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsRefundsRequest) (*operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsRefundsResponse, error) {
+func (s *reports) GetCommerceRefundsMetrics(ctx context.Context, request operations.GetCommerceRefundsMetricsRequest) (*operations.GetCommerceRefundsMetricsResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/connections/{connectionId}/assess/commerceMetrics/refunds", request.PathParams)
 
@@ -344,29 +301,30 @@ func (s *reports) GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerce
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsRefundsResponse{
+	res := &operations.GetCommerceRefundsMetricsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsRefunds200ApplicationJSON
+			var out *operations.GetCommerceRefundsMetrics200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsRefunds200ApplicationJSONObject = out
+			res.GetCommerceRefundsMetrics200ApplicationJSONObject = out
 		}
 	}
 
 	return res, nil
 }
 
-// GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsRevenue - Commerce Revenue Metrics
+// GetCommerceRevenueMetrics - Commerce Revenue Metrics
 // Get the revenue and revenue growth for a specific company connection, over one or more periods of time.
-func (s *reports) GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsRevenue(ctx context.Context, request operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsRevenueRequest) (*operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsRevenueResponse, error) {
+func (s *reports) GetCommerceRevenueMetrics(ctx context.Context, request operations.GetCommerceRevenueMetricsRequest) (*operations.GetCommerceRevenueMetricsResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/connections/{connectionId}/assess/commerceMetrics/revenue", request.PathParams)
 
@@ -392,29 +350,30 @@ func (s *reports) GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerce
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsRevenueResponse{
+	res := &operations.GetCommerceRevenueMetricsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsRevenue200ApplicationJSON
+			var out *operations.GetCommerceRevenueMetrics200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsRevenue200ApplicationJSONObject = out
+			res.GetCommerceRevenueMetrics200ApplicationJSONObject = out
 		}
 	}
 
 	return res, nil
 }
 
-// GetDataCompaniesCompanyIDConnectionsConnectionIDAssessEnhancedBalanceSheet - Enhanced Balance Sheet
+// GetEnhancedBalanceSheet - Enhanced Balance Sheet
 // Gets a fully categorized balance sheet statement for a given company, over one or more period(s).
-func (s *reports) GetDataCompaniesCompanyIDConnectionsConnectionIDAssessEnhancedBalanceSheet(ctx context.Context, request operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessEnhancedBalanceSheetRequest) (*operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessEnhancedBalanceSheetResponse, error) {
+func (s *reports) GetEnhancedBalanceSheet(ctx context.Context, request operations.GetEnhancedBalanceSheetRequest) (*operations.GetEnhancedBalanceSheetResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/connections/{connectionId}/assess/enhancedBalanceSheet", request.PathParams)
 
@@ -440,31 +399,32 @@ func (s *reports) GetDataCompaniesCompanyIDConnectionsConnectionIDAssessEnhanced
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessEnhancedBalanceSheetResponse{
+	res := &operations.GetEnhancedBalanceSheetResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessEnhancedBalanceSheet200ApplicationJSON
+			var out *operations.GetEnhancedBalanceSheet200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessEnhancedBalanceSheet200ApplicationJSONObject = out
+			res.GetEnhancedBalanceSheet200ApplicationJSONObject = out
 		}
 	}
 
 	return res, nil
 }
 
-// GetDataCompaniesCompanyIDConnectionsConnectionIDAssessEnhancedProfitAndLoss - Enhanced Profit and Loss
-// Gets a fully categorized profit and loss statement for a given company, over one or more period(s).
-func (s *reports) GetDataCompaniesCompanyIDConnectionsConnectionIDAssessEnhancedProfitAndLoss(ctx context.Context, request operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessEnhancedProfitAndLossRequest) (*operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessEnhancedProfitAndLossResponse, error) {
+// GetEnhancedCashFlowTransactions - Get enhanced cash flow report
+// Gets a list of banking transactions and their categories.
+func (s *reports) GetEnhancedCashFlowTransactions(ctx context.Context, request operations.GetEnhancedCashFlowTransactionsRequest) (*operations.GetEnhancedCashFlowTransactionsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/connections/{connectionId}/assess/enhancedProfitAndLoss", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/reports/enhancedCashFlow/transactions", request.PathParams)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -488,29 +448,30 @@ func (s *reports) GetDataCompaniesCompanyIDConnectionsConnectionIDAssessEnhanced
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessEnhancedProfitAndLossResponse{
+	res := &operations.GetEnhancedCashFlowTransactionsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessEnhancedProfitAndLoss200ApplicationJSON
+			var out *operations.GetEnhancedCashFlowTransactionsEnhancedCashFlowTransactions
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessEnhancedProfitAndLoss200ApplicationJSONObject = out
+			res.EnhancedCashFlowTransactions = out
 		}
 	}
 
 	return res, nil
 }
 
-// GetDataCompaniesCompanyIDConnectionsConnectionIDAssessFinancialMetrics - List finanicial metrics
+// GetEnhancedFinancialMetrics - List finanicial metrics
 // Gets all the available financial metrics for a given company, over one or more periods.
-func (s *reports) GetDataCompaniesCompanyIDConnectionsConnectionIDAssessFinancialMetrics(ctx context.Context, request operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessFinancialMetricsRequest) (*operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessFinancialMetricsResponse, error) {
+func (s *reports) GetEnhancedFinancialMetrics(ctx context.Context, request operations.GetEnhancedFinancialMetricsRequest) (*operations.GetEnhancedFinancialMetricsResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/connections/{connectionId}/assess/financialMetrics", request.PathParams)
 
@@ -536,29 +497,79 @@ func (s *reports) GetDataCompaniesCompanyIDConnectionsConnectionIDAssessFinancia
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessFinancialMetricsResponse{
+	res := &operations.GetEnhancedFinancialMetricsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessFinancialMetrics200ApplicationJSON
+			var out *operations.GetEnhancedFinancialMetrics200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessFinancialMetrics200ApplicationJSONObject = out
+			res.GetEnhancedFinancialMetrics200ApplicationJSONObject = out
 		}
 	}
 
 	return res, nil
 }
 
-// GetDataCompaniesCompanyIDConnectionsConnectionIDAssessSubscriptionsMrr - Get key metrics for subscription revenue
+// GetEnhancedProfitAndLoss - Enhanced Profit and Loss
+// Gets a fully categorized profit and loss statement for a given company, over one or more period(s).
+func (s *reports) GetEnhancedProfitAndLoss(ctx context.Context, request operations.GetEnhancedProfitAndLossRequest) (*operations.GetEnhancedProfitAndLossResponse, error) {
+	baseURL := s.serverURL
+	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/connections/{connectionId}/assess/enhancedProfitAndLoss", request.PathParams)
+
+	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+
+	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
+
+	client := s.securityClient
+
+	httpRes, err := client.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
+	}
+	defer httpRes.Body.Close()
+
+	contentType := httpRes.Header.Get("Content-Type")
+
+	res := &operations.GetEnhancedProfitAndLossResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: contentType,
+		RawResponse: httpRes,
+	}
+	switch {
+	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *operations.GetEnhancedProfitAndLoss200ApplicationJSON
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.GetEnhancedProfitAndLoss200ApplicationJSONObject = out
+		}
+	}
+
+	return res, nil
+}
+
+// GetRecurringRevenueMetrics - Get key metrics for subscription revenue
 // Gets key metrics for subscription revenue.
-func (s *reports) GetDataCompaniesCompanyIDConnectionsConnectionIDAssessSubscriptionsMrr(ctx context.Context, request operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessSubscriptionsMrrRequest) (*operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessSubscriptionsMrrResponse, error) {
+func (s *reports) GetRecurringRevenueMetrics(ctx context.Context, request operations.GetRecurringRevenueMetricsRequest) (*operations.GetRecurringRevenueMetricsResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/connections/{connectionId}/assess/subscriptions/mrr", request.PathParams)
 
@@ -580,29 +591,30 @@ func (s *reports) GetDataCompaniesCompanyIDConnectionsConnectionIDAssessSubscrip
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessSubscriptionsMrrResponse{
+	res := &operations.GetRecurringRevenueMetricsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessSubscriptionsMrr200ApplicationJSON
+			var out *operations.GetRecurringRevenueMetrics200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessSubscriptionsMrr200ApplicationJSONObject = out
+			res.GetRecurringRevenueMetrics200ApplicationJSONObject = out
 		}
 	}
 
 	return res, nil
 }
 
-// GetDataCompaniesCompanyIDConnectionsConnectionIDAssessSubscriptionsProcess - Request production of key subscription revenue metrics
+// RequestRecurringRevenueMetrics - Request production of key subscription revenue metrics
 // Request production of key subscription revenue metrics.
-func (s *reports) GetDataCompaniesCompanyIDConnectionsConnectionIDAssessSubscriptionsProcess(ctx context.Context, request operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessSubscriptionsProcessRequest) (*operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessSubscriptionsProcessResponse, error) {
+func (s *reports) RequestRecurringRevenueMetrics(ctx context.Context, request operations.RequestRecurringRevenueMetricsRequest) (*operations.RequestRecurringRevenueMetricsResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/connections/{connectionId}/assess/subscriptions/process", request.PathParams)
 
@@ -624,20 +636,21 @@ func (s *reports) GetDataCompaniesCompanyIDConnectionsConnectionIDAssessSubscrip
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessSubscriptionsProcessResponse{
+	res := &operations.RequestRecurringRevenueMetricsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessSubscriptionsProcess200ApplicationJSON
+			var out *operations.RequestRecurringRevenueMetrics200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessSubscriptionsProcess200ApplicationJSONObject = out
+			res.RequestRecurringRevenueMetrics200ApplicationJSONObject = out
 		}
 	}
 

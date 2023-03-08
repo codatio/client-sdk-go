@@ -22,25 +22,29 @@ import (
 )
 
 func main() {
-    opts := []codatio.SDKOption{
-        codatio.WithSecurity(
-            shared.Security{
-                APIKey: shared.SchemeAPIKey{
-                    APIKey: "YOUR_API_KEY_HERE",
-                },
+    s := codatio.New(codatio.WithSecurity(
+        shared.Security{
+            AuthHeader: shared.SchemeAuthHeader{
+                APIKey: "YOUR_API_KEY_HERE",
             },
-        ),
+        },
+    ))
+    
+    req := operations.GetAccountCategoryRequest{
+        PathParams: operations.GetAccountCategoryPathParams{
+            AccountID: "unde",
+            CompanyID: "deserunt",
+            ConnectionID: "porro",
+        },
     }
 
-    s := codatio.New(opts...)
-
     ctx := context.Background()
-    res, err := s.Categories.GetDataAssessAccountsCategories(ctx)
+    res, err := s.Categories.GetAccountCategory(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.GetDataAssessAccountsCategoriesChartOfAccountCategoryAllOfs != nil {
+    if res.CategorisedAccount != nil {
         // handle response
     }
 }
@@ -53,40 +57,40 @@ func main() {
 
 ### Categories
 
-* `GetDataAssessAccountsCategories` - List account categories
-* `GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsAccountIDCategories` - Get suggested and/or confirmed category for a specific account
-* `GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsCategories` - List suggested and confirmed account categories
-* `PatchDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsAccountIDCategories` - Patch account categories
-* `PatchDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountsCategories` - Confirm categories for accounts
+* `GetAccountCategory` - Get suggested and/or confirmed category for a specific account
+* `ListAccountsCategories` - List suggested and confirmed account categories
+* `ListAvailableAccountCategories` - List account categories
+* `UpdateAccountCategory` - Patch account categories
+* `UpdateAccountsCategories` - Confirm categories for accounts
 
 ### DataIntegrity
 
-* `GetDataCompaniesCompanyIDAssessDataTypesDataTypeDataIntegrityDetails` - Lists data integrity details for date type
-* `GetDataCompaniesCompanyIDAssessDataTypesDataTypeDataIntegritySummaries` - Get data integrity summary
-* `GetDataIntegrityStatusForDataType` - Get data integrity status
+* `GetDataIntegrityDetails` - Lists data integrity details for date type
+* `GetDataIntegrityStatus` - Get data integrity status
+* `GetDataIntegritySummaries` - Get data integrity summary
 
 ### ExcelReports
 
-* `GetDataCompaniesCompanyIDAssessExcel` - Request an Excel report for download
-* `GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountingMetricsMarketing` - Get the marketing metrics from an accounting source for a given company.
-* `PostDataCompaniesCompanyIDAssessExcel` - Request an Excel report for download
-* `PostDataCompaniesCompanyIDAssessExcelDownload` - Download generated excel report
+* `GetAccountingMarketingMetrics` - Get the marketing metrics from an accounting source for a given company.
+* `GetExcelReport` - Download generated excel report
+* `MakeRequestToDownloadExcelReport` - Request an Excel report for download
+* `RequestExcelReportForDownload` - Request an Excel report for download
 
 ### Reports
 
-* `GetCompaniesCompanyIDReportsEnhancedBalanaceSheetAccounts` - Enhanced Balance Sheet Accounts
-* `GetCompaniesCompanyIDReportsEnhancedCashFlowTransactions` - Get enhanced cash flow report
-* `GetCompaniesCompanyIDReportsEnhancedProfitAndLossAccounts` - Enhanced Profit and Loss Accounts
-* `GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsCustomerRetention` - Get the customer retention metrics for a specific company.
-* `GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsLifetimeValue` - Get the lifetime value metric for a specific company.
-* `GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsOrders` - Get order information for a specific company
-* `GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsRefunds` - Get the refunds information for a specific company
-* `GetDataCompaniesCompanyIDConnectionsConnectionIDAssessCommerceMetricsRevenue` - Commerce Revenue Metrics
-* `GetDataCompaniesCompanyIDConnectionsConnectionIDAssessEnhancedBalanceSheet` - Enhanced Balance Sheet
-* `GetDataCompaniesCompanyIDConnectionsConnectionIDAssessEnhancedProfitAndLoss` - Enhanced Profit and Loss
-* `GetDataCompaniesCompanyIDConnectionsConnectionIDAssessFinancialMetrics` - List finanicial metrics
-* `GetDataCompaniesCompanyIDConnectionsConnectionIDAssessSubscriptionsMrr` - Get key metrics for subscription revenue
-* `GetDataCompaniesCompanyIDConnectionsConnectionIDAssessSubscriptionsProcess` - Request production of key subscription revenue metrics
+* `GetAccountsForEnhancedBalanceSheet` - Enhanced Balance Sheet Accounts
+* `GetAccountsForEnhancedProfitAndLoss` - Enhanced Profit and Loss Accounts
+* `GetCommerceCustomerRetentionMetrics` - Get the customer retention metrics for a specific company.
+* `GetCommerceLifetimeValueMetrics` - Get the lifetime value metric for a specific company.
+* `GetCommerceOrdersMetrics` - Get order information for a specific company
+* `GetCommerceRefundsMetrics` - Get the refunds information for a specific company
+* `GetCommerceRevenueMetrics` - Commerce Revenue Metrics
+* `GetEnhancedBalanceSheet` - Enhanced Balance Sheet
+* `GetEnhancedCashFlowTransactions` - Get enhanced cash flow report
+* `GetEnhancedFinancialMetrics` - List finanicial metrics
+* `GetEnhancedProfitAndLoss` - Enhanced Profit and Loss
+* `GetRecurringRevenueMetrics` - Get key metrics for subscription revenue
+* `RequestRecurringRevenueMetrics` - Request production of key subscription revenue metrics
 <!-- End SDK Available Operations -->
 
 ### SDK Generated by [Speakeasy](https://docs.speakeasyapi.dev/docs/using-speakeasy/client-sdks)

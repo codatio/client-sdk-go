@@ -11,25 +11,29 @@ import (
 )
 
 func main() {
-    opts := []codatio.SDKOption{
-        codatio.WithSecurity(
-            shared.Security{
-                APIKey: shared.SchemeAPIKey{
-                    APIKey: "YOUR_API_KEY_HERE",
-                },
+    s := codatio.New(codatio.WithSecurity(
+        shared.Security{
+            AuthHeader: shared.SchemeAuthHeader{
+                APIKey: "YOUR_API_KEY_HERE",
             },
-        ),
+        },
+    ))
+    
+    req := operations.GetAccountCategoryRequest{
+        PathParams: operations.GetAccountCategoryPathParams{
+            AccountID: "unde",
+            CompanyID: "deserunt",
+            ConnectionID: "porro",
+        },
     }
 
-    s := codatio.New(opts...)
-
     ctx := context.Background()
-    res, err := s.Categories.GetDataAssessAccountsCategories(ctx)
+    res, err := s.Categories.GetAccountCategory(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.GetDataAssessAccountsCategoriesChartOfAccountCategoryAllOfs != nil {
+    if res.CategorisedAccount != nil {
         // handle response
     }
 }

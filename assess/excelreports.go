@@ -29,57 +29,9 @@ func newExcelReports(defaultClient, securityClient HTTPClient, serverURL, langua
 	}
 }
 
-// GetDataCompaniesCompanyIDAssessExcel - Request an Excel report for download
-// Returns the status of the latest report requested.
-func (s *excelReports) GetDataCompaniesCompanyIDAssessExcel(ctx context.Context, request operations.GetDataCompaniesCompanyIDAssessExcelRequest) (*operations.GetDataCompaniesCompanyIDAssessExcelResponse, error) {
-	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/assess/excel", request.PathParams)
-
-	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error creating request: %w", err)
-	}
-
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
-		return nil, fmt.Errorf("error populating query params: %w", err)
-	}
-
-	client := s.securityClient
-
-	httpRes, err := client.Do(req)
-	if err != nil {
-		return nil, fmt.Errorf("error sending request: %w", err)
-	}
-	if httpRes == nil {
-		return nil, fmt.Errorf("error sending request: no response")
-	}
-	defer httpRes.Body.Close()
-
-	contentType := httpRes.Header.Get("Content-Type")
-
-	res := &operations.GetDataCompaniesCompanyIDAssessExcelResponse{
-		StatusCode:  httpRes.StatusCode,
-		ContentType: contentType,
-	}
-	switch {
-	case httpRes.StatusCode == 200:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetDataCompaniesCompanyIDAssessExcel200ApplicationJSON
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
-				return nil, err
-			}
-
-			res.GetDataCompaniesCompanyIDAssessExcel200ApplicationJSONObject = out
-		}
-	}
-
-	return res, nil
-}
-
-// GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountingMetricsMarketing - Get the marketing metrics from an accounting source for a given company.
+// GetAccountingMarketingMetrics - Get the marketing metrics from an accounting source for a given company.
 // Request an Excel report for download.
-func (s *excelReports) GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountingMetricsMarketing(ctx context.Context, request operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountingMetricsMarketingRequest) (*operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountingMetricsMarketingResponse, error) {
+func (s *excelReports) GetAccountingMarketingMetrics(ctx context.Context, request operations.GetAccountingMarketingMetricsRequest) (*operations.GetAccountingMarketingMetricsResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/connections/{connectionId}/assess/accountingMetrics/marketing", request.PathParams)
 
@@ -105,77 +57,30 @@ func (s *excelReports) GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAcc
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountingMetricsMarketingResponse{
+	res := &operations.GetAccountingMarketingMetricsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountingMetricsMarketing200ApplicationJSON
+			var out *operations.GetAccountingMarketingMetrics200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.GetDataCompaniesCompanyIDConnectionsConnectionIDAssessAccountingMetricsMarketing200ApplicationJSONObject = out
+			res.GetAccountingMarketingMetrics200ApplicationJSONObject = out
 		}
 	}
 
 	return res, nil
 }
 
-// PostDataCompaniesCompanyIDAssessExcel - Request an Excel report for download
-// Request an Excel report for download.
-func (s *excelReports) PostDataCompaniesCompanyIDAssessExcel(ctx context.Context, request operations.PostDataCompaniesCompanyIDAssessExcelRequest) (*operations.PostDataCompaniesCompanyIDAssessExcelResponse, error) {
-	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/assess/excel", request.PathParams)
-
-	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error creating request: %w", err)
-	}
-
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
-		return nil, fmt.Errorf("error populating query params: %w", err)
-	}
-
-	client := s.securityClient
-
-	httpRes, err := client.Do(req)
-	if err != nil {
-		return nil, fmt.Errorf("error sending request: %w", err)
-	}
-	if httpRes == nil {
-		return nil, fmt.Errorf("error sending request: no response")
-	}
-	defer httpRes.Body.Close()
-
-	contentType := httpRes.Header.Get("Content-Type")
-
-	res := &operations.PostDataCompaniesCompanyIDAssessExcelResponse{
-		StatusCode:  httpRes.StatusCode,
-		ContentType: contentType,
-	}
-	switch {
-	case httpRes.StatusCode == 200:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.PostDataCompaniesCompanyIDAssessExcel200ApplicationJSON
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
-				return nil, err
-			}
-
-			res.PostDataCompaniesCompanyIDAssessExcel200ApplicationJSONObject = out
-		}
-	}
-
-	return res, nil
-}
-
-// PostDataCompaniesCompanyIDAssessExcelDownload - Download generated excel report
+// GetExcelReport - Download generated excel report
 // Download the Excel report to a local drive.
-func (s *excelReports) PostDataCompaniesCompanyIDAssessExcelDownload(ctx context.Context, request operations.PostDataCompaniesCompanyIDAssessExcelDownloadRequest) (*operations.PostDataCompaniesCompanyIDAssessExcelDownloadResponse, error) {
+func (s *excelReports) GetExcelReport(ctx context.Context, request operations.GetExcelReportRequest) (*operations.GetExcelReportResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/assess/excel/download", request.PathParams)
 
@@ -201,9 +106,10 @@ func (s *excelReports) PostDataCompaniesCompanyIDAssessExcelDownload(ctx context
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.PostDataCompaniesCompanyIDAssessExcelDownloadResponse{
+	res := &operations.GetExcelReportResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -215,6 +121,104 @@ func (s *excelReports) PostDataCompaniesCompanyIDAssessExcelDownload(ctx context
 			}
 
 			res.Body = out
+		}
+	}
+
+	return res, nil
+}
+
+// MakeRequestToDownloadExcelReport - Request an Excel report for download
+// Returns the status of the latest report requested.
+func (s *excelReports) MakeRequestToDownloadExcelReport(ctx context.Context, request operations.MakeRequestToDownloadExcelReportRequest) (*operations.MakeRequestToDownloadExcelReportResponse, error) {
+	baseURL := s.serverURL
+	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/assess/excel", request.PathParams)
+
+	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+
+	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
+
+	client := s.securityClient
+
+	httpRes, err := client.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
+	}
+	defer httpRes.Body.Close()
+
+	contentType := httpRes.Header.Get("Content-Type")
+
+	res := &operations.MakeRequestToDownloadExcelReportResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: contentType,
+		RawResponse: httpRes,
+	}
+	switch {
+	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *operations.MakeRequestToDownloadExcelReport200ApplicationJSON
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.MakeRequestToDownloadExcelReport200ApplicationJSONObject = out
+		}
+	}
+
+	return res, nil
+}
+
+// RequestExcelReportForDownload - Request an Excel report for download
+// Request an Excel report for download.
+func (s *excelReports) RequestExcelReportForDownload(ctx context.Context, request operations.RequestExcelReportForDownloadRequest) (*operations.RequestExcelReportForDownloadResponse, error) {
+	baseURL := s.serverURL
+	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/assess/excel", request.PathParams)
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+
+	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
+
+	client := s.securityClient
+
+	httpRes, err := client.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
+	}
+	defer httpRes.Body.Close()
+
+	contentType := httpRes.Header.Get("Content-Type")
+
+	res := &operations.RequestExcelReportForDownloadResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: contentType,
+		RawResponse: httpRes,
+	}
+	switch {
+	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *operations.RequestExcelReportForDownload200ApplicationJSON
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.RequestExcelReportForDownload200ApplicationJSONObject = out
 		}
 	}
 
