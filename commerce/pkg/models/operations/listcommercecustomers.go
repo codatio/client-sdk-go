@@ -1,6 +1,7 @@
 package operations
 
 import (
+	"net/http"
 	"time"
 )
 
@@ -45,13 +46,13 @@ type ListCommerceCustomersLinksLinks struct {
 }
 
 type ListCommerceCustomersLinksSourceModifiedDateAddress struct {
-	City       *string      `json:"city,omitempty"`
-	Country    *string      `json:"country,omitempty"`
-	Line1      *string      `json:"line1,omitempty"`
-	Line2      *string      `json:"line2,omitempty"`
-	PostalCode *string      `json:"postalCode,omitempty"`
-	Region     *string      `json:"region,omitempty"`
-	Type       *interface{} `json:"type,omitempty"`
+	City       *string     `json:"city,omitempty"`
+	Country    *string     `json:"country,omitempty"`
+	Line1      *string     `json:"line1,omitempty"`
+	Line2      *string     `json:"line2,omitempty"`
+	PostalCode *string     `json:"postalCode,omitempty"`
+	Region     *string     `json:"region,omitempty"`
+	Type       interface{} `json:"type,omitempty"`
 }
 
 // ListCommerceCustomersLinksSourceModifiedDate
@@ -60,7 +61,7 @@ type ListCommerceCustomersLinksSourceModifiedDate struct {
 	Addresses          []ListCommerceCustomersLinksSourceModifiedDateAddress `json:"addresses,omitempty"`
 	CreatedDate        *time.Time                                            `json:"createdDate,omitempty"`
 	CustomerName       *string                                               `json:"customerName,omitempty"`
-	DefaultCurrency    map[string]interface{}                                `json:"defaultCurrency,omitempty"`
+	DefaultCurrency    *string                                               `json:"defaultCurrency,omitempty"`
 	EmailAddress       *string                                               `json:"emailAddress,omitempty"`
 	ID                 string                                                `json:"id"`
 	ModifiedDate       *time.Time                                            `json:"modifiedDate,omitempty"`
@@ -82,5 +83,6 @@ type ListCommerceCustomersLinks struct {
 type ListCommerceCustomersResponse struct {
 	ContentType string
 	StatusCode  int
+	RawResponse *http.Response
 	Links       *ListCommerceCustomersLinks
 }

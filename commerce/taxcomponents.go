@@ -55,6 +55,7 @@ func (s *taxComponents) GetCompaniesCompanyIDConnectionsConnectionIDDataCommerce
 	res := &operations.GetCompaniesCompanyIDConnectionsConnectionIDDataCommerceTaxComponentsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

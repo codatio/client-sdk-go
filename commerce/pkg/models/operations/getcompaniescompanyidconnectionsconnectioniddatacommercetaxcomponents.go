@@ -1,6 +1,7 @@
 package operations
 
 import (
+	"net/http"
 	"time"
 )
 
@@ -29,5 +30,6 @@ type GetCompaniesCompanyIDConnectionsConnectionIDDataCommerceTaxComponents200App
 type GetCompaniesCompanyIDConnectionsConnectionIDDataCommerceTaxComponentsResponse struct {
 	ContentType                                                                                   string
 	StatusCode                                                                                    int
+	RawResponse                                                                                   *http.Response
 	GetCompaniesCompanyIDConnectionsConnectionIDDataCommerceTaxComponents200ApplicationJSONObject *GetCompaniesCompanyIDConnectionsConnectionIDDataCommerceTaxComponents200ApplicationJSON
 }

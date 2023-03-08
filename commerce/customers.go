@@ -59,6 +59,7 @@ func (s *customers) ListCommerceCustomers(ctx context.Context, request operation
 	res := &operations.ListCommerceCustomersResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

@@ -59,6 +59,7 @@ func (s *products) ListCommerceProductCategories(ctx context.Context, request op
 	res := &operations.ListCommerceProductCategoriesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -107,6 +108,7 @@ func (s *products) ListCommerceProducts(ctx context.Context, request operations.
 	res := &operations.ListCommerceProductsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

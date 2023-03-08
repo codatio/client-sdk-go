@@ -59,6 +59,7 @@ func (s *orders) ListCommerceOrders(ctx context.Context, request operations.List
 	res := &operations.ListCommerceOrdersResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

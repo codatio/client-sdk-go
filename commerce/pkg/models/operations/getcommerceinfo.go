@@ -1,6 +1,7 @@
 package operations
 
 import (
+	"net/http"
 	"time"
 )
 
@@ -21,13 +22,13 @@ type GetCommerceInfoSourceModifiedDateAccountBalances struct {
 }
 
 type GetCommerceInfoSourceModifiedDateAddress struct {
-	City       *string      `json:"city,omitempty"`
-	Country    *string      `json:"country,omitempty"`
-	Line1      *string      `json:"line1,omitempty"`
-	Line2      *string      `json:"line2,omitempty"`
-	PostalCode *string      `json:"postalCode,omitempty"`
-	Region     *string      `json:"region,omitempty"`
-	Type       *interface{} `json:"type,omitempty"`
+	City       *string     `json:"city,omitempty"`
+	Country    *string     `json:"country,omitempty"`
+	Line1      *string     `json:"line1,omitempty"`
+	Line2      *string     `json:"line2,omitempty"`
+	PostalCode *string     `json:"postalCode,omitempty"`
+	Region     *string     `json:"region,omitempty"`
+	Type       interface{} `json:"type,omitempty"`
 }
 
 type GetCommerceInfoSourceModifiedDatePhoneNumbersTypeEnum string
@@ -68,4 +69,5 @@ type GetCommerceInfoResponse struct {
 	ContentType        string
 	SourceModifiedDate *GetCommerceInfoSourceModifiedDate
 	StatusCode         int
+	RawResponse        *http.Response
 }

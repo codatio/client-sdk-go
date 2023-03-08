@@ -1,6 +1,7 @@
 package operations
 
 import (
+	"net/http"
 	"time"
 )
 
@@ -91,5 +92,6 @@ type ListCommerceDisputesLinks struct {
 type ListCommerceDisputesResponse struct {
 	ContentType string
 	StatusCode  int
+	RawResponse *http.Response
 	Links       *ListCommerceDisputesLinks
 }

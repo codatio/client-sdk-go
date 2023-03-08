@@ -57,6 +57,7 @@ func (s *companyInfo) GetCommerceInfo(ctx context.Context, request operations.Ge
 	res := &operations.GetCommerceInfoResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

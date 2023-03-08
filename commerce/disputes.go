@@ -59,6 +59,7 @@ func (s *disputes) ListCommerceDisputes(ctx context.Context, request operations.
 	res := &operations.ListCommerceDisputesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

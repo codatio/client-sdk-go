@@ -15,6 +15,16 @@ type HTTPClient interface {
 	Do(req *http.Request) (*http.Response, error)
 }
 
+// String provides a helper function to return a pointer to a string
+func String(s string) *string { return &s }
+
+// SDK Documentation: Codat's Commerce API allows you to access standardised data from over 11 commerce and POS systems.
+//
+// Standardize how you connect to your customers’ payment, PoS, and eCommerce systems. Retrieve orders, payouts, payments, and product data in the same way for all the leading commerce platforms.
+//
+// [Read more...](https://docs.codat.io/commerce-api/overview)
+//
+// [See our OpenAPI spec](https://github.com/codatio/oas)
 type Codatio struct {
 	CompanyInfo   *companyInfo
 	Customers     *customers
@@ -38,7 +48,13 @@ type Codatio struct {
 
 type SDKOption func(*Codatio)
 
-func WithServerURL(serverURL string, params map[string]string) SDKOption {
+func WithServerURL(serverURL string) SDKOption {
+	return func(sdk *Codatio) {
+		sdk._serverURL = serverURL
+	}
+}
+
+func WithTemplatedServerURL(serverURL string, params map[string]string) SDKOption {
 	return func(sdk *Codatio) {
 		if params != nil {
 			serverURL = utils.ReplaceParameters(serverURL, params)
@@ -63,8 +79,8 @@ func WithSecurity(security shared.Security) SDKOption {
 func New(opts ...SDKOption) *Codatio {
 	sdk := &Codatio{
 		_language:   "go",
-		_sdkVersion: "0.1.0",
-		_genVersion: "1.5.3",
+		_sdkVersion: "0.4.3",
+		_genVersion: "1.8.6",
 	}
 	for _, opt := range opts {
 		opt(sdk)
