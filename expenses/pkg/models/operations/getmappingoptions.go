@@ -1,6 +1,7 @@
 package operations
 
 import (
+	"net/http"
 	"time"
 )
 
@@ -83,5 +84,6 @@ type GetMappingOptions200ApplicationJSON struct {
 type GetMappingOptionsResponse struct {
 	ContentType                               string
 	StatusCode                                int
+	RawResponse                               *http.Response
 	GetMappingOptions200ApplicationJSONObject *GetMappingOptions200ApplicationJSON
 }

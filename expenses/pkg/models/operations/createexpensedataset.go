@@ -1,6 +1,7 @@
 package operations
 
 import (
+	"net/http"
 	"time"
 )
 
@@ -60,5 +61,6 @@ type CreateExpenseDataset200ApplicationJSON struct {
 type CreateExpenseDatasetResponse struct {
 	ContentType                                  string
 	StatusCode                                   int
+	RawResponse                                  *http.Response
 	CreateExpenseDataset200ApplicationJSONObject *CreateExpenseDataset200ApplicationJSON
 }

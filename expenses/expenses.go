@@ -62,6 +62,7 @@ func (s *expenses) CreateExpenseDataset(ctx context.Context, request operations.
 	res := &operations.CreateExpenseDatasetResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -79,7 +80,7 @@ func (s *expenses) CreateExpenseDataset(ctx context.Context, request operations.
 	return res, nil
 }
 
-// UploadAttachment - Upload Attachment
+// UploadAttachment - Upload attachment
 // Creates an attachment in the accounting software against the given transactionId
 func (s *expenses) UploadAttachment(ctx context.Context, request operations.UploadAttachmentRequest) (*operations.UploadAttachmentResponse, error) {
 	baseURL := s.serverURL
@@ -106,6 +107,7 @@ func (s *expenses) UploadAttachment(ctx context.Context, request operations.Uplo
 	res := &operations.UploadAttachmentResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

@@ -1,5 +1,9 @@
 package operations
 
+import (
+	"net/http"
+)
+
 type GetCompanyConfigurationPathParams struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
@@ -29,5 +33,6 @@ type GetCompanyConfiguration200ApplicationJSON struct {
 type GetCompanyConfigurationResponse struct {
 	ContentType                                     string
 	StatusCode                                      int
+	RawResponse                                     *http.Response
 	GetCompanyConfiguration200ApplicationJSONObject *GetCompanyConfiguration200ApplicationJSON
 }

@@ -1,4 +1,5 @@
 configuration.go
+connections.go
 expenses.go
 mappingoptions.go
 sync.go
@@ -19,6 +20,7 @@ pkg/utils/security.go
 pkg/utils/utils.go
 pkg/models/operations/getcompanyconfiguration.go
 pkg/models/operations/savecompanyconfiguration.go
+pkg/models/operations/createpartnerexpenseconnection.go
 pkg/models/operations/createexpensedataset.go
 pkg/models/operations/uploadattachment.go
 pkg/models/operations/getmappingoptions.go

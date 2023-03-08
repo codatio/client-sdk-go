@@ -11,17 +11,13 @@ import (
 )
 
 func main() {
-    opts := []codatio.SDKOption{
-        codatio.WithSecurity(
-            shared.Security{
-                Authorization: shared.SchemeAuthorization{
-                    APIKey: "YOUR_API_KEY_HERE",
-                },
+    s := codatio.New(codatio.WithSecurity(
+        shared.Security{
+            AuthHeader: shared.SchemeAuthHeader{
+                APIKey: "YOUR_API_KEY_HERE",
             },
-        ),
-    }
-
-    s := codatio.New(opts...)
+        },
+    ))
     
     req := operations.GetCompanyConfigurationRequest{
         PathParams: operations.GetCompanyConfigurationPathParams{

@@ -28,7 +28,7 @@ func newSync(defaultClient, securityClient HTTPClient, serverURL, language, sdkV
 	}
 }
 
-// IntiateSync - Initiate Sync
+// IntiateSync - Initiate sync
 // Initiate sync of pending transactions.
 func (s *sync) IntiateSync(ctx context.Context, request operations.IntiateSyncRequest) (*operations.IntiateSyncResponse, error) {
 	baseURL := s.serverURL
@@ -62,17 +62,48 @@ func (s *sync) IntiateSync(ctx context.Context, request operations.IntiateSyncRe
 	res := &operations.IntiateSyncResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
-	case httpRes.StatusCode == 200:
+	case httpRes.StatusCode == 202:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.IntiateSync200ApplicationJSON
+			var out *operations.IntiateSync202ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.IntiateSync200ApplicationJSONObject = out
+			res.IntiateSync202ApplicationJSONObject = out
+		}
+	case httpRes.StatusCode == 400:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *operations.IntiateSync400ApplicationJSON
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.IntiateSync400ApplicationJSONObject = out
+		}
+	case httpRes.StatusCode == 404:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *operations.IntiateSync404ApplicationJSON
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.IntiateSync404ApplicationJSONObject = out
+		}
+	case httpRes.StatusCode == 422:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *operations.IntiateSync422ApplicationJSON
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.IntiateSync422ApplicationJSONObject = out
 		}
 	}
 
