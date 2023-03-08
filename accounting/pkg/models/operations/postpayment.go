@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -67,6 +67,8 @@ type PostPaymentSourceModifiedDatePaymentMethodRef struct {
 	Name *string `json:"name,omitempty"`
 }
 
+// PostPaymentSourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type PostPaymentSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
@@ -772,15 +774,10 @@ type PostPaymentSourceModifiedDate struct {
 	TotalAmount        *float64                                       `json:"totalAmount,omitempty"`
 }
 
-type PostPaymentSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type PostPaymentRequest struct {
 	PathParams  PostPaymentPathParams
 	QueryParams PostPaymentQueryParams
 	Request     *PostPaymentSourceModifiedDate `request:"mediaType=application/json"`
-	Security    PostPaymentSecurity
 }
 
 type PostPayment200ApplicationJSONChangesPushOperationRecordRef struct {
@@ -857,6 +854,8 @@ type PostPayment200ApplicationJSONSourceModifiedDatePaymentMethodRef struct {
 	Name *string `json:"name,omitempty"`
 }
 
+// PostPayment200ApplicationJSONSourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type PostPayment200ApplicationJSONSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
@@ -1604,5 +1603,6 @@ type PostPayment200ApplicationJSON struct {
 type PostPaymentResponse struct {
 	ContentType                         string
 	StatusCode                          int
+	RawResponse                         *http.Response
 	PostPayment200ApplicationJSONObject *PostPayment200ApplicationJSON
 }

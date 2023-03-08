@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -103,6 +103,8 @@ type PostDirectCostSourceModifiedDatePaymentAllocations struct {
 	Payment    PostDirectCostSourceModifiedDatePaymentAllocationsPayment    `json:"payment"`
 }
 
+// PostDirectCostSourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type PostDirectCostSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
@@ -146,15 +148,10 @@ type PostDirectCostSourceModifiedDate struct {
 	TotalAmount        float64                                              `json:"totalAmount"`
 }
 
-type PostDirectCostSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type PostDirectCostRequest struct {
 	PathParams  PostDirectCostPathParams
 	QueryParams PostDirectCostQueryParams
 	Request     *PostDirectCostSourceModifiedDate `request:"mediaType=application/json"`
-	Security    PostDirectCostSecurity
 }
 
 type PostDirectCost200ApplicationJSONChangesPushOperationRecordRef struct {
@@ -267,6 +264,8 @@ type PostDirectCost200ApplicationJSONSourceModifiedDatePaymentAllocations struct
 	Payment    PostDirectCost200ApplicationJSONSourceModifiedDatePaymentAllocationsPayment    `json:"payment"`
 }
 
+// PostDirectCost200ApplicationJSONSourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type PostDirectCost200ApplicationJSONSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
@@ -352,5 +351,6 @@ type PostDirectCost200ApplicationJSON struct {
 type PostDirectCostResponse struct {
 	ContentType                            string
 	StatusCode                             int
+	RawResponse                            *http.Response
 	PostDirectCost200ApplicationJSONObject *PostDirectCost200ApplicationJSON
 }

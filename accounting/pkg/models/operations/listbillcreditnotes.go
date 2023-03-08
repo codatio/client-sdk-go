@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -16,14 +16,9 @@ type ListBillCreditNotesQueryParams struct {
 	Query    *string  `queryParam:"style=form,explode=true,name=query"`
 }
 
-type ListBillCreditNotesSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type ListBillCreditNotesRequest struct {
 	PathParams  ListBillCreditNotesPathParams
 	QueryParams ListBillCreditNotesQueryParams
-	Security    ListBillCreditNotesSecurity
 }
 
 type ListBillCreditNotesLinksLinksCurrent struct {
@@ -173,6 +168,8 @@ const (
 	ListBillCreditNotesLinksSourceModifiedDateStatusEnumPartiallyPaid ListBillCreditNotesLinksSourceModifiedDateStatusEnum = "PartiallyPaid"
 )
 
+// ListBillCreditNotesLinksSourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type ListBillCreditNotesLinksSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
@@ -244,5 +241,6 @@ type ListBillCreditNotesLinks struct {
 type ListBillCreditNotesResponse struct {
 	ContentType string
 	StatusCode  int
+	RawResponse *http.Response
 	Links       *ListBillCreditNotesLinks
 }

@@ -39,7 +39,7 @@ func (s *journals) GetJournal(ctx context.Context, request operations.GetJournal
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -55,6 +55,7 @@ func (s *journals) GetJournal(ctx context.Context, request operations.GetJournal
 	res := &operations.GetJournalResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -87,7 +88,7 @@ func (s *journals) ListJournals(ctx context.Context, request operations.ListJour
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -103,6 +104,7 @@ func (s *journals) ListJournals(ctx context.Context, request operations.ListJour
 	res := &operations.ListJournalsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -146,7 +148,7 @@ func (s *journals) PushJournal(ctx context.Context, request operations.PushJourn
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -162,6 +164,7 @@ func (s *journals) PushJournal(ctx context.Context, request operations.PushJourn
 	res := &operations.PushJournalResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

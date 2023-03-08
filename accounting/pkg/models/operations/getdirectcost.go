@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -11,13 +11,8 @@ type GetDirectCostPathParams struct {
 	DirectCostID string `pathParam:"style=simple,explode=false,name=directCostId"`
 }
 
-type GetDirectCostSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type GetDirectCostRequest struct {
 	PathParams GetDirectCostPathParams
-	Security   GetDirectCostSecurity
 }
 
 // GetDirectCostSourceModifiedDateContactRef
@@ -109,6 +104,8 @@ type GetDirectCostSourceModifiedDatePaymentAllocations struct {
 	Payment    GetDirectCostSourceModifiedDatePaymentAllocationsPayment    `json:"payment"`
 }
 
+// GetDirectCostSourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type GetDirectCostSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
@@ -156,4 +153,5 @@ type GetDirectCostResponse struct {
 	ContentType        string
 	SourceModifiedDate *GetDirectCostSourceModifiedDate
 	StatusCode         int
+	RawResponse        *http.Response
 }

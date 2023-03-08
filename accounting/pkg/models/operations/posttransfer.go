@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -36,6 +36,8 @@ type PostTransferSourceModifiedDateMetadata struct {
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
+// PostTransferSourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type PostTransferSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
@@ -70,14 +72,9 @@ type PostTransferSourceModifiedDate struct {
 	TrackingCategoryRefs []PostTransferSourceModifiedDateTrackingCategoryRefs `json:"trackingCategoryRefs,omitempty"`
 }
 
-type PostTransferSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type PostTransferRequest struct {
 	PathParams PostTransferPathParams
 	Request    *PostTransferSourceModifiedDate `request:"mediaType=application/json"`
-	Security   PostTransferSecurity
 }
 
 type PostTransfer200ApplicationJSONChangesPushOperationRecordRef struct {
@@ -127,6 +124,8 @@ type PostTransfer200ApplicationJSONSourceModifiedDateMetadata struct {
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
+// PostTransfer200ApplicationJSONSourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type PostTransfer200ApplicationJSONSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
@@ -203,5 +202,6 @@ type PostTransfer200ApplicationJSON struct {
 type PostTransferResponse struct {
 	ContentType                          string
 	StatusCode                           int
+	RawResponse                          *http.Response
 	PostTransfer200ApplicationJSONObject *PostTransfer200ApplicationJSON
 }

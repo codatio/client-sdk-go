@@ -39,7 +39,7 @@ func (s *taxRates) GetTaxRate(ctx context.Context, request operations.GetTaxRate
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -55,6 +55,7 @@ func (s *taxRates) GetTaxRate(ctx context.Context, request operations.GetTaxRate
 	res := &operations.GetTaxRateResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -87,7 +88,7 @@ func (s *taxRates) ListTaxRates(ctx context.Context, request operations.ListTaxR
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -103,6 +104,7 @@ func (s *taxRates) ListTaxRates(ctx context.Context, request operations.ListTaxR
 	res := &operations.ListTaxRatesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

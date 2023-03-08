@@ -43,7 +43,7 @@ func (s *bankAccounts) GetAllBankAccount(ctx context.Context, request operations
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -59,6 +59,7 @@ func (s *bankAccounts) GetAllBankAccount(ctx context.Context, request operations
 	res := &operations.GetAllBankAccountResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -87,7 +88,7 @@ func (s *bankAccounts) GetBankAccount(ctx context.Context, request operations.Ge
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -103,6 +104,7 @@ func (s *bankAccounts) GetBankAccount(ctx context.Context, request operations.Ge
 	res := &operations.GetBankAccountResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -135,7 +137,7 @@ func (s *bankAccounts) ListBankAccounts(ctx context.Context, request operations.
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -151,6 +153,7 @@ func (s *bankAccounts) ListBankAccounts(ctx context.Context, request operations.
 	res := &operations.ListBankAccountsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -194,7 +197,7 @@ func (s *bankAccounts) PostBankAccount(ctx context.Context, request operations.P
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -210,6 +213,7 @@ func (s *bankAccounts) PostBankAccount(ctx context.Context, request operations.P
 	res := &operations.PostBankAccountResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -253,7 +257,7 @@ func (s *bankAccounts) PutBankAccount(ctx context.Context, request operations.Pu
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -269,6 +273,7 @@ func (s *bankAccounts) PutBankAccount(ctx context.Context, request operations.Pu
 	res := &operations.PutBankAccountResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

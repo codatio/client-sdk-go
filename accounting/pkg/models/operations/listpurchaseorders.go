@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -16,14 +16,9 @@ type ListPurchaseOrdersQueryParams struct {
 	Query    *string  `queryParam:"style=form,explode=true,name=query"`
 }
 
-type ListPurchaseOrdersSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type ListPurchaseOrdersRequest struct {
 	PathParams  ListPurchaseOrdersPathParams
 	QueryParams ListPurchaseOrdersQueryParams
-	Security    ListPurchaseOrdersSecurity
 }
 
 type ListPurchaseOrdersLinksLinksCurrent struct {
@@ -191,5 +186,6 @@ type ListPurchaseOrdersLinks struct {
 type ListPurchaseOrdersResponse struct {
 	ContentType string
 	StatusCode  int
+	RawResponse *http.Response
 	Links       *ListPurchaseOrdersLinks
 }

@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 )
 
 type DownloadDirectCostAttachmentPathParams struct {
@@ -11,16 +11,12 @@ type DownloadDirectCostAttachmentPathParams struct {
 	DirectCostID string `pathParam:"style=simple,explode=false,name=directCostId"`
 }
 
-type DownloadDirectCostAttachmentSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type DownloadDirectCostAttachmentRequest struct {
 	PathParams DownloadDirectCostAttachmentPathParams
-	Security   DownloadDirectCostAttachmentSecurity
 }
 
 type DownloadDirectCostAttachmentResponse struct {
 	ContentType string
 	StatusCode  int
+	RawResponse *http.Response
 }

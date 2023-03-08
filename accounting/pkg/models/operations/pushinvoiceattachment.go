@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 )
 
 type PushInvoiceAttachmentPathParams struct {
@@ -10,16 +10,12 @@ type PushInvoiceAttachmentPathParams struct {
 	InvoiceID    string `pathParam:"style=simple,explode=false,name=invoiceId"`
 }
 
-type PushInvoiceAttachmentSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type PushInvoiceAttachmentRequest struct {
 	PathParams PushInvoiceAttachmentPathParams
-	Security   PushInvoiceAttachmentSecurity
 }
 
 type PushInvoiceAttachmentResponse struct {
 	ContentType string
 	StatusCode  int
+	RawResponse *http.Response
 }

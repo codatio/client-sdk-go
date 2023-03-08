@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -46,6 +46,8 @@ const (
 	PutSupplierSourceModifiedDateStatusEnumArchived PutSupplierSourceModifiedDateStatusEnum = "Archived"
 )
 
+// PutSupplierSourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type PutSupplierSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
@@ -73,15 +75,10 @@ type PutSupplierSourceModifiedDate struct {
 	TaxNumber          *string                                        `json:"taxNumber,omitempty"`
 }
 
-type PutSupplierSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type PutSupplierRequest struct {
 	PathParams  PutSupplierPathParams
 	QueryParams PutSupplierQueryParams
 	Request     *PutSupplierSourceModifiedDate `request:"mediaType=application/json"`
-	Security    PutSupplierSecurity
 }
 
 type PutSupplier200ApplicationJSONChangesPushOperationRecordRef struct {
@@ -135,6 +132,8 @@ const (
 	PutSupplier200ApplicationJSONSourceModifiedDateStatusEnumArchived PutSupplier200ApplicationJSONSourceModifiedDateStatusEnum = "Archived"
 )
 
+// PutSupplier200ApplicationJSONSourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type PutSupplier200ApplicationJSONSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
@@ -204,5 +203,6 @@ type PutSupplier200ApplicationJSON struct {
 type PutSupplierResponse struct {
 	ContentType                         string
 	StatusCode                          int
+	RawResponse                         *http.Response
 	PutSupplier200ApplicationJSONObject *PutSupplier200ApplicationJSON
 }

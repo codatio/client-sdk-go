@@ -39,7 +39,7 @@ func (s *customers) DownloadCustomerAttachment(ctx context.Context, request oper
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -55,6 +55,7 @@ func (s *customers) DownloadCustomerAttachment(ctx context.Context, request oper
 	res := &operations.DownloadCustomerAttachmentResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -74,7 +75,7 @@ func (s *customers) GetCustomer(ctx context.Context, request operations.GetCusto
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -90,6 +91,7 @@ func (s *customers) GetCustomer(ctx context.Context, request operations.GetCusto
 	res := &operations.GetCustomerResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -118,7 +120,7 @@ func (s *customers) GetCustomerAttachment(ctx context.Context, request operation
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -134,6 +136,7 @@ func (s *customers) GetCustomerAttachment(ctx context.Context, request operation
 	res := &operations.GetCustomerAttachmentResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -162,7 +165,7 @@ func (s *customers) GetCustomerAttachments(ctx context.Context, request operatio
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -178,6 +181,7 @@ func (s *customers) GetCustomerAttachments(ctx context.Context, request operatio
 	res := &operations.GetCustomerAttachmentsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -210,7 +214,7 @@ func (s *customers) GetCustomers(ctx context.Context, request operations.GetCust
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -226,6 +230,7 @@ func (s *customers) GetCustomers(ctx context.Context, request operations.GetCust
 	res := &operations.GetCustomersResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -269,7 +274,7 @@ func (s *customers) PostCustomer(ctx context.Context, request operations.PostCus
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -285,6 +290,7 @@ func (s *customers) PostCustomer(ctx context.Context, request operations.PostCus
 	res := &operations.PostCustomerResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -328,7 +334,7 @@ func (s *customers) UpdateCustomer(ctx context.Context, request operations.Updat
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -344,6 +350,7 @@ func (s *customers) UpdateCustomer(ctx context.Context, request operations.Updat
 	res := &operations.UpdateCustomerResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

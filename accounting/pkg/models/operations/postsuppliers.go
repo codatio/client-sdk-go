@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -44,6 +44,8 @@ const (
 	PostSuppliersSourceModifiedDateStatusEnumArchived PostSuppliersSourceModifiedDateStatusEnum = "Archived"
 )
 
+// PostSuppliersSourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type PostSuppliersSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
@@ -71,15 +73,10 @@ type PostSuppliersSourceModifiedDate struct {
 	TaxNumber          *string                                          `json:"taxNumber,omitempty"`
 }
 
-type PostSuppliersSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type PostSuppliersRequest struct {
 	PathParams  PostSuppliersPathParams
 	QueryParams PostSuppliersQueryParams
 	Request     *PostSuppliersSourceModifiedDate `request:"mediaType=application/json"`
-	Security    PostSuppliersSecurity
 }
 
 type PostSuppliers200ApplicationJSONChangesPushOperationRecordRef struct {
@@ -133,6 +130,8 @@ const (
 	PostSuppliers200ApplicationJSONSourceModifiedDateStatusEnumArchived PostSuppliers200ApplicationJSONSourceModifiedDateStatusEnum = "Archived"
 )
 
+// PostSuppliers200ApplicationJSONSourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type PostSuppliers200ApplicationJSONSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
@@ -202,5 +201,6 @@ type PostSuppliers200ApplicationJSON struct {
 type PostSuppliersResponse struct {
 	ContentType                           string
 	StatusCode                            int
+	RawResponse                           *http.Response
 	PostSuppliers200ApplicationJSONObject *PostSuppliers200ApplicationJSON
 }

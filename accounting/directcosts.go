@@ -39,7 +39,7 @@ func (s *directCosts) DownloadDirectCostAttachment(ctx context.Context, request 
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -55,6 +55,7 @@ func (s *directCosts) DownloadDirectCostAttachment(ctx context.Context, request 
 	res := &operations.DownloadDirectCostAttachmentResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -63,7 +64,7 @@ func (s *directCosts) DownloadDirectCostAttachment(ctx context.Context, request 
 	return res, nil
 }
 
-// GetDirectCost - Get directCost
+// GetDirectCost - Get direct cost
 // Gets the specified direct cost for a given company.
 func (s *directCosts) GetDirectCost(ctx context.Context, request operations.GetDirectCostRequest) (*operations.GetDirectCostResponse, error) {
 	baseURL := s.serverURL
@@ -74,7 +75,7 @@ func (s *directCosts) GetDirectCost(ctx context.Context, request operations.GetD
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -90,6 +91,7 @@ func (s *directCosts) GetDirectCost(ctx context.Context, request operations.GetD
 	res := &operations.GetDirectCostResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -107,7 +109,7 @@ func (s *directCosts) GetDirectCost(ctx context.Context, request operations.GetD
 	return res, nil
 }
 
-// GetDirectCostAttachment - Get directCost attachment
+// GetDirectCostAttachment - Get direct cost attachment
 // Gets the specified direct cost attachment for a given company.
 func (s *directCosts) GetDirectCostAttachment(ctx context.Context, request operations.GetDirectCostAttachmentRequest) (*operations.GetDirectCostAttachmentResponse, error) {
 	baseURL := s.serverURL
@@ -118,7 +120,7 @@ func (s *directCosts) GetDirectCostAttachment(ctx context.Context, request opera
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -134,6 +136,7 @@ func (s *directCosts) GetDirectCostAttachment(ctx context.Context, request opera
 	res := &operations.GetDirectCostAttachmentResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -151,7 +154,7 @@ func (s *directCosts) GetDirectCostAttachment(ctx context.Context, request opera
 	return res, nil
 }
 
-// GetDirectCosts - List directCosts
+// GetDirectCosts - List direct costs
 // Gets the direct costs for the company.
 func (s *directCosts) GetDirectCosts(ctx context.Context, request operations.GetDirectCostsRequest) (*operations.GetDirectCostsResponse, error) {
 	baseURL := s.serverURL
@@ -166,7 +169,7 @@ func (s *directCosts) GetDirectCosts(ctx context.Context, request operations.Get
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -182,6 +185,7 @@ func (s *directCosts) GetDirectCosts(ctx context.Context, request operations.Get
 	res := &operations.GetDirectCostsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -210,7 +214,7 @@ func (s *directCosts) ListDirectCostAttachments(ctx context.Context, request ope
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -226,6 +230,7 @@ func (s *directCosts) ListDirectCostAttachments(ctx context.Context, request ope
 	res := &operations.ListDirectCostAttachmentsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -269,7 +274,7 @@ func (s *directCosts) PostDirectCost(ctx context.Context, request operations.Pos
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -285,6 +290,7 @@ func (s *directCosts) PostDirectCost(ctx context.Context, request operations.Pos
 	res := &operations.PostDirectCostResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -313,7 +319,7 @@ func (s *directCosts) PostDirectCostAttachment(ctx context.Context, request oper
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -329,6 +335,7 @@ func (s *directCosts) PostDirectCostAttachment(ctx context.Context, request oper
 	res := &operations.PostDirectCostAttachmentResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

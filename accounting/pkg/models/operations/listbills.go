@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -16,14 +16,9 @@ type ListBillsQueryParams struct {
 	Query    *string  `queryParam:"style=form,explode=true,name=query"`
 }
 
-type ListBillsSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type ListBillsRequest struct {
 	PathParams  ListBillsPathParams
 	QueryParams ListBillsQueryParams
-	Security    ListBillsSecurity
 }
 
 type ListBillsLinksLinksCurrent struct {
@@ -179,6 +174,8 @@ const (
 	ListBillsLinksSourceModifiedDateStatusEnumDraft         ListBillsLinksSourceModifiedDateStatusEnum = "Draft"
 )
 
+// ListBillsLinksSourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type ListBillsLinksSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
@@ -250,5 +247,6 @@ type ListBillsLinks struct {
 type ListBillsResponse struct {
 	ContentType string
 	StatusCode  int
+	RawResponse *http.Response
 	Links       *ListBillsLinks
 }

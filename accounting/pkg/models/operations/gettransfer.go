@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -11,13 +11,8 @@ type GetTransferPathParams struct {
 	TransferID   string `pathParam:"style=simple,explode=false,name=transferId"`
 }
 
-type GetTransferSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type GetTransferRequest struct {
 	PathParams GetTransferPathParams
-	Security   GetTransferSecurity
 }
 
 // GetTransferSourceModifiedDateContactRef
@@ -46,6 +41,8 @@ type GetTransferSourceModifiedDateMetadata struct {
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
+// GetTransferSourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type GetTransferSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
@@ -84,4 +81,5 @@ type GetTransferResponse struct {
 	ContentType        string
 	SourceModifiedDate *GetTransferSourceModifiedDate
 	StatusCode         int
+	RawResponse        *http.Response
 }

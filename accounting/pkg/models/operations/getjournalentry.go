@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -10,13 +10,8 @@ type GetJournalEntryPathParams struct {
 	JournalEntryID string `pathParam:"style=simple,explode=false,name=journalEntryId"`
 }
 
-type GetJournalEntrySecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type GetJournalEntryRequest struct {
 	PathParams GetJournalEntryPathParams
-	Security   GetJournalEntrySecurity
 }
 
 // GetJournalEntrySourceModifiedDateJournalLinesAccountRef
@@ -65,6 +60,8 @@ type GetJournalEntrySourceModifiedDateRecordRef struct {
 	ID       *string `json:"id,omitempty"`
 }
 
+// GetJournalEntrySourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type GetJournalEntrySourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
@@ -111,4 +108,5 @@ type GetJournalEntryResponse struct {
 	ContentType        string
 	SourceModifiedDate *GetJournalEntrySourceModifiedDate
 	StatusCode         int
+	RawResponse        *http.Response
 }

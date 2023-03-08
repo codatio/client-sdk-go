@@ -39,7 +39,7 @@ func (s *transfers) GetTransfer(ctx context.Context, request operations.GetTrans
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -55,6 +55,7 @@ func (s *transfers) GetTransfer(ctx context.Context, request operations.GetTrans
 	res := &operations.GetTransferResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -87,7 +88,7 @@ func (s *transfers) ListTransfers(ctx context.Context, request operations.ListTr
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -103,6 +104,7 @@ func (s *transfers) ListTransfers(ctx context.Context, request operations.ListTr
 	res := &operations.ListTransfersResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -142,7 +144,7 @@ func (s *transfers) PostTransfer(ctx context.Context, request operations.PostTra
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -158,6 +160,7 @@ func (s *transfers) PostTransfer(ctx context.Context, request operations.PostTra
 	res := &operations.PostTransferResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

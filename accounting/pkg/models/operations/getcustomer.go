@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -10,13 +10,8 @@ type GetCustomerPathParams struct {
 	CustomerID string `pathParam:"style=simple,explode=false,name=customerId"`
 }
 
-type GetCustomerSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type GetCustomerRequest struct {
 	PathParams GetCustomerPathParams
-	Security   GetCustomerSecurity
 }
 
 type GetCustomerSourceModifiedDateAddressesTypeEnum string
@@ -101,6 +96,8 @@ const (
 	GetCustomerSourceModifiedDateStatusEnumArchived GetCustomerSourceModifiedDateStatusEnum = "Archived"
 )
 
+// GetCustomerSourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type GetCustomerSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
@@ -135,4 +132,5 @@ type GetCustomerResponse struct {
 	ContentType        string
 	SourceModifiedDate *GetCustomerSourceModifiedDate
 	StatusCode         int
+	RawResponse        *http.Response
 }

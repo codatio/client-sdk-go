@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -16,14 +16,9 @@ type ListJournalEntriesQueryParams struct {
 	Query    *string  `queryParam:"style=form,explode=true,name=query"`
 }
 
-type ListJournalEntriesSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type ListJournalEntriesRequest struct {
 	PathParams  ListJournalEntriesPathParams
 	QueryParams ListJournalEntriesQueryParams
-	Security    ListJournalEntriesSecurity
 }
 
 type ListJournalEntriesLinksLinksCurrent struct {
@@ -95,6 +90,8 @@ type ListJournalEntriesLinksSourceModifiedDateRecordRef struct {
 	ID       *string `json:"id,omitempty"`
 }
 
+// ListJournalEntriesLinksSourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type ListJournalEntriesLinksSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
@@ -150,5 +147,6 @@ type ListJournalEntriesLinks struct {
 type ListJournalEntriesResponse struct {
 	ContentType string
 	StatusCode  int
+	RawResponse *http.Response
 	Links       *ListJournalEntriesLinks
 }

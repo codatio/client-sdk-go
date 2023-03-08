@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -10,13 +10,8 @@ type GetBillCreditNotePathParams struct {
 	CompanyID        string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
-type GetBillCreditNoteSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type GetBillCreditNoteRequest struct {
 	PathParams GetBillCreditNotePathParams
-	Security   GetBillCreditNoteSecurity
 }
 
 // GetBillCreditNoteSourceModifiedDateLineItemsAccountRef
@@ -143,6 +138,8 @@ const (
 	GetBillCreditNoteSourceModifiedDateStatusEnumPartiallyPaid GetBillCreditNoteSourceModifiedDateStatusEnum = "PartiallyPaid"
 )
 
+// GetBillCreditNoteSourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type GetBillCreditNoteSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
@@ -205,4 +202,5 @@ type GetBillCreditNoteResponse struct {
 	ContentType        string
 	SourceModifiedDate *GetBillCreditNoteSourceModifiedDate
 	StatusCode         int
+	RawResponse        *http.Response
 }

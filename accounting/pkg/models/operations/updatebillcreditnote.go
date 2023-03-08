@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -140,6 +140,8 @@ const (
 	UpdateBillCreditNoteSourceModifiedDateStatusEnumPartiallyPaid UpdateBillCreditNoteSourceModifiedDateStatusEnum = "PartiallyPaid"
 )
 
+// UpdateBillCreditNoteSourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type UpdateBillCreditNoteSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
@@ -198,15 +200,10 @@ type UpdateBillCreditNoteSourceModifiedDate struct {
 	WithholdingTax       []UpdateBillCreditNoteSourceModifiedDateWithholdingTax     `json:"withholdingTax,omitempty"`
 }
 
-type UpdateBillCreditNoteSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type UpdateBillCreditNoteRequest struct {
 	PathParams  UpdateBillCreditNotePathParams
 	QueryParams UpdateBillCreditNoteQueryParams
 	Request     *UpdateBillCreditNoteSourceModifiedDate `request:"mediaType=application/json"`
-	Security    UpdateBillCreditNoteSecurity
 }
 
 type UpdateBillCreditNote200ApplicationJSONChangesPushOperationRecordRef struct {
@@ -354,6 +351,8 @@ const (
 	UpdateBillCreditNote200ApplicationJSONSourceModifiedDateStatusEnumPartiallyPaid UpdateBillCreditNote200ApplicationJSONSourceModifiedDateStatusEnum = "PartiallyPaid"
 )
 
+// UpdateBillCreditNote200ApplicationJSONSourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type UpdateBillCreditNote200ApplicationJSONSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
@@ -454,5 +453,6 @@ type UpdateBillCreditNote200ApplicationJSON struct {
 type UpdateBillCreditNoteResponse struct {
 	ContentType                                  string
 	StatusCode                                   int
+	RawResponse                                  *http.Response
 	UpdateBillCreditNote200ApplicationJSONObject *UpdateBillCreditNote200ApplicationJSON
 }

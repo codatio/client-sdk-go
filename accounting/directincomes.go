@@ -28,7 +28,7 @@ func newDirectIncomes(defaultClient, securityClient HTTPClient, serverURL, langu
 	}
 }
 
-// DownloadDirectIncomeAttachment - Download directIncome attachment
+// DownloadDirectIncomeAttachment - Download direct income attachment
 // Downloads an attachment for the specified direct income for a given company.
 func (s *directIncomes) DownloadDirectIncomeAttachment(ctx context.Context, request operations.DownloadDirectIncomeAttachmentRequest) (*operations.DownloadDirectIncomeAttachmentResponse, error) {
 	baseURL := s.serverURL
@@ -39,7 +39,7 @@ func (s *directIncomes) DownloadDirectIncomeAttachment(ctx context.Context, requ
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -55,6 +55,7 @@ func (s *directIncomes) DownloadDirectIncomeAttachment(ctx context.Context, requ
 	res := &operations.DownloadDirectIncomeAttachmentResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -74,7 +75,7 @@ func (s *directIncomes) GetDirectIncome(ctx context.Context, request operations.
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -90,6 +91,7 @@ func (s *directIncomes) GetDirectIncome(ctx context.Context, request operations.
 	res := &operations.GetDirectIncomeResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -122,7 +124,7 @@ func (s *directIncomes) GetDirectIncomeAttachment(ctx context.Context, request o
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -138,6 +140,7 @@ func (s *directIncomes) GetDirectIncomeAttachment(ctx context.Context, request o
 	res := &operations.GetDirectIncomeAttachmentResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -170,7 +173,7 @@ func (s *directIncomes) GetDirectIncomes(ctx context.Context, request operations
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -186,6 +189,7 @@ func (s *directIncomes) GetDirectIncomes(ctx context.Context, request operations
 	res := &operations.GetDirectIncomesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -214,7 +218,7 @@ func (s *directIncomes) ListDirectIncomeAttachments(ctx context.Context, request
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -230,6 +234,7 @@ func (s *directIncomes) ListDirectIncomeAttachments(ctx context.Context, request
 	res := &operations.ListDirectIncomeAttachmentsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -273,7 +278,7 @@ func (s *directIncomes) PostDirectIncome(ctx context.Context, request operations
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -289,6 +294,7 @@ func (s *directIncomes) PostDirectIncome(ctx context.Context, request operations
 	res := &operations.PostDirectIncomeResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -317,7 +323,7 @@ func (s *directIncomes) PostDirectIncomeAttachment(ctx context.Context, request 
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -333,6 +339,7 @@ func (s *directIncomes) PostDirectIncomeAttachment(ctx context.Context, request 
 	res := &operations.PostDirectIncomeAttachmentResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

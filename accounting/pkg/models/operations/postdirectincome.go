@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -97,6 +97,8 @@ type PostDirectIncomeSourceModifiedDatePaymentAllocations struct {
 	Payment    PostDirectIncomeSourceModifiedDatePaymentAllocationsPayment    `json:"payment"`
 }
 
+// PostDirectIncomeSourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type PostDirectIncomeSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
@@ -140,15 +142,10 @@ type PostDirectIncomeSourceModifiedDate struct {
 	TotalAmount        float64                                                `json:"totalAmount"`
 }
 
-type PostDirectIncomeSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type PostDirectIncomeRequest struct {
 	PathParams  PostDirectIncomePathParams
 	QueryParams PostDirectIncomeQueryParams
 	Request     *PostDirectIncomeSourceModifiedDate `request:"mediaType=application/json"`
-	Security    PostDirectIncomeSecurity
 }
 
 type PostDirectIncome200ApplicationJSONChangesPushOperationRecordRef struct {
@@ -255,6 +252,8 @@ type PostDirectIncome200ApplicationJSONSourceModifiedDatePaymentAllocations stru
 	Payment    PostDirectIncome200ApplicationJSONSourceModifiedDatePaymentAllocationsPayment    `json:"payment"`
 }
 
+// PostDirectIncome200ApplicationJSONSourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type PostDirectIncome200ApplicationJSONSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
@@ -340,5 +339,6 @@ type PostDirectIncome200ApplicationJSON struct {
 type PostDirectIncomeResponse struct {
 	ContentType                              string
 	StatusCode                               int
+	RawResponse                              *http.Response
 	PostDirectIncome200ApplicationJSONObject *PostDirectIncome200ApplicationJSON
 }

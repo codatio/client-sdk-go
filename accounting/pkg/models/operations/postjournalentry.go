@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -60,6 +60,8 @@ type PostJournalEntrySourceModifiedDateRecordRef struct {
 	ID       *string `json:"id,omitempty"`
 }
 
+// PostJournalEntrySourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type PostJournalEntrySourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
@@ -102,15 +104,10 @@ type PostJournalEntrySourceModifiedDate struct {
 	UpdatedOn          *time.Time                                          `json:"updatedOn,omitempty"`
 }
 
-type PostJournalEntrySecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type PostJournalEntryRequest struct {
 	PathParams  PostJournalEntryPathParams
 	QueryParams PostJournalEntryQueryParams
 	Request     *PostJournalEntrySourceModifiedDate `request:"mediaType=application/json"`
-	Security    PostJournalEntrySecurity
 }
 
 type PostJournalEntry200ApplicationJSONChangesPushOperationRecordRef struct {
@@ -180,6 +177,8 @@ type PostJournalEntry200ApplicationJSONSourceModifiedDateRecordRef struct {
 	ID       *string `json:"id,omitempty"`
 }
 
+// PostJournalEntry200ApplicationJSONSourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type PostJournalEntry200ApplicationJSONSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
@@ -264,5 +263,6 @@ type PostJournalEntry200ApplicationJSON struct {
 type PostJournalEntryResponse struct {
 	ContentType                              string
 	StatusCode                               int
+	RawResponse                              *http.Response
 	PostJournalEntry200ApplicationJSONObject *PostJournalEntry200ApplicationJSON
 }

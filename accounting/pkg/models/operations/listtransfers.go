@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -17,14 +17,9 @@ type ListTransfersQueryParams struct {
 	Query    *string  `queryParam:"style=form,explode=true,name=query"`
 }
 
-type ListTransfersSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type ListTransfersRequest struct {
 	PathParams  ListTransfersPathParams
 	QueryParams ListTransfersQueryParams
-	Security    ListTransfersSecurity
 }
 
 type ListTransfersLinksLinksCurrent struct {
@@ -76,6 +71,8 @@ type ListTransfersLinksSourceModifiedDateMetadata struct {
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
+// ListTransfersLinksSourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type ListTransfersLinksSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
@@ -123,5 +120,6 @@ type ListTransfersLinks struct {
 type ListTransfersResponse struct {
 	ContentType string
 	StatusCode  int
+	RawResponse *http.Response
 	Links       *ListTransfersLinks
 }

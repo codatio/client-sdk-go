@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -98,6 +98,8 @@ const (
 	UpdateCustomerSourceModifiedDateStatusEnumArchived UpdateCustomerSourceModifiedDateStatusEnum = "Archived"
 )
 
+// UpdateCustomerSourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type UpdateCustomerSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
@@ -128,15 +130,10 @@ type UpdateCustomerSourceModifiedDate struct {
 	TaxNumber          *string                                           `json:"taxNumber,omitempty"`
 }
 
-type UpdateCustomerSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type UpdateCustomerRequest struct {
 	PathParams  UpdateCustomerPathParams
 	QueryParams UpdateCustomerQueryParams
 	Request     *UpdateCustomerSourceModifiedDate `request:"mediaType=application/json"`
-	Security    UpdateCustomerSecurity
 }
 
 type UpdateCustomer200ApplicationJSONChangesPushOperationRecordRef struct {
@@ -242,6 +239,8 @@ const (
 	UpdateCustomer200ApplicationJSONSourceModifiedDateStatusEnumArchived UpdateCustomer200ApplicationJSONSourceModifiedDateStatusEnum = "Archived"
 )
 
+// UpdateCustomer200ApplicationJSONSourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type UpdateCustomer200ApplicationJSONSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
@@ -314,5 +313,6 @@ type UpdateCustomer200ApplicationJSON struct {
 type UpdateCustomerResponse struct {
 	ContentType                            string
 	StatusCode                             int
+	RawResponse                            *http.Response
 	UpdateCustomer200ApplicationJSONObject *UpdateCustomer200ApplicationJSON
 }

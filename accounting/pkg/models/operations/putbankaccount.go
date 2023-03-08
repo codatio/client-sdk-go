@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -63,15 +63,10 @@ type PutBankAccountSourceModifiedDate struct {
 	SourceModifiedDate *time.Time                                       `json:"sourceModifiedDate,omitempty"`
 }
 
-type PutBankAccountSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type PutBankAccountRequest struct {
 	PathParams  PutBankAccountPathParams
 	QueryParams PutBankAccountQueryParams
 	Request     *PutBankAccountSourceModifiedDate `request:"mediaType=application/json"`
-	Security    PutBankAccountSecurity
 }
 
 type PutBankAccount200ApplicationJSONChangesPushOperationRecordRef struct {
@@ -184,5 +179,6 @@ type PutBankAccount200ApplicationJSON struct {
 type PutBankAccountResponse struct {
 	ContentType                            string
 	StatusCode                             int
+	RawResponse                            *http.Response
 	PutBankAccount200ApplicationJSONObject *PutBankAccount200ApplicationJSON
 }

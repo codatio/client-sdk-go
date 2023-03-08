@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -146,6 +146,8 @@ const (
 	UpdateBillSourceModifiedDateStatusEnumDraft         UpdateBillSourceModifiedDateStatusEnum = "Draft"
 )
 
+// UpdateBillSourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type UpdateBillSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
@@ -204,15 +206,10 @@ type UpdateBillSourceModifiedDate struct {
 	WithholdingTax     []UpdateBillSourceModifiedDateWithholdingTax     `json:"withholdingTax,omitempty"`
 }
 
-type UpdateBillSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type UpdateBillRequest struct {
 	PathParams  UpdateBillPathParams
 	QueryParams UpdateBillQueryParams
 	Request     *UpdateBillSourceModifiedDate `request:"mediaType=application/json"`
-	Security    UpdateBillSecurity
 }
 
 type UpdateBill200ApplicationJSONChangesPushOperationRecordRef struct {
@@ -366,6 +363,8 @@ const (
 	UpdateBill200ApplicationJSONSourceModifiedDateStatusEnumDraft         UpdateBill200ApplicationJSONSourceModifiedDateStatusEnum = "Draft"
 )
 
+// UpdateBill200ApplicationJSONSourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type UpdateBill200ApplicationJSONSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
@@ -466,5 +465,6 @@ type UpdateBill200ApplicationJSON struct {
 type UpdateBillResponse struct {
 	ContentType                        string
 	StatusCode                         int
+	RawResponse                        *http.Response
 	UpdateBill200ApplicationJSONObject *UpdateBill200ApplicationJSON
 }

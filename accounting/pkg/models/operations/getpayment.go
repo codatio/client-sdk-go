@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -10,13 +10,8 @@ type GetPaymentPathParams struct {
 	PaymentID string `pathParam:"style=simple,explode=false,name=paymentId"`
 }
 
-type GetPaymentSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type GetPaymentRequest struct {
 	PathParams GetPaymentPathParams
-	Security   GetPaymentSecurity
 }
 
 // GetPaymentSourceModifiedDateAccountRef
@@ -72,6 +67,8 @@ type GetPaymentSourceModifiedDatePaymentMethodRef struct {
 	Name *string `json:"name,omitempty"`
 }
 
+// GetPaymentSourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type GetPaymentSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
@@ -781,4 +778,5 @@ type GetPaymentResponse struct {
 	ContentType        string
 	SourceModifiedDate *GetPaymentSourceModifiedDate
 	StatusCode         int
+	RawResponse        *http.Response
 }

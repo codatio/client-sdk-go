@@ -39,7 +39,7 @@ func (s *invoices) DonwloadInvoiceAttachment(ctx context.Context, request operat
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -55,6 +55,7 @@ func (s *invoices) DonwloadInvoiceAttachment(ctx context.Context, request operat
 	res := &operations.DonwloadInvoiceAttachmentResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -74,7 +75,7 @@ func (s *invoices) GetInvoice(ctx context.Context, request operations.GetInvoice
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -90,6 +91,7 @@ func (s *invoices) GetInvoice(ctx context.Context, request operations.GetInvoice
 	res := &operations.GetInvoiceResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -118,7 +120,7 @@ func (s *invoices) GetInvoiceAttachment(ctx context.Context, request operations.
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -134,6 +136,7 @@ func (s *invoices) GetInvoiceAttachment(ctx context.Context, request operations.
 	res := &operations.GetInvoiceAttachmentResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -162,7 +165,7 @@ func (s *invoices) GetInvoiceAttachments(ctx context.Context, request operations
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -178,6 +181,7 @@ func (s *invoices) GetInvoiceAttachments(ctx context.Context, request operations
 	res := &operations.GetInvoiceAttachmentsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -206,7 +210,7 @@ func (s *invoices) GetInvoicePdf(ctx context.Context, request operations.GetInvo
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -222,6 +226,7 @@ func (s *invoices) GetInvoicePdf(ctx context.Context, request operations.GetInvo
 	res := &operations.GetInvoicePdfResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -245,7 +250,7 @@ func (s *invoices) ListInvoices(ctx context.Context, request operations.ListInvo
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -261,6 +266,7 @@ func (s *invoices) ListInvoices(ctx context.Context, request operations.ListInvo
 	res := &operations.ListInvoicesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -304,7 +310,7 @@ func (s *invoices) PostInvoice(ctx context.Context, request operations.PostInvoi
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -320,6 +326,7 @@ func (s *invoices) PostInvoice(ctx context.Context, request operations.PostInvoi
 	res := &operations.PostInvoiceResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -348,7 +355,7 @@ func (s *invoices) PushInvoiceAttachment(ctx context.Context, request operations
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -364,6 +371,7 @@ func (s *invoices) PushInvoiceAttachment(ctx context.Context, request operations
 	res := &operations.PushInvoiceAttachmentResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -398,7 +406,7 @@ func (s *invoices) UpdateInvoice(ctx context.Context, request operations.UpdateI
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -414,6 +422,7 @@ func (s *invoices) UpdateInvoice(ctx context.Context, request operations.UpdateI
 	res := &operations.UpdateInvoiceResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -144,6 +144,8 @@ const (
 	PushCreditNoteSourceModifiedDateStatusEnumPartiallyPaid PushCreditNoteSourceModifiedDateStatusEnum = "PartiallyPaid"
 )
 
+// PushCreditNoteSourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type PushCreditNoteSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
@@ -193,15 +195,10 @@ type PushCreditNoteSourceModifiedDate struct {
 	WithholdingTax          []PushCreditNoteSourceModifiedDateWithholdingTax     `json:"withholdingTax,omitempty"`
 }
 
-type PushCreditNoteSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type PushCreditNoteRequest struct {
 	PathParams  PushCreditNotePathParams
 	QueryParams PushCreditNoteQueryParams
 	Request     *PushCreditNoteSourceModifiedDate `request:"mediaType=application/json"`
-	Security    PushCreditNoteSecurity
 }
 
 type PushCreditNote200ApplicationJSONChangesPushOperationRecordRef struct {
@@ -355,6 +352,8 @@ const (
 	PushCreditNote200ApplicationJSONSourceModifiedDateStatusEnumPartiallyPaid PushCreditNote200ApplicationJSONSourceModifiedDateStatusEnum = "PartiallyPaid"
 )
 
+// PushCreditNote200ApplicationJSONSourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type PushCreditNote200ApplicationJSONSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
@@ -446,5 +445,6 @@ type PushCreditNote200ApplicationJSON struct {
 type PushCreditNoteResponse struct {
 	ContentType                            string
 	StatusCode                             int
+	RawResponse                            *http.Response
 	PushCreditNote200ApplicationJSONObject *PushCreditNote200ApplicationJSON
 }

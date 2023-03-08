@@ -39,7 +39,7 @@ func (s *info) GetCompanyInfo(ctx context.Context, request operations.GetCompany
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -55,6 +55,7 @@ func (s *info) GetCompanyInfo(ctx context.Context, request operations.GetCompany
 	res := &operations.GetCompanyInfoResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -83,7 +84,7 @@ func (s *info) PostSyncInfo(ctx context.Context, request operations.PostSyncInfo
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.defaultClient, request.Security)
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -99,6 +100,7 @@ func (s *info) PostSyncInfo(ctx context.Context, request operations.PostSyncInfo
 	res := &operations.PostSyncInfoResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

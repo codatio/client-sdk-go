@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -17,14 +17,9 @@ type GetDirectCostsQueryParams struct {
 	Query    *string  `queryParam:"style=form,explode=true,name=query"`
 }
 
-type GetDirectCostsSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type GetDirectCostsRequest struct {
 	PathParams  GetDirectCostsPathParams
 	QueryParams GetDirectCostsQueryParams
-	Security    GetDirectCostsSecurity
 }
 
 type GetDirectCostsLinksLinksCurrent struct {
@@ -139,6 +134,8 @@ type GetDirectCostsLinksSourceModifiedDatePaymentAllocations struct {
 	Payment    GetDirectCostsLinksSourceModifiedDatePaymentAllocationsPayment    `json:"payment"`
 }
 
+// GetDirectCostsLinksSourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type GetDirectCostsLinksSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
@@ -195,5 +192,6 @@ type GetDirectCostsLinks struct {
 type GetDirectCostsResponse struct {
 	ContentType string
 	StatusCode  int
+	RawResponse *http.Response
 	Links       *GetDirectCostsLinks
 }

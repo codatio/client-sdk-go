@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -96,6 +96,8 @@ const (
 	PostCustomerSourceModifiedDateStatusEnumArchived PostCustomerSourceModifiedDateStatusEnum = "Archived"
 )
 
+// PostCustomerSourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type PostCustomerSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
@@ -126,15 +128,10 @@ type PostCustomerSourceModifiedDate struct {
 	TaxNumber          *string                                         `json:"taxNumber,omitempty"`
 }
 
-type PostCustomerSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type PostCustomerRequest struct {
 	PathParams  PostCustomerPathParams
 	QueryParams PostCustomerQueryParams
 	Request     *PostCustomerSourceModifiedDate `request:"mediaType=application/json"`
-	Security    PostCustomerSecurity
 }
 
 type PostCustomer200ApplicationJSONChangesPushOperationRecordRef struct {
@@ -240,6 +237,8 @@ const (
 	PostCustomer200ApplicationJSONSourceModifiedDateStatusEnumArchived PostCustomer200ApplicationJSONSourceModifiedDateStatusEnum = "Archived"
 )
 
+// PostCustomer200ApplicationJSONSourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type PostCustomer200ApplicationJSONSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
@@ -312,5 +311,6 @@ type PostCustomer200ApplicationJSON struct {
 type PostCustomerResponse struct {
 	ContentType                          string
 	StatusCode                           int
+	RawResponse                          *http.Response
 	PostCustomer200ApplicationJSONObject *PostCustomer200ApplicationJSON
 }

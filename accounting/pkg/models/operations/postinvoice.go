@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -144,6 +144,8 @@ const (
 	PostInvoiceSourceModifiedDateStatusEnumVoid          PostInvoiceSourceModifiedDateStatusEnum = "Void"
 )
 
+// PostInvoiceSourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type PostInvoiceSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
@@ -206,15 +208,10 @@ type PostInvoiceSourceModifiedDate struct {
 	WithholdingTax          []PostInvoiceSourceModifiedDateWithholdingTax     `json:"withholdingTax,omitempty"`
 }
 
-type PostInvoiceSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type PostInvoiceRequest struct {
 	PathParams  PostInvoicePathParams
 	QueryParams PostInvoiceQueryParams
 	Request     *PostInvoiceSourceModifiedDate `request:"mediaType=application/json"`
-	Security    PostInvoiceSecurity
 }
 
 type PostInvoice200ApplicationJSONChangesPushOperationRecordRef struct {
@@ -368,6 +365,8 @@ const (
 	PostInvoice200ApplicationJSONSourceModifiedDateStatusEnumVoid          PostInvoice200ApplicationJSONSourceModifiedDateStatusEnum = "Void"
 )
 
+// PostInvoice200ApplicationJSONSourceModifiedDateSupplementalData
+// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type PostInvoice200ApplicationJSONSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
@@ -472,5 +471,6 @@ type PostInvoice200ApplicationJSON struct {
 type PostInvoiceResponse struct {
 	ContentType                         string
 	StatusCode                          int
+	RawResponse                         *http.Response
 	PostInvoice200ApplicationJSONObject *PostInvoice200ApplicationJSON
 }

@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -58,15 +58,10 @@ type PushJournalSourceModifiedDateInput struct {
 	Type               *string                                  `json:"type,omitempty"`
 }
 
-type PushJournalSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type PushJournalRequest struct {
 	PathParams  PushJournalPathParams
 	QueryParams PushJournalQueryParams
 	Request     *PushJournalSourceModifiedDateInput `request:"mediaType=application/json"`
-	Security    PushJournalSecurity
 }
 
 type PushJournal200ApplicationJSONChangesPushOperationRecordRef struct {
@@ -187,5 +182,6 @@ type PushJournal200ApplicationJSON struct {
 type PushJournalResponse struct {
 	ContentType                         string
 	StatusCode                          int
+	RawResponse                         *http.Response
 	PushJournal200ApplicationJSONObject *PushJournal200ApplicationJSON
 }

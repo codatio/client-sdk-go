@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -16,14 +16,9 @@ type GetAccountsQueryParams struct {
 	Query    *string  `queryParam:"style=form,explode=true,name=query"`
 }
 
-type GetAccountsSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type GetAccountsRequest struct {
 	PathParams  GetAccountsPathParams
 	QueryParams GetAccountsQueryParams
-	Security    GetAccountsSecurity
 }
 
 type GetAccountsLinksLinksCurrent struct {
@@ -173,5 +168,6 @@ type GetAccountsLinks struct {
 type GetAccountsResponse struct {
 	ContentType string
 	StatusCode  int
+	RawResponse *http.Response
 	Links       *GetAccountsLinks
 }
