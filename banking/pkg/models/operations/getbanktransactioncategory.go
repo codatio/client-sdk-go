@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/banking/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -11,13 +11,8 @@ type GetBankTransactionCategoryPathParams struct {
 	TransactionCategoryID string `pathParam:"style=simple,explode=false,name=transactionCategoryId"`
 }
 
-type GetBankTransactionCategorySecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type GetBankTransactionCategoryRequest struct {
 	PathParams GetBankTransactionCategoryPathParams
-	Security   GetBankTransactionCategorySecurity
 }
 
 type GetBankTransactionCategorySourceModifiedDateStatusEnum string
@@ -44,4 +39,5 @@ type GetBankTransactionCategoryResponse struct {
 	ContentType        string
 	SourceModifiedDate *GetBankTransactionCategorySourceModifiedDate
 	StatusCode         int
+	RawResponse        *http.Response
 }

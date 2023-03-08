@@ -1,12 +1,12 @@
 configVersion: 1.0.0
 management:
-  docChecksum: d34267c4255a69a03f3a795da75ddab3
+  docChecksum: 523695aad4a300053dc9bbe93ef6928a
   docVersion: 2.1.0
-  speakeasyVersion: 1.5.3
+  speakeasyVersion: 1.8.6
 generation:
   telemetryEnabled: false
   sdkClassName: codatio
   sdkFlattening: false
 go:
-  version: 0.1.0
+  version: 0.4.3
   packageName: github.com/codatio/client-sdk-go/banking

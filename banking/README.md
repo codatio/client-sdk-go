@@ -22,24 +22,15 @@ import (
 )
 
 func main() {
-    opts := []codatio.SDKOption{
-        codatio.WithSecurity(
-            shared.Security{
-                APIKey: shared.SchemeAPIKey{
-                    APIKey: "YOUR_API_KEY_HERE",
-                },
-            },
-        ),
-    }
-
-    s := codatio.New(opts...)
-    
-    req := operations.ListBankingAccountBalancesRequest{
-        Security: operations.ListBankingAccountBalancesSecurity{
-            APIKey: shared.SchemeAPIKey{
+    s := codatio.New(codatio.WithSecurity(
+        shared.Security{
+            AuthHeader: shared.SchemeAuthHeader{
                 APIKey: "YOUR_API_KEY_HERE",
             },
         },
+    ))
+    
+    req := operations.ListBankingAccountBalancesRequest{
         PathParams: operations.ListBankingAccountBalancesPathParams{
             CompanyID: "unde",
             ConnectionID: "deserunt",
@@ -71,12 +62,12 @@ func main() {
 
 ### AccountBalances
 
-* `ListBankingAccountBalances` - List bank balances
+* `ListBankingAccountBalances` - List account balances
 
 ### Accounts
 
-* `GetBankAccount` - Get bank account
-* `ListBankingAccounts` - List bank accounts
+* `GetBankingAccount` - Get account
+* `ListBankingAccounts` - List accounts
 
 ### TransactionCategories
 

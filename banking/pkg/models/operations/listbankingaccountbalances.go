@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/banking/pkg/models/shared"
+	"net/http"
 	"time"
 )
 
@@ -17,14 +17,9 @@ type ListBankingAccountBalancesQueryParams struct {
 	Query    *string  `queryParam:"style=form,explode=true,name=query"`
 }
 
-type ListBankingAccountBalancesSecurity struct {
-	APIKey shared.SchemeAPIKey `security:"scheme,type=apiKey,subtype=header"`
-}
-
 type ListBankingAccountBalancesRequest struct {
 	PathParams  ListBankingAccountBalancesPathParams
 	QueryParams ListBankingAccountBalancesQueryParams
-	Security    ListBankingAccountBalancesSecurity
 }
 
 type ListBankingAccountBalancesLinksLinksCurrent struct {
@@ -81,5 +76,6 @@ type ListBankingAccountBalancesLinks struct {
 type ListBankingAccountBalancesResponse struct {
 	ContentType string
 	StatusCode  int
+	RawResponse *http.Response
 	Links       *ListBankingAccountBalancesLinks
 }
