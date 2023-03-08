@@ -11,29 +11,20 @@ import (
 )
 
 func main() {
-    opts := []codatio.SDKOption{
-        codatio.WithSecurity(
-            shared.Security{
-                APIKey: shared.SchemeAPIKey{
-                    APIKey: "YOUR_API_KEY_HERE",
-                },
-            },
-        ),
-    }
-
-    s := codatio.New(opts...)
-    
-    req := operations.DownloadFilesRequest{
-        Security: operations.DownloadFilesSecurity{
-            APIKey: shared.SchemeAPIKey{
+    s := codatio.New(codatio.WithSecurity(
+        shared.Security{
+            AuthHeader: shared.SchemeAuthHeader{
                 APIKey: "YOUR_API_KEY_HERE",
             },
         },
+    ))
+    
+    req := operations.DownloadFilesRequest{
         PathParams: operations.DownloadFilesPathParams{
             CompanyID: "unde",
         },
         QueryParams: operations.DownloadFilesQueryParams{
-            Date: "2022-07-26T07:04:52.542Z",
+            Date: "2022-08-03T14:52:53.420Z",
         },
     }
 
