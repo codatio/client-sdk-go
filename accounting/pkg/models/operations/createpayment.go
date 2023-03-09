@@ -5,75 +5,75 @@ import (
 	"time"
 )
 
-type PostPaymentPathParams struct {
+type CreatePaymentPathParams struct {
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
-type PostPaymentQueryParams struct {
+type CreatePaymentQueryParams struct {
 	TimeoutInMinutes *int `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
 }
 
-// PostPaymentSourceModifiedDateAccountRef
+// CreatePaymentSourceModifiedDateAccountRef
 // Account the payment is recorded against in the accounting platform.
-type PostPaymentSourceModifiedDateAccountRef struct {
+type CreatePaymentSourceModifiedDateAccountRef struct {
 	ID   *string `json:"id,omitempty"`
 	Name *string `json:"name,omitempty"`
 }
 
-// PostPaymentSourceModifiedDateCustomerRef
+// CreatePaymentSourceModifiedDateCustomerRef
 // Customer the payment is recorded against in the accounting platform.
-type PostPaymentSourceModifiedDateCustomerRef struct {
+type CreatePaymentSourceModifiedDateCustomerRef struct {
 	CompanyName *string `json:"companyName,omitempty"`
 	ID          string  `json:"id"`
 }
 
-type PostPaymentSourceModifiedDateLinesLinksTypeEnum string
+type CreatePaymentSourceModifiedDateLinesLinksTypeEnum string
 
 const (
-	PostPaymentSourceModifiedDateLinesLinksTypeEnumUnknown          PostPaymentSourceModifiedDateLinesLinksTypeEnum = "Unknown"
-	PostPaymentSourceModifiedDateLinesLinksTypeEnumUnlinked         PostPaymentSourceModifiedDateLinesLinksTypeEnum = "Unlinked"
-	PostPaymentSourceModifiedDateLinesLinksTypeEnumInvoice          PostPaymentSourceModifiedDateLinesLinksTypeEnum = "Invoice"
-	PostPaymentSourceModifiedDateLinesLinksTypeEnumCreditNote       PostPaymentSourceModifiedDateLinesLinksTypeEnum = "CreditNote"
-	PostPaymentSourceModifiedDateLinesLinksTypeEnumOther            PostPaymentSourceModifiedDateLinesLinksTypeEnum = "Other"
-	PostPaymentSourceModifiedDateLinesLinksTypeEnumRefund           PostPaymentSourceModifiedDateLinesLinksTypeEnum = "Refund"
-	PostPaymentSourceModifiedDateLinesLinksTypeEnumPayment          PostPaymentSourceModifiedDateLinesLinksTypeEnum = "Payment"
-	PostPaymentSourceModifiedDateLinesLinksTypeEnumPaymentOnAccount PostPaymentSourceModifiedDateLinesLinksTypeEnum = "PaymentOnAccount"
-	PostPaymentSourceModifiedDateLinesLinksTypeEnumManualJournal    PostPaymentSourceModifiedDateLinesLinksTypeEnum = "ManualJournal"
-	PostPaymentSourceModifiedDateLinesLinksTypeEnumDiscount         PostPaymentSourceModifiedDateLinesLinksTypeEnum = "Discount"
+	CreatePaymentSourceModifiedDateLinesLinksTypeEnumUnknown          CreatePaymentSourceModifiedDateLinesLinksTypeEnum = "Unknown"
+	CreatePaymentSourceModifiedDateLinesLinksTypeEnumUnlinked         CreatePaymentSourceModifiedDateLinesLinksTypeEnum = "Unlinked"
+	CreatePaymentSourceModifiedDateLinesLinksTypeEnumInvoice          CreatePaymentSourceModifiedDateLinesLinksTypeEnum = "Invoice"
+	CreatePaymentSourceModifiedDateLinesLinksTypeEnumCreditNote       CreatePaymentSourceModifiedDateLinesLinksTypeEnum = "CreditNote"
+	CreatePaymentSourceModifiedDateLinesLinksTypeEnumOther            CreatePaymentSourceModifiedDateLinesLinksTypeEnum = "Other"
+	CreatePaymentSourceModifiedDateLinesLinksTypeEnumRefund           CreatePaymentSourceModifiedDateLinesLinksTypeEnum = "Refund"
+	CreatePaymentSourceModifiedDateLinesLinksTypeEnumPayment          CreatePaymentSourceModifiedDateLinesLinksTypeEnum = "Payment"
+	CreatePaymentSourceModifiedDateLinesLinksTypeEnumPaymentOnAccount CreatePaymentSourceModifiedDateLinesLinksTypeEnum = "PaymentOnAccount"
+	CreatePaymentSourceModifiedDateLinesLinksTypeEnumManualJournal    CreatePaymentSourceModifiedDateLinesLinksTypeEnum = "ManualJournal"
+	CreatePaymentSourceModifiedDateLinesLinksTypeEnumDiscount         CreatePaymentSourceModifiedDateLinesLinksTypeEnum = "Discount"
 )
 
-type PostPaymentSourceModifiedDateLinesLinks struct {
-	Amount       *float64                                        `json:"amount,omitempty"`
-	CurrencyRate *float64                                        `json:"currencyRate,omitempty"`
-	ID           *string                                         `json:"id,omitempty"`
-	Type         PostPaymentSourceModifiedDateLinesLinksTypeEnum `json:"type"`
+type CreatePaymentSourceModifiedDateLinesLinks struct {
+	Amount       *float64                                          `json:"amount,omitempty"`
+	CurrencyRate *float64                                          `json:"currencyRate,omitempty"`
+	ID           *string                                           `json:"id,omitempty"`
+	Type         CreatePaymentSourceModifiedDateLinesLinksTypeEnum `json:"type"`
 }
 
-type PostPaymentSourceModifiedDateLines struct {
-	AllocatedOnDate *time.Time                                `json:"allocatedOnDate,omitempty"`
-	Amount          float64                                   `json:"amount"`
-	Links           []PostPaymentSourceModifiedDateLinesLinks `json:"links,omitempty"`
+type CreatePaymentSourceModifiedDateLines struct {
+	AllocatedOnDate *time.Time                                  `json:"allocatedOnDate,omitempty"`
+	Amount          float64                                     `json:"amount"`
+	Links           []CreatePaymentSourceModifiedDateLinesLinks `json:"links,omitempty"`
 }
 
-type PostPaymentSourceModifiedDateMetadata struct {
+type CreatePaymentSourceModifiedDateMetadata struct {
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
-// PostPaymentSourceModifiedDatePaymentMethodRef
+// CreatePaymentSourceModifiedDatePaymentMethodRef
 // The Payment Method to which the payment is linked in the accounting platform.
-type PostPaymentSourceModifiedDatePaymentMethodRef struct {
+type CreatePaymentSourceModifiedDatePaymentMethodRef struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
 }
 
-// PostPaymentSourceModifiedDateSupplementalData
+// CreatePaymentSourceModifiedDateSupplementalData
 // Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
-type PostPaymentSourceModifiedDateSupplementalData struct {
+type CreatePaymentSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
 
-// PostPaymentSourceModifiedDate
+// CreatePaymentSourceModifiedDate
 // > **Payments or bill payments?**
 // >
 // >  In Codat, payments represent accounts receivable only. For accounts payable, see [bill payments](https://docs.codat.io/accounting-api#/schemas/BillPayment). These include [bills](https://docs.codat.io/accounting-api#/schemas/Bill) and credit notes against bills.
@@ -756,111 +756,111 @@ type PostPaymentSourceModifiedDateSupplementalData struct {
 //	}
 //
 // ```
-type PostPaymentSourceModifiedDate struct {
-	AccountRef         *PostPaymentSourceModifiedDateAccountRef       `json:"accountRef,omitempty"`
-	Currency           *string                                        `json:"currency,omitempty"`
-	CurrencyRate       *float64                                       `json:"currencyRate,omitempty"`
-	CustomerRef        *PostPaymentSourceModifiedDateCustomerRef      `json:"customerRef,omitempty"`
-	Date               time.Time                                      `json:"date"`
-	ID                 *string                                        `json:"id,omitempty"`
-	Lines              []PostPaymentSourceModifiedDateLines           `json:"lines,omitempty"`
-	Metadata           *PostPaymentSourceModifiedDateMetadata         `json:"metadata,omitempty"`
-	ModifiedDate       *time.Time                                     `json:"modifiedDate,omitempty"`
-	Note               *string                                        `json:"note,omitempty"`
-	PaymentMethodRef   *PostPaymentSourceModifiedDatePaymentMethodRef `json:"paymentMethodRef,omitempty"`
-	Reference          *string                                        `json:"reference,omitempty"`
-	SourceModifiedDate *time.Time                                     `json:"sourceModifiedDate,omitempty"`
-	SupplementalData   *PostPaymentSourceModifiedDateSupplementalData `json:"supplementalData,omitempty"`
-	TotalAmount        *float64                                       `json:"totalAmount,omitempty"`
+type CreatePaymentSourceModifiedDate struct {
+	AccountRef         *CreatePaymentSourceModifiedDateAccountRef       `json:"accountRef,omitempty"`
+	Currency           *string                                          `json:"currency,omitempty"`
+	CurrencyRate       *float64                                         `json:"currencyRate,omitempty"`
+	CustomerRef        *CreatePaymentSourceModifiedDateCustomerRef      `json:"customerRef,omitempty"`
+	Date               time.Time                                        `json:"date"`
+	ID                 *string                                          `json:"id,omitempty"`
+	Lines              []CreatePaymentSourceModifiedDateLines           `json:"lines,omitempty"`
+	Metadata           *CreatePaymentSourceModifiedDateMetadata         `json:"metadata,omitempty"`
+	ModifiedDate       *time.Time                                       `json:"modifiedDate,omitempty"`
+	Note               *string                                          `json:"note,omitempty"`
+	PaymentMethodRef   *CreatePaymentSourceModifiedDatePaymentMethodRef `json:"paymentMethodRef,omitempty"`
+	Reference          *string                                          `json:"reference,omitempty"`
+	SourceModifiedDate *time.Time                                       `json:"sourceModifiedDate,omitempty"`
+	SupplementalData   *CreatePaymentSourceModifiedDateSupplementalData `json:"supplementalData,omitempty"`
+	TotalAmount        *float64                                         `json:"totalAmount,omitempty"`
 }
 
-type PostPaymentRequest struct {
-	PathParams  PostPaymentPathParams
-	QueryParams PostPaymentQueryParams
-	Request     *PostPaymentSourceModifiedDate `request:"mediaType=application/json"`
+type CreatePaymentRequest struct {
+	PathParams  CreatePaymentPathParams
+	QueryParams CreatePaymentQueryParams
+	Request     *CreatePaymentSourceModifiedDate `request:"mediaType=application/json"`
 }
 
-type PostPayment200ApplicationJSONChangesPushOperationRecordRef struct {
+type CreatePayment200ApplicationJSONChangesPushOperationRecordRef struct {
 	DataType *string `json:"dataType,omitempty"`
 	ID       *string `json:"id,omitempty"`
 }
 
-type PostPayment200ApplicationJSONChangesTypeEnum string
+type CreatePayment200ApplicationJSONChangesTypeEnum string
 
 const (
-	PostPayment200ApplicationJSONChangesTypeEnumUnknown            PostPayment200ApplicationJSONChangesTypeEnum = "Unknown"
-	PostPayment200ApplicationJSONChangesTypeEnumCreated            PostPayment200ApplicationJSONChangesTypeEnum = "Created"
-	PostPayment200ApplicationJSONChangesTypeEnumModified           PostPayment200ApplicationJSONChangesTypeEnum = "Modified"
-	PostPayment200ApplicationJSONChangesTypeEnumDeleted            PostPayment200ApplicationJSONChangesTypeEnum = "Deleted"
-	PostPayment200ApplicationJSONChangesTypeEnumAttachmentUploaded PostPayment200ApplicationJSONChangesTypeEnum = "AttachmentUploaded"
+	CreatePayment200ApplicationJSONChangesTypeEnumUnknown            CreatePayment200ApplicationJSONChangesTypeEnum = "Unknown"
+	CreatePayment200ApplicationJSONChangesTypeEnumCreated            CreatePayment200ApplicationJSONChangesTypeEnum = "Created"
+	CreatePayment200ApplicationJSONChangesTypeEnumModified           CreatePayment200ApplicationJSONChangesTypeEnum = "Modified"
+	CreatePayment200ApplicationJSONChangesTypeEnumDeleted            CreatePayment200ApplicationJSONChangesTypeEnum = "Deleted"
+	CreatePayment200ApplicationJSONChangesTypeEnumAttachmentUploaded CreatePayment200ApplicationJSONChangesTypeEnum = "AttachmentUploaded"
 )
 
-type PostPayment200ApplicationJSONChanges struct {
-	AttachmentID *string                                                     `json:"attachmentId,omitempty"`
-	RecordRef    *PostPayment200ApplicationJSONChangesPushOperationRecordRef `json:"recordRef,omitempty"`
-	Type         *PostPayment200ApplicationJSONChangesTypeEnum               `json:"type,omitempty"`
+type CreatePayment200ApplicationJSONChanges struct {
+	AttachmentID *string                                                       `json:"attachmentId,omitempty"`
+	RecordRef    *CreatePayment200ApplicationJSONChangesPushOperationRecordRef `json:"recordRef,omitempty"`
+	Type         *CreatePayment200ApplicationJSONChangesTypeEnum               `json:"type,omitempty"`
 }
 
-// PostPayment200ApplicationJSONSourceModifiedDateAccountRef
+// CreatePayment200ApplicationJSONSourceModifiedDateAccountRef
 // Account the payment is recorded against in the accounting platform.
-type PostPayment200ApplicationJSONSourceModifiedDateAccountRef struct {
+type CreatePayment200ApplicationJSONSourceModifiedDateAccountRef struct {
 	ID   *string `json:"id,omitempty"`
 	Name *string `json:"name,omitempty"`
 }
 
-// PostPayment200ApplicationJSONSourceModifiedDateCustomerRef
+// CreatePayment200ApplicationJSONSourceModifiedDateCustomerRef
 // Customer the payment is recorded against in the accounting platform.
-type PostPayment200ApplicationJSONSourceModifiedDateCustomerRef struct {
+type CreatePayment200ApplicationJSONSourceModifiedDateCustomerRef struct {
 	CompanyName *string `json:"companyName,omitempty"`
 	ID          string  `json:"id"`
 }
 
-type PostPayment200ApplicationJSONSourceModifiedDateLinesLinksTypeEnum string
+type CreatePayment200ApplicationJSONSourceModifiedDateLinesLinksTypeEnum string
 
 const (
-	PostPayment200ApplicationJSONSourceModifiedDateLinesLinksTypeEnumUnknown          PostPayment200ApplicationJSONSourceModifiedDateLinesLinksTypeEnum = "Unknown"
-	PostPayment200ApplicationJSONSourceModifiedDateLinesLinksTypeEnumUnlinked         PostPayment200ApplicationJSONSourceModifiedDateLinesLinksTypeEnum = "Unlinked"
-	PostPayment200ApplicationJSONSourceModifiedDateLinesLinksTypeEnumInvoice          PostPayment200ApplicationJSONSourceModifiedDateLinesLinksTypeEnum = "Invoice"
-	PostPayment200ApplicationJSONSourceModifiedDateLinesLinksTypeEnumCreditNote       PostPayment200ApplicationJSONSourceModifiedDateLinesLinksTypeEnum = "CreditNote"
-	PostPayment200ApplicationJSONSourceModifiedDateLinesLinksTypeEnumOther            PostPayment200ApplicationJSONSourceModifiedDateLinesLinksTypeEnum = "Other"
-	PostPayment200ApplicationJSONSourceModifiedDateLinesLinksTypeEnumRefund           PostPayment200ApplicationJSONSourceModifiedDateLinesLinksTypeEnum = "Refund"
-	PostPayment200ApplicationJSONSourceModifiedDateLinesLinksTypeEnumPayment          PostPayment200ApplicationJSONSourceModifiedDateLinesLinksTypeEnum = "Payment"
-	PostPayment200ApplicationJSONSourceModifiedDateLinesLinksTypeEnumPaymentOnAccount PostPayment200ApplicationJSONSourceModifiedDateLinesLinksTypeEnum = "PaymentOnAccount"
-	PostPayment200ApplicationJSONSourceModifiedDateLinesLinksTypeEnumManualJournal    PostPayment200ApplicationJSONSourceModifiedDateLinesLinksTypeEnum = "ManualJournal"
-	PostPayment200ApplicationJSONSourceModifiedDateLinesLinksTypeEnumDiscount         PostPayment200ApplicationJSONSourceModifiedDateLinesLinksTypeEnum = "Discount"
+	CreatePayment200ApplicationJSONSourceModifiedDateLinesLinksTypeEnumUnknown          CreatePayment200ApplicationJSONSourceModifiedDateLinesLinksTypeEnum = "Unknown"
+	CreatePayment200ApplicationJSONSourceModifiedDateLinesLinksTypeEnumUnlinked         CreatePayment200ApplicationJSONSourceModifiedDateLinesLinksTypeEnum = "Unlinked"
+	CreatePayment200ApplicationJSONSourceModifiedDateLinesLinksTypeEnumInvoice          CreatePayment200ApplicationJSONSourceModifiedDateLinesLinksTypeEnum = "Invoice"
+	CreatePayment200ApplicationJSONSourceModifiedDateLinesLinksTypeEnumCreditNote       CreatePayment200ApplicationJSONSourceModifiedDateLinesLinksTypeEnum = "CreditNote"
+	CreatePayment200ApplicationJSONSourceModifiedDateLinesLinksTypeEnumOther            CreatePayment200ApplicationJSONSourceModifiedDateLinesLinksTypeEnum = "Other"
+	CreatePayment200ApplicationJSONSourceModifiedDateLinesLinksTypeEnumRefund           CreatePayment200ApplicationJSONSourceModifiedDateLinesLinksTypeEnum = "Refund"
+	CreatePayment200ApplicationJSONSourceModifiedDateLinesLinksTypeEnumPayment          CreatePayment200ApplicationJSONSourceModifiedDateLinesLinksTypeEnum = "Payment"
+	CreatePayment200ApplicationJSONSourceModifiedDateLinesLinksTypeEnumPaymentOnAccount CreatePayment200ApplicationJSONSourceModifiedDateLinesLinksTypeEnum = "PaymentOnAccount"
+	CreatePayment200ApplicationJSONSourceModifiedDateLinesLinksTypeEnumManualJournal    CreatePayment200ApplicationJSONSourceModifiedDateLinesLinksTypeEnum = "ManualJournal"
+	CreatePayment200ApplicationJSONSourceModifiedDateLinesLinksTypeEnumDiscount         CreatePayment200ApplicationJSONSourceModifiedDateLinesLinksTypeEnum = "Discount"
 )
 
-type PostPayment200ApplicationJSONSourceModifiedDateLinesLinks struct {
-	Amount       *float64                                                          `json:"amount,omitempty"`
-	CurrencyRate *float64                                                          `json:"currencyRate,omitempty"`
-	ID           *string                                                           `json:"id,omitempty"`
-	Type         PostPayment200ApplicationJSONSourceModifiedDateLinesLinksTypeEnum `json:"type"`
+type CreatePayment200ApplicationJSONSourceModifiedDateLinesLinks struct {
+	Amount       *float64                                                            `json:"amount,omitempty"`
+	CurrencyRate *float64                                                            `json:"currencyRate,omitempty"`
+	ID           *string                                                             `json:"id,omitempty"`
+	Type         CreatePayment200ApplicationJSONSourceModifiedDateLinesLinksTypeEnum `json:"type"`
 }
 
-type PostPayment200ApplicationJSONSourceModifiedDateLines struct {
-	AllocatedOnDate *time.Time                                                  `json:"allocatedOnDate,omitempty"`
-	Amount          float64                                                     `json:"amount"`
-	Links           []PostPayment200ApplicationJSONSourceModifiedDateLinesLinks `json:"links,omitempty"`
+type CreatePayment200ApplicationJSONSourceModifiedDateLines struct {
+	AllocatedOnDate *time.Time                                                    `json:"allocatedOnDate,omitempty"`
+	Amount          float64                                                       `json:"amount"`
+	Links           []CreatePayment200ApplicationJSONSourceModifiedDateLinesLinks `json:"links,omitempty"`
 }
 
-type PostPayment200ApplicationJSONSourceModifiedDateMetadata struct {
+type CreatePayment200ApplicationJSONSourceModifiedDateMetadata struct {
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
-// PostPayment200ApplicationJSONSourceModifiedDatePaymentMethodRef
+// CreatePayment200ApplicationJSONSourceModifiedDatePaymentMethodRef
 // The Payment Method to which the payment is linked in the accounting platform.
-type PostPayment200ApplicationJSONSourceModifiedDatePaymentMethodRef struct {
+type CreatePayment200ApplicationJSONSourceModifiedDatePaymentMethodRef struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
 }
 
-// PostPayment200ApplicationJSONSourceModifiedDateSupplementalData
+// CreatePayment200ApplicationJSONSourceModifiedDateSupplementalData
 // Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
-type PostPayment200ApplicationJSONSourceModifiedDateSupplementalData struct {
+type CreatePayment200ApplicationJSONSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
 
-// PostPayment200ApplicationJSONSourceModifiedDate
+// CreatePayment200ApplicationJSONSourceModifiedDate
 // > **Payments or bill payments?**
 // >
 // >  In Codat, payments represent accounts receivable only. For accounts payable, see [bill payments](https://docs.codat.io/accounting-api#/schemas/BillPayment). These include [bills](https://docs.codat.io/accounting-api#/schemas/Bill) and credit notes against bills.
@@ -1543,66 +1543,66 @@ type PostPayment200ApplicationJSONSourceModifiedDateSupplementalData struct {
 //	}
 //
 // ```
-type PostPayment200ApplicationJSONSourceModifiedDate struct {
-	AccountRef         *PostPayment200ApplicationJSONSourceModifiedDateAccountRef       `json:"accountRef,omitempty"`
-	Currency           *string                                                          `json:"currency,omitempty"`
-	CurrencyRate       *float64                                                         `json:"currencyRate,omitempty"`
-	CustomerRef        *PostPayment200ApplicationJSONSourceModifiedDateCustomerRef      `json:"customerRef,omitempty"`
-	Date               time.Time                                                        `json:"date"`
-	ID                 *string                                                          `json:"id,omitempty"`
-	Lines              []PostPayment200ApplicationJSONSourceModifiedDateLines           `json:"lines,omitempty"`
-	Metadata           *PostPayment200ApplicationJSONSourceModifiedDateMetadata         `json:"metadata,omitempty"`
-	ModifiedDate       *time.Time                                                       `json:"modifiedDate,omitempty"`
-	Note               *string                                                          `json:"note,omitempty"`
-	PaymentMethodRef   *PostPayment200ApplicationJSONSourceModifiedDatePaymentMethodRef `json:"paymentMethodRef,omitempty"`
-	Reference          *string                                                          `json:"reference,omitempty"`
-	SourceModifiedDate *time.Time                                                       `json:"sourceModifiedDate,omitempty"`
-	SupplementalData   *PostPayment200ApplicationJSONSourceModifiedDateSupplementalData `json:"supplementalData,omitempty"`
-	TotalAmount        *float64                                                         `json:"totalAmount,omitempty"`
+type CreatePayment200ApplicationJSONSourceModifiedDate struct {
+	AccountRef         *CreatePayment200ApplicationJSONSourceModifiedDateAccountRef       `json:"accountRef,omitempty"`
+	Currency           *string                                                            `json:"currency,omitempty"`
+	CurrencyRate       *float64                                                           `json:"currencyRate,omitempty"`
+	CustomerRef        *CreatePayment200ApplicationJSONSourceModifiedDateCustomerRef      `json:"customerRef,omitempty"`
+	Date               time.Time                                                          `json:"date"`
+	ID                 *string                                                            `json:"id,omitempty"`
+	Lines              []CreatePayment200ApplicationJSONSourceModifiedDateLines           `json:"lines,omitempty"`
+	Metadata           *CreatePayment200ApplicationJSONSourceModifiedDateMetadata         `json:"metadata,omitempty"`
+	ModifiedDate       *time.Time                                                         `json:"modifiedDate,omitempty"`
+	Note               *string                                                            `json:"note,omitempty"`
+	PaymentMethodRef   *CreatePayment200ApplicationJSONSourceModifiedDatePaymentMethodRef `json:"paymentMethodRef,omitempty"`
+	Reference          *string                                                            `json:"reference,omitempty"`
+	SourceModifiedDate *time.Time                                                         `json:"sourceModifiedDate,omitempty"`
+	SupplementalData   *CreatePayment200ApplicationJSONSourceModifiedDateSupplementalData `json:"supplementalData,omitempty"`
+	TotalAmount        *float64                                                           `json:"totalAmount,omitempty"`
 }
 
-type PostPayment200ApplicationJSONStatusEnum string
+type CreatePayment200ApplicationJSONStatusEnum string
 
 const (
-	PostPayment200ApplicationJSONStatusEnumPending  PostPayment200ApplicationJSONStatusEnum = "Pending"
-	PostPayment200ApplicationJSONStatusEnumFailed   PostPayment200ApplicationJSONStatusEnum = "Failed"
-	PostPayment200ApplicationJSONStatusEnumSuccess  PostPayment200ApplicationJSONStatusEnum = "Success"
-	PostPayment200ApplicationJSONStatusEnumTimedOut PostPayment200ApplicationJSONStatusEnum = "TimedOut"
+	CreatePayment200ApplicationJSONStatusEnumPending  CreatePayment200ApplicationJSONStatusEnum = "Pending"
+	CreatePayment200ApplicationJSONStatusEnumFailed   CreatePayment200ApplicationJSONStatusEnum = "Failed"
+	CreatePayment200ApplicationJSONStatusEnumSuccess  CreatePayment200ApplicationJSONStatusEnum = "Success"
+	CreatePayment200ApplicationJSONStatusEnumTimedOut CreatePayment200ApplicationJSONStatusEnum = "TimedOut"
 )
 
-type PostPayment200ApplicationJSONValidationValidationItem struct {
+type CreatePayment200ApplicationJSONValidationValidationItem struct {
 	ItemID        *string `json:"itemId,omitempty"`
 	Message       *string `json:"message,omitempty"`
 	ValidatorName *string `json:"validatorName,omitempty"`
 }
 
-// PostPayment200ApplicationJSONValidation
+// CreatePayment200ApplicationJSONValidation
 // A human-readable object describing validation decisions Codat has made when pushing data into the platform. If a push has failed because of validation errors, they will be detailed here.
-type PostPayment200ApplicationJSONValidation struct {
-	Errors   []PostPayment200ApplicationJSONValidationValidationItem `json:"errors,omitempty"`
-	Warnings []PostPayment200ApplicationJSONValidationValidationItem `json:"warnings,omitempty"`
+type CreatePayment200ApplicationJSONValidation struct {
+	Errors   []CreatePayment200ApplicationJSONValidationValidationItem `json:"errors,omitempty"`
+	Warnings []CreatePayment200ApplicationJSONValidationValidationItem `json:"warnings,omitempty"`
 }
 
-type PostPayment200ApplicationJSON struct {
-	Changes           []PostPayment200ApplicationJSONChanges           `json:"changes,omitempty"`
-	CompanyID         string                                           `json:"companyId"`
-	CompletedOnUtc    *time.Time                                       `json:"completedOnUtc,omitempty"`
-	Data              *PostPayment200ApplicationJSONSourceModifiedDate `json:"data,omitempty"`
-	DataConnectionKey string                                           `json:"dataConnectionKey"`
-	DataType          *string                                          `json:"dataType,omitempty"`
-	ErrorMessage      *string                                          `json:"errorMessage,omitempty"`
-	PushOperationKey  string                                           `json:"pushOperationKey"`
-	RequestedOnUtc    time.Time                                        `json:"requestedOnUtc"`
-	Status            PostPayment200ApplicationJSONStatusEnum          `json:"status"`
-	StatusCode        int                                              `json:"statusCode"`
-	TimeoutInMinutes  *int                                             `json:"timeoutInMinutes,omitempty"`
-	TimeoutInSeconds  *int                                             `json:"timeoutInSeconds,omitempty"`
-	Validation        *PostPayment200ApplicationJSONValidation         `json:"validation,omitempty"`
+type CreatePayment200ApplicationJSON struct {
+	Changes           []CreatePayment200ApplicationJSONChanges           `json:"changes,omitempty"`
+	CompanyID         string                                             `json:"companyId"`
+	CompletedOnUtc    *time.Time                                         `json:"completedOnUtc,omitempty"`
+	Data              *CreatePayment200ApplicationJSONSourceModifiedDate `json:"data,omitempty"`
+	DataConnectionKey string                                             `json:"dataConnectionKey"`
+	DataType          *string                                            `json:"dataType,omitempty"`
+	ErrorMessage      *string                                            `json:"errorMessage,omitempty"`
+	PushOperationKey  string                                             `json:"pushOperationKey"`
+	RequestedOnUtc    time.Time                                          `json:"requestedOnUtc"`
+	Status            CreatePayment200ApplicationJSONStatusEnum          `json:"status"`
+	StatusCode        int                                                `json:"statusCode"`
+	TimeoutInMinutes  *int                                               `json:"timeoutInMinutes,omitempty"`
+	TimeoutInSeconds  *int                                               `json:"timeoutInSeconds,omitempty"`
+	Validation        *CreatePayment200ApplicationJSONValidation         `json:"validation,omitempty"`
 }
 
-type PostPaymentResponse struct {
-	ContentType                         string
-	StatusCode                          int
-	RawResponse                         *http.Response
-	PostPayment200ApplicationJSONObject *PostPayment200ApplicationJSON
+type CreatePaymentResponse struct {
+	ContentType                           string
+	StatusCode                            int
+	RawResponse                           *http.Response
+	CreatePayment200ApplicationJSONObject *CreatePayment200ApplicationJSON
 }

@@ -31,9 +31,11 @@ func newBillCreditNotes(defaultClient, securityClient HTTPClient, serverURL, lan
 // CreateBillCreditNote - Create bill credit note
 // Posts a new billCreditNote to the accounting package for a given company.
 //
+// Required data may vary by integration. To see what data to post, first call [Get create/update bill credit note model](https://docs.codat.io/accounting-api#/operations/get-create-update-billCreditNotes-model).
+//
 // > **Supported Integrations**
 // >
-// > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=billCreditNotes) for integrations that support POST methods.
+// > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=billCreditNotes) for integrations that support creating bill credit notes.
 func (s *billCreditNotes) CreateBillCreditNote(ctx context.Context, request operations.CreateBillCreditNoteRequest) (*operations.CreateBillCreditNoteResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/billCreditNotes", request.PathParams)
@@ -89,7 +91,7 @@ func (s *billCreditNotes) CreateBillCreditNote(ctx context.Context, request oper
 }
 
 // GetBillCreditNote - Get bill credit note
-// Gets a single billCreditNote corresponding to the supplied Id
+// Gets a single billCreditNote corresponding to the given Id
 func (s *billCreditNotes) GetBillCreditNote(ctx context.Context, request operations.GetBillCreditNoteRequest) (*operations.GetBillCreditNoteResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/billCreditNotes/{billCreditNoteId}", request.PathParams)
@@ -127,6 +129,55 @@ func (s *billCreditNotes) GetBillCreditNote(ctx context.Context, request operati
 			}
 
 			res.SourceModifiedDate = out
+		}
+	}
+
+	return res, nil
+}
+
+// GetCreateUpdateBillCreditNotesModel - Get create/update bill credit note model
+// Get create/update bill credit note model.
+//
+// > **Supported Integrations**
+// >
+// > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=billCreditNotes) for integrations that support creating and updating bill credit notes.
+func (s *billCreditNotes) GetCreateUpdateBillCreditNotesModel(ctx context.Context, request operations.GetCreateUpdateBillCreditNotesModelRequest) (*operations.GetCreateUpdateBillCreditNotesModelResponse, error) {
+	baseURL := s.serverURL
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/billCreditNotes", request.PathParams)
+
+	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+
+	client := s.securityClient
+
+	httpRes, err := client.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
+	}
+	defer httpRes.Body.Close()
+
+	contentType := httpRes.Header.Get("Content-Type")
+
+	res := &operations.GetCreateUpdateBillCreditNotesModelResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: contentType,
+		RawResponse: httpRes,
+	}
+	switch {
+	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *operations.GetCreateUpdateBillCreditNotesModelPushOption
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.PushOption = out
 		}
 	}
 
@@ -185,9 +236,11 @@ func (s *billCreditNotes) ListBillCreditNotes(ctx context.Context, request opera
 // UpdateBillCreditNote - Update bill credit note
 // Posts an updated billCreditNote to the accounting package for a given company.
 //
+// Required data may vary by integration. To see what data to post, first call [Get create/update bill credit note model](https://docs.codat.io/accounting-api#/operations/get-create-update-billCreditNotes-model).
+//
 // > **Supported Integrations**
 // >
-// > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=billCreditNotes) for integrations that support PUT methods.
+// > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=billCreditNotes) for integrations that support updating bill credit notes.
 func (s *billCreditNotes) UpdateBillCreditNote(ctx context.Context, request operations.UpdateBillCreditNoteRequest) (*operations.UpdateBillCreditNoteResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/billCreditNotes/{billCreditNoteId}", request.PathParams)

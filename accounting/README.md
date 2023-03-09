@@ -30,8 +30,8 @@ func main() {
         },
     ))
     
-    req := operations.GetAccountTransactionRequest{
-        PathParams: operations.GetAccountTransactionPathParams{
+    req := operations.GetCreateUpdateAccountTransactionsModelRequest{
+        PathParams: operations.GetCreateUpdateAccountTransactionsModelPathParams{
             AccountTransactionID: "unde",
             CompanyID: "deserunt",
             ConnectionID: "porro",
@@ -39,7 +39,7 @@ func main() {
     }
 
     ctx := context.Background()
-    res, err := s.AccountTransactions.GetAccountTransaction(ctx, req)
+    res, err := s.AccountTransactions.GetCreateUpdateAccountTransactionsModel(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
@@ -57,14 +57,15 @@ func main() {
 
 ### AccountTransactions
 
-* `GetAccountTransaction` - Get account transaction
+* `GetCreateUpdateAccountTransactionsModel` - Get account transaction
 * `ListAccountTransactions` - List account transactions
 
 ### Accounts
 
+* `CreateAccount` - Create account
 * `GetAccount` - Get account
 * `GetAccounts` - List accounts
-* `PostAccount` - Create account
+* `GetCreateChartOfAccountsModel` - Get create account model
 
 ### BankAccountTransactions
 
@@ -75,71 +76,81 @@ func main() {
 
 ### BankAccounts
 
+* `CreateBankAccount` - Create bank account
 * `GetAllBankAccount` - Get bank account
 * `GetBankAccount` - Get bank account
+* `GetCreateUpdateBankAccountsModel` - Get create/update bank account model
 * `ListBankAccounts` - List bank accounts
-* `PostBankAccount` - Create bank account
 * `PutBankAccount` - Update bank account
 
 ### BillCreditNotes
 
 * `CreateBillCreditNote` - Create bill credit note
 * `GetBillCreditNote` - Get bill credit note
+* `GetCreateUpdateBillCreditNotesModel` - Get create/update bill credit note model
 * `ListBillCreditNotes` - List bill credit notes
 * `UpdateBillCreditNote` - Update bill credit note
 
 ### BillPayments
 
-* `CreateBillPayment` - Create bill payment
+* `CreateBillPayment` - Create bill payments
+* `DeleteCompaniesCompanyIDConnectionsConnectionIDPushBillPaymentsBillPaymentID` - Delete bill payment
 * `GetBillPayments` - Get bill payment
+* `GetCreateBillPaymentsModel` - Get create bill payment model
 * `ListBillPayments` - List bill payments
 
 ### Bills
 
 * `CreateBill` - Create bill
 * `CreateBillAttachments` - Create bill attachments
+* `DeleteCompaniesCompanyIDConnectionsConnectionIDPushBillsBillID` - Delete bill
 * `DownloadBillAttachment` - Download bill attachment
 * `GetBill` - Get bill
 * `GetBillAttachment` - Get bill attachment
 * `GetBillAttachments` - List bill attachments
+* `GetCreateUpdateBillsModel` - Get create/update bill model
 * `ListBills` - List bills
 * `UpdateBill` - Update bill
 
 ### CreditNotes
 
+* `CreateCreditNote` - Update creditNote
+* `GetCreateUpdateCreditNotesModel` - Get create/update credit note model
 * `GetCreditNote` - Get credit note
 * `ListCreditNotes` - List credit notes
-* `PostCreditNote` - Update creditNote
 * `PushCreditNote` - Create credit note
 
 ### Customers
 
+* `CreateCustomer` - Create customer
 * `DownloadCustomerAttachment` - Download customer attachment
+* `GetCreateUpdateCustomersModel` - Get create/update customer model
 * `GetCustomer` - Get customer
 * `GetCustomerAttachment` - Get customer attachment
 * `GetCustomerAttachments` - List customer attachments
 * `GetCustomers` - List customers
-* `PostCustomer` - Create customer
 * `UpdateCustomer` - Update customer
 
 ### DirectCosts
 
+* `CreateDirectCost` - Create direct cost
 * `DownloadDirectCostAttachment` - Download direct cost attachment
+* `GetCreateDirectCostsModel` - Get create direct cost model
 * `GetDirectCost` - Get direct cost
 * `GetDirectCostAttachment` - Get direct cost attachment
 * `GetDirectCosts` - List direct costs
 * `ListDirectCostAttachments` - List direct cost attachments
-* `PostDirectCost` - Create direct cost
 * `PostDirectCostAttachment` - Create direct cost attachment
 
 ### DirectIncomes
 
+* `CreateDirectIncome` - Create direct income
 * `DownloadDirectIncomeAttachment` - Download direct income attachment
+* `GetCreateDirectIncomesModel` - Get create direct income model
 * `GetDirectIncome` - Get direct income
 * `GetDirectIncomeAttachment` - Get direct income attachment
 * `GetDirectIncomes` - Get direct incomes
 * `ListDirectIncomeAttachments` - List direct income attachments
-* `PostDirectIncome` - Create direct income
 * `PostDirectIncomeAttachment` - Create direct income attachment
 
 ### Financials
@@ -155,30 +166,34 @@ func main() {
 
 ### Invoices
 
+* `CreateInvoice` - Create invoice
 * `DonwloadInvoiceAttachment` - Download invoice attachment
+* `GetCreateUpdateInvoicesModel` - Get create/update invoice model
 * `GetInvoice` - Get invoice
 * `GetInvoiceAttachment` - Get invoice attachment
 * `GetInvoiceAttachments` - Get invoice attachments
 * `GetInvoicePdf` - Get invoice as PDF
 * `ListInvoices` - List invoices
-* `PostInvoice` - Create invoice
 * `PushInvoiceAttachment` - Push invoice attachment
 * `UpdateInvoice` - Update invoice
 
 ### Items
 
+* `CreateItem` - Create item
+* `GetCreateItemsModel` - Get create item model
 * `GetItem` - Get item
 * `ListItems` - List items
-* `PostItem` - Create item
 
 ### JournalEntries
 
+* `CreateJournalEntry` - Create journal entry
+* `GetCreateJournalEntriesModel` - Get create journal entry model
 * `GetJournalEntry` - Get journal entry
 * `ListJournalEntries` - List journal entries
-* `PostJournalEntry` - Create journal entry
 
 ### Journals
 
+* `GetCreateJournalsModel` - Get create journal model
 * `GetJournal` - Get journal
 * `ListJournals` - List journals
 * `PushJournal` - Create journal
@@ -190,15 +205,17 @@ func main() {
 
 ### Payments
 
+* `CreatePayment` - Create payment
+* `GetCreatePaymentsModel` - Get create payment model
 * `GetPayment` - Get payment
 * `ListPayments` - List payments
-* `PostPayment` - Create payment
 
 ### PurchaseOrders
 
+* `CreatePurchaseOrder` - Create purchase order
+* `GetCreateUpdatePurchaseOrdersModel` - Get create/update purchase order model
 * `GetPurchaseOrder` - Get purchase order
 * `ListPurchaseOrders` - List purchase orders
-* `PostPurchaseOrder` - Create purchase order
 * `UpdatePurchaseOrder` - Update purchase order
 
 ### Reports
@@ -215,12 +232,13 @@ func main() {
 
 ### Suppliers
 
+* `CreateSuppliers` - Create suppliers
 * `DownloadSupplierAttachment` - Download supplier attachment
+* `GetCreateUpdateSuppliersModel` - Get create/update supplier model
 * `GetSupplier` - Get supplier
 * `GetSupplierAttachment` - Get supplier attachment
 * `ListSupplierAttachments` - List supplier attachments
 * `ListSuppliers` - List suppliers
-* `PostSuppliers` - Create suppliers
 * `PutSupplier` - Update supplier
 
 ### TaxRates
@@ -235,9 +253,10 @@ func main() {
 
 ### Transfers
 
+* `CreateTransfer` - Create transfer
+* `GetCreateTransfersModel` - Get create transfer model
 * `GetTransfer` - Get transfer
 * `ListTransfers` - List transfers
-* `PostTransfer` - Create transfer
 <!-- End SDK Available Operations -->
 
 ### SDK Generated by [Speakeasy](https://docs.speakeasyapi.dev/docs/using-speakeasy/client-sdks)

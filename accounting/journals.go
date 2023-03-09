@@ -28,8 +28,59 @@ func newJournals(defaultClient, securityClient HTTPClient, serverURL, language, 
 	}
 }
 
+// GetCreateJournalsModel - Get create journal model
+// Get create journal model. Returns the expected data for the request payload.
+//
+// See the examples for integration-specific indicative models.
+//
+// > **Supported Integrations**
+// >
+// > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journals) for integrations that support creating journals.
+func (s *journals) GetCreateJournalsModel(ctx context.Context, request operations.GetCreateJournalsModelRequest) (*operations.GetCreateJournalsModelResponse, error) {
+	baseURL := s.serverURL
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/journals", request.PathParams)
+
+	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+
+	client := s.securityClient
+
+	httpRes, err := client.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
+	}
+	defer httpRes.Body.Close()
+
+	contentType := httpRes.Header.Get("Content-Type")
+
+	res := &operations.GetCreateJournalsModelResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: contentType,
+		RawResponse: httpRes,
+	}
+	switch {
+	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *operations.GetCreateJournalsModelPushOption
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.PushOption = out
+		}
+	}
+
+	return res, nil
+}
+
 // GetJournal - Get journal
-// Gets a single journal corresponding to the supplied Id
+// Gets a single journal corresponding to the given Id
 func (s *journals) GetJournal(ctx context.Context, request operations.GetJournalRequest) (*operations.GetJournalResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/journals/{journalId}", request.PathParams)
@@ -125,9 +176,11 @@ func (s *journals) ListJournals(ctx context.Context, request operations.ListJour
 // PushJournal - Create journal
 // Posts a new journal to the accounting package for a given company.
 //
+// Required data may vary by integration. To see what data to post, first call [Get create journal model](https://docs.codat.io/accounting-api#/operations/get-create-journals-model).
+//
 // > **Supported Integrations**
 // >
-// > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journals) for integrations that support POST methods.
+// > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journals) for integrations that support creating journals.
 func (s *journals) PushJournal(ctx context.Context, request operations.PushJournalRequest) (*operations.PushJournalResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/journals", request.PathParams)
