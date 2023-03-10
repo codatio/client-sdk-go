@@ -178,7 +178,7 @@ func (s *suppliers) GetCreateUpdateSuppliersModel(ctx context.Context, request o
 }
 
 // GetSupplier - Get supplier
-// Gets a single supplier corresponding to the given Id
+// Gets a single supplier corresponding to the given ID.
 func (s *suppliers) GetSupplier(ctx context.Context, request operations.GetSupplierRequest) (*operations.GetSupplierResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/suppliers/{supplierId}", request.PathParams)

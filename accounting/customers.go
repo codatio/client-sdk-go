@@ -178,7 +178,7 @@ func (s *customers) GetCreateUpdateCustomersModel(ctx context.Context, request o
 }
 
 // GetCustomer - Get customer
-// Gets a single customer corresponding to the given Id
+// Gets a single customer corresponding to the given ID.
 func (s *customers) GetCustomer(ctx context.Context, request operations.GetCustomerRequest) (*operations.GetCustomerResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/customers/{customerId}", request.PathParams)

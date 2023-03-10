@@ -80,7 +80,7 @@ func (s *journals) GetCreateJournalsModel(ctx context.Context, request operation
 }
 
 // GetJournal - Get journal
-// Gets a single journal corresponding to the given Id
+// Gets a single journal corresponding to the given ID.
 func (s *journals) GetJournal(ctx context.Context, request operations.GetJournalRequest) (*operations.GetJournalResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/journals/{journalId}", request.PathParams)

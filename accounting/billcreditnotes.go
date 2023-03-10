@@ -91,7 +91,7 @@ func (s *billCreditNotes) CreateBillCreditNote(ctx context.Context, request oper
 }
 
 // GetBillCreditNote - Get bill credit note
-// Gets a single billCreditNote corresponding to the given Id
+// Gets a single billCreditNote corresponding to the given ID.
 func (s *billCreditNotes) GetBillCreditNote(ctx context.Context, request operations.GetBillCreditNoteRequest) (*operations.GetBillCreditNoteResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/billCreditNotes/{billCreditNoteId}", request.PathParams)

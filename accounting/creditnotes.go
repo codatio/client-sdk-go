@@ -142,7 +142,7 @@ func (s *creditNotes) GetCreateUpdateCreditNotesModel(ctx context.Context, reque
 }
 
 // GetCreditNote - Get credit note
-// Gets a single creditNote corresponding to the given Id
+// Gets a single creditNote corresponding to the given ID.
 func (s *creditNotes) GetCreditNote(ctx context.Context, request operations.GetCreditNoteRequest) (*operations.GetCreditNoteResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/creditNotes/{creditNoteId}", request.PathParams)

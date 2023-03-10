@@ -142,7 +142,7 @@ func (s *journalEntries) GetCreateJournalEntriesModel(ctx context.Context, reque
 }
 
 // GetJournalEntry - Get journal entry
-// Gets a single JournalEntry corresponding to the given Id
+// Gets a single JournalEntry corresponding to the given ID.
 func (s *journalEntries) GetJournalEntry(ctx context.Context, request operations.GetJournalEntryRequest) (*operations.GetJournalEntryResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/journalEntries/{journalEntryId}", request.PathParams)

@@ -91,7 +91,7 @@ func (s *accounts) CreateAccount(ctx context.Context, request operations.CreateA
 }
 
 // GetAccount - Get account
-// Gets a single account corresponding to the given Id
+// Gets a single account corresponding to the given ID.
 func (s *accounts) GetAccount(ctx context.Context, request operations.GetAccountRequest) (*operations.GetAccountResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/accounts/{accountId}", request.PathParams)
