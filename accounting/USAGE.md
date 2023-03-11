@@ -19,8 +19,8 @@ func main() {
         },
     ))
     
-    req := operations.GetAccountTransactionRequest{
-        PathParams: operations.GetAccountTransactionPathParams{
+    req := operations.GetCreateUpdateAccountTransactionsModelRequest{
+        PathParams: operations.GetCreateUpdateAccountTransactionsModelPathParams{
             AccountTransactionID: "unde",
             CompanyID: "deserunt",
             ConnectionID: "porro",
@@ -28,7 +28,7 @@ func main() {
     }
 
     ctx := context.Background()
-    res, err := s.AccountTransactions.GetAccountTransaction(ctx, req)
+    res, err := s.AccountTransactions.GetCreateUpdateAccountTransactionsModel(ctx, req)
     if err != nil {
         log.Fatal(err)
     }

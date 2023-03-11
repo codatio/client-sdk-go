@@ -1,12 +1,12 @@
 configVersion: 1.0.0
 management:
-  docChecksum: 312a08f2e7c75035f8f672610b75353e
+  docChecksum: 36e983ac553a214c4bd8537cd4f26263
   docVersion: 2.1.0
-  speakeasyVersion: 1.8.6
+  speakeasyVersion: 1.9.2
 generation:
   telemetryEnabled: false
   sdkClassName: codatio
   sdkFlattening: false
 go:
-  version: 0.4.3
+  version: 0.5.1
   packageName: github.com/codatio/client-sdk-go/accounting
