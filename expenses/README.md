@@ -55,8 +55,8 @@ func main() {
 
 ### Configuration
 
-* `GetCompanyConfiguration` - Get Company configuration
-* `SaveCompanyConfiguration` - Set Company configuration
+* `GetCompanyConfiguration` - Get company configuration
+* `SaveCompanyConfiguration` - Set company configuration
 
 ### Connections
 
