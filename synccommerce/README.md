@@ -59,7 +59,7 @@ func main() {
 * `AddDataConnection` - Create data connection
 * `Companies` - List companies
 * `GetDataconnections` - List connections
-* `PostCompanies` - Create a Sync for commerce company
+* `PostCompanies` - Create a Sync for Commerce company
 * `UpdateDataConnection` - Update data connection
 
 ### Integrations

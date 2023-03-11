@@ -179,7 +179,7 @@ func (s *companyManagement) GetDataconnections(ctx context.Context, request oper
 	return res, nil
 }
 
-// PostCompanies - Create a Sync for commerce company
+// PostCompanies - Create a Sync for Commerce company
 // Creates a Codat company with a commerce partner data connection.
 func (s *companyManagement) PostCompanies(ctx context.Context, request operations.PostCompaniesRequest) (*operations.PostCompaniesResponse, error) {
 	baseURL := s.serverURL
