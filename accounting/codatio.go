@@ -33,12 +33,12 @@ type Codatio struct {
 	BillCreditNotes         *billCreditNotes
 	BillPayments            *billPayments
 	Bills                   *bills
+	CompanyInfo             *companyInfo
 	CreditNotes             *creditNotes
 	Customers               *customers
 	DirectCosts             *directCosts
 	DirectIncomes           *directIncomes
 	Financials              *financials
-	Info                    *info
 	Invoices                *invoices
 	Items                   *items
 	JournalEntries          *journalEntries
@@ -96,8 +96,8 @@ func WithSecurity(security shared.Security) SDKOption {
 func New(opts ...SDKOption) *Codatio {
 	sdk := &Codatio{
 		_language:   "go",
-		_sdkVersion: "0.5.0",
-		_genVersion: "1.9.1",
+		_sdkVersion: "0.5.1",
+		_genVersion: "1.9.2",
 	}
 	for _, opt := range opts {
 		opt(sdk)
@@ -184,6 +184,15 @@ func New(opts ...SDKOption) *Codatio {
 		sdk._genVersion,
 	)
 
+	sdk.CompanyInfo = newCompanyInfo(
+		sdk._defaultClient,
+		sdk._securityClient,
+		sdk._serverURL,
+		sdk._language,
+		sdk._sdkVersion,
+		sdk._genVersion,
+	)
+
 	sdk.CreditNotes = newCreditNotes(
 		sdk._defaultClient,
 		sdk._securityClient,
@@ -221,15 +230,6 @@ func New(opts ...SDKOption) *Codatio {
 	)
 
 	sdk.Financials = newFinancials(
-		sdk._defaultClient,
-		sdk._securityClient,
-		sdk._serverURL,
-		sdk._language,
-		sdk._sdkVersion,
-		sdk._genVersion,
-	)
-
-	sdk.Info = newInfo(
 		sdk._defaultClient,
 		sdk._securityClient,
 		sdk._serverURL,

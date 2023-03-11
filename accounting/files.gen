@@ -5,12 +5,12 @@ bankaccounts.go
 billcreditnotes.go
 billpayments.go
 bills.go
+companyinfo.go
 creditnotes.go
 customers.go
 directcosts.go
 directincomes.go
 financials.go
-info.go
 invoices.go
 items.go
 journalentries.go
@@ -73,6 +73,8 @@ pkg/models/operations/getbillattachments.go
 pkg/models/operations/getcreateupdatebillsmodel.go
 pkg/models/operations/listbills.go
 pkg/models/operations/updatebill.go
+pkg/models/operations/getcompanyinfo.go
+pkg/models/operations/postsyncinfo.go
 pkg/models/operations/createcreditnote.go
 pkg/models/operations/getcreateupdatecreditnotesmodel.go
 pkg/models/operations/getcreditnote.go
@@ -105,8 +107,6 @@ pkg/models/operations/postdirectincomeattachment.go
 pkg/models/operations/getbalancesheet.go
 pkg/models/operations/getcashflowstatement.go
 pkg/models/operations/getprofitandloss.go
-pkg/models/operations/getcompanyinfo.go
-pkg/models/operations/postsyncinfo.go
 pkg/models/operations/createinvoice.go
 pkg/models/operations/donwloadinvoiceattachment.go
 pkg/models/operations/getcreateupdateinvoicesmodel.go

@@ -112,6 +112,11 @@ func main() {
 * `ListBills` - List bills
 * `UpdateBill` - Update bill
 
+### CompanyInfo
+
+* `GetCompanyInfo` - Get company info
+* `PostSyncInfo` - Refresh company info
+
 ### CreditNotes
 
 * `CreateCreditNote` - Update creditNote
@@ -158,11 +163,6 @@ func main() {
 * `GetBalanceSheet` - Get balance sheet
 * `GetCashFlowStatement` - Get cash flow statement
 * `GetProfitAndLoss` - Get profit and loss
-
-### Info
-
-* `GetCompanyInfo` - Get company info
-* `PostSyncInfo` - Refresh company info
 
 ### Invoices
 
