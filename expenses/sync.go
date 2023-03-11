@@ -32,7 +32,7 @@ func newSync(defaultClient, securityClient HTTPClient, serverURL, language, sdkV
 // Initiate sync of pending transactions.
 func (s *sync) IntiateSync(ctx context.Context, request operations.IntiateSyncRequest) (*operations.IntiateSyncResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/syncs", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/sync/expenses/syncs", request.PathParams)
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
 	if err != nil {

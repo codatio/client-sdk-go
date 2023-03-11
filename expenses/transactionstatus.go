@@ -32,7 +32,7 @@ func newTransactionStatus(defaultClient, securityClient HTTPClient, serverURL, l
 // Gets the status of a transaction for a sync
 func (s *transactionStatus) GetSyncTransaction(ctx context.Context, request operations.GetSyncTransactionRequest) (*operations.GetSyncTransactionResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/syncs/{syncId}/transactions/{transactionId}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/sync/expenses/syncs/{syncId}/transactions/{transactionId}", request.PathParams)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -77,7 +77,7 @@ func (s *transactionStatus) GetSyncTransaction(ctx context.Context, request oper
 // Get's the transactions and status for a sync
 func (s *transactionStatus) GetSyncTransactions(ctx context.Context, request operations.GetSyncTransactionsRequest) (*operations.GetSyncTransactionsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/syncs/{syncId}/transactions", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/sync/expenses/syncs/{syncId}/transactions", request.PathParams)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {

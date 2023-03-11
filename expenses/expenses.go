@@ -32,7 +32,7 @@ func newExpenses(defaultClient, securityClient HTTPClient, serverURL, language, 
 // Create an expense transaction
 func (s *expenses) CreateExpenseDataset(ctx context.Context, request operations.CreateExpenseDatasetRequest) (*operations.CreateExpenseDatasetResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/expense-transactions", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/sync/expenses/data/expense-transactions", request.PathParams)
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
 	if err != nil {
@@ -84,7 +84,7 @@ func (s *expenses) CreateExpenseDataset(ctx context.Context, request operations.
 // Creates an attachment in the accounting software against the given transactionId
 func (s *expenses) UploadAttachment(ctx context.Context, request operations.UploadAttachmentRequest) (*operations.UploadAttachmentResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/syncs/{syncId}/transactions/{transactionId}/attachments", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/sync/expenses/syncs/{syncId}/transactions/{transactionId}/attachments", request.PathParams)
 
 	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
 	if err != nil {
