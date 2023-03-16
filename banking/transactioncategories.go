@@ -32,7 +32,7 @@ func newTransactionCategories(defaultClient, securityClient HTTPClient, serverUR
 // Gets a specified bank transaction category for a given company
 func (s *transactionCategories) GetBankTransactionCategory(ctx context.Context, request operations.GetBankTransactionCategoryRequest) (*operations.GetBankTransactionCategoryResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/banking-transactionCategories/{transactionCategoryId}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/banking-transactionCategories/{transactionCategoryId}", request.PathParams, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -77,14 +77,14 @@ func (s *transactionCategories) GetBankTransactionCategory(ctx context.Context, 
 // Gets a list of hierarchical categories associated with a transaction for greater contextual meaning to transactionactivity.
 func (s *transactionCategories) ListBankTransactionCategories(ctx context.Context, request operations.ListBankTransactionCategoriesRequest) (*operations.ListBankTransactionCategoriesResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/banking-transactionCategories", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/banking-transactionCategories", request.PathParams, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
