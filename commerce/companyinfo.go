@@ -34,7 +34,7 @@ func newCompanyInfo(defaultClient, securityClient HTTPClient, serverURL, languag
 // This may include information like addresses, tax registration details and social media or website information.
 func (s *companyInfo) GetCommerceInfo(ctx context.Context, request operations.GetCommerceInfoRequest) (*operations.GetCommerceInfoResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/commerce-info", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/commerce-info", request.PathParams, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {

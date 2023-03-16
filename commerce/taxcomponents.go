@@ -32,7 +32,7 @@ func newTaxComponents(defaultClient, securityClient HTTPClient, serverURL, langu
 // This endpoint returns a lits of tax rates from the commerce platform, including tax rate names and values. This supports the mapping of tax rates from the commerce platform to the accounting platform.
 func (s *taxComponents) GetCompaniesCompanyIDConnectionsConnectionIDDataCommerceTaxComponents(ctx context.Context, request operations.GetCompaniesCompanyIDConnectionsConnectionIDDataCommerceTaxComponentsRequest) (*operations.GetCompaniesCompanyIDConnectionsConnectionIDDataCommerceTaxComponentsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/commerce-taxComponents", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/commerce-taxComponents", request.PathParams, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
