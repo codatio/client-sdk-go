@@ -32,7 +32,7 @@ func newConnections(defaultClient, securityClient HTTPClient, serverURL, languag
 // Creates a Partner Expense data connection
 func (s *connections) CreatePartnerexpenseConnection(ctx context.Context, request operations.CreatePartnerexpenseConnectionRequest) (*operations.CreatePartnerexpenseConnectionResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/sync/expenses/connections/partnerExpense", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/sync/expenses/connections/partnerExpense", request.PathParams, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
 	if err != nil {

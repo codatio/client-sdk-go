@@ -32,7 +32,7 @@ func newSyncStatus(defaultClient, securityClient HTTPClient, serverURL, language
 // Gets the status of the last successfull sync
 func (s *syncStatus) GetLastSuccessfulSync(ctx context.Context, request operations.GetLastSuccessfulSyncRequest) (*operations.GetLastSuccessfulSyncResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/sync/expenses/syncs/lastSuccessful/status", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/sync/expenses/syncs/lastSuccessful/status", request.PathParams, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -77,7 +77,7 @@ func (s *syncStatus) GetLastSuccessfulSync(ctx context.Context, request operatio
 // Gets the latest sync status
 func (s *syncStatus) GetLatestSync(ctx context.Context, request operations.GetLatestSyncRequest) (*operations.GetLatestSyncResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/sync/expenses/syncs/latest/status", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/sync/expenses/syncs/latest/status", request.PathParams, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -122,7 +122,7 @@ func (s *syncStatus) GetLatestSync(ctx context.Context, request operations.GetLa
 // Get the sync status for a specified sync
 func (s *syncStatus) GetSyncByID(ctx context.Context, request operations.GetSyncByIDRequest) (*operations.GetSyncByIDResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/sync/expenses/syncs/{syncId}/status", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/sync/expenses/syncs/{syncId}/status", request.PathParams, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -167,7 +167,7 @@ func (s *syncStatus) GetSyncByID(ctx context.Context, request operations.GetSync
 // Gets a list of sync statuses
 func (s *syncStatus) ListSyncs(ctx context.Context, request operations.ListSyncsRequest) (*operations.ListSyncsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/sync/expenses/syncs/list/status", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/sync/expenses/syncs/list/status", request.PathParams, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {

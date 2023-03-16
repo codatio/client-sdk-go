@@ -32,7 +32,7 @@ func newConfiguration(defaultClient, securityClient HTTPClient, serverURL, langu
 // Gets a companies expense sync configuration
 func (s *configuration) GetCompanyConfiguration(ctx context.Context, request operations.GetCompanyConfigurationRequest) (*operations.GetCompanyConfigurationResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/sync/expenses/config", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/sync/expenses/config", request.PathParams, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -77,9 +77,9 @@ func (s *configuration) GetCompanyConfiguration(ctx context.Context, request ope
 // Sets a companies expense sync configuration
 func (s *configuration) SaveCompanyConfiguration(ctx context.Context, request operations.SaveCompanyConfigurationRequest) (*operations.SaveCompanyConfigurationResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/sync/expenses/config", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/sync/expenses/config", request.PathParams, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
