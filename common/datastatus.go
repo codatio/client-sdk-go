@@ -32,7 +32,7 @@ func newDataStatus(defaultClient, securityClient HTTPClient, serverURL, language
 // Get the state of each data type for a company
 func (s *dataStatus) GetCompaniesCompanyIDDataStatus(ctx context.Context, request operations.GetCompaniesCompanyIDDataStatusRequest) (*operations.GetCompaniesCompanyIDDataStatusResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/dataStatus", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/dataStatus", request.PathParams, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -97,14 +97,14 @@ func (s *dataStatus) GetCompaniesCompanyIDDataStatus(ctx context.Context, reques
 // Gets the pull operation history (datasets) for a given company.
 func (s *dataStatus) GetCompanyDataHistory(ctx context.Context, request operations.GetCompanyDataHistoryRequest) (*operations.GetCompanyDataHistoryResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/history", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/history", request.PathParams, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -176,7 +176,7 @@ func (s *dataStatus) GetCompanyDataHistory(ctx context.Context, request operatio
 // Retrieve information about a single dataset or pull operation.
 func (s *dataStatus) GetPullOperation(ctx context.Context, request operations.GetPullOperationRequest) (*operations.GetPullOperationResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/history/{datasetId}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/history/{datasetId}", request.PathParams, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {

@@ -35,7 +35,7 @@ func (s *webhooks) CreateRule(ctx context.Context, request operations.CreateRule
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/rules"
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -95,7 +95,7 @@ func (s *webhooks) CreateRule(ctx context.Context, request operations.CreateRule
 // Get a single webhook
 func (s *webhooks) GetWebhook(ctx context.Context, request operations.GetWebhookRequest) (*operations.GetWebhookResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/rules/{ruleId}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/rules/{ruleId}", request.PathParams, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -167,7 +167,7 @@ func (s *webhooks) ListRules(ctx context.Context, request operations.ListRulesRe
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
