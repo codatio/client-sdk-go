@@ -33,7 +33,7 @@ func newIntegrations(defaultClient, securityClient HTTPClient, serverURL, langua
 // Retrieve Integration branding assets.
 func (s *integrations) GetIntegrationBranding(ctx context.Context, request operations.GetIntegrationBrandingRequest) (*operations.GetIntegrationBrandingResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/config/integrations/{platformKey}/branding", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/config/integrations/{platformKey}/branding", request.PathParams, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -76,7 +76,7 @@ func (s *integrations) GetIntegrations(ctx context.Context, request operations.G
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 

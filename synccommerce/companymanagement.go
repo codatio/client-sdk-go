@@ -33,9 +33,9 @@ func newCompanyManagement(defaultClient, securityClient HTTPClient, serverURL, l
 // Create a data connection.
 func (s *companyManagement) AddDataConnection(ctx context.Context, request operations.AddDataConnectionRequest) (*operations.AddDataConnectionResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/meta/companies/{companyId}/connections", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/meta/companies/{companyId}/connections", request.PathParams, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "string")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -92,7 +92,7 @@ func (s *companyManagement) Companies(ctx context.Context, request operations.Co
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -134,14 +134,14 @@ func (s *companyManagement) Companies(ctx context.Context, request operations.Co
 // Retrieve previously created data connections.
 func (s *companyManagement) GetDataconnections(ctx context.Context, request operations.GetDataconnectionsRequest) (*operations.GetDataconnectionsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/meta/companies/{companyId}/connections", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/meta/companies/{companyId}/connections", request.PathParams, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -185,7 +185,7 @@ func (s *companyManagement) PostCompanies(ctx context.Context, request operation
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/meta/companies/sync"
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -235,9 +235,9 @@ func (s *companyManagement) PostCompanies(ctx context.Context, request operation
 // Update a data connection
 func (s *companyManagement) UpdateDataConnection(ctx context.Context, request operations.UpdateDataConnectionRequest) (*operations.UpdateDataConnectionResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/meta/companies/{companyId}/connections/{connectionId}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/meta/companies/{companyId}/connections/{connectionId}", request.PathParams, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}

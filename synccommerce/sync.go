@@ -33,9 +33,9 @@ func newSync(defaultClient, securityClient HTTPClient, serverURL, language, sdkV
 // If there was no previously successful sync, the start date in the config is used.
 func (s *sync) PostSyncLatest(ctx context.Context, request operations.PostSyncLatestRequest) (*operations.PostSyncLatestResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/sync/commerce/latest", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/sync/commerce/latest", request.PathParams, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
