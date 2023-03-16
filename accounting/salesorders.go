@@ -32,7 +32,7 @@ func newSalesOrders(defaultClient, securityClient HTTPClient, serverURL, languag
 // Get sales order
 func (s *salesOrders) GetSalesOrder(ctx context.Context, request operations.GetSalesOrderRequest) (*operations.GetSalesOrderResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/salesOrders/{salesOrderId}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/salesOrders/{salesOrderId}", request.PathParams, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -77,14 +77,14 @@ func (s *salesOrders) GetSalesOrder(ctx context.Context, request operations.GetS
 // Get sales orders
 func (s *salesOrders) ListSalesOrders(ctx context.Context, request operations.ListSalesOrdersRequest) (*operations.ListSalesOrdersResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/salesOrders", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/salesOrders", request.PathParams, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 

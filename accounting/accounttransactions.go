@@ -32,7 +32,7 @@ func newAccountTransactions(defaultClient, securityClient HTTPClient, serverURL,
 // Get create/update account transactions model.
 func (s *accountTransactions) GetCreateUpdateAccountTransactionsModel(ctx context.Context, request operations.GetCreateUpdateAccountTransactionsModelRequest) (*operations.GetCreateUpdateAccountTransactionsModelResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/accountTransactions/{accountTransactionId}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/accountTransactions/{accountTransactionId}", request.PathParams, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -77,14 +77,14 @@ func (s *accountTransactions) GetCreateUpdateAccountTransactionsModel(ctx contex
 // Gets the account transactions for a given company.
 func (s *accountTransactions) ListAccountTransactions(ctx context.Context, request operations.ListAccountTransactionsRequest) (*operations.ListAccountTransactionsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/accountTransactions", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/accountTransactions", request.PathParams, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
