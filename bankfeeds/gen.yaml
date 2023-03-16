@@ -6,7 +6,7 @@ management:
 generation:
   telemetryEnabled: false
   sdkClassName: codatio
-  sdkFlattening: false
+  sdkFlattening: true
 go:
   version: 0.4.3
   packageName: github.com/codatio/client-sdk-go/bankfeeds
