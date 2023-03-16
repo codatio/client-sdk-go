@@ -22,14 +22,14 @@ import (
 )
 
 func main() {
-    s := codatio.New(codatio.WithSecurity(
-        shared.Security{
+    s := codatio.New(
+        WithSecurity(        shared.Security{
             AuthHeader: shared.SchemeAuthHeader{
                 APIKey: "YOUR_API_KEY_HERE",
             },
-        },
-    ))
-    
+        }),
+    )
+
     req := operations.GetBankAccountPushOptionsRequest{
         PathParams: operations.GetBankAccountPushOptionsPathParams{
             AccountID: "unde",
