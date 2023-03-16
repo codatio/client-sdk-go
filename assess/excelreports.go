@@ -33,14 +33,14 @@ func newExcelReports(defaultClient, securityClient HTTPClient, serverURL, langua
 // Request an Excel report for download.
 func (s *excelReports) GetAccountingMarketingMetrics(ctx context.Context, request operations.GetAccountingMarketingMetricsRequest) (*operations.GetAccountingMarketingMetricsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/connections/{connectionId}/assess/accountingMetrics/marketing", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/connections/{connectionId}/assess/accountingMetrics/marketing", request.PathParams, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -82,14 +82,14 @@ func (s *excelReports) GetAccountingMarketingMetrics(ctx context.Context, reques
 // Download the Excel report to a local drive.
 func (s *excelReports) GetExcelReport(ctx context.Context, request operations.GetExcelReportRequest) (*operations.GetExcelReportResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/assess/excel/download", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/assess/excel/download", request.PathParams, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -131,14 +131,14 @@ func (s *excelReports) GetExcelReport(ctx context.Context, request operations.Ge
 // Returns the status of the latest report requested.
 func (s *excelReports) MakeRequestToDownloadExcelReport(ctx context.Context, request operations.MakeRequestToDownloadExcelReportRequest) (*operations.MakeRequestToDownloadExcelReportResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/assess/excel", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/assess/excel", request.PathParams, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -180,14 +180,14 @@ func (s *excelReports) MakeRequestToDownloadExcelReport(ctx context.Context, req
 // Request an Excel report for download.
 func (s *excelReports) RequestExcelReportForDownload(ctx context.Context, request operations.RequestExcelReportForDownloadRequest) (*operations.RequestExcelReportForDownloadResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/assess/excel", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/assess/excel", request.PathParams, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 

@@ -32,14 +32,14 @@ func newDataIntegrity(defaultClient, securityClient HTTPClient, serverURL, langu
 // Gets record-by-record match results for a given company and datatype, optionally restricted by a Codat query string.
 func (s *dataIntegrity) GetDataIntegrityDetails(ctx context.Context, request operations.GetDataIntegrityDetailsRequest) (*operations.GetDataIntegrityDetailsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/assess/dataTypes/{dataType}/dataIntegrity/details", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/assess/dataTypes/{dataType}/dataIntegrity/details", request.PathParams, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -81,7 +81,7 @@ func (s *dataIntegrity) GetDataIntegrityDetails(ctx context.Context, request ope
 // Gets match status for a given company and datatype.
 func (s *dataIntegrity) GetDataIntegrityStatus(ctx context.Context, request operations.GetDataIntegrityStatusRequest) (*operations.GetDataIntegrityStatusResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/assess/dataTypes/{dataType}/dataIntegrity/status", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/assess/dataTypes/{dataType}/dataIntegrity/status", request.PathParams, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -126,14 +126,14 @@ func (s *dataIntegrity) GetDataIntegrityStatus(ctx context.Context, request oper
 // Gets match summary for a given company and datatype, optionally restricted by a Codat query string.
 func (s *dataIntegrity) GetDataIntegritySummaries(ctx context.Context, request operations.GetDataIntegritySummariesRequest) (*operations.GetDataIntegritySummariesResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/assess/dataTypes/{dataType}/dataIntegrity/summaries", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/assess/dataTypes/{dataType}/dataIntegrity/summaries", request.PathParams, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
