@@ -32,14 +32,14 @@ func newFiles(defaultClient, securityClient HTTPClient, serverURL, language, sdk
 // You can specify a date to download specific files for.
 func (s *files) DownloadFiles(ctx context.Context, request operations.DownloadFilesRequest) (*operations.DownloadFilesResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/files/download", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/files/download", request.PathParams, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -72,7 +72,7 @@ func (s *files) DownloadFiles(ctx context.Context, request operations.DownloadFi
 // Returns an array of files that have been uploaded for a given company.
 func (s *files) ListFiles(ctx context.Context, request operations.ListFilesRequest) (*operations.ListFilesResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/files", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/files", request.PathParams, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -117,7 +117,7 @@ func (s *files) ListFiles(ctx context.Context, request operations.ListFilesReque
 // Upload files
 func (s *files) UploadFiles(ctx context.Context, request operations.UploadFilesRequest) (*operations.UploadFilesResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/files", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/files", request.PathParams, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
 	if err != nil {

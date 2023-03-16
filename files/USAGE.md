@@ -11,20 +11,20 @@ import (
 )
 
 func main() {
-    s := codatio.New(codatio.WithSecurity(
-        shared.Security{
+    s := codatio.New(
+        WithSecurity(        shared.Security{
             AuthHeader: shared.SchemeAuthHeader{
                 APIKey: "YOUR_API_KEY_HERE",
             },
-        },
-    ))
-    
+        }),
+    )
+
     req := operations.DownloadFilesRequest{
         PathParams: operations.DownloadFilesPathParams{
             CompanyID: "unde",
         },
         QueryParams: operations.DownloadFilesQueryParams{
-            Date: "2022-08-06T14:51:16.891Z",
+            Date: "2022-08-11T14:53:16.043Z",
         },
     }
 
