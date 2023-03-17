@@ -5,13 +5,9 @@ import (
 	"time"
 )
 
-type GetSalesOrderPathParams struct {
+type GetSalesOrderRequest struct {
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
 	SalesOrderID string `pathParam:"style=simple,explode=false,name=salesOrderId"`
-}
-
-type GetSalesOrderRequest struct {
-	PathParams GetSalesOrderPathParams
 }
 
 // GetSalesOrderSourceModifiedDateCustomerRef

@@ -4,13 +4,9 @@ import (
 	"net/http"
 )
 
-type GetInvoicePdfPathParams struct {
+type GetInvoicePdfRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	InvoiceID string `pathParam:"style=simple,explode=false,name=invoiceId"`
-}
-
-type GetInvoicePdfRequest struct {
-	PathParams GetInvoicePdfPathParams
 }
 
 type GetInvoicePdfResponse struct {

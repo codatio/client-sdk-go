@@ -32,7 +32,7 @@ func newTrackingCategories(defaultClient, securityClient HTTPClient, serverURL, 
 // Gets the specified tracking categories for a given company.
 func (s *trackingCategories) GetTrackingCategory(ctx context.Context, request operations.GetTrackingCategoryRequest) (*operations.GetTrackingCategoryResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/trackingCategories/{trackingCategoryId}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/trackingCategories/{trackingCategoryId}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -77,14 +77,14 @@ func (s *trackingCategories) GetTrackingCategory(ctx context.Context, request op
 // Gets the latest tracking categories for a given company.
 func (s *trackingCategories) ListTrackingCategories(ctx context.Context, request operations.ListTrackingCategoriesRequest) (*operations.ListTrackingCategoriesResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/trackingCategories", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/trackingCategories", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 

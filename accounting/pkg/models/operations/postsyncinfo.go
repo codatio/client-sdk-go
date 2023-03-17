@@ -5,12 +5,8 @@ import (
 	"time"
 )
 
-type PostSyncInfoPathParams struct {
-	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
-}
-
 type PostSyncInfoRequest struct {
-	PathParams PostSyncInfoPathParams
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
 type PostSyncInfo200ApplicationJSONStatusEnum string

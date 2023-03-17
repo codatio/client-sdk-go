@@ -5,15 +5,11 @@ import (
 	"time"
 )
 
-type GetDirectCostAttachmentPathParams struct {
+type GetDirectCostAttachmentRequest struct {
 	AttachmentID string `pathParam:"style=simple,explode=false,name=attachmentId"`
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 	DirectCostID string `pathParam:"style=simple,explode=false,name=directCostId"`
-}
-
-type GetDirectCostAttachmentRequest struct {
-	PathParams GetDirectCostAttachmentPathParams
 }
 
 type GetDirectCostAttachmentAttachment struct {

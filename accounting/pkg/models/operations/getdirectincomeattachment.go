@@ -5,20 +5,12 @@ import (
 	"time"
 )
 
-type GetDirectIncomeAttachmentPathParams struct {
-	AttachmentID   string `pathParam:"style=simple,explode=false,name=attachmentId"`
-	CompanyID      string `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID   string `pathParam:"style=simple,explode=false,name=connectionId"`
-	DirectIncomeID string `pathParam:"style=simple,explode=false,name=directIncomeId"`
-}
-
-type GetDirectIncomeAttachmentQueryParams struct {
-	TimeoutInMinutes *int `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
-}
-
 type GetDirectIncomeAttachmentRequest struct {
-	PathParams  GetDirectIncomeAttachmentPathParams
-	QueryParams GetDirectIncomeAttachmentQueryParams
+	AttachmentID     string `pathParam:"style=simple,explode=false,name=attachmentId"`
+	CompanyID        string `pathParam:"style=simple,explode=false,name=companyId"`
+	ConnectionID     string `pathParam:"style=simple,explode=false,name=connectionId"`
+	DirectIncomeID   string `pathParam:"style=simple,explode=false,name=directIncomeId"`
+	TimeoutInMinutes *int   `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
 }
 
 type GetDirectIncomeAttachmentAttachment struct {

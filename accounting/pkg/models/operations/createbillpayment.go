@@ -5,15 +5,6 @@ import (
 	"time"
 )
 
-type CreateBillPaymentPathParams struct {
-	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
-}
-
-type CreateBillPaymentQueryParams struct {
-	TimeoutInMinutes *int `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
-}
-
 // CreateBillPaymentSourceModifiedDateAccountRef
 // Account the payment is linked to in the accounting platform.
 type CreateBillPaymentSourceModifiedDateAccountRef struct {
@@ -241,9 +232,10 @@ type CreateBillPaymentSourceModifiedDate struct {
 }
 
 type CreateBillPaymentRequest struct {
-	PathParams  CreateBillPaymentPathParams
-	QueryParams CreateBillPaymentQueryParams
-	Request     *CreateBillPaymentSourceModifiedDate `request:"mediaType=application/json"`
+	RequestBody      *CreateBillPaymentSourceModifiedDate `request:"mediaType=application/json"`
+	CompanyID        string                               `pathParam:"style=simple,explode=false,name=companyId"`
+	ConnectionID     string                               `pathParam:"style=simple,explode=false,name=connectionId"`
+	TimeoutInMinutes *int                                 `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
 }
 
 type CreateBillPayment200ApplicationJSONChangesPushOperationRecordRef struct {

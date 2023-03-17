@@ -5,20 +5,12 @@ import (
 	"time"
 )
 
-type GetAccountsPathParams struct {
-	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
-}
-
-type GetAccountsQueryParams struct {
-	OrderBy  *string  `queryParam:"style=form,explode=true,name=orderBy"`
-	Page     float64  `queryParam:"style=form,explode=true,name=page"`
-	PageSize *float64 `queryParam:"style=form,explode=true,name=pageSize"`
-	Query    *string  `queryParam:"style=form,explode=true,name=query"`
-}
-
 type GetAccountsRequest struct {
-	PathParams  GetAccountsPathParams
-	QueryParams GetAccountsQueryParams
+	CompanyID string  `pathParam:"style=simple,explode=false,name=companyId"`
+	OrderBy   *string `queryParam:"style=form,explode=true,name=orderBy"`
+	Page      int     `queryParam:"style=form,explode=true,name=page"`
+	PageSize  *int    `queryParam:"style=form,explode=true,name=pageSize"`
+	Query     *string `queryParam:"style=form,explode=true,name=query"`
 }
 
 type GetAccountsLinksLinksCurrent struct {

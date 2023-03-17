@@ -5,13 +5,9 @@ import (
 	"time"
 )
 
-type GetJournalPathParams struct {
+type GetJournalRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	JournalID string `pathParam:"style=simple,explode=false,name=journalId"`
-}
-
-type GetJournalRequest struct {
-	PathParams GetJournalPathParams
 }
 
 // GetJournalSourceModifiedDateMetadataMetadata

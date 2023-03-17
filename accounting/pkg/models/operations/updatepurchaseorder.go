@@ -5,17 +5,6 @@ import (
 	"time"
 )
 
-type UpdatePurchaseOrderPathParams struct {
-	CompanyID       string `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID    string `pathParam:"style=simple,explode=false,name=connectionId"`
-	PurchaseOrderID string `pathParam:"style=simple,explode=false,name=purchaseOrderId"`
-}
-
-type UpdatePurchaseOrderQueryParams struct {
-	ForceUpdate      *bool `queryParam:"style=form,explode=true,name=forceUpdate"`
-	TimeoutInMinutes *int  `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
-}
-
 // UpdatePurchaseOrderSourceModifiedDateLineItemsAccountRef
 // Reference to the account to which the line item is linked.
 type UpdatePurchaseOrderSourceModifiedDateLineItemsAccountRef struct {
@@ -38,6 +27,8 @@ type UpdatePurchaseOrderSourceModifiedDateLineItemsTaxRateRef struct {
 	Name             *string  `json:"name,omitempty"`
 }
 
+// UpdatePurchaseOrderSourceModifiedDateLineItemsTrackingCategoryRefs
+// References a category against which the item is tracked.
 type UpdatePurchaseOrderSourceModifiedDateLineItemsTrackingCategoryRefs struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
@@ -146,9 +137,12 @@ type UpdatePurchaseOrderSourceModifiedDate struct {
 }
 
 type UpdatePurchaseOrderRequest struct {
-	PathParams  UpdatePurchaseOrderPathParams
-	QueryParams UpdatePurchaseOrderQueryParams
-	Request     *UpdatePurchaseOrderSourceModifiedDate `request:"mediaType=application/json"`
+	RequestBody      *UpdatePurchaseOrderSourceModifiedDate `request:"mediaType=application/json"`
+	CompanyID        string                                 `pathParam:"style=simple,explode=false,name=companyId"`
+	ConnectionID     string                                 `pathParam:"style=simple,explode=false,name=connectionId"`
+	ForceUpdate      *bool                                  `queryParam:"style=form,explode=true,name=forceUpdate"`
+	PurchaseOrderID  string                                 `pathParam:"style=simple,explode=false,name=purchaseOrderId"`
+	TimeoutInMinutes *int                                   `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
 }
 
 type UpdatePurchaseOrder200ApplicationJSONChangesPushOperationRecordRef struct {
@@ -194,6 +188,8 @@ type UpdatePurchaseOrder200ApplicationJSONSourceModifiedDateLineItemsTaxRateRef 
 	Name             *string  `json:"name,omitempty"`
 }
 
+// UpdatePurchaseOrder200ApplicationJSONSourceModifiedDateLineItemsTrackingCategoryRefs
+// References a category against which the item is tracked.
 type UpdatePurchaseOrder200ApplicationJSONSourceModifiedDateLineItemsTrackingCategoryRefs struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`

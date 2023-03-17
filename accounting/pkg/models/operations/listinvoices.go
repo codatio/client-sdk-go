@@ -5,20 +5,12 @@ import (
 	"time"
 )
 
-type ListInvoicesPathParams struct {
-	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
-}
-
-type ListInvoicesQueryParams struct {
-	OrderBy  *string  `queryParam:"style=form,explode=true,name=orderBy"`
-	Page     float64  `queryParam:"style=form,explode=true,name=page"`
-	PageSize *float64 `queryParam:"style=form,explode=true,name=pageSize"`
-	Query    *string  `queryParam:"style=form,explode=true,name=query"`
-}
-
 type ListInvoicesRequest struct {
-	PathParams  ListInvoicesPathParams
-	QueryParams ListInvoicesQueryParams
+	CompanyID string  `pathParam:"style=simple,explode=false,name=companyId"`
+	OrderBy   *string `queryParam:"style=form,explode=true,name=orderBy"`
+	Page      int     `queryParam:"style=form,explode=true,name=page"`
+	PageSize  *int    `queryParam:"style=form,explode=true,name=pageSize"`
+	Query     *string `queryParam:"style=form,explode=true,name=query"`
 }
 
 type ListInvoicesLinksLinksCurrent struct {
@@ -73,6 +65,8 @@ type ListInvoicesLinksSourceModifiedDateLineItemsTaxRateRef struct {
 	Name             *string  `json:"name,omitempty"`
 }
 
+// ListInvoicesLinksSourceModifiedDateLineItemsTrackingCategoryRefs
+// References a category against which the item is tracked.
 type ListInvoicesLinksSourceModifiedDateLineItemsTrackingCategoryRefs struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
@@ -104,6 +98,8 @@ type ListInvoicesLinksSourceModifiedDateLineItemsTrackingProjectRef struct {
 	Name *string `json:"name,omitempty"`
 }
 
+// ListInvoicesLinksSourceModifiedDateLineItemsTracking
+// Categories, and a project and customer, against which the item is tracked.
 type ListInvoicesLinksSourceModifiedDateLineItemsTracking struct {
 	CategoryRefs []ListInvoicesLinksSourceModifiedDateLineItemsTrackingCategoryRefs   `json:"categoryRefs"`
 	CustomerRef  *ListInvoicesLinksSourceModifiedDateLineItemsTrackingCustomerRef     `json:"customerRef,omitempty"`

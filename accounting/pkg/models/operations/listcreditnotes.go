@@ -5,20 +5,12 @@ import (
 	"time"
 )
 
-type ListCreditNotesPathParams struct {
-	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
-}
-
-type ListCreditNotesQueryParams struct {
-	OrderBy  *string  `queryParam:"style=form,explode=true,name=orderBy"`
-	Page     float64  `queryParam:"style=form,explode=true,name=page"`
-	PageSize *float64 `queryParam:"style=form,explode=true,name=pageSize"`
-	Query    *string  `queryParam:"style=form,explode=true,name=query"`
-}
-
 type ListCreditNotesRequest struct {
-	PathParams  ListCreditNotesPathParams
-	QueryParams ListCreditNotesQueryParams
+	CompanyID string  `pathParam:"style=simple,explode=false,name=companyId"`
+	OrderBy   *string `queryParam:"style=form,explode=true,name=orderBy"`
+	Page      int     `queryParam:"style=form,explode=true,name=page"`
+	PageSize  *int    `queryParam:"style=form,explode=true,name=pageSize"`
+	Query     *string `queryParam:"style=form,explode=true,name=query"`
 }
 
 type ListCreditNotesLinksLinksCurrent struct {
@@ -73,6 +65,8 @@ type ListCreditNotesLinksSourceModifiedDateLineItemsTaxRateRef struct {
 	Name             *string  `json:"name,omitempty"`
 }
 
+// ListCreditNotesLinksSourceModifiedDateLineItemsTrackingCategoryRefs
+// References a category against which the item is tracked.
 type ListCreditNotesLinksSourceModifiedDateLineItemsTrackingCategoryRefs struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
@@ -104,6 +98,8 @@ type ListCreditNotesLinksSourceModifiedDateLineItemsTrackingProjectRef struct {
 	Name *string `json:"name,omitempty"`
 }
 
+// ListCreditNotesLinksSourceModifiedDateLineItemsTracking
+// Categories, and a project and customer, against which the item is tracked.
 type ListCreditNotesLinksSourceModifiedDateLineItemsTracking struct {
 	CategoryRefs []ListCreditNotesLinksSourceModifiedDateLineItemsTrackingCategoryRefs   `json:"categoryRefs"`
 	CustomerRef  *ListCreditNotesLinksSourceModifiedDateLineItemsTrackingCustomerRef     `json:"customerRef,omitempty"`

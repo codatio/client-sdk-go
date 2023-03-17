@@ -5,19 +5,11 @@ import (
 	"time"
 )
 
-type GetBalanceSheetPathParams struct {
-	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
-}
-
-type GetBalanceSheetQueryParams struct {
+type GetBalanceSheetRequest struct {
+	CompanyID        string     `pathParam:"style=simple,explode=false,name=companyId"`
 	PeriodLength     int        `queryParam:"style=form,explode=true,name=periodLength"`
 	PeriodsToCompare int        `queryParam:"style=form,explode=true,name=periodsToCompare"`
 	StartMonth       *time.Time `queryParam:"style=form,explode=true,name=startMonth"`
-}
-
-type GetBalanceSheetRequest struct {
-	PathParams  GetBalanceSheetPathParams
-	QueryParams GetBalanceSheetQueryParams
 }
 
 type GetBalanceSheet200ApplicationJSONBalanceSheetReportLineReportLineReportLineReportLine struct {

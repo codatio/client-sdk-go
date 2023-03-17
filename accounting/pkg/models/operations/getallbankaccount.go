@@ -5,18 +5,10 @@ import (
 	"time"
 )
 
-type GetAllBankAccountPathParams struct {
-	AccountID string `pathParam:"style=simple,explode=false,name=accountId"`
-	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
-}
-
-type GetAllBankAccountQueryParams struct {
-	Query *string `queryParam:"style=form,explode=true,name=query"`
-}
-
 type GetAllBankAccountRequest struct {
-	PathParams  GetAllBankAccountPathParams
-	QueryParams GetAllBankAccountQueryParams
+	AccountID string  `pathParam:"style=simple,explode=false,name=accountId"`
+	CompanyID string  `pathParam:"style=simple,explode=false,name=companyId"`
+	Query     *string `queryParam:"style=form,explode=true,name=query"`
 }
 
 type GetAllBankAccount200ApplicationJSON struct {

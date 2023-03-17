@@ -5,19 +5,11 @@ import (
 	"time"
 )
 
-type GetProfitAndLossPathParams struct {
-	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
-}
-
-type GetProfitAndLossQueryParams struct {
+type GetProfitAndLossRequest struct {
+	CompanyID        string     `pathParam:"style=simple,explode=false,name=companyId"`
 	PeriodLength     int        `queryParam:"style=form,explode=true,name=periodLength"`
 	PeriodsToCompare int        `queryParam:"style=form,explode=true,name=periodsToCompare"`
 	StartMonth       *time.Time `queryParam:"style=form,explode=true,name=startMonth"`
-}
-
-type GetProfitAndLossRequest struct {
-	PathParams  GetProfitAndLossPathParams
-	QueryParams GetProfitAndLossQueryParams
 }
 
 type GetProfitAndLoss200ApplicationJSONReportBasisEnum string

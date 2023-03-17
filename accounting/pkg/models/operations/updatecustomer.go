@@ -5,17 +5,6 @@ import (
 	"time"
 )
 
-type UpdateCustomerPathParams struct {
-	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
-	CustomerID   string `pathParam:"style=simple,explode=false,name=customerId"`
-}
-
-type UpdateCustomerQueryParams struct {
-	ForceUpdate      *bool `queryParam:"style=form,explode=true,name=forceUpdate"`
-	TimeoutInMinutes *int  `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
-}
-
 type UpdateCustomerSourceModifiedDateAddressesTypeEnum string
 
 const (
@@ -131,9 +120,12 @@ type UpdateCustomerSourceModifiedDate struct {
 }
 
 type UpdateCustomerRequest struct {
-	PathParams  UpdateCustomerPathParams
-	QueryParams UpdateCustomerQueryParams
-	Request     *UpdateCustomerSourceModifiedDate `request:"mediaType=application/json"`
+	RequestBody      *UpdateCustomerSourceModifiedDate `request:"mediaType=application/json"`
+	CompanyID        string                            `pathParam:"style=simple,explode=false,name=companyId"`
+	ConnectionID     string                            `pathParam:"style=simple,explode=false,name=connectionId"`
+	CustomerID       string                            `pathParam:"style=simple,explode=false,name=customerId"`
+	ForceUpdate      *bool                             `queryParam:"style=form,explode=true,name=forceUpdate"`
+	TimeoutInMinutes *int                              `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
 }
 
 type UpdateCustomer200ApplicationJSONChangesPushOperationRecordRef struct {

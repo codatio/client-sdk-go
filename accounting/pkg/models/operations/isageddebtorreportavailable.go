@@ -4,12 +4,8 @@ import (
 	"net/http"
 )
 
-type IsAgedDebtorReportAvailablePathParams struct {
-	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
-}
-
 type IsAgedDebtorReportAvailableRequest struct {
-	PathParams IsAgedDebtorReportAvailablePathParams
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
 type IsAgedDebtorReportAvailableResponse struct {

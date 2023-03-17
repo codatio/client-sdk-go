@@ -5,15 +5,11 @@ import (
 	"time"
 )
 
-type GetBillAttachmentPathParams struct {
+type GetBillAttachmentRequest struct {
 	AttachmentID string `pathParam:"style=simple,explode=false,name=attachmentId"`
 	BillID       string `pathParam:"style=simple,explode=false,name=billId"`
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
-}
-
-type GetBillAttachmentRequest struct {
-	PathParams GetBillAttachmentPathParams
 }
 
 type GetBillAttachmentAttachment struct {

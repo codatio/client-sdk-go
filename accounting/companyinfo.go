@@ -8,7 +8,7 @@ import (
 	"net/http"
 )
 
-type info struct {
+type companyInfo struct {
 	defaultClient  HTTPClient
 	securityClient HTTPClient
 	serverURL      string
@@ -17,8 +17,8 @@ type info struct {
 	genVersion     string
 }
 
-func newInfo(defaultClient, securityClient HTTPClient, serverURL, language, sdkVersion, genVersion string) *info {
-	return &info{
+func newCompanyInfo(defaultClient, securityClient HTTPClient, serverURL, language, sdkVersion, genVersion string) *companyInfo {
+	return &companyInfo{
 		defaultClient:  defaultClient,
 		securityClient: securityClient,
 		serverURL:      serverURL,
@@ -30,9 +30,9 @@ func newInfo(defaultClient, securityClient HTTPClient, serverURL, language, sdkV
 
 // GetCompanyInfo - Get company info
 // Gets the latest basic info for a company.
-func (s *info) GetCompanyInfo(ctx context.Context, request operations.GetCompanyInfoRequest) (*operations.GetCompanyInfoResponse, error) {
+func (s *companyInfo) GetCompanyInfo(ctx context.Context, request operations.GetCompanyInfoRequest) (*operations.GetCompanyInfoResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/info", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/info", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -75,9 +75,9 @@ func (s *info) GetCompanyInfo(ctx context.Context, request operations.GetCompany
 
 // PostSyncInfo - Refresh company info
 // Initiates the process of synchronising basic info for a company
-func (s *info) PostSyncInfo(ctx context.Context, request operations.PostSyncInfoRequest) (*operations.PostSyncInfoResponse, error) {
+func (s *companyInfo) PostSyncInfo(ctx context.Context, request operations.PostSyncInfoRequest) (*operations.PostSyncInfoResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/info", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/info", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
 	if err != nil {

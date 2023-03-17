@@ -5,13 +5,9 @@ import (
 	"time"
 )
 
-type GetBillPathParams struct {
+type GetBillRequest struct {
 	BillID    string `pathParam:"style=simple,explode=false,name=billId"`
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
-}
-
-type GetBillRequest struct {
-	PathParams GetBillPathParams
 }
 
 // GetBillSourceModifiedDateLineItemsAccountRef
@@ -36,6 +32,8 @@ type GetBillSourceModifiedDateLineItemsTaxRateRef struct {
 	Name             *string  `json:"name,omitempty"`
 }
 
+// GetBillSourceModifiedDateLineItemsTrackingCategoryRefs
+// References a category against which the item is tracked.
 type GetBillSourceModifiedDateLineItemsTrackingCategoryRefs struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
@@ -69,6 +67,8 @@ type GetBillSourceModifiedDateLineItemsTrackingProjectRef struct {
 	Name *string `json:"name,omitempty"`
 }
 
+// GetBillSourceModifiedDateLineItemsTracking
+// Categories, and a project and customer, against which the item is tracked.
 type GetBillSourceModifiedDateLineItemsTracking struct {
 	CategoryRefs []GetBillSourceModifiedDateLineItemsTrackingCategoryRefs   `json:"categoryRefs"`
 	CustomerRef  *GetBillSourceModifiedDateLineItemsTrackingCustomerRef     `json:"customerRef,omitempty"`

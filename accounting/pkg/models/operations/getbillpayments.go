@@ -5,13 +5,9 @@ import (
 	"time"
 )
 
-type GetBillPaymentsPathParams struct {
+type GetBillPaymentsRequest struct {
 	BillPaymentID string `pathParam:"style=simple,explode=false,name=billPaymentId"`
 	CompanyID     string `pathParam:"style=simple,explode=false,name=companyId"`
-}
-
-type GetBillPaymentsRequest struct {
-	PathParams GetBillPaymentsPathParams
 }
 
 // GetBillPaymentsSourceModifiedDateAccountRef

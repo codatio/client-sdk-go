@@ -5,21 +5,13 @@ import (
 	"time"
 )
 
-type GetDirectIncomesPathParams struct {
-	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
-}
-
-type GetDirectIncomesQueryParams struct {
-	OrderBy  *string  `queryParam:"style=form,explode=true,name=orderBy"`
-	Page     float64  `queryParam:"style=form,explode=true,name=page"`
-	PageSize *float64 `queryParam:"style=form,explode=true,name=pageSize"`
-	Query    *string  `queryParam:"style=form,explode=true,name=query"`
-}
-
 type GetDirectIncomesRequest struct {
-	PathParams  GetDirectIncomesPathParams
-	QueryParams GetDirectIncomesQueryParams
+	CompanyID    string  `pathParam:"style=simple,explode=false,name=companyId"`
+	ConnectionID string  `pathParam:"style=simple,explode=false,name=connectionId"`
+	OrderBy      *string `queryParam:"style=form,explode=true,name=orderBy"`
+	Page         int     `queryParam:"style=form,explode=true,name=page"`
+	PageSize     *int    `queryParam:"style=form,explode=true,name=pageSize"`
+	Query        *string `queryParam:"style=form,explode=true,name=query"`
 }
 
 type GetDirectIncomesLinksLinksCurrent struct {
@@ -74,6 +66,8 @@ type GetDirectIncomesLinksSourceModifiedDateLineItemsTaxRateRef struct {
 	Name             *string  `json:"name,omitempty"`
 }
 
+// GetDirectIncomesLinksSourceModifiedDateLineItemsTrackingCategoryRefs
+// References a category against which the item is tracked.
 type GetDirectIncomesLinksSourceModifiedDateLineItemsTrackingCategoryRefs struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`

@@ -5,14 +5,10 @@ import (
 	"time"
 )
 
-type ListSupplierAttachmentsPathParams struct {
+type ListSupplierAttachmentsRequest struct {
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 	SupplierID   string `pathParam:"style=simple,explode=false,name=supplierId"`
-}
-
-type ListSupplierAttachmentsRequest struct {
-	PathParams ListSupplierAttachmentsPathParams
 }
 
 type ListSupplierAttachmentsAttachmentsAttachment struct {

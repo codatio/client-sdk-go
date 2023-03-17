@@ -5,14 +5,10 @@ import (
 	"time"
 )
 
-type GetBankAccountPathParams struct {
+type GetBankAccountRequest struct {
 	AccountID    string `pathParam:"style=simple,explode=false,name=accountId"`
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
-}
-
-type GetBankAccountRequest struct {
-	PathParams GetBankAccountPathParams
 }
 
 type GetBankAccountSourceModifiedDateAccountTypeEnum string

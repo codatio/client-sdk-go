@@ -5,13 +5,9 @@ import (
 	"time"
 )
 
-type GetPaymentMethodPathParams struct {
+type GetPaymentMethodRequest struct {
 	CompanyID       string `pathParam:"style=simple,explode=false,name=companyId"`
 	PaymentMethodID string `pathParam:"style=simple,explode=false,name=paymentMethodId"`
-}
-
-type GetPaymentMethodRequest struct {
-	PathParams GetPaymentMethodPathParams
 }
 
 type GetPaymentMethodSourceModifiedDateMetadata struct {
