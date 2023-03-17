@@ -5,10 +5,6 @@ import (
 	"time"
 )
 
-type SendOrdersDataPathParams struct {
-	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
-}
-
 type SendOrdersDataRequestBodyOrdersCustomerRef struct {
 	ID   *string `json:"id,omitempty"`
 	Name *string `json:"name,omitempty"`
@@ -132,8 +128,8 @@ type SendOrdersDataRequestBody struct {
 }
 
 type SendOrdersDataRequest struct {
-	PathParams SendOrdersDataPathParams
-	Request    *SendOrdersDataRequestBody `request:"mediaType=application/json"`
+	RequestBody *SendOrdersDataRequestBody `request:"mediaType=application/json"`
+	CompanyID   string                     `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
 type SendOrdersData200ApplicationJSONDataOrdersCustomerRef struct {

@@ -9,10 +9,6 @@ type PostCompaniesRequestBody struct {
 	Name string `json:"name"`
 }
 
-type PostCompaniesRequest struct {
-	Request *PostCompaniesRequestBody `request:"mediaType=application/json"`
-}
-
 type PostCompanies200ApplicationJSONDataConnectionsDataConnectionErrors struct {
 	ErrorMessage *string    `json:"errorMessage,omitempty"`
 	ErroredOnUtc *time.Time `json:"erroredOnUtc,omitempty"`

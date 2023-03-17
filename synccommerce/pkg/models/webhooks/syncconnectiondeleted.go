@@ -22,7 +22,3 @@ type SyncConnectionDeletedAccountCategoriesUpdatedWebhook struct {
 	RuleID           *string `json:"ruleId,omitempty"`
 	RuleType         *string `json:"ruleType,omitempty"`
 }
-
-type SyncConnectionDeletedRequest struct {
-	Request *SyncConnectionDeletedAccountCategoriesUpdatedWebhook `request:"mediaType=application/json"`
-}

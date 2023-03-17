@@ -5,18 +5,14 @@ import (
 	"time"
 )
 
-type UpdateDataConnectionPathParams struct {
-	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
-}
-
 type UpdateDataConnectionRequestBody struct {
 	Status *string `json:"status,omitempty"`
 }
 
 type UpdateDataConnectionRequest struct {
-	PathParams UpdateDataConnectionPathParams
-	Request    *UpdateDataConnectionRequestBody `request:"mediaType=application/json"`
+	RequestBody  *UpdateDataConnectionRequestBody `request:"mediaType=application/json"`
+	CompanyID    string                           `pathParam:"style=simple,explode=false,name=companyId"`
+	ConnectionID string                           `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
 type UpdateDataConnection200ApplicationJSONDataConnectionErrors struct {

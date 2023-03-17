@@ -5,17 +5,13 @@ import (
 	"time"
 )
 
-type PostSyncLatestPathParams struct {
-	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
-}
-
 type PostSyncLatestRequestBody struct {
 	SyncTo *time.Time `json:"syncTo,omitempty"`
 }
 
 type PostSyncLatestRequest struct {
-	PathParams PostSyncLatestPathParams
-	Request    *PostSyncLatestRequestBody `request:"mediaType=application/json"`
+	RequestBody *PostSyncLatestRequestBody `request:"mediaType=application/json"`
+	CompanyID   string                     `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
 type PostSyncLatest200ApplicationJSONDataConnectionsDataConnectionErrors struct {

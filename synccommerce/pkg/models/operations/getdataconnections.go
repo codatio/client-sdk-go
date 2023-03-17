@@ -5,20 +5,12 @@ import (
 	"time"
 )
 
-type GetDataconnectionsPathParams struct {
-	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
-}
-
-type GetDataconnectionsQueryParams struct {
-	OrderBy  *string `queryParam:"style=form,explode=true,name=orderBy"`
-	Page     int     `queryParam:"style=form,explode=true,name=page"`
-	PageSize *int    `queryParam:"style=form,explode=true,name=pageSize"`
-	Query    *string `queryParam:"style=form,explode=true,name=query"`
-}
-
 type GetDataconnectionsRequest struct {
-	PathParams  GetDataconnectionsPathParams
-	QueryParams GetDataconnectionsQueryParams
+	CompanyID string  `pathParam:"style=simple,explode=false,name=companyId"`
+	OrderBy   *string `queryParam:"style=form,explode=true,name=orderBy"`
+	Page      int     `queryParam:"style=form,explode=true,name=page"`
+	PageSize  *int    `queryParam:"style=form,explode=true,name=pageSize"`
+	Query     *string `queryParam:"style=form,explode=true,name=query"`
 }
 
 type GetDataconnections200ApplicationJSONLinksCurrent struct {

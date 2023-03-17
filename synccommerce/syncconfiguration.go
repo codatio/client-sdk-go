@@ -32,9 +32,9 @@ func newSyncConfiguration(defaultClient, securityClient HTTPClient, serverURL, l
 // Configure Sync for Commerce for a Company.
 func (s *syncConfiguration) ConfigureSync(ctx context.Context, request operations.ConfigureSyncRequest) (*operations.ConfigureSyncResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/config/companies/{companyId}/sync/commerce", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/config/companies/{companyId}/sync/commerce", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -84,7 +84,7 @@ func (s *syncConfiguration) ConfigureSync(ctx context.Context, request operation
 // Check the sync history and status for a company.
 func (s *syncConfiguration) GetCompanyCommerceSyncStatus(ctx context.Context, request operations.GetCompanyCommerceSyncStatusRequest) (*operations.GetCompanyCommerceSyncStatusResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/meta/companies/{companyId}/sync/commerce/status", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/meta/companies/{companyId}/sync/commerce/status", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -120,14 +120,14 @@ func (s *syncConfiguration) GetCompanyCommerceSyncStatus(ctx context.Context, re
 // To get a URL for Sync Flow including a one time passcode.
 func (s *syncConfiguration) GetSyncFlowURL(ctx context.Context, request operations.GetSyncFlowURLRequest) (*operations.GetSyncFlowURLResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/config/sync/commerce/{commerceKey}/{accountingKey}/start", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/config/sync/commerce/{commerceKey}/{accountingKey}/start", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -160,7 +160,7 @@ func (s *syncConfiguration) GetSyncFlowURL(ctx context.Context, request operatio
 // Retrieve sync options and current sync configuration for a Company
 func (s *syncConfiguration) GetSyncOptions(ctx context.Context, request operations.GetSyncOptionsRequest) (*operations.GetSyncOptionsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/config/companies/{companyId}/sync/commerce", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/config/companies/{companyId}/sync/commerce", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {

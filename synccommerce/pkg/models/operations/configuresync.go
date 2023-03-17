@@ -5,10 +5,6 @@ import (
 	"time"
 )
 
-type ConfigureSyncPathParams struct {
-	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
-}
-
 type ConfigureSyncRequestBodyConfigurationFeesAccountsAccountOptions struct {
 	Classification *string `json:"classification,omitempty"`
 	ID             *string `json:"id,omitempty"`
@@ -208,8 +204,8 @@ type ConfigureSyncRequestBody struct {
 }
 
 type ConfigureSyncRequest struct {
-	PathParams ConfigureSyncPathParams
-	Request    *ConfigureSyncRequestBody `request:"mediaType=application/json"`
+	RequestBody *ConfigureSyncRequestBody `request:"mediaType=application/json"`
+	CompanyID   string                    `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
 type ConfigureSync200ApplicationJSONConfigurationFeesAccountsAccountOptions struct {
