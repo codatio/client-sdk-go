@@ -5,21 +5,13 @@ import (
 	"time"
 )
 
-type ListBankingAccountsPathParams struct {
-	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
-}
-
-type ListBankingAccountsQueryParams struct {
-	OrderBy  *string  `queryParam:"style=form,explode=true,name=orderBy"`
-	Page     float64  `queryParam:"style=form,explode=true,name=page"`
-	PageSize *float64 `queryParam:"style=form,explode=true,name=pageSize"`
-	Query    *string  `queryParam:"style=form,explode=true,name=query"`
-}
-
 type ListBankingAccountsRequest struct {
-	PathParams  ListBankingAccountsPathParams
-	QueryParams ListBankingAccountsQueryParams
+	CompanyID    string  `pathParam:"style=simple,explode=false,name=companyId"`
+	ConnectionID string  `pathParam:"style=simple,explode=false,name=connectionId"`
+	OrderBy      *string `queryParam:"style=form,explode=true,name=orderBy"`
+	Page         int     `queryParam:"style=form,explode=true,name=page"`
+	PageSize     *int    `queryParam:"style=form,explode=true,name=pageSize"`
+	Query        *string `queryParam:"style=form,explode=true,name=query"`
 }
 
 type ListBankingAccountsLinksLinksCurrent struct {

@@ -5,14 +5,10 @@ import (
 	"time"
 )
 
-type GetBankingAccountPathParams struct {
+type GetBankingAccountRequest struct {
 	AccountID    string `pathParam:"style=simple,explode=false,name=accountId"`
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
-}
-
-type GetBankingAccountRequest struct {
-	PathParams GetBankingAccountPathParams
 }
 
 // GetBankingAccountSourceModifiedDateAccountBalanceAmounts

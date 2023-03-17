@@ -32,7 +32,7 @@ func newTransactions(defaultClient, securityClient HTTPClient, serverURL, langua
 // Gets a specified bank transaction for a given company
 func (s *transactions) GetBankingTransaction(ctx context.Context, request operations.GetBankingTransactionRequest) (*operations.GetBankingTransactionResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/banking-transactions/{transactionId}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/banking-transactions/{transactionId}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -77,14 +77,14 @@ func (s *transactions) GetBankingTransaction(ctx context.Context, request operat
 // Gets a list of transactions incurred by a company across all bank accounts.
 func (s *transactions) ListAllBankingTransactions(ctx context.Context, request operations.ListAllBankingTransactionsRequest) (*operations.ListAllBankingTransactionsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/banking-transactions", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/banking-transactions", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -126,14 +126,14 @@ func (s *transactions) ListAllBankingTransactions(ctx context.Context, request o
 // Gets a list of transactions incurred by a bank account.
 func (s *transactions) ListBankingTransactions(ctx context.Context, request operations.ListBankingTransactionsRequest) (*operations.ListBankingTransactionsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/banking-transactions", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/banking-transactions", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
