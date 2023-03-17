@@ -5,13 +5,9 @@ import (
 	"time"
 )
 
-type AddDataConnectionPathParams struct {
-	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
-}
-
 type AddDataConnectionRequest struct {
-	PathParams AddDataConnectionPathParams
-	Request    *string `request:"mediaType=application/json"`
+	RequestBody *string `request:"mediaType=application/json"`
+	CompanyID   string  `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
 type AddDataConnection200ApplicationJSONDataConnectionErrors struct {

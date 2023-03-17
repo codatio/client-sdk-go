@@ -4,12 +4,8 @@ import (
 	"net/http"
 )
 
-type GetCompanyCommerceSyncStatusPathParams struct {
-	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
-}
-
 type GetCompanyCommerceSyncStatusRequest struct {
-	PathParams GetCompanyCommerceSyncStatusPathParams
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
 type GetCompanyCommerceSyncStatusResponse struct {

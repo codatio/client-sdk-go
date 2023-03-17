@@ -32,7 +32,7 @@ func newSyncData(defaultClient, securityClient HTTPClient, serverURL, language, 
 // Check whether the dataset has been accepted and validated.
 func (s *syncData) CheckDataStatus(ctx context.Context, request operations.CheckDataStatusRequest) (*operations.CheckDataStatusResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/meta/companies/{companyId}/pull/history/{datasetId}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/meta/companies/{companyId}/pull/history/{datasetId}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -68,9 +68,9 @@ func (s *syncData) CheckDataStatus(ctx context.Context, request operations.Check
 // Create a dataset of the merchants sales
 func (s *syncData) SendOrdersData(ctx context.Context, request operations.SendOrdersDataRequest) (*operations.SendOrdersDataResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/sync/commerce-orders", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/sync/commerce-orders", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -120,9 +120,9 @@ func (s *syncData) SendOrdersData(ctx context.Context, request operations.SendOr
 // Create a dataset of the merchants payments.
 func (s *syncData) SendPaymentsData(ctx context.Context, request operations.SendPaymentsDataRequest) (*operations.SendPaymentsDataResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/sync/commerce-payments", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/sync/commerce-payments", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -172,9 +172,9 @@ func (s *syncData) SendPaymentsData(ctx context.Context, request operations.Send
 // Create a dataset of the merchants transactions
 func (s *syncData) SendTransactionsData(ctx context.Context, request operations.SendTransactionsDataRequest) (*operations.SendTransactionsDataResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/sync/commerce-transactions", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/sync/commerce-transactions", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}

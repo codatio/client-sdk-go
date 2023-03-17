@@ -5,10 +5,6 @@ import (
 	"time"
 )
 
-type SendPaymentsDataPathParams struct {
-	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
-}
-
 type SendPaymentsDataRequestBodyPaymentsStatusEnum string
 
 const (
@@ -56,8 +52,8 @@ type SendPaymentsDataRequestBody struct {
 }
 
 type SendPaymentsDataRequest struct {
-	PathParams SendPaymentsDataPathParams
-	Request    *SendPaymentsDataRequestBody `request:"mediaType=application/json"`
+	RequestBody *SendPaymentsDataRequestBody `request:"mediaType=application/json"`
+	CompanyID   string                       `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
 type SendPaymentsData200ApplicationJSONDataPaymentsStatusEnum string

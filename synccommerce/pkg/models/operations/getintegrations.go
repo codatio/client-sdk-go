@@ -4,15 +4,11 @@ import (
 	"net/http"
 )
 
-type GetIntegrationsQueryParams struct {
+type GetIntegrationsRequest struct {
 	OrderBy  *string `queryParam:"style=form,explode=true,name=orderBy"`
 	Page     int     `queryParam:"style=form,explode=true,name=page"`
 	PageSize *int    `queryParam:"style=form,explode=true,name=pageSize"`
 	Query    *string `queryParam:"style=form,explode=true,name=query"`
-}
-
-type GetIntegrationsRequest struct {
-	QueryParams GetIntegrationsQueryParams
 }
 
 type GetIntegrations200ApplicationJSONLinksCurrent struct {

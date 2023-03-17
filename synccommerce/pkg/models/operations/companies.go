@@ -5,15 +5,11 @@ import (
 	"time"
 )
 
-type CompaniesQueryParams struct {
+type CompaniesRequest struct {
 	OrderBy  *string `queryParam:"style=form,explode=true,name=orderBy"`
 	Page     int     `queryParam:"style=form,explode=true,name=page"`
 	PageSize *int    `queryParam:"style=form,explode=true,name=pageSize"`
 	Query    *string `queryParam:"style=form,explode=true,name=query"`
-}
-
-type CompaniesRequest struct {
-	QueryParams CompaniesQueryParams
 }
 
 type Companies200ApplicationJSONLinksCurrent struct {
