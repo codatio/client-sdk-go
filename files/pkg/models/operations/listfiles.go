@@ -5,12 +5,8 @@ import (
 	"time"
 )
 
-type ListFilesPathParams struct {
-	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
-}
-
 type ListFilesRequest struct {
-	PathParams ListFilesPathParams
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
 type ListFilesFile struct {
