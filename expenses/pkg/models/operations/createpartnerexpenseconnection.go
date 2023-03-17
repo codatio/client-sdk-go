@@ -5,12 +5,8 @@ import (
 	"time"
 )
 
-type CreatePartnerexpenseConnectionPathParams struct {
-	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
-}
-
 type CreatePartnerexpenseConnectionRequest struct {
-	PathParams CreatePartnerexpenseConnectionPathParams
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
 type CreatePartnerexpenseConnectionConnectionConnectionInfo struct {

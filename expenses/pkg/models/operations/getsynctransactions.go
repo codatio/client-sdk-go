@@ -4,19 +4,11 @@ import (
 	"net/http"
 )
 
-type GetSyncTransactionsPathParams struct {
-	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
-	SyncID    string `pathParam:"style=simple,explode=false,name=syncId"`
-}
-
-type GetSyncTransactionsQueryParams struct {
-	Page     float64  `queryParam:"style=form,explode=true,name=page"`
-	PageSize *float64 `queryParam:"style=form,explode=true,name=pageSize"`
-}
-
 type GetSyncTransactionsRequest struct {
-	PathParams  GetSyncTransactionsPathParams
-	QueryParams GetSyncTransactionsQueryParams
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
+	Page      int    `queryParam:"style=form,explode=true,name=page"`
+	PageSize  *int   `queryParam:"style=form,explode=true,name=pageSize"`
+	SyncID    string `pathParam:"style=simple,explode=false,name=syncId"`
 }
 
 type GetSyncTransactions200ApplicationJSONHalLink struct {

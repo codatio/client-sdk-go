@@ -5,13 +5,9 @@ import (
 	"time"
 )
 
-type GetSyncByIDPathParams struct {
+type GetSyncByIDRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	SyncID    string `pathParam:"style=simple,explode=false,name=syncId"`
-}
-
-type GetSyncByIDRequest struct {
-	PathParams GetSyncByIDPathParams
 }
 
 type GetSyncByID200ApplicationJSON struct {

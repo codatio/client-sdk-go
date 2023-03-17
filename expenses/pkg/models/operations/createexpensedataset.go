@@ -5,10 +5,6 @@ import (
 	"time"
 )
 
-type CreateExpenseDatasetPathParams struct {
-	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
-}
-
 type CreateExpenseDatasetRequestBodyItemsLinesRecordRef struct {
 	ID *string `json:"id,omitempty"`
 }
@@ -50,8 +46,8 @@ type CreateExpenseDatasetRequestBody struct {
 }
 
 type CreateExpenseDatasetRequest struct {
-	PathParams CreateExpenseDatasetPathParams
-	Request    *CreateExpenseDatasetRequestBody `request:"mediaType=application/json"`
+	RequestBody *CreateExpenseDatasetRequestBody `request:"mediaType=application/json"`
+	CompanyID   string                           `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
 type CreateExpenseDataset200ApplicationJSON struct {

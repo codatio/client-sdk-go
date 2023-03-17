@@ -4,14 +4,10 @@ import (
 	"net/http"
 )
 
-type GetSyncTransactionPathParams struct {
+type GetSyncTransactionRequest struct {
 	CompanyID     string `pathParam:"style=simple,explode=false,name=companyId"`
 	SyncID        string `pathParam:"style=simple,explode=false,name=syncId"`
 	TransactionID string `pathParam:"style=simple,explode=false,name=transactionId"`
-}
-
-type GetSyncTransactionRequest struct {
-	PathParams GetSyncTransactionPathParams
 }
 
 type GetSyncTransaction200ApplicationJSONIntegrationTypeEnum string

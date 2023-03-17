@@ -5,12 +5,8 @@ import (
 	"time"
 )
 
-type GetMappingOptionsPathParams struct {
-	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
-}
-
 type GetMappingOptionsRequest struct {
-	PathParams GetMappingOptionsPathParams
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
 type GetMappingOptions200ApplicationJSONAccountsAccountTypeEnum string

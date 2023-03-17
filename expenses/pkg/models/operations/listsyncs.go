@@ -5,12 +5,8 @@ import (
 	"time"
 )
 
-type ListSyncsPathParams struct {
-	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
-}
-
 type ListSyncsRequest struct {
-	PathParams ListSyncsPathParams
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
 type ListSyncs200ApplicationJSON struct {

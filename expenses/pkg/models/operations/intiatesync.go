@@ -4,17 +4,13 @@ import (
 	"net/http"
 )
 
-type IntiateSyncPathParams struct {
-	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
-}
-
 type IntiateSyncRequestBody struct {
 	DatasetIds []string `json:"datasetIds,omitempty"`
 }
 
 type IntiateSyncRequest struct {
-	PathParams IntiateSyncPathParams
-	Request    *IntiateSyncRequestBody `request:"mediaType=application/json"`
+	RequestBody *IntiateSyncRequestBody `request:"mediaType=application/json"`
+	CompanyID   string                  `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
 type IntiateSync422ApplicationJSONValidationErrors struct {

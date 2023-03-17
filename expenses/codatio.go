@@ -8,7 +8,7 @@ import (
 )
 
 var ServerList = []string{
-	"https://expensesync.codat.io",
+	"https://api.codat.io",
 }
 
 type HTTPClient interface {
@@ -76,8 +76,8 @@ func WithSecurity(security shared.Security) SDKOption {
 func New(opts ...SDKOption) *Codatio {
 	sdk := &Codatio{
 		_language:   "go",
-		_sdkVersion: "0.4.3",
-		_genVersion: "1.8.6",
+		_sdkVersion: "0.5.0",
+		_genVersion: "1.12.2",
 	}
 	for _, opt := range opts {
 		opt(sdk)
@@ -88,13 +88,11 @@ func New(opts ...SDKOption) *Codatio {
 		sdk._defaultClient = &http.Client{Timeout: 60 * time.Second}
 	}
 	if sdk._securityClient == nil {
-
 		if sdk._security != nil {
 			sdk._securityClient = utils.ConfigureSecurityClient(sdk._defaultClient, sdk._security)
 		} else {
 			sdk._securityClient = sdk._defaultClient
 		}
-
 	}
 
 	if sdk._serverURL == "" {

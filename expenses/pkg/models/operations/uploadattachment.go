@@ -4,14 +4,10 @@ import (
 	"net/http"
 )
 
-type UploadAttachmentPathParams struct {
+type UploadAttachmentRequest struct {
 	CompanyID     string `pathParam:"style=simple,explode=false,name=companyId"`
 	SyncID        string `pathParam:"style=simple,explode=false,name=syncId"`
 	TransactionID string `pathParam:"style=simple,explode=false,name=transactionId"`
-}
-
-type UploadAttachmentRequest struct {
-	PathParams UploadAttachmentPathParams
 }
 
 type UploadAttachment200ApplicationJSON struct {
