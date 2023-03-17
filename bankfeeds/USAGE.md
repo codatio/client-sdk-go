@@ -27,8 +27,8 @@ func main() {
         },
         QueryParams: operations.GetBankAccountPushOptionsQueryParams{
             OrderBy: "nulla",
-            Page: 6027.63,
-            PageSize: 8579.46,
+            Page: 602763,
+            PageSize: 857946,
             Query: "perspiciatis",
         },
     }
