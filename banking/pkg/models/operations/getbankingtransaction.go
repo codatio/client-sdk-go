@@ -5,14 +5,10 @@ import (
 	"time"
 )
 
-type GetBankingTransactionPathParams struct {
+type GetBankingTransactionRequest struct {
 	CompanyID     string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID  string `pathParam:"style=simple,explode=false,name=connectionId"`
 	TransactionID string `pathParam:"style=simple,explode=false,name=transactionId"`
-}
-
-type GetBankingTransactionRequest struct {
-	PathParams GetBankingTransactionPathParams
 }
 
 type GetBankingTransactionSourceModifiedDateCodeEnum string

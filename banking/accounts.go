@@ -32,7 +32,7 @@ func newAccounts(defaultClient, securityClient HTTPClient, serverURL, language, 
 // Gets a specified bank account for a given company
 func (s *accounts) GetBankingAccount(ctx context.Context, request operations.GetBankingAccountRequest) (*operations.GetBankingAccountResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/banking-accounts/{accountId}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/banking-accounts/{accountId}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -77,14 +77,14 @@ func (s *accounts) GetBankingAccount(ctx context.Context, request operations.Get
 // Gets a list of all bank accounts of the SMB, with rich data like balances, account numbers and institutions holdingthe accounts.
 func (s *accounts) ListBankingAccounts(ctx context.Context, request operations.ListBankingAccountsRequest) (*operations.ListBankingAccountsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/banking-accounts", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/banking-accounts", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 

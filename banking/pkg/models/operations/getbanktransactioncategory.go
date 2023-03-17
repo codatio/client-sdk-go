@@ -5,14 +5,10 @@ import (
 	"time"
 )
 
-type GetBankTransactionCategoryPathParams struct {
+type GetBankTransactionCategoryRequest struct {
 	CompanyID             string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID          string `pathParam:"style=simple,explode=false,name=connectionId"`
 	TransactionCategoryID string `pathParam:"style=simple,explode=false,name=transactionCategoryId"`
-}
-
-type GetBankTransactionCategoryRequest struct {
-	PathParams GetBankTransactionCategoryPathParams
 }
 
 type GetBankTransactionCategorySourceModifiedDateStatusEnum string

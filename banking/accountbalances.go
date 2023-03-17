@@ -32,14 +32,14 @@ func newAccountBalances(defaultClient, securityClient HTTPClient, serverURL, lan
 // Gets a list of balances for a bank account including end-of-day batch balance or running balances per transaction.
 func (s *accountBalances) ListBankingAccountBalances(ctx context.Context, request operations.ListBankingAccountBalancesRequest) (*operations.ListBankingAccountBalancesResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/banking-accountBalances", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/banking-accountBalances", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
