@@ -22,26 +22,20 @@ import (
 )
 
 func main() {
-    s := codatio.New(codatio.WithSecurity(
-        shared.Security{
-            AuthHeader: shared.SchemeAuthHeader{
-                APIKey: "YOUR_API_KEY_HERE",
-            },
-        },
-    ))
-    
+    s := codatio.New(
+        codatio.WithSecurity(shared.Security{
+            AuthHeader: "YOUR_API_KEY_HERE",
+        }),
+    )
+
     req := operations.GetBankAccountPushOptionsRequest{
-        PathParams: operations.GetBankAccountPushOptionsPathParams{
-            AccountID: "unde",
-            CompanyID: "deserunt",
-            ConnectionID: "porro",
-        },
-        QueryParams: operations.GetBankAccountPushOptionsQueryParams{
-            OrderBy: "nulla",
-            Page: 6027.63,
-            PageSize: 8579.46,
-            Query: "perspiciatis",
-        },
+        AccountID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+        ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
+        OrderBy: "-modifiedDate",
+        Page: 1,
+        PageSize: 100,
+        Query: "unde",
     }
 
     ctx := context.Background()

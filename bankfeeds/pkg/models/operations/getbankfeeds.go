@@ -5,13 +5,9 @@ import (
 	"time"
 )
 
-type GetBankFeedsPathParams struct {
+type GetBankFeedsRequest struct {
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
-}
-
-type GetBankFeedsRequest struct {
-	PathParams GetBankFeedsPathParams
 }
 
 type GetBankFeedsBankFeedBankAccountAccountTypeEnum string

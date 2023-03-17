@@ -5,11 +5,6 @@ import (
 	"time"
 )
 
-type CreateBankFeedPathParams struct {
-	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
-}
-
 type CreateBankFeedBankFeedBankAccountAccountTypeEnum string
 
 const (
@@ -34,8 +29,9 @@ type CreateBankFeedBankFeedBankAccount struct {
 }
 
 type CreateBankFeedRequest struct {
-	PathParams CreateBankFeedPathParams
-	Request    []CreateBankFeedBankFeedBankAccount `request:"mediaType=application/json"`
+	RequestBody  []CreateBankFeedBankFeedBankAccount `request:"mediaType=application/json"`
+	CompanyID    string                              `pathParam:"style=simple,explode=false,name=companyId"`
+	ConnectionID string                              `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
 type CreateBankFeedResponse struct {
