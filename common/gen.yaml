@@ -1,6 +1,6 @@
 configVersion: 1.0.0
 management:
-  docChecksum: c45d111816d2a80343cf68432dd3b89b
+  docChecksum: cd8f359344976b5594f7b15381a281b7
   docVersion: 2.1.0
   speakeasyVersion: 1.12.0
 generation:
@@ -8,5 +8,5 @@ generation:
   sdkClassName: codatio
   sdkFlattening: false
 go:
-  version: 0.6.1
+  version: 0.6.2
   packageName: github.com/codatio/client-sdk-go/common
