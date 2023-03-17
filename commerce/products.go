@@ -32,14 +32,14 @@ func newProducts(defaultClient, securityClient HTTPClient, serverURL, language, 
 // Product categories are used to classify a group of products together, either by type (eg "Furniture"), or sometimes by tax profile.
 func (s *products) ListCommerceProductCategories(ctx context.Context, request operations.ListCommerceProductCategoriesRequest) (*operations.ListCommerceProductCategoriesResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/commerce-productCategories", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/commerce-productCategories", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -81,14 +81,14 @@ func (s *products) ListCommerceProductCategories(ctx context.Context, request op
 // The Products data type provides the company's product inventory, and includes the price and quantity of all products, and product variants, available for sale.
 func (s *products) ListCommerceProducts(ctx context.Context, request operations.ListCommerceProductsRequest) (*operations.ListCommerceProductsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/commerce-products", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/commerce-products", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 

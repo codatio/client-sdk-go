@@ -5,13 +5,9 @@ import (
 	"time"
 )
 
-type GetCommerceInfoPathParams struct {
+type GetCommerceInfoRequest struct {
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
-}
-
-type GetCommerceInfoRequest struct {
-	PathParams GetCommerceInfoPathParams
 }
 
 type GetCommerceInfoSourceModifiedDateAccountBalances struct {

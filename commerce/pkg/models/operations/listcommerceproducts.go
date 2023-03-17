@@ -5,21 +5,13 @@ import (
 	"time"
 )
 
-type ListCommerceProductsPathParams struct {
-	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
-}
-
-type ListCommerceProductsQueryParams struct {
-	OrderBy  *string  `queryParam:"style=form,explode=true,name=orderBy"`
-	Page     float64  `queryParam:"style=form,explode=true,name=page"`
-	PageSize *float64 `queryParam:"style=form,explode=true,name=pageSize"`
-	Query    *string  `queryParam:"style=form,explode=true,name=query"`
-}
-
 type ListCommerceProductsRequest struct {
-	PathParams  ListCommerceProductsPathParams
-	QueryParams ListCommerceProductsQueryParams
+	CompanyID    string  `pathParam:"style=simple,explode=false,name=companyId"`
+	ConnectionID string  `pathParam:"style=simple,explode=false,name=connectionId"`
+	OrderBy      *string `queryParam:"style=form,explode=true,name=orderBy"`
+	Page         int     `queryParam:"style=form,explode=true,name=page"`
+	PageSize     *int    `queryParam:"style=form,explode=true,name=pageSize"`
+	Query        *string `queryParam:"style=form,explode=true,name=query"`
 }
 
 type ListCommerceProductsLinksLinksCurrent struct {
