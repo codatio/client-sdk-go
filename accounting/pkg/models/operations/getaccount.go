@@ -5,13 +5,9 @@ import (
 	"time"
 )
 
-type GetAccountPathParams struct {
+type GetAccountRequest struct {
 	AccountID string `pathParam:"style=simple,explode=false,name=accountId"`
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
-}
-
-type GetAccountRequest struct {
-	PathParams GetAccountPathParams
 }
 
 type GetAccountSourceModifiedDateMetadata struct {

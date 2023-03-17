@@ -5,14 +5,10 @@ import (
 	"time"
 )
 
-type GetDirectIncomePathParams struct {
+type GetDirectIncomeRequest struct {
 	CompanyID      string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID   string `pathParam:"style=simple,explode=false,name=connectionId"`
 	DirectIncomeID string `pathParam:"style=simple,explode=false,name=directIncomeId"`
-}
-
-type GetDirectIncomeRequest struct {
-	PathParams GetDirectIncomePathParams
 }
 
 // GetDirectIncomeSourceModifiedDateContactRef
@@ -44,6 +40,8 @@ type GetDirectIncomeSourceModifiedDateLineItemsTaxRateRef struct {
 	Name             *string  `json:"name,omitempty"`
 }
 
+// GetDirectIncomeSourceModifiedDateLineItemsTrackingCategoryRefs
+// References a category against which the item is tracked.
 type GetDirectIncomeSourceModifiedDateLineItemsTrackingCategoryRefs struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`

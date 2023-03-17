@@ -5,13 +5,9 @@ import (
 	"time"
 )
 
-type GetSupplierPathParams struct {
+type GetSupplierRequest struct {
 	CompanyID  string `pathParam:"style=simple,explode=false,name=companyId"`
 	SupplierID string `pathParam:"style=simple,explode=false,name=supplierId"`
-}
-
-type GetSupplierRequest struct {
-	PathParams GetSupplierPathParams
 }
 
 type GetSupplierSourceModifiedDateAddressesTypeEnum string

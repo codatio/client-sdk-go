@@ -5,13 +5,9 @@ import (
 	"time"
 )
 
-type GetInvoicePathParams struct {
+type GetInvoiceRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	InvoiceID string `pathParam:"style=simple,explode=false,name=invoiceId"`
-}
-
-type GetInvoiceRequest struct {
-	PathParams GetInvoicePathParams
 }
 
 // GetInvoiceSourceModifiedDateCustomerRef
@@ -43,6 +39,8 @@ type GetInvoiceSourceModifiedDateLineItemsTaxRateRef struct {
 	Name             *string  `json:"name,omitempty"`
 }
 
+// GetInvoiceSourceModifiedDateLineItemsTrackingCategoryRefs
+// References a category against which the item is tracked.
 type GetInvoiceSourceModifiedDateLineItemsTrackingCategoryRefs struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
@@ -74,6 +72,8 @@ type GetInvoiceSourceModifiedDateLineItemsTrackingProjectRef struct {
 	Name *string `json:"name,omitempty"`
 }
 
+// GetInvoiceSourceModifiedDateLineItemsTracking
+// Categories, and a project and customer, against which the item is tracked.
 type GetInvoiceSourceModifiedDateLineItemsTracking struct {
 	CategoryRefs []GetInvoiceSourceModifiedDateLineItemsTrackingCategoryRefs   `json:"categoryRefs"`
 	CustomerRef  *GetInvoiceSourceModifiedDateLineItemsTrackingCustomerRef     `json:"customerRef,omitempty"`

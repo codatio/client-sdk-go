@@ -6,19 +6,11 @@ import (
 	"time"
 )
 
-type GetAgedDebtorsReportPathParams struct {
-	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
-}
-
-type GetAgedDebtorsReportQueryParams struct {
+type GetAgedDebtorsReportRequest struct {
+	CompanyID        string      `pathParam:"style=simple,explode=false,name=companyId"`
 	NumberOfPeriods  *int        `queryParam:"style=form,explode=true,name=numberOfPeriods"`
 	PeriodLengthDays *int        `queryParam:"style=form,explode=true,name=periodLengthDays"`
 	ReportDate       *types.Date `queryParam:"style=form,explode=true,name=reportDate"`
-}
-
-type GetAgedDebtorsReportRequest struct {
-	PathParams  GetAgedDebtorsReportPathParams
-	QueryParams GetAgedDebtorsReportQueryParams
 }
 
 type GetAgedDebtorsReportAgedDebtorsReportAgedDebtorAgedCurrencyOutstandingAgedOutstandingAmountAmountsOutstandingByDataType struct {

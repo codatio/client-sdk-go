@@ -5,17 +5,6 @@ import (
 	"time"
 )
 
-type PutBankAccountPathParams struct {
-	BankAccountID string `pathParam:"style=simple,explode=false,name=bankAccountId"`
-	CompanyID     string `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID  string `pathParam:"style=simple,explode=false,name=connectionId"`
-}
-
-type PutBankAccountQueryParams struct {
-	ForceUpdate      *bool `queryParam:"style=form,explode=true,name=forceUpdate"`
-	TimeoutInMinutes *int  `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
-}
-
 type PutBankAccountSourceModifiedDateAccountTypeEnum string
 
 const (
@@ -64,9 +53,12 @@ type PutBankAccountSourceModifiedDate struct {
 }
 
 type PutBankAccountRequest struct {
-	PathParams  PutBankAccountPathParams
-	QueryParams PutBankAccountQueryParams
-	Request     *PutBankAccountSourceModifiedDate `request:"mediaType=application/json"`
+	RequestBody      *PutBankAccountSourceModifiedDate `request:"mediaType=application/json"`
+	BankAccountID    string                            `pathParam:"style=simple,explode=false,name=bankAccountId"`
+	CompanyID        string                            `pathParam:"style=simple,explode=false,name=companyId"`
+	ConnectionID     string                            `pathParam:"style=simple,explode=false,name=connectionId"`
+	ForceUpdate      *bool                             `queryParam:"style=form,explode=true,name=forceUpdate"`
+	TimeoutInMinutes *int                              `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
 }
 
 type PutBankAccount200ApplicationJSONChangesPushOperationRecordRef struct {

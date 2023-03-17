@@ -5,14 +5,10 @@ import (
 	"time"
 )
 
-type ListDirectIncomeAttachmentsPathParams struct {
+type ListDirectIncomeAttachmentsRequest struct {
 	CompanyID      string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID   string `pathParam:"style=simple,explode=false,name=connectionId"`
 	DirectIncomeID string `pathParam:"style=simple,explode=false,name=directIncomeId"`
-}
-
-type ListDirectIncomeAttachmentsRequest struct {
-	PathParams ListDirectIncomeAttachmentsPathParams
 }
 
 type ListDirectIncomeAttachmentsAttachmentsAttachment struct {

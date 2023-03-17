@@ -5,13 +5,9 @@ import (
 	"time"
 )
 
-type GetPurchaseOrderPathParams struct {
+type GetPurchaseOrderRequest struct {
 	CompanyID       string `pathParam:"style=simple,explode=false,name=companyId"`
 	PurchaseOrderID string `pathParam:"style=simple,explode=false,name=purchaseOrderId"`
-}
-
-type GetPurchaseOrderRequest struct {
-	PathParams GetPurchaseOrderPathParams
 }
 
 // GetPurchaseOrderSourceModifiedDateLineItemsAccountRef
@@ -36,6 +32,8 @@ type GetPurchaseOrderSourceModifiedDateLineItemsTaxRateRef struct {
 	Name             *string  `json:"name,omitempty"`
 }
 
+// GetPurchaseOrderSourceModifiedDateLineItemsTrackingCategoryRefs
+// References a category against which the item is tracked.
 type GetPurchaseOrderSourceModifiedDateLineItemsTrackingCategoryRefs struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`

@@ -5,13 +5,9 @@ import (
 	"time"
 )
 
-type GetTaxRatePathParams struct {
+type GetTaxRateRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	TaxRateID string `pathParam:"style=simple,explode=false,name=taxRateId"`
-}
-
-type GetTaxRateRequest struct {
-	PathParams GetTaxRatePathParams
 }
 
 type GetTaxRate200ApplicationJSONComponents struct {

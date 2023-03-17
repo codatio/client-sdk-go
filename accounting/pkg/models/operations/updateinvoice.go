@@ -5,17 +5,6 @@ import (
 	"time"
 )
 
-type UpdateInvoicePathParams struct {
-	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
-	InvoiceID    string `pathParam:"style=simple,explode=false,name=invoiceId"`
-}
-
-type UpdateInvoiceQueryParams struct {
-	ForceUpdate      *bool `queryParam:"style=form,explode=true,name=forceUpdate"`
-	TimeoutInMinutes *int  `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
-}
-
 // UpdateInvoiceSourceModifiedDateCustomerRef
 // Reference to the customer the invoice has been issued to.
 type UpdateInvoiceSourceModifiedDateCustomerRef struct {
@@ -45,6 +34,8 @@ type UpdateInvoiceSourceModifiedDateLineItemsTaxRateRef struct {
 	Name             *string  `json:"name,omitempty"`
 }
 
+// UpdateInvoiceSourceModifiedDateLineItemsTrackingCategoryRefs
+// References a category against which the item is tracked.
 type UpdateInvoiceSourceModifiedDateLineItemsTrackingCategoryRefs struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
@@ -76,6 +67,8 @@ type UpdateInvoiceSourceModifiedDateLineItemsTrackingProjectRef struct {
 	Name *string `json:"name,omitempty"`
 }
 
+// UpdateInvoiceSourceModifiedDateLineItemsTracking
+// Categories, and a project and customer, against which the item is tracked.
 type UpdateInvoiceSourceModifiedDateLineItemsTracking struct {
 	CategoryRefs []UpdateInvoiceSourceModifiedDateLineItemsTrackingCategoryRefs   `json:"categoryRefs"`
 	CustomerRef  *UpdateInvoiceSourceModifiedDateLineItemsTrackingCustomerRef     `json:"customerRef,omitempty"`
@@ -211,9 +204,12 @@ type UpdateInvoiceSourceModifiedDate struct {
 }
 
 type UpdateInvoiceRequest struct {
-	PathParams  UpdateInvoicePathParams
-	QueryParams UpdateInvoiceQueryParams
-	Request     *UpdateInvoiceSourceModifiedDate `request:"mediaType=application/json"`
+	RequestBody      *UpdateInvoiceSourceModifiedDate `request:"mediaType=application/json"`
+	CompanyID        string                           `pathParam:"style=simple,explode=false,name=companyId"`
+	ConnectionID     string                           `pathParam:"style=simple,explode=false,name=connectionId"`
+	ForceUpdate      *bool                            `queryParam:"style=form,explode=true,name=forceUpdate"`
+	InvoiceID        string                           `pathParam:"style=simple,explode=false,name=invoiceId"`
+	TimeoutInMinutes *int                             `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
 }
 
 type UpdateInvoice200ApplicationJSONChangesPushOperationRecordRef struct {
@@ -266,6 +262,8 @@ type UpdateInvoice200ApplicationJSONSourceModifiedDateLineItemsTaxRateRef struct
 	Name             *string  `json:"name,omitempty"`
 }
 
+// UpdateInvoice200ApplicationJSONSourceModifiedDateLineItemsTrackingCategoryRefs
+// References a category against which the item is tracked.
 type UpdateInvoice200ApplicationJSONSourceModifiedDateLineItemsTrackingCategoryRefs struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
@@ -297,6 +295,8 @@ type UpdateInvoice200ApplicationJSONSourceModifiedDateLineItemsTrackingProjectRe
 	Name *string `json:"name,omitempty"`
 }
 
+// UpdateInvoice200ApplicationJSONSourceModifiedDateLineItemsTracking
+// Categories, and a project and customer, against which the item is tracked.
 type UpdateInvoice200ApplicationJSONSourceModifiedDateLineItemsTracking struct {
 	CategoryRefs []UpdateInvoice200ApplicationJSONSourceModifiedDateLineItemsTrackingCategoryRefs   `json:"categoryRefs"`
 	CustomerRef  *UpdateInvoice200ApplicationJSONSourceModifiedDateLineItemsTrackingCustomerRef     `json:"customerRef,omitempty"`

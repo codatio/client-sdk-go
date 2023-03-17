@@ -5,13 +5,9 @@ import (
 	"time"
 )
 
-type GetItemPathParams struct {
+type GetItemRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	ItemID    string `pathParam:"style=simple,explode=false,name=itemId"`
-}
-
-type GetItemRequest struct {
-	PathParams GetItemPathParams
 }
 
 // GetItemSourceModifiedDateBillItemAccountRef

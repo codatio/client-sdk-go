@@ -5,15 +5,6 @@ import (
 	"time"
 )
 
-type CreateBillCreditNotePathParams struct {
-	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
-}
-
-type CreateBillCreditNoteQueryParams struct {
-	TimeoutInMinutes *int `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
-}
-
 // CreateBillCreditNoteSourceModifiedDateLineItemsAccountRef
 // Reference to the account to which the line item is linked.
 type CreateBillCreditNoteSourceModifiedDateLineItemsAccountRef struct {
@@ -36,6 +27,8 @@ type CreateBillCreditNoteSourceModifiedDateLineItemsTaxRateRef struct {
 	Name             *string  `json:"name,omitempty"`
 }
 
+// CreateBillCreditNoteSourceModifiedDateLineItemsTrackingCategoryRefs
+// References a category against which the item is tracked.
 type CreateBillCreditNoteSourceModifiedDateLineItemsTrackingCategoryRefs struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
@@ -69,6 +62,8 @@ type CreateBillCreditNoteSourceModifiedDateLineItemsTrackingProjectRef struct {
 	Name *string `json:"name,omitempty"`
 }
 
+// CreateBillCreditNoteSourceModifiedDateLineItemsTracking
+// Categories, and a project and customer, against which the item is tracked.
 type CreateBillCreditNoteSourceModifiedDateLineItemsTracking struct {
 	CategoryRefs []CreateBillCreditNoteSourceModifiedDateLineItemsTrackingCategoryRefs   `json:"categoryRefs"`
 	CustomerRef  *CreateBillCreditNoteSourceModifiedDateLineItemsTrackingCustomerRef     `json:"customerRef,omitempty"`
@@ -199,9 +194,10 @@ type CreateBillCreditNoteSourceModifiedDate struct {
 }
 
 type CreateBillCreditNoteRequest struct {
-	PathParams  CreateBillCreditNotePathParams
-	QueryParams CreateBillCreditNoteQueryParams
-	Request     *CreateBillCreditNoteSourceModifiedDate `request:"mediaType=application/json"`
+	RequestBody      *CreateBillCreditNoteSourceModifiedDate `request:"mediaType=application/json"`
+	CompanyID        string                                  `pathParam:"style=simple,explode=false,name=companyId"`
+	ConnectionID     string                                  `pathParam:"style=simple,explode=false,name=connectionId"`
+	TimeoutInMinutes *int                                    `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
 }
 
 type CreateBillCreditNote200ApplicationJSONChangesPushOperationRecordRef struct {
@@ -247,6 +243,8 @@ type CreateBillCreditNote200ApplicationJSONSourceModifiedDateLineItemsTaxRateRef
 	Name             *string  `json:"name,omitempty"`
 }
 
+// CreateBillCreditNote200ApplicationJSONSourceModifiedDateLineItemsTrackingCategoryRefs
+// References a category against which the item is tracked.
 type CreateBillCreditNote200ApplicationJSONSourceModifiedDateLineItemsTrackingCategoryRefs struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
@@ -280,6 +278,8 @@ type CreateBillCreditNote200ApplicationJSONSourceModifiedDateLineItemsTrackingPr
 	Name *string `json:"name,omitempty"`
 }
 
+// CreateBillCreditNote200ApplicationJSONSourceModifiedDateLineItemsTracking
+// Categories, and a project and customer, against which the item is tracked.
 type CreateBillCreditNote200ApplicationJSONSourceModifiedDateLineItemsTracking struct {
 	CategoryRefs []CreateBillCreditNote200ApplicationJSONSourceModifiedDateLineItemsTrackingCategoryRefs   `json:"categoryRefs"`
 	CustomerRef  *CreateBillCreditNote200ApplicationJSONSourceModifiedDateLineItemsTrackingCustomerRef     `json:"customerRef,omitempty"`

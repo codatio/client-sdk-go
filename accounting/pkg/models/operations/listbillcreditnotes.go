@@ -5,20 +5,12 @@ import (
 	"time"
 )
 
-type ListBillCreditNotesPathParams struct {
-	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
-}
-
-type ListBillCreditNotesQueryParams struct {
-	OrderBy  *string  `queryParam:"style=form,explode=true,name=orderBy"`
-	Page     float64  `queryParam:"style=form,explode=true,name=page"`
-	PageSize *float64 `queryParam:"style=form,explode=true,name=pageSize"`
-	Query    *string  `queryParam:"style=form,explode=true,name=query"`
-}
-
 type ListBillCreditNotesRequest struct {
-	PathParams  ListBillCreditNotesPathParams
-	QueryParams ListBillCreditNotesQueryParams
+	CompanyID string  `pathParam:"style=simple,explode=false,name=companyId"`
+	OrderBy   *string `queryParam:"style=form,explode=true,name=orderBy"`
+	Page      int     `queryParam:"style=form,explode=true,name=page"`
+	PageSize  *int    `queryParam:"style=form,explode=true,name=pageSize"`
+	Query     *string `queryParam:"style=form,explode=true,name=query"`
 }
 
 type ListBillCreditNotesLinksLinksCurrent struct {
@@ -66,6 +58,8 @@ type ListBillCreditNotesLinksSourceModifiedDateLineItemsTaxRateRef struct {
 	Name             *string  `json:"name,omitempty"`
 }
 
+// ListBillCreditNotesLinksSourceModifiedDateLineItemsTrackingCategoryRefs
+// References a category against which the item is tracked.
 type ListBillCreditNotesLinksSourceModifiedDateLineItemsTrackingCategoryRefs struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
@@ -99,6 +93,8 @@ type ListBillCreditNotesLinksSourceModifiedDateLineItemsTrackingProjectRef struc
 	Name *string `json:"name,omitempty"`
 }
 
+// ListBillCreditNotesLinksSourceModifiedDateLineItemsTracking
+// Categories, and a project and customer, against which the item is tracked.
 type ListBillCreditNotesLinksSourceModifiedDateLineItemsTracking struct {
 	CategoryRefs []ListBillCreditNotesLinksSourceModifiedDateLineItemsTrackingCategoryRefs   `json:"categoryRefs"`
 	CustomerRef  *ListBillCreditNotesLinksSourceModifiedDateLineItemsTrackingCustomerRef     `json:"customerRef,omitempty"`

@@ -4,14 +4,10 @@ import (
 	"net/http"
 )
 
-type PushInvoiceAttachmentPathParams struct {
+type PushInvoiceAttachmentRequest struct {
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 	InvoiceID    string `pathParam:"style=simple,explode=false,name=invoiceId"`
-}
-
-type PushInvoiceAttachmentRequest struct {
-	PathParams PushInvoiceAttachmentPathParams
 }
 
 type PushInvoiceAttachmentResponse struct {

@@ -5,14 +5,10 @@ import (
 	"time"
 )
 
-type GetTransferPathParams struct {
+type GetTransferRequest struct {
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 	TransferID   string `pathParam:"style=simple,explode=false,name=transferId"`
-}
-
-type GetTransferRequest struct {
-	PathParams GetTransferPathParams
 }
 
 // GetTransferSourceModifiedDateContactRef
@@ -47,6 +43,8 @@ type GetTransferSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
 
+// GetTransferSourceModifiedDateTrackingCategoryRefs
+// References a category against which the item is tracked.
 type GetTransferSourceModifiedDateTrackingCategoryRefs struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`

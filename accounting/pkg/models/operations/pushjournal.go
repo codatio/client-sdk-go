@@ -5,15 +5,6 @@ import (
 	"time"
 )
 
-type PushJournalPathParams struct {
-	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
-}
-
-type PushJournalQueryParams struct {
-	TimeoutInMinutes *int `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
-}
-
 type PushJournalSourceModifiedDateStatusEnum string
 
 const (
@@ -59,9 +50,10 @@ type PushJournalSourceModifiedDateInput struct {
 }
 
 type PushJournalRequest struct {
-	PathParams  PushJournalPathParams
-	QueryParams PushJournalQueryParams
-	Request     *PushJournalSourceModifiedDateInput `request:"mediaType=application/json"`
+	RequestBody      *PushJournalSourceModifiedDateInput `request:"mediaType=application/json"`
+	CompanyID        string                              `pathParam:"style=simple,explode=false,name=companyId"`
+	ConnectionID     string                              `pathParam:"style=simple,explode=false,name=connectionId"`
+	TimeoutInMinutes *int                                `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
 }
 
 type PushJournal200ApplicationJSONChangesPushOperationRecordRef struct {

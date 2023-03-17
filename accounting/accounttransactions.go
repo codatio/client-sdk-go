@@ -28,11 +28,11 @@ func newAccountTransactions(defaultClient, securityClient HTTPClient, serverURL,
 	}
 }
 
-// GetAccountTransaction - Get account transaction
-// Gets the account transactions for a given company.Gets the specified account transaction for a given company and connection.
-func (s *accountTransactions) GetAccountTransaction(ctx context.Context, request operations.GetAccountTransactionRequest) (*operations.GetAccountTransactionResponse, error) {
+// GetCreateUpdateAccountTransactionsModel - Get account transaction
+// Get create/update account transactions model.
+func (s *accountTransactions) GetCreateUpdateAccountTransactionsModel(ctx context.Context, request operations.GetCreateUpdateAccountTransactionsModelRequest) (*operations.GetCreateUpdateAccountTransactionsModelResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/accountTransactions/{accountTransactionId}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/accountTransactions/{accountTransactionId}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -52,7 +52,7 @@ func (s *accountTransactions) GetAccountTransaction(ctx context.Context, request
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetAccountTransactionResponse{
+	res := &operations.GetCreateUpdateAccountTransactionsModelResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -61,7 +61,7 @@ func (s *accountTransactions) GetAccountTransaction(ctx context.Context, request
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetAccountTransactionSourceModifiedDate
+			var out *operations.GetCreateUpdateAccountTransactionsModelSourceModifiedDate
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -77,14 +77,14 @@ func (s *accountTransactions) GetAccountTransaction(ctx context.Context, request
 // Gets the account transactions for a given company.
 func (s *accountTransactions) ListAccountTransactions(ctx context.Context, request operations.ListAccountTransactionsRequest) (*operations.ListAccountTransactionsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/accountTransactions", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/accountTransactions", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 

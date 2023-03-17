@@ -5,12 +5,8 @@ import (
 	"time"
 )
 
-type GetCompanyInfoPathParams struct {
-	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
-}
-
 type GetCompanyInfoRequest struct {
-	PathParams GetCompanyInfoPathParams
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
 type GetCompanyInfoCompanyInfoAddressesTypeEnum string

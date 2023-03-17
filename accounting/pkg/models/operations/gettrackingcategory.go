@@ -5,13 +5,9 @@ import (
 	"time"
 )
 
-type GetTrackingCategoryPathParams struct {
+type GetTrackingCategoryRequest struct {
 	CompanyID          string `pathParam:"style=simple,explode=false,name=companyId"`
 	TrackingCategoryID string `pathParam:"style=simple,explode=false,name=trackingCategoryId"`
-}
-
-type GetTrackingCategoryRequest struct {
-	PathParams GetTrackingCategoryPathParams
 }
 
 type GetTrackingCategorySourceModifiedDateTrackingCategoryStatusEnum string
