@@ -4,21 +4,13 @@ import (
 	"net/http"
 )
 
-type GetEnhancedProfitAndLossPathParams struct {
-	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
-}
-
-type GetEnhancedProfitAndLossQueryParams struct {
+type GetEnhancedProfitAndLossRequest struct {
+	CompanyID           string `pathParam:"style=simple,explode=false,name=companyId"`
+	ConnectionID        string `pathParam:"style=simple,explode=false,name=connectionId"`
 	IncludeDisplayNames *bool  `queryParam:"style=form,explode=true,name=includeDisplayNames"`
 	NumberOfPeriods     int64  `queryParam:"style=form,explode=true,name=numberOfPeriods"`
 	PeriodLength        int64  `queryParam:"style=form,explode=true,name=periodLength"`
 	ReportDate          string `queryParam:"style=form,explode=true,name=reportDate"`
-}
-
-type GetEnhancedProfitAndLossRequest struct {
-	PathParams  GetEnhancedProfitAndLossPathParams
-	QueryParams GetEnhancedProfitAndLossQueryParams
 }
 
 type GetEnhancedProfitAndLoss200ApplicationJSONDimensionsItems struct {

@@ -4,11 +4,6 @@ import (
 	"net/http"
 )
 
-type GetAccountingMarketingMetricsPathParams struct {
-	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
-}
-
 type GetAccountingMarketingMetricsPeriodUnitEnum string
 
 const (
@@ -18,18 +13,15 @@ const (
 	GetAccountingMarketingMetricsPeriodUnitEnumYear  GetAccountingMarketingMetricsPeriodUnitEnum = "Year"
 )
 
-type GetAccountingMarketingMetricsQueryParams struct {
+type GetAccountingMarketingMetricsRequest struct {
+	CompanyID           string                                      `pathParam:"style=simple,explode=false,name=companyId"`
+	ConnectionID        string                                      `pathParam:"style=simple,explode=false,name=connectionId"`
 	IncludeDisplayNames *bool                                       `queryParam:"style=form,explode=true,name=includeDisplayNames"`
 	NumberOfPeriods     int64                                       `queryParam:"style=form,explode=true,name=numberOfPeriods"`
 	PeriodLength        int64                                       `queryParam:"style=form,explode=true,name=periodLength"`
 	PeriodUnit          GetAccountingMarketingMetricsPeriodUnitEnum `queryParam:"style=form,explode=true,name=periodUnit"`
 	ReportDate          string                                      `queryParam:"style=form,explode=true,name=reportDate"`
 	ShowInputValues     *bool                                       `queryParam:"style=form,explode=true,name=showInputValues"`
-}
-
-type GetAccountingMarketingMetricsRequest struct {
-	PathParams  GetAccountingMarketingMetricsPathParams
-	QueryParams GetAccountingMarketingMetricsQueryParams
 }
 
 type GetAccountingMarketingMetrics200ApplicationJSONDimensionsItems struct {

@@ -28,7 +28,3 @@ type AccountCategoriesUpdatedAccountCategoriesUpdatedWebhook struct {
 	RuleID           *string                                                      `json:"ruleId,omitempty"`
 	RuleType         *string                                                      `json:"ruleType,omitempty"`
 }
-
-type AccountCategoriesUpdatedRequest struct {
-	Request *AccountCategoriesUpdatedAccountCategoriesUpdatedWebhook `request:"mediaType=application/json"`
-}

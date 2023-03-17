@@ -4,11 +4,6 @@ import (
 	"net/http"
 )
 
-type GetCommerceRefundsMetricsPathParams struct {
-	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
-}
-
 type GetCommerceRefundsMetricsPeriodUnitEnum string
 
 const (
@@ -18,17 +13,14 @@ const (
 	GetCommerceRefundsMetricsPeriodUnitEnumYear  GetCommerceRefundsMetricsPeriodUnitEnum = "Year"
 )
 
-type GetCommerceRefundsMetricsQueryParams struct {
+type GetCommerceRefundsMetricsRequest struct {
+	CompanyID           string                                  `pathParam:"style=simple,explode=false,name=companyId"`
+	ConnectionID        string                                  `pathParam:"style=simple,explode=false,name=connectionId"`
 	IncludeDisplayNames *bool                                   `queryParam:"style=form,explode=true,name=includeDisplayNames"`
 	NumberOfPeriods     int64                                   `queryParam:"style=form,explode=true,name=numberOfPeriods"`
 	PeriodLength        int64                                   `queryParam:"style=form,explode=true,name=periodLength"`
 	PeriodUnit          GetCommerceRefundsMetricsPeriodUnitEnum `queryParam:"style=form,explode=true,name=periodUnit"`
 	ReportDate          string                                  `queryParam:"style=form,explode=true,name=reportDate"`
-}
-
-type GetCommerceRefundsMetricsRequest struct {
-	PathParams  GetCommerceRefundsMetricsPathParams
-	QueryParams GetCommerceRefundsMetricsQueryParams
 }
 
 type GetCommerceRefundsMetrics200ApplicationJSONDimensionsItems struct {

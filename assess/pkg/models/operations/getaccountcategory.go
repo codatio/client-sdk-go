@@ -5,14 +5,10 @@ import (
 	"time"
 )
 
-type GetAccountCategoryPathParams struct {
+type GetAccountCategoryRequest struct {
 	AccountID    string `pathParam:"style=simple,explode=false,name=accountId"`
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
-}
-
-type GetAccountCategoryRequest struct {
-	PathParams GetAccountCategoryPathParams
 }
 
 // GetAccountCategoryCategorisedAccountAccountRef

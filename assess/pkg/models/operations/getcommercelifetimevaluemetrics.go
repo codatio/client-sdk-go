@@ -4,11 +4,6 @@ import (
 	"net/http"
 )
 
-type GetCommerceLifetimeValueMetricsPathParams struct {
-	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
-}
-
 type GetCommerceLifetimeValueMetricsPeriodUnitEnum string
 
 const (
@@ -18,17 +13,14 @@ const (
 	GetCommerceLifetimeValueMetricsPeriodUnitEnumYear  GetCommerceLifetimeValueMetricsPeriodUnitEnum = "Year"
 )
 
-type GetCommerceLifetimeValueMetricsQueryParams struct {
+type GetCommerceLifetimeValueMetricsRequest struct {
+	CompanyID           string                                        `pathParam:"style=simple,explode=false,name=companyId"`
+	ConnectionID        string                                        `pathParam:"style=simple,explode=false,name=connectionId"`
 	IncludeDisplayNames *bool                                         `queryParam:"style=form,explode=true,name=includeDisplayNames"`
 	NumberOfPeriods     int64                                         `queryParam:"style=form,explode=true,name=numberOfPeriods"`
 	PeriodLength        int64                                         `queryParam:"style=form,explode=true,name=periodLength"`
 	PeriodUnit          GetCommerceLifetimeValueMetricsPeriodUnitEnum `queryParam:"style=form,explode=true,name=periodUnit"`
 	ReportDate          string                                        `queryParam:"style=form,explode=true,name=reportDate"`
-}
-
-type GetCommerceLifetimeValueMetricsRequest struct {
-	PathParams  GetCommerceLifetimeValueMetricsPathParams
-	QueryParams GetCommerceLifetimeValueMetricsQueryParams
 }
 
 type GetCommerceLifetimeValueMetrics200ApplicationJSONDimensionsItems struct {

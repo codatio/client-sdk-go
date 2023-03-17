@@ -14,13 +14,9 @@ const (
 	GetDataIntegrityStatusDataTypeEnumAccountTransactions GetDataIntegrityStatusDataTypeEnum = "accountTransactions"
 )
 
-type GetDataIntegrityStatusPathParams struct {
+type GetDataIntegrityStatusRequest struct {
 	CompanyID string                             `pathParam:"style=simple,explode=false,name=companyId"`
 	DataType  GetDataIntegrityStatusDataTypeEnum `pathParam:"style=simple,explode=false,name=dataType"`
-}
-
-type GetDataIntegrityStatusRequest struct {
-	PathParams GetDataIntegrityStatusPathParams
 }
 
 // GetDataIntegrityStatus200ApplicationJSONDataIntegrityTypeAmounts

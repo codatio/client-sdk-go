@@ -32,14 +32,14 @@ func newReports(defaultClient, securityClient HTTPClient, serverURL, language, s
 // Gets a list of accounts with account categories per statement period, specific to balance sheet
 func (s *reports) GetAccountsForEnhancedBalanceSheet(ctx context.Context, request operations.GetAccountsForEnhancedBalanceSheetRequest) (*operations.GetAccountsForEnhancedBalanceSheetResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/reports/enhancedBalanceSheet/accounts", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/reports/enhancedBalanceSheet/accounts", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -81,14 +81,14 @@ func (s *reports) GetAccountsForEnhancedBalanceSheet(ctx context.Context, reques
 // Gets a list of accounts with account categories per statement period, specific to profit and loss
 func (s *reports) GetAccountsForEnhancedProfitAndLoss(ctx context.Context, request operations.GetAccountsForEnhancedProfitAndLossRequest) (*operations.GetAccountsForEnhancedProfitAndLossResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/reports/enhancedProfitAndLoss/accounts", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/reports/enhancedProfitAndLoss/accounts", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -130,14 +130,14 @@ func (s *reports) GetAccountsForEnhancedProfitAndLoss(ctx context.Context, reque
 // Gets the customer retention metrics for a specific company connection, over one or more periods of time.
 func (s *reports) GetCommerceCustomerRetentionMetrics(ctx context.Context, request operations.GetCommerceCustomerRetentionMetricsRequest) (*operations.GetCommerceCustomerRetentionMetricsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/connections/{connectionId}/assess/commerceMetrics/customerRetention", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/connections/{connectionId}/assess/commerceMetrics/customerRetention", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -179,14 +179,14 @@ func (s *reports) GetCommerceCustomerRetentionMetrics(ctx context.Context, reque
 // Gets the lifetime value metric for a specific company connection, over one or more periods of time.
 func (s *reports) GetCommerceLifetimeValueMetrics(ctx context.Context, request operations.GetCommerceLifetimeValueMetricsRequest) (*operations.GetCommerceLifetimeValueMetricsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/connections/{connectionId}/assess/commerceMetrics/lifetimeValue", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/connections/{connectionId}/assess/commerceMetrics/lifetimeValue", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -228,14 +228,14 @@ func (s *reports) GetCommerceLifetimeValueMetrics(ctx context.Context, request o
 // Gets the order information for a specific company connection, over one or more periods of time.
 func (s *reports) GetCommerceOrdersMetrics(ctx context.Context, request operations.GetCommerceOrdersMetricsRequest) (*operations.GetCommerceOrdersMetricsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/connections/{connectionId}/assess/commerceMetrics/orders", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/connections/{connectionId}/assess/commerceMetrics/orders", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -277,14 +277,14 @@ func (s *reports) GetCommerceOrdersMetrics(ctx context.Context, request operatio
 // Gets the refunds information for a specific company connection, over one or more periods of time.
 func (s *reports) GetCommerceRefundsMetrics(ctx context.Context, request operations.GetCommerceRefundsMetricsRequest) (*operations.GetCommerceRefundsMetricsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/connections/{connectionId}/assess/commerceMetrics/refunds", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/connections/{connectionId}/assess/commerceMetrics/refunds", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -326,14 +326,14 @@ func (s *reports) GetCommerceRefundsMetrics(ctx context.Context, request operati
 // Get the revenue and revenue growth for a specific company connection, over one or more periods of time.
 func (s *reports) GetCommerceRevenueMetrics(ctx context.Context, request operations.GetCommerceRevenueMetricsRequest) (*operations.GetCommerceRevenueMetricsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/connections/{connectionId}/assess/commerceMetrics/revenue", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/connections/{connectionId}/assess/commerceMetrics/revenue", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -375,14 +375,14 @@ func (s *reports) GetCommerceRevenueMetrics(ctx context.Context, request operati
 // Gets a fully categorized balance sheet statement for a given company, over one or more period(s).
 func (s *reports) GetEnhancedBalanceSheet(ctx context.Context, request operations.GetEnhancedBalanceSheetRequest) (*operations.GetEnhancedBalanceSheetResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/connections/{connectionId}/assess/enhancedBalanceSheet", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/connections/{connectionId}/assess/enhancedBalanceSheet", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -424,14 +424,14 @@ func (s *reports) GetEnhancedBalanceSheet(ctx context.Context, request operation
 // Gets a list of banking transactions and their categories.
 func (s *reports) GetEnhancedCashFlowTransactions(ctx context.Context, request operations.GetEnhancedCashFlowTransactionsRequest) (*operations.GetEnhancedCashFlowTransactionsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/reports/enhancedCashFlow/transactions", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/reports/enhancedCashFlow/transactions", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -473,14 +473,14 @@ func (s *reports) GetEnhancedCashFlowTransactions(ctx context.Context, request o
 // Gets all the available financial metrics for a given company, over one or more periods.
 func (s *reports) GetEnhancedFinancialMetrics(ctx context.Context, request operations.GetEnhancedFinancialMetricsRequest) (*operations.GetEnhancedFinancialMetricsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/connections/{connectionId}/assess/financialMetrics", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/connections/{connectionId}/assess/financialMetrics", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -522,14 +522,14 @@ func (s *reports) GetEnhancedFinancialMetrics(ctx context.Context, request opera
 // Gets a fully categorized profit and loss statement for a given company, over one or more period(s).
 func (s *reports) GetEnhancedProfitAndLoss(ctx context.Context, request operations.GetEnhancedProfitAndLossRequest) (*operations.GetEnhancedProfitAndLossResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/connections/{connectionId}/assess/enhancedProfitAndLoss", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/connections/{connectionId}/assess/enhancedProfitAndLoss", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -571,7 +571,7 @@ func (s *reports) GetEnhancedProfitAndLoss(ctx context.Context, request operatio
 // Gets key metrics for subscription revenue.
 func (s *reports) GetRecurringRevenueMetrics(ctx context.Context, request operations.GetRecurringRevenueMetricsRequest) (*operations.GetRecurringRevenueMetricsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/connections/{connectionId}/assess/subscriptions/mrr", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/connections/{connectionId}/assess/subscriptions/mrr", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -616,7 +616,7 @@ func (s *reports) GetRecurringRevenueMetrics(ctx context.Context, request operat
 // Request production of key subscription revenue metrics.
 func (s *reports) RequestRecurringRevenueMetrics(ctx context.Context, request operations.RequestRecurringRevenueMetricsRequest) (*operations.RequestRecurringRevenueMetricsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/connections/{connectionId}/assess/subscriptions/process", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/connections/{connectionId}/assess/subscriptions/process", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {

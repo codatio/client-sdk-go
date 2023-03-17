@@ -33,7 +33,7 @@ func newCategories(defaultClient, securityClient HTTPClient, serverURL, language
 // Get category for specific nominal account.
 func (s *categories) GetAccountCategory(ctx context.Context, request operations.GetAccountCategoryRequest) (*operations.GetAccountCategoryResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/connections/{connectionId}/assess/accounts/{accountId}/categories", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/connections/{connectionId}/assess/accounts/{accountId}/categories", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -78,14 +78,14 @@ func (s *categories) GetAccountCategory(ctx context.Context, request operations.
 // Lists suggested and confirmed chart of account categories for the given company and data connection.
 func (s *categories) ListAccountsCategories(ctx context.Context, request operations.ListAccountsCategoriesRequest) (*operations.ListAccountsCategoriesResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/connections/{connectionId}/assess/accounts/categories", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/connections/{connectionId}/assess/accounts/categories", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -172,9 +172,9 @@ func (s *categories) ListAvailableAccountCategories(ctx context.Context) (*opera
 // Update category for a specific nominal account
 func (s *categories) UpdateAccountCategory(ctx context.Context, request operations.UpdateAccountCategoryRequest) (*operations.UpdateAccountCategoryResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/connections/{connectionId}/assess/accounts/{accountId}/categories", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/connections/{connectionId}/assess/accounts/{accountId}/categories", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -224,9 +224,9 @@ func (s *categories) UpdateAccountCategory(ctx context.Context, request operatio
 // Comfirms the categories for all or a batch of accounts for a specific connection.
 func (s *categories) UpdateAccountsCategories(ctx context.Context, request operations.UpdateAccountsCategoriesRequest) (*operations.UpdateAccountsCategoriesResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/connections/{connectionId}/assess/accounts/categories", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/connections/{connectionId}/assess/accounts/categories", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}

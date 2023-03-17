@@ -4,11 +4,6 @@ import (
 	"net/http"
 )
 
-type GetCommerceOrdersMetricsPathParams struct {
-	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
-}
-
 type GetCommerceOrdersMetricsPeriodUnitEnum string
 
 const (
@@ -18,17 +13,14 @@ const (
 	GetCommerceOrdersMetricsPeriodUnitEnumYear  GetCommerceOrdersMetricsPeriodUnitEnum = "Year"
 )
 
-type GetCommerceOrdersMetricsQueryParams struct {
+type GetCommerceOrdersMetricsRequest struct {
+	CompanyID           string                                 `pathParam:"style=simple,explode=false,name=companyId"`
+	ConnectionID        string                                 `pathParam:"style=simple,explode=false,name=connectionId"`
 	IncludeDisplayNames *bool                                  `queryParam:"style=form,explode=true,name=includeDisplayNames"`
 	NumberOfPeriods     int64                                  `queryParam:"style=form,explode=true,name=numberOfPeriods"`
 	PeriodLength        int64                                  `queryParam:"style=form,explode=true,name=periodLength"`
 	PeriodUnit          GetCommerceOrdersMetricsPeriodUnitEnum `queryParam:"style=form,explode=true,name=periodUnit"`
 	ReportDate          string                                 `queryParam:"style=form,explode=true,name=reportDate"`
-}
-
-type GetCommerceOrdersMetricsRequest struct {
-	PathParams  GetCommerceOrdersMetricsPathParams
-	QueryParams GetCommerceOrdersMetricsQueryParams
 }
 
 type GetCommerceOrdersMetrics200ApplicationJSONDimensionsItems struct {

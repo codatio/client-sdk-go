@@ -5,12 +5,6 @@ import (
 	"time"
 )
 
-type UpdateAccountCategoryPathParams struct {
-	AccountID    string `pathParam:"style=simple,explode=false,name=accountId"`
-	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
-}
-
 type UpdateAccountCategoryRequestBodyChartOfAccountCategory struct {
 	DetailType *string `json:"detailType,omitempty"`
 	Subtype    *string `json:"subtype,omitempty"`
@@ -22,8 +16,10 @@ type UpdateAccountCategoryRequestBody struct {
 }
 
 type UpdateAccountCategoryRequest struct {
-	PathParams UpdateAccountCategoryPathParams
-	Request    *UpdateAccountCategoryRequestBody `request:"mediaType=application/json"`
+	RequestBody  *UpdateAccountCategoryRequestBody `request:"mediaType=application/json"`
+	AccountID    string                            `pathParam:"style=simple,explode=false,name=accountId"`
+	CompanyID    string                            `pathParam:"style=simple,explode=false,name=companyId"`
+	ConnectionID string                            `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
 // UpdateAccountCategoryCategorisedAccountAccountRef

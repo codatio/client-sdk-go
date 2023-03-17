@@ -4,21 +4,13 @@ import (
 	"net/http"
 )
 
-type GetEnhancedBalanceSheetPathParams struct {
-	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
-}
-
-type GetEnhancedBalanceSheetQueryParams struct {
+type GetEnhancedBalanceSheetRequest struct {
+	CompanyID           string `pathParam:"style=simple,explode=false,name=companyId"`
+	ConnectionID        string `pathParam:"style=simple,explode=false,name=connectionId"`
 	IncludeDisplayNames *bool  `queryParam:"style=form,explode=true,name=includeDisplayNames"`
 	NumberOfPeriods     int64  `queryParam:"style=form,explode=true,name=numberOfPeriods"`
 	PeriodLength        int64  `queryParam:"style=form,explode=true,name=periodLength"`
 	ReportDate          string `queryParam:"style=form,explode=true,name=reportDate"`
-}
-
-type GetEnhancedBalanceSheetRequest struct {
-	PathParams  GetEnhancedBalanceSheetPathParams
-	QueryParams GetEnhancedBalanceSheetQueryParams
 }
 
 type GetEnhancedBalanceSheet200ApplicationJSONDimensionsItems struct {
