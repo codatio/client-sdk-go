@@ -5,17 +5,6 @@ import (
 	"time"
 )
 
-type PostBankTransactionsPathParams struct {
-	AccountID    string `pathParam:"style=simple,explode=false,name=accountId"`
-	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
-}
-
-type PostBankTransactionsQueryParams struct {
-	AllowSyncOnPushComplete *bool `queryParam:"style=form,explode=true,name=allowSyncOnPushComplete"`
-	TimeoutInMinutes        *int  `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
-}
-
 type PostBankTransactionsRequestBodyTransactionsTransactionTypeEnum string
 
 const (
@@ -77,9 +66,12 @@ type PostBankTransactionsRequestBody struct {
 }
 
 type PostBankTransactionsRequest struct {
-	PathParams  PostBankTransactionsPathParams
-	QueryParams PostBankTransactionsQueryParams
-	Request     *PostBankTransactionsRequestBody `request:"mediaType=application/json"`
+	RequestBody             *PostBankTransactionsRequestBody `request:"mediaType=application/json"`
+	AccountID               string                           `pathParam:"style=simple,explode=false,name=accountId"`
+	AllowSyncOnPushComplete *bool                            `queryParam:"style=form,explode=true,name=allowSyncOnPushComplete"`
+	CompanyID               string                           `pathParam:"style=simple,explode=false,name=companyId"`
+	ConnectionID            string                           `pathParam:"style=simple,explode=false,name=connectionId"`
+	TimeoutInMinutes        *int                             `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
 }
 
 type PostBankTransactions200ApplicationJSONChangesPushOperationRecordRef struct {
