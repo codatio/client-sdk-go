@@ -10,8 +10,8 @@ type GetSyncTransactionsPathParams struct {
 }
 
 type GetSyncTransactionsQueryParams struct {
-	Page     float64  `queryParam:"style=form,explode=true,name=page"`
-	PageSize *float64 `queryParam:"style=form,explode=true,name=pageSize"`
+	Page     int  `queryParam:"style=form,explode=true,name=page"`
+	PageSize *int `queryParam:"style=form,explode=true,name=pageSize"`
 }
 
 type GetSyncTransactionsRequest struct {

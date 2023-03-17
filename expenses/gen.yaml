@@ -1,6 +1,6 @@
 configVersion: 1.0.0
 management:
-  docChecksum: 20ccbb92f787ca9c730c756523e64bf0
+  docChecksum: ae27acd5a599b1f4be850c83d6d67811
   docVersion: prealpha
   speakeasyVersion: 1.12.0
 generation:
@@ -8,5 +8,5 @@ generation:
   sdkClassName: codatio
   sdkFlattening: false
 go:
-  version: 0.6.1
+  version: 0.6.2
   packageName: github.com/codatio/client-sdk-go/expenses
