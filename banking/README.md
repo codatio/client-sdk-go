@@ -37,8 +37,8 @@ func main() {
         },
         QueryParams: operations.ListBankingAccountBalancesQueryParams{
             OrderBy: "porro",
-            Page: 8442.66,
-            PageSize: 6027.63,
+            Page: 844266,
+            PageSize: 602763,
             Query: "vero",
         },
     }
