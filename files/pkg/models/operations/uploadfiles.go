@@ -4,13 +4,9 @@ import (
 	"net/http"
 )
 
-type UploadFilesPathParams struct {
+type UploadFilesRequest struct {
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
-}
-
-type UploadFilesRequest struct {
-	PathParams UploadFilesPathParams
 }
 
 type UploadFilesResponse struct {

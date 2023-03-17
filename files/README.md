@@ -22,21 +22,15 @@ import (
 )
 
 func main() {
-    s := codatio.New(codatio.WithSecurity(
-        shared.Security{
-            AuthHeader: shared.SchemeAuthHeader{
-                APIKey: "YOUR_API_KEY_HERE",
-            },
-        },
-    ))
-    
+    s := codatio.New(
+        codatio.WithSecurity(shared.Security{
+            AuthHeader: "YOUR_API_KEY_HERE",
+        }),
+    )
+
     req := operations.DownloadFilesRequest{
-        PathParams: operations.DownloadFilesPathParams{
-            CompanyID: "unde",
-        },
-        QueryParams: operations.DownloadFilesQueryParams{
-            Date: "2022-08-03T14:52:53.420Z",
-        },
+        CompanyID: "89bd9d8d-69a6-474e-8f46-7cc8796ed151",
+        Date: "2022-07-23T19:08:03.828Z",
     }
 
     ctx := context.Background()
