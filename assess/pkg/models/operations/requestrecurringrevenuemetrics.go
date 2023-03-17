@@ -4,13 +4,9 @@ import (
 	"net/http"
 )
 
-type RequestRecurringRevenueMetricsPathParams struct {
+type RequestRecurringRevenueMetricsRequest struct {
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
-}
-
-type RequestRecurringRevenueMetricsRequest struct {
-	PathParams RequestRecurringRevenueMetricsPathParams
 }
 
 type RequestRecurringRevenueMetrics200ApplicationJSONDimensionsItems struct {

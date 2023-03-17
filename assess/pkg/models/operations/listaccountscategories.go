@@ -5,21 +5,13 @@ import (
 	"time"
 )
 
-type ListAccountsCategoriesPathParams struct {
-	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
-}
-
-type ListAccountsCategoriesQueryParams struct {
-	OrderBy  *string  `queryParam:"style=form,explode=true,name=orderBy"`
-	Page     float64  `queryParam:"style=form,explode=true,name=page"`
-	PageSize *float64 `queryParam:"style=form,explode=true,name=pageSize"`
-	Query    *string  `queryParam:"style=form,explode=true,name=query"`
-}
-
 type ListAccountsCategoriesRequest struct {
-	PathParams  ListAccountsCategoriesPathParams
-	QueryParams ListAccountsCategoriesQueryParams
+	CompanyID    string  `pathParam:"style=simple,explode=false,name=companyId"`
+	ConnectionID string  `pathParam:"style=simple,explode=false,name=connectionId"`
+	OrderBy      *string `queryParam:"style=form,explode=true,name=orderBy"`
+	Page         int     `queryParam:"style=form,explode=true,name=page"`
+	PageSize     *int    `queryParam:"style=form,explode=true,name=pageSize"`
+	Query        *string `queryParam:"style=form,explode=true,name=query"`
 }
 
 type ListAccountsCategoriesLinksLinksCurrent struct {

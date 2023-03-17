@@ -5,19 +5,11 @@ import (
 	"time"
 )
 
-type GetEnhancedCashFlowTransactionsPathParams struct {
-	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
-}
-
-type GetEnhancedCashFlowTransactionsQueryParams struct {
-	Page     float64  `queryParam:"style=form,explode=true,name=page"`
-	PageSize *float64 `queryParam:"style=form,explode=true,name=pageSize"`
-	Query    *string  `queryParam:"style=form,explode=true,name=query"`
-}
-
 type GetEnhancedCashFlowTransactionsRequest struct {
-	PathParams  GetEnhancedCashFlowTransactionsPathParams
-	QueryParams GetEnhancedCashFlowTransactionsQueryParams
+	CompanyID string  `pathParam:"style=simple,explode=false,name=companyId"`
+	Page      int     `queryParam:"style=form,explode=true,name=page"`
+	PageSize  *int    `queryParam:"style=form,explode=true,name=pageSize"`
+	Query     *string `queryParam:"style=form,explode=true,name=query"`
 }
 
 type GetEnhancedCashFlowTransactionsEnhancedCashFlowTransactionsDataSourcesAccountsReportSourceRef struct {

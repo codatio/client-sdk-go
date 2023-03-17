@@ -5,11 +5,6 @@ import (
 	"time"
 )
 
-type UpdateAccountsCategoriesPathParams struct {
-	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
-}
-
 type UpdateAccountsCategoriesRequestBodyCategoriesAccountRef struct {
 	ID string `json:"id"`
 }
@@ -24,8 +19,9 @@ type UpdateAccountsCategoriesRequestBody struct {
 }
 
 type UpdateAccountsCategoriesRequest struct {
-	PathParams UpdateAccountsCategoriesPathParams
-	Request    *UpdateAccountsCategoriesRequestBody `request:"mediaType=application/json"`
+	RequestBody  *UpdateAccountsCategoriesRequestBody `request:"mediaType=application/json"`
+	CompanyID    string                               `pathParam:"style=simple,explode=false,name=companyId"`
+	ConnectionID string                               `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
 // UpdateAccountsCategoriesCategorisedAccountAccountRef

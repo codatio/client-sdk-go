@@ -5,21 +5,13 @@ import (
 	"net/http"
 )
 
-type GetEnhancedFinancialMetricsPathParams struct {
-	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
-}
-
-type GetEnhancedFinancialMetricsQueryParams struct {
+type GetEnhancedFinancialMetricsRequest struct {
+	CompanyID        string `pathParam:"style=simple,explode=false,name=companyId"`
+	ConnectionID     string `pathParam:"style=simple,explode=false,name=connectionId"`
 	NumberOfPeriods  int64  `queryParam:"style=form,explode=true,name=numberOfPeriods"`
 	PeriodLength     int64  `queryParam:"style=form,explode=true,name=periodLength"`
 	ReportDate       string `queryParam:"style=form,explode=true,name=reportDate"`
 	ShowMetricInputs *bool  `queryParam:"style=form,explode=true,name=showMetricInputs"`
-}
-
-type GetEnhancedFinancialMetricsRequest struct {
-	PathParams  GetEnhancedFinancialMetricsPathParams
-	QueryParams GetEnhancedFinancialMetricsQueryParams
 }
 
 type GetEnhancedFinancialMetrics200ApplicationJSONErrorsTypeEnum string

@@ -13,18 +13,10 @@ const (
 	GetDataIntegritySummariesDataTypeEnumAccountTransactions GetDataIntegritySummariesDataTypeEnum = "accountTransactions"
 )
 
-type GetDataIntegritySummariesPathParams struct {
+type GetDataIntegritySummariesRequest struct {
 	CompanyID string                                `pathParam:"style=simple,explode=false,name=companyId"`
 	DataType  GetDataIntegritySummariesDataTypeEnum `pathParam:"style=simple,explode=false,name=dataType"`
-}
-
-type GetDataIntegritySummariesQueryParams struct {
-	Query *string `queryParam:"style=form,explode=true,name=query"`
-}
-
-type GetDataIntegritySummariesRequest struct {
-	PathParams  GetDataIntegritySummariesPathParams
-	QueryParams GetDataIntegritySummariesQueryParams
+	Query     *string                               `queryParam:"style=form,explode=true,name=query"`
 }
 
 type GetDataIntegritySummaries200ApplicationJSONDataIntegrityTypeByAmount struct {

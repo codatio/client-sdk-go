@@ -14,21 +14,13 @@ const (
 	GetDataIntegrityDetailsDataTypeEnumAccountTransactions GetDataIntegrityDetailsDataTypeEnum = "accountTransactions"
 )
 
-type GetDataIntegrityDetailsPathParams struct {
+type GetDataIntegrityDetailsRequest struct {
 	CompanyID string                              `pathParam:"style=simple,explode=false,name=companyId"`
 	DataType  GetDataIntegrityDetailsDataTypeEnum `pathParam:"style=simple,explode=false,name=dataType"`
-}
-
-type GetDataIntegrityDetailsQueryParams struct {
-	OrderBy  *string  `queryParam:"style=form,explode=true,name=orderBy"`
-	Page     float64  `queryParam:"style=form,explode=true,name=page"`
-	PageSize *float64 `queryParam:"style=form,explode=true,name=pageSize"`
-	Query    *string  `queryParam:"style=form,explode=true,name=query"`
-}
-
-type GetDataIntegrityDetailsRequest struct {
-	PathParams  GetDataIntegrityDetailsPathParams
-	QueryParams GetDataIntegrityDetailsQueryParams
+	OrderBy   *string                             `queryParam:"style=form,explode=true,name=orderBy"`
+	Page      int                                 `queryParam:"style=form,explode=true,name=page"`
+	PageSize  *int                                `queryParam:"style=form,explode=true,name=pageSize"`
+	Query     *string                             `queryParam:"style=form,explode=true,name=query"`
 }
 
 type GetDataIntegrityDetailsLinksLinksCurrent struct {

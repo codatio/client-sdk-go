@@ -5,18 +5,10 @@ import (
 	"time"
 )
 
-type GetAccountsForEnhancedProfitAndLossPathParams struct {
-	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
-}
-
-type GetAccountsForEnhancedProfitAndLossQueryParams struct {
+type GetAccountsForEnhancedProfitAndLossRequest struct {
+	CompanyID       string `pathParam:"style=simple,explode=false,name=companyId"`
 	NumberOfPeriods int64  `queryParam:"style=form,explode=true,name=numberOfPeriods"`
 	ReportDate      string `queryParam:"style=form,explode=true,name=reportDate"`
-}
-
-type GetAccountsForEnhancedProfitAndLossRequest struct {
-	PathParams  GetAccountsForEnhancedProfitAndLossPathParams
-	QueryParams GetAccountsForEnhancedProfitAndLossQueryParams
 }
 
 type GetAccountsForEnhancedProfitAndLossEnhancedReportReportInfo struct {

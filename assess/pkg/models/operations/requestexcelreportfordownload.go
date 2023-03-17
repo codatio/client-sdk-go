@@ -5,23 +5,15 @@ import (
 	"time"
 )
 
-type RequestExcelReportForDownloadPathParams struct {
-	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
-}
-
 type RequestExcelReportForDownloadReportTypeEnum string
 
 const (
 	RequestExcelReportForDownloadReportTypeEnumAudit RequestExcelReportForDownloadReportTypeEnum = "audit"
 )
 
-type RequestExcelReportForDownloadQueryParams struct {
-	ReportType RequestExcelReportForDownloadReportTypeEnum `queryParam:"style=form,explode=true,name=reportType"`
-}
-
 type RequestExcelReportForDownloadRequest struct {
-	PathParams  RequestExcelReportForDownloadPathParams
-	QueryParams RequestExcelReportForDownloadQueryParams
+	CompanyID  string                                      `pathParam:"style=simple,explode=false,name=companyId"`
+	ReportType RequestExcelReportForDownloadReportTypeEnum `queryParam:"style=form,explode=true,name=reportType"`
 }
 
 type RequestExcelReportForDownload200ApplicationJSON struct {
