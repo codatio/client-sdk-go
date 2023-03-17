@@ -45,6 +45,8 @@ type CreateCreditNoteSourceModifiedDateLineItemsTaxRateRef struct {
 	Name             *string  `json:"name,omitempty"`
 }
 
+// CreateCreditNoteSourceModifiedDateLineItemsTrackingCategoryRefs
+// References a category against which the item is tracked.
 type CreateCreditNoteSourceModifiedDateLineItemsTrackingCategoryRefs struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
@@ -76,6 +78,8 @@ type CreateCreditNoteSourceModifiedDateLineItemsTrackingProjectRef struct {
 	Name *string `json:"name,omitempty"`
 }
 
+// CreateCreditNoteSourceModifiedDateLineItemsTracking
+// Categories, and a project and customer, against which the item is tracked.
 type CreateCreditNoteSourceModifiedDateLineItemsTracking struct {
 	CategoryRefs []CreateCreditNoteSourceModifiedDateLineItemsTrackingCategoryRefs   `json:"categoryRefs"`
 	CustomerRef  *CreateCreditNoteSourceModifiedDateLineItemsTrackingCustomerRef     `json:"customerRef,omitempty"`
@@ -253,6 +257,8 @@ type CreateCreditNote200ApplicationJSONSourceModifiedDateLineItemsTaxRateRef str
 	Name             *string  `json:"name,omitempty"`
 }
 
+// CreateCreditNote200ApplicationJSONSourceModifiedDateLineItemsTrackingCategoryRefs
+// References a category against which the item is tracked.
 type CreateCreditNote200ApplicationJSONSourceModifiedDateLineItemsTrackingCategoryRefs struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
@@ -284,6 +290,8 @@ type CreateCreditNote200ApplicationJSONSourceModifiedDateLineItemsTrackingProjec
 	Name *string `json:"name,omitempty"`
 }
 
+// CreateCreditNote200ApplicationJSONSourceModifiedDateLineItemsTracking
+// Categories, and a project and customer, against which the item is tracked.
 type CreateCreditNote200ApplicationJSONSourceModifiedDateLineItemsTracking struct {
 	CategoryRefs []CreateCreditNote200ApplicationJSONSourceModifiedDateLineItemsTrackingCategoryRefs   `json:"categoryRefs"`
 	CustomerRef  *CreateCreditNote200ApplicationJSONSourceModifiedDateLineItemsTrackingCustomerRef     `json:"customerRef,omitempty"`

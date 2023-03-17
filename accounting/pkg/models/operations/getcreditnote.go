@@ -43,6 +43,8 @@ type GetCreditNoteSourceModifiedDateLineItemsTaxRateRef struct {
 	Name             *string  `json:"name,omitempty"`
 }
 
+// GetCreditNoteSourceModifiedDateLineItemsTrackingCategoryRefs
+// References a category against which the item is tracked.
 type GetCreditNoteSourceModifiedDateLineItemsTrackingCategoryRefs struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
@@ -74,6 +76,8 @@ type GetCreditNoteSourceModifiedDateLineItemsTrackingProjectRef struct {
 	Name *string `json:"name,omitempty"`
 }
 
+// GetCreditNoteSourceModifiedDateLineItemsTracking
+// Categories, and a project and customer, against which the item is tracked.
 type GetCreditNoteSourceModifiedDateLineItemsTracking struct {
 	CategoryRefs []GetCreditNoteSourceModifiedDateLineItemsTrackingCategoryRefs   `json:"categoryRefs"`
 	CustomerRef  *GetCreditNoteSourceModifiedDateLineItemsTrackingCustomerRef     `json:"customerRef,omitempty"`

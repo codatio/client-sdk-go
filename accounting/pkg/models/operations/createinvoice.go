@@ -43,6 +43,8 @@ type CreateInvoiceSourceModifiedDateLineItemsTaxRateRef struct {
 	Name             *string  `json:"name,omitempty"`
 }
 
+// CreateInvoiceSourceModifiedDateLineItemsTrackingCategoryRefs
+// References a category against which the item is tracked.
 type CreateInvoiceSourceModifiedDateLineItemsTrackingCategoryRefs struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
@@ -74,6 +76,8 @@ type CreateInvoiceSourceModifiedDateLineItemsTrackingProjectRef struct {
 	Name *string `json:"name,omitempty"`
 }
 
+// CreateInvoiceSourceModifiedDateLineItemsTracking
+// Categories, and a project and customer, against which the item is tracked.
 type CreateInvoiceSourceModifiedDateLineItemsTracking struct {
 	CategoryRefs []CreateInvoiceSourceModifiedDateLineItemsTrackingCategoryRefs   `json:"categoryRefs"`
 	CustomerRef  *CreateInvoiceSourceModifiedDateLineItemsTrackingCustomerRef     `json:"customerRef,omitempty"`
@@ -264,6 +268,8 @@ type CreateInvoice200ApplicationJSONSourceModifiedDateLineItemsTaxRateRef struct
 	Name             *string  `json:"name,omitempty"`
 }
 
+// CreateInvoice200ApplicationJSONSourceModifiedDateLineItemsTrackingCategoryRefs
+// References a category against which the item is tracked.
 type CreateInvoice200ApplicationJSONSourceModifiedDateLineItemsTrackingCategoryRefs struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
@@ -295,6 +301,8 @@ type CreateInvoice200ApplicationJSONSourceModifiedDateLineItemsTrackingProjectRe
 	Name *string `json:"name,omitempty"`
 }
 
+// CreateInvoice200ApplicationJSONSourceModifiedDateLineItemsTracking
+// Categories, and a project and customer, against which the item is tracked.
 type CreateInvoice200ApplicationJSONSourceModifiedDateLineItemsTracking struct {
 	CategoryRefs []CreateInvoice200ApplicationJSONSourceModifiedDateLineItemsTrackingCategoryRefs   `json:"categoryRefs"`
 	CustomerRef  *CreateInvoice200ApplicationJSONSourceModifiedDateLineItemsTrackingCustomerRef     `json:"customerRef,omitempty"`

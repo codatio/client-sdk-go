@@ -44,6 +44,8 @@ type GetDirectIncomeSourceModifiedDateLineItemsTaxRateRef struct {
 	Name             *string  `json:"name,omitempty"`
 }
 
+// GetDirectIncomeSourceModifiedDateLineItemsTrackingCategoryRefs
+// References a category against which the item is tracked.
 type GetDirectIncomeSourceModifiedDateLineItemsTrackingCategoryRefs struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`

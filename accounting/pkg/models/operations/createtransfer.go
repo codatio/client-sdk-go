@@ -42,6 +42,8 @@ type CreateTransferSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
 
+// CreateTransferSourceModifiedDateTrackingCategoryRefs
+// References a category against which the item is tracked.
 type CreateTransferSourceModifiedDateTrackingCategoryRefs struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
@@ -130,6 +132,8 @@ type CreateTransfer200ApplicationJSONSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
 
+// CreateTransfer200ApplicationJSONSourceModifiedDateTrackingCategoryRefs
+// References a category against which the item is tracked.
 type CreateTransfer200ApplicationJSONSourceModifiedDateTrackingCategoryRefs struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`

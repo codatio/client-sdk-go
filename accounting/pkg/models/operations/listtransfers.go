@@ -11,10 +11,10 @@ type ListTransfersPathParams struct {
 }
 
 type ListTransfersQueryParams struct {
-	OrderBy  *string  `queryParam:"style=form,explode=true,name=orderBy"`
-	Page     float64  `queryParam:"style=form,explode=true,name=page"`
-	PageSize *float64 `queryParam:"style=form,explode=true,name=pageSize"`
-	Query    *string  `queryParam:"style=form,explode=true,name=query"`
+	OrderBy  *string `queryParam:"style=form,explode=true,name=orderBy"`
+	Page     int     `queryParam:"style=form,explode=true,name=page"`
+	PageSize *int    `queryParam:"style=form,explode=true,name=pageSize"`
+	Query    *string `queryParam:"style=form,explode=true,name=query"`
 }
 
 type ListTransfersRequest struct {
@@ -77,6 +77,8 @@ type ListTransfersLinksSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
 
+// ListTransfersLinksSourceModifiedDateTrackingCategoryRefs
+// References a category against which the item is tracked.
 type ListTransfersLinksSourceModifiedDateTrackingCategoryRefs struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`

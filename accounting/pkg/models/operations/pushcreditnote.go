@@ -43,6 +43,8 @@ type PushCreditNoteSourceModifiedDateLineItemsTaxRateRef struct {
 	Name             *string  `json:"name,omitempty"`
 }
 
+// PushCreditNoteSourceModifiedDateLineItemsTrackingCategoryRefs
+// References a category against which the item is tracked.
 type PushCreditNoteSourceModifiedDateLineItemsTrackingCategoryRefs struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
@@ -74,6 +76,8 @@ type PushCreditNoteSourceModifiedDateLineItemsTrackingProjectRef struct {
 	Name *string `json:"name,omitempty"`
 }
 
+// PushCreditNoteSourceModifiedDateLineItemsTracking
+// Categories, and a project and customer, against which the item is tracked.
 type PushCreditNoteSourceModifiedDateLineItemsTracking struct {
 	CategoryRefs []PushCreditNoteSourceModifiedDateLineItemsTrackingCategoryRefs   `json:"categoryRefs"`
 	CustomerRef  *PushCreditNoteSourceModifiedDateLineItemsTrackingCustomerRef     `json:"customerRef,omitempty"`
@@ -251,6 +255,8 @@ type PushCreditNote200ApplicationJSONSourceModifiedDateLineItemsTaxRateRef struc
 	Name             *string  `json:"name,omitempty"`
 }
 
+// PushCreditNote200ApplicationJSONSourceModifiedDateLineItemsTrackingCategoryRefs
+// References a category against which the item is tracked.
 type PushCreditNote200ApplicationJSONSourceModifiedDateLineItemsTrackingCategoryRefs struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
@@ -282,6 +288,8 @@ type PushCreditNote200ApplicationJSONSourceModifiedDateLineItemsTrackingProjectR
 	Name *string `json:"name,omitempty"`
 }
 
+// PushCreditNote200ApplicationJSONSourceModifiedDateLineItemsTracking
+// Categories, and a project and customer, against which the item is tracked.
 type PushCreditNote200ApplicationJSONSourceModifiedDateLineItemsTracking struct {
 	CategoryRefs []PushCreditNote200ApplicationJSONSourceModifiedDateLineItemsTrackingCategoryRefs   `json:"categoryRefs"`
 	CustomerRef  *PushCreditNote200ApplicationJSONSourceModifiedDateLineItemsTrackingCustomerRef     `json:"customerRef,omitempty"`

@@ -44,11 +44,41 @@ type GetDirectCostSourceModifiedDateLineItemsTaxRateRef struct {
 	Name             *string  `json:"name,omitempty"`
 }
 
-type GetDirectCostSourceModifiedDateLineItemsTracking struct {
-	InvoiceTo  *string  `json:"invoiceTo,omitempty"`
-	RecordRefs []string `json:"recordRefs"`
+// GetDirectCostSourceModifiedDateLineItemsInvoiceableTrackingInvoiceTo
+// Links to the underlying record or data type.
+//
+// Found on:
+//
+// - Journal entries
+// - Account transactions
+// - Invoices
+// - Transfers
+type GetDirectCostSourceModifiedDateLineItemsInvoiceableTrackingInvoiceTo struct {
+	DataType *string `json:"dataType,omitempty"`
+	ID       *string `json:"id,omitempty"`
 }
 
+// GetDirectCostSourceModifiedDateLineItemsInvoiceableTrackingRecordRefs
+// Links to the underlying record or data type.
+//
+// Found on:
+//
+// - Journal entries
+// - Account transactions
+// - Invoices
+// - Transfers
+type GetDirectCostSourceModifiedDateLineItemsInvoiceableTrackingRecordRefs struct {
+	DataType *string `json:"dataType,omitempty"`
+	ID       *string `json:"id,omitempty"`
+}
+
+type GetDirectCostSourceModifiedDateLineItemsInvoiceableTracking struct {
+	InvoiceTo  *GetDirectCostSourceModifiedDateLineItemsInvoiceableTrackingInvoiceTo   `json:"invoiceTo,omitempty"`
+	RecordRefs []GetDirectCostSourceModifiedDateLineItemsInvoiceableTrackingRecordRefs `json:"recordRefs"`
+}
+
+// GetDirectCostSourceModifiedDateLineItemsTrackingCategoryRefs
+// References a category against which the item is tracked.
 type GetDirectCostSourceModifiedDateLineItemsTrackingCategoryRefs struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
@@ -65,7 +95,7 @@ type GetDirectCostSourceModifiedDateLineItems struct {
 	TaxAmount            *float64                                                       `json:"taxAmount,omitempty"`
 	TaxRateRef           *GetDirectCostSourceModifiedDateLineItemsTaxRateRef            `json:"taxRateRef,omitempty"`
 	TotalAmount          *float64                                                       `json:"totalAmount,omitempty"`
-	Tracking             *GetDirectCostSourceModifiedDateLineItemsTracking              `json:"tracking,omitempty"`
+	Tracking             *GetDirectCostSourceModifiedDateLineItemsInvoiceableTracking   `json:"tracking,omitempty"`
 	TrackingCategoryRefs []GetDirectCostSourceModifiedDateLineItemsTrackingCategoryRefs `json:"trackingCategoryRefs,omitempty"`
 	UnitAmount           float64                                                        `json:"unitAmount"`
 }

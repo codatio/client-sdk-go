@@ -36,6 +36,8 @@ type CreatePurchaseOrderSourceModifiedDateLineItemsTaxRateRef struct {
 	Name             *string  `json:"name,omitempty"`
 }
 
+// CreatePurchaseOrderSourceModifiedDateLineItemsTrackingCategoryRefs
+// References a category against which the item is tracked.
 type CreatePurchaseOrderSourceModifiedDateLineItemsTrackingCategoryRefs struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
@@ -192,6 +194,8 @@ type CreatePurchaseOrder200ApplicationJSONSourceModifiedDateLineItemsTaxRateRef 
 	Name             *string  `json:"name,omitempty"`
 }
 
+// CreatePurchaseOrder200ApplicationJSONSourceModifiedDateLineItemsTrackingCategoryRefs
+// References a category against which the item is tracked.
 type CreatePurchaseOrder200ApplicationJSONSourceModifiedDateLineItemsTrackingCategoryRefs struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`

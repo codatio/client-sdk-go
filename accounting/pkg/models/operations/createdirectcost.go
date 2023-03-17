@@ -43,11 +43,41 @@ type CreateDirectCostSourceModifiedDateLineItemsTaxRateRef struct {
 	Name             *string  `json:"name,omitempty"`
 }
 
-type CreateDirectCostSourceModifiedDateLineItemsTracking struct {
-	InvoiceTo  *string  `json:"invoiceTo,omitempty"`
-	RecordRefs []string `json:"recordRefs"`
+// CreateDirectCostSourceModifiedDateLineItemsInvoiceableTrackingInvoiceTo
+// Links to the underlying record or data type.
+//
+// Found on:
+//
+// - Journal entries
+// - Account transactions
+// - Invoices
+// - Transfers
+type CreateDirectCostSourceModifiedDateLineItemsInvoiceableTrackingInvoiceTo struct {
+	DataType *string `json:"dataType,omitempty"`
+	ID       *string `json:"id,omitempty"`
 }
 
+// CreateDirectCostSourceModifiedDateLineItemsInvoiceableTrackingRecordRefs
+// Links to the underlying record or data type.
+//
+// Found on:
+//
+// - Journal entries
+// - Account transactions
+// - Invoices
+// - Transfers
+type CreateDirectCostSourceModifiedDateLineItemsInvoiceableTrackingRecordRefs struct {
+	DataType *string `json:"dataType,omitempty"`
+	ID       *string `json:"id,omitempty"`
+}
+
+type CreateDirectCostSourceModifiedDateLineItemsInvoiceableTracking struct {
+	InvoiceTo  *CreateDirectCostSourceModifiedDateLineItemsInvoiceableTrackingInvoiceTo   `json:"invoiceTo,omitempty"`
+	RecordRefs []CreateDirectCostSourceModifiedDateLineItemsInvoiceableTrackingRecordRefs `json:"recordRefs"`
+}
+
+// CreateDirectCostSourceModifiedDateLineItemsTrackingCategoryRefs
+// References a category against which the item is tracked.
 type CreateDirectCostSourceModifiedDateLineItemsTrackingCategoryRefs struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
@@ -64,7 +94,7 @@ type CreateDirectCostSourceModifiedDateLineItems struct {
 	TaxAmount            *float64                                                          `json:"taxAmount,omitempty"`
 	TaxRateRef           *CreateDirectCostSourceModifiedDateLineItemsTaxRateRef            `json:"taxRateRef,omitempty"`
 	TotalAmount          *float64                                                          `json:"totalAmount,omitempty"`
-	Tracking             *CreateDirectCostSourceModifiedDateLineItemsTracking              `json:"tracking,omitempty"`
+	Tracking             *CreateDirectCostSourceModifiedDateLineItemsInvoiceableTracking   `json:"tracking,omitempty"`
 	TrackingCategoryRefs []CreateDirectCostSourceModifiedDateLineItemsTrackingCategoryRefs `json:"trackingCategoryRefs,omitempty"`
 	UnitAmount           float64                                                           `json:"unitAmount"`
 }
@@ -204,11 +234,41 @@ type CreateDirectCost200ApplicationJSONSourceModifiedDateLineItemsTaxRateRef str
 	Name             *string  `json:"name,omitempty"`
 }
 
-type CreateDirectCost200ApplicationJSONSourceModifiedDateLineItemsTracking struct {
-	InvoiceTo  *string  `json:"invoiceTo,omitempty"`
-	RecordRefs []string `json:"recordRefs"`
+// CreateDirectCost200ApplicationJSONSourceModifiedDateLineItemsInvoiceableTrackingInvoiceTo
+// Links to the underlying record or data type.
+//
+// Found on:
+//
+// - Journal entries
+// - Account transactions
+// - Invoices
+// - Transfers
+type CreateDirectCost200ApplicationJSONSourceModifiedDateLineItemsInvoiceableTrackingInvoiceTo struct {
+	DataType *string `json:"dataType,omitempty"`
+	ID       *string `json:"id,omitempty"`
 }
 
+// CreateDirectCost200ApplicationJSONSourceModifiedDateLineItemsInvoiceableTrackingRecordRefs
+// Links to the underlying record or data type.
+//
+// Found on:
+//
+// - Journal entries
+// - Account transactions
+// - Invoices
+// - Transfers
+type CreateDirectCost200ApplicationJSONSourceModifiedDateLineItemsInvoiceableTrackingRecordRefs struct {
+	DataType *string `json:"dataType,omitempty"`
+	ID       *string `json:"id,omitempty"`
+}
+
+type CreateDirectCost200ApplicationJSONSourceModifiedDateLineItemsInvoiceableTracking struct {
+	InvoiceTo  *CreateDirectCost200ApplicationJSONSourceModifiedDateLineItemsInvoiceableTrackingInvoiceTo   `json:"invoiceTo,omitempty"`
+	RecordRefs []CreateDirectCost200ApplicationJSONSourceModifiedDateLineItemsInvoiceableTrackingRecordRefs `json:"recordRefs"`
+}
+
+// CreateDirectCost200ApplicationJSONSourceModifiedDateLineItemsTrackingCategoryRefs
+// References a category against which the item is tracked.
 type CreateDirectCost200ApplicationJSONSourceModifiedDateLineItemsTrackingCategoryRefs struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
@@ -225,7 +285,7 @@ type CreateDirectCost200ApplicationJSONSourceModifiedDateLineItems struct {
 	TaxAmount            *float64                                                                            `json:"taxAmount,omitempty"`
 	TaxRateRef           *CreateDirectCost200ApplicationJSONSourceModifiedDateLineItemsTaxRateRef            `json:"taxRateRef,omitempty"`
 	TotalAmount          *float64                                                                            `json:"totalAmount,omitempty"`
-	Tracking             *CreateDirectCost200ApplicationJSONSourceModifiedDateLineItemsTracking              `json:"tracking,omitempty"`
+	Tracking             *CreateDirectCost200ApplicationJSONSourceModifiedDateLineItemsInvoiceableTracking   `json:"tracking,omitempty"`
 	TrackingCategoryRefs []CreateDirectCost200ApplicationJSONSourceModifiedDateLineItemsTrackingCategoryRefs `json:"trackingCategoryRefs,omitempty"`
 	UnitAmount           float64                                                                             `json:"unitAmount"`
 }

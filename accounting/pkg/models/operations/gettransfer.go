@@ -47,6 +47,8 @@ type GetTransferSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
 
+// GetTransferSourceModifiedDateTrackingCategoryRefs
+// References a category against which the item is tracked.
 type GetTransferSourceModifiedDateTrackingCategoryRefs struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`

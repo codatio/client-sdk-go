@@ -10,10 +10,10 @@ type ListBillsPathParams struct {
 }
 
 type ListBillsQueryParams struct {
-	OrderBy  *string  `queryParam:"style=form,explode=true,name=orderBy"`
-	Page     float64  `queryParam:"style=form,explode=true,name=page"`
-	PageSize *float64 `queryParam:"style=form,explode=true,name=pageSize"`
-	Query    *string  `queryParam:"style=form,explode=true,name=query"`
+	OrderBy  *string `queryParam:"style=form,explode=true,name=orderBy"`
+	Page     int     `queryParam:"style=form,explode=true,name=page"`
+	PageSize *int    `queryParam:"style=form,explode=true,name=pageSize"`
+	Query    *string `queryParam:"style=form,explode=true,name=query"`
 }
 
 type ListBillsRequest struct {
@@ -66,6 +66,8 @@ type ListBillsLinksSourceModifiedDateLineItemsTaxRateRef struct {
 	Name             *string  `json:"name,omitempty"`
 }
 
+// ListBillsLinksSourceModifiedDateLineItemsTrackingCategoryRefs
+// References a category against which the item is tracked.
 type ListBillsLinksSourceModifiedDateLineItemsTrackingCategoryRefs struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
@@ -99,6 +101,8 @@ type ListBillsLinksSourceModifiedDateLineItemsTrackingProjectRef struct {
 	Name *string `json:"name,omitempty"`
 }
 
+// ListBillsLinksSourceModifiedDateLineItemsTracking
+// Categories, and a project and customer, against which the item is tracked.
 type ListBillsLinksSourceModifiedDateLineItemsTracking struct {
 	CategoryRefs []ListBillsLinksSourceModifiedDateLineItemsTrackingCategoryRefs   `json:"categoryRefs"`
 	CustomerRef  *ListBillsLinksSourceModifiedDateLineItemsTrackingCustomerRef     `json:"customerRef,omitempty"`

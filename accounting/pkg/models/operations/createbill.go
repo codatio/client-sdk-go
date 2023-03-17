@@ -36,6 +36,8 @@ type CreateBillSourceModifiedDateLineItemsTaxRateRef struct {
 	Name             *string  `json:"name,omitempty"`
 }
 
+// CreateBillSourceModifiedDateLineItemsTrackingCategoryRefs
+// References a category against which the item is tracked.
 type CreateBillSourceModifiedDateLineItemsTrackingCategoryRefs struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
@@ -69,6 +71,8 @@ type CreateBillSourceModifiedDateLineItemsTrackingProjectRef struct {
 	Name *string `json:"name,omitempty"`
 }
 
+// CreateBillSourceModifiedDateLineItemsTracking
+// Categories, and a project and customer, against which the item is tracked.
 type CreateBillSourceModifiedDateLineItemsTracking struct {
 	CategoryRefs []CreateBillSourceModifiedDateLineItemsTrackingCategoryRefs   `json:"categoryRefs"`
 	CustomerRef  *CreateBillSourceModifiedDateLineItemsTrackingCustomerRef     `json:"customerRef,omitempty"`
@@ -253,6 +257,8 @@ type CreateBill200ApplicationJSONSourceModifiedDateLineItemsTaxRateRef struct {
 	Name             *string  `json:"name,omitempty"`
 }
 
+// CreateBill200ApplicationJSONSourceModifiedDateLineItemsTrackingCategoryRefs
+// References a category against which the item is tracked.
 type CreateBill200ApplicationJSONSourceModifiedDateLineItemsTrackingCategoryRefs struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
@@ -286,6 +292,8 @@ type CreateBill200ApplicationJSONSourceModifiedDateLineItemsTrackingProjectRef s
 	Name *string `json:"name,omitempty"`
 }
 
+// CreateBill200ApplicationJSONSourceModifiedDateLineItemsTracking
+// Categories, and a project and customer, against which the item is tracked.
 type CreateBill200ApplicationJSONSourceModifiedDateLineItemsTracking struct {
 	CategoryRefs []CreateBill200ApplicationJSONSourceModifiedDateLineItemsTrackingCategoryRefs   `json:"categoryRefs"`
 	CustomerRef  *CreateBill200ApplicationJSONSourceModifiedDateLineItemsTrackingCustomerRef     `json:"customerRef,omitempty"`

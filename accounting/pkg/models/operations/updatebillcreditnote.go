@@ -38,6 +38,8 @@ type UpdateBillCreditNoteSourceModifiedDateLineItemsTaxRateRef struct {
 	Name             *string  `json:"name,omitempty"`
 }
 
+// UpdateBillCreditNoteSourceModifiedDateLineItemsTrackingCategoryRefs
+// References a category against which the item is tracked.
 type UpdateBillCreditNoteSourceModifiedDateLineItemsTrackingCategoryRefs struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
@@ -71,6 +73,8 @@ type UpdateBillCreditNoteSourceModifiedDateLineItemsTrackingProjectRef struct {
 	Name *string `json:"name,omitempty"`
 }
 
+// UpdateBillCreditNoteSourceModifiedDateLineItemsTracking
+// Categories, and a project and customer, against which the item is tracked.
 type UpdateBillCreditNoteSourceModifiedDateLineItemsTracking struct {
 	CategoryRefs []UpdateBillCreditNoteSourceModifiedDateLineItemsTrackingCategoryRefs   `json:"categoryRefs"`
 	CustomerRef  *UpdateBillCreditNoteSourceModifiedDateLineItemsTrackingCustomerRef     `json:"customerRef,omitempty"`
@@ -249,6 +253,8 @@ type UpdateBillCreditNote200ApplicationJSONSourceModifiedDateLineItemsTaxRateRef
 	Name             *string  `json:"name,omitempty"`
 }
 
+// UpdateBillCreditNote200ApplicationJSONSourceModifiedDateLineItemsTrackingCategoryRefs
+// References a category against which the item is tracked.
 type UpdateBillCreditNote200ApplicationJSONSourceModifiedDateLineItemsTrackingCategoryRefs struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
@@ -282,6 +288,8 @@ type UpdateBillCreditNote200ApplicationJSONSourceModifiedDateLineItemsTrackingPr
 	Name *string `json:"name,omitempty"`
 }
 
+// UpdateBillCreditNote200ApplicationJSONSourceModifiedDateLineItemsTracking
+// Categories, and a project and customer, against which the item is tracked.
 type UpdateBillCreditNote200ApplicationJSONSourceModifiedDateLineItemsTracking struct {
 	CategoryRefs []UpdateBillCreditNote200ApplicationJSONSourceModifiedDateLineItemsTrackingCategoryRefs   `json:"categoryRefs"`
 	CustomerRef  *UpdateBillCreditNote200ApplicationJSONSourceModifiedDateLineItemsTrackingCustomerRef     `json:"customerRef,omitempty"`
