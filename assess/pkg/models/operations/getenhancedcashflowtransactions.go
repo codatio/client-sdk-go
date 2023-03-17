@@ -10,9 +10,9 @@ type GetEnhancedCashFlowTransactionsPathParams struct {
 }
 
 type GetEnhancedCashFlowTransactionsQueryParams struct {
-	Page     float64  `queryParam:"style=form,explode=true,name=page"`
-	PageSize *float64 `queryParam:"style=form,explode=true,name=pageSize"`
-	Query    *string  `queryParam:"style=form,explode=true,name=query"`
+	Page     int     `queryParam:"style=form,explode=true,name=page"`
+	PageSize *int    `queryParam:"style=form,explode=true,name=pageSize"`
+	Query    *string `queryParam:"style=form,explode=true,name=query"`
 }
 
 type GetEnhancedCashFlowTransactionsRequest struct {
