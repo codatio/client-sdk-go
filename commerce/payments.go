@@ -32,14 +32,14 @@ func newPayments(defaultClient, securityClient HTTPClient, serverURL, language, 
 // Retrieve a list of payment methods, such as card, cash or other online payment methods, as held in the linked commerce platform.
 func (s *payments) ListCommercePaymentMethods(ctx context.Context, request operations.ListCommercePaymentMethodsRequest) (*operations.ListCommercePaymentMethodsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/commerce-paymentMethods", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/commerce-paymentMethods", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -81,14 +81,14 @@ func (s *payments) ListCommercePaymentMethods(ctx context.Context, request opera
 // List commerce payments for the given company & data connection.
 func (s *payments) ListCommercePayments(ctx context.Context, request operations.ListCommercePaymentsRequest) (*operations.ListCommercePaymentsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/commerce-payments", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/commerce-payments", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 

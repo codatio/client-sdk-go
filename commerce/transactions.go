@@ -32,14 +32,14 @@ func newTransactions(defaultClient, securityClient HTTPClient, serverURL, langua
 // Details of all financial transactions recorded in the commerce or point of sale system are added to the Transactions data type. For example, payments, service charges, and fees.
 func (s *transactions) ListCommerceTransactions(ctx context.Context, request operations.ListCommerceTransactionsRequest) (*operations.ListCommerceTransactionsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/commerce-transactions", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/commerce-transactions", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 

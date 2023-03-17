@@ -5,13 +5,9 @@ import (
 	"time"
 )
 
-type GetCompaniesCompanyIDConnectionsConnectionIDDataCommerceTaxComponentsPathParams struct {
+type GetCompaniesCompanyIDConnectionsConnectionIDDataCommerceTaxComponentsRequest struct {
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
-}
-
-type GetCompaniesCompanyIDConnectionsConnectionIDDataCommerceTaxComponentsRequest struct {
-	PathParams GetCompaniesCompanyIDConnectionsConnectionIDDataCommerceTaxComponentsPathParams
 }
 
 type GetCompaniesCompanyIDConnectionsConnectionIDDataCommerceTaxComponents200ApplicationJSONSourceModifiedDate struct {

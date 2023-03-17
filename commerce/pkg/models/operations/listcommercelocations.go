@@ -5,13 +5,9 @@ import (
 	"time"
 )
 
-type ListCommerceLocationsPathParams struct {
+type ListCommerceLocationsRequest struct {
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
-}
-
-type ListCommerceLocationsRequest struct {
-	PathParams ListCommerceLocationsPathParams
 }
 
 type ListCommerceLocationsLinksLinksCurrent struct {
