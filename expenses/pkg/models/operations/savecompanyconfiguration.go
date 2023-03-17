@@ -4,10 +4,6 @@ import (
 	"net/http"
 )
 
-type SaveCompanyConfigurationPathParams struct {
-	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
-}
-
 type SaveCompanyConfigurationRequestBodyBankAccount struct {
 	ID *string `json:"id,omitempty"`
 }
@@ -27,8 +23,8 @@ type SaveCompanyConfigurationRequestBody struct {
 }
 
 type SaveCompanyConfigurationRequest struct {
-	PathParams SaveCompanyConfigurationPathParams
-	Request    *SaveCompanyConfigurationRequestBody `request:"mediaType=application/json"`
+	RequestBody *SaveCompanyConfigurationRequestBody `request:"mediaType=application/json"`
+	CompanyID   string                               `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
 type SaveCompanyConfiguration400ApplicationJSONValidationErrors struct {

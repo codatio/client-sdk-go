@@ -5,12 +5,8 @@ import (
 	"time"
 )
 
-type GetLastSuccessfulSyncPathParams struct {
-	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
-}
-
 type GetLastSuccessfulSyncRequest struct {
-	PathParams GetLastSuccessfulSyncPathParams
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
 type GetLastSuccessfulSync200ApplicationJSON struct {

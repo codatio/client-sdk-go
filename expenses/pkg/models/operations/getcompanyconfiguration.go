@@ -4,12 +4,8 @@ import (
 	"net/http"
 )
 
-type GetCompanyConfigurationPathParams struct {
-	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
-}
-
 type GetCompanyConfigurationRequest struct {
-	PathParams GetCompanyConfigurationPathParams
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
 type GetCompanyConfiguration200ApplicationJSONBankAccount struct {

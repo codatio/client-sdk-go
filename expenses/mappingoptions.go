@@ -32,7 +32,7 @@ func newMappingOptions(defaultClient, securityClient HTTPClient, serverURL, lang
 // Gets the expense mapping options for a companies accounting software
 func (s *mappingOptions) GetMappingOptions(ctx context.Context, request operations.GetMappingOptionsRequest) (*operations.GetMappingOptionsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/mappingOptions", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/sync/expenses/mappingOptions", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {

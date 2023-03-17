@@ -5,12 +5,8 @@ import (
 	"time"
 )
 
-type GetLatestSyncPathParams struct {
-	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
-}
-
 type GetLatestSyncRequest struct {
-	PathParams GetLatestSyncPathParams
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
 type GetLatestSync200ApplicationJSON struct {
