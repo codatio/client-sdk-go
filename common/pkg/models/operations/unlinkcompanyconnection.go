@@ -5,18 +5,14 @@ import (
 	"time"
 )
 
-type UnlinkCompanyConnectionPathParams struct {
-	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
-}
-
 type UnlinkCompanyConnectionRequestBody struct {
 	Status *string `json:"status,omitempty"`
 }
 
 type UnlinkCompanyConnectionRequest struct {
-	PathParams UnlinkCompanyConnectionPathParams
-	Request    *UnlinkCompanyConnectionRequestBody `request:"mediaType=application/json"`
+	RequestBody  *UnlinkCompanyConnectionRequestBody `request:"mediaType=application/json"`
+	CompanyID    string                              `pathParam:"style=simple,explode=false,name=companyId"`
+	ConnectionID string                              `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
 type UnlinkCompanyConnection404ApplicationJSON struct {

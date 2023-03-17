@@ -5,11 +5,6 @@ import (
 	"time"
 )
 
-type GetCompanyAuthorizationPathParams struct {
-	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
-}
-
 type GetCompanyAuthorizationRequestBody struct {
 	Property1 *string `json:"property1,omitempty"`
 	Property2 *string `json:"property2,omitempty"`
@@ -17,8 +12,9 @@ type GetCompanyAuthorizationRequestBody struct {
 }
 
 type GetCompanyAuthorizationRequest struct {
-	PathParams GetCompanyAuthorizationPathParams
-	Request    *GetCompanyAuthorizationRequestBody `request:"mediaType=application/json"`
+	RequestBody  *GetCompanyAuthorizationRequestBody `request:"mediaType=application/json"`
+	CompanyID    string                              `pathParam:"style=simple,explode=false,name=companyId"`
+	ConnectionID string                              `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
 type GetCompanyAuthorizationConnectionConnectionInfo struct {

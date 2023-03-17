@@ -5,13 +5,9 @@ import (
 	"time"
 )
 
-type GetPullOperationPathParams struct {
+type GetPullOperationRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	DatasetID string `pathParam:"style=simple,explode=false,name=datasetId"`
-}
-
-type GetPullOperationRequest struct {
-	PathParams GetPullOperationPathParams
 }
 
 type GetPullOperation404ApplicationJSON struct {

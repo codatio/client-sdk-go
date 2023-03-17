@@ -32,7 +32,7 @@ func newRefreshData(defaultClient, securityClient HTTPClient, serverURL, languag
 // Refreshes all data types marked Fetch on first link.
 func (s *refreshData) CreateManyPullOperations(ctx context.Context, request operations.CreateManyPullOperationsRequest) (*operations.CreateManyPullOperationsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/all", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/all", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
 	if err != nil {
@@ -90,14 +90,14 @@ func (s *refreshData) CreateManyPullOperations(ctx context.Context, request oper
 // This will bring updated data into Codat from the linked integration for you to view.
 func (s *refreshData) CreatePullOperation(ctx context.Context, request operations.CreatePullOperationRequest) (*operations.CreatePullOperationResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/queue/{dataType}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/queue/{dataType}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 

@@ -4,12 +4,8 @@ import (
 	"net/http"
 )
 
-type CreateManyPullOperationsPathParams struct {
-	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
-}
-
 type CreateManyPullOperationsRequest struct {
-	PathParams CreateManyPullOperationsPathParams
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
 type CreateManyPullOperations404ApplicationJSON struct {

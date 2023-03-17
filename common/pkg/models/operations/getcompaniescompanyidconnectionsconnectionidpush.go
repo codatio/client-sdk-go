@@ -18,153 +18,229 @@ const (
 	GetCompaniesCompanyIDConnectionsConnectionIDPushDataTypeEnumCustomers            GetCompaniesCompanyIDConnectionsConnectionIDPushDataTypeEnum = "customers"
 )
 
-type GetCompaniesCompanyIDConnectionsConnectionIDPushPathParams struct {
+type GetCompaniesCompanyIDConnectionsConnectionIDPushRequest struct {
 	CompanyID    string                                                       `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string                                                       `pathParam:"style=simple,explode=false,name=connectionId"`
 	DataType     GetCompaniesCompanyIDConnectionsConnectionIDPushDataTypeEnum `pathParam:"style=simple,explode=false,name=dataType"`
 }
 
-type GetCompaniesCompanyIDConnectionsConnectionIDPushRequest struct {
-	PathParams GetCompaniesCompanyIDConnectionsConnectionIDPushPathParams
-}
-
-type GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnum string
+type GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionChoiceOptionTypeEnum string
 
 const (
-	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnumArray     GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnum = "Array"
-	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnumObject    GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnum = "Object"
-	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnumString    GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnum = "String"
-	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnumNumber    GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnum = "Number"
-	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnumBoolean   GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnum = "Boolean"
-	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnumDateTime  GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnum = "DateTime"
-	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnumFile      GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnum = "File"
-	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnumMultiPart GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnum = "MultiPart"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionChoiceOptionTypeEnumArray     GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionChoiceOptionTypeEnum = "Array"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionChoiceOptionTypeEnumObject    GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionChoiceOptionTypeEnum = "Object"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionChoiceOptionTypeEnumString    GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionChoiceOptionTypeEnum = "String"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionChoiceOptionTypeEnumNumber    GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionChoiceOptionTypeEnum = "Number"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionChoiceOptionTypeEnumBoolean   GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionChoiceOptionTypeEnum = "Boolean"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionChoiceOptionTypeEnumDateTime  GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionChoiceOptionTypeEnum = "DateTime"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionChoiceOptionTypeEnumFile      GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionChoiceOptionTypeEnum = "File"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionChoiceOptionTypeEnumMultiPart GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionChoiceOptionTypeEnum = "MultiPart"
 )
 
-type GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoicePushValidationInfoPushFieldValidation struct {
+type GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionChoice struct {
+	Description *string                                                                                                     `json:"description,omitempty"`
+	DisplayName *string                                                                                                     `json:"displayName,omitempty"`
+	Required    *bool                                                                                                       `json:"required,omitempty"`
+	Type        *GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionChoiceOptionTypeEnum `json:"type,omitempty"`
+	Value       *string                                                                                                     `json:"value,omitempty"`
+}
+
+type GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum string
+
+const (
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnumArray     GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum = "Array"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnumObject    GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum = "Object"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnumString    GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum = "String"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnumNumber    GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum = "Number"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnumBoolean   GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum = "Boolean"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnumDateTime  GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum = "DateTime"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnumFile      GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum = "File"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnumMultiPart GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum = "MultiPart"
+)
+
+type GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionChoice struct {
+	Description *string                                                                                                                       `json:"description,omitempty"`
+	DisplayName *string                                                                                                                       `json:"displayName,omitempty"`
+	Required    *bool                                                                                                                         `json:"required,omitempty"`
+	Type        *GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum `json:"type,omitempty"`
+	Value       *string                                                                                                                       `json:"value,omitempty"`
+}
+
+type GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum string
+
+const (
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnumArray     GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum = "Array"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnumObject    GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum = "Object"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnumString    GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum = "String"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnumNumber    GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum = "Number"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnumBoolean   GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum = "Boolean"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnumDateTime  GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum = "DateTime"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnumFile      GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum = "File"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnumMultiPart GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum = "MultiPart"
+)
+
+type GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoice struct {
+	Description *string                                                                                                                                         `json:"description,omitempty"`
+	DisplayName *string                                                                                                                                         `json:"displayName,omitempty"`
+	Required    *bool                                                                                                                                           `json:"required,omitempty"`
+	Type        *GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum `json:"type,omitempty"`
+	Value       *string                                                                                                                                         `json:"value,omitempty"`
+}
+
+type GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum string
+
+const (
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnumArray     GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum = "Array"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnumObject    GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum = "Object"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnumString    GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum = "String"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnumNumber    GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum = "Number"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnumBoolean   GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum = "Boolean"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnumDateTime  GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum = "DateTime"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnumFile      GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum = "File"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnumMultiPart GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum = "MultiPart"
+)
+
+type GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoice struct {
+	Description *string                                                                                                                                                           `json:"description,omitempty"`
+	DisplayName *string                                                                                                                                                           `json:"displayName,omitempty"`
+	Required    *bool                                                                                                                                                             `json:"required,omitempty"`
+	Type        *GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum `json:"type,omitempty"`
+	Value       *string                                                                                                                                                           `json:"value,omitempty"`
+}
+
+type GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum string
+
+const (
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnumArray     GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum = "Array"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnumObject    GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum = "Object"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnumString    GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum = "String"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnumNumber    GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum = "Number"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnumBoolean   GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum = "Boolean"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnumDateTime  GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum = "DateTime"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnumFile      GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum = "File"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnumMultiPart GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum = "MultiPart"
+)
+
+type GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushValidationInfoPushFieldValidation struct {
 	Details string  `json:"details"`
-	Field   string  `json:"field"`
+	Field   *string `json:"field,omitempty"`
 	Ref     *string `json:"ref,omitempty"`
 }
 
-type GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoicePushValidationInfo struct {
-	Information []GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoicePushValidationInfoPushFieldValidation `json:"information,omitempty"`
-	Warnings    []GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoicePushValidationInfoPushFieldValidation `json:"warnings,omitempty"`
+type GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushValidationInfo struct {
+	Information []GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushValidationInfoPushFieldValidation `json:"information,omitempty"`
+	Warnings    []GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushValidationInfoPushFieldValidation `json:"warnings,omitempty"`
 }
 
-type GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoice struct {
+type GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionProperty struct {
+	Description string                                                                                                                                                `json:"description"`
+	DisplayName string                                                                                                                                                `json:"displayName"`
+	Options     []GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoice  `json:"options,omitempty"`
+	Required    bool                                                                                                                                                  `json:"required"`
+	Type        GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum      `json:"type"`
+	Validation  *GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushValidationInfo `json:"validation,omitempty"`
+}
+
+type GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum string
+
+const (
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnumArray     GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum = "Array"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnumObject    GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum = "Object"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnumString    GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum = "String"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnumNumber    GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum = "Number"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnumBoolean   GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum = "Boolean"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnumDateTime  GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum = "DateTime"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnumFile      GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum = "File"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnumMultiPart GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum = "MultiPart"
+)
+
+type GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushValidationInfoPushFieldValidation struct {
+	Details string  `json:"details"`
+	Field   *string `json:"field,omitempty"`
+	Ref     *string `json:"ref,omitempty"`
+}
+
+type GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushValidationInfo struct {
+	Information []GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushValidationInfoPushFieldValidation `json:"information,omitempty"`
+	Warnings    []GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushValidationInfoPushFieldValidation `json:"warnings,omitempty"`
+}
+
+type GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionProperty struct {
 	Description string                                                                                                                                        `json:"description"`
 	DisplayName string                                                                                                                                        `json:"displayName"`
-	Rel         *string                                                                                                                                       `json:"rel,omitempty"`
+	Options     []GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoice            `json:"options,omitempty"`
+	Properties  map[string]GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionProperty `json:"properties,omitempty"`
 	Required    bool                                                                                                                                          `json:"required"`
-	Type        GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnum      `json:"type"`
-	Validation  *GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoicePushValidationInfo `json:"validation,omitempty"`
-	Value       string                                                                                                                                        `json:"value"`
+	Type        GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum                `json:"type"`
+	Validation  *GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushValidationInfo           `json:"validation,omitempty"`
 }
 
-type GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnum string
+type GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyOptionTypeEnum string
 
 const (
-	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnumArray     GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnum = "Array"
-	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnumObject    GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnum = "Object"
-	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnumString    GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnum = "String"
-	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnumNumber    GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnum = "Number"
-	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnumBoolean   GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnum = "Boolean"
-	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnumDateTime  GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnum = "DateTime"
-	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnumFile      GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnum = "File"
-	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnumMultiPart GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnum = "MultiPart"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyOptionTypeEnumArray     GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyOptionTypeEnum = "Array"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyOptionTypeEnumObject    GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyOptionTypeEnum = "Object"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyOptionTypeEnumString    GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyOptionTypeEnum = "String"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyOptionTypeEnumNumber    GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyOptionTypeEnum = "Number"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyOptionTypeEnumBoolean   GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyOptionTypeEnum = "Boolean"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyOptionTypeEnumDateTime  GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyOptionTypeEnum = "DateTime"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyOptionTypeEnumFile      GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyOptionTypeEnum = "File"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyOptionTypeEnumMultiPart GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyOptionTypeEnum = "MultiPart"
 )
 
-type GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushValidationInfoPushFieldValidation struct {
+type GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushValidationInfoPushFieldValidation struct {
 	Details string  `json:"details"`
-	Field   string  `json:"field"`
+	Field   *string `json:"field,omitempty"`
 	Ref     *string `json:"ref,omitempty"`
 }
 
-type GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushValidationInfo struct {
-	Information []GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushValidationInfoPushFieldValidation `json:"information,omitempty"`
-	Warnings    []GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushValidationInfoPushFieldValidation `json:"warnings,omitempty"`
+type GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushValidationInfo struct {
+	Information []GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushValidationInfoPushFieldValidation `json:"information,omitempty"`
+	Warnings    []GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushValidationInfoPushFieldValidation `json:"warnings,omitempty"`
 }
 
-type GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoice struct {
-	Description string                                                                                                                        `json:"description"`
-	DisplayName string                                                                                                                        `json:"displayName"`
-	Options     []GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushOptionChoice  `json:"options,omitempty"`
-	Rel         *string                                                                                                                       `json:"rel,omitempty"`
-	Required    bool                                                                                                                          `json:"required"`
-	Type        GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoiceOptionTypeEnum      `json:"type"`
-	Validation  *GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoicePushValidationInfo `json:"validation,omitempty"`
-	Value       string                                                                                                                        `json:"value"`
+type GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionProperty struct {
+	Description string                                                                                                                      `json:"description"`
+	DisplayName string                                                                                                                      `json:"displayName"`
+	Options     []GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionChoice            `json:"options,omitempty"`
+	Properties  map[string]GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushOptionProperty `json:"properties,omitempty"`
+	Required    bool                                                                                                                        `json:"required"`
+	Type        GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyOptionTypeEnum                `json:"type"`
+	Validation  *GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionPropertyPushValidationInfo           `json:"validation,omitempty"`
 }
 
-type GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoiceOptionTypeEnum string
+type GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyOptionTypeEnum string
 
 const (
-	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoiceOptionTypeEnumArray     GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoiceOptionTypeEnum = "Array"
-	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoiceOptionTypeEnumObject    GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoiceOptionTypeEnum = "Object"
-	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoiceOptionTypeEnumString    GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoiceOptionTypeEnum = "String"
-	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoiceOptionTypeEnumNumber    GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoiceOptionTypeEnum = "Number"
-	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoiceOptionTypeEnumBoolean   GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoiceOptionTypeEnum = "Boolean"
-	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoiceOptionTypeEnumDateTime  GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoiceOptionTypeEnum = "DateTime"
-	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoiceOptionTypeEnumFile      GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoiceOptionTypeEnum = "File"
-	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoiceOptionTypeEnumMultiPart GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoiceOptionTypeEnum = "MultiPart"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyOptionTypeEnumArray     GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyOptionTypeEnum = "Array"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyOptionTypeEnumObject    GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyOptionTypeEnum = "Object"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyOptionTypeEnumString    GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyOptionTypeEnum = "String"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyOptionTypeEnumNumber    GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyOptionTypeEnum = "Number"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyOptionTypeEnumBoolean   GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyOptionTypeEnum = "Boolean"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyOptionTypeEnumDateTime  GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyOptionTypeEnum = "DateTime"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyOptionTypeEnumFile      GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyOptionTypeEnum = "File"
+	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyOptionTypeEnumMultiPart GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyOptionTypeEnum = "MultiPart"
 )
 
-type GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushValidationInfoPushFieldValidation struct {
+type GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushValidationInfoPushFieldValidation struct {
 	Details string  `json:"details"`
-	Field   string  `json:"field"`
+	Field   *string `json:"field,omitempty"`
 	Ref     *string `json:"ref,omitempty"`
 }
 
-type GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushValidationInfo struct {
-	Information []GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushValidationInfoPushFieldValidation `json:"information,omitempty"`
-	Warnings    []GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushValidationInfoPushFieldValidation `json:"warnings,omitempty"`
+type GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushValidationInfo struct {
+	Information []GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushValidationInfoPushFieldValidation `json:"information,omitempty"`
+	Warnings    []GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushValidationInfoPushFieldValidation `json:"warnings,omitempty"`
 }
 
-type GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoice struct {
-	Description string                                                                                                        `json:"description"`
-	DisplayName string                                                                                                        `json:"displayName"`
-	Options     []GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushOptionChoice  `json:"options,omitempty"`
-	Rel         *string                                                                                                       `json:"rel,omitempty"`
-	Required    bool                                                                                                          `json:"required"`
-	Type        GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoiceOptionTypeEnum      `json:"type"`
-	Validation  *GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoicePushValidationInfo `json:"validation,omitempty"`
-	Value       string                                                                                                        `json:"value"`
-}
-
-type GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoiceOptionTypeEnum string
-
-const (
-	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoiceOptionTypeEnumArray     GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoiceOptionTypeEnum = "Array"
-	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoiceOptionTypeEnumObject    GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoiceOptionTypeEnum = "Object"
-	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoiceOptionTypeEnumString    GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoiceOptionTypeEnum = "String"
-	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoiceOptionTypeEnumNumber    GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoiceOptionTypeEnum = "Number"
-	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoiceOptionTypeEnumBoolean   GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoiceOptionTypeEnum = "Boolean"
-	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoiceOptionTypeEnumDateTime  GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoiceOptionTypeEnum = "DateTime"
-	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoiceOptionTypeEnumFile      GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoiceOptionTypeEnum = "File"
-	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoiceOptionTypeEnumMultiPart GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoiceOptionTypeEnum = "MultiPart"
-)
-
-type GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushValidationInfoPushFieldValidation struct {
-	Details string  `json:"details"`
-	Field   string  `json:"field"`
-	Ref     *string `json:"ref,omitempty"`
-}
-
-type GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushValidationInfo struct {
-	Information []GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushValidationInfoPushFieldValidation `json:"information,omitempty"`
-	Warnings    []GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushValidationInfoPushFieldValidation `json:"warnings,omitempty"`
-}
-
-type GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoice struct {
-	Description string                                                                                        `json:"description"`
-	DisplayName string                                                                                        `json:"displayName"`
-	Options     []GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushOptionChoice  `json:"options,omitempty"`
-	Rel         *string                                                                                       `json:"rel,omitempty"`
-	Required    bool                                                                                          `json:"required"`
-	Type        GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoiceOptionTypeEnum      `json:"type"`
-	Validation  *GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoicePushValidationInfo `json:"validation,omitempty"`
-	Value       string                                                                                        `json:"value"`
+type GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionProperty struct {
+	Description string                                                                                                    `json:"description"`
+	DisplayName string                                                                                                    `json:"displayName"`
+	Options     []GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionChoice            `json:"options,omitempty"`
+	Properties  map[string]GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushOptionProperty `json:"properties,omitempty"`
+	Required    bool                                                                                                      `json:"required"`
+	Type        GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyOptionTypeEnum                `json:"type"`
+	Validation  *GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionPropertyPushValidationInfo           `json:"validation,omitempty"`
 }
 
 type GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionOptionTypeEnum string
@@ -180,25 +256,12 @@ const (
 	GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionOptionTypeEnumMultiPart GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionOptionTypeEnum = "MultiPart"
 )
 
-type GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushValidationInfoPushFieldValidation struct {
-	Details string  `json:"details"`
-	Field   string  `json:"field"`
-	Ref     *string `json:"ref,omitempty"`
-}
-
-type GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushValidationInfo struct {
-	Information []GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushValidationInfoPushFieldValidation `json:"information,omitempty"`
-	Warnings    []GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushValidationInfoPushFieldValidation `json:"warnings,omitempty"`
-}
-
 type GetCompaniesCompanyIDConnectionsConnectionIDPushPushOption struct {
-	Description string                                                                        `json:"description"`
-	DisplayName string                                                                        `json:"displayName"`
-	Options     []GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionChoice  `json:"options,omitempty"`
-	Rel         *string                                                                       `json:"rel,omitempty"`
-	Required    bool                                                                          `json:"required"`
-	Type        GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionOptionTypeEnum      `json:"type"`
-	Validation  *GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushValidationInfo `json:"validation,omitempty"`
+	Description *string                                                                                 `json:"description,omitempty"`
+	DisplayName string                                                                                  `json:"displayName"`
+	Properties  map[string]GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionPushOptionProperty `json:"properties,omitempty"`
+	Required    bool                                                                                    `json:"required"`
+	Type        GetCompaniesCompanyIDConnectionsConnectionIDPushPushOptionOptionTypeEnum                `json:"type"`
 }
 
 type GetCompaniesCompanyIDConnectionsConnectionIDPushResponse struct {

@@ -19,7 +19,3 @@ type NewCompanySynchronizedNewCompanySynchronizedWebhook struct {
 	RuleID    *string `json:"ruleId,omitempty"`
 	RuleType  *string `json:"ruleType,omitempty"`
 }
-
-type NewCompanySynchronizedRequest struct {
-	Request *NewCompanySynchronizedNewCompanySynchronizedWebhook `request:"mediaType=application/json"`
-}

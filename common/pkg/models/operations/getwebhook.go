@@ -4,12 +4,8 @@ import (
 	"net/http"
 )
 
-type GetWebhookPathParams struct {
-	RuleID string `pathParam:"style=simple,explode=false,name=ruleId"`
-}
-
 type GetWebhookRequest struct {
-	PathParams GetWebhookPathParams
+	RuleID string `pathParam:"style=simple,explode=false,name=ruleId"`
 }
 
 type GetWebhook404ApplicationJSON struct {

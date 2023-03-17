@@ -4,12 +4,8 @@ import (
 	"net/http"
 )
 
-type DeleteCompanyPathParams struct {
-	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
-}
-
 type DeleteCompanyRequest struct {
-	PathParams DeleteCompanyPathParams
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
 type DeleteCompany401ApplicationJSON struct {

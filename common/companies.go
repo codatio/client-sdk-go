@@ -31,11 +31,11 @@ func newCompanies(defaultClient, securityClient HTTPClient, serverURL, language,
 
 // CreateCompany - Create company
 // Create a new company
-func (s *companies) CreateCompany(ctx context.Context, request operations.CreateCompanyRequest) (*operations.CreateCompanyResponse, error) {
+func (s *companies) CreateCompany(ctx context.Context, request operations.CreateCompanyRequestBody) (*operations.CreateCompanyResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/companies"
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -96,7 +96,7 @@ func (s *companies) CreateCompany(ctx context.Context, request operations.Create
 // This operation is not reversible.
 func (s *companies) DeleteCompany(ctx context.Context, request operations.DeleteCompanyRequest) (*operations.DeleteCompanyResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "DELETE", url, nil)
 	if err != nil {
@@ -142,7 +142,7 @@ func (s *companies) DeleteCompany(ctx context.Context, request operations.Delete
 // Get metadata for a single company
 func (s *companies) GetCompany(ctx context.Context, request operations.GetCompanyRequest) (*operations.GetCompanyResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -204,7 +204,7 @@ func (s *companies) ListCompanies(ctx context.Context, request operations.ListCo
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -266,9 +266,9 @@ func (s *companies) ListCompanies(ctx context.Context, request operations.ListCo
 // Updates the given company with a new name and description
 func (s *companies) UpdateCompany(ctx context.Context, request operations.UpdateCompanyRequest) (*operations.UpdateCompanyResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}

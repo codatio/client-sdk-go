@@ -25,7 +25,3 @@ type DatasetDataChangedDatasetDataChangedWebhook struct {
 	RuleID    *string                                          `json:"ruleId,omitempty"`
 	RuleType  *string                                          `json:"ruleType,omitempty"`
 }
-
-type DatasetDataChangedRequest struct {
-	Request *DatasetDataChangedDatasetDataChangedWebhook `request:"mediaType=application/json"`
-}

@@ -17,10 +17,6 @@ type PutProfileProfile struct {
 	WhiteListUrls      []string `json:"whiteListUrls,omitempty"`
 }
 
-type PutProfileRequest struct {
-	Request *PutProfileProfile `request:"mediaType=application/json"`
-}
-
 type PutProfile401ApplicationJSON struct {
 	CanBeRetried      *string `json:"canBeRetried,omitempty"`
 	CorrelationID     *string `json:"correlationId,omitempty"`

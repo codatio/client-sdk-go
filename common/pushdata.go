@@ -29,16 +29,18 @@ func newPushData(defaultClient, securityClient HTTPClient, serverURL, language, 
 }
 
 // GetCompaniesCompanyIDConnectionsConnectionIDPush - List push options
+// This is the generic documentation for creation and updating of data. See the equivalent endpoint for a given data type for more specific information.
+//
 // Before pushing data into accounting software, it is often necessary to collect some details from the user as to how they would like the data to be inserted. This includes names and amounts on transactional entities, but also factors such as categorisation of entities, which is often handled differently between different accounting packages. A good example of this is specifying where on the balance sheet/profit and loss reports the user would like a newly-created nominal account to appear.
 //
-// Codat does not wish to limit users to pushing to a very limited number of standard categories, so we have implemented an "options" endpoint, which allows us to expose to our clients the fields which are required to be pushed for a specific linked company, and the options which may be selected for each field.
+// Codat tries not to limit users to pushing to a very limited number of standard categories, so we have implemented "options" endpoints, which allow us to expose to our clients the fields which are required to be pushed for a specific linked company, and the options which may be selected for each field.
 //
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/) for integrations that support push (POST/PUT methods).
 func (s *pushData) GetCompaniesCompanyIDConnectionsConnectionIDPush(ctx context.Context, request operations.GetCompaniesCompanyIDConnectionsConnectionIDPushRequest) (*operations.GetCompaniesCompanyIDConnectionsConnectionIDPushResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/{dataType}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/{dataType}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -83,14 +85,14 @@ func (s *pushData) GetCompaniesCompanyIDConnectionsConnectionIDPush(ctx context.
 // List push operation records.
 func (s *pushData) GetCompaniesCompanyIDPush(ctx context.Context, request operations.GetCompaniesCompanyIDPushRequest) (*operations.GetCompaniesCompanyIDPushResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/push", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/push", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -132,7 +134,7 @@ func (s *pushData) GetCompaniesCompanyIDPush(ctx context.Context, request operat
 // Retrieve push operation.
 func (s *pushData) GetCompaniesCompanyIDPushPushOperationKey(ctx context.Context, request operations.GetCompaniesCompanyIDPushPushOperationKeyRequest) (*operations.GetCompaniesCompanyIDPushPushOperationKeyResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/push/{pushOperationKey}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/push/{pushOperationKey}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
