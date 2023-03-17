@@ -33,7 +33,7 @@ func newIntegrations(defaultClient, securityClient HTTPClient, serverURL, langua
 // Get single integration, by platformKey
 func (s *integrations) GetIntegrationsPlatformKey(ctx context.Context, request operations.GetIntegrationsPlatformKeyRequest) (*operations.GetIntegrationsPlatformKeyResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/integrations/{platformKey}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/integrations/{platformKey}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -98,7 +98,7 @@ func (s *integrations) GetIntegrationsPlatformKey(ctx context.Context, request o
 // Get branding for platform.
 func (s *integrations) GetIntegrationsPlatformKeyBranding(ctx context.Context, request operations.GetIntegrationsPlatformKeyBrandingRequest) (*operations.GetIntegrationsPlatformKeyBrandingResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/integrations/{platformKey}/branding", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/integrations/{platformKey}/branding", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -150,7 +150,7 @@ func (s *integrations) ListIntegrations(ctx context.Context, request operations.
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 

@@ -19,18 +19,10 @@ const (
 	CreatePullOperationDataTypeEnumCustomers            CreatePullOperationDataTypeEnum = "customers"
 )
 
-type CreatePullOperationPathParams struct {
-	CompanyID string                          `pathParam:"style=simple,explode=false,name=companyId"`
-	DataType  CreatePullOperationDataTypeEnum `pathParam:"style=simple,explode=false,name=dataType"`
-}
-
-type CreatePullOperationQueryParams struct {
-	ConnectionID *string `queryParam:"style=form,explode=true,name=connectionId"`
-}
-
 type CreatePullOperationRequest struct {
-	PathParams  CreatePullOperationPathParams
-	QueryParams CreatePullOperationQueryParams
+	CompanyID    string                          `pathParam:"style=simple,explode=false,name=companyId"`
+	ConnectionID *string                         `queryParam:"style=form,explode=true,name=connectionId"`
+	DataType     CreatePullOperationDataTypeEnum `pathParam:"style=simple,explode=false,name=dataType"`
 }
 
 type CreatePullOperation404ApplicationJSON struct {

@@ -4,12 +4,8 @@ import (
 	"net/http"
 )
 
-type GetIntegrationsPlatformKeyBrandingPathParams struct {
-	PlatformKey string `pathParam:"style=simple,explode=false,name=platformKey"`
-}
-
 type GetIntegrationsPlatformKeyBrandingRequest struct {
-	PathParams GetIntegrationsPlatformKeyBrandingPathParams
+	PlatformKey string `pathParam:"style=simple,explode=false,name=platformKey"`
 }
 
 // GetIntegrationsPlatformKeyBrandingBrandingLogoBrandingImageImage

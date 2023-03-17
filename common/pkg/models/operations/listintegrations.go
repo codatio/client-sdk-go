@@ -4,15 +4,11 @@ import (
 	"net/http"
 )
 
-type ListIntegrationsQueryParams struct {
-	OrderBy  *string  `queryParam:"style=form,explode=true,name=orderBy"`
-	Page     float64  `queryParam:"style=form,explode=true,name=page"`
-	PageSize *float64 `queryParam:"style=form,explode=true,name=pageSize"`
-	Query    *string  `queryParam:"style=form,explode=true,name=query"`
-}
-
 type ListIntegrationsRequest struct {
-	QueryParams ListIntegrationsQueryParams
+	OrderBy  *string `queryParam:"style=form,explode=true,name=orderBy"`
+	Page     int     `queryParam:"style=form,explode=true,name=page"`
+	PageSize *int    `queryParam:"style=form,explode=true,name=pageSize"`
+	Query    *string `queryParam:"style=form,explode=true,name=query"`
 }
 
 type ListIntegrations401ApplicationJSON struct {

@@ -26,7 +26,3 @@ type PushOperationStatusHasChangedPushOperationStatusChangedWebhook struct {
 	RuleID    *string                                                             `json:"ruleId,omitempty"`
 	RuleType  *string                                                             `json:"ruleType,omitempty"`
 }
-
-type PushOperationStatusHasChangedRequest struct {
-	Request *PushOperationStatusHasChangedPushOperationStatusChangedWebhook `request:"mediaType=application/json"`
-}

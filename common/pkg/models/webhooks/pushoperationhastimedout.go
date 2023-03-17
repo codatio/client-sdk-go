@@ -25,7 +25,3 @@ type PushOperationHasTimedOutPushOperationTimedOutWebhook struct {
 	RuleID    *string                                                   `json:"ruleId,omitempty"`
 	RuleType  *string                                                   `json:"ruleType,omitempty"`
 }
-
-type PushOperationHasTimedOutRequest struct {
-	Request *PushOperationHasTimedOutPushOperationTimedOutWebhook `request:"mediaType=application/json"`
-}

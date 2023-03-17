@@ -36,7 +36,3 @@ type CompanyDataConnectionStatusChangedCompanyDataConnectionStatusChangedWebhook
 	RuleID    *string                                                                          `json:"ruleId,omitempty"`
 	RuleType  *string                                                                          `json:"ruleType,omitempty"`
 }
-
-type CompanyDataConnectionStatusChangedRequest struct {
-	Request *CompanyDataConnectionStatusChangedCompanyDataConnectionStatusChangedWebhook `request:"mediaType=application/json"`
-}

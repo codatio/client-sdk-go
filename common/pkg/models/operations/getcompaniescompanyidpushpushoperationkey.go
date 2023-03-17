@@ -5,13 +5,9 @@ import (
 	"time"
 )
 
-type GetCompaniesCompanyIDPushPushOperationKeyPathParams struct {
+type GetCompaniesCompanyIDPushPushOperationKeyRequest struct {
 	CompanyID        string `pathParam:"style=simple,explode=false,name=companyId"`
 	PushOperationKey string `pathParam:"style=simple,explode=false,name=pushOperationKey"`
-}
-
-type GetCompaniesCompanyIDPushPushOperationKeyRequest struct {
-	PathParams GetCompaniesCompanyIDPushPushOperationKeyPathParams
 }
 
 type GetCompaniesCompanyIDPushPushOperationKey200ApplicationJSONChangesPushOperationRecordRef struct {

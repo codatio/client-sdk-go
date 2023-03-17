@@ -9,10 +9,6 @@ type CreateCompanyRequestBody struct {
 	Name        string  `json:"name"`
 }
 
-type CreateCompanyRequest struct {
-	Request *CreateCompanyRequestBody `request:"mediaType=application/json"`
-}
-
 type CreateCompany401ApplicationJSON struct {
 	CanBeRetried      *string `json:"canBeRetried,omitempty"`
 	CorrelationID     *string `json:"correlationId,omitempty"`

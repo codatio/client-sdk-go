@@ -141,11 +141,11 @@ func (s *settings) GetSettingsProfile(ctx context.Context) (*operations.GetSetti
 
 // PostProfileSyncSettings - Update all sync settings
 // Update sync settings for all data types.
-func (s *settings) PostProfileSyncSettings(ctx context.Context, request operations.PostProfileSyncSettingsRequest) (*operations.PostProfileSyncSettingsResponse, error) {
+func (s *settings) PostProfileSyncSettings(ctx context.Context, request operations.PostProfileSyncSettingsRequestBody) (*operations.PostProfileSyncSettingsResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/profile/syncSettings"
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -194,11 +194,11 @@ func (s *settings) PostProfileSyncSettings(ctx context.Context, request operatio
 
 // PutProfile - Update profile
 // Update your Codat profile
-func (s *settings) PutProfile(ctx context.Context, request operations.PutProfileRequest) (*operations.PutProfileResponse, error) {
+func (s *settings) PutProfile(ctx context.Context, request operations.PutProfileProfile) (*operations.PutProfileResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/profile"
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}

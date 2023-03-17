@@ -28,7 +28,3 @@ type DataSyncCompletedDataSyncCompleteWebhook struct {
 	RuleID           *string                                       `json:"ruleId,omitempty"`
 	RuleType         *string                                       `json:"ruleType,omitempty"`
 }
-
-type DataSyncCompletedRequest struct {
-	Request *DataSyncCompletedDataSyncCompleteWebhook `request:"mediaType=application/json"`
-}

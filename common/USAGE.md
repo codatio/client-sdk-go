@@ -11,19 +11,15 @@ import (
 )
 
 func main() {
-    s := codatio.New(codatio.WithSecurity(
-        shared.Security{
-            AuthHeader: shared.SchemeAuthHeader{
-                APIKey: "YOUR_API_KEY_HERE",
-            },
-        },
-    ))
-    
-    req := operations.CreateCompanyRequest{
-        Request: &operations.CreateCompanyRequestBody{
-            Description: "unde",
-            Name: "deserunt",
-        },
+    s := codatio.New(
+        codatio.WithSecurity(shared.Security{
+            AuthHeader: "YOUR_API_KEY_HERE",
+        }),
+    )
+
+    req := operations.CreateCompanyRequestBody{
+        Description: "unde",
+        Name: "deserunt",
     }
 
     ctx := context.Background()

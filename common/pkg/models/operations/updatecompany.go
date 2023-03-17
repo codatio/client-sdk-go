@@ -5,18 +5,14 @@ import (
 	"time"
 )
 
-type UpdateCompanyPathParams struct {
-	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
-}
-
 type UpdateCompanyRequestBody struct {
 	Description *string `json:"description,omitempty"`
 	Name        *string `json:"name,omitempty"`
 }
 
 type UpdateCompanyRequest struct {
-	PathParams UpdateCompanyPathParams
-	Request    *UpdateCompanyRequestBody `request:"mediaType=application/json"`
+	RequestBody *UpdateCompanyRequestBody `request:"mediaType=application/json"`
+	CompanyID   string                    `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
 type UpdateCompany401ApplicationJSON struct {

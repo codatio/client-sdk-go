@@ -18,10 +18,6 @@ type CreateRuleWebhook struct {
 	Type      string                     `json:"type"`
 }
 
-type CreateRuleRequest struct {
-	Request *CreateRuleWebhook `request:"mediaType=application/json"`
-}
-
 type CreateRule401ApplicationJSON struct {
 	CanBeRetried      *string `json:"canBeRetried,omitempty"`
 	CorrelationID     *string `json:"correlationId,omitempty"`

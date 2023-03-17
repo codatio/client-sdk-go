@@ -24,10 +24,6 @@ type PostProfileSyncSettingsRequestBody struct {
 	Settings          []PostProfileSyncSettingsRequestBodySyncSetting `json:"settings"`
 }
 
-type PostProfileSyncSettingsRequest struct {
-	Request *PostProfileSyncSettingsRequestBody `request:"mediaType=application/json"`
-}
-
 type PostProfileSyncSettings401ApplicationJSON struct {
 	CanBeRetried      *string `json:"canBeRetried,omitempty"`
 	CorrelationID     *string `json:"correlationId,omitempty"`

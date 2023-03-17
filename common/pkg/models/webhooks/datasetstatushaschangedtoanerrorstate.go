@@ -26,7 +26,3 @@ type DatasetStatusHasChangedToAnErrorStateDatasetDataErrorWebhook struct {
 	RuleID    *string                                                           `json:"ruleId,omitempty"`
 	RuleType  *string                                                           `json:"ruleType,omitempty"`
 }
-
-type DatasetStatusHasChangedToAnErrorStateRequest struct {
-	Request *DatasetStatusHasChangedToAnErrorStateDatasetDataErrorWebhook `request:"mediaType=application/json"`
-}

@@ -5,12 +5,8 @@ import (
 	"time"
 )
 
-type CreateDataConnectionPathParams struct {
-	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
-}
-
 type CreateDataConnectionRequest struct {
-	PathParams CreateDataConnectionPathParams
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
 type CreateDataConnectionConnectionConnectionInfo struct {

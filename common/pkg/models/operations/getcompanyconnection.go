@@ -5,13 +5,9 @@ import (
 	"time"
 )
 
-type GetCompanyConnectionPathParams struct {
+type GetCompanyConnectionRequest struct {
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
-}
-
-type GetCompanyConnectionRequest struct {
-	PathParams GetCompanyConnectionPathParams
 }
 
 type GetCompanyConnection404ApplicationJSON struct {
