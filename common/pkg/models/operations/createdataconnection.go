@@ -5,8 +5,13 @@ import (
 	"time"
 )
 
+type CreateDataConnectionRequestBody struct {
+	PlatformKey *string `json:"platformKey,omitempty"`
+}
+
 type CreateDataConnectionRequest struct {
-	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
+	RequestBody *CreateDataConnectionRequestBody `request:"mediaType=application/json"`
+	CompanyID   string                           `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
 type CreateDataConnectionConnectionConnectionInfo struct {

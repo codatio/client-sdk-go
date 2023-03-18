@@ -34,10 +34,17 @@ func (s *connections) CreateDataConnection(ctx context.Context, request operatio
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections", request, nil)
 
-	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
+	if err != nil {
+		return nil, fmt.Errorf("error serializing request body: %w", err)
+	}
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+
+	req.Header.Set("Content-Type", reqContentType)
 
 	client := s.securityClient
 
