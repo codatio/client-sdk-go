@@ -74,8 +74,8 @@ func WithSecurity(security shared.Security) SDKOption {
 func New(opts ...SDKOption) *Codatio {
 	sdk := &Codatio{
 		_language:   "go",
-		_sdkVersion: "0.5.0",
-		_genVersion: "1.12.2",
+		_sdkVersion: "0.5.1",
+		_genVersion: "1.12.3",
 	}
 	for _, opt := range opts {
 		opt(sdk)
