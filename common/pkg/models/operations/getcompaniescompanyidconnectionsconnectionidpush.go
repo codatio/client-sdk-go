@@ -28,7 +28,6 @@ const (
 	GetCompaniesCompanyIDConnectionsConnectionIDPushDataTypeEnumPaymentMethods               GetCompaniesCompanyIDConnectionsConnectionIDPushDataTypeEnum = "paymentMethods"
 	GetCompaniesCompanyIDConnectionsConnectionIDPushDataTypeEnumPayments                     GetCompaniesCompanyIDConnectionsConnectionIDPushDataTypeEnum = "payments"
 	GetCompaniesCompanyIDConnectionsConnectionIDPushDataTypeEnumProfitAndLoss                GetCompaniesCompanyIDConnectionsConnectionIDPushDataTypeEnum = "profitAndLoss"
-	GetCompaniesCompanyIDConnectionsConnectionIDPushDataTypeEnumProjects                     GetCompaniesCompanyIDConnectionsConnectionIDPushDataTypeEnum = "projects"
 	GetCompaniesCompanyIDConnectionsConnectionIDPushDataTypeEnumPurchaseOrders               GetCompaniesCompanyIDConnectionsConnectionIDPushDataTypeEnum = "purchaseOrders"
 	GetCompaniesCompanyIDConnectionsConnectionIDPushDataTypeEnumSalesOrders                  GetCompaniesCompanyIDConnectionsConnectionIDPushDataTypeEnum = "salesOrders"
 	GetCompaniesCompanyIDConnectionsConnectionIDPushDataTypeEnumSuppliers                    GetCompaniesCompanyIDConnectionsConnectionIDPushDataTypeEnum = "suppliers"

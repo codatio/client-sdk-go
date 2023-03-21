@@ -29,7 +29,6 @@ const (
 	CreatePullOperationDataTypeEnumPaymentMethods               CreatePullOperationDataTypeEnum = "paymentMethods"
 	CreatePullOperationDataTypeEnumPayments                     CreatePullOperationDataTypeEnum = "payments"
 	CreatePullOperationDataTypeEnumProfitAndLoss                CreatePullOperationDataTypeEnum = "profitAndLoss"
-	CreatePullOperationDataTypeEnumProjects                     CreatePullOperationDataTypeEnum = "projects"
 	CreatePullOperationDataTypeEnumPurchaseOrders               CreatePullOperationDataTypeEnum = "purchaseOrders"
 	CreatePullOperationDataTypeEnumSalesOrders                  CreatePullOperationDataTypeEnum = "salesOrders"
 	CreatePullOperationDataTypeEnumSuppliers                    CreatePullOperationDataTypeEnum = "suppliers"
