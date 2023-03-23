@@ -11,8 +11,8 @@ import (
 	"strings"
 )
 
-// companyManagement - Create new and manage existing sync for commerce companies.
-type companyManagement struct {
+// syncFlowPreferences - Configure preferences for any given sync for commerce company using sync flow.
+type syncFlowPreferences struct {
 	defaultClient  HTTPClient
 	securityClient HTTPClient
 	serverURL      string
@@ -21,8 +21,8 @@ type companyManagement struct {
 	genVersion     string
 }
 
-func newCompanyManagement(defaultClient, securityClient HTTPClient, serverURL, language, sdkVersion, genVersion string) *companyManagement {
-	return &companyManagement{
+func newSyncFlowPreferences(defaultClient, securityClient HTTPClient, serverURL, language, sdkVersion, genVersion string) *syncFlowPreferences {
+	return &syncFlowPreferences{
 		defaultClient:  defaultClient,
 		securityClient: securityClient,
 		serverURL:      serverURL,
@@ -32,23 +32,16 @@ func newCompanyManagement(defaultClient, securityClient HTTPClient, serverURL, l
 	}
 }
 
-// AddDataConnection - Create a data connection
-// Create a data connection for company.
-func (s *companyManagement) AddDataConnection(ctx context.Context, request operations.AddDataConnectionRequest) (*operations.AddDataConnectionResponse, error) {
+// GetConfigTextSyncFlow - Retrieve preferences for text fields on Sync Flow
+// To enable retrieval of preferences set for the text fields on Sync Flow.
+func (s *syncFlowPreferences) GetConfigTextSyncFlow(ctx context.Context) (*operations.GetConfigTextSyncFlowResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/meta/companies/{companyId}/connections", request, nil)
+	url := strings.TrimSuffix(baseURL, "/") + "/sync/commerce/config/ui/text"
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "string")
-	if err != nil {
-		return nil, fmt.Errorf("error serializing request body: %w", err)
-	}
-
-	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
+	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-
-	req.Header.Set("Content-Type", reqContentType)
 
 	client := s.securityClient
 
@@ -63,7 +56,7 @@ func (s *companyManagement) AddDataConnection(ctx context.Context, request opera
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.AddDataConnectionResponse{
+	res := &operations.GetConfigTextSyncFlowResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -72,23 +65,23 @@ func (s *companyManagement) AddDataConnection(ctx context.Context, request opera
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.AddDataConnection200ApplicationJSON
+			var out *operations.GetConfigTextSyncFlow200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.AddDataConnection200ApplicationJSONObject = out
+			res.GetConfigTextSyncFlow200ApplicationJSONObject = out
 		}
 	}
 
 	return res, nil
 }
 
-// Companies - List companies
-// Retrieve a list of all companies the client has created.
-func (s *companyManagement) Companies(ctx context.Context, request operations.CompaniesRequest) (*operations.CompaniesResponse, error) {
+// GetSyncFlowURL - Retrieve sync flow url
+// Get a URL for Sync Flow including a one time passcode.
+func (s *syncFlowPreferences) GetSyncFlowURL(ctx context.Context, request operations.GetSyncFlowURLRequest) (*operations.GetSyncFlowURLResponse, error) {
 	baseURL := s.serverURL
-	url := strings.TrimSuffix(baseURL, "/") + "/meta/companies"
+	url := utils.GenerateURL(ctx, baseURL, "/config/sync/commerce/{commerceKey}/{accountingKey}/start", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -112,7 +105,7 @@ func (s *companyManagement) Companies(ctx context.Context, request operations.Co
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.CompaniesResponse{
+	res := &operations.GetSyncFlowURLResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -121,31 +114,27 @@ func (s *companyManagement) Companies(ctx context.Context, request operations.Co
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.Companies200ApplicationJSON
+			var out *operations.GetSyncFlowURL200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Companies200ApplicationJSONObject = out
+			res.GetSyncFlowURL200ApplicationJSONObject = out
 		}
 	}
 
 	return res, nil
 }
 
-// GetDataconnections - List data connections
-// Retrieve previously created data connections.
-func (s *companyManagement) GetDataconnections(ctx context.Context, request operations.GetDataconnectionsRequest) (*operations.GetDataconnectionsResponse, error) {
+// GetVisibleAccounts - List visible accounts
+// Enable retrieval for accounts which are visible on sync flow.
+func (s *syncFlowPreferences) GetVisibleAccounts(ctx context.Context, request operations.GetVisibleAccountsRequest) (*operations.GetVisibleAccountsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/meta/companies/{companyId}/connections", request, nil)
+	url := utils.GenerateURL(ctx, baseURL, "/clients/{clientId}/config/ui/accounts/platform/{platformKey}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
-	}
-
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
-		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
 	client := s.securityClient
@@ -161,7 +150,7 @@ func (s *companyManagement) GetDataconnections(ctx context.Context, request oper
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetDataconnectionsResponse{
+	res := &operations.GetVisibleAccountsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -170,30 +159,30 @@ func (s *companyManagement) GetDataconnections(ctx context.Context, request oper
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetDataconnections200ApplicationJSON
+			var out *operations.GetVisibleAccounts200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.GetDataconnections200ApplicationJSONObject = out
+			res.GetVisibleAccounts200ApplicationJSONObject = out
 		}
 	}
 
 	return res, nil
 }
 
-// PostCompanies - Create a sync for commerce company
-// Creates a Codat company with a commerce partner data connection.
-func (s *companyManagement) PostCompanies(ctx context.Context, request operations.PostCompaniesRequestBody) (*operations.PostCompaniesResponse, error) {
+// PatchConfigTextSyncFlow - Update preferences for text fields on sync flow
+// To enable update of preferences set for the text fields on sync flow.
+func (s *syncFlowPreferences) PatchConfigTextSyncFlow(ctx context.Context, request operations.PatchConfigTextSyncFlowRequestBody) (*operations.PatchConfigTextSyncFlowResponse, error) {
 	baseURL := s.serverURL
-	url := strings.TrimSuffix(baseURL, "/") + "/meta/companies/sync"
+	url := strings.TrimSuffix(baseURL, "/") + "/sync/commerce/config/ui/text"
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
+	req, err := http.NewRequestWithContext(ctx, "PATCH", url, bodyReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -213,7 +202,7 @@ func (s *companyManagement) PostCompanies(ctx context.Context, request operation
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.PostCompaniesResponse{
+	res := &operations.PatchConfigTextSyncFlowResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -222,23 +211,23 @@ func (s *companyManagement) PostCompanies(ctx context.Context, request operation
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.PostCompanies200ApplicationJSON
+			var out *operations.PatchConfigTextSyncFlow200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.PostCompanies200ApplicationJSONObject = out
+			res.PatchConfigTextSyncFlow200ApplicationJSONObject = out
 		}
 	}
 
 	return res, nil
 }
 
-// UpdateDataConnection - Update data connection
-// Update a data connection
-func (s *companyManagement) UpdateDataConnection(ctx context.Context, request operations.UpdateDataConnectionRequest) (*operations.UpdateDataConnectionResponse, error) {
+// PatchVisibleAccountsSyncFlow - Update the visible accounts on Sync Flow
+// To enable update of accounts visible preferences set on Sync Flow.
+func (s *syncFlowPreferences) PatchVisibleAccountsSyncFlow(ctx context.Context, request operations.PatchVisibleAccountsSyncFlowRequest) (*operations.PatchVisibleAccountsSyncFlowResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/meta/companies/{companyId}/connections/{connectionId}", request, nil)
+	url := utils.GenerateURL(ctx, baseURL, "/sync/commerce/config/ui/accounts/platform/{commerceKey}", request, nil)
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
 	if err != nil {
@@ -265,7 +254,7 @@ func (s *companyManagement) UpdateDataConnection(ctx context.Context, request op
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.UpdateDataConnectionResponse{
+	res := &operations.PatchVisibleAccountsSyncFlowResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -274,12 +263,12 @@ func (s *companyManagement) UpdateDataConnection(ctx context.Context, request op
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.UpdateDataConnection200ApplicationJSON
+			var out *operations.PatchVisibleAccountsSyncFlow200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.UpdateDataConnection200ApplicationJSONObject = out
+			res.PatchVisibleAccountsSyncFlow200ApplicationJSONObject = out
 		}
 	}
 
