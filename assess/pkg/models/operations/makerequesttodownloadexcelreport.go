@@ -3,8 +3,9 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 // MakeRequestToDownloadExcelReportReportTypeEnum - The type of report you want to generate and download.
@@ -13,6 +14,20 @@ type MakeRequestToDownloadExcelReportReportTypeEnum string
 const (
 	MakeRequestToDownloadExcelReportReportTypeEnumAudit MakeRequestToDownloadExcelReportReportTypeEnum = "audit"
 )
+
+func (e *MakeRequestToDownloadExcelReportReportTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "audit":
+		*e = MakeRequestToDownloadExcelReportReportTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for MakeRequestToDownloadExcelReportReportTypeEnum: %s", s)
+	}
+}
 
 type MakeRequestToDownloadExcelReportRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
@@ -44,11 +59,11 @@ type MakeRequestToDownloadExcelReport200ApplicationJSON struct {
 	// >
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	LastGenerated    *time.Time `json:"lastGenerated,omitempty"`
-	LastInvocationID *string    `json:"lastInvocationId,omitempty"`
-	Queued           *string    `json:"queued,omitempty"`
-	ReportType       *string    `json:"reportType,omitempty"`
-	Success          *bool      `json:"success,omitempty"`
+	LastGenerated    *string `json:"lastGenerated,omitempty"`
+	LastInvocationID *string `json:"lastInvocationId,omitempty"`
+	Queued           *string `json:"queued,omitempty"`
+	ReportType       *string `json:"reportType,omitempty"`
+	Success          *bool   `json:"success,omitempty"`
 }
 
 type MakeRequestToDownloadExcelReportResponse struct {

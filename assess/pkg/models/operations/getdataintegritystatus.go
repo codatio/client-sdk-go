@@ -3,8 +3,9 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 // GetDataIntegrityStatusDataTypeEnum - A key for a Codat data type.
@@ -16,6 +17,26 @@ const (
 	GetDataIntegrityStatusDataTypeEnumBankAccounts        GetDataIntegrityStatusDataTypeEnum = "bankAccounts"
 	GetDataIntegrityStatusDataTypeEnumAccountTransactions GetDataIntegrityStatusDataTypeEnum = "accountTransactions"
 )
+
+func (e *GetDataIntegrityStatusDataTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "banking-accounts":
+		fallthrough
+	case "banking-transactions":
+		fallthrough
+	case "bankAccounts":
+		fallthrough
+	case "accountTransactions":
+		*e = GetDataIntegrityStatusDataTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetDataIntegrityStatusDataTypeEnum: %s", s)
+	}
+}
 
 type GetDataIntegrityStatusRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
@@ -49,13 +70,13 @@ type GetDataIntegrityStatus200ApplicationJSONDataIntegrityTypeConnectionIds stru
 // GetDataIntegrityStatus200ApplicationJSONDataIntegrityTypeDates - Only returned for transactions. For accounts, there is nothing returned.
 type GetDataIntegrityStatus200ApplicationJSONDataIntegrityTypeDates struct {
 	// Latest date of transaction set.
-	MaxDate *time.Time `json:"maxDate,omitempty"`
+	MaxDate *string `json:"maxDate,omitempty"`
 	// Latest date where transactions exist in both account and banking platforms.
-	MaxOverlappingDate *time.Time `json:"maxOverlappingDate,omitempty"`
+	MaxOverlappingDate *string `json:"maxOverlappingDate,omitempty"`
 	// Earliest date of transaction set.
-	MinDate *time.Time `json:"minDate,omitempty"`
+	MinDate *string `json:"minDate,omitempty"`
 	// Earliest date where transactions exist in both accounting and banking platforms.
-	MinOverlappingDate *time.Time `json:"minOverlappingDate,omitempty"`
+	MinOverlappingDate *string `json:"minOverlappingDate,omitempty"`
 }
 
 // GetDataIntegrityStatus200ApplicationJSONDataIntegrityTypeStatusInfoCurrentStatusEnum - The current status of the most recently run matching algorithm.
@@ -68,11 +89,31 @@ const (
 	GetDataIntegrityStatus200ApplicationJSONDataIntegrityTypeStatusInfoCurrentStatusEnumComplete     GetDataIntegrityStatus200ApplicationJSONDataIntegrityTypeStatusInfoCurrentStatusEnum = "Complete"
 )
 
+func (e *GetDataIntegrityStatus200ApplicationJSONDataIntegrityTypeStatusInfoCurrentStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "DoesNotExist":
+		fallthrough
+	case "Error":
+		fallthrough
+	case "Complete":
+		*e = GetDataIntegrityStatus200ApplicationJSONDataIntegrityTypeStatusInfoCurrentStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetDataIntegrityStatus200ApplicationJSONDataIntegrityTypeStatusInfoCurrentStatusEnum: %s", s)
+	}
+}
+
 type GetDataIntegrityStatus200ApplicationJSONDataIntegrityTypeStatusInfo struct {
 	// The current status of the most recently run matching algorithm.
 	CurrentStatus *GetDataIntegrityStatus200ApplicationJSONDataIntegrityTypeStatusInfoCurrentStatusEnum `json:"currentStatus,omitempty"`
 	// The date the matching algorithm last ran against the company’s data type specified.
-	LastMatched *time.Time `json:"lastMatched,omitempty"`
+	LastMatched *string `json:"lastMatched,omitempty"`
 	// Detailed explanation supporting the status value.
 	StatusMessage *string `json:"statusMessage,omitempty"`
 }

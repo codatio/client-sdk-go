@@ -3,8 +3,9 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 // GetDataIntegrityDetailsDataTypeEnum - A key for a Codat data type.
@@ -16,6 +17,26 @@ const (
 	GetDataIntegrityDetailsDataTypeEnumBankAccounts        GetDataIntegrityDetailsDataTypeEnum = "bankAccounts"
 	GetDataIntegrityDetailsDataTypeEnumAccountTransactions GetDataIntegrityDetailsDataTypeEnum = "accountTransactions"
 )
+
+func (e *GetDataIntegrityDetailsDataTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "banking-accounts":
+		fallthrough
+	case "banking-transactions":
+		fallthrough
+	case "bankAccounts":
+		fallthrough
+	case "accountTransactions":
+		*e = GetDataIntegrityDetailsDataTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetDataIntegrityDetailsDataTypeEnum: %s", s)
+	}
+}
 
 type GetDataIntegrityDetailsRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
@@ -31,27 +52,15 @@ type GetDataIntegrityDetailsRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-type GetDataIntegrityDetailsLinksLinksCurrent struct {
-	Href string `json:"href"`
-}
-
-type GetDataIntegrityDetailsLinksLinksNext struct {
+type GetDataIntegrityDetailsLinksLinksHypertextReference struct {
 	Href *string `json:"href,omitempty"`
-}
-
-type GetDataIntegrityDetailsLinksLinksPrevious struct {
-	Href *string `json:"href,omitempty"`
-}
-
-type GetDataIntegrityDetailsLinksLinksSelf struct {
-	Href string `json:"href"`
 }
 
 type GetDataIntegrityDetailsLinksLinks struct {
-	Current  GetDataIntegrityDetailsLinksLinksCurrent   `json:"current"`
-	Next     *GetDataIntegrityDetailsLinksLinksNext     `json:"next,omitempty"`
-	Previous *GetDataIntegrityDetailsLinksLinksPrevious `json:"previous,omitempty"`
-	Self     GetDataIntegrityDetailsLinksLinksSelf      `json:"self"`
+	Current  GetDataIntegrityDetailsLinksLinksHypertextReference  `json:"current"`
+	Next     *GetDataIntegrityDetailsLinksLinksHypertextReference `json:"next,omitempty"`
+	Previous *GetDataIntegrityDetailsLinksLinksHypertextReference `json:"previous,omitempty"`
+	Self     GetDataIntegrityDetailsLinksLinksHypertextReference  `json:"self"`
 }
 
 type GetDataIntegrityDetailsLinksDataIntegrityDetailsMatches struct {
@@ -79,7 +88,7 @@ type GetDataIntegrityDetailsLinksDataIntegrityDetails struct {
 	// The currency of the transaction.
 	Currency *string `json:"currency,omitempty"`
 	// The date of the transaction.
-	Date *time.Time `json:"date,omitempty"`
+	Date *string `json:"date,omitempty"`
 	// The transaction description.
 	Description *string `json:"description,omitempty"`
 	// ID GUID of the transaction.

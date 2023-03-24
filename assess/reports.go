@@ -521,6 +521,55 @@ func (s *reports) GetEnhancedFinancialMetrics(ctx context.Context, request opera
 	return res, nil
 }
 
+// GetEnhancedInvoicesReport - Enhanced Invoices Report
+// Gets a list of invoices linked to the corresponding banking transaction
+func (s *reports) GetEnhancedInvoicesReport(ctx context.Context, request operations.GetEnhancedInvoicesReportRequest) (*operations.GetEnhancedInvoicesReportResponse, error) {
+	baseURL := s.serverURL
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/reports/enhancedInvoices", request, nil)
+
+	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
+
+	client := s.securityClient
+
+	httpRes, err := client.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
+	}
+	defer httpRes.Body.Close()
+
+	contentType := httpRes.Header.Get("Content-Type")
+
+	res := &operations.GetEnhancedInvoicesReportResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: contentType,
+		RawResponse: httpRes,
+	}
+	switch {
+	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *operations.GetEnhancedInvoicesReportEnhancedInvoicesReport
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.EnhancedInvoicesReport = out
+		}
+	}
+
+	return res, nil
+}
+
 // GetEnhancedProfitAndLoss - Enhanced Profit and Loss
 // Gets a fully categorized profit and loss statement for a given company, over one or more period(s).
 func (s *reports) GetEnhancedProfitAndLoss(ctx context.Context, request operations.GetEnhancedProfitAndLossRequest) (*operations.GetEnhancedProfitAndLossResponse, error) {

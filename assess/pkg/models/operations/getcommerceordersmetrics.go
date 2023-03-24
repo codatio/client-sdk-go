@@ -3,6 +3,8 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
@@ -15,6 +17,26 @@ const (
 	GetCommerceOrdersMetricsPeriodUnitEnumMonth GetCommerceOrdersMetricsPeriodUnitEnum = "Month"
 	GetCommerceOrdersMetricsPeriodUnitEnumYear  GetCommerceOrdersMetricsPeriodUnitEnum = "Year"
 )
+
+func (e *GetCommerceOrdersMetricsPeriodUnitEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Day":
+		fallthrough
+	case "Week":
+		fallthrough
+	case "Month":
+		fallthrough
+	case "Year":
+		*e = GetCommerceOrdersMetricsPeriodUnitEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCommerceOrdersMetricsPeriodUnitEnum: %s", s)
+	}
+}
 
 type GetCommerceOrdersMetricsRequest struct {
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`

@@ -3,6 +3,8 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
@@ -12,6 +14,20 @@ type GetExcelReportReportTypeEnum string
 const (
 	GetExcelReportReportTypeEnumAudit GetExcelReportReportTypeEnum = "audit"
 )
+
+func (e *GetExcelReportReportTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "audit":
+		*e = GetExcelReportReportTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetExcelReportReportTypeEnum: %s", s)
+	}
+}
 
 type GetExcelReportRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`

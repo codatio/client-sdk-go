@@ -3,6 +3,8 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/codatio/client-sdk-go/assess/pkg/types"
 	"net/http"
 )
@@ -29,6 +31,26 @@ const (
 	GetEnhancedFinancialMetrics200ApplicationJSONErrorsTypeEnumDataTypeNotEnabled GetEnhancedFinancialMetrics200ApplicationJSONErrorsTypeEnum = "DataTypeNotEnabled"
 )
 
+func (e *GetEnhancedFinancialMetrics200ApplicationJSONErrorsTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "DataNotSynced":
+		fallthrough
+	case "DataNotSupported":
+		fallthrough
+	case "DataSyncFailed":
+		fallthrough
+	case "DataTypeNotEnabled":
+		*e = GetEnhancedFinancialMetrics200ApplicationJSONErrorsTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetEnhancedFinancialMetrics200ApplicationJSONErrorsTypeEnum: %s", s)
+	}
+}
+
 type GetEnhancedFinancialMetrics200ApplicationJSONErrors struct {
 	Message *string                                                      `json:"message,omitempty"`
 	Type    *GetEnhancedFinancialMetrics200ApplicationJSONErrorsTypeEnum `json:"type,omitempty"`
@@ -49,6 +71,24 @@ const (
 	GetEnhancedFinancialMetrics200ApplicationJSONFinancialMetricErrorsTypeEnumMissingInputData      GetEnhancedFinancialMetrics200ApplicationJSONFinancialMetricErrorsTypeEnum = "MissingInputData"
 	GetEnhancedFinancialMetrics200ApplicationJSONFinancialMetricErrorsTypeEnumInputDataError        GetEnhancedFinancialMetrics200ApplicationJSONFinancialMetricErrorsTypeEnum = "InputDataError"
 )
+
+func (e *GetEnhancedFinancialMetrics200ApplicationJSONFinancialMetricErrorsTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "UncategorizedAccounts":
+		fallthrough
+	case "MissingInputData":
+		fallthrough
+	case "InputDataError":
+		*e = GetEnhancedFinancialMetrics200ApplicationJSONFinancialMetricErrorsTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetEnhancedFinancialMetrics200ApplicationJSONFinancialMetricErrorsTypeEnum: %s", s)
+	}
+}
 
 type GetEnhancedFinancialMetrics200ApplicationJSONFinancialMetricErrors struct {
 	// Dictionary list outlining the missing properties or allowed values.
@@ -85,12 +125,82 @@ const (
 	GetEnhancedFinancialMetrics200ApplicationJSONFinancialMetricKeyEnumDaysPayablesOutstanding     GetEnhancedFinancialMetrics200ApplicationJSONFinancialMetricKeyEnum = "DaysPayablesOutstanding"
 )
 
+func (e *GetEnhancedFinancialMetrics200ApplicationJSONFinancialMetricKeyEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "EBITDA":
+		fallthrough
+	case "DebtServiceCoverageRatio":
+		fallthrough
+	case "CurrentRatio QuickRatio":
+		fallthrough
+	case "GrossProfitMargin":
+		fallthrough
+	case "FixedChargeCoverageRatio":
+		fallthrough
+	case "WorkingCapital":
+		fallthrough
+	case "FreeCashFlow":
+		fallthrough
+	case "NetProfitMargin":
+		fallthrough
+	case "ReturnOnAssetsRatio":
+		fallthrough
+	case "ReturnOnEquityRatio":
+		fallthrough
+	case "OperatingProfitMargin":
+		fallthrough
+	case "DeptToEquity":
+		fallthrough
+	case "DebtToAssets":
+		fallthrough
+	case "InterestCoverageRatio":
+		fallthrough
+	case "CashRatio":
+		fallthrough
+	case "InventoryTurnoverRatio":
+		fallthrough
+	case "AssetTurnoverRatio":
+		fallthrough
+	case "WorkingCapitalTurnoverRatio":
+		fallthrough
+	case "DaysSalesOutstanding":
+		fallthrough
+	case "DaysPayablesOutstanding":
+		*e = GetEnhancedFinancialMetrics200ApplicationJSONFinancialMetricKeyEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetEnhancedFinancialMetrics200ApplicationJSONFinancialMetricKeyEnum: %s", s)
+	}
+}
+
 type GetEnhancedFinancialMetrics200ApplicationJSONFinancialMetricMetricUnitEnum string
 
 const (
 	GetEnhancedFinancialMetrics200ApplicationJSONFinancialMetricMetricUnitEnumRatio GetEnhancedFinancialMetrics200ApplicationJSONFinancialMetricMetricUnitEnum = "Ratio"
 	GetEnhancedFinancialMetrics200ApplicationJSONFinancialMetricMetricUnitEnumMoney GetEnhancedFinancialMetrics200ApplicationJSONFinancialMetricMetricUnitEnum = "Money"
 )
+
+func (e *GetEnhancedFinancialMetrics200ApplicationJSONFinancialMetricMetricUnitEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Ratio":
+		fallthrough
+	case "Money":
+		*e = GetEnhancedFinancialMetrics200ApplicationJSONFinancialMetricMetricUnitEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetEnhancedFinancialMetrics200ApplicationJSONFinancialMetricMetricUnitEnum: %s", s)
+	}
+}
 
 // GetEnhancedFinancialMetrics200ApplicationJSONFinancialMetricPeriodsErrorsAssessErrorDetails - Dictionary list outlining the missing properties or allowed values.
 type GetEnhancedFinancialMetrics200ApplicationJSONFinancialMetricPeriodsErrorsAssessErrorDetails struct {
@@ -106,6 +216,22 @@ const (
 	GetEnhancedFinancialMetrics200ApplicationJSONFinancialMetricPeriodsErrorsTypeEnumMissingAccountData GetEnhancedFinancialMetrics200ApplicationJSONFinancialMetricPeriodsErrorsTypeEnum = "MissingAccountData"
 	GetEnhancedFinancialMetrics200ApplicationJSONFinancialMetricPeriodsErrorsTypeEnumDatesOutOfRange    GetEnhancedFinancialMetrics200ApplicationJSONFinancialMetricPeriodsErrorsTypeEnum = "DatesOutOfRange"
 )
+
+func (e *GetEnhancedFinancialMetrics200ApplicationJSONFinancialMetricPeriodsErrorsTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "MissingAccountData":
+		fallthrough
+	case "DatesOutOfRange":
+		*e = GetEnhancedFinancialMetrics200ApplicationJSONFinancialMetricPeriodsErrorsTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetEnhancedFinancialMetrics200ApplicationJSONFinancialMetricPeriodsErrorsTypeEnum: %s", s)
+	}
+}
 
 type GetEnhancedFinancialMetrics200ApplicationJSONFinancialMetricPeriodsErrors struct {
 	// Dictionary list outlining the missing properties or allowed values.
@@ -152,6 +278,24 @@ const (
 	GetEnhancedFinancialMetrics200ApplicationJSONPeriodUnitEnumWeek  GetEnhancedFinancialMetrics200ApplicationJSONPeriodUnitEnum = "Week"
 	GetEnhancedFinancialMetrics200ApplicationJSONPeriodUnitEnumDay   GetEnhancedFinancialMetrics200ApplicationJSONPeriodUnitEnum = "Day"
 )
+
+func (e *GetEnhancedFinancialMetrics200ApplicationJSONPeriodUnitEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Month":
+		fallthrough
+	case "Week":
+		fallthrough
+	case "Day":
+		*e = GetEnhancedFinancialMetrics200ApplicationJSONPeriodUnitEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetEnhancedFinancialMetrics200ApplicationJSONPeriodUnitEnum: %s", s)
+	}
+}
 
 // GetEnhancedFinancialMetrics200ApplicationJSON - OK
 type GetEnhancedFinancialMetrics200ApplicationJSON struct {

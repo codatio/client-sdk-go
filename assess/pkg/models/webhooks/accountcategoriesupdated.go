@@ -4,7 +4,6 @@ package webhooks
 
 import (
 	"net/http"
-	"time"
 )
 
 type AccountCategoriesUpdatedResponse struct {
@@ -15,7 +14,7 @@ type AccountCategoriesUpdatedResponse struct {
 
 type AccountCategoriesUpdatedAccountCategoriesUpdatedWebhookData struct {
 	// The date on which this account categories were last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 }
 
 // AccountCategoriesUpdatedAccountCategoriesUpdatedWebhook - Webhook request body for account categories updated.

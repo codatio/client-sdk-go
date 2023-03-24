@@ -4,7 +4,6 @@ package operations
 
 import (
 	"net/http"
-	"time"
 )
 
 type UpdateAccountsCategoriesRequestBodyCategoriesAccountRef struct {
@@ -40,7 +39,7 @@ type UpdateAccountsCategoriesCategorisedAccountModifiedDate struct {
 	// Most granular chart of account type.
 	DetailType *string `json:"detailType,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// The account subtype.
 	Subtype *string `json:"subtype,omitempty"`
 	// The top level account type.

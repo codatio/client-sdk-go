@@ -4,7 +4,6 @@ package operations
 
 import (
 	"net/http"
-	"time"
 )
 
 type ListAccountsCategoriesRequest struct {
@@ -20,27 +19,15 @@ type ListAccountsCategoriesRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-type ListAccountsCategoriesLinksLinksCurrent struct {
-	Href string `json:"href"`
-}
-
-type ListAccountsCategoriesLinksLinksNext struct {
+type ListAccountsCategoriesLinksLinksHypertextReference struct {
 	Href *string `json:"href,omitempty"`
-}
-
-type ListAccountsCategoriesLinksLinksPrevious struct {
-	Href *string `json:"href,omitempty"`
-}
-
-type ListAccountsCategoriesLinksLinksSelf struct {
-	Href string `json:"href"`
 }
 
 type ListAccountsCategoriesLinksLinks struct {
-	Current  ListAccountsCategoriesLinksLinksCurrent   `json:"current"`
-	Next     *ListAccountsCategoriesLinksLinksNext     `json:"next,omitempty"`
-	Previous *ListAccountsCategoriesLinksLinksPrevious `json:"previous,omitempty"`
-	Self     ListAccountsCategoriesLinksLinksSelf      `json:"self"`
+	Current  ListAccountsCategoriesLinksLinksHypertextReference  `json:"current"`
+	Next     *ListAccountsCategoriesLinksLinksHypertextReference `json:"next,omitempty"`
+	Previous *ListAccountsCategoriesLinksLinksHypertextReference `json:"previous,omitempty"`
+	Self     ListAccountsCategoriesLinksLinksHypertextReference  `json:"self"`
 }
 
 // ListAccountsCategoriesLinksCategorisedAccountAccountRef - An object containing account reference data.
@@ -55,7 +42,7 @@ type ListAccountsCategoriesLinksCategorisedAccountModifiedDate struct {
 	// Most granular chart of account type.
 	DetailType *string `json:"detailType,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// The account subtype.
 	Subtype *string `json:"subtype,omitempty"`
 	// The top level account type.

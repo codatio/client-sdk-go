@@ -3,6 +3,8 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
@@ -15,6 +17,26 @@ const (
 	GetDataIntegritySummariesDataTypeEnumBankAccounts        GetDataIntegritySummariesDataTypeEnum = "bankAccounts"
 	GetDataIntegritySummariesDataTypeEnumAccountTransactions GetDataIntegritySummariesDataTypeEnum = "accountTransactions"
 )
+
+func (e *GetDataIntegritySummariesDataTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "banking-accounts":
+		fallthrough
+	case "banking-transactions":
+		fallthrough
+	case "bankAccounts":
+		fallthrough
+	case "accountTransactions":
+		*e = GetDataIntegritySummariesDataTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetDataIntegritySummariesDataTypeEnum: %s", s)
+	}
+}
 
 type GetDataIntegritySummariesRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
