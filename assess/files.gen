@@ -37,6 +37,7 @@ pkg/models/operations/getcommercerevenuemetrics.go
 pkg/models/operations/getenhancedbalancesheet.go
 pkg/models/operations/getenhancedcashflowtransactions.go
 pkg/models/operations/getenhancedfinancialmetrics.go
+pkg/models/operations/getenhancedinvoicesreport.go
 pkg/models/operations/getenhancedprofitandloss.go
 pkg/models/operations/getrecurringrevenuemetrics.go
 pkg/models/operations/requestrecurringrevenuemetrics.go

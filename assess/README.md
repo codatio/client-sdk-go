@@ -84,6 +84,7 @@ func main() {
 * `GetEnhancedBalanceSheet` - Enhanced Balance Sheet
 * `GetEnhancedCashFlowTransactions` - Get enhanced cash flow report
 * `GetEnhancedFinancialMetrics` - List finanicial metrics
+* `GetEnhancedInvoicesReport` - Enhanced Invoices Report
 * `GetEnhancedProfitAndLoss` - Enhanced Profit and Loss
 * `GetRecurringRevenueMetrics` - Get key metrics for subscription revenue
 * `RequestRecurringRevenueMetrics` - Request production of key subscription revenue metrics
