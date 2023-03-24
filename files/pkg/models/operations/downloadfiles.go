@@ -4,13 +4,12 @@ package operations
 
 import (
 	"net/http"
-	"time"
 )
 
 type DownloadFilesRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	// Only download files uploaded on this date
-	Date *time.Time `queryParam:"style=form,explode=true,name=date"`
+	Date *string `queryParam:"style=form,explode=true,name=date"`
 }
 
 type DownloadFilesResponse struct {
