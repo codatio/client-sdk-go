@@ -13,13 +13,13 @@ import (
 func main() {
     s := codatio.New(
         codatio.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic YOUR_ENCODED_API_KEY",
         }),
     )
 
     req := operations.AddDataConnectionRequest{
         RequestBody: "unde",
-        CompanyID: "deserunt",
+        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     }
 
     ctx := context.Background()
