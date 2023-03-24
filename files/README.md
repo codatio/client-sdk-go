@@ -30,7 +30,7 @@ func main() {
 
     req := operations.DownloadFilesRequest{
         CompanyID: "89bd9d8d-69a6-474e-8f46-7cc8796ed151",
-        Date: "2022-07-23T19:08:03.828Z",
+        Date: "2022-10-23T00:00:00Z",
     }
 
     ctx := context.Background()
