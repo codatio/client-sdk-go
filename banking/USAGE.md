@@ -32,7 +32,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.Links != nil {
+    if res.ListBankingAccountBalances200ApplicationJSONObject != nil {
         // handle response
     }
 }

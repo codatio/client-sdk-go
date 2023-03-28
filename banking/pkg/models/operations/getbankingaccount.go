@@ -3,8 +3,9 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 type GetBankingAccountRequest struct {
@@ -36,6 +37,32 @@ const (
 	GetBankingAccountSourceModifiedDateAccountIdentifiersTypeEnumLoan       GetBankingAccountSourceModifiedDateAccountIdentifiersTypeEnum = "Loan"
 	GetBankingAccountSourceModifiedDateAccountIdentifiersTypeEnumOther      GetBankingAccountSourceModifiedDateAccountIdentifiersTypeEnum = "Other"
 )
+
+func (e *GetBankingAccountSourceModifiedDateAccountIdentifiersTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Account":
+		fallthrough
+	case "Card":
+		fallthrough
+	case "Credit":
+		fallthrough
+	case "Depository":
+		fallthrough
+	case "Investment":
+		fallthrough
+	case "Loan":
+		fallthrough
+	case "Other":
+		*e = GetBankingAccountSourceModifiedDateAccountIdentifiersTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetBankingAccountSourceModifiedDateAccountIdentifiersTypeEnum: %s", s)
+	}
+}
 
 // GetBankingAccountSourceModifiedDateAccountIdentifiers - An object containing bank account identification information.
 type GetBankingAccountSourceModifiedDateAccountIdentifiers struct {
@@ -79,6 +106,24 @@ const (
 	GetBankingAccountSourceModifiedDateTypeEnumDebit   GetBankingAccountSourceModifiedDateTypeEnum = "Debit"
 )
 
+func (e *GetBankingAccountSourceModifiedDateTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Credit":
+		fallthrough
+	case "Debit":
+		*e = GetBankingAccountSourceModifiedDateTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetBankingAccountSourceModifiedDateTypeEnum: %s", s)
+	}
+}
+
 // GetBankingAccountSourceModifiedDate - An account where payments are made or received, and bank transactions are recorded.
 //
 // Explore our [data coverage](https://knowledge.codat.io/supported-features/banking?view=tab-by-data-type&dataType=banking-accounts).
@@ -98,11 +143,11 @@ type GetBankingAccountSourceModifiedDate struct {
 	// The bank or other financial institution providing the account.
 	Institution GetBankingAccountSourceModifiedDateAccountInstitution `json:"institution"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// The name of the account according to the provider.
 	Name string `json:"name"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// The type of transactions and balances on the account.
 	// For Credit accounts, positive balances are liabilities and positive transactions reduce liabilities.
 	// For Debit accounts, positive balances are assets and positive transactions increase assets.

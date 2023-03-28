@@ -4,7 +4,6 @@ package operations
 
 import (
 	"net/http"
-	"time"
 )
 
 type ListBankingAccountBalancesRequest struct {
@@ -20,31 +19,19 @@ type ListBankingAccountBalancesRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-type ListBankingAccountBalancesLinksLinksCurrent struct {
-	Href string `json:"href"`
-}
-
-type ListBankingAccountBalancesLinksLinksNext struct {
+type ListBankingAccountBalances200ApplicationJSONLinksHypertextReference struct {
 	Href *string `json:"href,omitempty"`
 }
 
-type ListBankingAccountBalancesLinksLinksPrevious struct {
-	Href *string `json:"href,omitempty"`
+type ListBankingAccountBalances200ApplicationJSONLinks struct {
+	Current  ListBankingAccountBalances200ApplicationJSONLinksHypertextReference  `json:"current"`
+	Next     *ListBankingAccountBalances200ApplicationJSONLinksHypertextReference `json:"next,omitempty"`
+	Previous *ListBankingAccountBalances200ApplicationJSONLinksHypertextReference `json:"previous,omitempty"`
+	Self     ListBankingAccountBalances200ApplicationJSONLinksHypertextReference  `json:"self"`
 }
 
-type ListBankingAccountBalancesLinksLinksSelf struct {
-	Href string `json:"href"`
-}
-
-type ListBankingAccountBalancesLinksLinks struct {
-	Current  ListBankingAccountBalancesLinksLinksCurrent   `json:"current"`
-	Next     *ListBankingAccountBalancesLinksLinksNext     `json:"next,omitempty"`
-	Previous *ListBankingAccountBalancesLinksLinksPrevious `json:"previous,omitempty"`
-	Self     ListBankingAccountBalancesLinksLinksSelf      `json:"self"`
-}
-
-// ListBankingAccountBalancesLinksSourceModifiedDateBalance - An object containing bank balance data.
-type ListBankingAccountBalancesLinksSourceModifiedDateBalance struct {
+// ListBankingAccountBalances200ApplicationJSONSourceModifiedDateBalance - An object containing bank balance data.
+type ListBankingAccountBalances200ApplicationJSONSourceModifiedDateBalance struct {
 	// The funds available to withdraw from the bank account.
 	Available *float64 `json:"available,omitempty"`
 	// The funds in or owed by the bank account.
@@ -53,28 +40,28 @@ type ListBankingAccountBalancesLinksSourceModifiedDateBalance struct {
 	Limit *float64 `json:"limit,omitempty"`
 }
 
-// ListBankingAccountBalancesLinksSourceModifiedDate - The Banking Account Balances data type provides a list of balances for a bank account including end-of-day batch balance or running balances per transaction.
-type ListBankingAccountBalancesLinksSourceModifiedDate struct {
+// ListBankingAccountBalances200ApplicationJSONSourceModifiedDate - The Banking Account Balances data type provides a list of balances for a bank account including end-of-day batch balance or running balances per transaction.
+type ListBankingAccountBalances200ApplicationJSONSourceModifiedDate struct {
 	// The unique identifier of the account.
 	AccountID string `json:"accountId"`
 	// An object containing bank balance data.
-	Balance ListBankingAccountBalancesLinksSourceModifiedDateBalance `json:"balance"`
+	Balance ListBankingAccountBalances200ApplicationJSONSourceModifiedDateBalance `json:"balance"`
 	// Date of the balance.
-	Date time.Time `json:"date"`
+	Date string `json:"date"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 }
 
-// ListBankingAccountBalancesLinks - Codat's Paging Model
-type ListBankingAccountBalancesLinks struct {
-	Links      ListBankingAccountBalancesLinksLinks `json:"_links"`
-	PageNumber int64                                `json:"pageNumber"`
-	PageSize   int64                                `json:"pageSize"`
+// ListBankingAccountBalances200ApplicationJSON - Success
+type ListBankingAccountBalances200ApplicationJSON struct {
+	Links      ListBankingAccountBalances200ApplicationJSONLinks `json:"_links"`
+	PageNumber int64                                             `json:"pageNumber"`
+	PageSize   int64                                             `json:"pageSize"`
 	// The Banking Account Balances data type provides a list of balances for a bank account including end-of-day batch balance or running balances per transaction.
-	Results      *ListBankingAccountBalancesLinksSourceModifiedDate `json:"results,omitempty"`
-	TotalResults int64                                              `json:"totalResults"`
+	Results      *ListBankingAccountBalances200ApplicationJSONSourceModifiedDate `json:"results,omitempty"`
+	TotalResults int64                                                           `json:"totalResults"`
 }
 
 type ListBankingAccountBalancesResponse struct {
@@ -82,5 +69,5 @@ type ListBankingAccountBalancesResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// Success
-	Links *ListBankingAccountBalancesLinks
+	ListBankingAccountBalances200ApplicationJSONObject *ListBankingAccountBalances200ApplicationJSON
 }

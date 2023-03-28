@@ -3,8 +3,9 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 type ListBankingAccountsRequest struct {
@@ -20,31 +21,19 @@ type ListBankingAccountsRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-type ListBankingAccountsLinksLinksCurrent struct {
-	Href string `json:"href"`
-}
-
-type ListBankingAccountsLinksLinksNext struct {
+type ListBankingAccounts200ApplicationJSONLinksHypertextReference struct {
 	Href *string `json:"href,omitempty"`
 }
 
-type ListBankingAccountsLinksLinksPrevious struct {
-	Href *string `json:"href,omitempty"`
+type ListBankingAccounts200ApplicationJSONLinks struct {
+	Current  ListBankingAccounts200ApplicationJSONLinksHypertextReference  `json:"current"`
+	Next     *ListBankingAccounts200ApplicationJSONLinksHypertextReference `json:"next,omitempty"`
+	Previous *ListBankingAccounts200ApplicationJSONLinksHypertextReference `json:"previous,omitempty"`
+	Self     ListBankingAccounts200ApplicationJSONLinksHypertextReference  `json:"self"`
 }
 
-type ListBankingAccountsLinksLinksSelf struct {
-	Href string `json:"href"`
-}
-
-type ListBankingAccountsLinksLinks struct {
-	Current  ListBankingAccountsLinksLinksCurrent   `json:"current"`
-	Next     *ListBankingAccountsLinksLinksNext     `json:"next,omitempty"`
-	Previous *ListBankingAccountsLinksLinksPrevious `json:"previous,omitempty"`
-	Self     ListBankingAccountsLinksLinksSelf      `json:"self"`
-}
-
-// ListBankingAccountsLinksSourceModifiedDateAccountBalanceAmounts - An object containing bank balance data.
-type ListBankingAccountsLinksSourceModifiedDateAccountBalanceAmounts struct {
+// ListBankingAccounts200ApplicationJSONSourceModifiedDateAccountBalanceAmounts - An object containing bank balance data.
+type ListBankingAccounts200ApplicationJSONSourceModifiedDateAccountBalanceAmounts struct {
 	// The balance available in the account, including any pending transactions. This doesn't include additional funds available from any overdrafts.
 	Available *float64 `json:"available,omitempty"`
 	// The balance of the account only including cleared transactions.
@@ -53,21 +42,47 @@ type ListBankingAccountsLinksSourceModifiedDateAccountBalanceAmounts struct {
 	Limit *float64 `json:"limit,omitempty"`
 }
 
-// ListBankingAccountsLinksSourceModifiedDateAccountIdentifiersTypeEnum - Type of account
-type ListBankingAccountsLinksSourceModifiedDateAccountIdentifiersTypeEnum string
+// ListBankingAccounts200ApplicationJSONSourceModifiedDateAccountIdentifiersTypeEnum - Type of account
+type ListBankingAccounts200ApplicationJSONSourceModifiedDateAccountIdentifiersTypeEnum string
 
 const (
-	ListBankingAccountsLinksSourceModifiedDateAccountIdentifiersTypeEnumAccount    ListBankingAccountsLinksSourceModifiedDateAccountIdentifiersTypeEnum = "Account"
-	ListBankingAccountsLinksSourceModifiedDateAccountIdentifiersTypeEnumCard       ListBankingAccountsLinksSourceModifiedDateAccountIdentifiersTypeEnum = "Card"
-	ListBankingAccountsLinksSourceModifiedDateAccountIdentifiersTypeEnumCredit     ListBankingAccountsLinksSourceModifiedDateAccountIdentifiersTypeEnum = "Credit"
-	ListBankingAccountsLinksSourceModifiedDateAccountIdentifiersTypeEnumDepository ListBankingAccountsLinksSourceModifiedDateAccountIdentifiersTypeEnum = "Depository"
-	ListBankingAccountsLinksSourceModifiedDateAccountIdentifiersTypeEnumInvestment ListBankingAccountsLinksSourceModifiedDateAccountIdentifiersTypeEnum = "Investment"
-	ListBankingAccountsLinksSourceModifiedDateAccountIdentifiersTypeEnumLoan       ListBankingAccountsLinksSourceModifiedDateAccountIdentifiersTypeEnum = "Loan"
-	ListBankingAccountsLinksSourceModifiedDateAccountIdentifiersTypeEnumOther      ListBankingAccountsLinksSourceModifiedDateAccountIdentifiersTypeEnum = "Other"
+	ListBankingAccounts200ApplicationJSONSourceModifiedDateAccountIdentifiersTypeEnumAccount    ListBankingAccounts200ApplicationJSONSourceModifiedDateAccountIdentifiersTypeEnum = "Account"
+	ListBankingAccounts200ApplicationJSONSourceModifiedDateAccountIdentifiersTypeEnumCard       ListBankingAccounts200ApplicationJSONSourceModifiedDateAccountIdentifiersTypeEnum = "Card"
+	ListBankingAccounts200ApplicationJSONSourceModifiedDateAccountIdentifiersTypeEnumCredit     ListBankingAccounts200ApplicationJSONSourceModifiedDateAccountIdentifiersTypeEnum = "Credit"
+	ListBankingAccounts200ApplicationJSONSourceModifiedDateAccountIdentifiersTypeEnumDepository ListBankingAccounts200ApplicationJSONSourceModifiedDateAccountIdentifiersTypeEnum = "Depository"
+	ListBankingAccounts200ApplicationJSONSourceModifiedDateAccountIdentifiersTypeEnumInvestment ListBankingAccounts200ApplicationJSONSourceModifiedDateAccountIdentifiersTypeEnum = "Investment"
+	ListBankingAccounts200ApplicationJSONSourceModifiedDateAccountIdentifiersTypeEnumLoan       ListBankingAccounts200ApplicationJSONSourceModifiedDateAccountIdentifiersTypeEnum = "Loan"
+	ListBankingAccounts200ApplicationJSONSourceModifiedDateAccountIdentifiersTypeEnumOther      ListBankingAccounts200ApplicationJSONSourceModifiedDateAccountIdentifiersTypeEnum = "Other"
 )
 
-// ListBankingAccountsLinksSourceModifiedDateAccountIdentifiers - An object containing bank account identification information.
-type ListBankingAccountsLinksSourceModifiedDateAccountIdentifiers struct {
+func (e *ListBankingAccounts200ApplicationJSONSourceModifiedDateAccountIdentifiersTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Account":
+		fallthrough
+	case "Card":
+		fallthrough
+	case "Credit":
+		fallthrough
+	case "Depository":
+		fallthrough
+	case "Investment":
+		fallthrough
+	case "Loan":
+		fallthrough
+	case "Other":
+		*e = ListBankingAccounts200ApplicationJSONSourceModifiedDateAccountIdentifiersTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListBankingAccounts200ApplicationJSONSourceModifiedDateAccountIdentifiersTypeEnum: %s", s)
+	}
+}
+
+// ListBankingAccounts200ApplicationJSONSourceModifiedDateAccountIdentifiers - An object containing bank account identification information.
+type ListBankingAccounts200ApplicationJSONSourceModifiedDateAccountIdentifiers struct {
 	// The local (usually national) routing number for the account.
 	//
 	// This is known by different names in different countries:
@@ -86,34 +101,52 @@ type ListBankingAccountsLinksSourceModifiedDateAccountIdentifiers struct {
 	// Detailed account category
 	Subtype *string `json:"subtype,omitempty"`
 	// Type of account
-	Type ListBankingAccountsLinksSourceModifiedDateAccountIdentifiersTypeEnum `json:"type"`
+	Type ListBankingAccounts200ApplicationJSONSourceModifiedDateAccountIdentifiersTypeEnum `json:"type"`
 }
 
-// ListBankingAccountsLinksSourceModifiedDateAccountInstitution - The bank or other financial institution providing the account.
-type ListBankingAccountsLinksSourceModifiedDateAccountInstitution struct {
+// ListBankingAccounts200ApplicationJSONSourceModifiedDateAccountInstitution - The bank or other financial institution providing the account.
+type ListBankingAccounts200ApplicationJSONSourceModifiedDateAccountInstitution struct {
 	// The institution's ID, according to the provider.
 	ID *string `json:"id,omitempty"`
 	// The institution's name, according to the underlying provider.
 	Name *string `json:"name,omitempty"`
 }
 
-// ListBankingAccountsLinksSourceModifiedDateTypeEnum - The type of transactions and balances on the account.
+// ListBankingAccounts200ApplicationJSONSourceModifiedDateTypeEnum - The type of transactions and balances on the account.
 // For Credit accounts, positive balances are liabilities and positive transactions reduce liabilities.
 // For Debit accounts, positive balances are assets and positive transactions increase assets.
-type ListBankingAccountsLinksSourceModifiedDateTypeEnum string
+type ListBankingAccounts200ApplicationJSONSourceModifiedDateTypeEnum string
 
 const (
-	ListBankingAccountsLinksSourceModifiedDateTypeEnumUnknown ListBankingAccountsLinksSourceModifiedDateTypeEnum = "Unknown"
-	ListBankingAccountsLinksSourceModifiedDateTypeEnumCredit  ListBankingAccountsLinksSourceModifiedDateTypeEnum = "Credit"
-	ListBankingAccountsLinksSourceModifiedDateTypeEnumDebit   ListBankingAccountsLinksSourceModifiedDateTypeEnum = "Debit"
+	ListBankingAccounts200ApplicationJSONSourceModifiedDateTypeEnumUnknown ListBankingAccounts200ApplicationJSONSourceModifiedDateTypeEnum = "Unknown"
+	ListBankingAccounts200ApplicationJSONSourceModifiedDateTypeEnumCredit  ListBankingAccounts200ApplicationJSONSourceModifiedDateTypeEnum = "Credit"
+	ListBankingAccounts200ApplicationJSONSourceModifiedDateTypeEnumDebit   ListBankingAccounts200ApplicationJSONSourceModifiedDateTypeEnum = "Debit"
 )
 
-// ListBankingAccountsLinksSourceModifiedDate - An account where payments are made or received, and bank transactions are recorded.
+func (e *ListBankingAccounts200ApplicationJSONSourceModifiedDateTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Credit":
+		fallthrough
+	case "Debit":
+		*e = ListBankingAccounts200ApplicationJSONSourceModifiedDateTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListBankingAccounts200ApplicationJSONSourceModifiedDateTypeEnum: %s", s)
+	}
+}
+
+// ListBankingAccounts200ApplicationJSONSourceModifiedDate - An account where payments are made or received, and bank transactions are recorded.
 //
 // Explore our [data coverage](https://knowledge.codat.io/supported-features/banking?view=tab-by-data-type&dataType=banking-accounts).
-type ListBankingAccountsLinksSourceModifiedDate struct {
+type ListBankingAccounts200ApplicationJSONSourceModifiedDate struct {
 	// An object containing bank balance data.
-	Balance ListBankingAccountsLinksSourceModifiedDateAccountBalanceAmounts `json:"balance"`
+	Balance ListBankingAccounts200ApplicationJSONSourceModifiedDateAccountBalanceAmounts `json:"balance"`
 	// The currency code for the account.
 	Currency string `json:"currency"`
 	// The name of the person or company who holds the account.
@@ -121,33 +154,33 @@ type ListBankingAccountsLinksSourceModifiedDate struct {
 	// The ID of the account from the provider.
 	ID string `json:"id"`
 	// An object containing bank account identification information.
-	Identifiers ListBankingAccountsLinksSourceModifiedDateAccountIdentifiers `json:"identifiers"`
+	Identifiers ListBankingAccounts200ApplicationJSONSourceModifiedDateAccountIdentifiers `json:"identifiers"`
 	// The friendly name of the account, chosen by the holder. This may not have been set by the account holder and therefore is not always available.
 	InformalName *string `json:"informalName,omitempty"`
 	// The bank or other financial institution providing the account.
-	Institution ListBankingAccountsLinksSourceModifiedDateAccountInstitution `json:"institution"`
+	Institution ListBankingAccounts200ApplicationJSONSourceModifiedDateAccountInstitution `json:"institution"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// The name of the account according to the provider.
 	Name string `json:"name"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// The type of transactions and balances on the account.
 	// For Credit accounts, positive balances are liabilities and positive transactions reduce liabilities.
 	// For Debit accounts, positive balances are assets and positive transactions increase assets.
-	Type ListBankingAccountsLinksSourceModifiedDateTypeEnum `json:"type"`
+	Type ListBankingAccounts200ApplicationJSONSourceModifiedDateTypeEnum `json:"type"`
 }
 
-// ListBankingAccountsLinks - Codat's Paging Model
-type ListBankingAccountsLinks struct {
-	Links      ListBankingAccountsLinksLinks `json:"_links"`
-	PageNumber int64                         `json:"pageNumber"`
-	PageSize   int64                         `json:"pageSize"`
+// ListBankingAccounts200ApplicationJSON - Success
+type ListBankingAccounts200ApplicationJSON struct {
+	Links      ListBankingAccounts200ApplicationJSONLinks `json:"_links"`
+	PageNumber int64                                      `json:"pageNumber"`
+	PageSize   int64                                      `json:"pageSize"`
 	// An account where payments are made or received, and bank transactions are recorded.
 	//
 	// Explore our [data coverage](https://knowledge.codat.io/supported-features/banking?view=tab-by-data-type&dataType=banking-accounts).
-	Results      *ListBankingAccountsLinksSourceModifiedDate `json:"results,omitempty"`
-	TotalResults int64                                       `json:"totalResults"`
+	Results      *ListBankingAccounts200ApplicationJSONSourceModifiedDate `json:"results,omitempty"`
+	TotalResults int64                                                    `json:"totalResults"`
 }
 
 type ListBankingAccountsResponse struct {
@@ -155,5 +188,5 @@ type ListBankingAccountsResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// Success
-	Links *ListBankingAccountsLinks
+	ListBankingAccounts200ApplicationJSONObject *ListBankingAccounts200ApplicationJSON
 }

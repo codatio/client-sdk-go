@@ -3,8 +3,9 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 type ListBankTransactionCategoriesRequest struct {
@@ -20,64 +21,70 @@ type ListBankTransactionCategoriesRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-type ListBankTransactionCategoriesLinksLinksCurrent struct {
-	Href string `json:"href"`
-}
-
-type ListBankTransactionCategoriesLinksLinksNext struct {
+type ListBankTransactionCategories200ApplicationJSONLinksHypertextReference struct {
 	Href *string `json:"href,omitempty"`
 }
 
-type ListBankTransactionCategoriesLinksLinksPrevious struct {
-	Href *string `json:"href,omitempty"`
+type ListBankTransactionCategories200ApplicationJSONLinks struct {
+	Current  ListBankTransactionCategories200ApplicationJSONLinksHypertextReference  `json:"current"`
+	Next     *ListBankTransactionCategories200ApplicationJSONLinksHypertextReference `json:"next,omitempty"`
+	Previous *ListBankTransactionCategories200ApplicationJSONLinksHypertextReference `json:"previous,omitempty"`
+	Self     ListBankTransactionCategories200ApplicationJSONLinksHypertextReference  `json:"self"`
 }
 
-type ListBankTransactionCategoriesLinksLinksSelf struct {
-	Href string `json:"href"`
-}
-
-type ListBankTransactionCategoriesLinksLinks struct {
-	Current  ListBankTransactionCategoriesLinksLinksCurrent   `json:"current"`
-	Next     *ListBankTransactionCategoriesLinksLinksNext     `json:"next,omitempty"`
-	Previous *ListBankTransactionCategoriesLinksLinksPrevious `json:"previous,omitempty"`
-	Self     ListBankTransactionCategoriesLinksLinksSelf      `json:"self"`
-}
-
-// ListBankTransactionCategoriesLinksSourceModifiedDateStatusEnum - Status of the bank transaction category.
-type ListBankTransactionCategoriesLinksSourceModifiedDateStatusEnum string
+// ListBankTransactionCategories200ApplicationJSONSourceModifiedDateStatusEnum - Status of the bank transaction category.
+type ListBankTransactionCategories200ApplicationJSONSourceModifiedDateStatusEnum string
 
 const (
-	ListBankTransactionCategoriesLinksSourceModifiedDateStatusEnumUnknown  ListBankTransactionCategoriesLinksSourceModifiedDateStatusEnum = "Unknown"
-	ListBankTransactionCategoriesLinksSourceModifiedDateStatusEnumActive   ListBankTransactionCategoriesLinksSourceModifiedDateStatusEnum = "Active"
-	ListBankTransactionCategoriesLinksSourceModifiedDateStatusEnumArchived ListBankTransactionCategoriesLinksSourceModifiedDateStatusEnum = "Archived"
+	ListBankTransactionCategories200ApplicationJSONSourceModifiedDateStatusEnumUnknown  ListBankTransactionCategories200ApplicationJSONSourceModifiedDateStatusEnum = "Unknown"
+	ListBankTransactionCategories200ApplicationJSONSourceModifiedDateStatusEnumActive   ListBankTransactionCategories200ApplicationJSONSourceModifiedDateStatusEnum = "Active"
+	ListBankTransactionCategories200ApplicationJSONSourceModifiedDateStatusEnumArchived ListBankTransactionCategories200ApplicationJSONSourceModifiedDateStatusEnum = "Archived"
 )
 
-// ListBankTransactionCategoriesLinksSourceModifiedDate - The Banking Transaction Categories data type provides a list of hierarchical categories associated with a transaction for greater contextual meaning to transaction activity.
-type ListBankTransactionCategoriesLinksSourceModifiedDate struct {
+func (e *ListBankTransactionCategories200ApplicationJSONSourceModifiedDateStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Active":
+		fallthrough
+	case "Archived":
+		*e = ListBankTransactionCategories200ApplicationJSONSourceModifiedDateStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListBankTransactionCategories200ApplicationJSONSourceModifiedDateStatusEnum: %s", s)
+	}
+}
+
+// ListBankTransactionCategories200ApplicationJSONSourceModifiedDate - The Banking Transaction Categories data type provides a list of hierarchical categories associated with a transaction for greater contextual meaning to transaction activity.
+type ListBankTransactionCategories200ApplicationJSONSourceModifiedDate struct {
 	// A Boolean indicating whether there are other bank transaction categories beneath this one in the hierarchy.
 	HasChildren *bool `json:"hasChildren,omitempty"`
 	// The unique identifier of the bank transaction category.
 	ID string `json:"id"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// The name of the bank transaction category.
 	Name string `json:"name"`
 	// The unique identifier of the parent bank transaction category.
 	ParentID *string `json:"parentId,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Status of the bank transaction category.
-	Status *ListBankTransactionCategoriesLinksSourceModifiedDateStatusEnum `json:"status,omitempty"`
+	Status *ListBankTransactionCategories200ApplicationJSONSourceModifiedDateStatusEnum `json:"status,omitempty"`
 }
 
-// ListBankTransactionCategoriesLinks - Codat's Paging Model
-type ListBankTransactionCategoriesLinks struct {
-	Links      ListBankTransactionCategoriesLinksLinks `json:"_links"`
-	PageNumber int64                                   `json:"pageNumber"`
-	PageSize   int64                                   `json:"pageSize"`
+// ListBankTransactionCategories200ApplicationJSON - Success
+type ListBankTransactionCategories200ApplicationJSON struct {
+	Links      ListBankTransactionCategories200ApplicationJSONLinks `json:"_links"`
+	PageNumber int64                                                `json:"pageNumber"`
+	PageSize   int64                                                `json:"pageSize"`
 	// The Banking Transaction Categories data type provides a list of hierarchical categories associated with a transaction for greater contextual meaning to transaction activity.
-	Results      *ListBankTransactionCategoriesLinksSourceModifiedDate `json:"results,omitempty"`
-	TotalResults int64                                                 `json:"totalResults"`
+	Results      *ListBankTransactionCategories200ApplicationJSONSourceModifiedDate `json:"results,omitempty"`
+	TotalResults int64                                                              `json:"totalResults"`
 }
 
 type ListBankTransactionCategoriesResponse struct {
@@ -85,5 +92,5 @@ type ListBankTransactionCategoriesResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// Success
-	Links *ListBankTransactionCategoriesLinks
+	ListBankTransactionCategories200ApplicationJSONObject *ListBankTransactionCategories200ApplicationJSON
 }

@@ -3,8 +3,9 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 type ListBankingTransactionsRequest struct {
@@ -41,6 +42,48 @@ const (
 	ListBankingTransactions200ApplicationJSONSourceModifiedDateCodeEnumNotSupported  ListBankingTransactions200ApplicationJSONSourceModifiedDateCodeEnum = "NotSupported"
 )
 
+func (e *ListBankingTransactions200ApplicationJSONSourceModifiedDateCodeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Fee":
+		fallthrough
+	case "Payment":
+		fallthrough
+	case "Cash":
+		fallthrough
+	case "Transfer":
+		fallthrough
+	case "Interest":
+		fallthrough
+	case "Cashback":
+		fallthrough
+	case "Cheque":
+		fallthrough
+	case "DirectDebit":
+		fallthrough
+	case "Purchase":
+		fallthrough
+	case "StandingOrder":
+		fallthrough
+	case "Adjustment":
+		fallthrough
+	case "Credit":
+		fallthrough
+	case "Other":
+		fallthrough
+	case "NotSupported":
+		*e = ListBankingTransactions200ApplicationJSONSourceModifiedDateCodeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListBankingTransactions200ApplicationJSONSourceModifiedDateCodeEnum: %s", s)
+	}
+}
+
 // ListBankingTransactions200ApplicationJSONSourceModifiedDateTransactionCategoryRef - An object of bank transaction category reference data.
 type ListBankingTransactions200ApplicationJSONSourceModifiedDateTransactionCategoryRef struct {
 	// The unique category reference id for the bank transaction.
@@ -58,7 +101,7 @@ type ListBankingTransactions200ApplicationJSONSourceModifiedDate struct {
 	// The amount of the bank transaction.
 	Amount *float64 `json:"amount,omitempty"`
 	// The date the bank transaction was authorized.
-	AuthorizedDate *time.Time `json:"authorizedDate,omitempty"`
+	AuthorizedDate *string `json:"authorizedDate,omitempty"`
 	// Code to identify the underlying transaction.
 	Code *ListBankingTransactions200ApplicationJSONSourceModifiedDateCodeEnum `json:"code,omitempty"`
 	// The currency of the bank transaction.
@@ -70,11 +113,11 @@ type ListBankingTransactions200ApplicationJSONSourceModifiedDate struct {
 	// The name of the merchant.
 	MerchantName *string `json:"merchantName,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// The date the bank transaction was cleared.
-	PostedDate *time.Time `json:"postedDate,omitempty"`
+	PostedDate *string `json:"postedDate,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// An object of bank transaction category reference data.
 	TransactionCategoryRef *ListBankingTransactions200ApplicationJSONSourceModifiedDateTransactionCategoryRef `json:"transactionCategoryRef,omitempty"`
 }

@@ -3,8 +3,9 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 type GetBankTransactionCategoryRequest struct {
@@ -23,6 +24,24 @@ const (
 	GetBankTransactionCategorySourceModifiedDateStatusEnumArchived GetBankTransactionCategorySourceModifiedDateStatusEnum = "Archived"
 )
 
+func (e *GetBankTransactionCategorySourceModifiedDateStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Active":
+		fallthrough
+	case "Archived":
+		*e = GetBankTransactionCategorySourceModifiedDateStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetBankTransactionCategorySourceModifiedDateStatusEnum: %s", s)
+	}
+}
+
 // GetBankTransactionCategorySourceModifiedDate - The Banking Transaction Categories data type provides a list of hierarchical categories associated with a transaction for greater contextual meaning to transaction activity.
 type GetBankTransactionCategorySourceModifiedDate struct {
 	// A Boolean indicating whether there are other bank transaction categories beneath this one in the hierarchy.
@@ -30,13 +49,13 @@ type GetBankTransactionCategorySourceModifiedDate struct {
 	// The unique identifier of the bank transaction category.
 	ID string `json:"id"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// The name of the bank transaction category.
 	Name string `json:"name"`
 	// The unique identifier of the parent bank transaction category.
 	ParentID *string `json:"parentId,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Status of the bank transaction category.
 	Status *GetBankTransactionCategorySourceModifiedDateStatusEnum `json:"status,omitempty"`
 }
