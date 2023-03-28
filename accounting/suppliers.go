@@ -352,12 +352,12 @@ func (s *suppliers) ListSuppliers(ctx context.Context, request operations.ListSu
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListSuppliersLinks
+			var out *operations.ListSuppliers200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Links = out
+			res.ListSuppliers200ApplicationJSONObject = out
 		}
 	}
 

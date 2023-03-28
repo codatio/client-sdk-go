@@ -4,7 +4,6 @@ package operations
 
 import (
 	"net/http"
-	"time"
 )
 
 type GetDirectIncomesRequest struct {
@@ -20,51 +19,39 @@ type GetDirectIncomesRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-type GetDirectIncomesLinksLinksCurrent struct {
-	Href string `json:"href"`
-}
-
-type GetDirectIncomesLinksLinksNext struct {
+type GetDirectIncomes200ApplicationJSONLinksHypertextReference struct {
 	Href *string `json:"href,omitempty"`
 }
 
-type GetDirectIncomesLinksLinksPrevious struct {
-	Href *string `json:"href,omitempty"`
+type GetDirectIncomes200ApplicationJSONLinks struct {
+	Current  GetDirectIncomes200ApplicationJSONLinksHypertextReference  `json:"current"`
+	Next     *GetDirectIncomes200ApplicationJSONLinksHypertextReference `json:"next,omitempty"`
+	Previous *GetDirectIncomes200ApplicationJSONLinksHypertextReference `json:"previous,omitempty"`
+	Self     GetDirectIncomes200ApplicationJSONLinksHypertextReference  `json:"self"`
 }
 
-type GetDirectIncomesLinksLinksSelf struct {
-	Href string `json:"href"`
-}
-
-type GetDirectIncomesLinksLinks struct {
-	Current  GetDirectIncomesLinksLinksCurrent   `json:"current"`
-	Next     *GetDirectIncomesLinksLinksNext     `json:"next,omitempty"`
-	Previous *GetDirectIncomesLinksLinksPrevious `json:"previous,omitempty"`
-	Self     GetDirectIncomesLinksLinksSelf      `json:"self"`
-}
-
-// GetDirectIncomesLinksSourceModifiedDateContactRef - A customer or supplier associated with the direct income.
-type GetDirectIncomesLinksSourceModifiedDateContactRef struct {
+// GetDirectIncomes200ApplicationJSONSourceModifiedDateContactRef - A customer or supplier associated with the direct income.
+type GetDirectIncomes200ApplicationJSONSourceModifiedDateContactRef struct {
 	DataType *string `json:"dataType,omitempty"`
 	ID       string  `json:"id"`
 }
 
-// GetDirectIncomesLinksSourceModifiedDateLineItemsAccountRef - Reference to the account to which the line item is linked.
-type GetDirectIncomesLinksSourceModifiedDateLineItemsAccountRef struct {
+// GetDirectIncomes200ApplicationJSONSourceModifiedDateLineItemsAccountRef - Reference to the account to which the line item is linked.
+type GetDirectIncomes200ApplicationJSONSourceModifiedDateLineItemsAccountRef struct {
 	// 'id' from the Accounts data type.
 	ID *string `json:"id,omitempty"`
 	// 'name' from the Accounts data type.
 	Name *string `json:"name,omitempty"`
 }
 
-// GetDirectIncomesLinksSourceModifiedDateLineItemsItemRef - Reference to the product, service type, or inventory item to which the direct cost is linked.
-type GetDirectIncomesLinksSourceModifiedDateLineItemsItemRef struct {
+// GetDirectIncomes200ApplicationJSONSourceModifiedDateLineItemsItemRef - Reference to the product, service type, or inventory item to which the direct cost is linked.
+type GetDirectIncomes200ApplicationJSONSourceModifiedDateLineItemsItemRef struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
 }
 
-// GetDirectIncomesLinksSourceModifiedDateLineItemsTaxRateRef - Reference to the tax rate to which the line item is linked.
-type GetDirectIncomesLinksSourceModifiedDateLineItemsTaxRateRef struct {
+// GetDirectIncomes200ApplicationJSONSourceModifiedDateLineItemsTaxRateRef - Reference to the tax rate to which the line item is linked.
+type GetDirectIncomes200ApplicationJSONSourceModifiedDateLineItemsTaxRateRef struct {
 	// Applicable tax rate.
 	EffectiveTaxRate *float64 `json:"effectiveTaxRate,omitempty"`
 	// 'id' from the 'taxRates' data type.
@@ -73,15 +60,15 @@ type GetDirectIncomesLinksSourceModifiedDateLineItemsTaxRateRef struct {
 	Name *string `json:"name,omitempty"`
 }
 
-// GetDirectIncomesLinksSourceModifiedDateLineItemsTrackingCategoryRefs - References a category against which the item is tracked.
-type GetDirectIncomesLinksSourceModifiedDateLineItemsTrackingCategoryRefs struct {
+// GetDirectIncomes200ApplicationJSONSourceModifiedDateLineItemsTrackingCategoryRefs - References a category against which the item is tracked.
+type GetDirectIncomes200ApplicationJSONSourceModifiedDateLineItemsTrackingCategoryRefs struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
 }
 
-type GetDirectIncomesLinksSourceModifiedDateLineItems struct {
+type GetDirectIncomes200ApplicationJSONSourceModifiedDateLineItems struct {
 	// Reference to the account to which the line item is linked.
-	AccountRef *GetDirectIncomesLinksSourceModifiedDateLineItemsAccountRef `json:"accountRef,omitempty"`
+	AccountRef *GetDirectIncomes200ApplicationJSONSourceModifiedDateLineItemsAccountRef `json:"accountRef,omitempty"`
 	// A user-friendly name of the goods or services.
 	Description *string `json:"description,omitempty"`
 	// Discount amount for the line before tax.
@@ -89,7 +76,7 @@ type GetDirectIncomesLinksSourceModifiedDateLineItems struct {
 	// Discount percentage for the line before tax.
 	DiscountPercentage *float64 `json:"discountPercentage,omitempty"`
 	// Reference to the product, service type, or inventory item to which the direct cost is linked.
-	ItemRef *GetDirectIncomesLinksSourceModifiedDateLineItemsItemRef `json:"itemRef,omitempty"`
+	ItemRef *GetDirectIncomes200ApplicationJSONSourceModifiedDateLineItemsItemRef `json:"itemRef,omitempty"`
 	// The number of units of goods or services received.
 	//
 	// Note: If the platform does not provide this information, the quantity will be mapped as 1.
@@ -100,23 +87,24 @@ type GetDirectIncomesLinksSourceModifiedDateLineItems struct {
 	// Note: If the platform does not provide this information, the quantity will be mapped as 0.00.
 	TaxAmount *float64 `json:"taxAmount,omitempty"`
 	// Reference to the tax rate to which the line item is linked.
-	TaxRateRef *GetDirectIncomesLinksSourceModifiedDateLineItemsTaxRateRef `json:"taxRateRef,omitempty"`
+	TaxRateRef *GetDirectIncomes200ApplicationJSONSourceModifiedDateLineItemsTaxRateRef `json:"taxRateRef,omitempty"`
 	// The total amount of the line, including tax.
 	TotalAmount *float64 `json:"totalAmount,omitempty"`
 	// An array of categories against which this direct cost is tracked.
-	TrackingCategoryRefs []GetDirectIncomesLinksSourceModifiedDateLineItemsTrackingCategoryRefs `json:"trackingCategoryRefs,omitempty"`
+	TrackingCategoryRefs []GetDirectIncomes200ApplicationJSONSourceModifiedDateLineItemsTrackingCategoryRefs `json:"trackingCategoryRefs,omitempty"`
 	// The price of each unit of goods or services.
 	// Note: If the platform does not provide this information, the unit amount will be mapped to the total amount.
 	UnitAmount float64 `json:"unitAmount"`
 }
 
-type GetDirectIncomesLinksSourceModifiedDateMetadata struct {
+type GetDirectIncomes200ApplicationJSONSourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
-type GetDirectIncomesLinksSourceModifiedDatePaymentAllocationsAllocation struct {
+type GetDirectIncomes200ApplicationJSONSourceModifiedDatePaymentAllocationsAllocation struct {
 	// The date the payment was allocated.
-	AllocatedOnDate *time.Time `json:"allocatedOnDate,omitempty"`
+	AllocatedOnDate *string `json:"allocatedOnDate,omitempty"`
 	// The currency of the transaction.
 	Currency *string `json:"currency,omitempty"`
 	// Rate to convert the total amount of the payment into the base currency for the company at the time of the payment.
@@ -147,17 +135,17 @@ type GetDirectIncomesLinksSourceModifiedDatePaymentAllocationsAllocation struct 
 	TotalAmount *float64 `json:"totalAmount,omitempty"`
 }
 
-// GetDirectIncomesLinksSourceModifiedDatePaymentAllocationsPaymentAccountRef - The account that the allocated payment is made from or to.
-type GetDirectIncomesLinksSourceModifiedDatePaymentAllocationsPaymentAccountRef struct {
+// GetDirectIncomes200ApplicationJSONSourceModifiedDatePaymentAllocationsPaymentAccountRef - The account that the allocated payment is made from or to.
+type GetDirectIncomes200ApplicationJSONSourceModifiedDatePaymentAllocationsPaymentAccountRef struct {
 	// 'id' from the Accounts data type.
 	ID *string `json:"id,omitempty"`
 	// 'name' from the Accounts data type.
 	Name *string `json:"name,omitempty"`
 }
 
-type GetDirectIncomesLinksSourceModifiedDatePaymentAllocationsPayment struct {
+type GetDirectIncomes200ApplicationJSONSourceModifiedDatePaymentAllocationsPayment struct {
 	// The account that the allocated payment is made from or to.
-	AccountRef *GetDirectIncomesLinksSourceModifiedDatePaymentAllocationsPaymentAccountRef `json:"accountRef,omitempty"`
+	AccountRef *GetDirectIncomes200ApplicationJSONSourceModifiedDatePaymentAllocationsPaymentAccountRef `json:"accountRef,omitempty"`
 	// Currency the payment has been made in.
 	Currency *string `json:"currency,omitempty"`
 	// Rate to convert the total amount of the payment into the base currency for the company at the time of the payment.
@@ -189,24 +177,24 @@ type GetDirectIncomesLinksSourceModifiedDatePaymentAllocationsPayment struct {
 	// Notes attached to the allocated payment.
 	Note *string `json:"note,omitempty"`
 	// The date the payment was paid.
-	PaidOnDate *time.Time `json:"paidOnDate,omitempty"`
+	PaidOnDate *string `json:"paidOnDate,omitempty"`
 	// Reference to the allocated payment.
 	Reference *string `json:"reference,omitempty"`
 	// Total amount that was paid.
 	TotalAmount *float64 `json:"totalAmount,omitempty"`
 }
 
-type GetDirectIncomesLinksSourceModifiedDatePaymentAllocations struct {
-	Allocation GetDirectIncomesLinksSourceModifiedDatePaymentAllocationsAllocation `json:"allocation"`
-	Payment    GetDirectIncomesLinksSourceModifiedDatePaymentAllocationsPayment    `json:"payment"`
+type GetDirectIncomes200ApplicationJSONSourceModifiedDatePaymentAllocations struct {
+	Allocation GetDirectIncomes200ApplicationJSONSourceModifiedDatePaymentAllocationsAllocation `json:"allocation"`
+	Payment    GetDirectIncomes200ApplicationJSONSourceModifiedDatePaymentAllocationsPayment    `json:"payment"`
 }
 
-// GetDirectIncomesLinksSourceModifiedDateSupplementalData - Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
-type GetDirectIncomesLinksSourceModifiedDateSupplementalData struct {
+// GetDirectIncomes200ApplicationJSONSourceModifiedDateSupplementalData - Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
+type GetDirectIncomes200ApplicationJSONSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
 
-// GetDirectIncomesLinksSourceModifiedDate - > **Language tip:**  Direct incomes may also be referred to as **Receive transactions**, **Receive money transactions**, **Sales receipts**, or **Cash sales** in various accounting platforms.
+// GetDirectIncomes200ApplicationJSONSourceModifiedDate - > **Language tip:**  Direct incomes may also be referred to as **Receive transactions**, **Receive money transactions**, **Sales receipts**, or **Cash sales** in various accounting platforms.
 //
 // > View the coverage for direct incomes in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=directIncomes" target="_blank">Data coverage explorer</a>.
 //
@@ -225,9 +213,9 @@ type GetDirectIncomesLinksSourceModifiedDateSupplementalData struct {
 // - [Add a new direct income to a specific company's accounting package](https://api-uat.codat.io/swagger/index.html#/DirectIncomes/post_companies__companyId__connections__connectionId__push_directIncomes)
 //
 // Direct incomes is a child data type of [account transactions](https://docs.codat.io/accounting-api#/schemas/AccountTransaction).
-type GetDirectIncomesLinksSourceModifiedDate struct {
+type GetDirectIncomes200ApplicationJSONSourceModifiedDate struct {
 	// A customer or supplier associated with the direct income.
-	ContactRef *GetDirectIncomesLinksSourceModifiedDateContactRef `json:"contactRef,omitempty"`
+	ContactRef *GetDirectIncomes200ApplicationJSONSourceModifiedDateContactRef `json:"contactRef,omitempty"`
 	// The currency of the direct income.
 	Currency string `json:"currency"`
 	// Rate to convert the total amount of the payment into the base currency for the company at the time of the payment.
@@ -257,35 +245,35 @@ type GetDirectIncomesLinksSourceModifiedDate struct {
 	// Identifier of the direct income, unique for the company.
 	ID *string `json:"id,omitempty"`
 	// The date of the direct income as recorded in the accounting platform.
-	IssueDate time.Time `json:"issueDate"`
+	IssueDate string `json:"issueDate"`
 	// An array of line items.
-	LineItems []GetDirectIncomesLinksSourceModifiedDateLineItems `json:"lineItems"`
-	Metadata  *GetDirectIncomesLinksSourceModifiedDateMetadata   `json:"metadata,omitempty"`
+	LineItems []GetDirectIncomes200ApplicationJSONSourceModifiedDateLineItems `json:"lineItems"`
+	Metadata  *GetDirectIncomes200ApplicationJSONSourceModifiedDateMetadata   `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate       *time.Time                                                  `json:"modifiedDate,omitempty"`
-	Note               *string                                                     `json:"note,omitempty"`
-	PaymentAllocations []GetDirectIncomesLinksSourceModifiedDatePaymentAllocations `json:"paymentAllocations"`
+	ModifiedDate       *string                                                                  `json:"modifiedDate,omitempty"`
+	Note               *string                                                                  `json:"note,omitempty"`
+	PaymentAllocations []GetDirectIncomes200ApplicationJSONSourceModifiedDatePaymentAllocations `json:"paymentAllocations"`
 	// User-friendly reference for the direct income.
 	Reference *string `json:"reference,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// The total amount of the direct incomes, excluding any taxes.
 	SubTotal float64 `json:"subTotal"`
 	// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
-	SupplementalData *GetDirectIncomesLinksSourceModifiedDateSupplementalData `json:"supplementalData,omitempty"`
+	SupplementalData *GetDirectIncomes200ApplicationJSONSourceModifiedDateSupplementalData `json:"supplementalData,omitempty"`
 	// The total amount of tax on the direct incomes.
 	TaxAmount float64 `json:"taxAmount"`
 	// The amount of the direct incomes, inclusive of tax.
 	TotalAmount float64 `json:"totalAmount"`
 }
 
-// GetDirectIncomesLinks - Codat's Paging Model
-type GetDirectIncomesLinks struct {
-	Links        GetDirectIncomesLinksLinks                `json:"_links"`
-	PageNumber   int64                                     `json:"pageNumber"`
-	PageSize     int64                                     `json:"pageSize"`
-	Results      []GetDirectIncomesLinksSourceModifiedDate `json:"results,omitempty"`
-	TotalResults int64                                     `json:"totalResults"`
+// GetDirectIncomes200ApplicationJSON - Success
+type GetDirectIncomes200ApplicationJSON struct {
+	Links        GetDirectIncomes200ApplicationJSONLinks                `json:"_links"`
+	PageNumber   int64                                                  `json:"pageNumber"`
+	PageSize     int64                                                  `json:"pageSize"`
+	Results      []GetDirectIncomes200ApplicationJSONSourceModifiedDate `json:"results,omitempty"`
+	TotalResults int64                                                  `json:"totalResults"`
 }
 
 type GetDirectIncomesResponse struct {
@@ -293,5 +281,5 @@ type GetDirectIncomesResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// Success
-	Links *GetDirectIncomesLinks
+	GetDirectIncomes200ApplicationJSONObject *GetDirectIncomes200ApplicationJSON
 }

@@ -3,6 +3,8 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
@@ -23,6 +25,34 @@ const (
 	GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionChoiceOptionTypeEnumFile      GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionChoiceOptionTypeEnum = "File"
 	GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionChoiceOptionTypeEnumMultiPart GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionChoiceOptionTypeEnum = "MultiPart"
 )
+
+func (e *GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionChoiceOptionTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Array":
+		fallthrough
+	case "Object":
+		fallthrough
+	case "String":
+		fallthrough
+	case "Number":
+		fallthrough
+	case "Boolean":
+		fallthrough
+	case "DateTime":
+		fallthrough
+	case "File":
+		fallthrough
+	case "MultiPart":
+		*e = GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionChoiceOptionTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionChoiceOptionTypeEnum: %s", s)
+	}
+}
 
 type GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionChoice struct {
 	Description *string                                                                               `json:"description,omitempty"`
@@ -46,6 +76,34 @@ const (
 	GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnumMultiPart GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum = "MultiPart"
 )
 
+func (e *GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Array":
+		fallthrough
+	case "Object":
+		fallthrough
+	case "String":
+		fallthrough
+	case "Number":
+		fallthrough
+	case "Boolean":
+		fallthrough
+	case "DateTime":
+		fallthrough
+	case "File":
+		fallthrough
+	case "MultiPart":
+		*e = GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum: %s", s)
+	}
+}
+
 type GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionChoice struct {
 	Description *string                                                                                                 `json:"description,omitempty"`
 	DisplayName *string                                                                                                 `json:"displayName,omitempty"`
@@ -67,6 +125,34 @@ const (
 	GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnumFile      GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum = "File"
 	GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnumMultiPart GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum = "MultiPart"
 )
+
+func (e *GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Array":
+		fallthrough
+	case "Object":
+		fallthrough
+	case "String":
+		fallthrough
+	case "Number":
+		fallthrough
+	case "Boolean":
+		fallthrough
+	case "DateTime":
+		fallthrough
+	case "File":
+		fallthrough
+	case "MultiPart":
+		*e = GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum: %s", s)
+	}
+}
 
 type GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoice struct {
 	Description *string                                                                                                                   `json:"description,omitempty"`
@@ -90,6 +176,34 @@ const (
 	GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnumMultiPart GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum = "MultiPart"
 )
 
+func (e *GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Array":
+		fallthrough
+	case "Object":
+		fallthrough
+	case "String":
+		fallthrough
+	case "Number":
+		fallthrough
+	case "Boolean":
+		fallthrough
+	case "DateTime":
+		fallthrough
+	case "File":
+		fallthrough
+	case "MultiPart":
+		*e = GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum: %s", s)
+	}
+}
+
 type GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoice struct {
 	Description *string                                                                                                                                     `json:"description,omitempty"`
 	DisplayName *string                                                                                                                                     `json:"displayName,omitempty"`
@@ -111,6 +225,34 @@ const (
 	GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnumFile      GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum = "File"
 	GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnumMultiPart GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum = "MultiPart"
 )
+
+func (e *GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Array":
+		fallthrough
+	case "Object":
+		fallthrough
+	case "String":
+		fallthrough
+	case "Number":
+		fallthrough
+	case "Boolean":
+		fallthrough
+	case "DateTime":
+		fallthrough
+	case "File":
+		fallthrough
+	case "MultiPart":
+		*e = GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum: %s", s)
+	}
+}
 
 type GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushValidationInfoPushFieldValidation struct {
 	Details string  `json:"details"`
@@ -144,6 +286,34 @@ const (
 	GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnumFile      GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum = "File"
 	GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnumMultiPart GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum = "MultiPart"
 )
+
+func (e *GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Array":
+		fallthrough
+	case "Object":
+		fallthrough
+	case "String":
+		fallthrough
+	case "Number":
+		fallthrough
+	case "Boolean":
+		fallthrough
+	case "DateTime":
+		fallthrough
+	case "File":
+		fallthrough
+	case "MultiPart":
+		*e = GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum: %s", s)
+	}
+}
 
 type GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushValidationInfoPushFieldValidation struct {
 	Details string  `json:"details"`
@@ -179,6 +349,34 @@ const (
 	GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionPropertyOptionTypeEnumMultiPart GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionPropertyOptionTypeEnum = "MultiPart"
 )
 
+func (e *GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionPropertyOptionTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Array":
+		fallthrough
+	case "Object":
+		fallthrough
+	case "String":
+		fallthrough
+	case "Number":
+		fallthrough
+	case "Boolean":
+		fallthrough
+	case "DateTime":
+		fallthrough
+	case "File":
+		fallthrough
+	case "MultiPart":
+		*e = GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionPropertyOptionTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionPropertyOptionTypeEnum: %s", s)
+	}
+}
+
 type GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushOptionPropertyPushValidationInfoPushFieldValidation struct {
 	Details string  `json:"details"`
 	Field   *string `json:"field,omitempty"`
@@ -213,6 +411,34 @@ const (
 	GetCreateBillPaymentsModelPushOptionPushOptionPropertyOptionTypeEnumMultiPart GetCreateBillPaymentsModelPushOptionPushOptionPropertyOptionTypeEnum = "MultiPart"
 )
 
+func (e *GetCreateBillPaymentsModelPushOptionPushOptionPropertyOptionTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Array":
+		fallthrough
+	case "Object":
+		fallthrough
+	case "String":
+		fallthrough
+	case "Number":
+		fallthrough
+	case "Boolean":
+		fallthrough
+	case "DateTime":
+		fallthrough
+	case "File":
+		fallthrough
+	case "MultiPart":
+		*e = GetCreateBillPaymentsModelPushOptionPushOptionPropertyOptionTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCreateBillPaymentsModelPushOptionPushOptionPropertyOptionTypeEnum: %s", s)
+	}
+}
+
 type GetCreateBillPaymentsModelPushOptionPushOptionPropertyPushValidationInfoPushFieldValidation struct {
 	Details string  `json:"details"`
 	Field   *string `json:"field,omitempty"`
@@ -246,6 +472,34 @@ const (
 	GetCreateBillPaymentsModelPushOptionOptionTypeEnumFile      GetCreateBillPaymentsModelPushOptionOptionTypeEnum = "File"
 	GetCreateBillPaymentsModelPushOptionOptionTypeEnumMultiPart GetCreateBillPaymentsModelPushOptionOptionTypeEnum = "MultiPart"
 )
+
+func (e *GetCreateBillPaymentsModelPushOptionOptionTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Array":
+		fallthrough
+	case "Object":
+		fallthrough
+	case "String":
+		fallthrough
+	case "Number":
+		fallthrough
+	case "Boolean":
+		fallthrough
+	case "DateTime":
+		fallthrough
+	case "File":
+		fallthrough
+	case "MultiPart":
+		*e = GetCreateBillPaymentsModelPushOptionOptionTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCreateBillPaymentsModelPushOptionOptionTypeEnum: %s", s)
+	}
+}
 
 // GetCreateBillPaymentsModelPushOption - OK
 type GetCreateBillPaymentsModelPushOption struct {

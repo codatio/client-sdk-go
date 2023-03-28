@@ -3,56 +3,78 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
-type GetCreateUpdateAccountTransactionsModelRequest struct {
+type GetAccountTransactionRequest struct {
 	AccountTransactionID string `pathParam:"style=simple,explode=false,name=accountTransactionId"`
 	CompanyID            string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID         string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
-// GetCreateUpdateAccountTransactionsModelSourceModifiedDateBankAccountRef - Reference to the bank account the account transaction is recorded against.
-type GetCreateUpdateAccountTransactionsModelSourceModifiedDateBankAccountRef struct {
+// GetAccountTransactionSourceModifiedDateBankAccountRef - Reference to the bank account the account transaction is recorded against.
+type GetAccountTransactionSourceModifiedDateBankAccountRef struct {
 	// Bank account 'id' for the account transaction.
 	ID *string `json:"id,omitempty"`
 	// bank account 'name' for the account transaction.
 	Name *string `json:"name,omitempty"`
 }
 
-// GetCreateUpdateAccountTransactionsModelSourceModifiedDateLinesRecordRef - Links an account transaction line to the underlying record that created it.
-type GetCreateUpdateAccountTransactionsModelSourceModifiedDateLinesRecordRef struct {
+// GetAccountTransactionSourceModifiedDateLinesRecordRef - Links an account transaction line to the underlying record that created it.
+type GetAccountTransactionSourceModifiedDateLinesRecordRef struct {
 	// Name of the 'dataType'.
 	DataType *string `json:"dataType,omitempty"`
 	// 'id' of the underlying record or data type.
 	ID *string `json:"id,omitempty"`
 }
 
-type GetCreateUpdateAccountTransactionsModelSourceModifiedDateLines struct {
+type GetAccountTransactionSourceModifiedDateLines struct {
 	// Amount in the bill payment currency.
 	Amount *float64 `json:"amount,omitempty"`
 	// Description of the account transaction.
 	Description *string `json:"description,omitempty"`
 	// Links an account transaction line to the underlying record that created it.
-	RecordRef *GetCreateUpdateAccountTransactionsModelSourceModifiedDateLinesRecordRef `json:"recordRef,omitempty"`
+	RecordRef *GetAccountTransactionSourceModifiedDateLinesRecordRef `json:"recordRef,omitempty"`
 }
 
-type GetCreateUpdateAccountTransactionsModelSourceModifiedDateMetadata struct {
+type GetAccountTransactionSourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
-// GetCreateUpdateAccountTransactionsModelSourceModifiedDateStatusEnum - The status of the account transaction.
-type GetCreateUpdateAccountTransactionsModelSourceModifiedDateStatusEnum string
+// GetAccountTransactionSourceModifiedDateStatusEnum - The status of the account transaction.
+type GetAccountTransactionSourceModifiedDateStatusEnum string
 
 const (
-	GetCreateUpdateAccountTransactionsModelSourceModifiedDateStatusEnumUnknown      GetCreateUpdateAccountTransactionsModelSourceModifiedDateStatusEnum = "Unknown"
-	GetCreateUpdateAccountTransactionsModelSourceModifiedDateStatusEnumUnreconciled GetCreateUpdateAccountTransactionsModelSourceModifiedDateStatusEnum = "Unreconciled"
-	GetCreateUpdateAccountTransactionsModelSourceModifiedDateStatusEnumReconciled   GetCreateUpdateAccountTransactionsModelSourceModifiedDateStatusEnum = "Reconciled"
-	GetCreateUpdateAccountTransactionsModelSourceModifiedDateStatusEnumVoid         GetCreateUpdateAccountTransactionsModelSourceModifiedDateStatusEnum = "Void"
+	GetAccountTransactionSourceModifiedDateStatusEnumUnknown      GetAccountTransactionSourceModifiedDateStatusEnum = "Unknown"
+	GetAccountTransactionSourceModifiedDateStatusEnumUnreconciled GetAccountTransactionSourceModifiedDateStatusEnum = "Unreconciled"
+	GetAccountTransactionSourceModifiedDateStatusEnumReconciled   GetAccountTransactionSourceModifiedDateStatusEnum = "Reconciled"
+	GetAccountTransactionSourceModifiedDateStatusEnumVoid         GetAccountTransactionSourceModifiedDateStatusEnum = "Void"
 )
 
-// GetCreateUpdateAccountTransactionsModelSourceModifiedDate - > **Language tip:** In Codat, account transactions represent all transactions posted to a bank account within an accounting platform. For bank transactions posted within a banking platform, refer to [Banking transactions](https://docs.codat.io/banking-api#/operations/list-all-banking-transactions).
+func (e *GetAccountTransactionSourceModifiedDateStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Unreconciled":
+		fallthrough
+	case "Reconciled":
+		fallthrough
+	case "Void":
+		*e = GetAccountTransactionSourceModifiedDateStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetAccountTransactionSourceModifiedDateStatusEnum: %s", s)
+	}
+}
+
+// GetAccountTransactionSourceModifiedDate - > **Language tip:** In Codat, account transactions represent all transactions posted to a bank account within an accounting platform. For bank transactions posted within a banking platform, refer to [Banking transactions](https://docs.codat.io/banking-api#/operations/list-all-banking-transactions).
 //
 // > View the coverage for account transactions in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=accountTransactions" target="_blank">Data coverage explorer</a>.
 //
@@ -69,9 +91,9 @@ const (
 // * Transfers: for example, transferring money between two bank accounts.
 //
 // Account transactions is the parent data type of [payments](https://docs.codat.io/accounting-api#/schemas/Payment), [bill payments](https://docs.codat.io/accounting-api#/schemas/BillPayment), [direct costs](https://docs.codat.io/accounting-api#/schemas/DirectCost), [direct incomes](https://docs.codat.io/accounting-api#/schemas/DirectIncome), and [transfers](https://docs.codat.io/accounting-api#/schemas/Transfer).
-type GetCreateUpdateAccountTransactionsModelSourceModifiedDate struct {
+type GetAccountTransactionSourceModifiedDate struct {
 	// Reference to the bank account the account transaction is recorded against.
-	BankAccountRef *GetCreateUpdateAccountTransactionsModelSourceModifiedDateBankAccountRef `json:"bankAccountRef,omitempty"`
+	BankAccountRef *GetAccountTransactionSourceModifiedDateBankAccountRef `json:"bankAccountRef,omitempty"`
 	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code. e.g. _GBP_.
 	//
 	// ## Unknown currencies
@@ -105,30 +127,30 @@ type GetCreateUpdateAccountTransactionsModelSourceModifiedDate struct {
 	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
 	CurrencyRate *float64 `json:"currencyRate,omitempty"`
 	// The date the account transaction was recorded in the platform.
-	Date *time.Time `json:"date,omitempty"`
+	Date *string `json:"date,omitempty"`
 	// Identifier of the direct cost (unique to the company).
 	ID *string `json:"id,omitempty"`
 	// Array of account transaction lines.
-	Lines    []GetCreateUpdateAccountTransactionsModelSourceModifiedDateLines   `json:"lines,omitempty"`
-	Metadata *GetCreateUpdateAccountTransactionsModelSourceModifiedDateMetadata `json:"metadata,omitempty"`
+	Lines    []GetAccountTransactionSourceModifiedDateLines   `json:"lines,omitempty"`
+	Metadata *GetAccountTransactionSourceModifiedDateMetadata `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Additional information about the account transaction, if available.
 	Note *string `json:"note,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// The status of the account transaction.
-	Status *GetCreateUpdateAccountTransactionsModelSourceModifiedDateStatusEnum `json:"status,omitempty"`
+	Status *GetAccountTransactionSourceModifiedDateStatusEnum `json:"status,omitempty"`
 	// Total amount of the account transactions, inclusive of tax.
 	TotalAmount *float64 `json:"totalAmount,omitempty"`
 	// Identifier of the transaction (unique to the company).
 	TransactionID *string `json:"transactionId,omitempty"`
 }
 
-type GetCreateUpdateAccountTransactionsModelResponse struct {
+type GetAccountTransactionResponse struct {
 	ContentType string
 	// Success
-	SourceModifiedDate *GetCreateUpdateAccountTransactionsModelSourceModifiedDate
+	SourceModifiedDate *GetAccountTransactionSourceModifiedDate
 	StatusCode         int
 	RawResponse        *http.Response
 }

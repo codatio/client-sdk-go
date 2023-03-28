@@ -3,6 +3,8 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
@@ -23,6 +25,34 @@ const (
 	GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionChoiceOptionTypeEnumFile      GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionChoiceOptionTypeEnum = "File"
 	GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionChoiceOptionTypeEnumMultiPart GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionChoiceOptionTypeEnum = "MultiPart"
 )
+
+func (e *GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionChoiceOptionTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Array":
+		fallthrough
+	case "Object":
+		fallthrough
+	case "String":
+		fallthrough
+	case "Number":
+		fallthrough
+	case "Boolean":
+		fallthrough
+	case "DateTime":
+		fallthrough
+	case "File":
+		fallthrough
+	case "MultiPart":
+		*e = GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionChoiceOptionTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionChoiceOptionTypeEnum: %s", s)
+	}
+}
 
 type GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionChoice struct {
 	Description *string                                                                                `json:"description,omitempty"`
@@ -46,6 +76,34 @@ const (
 	GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnumMultiPart GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum = "MultiPart"
 )
 
+func (e *GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Array":
+		fallthrough
+	case "Object":
+		fallthrough
+	case "String":
+		fallthrough
+	case "Number":
+		fallthrough
+	case "Boolean":
+		fallthrough
+	case "DateTime":
+		fallthrough
+	case "File":
+		fallthrough
+	case "MultiPart":
+		*e = GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum: %s", s)
+	}
+}
+
 type GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionChoice struct {
 	Description *string                                                                                                  `json:"description,omitempty"`
 	DisplayName *string                                                                                                  `json:"displayName,omitempty"`
@@ -67,6 +125,34 @@ const (
 	GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnumFile      GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum = "File"
 	GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnumMultiPart GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum = "MultiPart"
 )
+
+func (e *GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Array":
+		fallthrough
+	case "Object":
+		fallthrough
+	case "String":
+		fallthrough
+	case "Number":
+		fallthrough
+	case "Boolean":
+		fallthrough
+	case "DateTime":
+		fallthrough
+	case "File":
+		fallthrough
+	case "MultiPart":
+		*e = GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum: %s", s)
+	}
+}
 
 type GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoice struct {
 	Description *string                                                                                                                    `json:"description,omitempty"`
@@ -90,6 +176,34 @@ const (
 	GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnumMultiPart GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum = "MultiPart"
 )
 
+func (e *GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Array":
+		fallthrough
+	case "Object":
+		fallthrough
+	case "String":
+		fallthrough
+	case "Number":
+		fallthrough
+	case "Boolean":
+		fallthrough
+	case "DateTime":
+		fallthrough
+	case "File":
+		fallthrough
+	case "MultiPart":
+		*e = GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum: %s", s)
+	}
+}
+
 type GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoice struct {
 	Description *string                                                                                                                                      `json:"description,omitempty"`
 	DisplayName *string                                                                                                                                      `json:"displayName,omitempty"`
@@ -111,6 +225,34 @@ const (
 	GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnumFile      GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum = "File"
 	GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnumMultiPart GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum = "MultiPart"
 )
+
+func (e *GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Array":
+		fallthrough
+	case "Object":
+		fallthrough
+	case "String":
+		fallthrough
+	case "Number":
+		fallthrough
+	case "Boolean":
+		fallthrough
+	case "DateTime":
+		fallthrough
+	case "File":
+		fallthrough
+	case "MultiPart":
+		*e = GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum: %s", s)
+	}
+}
 
 type GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushValidationInfoPushFieldValidation struct {
 	Details string  `json:"details"`
@@ -144,6 +286,34 @@ const (
 	GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnumFile      GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum = "File"
 	GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnumMultiPart GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum = "MultiPart"
 )
+
+func (e *GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Array":
+		fallthrough
+	case "Object":
+		fallthrough
+	case "String":
+		fallthrough
+	case "Number":
+		fallthrough
+	case "Boolean":
+		fallthrough
+	case "DateTime":
+		fallthrough
+	case "File":
+		fallthrough
+	case "MultiPart":
+		*e = GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum: %s", s)
+	}
+}
 
 type GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushValidationInfoPushFieldValidation struct {
 	Details string  `json:"details"`
@@ -179,6 +349,34 @@ const (
 	GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionPropertyOptionTypeEnumMultiPart GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionPropertyOptionTypeEnum = "MultiPart"
 )
 
+func (e *GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionPropertyOptionTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Array":
+		fallthrough
+	case "Object":
+		fallthrough
+	case "String":
+		fallthrough
+	case "Number":
+		fallthrough
+	case "Boolean":
+		fallthrough
+	case "DateTime":
+		fallthrough
+	case "File":
+		fallthrough
+	case "MultiPart":
+		*e = GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionPropertyOptionTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionPropertyOptionTypeEnum: %s", s)
+	}
+}
+
 type GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushOptionPropertyPushValidationInfoPushFieldValidation struct {
 	Details string  `json:"details"`
 	Field   *string `json:"field,omitempty"`
@@ -213,6 +411,34 @@ const (
 	GetCreateDirectIncomesModelPushOptionPushOptionPropertyOptionTypeEnumMultiPart GetCreateDirectIncomesModelPushOptionPushOptionPropertyOptionTypeEnum = "MultiPart"
 )
 
+func (e *GetCreateDirectIncomesModelPushOptionPushOptionPropertyOptionTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Array":
+		fallthrough
+	case "Object":
+		fallthrough
+	case "String":
+		fallthrough
+	case "Number":
+		fallthrough
+	case "Boolean":
+		fallthrough
+	case "DateTime":
+		fallthrough
+	case "File":
+		fallthrough
+	case "MultiPart":
+		*e = GetCreateDirectIncomesModelPushOptionPushOptionPropertyOptionTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCreateDirectIncomesModelPushOptionPushOptionPropertyOptionTypeEnum: %s", s)
+	}
+}
+
 type GetCreateDirectIncomesModelPushOptionPushOptionPropertyPushValidationInfoPushFieldValidation struct {
 	Details string  `json:"details"`
 	Field   *string `json:"field,omitempty"`
@@ -246,6 +472,34 @@ const (
 	GetCreateDirectIncomesModelPushOptionOptionTypeEnumFile      GetCreateDirectIncomesModelPushOptionOptionTypeEnum = "File"
 	GetCreateDirectIncomesModelPushOptionOptionTypeEnumMultiPart GetCreateDirectIncomesModelPushOptionOptionTypeEnum = "MultiPart"
 )
+
+func (e *GetCreateDirectIncomesModelPushOptionOptionTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Array":
+		fallthrough
+	case "Object":
+		fallthrough
+	case "String":
+		fallthrough
+	case "Number":
+		fallthrough
+	case "Boolean":
+		fallthrough
+	case "DateTime":
+		fallthrough
+	case "File":
+		fallthrough
+	case "MultiPart":
+		*e = GetCreateDirectIncomesModelPushOptionOptionTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCreateDirectIncomesModelPushOptionOptionTypeEnum: %s", s)
+	}
+}
 
 // GetCreateDirectIncomesModelPushOption - OK
 type GetCreateDirectIncomesModelPushOption struct {

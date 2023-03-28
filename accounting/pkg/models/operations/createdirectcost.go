@@ -3,8 +3,9 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 // CreateDirectCostSourceModifiedDateContactRef - A customer or supplier associated with the direct cost.
@@ -118,12 +119,13 @@ type CreateDirectCostSourceModifiedDateLineItems struct {
 }
 
 type CreateDirectCostSourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
 type CreateDirectCostSourceModifiedDatePaymentAllocationsAllocation struct {
 	// The date the payment was allocated.
-	AllocatedOnDate *time.Time `json:"allocatedOnDate,omitempty"`
+	AllocatedOnDate *string `json:"allocatedOnDate,omitempty"`
 	// The currency of the transaction.
 	Currency *string `json:"currency,omitempty"`
 	// Rate to convert the total amount of the payment into the base currency for the company at the time of the payment.
@@ -196,7 +198,7 @@ type CreateDirectCostSourceModifiedDatePaymentAllocationsPayment struct {
 	// Notes attached to the allocated payment.
 	Note *string `json:"note,omitempty"`
 	// The date the payment was paid.
-	PaidOnDate *time.Time `json:"paidOnDate,omitempty"`
+	PaidOnDate *string `json:"paidOnDate,omitempty"`
 	// Reference to the allocated payment.
 	Reference *string `json:"reference,omitempty"`
 	// Total amount that was paid.
@@ -264,12 +266,12 @@ type CreateDirectCostSourceModifiedDate struct {
 	// Identifier of the direct cost, unique for the company.
 	ID *string `json:"id,omitempty"`
 	// Date of the direct cost as recorded in the accounting platform.Date of the direct cost as recorded in the accounting platform.
-	IssueDate time.Time `json:"issueDate"`
+	IssueDate string `json:"issueDate"`
 	// An array of line items.
 	LineItems []CreateDirectCostSourceModifiedDateLineItems `json:"lineItems"`
 	Metadata  *CreateDirectCostSourceModifiedDateMetadata   `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// A note attached to the direct cost.
 	Note *string `json:"note,omitempty"`
 	// An array of payment allocations.
@@ -277,7 +279,7 @@ type CreateDirectCostSourceModifiedDate struct {
 	// User-friendly reference for the direct cost.
 	Reference *string `json:"reference,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// The total amount of the direct costs, excluding any taxes.
 	SubTotal float64 `json:"subTotal"`
 	// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
@@ -309,6 +311,28 @@ const (
 	CreateDirectCost200ApplicationJSONChangesTypeEnumDeleted            CreateDirectCost200ApplicationJSONChangesTypeEnum = "Deleted"
 	CreateDirectCost200ApplicationJSONChangesTypeEnumAttachmentUploaded CreateDirectCost200ApplicationJSONChangesTypeEnum = "AttachmentUploaded"
 )
+
+func (e *CreateDirectCost200ApplicationJSONChangesTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Created":
+		fallthrough
+	case "Modified":
+		fallthrough
+	case "Deleted":
+		fallthrough
+	case "AttachmentUploaded":
+		*e = CreateDirectCost200ApplicationJSONChangesTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateDirectCost200ApplicationJSONChangesTypeEnum: %s", s)
+	}
+}
 
 type CreateDirectCost200ApplicationJSONChanges struct {
 	AttachmentID *string                                                          `json:"attachmentId,omitempty"`
@@ -427,12 +451,13 @@ type CreateDirectCost200ApplicationJSONSourceModifiedDateLineItems struct {
 }
 
 type CreateDirectCost200ApplicationJSONSourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
 type CreateDirectCost200ApplicationJSONSourceModifiedDatePaymentAllocationsAllocation struct {
 	// The date the payment was allocated.
-	AllocatedOnDate *time.Time `json:"allocatedOnDate,omitempty"`
+	AllocatedOnDate *string `json:"allocatedOnDate,omitempty"`
 	// The currency of the transaction.
 	Currency *string `json:"currency,omitempty"`
 	// Rate to convert the total amount of the payment into the base currency for the company at the time of the payment.
@@ -505,7 +530,7 @@ type CreateDirectCost200ApplicationJSONSourceModifiedDatePaymentAllocationsPayme
 	// Notes attached to the allocated payment.
 	Note *string `json:"note,omitempty"`
 	// The date the payment was paid.
-	PaidOnDate *time.Time `json:"paidOnDate,omitempty"`
+	PaidOnDate *string `json:"paidOnDate,omitempty"`
 	// Reference to the allocated payment.
 	Reference *string `json:"reference,omitempty"`
 	// Total amount that was paid.
@@ -573,12 +598,12 @@ type CreateDirectCost200ApplicationJSONSourceModifiedDate struct {
 	// Identifier of the direct cost, unique for the company.
 	ID *string `json:"id,omitempty"`
 	// Date of the direct cost as recorded in the accounting platform.Date of the direct cost as recorded in the accounting platform.
-	IssueDate time.Time `json:"issueDate"`
+	IssueDate string `json:"issueDate"`
 	// An array of line items.
 	LineItems []CreateDirectCost200ApplicationJSONSourceModifiedDateLineItems `json:"lineItems"`
 	Metadata  *CreateDirectCost200ApplicationJSONSourceModifiedDateMetadata   `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// A note attached to the direct cost.
 	Note *string `json:"note,omitempty"`
 	// An array of payment allocations.
@@ -586,7 +611,7 @@ type CreateDirectCost200ApplicationJSONSourceModifiedDate struct {
 	// User-friendly reference for the direct cost.
 	Reference *string `json:"reference,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// The total amount of the direct costs, excluding any taxes.
 	SubTotal float64 `json:"subTotal"`
 	// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
@@ -607,6 +632,26 @@ const (
 	CreateDirectCost200ApplicationJSONStatusEnumTimedOut CreateDirectCost200ApplicationJSONStatusEnum = "TimedOut"
 )
 
+func (e *CreateDirectCost200ApplicationJSONStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Pending":
+		fallthrough
+	case "Failed":
+		fallthrough
+	case "Success":
+		fallthrough
+	case "TimedOut":
+		*e = CreateDirectCost200ApplicationJSONStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateDirectCost200ApplicationJSONStatusEnum: %s", s)
+	}
+}
+
 type CreateDirectCost200ApplicationJSONValidationValidationItem struct {
 	ItemID        *string `json:"itemId,omitempty"`
 	Message       *string `json:"message,omitempty"`
@@ -625,7 +670,7 @@ type CreateDirectCost200ApplicationJSON struct {
 	// Unique identifier for your SMB in Codat.
 	CompanyID string `json:"companyId"`
 	// The datetime when the push was completed, null if Pending.
-	CompletedOnUtc *time.Time `json:"completedOnUtc,omitempty"`
+	CompletedOnUtc *string `json:"completedOnUtc,omitempty"`
 	// > **Language tip: ** Direct costs may also be referred to as **Spend transactions**, **Spend money transactions**, or **Payments** in various accounting platforms.
 	//
 	// > View the coverage for direct costs in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=directCosts" target="_blank">Data coverage explorer</a>.
@@ -654,7 +699,7 @@ type CreateDirectCost200ApplicationJSON struct {
 	// A unique identifier generated by Codat to represent this single push operation. This identifier can be used to track the status of the push, and should be persisted.
 	PushOperationKey string `json:"pushOperationKey"`
 	// The datetime when the push was requested.
-	RequestedOnUtc time.Time `json:"requestedOnUtc"`
+	RequestedOnUtc string `json:"requestedOnUtc"`
 	// The status of the push operation.
 	Status           CreateDirectCost200ApplicationJSONStatusEnum `json:"status"`
 	StatusCode       int                                          `json:"statusCode"`

@@ -113,12 +113,12 @@ func (s *salesOrders) ListSalesOrders(ctx context.Context, request operations.Li
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListSalesOrdersLinks
+			var out *operations.ListSalesOrders200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Links = out
+			res.ListSalesOrders200ApplicationJSONObject = out
 		}
 	}
 

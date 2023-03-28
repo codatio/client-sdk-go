@@ -3,8 +3,9 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 type ListInvoicesRequest struct {
@@ -19,51 +20,39 @@ type ListInvoicesRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-type ListInvoicesLinksLinksCurrent struct {
-	Href string `json:"href"`
-}
-
-type ListInvoicesLinksLinksNext struct {
+type ListInvoices200ApplicationJSONLinksHypertextReference struct {
 	Href *string `json:"href,omitempty"`
 }
 
-type ListInvoicesLinksLinksPrevious struct {
-	Href *string `json:"href,omitempty"`
+type ListInvoices200ApplicationJSONLinks struct {
+	Current  ListInvoices200ApplicationJSONLinksHypertextReference  `json:"current"`
+	Next     *ListInvoices200ApplicationJSONLinksHypertextReference `json:"next,omitempty"`
+	Previous *ListInvoices200ApplicationJSONLinksHypertextReference `json:"previous,omitempty"`
+	Self     ListInvoices200ApplicationJSONLinksHypertextReference  `json:"self"`
 }
 
-type ListInvoicesLinksLinksSelf struct {
-	Href string `json:"href"`
-}
-
-type ListInvoicesLinksLinks struct {
-	Current  ListInvoicesLinksLinksCurrent   `json:"current"`
-	Next     *ListInvoicesLinksLinksNext     `json:"next,omitempty"`
-	Previous *ListInvoicesLinksLinksPrevious `json:"previous,omitempty"`
-	Self     ListInvoicesLinksLinksSelf      `json:"self"`
-}
-
-// ListInvoicesLinksSourceModifiedDateCustomerRef - Reference to the customer the invoice has been issued to.
-type ListInvoicesLinksSourceModifiedDateCustomerRef struct {
+// ListInvoices200ApplicationJSONSourceModifiedDateCustomerRef - Reference to the customer the invoice has been issued to.
+type ListInvoices200ApplicationJSONSourceModifiedDateCustomerRef struct {
 	CompanyName *string `json:"companyName,omitempty"`
 	ID          string  `json:"id"`
 }
 
-// ListInvoicesLinksSourceModifiedDateLineItemsAccountRef - Reference to the account to which the line item is linked.
-type ListInvoicesLinksSourceModifiedDateLineItemsAccountRef struct {
+// ListInvoices200ApplicationJSONSourceModifiedDateLineItemsAccountRef - Reference to the account to which the line item is linked.
+type ListInvoices200ApplicationJSONSourceModifiedDateLineItemsAccountRef struct {
 	// 'id' from the Accounts data type.
 	ID *string `json:"id,omitempty"`
 	// 'name' from the Accounts data type.
 	Name *string `json:"name,omitempty"`
 }
 
-// ListInvoicesLinksSourceModifiedDateLineItemsItemRef - Reference to the item the line is linked to.
-type ListInvoicesLinksSourceModifiedDateLineItemsItemRef struct {
+// ListInvoices200ApplicationJSONSourceModifiedDateLineItemsItemRef - Reference to the item the line is linked to.
+type ListInvoices200ApplicationJSONSourceModifiedDateLineItemsItemRef struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
 }
 
-// ListInvoicesLinksSourceModifiedDateLineItemsTaxRateRef - Reference to the tax rate to which the line item is linked.
-type ListInvoicesLinksSourceModifiedDateLineItemsTaxRateRef struct {
+// ListInvoices200ApplicationJSONSourceModifiedDateLineItemsTaxRateRef - Reference to the tax rate to which the line item is linked.
+type ListInvoices200ApplicationJSONSourceModifiedDateLineItemsTaxRateRef struct {
 	// Applicable tax rate.
 	EffectiveTaxRate *float64 `json:"effectiveTaxRate,omitempty"`
 	// 'id' from the 'taxRates' data type.
@@ -72,50 +61,86 @@ type ListInvoicesLinksSourceModifiedDateLineItemsTaxRateRef struct {
 	Name *string `json:"name,omitempty"`
 }
 
-// ListInvoicesLinksSourceModifiedDateLineItemsTrackingCategoryRefs - References a category against which the item is tracked.
-type ListInvoicesLinksSourceModifiedDateLineItemsTrackingCategoryRefs struct {
+// ListInvoices200ApplicationJSONSourceModifiedDateLineItemsTrackingCategoryRefs - References a category against which the item is tracked.
+type ListInvoices200ApplicationJSONSourceModifiedDateLineItemsTrackingCategoryRefs struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
 }
 
-type ListInvoicesLinksSourceModifiedDateLineItemsTrackingCustomerRef struct {
+type ListInvoices200ApplicationJSONSourceModifiedDateLineItemsTrackingCustomerRef struct {
 	CompanyName *string `json:"companyName,omitempty"`
 	ID          string  `json:"id"`
 }
 
-type ListInvoicesLinksSourceModifiedDateLineItemsTrackingIsBilledToEnum string
+type ListInvoices200ApplicationJSONSourceModifiedDateLineItemsTrackingIsBilledToEnum string
 
 const (
-	ListInvoicesLinksSourceModifiedDateLineItemsTrackingIsBilledToEnumUnknown       ListInvoicesLinksSourceModifiedDateLineItemsTrackingIsBilledToEnum = "Unknown"
-	ListInvoicesLinksSourceModifiedDateLineItemsTrackingIsBilledToEnumNotApplicable ListInvoicesLinksSourceModifiedDateLineItemsTrackingIsBilledToEnum = "NotApplicable"
-	ListInvoicesLinksSourceModifiedDateLineItemsTrackingIsBilledToEnumProject       ListInvoicesLinksSourceModifiedDateLineItemsTrackingIsBilledToEnum = "Project"
+	ListInvoices200ApplicationJSONSourceModifiedDateLineItemsTrackingIsBilledToEnumUnknown       ListInvoices200ApplicationJSONSourceModifiedDateLineItemsTrackingIsBilledToEnum = "Unknown"
+	ListInvoices200ApplicationJSONSourceModifiedDateLineItemsTrackingIsBilledToEnumNotApplicable ListInvoices200ApplicationJSONSourceModifiedDateLineItemsTrackingIsBilledToEnum = "NotApplicable"
+	ListInvoices200ApplicationJSONSourceModifiedDateLineItemsTrackingIsBilledToEnumProject       ListInvoices200ApplicationJSONSourceModifiedDateLineItemsTrackingIsBilledToEnum = "Project"
 )
 
-type ListInvoicesLinksSourceModifiedDateLineItemsTrackingIsRebilledToEnum string
+func (e *ListInvoices200ApplicationJSONSourceModifiedDateLineItemsTrackingIsBilledToEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "NotApplicable":
+		fallthrough
+	case "Project":
+		*e = ListInvoices200ApplicationJSONSourceModifiedDateLineItemsTrackingIsBilledToEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListInvoices200ApplicationJSONSourceModifiedDateLineItemsTrackingIsBilledToEnum: %s", s)
+	}
+}
+
+type ListInvoices200ApplicationJSONSourceModifiedDateLineItemsTrackingIsRebilledToEnum string
 
 const (
-	ListInvoicesLinksSourceModifiedDateLineItemsTrackingIsRebilledToEnumUnknown       ListInvoicesLinksSourceModifiedDateLineItemsTrackingIsRebilledToEnum = "Unknown"
-	ListInvoicesLinksSourceModifiedDateLineItemsTrackingIsRebilledToEnumNotApplicable ListInvoicesLinksSourceModifiedDateLineItemsTrackingIsRebilledToEnum = "NotApplicable"
-	ListInvoicesLinksSourceModifiedDateLineItemsTrackingIsRebilledToEnumProject       ListInvoicesLinksSourceModifiedDateLineItemsTrackingIsRebilledToEnum = "Project"
+	ListInvoices200ApplicationJSONSourceModifiedDateLineItemsTrackingIsRebilledToEnumUnknown       ListInvoices200ApplicationJSONSourceModifiedDateLineItemsTrackingIsRebilledToEnum = "Unknown"
+	ListInvoices200ApplicationJSONSourceModifiedDateLineItemsTrackingIsRebilledToEnumNotApplicable ListInvoices200ApplicationJSONSourceModifiedDateLineItemsTrackingIsRebilledToEnum = "NotApplicable"
+	ListInvoices200ApplicationJSONSourceModifiedDateLineItemsTrackingIsRebilledToEnumProject       ListInvoices200ApplicationJSONSourceModifiedDateLineItemsTrackingIsRebilledToEnum = "Project"
 )
 
-type ListInvoicesLinksSourceModifiedDateLineItemsTrackingProjectRef struct {
+func (e *ListInvoices200ApplicationJSONSourceModifiedDateLineItemsTrackingIsRebilledToEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "NotApplicable":
+		fallthrough
+	case "Project":
+		*e = ListInvoices200ApplicationJSONSourceModifiedDateLineItemsTrackingIsRebilledToEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListInvoices200ApplicationJSONSourceModifiedDateLineItemsTrackingIsRebilledToEnum: %s", s)
+	}
+}
+
+type ListInvoices200ApplicationJSONSourceModifiedDateLineItemsTrackingProjectRef struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
 }
 
-// ListInvoicesLinksSourceModifiedDateLineItemsTracking - Categories, and a project and customer, against which the item is tracked.
-type ListInvoicesLinksSourceModifiedDateLineItemsTracking struct {
-	CategoryRefs []ListInvoicesLinksSourceModifiedDateLineItemsTrackingCategoryRefs   `json:"categoryRefs"`
-	CustomerRef  *ListInvoicesLinksSourceModifiedDateLineItemsTrackingCustomerRef     `json:"customerRef,omitempty"`
-	IsBilledTo   ListInvoicesLinksSourceModifiedDateLineItemsTrackingIsBilledToEnum   `json:"isBilledTo"`
-	IsRebilledTo ListInvoicesLinksSourceModifiedDateLineItemsTrackingIsRebilledToEnum `json:"isRebilledTo"`
-	ProjectRef   *ListInvoicesLinksSourceModifiedDateLineItemsTrackingProjectRef      `json:"projectRef,omitempty"`
+// ListInvoices200ApplicationJSONSourceModifiedDateLineItemsTracking - Categories, and a project and customer, against which the item is tracked.
+type ListInvoices200ApplicationJSONSourceModifiedDateLineItemsTracking struct {
+	CategoryRefs []ListInvoices200ApplicationJSONSourceModifiedDateLineItemsTrackingCategoryRefs   `json:"categoryRefs"`
+	CustomerRef  *ListInvoices200ApplicationJSONSourceModifiedDateLineItemsTrackingCustomerRef     `json:"customerRef,omitempty"`
+	IsBilledTo   ListInvoices200ApplicationJSONSourceModifiedDateLineItemsTrackingIsBilledToEnum   `json:"isBilledTo"`
+	IsRebilledTo ListInvoices200ApplicationJSONSourceModifiedDateLineItemsTrackingIsRebilledToEnum `json:"isRebilledTo"`
+	ProjectRef   *ListInvoices200ApplicationJSONSourceModifiedDateLineItemsTrackingProjectRef      `json:"projectRef,omitempty"`
 }
 
-type ListInvoicesLinksSourceModifiedDateLineItems struct {
+type ListInvoices200ApplicationJSONSourceModifiedDateLineItems struct {
 	// Reference to the account to which the line item is linked.
-	AccountRef *ListInvoicesLinksSourceModifiedDateLineItemsAccountRef `json:"accountRef,omitempty"`
+	AccountRef *ListInvoices200ApplicationJSONSourceModifiedDateLineItemsAccountRef `json:"accountRef,omitempty"`
 	// Friendly name of the goods or services provided.
 	Description *string `json:"description,omitempty"`
 	// Numerical value of any discounts applied.
@@ -124,7 +149,7 @@ type ListInvoicesLinksSourceModifiedDateLineItems struct {
 	DiscountPercentage *float64 `json:"discountPercentage,omitempty"`
 	IsDirectIncome     *bool    `json:"isDirectIncome,omitempty"`
 	// Reference to the item the line is linked to.
-	ItemRef *ListInvoicesLinksSourceModifiedDateLineItemsItemRef `json:"itemRef,omitempty"`
+	ItemRef *ListInvoices200ApplicationJSONSourceModifiedDateLineItemsItemRef `json:"itemRef,omitempty"`
 	// Number of units of goods or services provided.
 	Quantity float64 `json:"quantity"`
 	// Amount of the line, inclusive of discounts but exclusive of tax.
@@ -132,24 +157,25 @@ type ListInvoicesLinksSourceModifiedDateLineItems struct {
 	// Amount of tax for the line.
 	TaxAmount *float64 `json:"taxAmount,omitempty"`
 	// Reference to the tax rate to which the line item is linked.
-	TaxRateRef *ListInvoicesLinksSourceModifiedDateLineItemsTaxRateRef `json:"taxRateRef,omitempty"`
+	TaxRateRef *ListInvoices200ApplicationJSONSourceModifiedDateLineItemsTaxRateRef `json:"taxRateRef,omitempty"`
 	// Total amount of the line, including tax. When pushing invoices to Xero, the total amount is exclusive of tax to allow automatic calculations if a tax rate or tax amount is not specified.
 	TotalAmount *float64 `json:"totalAmount,omitempty"`
 	// Categories, and a project and customer, against which the item is tracked.
-	Tracking *ListInvoicesLinksSourceModifiedDateLineItemsTracking `json:"tracking,omitempty"`
+	Tracking *ListInvoices200ApplicationJSONSourceModifiedDateLineItemsTracking `json:"tracking,omitempty"`
 	// Reference to the tracking categories to which the line item is linked.
-	TrackingCategoryRefs []ListInvoicesLinksSourceModifiedDateLineItemsTrackingCategoryRefs `json:"trackingCategoryRefs,omitempty"`
+	TrackingCategoryRefs []ListInvoices200ApplicationJSONSourceModifiedDateLineItemsTrackingCategoryRefs `json:"trackingCategoryRefs,omitempty"`
 	// Price of each unit of goods or services.
 	UnitAmount float64 `json:"unitAmount"`
 }
 
-type ListInvoicesLinksSourceModifiedDateMetadata struct {
+type ListInvoices200ApplicationJSONSourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
-type ListInvoicesLinksSourceModifiedDatePaymentAllocationsAllocation struct {
+type ListInvoices200ApplicationJSONSourceModifiedDatePaymentAllocationsAllocation struct {
 	// The date the payment was allocated.
-	AllocatedOnDate *time.Time `json:"allocatedOnDate,omitempty"`
+	AllocatedOnDate *string `json:"allocatedOnDate,omitempty"`
 	// The currency of the transaction.
 	Currency *string `json:"currency,omitempty"`
 	// Rate to convert the total amount of the payment into the base currency for the company at the time of the payment.
@@ -180,17 +206,17 @@ type ListInvoicesLinksSourceModifiedDatePaymentAllocationsAllocation struct {
 	TotalAmount *float64 `json:"totalAmount,omitempty"`
 }
 
-// ListInvoicesLinksSourceModifiedDatePaymentAllocationsPaymentAccountRef - The account that the allocated payment is made from or to.
-type ListInvoicesLinksSourceModifiedDatePaymentAllocationsPaymentAccountRef struct {
+// ListInvoices200ApplicationJSONSourceModifiedDatePaymentAllocationsPaymentAccountRef - The account that the allocated payment is made from or to.
+type ListInvoices200ApplicationJSONSourceModifiedDatePaymentAllocationsPaymentAccountRef struct {
 	// 'id' from the Accounts data type.
 	ID *string `json:"id,omitempty"`
 	// 'name' from the Accounts data type.
 	Name *string `json:"name,omitempty"`
 }
 
-type ListInvoicesLinksSourceModifiedDatePaymentAllocationsPayment struct {
+type ListInvoices200ApplicationJSONSourceModifiedDatePaymentAllocationsPayment struct {
 	// The account that the allocated payment is made from or to.
-	AccountRef *ListInvoicesLinksSourceModifiedDatePaymentAllocationsPaymentAccountRef `json:"accountRef,omitempty"`
+	AccountRef *ListInvoices200ApplicationJSONSourceModifiedDatePaymentAllocationsPaymentAccountRef `json:"accountRef,omitempty"`
 	// Currency the payment has been made in.
 	Currency *string `json:"currency,omitempty"`
 	// Rate to convert the total amount of the payment into the base currency for the company at the time of the payment.
@@ -222,47 +248,71 @@ type ListInvoicesLinksSourceModifiedDatePaymentAllocationsPayment struct {
 	// Notes attached to the allocated payment.
 	Note *string `json:"note,omitempty"`
 	// The date the payment was paid.
-	PaidOnDate *time.Time `json:"paidOnDate,omitempty"`
+	PaidOnDate *string `json:"paidOnDate,omitempty"`
 	// Reference to the allocated payment.
 	Reference *string `json:"reference,omitempty"`
 	// Total amount that was paid.
 	TotalAmount *float64 `json:"totalAmount,omitempty"`
 }
 
-type ListInvoicesLinksSourceModifiedDatePaymentAllocations struct {
-	Allocation ListInvoicesLinksSourceModifiedDatePaymentAllocationsAllocation `json:"allocation"`
-	Payment    ListInvoicesLinksSourceModifiedDatePaymentAllocationsPayment    `json:"payment"`
+type ListInvoices200ApplicationJSONSourceModifiedDatePaymentAllocations struct {
+	Allocation ListInvoices200ApplicationJSONSourceModifiedDatePaymentAllocationsAllocation `json:"allocation"`
+	Payment    ListInvoices200ApplicationJSONSourceModifiedDatePaymentAllocationsPayment    `json:"payment"`
 }
 
-// ListInvoicesLinksSourceModifiedDateStatusEnum - Current state of the invoice:
+// ListInvoices200ApplicationJSONSourceModifiedDateStatusEnum - Current state of the invoice:
 //
 // - `Draft` - Invoice hasn't been submitted to the supplier. It may be in a pending state or is scheduled for future submission, for example by email.
 // - `Submitted` - Invoice is no longer a draft. It has been processed and, or, sent to the customer. In this state, it will impact the ledger. It also has no payments made against it (amountDue == totalAmount).
 // - `PartiallyPaid` - The balance paid against the invoice is positive, but less than the total invoice amount (0 < amountDue < totalAmount).
 // - `Paid` - Invoice is paid in full. This includes if the invoice has been credited or overpaid (amountDue == 0).
 // - `Void` - An invoice can become Void when it's deleted, refunded, written off, or cancelled. A voided invoice may still be PartiallyPaid, and so all outstanding amounts on voided invoices are removed from the accounts receivable account.
-type ListInvoicesLinksSourceModifiedDateStatusEnum string
+type ListInvoices200ApplicationJSONSourceModifiedDateStatusEnum string
 
 const (
-	ListInvoicesLinksSourceModifiedDateStatusEnumUnknown       ListInvoicesLinksSourceModifiedDateStatusEnum = "Unknown"
-	ListInvoicesLinksSourceModifiedDateStatusEnumDraft         ListInvoicesLinksSourceModifiedDateStatusEnum = "Draft"
-	ListInvoicesLinksSourceModifiedDateStatusEnumSubmitted     ListInvoicesLinksSourceModifiedDateStatusEnum = "Submitted"
-	ListInvoicesLinksSourceModifiedDateStatusEnumPartiallyPaid ListInvoicesLinksSourceModifiedDateStatusEnum = "PartiallyPaid"
-	ListInvoicesLinksSourceModifiedDateStatusEnumPaid          ListInvoicesLinksSourceModifiedDateStatusEnum = "Paid"
-	ListInvoicesLinksSourceModifiedDateStatusEnumVoid          ListInvoicesLinksSourceModifiedDateStatusEnum = "Void"
+	ListInvoices200ApplicationJSONSourceModifiedDateStatusEnumUnknown       ListInvoices200ApplicationJSONSourceModifiedDateStatusEnum = "Unknown"
+	ListInvoices200ApplicationJSONSourceModifiedDateStatusEnumDraft         ListInvoices200ApplicationJSONSourceModifiedDateStatusEnum = "Draft"
+	ListInvoices200ApplicationJSONSourceModifiedDateStatusEnumSubmitted     ListInvoices200ApplicationJSONSourceModifiedDateStatusEnum = "Submitted"
+	ListInvoices200ApplicationJSONSourceModifiedDateStatusEnumPartiallyPaid ListInvoices200ApplicationJSONSourceModifiedDateStatusEnum = "PartiallyPaid"
+	ListInvoices200ApplicationJSONSourceModifiedDateStatusEnumPaid          ListInvoices200ApplicationJSONSourceModifiedDateStatusEnum = "Paid"
+	ListInvoices200ApplicationJSONSourceModifiedDateStatusEnumVoid          ListInvoices200ApplicationJSONSourceModifiedDateStatusEnum = "Void"
 )
 
-// ListInvoicesLinksSourceModifiedDateSupplementalData - Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
-type ListInvoicesLinksSourceModifiedDateSupplementalData struct {
+func (e *ListInvoices200ApplicationJSONSourceModifiedDateStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Draft":
+		fallthrough
+	case "Submitted":
+		fallthrough
+	case "PartiallyPaid":
+		fallthrough
+	case "Paid":
+		fallthrough
+	case "Void":
+		*e = ListInvoices200ApplicationJSONSourceModifiedDateStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListInvoices200ApplicationJSONSourceModifiedDateStatusEnum: %s", s)
+	}
+}
+
+// ListInvoices200ApplicationJSONSourceModifiedDateSupplementalData - Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
+type ListInvoices200ApplicationJSONSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
 
-type ListInvoicesLinksSourceModifiedDateWithholdingTax struct {
+type ListInvoices200ApplicationJSONSourceModifiedDateWithholdingTax struct {
 	Amount float64 `json:"amount"`
 	Name   string  `json:"name"`
 }
 
-// ListInvoicesLinksSourceModifiedDate - > View the coverage for invoices in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=invoices" target="_blank">Data coverage explorer</a>.
+// ListInvoices200ApplicationJSONSourceModifiedDate - > View the coverage for invoices in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=invoices" target="_blank">Data coverage explorer</a>.
 //
 // ## Overview
 //
@@ -285,7 +335,7 @@ type ListInvoicesLinksSourceModifiedDateWithholdingTax struct {
 // > You can <a className="external" href="https://api.codat.io/swagger/index.html#/Invoices/get_companies__companyId__data_invoices__invoiceId__pdf" target="_blank">download a PDF version</a> of an invoice for supported integrations.
 // >
 // > The filename will be invoice-{number}.pdf.
-type ListInvoicesLinksSourceModifiedDate struct {
+type ListInvoices200ApplicationJSONSourceModifiedDate struct {
 	AdditionalTaxAmount     *float64 `json:"additionalTaxAmount,omitempty"`
 	AdditionalTaxPercentage *float64 `json:"additionalTaxPercentage,omitempty"`
 	// Amount outstanding on the invoice.
@@ -317,33 +367,33 @@ type ListInvoicesLinksSourceModifiedDate struct {
 	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
 	CurrencyRate *float64 `json:"currencyRate,omitempty"`
 	// Reference to the customer the invoice has been issued to.
-	CustomerRef *ListInvoicesLinksSourceModifiedDateCustomerRef `json:"customerRef,omitempty"`
+	CustomerRef *ListInvoices200ApplicationJSONSourceModifiedDateCustomerRef `json:"customerRef,omitempty"`
 	// Percentage rate (from 0 to 100) of discounts applied to the invoice. For example: A 5% discount will return a value of `5`, not `0.05`.
 	DiscountPercentage *float64 `json:"discountPercentage,omitempty"`
 	// Date the customer is due to be paid by.
-	DueDate *time.Time `json:"dueDate,omitempty"`
+	DueDate *string `json:"dueDate,omitempty"`
 	// Identifier for the invoice, unique to the company in the accounting platform.
 	ID *string `json:"id,omitempty"`
 	// Friendly reference for the invoice. If available, this appears in the file name of invoice attachments.
 	InvoiceNumber *string `json:"invoiceNumber,omitempty"`
 	// Date of the invoice as recorded in the accounting system.
-	IssueDate time.Time `json:"issueDate"`
+	IssueDate string `json:"issueDate"`
 	// An array of line items.
-	LineItems []ListInvoicesLinksSourceModifiedDateLineItems `json:"lineItems,omitempty"`
-	Metadata  *ListInvoicesLinksSourceModifiedDateMetadata   `json:"metadata,omitempty"`
+	LineItems []ListInvoices200ApplicationJSONSourceModifiedDateLineItems `json:"lineItems,omitempty"`
+	Metadata  *ListInvoices200ApplicationJSONSourceModifiedDateMetadata   `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Any additional information about the invoice. Where possible, Codat links to a data field in the accounting platform that is publicly available. This means that the contents of the note field are included when an invoice is emailed from the accounting platform to the customer.
 	Note *string `json:"note,omitempty"`
 	// Date the invoice was marked as paid in the accounting system. If this field is not available from the accounting software, it is calculated by Codat using associated payments.
-	PaidOnDate *time.Time `json:"paidOnDate,omitempty"`
+	PaidOnDate *string `json:"paidOnDate,omitempty"`
 	//
 	// An array of payment allocations.
-	PaymentAllocations []ListInvoicesLinksSourceModifiedDatePaymentAllocations `json:"paymentAllocations,omitempty"`
+	PaymentAllocations []ListInvoices200ApplicationJSONSourceModifiedDatePaymentAllocations `json:"paymentAllocations,omitempty"`
 	// List of references to related Sales orders.
 	SalesOrderRefs []string `json:"salesOrderRefs,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Current state of the invoice:
 	//
 	// - `Draft` - Invoice hasn't been submitted to the supplier. It may be in a pending state or is scheduled for future submission, for example by email.
@@ -351,27 +401,27 @@ type ListInvoicesLinksSourceModifiedDate struct {
 	// - `PartiallyPaid` - The balance paid against the invoice is positive, but less than the total invoice amount (0 < amountDue < totalAmount).
 	// - `Paid` - Invoice is paid in full. This includes if the invoice has been credited or overpaid (amountDue == 0).
 	// - `Void` - An invoice can become Void when it's deleted, refunded, written off, or cancelled. A voided invoice may still be PartiallyPaid, and so all outstanding amounts on voided invoices are removed from the accounts receivable account.
-	Status ListInvoicesLinksSourceModifiedDateStatusEnum `json:"status"`
+	Status ListInvoices200ApplicationJSONSourceModifiedDateStatusEnum `json:"status"`
 	// Total amount of the invoice excluding any taxes.
 	SubTotal *float64 `json:"subTotal,omitempty"`
 	// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
-	SupplementalData *ListInvoicesLinksSourceModifiedDateSupplementalData `json:"supplementalData,omitempty"`
+	SupplementalData *ListInvoices200ApplicationJSONSourceModifiedDateSupplementalData `json:"supplementalData,omitempty"`
 	// Amount of the invoice, inclusive of tax.
 	TotalAmount float64 `json:"totalAmount"`
 	// Numerical value of discounts applied to the invoice.
 	TotalDiscount *float64 `json:"totalDiscount,omitempty"`
 	// Amount of tax on the invoice.
-	TotalTaxAmount float64                                             `json:"totalTaxAmount"`
-	WithholdingTax []ListInvoicesLinksSourceModifiedDateWithholdingTax `json:"withholdingTax,omitempty"`
+	TotalTaxAmount float64                                                          `json:"totalTaxAmount"`
+	WithholdingTax []ListInvoices200ApplicationJSONSourceModifiedDateWithholdingTax `json:"withholdingTax,omitempty"`
 }
 
-// ListInvoicesLinks - Codat's Paging Model
-type ListInvoicesLinks struct {
-	Links        ListInvoicesLinksLinks                `json:"_links"`
-	PageNumber   int64                                 `json:"pageNumber"`
-	PageSize     int64                                 `json:"pageSize"`
-	Results      []ListInvoicesLinksSourceModifiedDate `json:"results,omitempty"`
-	TotalResults int64                                 `json:"totalResults"`
+// ListInvoices200ApplicationJSON - Success
+type ListInvoices200ApplicationJSON struct {
+	Links        ListInvoices200ApplicationJSONLinks                `json:"_links"`
+	PageNumber   int64                                              `json:"pageNumber"`
+	PageSize     int64                                              `json:"pageSize"`
+	Results      []ListInvoices200ApplicationJSONSourceModifiedDate `json:"results,omitempty"`
+	TotalResults int64                                              `json:"totalResults"`
 }
 
 type ListInvoicesResponse struct {
@@ -379,5 +429,5 @@ type ListInvoicesResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// Success
-	Links *ListInvoicesLinks
+	ListInvoices200ApplicationJSONObject *ListInvoices200ApplicationJSON
 }

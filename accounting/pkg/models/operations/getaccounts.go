@@ -3,8 +3,9 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 type GetAccountsRequest struct {
@@ -19,56 +20,89 @@ type GetAccountsRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-type GetAccountsLinksLinksCurrent struct {
-	Href string `json:"href"`
-}
-
-type GetAccountsLinksLinksNext struct {
+type GetAccounts200ApplicationJSONLinksHypertextReference struct {
 	Href *string `json:"href,omitempty"`
 }
 
-type GetAccountsLinksLinksPrevious struct {
-	Href *string `json:"href,omitempty"`
+type GetAccounts200ApplicationJSONLinks struct {
+	Current  GetAccounts200ApplicationJSONLinksHypertextReference  `json:"current"`
+	Next     *GetAccounts200ApplicationJSONLinksHypertextReference `json:"next,omitempty"`
+	Previous *GetAccounts200ApplicationJSONLinksHypertextReference `json:"previous,omitempty"`
+	Self     GetAccounts200ApplicationJSONLinksHypertextReference  `json:"self"`
 }
 
-type GetAccountsLinksLinksSelf struct {
-	Href string `json:"href"`
-}
-
-type GetAccountsLinksLinks struct {
-	Current  GetAccountsLinksLinksCurrent   `json:"current"`
-	Next     *GetAccountsLinksLinksNext     `json:"next,omitempty"`
-	Previous *GetAccountsLinksLinksPrevious `json:"previous,omitempty"`
-	Self     GetAccountsLinksLinksSelf      `json:"self"`
-}
-
-type GetAccountsLinksSourceModifiedDateMetadata struct {
+type GetAccounts200ApplicationJSONSourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
-// GetAccountsLinksSourceModifiedDateStatusEnum - Status of the account
-type GetAccountsLinksSourceModifiedDateStatusEnum string
+// GetAccounts200ApplicationJSONSourceModifiedDateStatusEnum - Status of the account
+type GetAccounts200ApplicationJSONSourceModifiedDateStatusEnum string
 
 const (
-	GetAccountsLinksSourceModifiedDateStatusEnumUnknown  GetAccountsLinksSourceModifiedDateStatusEnum = "Unknown"
-	GetAccountsLinksSourceModifiedDateStatusEnumActive   GetAccountsLinksSourceModifiedDateStatusEnum = "Active"
-	GetAccountsLinksSourceModifiedDateStatusEnumArchived GetAccountsLinksSourceModifiedDateStatusEnum = "Archived"
-	GetAccountsLinksSourceModifiedDateStatusEnumPending  GetAccountsLinksSourceModifiedDateStatusEnum = "Pending"
+	GetAccounts200ApplicationJSONSourceModifiedDateStatusEnumUnknown  GetAccounts200ApplicationJSONSourceModifiedDateStatusEnum = "Unknown"
+	GetAccounts200ApplicationJSONSourceModifiedDateStatusEnumActive   GetAccounts200ApplicationJSONSourceModifiedDateStatusEnum = "Active"
+	GetAccounts200ApplicationJSONSourceModifiedDateStatusEnumArchived GetAccounts200ApplicationJSONSourceModifiedDateStatusEnum = "Archived"
+	GetAccounts200ApplicationJSONSourceModifiedDateStatusEnumPending  GetAccounts200ApplicationJSONSourceModifiedDateStatusEnum = "Pending"
 )
 
-// GetAccountsLinksSourceModifiedDateTypeEnum - Type of account
-type GetAccountsLinksSourceModifiedDateTypeEnum string
+func (e *GetAccounts200ApplicationJSONSourceModifiedDateStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Active":
+		fallthrough
+	case "Archived":
+		fallthrough
+	case "Pending":
+		*e = GetAccounts200ApplicationJSONSourceModifiedDateStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetAccounts200ApplicationJSONSourceModifiedDateStatusEnum: %s", s)
+	}
+}
+
+// GetAccounts200ApplicationJSONSourceModifiedDateTypeEnum - Type of account
+type GetAccounts200ApplicationJSONSourceModifiedDateTypeEnum string
 
 const (
-	GetAccountsLinksSourceModifiedDateTypeEnumUnknown   GetAccountsLinksSourceModifiedDateTypeEnum = "Unknown"
-	GetAccountsLinksSourceModifiedDateTypeEnumAsset     GetAccountsLinksSourceModifiedDateTypeEnum = "Asset"
-	GetAccountsLinksSourceModifiedDateTypeEnumExpense   GetAccountsLinksSourceModifiedDateTypeEnum = "Expense"
-	GetAccountsLinksSourceModifiedDateTypeEnumIncome    GetAccountsLinksSourceModifiedDateTypeEnum = "Income"
-	GetAccountsLinksSourceModifiedDateTypeEnumLiability GetAccountsLinksSourceModifiedDateTypeEnum = "Liability"
-	GetAccountsLinksSourceModifiedDateTypeEnumEquity    GetAccountsLinksSourceModifiedDateTypeEnum = "Equity"
+	GetAccounts200ApplicationJSONSourceModifiedDateTypeEnumUnknown   GetAccounts200ApplicationJSONSourceModifiedDateTypeEnum = "Unknown"
+	GetAccounts200ApplicationJSONSourceModifiedDateTypeEnumAsset     GetAccounts200ApplicationJSONSourceModifiedDateTypeEnum = "Asset"
+	GetAccounts200ApplicationJSONSourceModifiedDateTypeEnumExpense   GetAccounts200ApplicationJSONSourceModifiedDateTypeEnum = "Expense"
+	GetAccounts200ApplicationJSONSourceModifiedDateTypeEnumIncome    GetAccounts200ApplicationJSONSourceModifiedDateTypeEnum = "Income"
+	GetAccounts200ApplicationJSONSourceModifiedDateTypeEnumLiability GetAccounts200ApplicationJSONSourceModifiedDateTypeEnum = "Liability"
+	GetAccounts200ApplicationJSONSourceModifiedDateTypeEnumEquity    GetAccounts200ApplicationJSONSourceModifiedDateTypeEnum = "Equity"
 )
 
-// GetAccountsLinksSourceModifiedDateValidDataTypeLinks - When querying Codat's data model, some data types return `validDatatypeLinks` metadata in the JSON response. This indicates where that object can be used as a reference—a _valid link_—when creating or updating other data.
+func (e *GetAccounts200ApplicationJSONSourceModifiedDateTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Asset":
+		fallthrough
+	case "Expense":
+		fallthrough
+	case "Income":
+		fallthrough
+	case "Liability":
+		fallthrough
+	case "Equity":
+		*e = GetAccounts200ApplicationJSONSourceModifiedDateTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetAccounts200ApplicationJSONSourceModifiedDateTypeEnum: %s", s)
+	}
+}
+
+// GetAccounts200ApplicationJSONSourceModifiedDateValidDataTypeLinks - When querying Codat's data model, some data types return `validDatatypeLinks` metadata in the JSON response. This indicates where that object can be used as a reference—a _valid link_—when creating or updating other data.
 //
 // For example, `validDatatypeLinks` might indicate the following references:
 //
@@ -108,14 +142,14 @@ const (
 // Codat currently supports `validDatatypeLinks` for some data types on our Xero, QuickBooks Online, QuickBooks Desktop, Exact (NL), and Sage Business Cloud integrations.
 //
 // If you'd like us to extend support to more data types or integrations, suggest or vote for this on our <a href="https://portal.productboard.com/codat/5-product-roadmap">Product Roadmap</a>.
-type GetAccountsLinksSourceModifiedDateValidDataTypeLinks struct {
+type GetAccounts200ApplicationJSONSourceModifiedDateValidDataTypeLinks struct {
 	// Supported `dataTypes` that the record can be linked to.
 	Links []string `json:"links,omitempty"`
 	// The property from the account that can be linked.
 	Property *string `json:"property,omitempty"`
 }
 
-// GetAccountsLinksSourceModifiedDate - > **Language tip:** Accounts are also referred to as **chart of accounts**, **nominal accounts**, and **general ledger**.
+// GetAccounts200ApplicationJSONSourceModifiedDate - > **Language tip:** Accounts are also referred to as **chart of accounts**, **nominal accounts**, and **general ledger**.
 //
 // Explore the <a className="external" href="https://api.codat.io/swagger/index.html#/Accounts" target="_blank">Accounts</a> endpoints in Swagger.
 //
@@ -137,7 +171,7 @@ type GetAccountsLinksSourceModifiedDateValidDataTypeLinks struct {
 // > If an account is pulled from the chart of accounts and its nominal code does not lie within the category layout for the company's accounts, then the **type** is `Unknown`. The **fullyQualifiedCategory** and **fullyQualifiedName** fields return `null`.
 // >
 // > This approach gives a true representation of the company's accounts whilst preventing distorting financials such as a company's profit and loss and balance sheet reports.
-type GetAccountsLinksSourceModifiedDate struct {
+type GetAccounts200ApplicationJSONSourceModifiedDate struct {
 	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code. e.g. _GBP_.
 	//
 	// ## Unknown currencies
@@ -160,31 +194,31 @@ type GetAccountsLinksSourceModifiedDate struct {
 	// Identifier for the account, unique for the company.
 	ID *string `json:"id,omitempty"`
 	// Confirms whether the account is a bank account or not.
-	IsBankAccount bool                                        `json:"isBankAccount"`
-	Metadata      *GetAccountsLinksSourceModifiedDateMetadata `json:"metadata,omitempty"`
+	IsBankAccount bool                                                     `json:"isBankAccount"`
+	Metadata      *GetAccounts200ApplicationJSONSourceModifiedDateMetadata `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Name of the account.
 	Name *string `json:"name,omitempty"`
 	// Reference given to each nominal account for a business. It ensures money is allocated to the correct account. This code isn't a unique identifier in the Codat system.
 	NominalCode *string `json:"nominalCode,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Status of the account
-	Status GetAccountsLinksSourceModifiedDateStatusEnum `json:"status"`
+	Status GetAccounts200ApplicationJSONSourceModifiedDateStatusEnum `json:"status"`
 	// Type of account
-	Type GetAccountsLinksSourceModifiedDateTypeEnum `json:"type"`
+	Type GetAccounts200ApplicationJSONSourceModifiedDateTypeEnum `json:"type"`
 	// 'The validDatatypeLinks can be used to determine whether an account can be correctly mapped to another object; for example, accounts with a `type` of `income` might only support being used on an Invoice and Direct Income. For more information, see Valid Data Type Links.'
-	ValidDatatypeLinks []GetAccountsLinksSourceModifiedDateValidDataTypeLinks `json:"validDatatypeLinks,omitempty"`
+	ValidDatatypeLinks []GetAccounts200ApplicationJSONSourceModifiedDateValidDataTypeLinks `json:"validDatatypeLinks,omitempty"`
 }
 
-// GetAccountsLinks - Codat's Paging Model
-type GetAccountsLinks struct {
-	Links        GetAccountsLinksLinks                `json:"_links"`
-	PageNumber   int64                                `json:"pageNumber"`
-	PageSize     int64                                `json:"pageSize"`
-	Results      []GetAccountsLinksSourceModifiedDate `json:"results,omitempty"`
-	TotalResults int64                                `json:"totalResults"`
+// GetAccounts200ApplicationJSON - Success
+type GetAccounts200ApplicationJSON struct {
+	Links        GetAccounts200ApplicationJSONLinks                `json:"_links"`
+	PageNumber   int64                                             `json:"pageNumber"`
+	PageSize     int64                                             `json:"pageSize"`
+	Results      []GetAccounts200ApplicationJSONSourceModifiedDate `json:"results,omitempty"`
+	TotalResults int64                                             `json:"totalResults"`
 }
 
 type GetAccountsResponse struct {
@@ -192,5 +226,5 @@ type GetAccountsResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// Success
-	Links *GetAccountsLinks
+	GetAccounts200ApplicationJSONObject *GetAccounts200ApplicationJSON
 }

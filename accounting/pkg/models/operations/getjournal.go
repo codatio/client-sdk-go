@@ -3,8 +3,9 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 type GetJournalRequest struct {
@@ -32,6 +33,24 @@ const (
 	GetJournalSourceModifiedDateStatusEnumArchived GetJournalSourceModifiedDateStatusEnum = "Archived"
 )
 
+func (e *GetJournalSourceModifiedDateStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Active":
+		fallthrough
+	case "Archived":
+		*e = GetJournalSourceModifiedDateStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetJournalSourceModifiedDateStatusEnum: %s", s)
+	}
+}
+
 // GetJournalSourceModifiedDate - > **Language tip:** For line items, or individual transactions, of a company's financial documents, refer to the [Journal entries](https://docs.codat.io/accounting-api#/schemas/JournalEntry) data type
 //
 // > View the coverage for journals in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journals" target="_blank">Data coverage explorer</a>.
@@ -56,7 +75,7 @@ const (
 // > When pushing journal entries to an accounting platform that doesn’t support multiple journals (multi-book accounting), the entries will be linked to the platform-generic journal. The Journals data type will only include one object.
 type GetJournalSourceModifiedDate struct {
 	// Journal creation date.
-	CreatedOn *time.Time `json:"createdOn,omitempty"`
+	CreatedOn *string `json:"createdOn,omitempty"`
 	// If the journal has child journals, this value is true. If it doesn’t, it is false.
 	HasChildren *bool `json:"hasChildren,omitempty"`
 	// Journal ID.
@@ -65,7 +84,7 @@ type GetJournalSourceModifiedDate struct {
 	JournalCode *string                               `json:"journalCode,omitempty"`
 	Metadata    *GetJournalSourceModifiedDateMetadata `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Journal name.
 	// The maximum length for a journal name is 256 characters. All characters above that number will be truncated.
 	Name *string `json:"name,omitempty"`
@@ -73,7 +92,7 @@ type GetJournalSourceModifiedDate struct {
 	// If the journal is a parent journal, this value is not present.
 	ParentID *string `json:"parentId,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Current journal status.
 	Status *GetJournalSourceModifiedDateStatusEnum `json:"status,omitempty"`
 	// The type of the journal.

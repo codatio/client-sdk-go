@@ -3,8 +3,9 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 // CreateCreditNoteSourceModifiedDateCustomerRef - Reference to the customer the credit note has been issued to.
@@ -56,6 +57,24 @@ const (
 	CreateCreditNoteSourceModifiedDateLineItemsTrackingIsBilledToEnumProject       CreateCreditNoteSourceModifiedDateLineItemsTrackingIsBilledToEnum = "Project"
 )
 
+func (e *CreateCreditNoteSourceModifiedDateLineItemsTrackingIsBilledToEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "NotApplicable":
+		fallthrough
+	case "Project":
+		*e = CreateCreditNoteSourceModifiedDateLineItemsTrackingIsBilledToEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateCreditNoteSourceModifiedDateLineItemsTrackingIsBilledToEnum: %s", s)
+	}
+}
+
 type CreateCreditNoteSourceModifiedDateLineItemsTrackingIsRebilledToEnum string
 
 const (
@@ -63,6 +82,24 @@ const (
 	CreateCreditNoteSourceModifiedDateLineItemsTrackingIsRebilledToEnumNotApplicable CreateCreditNoteSourceModifiedDateLineItemsTrackingIsRebilledToEnum = "NotApplicable"
 	CreateCreditNoteSourceModifiedDateLineItemsTrackingIsRebilledToEnumProject       CreateCreditNoteSourceModifiedDateLineItemsTrackingIsRebilledToEnum = "Project"
 )
+
+func (e *CreateCreditNoteSourceModifiedDateLineItemsTrackingIsRebilledToEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "NotApplicable":
+		fallthrough
+	case "Project":
+		*e = CreateCreditNoteSourceModifiedDateLineItemsTrackingIsRebilledToEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateCreditNoteSourceModifiedDateLineItemsTrackingIsRebilledToEnum: %s", s)
+	}
+}
 
 type CreateCreditNoteSourceModifiedDateLineItemsTrackingProjectRef struct {
 	ID   string  `json:"id"`
@@ -109,12 +146,13 @@ type CreateCreditNoteSourceModifiedDateLineItems struct {
 }
 
 type CreateCreditNoteSourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
 type CreateCreditNoteSourceModifiedDatePaymentAllocationsAllocation struct {
 	// The date the payment was allocated.
-	AllocatedOnDate *time.Time `json:"allocatedOnDate,omitempty"`
+	AllocatedOnDate *string `json:"allocatedOnDate,omitempty"`
 	// The currency of the transaction.
 	Currency *string `json:"currency,omitempty"`
 	// Rate to convert the total amount of the payment into the base currency for the company at the time of the payment.
@@ -187,7 +225,7 @@ type CreateCreditNoteSourceModifiedDatePaymentAllocationsPayment struct {
 	// Notes attached to the allocated payment.
 	Note *string `json:"note,omitempty"`
 	// The date the payment was paid.
-	PaidOnDate *time.Time `json:"paidOnDate,omitempty"`
+	PaidOnDate *string `json:"paidOnDate,omitempty"`
 	// Reference to the allocated payment.
 	Reference *string `json:"reference,omitempty"`
 	// Total amount that was paid.
@@ -210,6 +248,30 @@ const (
 	CreateCreditNoteSourceModifiedDateStatusEnumVoid          CreateCreditNoteSourceModifiedDateStatusEnum = "Void"
 	CreateCreditNoteSourceModifiedDateStatusEnumPartiallyPaid CreateCreditNoteSourceModifiedDateStatusEnum = "PartiallyPaid"
 )
+
+func (e *CreateCreditNoteSourceModifiedDateStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Draft":
+		fallthrough
+	case "Submitted":
+		fallthrough
+	case "Paid":
+		fallthrough
+	case "Void":
+		fallthrough
+	case "PartiallyPaid":
+		*e = CreateCreditNoteSourceModifiedDateStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateCreditNoteSourceModifiedDateStatusEnum: %s", s)
+	}
+}
 
 // CreateCreditNoteSourceModifiedDateSupplementalData - Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type CreateCreditNoteSourceModifiedDateSupplementalData struct {
@@ -237,7 +299,7 @@ type CreateCreditNoteSourceModifiedDate struct {
 	AdditionalTaxAmount     *float64 `json:"additionalTaxAmount,omitempty"`
 	AdditionalTaxPercentage *float64 `json:"additionalTaxPercentage,omitempty"`
 	// Date on which the credit note was fully allocated.
-	AllocatedOnDate *time.Time `json:"allocatedOnDate,omitempty"`
+	AllocatedOnDate *string `json:"allocatedOnDate,omitempty"`
 	// Friendly reference for the credit note.
 	CreditNoteNumber *string `json:"creditNoteNumber,omitempty"`
 	// Currency of the credit note.
@@ -273,11 +335,11 @@ type CreateCreditNoteSourceModifiedDate struct {
 	// Identifier for the credit note, unique to the company in the accounting platform.
 	ID *string `json:"id,omitempty"`
 	// Date of the credit note as recorded in the accounting system.
-	IssueDate *time.Time                                    `json:"issueDate,omitempty"`
+	IssueDate *string                                       `json:"issueDate,omitempty"`
 	LineItems []CreateCreditNoteSourceModifiedDateLineItems `json:"lineItems,omitempty"`
 	Metadata  *CreateCreditNoteSourceModifiedDateMetadata   `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Any additional information about the credit note. Where possible, Codat links to a data field in the accounting platform that is publicly available. This means that the contents of the note field are included when a credit note is emailed from the accounting platform to the customer.
 	Note *string `json:"note,omitempty"`
 	// An array of payment allocations.
@@ -285,7 +347,7 @@ type CreateCreditNoteSourceModifiedDate struct {
 	// Unused balance of totalAmount originally raised.
 	RemainingCredit float64 `json:"remainingCredit"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Current state of the credit note.
 	Status CreateCreditNoteSourceModifiedDateStatusEnum `json:"status"`
 	// Value of the credit note, including discounts and excluding tax.
@@ -324,6 +386,28 @@ const (
 	CreateCreditNote200ApplicationJSONChangesTypeEnumDeleted            CreateCreditNote200ApplicationJSONChangesTypeEnum = "Deleted"
 	CreateCreditNote200ApplicationJSONChangesTypeEnumAttachmentUploaded CreateCreditNote200ApplicationJSONChangesTypeEnum = "AttachmentUploaded"
 )
+
+func (e *CreateCreditNote200ApplicationJSONChangesTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Created":
+		fallthrough
+	case "Modified":
+		fallthrough
+	case "Deleted":
+		fallthrough
+	case "AttachmentUploaded":
+		*e = CreateCreditNote200ApplicationJSONChangesTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateCreditNote200ApplicationJSONChangesTypeEnum: %s", s)
+	}
+}
 
 type CreateCreditNote200ApplicationJSONChanges struct {
 	AttachmentID *string                                                          `json:"attachmentId,omitempty"`
@@ -380,6 +464,24 @@ const (
 	CreateCreditNote200ApplicationJSONSourceModifiedDateLineItemsTrackingIsBilledToEnumProject       CreateCreditNote200ApplicationJSONSourceModifiedDateLineItemsTrackingIsBilledToEnum = "Project"
 )
 
+func (e *CreateCreditNote200ApplicationJSONSourceModifiedDateLineItemsTrackingIsBilledToEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "NotApplicable":
+		fallthrough
+	case "Project":
+		*e = CreateCreditNote200ApplicationJSONSourceModifiedDateLineItemsTrackingIsBilledToEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateCreditNote200ApplicationJSONSourceModifiedDateLineItemsTrackingIsBilledToEnum: %s", s)
+	}
+}
+
 type CreateCreditNote200ApplicationJSONSourceModifiedDateLineItemsTrackingIsRebilledToEnum string
 
 const (
@@ -387,6 +489,24 @@ const (
 	CreateCreditNote200ApplicationJSONSourceModifiedDateLineItemsTrackingIsRebilledToEnumNotApplicable CreateCreditNote200ApplicationJSONSourceModifiedDateLineItemsTrackingIsRebilledToEnum = "NotApplicable"
 	CreateCreditNote200ApplicationJSONSourceModifiedDateLineItemsTrackingIsRebilledToEnumProject       CreateCreditNote200ApplicationJSONSourceModifiedDateLineItemsTrackingIsRebilledToEnum = "Project"
 )
+
+func (e *CreateCreditNote200ApplicationJSONSourceModifiedDateLineItemsTrackingIsRebilledToEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "NotApplicable":
+		fallthrough
+	case "Project":
+		*e = CreateCreditNote200ApplicationJSONSourceModifiedDateLineItemsTrackingIsRebilledToEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateCreditNote200ApplicationJSONSourceModifiedDateLineItemsTrackingIsRebilledToEnum: %s", s)
+	}
+}
 
 type CreateCreditNote200ApplicationJSONSourceModifiedDateLineItemsTrackingProjectRef struct {
 	ID   string  `json:"id"`
@@ -433,12 +553,13 @@ type CreateCreditNote200ApplicationJSONSourceModifiedDateLineItems struct {
 }
 
 type CreateCreditNote200ApplicationJSONSourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
 type CreateCreditNote200ApplicationJSONSourceModifiedDatePaymentAllocationsAllocation struct {
 	// The date the payment was allocated.
-	AllocatedOnDate *time.Time `json:"allocatedOnDate,omitempty"`
+	AllocatedOnDate *string `json:"allocatedOnDate,omitempty"`
 	// The currency of the transaction.
 	Currency *string `json:"currency,omitempty"`
 	// Rate to convert the total amount of the payment into the base currency for the company at the time of the payment.
@@ -511,7 +632,7 @@ type CreateCreditNote200ApplicationJSONSourceModifiedDatePaymentAllocationsPayme
 	// Notes attached to the allocated payment.
 	Note *string `json:"note,omitempty"`
 	// The date the payment was paid.
-	PaidOnDate *time.Time `json:"paidOnDate,omitempty"`
+	PaidOnDate *string `json:"paidOnDate,omitempty"`
 	// Reference to the allocated payment.
 	Reference *string `json:"reference,omitempty"`
 	// Total amount that was paid.
@@ -534,6 +655,30 @@ const (
 	CreateCreditNote200ApplicationJSONSourceModifiedDateStatusEnumVoid          CreateCreditNote200ApplicationJSONSourceModifiedDateStatusEnum = "Void"
 	CreateCreditNote200ApplicationJSONSourceModifiedDateStatusEnumPartiallyPaid CreateCreditNote200ApplicationJSONSourceModifiedDateStatusEnum = "PartiallyPaid"
 )
+
+func (e *CreateCreditNote200ApplicationJSONSourceModifiedDateStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Draft":
+		fallthrough
+	case "Submitted":
+		fallthrough
+	case "Paid":
+		fallthrough
+	case "Void":
+		fallthrough
+	case "PartiallyPaid":
+		*e = CreateCreditNote200ApplicationJSONSourceModifiedDateStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateCreditNote200ApplicationJSONSourceModifiedDateStatusEnum: %s", s)
+	}
+}
 
 // CreateCreditNote200ApplicationJSONSourceModifiedDateSupplementalData - Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type CreateCreditNote200ApplicationJSONSourceModifiedDateSupplementalData struct {
@@ -561,7 +706,7 @@ type CreateCreditNote200ApplicationJSONSourceModifiedDate struct {
 	AdditionalTaxAmount     *float64 `json:"additionalTaxAmount,omitempty"`
 	AdditionalTaxPercentage *float64 `json:"additionalTaxPercentage,omitempty"`
 	// Date on which the credit note was fully allocated.
-	AllocatedOnDate *time.Time `json:"allocatedOnDate,omitempty"`
+	AllocatedOnDate *string `json:"allocatedOnDate,omitempty"`
 	// Friendly reference for the credit note.
 	CreditNoteNumber *string `json:"creditNoteNumber,omitempty"`
 	// Currency of the credit note.
@@ -597,11 +742,11 @@ type CreateCreditNote200ApplicationJSONSourceModifiedDate struct {
 	// Identifier for the credit note, unique to the company in the accounting platform.
 	ID *string `json:"id,omitempty"`
 	// Date of the credit note as recorded in the accounting system.
-	IssueDate *time.Time                                                      `json:"issueDate,omitempty"`
+	IssueDate *string                                                         `json:"issueDate,omitempty"`
 	LineItems []CreateCreditNote200ApplicationJSONSourceModifiedDateLineItems `json:"lineItems,omitempty"`
 	Metadata  *CreateCreditNote200ApplicationJSONSourceModifiedDateMetadata   `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Any additional information about the credit note. Where possible, Codat links to a data field in the accounting platform that is publicly available. This means that the contents of the note field are included when a credit note is emailed from the accounting platform to the customer.
 	Note *string `json:"note,omitempty"`
 	// An array of payment allocations.
@@ -609,7 +754,7 @@ type CreateCreditNote200ApplicationJSONSourceModifiedDate struct {
 	// Unused balance of totalAmount originally raised.
 	RemainingCredit float64 `json:"remainingCredit"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Current state of the credit note.
 	Status CreateCreditNote200ApplicationJSONSourceModifiedDateStatusEnum `json:"status"`
 	// Value of the credit note, including discounts and excluding tax.
@@ -635,6 +780,26 @@ const (
 	CreateCreditNote200ApplicationJSONStatusEnumTimedOut CreateCreditNote200ApplicationJSONStatusEnum = "TimedOut"
 )
 
+func (e *CreateCreditNote200ApplicationJSONStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Pending":
+		fallthrough
+	case "Failed":
+		fallthrough
+	case "Success":
+		fallthrough
+	case "TimedOut":
+		*e = CreateCreditNote200ApplicationJSONStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateCreditNote200ApplicationJSONStatusEnum: %s", s)
+	}
+}
+
 type CreateCreditNote200ApplicationJSONValidationValidationItem struct {
 	ItemID        *string `json:"itemId,omitempty"`
 	Message       *string `json:"message,omitempty"`
@@ -653,7 +818,7 @@ type CreateCreditNote200ApplicationJSON struct {
 	// Unique identifier for your SMB in Codat.
 	CompanyID string `json:"companyId"`
 	// The datetime when the push was completed, null if Pending.
-	CompletedOnUtc *time.Time `json:"completedOnUtc,omitempty"`
+	CompletedOnUtc *string `json:"completedOnUtc,omitempty"`
 	// > View the coverage for credit notes in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=creditNotes" target="_blank">Data coverage explorer</a>.
 	//
 	// ## Overview
@@ -675,7 +840,7 @@ type CreateCreditNote200ApplicationJSON struct {
 	// A unique identifier generated by Codat to represent this single push operation. This identifier can be used to track the status of the push, and should be persisted.
 	PushOperationKey string `json:"pushOperationKey"`
 	// The datetime when the push was requested.
-	RequestedOnUtc time.Time `json:"requestedOnUtc"`
+	RequestedOnUtc string `json:"requestedOnUtc"`
 	// The status of the push operation.
 	Status           CreateCreditNote200ApplicationJSONStatusEnum `json:"status"`
 	StatusCode       int                                          `json:"statusCode"`

@@ -3,8 +3,9 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 type GetCustomerRequest struct {
@@ -20,6 +21,24 @@ const (
 	GetCustomerSourceModifiedDateAddressesTypeEnumBilling  GetCustomerSourceModifiedDateAddressesTypeEnum = "Billing"
 	GetCustomerSourceModifiedDateAddressesTypeEnumDelivery GetCustomerSourceModifiedDateAddressesTypeEnum = "Delivery"
 )
+
+func (e *GetCustomerSourceModifiedDateAddressesTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Billing":
+		fallthrough
+	case "Delivery":
+		*e = GetCustomerSourceModifiedDateAddressesTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCustomerSourceModifiedDateAddressesTypeEnum: %s", s)
+	}
+}
 
 type GetCustomerSourceModifiedDateAddresses struct {
 	// City of the customer address.
@@ -46,6 +65,24 @@ const (
 	GetCustomerSourceModifiedDateContactsAddressTypeEnumBilling  GetCustomerSourceModifiedDateContactsAddressTypeEnum = "Billing"
 	GetCustomerSourceModifiedDateContactsAddressTypeEnumDelivery GetCustomerSourceModifiedDateContactsAddressTypeEnum = "Delivery"
 )
+
+func (e *GetCustomerSourceModifiedDateContactsAddressTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Billing":
+		fallthrough
+	case "Delivery":
+		*e = GetCustomerSourceModifiedDateContactsAddressTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCustomerSourceModifiedDateContactsAddressTypeEnum: %s", s)
+	}
+}
 
 // GetCustomerSourceModifiedDateContactsAddress - An object of Address information.
 type GetCustomerSourceModifiedDateContactsAddress struct {
@@ -76,6 +113,28 @@ const (
 	GetCustomerSourceModifiedDateContactsPhoneTypeEnumFax      GetCustomerSourceModifiedDateContactsPhoneTypeEnum = "Fax"
 )
 
+func (e *GetCustomerSourceModifiedDateContactsPhoneTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Primary":
+		fallthrough
+	case "Landline":
+		fallthrough
+	case "Mobile":
+		fallthrough
+	case "Fax":
+		*e = GetCustomerSourceModifiedDateContactsPhoneTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCustomerSourceModifiedDateContactsPhoneTypeEnum: %s", s)
+	}
+}
+
 type GetCustomerSourceModifiedDateContactsPhone struct {
 	// Phone number for a customer contact.
 	Number *string `json:"number,omitempty"`
@@ -93,6 +152,24 @@ const (
 	GetCustomerSourceModifiedDateContactsStatusEnumActive   GetCustomerSourceModifiedDateContactsStatusEnum = "Active"
 	GetCustomerSourceModifiedDateContactsStatusEnumArchived GetCustomerSourceModifiedDateContactsStatusEnum = "Archived"
 )
+
+func (e *GetCustomerSourceModifiedDateContactsStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Active":
+		fallthrough
+	case "Archived":
+		*e = GetCustomerSourceModifiedDateContactsStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCustomerSourceModifiedDateContactsStatusEnum: %s", s)
+	}
+}
 
 type GetCustomerSourceModifiedDateContacts struct {
 	// An object of Address information.
@@ -118,7 +195,7 @@ type GetCustomerSourceModifiedDateContacts struct {
 	// >
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Name of a contact for a customer.
 	Name *string `json:"name,omitempty"`
 	// An array of Phone numbers.
@@ -130,6 +207,7 @@ type GetCustomerSourceModifiedDateContacts struct {
 }
 
 type GetCustomerSourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
@@ -141,6 +219,24 @@ const (
 	GetCustomerSourceModifiedDateStatusEnumActive   GetCustomerSourceModifiedDateStatusEnum = "Active"
 	GetCustomerSourceModifiedDateStatusEnumArchived GetCustomerSourceModifiedDateStatusEnum = "Archived"
 )
+
+func (e *GetCustomerSourceModifiedDateStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Active":
+		fallthrough
+	case "Archived":
+		*e = GetCustomerSourceModifiedDateStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCustomerSourceModifiedDateStatusEnum: %s", s)
+	}
+}
 
 // GetCustomerSourceModifiedDateSupplementalData - Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type GetCustomerSourceModifiedDateSupplementalData struct {
@@ -171,13 +267,13 @@ type GetCustomerSourceModifiedDate struct {
 	ID       *string                                `json:"id,omitempty"`
 	Metadata *GetCustomerSourceModifiedDateMetadata `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Phone number the customer can be contacted by.
 	Phone *string `json:"phone,omitempty"`
 	// Company number. In the UK, this is typically the Companies House company registration number.
 	RegistrationNumber *string `json:"registrationNumber,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Current state of the customer.
 	Status GetCustomerSourceModifiedDateStatusEnum `json:"status"`
 	// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.

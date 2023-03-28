@@ -3,8 +3,9 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 // CreateItemSourceModifiedDateBillItemAccountRef - Reference of the account to which the item is linked.
@@ -82,7 +83,26 @@ const (
 	CreateItemSourceModifiedDateItemStatusEnumArchived CreateItemSourceModifiedDateItemStatusEnum = "Archived"
 )
 
+func (e *CreateItemSourceModifiedDateItemStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Active":
+		fallthrough
+	case "Archived":
+		*e = CreateItemSourceModifiedDateItemStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateItemSourceModifiedDateItemStatusEnum: %s", s)
+	}
+}
+
 type CreateItemSourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
@@ -95,6 +115,26 @@ const (
 	CreateItemSourceModifiedDateTypeEnumNonInventory CreateItemSourceModifiedDateTypeEnum = "NonInventory"
 	CreateItemSourceModifiedDateTypeEnumService      CreateItemSourceModifiedDateTypeEnum = "Service"
 )
+
+func (e *CreateItemSourceModifiedDateTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Inventory":
+		fallthrough
+	case "NonInventory":
+		fallthrough
+	case "Service":
+		*e = CreateItemSourceModifiedDateTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateItemSourceModifiedDateTypeEnum: %s", s)
+	}
+}
 
 // CreateItemSourceModifiedDate - > View the coverage for items in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=items" target="_blank">Data coverage explorer</a>.
 //
@@ -124,11 +164,11 @@ type CreateItemSourceModifiedDate struct {
 	ItemStatus CreateItemSourceModifiedDateItemStatusEnum `json:"itemStatus"`
 	Metadata   *CreateItemSourceModifiedDateMetadata      `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Name of the item in the accounting platform.
 	Name *string `json:"name,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Type of the item.
 	Type CreateItemSourceModifiedDateTypeEnum `json:"type"`
 }
@@ -154,6 +194,28 @@ const (
 	CreateItem200ApplicationJSONChangesTypeEnumDeleted            CreateItem200ApplicationJSONChangesTypeEnum = "Deleted"
 	CreateItem200ApplicationJSONChangesTypeEnumAttachmentUploaded CreateItem200ApplicationJSONChangesTypeEnum = "AttachmentUploaded"
 )
+
+func (e *CreateItem200ApplicationJSONChangesTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Created":
+		fallthrough
+	case "Modified":
+		fallthrough
+	case "Deleted":
+		fallthrough
+	case "AttachmentUploaded":
+		*e = CreateItem200ApplicationJSONChangesTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateItem200ApplicationJSONChangesTypeEnum: %s", s)
+	}
+}
 
 type CreateItem200ApplicationJSONChanges struct {
 	AttachmentID *string                                                    `json:"attachmentId,omitempty"`
@@ -236,7 +298,26 @@ const (
 	CreateItem200ApplicationJSONSourceModifiedDateItemStatusEnumArchived CreateItem200ApplicationJSONSourceModifiedDateItemStatusEnum = "Archived"
 )
 
+func (e *CreateItem200ApplicationJSONSourceModifiedDateItemStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Active":
+		fallthrough
+	case "Archived":
+		*e = CreateItem200ApplicationJSONSourceModifiedDateItemStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateItem200ApplicationJSONSourceModifiedDateItemStatusEnum: %s", s)
+	}
+}
+
 type CreateItem200ApplicationJSONSourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
@@ -249,6 +330,26 @@ const (
 	CreateItem200ApplicationJSONSourceModifiedDateTypeEnumNonInventory CreateItem200ApplicationJSONSourceModifiedDateTypeEnum = "NonInventory"
 	CreateItem200ApplicationJSONSourceModifiedDateTypeEnumService      CreateItem200ApplicationJSONSourceModifiedDateTypeEnum = "Service"
 )
+
+func (e *CreateItem200ApplicationJSONSourceModifiedDateTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Inventory":
+		fallthrough
+	case "NonInventory":
+		fallthrough
+	case "Service":
+		*e = CreateItem200ApplicationJSONSourceModifiedDateTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateItem200ApplicationJSONSourceModifiedDateTypeEnum: %s", s)
+	}
+}
 
 // CreateItem200ApplicationJSONSourceModifiedDate - > View the coverage for items in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=items" target="_blank">Data coverage explorer</a>.
 //
@@ -278,11 +379,11 @@ type CreateItem200ApplicationJSONSourceModifiedDate struct {
 	ItemStatus CreateItem200ApplicationJSONSourceModifiedDateItemStatusEnum `json:"itemStatus"`
 	Metadata   *CreateItem200ApplicationJSONSourceModifiedDateMetadata      `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Name of the item in the accounting platform.
 	Name *string `json:"name,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Type of the item.
 	Type CreateItem200ApplicationJSONSourceModifiedDateTypeEnum `json:"type"`
 }
@@ -296,6 +397,26 @@ const (
 	CreateItem200ApplicationJSONStatusEnumSuccess  CreateItem200ApplicationJSONStatusEnum = "Success"
 	CreateItem200ApplicationJSONStatusEnumTimedOut CreateItem200ApplicationJSONStatusEnum = "TimedOut"
 )
+
+func (e *CreateItem200ApplicationJSONStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Pending":
+		fallthrough
+	case "Failed":
+		fallthrough
+	case "Success":
+		fallthrough
+	case "TimedOut":
+		*e = CreateItem200ApplicationJSONStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateItem200ApplicationJSONStatusEnum: %s", s)
+	}
+}
 
 type CreateItem200ApplicationJSONValidationValidationItem struct {
 	ItemID        *string `json:"itemId,omitempty"`
@@ -315,7 +436,7 @@ type CreateItem200ApplicationJSON struct {
 	// Unique identifier for your SMB in Codat.
 	CompanyID string `json:"companyId"`
 	// The datetime when the push was completed, null if Pending.
-	CompletedOnUtc *time.Time `json:"completedOnUtc,omitempty"`
+	CompletedOnUtc *string `json:"completedOnUtc,omitempty"`
 	// > View the coverage for items in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=items" target="_blank">Data coverage explorer</a>.
 	//
 	// ## Overview
@@ -331,7 +452,7 @@ type CreateItem200ApplicationJSON struct {
 	// A unique identifier generated by Codat to represent this single push operation. This identifier can be used to track the status of the push, and should be persisted.
 	PushOperationKey string `json:"pushOperationKey"`
 	// The datetime when the push was requested.
-	RequestedOnUtc time.Time `json:"requestedOnUtc"`
+	RequestedOnUtc string `json:"requestedOnUtc"`
 	// The status of the push operation.
 	Status           CreateItem200ApplicationJSONStatusEnum `json:"status"`
 	StatusCode       int                                    `json:"statusCode"`

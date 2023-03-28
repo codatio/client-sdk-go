@@ -3,8 +3,9 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 type ListSalesOrdersRequest struct {
@@ -19,61 +20,69 @@ type ListSalesOrdersRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-type ListSalesOrdersLinksLinksCurrent struct {
-	Href string `json:"href"`
-}
-
-type ListSalesOrdersLinksLinksNext struct {
+type ListSalesOrders200ApplicationJSONLinksHypertextReference struct {
 	Href *string `json:"href,omitempty"`
 }
 
-type ListSalesOrdersLinksLinksPrevious struct {
-	Href *string `json:"href,omitempty"`
+type ListSalesOrders200ApplicationJSONLinks struct {
+	Current  ListSalesOrders200ApplicationJSONLinksHypertextReference  `json:"current"`
+	Next     *ListSalesOrders200ApplicationJSONLinksHypertextReference `json:"next,omitempty"`
+	Previous *ListSalesOrders200ApplicationJSONLinksHypertextReference `json:"previous,omitempty"`
+	Self     ListSalesOrders200ApplicationJSONLinksHypertextReference  `json:"self"`
 }
 
-type ListSalesOrdersLinksLinksSelf struct {
-	Href string `json:"href"`
-}
-
-type ListSalesOrdersLinksLinks struct {
-	Current  ListSalesOrdersLinksLinksCurrent   `json:"current"`
-	Next     *ListSalesOrdersLinksLinksNext     `json:"next,omitempty"`
-	Previous *ListSalesOrdersLinksLinksPrevious `json:"previous,omitempty"`
-	Self     ListSalesOrdersLinksLinksSelf      `json:"self"`
-}
-
-// ListSalesOrdersLinksSourceModifiedDateCustomerRef - The customer that the sales order is recorded against in the accounting system.
-type ListSalesOrdersLinksSourceModifiedDateCustomerRef struct {
+// ListSalesOrders200ApplicationJSONSourceModifiedDateCustomerRef - The customer that the sales order is recorded against in the accounting system.
+type ListSalesOrders200ApplicationJSONSourceModifiedDateCustomerRef struct {
 	CompanyName *string `json:"companyName,omitempty"`
 	ID          string  `json:"id"`
 }
 
-// ListSalesOrdersLinksSourceModifiedDateInvoicingStatusEnum - If the sales order is converted to an invoice, or will be in future, the invoicingStatus field indicates the current stage of the invoicing process.
-type ListSalesOrdersLinksSourceModifiedDateInvoicingStatusEnum string
+// ListSalesOrders200ApplicationJSONSourceModifiedDateInvoicingStatusEnum - If the sales order is converted to an invoice, or will be in future, the invoicingStatus field indicates the current stage of the invoicing process.
+type ListSalesOrders200ApplicationJSONSourceModifiedDateInvoicingStatusEnum string
 
 const (
-	ListSalesOrdersLinksSourceModifiedDateInvoicingStatusEnumUnknown           ListSalesOrdersLinksSourceModifiedDateInvoicingStatusEnum = "Unknown"
-	ListSalesOrdersLinksSourceModifiedDateInvoicingStatusEnumPartiallyInvoiced ListSalesOrdersLinksSourceModifiedDateInvoicingStatusEnum = "PartiallyInvoiced"
-	ListSalesOrdersLinksSourceModifiedDateInvoicingStatusEnumInvoiced          ListSalesOrdersLinksSourceModifiedDateInvoicingStatusEnum = "Invoiced"
-	ListSalesOrdersLinksSourceModifiedDateInvoicingStatusEnumNotInvoiced       ListSalesOrdersLinksSourceModifiedDateInvoicingStatusEnum = "NotInvoiced"
+	ListSalesOrders200ApplicationJSONSourceModifiedDateInvoicingStatusEnumUnknown           ListSalesOrders200ApplicationJSONSourceModifiedDateInvoicingStatusEnum = "Unknown"
+	ListSalesOrders200ApplicationJSONSourceModifiedDateInvoicingStatusEnumPartiallyInvoiced ListSalesOrders200ApplicationJSONSourceModifiedDateInvoicingStatusEnum = "PartiallyInvoiced"
+	ListSalesOrders200ApplicationJSONSourceModifiedDateInvoicingStatusEnumInvoiced          ListSalesOrders200ApplicationJSONSourceModifiedDateInvoicingStatusEnum = "Invoiced"
+	ListSalesOrders200ApplicationJSONSourceModifiedDateInvoicingStatusEnumNotInvoiced       ListSalesOrders200ApplicationJSONSourceModifiedDateInvoicingStatusEnum = "NotInvoiced"
 )
 
-// ListSalesOrdersLinksSourceModifiedDateLineItemsAccountRef - Reference to the account to which the line item is linked.
-type ListSalesOrdersLinksSourceModifiedDateLineItemsAccountRef struct {
+func (e *ListSalesOrders200ApplicationJSONSourceModifiedDateInvoicingStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "PartiallyInvoiced":
+		fallthrough
+	case "Invoiced":
+		fallthrough
+	case "NotInvoiced":
+		*e = ListSalesOrders200ApplicationJSONSourceModifiedDateInvoicingStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListSalesOrders200ApplicationJSONSourceModifiedDateInvoicingStatusEnum: %s", s)
+	}
+}
+
+// ListSalesOrders200ApplicationJSONSourceModifiedDateLineItemsAccountRef - Reference to the account to which the line item is linked.
+type ListSalesOrders200ApplicationJSONSourceModifiedDateLineItemsAccountRef struct {
 	// 'id' from the Accounts data type.
 	ID *string `json:"id,omitempty"`
 	// 'name' from the Accounts data type.
 	Name *string `json:"name,omitempty"`
 }
 
-// ListSalesOrdersLinksSourceModifiedDateLineItemsItemRef - Reference to the product or inventory item to which the line item is linked.
-type ListSalesOrdersLinksSourceModifiedDateLineItemsItemRef struct {
+// ListSalesOrders200ApplicationJSONSourceModifiedDateLineItemsItemRef - Reference to the product or inventory item to which the line item is linked.
+type ListSalesOrders200ApplicationJSONSourceModifiedDateLineItemsItemRef struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
 }
 
-// ListSalesOrdersLinksSourceModifiedDateLineItemsTaxRateRef - Reference to the tax rate to which the line item is linked.
-type ListSalesOrdersLinksSourceModifiedDateLineItemsTaxRateRef struct {
+// ListSalesOrders200ApplicationJSONSourceModifiedDateLineItemsTaxRateRef - Reference to the tax rate to which the line item is linked.
+type ListSalesOrders200ApplicationJSONSourceModifiedDateLineItemsTaxRateRef struct {
 	// Applicable tax rate.
 	EffectiveTaxRate *float64 `json:"effectiveTaxRate,omitempty"`
 	// 'id' from the 'taxRates' data type.
@@ -82,13 +91,13 @@ type ListSalesOrdersLinksSourceModifiedDateLineItemsTaxRateRef struct {
 	Name *string `json:"name,omitempty"`
 }
 
-type ListSalesOrdersLinksSourceModifiedDateLineItemsTracking struct {
+type ListSalesOrders200ApplicationJSONSourceModifiedDateLineItemsTracking struct {
 	RecordRefs []string `json:"recordRefs,omitempty"`
 }
 
-type ListSalesOrdersLinksSourceModifiedDateLineItems struct {
+type ListSalesOrders200ApplicationJSONSourceModifiedDateLineItems struct {
 	// Reference to the account to which the line item is linked.
-	AccountRef *ListSalesOrdersLinksSourceModifiedDateLineItemsAccountRef `json:"accountRef,omitempty"`
+	AccountRef *ListSalesOrders200ApplicationJSONSourceModifiedDateLineItemsAccountRef `json:"accountRef,omitempty"`
 	// Description of the goods or services that have been ordered.
 	Description *string `json:"description,omitempty"`
 	// Value of any discounts applied.
@@ -96,7 +105,7 @@ type ListSalesOrdersLinksSourceModifiedDateLineItems struct {
 	// Percentage rate (from 0 to 100) of any discounts applied to the unit amount.
 	DiscountPercentage *float64 `json:"discountPercentage,omitempty"`
 	// Reference to the product or inventory item to which the line item is linked.
-	ItemRef *ListSalesOrdersLinksSourceModifiedDateLineItemsItemRef `json:"itemRef,omitempty"`
+	ItemRef *ListSalesOrders200ApplicationJSONSourceModifiedDateLineItemsItemRef `json:"itemRef,omitempty"`
 	// Number of units that have been ordered.
 	Quantity *float64 `json:"quantity,omitempty"`
 	// Amount of the line, inclusive of discounts but exclusive of tax.
@@ -104,29 +113,48 @@ type ListSalesOrdersLinksSourceModifiedDateLineItems struct {
 	// Amount of tax for the line.
 	TaxAmount *float64 `json:"taxAmount,omitempty"`
 	// Reference to the tax rate to which the line item is linked.
-	TaxRateRef *ListSalesOrdersLinksSourceModifiedDateLineItemsTaxRateRef `json:"taxRateRef,omitempty"`
+	TaxRateRef *ListSalesOrders200ApplicationJSONSourceModifiedDateLineItemsTaxRateRef `json:"taxRateRef,omitempty"`
 	// Total amount of the line, inclusive of discounts and tax.
-	TotalAmount *float64                                                 `json:"totalAmount,omitempty"`
-	Tracking    *ListSalesOrdersLinksSourceModifiedDateLineItemsTracking `json:"tracking,omitempty"`
+	TotalAmount *float64                                                              `json:"totalAmount,omitempty"`
+	Tracking    *ListSalesOrders200ApplicationJSONSourceModifiedDateLineItemsTracking `json:"tracking,omitempty"`
 	// Price of each unit.
 	UnitAmount *float64 `json:"unitAmount,omitempty"`
 }
 
-type ListSalesOrdersLinksSourceModifiedDateMetadata struct {
+type ListSalesOrders200ApplicationJSONSourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
-// ListSalesOrdersLinksSourceModifiedDateShipToAddressTypeEnum - Type of the address.
-type ListSalesOrdersLinksSourceModifiedDateShipToAddressTypeEnum string
+// ListSalesOrders200ApplicationJSONSourceModifiedDateShipToAddressTypeEnum - Type of the address.
+type ListSalesOrders200ApplicationJSONSourceModifiedDateShipToAddressTypeEnum string
 
 const (
-	ListSalesOrdersLinksSourceModifiedDateShipToAddressTypeEnumUnknown  ListSalesOrdersLinksSourceModifiedDateShipToAddressTypeEnum = "Unknown"
-	ListSalesOrdersLinksSourceModifiedDateShipToAddressTypeEnumBilling  ListSalesOrdersLinksSourceModifiedDateShipToAddressTypeEnum = "Billing"
-	ListSalesOrdersLinksSourceModifiedDateShipToAddressTypeEnumDelivery ListSalesOrdersLinksSourceModifiedDateShipToAddressTypeEnum = "Delivery"
+	ListSalesOrders200ApplicationJSONSourceModifiedDateShipToAddressTypeEnumUnknown  ListSalesOrders200ApplicationJSONSourceModifiedDateShipToAddressTypeEnum = "Unknown"
+	ListSalesOrders200ApplicationJSONSourceModifiedDateShipToAddressTypeEnumBilling  ListSalesOrders200ApplicationJSONSourceModifiedDateShipToAddressTypeEnum = "Billing"
+	ListSalesOrders200ApplicationJSONSourceModifiedDateShipToAddressTypeEnumDelivery ListSalesOrders200ApplicationJSONSourceModifiedDateShipToAddressTypeEnum = "Delivery"
 )
 
-// ListSalesOrdersLinksSourceModifiedDateShipToAddress - Delivery address for any goods that have been ordered.
-type ListSalesOrdersLinksSourceModifiedDateShipToAddress struct {
+func (e *ListSalesOrders200ApplicationJSONSourceModifiedDateShipToAddressTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Billing":
+		fallthrough
+	case "Delivery":
+		*e = ListSalesOrders200ApplicationJSONSourceModifiedDateShipToAddressTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListSalesOrders200ApplicationJSONSourceModifiedDateShipToAddressTypeEnum: %s", s)
+	}
+}
+
+// ListSalesOrders200ApplicationJSONSourceModifiedDateShipToAddress - Delivery address for any goods that have been ordered.
+type ListSalesOrders200ApplicationJSONSourceModifiedDateShipToAddress struct {
 	// City of the customer address.
 	City *string `json:"city,omitempty"`
 	// Country of the customer address.
@@ -140,11 +168,11 @@ type ListSalesOrdersLinksSourceModifiedDateShipToAddress struct {
 	// Region of the customer address.
 	Region *string `json:"region,omitempty"`
 	// Type of the address.
-	Type ListSalesOrdersLinksSourceModifiedDateShipToAddressTypeEnum `json:"type"`
+	Type ListSalesOrders200ApplicationJSONSourceModifiedDateShipToAddressTypeEnum `json:"type"`
 }
 
-// ListSalesOrdersLinksSourceModifiedDateShipToContact - Details of the named contact at the delivery address.
-type ListSalesOrdersLinksSourceModifiedDateShipToContact struct {
+// ListSalesOrders200ApplicationJSONSourceModifiedDateShipToContact - Details of the named contact at the delivery address.
+type ListSalesOrders200ApplicationJSONSourceModifiedDateShipToContact struct {
 	// Email address of the contact at the delivery address.
 	Email *string `json:"email,omitempty"`
 	// Name of the contact at the delivery address.
@@ -153,33 +181,55 @@ type ListSalesOrdersLinksSourceModifiedDateShipToContact struct {
 	Phone *string `json:"phone,omitempty"`
 }
 
-// ListSalesOrdersLinksSourceModifiedDateShipTo - Delivery details for any goods that have been ordered.
-type ListSalesOrdersLinksSourceModifiedDateShipTo struct {
+// ListSalesOrders200ApplicationJSONSourceModifiedDateShipTo - Delivery details for any goods that have been ordered.
+type ListSalesOrders200ApplicationJSONSourceModifiedDateShipTo struct {
 	// Delivery address for any goods that have been ordered.
-	Address *ListSalesOrdersLinksSourceModifiedDateShipToAddress `json:"address,omitempty"`
+	Address *ListSalesOrders200ApplicationJSONSourceModifiedDateShipToAddress `json:"address,omitempty"`
 	// Details of the named contact at the delivery address.
-	Contact *ListSalesOrdersLinksSourceModifiedDateShipToContact `json:"contact,omitempty"`
+	Contact *ListSalesOrders200ApplicationJSONSourceModifiedDateShipToContact `json:"contact,omitempty"`
 }
 
-// ListSalesOrdersLinksSourceModifiedDateStatusEnum - Current state of the sales order.
-type ListSalesOrdersLinksSourceModifiedDateStatusEnum string
+// ListSalesOrders200ApplicationJSONSourceModifiedDateStatusEnum - Current state of the sales order.
+type ListSalesOrders200ApplicationJSONSourceModifiedDateStatusEnum string
 
 const (
-	ListSalesOrdersLinksSourceModifiedDateStatusEnumUnknown ListSalesOrdersLinksSourceModifiedDateStatusEnum = "Unknown"
-	ListSalesOrdersLinksSourceModifiedDateStatusEnumDraft   ListSalesOrdersLinksSourceModifiedDateStatusEnum = "Draft"
-	ListSalesOrdersLinksSourceModifiedDateStatusEnumOpen    ListSalesOrdersLinksSourceModifiedDateStatusEnum = "Open"
-	ListSalesOrdersLinksSourceModifiedDateStatusEnumClosed  ListSalesOrdersLinksSourceModifiedDateStatusEnum = "Closed"
-	ListSalesOrdersLinksSourceModifiedDateStatusEnumVoid    ListSalesOrdersLinksSourceModifiedDateStatusEnum = "Void"
+	ListSalesOrders200ApplicationJSONSourceModifiedDateStatusEnumUnknown ListSalesOrders200ApplicationJSONSourceModifiedDateStatusEnum = "Unknown"
+	ListSalesOrders200ApplicationJSONSourceModifiedDateStatusEnumDraft   ListSalesOrders200ApplicationJSONSourceModifiedDateStatusEnum = "Draft"
+	ListSalesOrders200ApplicationJSONSourceModifiedDateStatusEnumOpen    ListSalesOrders200ApplicationJSONSourceModifiedDateStatusEnum = "Open"
+	ListSalesOrders200ApplicationJSONSourceModifiedDateStatusEnumClosed  ListSalesOrders200ApplicationJSONSourceModifiedDateStatusEnum = "Closed"
+	ListSalesOrders200ApplicationJSONSourceModifiedDateStatusEnumVoid    ListSalesOrders200ApplicationJSONSourceModifiedDateStatusEnum = "Void"
 )
 
-// ListSalesOrdersLinksSourceModifiedDate - > View the coverage for sales orders in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=salesOrders" target="_blank">Data coverage explorer</a>.
+func (e *ListSalesOrders200ApplicationJSONSourceModifiedDateStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Draft":
+		fallthrough
+	case "Open":
+		fallthrough
+	case "Closed":
+		fallthrough
+	case "Void":
+		*e = ListSalesOrders200ApplicationJSONSourceModifiedDateStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListSalesOrders200ApplicationJSONSourceModifiedDateStatusEnum: %s", s)
+	}
+}
+
+// ListSalesOrders200ApplicationJSONSourceModifiedDate - > View the coverage for sales orders in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=salesOrders" target="_blank">Data coverage explorer</a>.
 //
 // ## Overview
 //
 // A sales order represents a customer's intention to purchase goods or services from a seller and usually includes information such as the expected delivery date and shipping details. This information can be used to provide visibility on a business's expected receivables and to track sales through the full procurement process.
 //
 // A sales order is typically converted to an [invoice](https://docs.codat.io/accounting-api#/schemas/Invoice) after approval.
-type ListSalesOrdersLinksSourceModifiedDate struct {
+type ListSalesOrders200ApplicationJSONSourceModifiedDate struct {
 	// Currency of the sales order.
 	Currency *string `json:"currency,omitempty"`
 	// Rate to convert the total amount of the payment into the base currency for the company at the time of the payment.
@@ -209,30 +259,30 @@ type ListSalesOrdersLinksSourceModifiedDate struct {
 	// A customer-supplied identifier for the purchase order in the customer's system.
 	CustomerPurchaseOrderNumber *string `json:"customerPurchaseOrderNumber,omitempty"`
 	// The customer that the sales order is recorded against in the accounting system.
-	CustomerRef *ListSalesOrdersLinksSourceModifiedDateCustomerRef `json:"customerRef,omitempty"`
+	CustomerRef *ListSalesOrders200ApplicationJSONSourceModifiedDateCustomerRef `json:"customerRef,omitempty"`
 	// Expected delivery date for any goods that have been ordered.
-	ExpectedDeliveryDate *time.Time `json:"expectedDeliveryDate,omitempty"`
+	ExpectedDeliveryDate *string `json:"expectedDeliveryDate,omitempty"`
 	// Identifier for the sales order, unique for the company in the accounting platform.
 	ID *string `json:"id,omitempty"`
 	// If the sales order is converted to an invoice, or will be in future, the invoicingStatus field indicates the current stage of the invoicing process.
-	InvoicingStatus *ListSalesOrdersLinksSourceModifiedDateInvoicingStatusEnum `json:"invoicingStatus,omitempty"`
+	InvoicingStatus *ListSalesOrders200ApplicationJSONSourceModifiedDateInvoicingStatusEnum `json:"invoicingStatus,omitempty"`
 	// Date of the sales order as recorded in the accounting platform.
-	IssueDate *time.Time `json:"issueDate,omitempty"`
+	IssueDate *string `json:"issueDate,omitempty"`
 	// An array of line items.
-	LineItems []ListSalesOrdersLinksSourceModifiedDateLineItems `json:"lineItems,omitempty"`
-	Metadata  *ListSalesOrdersLinksSourceModifiedDateMetadata   `json:"metadata,omitempty"`
+	LineItems []ListSalesOrders200ApplicationJSONSourceModifiedDateLineItems `json:"lineItems,omitempty"`
+	Metadata  *ListSalesOrders200ApplicationJSONSourceModifiedDateMetadata   `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Any additional information associated with the sales order.
 	Note *string `json:"note,omitempty"`
 	// Friendly reference for the sales order, commonly generated by the accounting platform.
 	SalesOrderNumber *string `json:"salesOrderNumber,omitempty"`
 	// Delivery details for any goods that have been ordered.
-	ShipTo *ListSalesOrdersLinksSourceModifiedDateShipTo `json:"shipTo,omitempty"`
+	ShipTo *ListSalesOrders200ApplicationJSONSourceModifiedDateShipTo `json:"shipTo,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Current state of the sales order.
-	Status *ListSalesOrdersLinksSourceModifiedDateStatusEnum `json:"status,omitempty"`
+	Status *ListSalesOrders200ApplicationJSONSourceModifiedDateStatusEnum `json:"status,omitempty"`
 	// Total amount of the sales order, including discounts but excluding tax.
 	SubTotal *float64 `json:"subTotal,omitempty"`
 	// Total amount of the sales order, including discounts and tax.
@@ -244,13 +294,13 @@ type ListSalesOrdersLinksSourceModifiedDate struct {
 	TotalTaxAmount *float64 `json:"totalTaxAmount,omitempty"`
 }
 
-// ListSalesOrdersLinks - Codat's Paging Model
-type ListSalesOrdersLinks struct {
-	Links        ListSalesOrdersLinksLinks                `json:"_links"`
-	PageNumber   int64                                    `json:"pageNumber"`
-	PageSize     int64                                    `json:"pageSize"`
-	Results      []ListSalesOrdersLinksSourceModifiedDate `json:"results,omitempty"`
-	TotalResults int64                                    `json:"totalResults"`
+// ListSalesOrders200ApplicationJSON - Success
+type ListSalesOrders200ApplicationJSON struct {
+	Links        ListSalesOrders200ApplicationJSONLinks                `json:"_links"`
+	PageNumber   int64                                                 `json:"pageNumber"`
+	PageSize     int64                                                 `json:"pageSize"`
+	Results      []ListSalesOrders200ApplicationJSONSourceModifiedDate `json:"results,omitempty"`
+	TotalResults int64                                                 `json:"totalResults"`
 }
 
 type ListSalesOrdersResponse struct {
@@ -258,5 +308,5 @@ type ListSalesOrdersResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// Success
-	Links *ListSalesOrdersLinks
+	ListSalesOrders200ApplicationJSONObject *ListSalesOrders200ApplicationJSON
 }

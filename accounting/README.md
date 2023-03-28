@@ -28,14 +28,14 @@ func main() {
         }),
     )
 
-    req := operations.GetCreateUpdateAccountTransactionsModelRequest{
+    req := operations.GetAccountTransactionRequest{
         AccountTransactionID: "unde",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     }
 
     ctx := context.Background()
-    res, err := s.AccountTransactions.GetCreateUpdateAccountTransactionsModel(ctx, req)
+    res, err := s.AccountTransactions.GetAccountTransaction(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
@@ -53,7 +53,7 @@ func main() {
 
 ### AccountTransactions
 
-* `GetCreateUpdateAccountTransactionsModel` - Get account transaction
+* `GetAccountTransaction` - Get account transaction
 * `ListAccountTransactions` - List account transactions
 
 ### Accounts

@@ -3,6 +3,8 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
@@ -34,6 +36,34 @@ const (
 	GetBankAccountPushOptionsPushOptionPushOptionPropertyPushOptionChoiceOptionTypeEnumMultiPart GetBankAccountPushOptionsPushOptionPushOptionPropertyPushOptionChoiceOptionTypeEnum = "MultiPart"
 )
 
+func (e *GetBankAccountPushOptionsPushOptionPushOptionPropertyPushOptionChoiceOptionTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Array":
+		fallthrough
+	case "Object":
+		fallthrough
+	case "String":
+		fallthrough
+	case "Number":
+		fallthrough
+	case "Boolean":
+		fallthrough
+	case "DateTime":
+		fallthrough
+	case "File":
+		fallthrough
+	case "MultiPart":
+		*e = GetBankAccountPushOptionsPushOptionPushOptionPropertyPushOptionChoiceOptionTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetBankAccountPushOptionsPushOptionPushOptionPropertyPushOptionChoiceOptionTypeEnum: %s", s)
+	}
+}
+
 type GetBankAccountPushOptionsPushOptionPushOptionPropertyPushOptionChoice struct {
 	Description *string                                                                              `json:"description,omitempty"`
 	DisplayName *string                                                                              `json:"displayName,omitempty"`
@@ -55,6 +85,34 @@ const (
 	GetBankAccountPushOptionsPushOptionPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnumFile      GetBankAccountPushOptionsPushOptionPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum = "File"
 	GetBankAccountPushOptionsPushOptionPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnumMultiPart GetBankAccountPushOptionsPushOptionPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum = "MultiPart"
 )
+
+func (e *GetBankAccountPushOptionsPushOptionPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Array":
+		fallthrough
+	case "Object":
+		fallthrough
+	case "String":
+		fallthrough
+	case "Number":
+		fallthrough
+	case "Boolean":
+		fallthrough
+	case "DateTime":
+		fallthrough
+	case "File":
+		fallthrough
+	case "MultiPart":
+		*e = GetBankAccountPushOptionsPushOptionPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetBankAccountPushOptionsPushOptionPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum: %s", s)
+	}
+}
 
 type GetBankAccountPushOptionsPushOptionPushOptionPropertyPushOptionPropertyPushOptionChoice struct {
 	Description *string                                                                                                `json:"description,omitempty"`
@@ -78,6 +136,34 @@ const (
 	GetBankAccountPushOptionsPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnumMultiPart GetBankAccountPushOptionsPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum = "MultiPart"
 )
 
+func (e *GetBankAccountPushOptionsPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Array":
+		fallthrough
+	case "Object":
+		fallthrough
+	case "String":
+		fallthrough
+	case "Number":
+		fallthrough
+	case "Boolean":
+		fallthrough
+	case "DateTime":
+		fallthrough
+	case "File":
+		fallthrough
+	case "MultiPart":
+		*e = GetBankAccountPushOptionsPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetBankAccountPushOptionsPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum: %s", s)
+	}
+}
+
 type GetBankAccountPushOptionsPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoice struct {
 	Description *string                                                                                                                  `json:"description,omitempty"`
 	DisplayName *string                                                                                                                  `json:"displayName,omitempty"`
@@ -100,6 +186,34 @@ const (
 	GetBankAccountPushOptionsPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnumMultiPart GetBankAccountPushOptionsPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum = "MultiPart"
 )
 
+func (e *GetBankAccountPushOptionsPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Array":
+		fallthrough
+	case "Object":
+		fallthrough
+	case "String":
+		fallthrough
+	case "Number":
+		fallthrough
+	case "Boolean":
+		fallthrough
+	case "DateTime":
+		fallthrough
+	case "File":
+		fallthrough
+	case "MultiPart":
+		*e = GetBankAccountPushOptionsPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetBankAccountPushOptionsPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum: %s", s)
+	}
+}
+
 type GetBankAccountPushOptionsPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoice struct {
 	Description *string                                                                                                                                    `json:"description,omitempty"`
 	DisplayName *string                                                                                                                                    `json:"displayName,omitempty"`
@@ -121,6 +235,34 @@ const (
 	GetBankAccountPushOptionsPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnumFile      GetBankAccountPushOptionsPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum = "File"
 	GetBankAccountPushOptionsPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnumMultiPart GetBankAccountPushOptionsPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum = "MultiPart"
 )
+
+func (e *GetBankAccountPushOptionsPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Array":
+		fallthrough
+	case "Object":
+		fallthrough
+	case "String":
+		fallthrough
+	case "Number":
+		fallthrough
+	case "Boolean":
+		fallthrough
+	case "DateTime":
+		fallthrough
+	case "File":
+		fallthrough
+	case "MultiPart":
+		*e = GetBankAccountPushOptionsPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetBankAccountPushOptionsPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum: %s", s)
+	}
+}
 
 type GetBankAccountPushOptionsPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushValidationInfoPushFieldValidation struct {
 	Details string  `json:"details"`
@@ -154,6 +296,34 @@ const (
 	GetBankAccountPushOptionsPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnumFile      GetBankAccountPushOptionsPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum = "File"
 	GetBankAccountPushOptionsPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnumMultiPart GetBankAccountPushOptionsPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum = "MultiPart"
 )
+
+func (e *GetBankAccountPushOptionsPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Array":
+		fallthrough
+	case "Object":
+		fallthrough
+	case "String":
+		fallthrough
+	case "Number":
+		fallthrough
+	case "Boolean":
+		fallthrough
+	case "DateTime":
+		fallthrough
+	case "File":
+		fallthrough
+	case "MultiPart":
+		*e = GetBankAccountPushOptionsPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetBankAccountPushOptionsPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum: %s", s)
+	}
+}
 
 type GetBankAccountPushOptionsPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushValidationInfoPushFieldValidation struct {
 	Details string  `json:"details"`
@@ -189,6 +359,34 @@ const (
 	GetBankAccountPushOptionsPushOptionPushOptionPropertyPushOptionPropertyOptionTypeEnumMultiPart GetBankAccountPushOptionsPushOptionPushOptionPropertyPushOptionPropertyOptionTypeEnum = "MultiPart"
 )
 
+func (e *GetBankAccountPushOptionsPushOptionPushOptionPropertyPushOptionPropertyOptionTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Array":
+		fallthrough
+	case "Object":
+		fallthrough
+	case "String":
+		fallthrough
+	case "Number":
+		fallthrough
+	case "Boolean":
+		fallthrough
+	case "DateTime":
+		fallthrough
+	case "File":
+		fallthrough
+	case "MultiPart":
+		*e = GetBankAccountPushOptionsPushOptionPushOptionPropertyPushOptionPropertyOptionTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetBankAccountPushOptionsPushOptionPushOptionPropertyPushOptionPropertyOptionTypeEnum: %s", s)
+	}
+}
+
 type GetBankAccountPushOptionsPushOptionPushOptionPropertyPushOptionPropertyPushValidationInfoPushFieldValidation struct {
 	Details string  `json:"details"`
 	Field   *string `json:"field,omitempty"`
@@ -223,6 +421,34 @@ const (
 	GetBankAccountPushOptionsPushOptionPushOptionPropertyOptionTypeEnumMultiPart GetBankAccountPushOptionsPushOptionPushOptionPropertyOptionTypeEnum = "MultiPart"
 )
 
+func (e *GetBankAccountPushOptionsPushOptionPushOptionPropertyOptionTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Array":
+		fallthrough
+	case "Object":
+		fallthrough
+	case "String":
+		fallthrough
+	case "Number":
+		fallthrough
+	case "Boolean":
+		fallthrough
+	case "DateTime":
+		fallthrough
+	case "File":
+		fallthrough
+	case "MultiPart":
+		*e = GetBankAccountPushOptionsPushOptionPushOptionPropertyOptionTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetBankAccountPushOptionsPushOptionPushOptionPropertyOptionTypeEnum: %s", s)
+	}
+}
+
 type GetBankAccountPushOptionsPushOptionPushOptionPropertyPushValidationInfoPushFieldValidation struct {
 	Details string  `json:"details"`
 	Field   *string `json:"field,omitempty"`
@@ -256,6 +482,34 @@ const (
 	GetBankAccountPushOptionsPushOptionOptionTypeEnumFile      GetBankAccountPushOptionsPushOptionOptionTypeEnum = "File"
 	GetBankAccountPushOptionsPushOptionOptionTypeEnumMultiPart GetBankAccountPushOptionsPushOptionOptionTypeEnum = "MultiPart"
 )
+
+func (e *GetBankAccountPushOptionsPushOptionOptionTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Array":
+		fallthrough
+	case "Object":
+		fallthrough
+	case "String":
+		fallthrough
+	case "Number":
+		fallthrough
+	case "Boolean":
+		fallthrough
+	case "DateTime":
+		fallthrough
+	case "File":
+		fallthrough
+	case "MultiPart":
+		*e = GetBankAccountPushOptionsPushOptionOptionTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetBankAccountPushOptionsPushOptionOptionTypeEnum: %s", s)
+	}
+}
 
 // GetBankAccountPushOptionsPushOption - Success
 type GetBankAccountPushOptionsPushOption struct {

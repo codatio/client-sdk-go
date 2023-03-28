@@ -3,8 +3,9 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 type ListJournalsRequest struct {
@@ -19,50 +20,56 @@ type ListJournalsRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-type ListJournalsLinksLinksCurrent struct {
-	Href string `json:"href"`
-}
-
-type ListJournalsLinksLinksNext struct {
+type ListJournals200ApplicationJSONLinksHypertextReference struct {
 	Href *string `json:"href,omitempty"`
 }
 
-type ListJournalsLinksLinksPrevious struct {
-	Href *string `json:"href,omitempty"`
+type ListJournals200ApplicationJSONLinks struct {
+	Current  ListJournals200ApplicationJSONLinksHypertextReference  `json:"current"`
+	Next     *ListJournals200ApplicationJSONLinksHypertextReference `json:"next,omitempty"`
+	Previous *ListJournals200ApplicationJSONLinksHypertextReference `json:"previous,omitempty"`
+	Self     ListJournals200ApplicationJSONLinksHypertextReference  `json:"self"`
 }
 
-type ListJournalsLinksLinksSelf struct {
-	Href string `json:"href"`
-}
-
-type ListJournalsLinksLinks struct {
-	Current  ListJournalsLinksLinksCurrent   `json:"current"`
-	Next     *ListJournalsLinksLinksNext     `json:"next,omitempty"`
-	Previous *ListJournalsLinksLinksPrevious `json:"previous,omitempty"`
-	Self     ListJournalsLinksLinksSelf      `json:"self"`
-}
-
-// ListJournalsLinksSourceModifiedDateMetadataMetadata - Additional information about the entity
-type ListJournalsLinksSourceModifiedDateMetadataMetadata struct {
+// ListJournals200ApplicationJSONSourceModifiedDateMetadataMetadata - Additional information about the entity
+type ListJournals200ApplicationJSONSourceModifiedDateMetadataMetadata struct {
 	// Indicates whether the record has been deleted in the third-party system this record originiated from
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
-type ListJournalsLinksSourceModifiedDateMetadata struct {
+type ListJournals200ApplicationJSONSourceModifiedDateMetadata struct {
 	// Additional information about the entity
-	Metadata *ListJournalsLinksSourceModifiedDateMetadataMetadata `json:"metadata,omitempty"`
+	Metadata *ListJournals200ApplicationJSONSourceModifiedDateMetadataMetadata `json:"metadata,omitempty"`
 }
 
-// ListJournalsLinksSourceModifiedDateStatusEnum - Current journal status.
-type ListJournalsLinksSourceModifiedDateStatusEnum string
+// ListJournals200ApplicationJSONSourceModifiedDateStatusEnum - Current journal status.
+type ListJournals200ApplicationJSONSourceModifiedDateStatusEnum string
 
 const (
-	ListJournalsLinksSourceModifiedDateStatusEnumUnknown  ListJournalsLinksSourceModifiedDateStatusEnum = "Unknown"
-	ListJournalsLinksSourceModifiedDateStatusEnumActive   ListJournalsLinksSourceModifiedDateStatusEnum = "Active"
-	ListJournalsLinksSourceModifiedDateStatusEnumArchived ListJournalsLinksSourceModifiedDateStatusEnum = "Archived"
+	ListJournals200ApplicationJSONSourceModifiedDateStatusEnumUnknown  ListJournals200ApplicationJSONSourceModifiedDateStatusEnum = "Unknown"
+	ListJournals200ApplicationJSONSourceModifiedDateStatusEnumActive   ListJournals200ApplicationJSONSourceModifiedDateStatusEnum = "Active"
+	ListJournals200ApplicationJSONSourceModifiedDateStatusEnumArchived ListJournals200ApplicationJSONSourceModifiedDateStatusEnum = "Archived"
 )
 
-// ListJournalsLinksSourceModifiedDate - > **Language tip:** For line items, or individual transactions, of a company's financial documents, refer to the [Journal entries](https://docs.codat.io/accounting-api#/schemas/JournalEntry) data type
+func (e *ListJournals200ApplicationJSONSourceModifiedDateStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Active":
+		fallthrough
+	case "Archived":
+		*e = ListJournals200ApplicationJSONSourceModifiedDateStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListJournals200ApplicationJSONSourceModifiedDateStatusEnum: %s", s)
+	}
+}
+
+// ListJournals200ApplicationJSONSourceModifiedDate - > **Language tip:** For line items, or individual transactions, of a company's financial documents, refer to the [Journal entries](https://docs.codat.io/accounting-api#/schemas/JournalEntry) data type
 //
 // > View the coverage for journals in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journals" target="_blank">Data coverage explorer</a>.
 //
@@ -84,18 +91,18 @@ const (
 // - [Oracle NetSuite](https://docs.codat.io/integrations/accounting/netsuite/accounting-netsuite) (optional)
 //
 // > When pushing journal entries to an accounting platform that doesn’t support multiple journals (multi-book accounting), the entries will be linked to the platform-generic journal. The Journals data type will only include one object.
-type ListJournalsLinksSourceModifiedDate struct {
+type ListJournals200ApplicationJSONSourceModifiedDate struct {
 	// Journal creation date.
-	CreatedOn *time.Time `json:"createdOn,omitempty"`
+	CreatedOn *string `json:"createdOn,omitempty"`
 	// If the journal has child journals, this value is true. If it doesn’t, it is false.
 	HasChildren *bool `json:"hasChildren,omitempty"`
 	// Journal ID.
 	ID *string `json:"id,omitempty"`
 	// Native journal number or code.
-	JournalCode *string                                      `json:"journalCode,omitempty"`
-	Metadata    *ListJournalsLinksSourceModifiedDateMetadata `json:"metadata,omitempty"`
+	JournalCode *string                                                   `json:"journalCode,omitempty"`
+	Metadata    *ListJournals200ApplicationJSONSourceModifiedDateMetadata `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Journal name.
 	// The maximum length for a journal name is 256 characters. All characters above that number will be truncated.
 	Name *string `json:"name,omitempty"`
@@ -103,20 +110,20 @@ type ListJournalsLinksSourceModifiedDate struct {
 	// If the journal is a parent journal, this value is not present.
 	ParentID *string `json:"parentId,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Current journal status.
-	Status *ListJournalsLinksSourceModifiedDateStatusEnum `json:"status,omitempty"`
+	Status *ListJournals200ApplicationJSONSourceModifiedDateStatusEnum `json:"status,omitempty"`
 	// The type of the journal.
 	Type *string `json:"type,omitempty"`
 }
 
-// ListJournalsLinks - Codat's Paging Model
-type ListJournalsLinks struct {
-	Links        ListJournalsLinksLinks                `json:"_links"`
-	PageNumber   int64                                 `json:"pageNumber"`
-	PageSize     int64                                 `json:"pageSize"`
-	Results      []ListJournalsLinksSourceModifiedDate `json:"results,omitempty"`
-	TotalResults int64                                 `json:"totalResults"`
+// ListJournals200ApplicationJSON - Success
+type ListJournals200ApplicationJSON struct {
+	Links        ListJournals200ApplicationJSONLinks                `json:"_links"`
+	PageNumber   int64                                              `json:"pageNumber"`
+	PageSize     int64                                              `json:"pageSize"`
+	Results      []ListJournals200ApplicationJSONSourceModifiedDate `json:"results,omitempty"`
+	TotalResults int64                                              `json:"totalResults"`
 }
 
 type ListJournalsResponse struct {
@@ -124,5 +131,5 @@ type ListJournalsResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// Success
-	Links *ListJournalsLinks
+	ListJournals200ApplicationJSONObject *ListJournals200ApplicationJSON
 }

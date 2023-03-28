@@ -4,7 +4,6 @@ package operations
 
 import (
 	"net/http"
-	"time"
 )
 
 type GetDirectIncomeRequest struct {
@@ -81,12 +80,13 @@ type GetDirectIncomeSourceModifiedDateLineItems struct {
 }
 
 type GetDirectIncomeSourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
 type GetDirectIncomeSourceModifiedDatePaymentAllocationsAllocation struct {
 	// The date the payment was allocated.
-	AllocatedOnDate *time.Time `json:"allocatedOnDate,omitempty"`
+	AllocatedOnDate *string `json:"allocatedOnDate,omitempty"`
 	// The currency of the transaction.
 	Currency *string `json:"currency,omitempty"`
 	// Rate to convert the total amount of the payment into the base currency for the company at the time of the payment.
@@ -159,7 +159,7 @@ type GetDirectIncomeSourceModifiedDatePaymentAllocationsPayment struct {
 	// Notes attached to the allocated payment.
 	Note *string `json:"note,omitempty"`
 	// The date the payment was paid.
-	PaidOnDate *time.Time `json:"paidOnDate,omitempty"`
+	PaidOnDate *string `json:"paidOnDate,omitempty"`
 	// Reference to the allocated payment.
 	Reference *string `json:"reference,omitempty"`
 	// Total amount that was paid.
@@ -227,18 +227,18 @@ type GetDirectIncomeSourceModifiedDate struct {
 	// Identifier of the direct income, unique for the company.
 	ID *string `json:"id,omitempty"`
 	// The date of the direct income as recorded in the accounting platform.
-	IssueDate time.Time `json:"issueDate"`
+	IssueDate string `json:"issueDate"`
 	// An array of line items.
 	LineItems []GetDirectIncomeSourceModifiedDateLineItems `json:"lineItems"`
 	Metadata  *GetDirectIncomeSourceModifiedDateMetadata   `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate       *time.Time                                            `json:"modifiedDate,omitempty"`
+	ModifiedDate       *string                                               `json:"modifiedDate,omitempty"`
 	Note               *string                                               `json:"note,omitempty"`
 	PaymentAllocations []GetDirectIncomeSourceModifiedDatePaymentAllocations `json:"paymentAllocations"`
 	// User-friendly reference for the direct income.
 	Reference *string `json:"reference,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// The total amount of the direct incomes, excluding any taxes.
 	SubTotal float64 `json:"subTotal"`
 	// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.

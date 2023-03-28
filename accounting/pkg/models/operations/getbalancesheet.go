@@ -4,14 +4,13 @@ package operations
 
 import (
 	"net/http"
-	"time"
 )
 
 type GetBalanceSheetRequest struct {
-	CompanyID        string     `pathParam:"style=simple,explode=false,name=companyId"`
-	PeriodLength     int        `queryParam:"style=form,explode=true,name=periodLength"`
-	PeriodsToCompare int        `queryParam:"style=form,explode=true,name=periodsToCompare"`
-	StartMonth       *time.Time `queryParam:"style=form,explode=true,name=startMonth"`
+	CompanyID        string  `pathParam:"style=simple,explode=false,name=companyId"`
+	PeriodLength     int     `queryParam:"style=form,explode=true,name=periodLength"`
+	PeriodsToCompare int     `queryParam:"style=form,explode=true,name=periodsToCompare"`
+	StartMonth       *string `queryParam:"style=form,explode=true,name=startMonth"`
 }
 
 type GetBalanceSheet200ApplicationJSONBalanceSheetReportLineReportLineReportLineReportLine struct {
@@ -79,7 +78,7 @@ type GetBalanceSheet200ApplicationJSONBalanceSheet struct {
 	// ReportLines for assets. For example, fixed and current assets.
 	Assets *GetBalanceSheet200ApplicationJSONBalanceSheetReportLine `json:"assets,omitempty"`
 	// Point in time when a snapshot of a company's financial position is taken.
-	Date *time.Time `json:"date,omitempty"`
+	Date *string `json:"date,omitempty"`
 	// ReportLines for equities. For example, retained and current year earnings. See below.
 	Equity *GetBalanceSheet200ApplicationJSONBalanceSheetReportLine `json:"equity,omitempty"`
 	// ReportLines for liabilities. For example, current liabilities.
@@ -93,9 +92,9 @@ type GetBalanceSheet200ApplicationJSON struct {
 	// Currency of the balance sheet.
 	Currency string `json:"currency"`
 	// Earliest available monthly report data.
-	EarliestAvailableMonth *time.Time `json:"earliestAvailableMonth,omitempty"`
+	EarliestAvailableMonth *string `json:"earliestAvailableMonth,omitempty"`
 	// Most recent available monthly report data.
-	MostRecentAvailableMonth *time.Time `json:"mostRecentAvailableMonth,omitempty"`
+	MostRecentAvailableMonth *string `json:"mostRecentAvailableMonth,omitempty"`
 	// An array of BalanceSheet reports.
 	Reports []GetBalanceSheet200ApplicationJSONBalanceSheet `json:"reports"`
 }

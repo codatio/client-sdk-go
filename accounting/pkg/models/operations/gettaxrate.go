@@ -3,8 +3,9 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 type GetTaxRateRequest struct {
@@ -19,6 +20,7 @@ type GetTaxRate200ApplicationJSONComponents struct {
 }
 
 type GetTaxRate200ApplicationJSONMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
@@ -29,6 +31,24 @@ const (
 	GetTaxRate200ApplicationJSONStatusEnumActive   GetTaxRate200ApplicationJSONStatusEnum = "Active"
 	GetTaxRate200ApplicationJSONStatusEnumArchived GetTaxRate200ApplicationJSONStatusEnum = "Archived"
 )
+
+func (e *GetTaxRate200ApplicationJSONStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Active":
+		fallthrough
+	case "Archived":
+		*e = GetTaxRate200ApplicationJSONStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetTaxRate200ApplicationJSONStatusEnum: %s", s)
+	}
+}
 
 // GetTaxRate200ApplicationJSONValidDataTypeLinks - When querying Codat's data model, some data types return `validDatatypeLinks` metadata in the JSON response. This indicates where that object can be used as a reference—a _valid link_—when creating or updating other data.
 //
@@ -97,14 +117,52 @@ type GetTaxRate200ApplicationJSONValidDataTypeLinks struct {
 // > A tax has two components. Both components have a rate of 10%, and one component is compound. In this case, there is a total tax rate of 20% but an effective tax rate of 21%. [Also see _Compound tax example_](#section-compound-tax-example).
 // > - For QuickBooks Online, Codat doesn't use compound rates. Instead, the calculated effective tax rate for each component is shown. This means that the effective and total rates are the same because the total tax rate is a sum of the component rates.
 type GetTaxRate200ApplicationJSON struct {
-	Code               *string                                          `json:"code,omitempty"`
-	Components         []GetTaxRate200ApplicationJSONComponents         `json:"components,omitempty"`
-	EffectiveTaxRate   *float64                                         `json:"effectiveTaxRate,omitempty"`
-	ID                 *string                                          `json:"id,omitempty"`
-	Metadata           *GetTaxRate200ApplicationJSONMetadata            `json:"metadata,omitempty"`
-	ModifiedDate       *time.Time                                       `json:"modifiedDate,omitempty"`
-	Name               *string                                          `json:"name,omitempty"`
-	SourceModifiedDate *time.Time                                       `json:"sourceModifiedDate,omitempty"`
+	Code             *string                                  `json:"code,omitempty"`
+	Components       []GetTaxRate200ApplicationJSONComponents `json:"components,omitempty"`
+	EffectiveTaxRate *float64                                 `json:"effectiveTaxRate,omitempty"`
+	ID               *string                                  `json:"id,omitempty"`
+	Metadata         *GetTaxRate200ApplicationJSONMetadata    `json:"metadata,omitempty"`
+	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
+	//
+	// ```
+	// 2020-10-08T22:40:50Z
+	// 2021-01-01T00:00:00
+	// ```
+	//
+	//
+	//
+	// When syncing data that contains `DateTime` fields from Codat, make sure you support the following cases when reading time information:
+	//
+	// - Coordinated Universal Time (UTC): `2021-11-15T06:00:00Z`
+	// - Unqualified local time: `2021-11-15T01:00:00`
+	// - UTC time offsets: `2021-11-15T01:00:00-05:00`
+	//
+	// > 📘 Time zones
+	// >
+	// > Not all dates from Codat will contain information about time zones.
+	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
+	Name         *string `json:"name,omitempty"`
+	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
+	//
+	// ```
+	// 2020-10-08T22:40:50Z
+	// 2021-01-01T00:00:00
+	// ```
+	//
+	//
+	//
+	// When syncing data that contains `DateTime` fields from Codat, make sure you support the following cases when reading time information:
+	//
+	// - Coordinated Universal Time (UTC): `2021-11-15T06:00:00Z`
+	// - Unqualified local time: `2021-11-15T01:00:00`
+	// - UTC time offsets: `2021-11-15T01:00:00-05:00`
+	//
+	// > 📘 Time zones
+	// >
+	// > Not all dates from Codat will contain information about time zones.
+	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
+	SourceModifiedDate *string                                          `json:"sourceModifiedDate,omitempty"`
 	Status             *GetTaxRate200ApplicationJSONStatusEnum          `json:"status,omitempty"`
 	TotalTaxRate       *float64                                         `json:"totalTaxRate,omitempty"`
 	ValidDatatypeLinks []GetTaxRate200ApplicationJSONValidDataTypeLinks `json:"validDatatypeLinks,omitempty"`

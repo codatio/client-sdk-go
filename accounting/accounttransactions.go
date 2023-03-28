@@ -31,9 +31,9 @@ func newAccountTransactions(defaultClient, securityClient HTTPClient, serverURL,
 	}
 }
 
-// GetCreateUpdateAccountTransactionsModel - Get account transaction
-// Get create/update account transactions model.
-func (s *accountTransactions) GetCreateUpdateAccountTransactionsModel(ctx context.Context, request operations.GetCreateUpdateAccountTransactionsModelRequest) (*operations.GetCreateUpdateAccountTransactionsModelResponse, error) {
+// GetAccountTransaction - Get account transaction
+// Gets the account transactions for a given company.Gets the specified account transaction for a given company and connection.
+func (s *accountTransactions) GetAccountTransaction(ctx context.Context, request operations.GetAccountTransactionRequest) (*operations.GetAccountTransactionResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/accountTransactions/{accountTransactionId}", request, nil)
 
@@ -55,7 +55,7 @@ func (s *accountTransactions) GetCreateUpdateAccountTransactionsModel(ctx contex
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetCreateUpdateAccountTransactionsModelResponse{
+	res := &operations.GetAccountTransactionResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -64,7 +64,7 @@ func (s *accountTransactions) GetCreateUpdateAccountTransactionsModel(ctx contex
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetCreateUpdateAccountTransactionsModelSourceModifiedDate
+			var out *operations.GetAccountTransactionSourceModifiedDate
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -113,12 +113,12 @@ func (s *accountTransactions) ListAccountTransactions(ctx context.Context, reque
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListAccountTransactionsLinks
+			var out *operations.ListAccountTransactions200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Links = out
+			res.ListAccountTransactions200ApplicationJSONObject = out
 		}
 	}
 

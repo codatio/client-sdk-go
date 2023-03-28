@@ -3,15 +3,16 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 type GetProfitAndLossRequest struct {
-	CompanyID        string     `pathParam:"style=simple,explode=false,name=companyId"`
-	PeriodLength     int        `queryParam:"style=form,explode=true,name=periodLength"`
-	PeriodsToCompare int        `queryParam:"style=form,explode=true,name=periodsToCompare"`
-	StartMonth       *time.Time `queryParam:"style=form,explode=true,name=startMonth"`
+	CompanyID        string  `pathParam:"style=simple,explode=false,name=companyId"`
+	PeriodLength     int     `queryParam:"style=form,explode=true,name=periodLength"`
+	PeriodsToCompare int     `queryParam:"style=form,explode=true,name=periodsToCompare"`
+	StartMonth       *string `queryParam:"style=form,explode=true,name=startMonth"`
 }
 
 // GetProfitAndLoss200ApplicationJSONReportBasisEnum - The basis of a report.
@@ -22,6 +23,24 @@ const (
 	GetProfitAndLoss200ApplicationJSONReportBasisEnumAccrual GetProfitAndLoss200ApplicationJSONReportBasisEnum = "Accrual"
 	GetProfitAndLoss200ApplicationJSONReportBasisEnumCash    GetProfitAndLoss200ApplicationJSONReportBasisEnum = "Cash"
 )
+
+func (e *GetProfitAndLoss200ApplicationJSONReportBasisEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Accrual":
+		fallthrough
+	case "Cash":
+		*e = GetProfitAndLoss200ApplicationJSONReportBasisEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetProfitAndLoss200ApplicationJSONReportBasisEnum: %s", s)
+	}
+}
 
 type GetProfitAndLoss200ApplicationJSONProfitAndLossReportReportLineReportLineReportLineReportLine struct {
 	// Identifier for the account, unique for the company in the accounting platform.
@@ -93,7 +112,7 @@ type GetProfitAndLoss200ApplicationJSONProfitAndLossReport struct {
 	// ReportLine items for expenses in the given date range.
 	Expenses *GetProfitAndLoss200ApplicationJSONProfitAndLossReportReportLine `json:"expenses,omitempty"`
 	// Date from which the report data begins.
-	FromDate *time.Time `json:"fromDate,omitempty"`
+	FromDate *string `json:"fromDate,omitempty"`
 	// Gross profit of the company in the given date range.
 	GrossProfit float64 `json:"grossProfit"`
 	// ReportLine items for income in the given date range.
@@ -109,7 +128,7 @@ type GetProfitAndLoss200ApplicationJSONProfitAndLossReport struct {
 	// ReportLine items for other income in the given date range.
 	OtherIncome *GetProfitAndLoss200ApplicationJSONProfitAndLossReportReportLine `json:"otherIncome,omitempty"`
 	// Date on which the report data ends.
-	ToDate *time.Time `json:"toDate,omitempty"`
+	ToDate *string `json:"toDate,omitempty"`
 }
 
 // GetProfitAndLoss200ApplicationJSON - Success
@@ -117,9 +136,9 @@ type GetProfitAndLoss200ApplicationJSON struct {
 	// Base currency of the company in which the profit and loss report is presented.
 	Currency string `json:"currency"`
 	// Earliest available monthly report data.
-	EarliestAvailableMonth *time.Time `json:"earliestAvailableMonth,omitempty"`
+	EarliestAvailableMonth *string `json:"earliestAvailableMonth,omitempty"`
 	// Most recent available monthly report data.
-	MostRecentAvailableMonth *time.Time `json:"mostRecentAvailableMonth,omitempty"`
+	MostRecentAvailableMonth *string `json:"mostRecentAvailableMonth,omitempty"`
 	// The basis of a report.
 	ReportBasis GetProfitAndLoss200ApplicationJSONReportBasisEnum `json:"reportBasis"`
 	// An array of ProfitAndLossReports.

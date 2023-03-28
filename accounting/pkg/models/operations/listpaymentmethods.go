@@ -3,8 +3,9 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 type ListPaymentMethodsRequest struct {
@@ -19,56 +20,89 @@ type ListPaymentMethodsRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-type ListPaymentMethodsLinksLinksCurrent struct {
-	Href string `json:"href"`
-}
-
-type ListPaymentMethodsLinksLinksNext struct {
+type ListPaymentMethods200ApplicationJSONLinksHypertextReference struct {
 	Href *string `json:"href,omitempty"`
 }
 
-type ListPaymentMethodsLinksLinksPrevious struct {
-	Href *string `json:"href,omitempty"`
+type ListPaymentMethods200ApplicationJSONLinks struct {
+	Current  ListPaymentMethods200ApplicationJSONLinksHypertextReference  `json:"current"`
+	Next     *ListPaymentMethods200ApplicationJSONLinksHypertextReference `json:"next,omitempty"`
+	Previous *ListPaymentMethods200ApplicationJSONLinksHypertextReference `json:"previous,omitempty"`
+	Self     ListPaymentMethods200ApplicationJSONLinksHypertextReference  `json:"self"`
 }
 
-type ListPaymentMethodsLinksLinksSelf struct {
-	Href string `json:"href"`
-}
-
-type ListPaymentMethodsLinksLinks struct {
-	Current  ListPaymentMethodsLinksLinksCurrent   `json:"current"`
-	Next     *ListPaymentMethodsLinksLinksNext     `json:"next,omitempty"`
-	Previous *ListPaymentMethodsLinksLinksPrevious `json:"previous,omitempty"`
-	Self     ListPaymentMethodsLinksLinksSelf      `json:"self"`
-}
-
-type ListPaymentMethodsLinksSourceModifiedDateMetadata struct {
+type ListPaymentMethods200ApplicationJSONSourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
-// ListPaymentMethodsLinksSourceModifiedDateStatusEnum - Status of the Payment Method.
-type ListPaymentMethodsLinksSourceModifiedDateStatusEnum string
+// ListPaymentMethods200ApplicationJSONSourceModifiedDateStatusEnum - Status of the Payment Method.
+type ListPaymentMethods200ApplicationJSONSourceModifiedDateStatusEnum string
 
 const (
-	ListPaymentMethodsLinksSourceModifiedDateStatusEnumUnknown  ListPaymentMethodsLinksSourceModifiedDateStatusEnum = "Unknown"
-	ListPaymentMethodsLinksSourceModifiedDateStatusEnumActive   ListPaymentMethodsLinksSourceModifiedDateStatusEnum = "Active"
-	ListPaymentMethodsLinksSourceModifiedDateStatusEnumArchived ListPaymentMethodsLinksSourceModifiedDateStatusEnum = "Archived"
+	ListPaymentMethods200ApplicationJSONSourceModifiedDateStatusEnumUnknown  ListPaymentMethods200ApplicationJSONSourceModifiedDateStatusEnum = "Unknown"
+	ListPaymentMethods200ApplicationJSONSourceModifiedDateStatusEnumActive   ListPaymentMethods200ApplicationJSONSourceModifiedDateStatusEnum = "Active"
+	ListPaymentMethods200ApplicationJSONSourceModifiedDateStatusEnumArchived ListPaymentMethods200ApplicationJSONSourceModifiedDateStatusEnum = "Archived"
 )
 
-// ListPaymentMethodsLinksSourceModifiedDateTypeEnum - Method of payment.
-type ListPaymentMethodsLinksSourceModifiedDateTypeEnum string
+func (e *ListPaymentMethods200ApplicationJSONSourceModifiedDateStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Active":
+		fallthrough
+	case "Archived":
+		*e = ListPaymentMethods200ApplicationJSONSourceModifiedDateStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListPaymentMethods200ApplicationJSONSourceModifiedDateStatusEnum: %s", s)
+	}
+}
+
+// ListPaymentMethods200ApplicationJSONSourceModifiedDateTypeEnum - Method of payment.
+type ListPaymentMethods200ApplicationJSONSourceModifiedDateTypeEnum string
 
 const (
-	ListPaymentMethodsLinksSourceModifiedDateTypeEnumUnknown      ListPaymentMethodsLinksSourceModifiedDateTypeEnum = "Unknown"
-	ListPaymentMethodsLinksSourceModifiedDateTypeEnumCash         ListPaymentMethodsLinksSourceModifiedDateTypeEnum = "Cash"
-	ListPaymentMethodsLinksSourceModifiedDateTypeEnumCheck        ListPaymentMethodsLinksSourceModifiedDateTypeEnum = "Check"
-	ListPaymentMethodsLinksSourceModifiedDateTypeEnumCreditCard   ListPaymentMethodsLinksSourceModifiedDateTypeEnum = "CreditCard"
-	ListPaymentMethodsLinksSourceModifiedDateTypeEnumDebitCard    ListPaymentMethodsLinksSourceModifiedDateTypeEnum = "DebitCard"
-	ListPaymentMethodsLinksSourceModifiedDateTypeEnumBankTransfer ListPaymentMethodsLinksSourceModifiedDateTypeEnum = "BankTransfer"
-	ListPaymentMethodsLinksSourceModifiedDateTypeEnumOther        ListPaymentMethodsLinksSourceModifiedDateTypeEnum = "Other"
+	ListPaymentMethods200ApplicationJSONSourceModifiedDateTypeEnumUnknown      ListPaymentMethods200ApplicationJSONSourceModifiedDateTypeEnum = "Unknown"
+	ListPaymentMethods200ApplicationJSONSourceModifiedDateTypeEnumCash         ListPaymentMethods200ApplicationJSONSourceModifiedDateTypeEnum = "Cash"
+	ListPaymentMethods200ApplicationJSONSourceModifiedDateTypeEnumCheck        ListPaymentMethods200ApplicationJSONSourceModifiedDateTypeEnum = "Check"
+	ListPaymentMethods200ApplicationJSONSourceModifiedDateTypeEnumCreditCard   ListPaymentMethods200ApplicationJSONSourceModifiedDateTypeEnum = "CreditCard"
+	ListPaymentMethods200ApplicationJSONSourceModifiedDateTypeEnumDebitCard    ListPaymentMethods200ApplicationJSONSourceModifiedDateTypeEnum = "DebitCard"
+	ListPaymentMethods200ApplicationJSONSourceModifiedDateTypeEnumBankTransfer ListPaymentMethods200ApplicationJSONSourceModifiedDateTypeEnum = "BankTransfer"
+	ListPaymentMethods200ApplicationJSONSourceModifiedDateTypeEnumOther        ListPaymentMethods200ApplicationJSONSourceModifiedDateTypeEnum = "Other"
 )
 
-// ListPaymentMethodsLinksSourceModifiedDate - > View the coverage for payment methods in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=paymentMethods" target="_blank">Data coverage explorer</a>.
+func (e *ListPaymentMethods200ApplicationJSONSourceModifiedDateTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Cash":
+		fallthrough
+	case "Check":
+		fallthrough
+	case "CreditCard":
+		fallthrough
+	case "DebitCard":
+		fallthrough
+	case "BankTransfer":
+		fallthrough
+	case "Other":
+		*e = ListPaymentMethods200ApplicationJSONSourceModifiedDateTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListPaymentMethods200ApplicationJSONSourceModifiedDateTypeEnum: %s", s)
+	}
+}
+
+// ListPaymentMethods200ApplicationJSONSourceModifiedDate - > View the coverage for payment methods in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=paymentMethods" target="_blank">Data coverage explorer</a>.
 //
 // ## Overview
 //
@@ -79,29 +113,29 @@ const (
 //   - A list of all the Payment Methods used by a company: `GET/companies/{companyId}/data/paymentMethods`.
 //   - The details of an individual Payment Method:
 //     `GET /companies/{companyId}/data/paymentMethods/{paymentMethodId}`.
-type ListPaymentMethodsLinksSourceModifiedDate struct {
+type ListPaymentMethods200ApplicationJSONSourceModifiedDate struct {
 	// Unique identifier for the payment method.
-	ID       *string                                            `json:"id,omitempty"`
-	Metadata *ListPaymentMethodsLinksSourceModifiedDateMetadata `json:"metadata,omitempty"`
+	ID       *string                                                         `json:"id,omitempty"`
+	Metadata *ListPaymentMethods200ApplicationJSONSourceModifiedDateMetadata `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Name of the payment method.
 	Name *string `json:"name,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Status of the Payment Method.
-	Status *ListPaymentMethodsLinksSourceModifiedDateStatusEnum `json:"status,omitempty"`
+	Status *ListPaymentMethods200ApplicationJSONSourceModifiedDateStatusEnum `json:"status,omitempty"`
 	// Method of payment.
-	Type *ListPaymentMethodsLinksSourceModifiedDateTypeEnum `json:"type,omitempty"`
+	Type *ListPaymentMethods200ApplicationJSONSourceModifiedDateTypeEnum `json:"type,omitempty"`
 }
 
-// ListPaymentMethodsLinks - Codat's Paging Model
-type ListPaymentMethodsLinks struct {
-	Links        ListPaymentMethodsLinksLinks                `json:"_links"`
-	PageNumber   int64                                       `json:"pageNumber"`
-	PageSize     int64                                       `json:"pageSize"`
-	Results      []ListPaymentMethodsLinksSourceModifiedDate `json:"results,omitempty"`
-	TotalResults int64                                       `json:"totalResults"`
+// ListPaymentMethods200ApplicationJSON - Success
+type ListPaymentMethods200ApplicationJSON struct {
+	Links        ListPaymentMethods200ApplicationJSONLinks                `json:"_links"`
+	PageNumber   int64                                                    `json:"pageNumber"`
+	PageSize     int64                                                    `json:"pageSize"`
+	Results      []ListPaymentMethods200ApplicationJSONSourceModifiedDate `json:"results,omitempty"`
+	TotalResults int64                                                    `json:"totalResults"`
 }
 
 type ListPaymentMethodsResponse struct {
@@ -109,5 +143,5 @@ type ListPaymentMethodsResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// Success
-	Links *ListPaymentMethodsLinks
+	ListPaymentMethods200ApplicationJSONObject *ListPaymentMethods200ApplicationJSON
 }

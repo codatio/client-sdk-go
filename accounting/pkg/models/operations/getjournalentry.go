@@ -4,7 +4,6 @@ package operations
 
 import (
 	"net/http"
-	"time"
 )
 
 type GetJournalEntryRequest struct {
@@ -47,6 +46,7 @@ type GetJournalEntrySourceModifiedDateJournalRef struct {
 }
 
 type GetJournalEntrySourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
@@ -94,7 +94,7 @@ type GetJournalEntrySourceModifiedDateSupplementalData struct {
 // > Codat only supports journal entries in the base currency of the company that are pushed into accounts denominated in the same base currency.
 type GetJournalEntrySourceModifiedDate struct {
 	// Date on which the journal was created in the accounting platform.
-	CreatedOn *time.Time `json:"createdOn,omitempty"`
+	CreatedOn *string `json:"createdOn,omitempty"`
 	// Optional description of the journal entry.
 	Description *string `json:"description,omitempty"`
 	// Unique identifier of the journal entry for the company in the accounting platform.
@@ -105,7 +105,7 @@ type GetJournalEntrySourceModifiedDate struct {
 	JournalRef *GetJournalEntrySourceModifiedDateJournalRef `json:"journalRef,omitempty"`
 	Metadata   *GetJournalEntrySourceModifiedDateMetadata   `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Date on which the journal entry was posted to the accounting platform, and had an impact on the general ledger. This may be different from the creation date.
 	//
 	// For example, a user creates a journal entry on Monday and saves it as draft, which has no impact on the general ledger. On Thursday, they return to the entry and post it.
@@ -113,7 +113,7 @@ type GetJournalEntrySourceModifiedDate struct {
 	// The **createdOn** date shows as Monday.
 	// The **postedOn** date shows as Thursday.
 	// Journal entries can also be backdated, so the **postedOn** date may be earlier than the **createdOn** date.
-	PostedOn *time.Time `json:"postedOn,omitempty"`
+	PostedOn *string `json:"postedOn,omitempty"`
 	// Links to the underlying record or data type.
 	//
 	// Found on:
@@ -124,11 +124,11 @@ type GetJournalEntrySourceModifiedDate struct {
 	// - Transfers
 	RecordRef *GetJournalEntrySourceModifiedDateRecordRef `json:"recordRef,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 	SupplementalData *GetJournalEntrySourceModifiedDateSupplementalData `json:"supplementalData,omitempty"`
 	// Date on which the journal was last updated in the accounting platform.
-	UpdatedOn *time.Time `json:"updatedOn,omitempty"`
+	UpdatedOn *string `json:"updatedOn,omitempty"`
 }
 
 type GetJournalEntryResponse struct {

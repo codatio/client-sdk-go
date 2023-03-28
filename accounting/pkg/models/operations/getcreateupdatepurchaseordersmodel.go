@@ -3,6 +3,8 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
@@ -23,6 +25,34 @@ const (
 	GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionChoiceOptionTypeEnumFile      GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionChoiceOptionTypeEnum = "File"
 	GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionChoiceOptionTypeEnumMultiPart GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionChoiceOptionTypeEnum = "MultiPart"
 )
+
+func (e *GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionChoiceOptionTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Array":
+		fallthrough
+	case "Object":
+		fallthrough
+	case "String":
+		fallthrough
+	case "Number":
+		fallthrough
+	case "Boolean":
+		fallthrough
+	case "DateTime":
+		fallthrough
+	case "File":
+		fallthrough
+	case "MultiPart":
+		*e = GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionChoiceOptionTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionChoiceOptionTypeEnum: %s", s)
+	}
+}
 
 type GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionChoice struct {
 	Description *string                                                                                       `json:"description,omitempty"`
@@ -46,6 +76,34 @@ const (
 	GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnumMultiPart GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum = "MultiPart"
 )
 
+func (e *GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Array":
+		fallthrough
+	case "Object":
+		fallthrough
+	case "String":
+		fallthrough
+	case "Number":
+		fallthrough
+	case "Boolean":
+		fallthrough
+	case "DateTime":
+		fallthrough
+	case "File":
+		fallthrough
+	case "MultiPart":
+		*e = GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum: %s", s)
+	}
+}
+
 type GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionChoice struct {
 	Description *string                                                                                                         `json:"description,omitempty"`
 	DisplayName *string                                                                                                         `json:"displayName,omitempty"`
@@ -67,6 +125,34 @@ const (
 	GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnumFile      GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum = "File"
 	GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnumMultiPart GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum = "MultiPart"
 )
+
+func (e *GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Array":
+		fallthrough
+	case "Object":
+		fallthrough
+	case "String":
+		fallthrough
+	case "Number":
+		fallthrough
+	case "Boolean":
+		fallthrough
+	case "DateTime":
+		fallthrough
+	case "File":
+		fallthrough
+	case "MultiPart":
+		*e = GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum: %s", s)
+	}
+}
 
 type GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoice struct {
 	Description *string                                                                                                                           `json:"description,omitempty"`
@@ -90,6 +176,34 @@ const (
 	GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnumMultiPart GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum = "MultiPart"
 )
 
+func (e *GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Array":
+		fallthrough
+	case "Object":
+		fallthrough
+	case "String":
+		fallthrough
+	case "Number":
+		fallthrough
+	case "Boolean":
+		fallthrough
+	case "DateTime":
+		fallthrough
+	case "File":
+		fallthrough
+	case "MultiPart":
+		*e = GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoiceOptionTypeEnum: %s", s)
+	}
+}
+
 type GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionChoice struct {
 	Description *string                                                                                                                                             `json:"description,omitempty"`
 	DisplayName *string                                                                                                                                             `json:"displayName,omitempty"`
@@ -111,6 +225,34 @@ const (
 	GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnumFile      GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum = "File"
 	GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnumMultiPart GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum = "MultiPart"
 )
+
+func (e *GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Array":
+		fallthrough
+	case "Object":
+		fallthrough
+	case "String":
+		fallthrough
+	case "Number":
+		fallthrough
+	case "Boolean":
+		fallthrough
+	case "DateTime":
+		fallthrough
+	case "File":
+		fallthrough
+	case "MultiPart":
+		*e = GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum: %s", s)
+	}
+}
 
 type GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushOptionPropertyPushValidationInfoPushFieldValidation struct {
 	Details string  `json:"details"`
@@ -144,6 +286,34 @@ const (
 	GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnumFile      GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum = "File"
 	GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnumMultiPart GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum = "MultiPart"
 )
+
+func (e *GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Array":
+		fallthrough
+	case "Object":
+		fallthrough
+	case "String":
+		fallthrough
+	case "Number":
+		fallthrough
+	case "Boolean":
+		fallthrough
+	case "DateTime":
+		fallthrough
+	case "File":
+		fallthrough
+	case "MultiPart":
+		*e = GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyOptionTypeEnum: %s", s)
+	}
+}
 
 type GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionPropertyPushOptionPropertyPushValidationInfoPushFieldValidation struct {
 	Details string  `json:"details"`
@@ -179,6 +349,34 @@ const (
 	GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionPropertyOptionTypeEnumMultiPart GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionPropertyOptionTypeEnum = "MultiPart"
 )
 
+func (e *GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionPropertyOptionTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Array":
+		fallthrough
+	case "Object":
+		fallthrough
+	case "String":
+		fallthrough
+	case "Number":
+		fallthrough
+	case "Boolean":
+		fallthrough
+	case "DateTime":
+		fallthrough
+	case "File":
+		fallthrough
+	case "MultiPart":
+		*e = GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionPropertyOptionTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionPropertyOptionTypeEnum: %s", s)
+	}
+}
+
 type GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushOptionPropertyPushValidationInfoPushFieldValidation struct {
 	Details string  `json:"details"`
 	Field   *string `json:"field,omitempty"`
@@ -213,6 +411,34 @@ const (
 	GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyOptionTypeEnumMultiPart GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyOptionTypeEnum = "MultiPart"
 )
 
+func (e *GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyOptionTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Array":
+		fallthrough
+	case "Object":
+		fallthrough
+	case "String":
+		fallthrough
+	case "Number":
+		fallthrough
+	case "Boolean":
+		fallthrough
+	case "DateTime":
+		fallthrough
+	case "File":
+		fallthrough
+	case "MultiPart":
+		*e = GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyOptionTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyOptionTypeEnum: %s", s)
+	}
+}
+
 type GetCreateUpdatePurchaseOrdersModelPushOptionPushOptionPropertyPushValidationInfoPushFieldValidation struct {
 	Details string  `json:"details"`
 	Field   *string `json:"field,omitempty"`
@@ -246,6 +472,34 @@ const (
 	GetCreateUpdatePurchaseOrdersModelPushOptionOptionTypeEnumFile      GetCreateUpdatePurchaseOrdersModelPushOptionOptionTypeEnum = "File"
 	GetCreateUpdatePurchaseOrdersModelPushOptionOptionTypeEnumMultiPart GetCreateUpdatePurchaseOrdersModelPushOptionOptionTypeEnum = "MultiPart"
 )
+
+func (e *GetCreateUpdatePurchaseOrdersModelPushOptionOptionTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Array":
+		fallthrough
+	case "Object":
+		fallthrough
+	case "String":
+		fallthrough
+	case "Number":
+		fallthrough
+	case "Boolean":
+		fallthrough
+	case "DateTime":
+		fallthrough
+	case "File":
+		fallthrough
+	case "MultiPart":
+		*e = GetCreateUpdatePurchaseOrdersModelPushOptionOptionTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCreateUpdatePurchaseOrdersModelPushOptionOptionTypeEnum: %s", s)
+	}
+}
 
 // GetCreateUpdatePurchaseOrdersModelPushOption - OK
 type GetCreateUpdatePurchaseOrdersModelPushOption struct {

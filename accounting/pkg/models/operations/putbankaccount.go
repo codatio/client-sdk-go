@@ -3,8 +3,9 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 // PutBankAccountSourceModifiedDateAccountTypeEnum - The type of the account.
@@ -16,7 +17,26 @@ const (
 	PutBankAccountSourceModifiedDateAccountTypeEnumDebit   PutBankAccountSourceModifiedDateAccountTypeEnum = "Debit"
 )
 
+func (e *PutBankAccountSourceModifiedDateAccountTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Credit":
+		fallthrough
+	case "Debit":
+		*e = PutBankAccountSourceModifiedDateAccountTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PutBankAccountSourceModifiedDateAccountTypeEnum: %s", s)
+	}
+}
+
 type PutBankAccountSourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
@@ -63,7 +83,7 @@ type PutBankAccountSourceModifiedDate struct {
 	Institution *string                                   `json:"institution,omitempty"`
 	Metadata    *PutBankAccountSourceModifiedDateMetadata `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Code used to identify each nominal account for a business.
 	NominalCode *string `json:"nominalCode,omitempty"`
 	// Pre-arranged overdraft limit of the account.
@@ -76,7 +96,7 @@ type PutBankAccountSourceModifiedDate struct {
 	// The sort code is only displayed when the currency = GBP and the sort code and account number sum to 14 digits. For non-GBP accounts, this field is not populated.
 	SortCode *string `json:"sortCode,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 }
 
 type PutBankAccountRequest struct {
@@ -104,6 +124,28 @@ const (
 	PutBankAccount200ApplicationJSONChangesTypeEnumAttachmentUploaded PutBankAccount200ApplicationJSONChangesTypeEnum = "AttachmentUploaded"
 )
 
+func (e *PutBankAccount200ApplicationJSONChangesTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Created":
+		fallthrough
+	case "Modified":
+		fallthrough
+	case "Deleted":
+		fallthrough
+	case "AttachmentUploaded":
+		*e = PutBankAccount200ApplicationJSONChangesTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PutBankAccount200ApplicationJSONChangesTypeEnum: %s", s)
+	}
+}
+
 type PutBankAccount200ApplicationJSONChanges struct {
 	AttachmentID *string                                                        `json:"attachmentId,omitempty"`
 	RecordRef    *PutBankAccount200ApplicationJSONChangesPushOperationRecordRef `json:"recordRef,omitempty"`
@@ -119,7 +161,26 @@ const (
 	PutBankAccount200ApplicationJSONSourceModifiedDateAccountTypeEnumDebit   PutBankAccount200ApplicationJSONSourceModifiedDateAccountTypeEnum = "Debit"
 )
 
+func (e *PutBankAccount200ApplicationJSONSourceModifiedDateAccountTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Credit":
+		fallthrough
+	case "Debit":
+		*e = PutBankAccount200ApplicationJSONSourceModifiedDateAccountTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PutBankAccount200ApplicationJSONSourceModifiedDateAccountTypeEnum: %s", s)
+	}
+}
+
 type PutBankAccount200ApplicationJSONSourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
@@ -166,7 +227,7 @@ type PutBankAccount200ApplicationJSONSourceModifiedDate struct {
 	Institution *string                                                     `json:"institution,omitempty"`
 	Metadata    *PutBankAccount200ApplicationJSONSourceModifiedDateMetadata `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Code used to identify each nominal account for a business.
 	NominalCode *string `json:"nominalCode,omitempty"`
 	// Pre-arranged overdraft limit of the account.
@@ -179,7 +240,7 @@ type PutBankAccount200ApplicationJSONSourceModifiedDate struct {
 	// The sort code is only displayed when the currency = GBP and the sort code and account number sum to 14 digits. For non-GBP accounts, this field is not populated.
 	SortCode *string `json:"sortCode,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 }
 
 // PutBankAccount200ApplicationJSONStatusEnum - The status of the push operation.
@@ -191,6 +252,26 @@ const (
 	PutBankAccount200ApplicationJSONStatusEnumSuccess  PutBankAccount200ApplicationJSONStatusEnum = "Success"
 	PutBankAccount200ApplicationJSONStatusEnumTimedOut PutBankAccount200ApplicationJSONStatusEnum = "TimedOut"
 )
+
+func (e *PutBankAccount200ApplicationJSONStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Pending":
+		fallthrough
+	case "Failed":
+		fallthrough
+	case "Success":
+		fallthrough
+	case "TimedOut":
+		*e = PutBankAccount200ApplicationJSONStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PutBankAccount200ApplicationJSONStatusEnum: %s", s)
+	}
+}
 
 type PutBankAccount200ApplicationJSONValidationValidationItem struct {
 	ItemID        *string `json:"itemId,omitempty"`
@@ -210,7 +291,7 @@ type PutBankAccount200ApplicationJSON struct {
 	// Unique identifier for your SMB in Codat.
 	CompanyID string `json:"companyId"`
 	// The datetime when the push was completed, null if Pending.
-	CompletedOnUtc *time.Time `json:"completedOnUtc,omitempty"`
+	CompletedOnUtc *string `json:"completedOnUtc,omitempty"`
 	// > **Accessing Bank Accounts through Banking API**
 	// >
 	// > This datatype was originally used for accessing bank account data both in accounting integrations and open banking aggregators.
@@ -236,7 +317,7 @@ type PutBankAccount200ApplicationJSON struct {
 	// A unique identifier generated by Codat to represent this single push operation. This identifier can be used to track the status of the push, and should be persisted.
 	PushOperationKey string `json:"pushOperationKey"`
 	// The datetime when the push was requested.
-	RequestedOnUtc time.Time `json:"requestedOnUtc"`
+	RequestedOnUtc string `json:"requestedOnUtc"`
 	// The status of the push operation.
 	Status           PutBankAccount200ApplicationJSONStatusEnum `json:"status"`
 	StatusCode       int                                        `json:"statusCode"`

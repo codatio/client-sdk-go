@@ -3,8 +3,9 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 type GetAccountRequest struct {
@@ -14,6 +15,7 @@ type GetAccountRequest struct {
 }
 
 type GetAccountSourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
@@ -27,6 +29,26 @@ const (
 	GetAccountSourceModifiedDateStatusEnumPending  GetAccountSourceModifiedDateStatusEnum = "Pending"
 )
 
+func (e *GetAccountSourceModifiedDateStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Active":
+		fallthrough
+	case "Archived":
+		fallthrough
+	case "Pending":
+		*e = GetAccountSourceModifiedDateStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetAccountSourceModifiedDateStatusEnum: %s", s)
+	}
+}
+
 // GetAccountSourceModifiedDateTypeEnum - Type of account
 type GetAccountSourceModifiedDateTypeEnum string
 
@@ -38,6 +60,30 @@ const (
 	GetAccountSourceModifiedDateTypeEnumLiability GetAccountSourceModifiedDateTypeEnum = "Liability"
 	GetAccountSourceModifiedDateTypeEnumEquity    GetAccountSourceModifiedDateTypeEnum = "Equity"
 )
+
+func (e *GetAccountSourceModifiedDateTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Asset":
+		fallthrough
+	case "Expense":
+		fallthrough
+	case "Income":
+		fallthrough
+	case "Liability":
+		fallthrough
+	case "Equity":
+		*e = GetAccountSourceModifiedDateTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetAccountSourceModifiedDateTypeEnum: %s", s)
+	}
+}
 
 // GetAccountSourceModifiedDateValidDataTypeLinks - When querying Codat's data model, some data types return `validDatatypeLinks` metadata in the JSON response. This indicates where that object can be used as a reference—a _valid link_—when creating or updating other data.
 //
@@ -134,13 +180,13 @@ type GetAccountSourceModifiedDate struct {
 	IsBankAccount bool                                  `json:"isBankAccount"`
 	Metadata      *GetAccountSourceModifiedDateMetadata `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Name of the account.
 	Name *string `json:"name,omitempty"`
 	// Reference given to each nominal account for a business. It ensures money is allocated to the correct account. This code isn't a unique identifier in the Codat system.
 	NominalCode *string `json:"nominalCode,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Status of the account
 	Status GetAccountSourceModifiedDateStatusEnum `json:"status"`
 	// Type of account

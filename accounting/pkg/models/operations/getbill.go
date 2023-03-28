@@ -3,8 +3,9 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 type GetBillRequest struct {
@@ -57,6 +58,26 @@ const (
 	GetBillSourceModifiedDateLineItemsTrackingIsBilledToEnumProject       GetBillSourceModifiedDateLineItemsTrackingIsBilledToEnum = "Project"
 )
 
+func (e *GetBillSourceModifiedDateLineItemsTrackingIsBilledToEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "NotApplicable":
+		fallthrough
+	case "Customer":
+		fallthrough
+	case "Project":
+		*e = GetBillSourceModifiedDateLineItemsTrackingIsBilledToEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetBillSourceModifiedDateLineItemsTrackingIsBilledToEnum: %s", s)
+	}
+}
+
 type GetBillSourceModifiedDateLineItemsTrackingIsRebilledToEnum string
 
 const (
@@ -65,6 +86,26 @@ const (
 	GetBillSourceModifiedDateLineItemsTrackingIsRebilledToEnumCustomer      GetBillSourceModifiedDateLineItemsTrackingIsRebilledToEnum = "Customer"
 	GetBillSourceModifiedDateLineItemsTrackingIsRebilledToEnumProject       GetBillSourceModifiedDateLineItemsTrackingIsRebilledToEnum = "Project"
 )
+
+func (e *GetBillSourceModifiedDateLineItemsTrackingIsRebilledToEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "NotApplicable":
+		fallthrough
+	case "Customer":
+		fallthrough
+	case "Project":
+		*e = GetBillSourceModifiedDateLineItemsTrackingIsRebilledToEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetBillSourceModifiedDateLineItemsTrackingIsRebilledToEnum: %s", s)
+	}
+}
 
 type GetBillSourceModifiedDateLineItemsTrackingProjectRef struct {
 	ID   string  `json:"id"`
@@ -112,12 +153,13 @@ type GetBillSourceModifiedDateLineItems struct {
 }
 
 type GetBillSourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
 type GetBillSourceModifiedDatePaymentAllocationsAllocation struct {
 	// The date the payment was allocated.
-	AllocatedOnDate *time.Time `json:"allocatedOnDate,omitempty"`
+	AllocatedOnDate *string `json:"allocatedOnDate,omitempty"`
 	// The currency of the transaction.
 	Currency *string `json:"currency,omitempty"`
 	// Rate to convert the total amount of the payment into the base currency for the company at the time of the payment.
@@ -190,7 +232,7 @@ type GetBillSourceModifiedDatePaymentAllocationsPayment struct {
 	// Notes attached to the allocated payment.
 	Note *string `json:"note,omitempty"`
 	// The date the payment was paid.
-	PaidOnDate *time.Time `json:"paidOnDate,omitempty"`
+	PaidOnDate *string `json:"paidOnDate,omitempty"`
 	// Reference to the allocated payment.
 	Reference *string `json:"reference,omitempty"`
 	// Total amount that was paid.
@@ -218,6 +260,30 @@ const (
 	GetBillSourceModifiedDateStatusEnumVoid          GetBillSourceModifiedDateStatusEnum = "Void"
 	GetBillSourceModifiedDateStatusEnumDraft         GetBillSourceModifiedDateStatusEnum = "Draft"
 )
+
+func (e *GetBillSourceModifiedDateStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Open":
+		fallthrough
+	case "PartiallyPaid":
+		fallthrough
+	case "Paid":
+		fallthrough
+	case "Void":
+		fallthrough
+	case "Draft":
+		*e = GetBillSourceModifiedDateStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetBillSourceModifiedDateStatusEnum: %s", s)
+	}
+}
 
 // GetBillSourceModifiedDateSupplementalData - Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type GetBillSourceModifiedDateSupplementalData struct {
@@ -282,16 +348,16 @@ type GetBillSourceModifiedDate struct {
 	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
 	CurrencyRate *float64 `json:"currencyRate,omitempty"`
 	// Date the supplier is due to be paid.
-	DueDate *time.Time `json:"dueDate,omitempty"`
+	DueDate *string `json:"dueDate,omitempty"`
 	// Identifier for the bill, unique for the company in the accounting platform.
 	ID *string `json:"id,omitempty"`
 	// Date of the bill as recorded in the accounting platform.
-	IssueDate time.Time `json:"issueDate"`
+	IssueDate string `json:"issueDate"`
 	// Array of BillLineItems.
 	LineItems []GetBillSourceModifiedDateLineItems `json:"lineItems,omitempty"`
 	Metadata  *GetBillSourceModifiedDateMetadata   `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Any private, company notes about the bill, such as payment information.
 	Note *string `json:"note,omitempty"`
 	// An array of payment allocations.
@@ -300,7 +366,7 @@ type GetBillSourceModifiedDate struct {
 	// User-friendly reference for the bill.
 	Reference *string `json:"reference,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Current state of the bill.
 	Status GetBillSourceModifiedDateStatusEnum `json:"status"`
 	// Total amount of the bill, excluding any taxes.

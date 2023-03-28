@@ -222,12 +222,12 @@ func (s *transfers) ListTransfers(ctx context.Context, request operations.ListTr
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListTransfersLinks
+			var out *operations.ListTransfers200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Links = out
+			res.ListTransfers200ApplicationJSONObject = out
 		}
 	}
 

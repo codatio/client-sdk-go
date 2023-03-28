@@ -3,8 +3,9 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 // CreateJournalEntrySourceModifiedDateJournalLinesAccountRef - Data types that reference an account, for example bill and invoice line items, use an accountRef that includes the ID and name of the linked account.
@@ -42,6 +43,7 @@ type CreateJournalEntrySourceModifiedDateJournalRef struct {
 }
 
 type CreateJournalEntrySourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
@@ -89,7 +91,7 @@ type CreateJournalEntrySourceModifiedDateSupplementalData struct {
 // > Codat only supports journal entries in the base currency of the company that are pushed into accounts denominated in the same base currency.
 type CreateJournalEntrySourceModifiedDate struct {
 	// Date on which the journal was created in the accounting platform.
-	CreatedOn *time.Time `json:"createdOn,omitempty"`
+	CreatedOn *string `json:"createdOn,omitempty"`
 	// Optional description of the journal entry.
 	Description *string `json:"description,omitempty"`
 	// Unique identifier of the journal entry for the company in the accounting platform.
@@ -100,7 +102,7 @@ type CreateJournalEntrySourceModifiedDate struct {
 	JournalRef *CreateJournalEntrySourceModifiedDateJournalRef `json:"journalRef,omitempty"`
 	Metadata   *CreateJournalEntrySourceModifiedDateMetadata   `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Date on which the journal entry was posted to the accounting platform, and had an impact on the general ledger. This may be different from the creation date.
 	//
 	// For example, a user creates a journal entry on Monday and saves it as draft, which has no impact on the general ledger. On Thursday, they return to the entry and post it.
@@ -108,7 +110,7 @@ type CreateJournalEntrySourceModifiedDate struct {
 	// The **createdOn** date shows as Monday.
 	// The **postedOn** date shows as Thursday.
 	// Journal entries can also be backdated, so the **postedOn** date may be earlier than the **createdOn** date.
-	PostedOn *time.Time `json:"postedOn,omitempty"`
+	PostedOn *string `json:"postedOn,omitempty"`
 	// Links to the underlying record or data type.
 	//
 	// Found on:
@@ -119,11 +121,11 @@ type CreateJournalEntrySourceModifiedDate struct {
 	// - Transfers
 	RecordRef *CreateJournalEntrySourceModifiedDateRecordRef `json:"recordRef,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 	SupplementalData *CreateJournalEntrySourceModifiedDateSupplementalData `json:"supplementalData,omitempty"`
 	// Date on which the journal was last updated in the accounting platform.
-	UpdatedOn *time.Time `json:"updatedOn,omitempty"`
+	UpdatedOn *string `json:"updatedOn,omitempty"`
 }
 
 type CreateJournalEntryRequest struct {
@@ -147,6 +149,28 @@ const (
 	CreateJournalEntry200ApplicationJSONChangesTypeEnumDeleted            CreateJournalEntry200ApplicationJSONChangesTypeEnum = "Deleted"
 	CreateJournalEntry200ApplicationJSONChangesTypeEnumAttachmentUploaded CreateJournalEntry200ApplicationJSONChangesTypeEnum = "AttachmentUploaded"
 )
+
+func (e *CreateJournalEntry200ApplicationJSONChangesTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Created":
+		fallthrough
+	case "Modified":
+		fallthrough
+	case "Deleted":
+		fallthrough
+	case "AttachmentUploaded":
+		*e = CreateJournalEntry200ApplicationJSONChangesTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateJournalEntry200ApplicationJSONChangesTypeEnum: %s", s)
+	}
+}
 
 type CreateJournalEntry200ApplicationJSONChanges struct {
 	AttachmentID *string                                                            `json:"attachmentId,omitempty"`
@@ -189,6 +213,7 @@ type CreateJournalEntry200ApplicationJSONSourceModifiedDateJournalRef struct {
 }
 
 type CreateJournalEntry200ApplicationJSONSourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
@@ -236,7 +261,7 @@ type CreateJournalEntry200ApplicationJSONSourceModifiedDateSupplementalData stru
 // > Codat only supports journal entries in the base currency of the company that are pushed into accounts denominated in the same base currency.
 type CreateJournalEntry200ApplicationJSONSourceModifiedDate struct {
 	// Date on which the journal was created in the accounting platform.
-	CreatedOn *time.Time `json:"createdOn,omitempty"`
+	CreatedOn *string `json:"createdOn,omitempty"`
 	// Optional description of the journal entry.
 	Description *string `json:"description,omitempty"`
 	// Unique identifier of the journal entry for the company in the accounting platform.
@@ -247,7 +272,7 @@ type CreateJournalEntry200ApplicationJSONSourceModifiedDate struct {
 	JournalRef *CreateJournalEntry200ApplicationJSONSourceModifiedDateJournalRef `json:"journalRef,omitempty"`
 	Metadata   *CreateJournalEntry200ApplicationJSONSourceModifiedDateMetadata   `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Date on which the journal entry was posted to the accounting platform, and had an impact on the general ledger. This may be different from the creation date.
 	//
 	// For example, a user creates a journal entry on Monday and saves it as draft, which has no impact on the general ledger. On Thursday, they return to the entry and post it.
@@ -255,7 +280,7 @@ type CreateJournalEntry200ApplicationJSONSourceModifiedDate struct {
 	// The **createdOn** date shows as Monday.
 	// The **postedOn** date shows as Thursday.
 	// Journal entries can also be backdated, so the **postedOn** date may be earlier than the **createdOn** date.
-	PostedOn *time.Time `json:"postedOn,omitempty"`
+	PostedOn *string `json:"postedOn,omitempty"`
 	// Links to the underlying record or data type.
 	//
 	// Found on:
@@ -266,11 +291,11 @@ type CreateJournalEntry200ApplicationJSONSourceModifiedDate struct {
 	// - Transfers
 	RecordRef *CreateJournalEntry200ApplicationJSONSourceModifiedDateRecordRef `json:"recordRef,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 	SupplementalData *CreateJournalEntry200ApplicationJSONSourceModifiedDateSupplementalData `json:"supplementalData,omitempty"`
 	// Date on which the journal was last updated in the accounting platform.
-	UpdatedOn *time.Time `json:"updatedOn,omitempty"`
+	UpdatedOn *string `json:"updatedOn,omitempty"`
 }
 
 // CreateJournalEntry200ApplicationJSONStatusEnum - The status of the push operation.
@@ -282,6 +307,26 @@ const (
 	CreateJournalEntry200ApplicationJSONStatusEnumSuccess  CreateJournalEntry200ApplicationJSONStatusEnum = "Success"
 	CreateJournalEntry200ApplicationJSONStatusEnumTimedOut CreateJournalEntry200ApplicationJSONStatusEnum = "TimedOut"
 )
+
+func (e *CreateJournalEntry200ApplicationJSONStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Pending":
+		fallthrough
+	case "Failed":
+		fallthrough
+	case "Success":
+		fallthrough
+	case "TimedOut":
+		*e = CreateJournalEntry200ApplicationJSONStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateJournalEntry200ApplicationJSONStatusEnum: %s", s)
+	}
+}
 
 type CreateJournalEntry200ApplicationJSONValidationValidationItem struct {
 	ItemID        *string `json:"itemId,omitempty"`
@@ -301,7 +346,7 @@ type CreateJournalEntry200ApplicationJSON struct {
 	// Unique identifier for your SMB in Codat.
 	CompanyID string `json:"companyId"`
 	// The datetime when the push was completed, null if Pending.
-	CompletedOnUtc *time.Time `json:"completedOnUtc,omitempty"`
+	CompletedOnUtc *string `json:"completedOnUtc,omitempty"`
 	// > **Language tip:** For the top-level record of a company's financial transactions, refer to the [Journals](https://docs.codat.io/accounting-api#/schemas/Journal) data type
 	//
 	// > View the coverage for journal entries in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journalEntries" target="_blank">Data coverage explorer</a>.
@@ -333,7 +378,7 @@ type CreateJournalEntry200ApplicationJSON struct {
 	// A unique identifier generated by Codat to represent this single push operation. This identifier can be used to track the status of the push, and should be persisted.
 	PushOperationKey string `json:"pushOperationKey"`
 	// The datetime when the push was requested.
-	RequestedOnUtc time.Time `json:"requestedOnUtc"`
+	RequestedOnUtc string `json:"requestedOnUtc"`
 	// The status of the push operation.
 	Status           CreateJournalEntry200ApplicationJSONStatusEnum `json:"status"`
 	StatusCode       int                                            `json:"statusCode"`

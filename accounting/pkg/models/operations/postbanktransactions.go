@@ -3,9 +3,20 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
+
+type PostBankTransactionsRequestBodyTransactionsModifiedDate struct {
+	// The date on which this record was last modified in Codat.
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
+}
+
+type PostBankTransactionsRequestBodyTransactionsSourceModifiedDate struct {
+	// The date on which this record was last modified in the originating system
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
+}
 
 type PostBankTransactionsRequestBodyTransactionsTransactionTypeEnum string
 
@@ -30,17 +41,84 @@ const (
 	PostBankTransactionsRequestBodyTransactionsTransactionTypeEnumOther       PostBankTransactionsRequestBodyTransactionsTransactionTypeEnum = "Other"
 )
 
+func (e *PostBankTransactionsRequestBodyTransactionsTransactionTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Credit":
+		fallthrough
+	case "Debit":
+		fallthrough
+	case "Int":
+		fallthrough
+	case "Div":
+		fallthrough
+	case "Fee":
+		fallthrough
+	case "SerChg":
+		fallthrough
+	case "Dep":
+		fallthrough
+	case "Atm":
+		fallthrough
+	case "Pos":
+		fallthrough
+	case "Xfer":
+		fallthrough
+	case "Check":
+		fallthrough
+	case "Payment":
+		fallthrough
+	case "Cash":
+		fallthrough
+	case "DirectDep":
+		fallthrough
+	case "DirectDebit":
+		fallthrough
+	case "RepeatPmt":
+		fallthrough
+	case "Other":
+		*e = PostBankTransactionsRequestBodyTransactionsTransactionTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PostBankTransactionsRequestBodyTransactionsTransactionTypeEnum: %s", s)
+	}
+}
+
 type PostBankTransactionsRequestBodyTransactions struct {
-	Amount             float64                                                        `json:"amount"`
-	Balance            float64                                                        `json:"balance"`
-	Counterparty       *string                                                        `json:"counterparty,omitempty"`
-	Date               time.Time                                                      `json:"date"`
+	Amount       float64 `json:"amount"`
+	Balance      float64 `json:"balance"`
+	Counterparty *string `json:"counterparty,omitempty"`
+	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
+	//
+	// ```
+	// 2020-10-08T22:40:50Z
+	// 2021-01-01T00:00:00
+	// ```
+	//
+	//
+	//
+	// When syncing data that contains `DateTime` fields from Codat, make sure you support the following cases when reading time information:
+	//
+	// - Coordinated Universal Time (UTC): `2021-11-15T06:00:00Z`
+	// - Unqualified local time: `2021-11-15T01:00:00`
+	// - UTC time offsets: `2021-11-15T01:00:00-05:00`
+	//
+	// > 📘 Time zones
+	// >
+	// > Not all dates from Codat will contain information about time zones.
+	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
+	Date               string                                                         `json:"date"`
 	Description        *string                                                        `json:"description,omitempty"`
 	ID                 *string                                                        `json:"id,omitempty"`
-	ModifiedDate       *time.Time                                                     `json:"modifiedDate,omitempty"`
+	ModifiedDate       *PostBankTransactionsRequestBodyTransactionsModifiedDate       `json:"modifiedDate,omitempty"`
 	Reconciled         bool                                                           `json:"reconciled"`
 	Reference          *string                                                        `json:"reference,omitempty"`
-	SourceModifiedDate *time.Time                                                     `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *PostBankTransactionsRequestBodyTransactionsSourceModifiedDate `json:"sourceModifiedDate,omitempty"`
 	TransactionType    PostBankTransactionsRequestBodyTransactionsTransactionTypeEnum `json:"transactionType"`
 }
 
@@ -91,10 +169,42 @@ const (
 	PostBankTransactions200ApplicationJSONChangesTypeEnumAttachmentUploaded PostBankTransactions200ApplicationJSONChangesTypeEnum = "AttachmentUploaded"
 )
 
+func (e *PostBankTransactions200ApplicationJSONChangesTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Created":
+		fallthrough
+	case "Modified":
+		fallthrough
+	case "Deleted":
+		fallthrough
+	case "AttachmentUploaded":
+		*e = PostBankTransactions200ApplicationJSONChangesTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PostBankTransactions200ApplicationJSONChangesTypeEnum: %s", s)
+	}
+}
+
 type PostBankTransactions200ApplicationJSONChanges struct {
 	AttachmentID *string                                                              `json:"attachmentId,omitempty"`
 	RecordRef    *PostBankTransactions200ApplicationJSONChangesPushOperationRecordRef `json:"recordRef,omitempty"`
 	Type         *PostBankTransactions200ApplicationJSONChangesTypeEnum               `json:"type,omitempty"`
+}
+
+type PostBankTransactions200ApplicationJSONDataTransactionsModifiedDate struct {
+	// The date on which this record was last modified in Codat.
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
+}
+
+type PostBankTransactions200ApplicationJSONDataTransactionsSourceModifiedDate struct {
+	// The date on which this record was last modified in the originating system
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 }
 
 type PostBankTransactions200ApplicationJSONDataTransactionsTransactionTypeEnum string
@@ -120,17 +230,84 @@ const (
 	PostBankTransactions200ApplicationJSONDataTransactionsTransactionTypeEnumOther       PostBankTransactions200ApplicationJSONDataTransactionsTransactionTypeEnum = "Other"
 )
 
+func (e *PostBankTransactions200ApplicationJSONDataTransactionsTransactionTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Credit":
+		fallthrough
+	case "Debit":
+		fallthrough
+	case "Int":
+		fallthrough
+	case "Div":
+		fallthrough
+	case "Fee":
+		fallthrough
+	case "SerChg":
+		fallthrough
+	case "Dep":
+		fallthrough
+	case "Atm":
+		fallthrough
+	case "Pos":
+		fallthrough
+	case "Xfer":
+		fallthrough
+	case "Check":
+		fallthrough
+	case "Payment":
+		fallthrough
+	case "Cash":
+		fallthrough
+	case "DirectDep":
+		fallthrough
+	case "DirectDebit":
+		fallthrough
+	case "RepeatPmt":
+		fallthrough
+	case "Other":
+		*e = PostBankTransactions200ApplicationJSONDataTransactionsTransactionTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PostBankTransactions200ApplicationJSONDataTransactionsTransactionTypeEnum: %s", s)
+	}
+}
+
 type PostBankTransactions200ApplicationJSONDataTransactions struct {
-	Amount             float64                                                                   `json:"amount"`
-	Balance            float64                                                                   `json:"balance"`
-	Counterparty       *string                                                                   `json:"counterparty,omitempty"`
-	Date               time.Time                                                                 `json:"date"`
+	Amount       float64 `json:"amount"`
+	Balance      float64 `json:"balance"`
+	Counterparty *string `json:"counterparty,omitempty"`
+	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
+	//
+	// ```
+	// 2020-10-08T22:40:50Z
+	// 2021-01-01T00:00:00
+	// ```
+	//
+	//
+	//
+	// When syncing data that contains `DateTime` fields from Codat, make sure you support the following cases when reading time information:
+	//
+	// - Coordinated Universal Time (UTC): `2021-11-15T06:00:00Z`
+	// - Unqualified local time: `2021-11-15T01:00:00`
+	// - UTC time offsets: `2021-11-15T01:00:00-05:00`
+	//
+	// > 📘 Time zones
+	// >
+	// > Not all dates from Codat will contain information about time zones.
+	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
+	Date               string                                                                    `json:"date"`
 	Description        *string                                                                   `json:"description,omitempty"`
 	ID                 *string                                                                   `json:"id,omitempty"`
-	ModifiedDate       *time.Time                                                                `json:"modifiedDate,omitempty"`
+	ModifiedDate       *PostBankTransactions200ApplicationJSONDataTransactionsModifiedDate       `json:"modifiedDate,omitempty"`
 	Reconciled         bool                                                                      `json:"reconciled"`
 	Reference          *string                                                                   `json:"reference,omitempty"`
-	SourceModifiedDate *time.Time                                                                `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *PostBankTransactions200ApplicationJSONDataTransactionsSourceModifiedDate `json:"sourceModifiedDate,omitempty"`
 	TransactionType    PostBankTransactions200ApplicationJSONDataTransactionsTransactionTypeEnum `json:"transactionType"`
 }
 
@@ -166,6 +343,26 @@ const (
 	PostBankTransactions200ApplicationJSONStatusEnumTimedOut PostBankTransactions200ApplicationJSONStatusEnum = "TimedOut"
 )
 
+func (e *PostBankTransactions200ApplicationJSONStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Pending":
+		fallthrough
+	case "Failed":
+		fallthrough
+	case "Success":
+		fallthrough
+	case "TimedOut":
+		*e = PostBankTransactions200ApplicationJSONStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PostBankTransactions200ApplicationJSONStatusEnum: %s", s)
+	}
+}
+
 type PostBankTransactions200ApplicationJSONValidationValidationItem struct {
 	ItemID        *string `json:"itemId,omitempty"`
 	Message       *string `json:"message,omitempty"`
@@ -184,7 +381,7 @@ type PostBankTransactions200ApplicationJSON struct {
 	// Unique identifier for your SMB in Codat.
 	CompanyID string `json:"companyId"`
 	// The datetime when the push was completed, null if Pending.
-	CompletedOnUtc *time.Time `json:"completedOnUtc,omitempty"`
+	CompletedOnUtc *string `json:"completedOnUtc,omitempty"`
 	// > **Accessing Bank Accounts through Banking API**
 	// >
 	// > This datatype was originally used for accessing bank account data both in accounting integrations and open banking aggregators.
@@ -210,7 +407,7 @@ type PostBankTransactions200ApplicationJSON struct {
 	// A unique identifier generated by Codat to represent this single push operation. This identifier can be used to track the status of the push, and should be persisted.
 	PushOperationKey string `json:"pushOperationKey"`
 	// The datetime when the push was requested.
-	RequestedOnUtc time.Time `json:"requestedOnUtc"`
+	RequestedOnUtc string `json:"requestedOnUtc"`
 	// The status of the push operation.
 	Status           PostBankTransactions200ApplicationJSONStatusEnum `json:"status"`
 	StatusCode       int                                              `json:"statusCode"`

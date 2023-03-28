@@ -3,8 +3,9 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 type GetTrackingCategoryRequest struct {
@@ -21,6 +22,24 @@ const (
 	GetTrackingCategorySourceModifiedDateTrackingCategoryStatusEnumArchived GetTrackingCategorySourceModifiedDateTrackingCategoryStatusEnum = "Archived"
 )
 
+func (e *GetTrackingCategorySourceModifiedDateTrackingCategoryStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Active":
+		fallthrough
+	case "Archived":
+		*e = GetTrackingCategorySourceModifiedDateTrackingCategoryStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetTrackingCategorySourceModifiedDateTrackingCategoryStatusEnum: %s", s)
+	}
+}
+
 // GetTrackingCategorySourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnum - Current state of the tracking category.
 type GetTrackingCategorySourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnum string
 
@@ -29,6 +48,24 @@ const (
 	GetTrackingCategorySourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnumActive   GetTrackingCategorySourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnum = "Active"
 	GetTrackingCategorySourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnumArchived GetTrackingCategorySourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnum = "Archived"
 )
+
+func (e *GetTrackingCategorySourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Active":
+		fallthrough
+	case "Archived":
+		*e = GetTrackingCategorySourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetTrackingCategorySourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnum: %s", s)
+	}
+}
 
 // GetTrackingCategorySourceModifiedDateSourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnum - Current state of the tracking category.
 type GetTrackingCategorySourceModifiedDateSourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnum string
@@ -39,6 +76,24 @@ const (
 	GetTrackingCategorySourceModifiedDateSourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnumArchived GetTrackingCategorySourceModifiedDateSourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnum = "Archived"
 )
 
+func (e *GetTrackingCategorySourceModifiedDateSourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Active":
+		fallthrough
+	case "Archived":
+		*e = GetTrackingCategorySourceModifiedDateSourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetTrackingCategorySourceModifiedDateSourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnum: %s", s)
+	}
+}
+
 // GetTrackingCategorySourceModifiedDateSourceModifiedDateSourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnum - Current state of the tracking category.
 type GetTrackingCategorySourceModifiedDateSourceModifiedDateSourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnum string
 
@@ -48,17 +103,35 @@ const (
 	GetTrackingCategorySourceModifiedDateSourceModifiedDateSourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnumArchived GetTrackingCategorySourceModifiedDateSourceModifiedDateSourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnum = "Archived"
 )
 
+func (e *GetTrackingCategorySourceModifiedDateSourceModifiedDateSourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Active":
+		fallthrough
+	case "Archived":
+		*e = GetTrackingCategorySourceModifiedDateSourceModifiedDateSourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetTrackingCategorySourceModifiedDateSourceModifiedDateSourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnum: %s", s)
+	}
+}
+
 type GetTrackingCategorySourceModifiedDateSourceModifiedDateSourceModifiedDateSourceModifiedDate struct {
 	// The identifier for the item, unique per tracking category
 	ID *string `json:"id,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// The name of the tracking category
 	Name *string `json:"name,omitempty"`
 	// The identifier for this item's immediate parent
 	ParentID *string `json:"parentId,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Current state of the tracking category.
 	Status *GetTrackingCategorySourceModifiedDateSourceModifiedDateSourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnum `json:"status,omitempty"`
 }
@@ -69,13 +142,13 @@ type GetTrackingCategorySourceModifiedDateSourceModifiedDateSourceModifiedDate s
 	// The identifier for the item, unique per tracking category
 	ID *string `json:"id,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// The name of the tracking category
 	Name *string `json:"name,omitempty"`
 	// The identifier for this item's immediate parent
 	ParentID *string `json:"parentId,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Current state of the tracking category.
 	Status *GetTrackingCategorySourceModifiedDateSourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnum `json:"status,omitempty"`
 	// A collection of subcategories that are nested beneath this category.
@@ -88,13 +161,13 @@ type GetTrackingCategorySourceModifiedDateSourceModifiedDate struct {
 	// The identifier for the item, unique per tracking category
 	ID *string `json:"id,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// The name of the tracking category
 	Name *string `json:"name,omitempty"`
 	// The identifier for this item's immediate parent
 	ParentID *string `json:"parentId,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Current state of the tracking category.
 	Status *GetTrackingCategorySourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnum `json:"status,omitempty"`
 	// A collection of subcategories that are nested beneath this category.
@@ -108,13 +181,13 @@ type GetTrackingCategorySourceModifiedDate struct {
 	// The identifier for the item, unique per tracking category
 	ID *string `json:"id,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// The name of the tracking category
 	Name *string `json:"name,omitempty"`
 	// The identifier for this item's immediate parent
 	ParentID *string `json:"parentId,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Current state of the tracking category.
 	Status *GetTrackingCategorySourceModifiedDateTrackingCategoryStatusEnum `json:"status,omitempty"`
 	// A collection of subcategories that are nested beneath this category.

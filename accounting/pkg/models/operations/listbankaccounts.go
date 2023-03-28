@@ -3,8 +3,9 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 type ListBankAccountsRequest struct {
@@ -20,43 +21,50 @@ type ListBankAccountsRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-type ListBankAccountsLinksLinksCurrent struct {
-	Href string `json:"href"`
-}
-
-type ListBankAccountsLinksLinksNext struct {
+type ListBankAccounts200ApplicationJSONLinksHypertextReference struct {
 	Href *string `json:"href,omitempty"`
 }
 
-type ListBankAccountsLinksLinksPrevious struct {
-	Href *string `json:"href,omitempty"`
+type ListBankAccounts200ApplicationJSONLinks struct {
+	Current  ListBankAccounts200ApplicationJSONLinksHypertextReference  `json:"current"`
+	Next     *ListBankAccounts200ApplicationJSONLinksHypertextReference `json:"next,omitempty"`
+	Previous *ListBankAccounts200ApplicationJSONLinksHypertextReference `json:"previous,omitempty"`
+	Self     ListBankAccounts200ApplicationJSONLinksHypertextReference  `json:"self"`
 }
 
-type ListBankAccountsLinksLinksSelf struct {
-	Href string `json:"href"`
-}
-
-type ListBankAccountsLinksLinks struct {
-	Current  ListBankAccountsLinksLinksCurrent   `json:"current"`
-	Next     *ListBankAccountsLinksLinksNext     `json:"next,omitempty"`
-	Previous *ListBankAccountsLinksLinksPrevious `json:"previous,omitempty"`
-	Self     ListBankAccountsLinksLinksSelf      `json:"self"`
-}
-
-// ListBankAccountsLinksSourceModifiedDateAccountTypeEnum - The type of the account.
-type ListBankAccountsLinksSourceModifiedDateAccountTypeEnum string
+// ListBankAccounts200ApplicationJSONSourceModifiedDateAccountTypeEnum - The type of the account.
+type ListBankAccounts200ApplicationJSONSourceModifiedDateAccountTypeEnum string
 
 const (
-	ListBankAccountsLinksSourceModifiedDateAccountTypeEnumUnknown ListBankAccountsLinksSourceModifiedDateAccountTypeEnum = "Unknown"
-	ListBankAccountsLinksSourceModifiedDateAccountTypeEnumCredit  ListBankAccountsLinksSourceModifiedDateAccountTypeEnum = "Credit"
-	ListBankAccountsLinksSourceModifiedDateAccountTypeEnumDebit   ListBankAccountsLinksSourceModifiedDateAccountTypeEnum = "Debit"
+	ListBankAccounts200ApplicationJSONSourceModifiedDateAccountTypeEnumUnknown ListBankAccounts200ApplicationJSONSourceModifiedDateAccountTypeEnum = "Unknown"
+	ListBankAccounts200ApplicationJSONSourceModifiedDateAccountTypeEnumCredit  ListBankAccounts200ApplicationJSONSourceModifiedDateAccountTypeEnum = "Credit"
+	ListBankAccounts200ApplicationJSONSourceModifiedDateAccountTypeEnumDebit   ListBankAccounts200ApplicationJSONSourceModifiedDateAccountTypeEnum = "Debit"
 )
 
-type ListBankAccountsLinksSourceModifiedDateMetadata struct {
+func (e *ListBankAccounts200ApplicationJSONSourceModifiedDateAccountTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Credit":
+		fallthrough
+	case "Debit":
+		*e = ListBankAccounts200ApplicationJSONSourceModifiedDateAccountTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListBankAccounts200ApplicationJSONSourceModifiedDateAccountTypeEnum: %s", s)
+	}
+}
+
+type ListBankAccounts200ApplicationJSONSourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
-// ListBankAccountsLinksSourceModifiedDate - > **Accessing Bank Accounts through Banking API**
+// ListBankAccounts200ApplicationJSONSourceModifiedDate - > **Accessing Bank Accounts through Banking API**
 // >
 // > This datatype was originally used for accessing bank account data both in accounting integrations and open banking aggregators.
 // >
@@ -72,7 +80,7 @@ type ListBankAccountsLinksSourceModifiedDateMetadata struct {
 // * The name and ID of the account in the accounting platform.
 // * The currency and balance of the account.
 // * The sort code and account number.
-type ListBankAccountsLinksSourceModifiedDate struct {
+type ListBankAccounts200ApplicationJSONSourceModifiedDate struct {
 	// Name of the bank account in the accounting platform.
 	AccountName *string `json:"accountName,omitempty"`
 	// Account number for the bank account.
@@ -84,7 +92,7 @@ type ListBankAccountsLinksSourceModifiedDate struct {
 	// For Credit accounts, only the last four digits are required. For other types, the field is optional.
 	AccountNumber *string `json:"accountNumber,omitempty"`
 	// The type of the account.
-	AccountType *ListBankAccountsLinksSourceModifiedDateAccountTypeEnum `json:"accountType,omitempty"`
+	AccountType *ListBankAccounts200ApplicationJSONSourceModifiedDateAccountTypeEnum `json:"accountType,omitempty"`
 	// Total available balance of the bank account as reported by the underlying data source. This may take into account overdrafts or pending transactions for example.
 	AvailableBalance *float64 `json:"availableBalance,omitempty"`
 	// Balance of the bank account.
@@ -96,10 +104,10 @@ type ListBankAccountsLinksSourceModifiedDate struct {
 	// Identifier for the account, unique for the company in the accounting platform.
 	ID *string `json:"id,omitempty"`
 	// The institution of the bank account.
-	Institution *string                                          `json:"institution,omitempty"`
-	Metadata    *ListBankAccountsLinksSourceModifiedDateMetadata `json:"metadata,omitempty"`
+	Institution *string                                                       `json:"institution,omitempty"`
+	Metadata    *ListBankAccounts200ApplicationJSONSourceModifiedDateMetadata `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Code used to identify each nominal account for a business.
 	NominalCode *string `json:"nominalCode,omitempty"`
 	// Pre-arranged overdraft limit of the account.
@@ -112,16 +120,16 @@ type ListBankAccountsLinksSourceModifiedDate struct {
 	// The sort code is only displayed when the currency = GBP and the sort code and account number sum to 14 digits. For non-GBP accounts, this field is not populated.
 	SortCode *string `json:"sortCode,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 }
 
-// ListBankAccountsLinks - Codat's Paging Model
-type ListBankAccountsLinks struct {
-	Links        ListBankAccountsLinksLinks                `json:"_links"`
-	PageNumber   int64                                     `json:"pageNumber"`
-	PageSize     int64                                     `json:"pageSize"`
-	Results      []ListBankAccountsLinksSourceModifiedDate `json:"results,omitempty"`
-	TotalResults int64                                     `json:"totalResults"`
+// ListBankAccounts200ApplicationJSON - Success
+type ListBankAccounts200ApplicationJSON struct {
+	Links        ListBankAccounts200ApplicationJSONLinks                `json:"_links"`
+	PageNumber   int64                                                  `json:"pageNumber"`
+	PageSize     int64                                                  `json:"pageSize"`
+	Results      []ListBankAccounts200ApplicationJSONSourceModifiedDate `json:"results,omitempty"`
+	TotalResults int64                                                  `json:"totalResults"`
 }
 
 type ListBankAccountsResponse struct {
@@ -129,5 +137,5 @@ type ListBankAccountsResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// Success
-	Links *ListBankAccountsLinks
+	ListBankAccounts200ApplicationJSONObject *ListBankAccounts200ApplicationJSON
 }

@@ -3,11 +3,13 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 type CreateAccountSourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
@@ -21,6 +23,26 @@ const (
 	CreateAccountSourceModifiedDateStatusEnumPending  CreateAccountSourceModifiedDateStatusEnum = "Pending"
 )
 
+func (e *CreateAccountSourceModifiedDateStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Active":
+		fallthrough
+	case "Archived":
+		fallthrough
+	case "Pending":
+		*e = CreateAccountSourceModifiedDateStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateAccountSourceModifiedDateStatusEnum: %s", s)
+	}
+}
+
 // CreateAccountSourceModifiedDateTypeEnum - Type of account
 type CreateAccountSourceModifiedDateTypeEnum string
 
@@ -32,6 +54,30 @@ const (
 	CreateAccountSourceModifiedDateTypeEnumLiability CreateAccountSourceModifiedDateTypeEnum = "Liability"
 	CreateAccountSourceModifiedDateTypeEnumEquity    CreateAccountSourceModifiedDateTypeEnum = "Equity"
 )
+
+func (e *CreateAccountSourceModifiedDateTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Asset":
+		fallthrough
+	case "Expense":
+		fallthrough
+	case "Income":
+		fallthrough
+	case "Liability":
+		fallthrough
+	case "Equity":
+		*e = CreateAccountSourceModifiedDateTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateAccountSourceModifiedDateTypeEnum: %s", s)
+	}
+}
 
 // CreateAccountSourceModifiedDateValidDataTypeLinks - When querying Codat's data model, some data types return `validDatatypeLinks` metadata in the JSON response. This indicates where that object can be used as a reference—a _valid link_—when creating or updating other data.
 //
@@ -128,13 +174,13 @@ type CreateAccountSourceModifiedDate struct {
 	IsBankAccount bool                                     `json:"isBankAccount"`
 	Metadata      *CreateAccountSourceModifiedDateMetadata `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Name of the account.
 	Name *string `json:"name,omitempty"`
 	// Reference given to each nominal account for a business. It ensures money is allocated to the correct account. This code isn't a unique identifier in the Codat system.
 	NominalCode *string `json:"nominalCode,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Status of the account
 	Status CreateAccountSourceModifiedDateStatusEnum `json:"status"`
 	// Type of account
@@ -165,6 +211,28 @@ const (
 	CreateAccount200ApplicationJSONChangesTypeEnumAttachmentUploaded CreateAccount200ApplicationJSONChangesTypeEnum = "AttachmentUploaded"
 )
 
+func (e *CreateAccount200ApplicationJSONChangesTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Created":
+		fallthrough
+	case "Modified":
+		fallthrough
+	case "Deleted":
+		fallthrough
+	case "AttachmentUploaded":
+		*e = CreateAccount200ApplicationJSONChangesTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateAccount200ApplicationJSONChangesTypeEnum: %s", s)
+	}
+}
+
 type CreateAccount200ApplicationJSONChanges struct {
 	AttachmentID *string                                                       `json:"attachmentId,omitempty"`
 	RecordRef    *CreateAccount200ApplicationJSONChangesPushOperationRecordRef `json:"recordRef,omitempty"`
@@ -172,6 +240,7 @@ type CreateAccount200ApplicationJSONChanges struct {
 }
 
 type CreateAccount200ApplicationJSONSourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
@@ -185,6 +254,26 @@ const (
 	CreateAccount200ApplicationJSONSourceModifiedDateStatusEnumPending  CreateAccount200ApplicationJSONSourceModifiedDateStatusEnum = "Pending"
 )
 
+func (e *CreateAccount200ApplicationJSONSourceModifiedDateStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Active":
+		fallthrough
+	case "Archived":
+		fallthrough
+	case "Pending":
+		*e = CreateAccount200ApplicationJSONSourceModifiedDateStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateAccount200ApplicationJSONSourceModifiedDateStatusEnum: %s", s)
+	}
+}
+
 // CreateAccount200ApplicationJSONSourceModifiedDateTypeEnum - Type of account
 type CreateAccount200ApplicationJSONSourceModifiedDateTypeEnum string
 
@@ -196,6 +285,30 @@ const (
 	CreateAccount200ApplicationJSONSourceModifiedDateTypeEnumLiability CreateAccount200ApplicationJSONSourceModifiedDateTypeEnum = "Liability"
 	CreateAccount200ApplicationJSONSourceModifiedDateTypeEnumEquity    CreateAccount200ApplicationJSONSourceModifiedDateTypeEnum = "Equity"
 )
+
+func (e *CreateAccount200ApplicationJSONSourceModifiedDateTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Asset":
+		fallthrough
+	case "Expense":
+		fallthrough
+	case "Income":
+		fallthrough
+	case "Liability":
+		fallthrough
+	case "Equity":
+		*e = CreateAccount200ApplicationJSONSourceModifiedDateTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateAccount200ApplicationJSONSourceModifiedDateTypeEnum: %s", s)
+	}
+}
 
 // CreateAccount200ApplicationJSONSourceModifiedDateValidDataTypeLinks - When querying Codat's data model, some data types return `validDatatypeLinks` metadata in the JSON response. This indicates where that object can be used as a reference—a _valid link_—when creating or updating other data.
 //
@@ -292,13 +405,13 @@ type CreateAccount200ApplicationJSONSourceModifiedDate struct {
 	IsBankAccount bool                                                       `json:"isBankAccount"`
 	Metadata      *CreateAccount200ApplicationJSONSourceModifiedDateMetadata `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Name of the account.
 	Name *string `json:"name,omitempty"`
 	// Reference given to each nominal account for a business. It ensures money is allocated to the correct account. This code isn't a unique identifier in the Codat system.
 	NominalCode *string `json:"nominalCode,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Status of the account
 	Status CreateAccount200ApplicationJSONSourceModifiedDateStatusEnum `json:"status"`
 	// Type of account
@@ -316,6 +429,26 @@ const (
 	CreateAccount200ApplicationJSONStatusEnumSuccess  CreateAccount200ApplicationJSONStatusEnum = "Success"
 	CreateAccount200ApplicationJSONStatusEnumTimedOut CreateAccount200ApplicationJSONStatusEnum = "TimedOut"
 )
+
+func (e *CreateAccount200ApplicationJSONStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Pending":
+		fallthrough
+	case "Failed":
+		fallthrough
+	case "Success":
+		fallthrough
+	case "TimedOut":
+		*e = CreateAccount200ApplicationJSONStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateAccount200ApplicationJSONStatusEnum: %s", s)
+	}
+}
 
 type CreateAccount200ApplicationJSONValidationValidationItem struct {
 	ItemID        *string `json:"itemId,omitempty"`
@@ -335,7 +468,7 @@ type CreateAccount200ApplicationJSON struct {
 	// Unique identifier for your SMB in Codat.
 	CompanyID string `json:"companyId"`
 	// The datetime when the push was completed, null if Pending.
-	CompletedOnUtc *time.Time `json:"completedOnUtc,omitempty"`
+	CompletedOnUtc *string `json:"completedOnUtc,omitempty"`
 	// > **Language tip:** Accounts are also referred to as **chart of accounts**, **nominal accounts**, and **general ledger**.
 	//
 	// Explore the <a className="external" href="https://api.codat.io/swagger/index.html#/Accounts" target="_blank">Accounts</a> endpoints in Swagger.
@@ -367,7 +500,7 @@ type CreateAccount200ApplicationJSON struct {
 	// A unique identifier generated by Codat to represent this single push operation. This identifier can be used to track the status of the push, and should be persisted.
 	PushOperationKey string `json:"pushOperationKey"`
 	// The datetime when the push was requested.
-	RequestedOnUtc time.Time `json:"requestedOnUtc"`
+	RequestedOnUtc string `json:"requestedOnUtc"`
 	// The status of the push operation.
 	Status           CreateAccount200ApplicationJSONStatusEnum `json:"status"`
 	StatusCode       int                                       `json:"statusCode"`

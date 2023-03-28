@@ -3,8 +3,9 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 type ListBillCreditNotesRequest struct {
@@ -19,45 +20,33 @@ type ListBillCreditNotesRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-type ListBillCreditNotesLinksLinksCurrent struct {
-	Href string `json:"href"`
-}
-
-type ListBillCreditNotesLinksLinksNext struct {
+type ListBillCreditNotes200ApplicationJSONLinksHypertextReference struct {
 	Href *string `json:"href,omitempty"`
 }
 
-type ListBillCreditNotesLinksLinksPrevious struct {
-	Href *string `json:"href,omitempty"`
+type ListBillCreditNotes200ApplicationJSONLinks struct {
+	Current  ListBillCreditNotes200ApplicationJSONLinksHypertextReference  `json:"current"`
+	Next     *ListBillCreditNotes200ApplicationJSONLinksHypertextReference `json:"next,omitempty"`
+	Previous *ListBillCreditNotes200ApplicationJSONLinksHypertextReference `json:"previous,omitempty"`
+	Self     ListBillCreditNotes200ApplicationJSONLinksHypertextReference  `json:"self"`
 }
 
-type ListBillCreditNotesLinksLinksSelf struct {
-	Href string `json:"href"`
-}
-
-type ListBillCreditNotesLinksLinks struct {
-	Current  ListBillCreditNotesLinksLinksCurrent   `json:"current"`
-	Next     *ListBillCreditNotesLinksLinksNext     `json:"next,omitempty"`
-	Previous *ListBillCreditNotesLinksLinksPrevious `json:"previous,omitempty"`
-	Self     ListBillCreditNotesLinksLinksSelf      `json:"self"`
-}
-
-// ListBillCreditNotesLinksSourceModifiedDateLineItemsAccountRef - Reference to the account to which the line item is linked.
-type ListBillCreditNotesLinksSourceModifiedDateLineItemsAccountRef struct {
+// ListBillCreditNotes200ApplicationJSONSourceModifiedDateLineItemsAccountRef - Reference to the account to which the line item is linked.
+type ListBillCreditNotes200ApplicationJSONSourceModifiedDateLineItemsAccountRef struct {
 	// 'id' from the Accounts data type.
 	ID *string `json:"id,omitempty"`
 	// 'name' from the Accounts data type.
 	Name *string `json:"name,omitempty"`
 }
 
-// ListBillCreditNotesLinksSourceModifiedDateLineItemsItemRef - Reference to the item the line is linked to.
-type ListBillCreditNotesLinksSourceModifiedDateLineItemsItemRef struct {
+// ListBillCreditNotes200ApplicationJSONSourceModifiedDateLineItemsItemRef - Reference to the item the line is linked to.
+type ListBillCreditNotes200ApplicationJSONSourceModifiedDateLineItemsItemRef struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
 }
 
-// ListBillCreditNotesLinksSourceModifiedDateLineItemsTaxRateRef - Reference to the tax rate to which the line item is linked.
-type ListBillCreditNotesLinksSourceModifiedDateLineItemsTaxRateRef struct {
+// ListBillCreditNotes200ApplicationJSONSourceModifiedDateLineItemsTaxRateRef - Reference to the tax rate to which the line item is linked.
+type ListBillCreditNotes200ApplicationJSONSourceModifiedDateLineItemsTaxRateRef struct {
 	// Applicable tax rate.
 	EffectiveTaxRate *float64 `json:"effectiveTaxRate,omitempty"`
 	// 'id' from the 'taxRates' data type.
@@ -66,52 +55,92 @@ type ListBillCreditNotesLinksSourceModifiedDateLineItemsTaxRateRef struct {
 	Name *string `json:"name,omitempty"`
 }
 
-// ListBillCreditNotesLinksSourceModifiedDateLineItemsTrackingCategoryRefs - References a category against which the item is tracked.
-type ListBillCreditNotesLinksSourceModifiedDateLineItemsTrackingCategoryRefs struct {
+// ListBillCreditNotes200ApplicationJSONSourceModifiedDateLineItemsTrackingCategoryRefs - References a category against which the item is tracked.
+type ListBillCreditNotes200ApplicationJSONSourceModifiedDateLineItemsTrackingCategoryRefs struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
 }
 
-type ListBillCreditNotesLinksSourceModifiedDateLineItemsTrackingCustomerRef struct {
+type ListBillCreditNotes200ApplicationJSONSourceModifiedDateLineItemsTrackingCustomerRef struct {
 	CompanyName *string `json:"companyName,omitempty"`
 	ID          string  `json:"id"`
 }
 
-type ListBillCreditNotesLinksSourceModifiedDateLineItemsTrackingIsBilledToEnum string
+type ListBillCreditNotes200ApplicationJSONSourceModifiedDateLineItemsTrackingIsBilledToEnum string
 
 const (
-	ListBillCreditNotesLinksSourceModifiedDateLineItemsTrackingIsBilledToEnumUnknown       ListBillCreditNotesLinksSourceModifiedDateLineItemsTrackingIsBilledToEnum = "Unknown"
-	ListBillCreditNotesLinksSourceModifiedDateLineItemsTrackingIsBilledToEnumNotApplicable ListBillCreditNotesLinksSourceModifiedDateLineItemsTrackingIsBilledToEnum = "NotApplicable"
-	ListBillCreditNotesLinksSourceModifiedDateLineItemsTrackingIsBilledToEnumCustomer      ListBillCreditNotesLinksSourceModifiedDateLineItemsTrackingIsBilledToEnum = "Customer"
-	ListBillCreditNotesLinksSourceModifiedDateLineItemsTrackingIsBilledToEnumProject       ListBillCreditNotesLinksSourceModifiedDateLineItemsTrackingIsBilledToEnum = "Project"
+	ListBillCreditNotes200ApplicationJSONSourceModifiedDateLineItemsTrackingIsBilledToEnumUnknown       ListBillCreditNotes200ApplicationJSONSourceModifiedDateLineItemsTrackingIsBilledToEnum = "Unknown"
+	ListBillCreditNotes200ApplicationJSONSourceModifiedDateLineItemsTrackingIsBilledToEnumNotApplicable ListBillCreditNotes200ApplicationJSONSourceModifiedDateLineItemsTrackingIsBilledToEnum = "NotApplicable"
+	ListBillCreditNotes200ApplicationJSONSourceModifiedDateLineItemsTrackingIsBilledToEnumCustomer      ListBillCreditNotes200ApplicationJSONSourceModifiedDateLineItemsTrackingIsBilledToEnum = "Customer"
+	ListBillCreditNotes200ApplicationJSONSourceModifiedDateLineItemsTrackingIsBilledToEnumProject       ListBillCreditNotes200ApplicationJSONSourceModifiedDateLineItemsTrackingIsBilledToEnum = "Project"
 )
 
-type ListBillCreditNotesLinksSourceModifiedDateLineItemsTrackingIsRebilledToEnum string
+func (e *ListBillCreditNotes200ApplicationJSONSourceModifiedDateLineItemsTrackingIsBilledToEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "NotApplicable":
+		fallthrough
+	case "Customer":
+		fallthrough
+	case "Project":
+		*e = ListBillCreditNotes200ApplicationJSONSourceModifiedDateLineItemsTrackingIsBilledToEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListBillCreditNotes200ApplicationJSONSourceModifiedDateLineItemsTrackingIsBilledToEnum: %s", s)
+	}
+}
+
+type ListBillCreditNotes200ApplicationJSONSourceModifiedDateLineItemsTrackingIsRebilledToEnum string
 
 const (
-	ListBillCreditNotesLinksSourceModifiedDateLineItemsTrackingIsRebilledToEnumUnknown       ListBillCreditNotesLinksSourceModifiedDateLineItemsTrackingIsRebilledToEnum = "Unknown"
-	ListBillCreditNotesLinksSourceModifiedDateLineItemsTrackingIsRebilledToEnumNotApplicable ListBillCreditNotesLinksSourceModifiedDateLineItemsTrackingIsRebilledToEnum = "NotApplicable"
-	ListBillCreditNotesLinksSourceModifiedDateLineItemsTrackingIsRebilledToEnumCustomer      ListBillCreditNotesLinksSourceModifiedDateLineItemsTrackingIsRebilledToEnum = "Customer"
-	ListBillCreditNotesLinksSourceModifiedDateLineItemsTrackingIsRebilledToEnumProject       ListBillCreditNotesLinksSourceModifiedDateLineItemsTrackingIsRebilledToEnum = "Project"
+	ListBillCreditNotes200ApplicationJSONSourceModifiedDateLineItemsTrackingIsRebilledToEnumUnknown       ListBillCreditNotes200ApplicationJSONSourceModifiedDateLineItemsTrackingIsRebilledToEnum = "Unknown"
+	ListBillCreditNotes200ApplicationJSONSourceModifiedDateLineItemsTrackingIsRebilledToEnumNotApplicable ListBillCreditNotes200ApplicationJSONSourceModifiedDateLineItemsTrackingIsRebilledToEnum = "NotApplicable"
+	ListBillCreditNotes200ApplicationJSONSourceModifiedDateLineItemsTrackingIsRebilledToEnumCustomer      ListBillCreditNotes200ApplicationJSONSourceModifiedDateLineItemsTrackingIsRebilledToEnum = "Customer"
+	ListBillCreditNotes200ApplicationJSONSourceModifiedDateLineItemsTrackingIsRebilledToEnumProject       ListBillCreditNotes200ApplicationJSONSourceModifiedDateLineItemsTrackingIsRebilledToEnum = "Project"
 )
 
-type ListBillCreditNotesLinksSourceModifiedDateLineItemsTrackingProjectRef struct {
+func (e *ListBillCreditNotes200ApplicationJSONSourceModifiedDateLineItemsTrackingIsRebilledToEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "NotApplicable":
+		fallthrough
+	case "Customer":
+		fallthrough
+	case "Project":
+		*e = ListBillCreditNotes200ApplicationJSONSourceModifiedDateLineItemsTrackingIsRebilledToEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListBillCreditNotes200ApplicationJSONSourceModifiedDateLineItemsTrackingIsRebilledToEnum: %s", s)
+	}
+}
+
+type ListBillCreditNotes200ApplicationJSONSourceModifiedDateLineItemsTrackingProjectRef struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
 }
 
-// ListBillCreditNotesLinksSourceModifiedDateLineItemsTracking - Categories, and a project and customer, against which the item is tracked.
-type ListBillCreditNotesLinksSourceModifiedDateLineItemsTracking struct {
-	CategoryRefs []ListBillCreditNotesLinksSourceModifiedDateLineItemsTrackingCategoryRefs   `json:"categoryRefs"`
-	CustomerRef  *ListBillCreditNotesLinksSourceModifiedDateLineItemsTrackingCustomerRef     `json:"customerRef,omitempty"`
-	IsBilledTo   ListBillCreditNotesLinksSourceModifiedDateLineItemsTrackingIsBilledToEnum   `json:"isBilledTo"`
-	IsRebilledTo ListBillCreditNotesLinksSourceModifiedDateLineItemsTrackingIsRebilledToEnum `json:"isRebilledTo"`
-	ProjectRef   *ListBillCreditNotesLinksSourceModifiedDateLineItemsTrackingProjectRef      `json:"projectRef,omitempty"`
+// ListBillCreditNotes200ApplicationJSONSourceModifiedDateLineItemsTracking - Categories, and a project and customer, against which the item is tracked.
+type ListBillCreditNotes200ApplicationJSONSourceModifiedDateLineItemsTracking struct {
+	CategoryRefs []ListBillCreditNotes200ApplicationJSONSourceModifiedDateLineItemsTrackingCategoryRefs   `json:"categoryRefs"`
+	CustomerRef  *ListBillCreditNotes200ApplicationJSONSourceModifiedDateLineItemsTrackingCustomerRef     `json:"customerRef,omitempty"`
+	IsBilledTo   ListBillCreditNotes200ApplicationJSONSourceModifiedDateLineItemsTrackingIsBilledToEnum   `json:"isBilledTo"`
+	IsRebilledTo ListBillCreditNotes200ApplicationJSONSourceModifiedDateLineItemsTrackingIsRebilledToEnum `json:"isRebilledTo"`
+	ProjectRef   *ListBillCreditNotes200ApplicationJSONSourceModifiedDateLineItemsTrackingProjectRef      `json:"projectRef,omitempty"`
 }
 
-type ListBillCreditNotesLinksSourceModifiedDateLineItems struct {
+type ListBillCreditNotes200ApplicationJSONSourceModifiedDateLineItems struct {
 	// Reference to the account to which the line item is linked.
-	AccountRef *ListBillCreditNotesLinksSourceModifiedDateLineItemsAccountRef `json:"accountRef,omitempty"`
+	AccountRef *ListBillCreditNotes200ApplicationJSONSourceModifiedDateLineItemsAccountRef `json:"accountRef,omitempty"`
 	// Friendly name of each line item. For example, the goods or service for which credit has been received.
 	Description *string `json:"description,omitempty"`
 	// Value of any discounts applied.
@@ -119,7 +148,7 @@ type ListBillCreditNotesLinksSourceModifiedDateLineItems struct {
 	// Percentage rate of any discount applied to the line item.
 	DiscountPercentage *float64 `json:"discountPercentage,omitempty"`
 	// Reference to the item the line is linked to.
-	ItemRef *ListBillCreditNotesLinksSourceModifiedDateLineItemsItemRef `json:"itemRef,omitempty"`
+	ItemRef *ListBillCreditNotes200ApplicationJSONSourceModifiedDateLineItemsItemRef `json:"itemRef,omitempty"`
 	// Number of units of the goods or service for which credit has been received.
 	Quantity float64 `json:"quantity"`
 	// Amount of credit associated with the line item, including discounts but excluding tax.
@@ -127,24 +156,25 @@ type ListBillCreditNotesLinksSourceModifiedDateLineItems struct {
 	// Amount of tax associated with the line item.
 	TaxAmount *float64 `json:"taxAmount,omitempty"`
 	// Reference to the tax rate to which the line item is linked.
-	TaxRateRef *ListBillCreditNotesLinksSourceModifiedDateLineItemsTaxRateRef `json:"taxRateRef,omitempty"`
+	TaxRateRef *ListBillCreditNotes200ApplicationJSONSourceModifiedDateLineItemsTaxRateRef `json:"taxRateRef,omitempty"`
 	// Total amount of the line item, including discounts and tax.
 	TotalAmount *float64 `json:"totalAmount,omitempty"`
 	// Categories, and a project and customer, against which the item is tracked.
-	Tracking *ListBillCreditNotesLinksSourceModifiedDateLineItemsTracking `json:"tracking,omitempty"`
+	Tracking *ListBillCreditNotes200ApplicationJSONSourceModifiedDateLineItemsTracking `json:"tracking,omitempty"`
 	// Reference to the tracking categories to which the line item is linked.
-	TrackingCategoryRefs []ListBillCreditNotesLinksSourceModifiedDateLineItemsTrackingCategoryRefs `json:"trackingCategoryRefs,omitempty"`
+	TrackingCategoryRefs []ListBillCreditNotes200ApplicationJSONSourceModifiedDateLineItemsTrackingCategoryRefs `json:"trackingCategoryRefs,omitempty"`
 	// Unit price of the goods or service.
 	UnitAmount float64 `json:"unitAmount"`
 }
 
-type ListBillCreditNotesLinksSourceModifiedDateMetadata struct {
+type ListBillCreditNotes200ApplicationJSONSourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
-type ListBillCreditNotesLinksSourceModifiedDatePaymentAllocationsAllocation struct {
+type ListBillCreditNotes200ApplicationJSONSourceModifiedDatePaymentAllocationsAllocation struct {
 	// The date the payment was allocated.
-	AllocatedOnDate *time.Time `json:"allocatedOnDate,omitempty"`
+	AllocatedOnDate *string `json:"allocatedOnDate,omitempty"`
 	// The currency of the transaction.
 	Currency *string `json:"currency,omitempty"`
 	// Rate to convert the total amount of the payment into the base currency for the company at the time of the payment.
@@ -175,17 +205,17 @@ type ListBillCreditNotesLinksSourceModifiedDatePaymentAllocationsAllocation stru
 	TotalAmount *float64 `json:"totalAmount,omitempty"`
 }
 
-// ListBillCreditNotesLinksSourceModifiedDatePaymentAllocationsPaymentAccountRef - The account that the allocated payment is made from or to.
-type ListBillCreditNotesLinksSourceModifiedDatePaymentAllocationsPaymentAccountRef struct {
+// ListBillCreditNotes200ApplicationJSONSourceModifiedDatePaymentAllocationsPaymentAccountRef - The account that the allocated payment is made from or to.
+type ListBillCreditNotes200ApplicationJSONSourceModifiedDatePaymentAllocationsPaymentAccountRef struct {
 	// 'id' from the Accounts data type.
 	ID *string `json:"id,omitempty"`
 	// 'name' from the Accounts data type.
 	Name *string `json:"name,omitempty"`
 }
 
-type ListBillCreditNotesLinksSourceModifiedDatePaymentAllocationsPayment struct {
+type ListBillCreditNotes200ApplicationJSONSourceModifiedDatePaymentAllocationsPayment struct {
 	// The account that the allocated payment is made from or to.
-	AccountRef *ListBillCreditNotesLinksSourceModifiedDatePaymentAllocationsPaymentAccountRef `json:"accountRef,omitempty"`
+	AccountRef *ListBillCreditNotes200ApplicationJSONSourceModifiedDatePaymentAllocationsPaymentAccountRef `json:"accountRef,omitempty"`
 	// Currency the payment has been made in.
 	Currency *string `json:"currency,omitempty"`
 	// Rate to convert the total amount of the payment into the base currency for the company at the time of the payment.
@@ -217,47 +247,71 @@ type ListBillCreditNotesLinksSourceModifiedDatePaymentAllocationsPayment struct 
 	// Notes attached to the allocated payment.
 	Note *string `json:"note,omitempty"`
 	// The date the payment was paid.
-	PaidOnDate *time.Time `json:"paidOnDate,omitempty"`
+	PaidOnDate *string `json:"paidOnDate,omitempty"`
 	// Reference to the allocated payment.
 	Reference *string `json:"reference,omitempty"`
 	// Total amount that was paid.
 	TotalAmount *float64 `json:"totalAmount,omitempty"`
 }
 
-type ListBillCreditNotesLinksSourceModifiedDatePaymentAllocations struct {
-	Allocation ListBillCreditNotesLinksSourceModifiedDatePaymentAllocationsAllocation `json:"allocation"`
-	Payment    ListBillCreditNotesLinksSourceModifiedDatePaymentAllocationsPayment    `json:"payment"`
+type ListBillCreditNotes200ApplicationJSONSourceModifiedDatePaymentAllocations struct {
+	Allocation ListBillCreditNotes200ApplicationJSONSourceModifiedDatePaymentAllocationsAllocation `json:"allocation"`
+	Payment    ListBillCreditNotes200ApplicationJSONSourceModifiedDatePaymentAllocationsPayment    `json:"payment"`
 }
 
-// ListBillCreditNotesLinksSourceModifiedDateStatusEnum - Current state of the bill credit note
-type ListBillCreditNotesLinksSourceModifiedDateStatusEnum string
+// ListBillCreditNotes200ApplicationJSONSourceModifiedDateStatusEnum - Current state of the bill credit note
+type ListBillCreditNotes200ApplicationJSONSourceModifiedDateStatusEnum string
 
 const (
-	ListBillCreditNotesLinksSourceModifiedDateStatusEnumUnknown       ListBillCreditNotesLinksSourceModifiedDateStatusEnum = "Unknown"
-	ListBillCreditNotesLinksSourceModifiedDateStatusEnumDraft         ListBillCreditNotesLinksSourceModifiedDateStatusEnum = "Draft"
-	ListBillCreditNotesLinksSourceModifiedDateStatusEnumSubmitted     ListBillCreditNotesLinksSourceModifiedDateStatusEnum = "Submitted"
-	ListBillCreditNotesLinksSourceModifiedDateStatusEnumPaid          ListBillCreditNotesLinksSourceModifiedDateStatusEnum = "Paid"
-	ListBillCreditNotesLinksSourceModifiedDateStatusEnumVoid          ListBillCreditNotesLinksSourceModifiedDateStatusEnum = "Void"
-	ListBillCreditNotesLinksSourceModifiedDateStatusEnumPartiallyPaid ListBillCreditNotesLinksSourceModifiedDateStatusEnum = "PartiallyPaid"
+	ListBillCreditNotes200ApplicationJSONSourceModifiedDateStatusEnumUnknown       ListBillCreditNotes200ApplicationJSONSourceModifiedDateStatusEnum = "Unknown"
+	ListBillCreditNotes200ApplicationJSONSourceModifiedDateStatusEnumDraft         ListBillCreditNotes200ApplicationJSONSourceModifiedDateStatusEnum = "Draft"
+	ListBillCreditNotes200ApplicationJSONSourceModifiedDateStatusEnumSubmitted     ListBillCreditNotes200ApplicationJSONSourceModifiedDateStatusEnum = "Submitted"
+	ListBillCreditNotes200ApplicationJSONSourceModifiedDateStatusEnumPaid          ListBillCreditNotes200ApplicationJSONSourceModifiedDateStatusEnum = "Paid"
+	ListBillCreditNotes200ApplicationJSONSourceModifiedDateStatusEnumVoid          ListBillCreditNotes200ApplicationJSONSourceModifiedDateStatusEnum = "Void"
+	ListBillCreditNotes200ApplicationJSONSourceModifiedDateStatusEnumPartiallyPaid ListBillCreditNotes200ApplicationJSONSourceModifiedDateStatusEnum = "PartiallyPaid"
 )
 
-// ListBillCreditNotesLinksSourceModifiedDateSupplementalData - Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
-type ListBillCreditNotesLinksSourceModifiedDateSupplementalData struct {
+func (e *ListBillCreditNotes200ApplicationJSONSourceModifiedDateStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Draft":
+		fallthrough
+	case "Submitted":
+		fallthrough
+	case "Paid":
+		fallthrough
+	case "Void":
+		fallthrough
+	case "PartiallyPaid":
+		*e = ListBillCreditNotes200ApplicationJSONSourceModifiedDateStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListBillCreditNotes200ApplicationJSONSourceModifiedDateStatusEnum: %s", s)
+	}
+}
+
+// ListBillCreditNotes200ApplicationJSONSourceModifiedDateSupplementalData - Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
+type ListBillCreditNotes200ApplicationJSONSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
 
-// ListBillCreditNotesLinksSourceModifiedDateSupplierRef - Supplier that issued the bill credit note.
-type ListBillCreditNotesLinksSourceModifiedDateSupplierRef struct {
+// ListBillCreditNotes200ApplicationJSONSourceModifiedDateSupplierRef - Supplier that issued the bill credit note.
+type ListBillCreditNotes200ApplicationJSONSourceModifiedDateSupplierRef struct {
 	ID           string  `json:"id"`
 	SupplierName *string `json:"supplierName,omitempty"`
 }
 
-type ListBillCreditNotesLinksSourceModifiedDateWithholdingTax struct {
+type ListBillCreditNotes200ApplicationJSONSourceModifiedDateWithholdingTax struct {
 	Amount float64 `json:"amount"`
 	Name   string  `json:"name"`
 }
 
-// ListBillCreditNotesLinksSourceModifiedDate - > **Bill credit notes or credit notes?**
+// ListBillCreditNotes200ApplicationJSONSourceModifiedDate - > **Bill credit notes or credit notes?**
 // >
 // > In Codat, bill credit notes represent accounts payable only. For accounts receivable, see [Credit notes](https://docs.codat.io/accounting-api#/schemas/CreditNote).
 //
@@ -273,9 +327,9 @@ type ListBillCreditNotesLinksSourceModifiedDateWithholdingTax struct {
 // * The original and remaining credit.
 // * Any allocations of the credit against other records, such as [bills](https://docs.codat.io/accounting-api#/schemas/Bill).
 // * The supplier that issued the bill credit note.
-type ListBillCreditNotesLinksSourceModifiedDate struct {
+type ListBillCreditNotes200ApplicationJSONSourceModifiedDate struct {
 	// Date the bill credit note was fully refunded or allocated.
-	AllocatedOnDate *time.Time `json:"allocatedOnDate,omitempty"`
+	AllocatedOnDate *string `json:"allocatedOnDate,omitempty"`
 	// Friendly reference for the bill credit note.
 	BillCreditNoteNumber *string `json:"billCreditNoteNumber,omitempty"`
 	// Currency of the bill credit note.
@@ -309,44 +363,44 @@ type ListBillCreditNotesLinksSourceModifiedDate struct {
 	// Identifier for the bill credit note that is unique to a company in the accounting platform.
 	ID *string `json:"id,omitempty"`
 	// Date the bill credit note was issued by the supplier.
-	IssueDate *time.Time `json:"issueDate,omitempty"`
+	IssueDate *string `json:"issueDate,omitempty"`
 	// An array of line
-	LineItems []ListBillCreditNotesLinksSourceModifiedDateLineItems `json:"lineItems,omitempty"`
-	Metadata  *ListBillCreditNotesLinksSourceModifiedDateMetadata   `json:"metadata,omitempty"`
+	LineItems []ListBillCreditNotes200ApplicationJSONSourceModifiedDateLineItems `json:"lineItems,omitempty"`
+	Metadata  *ListBillCreditNotes200ApplicationJSONSourceModifiedDateMetadata   `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Any additional information about the bill credit note.
 	Note *string `json:"note,omitempty"`
 	// An array of payment allocations.
-	PaymentAllocations []ListBillCreditNotesLinksSourceModifiedDatePaymentAllocations `json:"paymentAllocations,omitempty"`
+	PaymentAllocations []ListBillCreditNotes200ApplicationJSONSourceModifiedDatePaymentAllocations `json:"paymentAllocations,omitempty"`
 	// Amount of the bill credit note that is still outstanding.
 	RemainingCredit float64 `json:"remainingCredit"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Current state of the bill credit note
-	Status ListBillCreditNotesLinksSourceModifiedDateStatusEnum `json:"status"`
+	Status ListBillCreditNotes200ApplicationJSONSourceModifiedDateStatusEnum `json:"status"`
 	// Total amount of the bill credit note, including discounts but excluding tax.
 	SubTotal float64 `json:"subTotal"`
 	// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
-	SupplementalData *ListBillCreditNotesLinksSourceModifiedDateSupplementalData `json:"supplementalData,omitempty"`
+	SupplementalData *ListBillCreditNotes200ApplicationJSONSourceModifiedDateSupplementalData `json:"supplementalData,omitempty"`
 	// Supplier that issued the bill credit note.
-	SupplierRef *ListBillCreditNotesLinksSourceModifiedDateSupplierRef `json:"supplierRef,omitempty"`
+	SupplierRef *ListBillCreditNotes200ApplicationJSONSourceModifiedDateSupplierRef `json:"supplierRef,omitempty"`
 	// Total amount of credit that has been applied to the business' account with the supplier, including discounts and tax.
 	TotalAmount float64 `json:"totalAmount"`
 	// Total value of any discounts applied.
 	TotalDiscount float64 `json:"totalDiscount"`
 	// Amount of tax included in the bill credit note.
-	TotalTaxAmount float64                                                    `json:"totalTaxAmount"`
-	WithholdingTax []ListBillCreditNotesLinksSourceModifiedDateWithholdingTax `json:"withholdingTax,omitempty"`
+	TotalTaxAmount float64                                                                 `json:"totalTaxAmount"`
+	WithholdingTax []ListBillCreditNotes200ApplicationJSONSourceModifiedDateWithholdingTax `json:"withholdingTax,omitempty"`
 }
 
-// ListBillCreditNotesLinks - Codat's Paging Model
-type ListBillCreditNotesLinks struct {
-	Links        ListBillCreditNotesLinksLinks                `json:"_links"`
-	PageNumber   int64                                        `json:"pageNumber"`
-	PageSize     int64                                        `json:"pageSize"`
-	Results      []ListBillCreditNotesLinksSourceModifiedDate `json:"results,omitempty"`
-	TotalResults int64                                        `json:"totalResults"`
+// ListBillCreditNotes200ApplicationJSON - Success
+type ListBillCreditNotes200ApplicationJSON struct {
+	Links        ListBillCreditNotes200ApplicationJSONLinks                `json:"_links"`
+	PageNumber   int64                                                     `json:"pageNumber"`
+	PageSize     int64                                                     `json:"pageSize"`
+	Results      []ListBillCreditNotes200ApplicationJSONSourceModifiedDate `json:"results,omitempty"`
+	TotalResults int64                                                     `json:"totalResults"`
 }
 
 type ListBillCreditNotesResponse struct {
@@ -354,5 +408,5 @@ type ListBillCreditNotesResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// Success
-	Links *ListBillCreditNotesLinks
+	ListBillCreditNotes200ApplicationJSONObject *ListBillCreditNotes200ApplicationJSON
 }

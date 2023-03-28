@@ -273,12 +273,12 @@ func (s *billPayments) ListBillPayments(ctx context.Context, request operations.
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListBillPaymentsLinks
+			var out *operations.ListBillPayments200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Links = out
+			res.ListBillPayments200ApplicationJSONObject = out
 		}
 	}
 

@@ -3,8 +3,9 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 type ListSuppliersRequest struct {
@@ -19,39 +20,45 @@ type ListSuppliersRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-type ListSuppliersLinksLinksCurrent struct {
-	Href string `json:"href"`
-}
-
-type ListSuppliersLinksLinksNext struct {
+type ListSuppliers200ApplicationJSONLinksHypertextReference struct {
 	Href *string `json:"href,omitempty"`
 }
 
-type ListSuppliersLinksLinksPrevious struct {
-	Href *string `json:"href,omitempty"`
+type ListSuppliers200ApplicationJSONLinks struct {
+	Current  ListSuppliers200ApplicationJSONLinksHypertextReference  `json:"current"`
+	Next     *ListSuppliers200ApplicationJSONLinksHypertextReference `json:"next,omitempty"`
+	Previous *ListSuppliers200ApplicationJSONLinksHypertextReference `json:"previous,omitempty"`
+	Self     ListSuppliers200ApplicationJSONLinksHypertextReference  `json:"self"`
 }
 
-type ListSuppliersLinksLinksSelf struct {
-	Href string `json:"href"`
-}
-
-type ListSuppliersLinksLinks struct {
-	Current  ListSuppliersLinksLinksCurrent   `json:"current"`
-	Next     *ListSuppliersLinksLinksNext     `json:"next,omitempty"`
-	Previous *ListSuppliersLinksLinksPrevious `json:"previous,omitempty"`
-	Self     ListSuppliersLinksLinksSelf      `json:"self"`
-}
-
-// ListSuppliersLinksSourceModifiedDateAddressesTypeEnum - Type of the address.
-type ListSuppliersLinksSourceModifiedDateAddressesTypeEnum string
+// ListSuppliers200ApplicationJSONSourceModifiedDateAddressesTypeEnum - Type of the address.
+type ListSuppliers200ApplicationJSONSourceModifiedDateAddressesTypeEnum string
 
 const (
-	ListSuppliersLinksSourceModifiedDateAddressesTypeEnumUnknown  ListSuppliersLinksSourceModifiedDateAddressesTypeEnum = "Unknown"
-	ListSuppliersLinksSourceModifiedDateAddressesTypeEnumBilling  ListSuppliersLinksSourceModifiedDateAddressesTypeEnum = "Billing"
-	ListSuppliersLinksSourceModifiedDateAddressesTypeEnumDelivery ListSuppliersLinksSourceModifiedDateAddressesTypeEnum = "Delivery"
+	ListSuppliers200ApplicationJSONSourceModifiedDateAddressesTypeEnumUnknown  ListSuppliers200ApplicationJSONSourceModifiedDateAddressesTypeEnum = "Unknown"
+	ListSuppliers200ApplicationJSONSourceModifiedDateAddressesTypeEnumBilling  ListSuppliers200ApplicationJSONSourceModifiedDateAddressesTypeEnum = "Billing"
+	ListSuppliers200ApplicationJSONSourceModifiedDateAddressesTypeEnumDelivery ListSuppliers200ApplicationJSONSourceModifiedDateAddressesTypeEnum = "Delivery"
 )
 
-type ListSuppliersLinksSourceModifiedDateAddresses struct {
+func (e *ListSuppliers200ApplicationJSONSourceModifiedDateAddressesTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Billing":
+		fallthrough
+	case "Delivery":
+		*e = ListSuppliers200ApplicationJSONSourceModifiedDateAddressesTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListSuppliers200ApplicationJSONSourceModifiedDateAddressesTypeEnum: %s", s)
+	}
+}
+
+type ListSuppliers200ApplicationJSONSourceModifiedDateAddresses struct {
 	// City of the customer address.
 	City *string `json:"city,omitempty"`
 	// Country of the customer address.
@@ -65,35 +72,54 @@ type ListSuppliersLinksSourceModifiedDateAddresses struct {
 	// Region of the customer address.
 	Region *string `json:"region,omitempty"`
 	// Type of the address.
-	Type ListSuppliersLinksSourceModifiedDateAddressesTypeEnum `json:"type"`
+	Type ListSuppliers200ApplicationJSONSourceModifiedDateAddressesTypeEnum `json:"type"`
 }
 
-type ListSuppliersLinksSourceModifiedDateMetadata struct {
+type ListSuppliers200ApplicationJSONSourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
-// ListSuppliersLinksSourceModifiedDateStatusEnum - Status of the supplier.
-type ListSuppliersLinksSourceModifiedDateStatusEnum string
+// ListSuppliers200ApplicationJSONSourceModifiedDateStatusEnum - Status of the supplier.
+type ListSuppliers200ApplicationJSONSourceModifiedDateStatusEnum string
 
 const (
-	ListSuppliersLinksSourceModifiedDateStatusEnumUnknown  ListSuppliersLinksSourceModifiedDateStatusEnum = "Unknown"
-	ListSuppliersLinksSourceModifiedDateStatusEnumActive   ListSuppliersLinksSourceModifiedDateStatusEnum = "Active"
-	ListSuppliersLinksSourceModifiedDateStatusEnumArchived ListSuppliersLinksSourceModifiedDateStatusEnum = "Archived"
+	ListSuppliers200ApplicationJSONSourceModifiedDateStatusEnumUnknown  ListSuppliers200ApplicationJSONSourceModifiedDateStatusEnum = "Unknown"
+	ListSuppliers200ApplicationJSONSourceModifiedDateStatusEnumActive   ListSuppliers200ApplicationJSONSourceModifiedDateStatusEnum = "Active"
+	ListSuppliers200ApplicationJSONSourceModifiedDateStatusEnumArchived ListSuppliers200ApplicationJSONSourceModifiedDateStatusEnum = "Archived"
 )
 
-// ListSuppliersLinksSourceModifiedDateSupplementalData - Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
-type ListSuppliersLinksSourceModifiedDateSupplementalData struct {
+func (e *ListSuppliers200ApplicationJSONSourceModifiedDateStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Active":
+		fallthrough
+	case "Archived":
+		*e = ListSuppliers200ApplicationJSONSourceModifiedDateStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListSuppliers200ApplicationJSONSourceModifiedDateStatusEnum: %s", s)
+	}
+}
+
+// ListSuppliers200ApplicationJSONSourceModifiedDateSupplementalData - Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
+type ListSuppliers200ApplicationJSONSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
 
-// ListSuppliersLinksSourceModifiedDate - > View the coverage for suppliers in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=suppliers" target="_blank">Data coverage explorer</a>.
+// ListSuppliers200ApplicationJSONSourceModifiedDate - > View the coverage for suppliers in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=suppliers" target="_blank">Data coverage explorer</a>.
 //
 // ## Overview
 //
 // From the **Suppliers** endpoints, you can retrieve a list of [all the suppliers for a company](https://api.codat.io/swagger/index.html#/Suppliers/get_companies__companyId__data_suppliers). Suppliers' data links to accounts payable [bills](https://docs.codat.io/accounting-api#/schemas/Bill).
-type ListSuppliersLinksSourceModifiedDate struct {
+type ListSuppliers200ApplicationJSONSourceModifiedDate struct {
 	// An array of Addresses.
-	Addresses []ListSuppliersLinksSourceModifiedDateAddresses `json:"addresses,omitempty"`
+	Addresses []ListSuppliers200ApplicationJSONSourceModifiedDateAddresses `json:"addresses,omitempty"`
 	// Name of the main contact for the supplier.
 	ContactName *string `json:"contactName,omitempty"`
 	// Default currency the supplier's transactional data is recorded in.
@@ -101,20 +127,20 @@ type ListSuppliersLinksSourceModifiedDate struct {
 	// Email address that the supplier may be contacted on.
 	EmailAddress *string `json:"emailAddress,omitempty"`
 	// Identifier for the supplier, unique to the company in the accounting platform.
-	ID       *string                                       `json:"id,omitempty"`
-	Metadata *ListSuppliersLinksSourceModifiedDateMetadata `json:"metadata,omitempty"`
+	ID       *string                                                    `json:"id,omitempty"`
+	Metadata *ListSuppliers200ApplicationJSONSourceModifiedDateMetadata `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Phone number that the supplier may be contacted on.
 	Phone *string `json:"phone,omitempty"`
 	// Company number of the supplier. In the UK, this is typically the company registration number issued by Companies House.
 	RegistrationNumber *string `json:"registrationNumber,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Status of the supplier.
-	Status ListSuppliersLinksSourceModifiedDateStatusEnum `json:"status"`
+	Status ListSuppliers200ApplicationJSONSourceModifiedDateStatusEnum `json:"status"`
 	// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
-	SupplementalData *ListSuppliersLinksSourceModifiedDateSupplementalData `json:"supplementalData,omitempty"`
+	SupplementalData *ListSuppliers200ApplicationJSONSourceModifiedDateSupplementalData `json:"supplementalData,omitempty"`
 	//
 	// Name of the supplier as recorded in the accounting system, typically the company name.
 	SupplierName *string `json:"supplierName,omitempty"`
@@ -122,13 +148,13 @@ type ListSuppliersLinksSourceModifiedDate struct {
 	TaxNumber *string `json:"taxNumber,omitempty"`
 }
 
-// ListSuppliersLinks - Codat's Paging Model
-type ListSuppliersLinks struct {
-	Links        ListSuppliersLinksLinks                `json:"_links"`
-	PageNumber   int64                                  `json:"pageNumber"`
-	PageSize     int64                                  `json:"pageSize"`
-	Results      []ListSuppliersLinksSourceModifiedDate `json:"results,omitempty"`
-	TotalResults int64                                  `json:"totalResults"`
+// ListSuppliers200ApplicationJSON - Success
+type ListSuppliers200ApplicationJSON struct {
+	Links        ListSuppliers200ApplicationJSONLinks                `json:"_links"`
+	PageNumber   int64                                               `json:"pageNumber"`
+	PageSize     int64                                               `json:"pageSize"`
+	Results      []ListSuppliers200ApplicationJSONSourceModifiedDate `json:"results,omitempty"`
+	TotalResults int64                                               `json:"totalResults"`
 }
 
 type ListSuppliersResponse struct {
@@ -136,5 +162,5 @@ type ListSuppliersResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// Success
-	Links *ListSuppliersLinks
+	ListSuppliers200ApplicationJSONObject *ListSuppliers200ApplicationJSON
 }

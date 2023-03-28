@@ -3,8 +3,9 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 // CreateTransferSourceModifiedDateContactRef - The customer or supplier for the transfer, if available.
@@ -32,6 +33,7 @@ type CreateTransferSourceModifiedDateTransferAccount struct {
 }
 
 type CreateTransferSourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
@@ -59,8 +61,8 @@ type CreateTransferSourceModifiedDate struct {
 	// The customer or supplier for the transfer, if available.
 	ContactRef *CreateTransferSourceModifiedDateContactRef `json:"contactRef,omitempty"`
 	// The day on which the transfer was made.
-	Date                *time.Time `json:"date,omitempty"`
-	DepositedRecordRefs []string   `json:"depositedRecordRefs,omitempty"`
+	Date                *string  `json:"date,omitempty"`
+	DepositedRecordRefs []string `json:"depositedRecordRefs,omitempty"`
 	// Description of the transfer.
 	Description *string `json:"description,omitempty"`
 	// The details of the accounts the transfer is moving from.
@@ -69,9 +71,9 @@ type CreateTransferSourceModifiedDate struct {
 	ID       *string                                   `json:"id,omitempty"`
 	Metadata *CreateTransferSourceModifiedDateMetadata `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 	SupplementalData *CreateTransferSourceModifiedDateSupplementalData `json:"supplementalData,omitempty"`
 	// The details of the accounts the transfer is moving to.
@@ -100,6 +102,28 @@ const (
 	CreateTransfer200ApplicationJSONChangesTypeEnumDeleted            CreateTransfer200ApplicationJSONChangesTypeEnum = "Deleted"
 	CreateTransfer200ApplicationJSONChangesTypeEnumAttachmentUploaded CreateTransfer200ApplicationJSONChangesTypeEnum = "AttachmentUploaded"
 )
+
+func (e *CreateTransfer200ApplicationJSONChangesTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Created":
+		fallthrough
+	case "Modified":
+		fallthrough
+	case "Deleted":
+		fallthrough
+	case "AttachmentUploaded":
+		*e = CreateTransfer200ApplicationJSONChangesTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateTransfer200ApplicationJSONChangesTypeEnum: %s", s)
+	}
+}
 
 type CreateTransfer200ApplicationJSONChanges struct {
 	AttachmentID *string                                                        `json:"attachmentId,omitempty"`
@@ -132,6 +156,7 @@ type CreateTransfer200ApplicationJSONSourceModifiedDateTransferAccount struct {
 }
 
 type CreateTransfer200ApplicationJSONSourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
@@ -159,8 +184,8 @@ type CreateTransfer200ApplicationJSONSourceModifiedDate struct {
 	// The customer or supplier for the transfer, if available.
 	ContactRef *CreateTransfer200ApplicationJSONSourceModifiedDateContactRef `json:"contactRef,omitempty"`
 	// The day on which the transfer was made.
-	Date                *time.Time `json:"date,omitempty"`
-	DepositedRecordRefs []string   `json:"depositedRecordRefs,omitempty"`
+	Date                *string  `json:"date,omitempty"`
+	DepositedRecordRefs []string `json:"depositedRecordRefs,omitempty"`
 	// Description of the transfer.
 	Description *string `json:"description,omitempty"`
 	// The details of the accounts the transfer is moving from.
@@ -169,9 +194,9 @@ type CreateTransfer200ApplicationJSONSourceModifiedDate struct {
 	ID       *string                                                     `json:"id,omitempty"`
 	Metadata *CreateTransfer200ApplicationJSONSourceModifiedDateMetadata `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 	SupplementalData *CreateTransfer200ApplicationJSONSourceModifiedDateSupplementalData `json:"supplementalData,omitempty"`
 	// The details of the accounts the transfer is moving to.
@@ -189,6 +214,26 @@ const (
 	CreateTransfer200ApplicationJSONStatusEnumSuccess  CreateTransfer200ApplicationJSONStatusEnum = "Success"
 	CreateTransfer200ApplicationJSONStatusEnumTimedOut CreateTransfer200ApplicationJSONStatusEnum = "TimedOut"
 )
+
+func (e *CreateTransfer200ApplicationJSONStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Pending":
+		fallthrough
+	case "Failed":
+		fallthrough
+	case "Success":
+		fallthrough
+	case "TimedOut":
+		*e = CreateTransfer200ApplicationJSONStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateTransfer200ApplicationJSONStatusEnum: %s", s)
+	}
+}
 
 type CreateTransfer200ApplicationJSONValidationValidationItem struct {
 	ItemID        *string `json:"itemId,omitempty"`
@@ -208,7 +253,7 @@ type CreateTransfer200ApplicationJSON struct {
 	// Unique identifier for your SMB in Codat.
 	CompanyID string `json:"companyId"`
 	// The datetime when the push was completed, null if Pending.
-	CompletedOnUtc *time.Time `json:"completedOnUtc,omitempty"`
+	CompletedOnUtc *string `json:"completedOnUtc,omitempty"`
 	// > View the coverage for transfers in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=transfers" target="_blank">Data coverage explorer</a>.
 	//
 	// From the **Transfers** endpoints, you can:
@@ -227,7 +272,7 @@ type CreateTransfer200ApplicationJSON struct {
 	// A unique identifier generated by Codat to represent this single push operation. This identifier can be used to track the status of the push, and should be persisted.
 	PushOperationKey string `json:"pushOperationKey"`
 	// The datetime when the push was requested.
-	RequestedOnUtc time.Time `json:"requestedOnUtc"`
+	RequestedOnUtc string `json:"requestedOnUtc"`
 	// The status of the push operation.
 	Status           CreateTransfer200ApplicationJSONStatusEnum `json:"status"`
 	StatusCode       int                                        `json:"statusCode"`

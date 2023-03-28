@@ -113,12 +113,12 @@ func (s *taxRates) ListTaxRates(ctx context.Context, request operations.ListTaxR
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListTaxRatesLinks
+			var out *operations.ListTaxRates200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Links = out
+			res.ListTaxRates200ApplicationJSONObject = out
 		}
 	}
 

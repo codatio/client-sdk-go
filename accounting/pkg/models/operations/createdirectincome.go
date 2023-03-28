@@ -3,8 +3,9 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 // CreateDirectIncomeSourceModifiedDateContactRef - A customer or supplier associated with the direct income.
@@ -75,12 +76,13 @@ type CreateDirectIncomeSourceModifiedDateLineItems struct {
 }
 
 type CreateDirectIncomeSourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
 type CreateDirectIncomeSourceModifiedDatePaymentAllocationsAllocation struct {
 	// The date the payment was allocated.
-	AllocatedOnDate *time.Time `json:"allocatedOnDate,omitempty"`
+	AllocatedOnDate *string `json:"allocatedOnDate,omitempty"`
 	// The currency of the transaction.
 	Currency *string `json:"currency,omitempty"`
 	// Rate to convert the total amount of the payment into the base currency for the company at the time of the payment.
@@ -153,7 +155,7 @@ type CreateDirectIncomeSourceModifiedDatePaymentAllocationsPayment struct {
 	// Notes attached to the allocated payment.
 	Note *string `json:"note,omitempty"`
 	// The date the payment was paid.
-	PaidOnDate *time.Time `json:"paidOnDate,omitempty"`
+	PaidOnDate *string `json:"paidOnDate,omitempty"`
 	// Reference to the allocated payment.
 	Reference *string `json:"reference,omitempty"`
 	// Total amount that was paid.
@@ -221,18 +223,18 @@ type CreateDirectIncomeSourceModifiedDate struct {
 	// Identifier of the direct income, unique for the company.
 	ID *string `json:"id,omitempty"`
 	// The date of the direct income as recorded in the accounting platform.
-	IssueDate time.Time `json:"issueDate"`
+	IssueDate string `json:"issueDate"`
 	// An array of line items.
 	LineItems []CreateDirectIncomeSourceModifiedDateLineItems `json:"lineItems"`
 	Metadata  *CreateDirectIncomeSourceModifiedDateMetadata   `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate       *time.Time                                               `json:"modifiedDate,omitempty"`
+	ModifiedDate       *string                                                  `json:"modifiedDate,omitempty"`
 	Note               *string                                                  `json:"note,omitempty"`
 	PaymentAllocations []CreateDirectIncomeSourceModifiedDatePaymentAllocations `json:"paymentAllocations"`
 	// User-friendly reference for the direct income.
 	Reference *string `json:"reference,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// The total amount of the direct incomes, excluding any taxes.
 	SubTotal float64 `json:"subTotal"`
 	// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
@@ -264,6 +266,28 @@ const (
 	CreateDirectIncome200ApplicationJSONChangesTypeEnumDeleted            CreateDirectIncome200ApplicationJSONChangesTypeEnum = "Deleted"
 	CreateDirectIncome200ApplicationJSONChangesTypeEnumAttachmentUploaded CreateDirectIncome200ApplicationJSONChangesTypeEnum = "AttachmentUploaded"
 )
+
+func (e *CreateDirectIncome200ApplicationJSONChangesTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Created":
+		fallthrough
+	case "Modified":
+		fallthrough
+	case "Deleted":
+		fallthrough
+	case "AttachmentUploaded":
+		*e = CreateDirectIncome200ApplicationJSONChangesTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateDirectIncome200ApplicationJSONChangesTypeEnum: %s", s)
+	}
+}
 
 type CreateDirectIncome200ApplicationJSONChanges struct {
 	AttachmentID *string                                                            `json:"attachmentId,omitempty"`
@@ -339,12 +363,13 @@ type CreateDirectIncome200ApplicationJSONSourceModifiedDateLineItems struct {
 }
 
 type CreateDirectIncome200ApplicationJSONSourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
 type CreateDirectIncome200ApplicationJSONSourceModifiedDatePaymentAllocationsAllocation struct {
 	// The date the payment was allocated.
-	AllocatedOnDate *time.Time `json:"allocatedOnDate,omitempty"`
+	AllocatedOnDate *string `json:"allocatedOnDate,omitempty"`
 	// The currency of the transaction.
 	Currency *string `json:"currency,omitempty"`
 	// Rate to convert the total amount of the payment into the base currency for the company at the time of the payment.
@@ -417,7 +442,7 @@ type CreateDirectIncome200ApplicationJSONSourceModifiedDatePaymentAllocationsPay
 	// Notes attached to the allocated payment.
 	Note *string `json:"note,omitempty"`
 	// The date the payment was paid.
-	PaidOnDate *time.Time `json:"paidOnDate,omitempty"`
+	PaidOnDate *string `json:"paidOnDate,omitempty"`
 	// Reference to the allocated payment.
 	Reference *string `json:"reference,omitempty"`
 	// Total amount that was paid.
@@ -485,18 +510,18 @@ type CreateDirectIncome200ApplicationJSONSourceModifiedDate struct {
 	// Identifier of the direct income, unique for the company.
 	ID *string `json:"id,omitempty"`
 	// The date of the direct income as recorded in the accounting platform.
-	IssueDate time.Time `json:"issueDate"`
+	IssueDate string `json:"issueDate"`
 	// An array of line items.
 	LineItems []CreateDirectIncome200ApplicationJSONSourceModifiedDateLineItems `json:"lineItems"`
 	Metadata  *CreateDirectIncome200ApplicationJSONSourceModifiedDateMetadata   `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate       *time.Time                                                                 `json:"modifiedDate,omitempty"`
+	ModifiedDate       *string                                                                    `json:"modifiedDate,omitempty"`
 	Note               *string                                                                    `json:"note,omitempty"`
 	PaymentAllocations []CreateDirectIncome200ApplicationJSONSourceModifiedDatePaymentAllocations `json:"paymentAllocations"`
 	// User-friendly reference for the direct income.
 	Reference *string `json:"reference,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// The total amount of the direct incomes, excluding any taxes.
 	SubTotal float64 `json:"subTotal"`
 	// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
@@ -517,6 +542,26 @@ const (
 	CreateDirectIncome200ApplicationJSONStatusEnumTimedOut CreateDirectIncome200ApplicationJSONStatusEnum = "TimedOut"
 )
 
+func (e *CreateDirectIncome200ApplicationJSONStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Pending":
+		fallthrough
+	case "Failed":
+		fallthrough
+	case "Success":
+		fallthrough
+	case "TimedOut":
+		*e = CreateDirectIncome200ApplicationJSONStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateDirectIncome200ApplicationJSONStatusEnum: %s", s)
+	}
+}
+
 type CreateDirectIncome200ApplicationJSONValidationValidationItem struct {
 	ItemID        *string `json:"itemId,omitempty"`
 	Message       *string `json:"message,omitempty"`
@@ -535,7 +580,7 @@ type CreateDirectIncome200ApplicationJSON struct {
 	// Unique identifier for your SMB in Codat.
 	CompanyID string `json:"companyId"`
 	// The datetime when the push was completed, null if Pending.
-	CompletedOnUtc *time.Time `json:"completedOnUtc,omitempty"`
+	CompletedOnUtc *string `json:"completedOnUtc,omitempty"`
 	// > **Language tip:**  Direct incomes may also be referred to as **Receive transactions**, **Receive money transactions**, **Sales receipts**, or **Cash sales** in various accounting platforms.
 	//
 	// > View the coverage for direct incomes in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=directIncomes" target="_blank">Data coverage explorer</a>.
@@ -565,7 +610,7 @@ type CreateDirectIncome200ApplicationJSON struct {
 	// A unique identifier generated by Codat to represent this single push operation. This identifier can be used to track the status of the push, and should be persisted.
 	PushOperationKey string `json:"pushOperationKey"`
 	// The datetime when the push was requested.
-	RequestedOnUtc time.Time `json:"requestedOnUtc"`
+	RequestedOnUtc string `json:"requestedOnUtc"`
 	// The status of the push operation.
 	Status           CreateDirectIncome200ApplicationJSONStatusEnum `json:"status"`
 	StatusCode       int                                            `json:"statusCode"`

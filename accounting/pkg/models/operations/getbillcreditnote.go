@@ -3,8 +3,9 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 type GetBillCreditNoteRequest struct {
@@ -56,6 +57,26 @@ const (
 	GetBillCreditNoteSourceModifiedDateLineItemsTrackingIsBilledToEnumProject       GetBillCreditNoteSourceModifiedDateLineItemsTrackingIsBilledToEnum = "Project"
 )
 
+func (e *GetBillCreditNoteSourceModifiedDateLineItemsTrackingIsBilledToEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "NotApplicable":
+		fallthrough
+	case "Customer":
+		fallthrough
+	case "Project":
+		*e = GetBillCreditNoteSourceModifiedDateLineItemsTrackingIsBilledToEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetBillCreditNoteSourceModifiedDateLineItemsTrackingIsBilledToEnum: %s", s)
+	}
+}
+
 type GetBillCreditNoteSourceModifiedDateLineItemsTrackingIsRebilledToEnum string
 
 const (
@@ -64,6 +85,26 @@ const (
 	GetBillCreditNoteSourceModifiedDateLineItemsTrackingIsRebilledToEnumCustomer      GetBillCreditNoteSourceModifiedDateLineItemsTrackingIsRebilledToEnum = "Customer"
 	GetBillCreditNoteSourceModifiedDateLineItemsTrackingIsRebilledToEnumProject       GetBillCreditNoteSourceModifiedDateLineItemsTrackingIsRebilledToEnum = "Project"
 )
+
+func (e *GetBillCreditNoteSourceModifiedDateLineItemsTrackingIsRebilledToEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "NotApplicable":
+		fallthrough
+	case "Customer":
+		fallthrough
+	case "Project":
+		*e = GetBillCreditNoteSourceModifiedDateLineItemsTrackingIsRebilledToEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetBillCreditNoteSourceModifiedDateLineItemsTrackingIsRebilledToEnum: %s", s)
+	}
+}
 
 type GetBillCreditNoteSourceModifiedDateLineItemsTrackingProjectRef struct {
 	ID   string  `json:"id"`
@@ -109,12 +150,13 @@ type GetBillCreditNoteSourceModifiedDateLineItems struct {
 }
 
 type GetBillCreditNoteSourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
 type GetBillCreditNoteSourceModifiedDatePaymentAllocationsAllocation struct {
 	// The date the payment was allocated.
-	AllocatedOnDate *time.Time `json:"allocatedOnDate,omitempty"`
+	AllocatedOnDate *string `json:"allocatedOnDate,omitempty"`
 	// The currency of the transaction.
 	Currency *string `json:"currency,omitempty"`
 	// Rate to convert the total amount of the payment into the base currency for the company at the time of the payment.
@@ -187,7 +229,7 @@ type GetBillCreditNoteSourceModifiedDatePaymentAllocationsPayment struct {
 	// Notes attached to the allocated payment.
 	Note *string `json:"note,omitempty"`
 	// The date the payment was paid.
-	PaidOnDate *time.Time `json:"paidOnDate,omitempty"`
+	PaidOnDate *string `json:"paidOnDate,omitempty"`
 	// Reference to the allocated payment.
 	Reference *string `json:"reference,omitempty"`
 	// Total amount that was paid.
@@ -210,6 +252,30 @@ const (
 	GetBillCreditNoteSourceModifiedDateStatusEnumVoid          GetBillCreditNoteSourceModifiedDateStatusEnum = "Void"
 	GetBillCreditNoteSourceModifiedDateStatusEnumPartiallyPaid GetBillCreditNoteSourceModifiedDateStatusEnum = "PartiallyPaid"
 )
+
+func (e *GetBillCreditNoteSourceModifiedDateStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Draft":
+		fallthrough
+	case "Submitted":
+		fallthrough
+	case "Paid":
+		fallthrough
+	case "Void":
+		fallthrough
+	case "PartiallyPaid":
+		*e = GetBillCreditNoteSourceModifiedDateStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetBillCreditNoteSourceModifiedDateStatusEnum: %s", s)
+	}
+}
 
 // GetBillCreditNoteSourceModifiedDateSupplementalData - Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type GetBillCreditNoteSourceModifiedDateSupplementalData struct {
@@ -245,7 +311,7 @@ type GetBillCreditNoteSourceModifiedDateWithholdingTax struct {
 // * The supplier that issued the bill credit note.
 type GetBillCreditNoteSourceModifiedDate struct {
 	// Date the bill credit note was fully refunded or allocated.
-	AllocatedOnDate *time.Time `json:"allocatedOnDate,omitempty"`
+	AllocatedOnDate *string `json:"allocatedOnDate,omitempty"`
 	// Friendly reference for the bill credit note.
 	BillCreditNoteNumber *string `json:"billCreditNoteNumber,omitempty"`
 	// Currency of the bill credit note.
@@ -279,12 +345,12 @@ type GetBillCreditNoteSourceModifiedDate struct {
 	// Identifier for the bill credit note that is unique to a company in the accounting platform.
 	ID *string `json:"id,omitempty"`
 	// Date the bill credit note was issued by the supplier.
-	IssueDate *time.Time `json:"issueDate,omitempty"`
+	IssueDate *string `json:"issueDate,omitempty"`
 	// An array of line
 	LineItems []GetBillCreditNoteSourceModifiedDateLineItems `json:"lineItems,omitempty"`
 	Metadata  *GetBillCreditNoteSourceModifiedDateMetadata   `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Any additional information about the bill credit note.
 	Note *string `json:"note,omitempty"`
 	// An array of payment allocations.
@@ -292,7 +358,7 @@ type GetBillCreditNoteSourceModifiedDate struct {
 	// Amount of the bill credit note that is still outstanding.
 	RemainingCredit float64 `json:"remainingCredit"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Current state of the bill credit note
 	Status GetBillCreditNoteSourceModifiedDateStatusEnum `json:"status"`
 	// Total amount of the bill credit note, including discounts but excluding tax.

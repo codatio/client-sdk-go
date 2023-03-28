@@ -3,8 +3,9 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 type ListPaymentsRequest struct {
@@ -19,60 +20,80 @@ type ListPaymentsRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-type ListPaymentsLinksLinksCurrent struct {
-	Href string `json:"href"`
-}
-
-type ListPaymentsLinksLinksNext struct {
+type ListPayments200ApplicationJSONLinksHypertextReference struct {
 	Href *string `json:"href,omitempty"`
 }
 
-type ListPaymentsLinksLinksPrevious struct {
-	Href *string `json:"href,omitempty"`
+type ListPayments200ApplicationJSONLinks struct {
+	Current  ListPayments200ApplicationJSONLinksHypertextReference  `json:"current"`
+	Next     *ListPayments200ApplicationJSONLinksHypertextReference `json:"next,omitempty"`
+	Previous *ListPayments200ApplicationJSONLinksHypertextReference `json:"previous,omitempty"`
+	Self     ListPayments200ApplicationJSONLinksHypertextReference  `json:"self"`
 }
 
-type ListPaymentsLinksLinksSelf struct {
-	Href string `json:"href"`
-}
-
-type ListPaymentsLinksLinks struct {
-	Current  ListPaymentsLinksLinksCurrent   `json:"current"`
-	Next     *ListPaymentsLinksLinksNext     `json:"next,omitempty"`
-	Previous *ListPaymentsLinksLinksPrevious `json:"previous,omitempty"`
-	Self     ListPaymentsLinksLinksSelf      `json:"self"`
-}
-
-// ListPaymentsLinksSourceModifiedDateAccountRef - Account the payment is recorded against in the accounting platform.
-type ListPaymentsLinksSourceModifiedDateAccountRef struct {
+// ListPayments200ApplicationJSONSourceModifiedDateAccountRef - Account the payment is recorded against in the accounting platform.
+type ListPayments200ApplicationJSONSourceModifiedDateAccountRef struct {
 	// 'id' from the Accounts data type.
 	ID *string `json:"id,omitempty"`
 	// 'name' from the Accounts data type.
 	Name *string `json:"name,omitempty"`
 }
 
-// ListPaymentsLinksSourceModifiedDateCustomerRef - Customer the payment is recorded against in the accounting platform.
-type ListPaymentsLinksSourceModifiedDateCustomerRef struct {
+// ListPayments200ApplicationJSONSourceModifiedDateCustomerRef - Customer the payment is recorded against in the accounting platform.
+type ListPayments200ApplicationJSONSourceModifiedDateCustomerRef struct {
 	CompanyName *string `json:"companyName,omitempty"`
 	ID          string  `json:"id"`
 }
 
-// ListPaymentsLinksSourceModifiedDateLinesLinksTypeEnum - Types of payment line links
-type ListPaymentsLinksSourceModifiedDateLinesLinksTypeEnum string
+// ListPayments200ApplicationJSONSourceModifiedDateLinesLinksTypeEnum - Types of payment line links
+type ListPayments200ApplicationJSONSourceModifiedDateLinesLinksTypeEnum string
 
 const (
-	ListPaymentsLinksSourceModifiedDateLinesLinksTypeEnumUnknown          ListPaymentsLinksSourceModifiedDateLinesLinksTypeEnum = "Unknown"
-	ListPaymentsLinksSourceModifiedDateLinesLinksTypeEnumUnlinked         ListPaymentsLinksSourceModifiedDateLinesLinksTypeEnum = "Unlinked"
-	ListPaymentsLinksSourceModifiedDateLinesLinksTypeEnumInvoice          ListPaymentsLinksSourceModifiedDateLinesLinksTypeEnum = "Invoice"
-	ListPaymentsLinksSourceModifiedDateLinesLinksTypeEnumCreditNote       ListPaymentsLinksSourceModifiedDateLinesLinksTypeEnum = "CreditNote"
-	ListPaymentsLinksSourceModifiedDateLinesLinksTypeEnumOther            ListPaymentsLinksSourceModifiedDateLinesLinksTypeEnum = "Other"
-	ListPaymentsLinksSourceModifiedDateLinesLinksTypeEnumRefund           ListPaymentsLinksSourceModifiedDateLinesLinksTypeEnum = "Refund"
-	ListPaymentsLinksSourceModifiedDateLinesLinksTypeEnumPayment          ListPaymentsLinksSourceModifiedDateLinesLinksTypeEnum = "Payment"
-	ListPaymentsLinksSourceModifiedDateLinesLinksTypeEnumPaymentOnAccount ListPaymentsLinksSourceModifiedDateLinesLinksTypeEnum = "PaymentOnAccount"
-	ListPaymentsLinksSourceModifiedDateLinesLinksTypeEnumManualJournal    ListPaymentsLinksSourceModifiedDateLinesLinksTypeEnum = "ManualJournal"
-	ListPaymentsLinksSourceModifiedDateLinesLinksTypeEnumDiscount         ListPaymentsLinksSourceModifiedDateLinesLinksTypeEnum = "Discount"
+	ListPayments200ApplicationJSONSourceModifiedDateLinesLinksTypeEnumUnknown          ListPayments200ApplicationJSONSourceModifiedDateLinesLinksTypeEnum = "Unknown"
+	ListPayments200ApplicationJSONSourceModifiedDateLinesLinksTypeEnumUnlinked         ListPayments200ApplicationJSONSourceModifiedDateLinesLinksTypeEnum = "Unlinked"
+	ListPayments200ApplicationJSONSourceModifiedDateLinesLinksTypeEnumInvoice          ListPayments200ApplicationJSONSourceModifiedDateLinesLinksTypeEnum = "Invoice"
+	ListPayments200ApplicationJSONSourceModifiedDateLinesLinksTypeEnumCreditNote       ListPayments200ApplicationJSONSourceModifiedDateLinesLinksTypeEnum = "CreditNote"
+	ListPayments200ApplicationJSONSourceModifiedDateLinesLinksTypeEnumOther            ListPayments200ApplicationJSONSourceModifiedDateLinesLinksTypeEnum = "Other"
+	ListPayments200ApplicationJSONSourceModifiedDateLinesLinksTypeEnumRefund           ListPayments200ApplicationJSONSourceModifiedDateLinesLinksTypeEnum = "Refund"
+	ListPayments200ApplicationJSONSourceModifiedDateLinesLinksTypeEnumPayment          ListPayments200ApplicationJSONSourceModifiedDateLinesLinksTypeEnum = "Payment"
+	ListPayments200ApplicationJSONSourceModifiedDateLinesLinksTypeEnumPaymentOnAccount ListPayments200ApplicationJSONSourceModifiedDateLinesLinksTypeEnum = "PaymentOnAccount"
+	ListPayments200ApplicationJSONSourceModifiedDateLinesLinksTypeEnumManualJournal    ListPayments200ApplicationJSONSourceModifiedDateLinesLinksTypeEnum = "ManualJournal"
+	ListPayments200ApplicationJSONSourceModifiedDateLinesLinksTypeEnumDiscount         ListPayments200ApplicationJSONSourceModifiedDateLinesLinksTypeEnum = "Discount"
 )
 
-type ListPaymentsLinksSourceModifiedDateLinesLinks struct {
+func (e *ListPayments200ApplicationJSONSourceModifiedDateLinesLinksTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Unlinked":
+		fallthrough
+	case "Invoice":
+		fallthrough
+	case "CreditNote":
+		fallthrough
+	case "Other":
+		fallthrough
+	case "Refund":
+		fallthrough
+	case "Payment":
+		fallthrough
+	case "PaymentOnAccount":
+		fallthrough
+	case "ManualJournal":
+		fallthrough
+	case "Discount":
+		*e = ListPayments200ApplicationJSONSourceModifiedDateLinesLinksTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListPayments200ApplicationJSONSourceModifiedDateLinesLinksTypeEnum: %s", s)
+	}
+}
+
+type ListPayments200ApplicationJSONSourceModifiedDateLinesLinks struct {
 	// Amount by which the balance of the linked entity is altered, in the currency of the linked entity.
 	// A negative link amount _reduces the outstanding amount on the accounts receivable account.
 	// A positive link amount _increases the outstanding amount on the accounts receivable account.
@@ -104,34 +125,35 @@ type ListPaymentsLinksSourceModifiedDateLinesLinks struct {
 	// Unique identifier of the transaction represented by the link.
 	ID *string `json:"id,omitempty"`
 	// Types of payment line links
-	Type ListPaymentsLinksSourceModifiedDateLinesLinksTypeEnum `json:"type"`
+	Type ListPayments200ApplicationJSONSourceModifiedDateLinesLinksTypeEnum `json:"type"`
 }
 
-type ListPaymentsLinksSourceModifiedDateLines struct {
+type ListPayments200ApplicationJSONSourceModifiedDateLines struct {
 	// The date the payment was allocated.
-	AllocatedOnDate *time.Time `json:"allocatedOnDate,omitempty"`
+	AllocatedOnDate *string `json:"allocatedOnDate,omitempty"`
 	//
 	// Amount in the payment currency.
-	Amount float64                                         `json:"amount"`
-	Links  []ListPaymentsLinksSourceModifiedDateLinesLinks `json:"links,omitempty"`
+	Amount float64                                                      `json:"amount"`
+	Links  []ListPayments200ApplicationJSONSourceModifiedDateLinesLinks `json:"links,omitempty"`
 }
 
-type ListPaymentsLinksSourceModifiedDateMetadata struct {
+type ListPayments200ApplicationJSONSourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
-// ListPaymentsLinksSourceModifiedDatePaymentMethodRef - The Payment Method to which the payment is linked in the accounting platform.
-type ListPaymentsLinksSourceModifiedDatePaymentMethodRef struct {
+// ListPayments200ApplicationJSONSourceModifiedDatePaymentMethodRef - The Payment Method to which the payment is linked in the accounting platform.
+type ListPayments200ApplicationJSONSourceModifiedDatePaymentMethodRef struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
 }
 
-// ListPaymentsLinksSourceModifiedDateSupplementalData - Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
-type ListPaymentsLinksSourceModifiedDateSupplementalData struct {
+// ListPayments200ApplicationJSONSourceModifiedDateSupplementalData - Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
+type ListPayments200ApplicationJSONSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
 
-// ListPaymentsLinksSourceModifiedDate - > **Payments or bill payments?**
+// ListPayments200ApplicationJSONSourceModifiedDate - > **Payments or bill payments?**
 // >
 // >  In Codat, payments represent accounts receivable only. For accounts payable, see [bill payments](https://docs.codat.io/accounting-api#/schemas/BillPayment). These include [bills](https://docs.codat.io/accounting-api#/schemas/Bill) and credit notes against bills.
 //
@@ -813,9 +835,9 @@ type ListPaymentsLinksSourceModifiedDateSupplementalData struct {
 //	}
 //
 // ```
-type ListPaymentsLinksSourceModifiedDate struct {
+type ListPayments200ApplicationJSONSourceModifiedDate struct {
 	// Account the payment is recorded against in the accounting platform.
-	AccountRef *ListPaymentsLinksSourceModifiedDateAccountRef `json:"accountRef,omitempty"`
+	AccountRef *ListPayments200ApplicationJSONSourceModifiedDateAccountRef `json:"accountRef,omitempty"`
 	// ISO currency code recorded for the payment in the accounting platform.
 	Currency *string `json:"currency,omitempty"`
 	// Rate to convert the total amount of the payment into the base currency for the company at the time of the payment.
@@ -843,37 +865,37 @@ type ListPaymentsLinksSourceModifiedDate struct {
 	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
 	CurrencyRate *float64 `json:"currencyRate,omitempty"`
 	// Customer the payment is recorded against in the accounting platform.
-	CustomerRef *ListPaymentsLinksSourceModifiedDateCustomerRef `json:"customerRef,omitempty"`
+	CustomerRef *ListPayments200ApplicationJSONSourceModifiedDateCustomerRef `json:"customerRef,omitempty"`
 	// Date the payment was recorded in the accounting software.
-	Date time.Time `json:"date"`
+	Date string `json:"date"`
 	// Identifier for the payment, unique to the company in the accounting platform.
 	ID *string `json:"id,omitempty"`
 	// An array of payment lines.
-	Lines    []ListPaymentsLinksSourceModifiedDateLines   `json:"lines,omitempty"`
-	Metadata *ListPaymentsLinksSourceModifiedDateMetadata `json:"metadata,omitempty"`
+	Lines    []ListPayments200ApplicationJSONSourceModifiedDateLines   `json:"lines,omitempty"`
+	Metadata *ListPayments200ApplicationJSONSourceModifiedDateMetadata `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Any additional information associated with the payment.
 	Note *string `json:"note,omitempty"`
 	// The Payment Method to which the payment is linked in the accounting platform.
-	PaymentMethodRef *ListPaymentsLinksSourceModifiedDatePaymentMethodRef `json:"paymentMethodRef,omitempty"`
+	PaymentMethodRef *ListPayments200ApplicationJSONSourceModifiedDatePaymentMethodRef `json:"paymentMethodRef,omitempty"`
 	// Friendly reference for the payment.
 	Reference *string `json:"reference,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
-	SupplementalData *ListPaymentsLinksSourceModifiedDateSupplementalData `json:"supplementalData,omitempty"`
+	SupplementalData *ListPayments200ApplicationJSONSourceModifiedDateSupplementalData `json:"supplementalData,omitempty"`
 	// Amount of the payment in the payment currency. This value should never change and represents the amount of money paid into the customer's account.
 	TotalAmount *float64 `json:"totalAmount,omitempty"`
 }
 
-// ListPaymentsLinks - Codat's Paging Model
-type ListPaymentsLinks struct {
-	Links        ListPaymentsLinksLinks                `json:"_links"`
-	PageNumber   int64                                 `json:"pageNumber"`
-	PageSize     int64                                 `json:"pageSize"`
-	Results      []ListPaymentsLinksSourceModifiedDate `json:"results,omitempty"`
-	TotalResults int64                                 `json:"totalResults"`
+// ListPayments200ApplicationJSON - Success
+type ListPayments200ApplicationJSON struct {
+	Links        ListPayments200ApplicationJSONLinks                `json:"_links"`
+	PageNumber   int64                                              `json:"pageNumber"`
+	PageSize     int64                                              `json:"pageSize"`
+	Results      []ListPayments200ApplicationJSONSourceModifiedDate `json:"results,omitempty"`
+	TotalResults int64                                              `json:"totalResults"`
 }
 
 type ListPaymentsResponse struct {
@@ -881,5 +903,5 @@ type ListPaymentsResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// Success
-	Links *ListPaymentsLinks
+	ListPayments200ApplicationJSONObject *ListPayments200ApplicationJSON
 }

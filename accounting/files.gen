@@ -37,7 +37,7 @@ pkg/utils/requestbody.go
 pkg/utils/retries.go
 pkg/utils/security.go
 pkg/utils/utils.go
-pkg/models/operations/getcreateupdateaccounttransactionsmodel.go
+pkg/models/operations/getaccounttransaction.go
 pkg/models/operations/listaccounttransactions.go
 pkg/models/operations/createaccount.go
 pkg/models/operations/getaccount.go

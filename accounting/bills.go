@@ -451,12 +451,12 @@ func (s *bills) ListBills(ctx context.Context, request operations.ListBillsReque
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListBillsLinks
+			var out *operations.ListBills200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Links = out
+			res.ListBills200ApplicationJSONObject = out
 		}
 	}
 

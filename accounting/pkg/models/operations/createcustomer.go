@@ -3,8 +3,9 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 // CreateCustomerSourceModifiedDateAddressesTypeEnum - Type of the address.
@@ -15,6 +16,24 @@ const (
 	CreateCustomerSourceModifiedDateAddressesTypeEnumBilling  CreateCustomerSourceModifiedDateAddressesTypeEnum = "Billing"
 	CreateCustomerSourceModifiedDateAddressesTypeEnumDelivery CreateCustomerSourceModifiedDateAddressesTypeEnum = "Delivery"
 )
+
+func (e *CreateCustomerSourceModifiedDateAddressesTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Billing":
+		fallthrough
+	case "Delivery":
+		*e = CreateCustomerSourceModifiedDateAddressesTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateCustomerSourceModifiedDateAddressesTypeEnum: %s", s)
+	}
+}
 
 type CreateCustomerSourceModifiedDateAddresses struct {
 	// City of the customer address.
@@ -41,6 +60,24 @@ const (
 	CreateCustomerSourceModifiedDateContactsAddressTypeEnumBilling  CreateCustomerSourceModifiedDateContactsAddressTypeEnum = "Billing"
 	CreateCustomerSourceModifiedDateContactsAddressTypeEnumDelivery CreateCustomerSourceModifiedDateContactsAddressTypeEnum = "Delivery"
 )
+
+func (e *CreateCustomerSourceModifiedDateContactsAddressTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Billing":
+		fallthrough
+	case "Delivery":
+		*e = CreateCustomerSourceModifiedDateContactsAddressTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateCustomerSourceModifiedDateContactsAddressTypeEnum: %s", s)
+	}
+}
 
 // CreateCustomerSourceModifiedDateContactsAddress - An object of Address information.
 type CreateCustomerSourceModifiedDateContactsAddress struct {
@@ -71,6 +108,28 @@ const (
 	CreateCustomerSourceModifiedDateContactsPhoneTypeEnumFax      CreateCustomerSourceModifiedDateContactsPhoneTypeEnum = "Fax"
 )
 
+func (e *CreateCustomerSourceModifiedDateContactsPhoneTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Primary":
+		fallthrough
+	case "Landline":
+		fallthrough
+	case "Mobile":
+		fallthrough
+	case "Fax":
+		*e = CreateCustomerSourceModifiedDateContactsPhoneTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateCustomerSourceModifiedDateContactsPhoneTypeEnum: %s", s)
+	}
+}
+
 type CreateCustomerSourceModifiedDateContactsPhone struct {
 	// Phone number for a customer contact.
 	Number *string `json:"number,omitempty"`
@@ -88,6 +147,24 @@ const (
 	CreateCustomerSourceModifiedDateContactsStatusEnumActive   CreateCustomerSourceModifiedDateContactsStatusEnum = "Active"
 	CreateCustomerSourceModifiedDateContactsStatusEnumArchived CreateCustomerSourceModifiedDateContactsStatusEnum = "Archived"
 )
+
+func (e *CreateCustomerSourceModifiedDateContactsStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Active":
+		fallthrough
+	case "Archived":
+		*e = CreateCustomerSourceModifiedDateContactsStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateCustomerSourceModifiedDateContactsStatusEnum: %s", s)
+	}
+}
 
 type CreateCustomerSourceModifiedDateContacts struct {
 	// An object of Address information.
@@ -113,7 +190,7 @@ type CreateCustomerSourceModifiedDateContacts struct {
 	// >
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Name of a contact for a customer.
 	Name *string `json:"name,omitempty"`
 	// An array of Phone numbers.
@@ -125,6 +202,7 @@ type CreateCustomerSourceModifiedDateContacts struct {
 }
 
 type CreateCustomerSourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
@@ -136,6 +214,24 @@ const (
 	CreateCustomerSourceModifiedDateStatusEnumActive   CreateCustomerSourceModifiedDateStatusEnum = "Active"
 	CreateCustomerSourceModifiedDateStatusEnumArchived CreateCustomerSourceModifiedDateStatusEnum = "Archived"
 )
+
+func (e *CreateCustomerSourceModifiedDateStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Active":
+		fallthrough
+	case "Archived":
+		*e = CreateCustomerSourceModifiedDateStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateCustomerSourceModifiedDateStatusEnum: %s", s)
+	}
+}
 
 // CreateCustomerSourceModifiedDateSupplementalData - Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type CreateCustomerSourceModifiedDateSupplementalData struct {
@@ -166,13 +262,13 @@ type CreateCustomerSourceModifiedDate struct {
 	ID       *string                                   `json:"id,omitempty"`
 	Metadata *CreateCustomerSourceModifiedDateMetadata `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Phone number the customer can be contacted by.
 	Phone *string `json:"phone,omitempty"`
 	// Company number. In the UK, this is typically the Companies House company registration number.
 	RegistrationNumber *string `json:"registrationNumber,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Current state of the customer.
 	Status CreateCustomerSourceModifiedDateStatusEnum `json:"status"`
 	// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
@@ -203,6 +299,28 @@ const (
 	CreateCustomer200ApplicationJSONChangesTypeEnumAttachmentUploaded CreateCustomer200ApplicationJSONChangesTypeEnum = "AttachmentUploaded"
 )
 
+func (e *CreateCustomer200ApplicationJSONChangesTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Created":
+		fallthrough
+	case "Modified":
+		fallthrough
+	case "Deleted":
+		fallthrough
+	case "AttachmentUploaded":
+		*e = CreateCustomer200ApplicationJSONChangesTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateCustomer200ApplicationJSONChangesTypeEnum: %s", s)
+	}
+}
+
 type CreateCustomer200ApplicationJSONChanges struct {
 	AttachmentID *string                                                        `json:"attachmentId,omitempty"`
 	RecordRef    *CreateCustomer200ApplicationJSONChangesPushOperationRecordRef `json:"recordRef,omitempty"`
@@ -217,6 +335,24 @@ const (
 	CreateCustomer200ApplicationJSONSourceModifiedDateAddressesTypeEnumBilling  CreateCustomer200ApplicationJSONSourceModifiedDateAddressesTypeEnum = "Billing"
 	CreateCustomer200ApplicationJSONSourceModifiedDateAddressesTypeEnumDelivery CreateCustomer200ApplicationJSONSourceModifiedDateAddressesTypeEnum = "Delivery"
 )
+
+func (e *CreateCustomer200ApplicationJSONSourceModifiedDateAddressesTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Billing":
+		fallthrough
+	case "Delivery":
+		*e = CreateCustomer200ApplicationJSONSourceModifiedDateAddressesTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateCustomer200ApplicationJSONSourceModifiedDateAddressesTypeEnum: %s", s)
+	}
+}
 
 type CreateCustomer200ApplicationJSONSourceModifiedDateAddresses struct {
 	// City of the customer address.
@@ -243,6 +379,24 @@ const (
 	CreateCustomer200ApplicationJSONSourceModifiedDateContactsAddressTypeEnumBilling  CreateCustomer200ApplicationJSONSourceModifiedDateContactsAddressTypeEnum = "Billing"
 	CreateCustomer200ApplicationJSONSourceModifiedDateContactsAddressTypeEnumDelivery CreateCustomer200ApplicationJSONSourceModifiedDateContactsAddressTypeEnum = "Delivery"
 )
+
+func (e *CreateCustomer200ApplicationJSONSourceModifiedDateContactsAddressTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Billing":
+		fallthrough
+	case "Delivery":
+		*e = CreateCustomer200ApplicationJSONSourceModifiedDateContactsAddressTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateCustomer200ApplicationJSONSourceModifiedDateContactsAddressTypeEnum: %s", s)
+	}
+}
 
 // CreateCustomer200ApplicationJSONSourceModifiedDateContactsAddress - An object of Address information.
 type CreateCustomer200ApplicationJSONSourceModifiedDateContactsAddress struct {
@@ -273,6 +427,28 @@ const (
 	CreateCustomer200ApplicationJSONSourceModifiedDateContactsPhoneTypeEnumFax      CreateCustomer200ApplicationJSONSourceModifiedDateContactsPhoneTypeEnum = "Fax"
 )
 
+func (e *CreateCustomer200ApplicationJSONSourceModifiedDateContactsPhoneTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Primary":
+		fallthrough
+	case "Landline":
+		fallthrough
+	case "Mobile":
+		fallthrough
+	case "Fax":
+		*e = CreateCustomer200ApplicationJSONSourceModifiedDateContactsPhoneTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateCustomer200ApplicationJSONSourceModifiedDateContactsPhoneTypeEnum: %s", s)
+	}
+}
+
 type CreateCustomer200ApplicationJSONSourceModifiedDateContactsPhone struct {
 	// Phone number for a customer contact.
 	Number *string `json:"number,omitempty"`
@@ -290,6 +466,24 @@ const (
 	CreateCustomer200ApplicationJSONSourceModifiedDateContactsStatusEnumActive   CreateCustomer200ApplicationJSONSourceModifiedDateContactsStatusEnum = "Active"
 	CreateCustomer200ApplicationJSONSourceModifiedDateContactsStatusEnumArchived CreateCustomer200ApplicationJSONSourceModifiedDateContactsStatusEnum = "Archived"
 )
+
+func (e *CreateCustomer200ApplicationJSONSourceModifiedDateContactsStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Active":
+		fallthrough
+	case "Archived":
+		*e = CreateCustomer200ApplicationJSONSourceModifiedDateContactsStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateCustomer200ApplicationJSONSourceModifiedDateContactsStatusEnum: %s", s)
+	}
+}
 
 type CreateCustomer200ApplicationJSONSourceModifiedDateContacts struct {
 	// An object of Address information.
@@ -315,7 +509,7 @@ type CreateCustomer200ApplicationJSONSourceModifiedDateContacts struct {
 	// >
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Name of a contact for a customer.
 	Name *string `json:"name,omitempty"`
 	// An array of Phone numbers.
@@ -327,6 +521,7 @@ type CreateCustomer200ApplicationJSONSourceModifiedDateContacts struct {
 }
 
 type CreateCustomer200ApplicationJSONSourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
@@ -338,6 +533,24 @@ const (
 	CreateCustomer200ApplicationJSONSourceModifiedDateStatusEnumActive   CreateCustomer200ApplicationJSONSourceModifiedDateStatusEnum = "Active"
 	CreateCustomer200ApplicationJSONSourceModifiedDateStatusEnumArchived CreateCustomer200ApplicationJSONSourceModifiedDateStatusEnum = "Archived"
 )
+
+func (e *CreateCustomer200ApplicationJSONSourceModifiedDateStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Active":
+		fallthrough
+	case "Archived":
+		*e = CreateCustomer200ApplicationJSONSourceModifiedDateStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateCustomer200ApplicationJSONSourceModifiedDateStatusEnum: %s", s)
+	}
+}
 
 // CreateCustomer200ApplicationJSONSourceModifiedDateSupplementalData - Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type CreateCustomer200ApplicationJSONSourceModifiedDateSupplementalData struct {
@@ -368,13 +581,13 @@ type CreateCustomer200ApplicationJSONSourceModifiedDate struct {
 	ID       *string                                                     `json:"id,omitempty"`
 	Metadata *CreateCustomer200ApplicationJSONSourceModifiedDateMetadata `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Phone number the customer can be contacted by.
 	Phone *string `json:"phone,omitempty"`
 	// Company number. In the UK, this is typically the Companies House company registration number.
 	RegistrationNumber *string `json:"registrationNumber,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Current state of the customer.
 	Status CreateCustomer200ApplicationJSONSourceModifiedDateStatusEnum `json:"status"`
 	// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
@@ -392,6 +605,26 @@ const (
 	CreateCustomer200ApplicationJSONStatusEnumSuccess  CreateCustomer200ApplicationJSONStatusEnum = "Success"
 	CreateCustomer200ApplicationJSONStatusEnumTimedOut CreateCustomer200ApplicationJSONStatusEnum = "TimedOut"
 )
+
+func (e *CreateCustomer200ApplicationJSONStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Pending":
+		fallthrough
+	case "Failed":
+		fallthrough
+	case "Success":
+		fallthrough
+	case "TimedOut":
+		*e = CreateCustomer200ApplicationJSONStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateCustomer200ApplicationJSONStatusEnum: %s", s)
+	}
+}
 
 type CreateCustomer200ApplicationJSONValidationValidationItem struct {
 	ItemID        *string `json:"itemId,omitempty"`
@@ -411,7 +644,7 @@ type CreateCustomer200ApplicationJSON struct {
 	// Unique identifier for your SMB in Codat.
 	CompanyID string `json:"companyId"`
 	// The datetime when the push was completed, null if Pending.
-	CompletedOnUtc *time.Time `json:"completedOnUtc,omitempty"`
+	CompletedOnUtc *string `json:"completedOnUtc,omitempty"`
 	// > View the coverage for customers in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=customers" target="_blank">Data coverage explorer</a>.
 	//
 	// ## Overview
@@ -429,7 +662,7 @@ type CreateCustomer200ApplicationJSON struct {
 	// A unique identifier generated by Codat to represent this single push operation. This identifier can be used to track the status of the push, and should be persisted.
 	PushOperationKey string `json:"pushOperationKey"`
 	// The datetime when the push was requested.
-	RequestedOnUtc time.Time `json:"requestedOnUtc"`
+	RequestedOnUtc string `json:"requestedOnUtc"`
 	// The status of the push operation.
 	Status           CreateCustomer200ApplicationJSONStatusEnum `json:"status"`
 	StatusCode       int                                        `json:"statusCode"`

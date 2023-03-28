@@ -3,8 +3,9 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 type ListBankTransactionsRequest struct {
@@ -21,73 +22,138 @@ type ListBankTransactionsRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-type ListBankTransactionsLinksLinksCurrent struct {
-	Href string `json:"href"`
-}
-
-type ListBankTransactionsLinksLinksNext struct {
+type ListBankTransactions200ApplicationJSONLinksHypertextReference struct {
 	Href *string `json:"href,omitempty"`
 }
 
-type ListBankTransactionsLinksLinksPrevious struct {
-	Href *string `json:"href,omitempty"`
+type ListBankTransactions200ApplicationJSONLinks struct {
+	Current  ListBankTransactions200ApplicationJSONLinksHypertextReference  `json:"current"`
+	Next     *ListBankTransactions200ApplicationJSONLinksHypertextReference `json:"next,omitempty"`
+	Previous *ListBankTransactions200ApplicationJSONLinksHypertextReference `json:"previous,omitempty"`
+	Self     ListBankTransactions200ApplicationJSONLinksHypertextReference  `json:"self"`
 }
 
-type ListBankTransactionsLinksLinksSelf struct {
-	Href string `json:"href"`
+type ListBankTransactions200ApplicationJSONResultsModifiedDate struct {
+	// The date on which this record was last modified in Codat.
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 }
 
-type ListBankTransactionsLinksLinks struct {
-	Current  ListBankTransactionsLinksLinksCurrent   `json:"current"`
-	Next     *ListBankTransactionsLinksLinksNext     `json:"next,omitempty"`
-	Previous *ListBankTransactionsLinksLinksPrevious `json:"previous,omitempty"`
-	Self     ListBankTransactionsLinksLinksSelf      `json:"self"`
+type ListBankTransactions200ApplicationJSONResultsSourceModifiedDate struct {
+	// The date on which this record was last modified in the originating system
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 }
 
-type ListBankTransactionsLinksResultsTransactionTypeEnum string
+type ListBankTransactions200ApplicationJSONResultsTransactionTypeEnum string
 
 const (
-	ListBankTransactionsLinksResultsTransactionTypeEnumUnknown     ListBankTransactionsLinksResultsTransactionTypeEnum = "Unknown"
-	ListBankTransactionsLinksResultsTransactionTypeEnumCredit      ListBankTransactionsLinksResultsTransactionTypeEnum = "Credit"
-	ListBankTransactionsLinksResultsTransactionTypeEnumDebit       ListBankTransactionsLinksResultsTransactionTypeEnum = "Debit"
-	ListBankTransactionsLinksResultsTransactionTypeEnumInt         ListBankTransactionsLinksResultsTransactionTypeEnum = "Int"
-	ListBankTransactionsLinksResultsTransactionTypeEnumDiv         ListBankTransactionsLinksResultsTransactionTypeEnum = "Div"
-	ListBankTransactionsLinksResultsTransactionTypeEnumFee         ListBankTransactionsLinksResultsTransactionTypeEnum = "Fee"
-	ListBankTransactionsLinksResultsTransactionTypeEnumSerChg      ListBankTransactionsLinksResultsTransactionTypeEnum = "SerChg"
-	ListBankTransactionsLinksResultsTransactionTypeEnumDep         ListBankTransactionsLinksResultsTransactionTypeEnum = "Dep"
-	ListBankTransactionsLinksResultsTransactionTypeEnumAtm         ListBankTransactionsLinksResultsTransactionTypeEnum = "Atm"
-	ListBankTransactionsLinksResultsTransactionTypeEnumPos         ListBankTransactionsLinksResultsTransactionTypeEnum = "Pos"
-	ListBankTransactionsLinksResultsTransactionTypeEnumXfer        ListBankTransactionsLinksResultsTransactionTypeEnum = "Xfer"
-	ListBankTransactionsLinksResultsTransactionTypeEnumCheck       ListBankTransactionsLinksResultsTransactionTypeEnum = "Check"
-	ListBankTransactionsLinksResultsTransactionTypeEnumPayment     ListBankTransactionsLinksResultsTransactionTypeEnum = "Payment"
-	ListBankTransactionsLinksResultsTransactionTypeEnumCash        ListBankTransactionsLinksResultsTransactionTypeEnum = "Cash"
-	ListBankTransactionsLinksResultsTransactionTypeEnumDirectDep   ListBankTransactionsLinksResultsTransactionTypeEnum = "DirectDep"
-	ListBankTransactionsLinksResultsTransactionTypeEnumDirectDebit ListBankTransactionsLinksResultsTransactionTypeEnum = "DirectDebit"
-	ListBankTransactionsLinksResultsTransactionTypeEnumRepeatPmt   ListBankTransactionsLinksResultsTransactionTypeEnum = "RepeatPmt"
-	ListBankTransactionsLinksResultsTransactionTypeEnumOther       ListBankTransactionsLinksResultsTransactionTypeEnum = "Other"
+	ListBankTransactions200ApplicationJSONResultsTransactionTypeEnumUnknown     ListBankTransactions200ApplicationJSONResultsTransactionTypeEnum = "Unknown"
+	ListBankTransactions200ApplicationJSONResultsTransactionTypeEnumCredit      ListBankTransactions200ApplicationJSONResultsTransactionTypeEnum = "Credit"
+	ListBankTransactions200ApplicationJSONResultsTransactionTypeEnumDebit       ListBankTransactions200ApplicationJSONResultsTransactionTypeEnum = "Debit"
+	ListBankTransactions200ApplicationJSONResultsTransactionTypeEnumInt         ListBankTransactions200ApplicationJSONResultsTransactionTypeEnum = "Int"
+	ListBankTransactions200ApplicationJSONResultsTransactionTypeEnumDiv         ListBankTransactions200ApplicationJSONResultsTransactionTypeEnum = "Div"
+	ListBankTransactions200ApplicationJSONResultsTransactionTypeEnumFee         ListBankTransactions200ApplicationJSONResultsTransactionTypeEnum = "Fee"
+	ListBankTransactions200ApplicationJSONResultsTransactionTypeEnumSerChg      ListBankTransactions200ApplicationJSONResultsTransactionTypeEnum = "SerChg"
+	ListBankTransactions200ApplicationJSONResultsTransactionTypeEnumDep         ListBankTransactions200ApplicationJSONResultsTransactionTypeEnum = "Dep"
+	ListBankTransactions200ApplicationJSONResultsTransactionTypeEnumAtm         ListBankTransactions200ApplicationJSONResultsTransactionTypeEnum = "Atm"
+	ListBankTransactions200ApplicationJSONResultsTransactionTypeEnumPos         ListBankTransactions200ApplicationJSONResultsTransactionTypeEnum = "Pos"
+	ListBankTransactions200ApplicationJSONResultsTransactionTypeEnumXfer        ListBankTransactions200ApplicationJSONResultsTransactionTypeEnum = "Xfer"
+	ListBankTransactions200ApplicationJSONResultsTransactionTypeEnumCheck       ListBankTransactions200ApplicationJSONResultsTransactionTypeEnum = "Check"
+	ListBankTransactions200ApplicationJSONResultsTransactionTypeEnumPayment     ListBankTransactions200ApplicationJSONResultsTransactionTypeEnum = "Payment"
+	ListBankTransactions200ApplicationJSONResultsTransactionTypeEnumCash        ListBankTransactions200ApplicationJSONResultsTransactionTypeEnum = "Cash"
+	ListBankTransactions200ApplicationJSONResultsTransactionTypeEnumDirectDep   ListBankTransactions200ApplicationJSONResultsTransactionTypeEnum = "DirectDep"
+	ListBankTransactions200ApplicationJSONResultsTransactionTypeEnumDirectDebit ListBankTransactions200ApplicationJSONResultsTransactionTypeEnum = "DirectDebit"
+	ListBankTransactions200ApplicationJSONResultsTransactionTypeEnumRepeatPmt   ListBankTransactions200ApplicationJSONResultsTransactionTypeEnum = "RepeatPmt"
+	ListBankTransactions200ApplicationJSONResultsTransactionTypeEnumOther       ListBankTransactions200ApplicationJSONResultsTransactionTypeEnum = "Other"
 )
 
-type ListBankTransactionsLinksResults struct {
-	Amount             float64                                             `json:"amount"`
-	Balance            float64                                             `json:"balance"`
-	Counterparty       *string                                             `json:"counterparty,omitempty"`
-	Date               time.Time                                           `json:"date"`
-	Description        *string                                             `json:"description,omitempty"`
-	ID                 *string                                             `json:"id,omitempty"`
-	ModifiedDate       *time.Time                                          `json:"modifiedDate,omitempty"`
-	Reconciled         bool                                                `json:"reconciled"`
-	Reference          *string                                             `json:"reference,omitempty"`
-	SourceModifiedDate *time.Time                                          `json:"sourceModifiedDate,omitempty"`
-	TransactionType    ListBankTransactionsLinksResultsTransactionTypeEnum `json:"transactionType"`
+func (e *ListBankTransactions200ApplicationJSONResultsTransactionTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Credit":
+		fallthrough
+	case "Debit":
+		fallthrough
+	case "Int":
+		fallthrough
+	case "Div":
+		fallthrough
+	case "Fee":
+		fallthrough
+	case "SerChg":
+		fallthrough
+	case "Dep":
+		fallthrough
+	case "Atm":
+		fallthrough
+	case "Pos":
+		fallthrough
+	case "Xfer":
+		fallthrough
+	case "Check":
+		fallthrough
+	case "Payment":
+		fallthrough
+	case "Cash":
+		fallthrough
+	case "DirectDep":
+		fallthrough
+	case "DirectDebit":
+		fallthrough
+	case "RepeatPmt":
+		fallthrough
+	case "Other":
+		*e = ListBankTransactions200ApplicationJSONResultsTransactionTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListBankTransactions200ApplicationJSONResultsTransactionTypeEnum: %s", s)
+	}
 }
 
-// ListBankTransactionsLinks - Codat's Paging Model
-type ListBankTransactionsLinks struct {
-	Links        ListBankTransactionsLinksLinks     `json:"_links"`
-	PageNumber   int64                              `json:"pageNumber"`
-	PageSize     int64                              `json:"pageSize"`
-	Results      []ListBankTransactionsLinksResults `json:"results,omitempty"`
-	TotalResults int64                              `json:"totalResults"`
+type ListBankTransactions200ApplicationJSONResults struct {
+	Amount       float64 `json:"amount"`
+	Balance      float64 `json:"balance"`
+	Counterparty *string `json:"counterparty,omitempty"`
+	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
+	//
+	// ```
+	// 2020-10-08T22:40:50Z
+	// 2021-01-01T00:00:00
+	// ```
+	//
+	//
+	//
+	// When syncing data that contains `DateTime` fields from Codat, make sure you support the following cases when reading time information:
+	//
+	// - Coordinated Universal Time (UTC): `2021-11-15T06:00:00Z`
+	// - Unqualified local time: `2021-11-15T01:00:00`
+	// - UTC time offsets: `2021-11-15T01:00:00-05:00`
+	//
+	// > 📘 Time zones
+	// >
+	// > Not all dates from Codat will contain information about time zones.
+	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
+	Date               string                                                           `json:"date"`
+	Description        *string                                                          `json:"description,omitempty"`
+	ID                 *string                                                          `json:"id,omitempty"`
+	ModifiedDate       *ListBankTransactions200ApplicationJSONResultsModifiedDate       `json:"modifiedDate,omitempty"`
+	Reconciled         bool                                                             `json:"reconciled"`
+	Reference          *string                                                          `json:"reference,omitempty"`
+	SourceModifiedDate *ListBankTransactions200ApplicationJSONResultsSourceModifiedDate `json:"sourceModifiedDate,omitempty"`
+	TransactionType    ListBankTransactions200ApplicationJSONResultsTransactionTypeEnum `json:"transactionType"`
+}
+
+// ListBankTransactions200ApplicationJSON - Success
+type ListBankTransactions200ApplicationJSON struct {
+	Links        ListBankTransactions200ApplicationJSONLinks     `json:"_links"`
+	PageNumber   int64                                           `json:"pageNumber"`
+	PageSize     int64                                           `json:"pageSize"`
+	Results      []ListBankTransactions200ApplicationJSONResults `json:"results,omitempty"`
+	TotalResults int64                                           `json:"totalResults"`
 }
 
 type ListBankTransactionsResponse struct {
@@ -95,5 +161,5 @@ type ListBankTransactionsResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// Success
-	Links *ListBankTransactionsLinks
+	ListBankTransactions200ApplicationJSONObject *ListBankTransactions200ApplicationJSON
 }

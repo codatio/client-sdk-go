@@ -226,12 +226,12 @@ func (s *journalEntries) ListJournalEntries(ctx context.Context, request operati
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListJournalEntriesLinks
+			var out *operations.ListJournalEntries200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Links = out
+			res.ListJournalEntries200ApplicationJSONObject = out
 		}
 	}
 

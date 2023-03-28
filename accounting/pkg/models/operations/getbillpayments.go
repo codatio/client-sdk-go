@@ -3,8 +3,9 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 type GetBillPaymentsRequest struct {
@@ -35,6 +36,38 @@ const (
 	GetBillPaymentsSourceModifiedDateLinesLinksTypeEnumManualJournal    GetBillPaymentsSourceModifiedDateLinesLinksTypeEnum = "ManualJournal"
 	GetBillPaymentsSourceModifiedDateLinesLinksTypeEnumDiscount         GetBillPaymentsSourceModifiedDateLinesLinksTypeEnum = "Discount"
 )
+
+func (e *GetBillPaymentsSourceModifiedDateLinesLinksTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Unlinked":
+		fallthrough
+	case "Bill":
+		fallthrough
+	case "Other":
+		fallthrough
+	case "CreditNote":
+		fallthrough
+	case "BillPayment":
+		fallthrough
+	case "PaymentOnAccount":
+		fallthrough
+	case "Refund":
+		fallthrough
+	case "ManualJournal":
+		fallthrough
+	case "Discount":
+		*e = GetBillPaymentsSourceModifiedDateLinesLinksTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetBillPaymentsSourceModifiedDateLinesLinksTypeEnum: %s", s)
+	}
+}
 
 type GetBillPaymentsSourceModifiedDateLinesLinks struct {
 	// Amount by which the balance of the linked entity is altered, in the currency of the linked entity.
@@ -74,13 +107,14 @@ type GetBillPaymentsSourceModifiedDateLinesLinks struct {
 
 type GetBillPaymentsSourceModifiedDateLines struct {
 	// AllocatedOnDate must be specified and be later than the issue date of the bill.
-	AllocatedOnDate *time.Time `json:"allocatedOnDate,omitempty"`
+	AllocatedOnDate *string `json:"allocatedOnDate,omitempty"`
 	// Amount in the bill payment currency.
 	Amount float64                                       `json:"amount"`
 	Links  []GetBillPaymentsSourceModifiedDateLinesLinks `json:"links,omitempty"`
 }
 
 type GetBillPaymentsSourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
@@ -279,14 +313,14 @@ type GetBillPaymentsSourceModifiedDate struct {
 	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
 	CurrencyRate *float64 `json:"currencyRate,omitempty"`
 	// Date the bill payment was recorded in the accounting software.
-	Date time.Time `json:"date"`
+	Date string `json:"date"`
 	// Identifier for the bill payment, unique for the company in the accounting platform.
 	ID *string `json:"id,omitempty"`
 	// An array of bill payment lines.
 	Lines    []GetBillPaymentsSourceModifiedDateLines   `json:"lines,omitempty"`
 	Metadata *GetBillPaymentsSourceModifiedDateMetadata `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Additional information associated with the payment.
 	Note *string `json:"note,omitempty"`
 	// The Payment Method to which the payment is linked in the accounting platform.
@@ -294,7 +328,7 @@ type GetBillPaymentsSourceModifiedDate struct {
 	// Additional information associated with the payment.
 	Reference *string `json:"reference,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 	SupplementalData *GetBillPaymentsSourceModifiedDateSupplementalData `json:"supplementalData,omitempty"`
 	// Supplier against which the payment is recorded in the accounting platform.

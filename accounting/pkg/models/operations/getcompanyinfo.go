@@ -3,8 +3,9 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 type GetCompanyInfoRequest struct {
@@ -19,6 +20,24 @@ const (
 	GetCompanyInfoCompanyInfoAddressesTypeEnumBilling  GetCompanyInfoCompanyInfoAddressesTypeEnum = "Billing"
 	GetCompanyInfoCompanyInfoAddressesTypeEnumDelivery GetCompanyInfoCompanyInfoAddressesTypeEnum = "Delivery"
 )
+
+func (e *GetCompanyInfoCompanyInfoAddressesTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Billing":
+		fallthrough
+	case "Delivery":
+		*e = GetCompanyInfoCompanyInfoAddressesTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCompanyInfoCompanyInfoAddressesTypeEnum: %s", s)
+	}
+}
 
 type GetCompanyInfoCompanyInfoAddresses struct {
 	// City of the customer address.
@@ -48,6 +67,28 @@ const (
 	GetCompanyInfoCompanyInfoPhoneNumbersTypeEnumFax      GetCompanyInfoCompanyInfoPhoneNumbersTypeEnum = "Fax"
 )
 
+func (e *GetCompanyInfoCompanyInfoPhoneNumbersTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Primary":
+		fallthrough
+	case "Landline":
+		fallthrough
+	case "Mobile":
+		fallthrough
+	case "Fax":
+		*e = GetCompanyInfoCompanyInfoPhoneNumbersTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCompanyInfoCompanyInfoPhoneNumbersTypeEnum: %s", s)
+	}
+}
+
 type GetCompanyInfoCompanyInfoPhoneNumbers struct {
 	// Phone number for a customer contact.
 	Number *string `json:"number,omitempty"`
@@ -63,6 +104,24 @@ const (
 	GetCompanyInfoCompanyInfoWebLinksTypeEnumWebsite GetCompanyInfoCompanyInfoWebLinksTypeEnum = "Website"
 	GetCompanyInfoCompanyInfoWebLinksTypeEnumSocial  GetCompanyInfoCompanyInfoWebLinksTypeEnum = "Social"
 )
+
+func (e *GetCompanyInfoCompanyInfoWebLinksTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Website":
+		fallthrough
+	case "Social":
+		*e = GetCompanyInfoCompanyInfoWebLinksTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCompanyInfoCompanyInfoWebLinksTypeEnum: %s", s)
+	}
+}
 
 type GetCompanyInfoCompanyInfoWebLinks struct {
 	// Type of web link.
@@ -84,11 +143,11 @@ type GetCompanyInfoCompanyInfo struct {
 	// Name of the linked company.
 	CompanyName *string `json:"companyName,omitempty"`
 	// Date the linked company was created in the accounting platform.
-	CreatedDate *time.Time `json:"createdDate,omitempty"`
+	CreatedDate *string `json:"createdDate,omitempty"`
 	// Start date of the financial year for the company.
-	FinancialYearStartDate *time.Time `json:"financialYearStartDate,omitempty"`
+	FinancialYearStartDate *string `json:"financialYearStartDate,omitempty"`
 	// If set in the accounting platform, the date (in the ISO 8601 date/time format) after which accounting transactions cannot be edited. Commonly used when books are closed at year-end.
-	LedgerLockDate *time.Time `json:"ledgerLockDate,omitempty"`
+	LedgerLockDate *string `json:"ledgerLockDate,omitempty"`
 	// An array of phone numbers.
 	PhoneNumbers []GetCompanyInfoCompanyInfoPhoneNumbers `json:"phoneNumbers,omitempty"`
 	// Registration number given to the linked company by the companies authority in the country of origin. In the UK this is Companies House.

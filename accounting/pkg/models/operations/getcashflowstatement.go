@@ -3,15 +3,16 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 type GetCashFlowStatementRequest struct {
-	CompanyID        string     `pathParam:"style=simple,explode=false,name=companyId"`
-	PeriodLength     int        `queryParam:"style=form,explode=true,name=periodLength"`
-	PeriodsToCompare int        `queryParam:"style=form,explode=true,name=periodsToCompare"`
-	StartMonth       *time.Time `queryParam:"style=form,explode=true,name=startMonth"`
+	CompanyID        string  `pathParam:"style=simple,explode=false,name=companyId"`
+	PeriodLength     int     `queryParam:"style=form,explode=true,name=periodLength"`
+	PeriodsToCompare int     `queryParam:"style=form,explode=true,name=periodsToCompare"`
+	StartMonth       *string `queryParam:"style=form,explode=true,name=startMonth"`
 }
 
 // GetCashFlowStatement200ApplicationJSONReportBasisEnum - Accounting method used when aggregating the report data. In this case, Cash.
@@ -23,6 +24,24 @@ const (
 	GetCashFlowStatement200ApplicationJSONReportBasisEnumCash    GetCashFlowStatement200ApplicationJSONReportBasisEnum = "Cash"
 )
 
+func (e *GetCashFlowStatement200ApplicationJSONReportBasisEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Accrual":
+		fallthrough
+	case "Cash":
+		*e = GetCashFlowStatement200ApplicationJSONReportBasisEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCashFlowStatement200ApplicationJSONReportBasisEnum: %s", s)
+	}
+}
+
 // GetCashFlowStatement200ApplicationJSONReportInputEnum - Accounting method used to prepare the cash flow statement.
 type GetCashFlowStatement200ApplicationJSONReportInputEnum string
 
@@ -31,6 +50,24 @@ const (
 	GetCashFlowStatement200ApplicationJSONReportInputEnumIndirect GetCashFlowStatement200ApplicationJSONReportInputEnum = "Indirect"
 	GetCashFlowStatement200ApplicationJSONReportInputEnumDirect   GetCashFlowStatement200ApplicationJSONReportInputEnum = "Direct"
 )
+
+func (e *GetCashFlowStatement200ApplicationJSONReportInputEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Indirect":
+		fallthrough
+	case "Direct":
+		*e = GetCashFlowStatement200ApplicationJSONReportInputEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCashFlowStatement200ApplicationJSONReportInputEnum: %s", s)
+	}
+}
 
 type GetCashFlowStatement200ApplicationJSONCashFlowStatementReportLineReportLineReportLineReportLine struct {
 	// Identifier for the account, unique for the company in the accounting platform.
@@ -94,17 +131,55 @@ type GetCashFlowStatement200ApplicationJSONCashFlowStatement struct {
 	// ReportLines for cash receipts from the sale of goods.
 	CashReceipts *GetCashFlowStatement200ApplicationJSONCashFlowStatementReportLine `json:"cashReceipts,omitempty"`
 	// Start date for the reporting period.
-	FromDate *time.Time `json:"fromDate,omitempty"`
+	FromDate *string `json:"fromDate,omitempty"`
 	// End date for the reporting period.
-	ToDate *time.Time `json:"toDate,omitempty"`
+	ToDate *string `json:"toDate,omitempty"`
 }
 
 // GetCashFlowStatement200ApplicationJSON - Success
 type GetCashFlowStatement200ApplicationJSON struct {
 	// Currency of all values in the cash flow statement.
-	Currency                 string     `json:"currency"`
-	EarliestAvailableMonth   *time.Time `json:"earliestAvailableMonth,omitempty"`
-	MostRecentAvailableMonth *time.Time `json:"mostRecentAvailableMonth,omitempty"`
+	Currency string `json:"currency"`
+	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
+	//
+	// ```
+	// 2020-10-08T22:40:50Z
+	// 2021-01-01T00:00:00
+	// ```
+	//
+	//
+	//
+	// When syncing data that contains `DateTime` fields from Codat, make sure you support the following cases when reading time information:
+	//
+	// - Coordinated Universal Time (UTC): `2021-11-15T06:00:00Z`
+	// - Unqualified local time: `2021-11-15T01:00:00`
+	// - UTC time offsets: `2021-11-15T01:00:00-05:00`
+	//
+	// > 📘 Time zones
+	// >
+	// > Not all dates from Codat will contain information about time zones.
+	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
+	EarliestAvailableMonth *string `json:"earliestAvailableMonth,omitempty"`
+	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
+	//
+	// ```
+	// 2020-10-08T22:40:50Z
+	// 2021-01-01T00:00:00
+	// ```
+	//
+	//
+	//
+	// When syncing data that contains `DateTime` fields from Codat, make sure you support the following cases when reading time information:
+	//
+	// - Coordinated Universal Time (UTC): `2021-11-15T06:00:00Z`
+	// - Unqualified local time: `2021-11-15T01:00:00`
+	// - UTC time offsets: `2021-11-15T01:00:00-05:00`
+	//
+	// > 📘 Time zones
+	// >
+	// > Not all dates from Codat will contain information about time zones.
+	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
+	MostRecentAvailableMonth *string `json:"mostRecentAvailableMonth,omitempty"`
 	// Accounting method used when aggregating the report data. In this case, Cash.
 	ReportBasis GetCashFlowStatement200ApplicationJSONReportBasisEnum `json:"reportBasis"`
 	// Accounting method used to prepare the cash flow statement.

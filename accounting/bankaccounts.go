@@ -275,12 +275,12 @@ func (s *bankAccounts) ListBankAccounts(ctx context.Context, request operations.
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListBankAccountsLinks
+			var out *operations.ListBankAccounts200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Links = out
+			res.ListBankAccounts200ApplicationJSONObject = out
 		}
 	}
 

@@ -4,7 +4,6 @@ package operations
 
 import (
 	"net/http"
-	"time"
 )
 
 type GetTransferRequest struct {
@@ -38,6 +37,7 @@ type GetTransferSourceModifiedDateTransferAccount struct {
 }
 
 type GetTransferSourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
@@ -65,8 +65,8 @@ type GetTransferSourceModifiedDate struct {
 	// The customer or supplier for the transfer, if available.
 	ContactRef *GetTransferSourceModifiedDateContactRef `json:"contactRef,omitempty"`
 	// The day on which the transfer was made.
-	Date                *time.Time `json:"date,omitempty"`
-	DepositedRecordRefs []string   `json:"depositedRecordRefs,omitempty"`
+	Date                *string  `json:"date,omitempty"`
+	DepositedRecordRefs []string `json:"depositedRecordRefs,omitempty"`
 	// Description of the transfer.
 	Description *string `json:"description,omitempty"`
 	// The details of the accounts the transfer is moving from.
@@ -75,9 +75,9 @@ type GetTransferSourceModifiedDate struct {
 	ID       *string                                `json:"id,omitempty"`
 	Metadata *GetTransferSourceModifiedDateMetadata `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 	SupplementalData *GetTransferSourceModifiedDateSupplementalData `json:"supplementalData,omitempty"`
 	// The details of the accounts the transfer is moving to.

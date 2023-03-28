@@ -4,7 +4,6 @@ package operations
 
 import (
 	"net/http"
-	"time"
 )
 
 type ListJournalEntriesRequest struct {
@@ -19,45 +18,33 @@ type ListJournalEntriesRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-type ListJournalEntriesLinksLinksCurrent struct {
-	Href string `json:"href"`
-}
-
-type ListJournalEntriesLinksLinksNext struct {
+type ListJournalEntries200ApplicationJSONLinksHypertextReference struct {
 	Href *string `json:"href,omitempty"`
 }
 
-type ListJournalEntriesLinksLinksPrevious struct {
-	Href *string `json:"href,omitempty"`
+type ListJournalEntries200ApplicationJSONLinks struct {
+	Current  ListJournalEntries200ApplicationJSONLinksHypertextReference  `json:"current"`
+	Next     *ListJournalEntries200ApplicationJSONLinksHypertextReference `json:"next,omitempty"`
+	Previous *ListJournalEntries200ApplicationJSONLinksHypertextReference `json:"previous,omitempty"`
+	Self     ListJournalEntries200ApplicationJSONLinksHypertextReference  `json:"self"`
 }
 
-type ListJournalEntriesLinksLinksSelf struct {
-	Href string `json:"href"`
-}
-
-type ListJournalEntriesLinksLinks struct {
-	Current  ListJournalEntriesLinksLinksCurrent   `json:"current"`
-	Next     *ListJournalEntriesLinksLinksNext     `json:"next,omitempty"`
-	Previous *ListJournalEntriesLinksLinksPrevious `json:"previous,omitempty"`
-	Self     ListJournalEntriesLinksLinksSelf      `json:"self"`
-}
-
-// ListJournalEntriesLinksSourceModifiedDateJournalLinesAccountRef - Data types that reference an account, for example bill and invoice line items, use an accountRef that includes the ID and name of the linked account.
-type ListJournalEntriesLinksSourceModifiedDateJournalLinesAccountRef struct {
+// ListJournalEntries200ApplicationJSONSourceModifiedDateJournalLinesAccountRef - Data types that reference an account, for example bill and invoice line items, use an accountRef that includes the ID and name of the linked account.
+type ListJournalEntries200ApplicationJSONSourceModifiedDateJournalLinesAccountRef struct {
 	// 'id' from the Accounts data type.
 	ID *string `json:"id,omitempty"`
 	// 'name' from the Accounts data type.
 	Name *string `json:"name,omitempty"`
 }
 
-// ListJournalEntriesLinksSourceModifiedDateJournalLinesTracking - List of record refs associated with the tracking information for the line (eg to a Tracking Category, or customer etc.)
-type ListJournalEntriesLinksSourceModifiedDateJournalLinesTracking struct {
+// ListJournalEntries200ApplicationJSONSourceModifiedDateJournalLinesTracking - List of record refs associated with the tracking information for the line (eg to a Tracking Category, or customer etc.)
+type ListJournalEntries200ApplicationJSONSourceModifiedDateJournalLinesTracking struct {
 	RecordRefs []string `json:"recordRefs,omitempty"`
 }
 
-type ListJournalEntriesLinksSourceModifiedDateJournalLines struct {
+type ListJournalEntries200ApplicationJSONSourceModifiedDateJournalLines struct {
 	// Data types that reference an account, for example bill and invoice line items, use an accountRef that includes the ID and name of the linked account.
-	AccountRef *ListJournalEntriesLinksSourceModifiedDateJournalLinesAccountRef `json:"accountRef,omitempty"`
+	AccountRef *ListJournalEntries200ApplicationJSONSourceModifiedDateJournalLinesAccountRef `json:"accountRef,omitempty"`
 	// Currency for the journal line item.
 	Currency *string `json:"currency,omitempty"`
 	// Description of the journal line item.
@@ -65,22 +52,23 @@ type ListJournalEntriesLinksSourceModifiedDateJournalLines struct {
 	// Amount for the journal line. Debit entries are considered positive, and credit entries are considered negative.
 	NetAmount float64 `json:"netAmount"`
 	// List of record refs associated with the tracking information for the line (eg to a Tracking Category, or customer etc.)
-	Tracking *ListJournalEntriesLinksSourceModifiedDateJournalLinesTracking `json:"tracking,omitempty"`
+	Tracking *ListJournalEntries200ApplicationJSONSourceModifiedDateJournalLinesTracking `json:"tracking,omitempty"`
 }
 
-// ListJournalEntriesLinksSourceModifiedDateJournalRef - Links journal entries to the relevant journal in accounting integrations that use multi-book accounting (multiple journals).
-type ListJournalEntriesLinksSourceModifiedDateJournalRef struct {
+// ListJournalEntries200ApplicationJSONSourceModifiedDateJournalRef - Links journal entries to the relevant journal in accounting integrations that use multi-book accounting (multiple journals).
+type ListJournalEntries200ApplicationJSONSourceModifiedDateJournalRef struct {
 	// GUID of the underlying journal.
 	ID string `json:"id"`
 	// Journal name, 256 characters max.
 	Name *string `json:"name,omitempty"`
 }
 
-type ListJournalEntriesLinksSourceModifiedDateMetadata struct {
+type ListJournalEntries200ApplicationJSONSourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
-// ListJournalEntriesLinksSourceModifiedDateRecordRef - Links to the underlying record or data type.
+// ListJournalEntries200ApplicationJSONSourceModifiedDateRecordRef - Links to the underlying record or data type.
 //
 // Found on:
 //
@@ -88,19 +76,19 @@ type ListJournalEntriesLinksSourceModifiedDateMetadata struct {
 // - Account transactions
 // - Invoices
 // - Transfers
-type ListJournalEntriesLinksSourceModifiedDateRecordRef struct {
+type ListJournalEntries200ApplicationJSONSourceModifiedDateRecordRef struct {
 	// Name of the 'dataType'.
 	DataType *string `json:"dataType,omitempty"`
 	// 'id' of the underlying record or data type.
 	ID *string `json:"id,omitempty"`
 }
 
-// ListJournalEntriesLinksSourceModifiedDateSupplementalData - Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
-type ListJournalEntriesLinksSourceModifiedDateSupplementalData struct {
+// ListJournalEntries200ApplicationJSONSourceModifiedDateSupplementalData - Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
+type ListJournalEntries200ApplicationJSONSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
 
-// ListJournalEntriesLinksSourceModifiedDate - > **Language tip:** For the top-level record of a company's financial transactions, refer to the [Journals](https://docs.codat.io/accounting-api#/schemas/Journal) data type
+// ListJournalEntries200ApplicationJSONSourceModifiedDate - > **Language tip:** For the top-level record of a company's financial transactions, refer to the [Journals](https://docs.codat.io/accounting-api#/schemas/Journal) data type
 //
 // > View the coverage for journal entries in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journalEntries" target="_blank">Data coverage explorer</a>.
 //
@@ -122,20 +110,20 @@ type ListJournalEntriesLinksSourceModifiedDateSupplementalData struct {
 //
 // > **Pushing journal entries **
 // > Codat only supports journal entries in the base currency of the company that are pushed into accounts denominated in the same base currency.
-type ListJournalEntriesLinksSourceModifiedDate struct {
+type ListJournalEntries200ApplicationJSONSourceModifiedDate struct {
 	// Date on which the journal was created in the accounting platform.
-	CreatedOn *time.Time `json:"createdOn,omitempty"`
+	CreatedOn *string `json:"createdOn,omitempty"`
 	// Optional description of the journal entry.
 	Description *string `json:"description,omitempty"`
 	// Unique identifier of the journal entry for the company in the accounting platform.
 	ID *string `json:"id,omitempty"`
 	// An array of journal lines.
-	JournalLines []ListJournalEntriesLinksSourceModifiedDateJournalLines `json:"journalLines,omitempty"`
+	JournalLines []ListJournalEntries200ApplicationJSONSourceModifiedDateJournalLines `json:"journalLines,omitempty"`
 	// Links journal entries to the relevant journal in accounting integrations that use multi-book accounting (multiple journals).
-	JournalRef *ListJournalEntriesLinksSourceModifiedDateJournalRef `json:"journalRef,omitempty"`
-	Metadata   *ListJournalEntriesLinksSourceModifiedDateMetadata   `json:"metadata,omitempty"`
+	JournalRef *ListJournalEntries200ApplicationJSONSourceModifiedDateJournalRef `json:"journalRef,omitempty"`
+	Metadata   *ListJournalEntries200ApplicationJSONSourceModifiedDateMetadata   `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Date on which the journal entry was posted to the accounting platform, and had an impact on the general ledger. This may be different from the creation date.
 	//
 	// For example, a user creates a journal entry on Monday and saves it as draft, which has no impact on the general ledger. On Thursday, they return to the entry and post it.
@@ -143,7 +131,7 @@ type ListJournalEntriesLinksSourceModifiedDate struct {
 	// The **createdOn** date shows as Monday.
 	// The **postedOn** date shows as Thursday.
 	// Journal entries can also be backdated, so the **postedOn** date may be earlier than the **createdOn** date.
-	PostedOn *time.Time `json:"postedOn,omitempty"`
+	PostedOn *string `json:"postedOn,omitempty"`
 	// Links to the underlying record or data type.
 	//
 	// Found on:
@@ -152,22 +140,22 @@ type ListJournalEntriesLinksSourceModifiedDate struct {
 	// - Account transactions
 	// - Invoices
 	// - Transfers
-	RecordRef *ListJournalEntriesLinksSourceModifiedDateRecordRef `json:"recordRef,omitempty"`
+	RecordRef *ListJournalEntries200ApplicationJSONSourceModifiedDateRecordRef `json:"recordRef,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
-	SupplementalData *ListJournalEntriesLinksSourceModifiedDateSupplementalData `json:"supplementalData,omitempty"`
+	SupplementalData *ListJournalEntries200ApplicationJSONSourceModifiedDateSupplementalData `json:"supplementalData,omitempty"`
 	// Date on which the journal was last updated in the accounting platform.
-	UpdatedOn *time.Time `json:"updatedOn,omitempty"`
+	UpdatedOn *string `json:"updatedOn,omitempty"`
 }
 
-// ListJournalEntriesLinks - Codat's Paging Model
-type ListJournalEntriesLinks struct {
-	Links        ListJournalEntriesLinksLinks                `json:"_links"`
-	PageNumber   int64                                       `json:"pageNumber"`
-	PageSize     int64                                       `json:"pageSize"`
-	Results      []ListJournalEntriesLinksSourceModifiedDate `json:"results,omitempty"`
-	TotalResults int64                                       `json:"totalResults"`
+// ListJournalEntries200ApplicationJSON - Success
+type ListJournalEntries200ApplicationJSON struct {
+	Links        ListJournalEntries200ApplicationJSONLinks                `json:"_links"`
+	PageNumber   int64                                                    `json:"pageNumber"`
+	PageSize     int64                                                    `json:"pageSize"`
+	Results      []ListJournalEntries200ApplicationJSONSourceModifiedDate `json:"results,omitempty"`
+	TotalResults int64                                                    `json:"totalResults"`
 }
 
 type ListJournalEntriesResponse struct {
@@ -175,5 +163,5 @@ type ListJournalEntriesResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// Success
-	Links *ListJournalEntriesLinks
+	ListJournalEntries200ApplicationJSONObject *ListJournalEntries200ApplicationJSON
 }

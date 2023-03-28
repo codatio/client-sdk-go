@@ -3,8 +3,9 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 type ListAccountTransactionsRequest struct {
@@ -20,69 +21,78 @@ type ListAccountTransactionsRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-type ListAccountTransactionsLinksLinksCurrent struct {
-	Href string `json:"href"`
-}
-
-type ListAccountTransactionsLinksLinksNext struct {
+type ListAccountTransactions200ApplicationJSONLinksHypertextReference struct {
 	Href *string `json:"href,omitempty"`
 }
 
-type ListAccountTransactionsLinksLinksPrevious struct {
-	Href *string `json:"href,omitempty"`
+type ListAccountTransactions200ApplicationJSONLinks struct {
+	Current  ListAccountTransactions200ApplicationJSONLinksHypertextReference  `json:"current"`
+	Next     *ListAccountTransactions200ApplicationJSONLinksHypertextReference `json:"next,omitempty"`
+	Previous *ListAccountTransactions200ApplicationJSONLinksHypertextReference `json:"previous,omitempty"`
+	Self     ListAccountTransactions200ApplicationJSONLinksHypertextReference  `json:"self"`
 }
 
-type ListAccountTransactionsLinksLinksSelf struct {
-	Href string `json:"href"`
-}
-
-type ListAccountTransactionsLinksLinks struct {
-	Current  ListAccountTransactionsLinksLinksCurrent   `json:"current"`
-	Next     *ListAccountTransactionsLinksLinksNext     `json:"next,omitempty"`
-	Previous *ListAccountTransactionsLinksLinksPrevious `json:"previous,omitempty"`
-	Self     ListAccountTransactionsLinksLinksSelf      `json:"self"`
-}
-
-// ListAccountTransactionsLinksSourceModifiedDateBankAccountRef - Reference to the bank account the account transaction is recorded against.
-type ListAccountTransactionsLinksSourceModifiedDateBankAccountRef struct {
+// ListAccountTransactions200ApplicationJSONSourceModifiedDateBankAccountRef - Reference to the bank account the account transaction is recorded against.
+type ListAccountTransactions200ApplicationJSONSourceModifiedDateBankAccountRef struct {
 	// Bank account 'id' for the account transaction.
 	ID *string `json:"id,omitempty"`
 	// bank account 'name' for the account transaction.
 	Name *string `json:"name,omitempty"`
 }
 
-// ListAccountTransactionsLinksSourceModifiedDateLinesRecordRef - Links an account transaction line to the underlying record that created it.
-type ListAccountTransactionsLinksSourceModifiedDateLinesRecordRef struct {
+// ListAccountTransactions200ApplicationJSONSourceModifiedDateLinesRecordRef - Links an account transaction line to the underlying record that created it.
+type ListAccountTransactions200ApplicationJSONSourceModifiedDateLinesRecordRef struct {
 	// Name of the 'dataType'.
 	DataType *string `json:"dataType,omitempty"`
 	// 'id' of the underlying record or data type.
 	ID *string `json:"id,omitempty"`
 }
 
-type ListAccountTransactionsLinksSourceModifiedDateLines struct {
+type ListAccountTransactions200ApplicationJSONSourceModifiedDateLines struct {
 	// Amount in the bill payment currency.
 	Amount *float64 `json:"amount,omitempty"`
 	// Description of the account transaction.
 	Description *string `json:"description,omitempty"`
 	// Links an account transaction line to the underlying record that created it.
-	RecordRef *ListAccountTransactionsLinksSourceModifiedDateLinesRecordRef `json:"recordRef,omitempty"`
+	RecordRef *ListAccountTransactions200ApplicationJSONSourceModifiedDateLinesRecordRef `json:"recordRef,omitempty"`
 }
 
-type ListAccountTransactionsLinksSourceModifiedDateMetadata struct {
+type ListAccountTransactions200ApplicationJSONSourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
-// ListAccountTransactionsLinksSourceModifiedDateStatusEnum - The status of the account transaction.
-type ListAccountTransactionsLinksSourceModifiedDateStatusEnum string
+// ListAccountTransactions200ApplicationJSONSourceModifiedDateStatusEnum - The status of the account transaction.
+type ListAccountTransactions200ApplicationJSONSourceModifiedDateStatusEnum string
 
 const (
-	ListAccountTransactionsLinksSourceModifiedDateStatusEnumUnknown      ListAccountTransactionsLinksSourceModifiedDateStatusEnum = "Unknown"
-	ListAccountTransactionsLinksSourceModifiedDateStatusEnumUnreconciled ListAccountTransactionsLinksSourceModifiedDateStatusEnum = "Unreconciled"
-	ListAccountTransactionsLinksSourceModifiedDateStatusEnumReconciled   ListAccountTransactionsLinksSourceModifiedDateStatusEnum = "Reconciled"
-	ListAccountTransactionsLinksSourceModifiedDateStatusEnumVoid         ListAccountTransactionsLinksSourceModifiedDateStatusEnum = "Void"
+	ListAccountTransactions200ApplicationJSONSourceModifiedDateStatusEnumUnknown      ListAccountTransactions200ApplicationJSONSourceModifiedDateStatusEnum = "Unknown"
+	ListAccountTransactions200ApplicationJSONSourceModifiedDateStatusEnumUnreconciled ListAccountTransactions200ApplicationJSONSourceModifiedDateStatusEnum = "Unreconciled"
+	ListAccountTransactions200ApplicationJSONSourceModifiedDateStatusEnumReconciled   ListAccountTransactions200ApplicationJSONSourceModifiedDateStatusEnum = "Reconciled"
+	ListAccountTransactions200ApplicationJSONSourceModifiedDateStatusEnumVoid         ListAccountTransactions200ApplicationJSONSourceModifiedDateStatusEnum = "Void"
 )
 
-// ListAccountTransactionsLinksSourceModifiedDate - > **Language tip:** In Codat, account transactions represent all transactions posted to a bank account within an accounting platform. For bank transactions posted within a banking platform, refer to [Banking transactions](https://docs.codat.io/banking-api#/operations/list-all-banking-transactions).
+func (e *ListAccountTransactions200ApplicationJSONSourceModifiedDateStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Unreconciled":
+		fallthrough
+	case "Reconciled":
+		fallthrough
+	case "Void":
+		*e = ListAccountTransactions200ApplicationJSONSourceModifiedDateStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListAccountTransactions200ApplicationJSONSourceModifiedDateStatusEnum: %s", s)
+	}
+}
+
+// ListAccountTransactions200ApplicationJSONSourceModifiedDate - > **Language tip:** In Codat, account transactions represent all transactions posted to a bank account within an accounting platform. For bank transactions posted within a banking platform, refer to [Banking transactions](https://docs.codat.io/banking-api#/operations/list-all-banking-transactions).
 //
 // > View the coverage for account transactions in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=accountTransactions" target="_blank">Data coverage explorer</a>.
 //
@@ -99,9 +109,9 @@ const (
 // * Transfers: for example, transferring money between two bank accounts.
 //
 // Account transactions is the parent data type of [payments](https://docs.codat.io/accounting-api#/schemas/Payment), [bill payments](https://docs.codat.io/accounting-api#/schemas/BillPayment), [direct costs](https://docs.codat.io/accounting-api#/schemas/DirectCost), [direct incomes](https://docs.codat.io/accounting-api#/schemas/DirectIncome), and [transfers](https://docs.codat.io/accounting-api#/schemas/Transfer).
-type ListAccountTransactionsLinksSourceModifiedDate struct {
+type ListAccountTransactions200ApplicationJSONSourceModifiedDate struct {
 	// Reference to the bank account the account transaction is recorded against.
-	BankAccountRef *ListAccountTransactionsLinksSourceModifiedDateBankAccountRef `json:"bankAccountRef,omitempty"`
+	BankAccountRef *ListAccountTransactions200ApplicationJSONSourceModifiedDateBankAccountRef `json:"bankAccountRef,omitempty"`
 	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code. e.g. _GBP_.
 	//
 	// ## Unknown currencies
@@ -135,33 +145,33 @@ type ListAccountTransactionsLinksSourceModifiedDate struct {
 	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
 	CurrencyRate *float64 `json:"currencyRate,omitempty"`
 	// The date the account transaction was recorded in the platform.
-	Date *time.Time `json:"date,omitempty"`
+	Date *string `json:"date,omitempty"`
 	// Identifier of the direct cost (unique to the company).
 	ID *string `json:"id,omitempty"`
 	// Array of account transaction lines.
-	Lines    []ListAccountTransactionsLinksSourceModifiedDateLines   `json:"lines,omitempty"`
-	Metadata *ListAccountTransactionsLinksSourceModifiedDateMetadata `json:"metadata,omitempty"`
+	Lines    []ListAccountTransactions200ApplicationJSONSourceModifiedDateLines   `json:"lines,omitempty"`
+	Metadata *ListAccountTransactions200ApplicationJSONSourceModifiedDateMetadata `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Additional information about the account transaction, if available.
 	Note *string `json:"note,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// The status of the account transaction.
-	Status *ListAccountTransactionsLinksSourceModifiedDateStatusEnum `json:"status,omitempty"`
+	Status *ListAccountTransactions200ApplicationJSONSourceModifiedDateStatusEnum `json:"status,omitempty"`
 	// Total amount of the account transactions, inclusive of tax.
 	TotalAmount *float64 `json:"totalAmount,omitempty"`
 	// Identifier of the transaction (unique to the company).
 	TransactionID *string `json:"transactionId,omitempty"`
 }
 
-// ListAccountTransactionsLinks - Codat's Paging Model
-type ListAccountTransactionsLinks struct {
-	Links        ListAccountTransactionsLinksLinks                `json:"_links"`
-	PageNumber   int64                                            `json:"pageNumber"`
-	PageSize     int64                                            `json:"pageSize"`
-	Results      []ListAccountTransactionsLinksSourceModifiedDate `json:"results,omitempty"`
-	TotalResults int64                                            `json:"totalResults"`
+// ListAccountTransactions200ApplicationJSON - Success
+type ListAccountTransactions200ApplicationJSON struct {
+	Links        ListAccountTransactions200ApplicationJSONLinks                `json:"_links"`
+	PageNumber   int64                                                         `json:"pageNumber"`
+	PageSize     int64                                                         `json:"pageSize"`
+	Results      []ListAccountTransactions200ApplicationJSONSourceModifiedDate `json:"results,omitempty"`
+	TotalResults int64                                                         `json:"totalResults"`
 }
 
 type ListAccountTransactionsResponse struct {
@@ -169,5 +179,5 @@ type ListAccountTransactionsResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// Success
-	Links *ListAccountTransactionsLinks
+	ListAccountTransactions200ApplicationJSONObject *ListAccountTransactions200ApplicationJSON
 }

@@ -3,8 +3,9 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 // UpdateInvoiceSourceModifiedDateCustomerRef - Reference to the customer the invoice has been issued to.
@@ -56,6 +57,24 @@ const (
 	UpdateInvoiceSourceModifiedDateLineItemsTrackingIsBilledToEnumProject       UpdateInvoiceSourceModifiedDateLineItemsTrackingIsBilledToEnum = "Project"
 )
 
+func (e *UpdateInvoiceSourceModifiedDateLineItemsTrackingIsBilledToEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "NotApplicable":
+		fallthrough
+	case "Project":
+		*e = UpdateInvoiceSourceModifiedDateLineItemsTrackingIsBilledToEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for UpdateInvoiceSourceModifiedDateLineItemsTrackingIsBilledToEnum: %s", s)
+	}
+}
+
 type UpdateInvoiceSourceModifiedDateLineItemsTrackingIsRebilledToEnum string
 
 const (
@@ -63,6 +82,24 @@ const (
 	UpdateInvoiceSourceModifiedDateLineItemsTrackingIsRebilledToEnumNotApplicable UpdateInvoiceSourceModifiedDateLineItemsTrackingIsRebilledToEnum = "NotApplicable"
 	UpdateInvoiceSourceModifiedDateLineItemsTrackingIsRebilledToEnumProject       UpdateInvoiceSourceModifiedDateLineItemsTrackingIsRebilledToEnum = "Project"
 )
+
+func (e *UpdateInvoiceSourceModifiedDateLineItemsTrackingIsRebilledToEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "NotApplicable":
+		fallthrough
+	case "Project":
+		*e = UpdateInvoiceSourceModifiedDateLineItemsTrackingIsRebilledToEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for UpdateInvoiceSourceModifiedDateLineItemsTrackingIsRebilledToEnum: %s", s)
+	}
+}
 
 type UpdateInvoiceSourceModifiedDateLineItemsTrackingProjectRef struct {
 	ID   string  `json:"id"`
@@ -109,12 +146,13 @@ type UpdateInvoiceSourceModifiedDateLineItems struct {
 }
 
 type UpdateInvoiceSourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
 type UpdateInvoiceSourceModifiedDatePaymentAllocationsAllocation struct {
 	// The date the payment was allocated.
-	AllocatedOnDate *time.Time `json:"allocatedOnDate,omitempty"`
+	AllocatedOnDate *string `json:"allocatedOnDate,omitempty"`
 	// The currency of the transaction.
 	Currency *string `json:"currency,omitempty"`
 	// Rate to convert the total amount of the payment into the base currency for the company at the time of the payment.
@@ -187,7 +225,7 @@ type UpdateInvoiceSourceModifiedDatePaymentAllocationsPayment struct {
 	// Notes attached to the allocated payment.
 	Note *string `json:"note,omitempty"`
 	// The date the payment was paid.
-	PaidOnDate *time.Time `json:"paidOnDate,omitempty"`
+	PaidOnDate *string `json:"paidOnDate,omitempty"`
 	// Reference to the allocated payment.
 	Reference *string `json:"reference,omitempty"`
 	// Total amount that was paid.
@@ -216,6 +254,30 @@ const (
 	UpdateInvoiceSourceModifiedDateStatusEnumPaid          UpdateInvoiceSourceModifiedDateStatusEnum = "Paid"
 	UpdateInvoiceSourceModifiedDateStatusEnumVoid          UpdateInvoiceSourceModifiedDateStatusEnum = "Void"
 )
+
+func (e *UpdateInvoiceSourceModifiedDateStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Draft":
+		fallthrough
+	case "Submitted":
+		fallthrough
+	case "PartiallyPaid":
+		fallthrough
+	case "Paid":
+		fallthrough
+	case "Void":
+		*e = UpdateInvoiceSourceModifiedDateStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for UpdateInvoiceSourceModifiedDateStatusEnum: %s", s)
+	}
+}
 
 // UpdateInvoiceSourceModifiedDateSupplementalData - Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type UpdateInvoiceSourceModifiedDateSupplementalData struct {
@@ -286,29 +348,29 @@ type UpdateInvoiceSourceModifiedDate struct {
 	// Percentage rate (from 0 to 100) of discounts applied to the invoice. For example: A 5% discount will return a value of `5`, not `0.05`.
 	DiscountPercentage *float64 `json:"discountPercentage,omitempty"`
 	// Date the customer is due to be paid by.
-	DueDate *time.Time `json:"dueDate,omitempty"`
+	DueDate *string `json:"dueDate,omitempty"`
 	// Identifier for the invoice, unique to the company in the accounting platform.
 	ID *string `json:"id,omitempty"`
 	// Friendly reference for the invoice. If available, this appears in the file name of invoice attachments.
 	InvoiceNumber *string `json:"invoiceNumber,omitempty"`
 	// Date of the invoice as recorded in the accounting system.
-	IssueDate time.Time `json:"issueDate"`
+	IssueDate string `json:"issueDate"`
 	// An array of line items.
 	LineItems []UpdateInvoiceSourceModifiedDateLineItems `json:"lineItems,omitempty"`
 	Metadata  *UpdateInvoiceSourceModifiedDateMetadata   `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Any additional information about the invoice. Where possible, Codat links to a data field in the accounting platform that is publicly available. This means that the contents of the note field are included when an invoice is emailed from the accounting platform to the customer.
 	Note *string `json:"note,omitempty"`
 	// Date the invoice was marked as paid in the accounting system. If this field is not available from the accounting software, it is calculated by Codat using associated payments.
-	PaidOnDate *time.Time `json:"paidOnDate,omitempty"`
+	PaidOnDate *string `json:"paidOnDate,omitempty"`
 	//
 	// An array of payment allocations.
 	PaymentAllocations []UpdateInvoiceSourceModifiedDatePaymentAllocations `json:"paymentAllocations,omitempty"`
 	// List of references to related Sales orders.
 	SalesOrderRefs []string `json:"salesOrderRefs,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Current state of the invoice:
 	//
 	// - `Draft` - Invoice hasn't been submitted to the supplier. It may be in a pending state or is scheduled for future submission, for example by email.
@@ -354,6 +416,28 @@ const (
 	UpdateInvoice200ApplicationJSONChangesTypeEnumDeleted            UpdateInvoice200ApplicationJSONChangesTypeEnum = "Deleted"
 	UpdateInvoice200ApplicationJSONChangesTypeEnumAttachmentUploaded UpdateInvoice200ApplicationJSONChangesTypeEnum = "AttachmentUploaded"
 )
+
+func (e *UpdateInvoice200ApplicationJSONChangesTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Created":
+		fallthrough
+	case "Modified":
+		fallthrough
+	case "Deleted":
+		fallthrough
+	case "AttachmentUploaded":
+		*e = UpdateInvoice200ApplicationJSONChangesTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for UpdateInvoice200ApplicationJSONChangesTypeEnum: %s", s)
+	}
+}
 
 type UpdateInvoice200ApplicationJSONChanges struct {
 	AttachmentID *string                                                       `json:"attachmentId,omitempty"`
@@ -410,6 +494,24 @@ const (
 	UpdateInvoice200ApplicationJSONSourceModifiedDateLineItemsTrackingIsBilledToEnumProject       UpdateInvoice200ApplicationJSONSourceModifiedDateLineItemsTrackingIsBilledToEnum = "Project"
 )
 
+func (e *UpdateInvoice200ApplicationJSONSourceModifiedDateLineItemsTrackingIsBilledToEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "NotApplicable":
+		fallthrough
+	case "Project":
+		*e = UpdateInvoice200ApplicationJSONSourceModifiedDateLineItemsTrackingIsBilledToEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for UpdateInvoice200ApplicationJSONSourceModifiedDateLineItemsTrackingIsBilledToEnum: %s", s)
+	}
+}
+
 type UpdateInvoice200ApplicationJSONSourceModifiedDateLineItemsTrackingIsRebilledToEnum string
 
 const (
@@ -417,6 +519,24 @@ const (
 	UpdateInvoice200ApplicationJSONSourceModifiedDateLineItemsTrackingIsRebilledToEnumNotApplicable UpdateInvoice200ApplicationJSONSourceModifiedDateLineItemsTrackingIsRebilledToEnum = "NotApplicable"
 	UpdateInvoice200ApplicationJSONSourceModifiedDateLineItemsTrackingIsRebilledToEnumProject       UpdateInvoice200ApplicationJSONSourceModifiedDateLineItemsTrackingIsRebilledToEnum = "Project"
 )
+
+func (e *UpdateInvoice200ApplicationJSONSourceModifiedDateLineItemsTrackingIsRebilledToEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "NotApplicable":
+		fallthrough
+	case "Project":
+		*e = UpdateInvoice200ApplicationJSONSourceModifiedDateLineItemsTrackingIsRebilledToEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for UpdateInvoice200ApplicationJSONSourceModifiedDateLineItemsTrackingIsRebilledToEnum: %s", s)
+	}
+}
 
 type UpdateInvoice200ApplicationJSONSourceModifiedDateLineItemsTrackingProjectRef struct {
 	ID   string  `json:"id"`
@@ -463,12 +583,13 @@ type UpdateInvoice200ApplicationJSONSourceModifiedDateLineItems struct {
 }
 
 type UpdateInvoice200ApplicationJSONSourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
 type UpdateInvoice200ApplicationJSONSourceModifiedDatePaymentAllocationsAllocation struct {
 	// The date the payment was allocated.
-	AllocatedOnDate *time.Time `json:"allocatedOnDate,omitempty"`
+	AllocatedOnDate *string `json:"allocatedOnDate,omitempty"`
 	// The currency of the transaction.
 	Currency *string `json:"currency,omitempty"`
 	// Rate to convert the total amount of the payment into the base currency for the company at the time of the payment.
@@ -541,7 +662,7 @@ type UpdateInvoice200ApplicationJSONSourceModifiedDatePaymentAllocationsPayment 
 	// Notes attached to the allocated payment.
 	Note *string `json:"note,omitempty"`
 	// The date the payment was paid.
-	PaidOnDate *time.Time `json:"paidOnDate,omitempty"`
+	PaidOnDate *string `json:"paidOnDate,omitempty"`
 	// Reference to the allocated payment.
 	Reference *string `json:"reference,omitempty"`
 	// Total amount that was paid.
@@ -570,6 +691,30 @@ const (
 	UpdateInvoice200ApplicationJSONSourceModifiedDateStatusEnumPaid          UpdateInvoice200ApplicationJSONSourceModifiedDateStatusEnum = "Paid"
 	UpdateInvoice200ApplicationJSONSourceModifiedDateStatusEnumVoid          UpdateInvoice200ApplicationJSONSourceModifiedDateStatusEnum = "Void"
 )
+
+func (e *UpdateInvoice200ApplicationJSONSourceModifiedDateStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Draft":
+		fallthrough
+	case "Submitted":
+		fallthrough
+	case "PartiallyPaid":
+		fallthrough
+	case "Paid":
+		fallthrough
+	case "Void":
+		*e = UpdateInvoice200ApplicationJSONSourceModifiedDateStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for UpdateInvoice200ApplicationJSONSourceModifiedDateStatusEnum: %s", s)
+	}
+}
 
 // UpdateInvoice200ApplicationJSONSourceModifiedDateSupplementalData - Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type UpdateInvoice200ApplicationJSONSourceModifiedDateSupplementalData struct {
@@ -640,29 +785,29 @@ type UpdateInvoice200ApplicationJSONSourceModifiedDate struct {
 	// Percentage rate (from 0 to 100) of discounts applied to the invoice. For example: A 5% discount will return a value of `5`, not `0.05`.
 	DiscountPercentage *float64 `json:"discountPercentage,omitempty"`
 	// Date the customer is due to be paid by.
-	DueDate *time.Time `json:"dueDate,omitempty"`
+	DueDate *string `json:"dueDate,omitempty"`
 	// Identifier for the invoice, unique to the company in the accounting platform.
 	ID *string `json:"id,omitempty"`
 	// Friendly reference for the invoice. If available, this appears in the file name of invoice attachments.
 	InvoiceNumber *string `json:"invoiceNumber,omitempty"`
 	// Date of the invoice as recorded in the accounting system.
-	IssueDate time.Time `json:"issueDate"`
+	IssueDate string `json:"issueDate"`
 	// An array of line items.
 	LineItems []UpdateInvoice200ApplicationJSONSourceModifiedDateLineItems `json:"lineItems,omitempty"`
 	Metadata  *UpdateInvoice200ApplicationJSONSourceModifiedDateMetadata   `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Any additional information about the invoice. Where possible, Codat links to a data field in the accounting platform that is publicly available. This means that the contents of the note field are included when an invoice is emailed from the accounting platform to the customer.
 	Note *string `json:"note,omitempty"`
 	// Date the invoice was marked as paid in the accounting system. If this field is not available from the accounting software, it is calculated by Codat using associated payments.
-	PaidOnDate *time.Time `json:"paidOnDate,omitempty"`
+	PaidOnDate *string `json:"paidOnDate,omitempty"`
 	//
 	// An array of payment allocations.
 	PaymentAllocations []UpdateInvoice200ApplicationJSONSourceModifiedDatePaymentAllocations `json:"paymentAllocations,omitempty"`
 	// List of references to related Sales orders.
 	SalesOrderRefs []string `json:"salesOrderRefs,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Current state of the invoice:
 	//
 	// - `Draft` - Invoice hasn't been submitted to the supplier. It may be in a pending state or is scheduled for future submission, for example by email.
@@ -694,6 +839,26 @@ const (
 	UpdateInvoice200ApplicationJSONStatusEnumTimedOut UpdateInvoice200ApplicationJSONStatusEnum = "TimedOut"
 )
 
+func (e *UpdateInvoice200ApplicationJSONStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Pending":
+		fallthrough
+	case "Failed":
+		fallthrough
+	case "Success":
+		fallthrough
+	case "TimedOut":
+		*e = UpdateInvoice200ApplicationJSONStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for UpdateInvoice200ApplicationJSONStatusEnum: %s", s)
+	}
+}
+
 type UpdateInvoice200ApplicationJSONValidationValidationItem struct {
 	ItemID        *string `json:"itemId,omitempty"`
 	Message       *string `json:"message,omitempty"`
@@ -712,7 +877,7 @@ type UpdateInvoice200ApplicationJSON struct {
 	// Unique identifier for your SMB in Codat.
 	CompanyID string `json:"companyId"`
 	// The datetime when the push was completed, null if Pending.
-	CompletedOnUtc *time.Time `json:"completedOnUtc,omitempty"`
+	CompletedOnUtc *string `json:"completedOnUtc,omitempty"`
 	// > View the coverage for invoices in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=invoices" target="_blank">Data coverage explorer</a>.
 	//
 	// ## Overview
@@ -745,7 +910,7 @@ type UpdateInvoice200ApplicationJSON struct {
 	// A unique identifier generated by Codat to represent this single push operation. This identifier can be used to track the status of the push, and should be persisted.
 	PushOperationKey string `json:"pushOperationKey"`
 	// The datetime when the push was requested.
-	RequestedOnUtc time.Time `json:"requestedOnUtc"`
+	RequestedOnUtc string `json:"requestedOnUtc"`
 	// The status of the push operation.
 	Status           UpdateInvoice200ApplicationJSONStatusEnum `json:"status"`
 	StatusCode       int                                       `json:"statusCode"`

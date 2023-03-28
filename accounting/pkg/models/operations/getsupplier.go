@@ -3,8 +3,9 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 type GetSupplierRequest struct {
@@ -21,6 +22,24 @@ const (
 	GetSupplierSourceModifiedDateAddressesTypeEnumBilling  GetSupplierSourceModifiedDateAddressesTypeEnum = "Billing"
 	GetSupplierSourceModifiedDateAddressesTypeEnumDelivery GetSupplierSourceModifiedDateAddressesTypeEnum = "Delivery"
 )
+
+func (e *GetSupplierSourceModifiedDateAddressesTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Billing":
+		fallthrough
+	case "Delivery":
+		*e = GetSupplierSourceModifiedDateAddressesTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetSupplierSourceModifiedDateAddressesTypeEnum: %s", s)
+	}
+}
 
 type GetSupplierSourceModifiedDateAddresses struct {
 	// City of the customer address.
@@ -40,6 +59,7 @@ type GetSupplierSourceModifiedDateAddresses struct {
 }
 
 type GetSupplierSourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
@@ -51,6 +71,24 @@ const (
 	GetSupplierSourceModifiedDateStatusEnumActive   GetSupplierSourceModifiedDateStatusEnum = "Active"
 	GetSupplierSourceModifiedDateStatusEnumArchived GetSupplierSourceModifiedDateStatusEnum = "Archived"
 )
+
+func (e *GetSupplierSourceModifiedDateStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Active":
+		fallthrough
+	case "Archived":
+		*e = GetSupplierSourceModifiedDateStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetSupplierSourceModifiedDateStatusEnum: %s", s)
+	}
+}
 
 // GetSupplierSourceModifiedDateSupplementalData - Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type GetSupplierSourceModifiedDateSupplementalData struct {
@@ -75,13 +113,13 @@ type GetSupplierSourceModifiedDate struct {
 	ID       *string                                `json:"id,omitempty"`
 	Metadata *GetSupplierSourceModifiedDateMetadata `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Phone number that the supplier may be contacted on.
 	Phone *string `json:"phone,omitempty"`
 	// Company number of the supplier. In the UK, this is typically the company registration number issued by Companies House.
 	RegistrationNumber *string `json:"registrationNumber,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Status of the supplier.
 	Status GetSupplierSourceModifiedDateStatusEnum `json:"status"`
 	// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.

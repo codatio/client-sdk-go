@@ -3,8 +3,9 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 // PutSupplierSourceModifiedDateAddressesTypeEnum - Type of the address.
@@ -15,6 +16,24 @@ const (
 	PutSupplierSourceModifiedDateAddressesTypeEnumBilling  PutSupplierSourceModifiedDateAddressesTypeEnum = "Billing"
 	PutSupplierSourceModifiedDateAddressesTypeEnumDelivery PutSupplierSourceModifiedDateAddressesTypeEnum = "Delivery"
 )
+
+func (e *PutSupplierSourceModifiedDateAddressesTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Billing":
+		fallthrough
+	case "Delivery":
+		*e = PutSupplierSourceModifiedDateAddressesTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PutSupplierSourceModifiedDateAddressesTypeEnum: %s", s)
+	}
+}
 
 type PutSupplierSourceModifiedDateAddresses struct {
 	// City of the customer address.
@@ -34,6 +53,7 @@ type PutSupplierSourceModifiedDateAddresses struct {
 }
 
 type PutSupplierSourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
@@ -45,6 +65,24 @@ const (
 	PutSupplierSourceModifiedDateStatusEnumActive   PutSupplierSourceModifiedDateStatusEnum = "Active"
 	PutSupplierSourceModifiedDateStatusEnumArchived PutSupplierSourceModifiedDateStatusEnum = "Archived"
 )
+
+func (e *PutSupplierSourceModifiedDateStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Active":
+		fallthrough
+	case "Archived":
+		*e = PutSupplierSourceModifiedDateStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PutSupplierSourceModifiedDateStatusEnum: %s", s)
+	}
+}
 
 // PutSupplierSourceModifiedDateSupplementalData - Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type PutSupplierSourceModifiedDateSupplementalData struct {
@@ -69,13 +107,13 @@ type PutSupplierSourceModifiedDate struct {
 	ID       *string                                `json:"id,omitempty"`
 	Metadata *PutSupplierSourceModifiedDateMetadata `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Phone number that the supplier may be contacted on.
 	Phone *string `json:"phone,omitempty"`
 	// Company number of the supplier. In the UK, this is typically the company registration number issued by Companies House.
 	RegistrationNumber *string `json:"registrationNumber,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Status of the supplier.
 	Status PutSupplierSourceModifiedDateStatusEnum `json:"status"`
 	// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
@@ -112,6 +150,28 @@ const (
 	PutSupplier200ApplicationJSONChangesTypeEnumAttachmentUploaded PutSupplier200ApplicationJSONChangesTypeEnum = "AttachmentUploaded"
 )
 
+func (e *PutSupplier200ApplicationJSONChangesTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Created":
+		fallthrough
+	case "Modified":
+		fallthrough
+	case "Deleted":
+		fallthrough
+	case "AttachmentUploaded":
+		*e = PutSupplier200ApplicationJSONChangesTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PutSupplier200ApplicationJSONChangesTypeEnum: %s", s)
+	}
+}
+
 type PutSupplier200ApplicationJSONChanges struct {
 	AttachmentID *string                                                     `json:"attachmentId,omitempty"`
 	RecordRef    *PutSupplier200ApplicationJSONChangesPushOperationRecordRef `json:"recordRef,omitempty"`
@@ -126,6 +186,24 @@ const (
 	PutSupplier200ApplicationJSONSourceModifiedDateAddressesTypeEnumBilling  PutSupplier200ApplicationJSONSourceModifiedDateAddressesTypeEnum = "Billing"
 	PutSupplier200ApplicationJSONSourceModifiedDateAddressesTypeEnumDelivery PutSupplier200ApplicationJSONSourceModifiedDateAddressesTypeEnum = "Delivery"
 )
+
+func (e *PutSupplier200ApplicationJSONSourceModifiedDateAddressesTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Billing":
+		fallthrough
+	case "Delivery":
+		*e = PutSupplier200ApplicationJSONSourceModifiedDateAddressesTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PutSupplier200ApplicationJSONSourceModifiedDateAddressesTypeEnum: %s", s)
+	}
+}
 
 type PutSupplier200ApplicationJSONSourceModifiedDateAddresses struct {
 	// City of the customer address.
@@ -145,6 +223,7 @@ type PutSupplier200ApplicationJSONSourceModifiedDateAddresses struct {
 }
 
 type PutSupplier200ApplicationJSONSourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
@@ -156,6 +235,24 @@ const (
 	PutSupplier200ApplicationJSONSourceModifiedDateStatusEnumActive   PutSupplier200ApplicationJSONSourceModifiedDateStatusEnum = "Active"
 	PutSupplier200ApplicationJSONSourceModifiedDateStatusEnumArchived PutSupplier200ApplicationJSONSourceModifiedDateStatusEnum = "Archived"
 )
+
+func (e *PutSupplier200ApplicationJSONSourceModifiedDateStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Active":
+		fallthrough
+	case "Archived":
+		*e = PutSupplier200ApplicationJSONSourceModifiedDateStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PutSupplier200ApplicationJSONSourceModifiedDateStatusEnum: %s", s)
+	}
+}
 
 // PutSupplier200ApplicationJSONSourceModifiedDateSupplementalData - Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 type PutSupplier200ApplicationJSONSourceModifiedDateSupplementalData struct {
@@ -180,13 +277,13 @@ type PutSupplier200ApplicationJSONSourceModifiedDate struct {
 	ID       *string                                                  `json:"id,omitempty"`
 	Metadata *PutSupplier200ApplicationJSONSourceModifiedDateMetadata `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Phone number that the supplier may be contacted on.
 	Phone *string `json:"phone,omitempty"`
 	// Company number of the supplier. In the UK, this is typically the company registration number issued by Companies House.
 	RegistrationNumber *string `json:"registrationNumber,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Status of the supplier.
 	Status PutSupplier200ApplicationJSONSourceModifiedDateStatusEnum `json:"status"`
 	// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
@@ -208,6 +305,26 @@ const (
 	PutSupplier200ApplicationJSONStatusEnumTimedOut PutSupplier200ApplicationJSONStatusEnum = "TimedOut"
 )
 
+func (e *PutSupplier200ApplicationJSONStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Pending":
+		fallthrough
+	case "Failed":
+		fallthrough
+	case "Success":
+		fallthrough
+	case "TimedOut":
+		*e = PutSupplier200ApplicationJSONStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PutSupplier200ApplicationJSONStatusEnum: %s", s)
+	}
+}
+
 type PutSupplier200ApplicationJSONValidationValidationItem struct {
 	ItemID        *string `json:"itemId,omitempty"`
 	Message       *string `json:"message,omitempty"`
@@ -226,7 +343,7 @@ type PutSupplier200ApplicationJSON struct {
 	// Unique identifier for your SMB in Codat.
 	CompanyID string `json:"companyId"`
 	// The datetime when the push was completed, null if Pending.
-	CompletedOnUtc *time.Time `json:"completedOnUtc,omitempty"`
+	CompletedOnUtc *string `json:"completedOnUtc,omitempty"`
 	// > View the coverage for suppliers in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=suppliers" target="_blank">Data coverage explorer</a>.
 	//
 	// ## Overview
@@ -241,7 +358,7 @@ type PutSupplier200ApplicationJSON struct {
 	// A unique identifier generated by Codat to represent this single push operation. This identifier can be used to track the status of the push, and should be persisted.
 	PushOperationKey string `json:"pushOperationKey"`
 	// The datetime when the push was requested.
-	RequestedOnUtc time.Time `json:"requestedOnUtc"`
+	RequestedOnUtc string `json:"requestedOnUtc"`
 	// The status of the push operation.
 	Status           PutSupplier200ApplicationJSONStatusEnum `json:"status"`
 	StatusCode       int                                     `json:"statusCode"`

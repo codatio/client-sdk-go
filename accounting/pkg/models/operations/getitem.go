@@ -3,8 +3,9 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 type GetItemRequest struct {
@@ -87,7 +88,26 @@ const (
 	GetItemSourceModifiedDateItemStatusEnumArchived GetItemSourceModifiedDateItemStatusEnum = "Archived"
 )
 
+func (e *GetItemSourceModifiedDateItemStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Active":
+		fallthrough
+	case "Archived":
+		*e = GetItemSourceModifiedDateItemStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetItemSourceModifiedDateItemStatusEnum: %s", s)
+	}
+}
+
 type GetItemSourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
@@ -100,6 +120,26 @@ const (
 	GetItemSourceModifiedDateTypeEnumNonInventory GetItemSourceModifiedDateTypeEnum = "NonInventory"
 	GetItemSourceModifiedDateTypeEnumService      GetItemSourceModifiedDateTypeEnum = "Service"
 )
+
+func (e *GetItemSourceModifiedDateTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Inventory":
+		fallthrough
+	case "NonInventory":
+		fallthrough
+	case "Service":
+		*e = GetItemSourceModifiedDateTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetItemSourceModifiedDateTypeEnum: %s", s)
+	}
+}
 
 // GetItemSourceModifiedDate - > View the coverage for items in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=items" target="_blank">Data coverage explorer</a>.
 //
@@ -129,11 +169,11 @@ type GetItemSourceModifiedDate struct {
 	ItemStatus GetItemSourceModifiedDateItemStatusEnum `json:"itemStatus"`
 	Metadata   *GetItemSourceModifiedDateMetadata      `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Name of the item in the accounting platform.
 	Name *string `json:"name,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Type of the item.
 	Type GetItemSourceModifiedDateTypeEnum `json:"type"`
 }

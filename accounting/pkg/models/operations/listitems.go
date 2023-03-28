@@ -3,8 +3,9 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 type ListItemsRequest struct {
@@ -19,39 +20,27 @@ type ListItemsRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-type ListItemsLinksLinksCurrent struct {
-	Href string `json:"href"`
-}
-
-type ListItemsLinksLinksNext struct {
+type ListItems200ApplicationJSONLinksHypertextReference struct {
 	Href *string `json:"href,omitempty"`
 }
 
-type ListItemsLinksLinksPrevious struct {
-	Href *string `json:"href,omitempty"`
+type ListItems200ApplicationJSONLinks struct {
+	Current  ListItems200ApplicationJSONLinksHypertextReference  `json:"current"`
+	Next     *ListItems200ApplicationJSONLinksHypertextReference `json:"next,omitempty"`
+	Previous *ListItems200ApplicationJSONLinksHypertextReference `json:"previous,omitempty"`
+	Self     ListItems200ApplicationJSONLinksHypertextReference  `json:"self"`
 }
 
-type ListItemsLinksLinksSelf struct {
-	Href string `json:"href"`
-}
-
-type ListItemsLinksLinks struct {
-	Current  ListItemsLinksLinksCurrent   `json:"current"`
-	Next     *ListItemsLinksLinksNext     `json:"next,omitempty"`
-	Previous *ListItemsLinksLinksPrevious `json:"previous,omitempty"`
-	Self     ListItemsLinksLinksSelf      `json:"self"`
-}
-
-// ListItemsLinksSourceModifiedDateBillItemAccountRef - Reference of the account to which the item is linked.
-type ListItemsLinksSourceModifiedDateBillItemAccountRef struct {
+// ListItems200ApplicationJSONSourceModifiedDateBillItemAccountRef - Reference of the account to which the item is linked.
+type ListItems200ApplicationJSONSourceModifiedDateBillItemAccountRef struct {
 	// 'id' from the Accounts data type.
 	ID *string `json:"id,omitempty"`
 	// 'name' from the Accounts data type.
 	Name *string `json:"name,omitempty"`
 }
 
-// ListItemsLinksSourceModifiedDateBillItemTaxRateRef - Reference of the tax rate to which the item is linked.
-type ListItemsLinksSourceModifiedDateBillItemTaxRateRef struct {
+// ListItems200ApplicationJSONSourceModifiedDateBillItemTaxRateRef - Reference of the tax rate to which the item is linked.
+type ListItems200ApplicationJSONSourceModifiedDateBillItemTaxRateRef struct {
 	// Applicable tax rate.
 	EffectiveTaxRate *float64 `json:"effectiveTaxRate,omitempty"`
 	// 'id' from the 'taxRates' data type.
@@ -60,28 +49,28 @@ type ListItemsLinksSourceModifiedDateBillItemTaxRateRef struct {
 	Name *string `json:"name,omitempty"`
 }
 
-// ListItemsLinksSourceModifiedDateBillItem - Item details that are only for bills.
-type ListItemsLinksSourceModifiedDateBillItem struct {
+// ListItems200ApplicationJSONSourceModifiedDateBillItem - Item details that are only for bills.
+type ListItems200ApplicationJSONSourceModifiedDateBillItem struct {
 	// Reference of the account to which the item is linked.
-	AccountRef *ListItemsLinksSourceModifiedDateBillItemAccountRef `json:"accountRef,omitempty"`
+	AccountRef *ListItems200ApplicationJSONSourceModifiedDateBillItemAccountRef `json:"accountRef,omitempty"`
 	// Short description of the product or service that has been bought by the customer.
 	Description *string `json:"description,omitempty"`
 	// Reference of the tax rate to which the item is linked.
-	TaxRateRef *ListItemsLinksSourceModifiedDateBillItemTaxRateRef `json:"taxRateRef,omitempty"`
+	TaxRateRef *ListItems200ApplicationJSONSourceModifiedDateBillItemTaxRateRef `json:"taxRateRef,omitempty"`
 	// Unit price of the product or service.
 	UnitPrice *float64 `json:"unitPrice,omitempty"`
 }
 
-// ListItemsLinksSourceModifiedDateInvoiceItemAccountRef - Reference of the account to which the item is linked.
-type ListItemsLinksSourceModifiedDateInvoiceItemAccountRef struct {
+// ListItems200ApplicationJSONSourceModifiedDateInvoiceItemAccountRef - Reference of the account to which the item is linked.
+type ListItems200ApplicationJSONSourceModifiedDateInvoiceItemAccountRef struct {
 	// 'id' from the Accounts data type.
 	ID *string `json:"id,omitempty"`
 	// 'name' from the Accounts data type.
 	Name *string `json:"name,omitempty"`
 }
 
-// ListItemsLinksSourceModifiedDateInvoiceItemTaxRateRef - Reference of the tax rate to which the item is linked.
-type ListItemsLinksSourceModifiedDateInvoiceItemTaxRateRef struct {
+// ListItems200ApplicationJSONSourceModifiedDateInvoiceItemTaxRateRef - Reference of the tax rate to which the item is linked.
+type ListItems200ApplicationJSONSourceModifiedDateInvoiceItemTaxRateRef struct {
 	// Applicable tax rate.
 	EffectiveTaxRate *float64 `json:"effectiveTaxRate,omitempty"`
 	// 'id' from the 'taxRates' data type.
@@ -90,61 +79,100 @@ type ListItemsLinksSourceModifiedDateInvoiceItemTaxRateRef struct {
 	Name *string `json:"name,omitempty"`
 }
 
-// ListItemsLinksSourceModifiedDateInvoiceItem - Item details that are only for bills.
-type ListItemsLinksSourceModifiedDateInvoiceItem struct {
+// ListItems200ApplicationJSONSourceModifiedDateInvoiceItem - Item details that are only for bills.
+type ListItems200ApplicationJSONSourceModifiedDateInvoiceItem struct {
 	// Reference of the account to which the item is linked.
-	AccountRef *ListItemsLinksSourceModifiedDateInvoiceItemAccountRef `json:"accountRef,omitempty"`
+	AccountRef *ListItems200ApplicationJSONSourceModifiedDateInvoiceItemAccountRef `json:"accountRef,omitempty"`
 	// Short description of the product or service that has been bought by the customer.
 	Description *string `json:"description,omitempty"`
 	// Reference of the tax rate to which the item is linked.
-	TaxRateRef *ListItemsLinksSourceModifiedDateInvoiceItemTaxRateRef `json:"taxRateRef,omitempty"`
+	TaxRateRef *ListItems200ApplicationJSONSourceModifiedDateInvoiceItemTaxRateRef `json:"taxRateRef,omitempty"`
 	// Unit price of the product or service.
 	UnitPrice *float64 `json:"unitPrice,omitempty"`
 }
 
-// ListItemsLinksSourceModifiedDateItemStatusEnum - Current state of the item, either:
+// ListItems200ApplicationJSONSourceModifiedDateItemStatusEnum - Current state of the item, either:
 //
 // - `Active`: Available for use
 // - `Archived`: Unavailable
 // - `Unknown`
 //
 // Due to a [limitation in Xero's API](https://docs.codat.io/integrations/accounting/xero/xero-faq#why-do-all-of-my-items-from-xero-have-their-status-as-unknown), all items from Xero are mapped as `Unknown`.
-type ListItemsLinksSourceModifiedDateItemStatusEnum string
+type ListItems200ApplicationJSONSourceModifiedDateItemStatusEnum string
 
 const (
-	ListItemsLinksSourceModifiedDateItemStatusEnumUnknown  ListItemsLinksSourceModifiedDateItemStatusEnum = "Unknown"
-	ListItemsLinksSourceModifiedDateItemStatusEnumActive   ListItemsLinksSourceModifiedDateItemStatusEnum = "Active"
-	ListItemsLinksSourceModifiedDateItemStatusEnumArchived ListItemsLinksSourceModifiedDateItemStatusEnum = "Archived"
+	ListItems200ApplicationJSONSourceModifiedDateItemStatusEnumUnknown  ListItems200ApplicationJSONSourceModifiedDateItemStatusEnum = "Unknown"
+	ListItems200ApplicationJSONSourceModifiedDateItemStatusEnumActive   ListItems200ApplicationJSONSourceModifiedDateItemStatusEnum = "Active"
+	ListItems200ApplicationJSONSourceModifiedDateItemStatusEnumArchived ListItems200ApplicationJSONSourceModifiedDateItemStatusEnum = "Archived"
 )
 
-type ListItemsLinksSourceModifiedDateMetadata struct {
+func (e *ListItems200ApplicationJSONSourceModifiedDateItemStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Active":
+		fallthrough
+	case "Archived":
+		*e = ListItems200ApplicationJSONSourceModifiedDateItemStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListItems200ApplicationJSONSourceModifiedDateItemStatusEnum: %s", s)
+	}
+}
+
+type ListItems200ApplicationJSONSourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
-// ListItemsLinksSourceModifiedDateTypeEnum - Type of the item.
-type ListItemsLinksSourceModifiedDateTypeEnum string
+// ListItems200ApplicationJSONSourceModifiedDateTypeEnum - Type of the item.
+type ListItems200ApplicationJSONSourceModifiedDateTypeEnum string
 
 const (
-	ListItemsLinksSourceModifiedDateTypeEnumUnknown      ListItemsLinksSourceModifiedDateTypeEnum = "Unknown"
-	ListItemsLinksSourceModifiedDateTypeEnumInventory    ListItemsLinksSourceModifiedDateTypeEnum = "Inventory"
-	ListItemsLinksSourceModifiedDateTypeEnumNonInventory ListItemsLinksSourceModifiedDateTypeEnum = "NonInventory"
-	ListItemsLinksSourceModifiedDateTypeEnumService      ListItemsLinksSourceModifiedDateTypeEnum = "Service"
+	ListItems200ApplicationJSONSourceModifiedDateTypeEnumUnknown      ListItems200ApplicationJSONSourceModifiedDateTypeEnum = "Unknown"
+	ListItems200ApplicationJSONSourceModifiedDateTypeEnumInventory    ListItems200ApplicationJSONSourceModifiedDateTypeEnum = "Inventory"
+	ListItems200ApplicationJSONSourceModifiedDateTypeEnumNonInventory ListItems200ApplicationJSONSourceModifiedDateTypeEnum = "NonInventory"
+	ListItems200ApplicationJSONSourceModifiedDateTypeEnumService      ListItems200ApplicationJSONSourceModifiedDateTypeEnum = "Service"
 )
 
-// ListItemsLinksSourceModifiedDate - > View the coverage for items in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=items" target="_blank">Data coverage explorer</a>.
+func (e *ListItems200ApplicationJSONSourceModifiedDateTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Inventory":
+		fallthrough
+	case "NonInventory":
+		fallthrough
+	case "Service":
+		*e = ListItems200ApplicationJSONSourceModifiedDateTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListItems200ApplicationJSONSourceModifiedDateTypeEnum: %s", s)
+	}
+}
+
+// ListItems200ApplicationJSONSourceModifiedDate - > View the coverage for items in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=items" target="_blank">Data coverage explorer</a>.
 //
 // ## Overview
 //
 // **Items** allow your customers to save and track details of the products and services that they buy and sell.
-type ListItemsLinksSourceModifiedDate struct {
+type ListItems200ApplicationJSONSourceModifiedDate struct {
 	// Item details that are only for bills.
-	BillItem *ListItemsLinksSourceModifiedDateBillItem `json:"billItem,omitempty"`
+	BillItem *ListItems200ApplicationJSONSourceModifiedDateBillItem `json:"billItem,omitempty"`
 	// Friendly reference for the item.
 	Code *string `json:"code,omitempty"`
 	// Identifier for the item that is unique to a company in the accounting platform.
 	ID *string `json:"id,omitempty"`
 	// Item details that are only for bills.
-	InvoiceItem *ListItemsLinksSourceModifiedDateInvoiceItem `json:"invoiceItem,omitempty"`
+	InvoiceItem *ListItems200ApplicationJSONSourceModifiedDateInvoiceItem `json:"invoiceItem,omitempty"`
 	// Whether you can use this item for bills.
 	IsBillItem bool `json:"isBillItem"`
 	// Whether you can use this item for invoices.
@@ -156,25 +184,25 @@ type ListItemsLinksSourceModifiedDate struct {
 	// - `Unknown`
 	//
 	// Due to a [limitation in Xero's API](https://docs.codat.io/integrations/accounting/xero/xero-faq#why-do-all-of-my-items-from-xero-have-their-status-as-unknown), all items from Xero are mapped as `Unknown`.
-	ItemStatus ListItemsLinksSourceModifiedDateItemStatusEnum `json:"itemStatus"`
-	Metadata   *ListItemsLinksSourceModifiedDateMetadata      `json:"metadata,omitempty"`
+	ItemStatus ListItems200ApplicationJSONSourceModifiedDateItemStatusEnum `json:"itemStatus"`
+	Metadata   *ListItems200ApplicationJSONSourceModifiedDateMetadata      `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Name of the item in the accounting platform.
 	Name *string `json:"name,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Type of the item.
-	Type ListItemsLinksSourceModifiedDateTypeEnum `json:"type"`
+	Type ListItems200ApplicationJSONSourceModifiedDateTypeEnum `json:"type"`
 }
 
-// ListItemsLinks - Codat's Paging Model
-type ListItemsLinks struct {
-	Links        ListItemsLinksLinks                `json:"_links"`
-	PageNumber   int64                              `json:"pageNumber"`
-	PageSize     int64                              `json:"pageSize"`
-	Results      []ListItemsLinksSourceModifiedDate `json:"results,omitempty"`
-	TotalResults int64                              `json:"totalResults"`
+// ListItems200ApplicationJSON - Success
+type ListItems200ApplicationJSON struct {
+	Links        ListItems200ApplicationJSONLinks                `json:"_links"`
+	PageNumber   int64                                           `json:"pageNumber"`
+	PageSize     int64                                           `json:"pageSize"`
+	Results      []ListItems200ApplicationJSONSourceModifiedDate `json:"results,omitempty"`
+	TotalResults int64                                           `json:"totalResults"`
 }
 
 type ListItemsResponse struct {
@@ -182,5 +210,5 @@ type ListItemsResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// Success
-	Links *ListItemsLinks
+	ListItems200ApplicationJSONObject *ListItems200ApplicationJSON
 }

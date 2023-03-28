@@ -3,8 +3,9 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 type ListBankAccountTransactionsRequest struct {
@@ -22,67 +23,132 @@ type ListBankAccountTransactionsRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-type ListBankAccountTransactionsLinksLinksCurrent struct {
-	Href string `json:"href"`
-}
-
-type ListBankAccountTransactionsLinksLinksNext struct {
+type ListBankAccountTransactions200ApplicationJSONLinksHypertextReference struct {
 	Href *string `json:"href,omitempty"`
 }
 
-type ListBankAccountTransactionsLinksLinksPrevious struct {
-	Href *string `json:"href,omitempty"`
+type ListBankAccountTransactions200ApplicationJSONLinks struct {
+	Current  ListBankAccountTransactions200ApplicationJSONLinksHypertextReference  `json:"current"`
+	Next     *ListBankAccountTransactions200ApplicationJSONLinksHypertextReference `json:"next,omitempty"`
+	Previous *ListBankAccountTransactions200ApplicationJSONLinksHypertextReference `json:"previous,omitempty"`
+	Self     ListBankAccountTransactions200ApplicationJSONLinksHypertextReference  `json:"self"`
 }
 
-type ListBankAccountTransactionsLinksLinksSelf struct {
-	Href string `json:"href"`
+type ListBankAccountTransactions200ApplicationJSONResultsTransactionsModifiedDate struct {
+	// The date on which this record was last modified in Codat.
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 }
 
-type ListBankAccountTransactionsLinksLinks struct {
-	Current  ListBankAccountTransactionsLinksLinksCurrent   `json:"current"`
-	Next     *ListBankAccountTransactionsLinksLinksNext     `json:"next,omitempty"`
-	Previous *ListBankAccountTransactionsLinksLinksPrevious `json:"previous,omitempty"`
-	Self     ListBankAccountTransactionsLinksLinksSelf      `json:"self"`
+type ListBankAccountTransactions200ApplicationJSONResultsTransactionsSourceModifiedDate struct {
+	// The date on which this record was last modified in the originating system
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 }
 
-type ListBankAccountTransactionsLinksResultsTransactionsTransactionTypeEnum string
+type ListBankAccountTransactions200ApplicationJSONResultsTransactionsTransactionTypeEnum string
 
 const (
-	ListBankAccountTransactionsLinksResultsTransactionsTransactionTypeEnumUnknown     ListBankAccountTransactionsLinksResultsTransactionsTransactionTypeEnum = "Unknown"
-	ListBankAccountTransactionsLinksResultsTransactionsTransactionTypeEnumCredit      ListBankAccountTransactionsLinksResultsTransactionsTransactionTypeEnum = "Credit"
-	ListBankAccountTransactionsLinksResultsTransactionsTransactionTypeEnumDebit       ListBankAccountTransactionsLinksResultsTransactionsTransactionTypeEnum = "Debit"
-	ListBankAccountTransactionsLinksResultsTransactionsTransactionTypeEnumInt         ListBankAccountTransactionsLinksResultsTransactionsTransactionTypeEnum = "Int"
-	ListBankAccountTransactionsLinksResultsTransactionsTransactionTypeEnumDiv         ListBankAccountTransactionsLinksResultsTransactionsTransactionTypeEnum = "Div"
-	ListBankAccountTransactionsLinksResultsTransactionsTransactionTypeEnumFee         ListBankAccountTransactionsLinksResultsTransactionsTransactionTypeEnum = "Fee"
-	ListBankAccountTransactionsLinksResultsTransactionsTransactionTypeEnumSerChg      ListBankAccountTransactionsLinksResultsTransactionsTransactionTypeEnum = "SerChg"
-	ListBankAccountTransactionsLinksResultsTransactionsTransactionTypeEnumDep         ListBankAccountTransactionsLinksResultsTransactionsTransactionTypeEnum = "Dep"
-	ListBankAccountTransactionsLinksResultsTransactionsTransactionTypeEnumAtm         ListBankAccountTransactionsLinksResultsTransactionsTransactionTypeEnum = "Atm"
-	ListBankAccountTransactionsLinksResultsTransactionsTransactionTypeEnumPos         ListBankAccountTransactionsLinksResultsTransactionsTransactionTypeEnum = "Pos"
-	ListBankAccountTransactionsLinksResultsTransactionsTransactionTypeEnumXfer        ListBankAccountTransactionsLinksResultsTransactionsTransactionTypeEnum = "Xfer"
-	ListBankAccountTransactionsLinksResultsTransactionsTransactionTypeEnumCheck       ListBankAccountTransactionsLinksResultsTransactionsTransactionTypeEnum = "Check"
-	ListBankAccountTransactionsLinksResultsTransactionsTransactionTypeEnumPayment     ListBankAccountTransactionsLinksResultsTransactionsTransactionTypeEnum = "Payment"
-	ListBankAccountTransactionsLinksResultsTransactionsTransactionTypeEnumCash        ListBankAccountTransactionsLinksResultsTransactionsTransactionTypeEnum = "Cash"
-	ListBankAccountTransactionsLinksResultsTransactionsTransactionTypeEnumDirectDep   ListBankAccountTransactionsLinksResultsTransactionsTransactionTypeEnum = "DirectDep"
-	ListBankAccountTransactionsLinksResultsTransactionsTransactionTypeEnumDirectDebit ListBankAccountTransactionsLinksResultsTransactionsTransactionTypeEnum = "DirectDebit"
-	ListBankAccountTransactionsLinksResultsTransactionsTransactionTypeEnumRepeatPmt   ListBankAccountTransactionsLinksResultsTransactionsTransactionTypeEnum = "RepeatPmt"
-	ListBankAccountTransactionsLinksResultsTransactionsTransactionTypeEnumOther       ListBankAccountTransactionsLinksResultsTransactionsTransactionTypeEnum = "Other"
+	ListBankAccountTransactions200ApplicationJSONResultsTransactionsTransactionTypeEnumUnknown     ListBankAccountTransactions200ApplicationJSONResultsTransactionsTransactionTypeEnum = "Unknown"
+	ListBankAccountTransactions200ApplicationJSONResultsTransactionsTransactionTypeEnumCredit      ListBankAccountTransactions200ApplicationJSONResultsTransactionsTransactionTypeEnum = "Credit"
+	ListBankAccountTransactions200ApplicationJSONResultsTransactionsTransactionTypeEnumDebit       ListBankAccountTransactions200ApplicationJSONResultsTransactionsTransactionTypeEnum = "Debit"
+	ListBankAccountTransactions200ApplicationJSONResultsTransactionsTransactionTypeEnumInt         ListBankAccountTransactions200ApplicationJSONResultsTransactionsTransactionTypeEnum = "Int"
+	ListBankAccountTransactions200ApplicationJSONResultsTransactionsTransactionTypeEnumDiv         ListBankAccountTransactions200ApplicationJSONResultsTransactionsTransactionTypeEnum = "Div"
+	ListBankAccountTransactions200ApplicationJSONResultsTransactionsTransactionTypeEnumFee         ListBankAccountTransactions200ApplicationJSONResultsTransactionsTransactionTypeEnum = "Fee"
+	ListBankAccountTransactions200ApplicationJSONResultsTransactionsTransactionTypeEnumSerChg      ListBankAccountTransactions200ApplicationJSONResultsTransactionsTransactionTypeEnum = "SerChg"
+	ListBankAccountTransactions200ApplicationJSONResultsTransactionsTransactionTypeEnumDep         ListBankAccountTransactions200ApplicationJSONResultsTransactionsTransactionTypeEnum = "Dep"
+	ListBankAccountTransactions200ApplicationJSONResultsTransactionsTransactionTypeEnumAtm         ListBankAccountTransactions200ApplicationJSONResultsTransactionsTransactionTypeEnum = "Atm"
+	ListBankAccountTransactions200ApplicationJSONResultsTransactionsTransactionTypeEnumPos         ListBankAccountTransactions200ApplicationJSONResultsTransactionsTransactionTypeEnum = "Pos"
+	ListBankAccountTransactions200ApplicationJSONResultsTransactionsTransactionTypeEnumXfer        ListBankAccountTransactions200ApplicationJSONResultsTransactionsTransactionTypeEnum = "Xfer"
+	ListBankAccountTransactions200ApplicationJSONResultsTransactionsTransactionTypeEnumCheck       ListBankAccountTransactions200ApplicationJSONResultsTransactionsTransactionTypeEnum = "Check"
+	ListBankAccountTransactions200ApplicationJSONResultsTransactionsTransactionTypeEnumPayment     ListBankAccountTransactions200ApplicationJSONResultsTransactionsTransactionTypeEnum = "Payment"
+	ListBankAccountTransactions200ApplicationJSONResultsTransactionsTransactionTypeEnumCash        ListBankAccountTransactions200ApplicationJSONResultsTransactionsTransactionTypeEnum = "Cash"
+	ListBankAccountTransactions200ApplicationJSONResultsTransactionsTransactionTypeEnumDirectDep   ListBankAccountTransactions200ApplicationJSONResultsTransactionsTransactionTypeEnum = "DirectDep"
+	ListBankAccountTransactions200ApplicationJSONResultsTransactionsTransactionTypeEnumDirectDebit ListBankAccountTransactions200ApplicationJSONResultsTransactionsTransactionTypeEnum = "DirectDebit"
+	ListBankAccountTransactions200ApplicationJSONResultsTransactionsTransactionTypeEnumRepeatPmt   ListBankAccountTransactions200ApplicationJSONResultsTransactionsTransactionTypeEnum = "RepeatPmt"
+	ListBankAccountTransactions200ApplicationJSONResultsTransactionsTransactionTypeEnumOther       ListBankAccountTransactions200ApplicationJSONResultsTransactionsTransactionTypeEnum = "Other"
 )
 
-type ListBankAccountTransactionsLinksResultsTransactions struct {
-	Amount             float64                                                                `json:"amount"`
-	Balance            float64                                                                `json:"balance"`
-	Counterparty       *string                                                                `json:"counterparty,omitempty"`
-	Date               time.Time                                                              `json:"date"`
-	Description        *string                                                                `json:"description,omitempty"`
-	ID                 *string                                                                `json:"id,omitempty"`
-	ModifiedDate       *time.Time                                                             `json:"modifiedDate,omitempty"`
-	Reconciled         bool                                                                   `json:"reconciled"`
-	Reference          *string                                                                `json:"reference,omitempty"`
-	SourceModifiedDate *time.Time                                                             `json:"sourceModifiedDate,omitempty"`
-	TransactionType    ListBankAccountTransactionsLinksResultsTransactionsTransactionTypeEnum `json:"transactionType"`
+func (e *ListBankAccountTransactions200ApplicationJSONResultsTransactionsTransactionTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Credit":
+		fallthrough
+	case "Debit":
+		fallthrough
+	case "Int":
+		fallthrough
+	case "Div":
+		fallthrough
+	case "Fee":
+		fallthrough
+	case "SerChg":
+		fallthrough
+	case "Dep":
+		fallthrough
+	case "Atm":
+		fallthrough
+	case "Pos":
+		fallthrough
+	case "Xfer":
+		fallthrough
+	case "Check":
+		fallthrough
+	case "Payment":
+		fallthrough
+	case "Cash":
+		fallthrough
+	case "DirectDep":
+		fallthrough
+	case "DirectDebit":
+		fallthrough
+	case "RepeatPmt":
+		fallthrough
+	case "Other":
+		*e = ListBankAccountTransactions200ApplicationJSONResultsTransactionsTransactionTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListBankAccountTransactions200ApplicationJSONResultsTransactionsTransactionTypeEnum: %s", s)
+	}
 }
 
-// ListBankAccountTransactionsLinksResults - > **Accessing Bank Accounts through Banking API**
+type ListBankAccountTransactions200ApplicationJSONResultsTransactions struct {
+	Amount       float64 `json:"amount"`
+	Balance      float64 `json:"balance"`
+	Counterparty *string `json:"counterparty,omitempty"`
+	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
+	//
+	// ```
+	// 2020-10-08T22:40:50Z
+	// 2021-01-01T00:00:00
+	// ```
+	//
+	//
+	//
+	// When syncing data that contains `DateTime` fields from Codat, make sure you support the following cases when reading time information:
+	//
+	// - Coordinated Universal Time (UTC): `2021-11-15T06:00:00Z`
+	// - Unqualified local time: `2021-11-15T01:00:00`
+	// - UTC time offsets: `2021-11-15T01:00:00-05:00`
+	//
+	// > 📘 Time zones
+	// >
+	// > Not all dates from Codat will contain information about time zones.
+	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
+	Date               string                                                                              `json:"date"`
+	Description        *string                                                                             `json:"description,omitempty"`
+	ID                 *string                                                                             `json:"id,omitempty"`
+	ModifiedDate       *ListBankAccountTransactions200ApplicationJSONResultsTransactionsModifiedDate       `json:"modifiedDate,omitempty"`
+	Reconciled         bool                                                                                `json:"reconciled"`
+	Reference          *string                                                                             `json:"reference,omitempty"`
+	SourceModifiedDate *ListBankAccountTransactions200ApplicationJSONResultsTransactionsSourceModifiedDate `json:"sourceModifiedDate,omitempty"`
+	TransactionType    ListBankAccountTransactions200ApplicationJSONResultsTransactionsTransactionTypeEnum `json:"transactionType"`
+}
+
+// ListBankAccountTransactions200ApplicationJSONResults - > **Accessing Bank Accounts through Banking API**
 // >
 // > This datatype was originally used for accessing bank account data both in accounting integrations and open banking aggregators.
 // >
@@ -98,19 +164,19 @@ type ListBankAccountTransactionsLinksResultsTransactions struct {
 // * Amount of the transaction.
 // * Current account balance.
 // * Transaction type, for example, credit, debit, or transfer.
-type ListBankAccountTransactionsLinksResults struct {
-	AccountID       *string                                               `json:"accountId,omitempty"`
-	ContractVersion *string                                               `json:"contractVersion,omitempty"`
-	Transactions    []ListBankAccountTransactionsLinksResultsTransactions `json:"transactions,omitempty"`
+type ListBankAccountTransactions200ApplicationJSONResults struct {
+	AccountID       *string                                                            `json:"accountId,omitempty"`
+	ContractVersion *string                                                            `json:"contractVersion,omitempty"`
+	Transactions    []ListBankAccountTransactions200ApplicationJSONResultsTransactions `json:"transactions,omitempty"`
 }
 
-// ListBankAccountTransactionsLinks - Codat's Paging Model
-type ListBankAccountTransactionsLinks struct {
-	Links        ListBankAccountTransactionsLinksLinks     `json:"_links"`
-	PageNumber   int64                                     `json:"pageNumber"`
-	PageSize     int64                                     `json:"pageSize"`
-	Results      []ListBankAccountTransactionsLinksResults `json:"results,omitempty"`
-	TotalResults int64                                     `json:"totalResults"`
+// ListBankAccountTransactions200ApplicationJSON - Success
+type ListBankAccountTransactions200ApplicationJSON struct {
+	Links        ListBankAccountTransactions200ApplicationJSONLinks     `json:"_links"`
+	PageNumber   int64                                                  `json:"pageNumber"`
+	PageSize     int64                                                  `json:"pageSize"`
+	Results      []ListBankAccountTransactions200ApplicationJSONResults `json:"results,omitempty"`
+	TotalResults int64                                                  `json:"totalResults"`
 }
 
 type ListBankAccountTransactionsResponse struct {
@@ -118,5 +184,5 @@ type ListBankAccountTransactionsResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// Success
-	Links *ListBankAccountTransactionsLinks
+	ListBankAccountTransactions200ApplicationJSONObject *ListBankAccountTransactions200ApplicationJSON
 }

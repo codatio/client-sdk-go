@@ -352,12 +352,12 @@ func (s *customers) GetCustomers(ctx context.Context, request operations.GetCust
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetCustomersLinks
+			var out *operations.GetCustomers200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Links = out
+			res.GetCustomers200ApplicationJSONObject = out
 		}
 	}
 

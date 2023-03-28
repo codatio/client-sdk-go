@@ -5,7 +5,6 @@ package operations
 import (
 	"github.com/codatio/client-sdk-go/accounting/pkg/types"
 	"net/http"
-	"time"
 )
 
 type GetAgedDebtorsReportRequest struct {
@@ -31,9 +30,9 @@ type GetAgedDebtorsReportAgedDebtorsReportAgedDebtorAgedCurrencyOutstandingAgedO
 	// Array of details.
 	Details []GetAgedDebtorsReportAgedDebtorsReportAgedDebtorAgedCurrencyOutstandingAgedOutstandingAmountAmountsOutstandingByDataType `json:"details,omitempty"`
 	// Start date of period.
-	FromDate *time.Time `json:"fromDate,omitempty"`
+	FromDate *string `json:"fromDate,omitempty"`
 	// End date of period.
-	ToDate *time.Time `json:"toDate,omitempty"`
+	ToDate *string `json:"toDate,omitempty"`
 }
 
 type GetAgedDebtorsReportAgedDebtorsReportAgedDebtorAgedCurrencyOutstanding struct {
@@ -63,9 +62,9 @@ type GetAgedDebtorsReportAgedDebtorsReport struct {
 	// Array of aged debtors.
 	Data []GetAgedDebtorsReportAgedDebtorsReportAgedDebtor `json:"data,omitempty"`
 	// Date and time the report was generated.
-	Generated *time.Time `json:"generated,omitempty"`
+	Generated *string `json:"generated,omitempty"`
 	// Date the report is generated up to.
-	ReportDate *time.Time `json:"reportDate,omitempty"`
+	ReportDate *string `json:"reportDate,omitempty"`
 }
 
 type GetAgedDebtorsReportResponse struct {

@@ -3,8 +3,9 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 type GetBankAccountRequest struct {
@@ -23,7 +24,26 @@ const (
 	GetBankAccountSourceModifiedDateAccountTypeEnumDebit   GetBankAccountSourceModifiedDateAccountTypeEnum = "Debit"
 )
 
+func (e *GetBankAccountSourceModifiedDateAccountTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Credit":
+		fallthrough
+	case "Debit":
+		*e = GetBankAccountSourceModifiedDateAccountTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetBankAccountSourceModifiedDateAccountTypeEnum: %s", s)
+	}
+}
+
 type GetBankAccountSourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
@@ -70,7 +90,7 @@ type GetBankAccountSourceModifiedDate struct {
 	Institution *string                                   `json:"institution,omitempty"`
 	Metadata    *GetBankAccountSourceModifiedDateMetadata `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Code used to identify each nominal account for a business.
 	NominalCode *string `json:"nominalCode,omitempty"`
 	// Pre-arranged overdraft limit of the account.
@@ -83,7 +103,7 @@ type GetBankAccountSourceModifiedDate struct {
 	// The sort code is only displayed when the currency = GBP and the sort code and account number sum to 14 digits. For non-GBP accounts, this field is not populated.
 	SortCode *string `json:"sortCode,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 }
 
 type GetBankAccountResponse struct {

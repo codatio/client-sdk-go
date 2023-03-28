@@ -3,8 +3,9 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 type GetCustomersRequest struct {
@@ -19,39 +20,45 @@ type GetCustomersRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-type GetCustomersLinksLinksCurrent struct {
-	Href string `json:"href"`
-}
-
-type GetCustomersLinksLinksNext struct {
+type GetCustomers200ApplicationJSONLinksHypertextReference struct {
 	Href *string `json:"href,omitempty"`
 }
 
-type GetCustomersLinksLinksPrevious struct {
-	Href *string `json:"href,omitempty"`
+type GetCustomers200ApplicationJSONLinks struct {
+	Current  GetCustomers200ApplicationJSONLinksHypertextReference  `json:"current"`
+	Next     *GetCustomers200ApplicationJSONLinksHypertextReference `json:"next,omitempty"`
+	Previous *GetCustomers200ApplicationJSONLinksHypertextReference `json:"previous,omitempty"`
+	Self     GetCustomers200ApplicationJSONLinksHypertextReference  `json:"self"`
 }
 
-type GetCustomersLinksLinksSelf struct {
-	Href string `json:"href"`
-}
-
-type GetCustomersLinksLinks struct {
-	Current  GetCustomersLinksLinksCurrent   `json:"current"`
-	Next     *GetCustomersLinksLinksNext     `json:"next,omitempty"`
-	Previous *GetCustomersLinksLinksPrevious `json:"previous,omitempty"`
-	Self     GetCustomersLinksLinksSelf      `json:"self"`
-}
-
-// GetCustomersLinksSourceModifiedDateAddressesTypeEnum - Type of the address.
-type GetCustomersLinksSourceModifiedDateAddressesTypeEnum string
+// GetCustomers200ApplicationJSONSourceModifiedDateAddressesTypeEnum - Type of the address.
+type GetCustomers200ApplicationJSONSourceModifiedDateAddressesTypeEnum string
 
 const (
-	GetCustomersLinksSourceModifiedDateAddressesTypeEnumUnknown  GetCustomersLinksSourceModifiedDateAddressesTypeEnum = "Unknown"
-	GetCustomersLinksSourceModifiedDateAddressesTypeEnumBilling  GetCustomersLinksSourceModifiedDateAddressesTypeEnum = "Billing"
-	GetCustomersLinksSourceModifiedDateAddressesTypeEnumDelivery GetCustomersLinksSourceModifiedDateAddressesTypeEnum = "Delivery"
+	GetCustomers200ApplicationJSONSourceModifiedDateAddressesTypeEnumUnknown  GetCustomers200ApplicationJSONSourceModifiedDateAddressesTypeEnum = "Unknown"
+	GetCustomers200ApplicationJSONSourceModifiedDateAddressesTypeEnumBilling  GetCustomers200ApplicationJSONSourceModifiedDateAddressesTypeEnum = "Billing"
+	GetCustomers200ApplicationJSONSourceModifiedDateAddressesTypeEnumDelivery GetCustomers200ApplicationJSONSourceModifiedDateAddressesTypeEnum = "Delivery"
 )
 
-type GetCustomersLinksSourceModifiedDateAddresses struct {
+func (e *GetCustomers200ApplicationJSONSourceModifiedDateAddressesTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Billing":
+		fallthrough
+	case "Delivery":
+		*e = GetCustomers200ApplicationJSONSourceModifiedDateAddressesTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCustomers200ApplicationJSONSourceModifiedDateAddressesTypeEnum: %s", s)
+	}
+}
+
+type GetCustomers200ApplicationJSONSourceModifiedDateAddresses struct {
 	// City of the customer address.
 	City *string `json:"city,omitempty"`
 	// Country of the customer address.
@@ -65,20 +72,38 @@ type GetCustomersLinksSourceModifiedDateAddresses struct {
 	// Region of the customer address.
 	Region *string `json:"region,omitempty"`
 	// Type of the address.
-	Type GetCustomersLinksSourceModifiedDateAddressesTypeEnum `json:"type"`
+	Type GetCustomers200ApplicationJSONSourceModifiedDateAddressesTypeEnum `json:"type"`
 }
 
-// GetCustomersLinksSourceModifiedDateContactsAddressTypeEnum - Type of the address.
-type GetCustomersLinksSourceModifiedDateContactsAddressTypeEnum string
+// GetCustomers200ApplicationJSONSourceModifiedDateContactsAddressTypeEnum - Type of the address.
+type GetCustomers200ApplicationJSONSourceModifiedDateContactsAddressTypeEnum string
 
 const (
-	GetCustomersLinksSourceModifiedDateContactsAddressTypeEnumUnknown  GetCustomersLinksSourceModifiedDateContactsAddressTypeEnum = "Unknown"
-	GetCustomersLinksSourceModifiedDateContactsAddressTypeEnumBilling  GetCustomersLinksSourceModifiedDateContactsAddressTypeEnum = "Billing"
-	GetCustomersLinksSourceModifiedDateContactsAddressTypeEnumDelivery GetCustomersLinksSourceModifiedDateContactsAddressTypeEnum = "Delivery"
+	GetCustomers200ApplicationJSONSourceModifiedDateContactsAddressTypeEnumUnknown  GetCustomers200ApplicationJSONSourceModifiedDateContactsAddressTypeEnum = "Unknown"
+	GetCustomers200ApplicationJSONSourceModifiedDateContactsAddressTypeEnumBilling  GetCustomers200ApplicationJSONSourceModifiedDateContactsAddressTypeEnum = "Billing"
+	GetCustomers200ApplicationJSONSourceModifiedDateContactsAddressTypeEnumDelivery GetCustomers200ApplicationJSONSourceModifiedDateContactsAddressTypeEnum = "Delivery"
 )
 
-// GetCustomersLinksSourceModifiedDateContactsAddress - An object of Address information.
-type GetCustomersLinksSourceModifiedDateContactsAddress struct {
+func (e *GetCustomers200ApplicationJSONSourceModifiedDateContactsAddressTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Billing":
+		fallthrough
+	case "Delivery":
+		*e = GetCustomers200ApplicationJSONSourceModifiedDateContactsAddressTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCustomers200ApplicationJSONSourceModifiedDateContactsAddressTypeEnum: %s", s)
+	}
+}
+
+// GetCustomers200ApplicationJSONSourceModifiedDateContactsAddress - An object of Address information.
+type GetCustomers200ApplicationJSONSourceModifiedDateContactsAddress struct {
 	// City of the customer address.
 	City *string `json:"city,omitempty"`
 	// Country of the customer address.
@@ -92,41 +117,81 @@ type GetCustomersLinksSourceModifiedDateContactsAddress struct {
 	// Region of the customer address.
 	Region *string `json:"region,omitempty"`
 	// Type of the address.
-	Type GetCustomersLinksSourceModifiedDateContactsAddressTypeEnum `json:"type"`
+	Type GetCustomers200ApplicationJSONSourceModifiedDateContactsAddressTypeEnum `json:"type"`
 }
 
-// GetCustomersLinksSourceModifiedDateContactsPhoneTypeEnum - Type of phone number.
-type GetCustomersLinksSourceModifiedDateContactsPhoneTypeEnum string
+// GetCustomers200ApplicationJSONSourceModifiedDateContactsPhoneTypeEnum - Type of phone number.
+type GetCustomers200ApplicationJSONSourceModifiedDateContactsPhoneTypeEnum string
 
 const (
-	GetCustomersLinksSourceModifiedDateContactsPhoneTypeEnumUnknown  GetCustomersLinksSourceModifiedDateContactsPhoneTypeEnum = "Unknown"
-	GetCustomersLinksSourceModifiedDateContactsPhoneTypeEnumPrimary  GetCustomersLinksSourceModifiedDateContactsPhoneTypeEnum = "Primary"
-	GetCustomersLinksSourceModifiedDateContactsPhoneTypeEnumLandline GetCustomersLinksSourceModifiedDateContactsPhoneTypeEnum = "Landline"
-	GetCustomersLinksSourceModifiedDateContactsPhoneTypeEnumMobile   GetCustomersLinksSourceModifiedDateContactsPhoneTypeEnum = "Mobile"
-	GetCustomersLinksSourceModifiedDateContactsPhoneTypeEnumFax      GetCustomersLinksSourceModifiedDateContactsPhoneTypeEnum = "Fax"
+	GetCustomers200ApplicationJSONSourceModifiedDateContactsPhoneTypeEnumUnknown  GetCustomers200ApplicationJSONSourceModifiedDateContactsPhoneTypeEnum = "Unknown"
+	GetCustomers200ApplicationJSONSourceModifiedDateContactsPhoneTypeEnumPrimary  GetCustomers200ApplicationJSONSourceModifiedDateContactsPhoneTypeEnum = "Primary"
+	GetCustomers200ApplicationJSONSourceModifiedDateContactsPhoneTypeEnumLandline GetCustomers200ApplicationJSONSourceModifiedDateContactsPhoneTypeEnum = "Landline"
+	GetCustomers200ApplicationJSONSourceModifiedDateContactsPhoneTypeEnumMobile   GetCustomers200ApplicationJSONSourceModifiedDateContactsPhoneTypeEnum = "Mobile"
+	GetCustomers200ApplicationJSONSourceModifiedDateContactsPhoneTypeEnumFax      GetCustomers200ApplicationJSONSourceModifiedDateContactsPhoneTypeEnum = "Fax"
 )
 
-type GetCustomersLinksSourceModifiedDateContactsPhone struct {
+func (e *GetCustomers200ApplicationJSONSourceModifiedDateContactsPhoneTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Primary":
+		fallthrough
+	case "Landline":
+		fallthrough
+	case "Mobile":
+		fallthrough
+	case "Fax":
+		*e = GetCustomers200ApplicationJSONSourceModifiedDateContactsPhoneTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCustomers200ApplicationJSONSourceModifiedDateContactsPhoneTypeEnum: %s", s)
+	}
+}
+
+type GetCustomers200ApplicationJSONSourceModifiedDateContactsPhone struct {
 	// Phone number for a customer contact.
 	Number *string `json:"number,omitempty"`
 	// Type of phone number.
-	Type GetCustomersLinksSourceModifiedDateContactsPhoneTypeEnum `json:"type"`
+	Type GetCustomers200ApplicationJSONSourceModifiedDateContactsPhoneTypeEnum `json:"type"`
 }
 
-// GetCustomersLinksSourceModifiedDateContactsStatusEnum - Status of customer contacts.
+// GetCustomers200ApplicationJSONSourceModifiedDateContactsStatusEnum - Status of customer contacts.
 //
 // Customers can have multiple contacts.
-type GetCustomersLinksSourceModifiedDateContactsStatusEnum string
+type GetCustomers200ApplicationJSONSourceModifiedDateContactsStatusEnum string
 
 const (
-	GetCustomersLinksSourceModifiedDateContactsStatusEnumUnknown  GetCustomersLinksSourceModifiedDateContactsStatusEnum = "Unknown"
-	GetCustomersLinksSourceModifiedDateContactsStatusEnumActive   GetCustomersLinksSourceModifiedDateContactsStatusEnum = "Active"
-	GetCustomersLinksSourceModifiedDateContactsStatusEnumArchived GetCustomersLinksSourceModifiedDateContactsStatusEnum = "Archived"
+	GetCustomers200ApplicationJSONSourceModifiedDateContactsStatusEnumUnknown  GetCustomers200ApplicationJSONSourceModifiedDateContactsStatusEnum = "Unknown"
+	GetCustomers200ApplicationJSONSourceModifiedDateContactsStatusEnumActive   GetCustomers200ApplicationJSONSourceModifiedDateContactsStatusEnum = "Active"
+	GetCustomers200ApplicationJSONSourceModifiedDateContactsStatusEnumArchived GetCustomers200ApplicationJSONSourceModifiedDateContactsStatusEnum = "Archived"
 )
 
-type GetCustomersLinksSourceModifiedDateContacts struct {
+func (e *GetCustomers200ApplicationJSONSourceModifiedDateContactsStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Active":
+		fallthrough
+	case "Archived":
+		*e = GetCustomers200ApplicationJSONSourceModifiedDateContactsStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCustomers200ApplicationJSONSourceModifiedDateContactsStatusEnum: %s", s)
+	}
+}
+
+type GetCustomers200ApplicationJSONSourceModifiedDateContacts struct {
 	// An object of Address information.
-	Address *GetCustomersLinksSourceModifiedDateContactsAddress `json:"address,omitempty"`
+	Address *GetCustomers200ApplicationJSONSourceModifiedDateContactsAddress `json:"address,omitempty"`
 	// Email of a contact for a customer.
 	Email *string `json:"email,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
@@ -148,49 +213,68 @@ type GetCustomersLinksSourceModifiedDateContacts struct {
 	// >
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Name of a contact for a customer.
 	Name *string `json:"name,omitempty"`
 	// An array of Phone numbers.
-	Phone []GetCustomersLinksSourceModifiedDateContactsPhone `json:"phone,omitempty"`
+	Phone []GetCustomers200ApplicationJSONSourceModifiedDateContactsPhone `json:"phone,omitempty"`
 	// Status of customer contacts.
 	//
 	// Customers can have multiple contacts.
-	Status GetCustomersLinksSourceModifiedDateContactsStatusEnum `json:"status"`
+	Status GetCustomers200ApplicationJSONSourceModifiedDateContactsStatusEnum `json:"status"`
 }
 
-type GetCustomersLinksSourceModifiedDateMetadata struct {
+type GetCustomers200ApplicationJSONSourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
-// GetCustomersLinksSourceModifiedDateStatusEnum - Current state of the customer.
-type GetCustomersLinksSourceModifiedDateStatusEnum string
+// GetCustomers200ApplicationJSONSourceModifiedDateStatusEnum - Current state of the customer.
+type GetCustomers200ApplicationJSONSourceModifiedDateStatusEnum string
 
 const (
-	GetCustomersLinksSourceModifiedDateStatusEnumUnknown  GetCustomersLinksSourceModifiedDateStatusEnum = "Unknown"
-	GetCustomersLinksSourceModifiedDateStatusEnumActive   GetCustomersLinksSourceModifiedDateStatusEnum = "Active"
-	GetCustomersLinksSourceModifiedDateStatusEnumArchived GetCustomersLinksSourceModifiedDateStatusEnum = "Archived"
+	GetCustomers200ApplicationJSONSourceModifiedDateStatusEnumUnknown  GetCustomers200ApplicationJSONSourceModifiedDateStatusEnum = "Unknown"
+	GetCustomers200ApplicationJSONSourceModifiedDateStatusEnumActive   GetCustomers200ApplicationJSONSourceModifiedDateStatusEnum = "Active"
+	GetCustomers200ApplicationJSONSourceModifiedDateStatusEnumArchived GetCustomers200ApplicationJSONSourceModifiedDateStatusEnum = "Archived"
 )
 
-// GetCustomersLinksSourceModifiedDateSupplementalData - Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
-type GetCustomersLinksSourceModifiedDateSupplementalData struct {
+func (e *GetCustomers200ApplicationJSONSourceModifiedDateStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Active":
+		fallthrough
+	case "Archived":
+		*e = GetCustomers200ApplicationJSONSourceModifiedDateStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCustomers200ApplicationJSONSourceModifiedDateStatusEnum: %s", s)
+	}
+}
+
+// GetCustomers200ApplicationJSONSourceModifiedDateSupplementalData - Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
+type GetCustomers200ApplicationJSONSourceModifiedDateSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
 
-// GetCustomersLinksSourceModifiedDate - > View the coverage for customers in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=customers" target="_blank">Data coverage explorer</a>.
+// GetCustomers200ApplicationJSONSourceModifiedDate - > View the coverage for customers in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=customers" target="_blank">Data coverage explorer</a>.
 //
 // ## Overview
 //
 // A customer is a person or organisation that buys goods or services. From the Customers endpoints, you can retrieve a [list of all the customers of a company](https://api.codat.io/swagger/index.html#/Customers/get_companies__companyId__data_customers).
 //
 // Customers' data links to accounts receivable [invoices](https://docs.codat.io/accounting-api#/schemas/Invoice).
-type GetCustomersLinksSourceModifiedDate struct {
+type GetCustomers200ApplicationJSONSourceModifiedDate struct {
 	// An array of Addresses.
-	Addresses []GetCustomersLinksSourceModifiedDateAddresses `json:"addresses,omitempty"`
+	Addresses []GetCustomers200ApplicationJSONSourceModifiedDateAddresses `json:"addresses,omitempty"`
 	// Name of the main contact for the identified customer.
 	ContactName *string `json:"contactName,omitempty"`
 	// An array of Contacts.
-	Contacts []GetCustomersLinksSourceModifiedDateContacts `json:"contacts,omitempty"`
+	Contacts []GetCustomers200ApplicationJSONSourceModifiedDateContacts `json:"contacts,omitempty"`
 	// Name of the customer as recorded in the accounting system, typically the company name.
 	CustomerName *string `json:"customerName,omitempty"`
 	// Default currency the transactional data of the customer is recorded in.
@@ -198,31 +282,31 @@ type GetCustomersLinksSourceModifiedDate struct {
 	// Email address the customer can be contacted by.
 	EmailAddress *string `json:"emailAddress,omitempty"`
 	// Identifier for the customer, unique to the company in the accounting platform.
-	ID       *string                                      `json:"id,omitempty"`
-	Metadata *GetCustomersLinksSourceModifiedDateMetadata `json:"metadata,omitempty"`
+	ID       *string                                                   `json:"id,omitempty"`
+	Metadata *GetCustomers200ApplicationJSONSourceModifiedDateMetadata `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Phone number the customer can be contacted by.
 	Phone *string `json:"phone,omitempty"`
 	// Company number. In the UK, this is typically the Companies House company registration number.
 	RegistrationNumber *string `json:"registrationNumber,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Current state of the customer.
-	Status GetCustomersLinksSourceModifiedDateStatusEnum `json:"status"`
+	Status GetCustomers200ApplicationJSONSourceModifiedDateStatusEnum `json:"status"`
 	// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
-	SupplementalData *GetCustomersLinksSourceModifiedDateSupplementalData `json:"supplementalData,omitempty"`
+	SupplementalData *GetCustomers200ApplicationJSONSourceModifiedDateSupplementalData `json:"supplementalData,omitempty"`
 	// Company tax number.
 	TaxNumber *string `json:"taxNumber,omitempty"`
 }
 
-// GetCustomersLinks - Codat's Paging Model
-type GetCustomersLinks struct {
-	Links        GetCustomersLinksLinks                `json:"_links"`
-	PageNumber   int64                                 `json:"pageNumber"`
-	PageSize     int64                                 `json:"pageSize"`
-	Results      []GetCustomersLinksSourceModifiedDate `json:"results,omitempty"`
-	TotalResults int64                                 `json:"totalResults"`
+// GetCustomers200ApplicationJSON - Success
+type GetCustomers200ApplicationJSON struct {
+	Links        GetCustomers200ApplicationJSONLinks                `json:"_links"`
+	PageNumber   int64                                              `json:"pageNumber"`
+	PageSize     int64                                              `json:"pageSize"`
+	Results      []GetCustomers200ApplicationJSONSourceModifiedDate `json:"results,omitempty"`
+	TotalResults int64                                              `json:"totalResults"`
 }
 
 type GetCustomersResponse struct {
@@ -230,5 +314,5 @@ type GetCustomersResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// Success
-	Links *GetCustomersLinks
+	GetCustomers200ApplicationJSONObject *GetCustomers200ApplicationJSON
 }

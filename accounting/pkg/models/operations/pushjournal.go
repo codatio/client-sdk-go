@@ -3,8 +3,9 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 // PushJournalSourceModifiedDateStatusEnum - Current journal status.
@@ -15,6 +16,24 @@ const (
 	PushJournalSourceModifiedDateStatusEnumActive   PushJournalSourceModifiedDateStatusEnum = "Active"
 	PushJournalSourceModifiedDateStatusEnumArchived PushJournalSourceModifiedDateStatusEnum = "Archived"
 )
+
+func (e *PushJournalSourceModifiedDateStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Active":
+		fallthrough
+	case "Archived":
+		*e = PushJournalSourceModifiedDateStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PushJournalSourceModifiedDateStatusEnum: %s", s)
+	}
+}
 
 // PushJournalSourceModifiedDateInput - > **Language tip:** For line items, or individual transactions, of a company's financial documents, refer to the [Journal entries](https://docs.codat.io/accounting-api#/schemas/JournalEntry) data type
 //
@@ -40,7 +59,7 @@ const (
 // > When pushing journal entries to an accounting platform that doesn’t support multiple journals (multi-book accounting), the entries will be linked to the platform-generic journal. The Journals data type will only include one object.
 type PushJournalSourceModifiedDateInput struct {
 	// Journal creation date.
-	CreatedOn *time.Time `json:"createdOn,omitempty"`
+	CreatedOn *string `json:"createdOn,omitempty"`
 	// If the journal has child journals, this value is true. If it doesn’t, it is false.
 	HasChildren *bool `json:"hasChildren,omitempty"`
 	// Journal ID.
@@ -48,7 +67,7 @@ type PushJournalSourceModifiedDateInput struct {
 	// Native journal number or code.
 	JournalCode *string `json:"journalCode,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Journal name.
 	// The maximum length for a journal name is 256 characters. All characters above that number will be truncated.
 	Name *string `json:"name,omitempty"`
@@ -56,7 +75,7 @@ type PushJournalSourceModifiedDateInput struct {
 	// If the journal is a parent journal, this value is not present.
 	ParentID *string `json:"parentId,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Current journal status.
 	Status *PushJournalSourceModifiedDateStatusEnum `json:"status,omitempty"`
 	// The type of the journal.
@@ -85,6 +104,28 @@ const (
 	PushJournal200ApplicationJSONChangesTypeEnumAttachmentUploaded PushJournal200ApplicationJSONChangesTypeEnum = "AttachmentUploaded"
 )
 
+func (e *PushJournal200ApplicationJSONChangesTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Created":
+		fallthrough
+	case "Modified":
+		fallthrough
+	case "Deleted":
+		fallthrough
+	case "AttachmentUploaded":
+		*e = PushJournal200ApplicationJSONChangesTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PushJournal200ApplicationJSONChangesTypeEnum: %s", s)
+	}
+}
+
 type PushJournal200ApplicationJSONChanges struct {
 	AttachmentID *string                                                     `json:"attachmentId,omitempty"`
 	RecordRef    *PushJournal200ApplicationJSONChangesPushOperationRecordRef `json:"recordRef,omitempty"`
@@ -111,6 +152,24 @@ const (
 	PushJournal200ApplicationJSONSourceModifiedDateStatusEnumArchived PushJournal200ApplicationJSONSourceModifiedDateStatusEnum = "Archived"
 )
 
+func (e *PushJournal200ApplicationJSONSourceModifiedDateStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Active":
+		fallthrough
+	case "Archived":
+		*e = PushJournal200ApplicationJSONSourceModifiedDateStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PushJournal200ApplicationJSONSourceModifiedDateStatusEnum: %s", s)
+	}
+}
+
 // PushJournal200ApplicationJSONSourceModifiedDate - > **Language tip:** For line items, or individual transactions, of a company's financial documents, refer to the [Journal entries](https://docs.codat.io/accounting-api#/schemas/JournalEntry) data type
 //
 // > View the coverage for journals in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journals" target="_blank">Data coverage explorer</a>.
@@ -135,7 +194,7 @@ const (
 // > When pushing journal entries to an accounting platform that doesn’t support multiple journals (multi-book accounting), the entries will be linked to the platform-generic journal. The Journals data type will only include one object.
 type PushJournal200ApplicationJSONSourceModifiedDate struct {
 	// Journal creation date.
-	CreatedOn *time.Time `json:"createdOn,omitempty"`
+	CreatedOn *string `json:"createdOn,omitempty"`
 	// If the journal has child journals, this value is true. If it doesn’t, it is false.
 	HasChildren *bool `json:"hasChildren,omitempty"`
 	// Journal ID.
@@ -144,7 +203,7 @@ type PushJournal200ApplicationJSONSourceModifiedDate struct {
 	JournalCode *string                                                  `json:"journalCode,omitempty"`
 	Metadata    *PushJournal200ApplicationJSONSourceModifiedDateMetadata `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Journal name.
 	// The maximum length for a journal name is 256 characters. All characters above that number will be truncated.
 	Name *string `json:"name,omitempty"`
@@ -152,7 +211,7 @@ type PushJournal200ApplicationJSONSourceModifiedDate struct {
 	// If the journal is a parent journal, this value is not present.
 	ParentID *string `json:"parentId,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Current journal status.
 	Status *PushJournal200ApplicationJSONSourceModifiedDateStatusEnum `json:"status,omitempty"`
 	// The type of the journal.
@@ -168,6 +227,26 @@ const (
 	PushJournal200ApplicationJSONStatusEnumSuccess  PushJournal200ApplicationJSONStatusEnum = "Success"
 	PushJournal200ApplicationJSONStatusEnumTimedOut PushJournal200ApplicationJSONStatusEnum = "TimedOut"
 )
+
+func (e *PushJournal200ApplicationJSONStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Pending":
+		fallthrough
+	case "Failed":
+		fallthrough
+	case "Success":
+		fallthrough
+	case "TimedOut":
+		*e = PushJournal200ApplicationJSONStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PushJournal200ApplicationJSONStatusEnum: %s", s)
+	}
+}
 
 type PushJournal200ApplicationJSONValidationValidationItem struct {
 	ItemID        *string `json:"itemId,omitempty"`
@@ -187,7 +266,7 @@ type PushJournal200ApplicationJSON struct {
 	// Unique identifier for your SMB in Codat.
 	CompanyID string `json:"companyId"`
 	// The datetime when the push was completed, null if Pending.
-	CompletedOnUtc *time.Time `json:"completedOnUtc,omitempty"`
+	CompletedOnUtc *string `json:"completedOnUtc,omitempty"`
 	// > **Language tip:** For line items, or individual transactions, of a company's financial documents, refer to the [Journal entries](https://docs.codat.io/accounting-api#/schemas/JournalEntry) data type
 	//
 	// > View the coverage for journals in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journals" target="_blank">Data coverage explorer</a>.
@@ -220,7 +299,7 @@ type PushJournal200ApplicationJSON struct {
 	// A unique identifier generated by Codat to represent this single push operation. This identifier can be used to track the status of the push, and should be persisted.
 	PushOperationKey string `json:"pushOperationKey"`
 	// The datetime when the push was requested.
-	RequestedOnUtc time.Time `json:"requestedOnUtc"`
+	RequestedOnUtc string `json:"requestedOnUtc"`
 	// The status of the push operation.
 	Status           PushJournal200ApplicationJSONStatusEnum `json:"status"`
 	StatusCode       int                                     `json:"statusCode"`

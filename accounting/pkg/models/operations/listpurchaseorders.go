@@ -3,8 +3,9 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 type ListPurchaseOrdersRequest struct {
@@ -19,45 +20,33 @@ type ListPurchaseOrdersRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-type ListPurchaseOrdersLinksLinksCurrent struct {
-	Href string `json:"href"`
-}
-
-type ListPurchaseOrdersLinksLinksNext struct {
+type ListPurchaseOrders200ApplicationJSONLinksHypertextReference struct {
 	Href *string `json:"href,omitempty"`
 }
 
-type ListPurchaseOrdersLinksLinksPrevious struct {
-	Href *string `json:"href,omitempty"`
+type ListPurchaseOrders200ApplicationJSONLinks struct {
+	Current  ListPurchaseOrders200ApplicationJSONLinksHypertextReference  `json:"current"`
+	Next     *ListPurchaseOrders200ApplicationJSONLinksHypertextReference `json:"next,omitempty"`
+	Previous *ListPurchaseOrders200ApplicationJSONLinksHypertextReference `json:"previous,omitempty"`
+	Self     ListPurchaseOrders200ApplicationJSONLinksHypertextReference  `json:"self"`
 }
 
-type ListPurchaseOrdersLinksLinksSelf struct {
-	Href string `json:"href"`
-}
-
-type ListPurchaseOrdersLinksLinks struct {
-	Current  ListPurchaseOrdersLinksLinksCurrent   `json:"current"`
-	Next     *ListPurchaseOrdersLinksLinksNext     `json:"next,omitempty"`
-	Previous *ListPurchaseOrdersLinksLinksPrevious `json:"previous,omitempty"`
-	Self     ListPurchaseOrdersLinksLinksSelf      `json:"self"`
-}
-
-// ListPurchaseOrdersLinksSourceModifiedDateLineItemsAccountRef - Reference to the account to which the line item is linked.
-type ListPurchaseOrdersLinksSourceModifiedDateLineItemsAccountRef struct {
+// ListPurchaseOrders200ApplicationJSONSourceModifiedDateLineItemsAccountRef - Reference to the account to which the line item is linked.
+type ListPurchaseOrders200ApplicationJSONSourceModifiedDateLineItemsAccountRef struct {
 	// 'id' from the Accounts data type.
 	ID *string `json:"id,omitempty"`
 	// 'name' from the Accounts data type.
 	Name *string `json:"name,omitempty"`
 }
 
-// ListPurchaseOrdersLinksSourceModifiedDateLineItemsItemRef - Reference to the product or inventory item to which the line item is linked.
-type ListPurchaseOrdersLinksSourceModifiedDateLineItemsItemRef struct {
+// ListPurchaseOrders200ApplicationJSONSourceModifiedDateLineItemsItemRef - Reference to the product or inventory item to which the line item is linked.
+type ListPurchaseOrders200ApplicationJSONSourceModifiedDateLineItemsItemRef struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
 }
 
-// ListPurchaseOrdersLinksSourceModifiedDateLineItemsTaxRateRef - Reference to the tax rate to which the line item is linked.
-type ListPurchaseOrdersLinksSourceModifiedDateLineItemsTaxRateRef struct {
+// ListPurchaseOrders200ApplicationJSONSourceModifiedDateLineItemsTaxRateRef - Reference to the tax rate to which the line item is linked.
+type ListPurchaseOrders200ApplicationJSONSourceModifiedDateLineItemsTaxRateRef struct {
 	// Applicable tax rate.
 	EffectiveTaxRate *float64 `json:"effectiveTaxRate,omitempty"`
 	// 'id' from the 'taxRates' data type.
@@ -66,15 +55,15 @@ type ListPurchaseOrdersLinksSourceModifiedDateLineItemsTaxRateRef struct {
 	Name *string `json:"name,omitempty"`
 }
 
-// ListPurchaseOrdersLinksSourceModifiedDateLineItemsTrackingCategoryRefs - References a category against which the item is tracked.
-type ListPurchaseOrdersLinksSourceModifiedDateLineItemsTrackingCategoryRefs struct {
+// ListPurchaseOrders200ApplicationJSONSourceModifiedDateLineItemsTrackingCategoryRefs - References a category against which the item is tracked.
+type ListPurchaseOrders200ApplicationJSONSourceModifiedDateLineItemsTrackingCategoryRefs struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
 }
 
-type ListPurchaseOrdersLinksSourceModifiedDateLineItems struct {
+type ListPurchaseOrders200ApplicationJSONSourceModifiedDateLineItems struct {
 	// Reference to the account to which the line item is linked.
-	AccountRef *ListPurchaseOrdersLinksSourceModifiedDateLineItemsAccountRef `json:"accountRef,omitempty"`
+	AccountRef *ListPurchaseOrders200ApplicationJSONSourceModifiedDateLineItemsAccountRef `json:"accountRef,omitempty"`
 	// Description of the goods / services that have been ordered.
 	Description *string `json:"description,omitempty"`
 	// Value of any discounts applied.
@@ -82,7 +71,7 @@ type ListPurchaseOrdersLinksSourceModifiedDateLineItems struct {
 	// Percentage rate (from 0 to 100) of any discounts applied to the unit amount.
 	DiscountPercentage *float64 `json:"discountPercentage,omitempty"`
 	// Reference to the product or inventory item to which the line item is linked.
-	ItemRef *ListPurchaseOrdersLinksSourceModifiedDateLineItemsItemRef `json:"itemRef,omitempty"`
+	ItemRef *ListPurchaseOrders200ApplicationJSONSourceModifiedDateLineItemsItemRef `json:"itemRef,omitempty"`
 	// Number of units that have been ordered.
 	Quantity *float64 `json:"quantity,omitempty"`
 	// Amount of the line, inclusive of discounts but exclusive of tax.
@@ -90,30 +79,49 @@ type ListPurchaseOrdersLinksSourceModifiedDateLineItems struct {
 	// Amount of tax for the line.
 	TaxAmount *float64 `json:"taxAmount,omitempty"`
 	// Reference to the tax rate to which the line item is linked.
-	TaxRateRef *ListPurchaseOrdersLinksSourceModifiedDateLineItemsTaxRateRef `json:"taxRateRef,omitempty"`
+	TaxRateRef *ListPurchaseOrders200ApplicationJSONSourceModifiedDateLineItemsTaxRateRef `json:"taxRateRef,omitempty"`
 	// Total amount of the line, inclusive of discounts and tax.
 	TotalAmount *float64 `json:"totalAmount,omitempty"`
 	// Reference to the tracking categories to which the line item is linked.
-	TrackingCategoryRefs []ListPurchaseOrdersLinksSourceModifiedDateLineItemsTrackingCategoryRefs `json:"trackingCategoryRefs,omitempty"`
+	TrackingCategoryRefs []ListPurchaseOrders200ApplicationJSONSourceModifiedDateLineItemsTrackingCategoryRefs `json:"trackingCategoryRefs,omitempty"`
 	// Price of each unit.
 	UnitAmount *float64 `json:"unitAmount,omitempty"`
 }
 
-type ListPurchaseOrdersLinksSourceModifiedDateMetadata struct {
+type ListPurchaseOrders200ApplicationJSONSourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
-// ListPurchaseOrdersLinksSourceModifiedDateShipToAddressTypeEnum - Type of the address.
-type ListPurchaseOrdersLinksSourceModifiedDateShipToAddressTypeEnum string
+// ListPurchaseOrders200ApplicationJSONSourceModifiedDateShipToAddressTypeEnum - Type of the address.
+type ListPurchaseOrders200ApplicationJSONSourceModifiedDateShipToAddressTypeEnum string
 
 const (
-	ListPurchaseOrdersLinksSourceModifiedDateShipToAddressTypeEnumUnknown  ListPurchaseOrdersLinksSourceModifiedDateShipToAddressTypeEnum = "Unknown"
-	ListPurchaseOrdersLinksSourceModifiedDateShipToAddressTypeEnumBilling  ListPurchaseOrdersLinksSourceModifiedDateShipToAddressTypeEnum = "Billing"
-	ListPurchaseOrdersLinksSourceModifiedDateShipToAddressTypeEnumDelivery ListPurchaseOrdersLinksSourceModifiedDateShipToAddressTypeEnum = "Delivery"
+	ListPurchaseOrders200ApplicationJSONSourceModifiedDateShipToAddressTypeEnumUnknown  ListPurchaseOrders200ApplicationJSONSourceModifiedDateShipToAddressTypeEnum = "Unknown"
+	ListPurchaseOrders200ApplicationJSONSourceModifiedDateShipToAddressTypeEnumBilling  ListPurchaseOrders200ApplicationJSONSourceModifiedDateShipToAddressTypeEnum = "Billing"
+	ListPurchaseOrders200ApplicationJSONSourceModifiedDateShipToAddressTypeEnumDelivery ListPurchaseOrders200ApplicationJSONSourceModifiedDateShipToAddressTypeEnum = "Delivery"
 )
 
-// ListPurchaseOrdersLinksSourceModifiedDateShipToAddress - Delivery address for any goods that have been ordered.
-type ListPurchaseOrdersLinksSourceModifiedDateShipToAddress struct {
+func (e *ListPurchaseOrders200ApplicationJSONSourceModifiedDateShipToAddressTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Billing":
+		fallthrough
+	case "Delivery":
+		*e = ListPurchaseOrders200ApplicationJSONSourceModifiedDateShipToAddressTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListPurchaseOrders200ApplicationJSONSourceModifiedDateShipToAddressTypeEnum: %s", s)
+	}
+}
+
+// ListPurchaseOrders200ApplicationJSONSourceModifiedDateShipToAddress - Delivery address for any goods that have been ordered.
+type ListPurchaseOrders200ApplicationJSONSourceModifiedDateShipToAddress struct {
 	// City of the customer address.
 	City *string `json:"city,omitempty"`
 	// Country of the customer address.
@@ -127,11 +135,11 @@ type ListPurchaseOrdersLinksSourceModifiedDateShipToAddress struct {
 	// Region of the customer address.
 	Region *string `json:"region,omitempty"`
 	// Type of the address.
-	Type ListPurchaseOrdersLinksSourceModifiedDateShipToAddressTypeEnum `json:"type"`
+	Type ListPurchaseOrders200ApplicationJSONSourceModifiedDateShipToAddressTypeEnum `json:"type"`
 }
 
-// ListPurchaseOrdersLinksSourceModifiedDateShipToContact - Details of the named contact at the delivery address.
-type ListPurchaseOrdersLinksSourceModifiedDateShipToContact struct {
+// ListPurchaseOrders200ApplicationJSONSourceModifiedDateShipToContact - Details of the named contact at the delivery address.
+type ListPurchaseOrders200ApplicationJSONSourceModifiedDateShipToContact struct {
 	// Email address of the contact at the delivery address.
 	Email *string `json:"email,omitempty"`
 	// Name of the contact at the delivery address.
@@ -140,39 +148,61 @@ type ListPurchaseOrdersLinksSourceModifiedDateShipToContact struct {
 	Phone *string `json:"phone,omitempty"`
 }
 
-// ListPurchaseOrdersLinksSourceModifiedDateShipTo - Delivery details for any goods that have been ordered.
-type ListPurchaseOrdersLinksSourceModifiedDateShipTo struct {
+// ListPurchaseOrders200ApplicationJSONSourceModifiedDateShipTo - Delivery details for any goods that have been ordered.
+type ListPurchaseOrders200ApplicationJSONSourceModifiedDateShipTo struct {
 	// Delivery address for any goods that have been ordered.
-	Address *ListPurchaseOrdersLinksSourceModifiedDateShipToAddress `json:"address,omitempty"`
+	Address *ListPurchaseOrders200ApplicationJSONSourceModifiedDateShipToAddress `json:"address,omitempty"`
 	// Details of the named contact at the delivery address.
-	Contact *ListPurchaseOrdersLinksSourceModifiedDateShipToContact `json:"contact,omitempty"`
+	Contact *ListPurchaseOrders200ApplicationJSONSourceModifiedDateShipToContact `json:"contact,omitempty"`
 }
 
-// ListPurchaseOrdersLinksSourceModifiedDateStatusEnum - Current state of the purchase order
-type ListPurchaseOrdersLinksSourceModifiedDateStatusEnum string
+// ListPurchaseOrders200ApplicationJSONSourceModifiedDateStatusEnum - Current state of the purchase order
+type ListPurchaseOrders200ApplicationJSONSourceModifiedDateStatusEnum string
 
 const (
-	ListPurchaseOrdersLinksSourceModifiedDateStatusEnumUnknown ListPurchaseOrdersLinksSourceModifiedDateStatusEnum = "Unknown"
-	ListPurchaseOrdersLinksSourceModifiedDateStatusEnumDraft   ListPurchaseOrdersLinksSourceModifiedDateStatusEnum = "Draft"
-	ListPurchaseOrdersLinksSourceModifiedDateStatusEnumOpen    ListPurchaseOrdersLinksSourceModifiedDateStatusEnum = "Open"
-	ListPurchaseOrdersLinksSourceModifiedDateStatusEnumClosed  ListPurchaseOrdersLinksSourceModifiedDateStatusEnum = "Closed"
-	ListPurchaseOrdersLinksSourceModifiedDateStatusEnumVoid    ListPurchaseOrdersLinksSourceModifiedDateStatusEnum = "Void"
+	ListPurchaseOrders200ApplicationJSONSourceModifiedDateStatusEnumUnknown ListPurchaseOrders200ApplicationJSONSourceModifiedDateStatusEnum = "Unknown"
+	ListPurchaseOrders200ApplicationJSONSourceModifiedDateStatusEnumDraft   ListPurchaseOrders200ApplicationJSONSourceModifiedDateStatusEnum = "Draft"
+	ListPurchaseOrders200ApplicationJSONSourceModifiedDateStatusEnumOpen    ListPurchaseOrders200ApplicationJSONSourceModifiedDateStatusEnum = "Open"
+	ListPurchaseOrders200ApplicationJSONSourceModifiedDateStatusEnumClosed  ListPurchaseOrders200ApplicationJSONSourceModifiedDateStatusEnum = "Closed"
+	ListPurchaseOrders200ApplicationJSONSourceModifiedDateStatusEnumVoid    ListPurchaseOrders200ApplicationJSONSourceModifiedDateStatusEnum = "Void"
 )
 
-// ListPurchaseOrdersLinksSourceModifiedDateSupplierRef - Supplier that the purchase order is recorded against in the accounting system.
-type ListPurchaseOrdersLinksSourceModifiedDateSupplierRef struct {
+func (e *ListPurchaseOrders200ApplicationJSONSourceModifiedDateStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Draft":
+		fallthrough
+	case "Open":
+		fallthrough
+	case "Closed":
+		fallthrough
+	case "Void":
+		*e = ListPurchaseOrders200ApplicationJSONSourceModifiedDateStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListPurchaseOrders200ApplicationJSONSourceModifiedDateStatusEnum: %s", s)
+	}
+}
+
+// ListPurchaseOrders200ApplicationJSONSourceModifiedDateSupplierRef - Supplier that the purchase order is recorded against in the accounting system.
+type ListPurchaseOrders200ApplicationJSONSourceModifiedDateSupplierRef struct {
 	ID           string  `json:"id"`
 	SupplierName *string `json:"supplierName,omitempty"`
 }
 
-// ListPurchaseOrdersLinksSourceModifiedDate - > View the coverage for purchase orders in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=purchaseOrders" target="_blank">Data coverage explorer</a>.
+// ListPurchaseOrders200ApplicationJSONSourceModifiedDate - > View the coverage for purchase orders in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=purchaseOrders" target="_blank">Data coverage explorer</a>.
 //
 // ## Overview
 //
 // Purchase orders represent a business's intent to purchase goods or services from a supplier and normally include information such as expected delivery dates and shipping details.
 //
 // This information can be used to provide visibility on a business's expected payables and to track a purchase through the full procurement process.
-type ListPurchaseOrdersLinksSourceModifiedDate struct {
+type ListPurchaseOrders200ApplicationJSONSourceModifiedDate struct {
 	// Currency of the purchase order.
 	Currency *string `json:"currency,omitempty"`
 	// Rate to convert the total amount of the payment into the base currency for the company at the time of the payment.
@@ -200,34 +230,34 @@ type ListPurchaseOrdersLinksSourceModifiedDate struct {
 	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
 	CurrencyRate *float64 `json:"currencyRate,omitempty"`
 	// Actual delivery date for any goods that have been ordered.
-	DeliveryDate *time.Time `json:"deliveryDate,omitempty"`
+	DeliveryDate *string `json:"deliveryDate,omitempty"`
 	// Expected delivery date for any goods that have been ordered.
-	ExpectedDeliveryDate *time.Time `json:"expectedDeliveryDate,omitempty"`
+	ExpectedDeliveryDate *string `json:"expectedDeliveryDate,omitempty"`
 	// Identifier for the purchase order, unique for the company in the accounting platform.
 	ID *string `json:"id,omitempty"`
 	// Date of the purchase order as recorded in the accounting platform.
-	IssueDate *time.Time `json:"issueDate,omitempty"`
+	IssueDate *string `json:"issueDate,omitempty"`
 	// Array of line items.
-	LineItems []ListPurchaseOrdersLinksSourceModifiedDateLineItems `json:"lineItems,omitempty"`
-	Metadata  *ListPurchaseOrdersLinksSourceModifiedDateMetadata   `json:"metadata,omitempty"`
+	LineItems []ListPurchaseOrders200ApplicationJSONSourceModifiedDateLineItems `json:"lineItems,omitempty"`
+	Metadata  *ListPurchaseOrders200ApplicationJSONSourceModifiedDateMetadata   `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Any additional information associated with the purchase order.
 	Note *string `json:"note,omitempty"`
 	// Date the supplier is due to be paid.
-	PaymentDueDate *time.Time `json:"paymentDueDate,omitempty"`
+	PaymentDueDate *string `json:"paymentDueDate,omitempty"`
 	// Friendly reference for the purchase order, commonly generated by the accounting platform.
 	PurchaseOrderNumber *string `json:"purchaseOrderNumber,omitempty"`
 	// Delivery details for any goods that have been ordered.
-	ShipTo *ListPurchaseOrdersLinksSourceModifiedDateShipTo `json:"shipTo,omitempty"`
+	ShipTo *ListPurchaseOrders200ApplicationJSONSourceModifiedDateShipTo `json:"shipTo,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Current state of the purchase order
-	Status *ListPurchaseOrdersLinksSourceModifiedDateStatusEnum `json:"status,omitempty"`
+	Status *ListPurchaseOrders200ApplicationJSONSourceModifiedDateStatusEnum `json:"status,omitempty"`
 	// Total amount of the purchase order, including discounts but excluding tax.
 	SubTotal *float64 `json:"subTotal,omitempty"`
 	// Supplier that the purchase order is recorded against in the accounting system.
-	SupplierRef *ListPurchaseOrdersLinksSourceModifiedDateSupplierRef `json:"supplierRef,omitempty"`
+	SupplierRef *ListPurchaseOrders200ApplicationJSONSourceModifiedDateSupplierRef `json:"supplierRef,omitempty"`
 	// Total amount of the purchase order, including discounts and tax.
 	TotalAmount *float64 `json:"totalAmount,omitempty"`
 	// Total value of any discounts applied to the purchase order.
@@ -237,13 +267,13 @@ type ListPurchaseOrdersLinksSourceModifiedDate struct {
 	TotalTaxAmount *float64 `json:"totalTaxAmount,omitempty"`
 }
 
-// ListPurchaseOrdersLinks - Codat's Paging Model
-type ListPurchaseOrdersLinks struct {
-	Links        ListPurchaseOrdersLinksLinks                `json:"_links"`
-	PageNumber   int64                                       `json:"pageNumber"`
-	PageSize     int64                                       `json:"pageSize"`
-	Results      []ListPurchaseOrdersLinksSourceModifiedDate `json:"results,omitempty"`
-	TotalResults int64                                       `json:"totalResults"`
+// ListPurchaseOrders200ApplicationJSON - Success
+type ListPurchaseOrders200ApplicationJSON struct {
+	Links        ListPurchaseOrders200ApplicationJSONLinks                `json:"_links"`
+	PageNumber   int64                                                    `json:"pageNumber"`
+	PageSize     int64                                                    `json:"pageSize"`
+	Results      []ListPurchaseOrders200ApplicationJSONSourceModifiedDate `json:"results,omitempty"`
+	TotalResults int64                                                    `json:"totalResults"`
 }
 
 type ListPurchaseOrdersResponse struct {
@@ -251,5 +281,5 @@ type ListPurchaseOrdersResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// Success
-	Links *ListPurchaseOrdersLinks
+	ListPurchaseOrders200ApplicationJSONObject *ListPurchaseOrders200ApplicationJSON
 }

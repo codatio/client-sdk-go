@@ -3,8 +3,9 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
-	"time"
 )
 
 type GetPaymentMethodRequest struct {
@@ -13,6 +14,7 @@ type GetPaymentMethodRequest struct {
 }
 
 type GetPaymentMethodSourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
@@ -24,6 +26,24 @@ const (
 	GetPaymentMethodSourceModifiedDateStatusEnumActive   GetPaymentMethodSourceModifiedDateStatusEnum = "Active"
 	GetPaymentMethodSourceModifiedDateStatusEnumArchived GetPaymentMethodSourceModifiedDateStatusEnum = "Archived"
 )
+
+func (e *GetPaymentMethodSourceModifiedDateStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Active":
+		fallthrough
+	case "Archived":
+		*e = GetPaymentMethodSourceModifiedDateStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetPaymentMethodSourceModifiedDateStatusEnum: %s", s)
+	}
+}
 
 // GetPaymentMethodSourceModifiedDateTypeEnum - Method of payment.
 type GetPaymentMethodSourceModifiedDateTypeEnum string
@@ -37,6 +57,32 @@ const (
 	GetPaymentMethodSourceModifiedDateTypeEnumBankTransfer GetPaymentMethodSourceModifiedDateTypeEnum = "BankTransfer"
 	GetPaymentMethodSourceModifiedDateTypeEnumOther        GetPaymentMethodSourceModifiedDateTypeEnum = "Other"
 )
+
+func (e *GetPaymentMethodSourceModifiedDateTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Unknown":
+		fallthrough
+	case "Cash":
+		fallthrough
+	case "Check":
+		fallthrough
+	case "CreditCard":
+		fallthrough
+	case "DebitCard":
+		fallthrough
+	case "BankTransfer":
+		fallthrough
+	case "Other":
+		*e = GetPaymentMethodSourceModifiedDateTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetPaymentMethodSourceModifiedDateTypeEnum: %s", s)
+	}
+}
 
 // GetPaymentMethodSourceModifiedDate - > View the coverage for payment methods in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=paymentMethods" target="_blank">Data coverage explorer</a>.
 //
@@ -54,11 +100,11 @@ type GetPaymentMethodSourceModifiedDate struct {
 	ID       *string                                     `json:"id,omitempty"`
 	Metadata *GetPaymentMethodSourceModifiedDateMetadata `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Name of the payment method.
 	Name *string `json:"name,omitempty"`
 	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Status of the Payment Method.
 	Status *GetPaymentMethodSourceModifiedDateStatusEnum `json:"status,omitempty"`
 	// Method of payment.

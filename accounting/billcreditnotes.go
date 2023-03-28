@@ -224,12 +224,12 @@ func (s *billCreditNotes) ListBillCreditNotes(ctx context.Context, request opera
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListBillCreditNotesLinks
+			var out *operations.ListBillCreditNotes200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Links = out
+			res.ListBillCreditNotes200ApplicationJSONObject = out
 		}
 	}
 

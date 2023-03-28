@@ -117,12 +117,12 @@ func (s *bankAccountTransactions) ListBankAccountTransactions(ctx context.Contex
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListBankAccountTransactionsLinks
+			var out *operations.ListBankAccountTransactions200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Links = out
+			res.ListBankAccountTransactions200ApplicationJSONObject = out
 		}
 	}
 
@@ -166,12 +166,12 @@ func (s *bankAccountTransactions) ListBankTransactions(ctx context.Context, requ
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListBankTransactionsLinks
+			var out *operations.ListBankTransactions200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Links = out
+			res.ListBankTransactions200ApplicationJSONObject = out
 		}
 	}
 

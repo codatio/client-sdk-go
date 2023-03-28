@@ -388,12 +388,12 @@ func (s *invoices) ListInvoices(ctx context.Context, request operations.ListInvo
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListInvoicesLinks
+			var out *operations.ListInvoices200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Links = out
+			res.ListInvoices200ApplicationJSONObject = out
 		}
 	}
 

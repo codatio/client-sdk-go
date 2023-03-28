@@ -307,12 +307,12 @@ func (s *directCosts) GetDirectCosts(ctx context.Context, request operations.Get
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetDirectCostsLinks
+			var out *operations.GetDirectCosts200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Links = out
+			res.GetDirectCosts200ApplicationJSONObject = out
 		}
 	}
 
