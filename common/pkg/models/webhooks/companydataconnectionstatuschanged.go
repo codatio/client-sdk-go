@@ -11,39 +11,3 @@ type CompanyDataConnectionStatusChangedResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 }
-
-// CompanyDataConnectionStatusChangedCompanyDataConnectionStatusChangedWebhookDataDataConnectionStatusEnum - The current authorization status of the data connection.
-type CompanyDataConnectionStatusChangedCompanyDataConnectionStatusChangedWebhookDataDataConnectionStatusEnum string
-
-const (
-	CompanyDataConnectionStatusChangedCompanyDataConnectionStatusChangedWebhookDataDataConnectionStatusEnumPendingAuth  CompanyDataConnectionStatusChangedCompanyDataConnectionStatusChangedWebhookDataDataConnectionStatusEnum = "PendingAuth"
-	CompanyDataConnectionStatusChangedCompanyDataConnectionStatusChangedWebhookDataDataConnectionStatusEnumLinked       CompanyDataConnectionStatusChangedCompanyDataConnectionStatusChangedWebhookDataDataConnectionStatusEnum = "Linked"
-	CompanyDataConnectionStatusChangedCompanyDataConnectionStatusChangedWebhookDataDataConnectionStatusEnumUnlinked     CompanyDataConnectionStatusChangedCompanyDataConnectionStatusChangedWebhookDataDataConnectionStatusEnum = "Unlinked"
-	CompanyDataConnectionStatusChangedCompanyDataConnectionStatusChangedWebhookDataDataConnectionStatusEnumDeauthorized CompanyDataConnectionStatusChangedCompanyDataConnectionStatusChangedWebhookDataDataConnectionStatusEnum = "Deauthorized"
-)
-
-type CompanyDataConnectionStatusChangedCompanyDataConnectionStatusChangedWebhookData struct {
-	// Unique identifier for a company's data connection.
-	DataConnectionID *string `json:"dataConnectionId,omitempty"`
-	// The current authorization status of the data connection.
-	NewStatus *CompanyDataConnectionStatusChangedCompanyDataConnectionStatusChangedWebhookDataDataConnectionStatusEnum `json:"newStatus,omitempty"`
-	// The current authorization status of the data connection.
-	OldStatus *CompanyDataConnectionStatusChangedCompanyDataConnectionStatusChangedWebhookDataDataConnectionStatusEnum `json:"oldStatus,omitempty"`
-	// 4 letter key for an integration. [Read more](https://docs.codat.io/integrations/accounting/accounting-platform-keys).
-	PlatformKey *string `json:"platformKey,omitempty"`
-}
-
-// CompanyDataConnectionStatusChangedCompanyDataConnectionStatusChangedWebhook - Webhook request body for a company's data connection status changed.
-type CompanyDataConnectionStatusChangedCompanyDataConnectionStatusChangedWebhook struct {
-	// Unique identifier of the alert.
-	AlertID *string `json:"alertId,omitempty"`
-	// Unique identifier for your SMB in Codat.
-	CompanyID *string                                                                          `json:"companyId,omitempty"`
-	Data      *CompanyDataConnectionStatusChangedCompanyDataConnectionStatusChangedWebhookData `json:"data,omitempty"`
-	// A human readable message about the webhook.
-	Message *string `json:"message,omitempty"`
-	// Unique identifier for the rule.
-	RuleID *string `json:"ruleId,omitempty"`
-	// The type of rule.
-	RuleType *string `json:"ruleType,omitempty"`
-}

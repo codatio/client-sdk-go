@@ -11,27 +11,3 @@ type PushOperationStatusHasChangedResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 }
-
-type PushOperationStatusHasChangedPushOperationStatusChangedWebhookData struct {
-	// Data type used in the push operation.
-	DataType *string `json:"dataType,omitempty"`
-	// Unique identifier for the push operation.
-	PushOperationKey *string `json:"pushOperationKey,omitempty"`
-	// The current status of the push operation.
-	Status *string `json:"status,omitempty"`
-}
-
-// PushOperationStatusHasChangedPushOperationStatusChangedWebhook - Webhook request body for a push operation status change.
-type PushOperationStatusHasChangedPushOperationStatusChangedWebhook struct {
-	// Unique identifier of the alert.
-	AlertID *string `json:"alertId,omitempty"`
-	// Unique identifier for your SMB in Codat.
-	CompanyID *string                                                             `json:"companyId,omitempty"`
-	Data      *PushOperationStatusHasChangedPushOperationStatusChangedWebhookData `json:"data,omitempty"`
-	// A human readable message about the webhook.
-	Message *string `json:"message,omitempty"`
-	// Unique identifier for the rule.
-	RuleID *string `json:"ruleId,omitempty"`
-	// The type of rule.
-	RuleType *string `json:"ruleType,omitempty"`
-}

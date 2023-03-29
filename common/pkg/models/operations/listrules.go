@@ -3,6 +3,7 @@
 package operations
 
 import (
+	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
 	"net/http"
 )
 
@@ -17,79 +18,12 @@ type ListRulesRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-// ListRules401ApplicationJSON - Your API request was not properly authorized.
-type ListRules401ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
-}
-
-// ListRules400ApplicationJSON - Your `query` parameter was not correctly formed
-type ListRules400ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
-}
-
-type ListRulesLinksLinksCurrent struct {
-	Href string `json:"href"`
-}
-
-type ListRulesLinksLinksNext struct {
-	Href *string `json:"href,omitempty"`
-}
-
-type ListRulesLinksLinksPrevious struct {
-	Href *string `json:"href,omitempty"`
-}
-
-type ListRulesLinksLinksSelf struct {
-	Href string `json:"href"`
-}
-
-type ListRulesLinksLinks struct {
-	Current  ListRulesLinksLinksCurrent   `json:"current"`
-	Next     *ListRulesLinksLinksNext     `json:"next,omitempty"`
-	Previous *ListRulesLinksLinksPrevious `json:"previous,omitempty"`
-	Self     ListRulesLinksLinksSelf      `json:"self"`
-}
-
-type ListRulesLinksWebhookNotifiers struct {
-	Emails  []string `json:"emails,omitempty"`
-	Webhook *string  `json:"webhook,omitempty"`
-}
-
-// ListRulesLinksWebhook - Configuration to alert to a url or list of email addresses based on the given type / condition.
-type ListRulesLinksWebhook struct {
-	CompanyID *string                        `json:"companyId,omitempty"`
-	ID        string                         `json:"id"`
-	Notifiers ListRulesLinksWebhookNotifiers `json:"notifiers"`
-	Type      string                         `json:"type"`
-}
-
-// ListRulesLinks - Codat's Paging Model
-type ListRulesLinks struct {
-	Links        ListRulesLinksLinks     `json:"_links"`
-	PageNumber   int64                   `json:"pageNumber"`
-	PageSize     int64                   `json:"pageSize"`
-	Results      []ListRulesLinksWebhook `json:"results,omitempty"`
-	TotalResults int64                   `json:"totalResults"`
-}
-
 type ListRulesResponse struct {
 	ContentType string
+	// Your `query` parameter was not correctly formed
+	ErrorMessage *shared.ErrorMessage
+	// OK
+	Rules       *shared.Rules
 	StatusCode  int
 	RawResponse *http.Response
-	// OK
-	Links *ListRulesLinks
-	// Your `query` parameter was not correctly formed
-	ListRules400ApplicationJSONObject *ListRules400ApplicationJSON
-	// Your API request was not properly authorized.
-	ListRules401ApplicationJSONObject *ListRules401ApplicationJSON
 }

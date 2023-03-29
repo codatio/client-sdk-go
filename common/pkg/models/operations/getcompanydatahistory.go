@@ -3,8 +3,8 @@
 package operations
 
 import (
+	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
 	"net/http"
-	"time"
 )
 
 type GetCompanyDataHistoryRequest struct {
@@ -19,122 +19,12 @@ type GetCompanyDataHistoryRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-// GetCompanyDataHistory404ApplicationJSON - One or more of the resources you referenced could not be found.
-// This might be because your company or data connection id is wrong, or was already deleted.
-type GetCompanyDataHistory404ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
-}
-
-// GetCompanyDataHistory401ApplicationJSON - Your API request was not properly authorized.
-type GetCompanyDataHistory401ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
-}
-
-// GetCompanyDataHistory400ApplicationJSON - Your `query` parameter was not correctly formed
-type GetCompanyDataHistory400ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
-}
-
-type GetCompanyDataHistoryLinksLinksCurrent struct {
-	Href string `json:"href"`
-}
-
-type GetCompanyDataHistoryLinksLinksNext struct {
-	Href *string `json:"href,omitempty"`
-}
-
-type GetCompanyDataHistoryLinksLinksPrevious struct {
-	Href *string `json:"href,omitempty"`
-}
-
-type GetCompanyDataHistoryLinksLinksSelf struct {
-	Href string `json:"href"`
-}
-
-type GetCompanyDataHistoryLinksLinks struct {
-	Current  GetCompanyDataHistoryLinksLinksCurrent   `json:"current"`
-	Next     *GetCompanyDataHistoryLinksLinksNext     `json:"next,omitempty"`
-	Previous *GetCompanyDataHistoryLinksLinksPrevious `json:"previous,omitempty"`
-	Self     GetCompanyDataHistoryLinksLinksSelf      `json:"self"`
-}
-
-type GetCompanyDataHistoryLinksPullOperationStatusEnum string
-
-const (
-	GetCompanyDataHistoryLinksPullOperationStatusEnumInitial            GetCompanyDataHistoryLinksPullOperationStatusEnum = "Initial"
-	GetCompanyDataHistoryLinksPullOperationStatusEnumQueued             GetCompanyDataHistoryLinksPullOperationStatusEnum = "Queued"
-	GetCompanyDataHistoryLinksPullOperationStatusEnumFetching           GetCompanyDataHistoryLinksPullOperationStatusEnum = "Fetching"
-	GetCompanyDataHistoryLinksPullOperationStatusEnumMapQueued          GetCompanyDataHistoryLinksPullOperationStatusEnum = "MapQueued"
-	GetCompanyDataHistoryLinksPullOperationStatusEnumMapping            GetCompanyDataHistoryLinksPullOperationStatusEnum = "Mapping"
-	GetCompanyDataHistoryLinksPullOperationStatusEnumComplete           GetCompanyDataHistoryLinksPullOperationStatusEnum = "Complete"
-	GetCompanyDataHistoryLinksPullOperationStatusEnumFetchError         GetCompanyDataHistoryLinksPullOperationStatusEnum = "FetchError"
-	GetCompanyDataHistoryLinksPullOperationStatusEnumMapError           GetCompanyDataHistoryLinksPullOperationStatusEnum = "MapError"
-	GetCompanyDataHistoryLinksPullOperationStatusEnumInternalError      GetCompanyDataHistoryLinksPullOperationStatusEnum = "InternalError"
-	GetCompanyDataHistoryLinksPullOperationStatusEnumProcessingQueued   GetCompanyDataHistoryLinksPullOperationStatusEnum = "ProcessingQueued"
-	GetCompanyDataHistoryLinksPullOperationStatusEnumProcessing         GetCompanyDataHistoryLinksPullOperationStatusEnum = "Processing"
-	GetCompanyDataHistoryLinksPullOperationStatusEnumProcessingError    GetCompanyDataHistoryLinksPullOperationStatusEnum = "ProcessingError"
-	GetCompanyDataHistoryLinksPullOperationStatusEnumValidationQueued   GetCompanyDataHistoryLinksPullOperationStatusEnum = "ValidationQueued"
-	GetCompanyDataHistoryLinksPullOperationStatusEnumValidating         GetCompanyDataHistoryLinksPullOperationStatusEnum = "Validating"
-	GetCompanyDataHistoryLinksPullOperationStatusEnumValidationError    GetCompanyDataHistoryLinksPullOperationStatusEnum = "ValidationError"
-	GetCompanyDataHistoryLinksPullOperationStatusEnumAuthError          GetCompanyDataHistoryLinksPullOperationStatusEnum = "AuthError"
-	GetCompanyDataHistoryLinksPullOperationStatusEnumCancelled          GetCompanyDataHistoryLinksPullOperationStatusEnum = "Cancelled"
-	GetCompanyDataHistoryLinksPullOperationStatusEnumRouting            GetCompanyDataHistoryLinksPullOperationStatusEnum = "Routing"
-	GetCompanyDataHistoryLinksPullOperationStatusEnumRoutingError       GetCompanyDataHistoryLinksPullOperationStatusEnum = "RoutingError"
-	GetCompanyDataHistoryLinksPullOperationStatusEnumNotSupported       GetCompanyDataHistoryLinksPullOperationStatusEnum = "NotSupported"
-	GetCompanyDataHistoryLinksPullOperationStatusEnumRateLimitError     GetCompanyDataHistoryLinksPullOperationStatusEnum = "RateLimitError"
-	GetCompanyDataHistoryLinksPullOperationStatusEnumPermissionsError   GetCompanyDataHistoryLinksPullOperationStatusEnum = "PermissionsError"
-	GetCompanyDataHistoryLinksPullOperationStatusEnumPrerequisiteNotMet GetCompanyDataHistoryLinksPullOperationStatusEnum = "PrerequisiteNotMet"
-)
-
-// GetCompanyDataHistoryLinksPullOperation - Information about a queued, in progress or completed pull operation.
-// *Formally called `dataset`*
-type GetCompanyDataHistoryLinksPullOperation struct {
-	CompanyID    string                                            `json:"companyId"`
-	ConnectionID string                                            `json:"connectionId"`
-	DataType     string                                            `json:"dataType"`
-	ID           string                                            `json:"id"`
-	IsCompleted  bool                                              `json:"isCompleted"`
-	IsErrored    bool                                              `json:"isErrored"`
-	Progress     int64                                             `json:"progress"`
-	Requested    time.Time                                         `json:"requested"`
-	Status       GetCompanyDataHistoryLinksPullOperationStatusEnum `json:"status"`
-}
-
-// GetCompanyDataHistoryLinks - Codat's Paging Model
-type GetCompanyDataHistoryLinks struct {
-	Links        GetCompanyDataHistoryLinksLinks           `json:"_links"`
-	PageNumber   int64                                     `json:"pageNumber"`
-	PageSize     int64                                     `json:"pageSize"`
-	Results      []GetCompanyDataHistoryLinksPullOperation `json:"results,omitempty"`
-	TotalResults int64                                     `json:"totalResults"`
-}
-
 type GetCompanyDataHistoryResponse struct {
 	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
 	// OK
-	Links *GetCompanyDataHistoryLinks
+	DataConnectionHistory *shared.DataConnectionHistory
 	// Your `query` parameter was not correctly formed
-	GetCompanyDataHistory400ApplicationJSONObject *GetCompanyDataHistory400ApplicationJSON
-	// Your API request was not properly authorized.
-	GetCompanyDataHistory401ApplicationJSONObject *GetCompanyDataHistory401ApplicationJSON
-	// One or more of the resources you referenced could not be found.
-	// This might be because your company or data connection id is wrong, or was already deleted.
-	GetCompanyDataHistory404ApplicationJSONObject *GetCompanyDataHistory404ApplicationJSON
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 }

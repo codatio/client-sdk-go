@@ -3,8 +3,8 @@
 package operations
 
 import (
+	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
 	"net/http"
-	"time"
 )
 
 type GetCompanyConnectionRequest struct {
@@ -12,149 +12,12 @@ type GetCompanyConnectionRequest struct {
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
-// GetCompanyConnection404ApplicationJSON - One or more of the resources you referenced could not be found.
-// This might be because your company or data connection id is wrong, or was already deleted.
-type GetCompanyConnection404ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
-}
-
-// GetCompanyConnection401ApplicationJSON - Your API request was not properly authorized.
-type GetCompanyConnection401ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
-}
-
-type GetCompanyConnectionConnectionConnectionInfo struct {
-	AdditionalProp1 *string `json:"additionalProp1,omitempty"`
-	AdditionalProp2 *string `json:"additionalProp2,omitempty"`
-	AdditionalProp3 *string `json:"additionalProp3,omitempty"`
-}
-
-type GetCompanyConnectionConnectionDataConnectionErrors struct {
-	ErrorMessage *string `json:"errorMessage,omitempty"`
-	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
-	//
-	// ```
-	// 2020-10-08T22:40:50Z
-	// 2021-01-01T00:00:00
-	// ```
-	//
-	//
-	//
-	// When syncing data that contains `DateTime` fields from Codat, make sure you support the following cases when reading time information:
-	//
-	// - Coordinated Universal Time (UTC): `2021-11-15T06:00:00Z`
-	// - Unqualified local time: `2021-11-15T01:00:00`
-	// - UTC time offsets: `2021-11-15T01:00:00-05:00`
-	//
-	// > 📘 Time zones
-	// >
-	// > Not all dates from Codat will contain information about time zones.
-	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	ErroredOnUtc *time.Time `json:"erroredOnUtc,omitempty"`
-	StatusCode   *string    `json:"statusCode,omitempty"`
-	StatusText   *string    `json:"statusText,omitempty"`
-}
-
-// GetCompanyConnectionConnectionSourceTypeEnum - The type of platform of the connection.
-type GetCompanyConnectionConnectionSourceTypeEnum string
-
-const (
-	GetCompanyConnectionConnectionSourceTypeEnumAccounting GetCompanyConnectionConnectionSourceTypeEnum = "Accounting"
-	GetCompanyConnectionConnectionSourceTypeEnumBanking    GetCompanyConnectionConnectionSourceTypeEnum = "Banking"
-	GetCompanyConnectionConnectionSourceTypeEnumCommerce   GetCompanyConnectionConnectionSourceTypeEnum = "Commerce"
-	GetCompanyConnectionConnectionSourceTypeEnumOther      GetCompanyConnectionConnectionSourceTypeEnum = "Other"
-	GetCompanyConnectionConnectionSourceTypeEnumUnknown    GetCompanyConnectionConnectionSourceTypeEnum = "Unknown"
-)
-
-// GetCompanyConnectionConnectionDataConnectionStatusEnum - The current authorization status of the data connection.
-type GetCompanyConnectionConnectionDataConnectionStatusEnum string
-
-const (
-	GetCompanyConnectionConnectionDataConnectionStatusEnumPendingAuth  GetCompanyConnectionConnectionDataConnectionStatusEnum = "PendingAuth"
-	GetCompanyConnectionConnectionDataConnectionStatusEnumLinked       GetCompanyConnectionConnectionDataConnectionStatusEnum = "Linked"
-	GetCompanyConnectionConnectionDataConnectionStatusEnumUnlinked     GetCompanyConnectionConnectionDataConnectionStatusEnum = "Unlinked"
-	GetCompanyConnectionConnectionDataConnectionStatusEnumDeauthorized GetCompanyConnectionConnectionDataConnectionStatusEnum = "Deauthorized"
-)
-
-// GetCompanyConnectionConnection - A connection represents the link between a `company` and a source of data.
-type GetCompanyConnectionConnection struct {
-	ConnectionInfo *GetCompanyConnectionConnectionConnectionInfo `json:"connectionInfo,omitempty"`
-	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
-	//
-	// ```
-	// 2020-10-08T22:40:50Z
-	// 2021-01-01T00:00:00
-	// ```
-	//
-	//
-	//
-	// When syncing data that contains `DateTime` fields from Codat, make sure you support the following cases when reading time information:
-	//
-	// - Coordinated Universal Time (UTC): `2021-11-15T06:00:00Z`
-	// - Unqualified local time: `2021-11-15T01:00:00`
-	// - UTC time offsets: `2021-11-15T01:00:00-05:00`
-	//
-	// > 📘 Time zones
-	// >
-	// > Not all dates from Codat will contain information about time zones.
-	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	Created              time.Time                                            `json:"created"`
-	DataConnectionErrors []GetCompanyConnectionConnectionDataConnectionErrors `json:"dataConnectionErrors,omitempty"`
-	// Unique identifier for a company's data connection.
-	ID string `json:"id"`
-	// A Codat ID representing the integration.
-	IntegrationID string `json:"integrationId"`
-	// A unique four-character ID that identifies the platform of the company's data connection. This ensures continuity if the platform changes its name in the future.
-	IntegrationKey string `json:"integrationKey"`
-	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
-	//
-	// ```
-	// 2020-10-08T22:40:50Z
-	// 2021-01-01T00:00:00
-	// ```
-	//
-	//
-	//
-	// When syncing data that contains `DateTime` fields from Codat, make sure you support the following cases when reading time information:
-	//
-	// - Coordinated Universal Time (UTC): `2021-11-15T06:00:00Z`
-	// - Unqualified local time: `2021-11-15T01:00:00`
-	// - UTC time offsets: `2021-11-15T01:00:00-05:00`
-	//
-	// > 📘 Time zones
-	// >
-	// > Not all dates from Codat will contain information about time zones.
-	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	LastSync     *time.Time `json:"lastSync,omitempty"`
-	LinkURL      string     `json:"linkUrl"`
-	PlatformName string     `json:"platformName"`
-	// A source-specific ID used to distinguish between different sources originating from the same data connection. In general, a data connection is a single data source. However, for TrueLayer, `sourceId` is associated with a specific bank and has a many-to-one relationship with the `integrationId`.
-	SourceID string `json:"sourceId"`
-	// The type of platform of the connection.
-	SourceType GetCompanyConnectionConnectionSourceTypeEnum `json:"sourceType"`
-	// The current authorization status of the data connection.
-	Status GetCompanyConnectionConnectionDataConnectionStatusEnum `json:"status"`
-}
-
 type GetCompanyConnectionResponse struct {
 	// OK
-	Connection  *GetCompanyConnectionConnection
+	Connection  *shared.Connection
 	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
 	// Your API request was not properly authorized.
-	GetCompanyConnection401ApplicationJSONObject *GetCompanyConnection401ApplicationJSON
-	// One or more of the resources you referenced could not be found.
-	// This might be because your company or data connection id is wrong, or was already deleted.
-	GetCompanyConnection404ApplicationJSONObject *GetCompanyConnection404ApplicationJSON
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 }

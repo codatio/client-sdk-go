@@ -3,8 +3,8 @@
 package operations
 
 import (
+	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
 	"net/http"
-	"time"
 )
 
 type ListCompanyConnectionsRequest struct {
@@ -19,179 +19,12 @@ type ListCompanyConnectionsRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-// ListCompanyConnections401ApplicationJSON - Your API request was not properly authorized.
-type ListCompanyConnections401ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
-}
-
-// ListCompanyConnections400ApplicationJSON - Your `query` parameter was not correctly formed
-type ListCompanyConnections400ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
-}
-
-type ListCompanyConnectionsLinksLinksCurrent struct {
-	Href string `json:"href"`
-}
-
-type ListCompanyConnectionsLinksLinksNext struct {
-	Href *string `json:"href,omitempty"`
-}
-
-type ListCompanyConnectionsLinksLinksPrevious struct {
-	Href *string `json:"href,omitempty"`
-}
-
-type ListCompanyConnectionsLinksLinksSelf struct {
-	Href string `json:"href"`
-}
-
-type ListCompanyConnectionsLinksLinks struct {
-	Current  ListCompanyConnectionsLinksLinksCurrent   `json:"current"`
-	Next     *ListCompanyConnectionsLinksLinksNext     `json:"next,omitempty"`
-	Previous *ListCompanyConnectionsLinksLinksPrevious `json:"previous,omitempty"`
-	Self     ListCompanyConnectionsLinksLinksSelf      `json:"self"`
-}
-
-type ListCompanyConnectionsLinksConnectionConnectionInfo struct {
-	AdditionalProp1 *string `json:"additionalProp1,omitempty"`
-	AdditionalProp2 *string `json:"additionalProp2,omitempty"`
-	AdditionalProp3 *string `json:"additionalProp3,omitempty"`
-}
-
-type ListCompanyConnectionsLinksConnectionDataConnectionErrors struct {
-	ErrorMessage *string `json:"errorMessage,omitempty"`
-	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
-	//
-	// ```
-	// 2020-10-08T22:40:50Z
-	// 2021-01-01T00:00:00
-	// ```
-	//
-	//
-	//
-	// When syncing data that contains `DateTime` fields from Codat, make sure you support the following cases when reading time information:
-	//
-	// - Coordinated Universal Time (UTC): `2021-11-15T06:00:00Z`
-	// - Unqualified local time: `2021-11-15T01:00:00`
-	// - UTC time offsets: `2021-11-15T01:00:00-05:00`
-	//
-	// > 📘 Time zones
-	// >
-	// > Not all dates from Codat will contain information about time zones.
-	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	ErroredOnUtc *time.Time `json:"erroredOnUtc,omitempty"`
-	StatusCode   *string    `json:"statusCode,omitempty"`
-	StatusText   *string    `json:"statusText,omitempty"`
-}
-
-// ListCompanyConnectionsLinksConnectionSourceTypeEnum - The type of platform of the connection.
-type ListCompanyConnectionsLinksConnectionSourceTypeEnum string
-
-const (
-	ListCompanyConnectionsLinksConnectionSourceTypeEnumAccounting ListCompanyConnectionsLinksConnectionSourceTypeEnum = "Accounting"
-	ListCompanyConnectionsLinksConnectionSourceTypeEnumBanking    ListCompanyConnectionsLinksConnectionSourceTypeEnum = "Banking"
-	ListCompanyConnectionsLinksConnectionSourceTypeEnumCommerce   ListCompanyConnectionsLinksConnectionSourceTypeEnum = "Commerce"
-	ListCompanyConnectionsLinksConnectionSourceTypeEnumOther      ListCompanyConnectionsLinksConnectionSourceTypeEnum = "Other"
-	ListCompanyConnectionsLinksConnectionSourceTypeEnumUnknown    ListCompanyConnectionsLinksConnectionSourceTypeEnum = "Unknown"
-)
-
-// ListCompanyConnectionsLinksConnectionDataConnectionStatusEnum - The current authorization status of the data connection.
-type ListCompanyConnectionsLinksConnectionDataConnectionStatusEnum string
-
-const (
-	ListCompanyConnectionsLinksConnectionDataConnectionStatusEnumPendingAuth  ListCompanyConnectionsLinksConnectionDataConnectionStatusEnum = "PendingAuth"
-	ListCompanyConnectionsLinksConnectionDataConnectionStatusEnumLinked       ListCompanyConnectionsLinksConnectionDataConnectionStatusEnum = "Linked"
-	ListCompanyConnectionsLinksConnectionDataConnectionStatusEnumUnlinked     ListCompanyConnectionsLinksConnectionDataConnectionStatusEnum = "Unlinked"
-	ListCompanyConnectionsLinksConnectionDataConnectionStatusEnumDeauthorized ListCompanyConnectionsLinksConnectionDataConnectionStatusEnum = "Deauthorized"
-)
-
-// ListCompanyConnectionsLinksConnection - A connection represents the link between a `company` and a source of data.
-type ListCompanyConnectionsLinksConnection struct {
-	ConnectionInfo *ListCompanyConnectionsLinksConnectionConnectionInfo `json:"connectionInfo,omitempty"`
-	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
-	//
-	// ```
-	// 2020-10-08T22:40:50Z
-	// 2021-01-01T00:00:00
-	// ```
-	//
-	//
-	//
-	// When syncing data that contains `DateTime` fields from Codat, make sure you support the following cases when reading time information:
-	//
-	// - Coordinated Universal Time (UTC): `2021-11-15T06:00:00Z`
-	// - Unqualified local time: `2021-11-15T01:00:00`
-	// - UTC time offsets: `2021-11-15T01:00:00-05:00`
-	//
-	// > 📘 Time zones
-	// >
-	// > Not all dates from Codat will contain information about time zones.
-	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	Created              time.Time                                                   `json:"created"`
-	DataConnectionErrors []ListCompanyConnectionsLinksConnectionDataConnectionErrors `json:"dataConnectionErrors,omitempty"`
-	// Unique identifier for a company's data connection.
-	ID string `json:"id"`
-	// A Codat ID representing the integration.
-	IntegrationID string `json:"integrationId"`
-	// A unique four-character ID that identifies the platform of the company's data connection. This ensures continuity if the platform changes its name in the future.
-	IntegrationKey string `json:"integrationKey"`
-	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
-	//
-	// ```
-	// 2020-10-08T22:40:50Z
-	// 2021-01-01T00:00:00
-	// ```
-	//
-	//
-	//
-	// When syncing data that contains `DateTime` fields from Codat, make sure you support the following cases when reading time information:
-	//
-	// - Coordinated Universal Time (UTC): `2021-11-15T06:00:00Z`
-	// - Unqualified local time: `2021-11-15T01:00:00`
-	// - UTC time offsets: `2021-11-15T01:00:00-05:00`
-	//
-	// > 📘 Time zones
-	// >
-	// > Not all dates from Codat will contain information about time zones.
-	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	LastSync     *time.Time `json:"lastSync,omitempty"`
-	LinkURL      string     `json:"linkUrl"`
-	PlatformName string     `json:"platformName"`
-	// A source-specific ID used to distinguish between different sources originating from the same data connection. In general, a data connection is a single data source. However, for TrueLayer, `sourceId` is associated with a specific bank and has a many-to-one relationship with the `integrationId`.
-	SourceID string `json:"sourceId"`
-	// The type of platform of the connection.
-	SourceType ListCompanyConnectionsLinksConnectionSourceTypeEnum `json:"sourceType"`
-	// The current authorization status of the data connection.
-	Status ListCompanyConnectionsLinksConnectionDataConnectionStatusEnum `json:"status"`
-}
-
-// ListCompanyConnectionsLinks - Codat's Paging Model
-type ListCompanyConnectionsLinks struct {
-	Links        ListCompanyConnectionsLinksLinks        `json:"_links"`
-	PageNumber   int64                                   `json:"pageNumber"`
-	PageSize     int64                                   `json:"pageSize"`
-	Results      []ListCompanyConnectionsLinksConnection `json:"results,omitempty"`
-	TotalResults int64                                   `json:"totalResults"`
-}
-
 type ListCompanyConnectionsResponse struct {
-	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
 	// OK
-	Links *ListCompanyConnectionsLinks
+	Connections *shared.Connections
+	ContentType string
 	// Your `query` parameter was not correctly formed
-	ListCompanyConnections400ApplicationJSONObject *ListCompanyConnections400ApplicationJSON
-	// Your API request was not properly authorized.
-	ListCompanyConnections401ApplicationJSONObject *ListCompanyConnections401ApplicationJSON
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 }

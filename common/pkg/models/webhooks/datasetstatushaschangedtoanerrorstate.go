@@ -11,27 +11,3 @@ type DatasetStatusHasChangedToAnErrorStateResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 }
-
-type DatasetStatusHasChangedToAnErrorStateDatasetDataErrorWebhookData struct {
-	// Data type the sync completed for.
-	DataType *string `json:"dataType,omitempty"`
-	// Unique identifier for the dataset that completed its sync.
-	DatasetID *string `json:"datasetId,omitempty"`
-	// The current status of the dataset's sync.
-	DatasetStatus *string `json:"datasetStatus,omitempty"`
-}
-
-// DatasetStatusHasChangedToAnErrorStateDatasetDataErrorWebhook - Webhook request body to notify that a data synchronization has completed.
-type DatasetStatusHasChangedToAnErrorStateDatasetDataErrorWebhook struct {
-	// Unique identifier of the alert.
-	AlertID *string `json:"alertId,omitempty"`
-	// Unique identifier for your SMB in Codat.
-	CompanyID *string                                                           `json:"companyId,omitempty"`
-	Data      *DatasetStatusHasChangedToAnErrorStateDatasetDataErrorWebhookData `json:"data,omitempty"`
-	// A human readable message about the webhook.
-	Message *string `json:"message,omitempty"`
-	// Unique identifier for the rule.
-	RuleID *string `json:"ruleId,omitempty"`
-	// The type of rule.
-	RuleType *string `json:"ruleType,omitempty"`
-}
