@@ -69,8 +69,9 @@ func main() {
 
 * `GetAccountingMarketingMetrics` - Get the marketing metrics from an accounting source for a given company.
 * `GetExcelReport` - Download generated excel report
-* `MakeRequestToDownloadExcelReport` - Request an Excel report for download
-* `RequestExcelReportForDownload` - Request an Excel report for download
+* `GetExcelReportPost` - Download generated excel report
+* `MakeRequestToDownloadExcelReport` - Get status of Excel report
+* `RequestExcelReportForDownload` - Generate an Excel report
 
 ### Reports
 

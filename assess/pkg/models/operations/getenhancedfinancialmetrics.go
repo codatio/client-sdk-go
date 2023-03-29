@@ -299,7 +299,7 @@ func (e *GetEnhancedFinancialMetrics200ApplicationJSONPeriodUnitEnum) UnmarshalJ
 
 // GetEnhancedFinancialMetrics200ApplicationJSON - OK
 type GetEnhancedFinancialMetrics200ApplicationJSON struct {
-	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code. e.g. _GBP_.
+	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code, e.g. _GBP_.
 	//
 	// ## Unknown currencies
 	//

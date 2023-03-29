@@ -25,6 +25,7 @@ pkg/models/operations/getdataintegritystatus.go
 pkg/models/operations/getdataintegritysummaries.go
 pkg/models/operations/getaccountingmarketingmetrics.go
 pkg/models/operations/getexcelreport.go
+pkg/models/operations/getexcelreportpost.go
 pkg/models/operations/makerequesttodownloadexcelreport.go
 pkg/models/operations/requestexcelreportfordownload.go
 pkg/models/operations/getaccountsforenhancedbalancesheet.go

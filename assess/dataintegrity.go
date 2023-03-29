@@ -68,12 +68,12 @@ func (s *dataIntegrity) GetDataIntegrityDetails(ctx context.Context, request ope
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetDataIntegrityDetailsLinks
+			var out *operations.GetDataIntegrityDetails200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Links = out
+			res.GetDataIntegrityDetails200ApplicationJSONObject = out
 		}
 	}
 

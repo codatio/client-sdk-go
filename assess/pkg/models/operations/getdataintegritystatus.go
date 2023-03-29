@@ -46,7 +46,7 @@ type GetDataIntegrityStatusRequest struct {
 
 // GetDataIntegrityStatus200ApplicationJSONDataIntegrityTypeAmounts - Only returned for transactions. For accounts, there is nothing returned.
 type GetDataIntegrityStatus200ApplicationJSONDataIntegrityTypeAmounts struct {
-	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code. e.g. _GBP_.
+	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code, e.g. _GBP_.
 	//
 	// ## Unknown currencies
 	//

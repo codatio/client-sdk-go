@@ -19,26 +19,26 @@ type ListAccountsCategoriesRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-type ListAccountsCategoriesLinksLinksHypertextReference struct {
+type ListAccountsCategories200ApplicationJSONLinksHypertextReference struct {
 	Href *string `json:"href,omitempty"`
 }
 
-type ListAccountsCategoriesLinksLinks struct {
-	Current  ListAccountsCategoriesLinksLinksHypertextReference  `json:"current"`
-	Next     *ListAccountsCategoriesLinksLinksHypertextReference `json:"next,omitempty"`
-	Previous *ListAccountsCategoriesLinksLinksHypertextReference `json:"previous,omitempty"`
-	Self     ListAccountsCategoriesLinksLinksHypertextReference  `json:"self"`
+type ListAccountsCategories200ApplicationJSONLinks struct {
+	Current  ListAccountsCategories200ApplicationJSONLinksHypertextReference  `json:"current"`
+	Next     *ListAccountsCategories200ApplicationJSONLinksHypertextReference `json:"next,omitempty"`
+	Previous *ListAccountsCategories200ApplicationJSONLinksHypertextReference `json:"previous,omitempty"`
+	Self     ListAccountsCategories200ApplicationJSONLinksHypertextReference  `json:"self"`
 }
 
-// ListAccountsCategoriesLinksCategorisedAccountAccountRef - An object containing account reference data.
-type ListAccountsCategoriesLinksCategorisedAccountAccountRef struct {
+// ListAccountsCategories200ApplicationJSONCategorisedAccountAccountRef - An object containing account reference data.
+type ListAccountsCategories200ApplicationJSONCategorisedAccountAccountRef struct {
 	// 'id' from the Accounts data type.
 	ID *string `json:"id,omitempty"`
 	// 'name' from the Accounts data type.
 	Name *string `json:"name,omitempty"`
 }
 
-type ListAccountsCategoriesLinksCategorisedAccountModifiedDate struct {
+type ListAccountsCategories200ApplicationJSONCategorisedAccountModifiedDate struct {
 	// Most granular chart of account type.
 	DetailType *string `json:"detailType,omitempty"`
 	// The date on which this record was last modified in Codat.
@@ -49,21 +49,21 @@ type ListAccountsCategoriesLinksCategorisedAccountModifiedDate struct {
 	Type *string `json:"type,omitempty"`
 }
 
-type ListAccountsCategoriesLinksCategorisedAccount struct {
+type ListAccountsCategories200ApplicationJSONCategorisedAccount struct {
 	// An object containing account reference data.
-	AccountRef *ListAccountsCategoriesLinksCategorisedAccountAccountRef   `json:"accountRef,omitempty"`
-	Confirmed  *ListAccountsCategoriesLinksCategorisedAccountModifiedDate `json:"confirmed,omitempty"`
-	Suggested  *ListAccountsCategoriesLinksCategorisedAccountModifiedDate `json:"suggested,omitempty"`
+	AccountRef *ListAccountsCategories200ApplicationJSONCategorisedAccountAccountRef   `json:"accountRef,omitempty"`
+	Confirmed  *ListAccountsCategories200ApplicationJSONCategorisedAccountModifiedDate `json:"confirmed,omitempty"`
+	Suggested  *ListAccountsCategories200ApplicationJSONCategorisedAccountModifiedDate `json:"suggested,omitempty"`
 }
 
-// ListAccountsCategoriesLinks - Codat's Paging Model
-type ListAccountsCategoriesLinks struct {
-	Links      ListAccountsCategoriesLinksLinks `json:"_links"`
-	PageNumber int64                            `json:"pageNumber"`
-	PageSize   int64                            `json:"pageSize"`
+// ListAccountsCategories200ApplicationJSON - OK
+type ListAccountsCategories200ApplicationJSON struct {
+	Links      ListAccountsCategories200ApplicationJSONLinks `json:"_links"`
+	PageNumber int64                                         `json:"pageNumber"`
+	PageSize   int64                                         `json:"pageSize"`
 	// A list confirmed and suggested account categories.
-	Results      []ListAccountsCategoriesLinksCategorisedAccount `json:"results,omitempty"`
-	TotalResults int64                                           `json:"totalResults"`
+	Results      []ListAccountsCategories200ApplicationJSONCategorisedAccount `json:"results,omitempty"`
+	TotalResults int64                                                        `json:"totalResults"`
 }
 
 type ListAccountsCategoriesResponse struct {
@@ -71,5 +71,5 @@ type ListAccountsCategoriesResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	Links *ListAccountsCategoriesLinks
+	ListAccountsCategories200ApplicationJSONObject *ListAccountsCategories200ApplicationJSON
 }

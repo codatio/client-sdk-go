@@ -32,8 +32,10 @@ type GetEnhancedInvoicesReportEnhancedInvoicesReportReportInfo struct {
 }
 
 type GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesCustomerRef struct {
+	// `customerName` from the Customer data type
 	CompanyName *string `json:"companyName,omitempty"`
-	ID          string  `json:"id"`
+	// `id` from the Customers data type
+	ID string `json:"id"`
 }
 
 // GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDateAccountRef - Account the payment is recorded against in the accounting platform.
@@ -46,27 +48,39 @@ type GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceMod
 
 // GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDateCustomerRef - Customer the payment is recorded against in the accounting platform.
 type GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDateCustomerRef struct {
+	// `customerName` from the Customer data type
 	CompanyName *string `json:"companyName,omitempty"`
-	ID          string  `json:"id"`
+	// `id` from the Customers data type
+	ID string `json:"id"`
 }
 
-// GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDateLinesLinksTypeEnum - Types of payment line links
-type GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDateLinesLinksTypeEnum string
+// GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDatePaymentLinePaymentLineLinkPaymentLinkTypeEnum - Types of payment line links, either:
+// `Unknown`
+// `Unlinked` - Not used
+// `Invoice` - ID refers to the invoice
+// `CreditNote` - ID refers to the credit note
+// `Refund` - ID refers to the sibling payment
+// `Payment` - ID refers to the sibling payment
+// `PaymentOnAccount` - ID refers to the customer
+// `Other` - ID refers to the customer
+// `Manual Journal`
+// `Discount` - ID refers to the payment
+type GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDatePaymentLinePaymentLineLinkPaymentLinkTypeEnum string
 
 const (
-	GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDateLinesLinksTypeEnumUnknown          GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDateLinesLinksTypeEnum = "Unknown"
-	GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDateLinesLinksTypeEnumUnlinked         GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDateLinesLinksTypeEnum = "Unlinked"
-	GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDateLinesLinksTypeEnumInvoice          GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDateLinesLinksTypeEnum = "Invoice"
-	GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDateLinesLinksTypeEnumCreditNote       GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDateLinesLinksTypeEnum = "CreditNote"
-	GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDateLinesLinksTypeEnumOther            GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDateLinesLinksTypeEnum = "Other"
-	GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDateLinesLinksTypeEnumRefund           GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDateLinesLinksTypeEnum = "Refund"
-	GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDateLinesLinksTypeEnumPayment          GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDateLinesLinksTypeEnum = "Payment"
-	GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDateLinesLinksTypeEnumPaymentOnAccount GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDateLinesLinksTypeEnum = "PaymentOnAccount"
-	GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDateLinesLinksTypeEnumManualJournal    GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDateLinesLinksTypeEnum = "ManualJournal"
-	GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDateLinesLinksTypeEnumDiscount         GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDateLinesLinksTypeEnum = "Discount"
+	GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDatePaymentLinePaymentLineLinkPaymentLinkTypeEnumUnknown          GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDatePaymentLinePaymentLineLinkPaymentLinkTypeEnum = "Unknown"
+	GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDatePaymentLinePaymentLineLinkPaymentLinkTypeEnumUnlinked         GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDatePaymentLinePaymentLineLinkPaymentLinkTypeEnum = "Unlinked"
+	GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDatePaymentLinePaymentLineLinkPaymentLinkTypeEnumInvoice          GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDatePaymentLinePaymentLineLinkPaymentLinkTypeEnum = "Invoice"
+	GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDatePaymentLinePaymentLineLinkPaymentLinkTypeEnumCreditNote       GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDatePaymentLinePaymentLineLinkPaymentLinkTypeEnum = "CreditNote"
+	GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDatePaymentLinePaymentLineLinkPaymentLinkTypeEnumOther            GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDatePaymentLinePaymentLineLinkPaymentLinkTypeEnum = "Other"
+	GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDatePaymentLinePaymentLineLinkPaymentLinkTypeEnumRefund           GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDatePaymentLinePaymentLineLinkPaymentLinkTypeEnum = "Refund"
+	GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDatePaymentLinePaymentLineLinkPaymentLinkTypeEnumPayment          GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDatePaymentLinePaymentLineLinkPaymentLinkTypeEnum = "Payment"
+	GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDatePaymentLinePaymentLineLinkPaymentLinkTypeEnumPaymentOnAccount GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDatePaymentLinePaymentLineLinkPaymentLinkTypeEnum = "PaymentOnAccount"
+	GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDatePaymentLinePaymentLineLinkPaymentLinkTypeEnumManualJournal    GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDatePaymentLinePaymentLineLinkPaymentLinkTypeEnum = "ManualJournal"
+	GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDatePaymentLinePaymentLineLinkPaymentLinkTypeEnumDiscount         GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDatePaymentLinePaymentLineLinkPaymentLinkTypeEnum = "Discount"
 )
 
-func (e *GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDateLinesLinksTypeEnum) UnmarshalJSON(data []byte) error {
+func (e *GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDatePaymentLinePaymentLineLinkPaymentLinkTypeEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {
 		return err
@@ -91,17 +105,17 @@ func (e *GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourc
 	case "ManualJournal":
 		fallthrough
 	case "Discount":
-		*e = GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDateLinesLinksTypeEnum(s)
+		*e = GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDatePaymentLinePaymentLineLinkPaymentLinkTypeEnum(s)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDateLinesLinksTypeEnum: %s", s)
+		return fmt.Errorf("invalid value for GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDatePaymentLinePaymentLineLinkPaymentLinkTypeEnum: %s", s)
 	}
 }
 
-type GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDateLinesLinks struct {
+type GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDatePaymentLinePaymentLineLink struct {
 	// Amount by which the balance of the linked entity is altered, in the currency of the linked entity.
-	// A negative link amount _reduces the outstanding amount on the accounts receivable account.
-	// A positive link amount _increases the outstanding amount on the accounts receivable account.
+	// A negative link amount _reduces_ the outstanding amount on the accounts receivable account.
+	// A positive link amount _increases_ the outstanding amount on the accounts receivable account.
 	Amount *float64 `json:"amount,omitempty"`
 	// Rate to convert the total amount of the payment into the base currency for the company at the time of the payment.
 	//
@@ -129,26 +143,39 @@ type GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceMod
 	CurrencyRate *float64 `json:"currencyRate,omitempty"`
 	// Unique identifier of the transaction represented by the link.
 	ID *string `json:"id,omitempty"`
-	// Types of payment line links
-	Type GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDateLinesLinksTypeEnum `json:"type"`
+	// Types of payment line links, either:
+	// `Unknown`
+	// `Unlinked` - Not used
+	// `Invoice` - ID refers to the invoice
+	// `CreditNote` - ID refers to the credit note
+	// `Refund` - ID refers to the sibling payment
+	// `Payment` - ID refers to the sibling payment
+	// `PaymentOnAccount` - ID refers to the customer
+	// `Other` - ID refers to the customer
+	// `Manual Journal`
+	// `Discount` - ID refers to the payment
+	Type GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDatePaymentLinePaymentLineLinkPaymentLinkTypeEnum `json:"type"`
 }
 
-type GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDateLines struct {
+type GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDatePaymentLine struct {
 	// The date the payment was allocated.
 	AllocatedOnDate *string `json:"allocatedOnDate,omitempty"`
 	//
 	// Amount in the payment currency.
-	Amount float64                                                                                          `json:"amount"`
-	Links  []GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDateLinesLinks `json:"links,omitempty"`
+	Amount float64                                                                                                          `json:"amount"`
+	Links  []GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDatePaymentLinePaymentLineLink `json:"links,omitempty"`
 }
 
 type GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDateMetadata struct {
+	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
 // GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDatePaymentMethodRef - The Payment Method to which the payment is linked in the accounting platform.
 type GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDatePaymentMethodRef struct {
-	ID   string  `json:"id"`
+	// `id` from the Payment Methods data type
+	ID *string `json:"id,omitempty"`
+	// `name` from the Payment Methods data type
 	Name *string `json:"name,omitempty"`
 }
 
@@ -173,7 +200,7 @@ type GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceMod
 // - An allocation of a customer's credit note, either to an invoice or maybe a refund.
 // - A payment made directly to that accounts receivable account. This might be an overpayment or a prepayment. It might also be the refund of a payment made directly to an accounts receivable account.
 //
-// Depending on the payments allowed by the underlying accounting package, some payment types may be combined. Please see the [Example data](#section-example-data) below for more details.
+// Depending on the payments allowed by the underlying accounting package, some payment types may be combined. Please see the example for more details.
 //
 // In Codat, a payment contains details of:
 //
@@ -276,7 +303,7 @@ type GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceMod
 //   - A **type** that indicates the type of **link**, in this case a `Refund`.
 //   - An **id** that contains the ID of the payment that refunded this line.
 //
-// > 📘 Support for linked payments
+// > **Support for linked payments**
 // >
 // > Not all accounting packages support linking payments in this way. In some platforms, you may see a payment on account and a refund on account.
 //
@@ -299,7 +326,7 @@ type GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceMod
 // - The base currency for the accounts receivable account.
 // - The currency of the item.
 //
-// ```json Currency rate example
+// ```json title="Currency rate example"
 //
 //	{
 //	    "id": "123",
@@ -325,13 +352,13 @@ type GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceMod
 //
 // ## Example data
 //
-// > 📘 Object properties
+// > **Object properties**
 // >
 // > For the sake of brevity, the examples here may omit properties from objects. For the full object definition, see [Payments](https://api.codat.io/swagger/index.html#/Payments).
 //
 // ## Simple examples
 //
-// ```json Payment for invoice
+// ```json title="Payment for invoice"
 //
 //	{
 //	    "totalAmount": 1000,
@@ -351,7 +378,7 @@ type GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceMod
 //
 // ```
 //
-// ```json Allocation of credit note
+// ```json title="Allocation of credit note"
 //
 //	{
 //	    "totalAmount": 0,
@@ -376,7 +403,7 @@ type GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceMod
 //
 // ```
 //
-// ```json Payment of invoice and payment on account
+// ```json title="Payment of invoice and payment on account"
 //
 //	{
 //	    "totalAmount": 2000,
@@ -406,7 +433,7 @@ type GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceMod
 //
 // ```
 //
-// ```json Refund of credit note
+// ```json title="Refund of credit note"
 //
 //	{
 //	    "totalAmount": -1000,
@@ -426,7 +453,7 @@ type GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceMod
 //
 // ```
 //
-// ```json Refund on accounts receivable account
+// ```json title="Refund on accounts receivable account"
 //
 //	{
 //	    "totalAmount": -1000,
@@ -446,7 +473,7 @@ type GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceMod
 //
 // ```
 //
-// ```json Linked refund on accounts receivable account
+// ```json title="Linked refund on accounts receivable account"
 //
 //	{
 //	    "id" : "payment-001",
@@ -484,7 +511,7 @@ type GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceMod
 //
 // ```
 //
-// ```json Using a credit note and cash to pay an invoice
+// ```json title="Using a credit note and cash to pay an invoice"
 //
 //	{
 //	    "totalAmount": 250,
@@ -521,7 +548,7 @@ type GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceMod
 //
 // ## Complex examples
 //
-// ```json Use two credit notes and 1000 in to "bank" (cash, cheque etc.) to pay invoice
+// ```json title="Use two credit notes and 1000 in to "bank" (cash, cheque etc.) to pay invoice"
 //
 //	{
 //	    "totalAmount": 1000,
@@ -571,7 +598,7 @@ type GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceMod
 //
 // ```
 //
-// ```json Pay an invoice with two credit notes and cash, with 1000 left "on account"
+// ```json title="Pay an invoice with two credit notes and cash, with 1000 left 'on account'"
 //
 //	{
 //	    "totalAmount": 2000,
@@ -631,7 +658,7 @@ type GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceMod
 //
 // ```
 //
-// ```json Two credit notes pay two invoices with no allocation amount specified
+// ```json title="Two credit notes pay two invoices with no allocation amount specified"
 //
 //	{
 //	    "totalAmount": 0,
@@ -666,7 +693,7 @@ type GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceMod
 //
 // ```
 //
-// ```json Two credit notes and cash pay three invoices with no allocation amount specified, and refund cash
+// ```json title="Two credit notes and cash pay three invoices with no allocation amount specified, and refund cash"
 //
 //	{
 //	    "totalAmount": 2000,
@@ -735,7 +762,7 @@ type GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceMod
 //
 // In this example, a payment on account is used to pay the same invoice in January and again in February.
 //
-// ```json January
+// ```json title="January"
 //
 //	{
 //	    "id": "001",
@@ -767,7 +794,7 @@ type GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceMod
 //
 // ```
 //
-// ```json February
+// ```json title="February"
 //
 //	{
 //	    "id": "001",
@@ -809,7 +836,7 @@ type GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceMod
 //
 // ```
 //
-// ```json Two credit notes and some cash pay two invoices with no allocations specified
+// ```json title="Two credit notes and some cash pay two invoices with no allocations specified"
 //
 //	{
 //	    "totalAmount": 500,
@@ -875,8 +902,8 @@ type GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceMod
 	// Identifier for the payment, unique to the company in the accounting platform.
 	ID *string `json:"id,omitempty"`
 	// An array of payment lines.
-	Lines    []GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDateLines   `json:"lines,omitempty"`
-	Metadata *GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDateMetadata `json:"metadata,omitempty"`
+	Lines    []GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDatePaymentLine `json:"lines,omitempty"`
+	Metadata *GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesSourceModifiedDateMetadata     `json:"metadata,omitempty"`
 	// The date on which this record was last modified in Codat.
 	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Any additional information associated with the payment.
@@ -937,7 +964,7 @@ func (e *GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoicesStatu
 
 type GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoices struct {
 	AmountDue *float64 `json:"amountDue,omitempty"`
-	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code. e.g. _GBP_.
+	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code, e.g. _GBP_.
 	//
 	// ## Unknown currencies
 	//
@@ -961,7 +988,7 @@ type GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoices struct {
 	// - Unqualified local time: `2021-11-15T01:00:00`
 	// - UTC time offsets: `2021-11-15T01:00:00-05:00`
 	//
-	// > 📘 Time zones
+	// > Time zones
 	// >
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
@@ -984,7 +1011,7 @@ type GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoices struct {
 	// - Unqualified local time: `2021-11-15T01:00:00`
 	// - UTC time offsets: `2021-11-15T01:00:00-05:00`
 	//
-	// > 📘 Time zones
+	// > Time zones
 	// >
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
@@ -1004,7 +1031,7 @@ type GetEnhancedInvoicesReportEnhancedInvoicesReportReportItemsInvoices struct {
 	// - Unqualified local time: `2021-11-15T01:00:00`
 	// - UTC time offsets: `2021-11-15T01:00:00-05:00`
 	//
-	// > 📘 Time zones
+	// > Time zones
 	// >
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.

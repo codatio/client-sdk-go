@@ -82,12 +82,12 @@ func (s *excelReports) GetAccountingMarketingMetrics(ctx context.Context, reques
 }
 
 // GetExcelReport - Download generated excel report
-// Download the Excel report to a local drive.
+// Download the previously generated Excel report to a local drive.
 func (s *excelReports) GetExcelReport(ctx context.Context, request operations.GetExcelReportRequest) (*operations.GetExcelReportResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/assess/excel/download", request, nil)
 
-	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
+	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -130,7 +130,56 @@ func (s *excelReports) GetExcelReport(ctx context.Context, request operations.Ge
 	return res, nil
 }
 
-// MakeRequestToDownloadExcelReport - Request an Excel report for download
+// GetExcelReportPost - Download generated excel report
+// Download the previously generated Excel report to a local drive.
+func (s *excelReports) GetExcelReportPost(ctx context.Context, request operations.GetExcelReportPostRequest) (*operations.GetExcelReportPostResponse, error) {
+	baseURL := s.serverURL
+	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/assess/excel/download", request, nil)
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
+
+	client := s.securityClient
+
+	httpRes, err := client.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
+	}
+	defer httpRes.Body.Close()
+
+	contentType := httpRes.Header.Get("Content-Type")
+
+	res := &operations.GetExcelReportPostResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: contentType,
+		RawResponse: httpRes,
+	}
+	switch {
+	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/octet-stream`):
+			out, err := io.ReadAll(httpRes.Body)
+			if err != nil {
+				return nil, fmt.Errorf("error reading response body: %w", err)
+			}
+
+			res.Body = out
+		}
+	}
+
+	return res, nil
+}
+
+// MakeRequestToDownloadExcelReport - Get status of Excel report
 // Returns the status of the latest report requested.
 func (s *excelReports) MakeRequestToDownloadExcelReport(ctx context.Context, request operations.MakeRequestToDownloadExcelReportRequest) (*operations.MakeRequestToDownloadExcelReportResponse, error) {
 	baseURL := s.serverURL
@@ -179,8 +228,8 @@ func (s *excelReports) MakeRequestToDownloadExcelReport(ctx context.Context, req
 	return res, nil
 }
 
-// RequestExcelReportForDownload - Request an Excel report for download
-// Request an Excel report for download.
+// RequestExcelReportForDownload - Generate an Excel report
+// Generate an Excel report which can subsequently be downloaded.
 func (s *excelReports) RequestExcelReportForDownload(ctx context.Context, request operations.RequestExcelReportForDownloadRequest) (*operations.RequestExcelReportForDownloadResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/assess/excel", request, nil)

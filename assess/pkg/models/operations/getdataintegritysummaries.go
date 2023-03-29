@@ -47,7 +47,7 @@ type GetDataIntegritySummariesRequest struct {
 }
 
 type GetDataIntegritySummaries200ApplicationJSONDataIntegrityTypeByAmount struct {
-	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code. e.g. _GBP_.
+	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code, e.g. _GBP_.
 	//
 	// ## Unknown currencies
 	//

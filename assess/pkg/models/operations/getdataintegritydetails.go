@@ -52,18 +52,18 @@ type GetDataIntegrityDetailsRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-type GetDataIntegrityDetailsLinksLinksHypertextReference struct {
+type GetDataIntegrityDetails200ApplicationJSONLinksHypertextReference struct {
 	Href *string `json:"href,omitempty"`
 }
 
-type GetDataIntegrityDetailsLinksLinks struct {
-	Current  GetDataIntegrityDetailsLinksLinksHypertextReference  `json:"current"`
-	Next     *GetDataIntegrityDetailsLinksLinksHypertextReference `json:"next,omitempty"`
-	Previous *GetDataIntegrityDetailsLinksLinksHypertextReference `json:"previous,omitempty"`
-	Self     GetDataIntegrityDetailsLinksLinksHypertextReference  `json:"self"`
+type GetDataIntegrityDetails200ApplicationJSONLinks struct {
+	Current  GetDataIntegrityDetails200ApplicationJSONLinksHypertextReference  `json:"current"`
+	Next     *GetDataIntegrityDetails200ApplicationJSONLinksHypertextReference `json:"next,omitempty"`
+	Previous *GetDataIntegrityDetails200ApplicationJSONLinksHypertextReference `json:"previous,omitempty"`
+	Self     GetDataIntegrityDetails200ApplicationJSONLinksHypertextReference  `json:"self"`
 }
 
-type GetDataIntegrityDetailsLinksDataIntegrityDetailsMatches struct {
+type GetDataIntegrityDetails200ApplicationJSONDataIntegrityDetailsMatches struct {
 	// The transaction value.
 	Amount *string `json:"amount,omitempty"`
 	// ID GUID representing the connection of the accounting or banking platform.
@@ -80,7 +80,7 @@ type GetDataIntegrityDetailsLinksDataIntegrityDetailsMatches struct {
 	Type *string `json:"type,omitempty"`
 }
 
-type GetDataIntegrityDetailsLinksDataIntegrityDetails struct {
+type GetDataIntegrityDetails200ApplicationJSONDataIntegrityDetails struct {
 	// The transaction value.
 	Amount *float64 `json:"amount,omitempty"`
 	// ID GUID representing the connection of the accounting or banking platform.
@@ -92,19 +92,19 @@ type GetDataIntegrityDetailsLinksDataIntegrityDetails struct {
 	// The transaction description.
 	Description *string `json:"description,omitempty"`
 	// ID GUID of the transaction.
-	ID      *string                                                   `json:"id,omitempty"`
-	Matches []GetDataIntegrityDetailsLinksDataIntegrityDetailsMatches `json:"matches,omitempty"`
+	ID      *string                                                                `json:"id,omitempty"`
+	Matches []GetDataIntegrityDetails200ApplicationJSONDataIntegrityDetailsMatches `json:"matches,omitempty"`
 	// The data type of the record.
 	Type *string `json:"type,omitempty"`
 }
 
-// GetDataIntegrityDetailsLinks - Codat's Paging Model
-type GetDataIntegrityDetailsLinks struct {
-	Links        GetDataIntegrityDetailsLinksLinks                  `json:"_links"`
-	PageNumber   int64                                              `json:"pageNumber"`
-	PageSize     int64                                              `json:"pageSize"`
-	Results      []GetDataIntegrityDetailsLinksDataIntegrityDetails `json:"results,omitempty"`
-	TotalResults int64                                              `json:"totalResults"`
+// GetDataIntegrityDetails200ApplicationJSON - OK
+type GetDataIntegrityDetails200ApplicationJSON struct {
+	Links        GetDataIntegrityDetails200ApplicationJSONLinks                  `json:"_links"`
+	PageNumber   int64                                                           `json:"pageNumber"`
+	PageSize     int64                                                           `json:"pageSize"`
+	Results      []GetDataIntegrityDetails200ApplicationJSONDataIntegrityDetails `json:"results,omitempty"`
+	TotalResults int64                                                           `json:"totalResults"`
 }
 
 type GetDataIntegrityDetailsResponse struct {
@@ -112,5 +112,5 @@ type GetDataIntegrityDetailsResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	Links *GetDataIntegrityDetailsLinks
+	GetDataIntegrityDetails200ApplicationJSONObject *GetDataIntegrityDetails200ApplicationJSON
 }

@@ -17,7 +17,7 @@ type GetAccountsForEnhancedProfitAndLossRequest struct {
 type GetAccountsForEnhancedProfitAndLossEnhancedReportReportInfo struct {
 	// Company name the report was generated for.
 	CompanyName *string `json:"companyName,omitempty"`
-	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code. e.g. _GBP_.
+	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code, e.g. _GBP_.
 	//
 	// ## Unknown currencies
 	//
@@ -62,7 +62,7 @@ type GetAccountsForEnhancedProfitAndLossEnhancedReportReportItems struct {
 	// - Unqualified local time: `2021-11-15T01:00:00`
 	// - UTC time offsets: `2021-11-15T01:00:00-05:00`
 	//
-	// > 📘 Time zones
+	// > Time zones
 	// >
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
