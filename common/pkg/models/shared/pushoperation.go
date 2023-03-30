@@ -2,79 +2,6 @@
 
 package shared
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
-type PushOperationChangesTypeEnum string
-
-const (
-	PushOperationChangesTypeEnumUnknown            PushOperationChangesTypeEnum = "Unknown"
-	PushOperationChangesTypeEnumCreated            PushOperationChangesTypeEnum = "Created"
-	PushOperationChangesTypeEnumModified           PushOperationChangesTypeEnum = "Modified"
-	PushOperationChangesTypeEnumDeleted            PushOperationChangesTypeEnum = "Deleted"
-	PushOperationChangesTypeEnumAttachmentUploaded PushOperationChangesTypeEnum = "AttachmentUploaded"
-)
-
-func (e *PushOperationChangesTypeEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
-		return err
-	}
-	switch s {
-	case "Unknown":
-		fallthrough
-	case "Created":
-		fallthrough
-	case "Modified":
-		fallthrough
-	case "Deleted":
-		fallthrough
-	case "AttachmentUploaded":
-		*e = PushOperationChangesTypeEnum(s)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for PushOperationChangesTypeEnum: %s", s)
-	}
-}
-
-type PushOperationChanges struct {
-	AttachmentID *string                       `json:"attachmentId,omitempty"`
-	RecordRef    *PushOperationRecordRef       `json:"recordRef,omitempty"`
-	Type         *PushOperationChangesTypeEnum `json:"type,omitempty"`
-}
-
-// PushOperationStatusEnum - The status of the push operation.
-type PushOperationStatusEnum string
-
-const (
-	PushOperationStatusEnumPending  PushOperationStatusEnum = "Pending"
-	PushOperationStatusEnumFailed   PushOperationStatusEnum = "Failed"
-	PushOperationStatusEnumSuccess  PushOperationStatusEnum = "Success"
-	PushOperationStatusEnumTimedOut PushOperationStatusEnum = "TimedOut"
-)
-
-func (e *PushOperationStatusEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
-		return err
-	}
-	switch s {
-	case "Pending":
-		fallthrough
-	case "Failed":
-		fallthrough
-	case "Success":
-		fallthrough
-	case "TimedOut":
-		*e = PushOperationStatusEnum(s)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for PushOperationStatusEnum: %s", s)
-	}
-}
-
 // PushOperationValidation - A human-readable object describing validation decisions Codat has made when pushing data into the platform. If a push has failed because of validation errors, they will be detailed here.
 type PushOperationValidation struct {
 	Errors   []ValidationItem `json:"errors,omitempty"`
@@ -83,7 +10,7 @@ type PushOperationValidation struct {
 
 // PushOperation - OK
 type PushOperation struct {
-	Changes []PushOperationChanges `json:"changes,omitempty"`
+	Changes []PushOperationChange `json:"changes,omitempty"`
 	// Unique identifier for your SMB in Codat.
 	CompanyID string `json:"companyId"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
@@ -137,7 +64,7 @@ type PushOperation struct {
 	RequestedOnUtc string `json:"requestedOnUtc"`
 	// The status of the push operation.
 	Status           PushOperationStatusEnum `json:"status"`
-	StatusCode       int                     `json:"statusCode"`
+	StatusCode       int64                   `json:"statusCode"`
 	TimeoutInMinutes *int                    `json:"timeoutInMinutes,omitempty"`
 	TimeoutInSeconds *int                    `json:"timeoutInSeconds,omitempty"`
 	// A human-readable object describing validation decisions Codat has made when pushing data into the platform. If a push has failed because of validation errors, they will be detailed here.

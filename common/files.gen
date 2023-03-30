@@ -77,7 +77,10 @@ pkg/models/shared/integrations.go
 pkg/models/shared/pushhistoryresponse.go
 pkg/models/shared/pushoperationsummary.go
 pkg/models/shared/validationitem.go
-pkg/models/shared/pushoperationrecordref.go
+pkg/models/shared/pushoperationstatusenum.go
+pkg/models/shared/pushoperationchange.go
+pkg/models/shared/pushchangetypeenum.go
+pkg/models/shared/pushoperationref.go
 pkg/models/shared/pushoption.go
 pkg/models/shared/pushvalidationinfo.go
 pkg/models/shared/pushfieldvalidation.go

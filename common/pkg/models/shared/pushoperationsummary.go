@@ -2,79 +2,6 @@
 
 package shared
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
-type PushOperationSummaryChangesTypeEnum string
-
-const (
-	PushOperationSummaryChangesTypeEnumUnknown            PushOperationSummaryChangesTypeEnum = "Unknown"
-	PushOperationSummaryChangesTypeEnumCreated            PushOperationSummaryChangesTypeEnum = "Created"
-	PushOperationSummaryChangesTypeEnumModified           PushOperationSummaryChangesTypeEnum = "Modified"
-	PushOperationSummaryChangesTypeEnumDeleted            PushOperationSummaryChangesTypeEnum = "Deleted"
-	PushOperationSummaryChangesTypeEnumAttachmentUploaded PushOperationSummaryChangesTypeEnum = "AttachmentUploaded"
-)
-
-func (e *PushOperationSummaryChangesTypeEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
-		return err
-	}
-	switch s {
-	case "Unknown":
-		fallthrough
-	case "Created":
-		fallthrough
-	case "Modified":
-		fallthrough
-	case "Deleted":
-		fallthrough
-	case "AttachmentUploaded":
-		*e = PushOperationSummaryChangesTypeEnum(s)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for PushOperationSummaryChangesTypeEnum: %s", s)
-	}
-}
-
-type PushOperationSummaryChanges struct {
-	AttachmentID *string                              `json:"attachmentId,omitempty"`
-	RecordRef    *PushOperationRecordRef              `json:"recordRef,omitempty"`
-	Type         *PushOperationSummaryChangesTypeEnum `json:"type,omitempty"`
-}
-
-// PushOperationSummaryStatusEnum - The status of the push operation.
-type PushOperationSummaryStatusEnum string
-
-const (
-	PushOperationSummaryStatusEnumPending  PushOperationSummaryStatusEnum = "Pending"
-	PushOperationSummaryStatusEnumFailed   PushOperationSummaryStatusEnum = "Failed"
-	PushOperationSummaryStatusEnumSuccess  PushOperationSummaryStatusEnum = "Success"
-	PushOperationSummaryStatusEnumTimedOut PushOperationSummaryStatusEnum = "TimedOut"
-)
-
-func (e *PushOperationSummaryStatusEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
-		return err
-	}
-	switch s {
-	case "Pending":
-		fallthrough
-	case "Failed":
-		fallthrough
-	case "Success":
-		fallthrough
-	case "TimedOut":
-		*e = PushOperationSummaryStatusEnum(s)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for PushOperationSummaryStatusEnum: %s", s)
-	}
-}
-
 // PushOperationSummaryValidation - A human-readable object describing validation decisions Codat has made when pushing data into the platform. If a push has failed because of validation errors, they will be detailed here.
 type PushOperationSummaryValidation struct {
 	Errors   []ValidationItem `json:"errors,omitempty"`
@@ -82,7 +9,7 @@ type PushOperationSummaryValidation struct {
 }
 
 type PushOperationSummary struct {
-	Changes []PushOperationSummaryChanges `json:"changes,omitempty"`
+	Changes []PushOperationChange `json:"changes,omitempty"`
 	// Unique identifier for your SMB in Codat.
 	CompanyID string `json:"companyId"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
@@ -133,10 +60,10 @@ type PushOperationSummary struct {
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	RequestedOnUtc string `json:"requestedOnUtc"`
 	// The status of the push operation.
-	Status           PushOperationSummaryStatusEnum `json:"status"`
-	StatusCode       int                            `json:"statusCode"`
-	TimeoutInMinutes *int                           `json:"timeoutInMinutes,omitempty"`
-	TimeoutInSeconds *int                           `json:"timeoutInSeconds,omitempty"`
+	Status           PushOperationStatusEnum `json:"status"`
+	StatusCode       int64                   `json:"statusCode"`
+	TimeoutInMinutes *int                    `json:"timeoutInMinutes,omitempty"`
+	TimeoutInSeconds *int                    `json:"timeoutInSeconds,omitempty"`
 	// A human-readable object describing validation decisions Codat has made when pushing data into the platform. If a push has failed because of validation errors, they will be detailed here.
 	Validation *PushOperationSummaryValidation `json:"validation,omitempty"`
 }
