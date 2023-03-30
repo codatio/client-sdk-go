@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/commerce/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/commerce/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/commerce/pkg/utils"
 	"net/http"
 )
@@ -31,9 +32,9 @@ func newPayments(defaultClient, securityClient HTTPClient, serverURL, language, 
 	}
 }
 
-// ListCommercePaymentMethods - List payment methods
+// ListPaymentMethods - List payment methods
 // Retrieve a list of payment methods, such as card, cash or other online payment methods, as held in the linked commerce platform.
-func (s *payments) ListCommercePaymentMethods(ctx context.Context, request operations.ListCommercePaymentMethodsRequest) (*operations.ListCommercePaymentMethodsResponse, error) {
+func (s *payments) ListPaymentMethods(ctx context.Context, request operations.ListPaymentMethodsRequest) (*operations.ListPaymentMethodsResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/commerce-paymentMethods", request, nil)
 
@@ -59,7 +60,7 @@ func (s *payments) ListCommercePaymentMethods(ctx context.Context, request opera
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.ListCommercePaymentMethodsResponse{
+	res := &operations.ListPaymentMethodsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -68,21 +69,21 @@ func (s *payments) ListCommercePaymentMethods(ctx context.Context, request opera
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListCommercePaymentMethodsLinks
+			var out *shared.PaymentMethods
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Links = out
+			res.PaymentMethods = out
 		}
 	}
 
 	return res, nil
 }
 
-// ListCommercePayments - List payments
+// ListPayments - List payments
 // List commerce payments for the given company & data connection.
-func (s *payments) ListCommercePayments(ctx context.Context, request operations.ListCommercePaymentsRequest) (*operations.ListCommercePaymentsResponse, error) {
+func (s *payments) ListPayments(ctx context.Context, request operations.ListPaymentsRequest) (*operations.ListPaymentsResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/commerce-payments", request, nil)
 
@@ -108,7 +109,7 @@ func (s *payments) ListCommercePayments(ctx context.Context, request operations.
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.ListCommercePaymentsResponse{
+	res := &operations.ListPaymentsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -117,12 +118,12 @@ func (s *payments) ListCommercePayments(ctx context.Context, request operations.
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListCommercePaymentsLinks
+			var out *shared.Payments
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Links = out
+			res.Payments = out
 		}
 	}
 

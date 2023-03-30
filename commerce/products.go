@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/commerce/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/commerce/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/commerce/pkg/utils"
 	"net/http"
 )
@@ -31,9 +32,9 @@ func newProducts(defaultClient, securityClient HTTPClient, serverURL, language, 
 	}
 }
 
-// ListCommerceProductCategories - List product categories
+// ListProductCategories - List product categories
 // Product categories are used to classify a group of products together, either by type (eg "Furniture"), or sometimes by tax profile.
-func (s *products) ListCommerceProductCategories(ctx context.Context, request operations.ListCommerceProductCategoriesRequest) (*operations.ListCommerceProductCategoriesResponse, error) {
+func (s *products) ListProductCategories(ctx context.Context, request operations.ListProductCategoriesRequest) (*operations.ListProductCategoriesResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/commerce-productCategories", request, nil)
 
@@ -59,7 +60,7 @@ func (s *products) ListCommerceProductCategories(ctx context.Context, request op
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.ListCommerceProductCategoriesResponse{
+	res := &operations.ListProductCategoriesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -68,21 +69,21 @@ func (s *products) ListCommerceProductCategories(ctx context.Context, request op
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListCommerceProductCategoriesLinks
+			var out *shared.ProductCategories
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Links = out
+			res.ProductCategories = out
 		}
 	}
 
 	return res, nil
 }
 
-// ListCommerceProducts - List products
+// ListProducts - List products
 // The Products data type provides the company's product inventory, and includes the price and quantity of all products, and product variants, available for sale.
-func (s *products) ListCommerceProducts(ctx context.Context, request operations.ListCommerceProductsRequest) (*operations.ListCommerceProductsResponse, error) {
+func (s *products) ListProducts(ctx context.Context, request operations.ListProductsRequest) (*operations.ListProductsResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/commerce-products", request, nil)
 
@@ -108,7 +109,7 @@ func (s *products) ListCommerceProducts(ctx context.Context, request operations.
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.ListCommerceProductsResponse{
+	res := &operations.ListProductsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -117,12 +118,12 @@ func (s *products) ListCommerceProducts(ctx context.Context, request operations.
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListCommerceProductsLinks
+			var out *shared.Products
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Links = out
+			res.Products = out
 		}
 	}
 

@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/commerce/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/commerce/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/commerce/pkg/utils"
 	"net/http"
 )
@@ -31,9 +32,9 @@ func newTaxComponents(defaultClient, securityClient HTTPClient, serverURL, langu
 	}
 }
 
-// GetCompaniesCompanyIDConnectionsConnectionIDDataCommerceTaxComponents - List tax components
+// GetTaxComponents - List tax components
 // This endpoint returns a lits of tax rates from the commerce platform, including tax rate names and values. This supports the mapping of tax rates from the commerce platform to the accounting platform.
-func (s *taxComponents) GetCompaniesCompanyIDConnectionsConnectionIDDataCommerceTaxComponents(ctx context.Context, request operations.GetCompaniesCompanyIDConnectionsConnectionIDDataCommerceTaxComponentsRequest) (*operations.GetCompaniesCompanyIDConnectionsConnectionIDDataCommerceTaxComponentsResponse, error) {
+func (s *taxComponents) GetTaxComponents(ctx context.Context, request operations.GetTaxComponentsRequest) (*operations.GetTaxComponentsResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/commerce-taxComponents", request, nil)
 
@@ -55,7 +56,7 @@ func (s *taxComponents) GetCompaniesCompanyIDConnectionsConnectionIDDataCommerce
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetCompaniesCompanyIDConnectionsConnectionIDDataCommerceTaxComponentsResponse{
+	res := &operations.GetTaxComponentsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -64,12 +65,12 @@ func (s *taxComponents) GetCompaniesCompanyIDConnectionsConnectionIDDataCommerce
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetCompaniesCompanyIDConnectionsConnectionIDDataCommerceTaxComponents200ApplicationJSON
+			var out *shared.TaxComponents
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.GetCompaniesCompanyIDConnectionsConnectionIDDataCommerceTaxComponents200ApplicationJSONObject = out
+			res.TaxComponents = out
 		}
 	}
 
