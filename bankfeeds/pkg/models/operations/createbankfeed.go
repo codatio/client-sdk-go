@@ -3,53 +3,20 @@
 package operations
 
 import (
+	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/shared"
 	"net/http"
-	"time"
 )
-
-// CreateBankFeedBankFeedBankAccountAccountTypeEnum - The type of bank account e.g. Credit
-type CreateBankFeedBankFeedBankAccountAccountTypeEnum string
-
-const (
-	CreateBankFeedBankFeedBankAccountAccountTypeEnumUnknown CreateBankFeedBankFeedBankAccountAccountTypeEnum = "Unknown"
-	CreateBankFeedBankFeedBankAccountAccountTypeEnumCredit  CreateBankFeedBankFeedBankAccountAccountTypeEnum = "Credit"
-	CreateBankFeedBankFeedBankAccountAccountTypeEnumDebit   CreateBankFeedBankFeedBankAccountAccountTypeEnum = "Debit"
-)
-
-// CreateBankFeedBankFeedBankAccount - The target bank account in a supported accounting package for ingestion into a bank feed.
-type CreateBankFeedBankFeedBankAccount struct {
-	// The bank account name
-	AccountName *string `json:"accountName,omitempty"`
-	// The account number
-	AccountNumber *string `json:"accountNumber,omitempty"`
-	// The type of bank account e.g. Credit
-	AccountType *CreateBankFeedBankFeedBankAccountAccountTypeEnum `json:"accountType,omitempty"`
-	// The latest balance for the bank account
-	Balance *float64 `json:"balance,omitempty"`
-	// The currency e.g. USD
-	Currency *string `json:"currency,omitempty"`
-	// null
-	FeedStartDate *time.Time `json:"feedStartDate,omitempty"`
-	// Unique ID for the BankFeedBankAccount
-	ID string `json:"id"`
-	// The last date the bank account was modified
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
-	// The sort code
-	SortCode *string `json:"sortCode,omitempty"`
-	// null
-	Status *string `json:"status,omitempty"`
-}
 
 type CreateBankFeedRequest struct {
-	RequestBody  []CreateBankFeedBankFeedBankAccount `request:"mediaType=application/json"`
-	CompanyID    string                              `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID string                              `pathParam:"style=simple,explode=false,name=connectionId"`
+	RequestBody  []shared.BankFeedAccount `request:"mediaType=application/json"`
+	CompanyID    string                   `pathParam:"style=simple,explode=false,name=companyId"`
+	ConnectionID string                   `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
 type CreateBankFeedResponse struct {
 	// Success
-	BankFeedBankAccounts []CreateBankFeedBankFeedBankAccount
-	ContentType          string
-	StatusCode           int
-	RawResponse          *http.Response
+	BankFeedAccounts []shared.BankFeedAccount
+	ContentType      string
+	StatusCode       int
+	RawResponse      *http.Response
 }

@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/bankfeeds/pkg/utils"
 	"net/http"
 )
@@ -71,12 +72,12 @@ func (s *bankFeedAccounts) CreateBankFeed(ctx context.Context, request operation
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out []operations.CreateBankFeedBankFeedBankAccount
+			var out []shared.BankFeedAccount
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.BankFeedBankAccounts = out
+			res.BankFeedAccounts = out
 		}
 	}
 
@@ -116,12 +117,12 @@ func (s *bankFeedAccounts) GetBankFeeds(ctx context.Context, request operations.
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out []operations.GetBankFeedsBankFeedBankAccount
+			var out []shared.BankFeedAccount
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.BankFeedBankAccounts = out
+			res.BankFeedAccounts = out
 		}
 	}
 
@@ -132,9 +133,9 @@ func (s *bankFeedAccounts) GetBankFeeds(ctx context.Context, request operations.
 // Update a single BankFeed BankAccount for a single data source connected to a single company.
 func (s *bankFeedAccounts) UpdateBankFeed(ctx context.Context, request operations.UpdateBankFeedRequest) (*operations.UpdateBankFeedResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/connectionInfo/bankFeedAccounts/{bankAccountId}", request, nil)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/connectionInfo/bankFeedAccounts/{accountId}", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "BankFeedAccount", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -168,12 +169,12 @@ func (s *bankFeedAccounts) UpdateBankFeed(ctx context.Context, request operation
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.UpdateBankFeedBankFeedBankAccount
+			var out *shared.BankFeedAccount
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.BankFeedBankAccount = out
+			res.BankFeedAccount = out
 		}
 	}
 

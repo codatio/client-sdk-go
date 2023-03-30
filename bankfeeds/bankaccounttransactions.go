@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/bankfeeds/pkg/utils"
 	"net/http"
 )
@@ -42,10 +43,6 @@ func (s *bankAccountTransactions) GetBankAccountPushOptions(ctx context.Context,
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
-		return nil, fmt.Errorf("error populating query params: %w", err)
-	}
-
 	client := s.securityClient
 
 	httpRes, err := client.Do(req)
@@ -68,7 +65,7 @@ func (s *bankAccountTransactions) GetBankAccountPushOptions(ctx context.Context,
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetBankAccountPushOptionsPushOption
+			var out *shared.PushOption
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -117,12 +114,12 @@ func (s *bankAccountTransactions) ListBankAccountTransactions(ctx context.Contex
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListBankAccountTransactionsLinks
+			var out *shared.BankTransactionsResponse
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Links = out
+			res.BankTransactionsResponse = out
 		}
 	}
 
@@ -137,9 +134,9 @@ func (s *bankAccountTransactions) ListBankAccountTransactions(ctx context.Contex
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankTransactions) for integrations that support POST methods.
 func (s *bankAccountTransactions) PostBankTransactions(ctx context.Context, request operations.PostBankTransactionsRequest) (*operations.PostBankTransactionsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/bankAccounts/{accountId}}/bankTransactions", request, nil)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/bankAccounts/{accountId}/bankTransactions", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "BankTransactions", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -177,12 +174,12 @@ func (s *bankAccountTransactions) PostBankTransactions(ctx context.Context, requ
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.PostBankTransactions200ApplicationJSON
+			var out *shared.CreateBankTransactionsResponse
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.PostBankTransactions200ApplicationJSONObject = out
+			res.CreateBankTransactionsResponse = out
 		}
 	}
 
