@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/banking/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/banking/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/banking/pkg/utils"
 	"net/http"
 )
@@ -31,9 +32,9 @@ func newAccounts(defaultClient, securityClient HTTPClient, serverURL, language, 
 	}
 }
 
-// GetBankingAccount - Get account
+// GetAccount - Get account
 // Gets a specified bank account for a given company
-func (s *accounts) GetBankingAccount(ctx context.Context, request operations.GetBankingAccountRequest) (*operations.GetBankingAccountResponse, error) {
+func (s *accounts) GetAccount(ctx context.Context, request operations.GetAccountRequest) (*operations.GetAccountResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/banking-accounts/{accountId}", request, nil)
 
@@ -55,7 +56,7 @@ func (s *accounts) GetBankingAccount(ctx context.Context, request operations.Get
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetBankingAccountResponse{
+	res := &operations.GetAccountResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -64,21 +65,21 @@ func (s *accounts) GetBankingAccount(ctx context.Context, request operations.Get
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetBankingAccountSourceModifiedDate
+			var out *shared.Account
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.SourceModifiedDate = out
+			res.Account = out
 		}
 	}
 
 	return res, nil
 }
 
-// ListBankingAccounts - List accounts
+// ListAccounts - List accounts
 // Gets a list of all bank accounts of the SMB, with rich data like balances, account numbers and institutions holdingthe accounts.
-func (s *accounts) ListBankingAccounts(ctx context.Context, request operations.ListBankingAccountsRequest) (*operations.ListBankingAccountsResponse, error) {
+func (s *accounts) ListAccounts(ctx context.Context, request operations.ListAccountsRequest) (*operations.ListAccountsResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/banking-accounts", request, nil)
 
@@ -104,7 +105,7 @@ func (s *accounts) ListBankingAccounts(ctx context.Context, request operations.L
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.ListBankingAccountsResponse{
+	res := &operations.ListAccountsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -113,12 +114,12 @@ func (s *accounts) ListBankingAccounts(ctx context.Context, request operations.L
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListBankingAccounts200ApplicationJSON
+			var out *shared.Accounts
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.ListBankingAccounts200ApplicationJSONObject = out
+			res.Accounts = out
 		}
 	}
 

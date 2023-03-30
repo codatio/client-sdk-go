@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/banking/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/banking/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/banking/pkg/utils"
 	"net/http"
 )
@@ -31,9 +32,9 @@ func newAccountBalances(defaultClient, securityClient HTTPClient, serverURL, lan
 	}
 }
 
-// ListBankingAccountBalances - List account balances
+// ListAccountBalances - List account balances
 // Gets a list of balances for a bank account including end-of-day batch balance or running balances per transaction.
-func (s *accountBalances) ListBankingAccountBalances(ctx context.Context, request operations.ListBankingAccountBalancesRequest) (*operations.ListBankingAccountBalancesResponse, error) {
+func (s *accountBalances) ListAccountBalances(ctx context.Context, request operations.ListAccountBalancesRequest) (*operations.ListAccountBalancesResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/banking-accountBalances", request, nil)
 
@@ -59,7 +60,7 @@ func (s *accountBalances) ListBankingAccountBalances(ctx context.Context, reques
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.ListBankingAccountBalancesResponse{
+	res := &operations.ListAccountBalancesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -68,12 +69,12 @@ func (s *accountBalances) ListBankingAccountBalances(ctx context.Context, reques
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListBankingAccountBalances200ApplicationJSON
+			var out *shared.AccountBalances
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.ListBankingAccountBalances200ApplicationJSONObject = out
+			res.AccountBalances = out
 		}
 	}
 
