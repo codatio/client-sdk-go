@@ -6,7 +6,9 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/files/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/files/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/files/pkg/utils"
+	"io"
 	"net/http"
 )
 
@@ -66,6 +68,15 @@ func (s *files) DownloadFiles(ctx context.Context, request operations.DownloadFi
 	}
 	switch {
 	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/octet-stream`):
+			out, err := io.ReadAll(httpRes.Body)
+			if err != nil {
+				return nil, fmt.Errorf("error reading response body: %w", err)
+			}
+
+			res.Data = out
+		}
 	}
 
 	return res, nil
@@ -104,7 +115,7 @@ func (s *files) ListFiles(ctx context.Context, request operations.ListFilesReque
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out []operations.ListFilesFile
+			var out []shared.File
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -122,10 +133,17 @@ func (s *files) UploadFiles(ctx context.Context, request operations.UploadFilesR
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/files", request, nil)
 
-	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "multipart")
+	if err != nil {
+		return nil, fmt.Errorf("error serializing request body: %w", err)
+	}
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+
+	req.Header.Set("Content-Type", reqContentType)
 
 	client := s.securityClient
 

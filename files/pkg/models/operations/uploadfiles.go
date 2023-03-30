@@ -6,9 +6,15 @@ import (
 	"net/http"
 )
 
+type UploadFilesRequestBody struct {
+	Content     []byte `multipartForm:"content"`
+	RequestBody string `multipartForm:"name=requestBody"`
+}
+
 type UploadFilesRequest struct {
-	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
+	RequestBody  *UploadFilesRequestBody `multipartForm:"file" request:"mediaType=multipart/form-data"`
+	CompanyID    string                  `pathParam:"style=simple,explode=false,name=companyId"`
+	ConnectionID string                  `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
 type UploadFilesResponse struct {
