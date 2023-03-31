@@ -51,7 +51,7 @@ pkg/models/operations/listrules.go
 pkg/models/shared/errormessage.go
 pkg/models/shared/company.go
 pkg/models/shared/connection.go
-pkg/models/shared/connectionstatusenum.go
+pkg/models/shared/dataconnectionstatusenum.go
 pkg/models/shared/sourcetypeenum.go
 pkg/models/shared/dataconnectionerror.go
 pkg/models/shared/companyrequestbody.go
@@ -76,6 +76,7 @@ pkg/models/shared/brandingbutton.go
 pkg/models/shared/integrations.go
 pkg/models/shared/pushhistoryresponse.go
 pkg/models/shared/pushoperationsummary.go
+pkg/models/shared/validation.go
 pkg/models/shared/validationitem.go
 pkg/models/shared/pushoperationstatusenum.go
 pkg/models/shared/pushoperationchange.go
@@ -95,6 +96,7 @@ pkg/models/shared/rule.go
 pkg/models/shared/rules.go
 pkg/models/shared/security.go
 pkg/models/shared/companydataconnectionstatuschangedwebhook.go
+pkg/models/shared/connectionstatusenum.go
 pkg/models/shared/datasynccompletedwebhook.go
 pkg/models/shared/datasetdatachangedwebhook.go
 pkg/models/shared/datasetstatuschangederrorwebhook.go

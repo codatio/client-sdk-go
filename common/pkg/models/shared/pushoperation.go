@@ -2,12 +2,6 @@
 
 package shared
 
-// PushOperationValidation - A human-readable object describing validation decisions Codat has made when pushing data into the platform. If a push has failed because of validation errors, they will be detailed here.
-type PushOperationValidation struct {
-	Errors   []ValidationItem `json:"errors,omitempty"`
-	Warnings []ValidationItem `json:"warnings,omitempty"`
-}
-
 // PushOperation - OK
 type PushOperation struct {
 	Changes []PushOperationChange `json:"changes,omitempty"`
@@ -68,5 +62,5 @@ type PushOperation struct {
 	TimeoutInMinutes *int                    `json:"timeoutInMinutes,omitempty"`
 	TimeoutInSeconds *int                    `json:"timeoutInSeconds,omitempty"`
 	// A human-readable object describing validation decisions Codat has made when pushing data into the platform. If a push has failed because of validation errors, they will be detailed here.
-	Validation *PushOperationValidation `json:"validation,omitempty"`
+	Validation *Validation `json:"validation,omitempty"`
 }

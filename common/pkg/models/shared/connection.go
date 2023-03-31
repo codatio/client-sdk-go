@@ -4,7 +4,8 @@ package shared
 
 // Connection - A connection represents the link between a `company` and a source of data.
 type Connection struct {
-	ConnectionInfo map[string]string `json:"connectionInfo,omitempty"`
+	AdditionalProperties interface{}       `json:"additionalProperties,omitempty"`
+	ConnectionInfo       map[string]string `json:"connectionInfo,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -59,5 +60,5 @@ type Connection struct {
 	// The type of platform of the connection.
 	SourceType SourceTypeEnum `json:"sourceType"`
 	// The current authorization status of the data connection.
-	Status ConnectionStatusEnum `json:"status"`
+	Status DataConnectionStatusEnum `json:"status"`
 }

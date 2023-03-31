@@ -2,12 +2,6 @@
 
 package shared
 
-// PushOperationSummaryValidation - A human-readable object describing validation decisions Codat has made when pushing data into the platform. If a push has failed because of validation errors, they will be detailed here.
-type PushOperationSummaryValidation struct {
-	Errors   []ValidationItem `json:"errors,omitempty"`
-	Warnings []ValidationItem `json:"warnings,omitempty"`
-}
-
 type PushOperationSummary struct {
 	Changes []PushOperationChange `json:"changes,omitempty"`
 	// Unique identifier for your SMB in Codat.
@@ -65,5 +59,5 @@ type PushOperationSummary struct {
 	TimeoutInMinutes *int                    `json:"timeoutInMinutes,omitempty"`
 	TimeoutInSeconds *int                    `json:"timeoutInSeconds,omitempty"`
 	// A human-readable object describing validation decisions Codat has made when pushing data into the platform. If a push has failed because of validation errors, they will be detailed here.
-	Validation *PushOperationSummaryValidation `json:"validation,omitempty"`
+	Validation *Validation `json:"validation,omitempty"`
 }
