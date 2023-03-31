@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/assess/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/assess/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/assess/pkg/utils"
 	"net/http"
 	"strings"
@@ -65,7 +66,7 @@ func (s *categories) GetAccountCategory(ctx context.Context, request operations.
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetAccountCategoryCategorisedAccount
+			var out *shared.CategorisedAccount
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -114,12 +115,12 @@ func (s *categories) ListAccountsCategories(ctx context.Context, request operati
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListAccountsCategories200ApplicationJSON
+			var out *shared.CategorisedAccounts
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.ListAccountsCategories200ApplicationJSONObject = out
+			res.CategorisedAccounts = out
 		}
 	}
 
@@ -159,12 +160,12 @@ func (s *categories) ListAvailableAccountCategories(ctx context.Context) (*opera
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out []operations.ListAvailableAccountCategoriesChartOfAccountCategory
+			var out []shared.Categories
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.ListAvailableAccountCategoriesChartOfAccountCategoryAnies = out
+			res.Categories = out
 		}
 	}
 
@@ -177,7 +178,7 @@ func (s *categories) UpdateAccountCategory(ctx context.Context, request operatio
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/connections/{connectionId}/assess/accounts/{accountId}/categories", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "ConfirmCategory", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -211,7 +212,7 @@ func (s *categories) UpdateAccountCategory(ctx context.Context, request operatio
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.UpdateAccountCategoryCategorisedAccount
+			var out *shared.CategorisedAccount
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -229,7 +230,7 @@ func (s *categories) UpdateAccountsCategories(ctx context.Context, request opera
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/connections/{connectionId}/assess/accounts/categories", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "ConfirmCategories", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -263,7 +264,7 @@ func (s *categories) UpdateAccountsCategories(ctx context.Context, request opera
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out []operations.UpdateAccountsCategoriesCategorisedAccount
+			var out []shared.CategorisedAccount
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}

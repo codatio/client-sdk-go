@@ -3,89 +3,16 @@
 package operations
 
 import (
-	"encoding/json"
-	"fmt"
+	"github.com/codatio/client-sdk-go/assess/pkg/models/shared"
 	"net/http"
 )
-
-// GetDataIntegritySummariesDataTypeEnum - A key for a Codat data type.
-type GetDataIntegritySummariesDataTypeEnum string
-
-const (
-	GetDataIntegritySummariesDataTypeEnumBankingAccounts     GetDataIntegritySummariesDataTypeEnum = "banking-accounts"
-	GetDataIntegritySummariesDataTypeEnumBankingTransactions GetDataIntegritySummariesDataTypeEnum = "banking-transactions"
-	GetDataIntegritySummariesDataTypeEnumBankAccounts        GetDataIntegritySummariesDataTypeEnum = "bankAccounts"
-	GetDataIntegritySummariesDataTypeEnumAccountTransactions GetDataIntegritySummariesDataTypeEnum = "accountTransactions"
-)
-
-func (e *GetDataIntegritySummariesDataTypeEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
-		return err
-	}
-	switch s {
-	case "banking-accounts":
-		fallthrough
-	case "banking-transactions":
-		fallthrough
-	case "bankAccounts":
-		fallthrough
-	case "accountTransactions":
-		*e = GetDataIntegritySummariesDataTypeEnum(s)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for GetDataIntegritySummariesDataTypeEnum: %s", s)
-	}
-}
 
 type GetDataIntegritySummariesRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	// A key for a Codat data type.
-	DataType GetDataIntegritySummariesDataTypeEnum `pathParam:"style=simple,explode=false,name=dataType"`
+	DataType shared.DataIntegrityDataTypeEnum `pathParam:"style=simple,explode=false,name=dataType"`
 	// Codat query string. [Read more](https://docs.codat.io/using-the-api/querying).
 	Query *string `queryParam:"style=form,explode=true,name=query"`
-}
-
-type GetDataIntegritySummaries200ApplicationJSONDataIntegrityTypeByAmount struct {
-	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code, e.g. _GBP_.
-	//
-	// ## Unknown currencies
-	//
-	// In line with the ISO 4217 specification, the code _XXX_ is used when the data source does not return a currency for a transaction.
-	//
-	// There are only a very small number of edge cases where this currency code is returned by the Codat system.
-	Currency *string `json:"currency,omitempty"`
-	// The percentage of the absolute value of transactions of the type specified in the route which have a match.
-	MatchPercentage *float64 `json:"matchPercentage,omitempty"`
-	// The sum of the absolute value of transactions of the type specified in the route which have a match.
-	Matched *float64 `json:"matched,omitempty"`
-	// The total of unmatched and matched.
-	Total *float64 `json:"total,omitempty"`
-	// The sum of the absolute value of transactions of the type specified in the route which don't have a match.
-	Unmatched *float64 `json:"unmatched,omitempty"`
-}
-
-type GetDataIntegritySummaries200ApplicationJSONDataIntegrityTypeByCount struct {
-	// The percentage of records of the type specified in the route which have a match.
-	MatchPercentage *float64 `json:"matchPercentage,omitempty"`
-	// The number of records of the type specified in the route which do have a match.
-	Matched *float64 `json:"matched,omitempty"`
-	// The total of unmatched and matched.
-	Total *float64 `json:"total,omitempty"`
-	// The number of records of the type specified in the route which don't have a match.
-	Unmatched *float64 `json:"unmatched,omitempty"`
-}
-
-type GetDataIntegritySummaries200ApplicationJSONDataIntegrityType struct {
-	ByAmount *GetDataIntegritySummaries200ApplicationJSONDataIntegrityTypeByAmount `json:"byAmount,omitempty"`
-	ByCount  *GetDataIntegritySummaries200ApplicationJSONDataIntegrityTypeByCount  `json:"byCount,omitempty"`
-	// The data type which the data type in the URL has been matched against. For example, if you've matched accountTransactions and banking-transactions, and you call this endpoint with accountTransactions in the URL, this property would be banking-transactions.
-	Type *string `json:"type,omitempty"`
-}
-
-// GetDataIntegritySummaries200ApplicationJSON - OK
-type GetDataIntegritySummaries200ApplicationJSON struct {
-	Summaries []GetDataIntegritySummaries200ApplicationJSONDataIntegrityType `json:"summaries,omitempty"`
 }
 
 type GetDataIntegritySummariesResponse struct {
@@ -93,5 +20,5 @@ type GetDataIntegritySummariesResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	GetDataIntegritySummaries200ApplicationJSONObject *GetDataIntegritySummaries200ApplicationJSON
+	Summaries *shared.Summaries
 }

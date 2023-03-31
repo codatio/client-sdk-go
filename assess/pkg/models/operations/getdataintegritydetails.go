@@ -3,45 +3,14 @@
 package operations
 
 import (
-	"encoding/json"
-	"fmt"
+	"github.com/codatio/client-sdk-go/assess/pkg/models/shared"
 	"net/http"
 )
-
-// GetDataIntegrityDetailsDataTypeEnum - A key for a Codat data type.
-type GetDataIntegrityDetailsDataTypeEnum string
-
-const (
-	GetDataIntegrityDetailsDataTypeEnumBankingAccounts     GetDataIntegrityDetailsDataTypeEnum = "banking-accounts"
-	GetDataIntegrityDetailsDataTypeEnumBankingTransactions GetDataIntegrityDetailsDataTypeEnum = "banking-transactions"
-	GetDataIntegrityDetailsDataTypeEnumBankAccounts        GetDataIntegrityDetailsDataTypeEnum = "bankAccounts"
-	GetDataIntegrityDetailsDataTypeEnumAccountTransactions GetDataIntegrityDetailsDataTypeEnum = "accountTransactions"
-)
-
-func (e *GetDataIntegrityDetailsDataTypeEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
-		return err
-	}
-	switch s {
-	case "banking-accounts":
-		fallthrough
-	case "banking-transactions":
-		fallthrough
-	case "bankAccounts":
-		fallthrough
-	case "accountTransactions":
-		*e = GetDataIntegrityDetailsDataTypeEnum(s)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for GetDataIntegrityDetailsDataTypeEnum: %s", s)
-	}
-}
 
 type GetDataIntegrityDetailsRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	// A key for a Codat data type.
-	DataType GetDataIntegrityDetailsDataTypeEnum `pathParam:"style=simple,explode=false,name=dataType"`
+	DataType shared.DataIntegrityDataTypeEnum `pathParam:"style=simple,explode=false,name=dataType"`
 	// Field to order results by. [Read more](https://docs.codat.io/using-the-api/ordering-results).
 	OrderBy *string `queryParam:"style=form,explode=true,name=orderBy"`
 	// Page number. [Read more](https://docs.codat.io/using-the-api/paging).
@@ -52,65 +21,10 @@ type GetDataIntegrityDetailsRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-type GetDataIntegrityDetails200ApplicationJSONLinksHypertextReference struct {
-	Href *string `json:"href,omitempty"`
-}
-
-type GetDataIntegrityDetails200ApplicationJSONLinks struct {
-	Current  GetDataIntegrityDetails200ApplicationJSONLinksHypertextReference  `json:"current"`
-	Next     *GetDataIntegrityDetails200ApplicationJSONLinksHypertextReference `json:"next,omitempty"`
-	Previous *GetDataIntegrityDetails200ApplicationJSONLinksHypertextReference `json:"previous,omitempty"`
-	Self     GetDataIntegrityDetails200ApplicationJSONLinksHypertextReference  `json:"self"`
-}
-
-type GetDataIntegrityDetails200ApplicationJSONDataIntegrityDetailsMatches struct {
-	// The transaction value.
-	Amount *string `json:"amount,omitempty"`
-	// ID GUID representing the connection of the accounting or banking platform.
-	ConnectionID *string `json:"connectionId,omitempty"`
-	// The currency of the transaction.
-	Currency *string `json:"currency,omitempty"`
-	// The date of the transaction.
-	Date *string `json:"date,omitempty"`
-	// The transaction description.
-	Description *string `json:"description,omitempty"`
-	// ID GUID of the transaction.
-	ID *string `json:"id,omitempty"`
-	// The data type which the data type in the URL has been matched against. For example, if you've matched accountTransactions and banking-transactions, and you call this endpoint with accountTransactions in the URL, this property would be banking-transactions.
-	Type *string `json:"type,omitempty"`
-}
-
-type GetDataIntegrityDetails200ApplicationJSONDataIntegrityDetails struct {
-	// The transaction value.
-	Amount *float64 `json:"amount,omitempty"`
-	// ID GUID representing the connection of the accounting or banking platform.
-	ConnectionID *string `json:"connectionId,omitempty"`
-	// The currency of the transaction.
-	Currency *string `json:"currency,omitempty"`
-	// The date of the transaction.
-	Date *string `json:"date,omitempty"`
-	// The transaction description.
-	Description *string `json:"description,omitempty"`
-	// ID GUID of the transaction.
-	ID      *string                                                                `json:"id,omitempty"`
-	Matches []GetDataIntegrityDetails200ApplicationJSONDataIntegrityDetailsMatches `json:"matches,omitempty"`
-	// The data type of the record.
-	Type *string `json:"type,omitempty"`
-}
-
-// GetDataIntegrityDetails200ApplicationJSON - OK
-type GetDataIntegrityDetails200ApplicationJSON struct {
-	Links        GetDataIntegrityDetails200ApplicationJSONLinks                  `json:"_links"`
-	PageNumber   int64                                                           `json:"pageNumber"`
-	PageSize     int64                                                           `json:"pageSize"`
-	Results      []GetDataIntegrityDetails200ApplicationJSONDataIntegrityDetails `json:"results,omitempty"`
-	TotalResults int64                                                           `json:"totalResults"`
-}
-
 type GetDataIntegrityDetailsResponse struct {
 	ContentType string
+	// OK
+	Details     *shared.Details
 	StatusCode  int
 	RawResponse *http.Response
-	// OK
-	GetDataIntegrityDetails200ApplicationJSONObject *GetDataIntegrityDetails200ApplicationJSON
 }

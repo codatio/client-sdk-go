@@ -11,29 +11,3 @@ type AccountCategoriesUpdatedResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 }
-
-type AccountCategoriesUpdatedAccountCategoriesUpdatedWebhookData struct {
-	// The date on which this account categories were last modified in Codat.
-	ModifiedDate *string `json:"modifiedDate,omitempty"`
-}
-
-// AccountCategoriesUpdatedAccountCategoriesUpdatedWebhook - Webhook request body for account categories updated.
-type AccountCategoriesUpdatedAccountCategoriesUpdatedWebhook struct {
-	// Unique identifier of the alert.
-	AlertID *string `json:"alertId,omitempty"`
-	// Unique identifier for your client in Codat.
-	ClientID *string `json:"clientId,omitempty"`
-	// Name of your client in Codat.
-	ClientName *string `json:"clientName,omitempty"`
-	// Unique identifier for your SMB in Codat.
-	CompanyID *string                                                      `json:"companyId,omitempty"`
-	Data      *AccountCategoriesUpdatedAccountCategoriesUpdatedWebhookData `json:"data,omitempty"`
-	// Unique identifier for a company's data connection.
-	DataConnectionID *string `json:"dataConnectionId,omitempty"`
-	// A human readable message about the webhook.
-	Message *string `json:"message,omitempty"`
-	// Unique identifier for the rule.
-	RuleID *string `json:"ruleId,omitempty"`
-	// The type of rule.
-	RuleType *string `json:"ruleType,omitempty"`
-}

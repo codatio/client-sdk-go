@@ -67,11 +67,11 @@ func main() {
 
 ### ExcelReports
 
+* `DownloadExcelReport` - Download generated excel report
+* `GenerateExcelReport` - Generate an Excel report
 * `GetAccountingMarketingMetrics` - Get the marketing metrics from an accounting source for a given company.
 * `GetExcelReport` - Download generated excel report
-* `GetExcelReportPost` - Download generated excel report
-* `MakeRequestToDownloadExcelReport` - Get status of Excel report
-* `RequestExcelReportForDownload` - Generate an Excel report
+* `GetExcelReportGenerationStatus` - Get status of Excel report
 
 ### Reports
 
@@ -84,7 +84,7 @@ func main() {
 * `GetCommerceRevenueMetrics` - Commerce Revenue Metrics
 * `GetEnhancedBalanceSheet` - Enhanced Balance Sheet
 * `GetEnhancedCashFlowTransactions` - Get enhanced cash flow report
-* `GetEnhancedFinancialMetrics` - List finanicial metrics
+* `GetEnhancedFinancialMetrics` - List financial metrics
 * `GetEnhancedInvoicesReport` - Enhanced Invoices Report
 * `GetEnhancedProfitAndLoss` - Enhanced Profit and Loss
 * `GetRecurringRevenueMetrics` - Get key metrics for subscription revenue

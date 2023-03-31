@@ -3,6 +3,7 @@
 package operations
 
 import (
+	"github.com/codatio/client-sdk-go/assess/pkg/models/shared"
 	"net/http"
 )
 
@@ -19,57 +20,10 @@ type ListAccountsCategoriesRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-type ListAccountsCategories200ApplicationJSONLinksHypertextReference struct {
-	Href *string `json:"href,omitempty"`
-}
-
-type ListAccountsCategories200ApplicationJSONLinks struct {
-	Current  ListAccountsCategories200ApplicationJSONLinksHypertextReference  `json:"current"`
-	Next     *ListAccountsCategories200ApplicationJSONLinksHypertextReference `json:"next,omitempty"`
-	Previous *ListAccountsCategories200ApplicationJSONLinksHypertextReference `json:"previous,omitempty"`
-	Self     ListAccountsCategories200ApplicationJSONLinksHypertextReference  `json:"self"`
-}
-
-// ListAccountsCategories200ApplicationJSONCategorisedAccountAccountRef - An object containing account reference data.
-type ListAccountsCategories200ApplicationJSONCategorisedAccountAccountRef struct {
-	// 'id' from the Accounts data type.
-	ID *string `json:"id,omitempty"`
-	// 'name' from the Accounts data type.
-	Name *string `json:"name,omitempty"`
-}
-
-type ListAccountsCategories200ApplicationJSONCategorisedAccountModifiedDate struct {
-	// Most granular chart of account type.
-	DetailType *string `json:"detailType,omitempty"`
-	// The date on which this record was last modified in Codat.
-	ModifiedDate *string `json:"modifiedDate,omitempty"`
-	// The account subtype.
-	Subtype *string `json:"subtype,omitempty"`
-	// The top level account type.
-	Type *string `json:"type,omitempty"`
-}
-
-type ListAccountsCategories200ApplicationJSONCategorisedAccount struct {
-	// An object containing account reference data.
-	AccountRef *ListAccountsCategories200ApplicationJSONCategorisedAccountAccountRef   `json:"accountRef,omitempty"`
-	Confirmed  *ListAccountsCategories200ApplicationJSONCategorisedAccountModifiedDate `json:"confirmed,omitempty"`
-	Suggested  *ListAccountsCategories200ApplicationJSONCategorisedAccountModifiedDate `json:"suggested,omitempty"`
-}
-
-// ListAccountsCategories200ApplicationJSON - OK
-type ListAccountsCategories200ApplicationJSON struct {
-	Links      ListAccountsCategories200ApplicationJSONLinks `json:"_links"`
-	PageNumber int64                                         `json:"pageNumber"`
-	PageSize   int64                                         `json:"pageSize"`
-	// A list confirmed and suggested account categories.
-	Results      []ListAccountsCategories200ApplicationJSONCategorisedAccount `json:"results,omitempty"`
-	TotalResults int64                                                        `json:"totalResults"`
-}
-
 type ListAccountsCategoriesResponse struct {
-	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
 	// OK
-	ListAccountsCategories200ApplicationJSONObject *ListAccountsCategories200ApplicationJSON
+	CategorisedAccounts *shared.CategorisedAccounts
+	ContentType         string
+	StatusCode          int
+	RawResponse         *http.Response
 }

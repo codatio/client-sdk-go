@@ -1,6 +1,6 @@
 configVersion: 1.0.0
 management:
-  docChecksum: 6005f74c5a021d3a7ba0c18e9664d738
+  docChecksum: a537e65306f3e65dd12363e690636a7f
   docVersion: "1.0"
   speakeasyVersion: 1.19.2
   generationVersion: 2.16.5
@@ -10,5 +10,5 @@ generation:
   sdkFlattening: true
   singleTagPerOp: false
 go:
-  version: 0.7.1
+  version: 0.7.2
   packageName: github.com/codatio/client-sdk-go/assess

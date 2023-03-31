@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/assess/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/assess/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/assess/pkg/utils"
 	"net/http"
 )
@@ -68,7 +69,7 @@ func (s *reports) GetAccountsForEnhancedBalanceSheet(ctx context.Context, reques
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetAccountsForEnhancedBalanceSheetEnhancedReport
+			var out *shared.EnhancedReport
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -117,7 +118,7 @@ func (s *reports) GetAccountsForEnhancedProfitAndLoss(ctx context.Context, reque
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetAccountsForEnhancedProfitAndLossEnhancedReport
+			var out *shared.EnhancedReport
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -166,12 +167,12 @@ func (s *reports) GetCommerceCustomerRetentionMetrics(ctx context.Context, reque
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetCommerceCustomerRetentionMetrics200ApplicationJSON
+			var out *shared.Report
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.GetCommerceCustomerRetentionMetrics200ApplicationJSONObject = out
+			res.Report = out
 		}
 	}
 
@@ -215,12 +216,12 @@ func (s *reports) GetCommerceLifetimeValueMetrics(ctx context.Context, request o
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetCommerceLifetimeValueMetrics200ApplicationJSON
+			var out *shared.Report
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.GetCommerceLifetimeValueMetrics200ApplicationJSONObject = out
+			res.Report = out
 		}
 	}
 
@@ -264,12 +265,12 @@ func (s *reports) GetCommerceOrdersMetrics(ctx context.Context, request operatio
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetCommerceOrdersMetrics200ApplicationJSON
+			var out *shared.Report
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.GetCommerceOrdersMetrics200ApplicationJSONObject = out
+			res.Report = out
 		}
 	}
 
@@ -313,12 +314,12 @@ func (s *reports) GetCommerceRefundsMetrics(ctx context.Context, request operati
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetCommerceRefundsMetrics200ApplicationJSON
+			var out *shared.Report
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.GetCommerceRefundsMetrics200ApplicationJSONObject = out
+			res.Report = out
 		}
 	}
 
@@ -362,12 +363,12 @@ func (s *reports) GetCommerceRevenueMetrics(ctx context.Context, request operati
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetCommerceRevenueMetrics200ApplicationJSON
+			var out *shared.Report
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.GetCommerceRevenueMetrics200ApplicationJSONObject = out
+			res.Report = out
 		}
 	}
 
@@ -411,12 +412,12 @@ func (s *reports) GetEnhancedBalanceSheet(ctx context.Context, request operation
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetEnhancedBalanceSheet200ApplicationJSON
+			var out *shared.Report
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.GetEnhancedBalanceSheet200ApplicationJSONObject = out
+			res.Report = out
 		}
 	}
 
@@ -460,7 +461,7 @@ func (s *reports) GetEnhancedCashFlowTransactions(ctx context.Context, request o
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetEnhancedCashFlowTransactionsEnhancedCashFlowTransactions
+			var out *shared.EnhancedCashFlowTransactions
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -472,7 +473,7 @@ func (s *reports) GetEnhancedCashFlowTransactions(ctx context.Context, request o
 	return res, nil
 }
 
-// GetEnhancedFinancialMetrics - List finanicial metrics
+// GetEnhancedFinancialMetrics - List financial metrics
 // Gets all the available financial metrics for a given company, over one or more periods.
 func (s *reports) GetEnhancedFinancialMetrics(ctx context.Context, request operations.GetEnhancedFinancialMetricsRequest) (*operations.GetEnhancedFinancialMetricsResponse, error) {
 	baseURL := s.serverURL
@@ -509,12 +510,12 @@ func (s *reports) GetEnhancedFinancialMetrics(ctx context.Context, request opera
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetEnhancedFinancialMetrics200ApplicationJSON
+			var out *shared.FinancialMetrics
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.GetEnhancedFinancialMetrics200ApplicationJSONObject = out
+			res.FinancialMetrics = out
 		}
 	}
 
@@ -558,7 +559,7 @@ func (s *reports) GetEnhancedInvoicesReport(ctx context.Context, request operati
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetEnhancedInvoicesReportEnhancedInvoicesReport
+			var out *shared.EnhancedInvoicesReport
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -607,12 +608,12 @@ func (s *reports) GetEnhancedProfitAndLoss(ctx context.Context, request operatio
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetEnhancedProfitAndLoss200ApplicationJSON
+			var out *shared.Report
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.GetEnhancedProfitAndLoss200ApplicationJSONObject = out
+			res.Report = out
 		}
 	}
 
@@ -652,12 +653,12 @@ func (s *reports) GetRecurringRevenueMetrics(ctx context.Context, request operat
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetRecurringRevenueMetrics200ApplicationJSON
+			var out *shared.Report
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.GetRecurringRevenueMetrics200ApplicationJSONObject = out
+			res.Report = out
 		}
 	}
 
@@ -697,12 +698,12 @@ func (s *reports) RequestRecurringRevenueMetrics(ctx context.Context, request op
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.RequestRecurringRevenueMetrics200ApplicationJSON
+			var out *shared.Report
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.RequestRecurringRevenueMetrics200ApplicationJSONObject = out
+			res.Report = out
 		}
 	}
 
