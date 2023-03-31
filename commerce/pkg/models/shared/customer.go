@@ -57,7 +57,7 @@ type Customer struct {
 	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Any additional information about the customer
 	Note *string `json:"note,omitempty"`
-	// A phone number
+	// A phone number.
 	Phone *string `json:"phone,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//

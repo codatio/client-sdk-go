@@ -2,6 +2,46 @@
 
 package shared
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
+// CompanyInfoWeblinkTypeEnum - The type of the weblink.
+type CompanyInfoWeblinkTypeEnum string
+
+const (
+	CompanyInfoWeblinkTypeEnumWebsite CompanyInfoWeblinkTypeEnum = "Website"
+	CompanyInfoWeblinkTypeEnumSocial  CompanyInfoWeblinkTypeEnum = "Social"
+	CompanyInfoWeblinkTypeEnumUnknown CompanyInfoWeblinkTypeEnum = "Unknown"
+)
+
+func (e *CompanyInfoWeblinkTypeEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Website":
+		fallthrough
+	case "Social":
+		fallthrough
+	case "Unknown":
+		*e = CompanyInfoWeblinkTypeEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CompanyInfoWeblinkTypeEnum: %s", s)
+	}
+}
+
+// CompanyInfoWeblink - Weblink associated with the company.
+type CompanyInfoWeblink struct {
+	// The type of the weblink.
+	Type *CompanyInfoWeblinkTypeEnum `json:"type,omitempty"`
+	// The full URL for the weblink.
+	URL *string `json:"url,omitempty"`
+}
+
 // CompanyInfo - In the Codat system, company information includes standard commercial details about
 // a linked company, such as their address, phone number, and company registration.
 //
@@ -92,5 +132,5 @@ type CompanyInfo struct {
 	// URL addresses for the originating system. For example, potential use cases include 'deeplinking' to the originating system
 	SourceUrls map[string]string `json:"sourceUrls,omitempty"`
 	// Weblinks associated with the company
-	WebLinks []WebLink `json:"webLinks,omitempty"`
+	WebLinks []CompanyInfoWeblink `json:"webLinks,omitempty"`
 }

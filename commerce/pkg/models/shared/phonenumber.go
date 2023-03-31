@@ -3,7 +3,7 @@
 package shared
 
 type PhoneNumber struct {
-	// A phone number
+	// A phone number.
 	Number string `json:"number"`
 	// The type of phone number
 	Type PhoneNumberTypeEnum `json:"type"`
