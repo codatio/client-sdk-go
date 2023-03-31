@@ -3,269 +3,41 @@
 package operations
 
 import (
-	"encoding/json"
-	"fmt"
+	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
 	"net/http"
 )
 
-// PushJournalSourceModifiedDateStatusEnum - Current journal status.
-type PushJournalSourceModifiedDateStatusEnum string
-
-const (
-	PushJournalSourceModifiedDateStatusEnumUnknown  PushJournalSourceModifiedDateStatusEnum = "Unknown"
-	PushJournalSourceModifiedDateStatusEnumActive   PushJournalSourceModifiedDateStatusEnum = "Active"
-	PushJournalSourceModifiedDateStatusEnumArchived PushJournalSourceModifiedDateStatusEnum = "Archived"
-)
-
-func (e *PushJournalSourceModifiedDateStatusEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
-		return err
-	}
-	switch s {
-	case "Unknown":
-		fallthrough
-	case "Active":
-		fallthrough
-	case "Archived":
-		*e = PushJournalSourceModifiedDateStatusEnum(s)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for PushJournalSourceModifiedDateStatusEnum: %s", s)
-	}
-}
-
-// PushJournalSourceModifiedDateInput - > **Language tip:** For line items, or individual transactions, of a company's financial documents, refer to the [Journal entries](https://docs.codat.io/accounting-api#/schemas/JournalEntry) data type
-//
-// > View the coverage for journals in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journals" target="_blank">Data coverage explorer</a>.
-//
-// ## Overview
-//
-// In accounting software, journals are used to record all the financial transactions of a company. Each transaction in a journal is represented by a separate [journal entry](https://docs.codat.io/accounting-api#/schemas/JournalEntry). These entries are used to create the general ledger, which is then used to create the financial statements of a business.
-//
-// When a company records all their transactions in a single journal, it can become large and difficult to maintain and track. This is why large companies often use multiple journals (also known as subjournals) to categorize and manage journal entries.
-//
-// Such journals can be divided into two categories:
-//
-// - Special journals: journals used to record specific types of transactions; for example, a purchases journal, a sales journal, or a cash management journal.
-// - General journals: journals used to record transactions that fall outside the scope of the special journals.
-//
-// Multiple journals or subjournals are used in the following Codat integrations:
-//
-// - [Sage Intacct](https://docs.codat.io/integrations/accounting/sage-intacct/accounting-sage-intacct)  (mandatory)
-// - [Exact Online](https://docs.codat.io/integrations/accounting/exact-online/accounting-exact-online)  (mandatory)
-// - [Oracle NetSuite](https://docs.codat.io/integrations/accounting/netsuite/accounting-netsuite) (optional)
-//
-// > When pushing journal entries to an accounting platform that doesn’t support multiple journals (multi-book accounting), the entries will be linked to the platform-generic journal. The Journals data type will only include one object.
-type PushJournalSourceModifiedDateInput struct {
-	// Journal creation date.
-	CreatedOn *string `json:"createdOn,omitempty"`
-	// If the journal has child journals, this value is true. If it doesn’t, it is false.
-	HasChildren *bool `json:"hasChildren,omitempty"`
-	// Journal ID.
-	ID *string `json:"id,omitempty"`
-	// Native journal number or code.
-	JournalCode *string `json:"journalCode,omitempty"`
-	// The date on which this record was last modified in Codat.
-	ModifiedDate *string `json:"modifiedDate,omitempty"`
-	// Journal name.
-	// The maximum length for a journal name is 256 characters. All characters above that number will be truncated.
-	Name *string `json:"name,omitempty"`
-	// Parent journal ID.
-	// If the journal is a parent journal, this value is not present.
-	ParentID *string `json:"parentId,omitempty"`
-	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
-	// Current journal status.
-	Status *PushJournalSourceModifiedDateStatusEnum `json:"status,omitempty"`
-	// The type of the journal.
-	Type *string `json:"type,omitempty"`
-}
-
 type PushJournalRequest struct {
-	RequestBody      *PushJournalSourceModifiedDateInput `request:"mediaType=application/json"`
-	CompanyID        string                              `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID     string                              `pathParam:"style=simple,explode=false,name=connectionId"`
-	TimeoutInMinutes *int                                `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
-}
-
-type PushJournal200ApplicationJSONChangesPushOperationRecordRef struct {
-	DataType *string `json:"dataType,omitempty"`
-	ID       *string `json:"id,omitempty"`
-}
-
-type PushJournal200ApplicationJSONChangesTypeEnum string
-
-const (
-	PushJournal200ApplicationJSONChangesTypeEnumUnknown            PushJournal200ApplicationJSONChangesTypeEnum = "Unknown"
-	PushJournal200ApplicationJSONChangesTypeEnumCreated            PushJournal200ApplicationJSONChangesTypeEnum = "Created"
-	PushJournal200ApplicationJSONChangesTypeEnumModified           PushJournal200ApplicationJSONChangesTypeEnum = "Modified"
-	PushJournal200ApplicationJSONChangesTypeEnumDeleted            PushJournal200ApplicationJSONChangesTypeEnum = "Deleted"
-	PushJournal200ApplicationJSONChangesTypeEnumAttachmentUploaded PushJournal200ApplicationJSONChangesTypeEnum = "AttachmentUploaded"
-)
-
-func (e *PushJournal200ApplicationJSONChangesTypeEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
-		return err
-	}
-	switch s {
-	case "Unknown":
-		fallthrough
-	case "Created":
-		fallthrough
-	case "Modified":
-		fallthrough
-	case "Deleted":
-		fallthrough
-	case "AttachmentUploaded":
-		*e = PushJournal200ApplicationJSONChangesTypeEnum(s)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for PushJournal200ApplicationJSONChangesTypeEnum: %s", s)
-	}
-}
-
-type PushJournal200ApplicationJSONChanges struct {
-	AttachmentID *string                                                     `json:"attachmentId,omitempty"`
-	RecordRef    *PushJournal200ApplicationJSONChangesPushOperationRecordRef `json:"recordRef,omitempty"`
-	Type         *PushJournal200ApplicationJSONChangesTypeEnum               `json:"type,omitempty"`
-}
-
-// PushJournal200ApplicationJSONSourceModifiedDateMetadataMetadata - Additional information about the entity
-type PushJournal200ApplicationJSONSourceModifiedDateMetadataMetadata struct {
-	// Indicates whether the record has been deleted in the third-party system this record originiated from
-	IsDeleted *bool `json:"isDeleted,omitempty"`
-}
-
-type PushJournal200ApplicationJSONSourceModifiedDateMetadata struct {
-	// Additional information about the entity
-	Metadata *PushJournal200ApplicationJSONSourceModifiedDateMetadataMetadata `json:"metadata,omitempty"`
-}
-
-// PushJournal200ApplicationJSONSourceModifiedDateStatusEnum - Current journal status.
-type PushJournal200ApplicationJSONSourceModifiedDateStatusEnum string
-
-const (
-	PushJournal200ApplicationJSONSourceModifiedDateStatusEnumUnknown  PushJournal200ApplicationJSONSourceModifiedDateStatusEnum = "Unknown"
-	PushJournal200ApplicationJSONSourceModifiedDateStatusEnumActive   PushJournal200ApplicationJSONSourceModifiedDateStatusEnum = "Active"
-	PushJournal200ApplicationJSONSourceModifiedDateStatusEnumArchived PushJournal200ApplicationJSONSourceModifiedDateStatusEnum = "Archived"
-)
-
-func (e *PushJournal200ApplicationJSONSourceModifiedDateStatusEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
-		return err
-	}
-	switch s {
-	case "Unknown":
-		fallthrough
-	case "Active":
-		fallthrough
-	case "Archived":
-		*e = PushJournal200ApplicationJSONSourceModifiedDateStatusEnum(s)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for PushJournal200ApplicationJSONSourceModifiedDateStatusEnum: %s", s)
-	}
-}
-
-// PushJournal200ApplicationJSONSourceModifiedDate - > **Language tip:** For line items, or individual transactions, of a company's financial documents, refer to the [Journal entries](https://docs.codat.io/accounting-api#/schemas/JournalEntry) data type
-//
-// > View the coverage for journals in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journals" target="_blank">Data coverage explorer</a>.
-//
-// ## Overview
-//
-// In accounting software, journals are used to record all the financial transactions of a company. Each transaction in a journal is represented by a separate [journal entry](https://docs.codat.io/accounting-api#/schemas/JournalEntry). These entries are used to create the general ledger, which is then used to create the financial statements of a business.
-//
-// When a company records all their transactions in a single journal, it can become large and difficult to maintain and track. This is why large companies often use multiple journals (also known as subjournals) to categorize and manage journal entries.
-//
-// Such journals can be divided into two categories:
-//
-// - Special journals: journals used to record specific types of transactions; for example, a purchases journal, a sales journal, or a cash management journal.
-// - General journals: journals used to record transactions that fall outside the scope of the special journals.
-//
-// Multiple journals or subjournals are used in the following Codat integrations:
-//
-// - [Sage Intacct](https://docs.codat.io/integrations/accounting/sage-intacct/accounting-sage-intacct)  (mandatory)
-// - [Exact Online](https://docs.codat.io/integrations/accounting/exact-online/accounting-exact-online)  (mandatory)
-// - [Oracle NetSuite](https://docs.codat.io/integrations/accounting/netsuite/accounting-netsuite) (optional)
-//
-// > When pushing journal entries to an accounting platform that doesn’t support multiple journals (multi-book accounting), the entries will be linked to the platform-generic journal. The Journals data type will only include one object.
-type PushJournal200ApplicationJSONSourceModifiedDate struct {
-	// Journal creation date.
-	CreatedOn *string `json:"createdOn,omitempty"`
-	// If the journal has child journals, this value is true. If it doesn’t, it is false.
-	HasChildren *bool `json:"hasChildren,omitempty"`
-	// Journal ID.
-	ID *string `json:"id,omitempty"`
-	// Native journal number or code.
-	JournalCode *string                                                  `json:"journalCode,omitempty"`
-	Metadata    *PushJournal200ApplicationJSONSourceModifiedDateMetadata `json:"metadata,omitempty"`
-	// The date on which this record was last modified in Codat.
-	ModifiedDate *string `json:"modifiedDate,omitempty"`
-	// Journal name.
-	// The maximum length for a journal name is 256 characters. All characters above that number will be truncated.
-	Name *string `json:"name,omitempty"`
-	// Parent journal ID.
-	// If the journal is a parent journal, this value is not present.
-	ParentID *string `json:"parentId,omitempty"`
-	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
-	// Current journal status.
-	Status *PushJournal200ApplicationJSONSourceModifiedDateStatusEnum `json:"status,omitempty"`
-	// The type of the journal.
-	Type *string `json:"type,omitempty"`
-}
-
-// PushJournal200ApplicationJSONStatusEnum - The status of the push operation.
-type PushJournal200ApplicationJSONStatusEnum string
-
-const (
-	PushJournal200ApplicationJSONStatusEnumPending  PushJournal200ApplicationJSONStatusEnum = "Pending"
-	PushJournal200ApplicationJSONStatusEnumFailed   PushJournal200ApplicationJSONStatusEnum = "Failed"
-	PushJournal200ApplicationJSONStatusEnumSuccess  PushJournal200ApplicationJSONStatusEnum = "Success"
-	PushJournal200ApplicationJSONStatusEnumTimedOut PushJournal200ApplicationJSONStatusEnum = "TimedOut"
-)
-
-func (e *PushJournal200ApplicationJSONStatusEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
-		return err
-	}
-	switch s {
-	case "Pending":
-		fallthrough
-	case "Failed":
-		fallthrough
-	case "Success":
-		fallthrough
-	case "TimedOut":
-		*e = PushJournal200ApplicationJSONStatusEnum(s)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for PushJournal200ApplicationJSONStatusEnum: %s", s)
-	}
-}
-
-type PushJournal200ApplicationJSONValidationValidationItem struct {
-	ItemID        *string `json:"itemId,omitempty"`
-	Message       *string `json:"message,omitempty"`
-	ValidatorName *string `json:"validatorName,omitempty"`
-}
-
-// PushJournal200ApplicationJSONValidation - A human-readable object describing validation decisions Codat has made when pushing data into the platform. If a push has failed because of validation errors, they will be detailed here.
-type PushJournal200ApplicationJSONValidation struct {
-	Errors   []PushJournal200ApplicationJSONValidationValidationItem `json:"errors,omitempty"`
-	Warnings []PushJournal200ApplicationJSONValidationValidationItem `json:"warnings,omitempty"`
+	Journal          *shared.Journal `request:"mediaType=application/json"`
+	CompanyID        string          `pathParam:"style=simple,explode=false,name=companyId"`
+	ConnectionID     string          `pathParam:"style=simple,explode=false,name=connectionId"`
+	TimeoutInMinutes *int            `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
 }
 
 // PushJournal200ApplicationJSON - Success
 type PushJournal200ApplicationJSON struct {
-	Changes []PushJournal200ApplicationJSONChanges `json:"changes,omitempty"`
+	Changes []shared.PushOperationChange `json:"changes,omitempty"`
 	// Unique identifier for your SMB in Codat.
 	CompanyID string `json:"companyId"`
-	// The datetime when the push was completed, null if Pending.
+	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
+	//
+	// ```
+	// 2020-10-08T22:40:50Z
+	// 2021-01-01T00:00:00
+	// ```
+	//
+	//
+	//
+	// When syncing data that contains `DateTime` fields from Codat, make sure you support the following cases when reading time information:
+	//
+	// - Coordinated Universal Time (UTC): `2021-11-15T06:00:00Z`
+	// - Unqualified local time: `2021-11-15T01:00:00`
+	// - UTC time offsets: `2021-11-15T01:00:00-05:00`
+	//
+	// > Time zones
+	// >
+	// > Not all dates from Codat will contain information about time zones.
+	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	CompletedOnUtc *string `json:"completedOnUtc,omitempty"`
 	// > **Language tip:** For line items, or individual transactions, of a company's financial documents, refer to the [Journal entries](https://docs.codat.io/accounting-api#/schemas/JournalEntry) data type
 	//
@@ -290,23 +62,41 @@ type PushJournal200ApplicationJSON struct {
 	//
 	// > When pushing journal entries to an accounting platform that doesn’t support multiple journals (multi-book accounting), the entries will be linked to the platform-generic journal. The Journals data type will only include one object.
 	//
-	Data *PushJournal200ApplicationJSONSourceModifiedDate `json:"data,omitempty"`
+	Data *shared.Journal `json:"data,omitempty"`
 	// Unique identifier for a company's data connection.
 	DataConnectionKey string `json:"dataConnectionKey"`
-	// The type of data being pushed, eg invoices, customers.
-	DataType     *string `json:"dataType,omitempty"`
-	ErrorMessage *string `json:"errorMessage,omitempty"`
+	// Available Data types
+	DataType     *shared.DataTypeEnum `json:"dataType,omitempty"`
+	ErrorMessage *string              `json:"errorMessage,omitempty"`
 	// A unique identifier generated by Codat to represent this single push operation. This identifier can be used to track the status of the push, and should be persisted.
 	PushOperationKey string `json:"pushOperationKey"`
-	// The datetime when the push was requested.
+	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
+	//
+	// ```
+	// 2020-10-08T22:40:50Z
+	// 2021-01-01T00:00:00
+	// ```
+	//
+	//
+	//
+	// When syncing data that contains `DateTime` fields from Codat, make sure you support the following cases when reading time information:
+	//
+	// - Coordinated Universal Time (UTC): `2021-11-15T06:00:00Z`
+	// - Unqualified local time: `2021-11-15T01:00:00`
+	// - UTC time offsets: `2021-11-15T01:00:00-05:00`
+	//
+	// > Time zones
+	// >
+	// > Not all dates from Codat will contain information about time zones.
+	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	RequestedOnUtc string `json:"requestedOnUtc"`
 	// The status of the push operation.
-	Status           PushJournal200ApplicationJSONStatusEnum `json:"status"`
-	StatusCode       int                                     `json:"statusCode"`
-	TimeoutInMinutes *int                                    `json:"timeoutInMinutes,omitempty"`
-	TimeoutInSeconds *int                                    `json:"timeoutInSeconds,omitempty"`
+	Status           shared.PushOperationStatusEnum `json:"status"`
+	StatusCode       int64                          `json:"statusCode"`
+	TimeoutInMinutes *int                           `json:"timeoutInMinutes,omitempty"`
+	TimeoutInSeconds *int                           `json:"timeoutInSeconds,omitempty"`
 	// A human-readable object describing validation decisions Codat has made when pushing data into the platform. If a push has failed because of validation errors, they will be detailed here.
-	Validation *PushJournal200ApplicationJSONValidation `json:"validation,omitempty"`
+	Validation *shared.Validation `json:"validation,omitempty"`
 }
 
 type PushJournalResponse struct {

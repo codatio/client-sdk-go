@@ -3,8 +3,7 @@
 package operations
 
 import (
-	"encoding/json"
-	"fmt"
+	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
 	"net/http"
 )
 
@@ -13,96 +12,10 @@ type GetJournalRequest struct {
 	JournalID string `pathParam:"style=simple,explode=false,name=journalId"`
 }
 
-// GetJournalSourceModifiedDateMetadataMetadata - Additional information about the entity
-type GetJournalSourceModifiedDateMetadataMetadata struct {
-	// Indicates whether the record has been deleted in the third-party system this record originiated from
-	IsDeleted *bool `json:"isDeleted,omitempty"`
-}
-
-type GetJournalSourceModifiedDateMetadata struct {
-	// Additional information about the entity
-	Metadata *GetJournalSourceModifiedDateMetadataMetadata `json:"metadata,omitempty"`
-}
-
-// GetJournalSourceModifiedDateStatusEnum - Current journal status.
-type GetJournalSourceModifiedDateStatusEnum string
-
-const (
-	GetJournalSourceModifiedDateStatusEnumUnknown  GetJournalSourceModifiedDateStatusEnum = "Unknown"
-	GetJournalSourceModifiedDateStatusEnumActive   GetJournalSourceModifiedDateStatusEnum = "Active"
-	GetJournalSourceModifiedDateStatusEnumArchived GetJournalSourceModifiedDateStatusEnum = "Archived"
-)
-
-func (e *GetJournalSourceModifiedDateStatusEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
-		return err
-	}
-	switch s {
-	case "Unknown":
-		fallthrough
-	case "Active":
-		fallthrough
-	case "Archived":
-		*e = GetJournalSourceModifiedDateStatusEnum(s)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for GetJournalSourceModifiedDateStatusEnum: %s", s)
-	}
-}
-
-// GetJournalSourceModifiedDate - > **Language tip:** For line items, or individual transactions, of a company's financial documents, refer to the [Journal entries](https://docs.codat.io/accounting-api#/schemas/JournalEntry) data type
-//
-// > View the coverage for journals in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journals" target="_blank">Data coverage explorer</a>.
-//
-// ## Overview
-//
-// In accounting software, journals are used to record all the financial transactions of a company. Each transaction in a journal is represented by a separate [journal entry](https://docs.codat.io/accounting-api#/schemas/JournalEntry). These entries are used to create the general ledger, which is then used to create the financial statements of a business.
-//
-// When a company records all their transactions in a single journal, it can become large and difficult to maintain and track. This is why large companies often use multiple journals (also known as subjournals) to categorize and manage journal entries.
-//
-// Such journals can be divided into two categories:
-//
-// - Special journals: journals used to record specific types of transactions; for example, a purchases journal, a sales journal, or a cash management journal.
-// - General journals: journals used to record transactions that fall outside the scope of the special journals.
-//
-// Multiple journals or subjournals are used in the following Codat integrations:
-//
-// - [Sage Intacct](https://docs.codat.io/integrations/accounting/sage-intacct/accounting-sage-intacct)  (mandatory)
-// - [Exact Online](https://docs.codat.io/integrations/accounting/exact-online/accounting-exact-online)  (mandatory)
-// - [Oracle NetSuite](https://docs.codat.io/integrations/accounting/netsuite/accounting-netsuite) (optional)
-//
-// > When pushing journal entries to an accounting platform that doesn’t support multiple journals (multi-book accounting), the entries will be linked to the platform-generic journal. The Journals data type will only include one object.
-type GetJournalSourceModifiedDate struct {
-	// Journal creation date.
-	CreatedOn *string `json:"createdOn,omitempty"`
-	// If the journal has child journals, this value is true. If it doesn’t, it is false.
-	HasChildren *bool `json:"hasChildren,omitempty"`
-	// Journal ID.
-	ID *string `json:"id,omitempty"`
-	// Native journal number or code.
-	JournalCode *string                               `json:"journalCode,omitempty"`
-	Metadata    *GetJournalSourceModifiedDateMetadata `json:"metadata,omitempty"`
-	// The date on which this record was last modified in Codat.
-	ModifiedDate *string `json:"modifiedDate,omitempty"`
-	// Journal name.
-	// The maximum length for a journal name is 256 characters. All characters above that number will be truncated.
-	Name *string `json:"name,omitempty"`
-	// Parent journal ID.
-	// If the journal is a parent journal, this value is not present.
-	ParentID *string `json:"parentId,omitempty"`
-	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
-	// Current journal status.
-	Status *GetJournalSourceModifiedDateStatusEnum `json:"status,omitempty"`
-	// The type of the journal.
-	Type *string `json:"type,omitempty"`
-}
-
 type GetJournalResponse struct {
 	ContentType string
 	// Success
-	SourceModifiedDate *GetJournalSourceModifiedDate
-	StatusCode         int
-	RawResponse        *http.Response
+	Journal     *shared.Journal
+	StatusCode  int
+	RawResponse *http.Response
 }

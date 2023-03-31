@@ -6,7 +6,9 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/accounting/pkg/utils"
+	"io"
 	"net/http"
 )
 
@@ -43,7 +45,7 @@ func (s *directCosts) CreateDirectCost(ctx context.Context, request operations.C
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/directCosts", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "DirectCost", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -81,12 +83,12 @@ func (s *directCosts) CreateDirectCost(ctx context.Context, request operations.C
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.CreateDirectCost200ApplicationJSON
+			var out *shared.CreateDirectCostResponse
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.CreateDirectCost200ApplicationJSONObject = out
+			res.CreateDirectCostResponse = out
 		}
 	}
 
@@ -124,6 +126,15 @@ func (s *directCosts) DownloadDirectCostAttachment(ctx context.Context, request 
 	}
 	switch {
 	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/octet-stream`):
+			out, err := io.ReadAll(httpRes.Body)
+			if err != nil {
+				return nil, fmt.Errorf("error reading response body: %w", err)
+			}
+
+			res.Data = out
+		}
 	}
 
 	return res, nil
@@ -168,7 +179,7 @@ func (s *directCosts) GetCreateDirectCostsModel(ctx context.Context, request ope
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetCreateDirectCostsModelPushOption
+			var out *shared.PushOption
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -213,12 +224,12 @@ func (s *directCosts) GetDirectCost(ctx context.Context, request operations.GetD
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetDirectCostSourceModifiedDate
+			var out *shared.DirectCost
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.SourceModifiedDate = out
+			res.DirectCost = out
 		}
 	}
 
@@ -258,7 +269,7 @@ func (s *directCosts) GetDirectCostAttachment(ctx context.Context, request opera
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetDirectCostAttachmentAttachment
+			var out *shared.Attachment
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -307,12 +318,12 @@ func (s *directCosts) GetDirectCosts(ctx context.Context, request operations.Get
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetDirectCosts200ApplicationJSON
+			var out *shared.DirectCosts
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.GetDirectCosts200ApplicationJSONObject = out
+			res.DirectCosts = out
 		}
 	}
 
@@ -352,28 +363,35 @@ func (s *directCosts) ListDirectCostAttachments(ctx context.Context, request ope
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListDirectCostAttachmentsAttachments
+			var out *shared.AttachmentsDataset
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Attachments = out
+			res.AttachmentsDataset = out
 		}
 	}
 
 	return res, nil
 }
 
-// PostDirectCostAttachment - Create direct cost attachment
+// UploadDirectCostAttachment - Upload direct cost attachment
 // Posts a new direct cost attachment for a given company.
-func (s *directCosts) PostDirectCostAttachment(ctx context.Context, request operations.PostDirectCostAttachmentRequest) (*operations.PostDirectCostAttachmentResponse, error) {
+func (s *directCosts) UploadDirectCostAttachment(ctx context.Context, request operations.UploadDirectCostAttachmentRequest) (*operations.UploadDirectCostAttachmentResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/directCosts/{directCostId}/attachment", request, nil)
 
-	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "multipart")
+	if err != nil {
+		return nil, fmt.Errorf("error serializing request body: %w", err)
+	}
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+
+	req.Header.Set("Content-Type", reqContentType)
 
 	client := s.securityClient
 
@@ -388,7 +406,7 @@ func (s *directCosts) PostDirectCostAttachment(ctx context.Context, request oper
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.PostDirectCostAttachmentResponse{
+	res := &operations.UploadDirectCostAttachmentResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,

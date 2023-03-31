@@ -3,6 +3,7 @@
 package operations
 
 import (
+	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
 	"net/http"
 )
 
@@ -19,104 +20,10 @@ type ListTransfersRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-type ListTransfers200ApplicationJSONLinksHypertextReference struct {
-	Href *string `json:"href,omitempty"`
-}
-
-type ListTransfers200ApplicationJSONLinks struct {
-	Current  ListTransfers200ApplicationJSONLinksHypertextReference  `json:"current"`
-	Next     *ListTransfers200ApplicationJSONLinksHypertextReference `json:"next,omitempty"`
-	Previous *ListTransfers200ApplicationJSONLinksHypertextReference `json:"previous,omitempty"`
-	Self     ListTransfers200ApplicationJSONLinksHypertextReference  `json:"self"`
-}
-
-// ListTransfers200ApplicationJSONSourceModifiedDateContactRef - The customer or supplier for the transfer, if available.
-type ListTransfers200ApplicationJSONSourceModifiedDateContactRef struct {
-	DataType *string `json:"dataType,omitempty"`
-	ID       string  `json:"id"`
-}
-
-// ListTransfers200ApplicationJSONSourceModifiedDateTransferAccountAccountRef - The account that the transfer is moving from or to.
-type ListTransfers200ApplicationJSONSourceModifiedDateTransferAccountAccountRef struct {
-	// 'id' from the Accounts data type.
-	ID *string `json:"id,omitempty"`
-	// 'name' from the Accounts data type.
-	Name *string `json:"name,omitempty"`
-}
-
-// ListTransfers200ApplicationJSONSourceModifiedDateTransferAccount - The details of the accounts the transfer is moving from.
-type ListTransfers200ApplicationJSONSourceModifiedDateTransferAccount struct {
-	// The account that the transfer is moving from or to.
-	AccountRef *ListTransfers200ApplicationJSONSourceModifiedDateTransferAccountAccountRef `json:"accountRef,omitempty"`
-	// The amount transferred between accounts.
-	Amount *float64 `json:"amount,omitempty"`
-	// ISO currency code recorded for the transfer in the accounting platform.
-	Currency *string `json:"currency,omitempty"`
-}
-
-type ListTransfers200ApplicationJSONSourceModifiedDateMetadata struct {
-	// Indicates whether the record has been deleted in the third-party system this record originated from.
-	IsDeleted *bool `json:"isDeleted,omitempty"`
-}
-
-// ListTransfers200ApplicationJSONSourceModifiedDateSupplementalData - Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
-type ListTransfers200ApplicationJSONSourceModifiedDateSupplementalData struct {
-	Content map[string]map[string]interface{} `json:"content,omitempty"`
-}
-
-// ListTransfers200ApplicationJSONSourceModifiedDateTrackingCategoryRefs - References a category against which the item is tracked.
-type ListTransfers200ApplicationJSONSourceModifiedDateTrackingCategoryRefs struct {
-	ID   string  `json:"id"`
-	Name *string `json:"name,omitempty"`
-}
-
-// ListTransfers200ApplicationJSONSourceModifiedDate - > View the coverage for transfers in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=transfers" target="_blank">Data coverage explorer</a>.
-//
-// From the **Transfers** endpoints, you can:
-//
-// - [Retrieve a list of all transfers for a specified company](https://api.codat.io/swagger/index.html#/Transfers/get_companies__companyId__connections__connectionId__data_transfers)
-// - [Retrieve a single transfer for a specified company](https://api.codat.io/swagger/index.html#/Transfers/get_companies__companyId__connections__connectionId__data_transfers__transferId_)
-// - [Add a new transfer for a specified company](https://api.codat.io/swagger/index.html#/Transfers/post_companies__companyId__connections__connectionId__push_transfers)
-//
-// **Transfers** is a child data type of [account transactions](https://docs.codat.io/accounting-api#/schemas/AccountTransaction).
-type ListTransfers200ApplicationJSONSourceModifiedDate struct {
-	// The customer or supplier for the transfer, if available.
-	ContactRef *ListTransfers200ApplicationJSONSourceModifiedDateContactRef `json:"contactRef,omitempty"`
-	// The day on which the transfer was made.
-	Date                *string  `json:"date,omitempty"`
-	DepositedRecordRefs []string `json:"depositedRecordRefs,omitempty"`
-	// Description of the transfer.
-	Description *string `json:"description,omitempty"`
-	// The details of the accounts the transfer is moving from.
-	From *ListTransfers200ApplicationJSONSourceModifiedDateTransferAccount `json:"from,omitempty"`
-	// Unique identifier for the transfer.
-	ID       *string                                                    `json:"id,omitempty"`
-	Metadata *ListTransfers200ApplicationJSONSourceModifiedDateMetadata `json:"metadata,omitempty"`
-	// The date on which this record was last modified in Codat.
-	ModifiedDate *string `json:"modifiedDate,omitempty"`
-	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
-	// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
-	SupplementalData *ListTransfers200ApplicationJSONSourceModifiedDateSupplementalData `json:"supplementalData,omitempty"`
-	// The details of the accounts the transfer is moving to.
-	To *ListTransfers200ApplicationJSONSourceModifiedDateTransferAccount `json:"to,omitempty"`
-	// Reference to the tracking categories this transfer is being tracked against.
-	TrackingCategoryRefs []ListTransfers200ApplicationJSONSourceModifiedDateTrackingCategoryRefs `json:"trackingCategoryRefs,omitempty"`
-}
-
-// ListTransfers200ApplicationJSON - Success
-type ListTransfers200ApplicationJSON struct {
-	Links        ListTransfers200ApplicationJSONLinks                `json:"_links"`
-	PageNumber   int64                                               `json:"pageNumber"`
-	PageSize     int64                                               `json:"pageSize"`
-	Results      []ListTransfers200ApplicationJSONSourceModifiedDate `json:"results,omitempty"`
-	TotalResults int64                                               `json:"totalResults"`
-}
-
 type ListTransfersResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// Success
-	ListTransfers200ApplicationJSONObject *ListTransfers200ApplicationJSON
+	Transfers *shared.Transfers
 }

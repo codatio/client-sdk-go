@@ -3,8 +3,7 @@
 package operations
 
 import (
-	"encoding/json"
-	"fmt"
+	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
 	"net/http"
 )
 
@@ -14,127 +13,10 @@ type GetSupplierRequest struct {
 	SupplierID string `pathParam:"style=simple,explode=false,name=supplierId"`
 }
 
-// GetSupplierSourceModifiedDateAddressesTypeEnum - Type of the address.
-type GetSupplierSourceModifiedDateAddressesTypeEnum string
-
-const (
-	GetSupplierSourceModifiedDateAddressesTypeEnumUnknown  GetSupplierSourceModifiedDateAddressesTypeEnum = "Unknown"
-	GetSupplierSourceModifiedDateAddressesTypeEnumBilling  GetSupplierSourceModifiedDateAddressesTypeEnum = "Billing"
-	GetSupplierSourceModifiedDateAddressesTypeEnumDelivery GetSupplierSourceModifiedDateAddressesTypeEnum = "Delivery"
-)
-
-func (e *GetSupplierSourceModifiedDateAddressesTypeEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
-		return err
-	}
-	switch s {
-	case "Unknown":
-		fallthrough
-	case "Billing":
-		fallthrough
-	case "Delivery":
-		*e = GetSupplierSourceModifiedDateAddressesTypeEnum(s)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for GetSupplierSourceModifiedDateAddressesTypeEnum: %s", s)
-	}
-}
-
-type GetSupplierSourceModifiedDateAddresses struct {
-	// City of the customer address.
-	City *string `json:"city,omitempty"`
-	// Country of the customer address.
-	Country *string `json:"country,omitempty"`
-	// Line 1 of the customer address.
-	Line1 *string `json:"line1,omitempty"`
-	// Line 2 of the customer address.
-	Line2 *string `json:"line2,omitempty"`
-	// Postal code or zip code.
-	PostalCode *string `json:"postalCode,omitempty"`
-	// Region of the customer address.
-	Region *string `json:"region,omitempty"`
-	// Type of the address.
-	Type GetSupplierSourceModifiedDateAddressesTypeEnum `json:"type"`
-}
-
-type GetSupplierSourceModifiedDateMetadata struct {
-	// Indicates whether the record has been deleted in the third-party system this record originated from.
-	IsDeleted *bool `json:"isDeleted,omitempty"`
-}
-
-// GetSupplierSourceModifiedDateStatusEnum - Status of the supplier.
-type GetSupplierSourceModifiedDateStatusEnum string
-
-const (
-	GetSupplierSourceModifiedDateStatusEnumUnknown  GetSupplierSourceModifiedDateStatusEnum = "Unknown"
-	GetSupplierSourceModifiedDateStatusEnumActive   GetSupplierSourceModifiedDateStatusEnum = "Active"
-	GetSupplierSourceModifiedDateStatusEnumArchived GetSupplierSourceModifiedDateStatusEnum = "Archived"
-)
-
-func (e *GetSupplierSourceModifiedDateStatusEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
-		return err
-	}
-	switch s {
-	case "Unknown":
-		fallthrough
-	case "Active":
-		fallthrough
-	case "Archived":
-		*e = GetSupplierSourceModifiedDateStatusEnum(s)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for GetSupplierSourceModifiedDateStatusEnum: %s", s)
-	}
-}
-
-// GetSupplierSourceModifiedDateSupplementalData - Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
-type GetSupplierSourceModifiedDateSupplementalData struct {
-	Content map[string]map[string]interface{} `json:"content,omitempty"`
-}
-
-// GetSupplierSourceModifiedDate - > View the coverage for suppliers in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=suppliers" target="_blank">Data coverage explorer</a>.
-//
-// ## Overview
-//
-// From the **Suppliers** endpoints, you can retrieve a list of [all the suppliers for a company](https://api.codat.io/swagger/index.html#/Suppliers/get_companies__companyId__data_suppliers). Suppliers' data links to accounts payable [bills](https://docs.codat.io/accounting-api#/schemas/Bill).
-type GetSupplierSourceModifiedDate struct {
-	// An array of Addresses.
-	Addresses []GetSupplierSourceModifiedDateAddresses `json:"addresses,omitempty"`
-	// Name of the main contact for the supplier.
-	ContactName *string `json:"contactName,omitempty"`
-	// Default currency the supplier's transactional data is recorded in.
-	DefaultCurrency *string `json:"defaultCurrency,omitempty"`
-	// Email address that the supplier may be contacted on.
-	EmailAddress *string `json:"emailAddress,omitempty"`
-	// Identifier for the supplier, unique to the company in the accounting platform.
-	ID       *string                                `json:"id,omitempty"`
-	Metadata *GetSupplierSourceModifiedDateMetadata `json:"metadata,omitempty"`
-	// The date on which this record was last modified in Codat.
-	ModifiedDate *string `json:"modifiedDate,omitempty"`
-	// Phone number that the supplier may be contacted on.
-	Phone *string `json:"phone,omitempty"`
-	// Company number of the supplier. In the UK, this is typically the company registration number issued by Companies House.
-	RegistrationNumber *string `json:"registrationNumber,omitempty"`
-	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
-	// Status of the supplier.
-	Status GetSupplierSourceModifiedDateStatusEnum `json:"status"`
-	// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
-	SupplementalData *GetSupplierSourceModifiedDateSupplementalData `json:"supplementalData,omitempty"`
-	//
-	// Name of the supplier as recorded in the accounting system, typically the company name.
-	SupplierName *string `json:"supplierName,omitempty"`
-	// Supplier's company tax number.
-	TaxNumber *string `json:"taxNumber,omitempty"`
-}
-
 type GetSupplierResponse struct {
 	ContentType string
+	StatusCode  int
+	RawResponse *http.Response
 	// Success
-	SourceModifiedDate *GetSupplierSourceModifiedDate
-	StatusCode         int
-	RawResponse        *http.Response
+	Supplier *shared.Supplier
 }

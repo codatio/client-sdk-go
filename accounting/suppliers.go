@@ -6,7 +6,9 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/accounting/pkg/utils"
+	"io"
 	"net/http"
 )
 
@@ -31,7 +33,7 @@ func newSuppliers(defaultClient, securityClient HTTPClient, serverURL, language,
 	}
 }
 
-// CreateSuppliers - Create suppliers
+// CreateSupplier - Create suppliers
 // Push suppliers
 //
 // Required data may vary by integration. To see what data to post, first call [Get create/update supplier model](https://docs.codat.io/accounting-api#/operations/get-create-update-suppliers-model).
@@ -39,11 +41,11 @@ func newSuppliers(defaultClient, securityClient HTTPClient, serverURL, language,
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=suppliers) for integrations that support creating suppliers.
-func (s *suppliers) CreateSuppliers(ctx context.Context, request operations.CreateSuppliersRequest) (*operations.CreateSuppliersResponse, error) {
+func (s *suppliers) CreateSupplier(ctx context.Context, request operations.CreateSupplierRequest) (*operations.CreateSupplierResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/suppliers", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Supplier", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -72,7 +74,7 @@ func (s *suppliers) CreateSuppliers(ctx context.Context, request operations.Crea
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.CreateSuppliersResponse{
+	res := &operations.CreateSupplierResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -81,12 +83,12 @@ func (s *suppliers) CreateSuppliers(ctx context.Context, request operations.Crea
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.CreateSuppliers200ApplicationJSON
+			var out *shared.CreateSupplierResponse
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.CreateSuppliers200ApplicationJSONObject = out
+			res.CreateSupplierResponse = out
 		}
 	}
 
@@ -124,6 +126,15 @@ func (s *suppliers) DownloadSupplierAttachment(ctx context.Context, request oper
 	}
 	switch {
 	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/octet-stream`):
+			out, err := io.ReadAll(httpRes.Body)
+			if err != nil {
+				return nil, fmt.Errorf("error reading response body: %w", err)
+			}
+
+			res.Data = out
+		}
 	}
 
 	return res, nil
@@ -168,7 +179,7 @@ func (s *suppliers) GetCreateUpdateSuppliersModel(ctx context.Context, request o
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetCreateUpdateSuppliersModelPushOption
+			var out *shared.PushOption
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -213,12 +224,12 @@ func (s *suppliers) GetSupplier(ctx context.Context, request operations.GetSuppl
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetSupplierSourceModifiedDate
+			var out *shared.Supplier
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.SourceModifiedDate = out
+			res.Supplier = out
 		}
 	}
 
@@ -258,7 +269,7 @@ func (s *suppliers) GetSupplierAttachment(ctx context.Context, request operation
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetSupplierAttachmentAttachment
+			var out *shared.Attachment
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -303,12 +314,12 @@ func (s *suppliers) ListSupplierAttachments(ctx context.Context, request operati
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListSupplierAttachmentsAttachments
+			var out *shared.AttachmentsDataset
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Attachments = out
+			res.AttachmentsDataset = out
 		}
 	}
 
@@ -352,12 +363,12 @@ func (s *suppliers) ListSuppliers(ctx context.Context, request operations.ListSu
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListSuppliers200ApplicationJSON
+			var out *shared.Suppliers
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.ListSuppliers200ApplicationJSONObject = out
+			res.Suppliers = out
 		}
 	}
 
@@ -376,7 +387,7 @@ func (s *suppliers) PutSupplier(ctx context.Context, request operations.PutSuppl
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/suppliers/{supplierId}", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Supplier", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}

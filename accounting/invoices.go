@@ -6,7 +6,9 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/accounting/pkg/utils"
+	"io"
 	"net/http"
 )
 
@@ -31,6 +33,51 @@ func newInvoices(defaultClient, securityClient HTTPClient, serverURL, language, 
 	}
 }
 
+// DownloadInvoicePdf - Get invoice as PDF
+// Get invoice as PDF
+func (s *invoices) DownloadInvoicePdf(ctx context.Context, request operations.DownloadInvoicePdfRequest) (*operations.DownloadInvoicePdfResponse, error) {
+	baseURL := s.serverURL
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/invoices/{invoiceId}/pdf", request, nil)
+
+	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+
+	client := s.securityClient
+
+	httpRes, err := client.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
+	}
+	defer httpRes.Body.Close()
+
+	contentType := httpRes.Header.Get("Content-Type")
+
+	res := &operations.DownloadInvoicePdfResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: contentType,
+		RawResponse: httpRes,
+	}
+	switch {
+	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/octet-stream`):
+			out, err := io.ReadAll(httpRes.Body)
+			if err != nil {
+				return nil, fmt.Errorf("error reading response body: %w", err)
+			}
+
+			res.Data = out
+		}
+	}
+
+	return res, nil
+}
+
 // CreateInvoice - Create invoice
 // Posts a new invoice to the accounting package for a given company.
 //
@@ -43,7 +90,7 @@ func (s *invoices) CreateInvoice(ctx context.Context, request operations.CreateI
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/invoices", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Invoice", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -81,21 +128,21 @@ func (s *invoices) CreateInvoice(ctx context.Context, request operations.CreateI
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.CreateInvoice200ApplicationJSON
+			var out *shared.CreateInvoiceResponse
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.CreateInvoice200ApplicationJSONObject = out
+			res.CreateInvoiceResponse = out
 		}
 	}
 
 	return res, nil
 }
 
-// DonwloadInvoiceAttachment - Download invoice attachment
+// DownloadInvoiceAttachment - Download invoice attachment
 // Download invoice attachments
-func (s *invoices) DonwloadInvoiceAttachment(ctx context.Context, request operations.DonwloadInvoiceAttachmentRequest) (*operations.DonwloadInvoiceAttachmentResponse, error) {
+func (s *invoices) DownloadInvoiceAttachment(ctx context.Context, request operations.DownloadInvoiceAttachmentRequest) (*operations.DownloadInvoiceAttachmentResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/invoices/{invoiceId}/attachments/{attachmentId}/download", request, nil)
 
@@ -117,13 +164,22 @@ func (s *invoices) DonwloadInvoiceAttachment(ctx context.Context, request operat
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.DonwloadInvoiceAttachmentResponse{
+	res := &operations.DownloadInvoiceAttachmentResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/octet-stream`):
+			out, err := io.ReadAll(httpRes.Body)
+			if err != nil {
+				return nil, fmt.Errorf("error reading response body: %w", err)
+			}
+
+			res.Data = out
+		}
 	}
 
 	return res, nil
@@ -168,7 +224,7 @@ func (s *invoices) GetCreateUpdateInvoicesModel(ctx context.Context, request ope
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetCreateUpdateInvoicesModelPushOption
+			var out *shared.PushOption
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -213,12 +269,12 @@ func (s *invoices) GetInvoice(ctx context.Context, request operations.GetInvoice
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetInvoiceSourceModifiedDate
+			var out *shared.Invoice
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.SourceModifiedDate = out
+			res.Invoice = out
 		}
 	}
 
@@ -226,7 +282,7 @@ func (s *invoices) GetInvoice(ctx context.Context, request operations.GetInvoice
 }
 
 // GetInvoiceAttachment - Get invoice attachment
-// Get invoice attachments
+// Get invoice attachment
 func (s *invoices) GetInvoiceAttachment(ctx context.Context, request operations.GetInvoiceAttachmentRequest) (*operations.GetInvoiceAttachmentResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/invoices/{invoiceId}/attachments/{attachmentId}", request, nil)
@@ -258,7 +314,7 @@ func (s *invoices) GetInvoiceAttachment(ctx context.Context, request operations.
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetInvoiceAttachmentAttachment
+			var out *shared.Attachment
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -303,49 +359,13 @@ func (s *invoices) GetInvoiceAttachments(ctx context.Context, request operations
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetInvoiceAttachmentsAttachments
+			var out *shared.AttachmentsDataset
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Attachments = out
+			res.AttachmentsDataset = out
 		}
-	}
-
-	return res, nil
-}
-
-// GetInvoicePdf - Get invoice as PDF
-// Get invoice as PDF
-func (s *invoices) GetInvoicePdf(ctx context.Context, request operations.GetInvoicePdfRequest) (*operations.GetInvoicePdfResponse, error) {
-	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/invoices/{invoiceId}/pdf", request, nil)
-
-	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error creating request: %w", err)
-	}
-
-	client := s.securityClient
-
-	httpRes, err := client.Do(req)
-	if err != nil {
-		return nil, fmt.Errorf("error sending request: %w", err)
-	}
-	if httpRes == nil {
-		return nil, fmt.Errorf("error sending request: no response")
-	}
-	defer httpRes.Body.Close()
-
-	contentType := httpRes.Header.Get("Content-Type")
-
-	res := &operations.GetInvoicePdfResponse{
-		StatusCode:  httpRes.StatusCode,
-		ContentType: contentType,
-		RawResponse: httpRes,
-	}
-	switch {
-	case httpRes.StatusCode == 200:
 	}
 
 	return res, nil
@@ -388,49 +408,13 @@ func (s *invoices) ListInvoices(ctx context.Context, request operations.ListInvo
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListInvoices200ApplicationJSON
+			var out *shared.Invoices
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.ListInvoices200ApplicationJSONObject = out
+			res.Invoices = out
 		}
-	}
-
-	return res, nil
-}
-
-// PushInvoiceAttachment - Push invoice attachment
-// Push invoice attachment
-func (s *invoices) PushInvoiceAttachment(ctx context.Context, request operations.PushInvoiceAttachmentRequest) (*operations.PushInvoiceAttachmentResponse, error) {
-	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/invoices/{invoiceId}/attachment", request, nil)
-
-	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error creating request: %w", err)
-	}
-
-	client := s.securityClient
-
-	httpRes, err := client.Do(req)
-	if err != nil {
-		return nil, fmt.Errorf("error sending request: %w", err)
-	}
-	if httpRes == nil {
-		return nil, fmt.Errorf("error sending request: no response")
-	}
-	defer httpRes.Body.Close()
-
-	contentType := httpRes.Header.Get("Content-Type")
-
-	res := &operations.PushInvoiceAttachmentResponse{
-		StatusCode:  httpRes.StatusCode,
-		ContentType: contentType,
-		RawResponse: httpRes,
-	}
-	switch {
-	case httpRes.StatusCode == 200:
 	}
 
 	return res, nil
@@ -448,7 +432,7 @@ func (s *invoices) UpdateInvoice(ctx context.Context, request operations.UpdateI
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/invoices/{invoiceId}", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Invoice", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -486,13 +470,56 @@ func (s *invoices) UpdateInvoice(ctx context.Context, request operations.UpdateI
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.UpdateInvoice200ApplicationJSON
+			var out *shared.UpdateInvoiceResponse
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.UpdateInvoice200ApplicationJSONObject = out
+			res.UpdateInvoiceResponse = out
 		}
+	}
+
+	return res, nil
+}
+
+// UploadInvoiceAttachment - Push invoice attachment
+// Push invoice attachment
+func (s *invoices) UploadInvoiceAttachment(ctx context.Context, request operations.UploadInvoiceAttachmentRequest) (*operations.UploadInvoiceAttachmentResponse, error) {
+	baseURL := s.serverURL
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/invoices/{invoiceId}/attachment", request, nil)
+
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "multipart")
+	if err != nil {
+		return nil, fmt.Errorf("error serializing request body: %w", err)
+	}
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+
+	req.Header.Set("Content-Type", reqContentType)
+
+	client := s.securityClient
+
+	httpRes, err := client.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
+	}
+	defer httpRes.Body.Close()
+
+	contentType := httpRes.Header.Get("Content-Type")
+
+	res := &operations.UploadInvoiceAttachmentResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: contentType,
+		RawResponse: httpRes,
+	}
+	switch {
+	case httpRes.StatusCode == 200:
 	}
 
 	return res, nil

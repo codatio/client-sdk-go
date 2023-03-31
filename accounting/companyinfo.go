@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/accounting/pkg/utils"
 	"net/http"
 )
@@ -64,12 +65,12 @@ func (s *companyInfo) GetCompanyInfo(ctx context.Context, request operations.Get
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetCompanyInfoCompanyInfo
+			var out *shared.CompanyDataset
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.CompanyInfo = out
+			res.CompanyDataset = out
 		}
 	}
 
@@ -109,12 +110,12 @@ func (s *companyInfo) PostSyncInfo(ctx context.Context, request operations.PostS
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.PostSyncInfo200ApplicationJSON
+			var out *shared.DataSet
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.PostSyncInfo200ApplicationJSONObject = out
+			res.DataSet = out
 		}
 	}
 

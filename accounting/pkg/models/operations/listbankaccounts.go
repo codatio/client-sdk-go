@@ -3,8 +3,7 @@
 package operations
 
 import (
-	"encoding/json"
-	"fmt"
+	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
 	"net/http"
 )
 
@@ -21,121 +20,10 @@ type ListBankAccountsRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-type ListBankAccounts200ApplicationJSONLinksHypertextReference struct {
-	Href *string `json:"href,omitempty"`
-}
-
-type ListBankAccounts200ApplicationJSONLinks struct {
-	Current  ListBankAccounts200ApplicationJSONLinksHypertextReference  `json:"current"`
-	Next     *ListBankAccounts200ApplicationJSONLinksHypertextReference `json:"next,omitempty"`
-	Previous *ListBankAccounts200ApplicationJSONLinksHypertextReference `json:"previous,omitempty"`
-	Self     ListBankAccounts200ApplicationJSONLinksHypertextReference  `json:"self"`
-}
-
-// ListBankAccounts200ApplicationJSONSourceModifiedDateAccountTypeEnum - The type of the account.
-type ListBankAccounts200ApplicationJSONSourceModifiedDateAccountTypeEnum string
-
-const (
-	ListBankAccounts200ApplicationJSONSourceModifiedDateAccountTypeEnumUnknown ListBankAccounts200ApplicationJSONSourceModifiedDateAccountTypeEnum = "Unknown"
-	ListBankAccounts200ApplicationJSONSourceModifiedDateAccountTypeEnumCredit  ListBankAccounts200ApplicationJSONSourceModifiedDateAccountTypeEnum = "Credit"
-	ListBankAccounts200ApplicationJSONSourceModifiedDateAccountTypeEnumDebit   ListBankAccounts200ApplicationJSONSourceModifiedDateAccountTypeEnum = "Debit"
-)
-
-func (e *ListBankAccounts200ApplicationJSONSourceModifiedDateAccountTypeEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
-		return err
-	}
-	switch s {
-	case "Unknown":
-		fallthrough
-	case "Credit":
-		fallthrough
-	case "Debit":
-		*e = ListBankAccounts200ApplicationJSONSourceModifiedDateAccountTypeEnum(s)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ListBankAccounts200ApplicationJSONSourceModifiedDateAccountTypeEnum: %s", s)
-	}
-}
-
-type ListBankAccounts200ApplicationJSONSourceModifiedDateMetadata struct {
-	// Indicates whether the record has been deleted in the third-party system this record originated from.
-	IsDeleted *bool `json:"isDeleted,omitempty"`
-}
-
-// ListBankAccounts200ApplicationJSONSourceModifiedDate - > **Accessing Bank Accounts through Banking API**
-// >
-// > This datatype was originally used for accessing bank account data both in accounting integrations and open banking aggregators.
-// >
-// > To view bank account data through the Banking API, please refer to the new datatype [here](https://docs.codat.io/banking-api#/schemas/Account)
-//
-// > View the coverage for bank accounts in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankAccounts" target="_blank">Data coverage explorer</a>.
-//
-// ## Overview
-//
-// A list of bank accounts associated with a company and a specific [data connection](https://api.codat.io/swagger/index.html#/Connection/get_companies__companyId__connections__connectionId_).
-//
-// Bank accounts data includes:
-// * The name and ID of the account in the accounting platform.
-// * The currency and balance of the account.
-// * The sort code and account number.
-type ListBankAccounts200ApplicationJSONSourceModifiedDate struct {
-	// Name of the bank account in the accounting platform.
-	AccountName *string `json:"accountName,omitempty"`
-	// Account number for the bank account.
-	//
-	// Xero integrations
-	// Only a UK account number shows for bank accounts with GBP currency and a combined total of sort code and account number that equals 14 digits, For non-GBP accounts, the full bank account number is populated.
-	//
-	// FreeAgent integrations
-	// For Credit accounts, only the last four digits are required. For other types, the field is optional.
-	AccountNumber *string `json:"accountNumber,omitempty"`
-	// The type of the account.
-	AccountType *ListBankAccounts200ApplicationJSONSourceModifiedDateAccountTypeEnum `json:"accountType,omitempty"`
-	// Total available balance of the bank account as reported by the underlying data source. This may take into account overdrafts or pending transactions for example.
-	AvailableBalance *float64 `json:"availableBalance,omitempty"`
-	// Balance of the bank account.
-	Balance *float64 `json:"balance,omitempty"`
-	// Base currency of the bank account.
-	Currency *string `json:"currency,omitempty"`
-	// International bank account number of the account. Often used when making or receiving international payments.
-	IBan *string `json:"iBan,omitempty"`
-	// Identifier for the account, unique for the company in the accounting platform.
-	ID *string `json:"id,omitempty"`
-	// The institution of the bank account.
-	Institution *string                                                       `json:"institution,omitempty"`
-	Metadata    *ListBankAccounts200ApplicationJSONSourceModifiedDateMetadata `json:"metadata,omitempty"`
-	// The date on which this record was last modified in Codat.
-	ModifiedDate *string `json:"modifiedDate,omitempty"`
-	// Code used to identify each nominal account for a business.
-	NominalCode *string `json:"nominalCode,omitempty"`
-	// Pre-arranged overdraft limit of the account.
-	//
-	// The value is always positive. For example, an overdraftLimit of `1000` means that the balance of the account can go down to `-1000`.
-	OverdraftLimit *float64 `json:"overdraftLimit,omitempty"`
-	// Sort code for the bank account.
-	//
-	// Xero integrations
-	// The sort code is only displayed when the currency = GBP and the sort code and account number sum to 14 digits. For non-GBP accounts, this field is not populated.
-	SortCode *string `json:"sortCode,omitempty"`
-	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
-}
-
-// ListBankAccounts200ApplicationJSON - Success
-type ListBankAccounts200ApplicationJSON struct {
-	Links        ListBankAccounts200ApplicationJSONLinks                `json:"_links"`
-	PageNumber   int64                                                  `json:"pageNumber"`
-	PageSize     int64                                                  `json:"pageSize"`
-	Results      []ListBankAccounts200ApplicationJSONSourceModifiedDate `json:"results,omitempty"`
-	TotalResults int64                                                  `json:"totalResults"`
-}
-
 type ListBankAccountsResponse struct {
-	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
 	// Success
-	ListBankAccounts200ApplicationJSONObject *ListBankAccounts200ApplicationJSON
+	BankAccounts *shared.BankAccounts
+	ContentType  string
+	StatusCode   int
+	RawResponse  *http.Response
 }

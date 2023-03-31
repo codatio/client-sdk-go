@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/accounting/pkg/utils"
 	"net/http"
 )
@@ -43,7 +44,7 @@ func (s *billPayments) CreateBillPayment(ctx context.Context, request operations
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/billPayments", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "BillPayment", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -81,25 +82,25 @@ func (s *billPayments) CreateBillPayment(ctx context.Context, request operations
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.CreateBillPayment200ApplicationJSON
+			var out *shared.CreateBillPaymentResponse
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.CreateBillPayment200ApplicationJSONObject = out
+			res.CreateBillPaymentResponse = out
 		}
 	}
 
 	return res, nil
 }
 
-// DeleteCompaniesCompanyIDConnectionsConnectionIDPushBillPaymentsBillPaymentID - Delete bill payment
+// DeleteBillPayment - Delete bill payment
 // Deletes a bill payment from the accounting package for a given company.
 //
 // > **Supported Integrations**
 // >
 // > This functionality is currently only supported for our Oracle NetSuite integration. Check out our [public roadmap](https://portal.productboard.com/codat/7-public-product-roadmap/tabs/46-accounting-api) to see what we're building next, and to submit ideas for new features.
-func (s *billPayments) DeleteCompaniesCompanyIDConnectionsConnectionIDPushBillPaymentsBillPaymentID(ctx context.Context, request operations.DeleteCompaniesCompanyIDConnectionsConnectionIDPushBillPaymentsBillPaymentIDRequest) (*operations.DeleteCompaniesCompanyIDConnectionsConnectionIDPushBillPaymentsBillPaymentIDResponse, error) {
+func (s *billPayments) DeleteBillPayment(ctx context.Context, request operations.DeleteBillPaymentRequest) (*operations.DeleteBillPaymentResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/billPayments/{billPaymentId}", request, nil)
 
@@ -121,7 +122,7 @@ func (s *billPayments) DeleteCompaniesCompanyIDConnectionsConnectionIDPushBillPa
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.DeleteCompaniesCompanyIDConnectionsConnectionIDPushBillPaymentsBillPaymentIDResponse{
+	res := &operations.DeleteBillPaymentResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -130,12 +131,12 @@ func (s *billPayments) DeleteCompaniesCompanyIDConnectionsConnectionIDPushBillPa
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.DeleteCompaniesCompanyIDConnectionsConnectionIDPushBillPaymentsBillPaymentID200ApplicationJSON
+			var out *shared.PushOperationSummary
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.DeleteCompaniesCompanyIDConnectionsConnectionIDPushBillPaymentsBillPaymentID200ApplicationJSONObject = out
+			res.PushOperationSummary = out
 		}
 	}
 
@@ -175,12 +176,12 @@ func (s *billPayments) GetBillPayments(ctx context.Context, request operations.G
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetBillPaymentsSourceModifiedDate
+			var out *shared.BillPayment
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.SourceModifiedDate = out
+			res.BillPayment = out
 		}
 	}
 
@@ -224,7 +225,7 @@ func (s *billPayments) GetCreateBillPaymentsModel(ctx context.Context, request o
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetCreateBillPaymentsModelPushOption
+			var out *shared.PushOption
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -273,12 +274,12 @@ func (s *billPayments) ListBillPayments(ctx context.Context, request operations.
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListBillPayments200ApplicationJSON
+			var out *shared.BillPayments
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.ListBillPayments200ApplicationJSONObject = out
+			res.BillPayments = out
 		}
 	}
 

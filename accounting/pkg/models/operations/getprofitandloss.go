@@ -3,8 +3,7 @@
 package operations
 
 import (
-	"encoding/json"
-	"fmt"
+	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
 	"net/http"
 )
 
@@ -15,140 +14,10 @@ type GetProfitAndLossRequest struct {
 	StartMonth       *string `queryParam:"style=form,explode=true,name=startMonth"`
 }
 
-// GetProfitAndLoss200ApplicationJSONReportBasisEnum - The basis of a report.
-type GetProfitAndLoss200ApplicationJSONReportBasisEnum string
-
-const (
-	GetProfitAndLoss200ApplicationJSONReportBasisEnumUnknown GetProfitAndLoss200ApplicationJSONReportBasisEnum = "Unknown"
-	GetProfitAndLoss200ApplicationJSONReportBasisEnumAccrual GetProfitAndLoss200ApplicationJSONReportBasisEnum = "Accrual"
-	GetProfitAndLoss200ApplicationJSONReportBasisEnumCash    GetProfitAndLoss200ApplicationJSONReportBasisEnum = "Cash"
-)
-
-func (e *GetProfitAndLoss200ApplicationJSONReportBasisEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
-		return err
-	}
-	switch s {
-	case "Unknown":
-		fallthrough
-	case "Accrual":
-		fallthrough
-	case "Cash":
-		*e = GetProfitAndLoss200ApplicationJSONReportBasisEnum(s)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for GetProfitAndLoss200ApplicationJSONReportBasisEnum: %s", s)
-	}
-}
-
-type GetProfitAndLoss200ApplicationJSONProfitAndLossReportReportLineReportLineReportLineReportLine struct {
-	// Identifier for the account, unique for the company in the accounting platform.
-	AccountID *string `json:"accountId,omitempty"`
-	// Name of the report line item.
-	Name *string `json:"name,omitempty"`
-	// Numerical value of the line item.
-	Value float64 `json:"value"`
-}
-
-type GetProfitAndLoss200ApplicationJSONProfitAndLossReportReportLineReportLineReportLine struct {
-	// Identifier for the account, unique for the company in the accounting platform.
-	AccountID *string `json:"accountId,omitempty"`
-	// An array of ReportLine items.
-	Items []GetProfitAndLoss200ApplicationJSONProfitAndLossReportReportLineReportLineReportLineReportLine `json:"items,omitempty"`
-	// Name of the report line item.
-	Name *string `json:"name,omitempty"`
-	// Numerical value of the line item.
-	Value float64 `json:"value"`
-}
-
-type GetProfitAndLoss200ApplicationJSONProfitAndLossReportReportLineReportLine struct {
-	// Identifier for the account, unique for the company in the accounting platform.
-	AccountID *string `json:"accountId,omitempty"`
-	// An array of ReportLine items.
-	Items []GetProfitAndLoss200ApplicationJSONProfitAndLossReportReportLineReportLineReportLine `json:"items,omitempty"`
-	// Name of the report line item.
-	Name *string `json:"name,omitempty"`
-	// Numerical value of the line item.
-	Value float64 `json:"value"`
-}
-
-// GetProfitAndLoss200ApplicationJSONProfitAndLossReportReportLine - ReportLine items for cost of sales in the given date range.
-type GetProfitAndLoss200ApplicationJSONProfitAndLossReportReportLine struct {
-	// Identifier for the account, unique for the company in the accounting platform.
-	AccountID *string `json:"accountId,omitempty"`
-	// An array of ReportLine items.
-	Items []GetProfitAndLoss200ApplicationJSONProfitAndLossReportReportLineReportLine `json:"items,omitempty"`
-	// Name of the report line item.
-	Name *string `json:"name,omitempty"`
-	// Numerical value of the line item.
-	Value float64 `json:"value"`
-}
-
-// GetProfitAndLoss200ApplicationJSONProfitAndLossReport - > **Language tip:** Profit and loss statement is also referred to as **income statement** under US GAAP (Generally Accepted Accounting Principles).
-//
-// > View the coverage for profit and loss in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=profitAndLoss" target="_blank">Data coverage explorer</a>.
-//
-// ## Overview
-//
-// The purpose of a profit and loss report is to present the financial performance of a company over a specified time period.
-//
-// A profit and loss report shows a company's total income and expenses for a specified period of time and whether a profit or loss has been made.
-//
-// > **Profit and loss or balance sheet?**
-// > Profit and loss reports summarise the total revenue, expenses, and profit or loss over a specified time period. A balance sheet report presents all assets, liability, and equity for a given date.
-//
-// **Structure of this report**
-// This report will reflect the structure and line descriptions that the business has set in their own accounting platform.
-//
-// **History**
-// By default, Codat pulls (up to) 24 months of profit and loss history for a company. You can adjust this to fetch more history, where available, by updating the `monthsToSync` value for `profitAndLoss` on the [data type settings endpoint](https://docs.codat.io/codat-api#/operations/post-profile-syncSettings).
-//
-// **Want to pull this in a standardised structure?**
-// Our [Enhanced Financials](https://docs.codat.io/assess/reports/enhanced-financials/financials) endpoints provide the same report under standardized headings, allowing you to pull it in the same format for all of your business customers.
-type GetProfitAndLoss200ApplicationJSONProfitAndLossReport struct {
-	// ReportLine items for cost of sales in the given date range.
-	CostOfSales *GetProfitAndLoss200ApplicationJSONProfitAndLossReportReportLine `json:"costOfSales,omitempty"`
-	// ReportLine items for expenses in the given date range.
-	Expenses *GetProfitAndLoss200ApplicationJSONProfitAndLossReportReportLine `json:"expenses,omitempty"`
-	// Date from which the report data begins.
-	FromDate *string `json:"fromDate,omitempty"`
-	// Gross profit of the company in the given date range.
-	GrossProfit float64 `json:"grossProfit"`
-	// ReportLine items for income in the given date range.
-	Income *GetProfitAndLoss200ApplicationJSONProfitAndLossReportReportLine `json:"income,omitempty"`
-	// Net operating profit of the company in the given date range.
-	NetOperatingProfit float64 `json:"netOperatingProfit"`
-	// Net other income of the company in the given date range.
-	NetOtherIncome float64 `json:"netOtherIncome"`
-	// Net profit of the company in the given date range.
-	NetProfit float64 `json:"netProfit"`
-	// ReportLine items for other expenses in the given date range.
-	OtherExpenses *GetProfitAndLoss200ApplicationJSONProfitAndLossReportReportLine `json:"otherExpenses,omitempty"`
-	// ReportLine items for other income in the given date range.
-	OtherIncome *GetProfitAndLoss200ApplicationJSONProfitAndLossReportReportLine `json:"otherIncome,omitempty"`
-	// Date on which the report data ends.
-	ToDate *string `json:"toDate,omitempty"`
-}
-
-// GetProfitAndLoss200ApplicationJSON - Success
-type GetProfitAndLoss200ApplicationJSON struct {
-	// Base currency of the company in which the profit and loss report is presented.
-	Currency string `json:"currency"`
-	// Earliest available monthly report data.
-	EarliestAvailableMonth *string `json:"earliestAvailableMonth,omitempty"`
-	// Most recent available monthly report data.
-	MostRecentAvailableMonth *string `json:"mostRecentAvailableMonth,omitempty"`
-	// The basis of a report.
-	ReportBasis GetProfitAndLoss200ApplicationJSONReportBasisEnum `json:"reportBasis"`
-	// An array of ProfitAndLossReports.
-	Reports []GetProfitAndLoss200ApplicationJSONProfitAndLossReport `json:"reports"`
-}
-
 type GetProfitAndLossResponse struct {
 	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
 	// Success
-	GetProfitAndLoss200ApplicationJSONObject *GetProfitAndLoss200ApplicationJSON
+	ProfitAndLossResponse *shared.ProfitAndLossResponse
+	StatusCode            int
+	RawResponse           *http.Response
 }

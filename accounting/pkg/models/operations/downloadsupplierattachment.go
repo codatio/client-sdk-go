@@ -17,6 +17,8 @@ type DownloadSupplierAttachmentRequest struct {
 
 type DownloadSupplierAttachmentResponse struct {
 	ContentType string
+	// Success
+	Data        []byte
 	StatusCode  int
 	RawResponse *http.Response
 }

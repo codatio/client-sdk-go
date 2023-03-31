@@ -3,8 +3,7 @@
 package operations
 
 import (
-	"encoding/json"
-	"fmt"
+	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
 	"net/http"
 )
 
@@ -12,145 +11,10 @@ type PostSyncInfoRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
-type PostSyncInfo200ApplicationJSONStatusEnum string
-
-const (
-	PostSyncInfo200ApplicationJSONStatusEnumInitial            PostSyncInfo200ApplicationJSONStatusEnum = "Initial"
-	PostSyncInfo200ApplicationJSONStatusEnumQueued             PostSyncInfo200ApplicationJSONStatusEnum = "Queued"
-	PostSyncInfo200ApplicationJSONStatusEnumFetching           PostSyncInfo200ApplicationJSONStatusEnum = "Fetching"
-	PostSyncInfo200ApplicationJSONStatusEnumMapQueued          PostSyncInfo200ApplicationJSONStatusEnum = "MapQueued"
-	PostSyncInfo200ApplicationJSONStatusEnumMapping            PostSyncInfo200ApplicationJSONStatusEnum = "Mapping"
-	PostSyncInfo200ApplicationJSONStatusEnumComplete           PostSyncInfo200ApplicationJSONStatusEnum = "Complete"
-	PostSyncInfo200ApplicationJSONStatusEnumFetchError         PostSyncInfo200ApplicationJSONStatusEnum = "FetchError"
-	PostSyncInfo200ApplicationJSONStatusEnumMapError           PostSyncInfo200ApplicationJSONStatusEnum = "MapError"
-	PostSyncInfo200ApplicationJSONStatusEnumInternalError      PostSyncInfo200ApplicationJSONStatusEnum = "InternalError"
-	PostSyncInfo200ApplicationJSONStatusEnumProcessingQueued   PostSyncInfo200ApplicationJSONStatusEnum = "ProcessingQueued"
-	PostSyncInfo200ApplicationJSONStatusEnumProcessing         PostSyncInfo200ApplicationJSONStatusEnum = "Processing"
-	PostSyncInfo200ApplicationJSONStatusEnumProcessingError    PostSyncInfo200ApplicationJSONStatusEnum = "ProcessingError"
-	PostSyncInfo200ApplicationJSONStatusEnumValidationQueued   PostSyncInfo200ApplicationJSONStatusEnum = "ValidationQueued"
-	PostSyncInfo200ApplicationJSONStatusEnumValidating         PostSyncInfo200ApplicationJSONStatusEnum = "Validating"
-	PostSyncInfo200ApplicationJSONStatusEnumValidationError    PostSyncInfo200ApplicationJSONStatusEnum = "ValidationError"
-	PostSyncInfo200ApplicationJSONStatusEnumAuthError          PostSyncInfo200ApplicationJSONStatusEnum = "AuthError"
-	PostSyncInfo200ApplicationJSONStatusEnumCancelled          PostSyncInfo200ApplicationJSONStatusEnum = "Cancelled"
-	PostSyncInfo200ApplicationJSONStatusEnumNotSupported       PostSyncInfo200ApplicationJSONStatusEnum = "NotSupported"
-	PostSyncInfo200ApplicationJSONStatusEnumRateLimitError     PostSyncInfo200ApplicationJSONStatusEnum = "RateLimitError"
-	PostSyncInfo200ApplicationJSONStatusEnumPermissionsError   PostSyncInfo200ApplicationJSONStatusEnum = "PermissionsError"
-	PostSyncInfo200ApplicationJSONStatusEnumPrerequisiteNotMet PostSyncInfo200ApplicationJSONStatusEnum = "PrerequisiteNotMet"
-)
-
-func (e *PostSyncInfo200ApplicationJSONStatusEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
-		return err
-	}
-	switch s {
-	case "Initial":
-		fallthrough
-	case "Queued":
-		fallthrough
-	case "Fetching":
-		fallthrough
-	case "MapQueued":
-		fallthrough
-	case "Mapping":
-		fallthrough
-	case "Complete":
-		fallthrough
-	case "FetchError":
-		fallthrough
-	case "MapError":
-		fallthrough
-	case "InternalError":
-		fallthrough
-	case "ProcessingQueued":
-		fallthrough
-	case "Processing":
-		fallthrough
-	case "ProcessingError":
-		fallthrough
-	case "ValidationQueued":
-		fallthrough
-	case "Validating":
-		fallthrough
-	case "ValidationError":
-		fallthrough
-	case "AuthError":
-		fallthrough
-	case "Cancelled":
-		fallthrough
-	case "NotSupported":
-		fallthrough
-	case "RateLimitError":
-		fallthrough
-	case "PermissionsError":
-		fallthrough
-	case "PrerequisiteNotMet":
-		*e = PostSyncInfo200ApplicationJSONStatusEnum(s)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for PostSyncInfo200ApplicationJSONStatusEnum: %s", s)
-	}
-}
-
-// PostSyncInfo200ApplicationJSON - Success
-type PostSyncInfo200ApplicationJSON struct {
-	CompanyID string `json:"companyId"`
-	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
-	//
-	// ```
-	// 2020-10-08T22:40:50Z
-	// 2021-01-01T00:00:00
-	// ```
-	//
-	//
-	//
-	// When syncing data that contains `DateTime` fields from Codat, make sure you support the following cases when reading time information:
-	//
-	// - Coordinated Universal Time (UTC): `2021-11-15T06:00:00Z`
-	// - Unqualified local time: `2021-11-15T01:00:00`
-	// - UTC time offsets: `2021-11-15T01:00:00-05:00`
-	//
-	// > 📘 Time zones
-	// >
-	// > Not all dates from Codat will contain information about time zones.
-	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	Completed      *string `json:"completed,omitempty"`
-	ConnectionID   string  `json:"connectionId"`
-	DataType       *string `json:"dataType,omitempty"`
-	DatasetLogsURL *string `json:"datasetLogsUrl,omitempty"`
-	ErrorMessage   *string `json:"errorMessage,omitempty"`
-	ID             string  `json:"id"`
-	IsCompleted    bool    `json:"isCompleted"`
-	IsErrored      bool    `json:"isErrored"`
-	Progress       int     `json:"progress"`
-	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
-	//
-	// ```
-	// 2020-10-08T22:40:50Z
-	// 2021-01-01T00:00:00
-	// ```
-	//
-	//
-	//
-	// When syncing data that contains `DateTime` fields from Codat, make sure you support the following cases when reading time information:
-	//
-	// - Coordinated Universal Time (UTC): `2021-11-15T06:00:00Z`
-	// - Unqualified local time: `2021-11-15T01:00:00`
-	// - UTC time offsets: `2021-11-15T01:00:00-05:00`
-	//
-	// > 📘 Time zones
-	// >
-	// > Not all dates from Codat will contain information about time zones.
-	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	Requested                string                                   `json:"requested"`
-	Status                   PostSyncInfo200ApplicationJSONStatusEnum `json:"status"`
-	ValidationinformationURL *string                                  `json:"validationinformationUrl,omitempty"`
-}
-
 type PostSyncInfoResponse struct {
 	ContentType string
+	// Success
+	DataSet     *shared.DataSet
 	StatusCode  int
 	RawResponse *http.Response
-	// Success
-	PostSyncInfo200ApplicationJSONObject *PostSyncInfo200ApplicationJSON
 }

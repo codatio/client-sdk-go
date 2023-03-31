@@ -29,7 +29,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.SourceModifiedDate != nil {
+    if res.AccountTransaction != nil {
         // handle response
     }
 }

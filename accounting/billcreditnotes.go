@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/accounting/pkg/utils"
 	"net/http"
 )
@@ -43,7 +44,7 @@ func (s *billCreditNotes) CreateBillCreditNote(ctx context.Context, request oper
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/billCreditNotes", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "BillCreditNote", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -81,12 +82,12 @@ func (s *billCreditNotes) CreateBillCreditNote(ctx context.Context, request oper
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.CreateBillCreditNote200ApplicationJSON
+			var out *shared.CreateBillCreditNoteResponse
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.CreateBillCreditNote200ApplicationJSONObject = out
+			res.CreateBillCreditNoteResponse = out
 		}
 	}
 
@@ -126,12 +127,12 @@ func (s *billCreditNotes) GetBillCreditNote(ctx context.Context, request operati
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetBillCreditNoteSourceModifiedDate
+			var out *shared.BillCreditNote
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.SourceModifiedDate = out
+			res.BillCreditNote = out
 		}
 	}
 
@@ -175,7 +176,7 @@ func (s *billCreditNotes) GetCreateUpdateBillCreditNotesModel(ctx context.Contex
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetCreateUpdateBillCreditNotesModelPushOption
+			var out *shared.PushOption
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -224,12 +225,12 @@ func (s *billCreditNotes) ListBillCreditNotes(ctx context.Context, request opera
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListBillCreditNotes200ApplicationJSON
+			var out *shared.BillCreditNotes
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.ListBillCreditNotes200ApplicationJSONObject = out
+			res.BillCreditNotes = out
 		}
 	}
 
@@ -248,7 +249,7 @@ func (s *billCreditNotes) UpdateBillCreditNote(ctx context.Context, request oper
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/billCreditNotes/{billCreditNoteId}", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "BillCreditNote", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -286,12 +287,12 @@ func (s *billCreditNotes) UpdateBillCreditNote(ctx context.Context, request oper
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.UpdateBillCreditNote200ApplicationJSON
+			var out *shared.UpdateBillCreditNoteResponse
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.UpdateBillCreditNote200ApplicationJSONObject = out
+			res.UpdateBillCreditNoteResponse = out
 		}
 	}
 
