@@ -7,10 +7,10 @@ import (
 	"net/http"
 )
 
-type GetConfigTextSyncFlowResponse struct {
-	ContentType string
+type CreateCompanyResponse struct {
 	// Success
-	LocalizationInfo map[string]shared.Localization
-	StatusCode       int
-	RawResponse      *http.Response
+	Company     *shared.Company
+	ContentType string
+	StatusCode  int
+	RawResponse *http.Response
 }

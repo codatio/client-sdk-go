@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/synccommerce/pkg/utils"
 	"net/http"
 )
@@ -31,9 +32,9 @@ func newConfiguration(defaultClient, securityClient HTTPClient, serverURL, langu
 	}
 }
 
-// Get - Retrieve config preferences set for a company.
+// GetConfiguration - Retrieve config preferences set for a company.
 // Retrieve current config preferences.
-func (s *configuration) Get(ctx context.Context, request operations.GetRequest) (*operations.GetResponse, error) {
+func (s *configuration) GetConfiguration(ctx context.Context, request operations.GetConfigurationRequest) (*operations.GetConfigurationResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/config/companies/{companyId}/sync/commerce", request, nil)
 
@@ -55,7 +56,7 @@ func (s *configuration) Get(ctx context.Context, request operations.GetRequest) 
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetResponse{
+	res := &operations.GetConfigurationResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -64,21 +65,21 @@ func (s *configuration) Get(ctx context.Context, request operations.GetRequest) 
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.Get200ApplicationJSON
+			var out *shared.Configuration
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Get200ApplicationJSONObject = out
+			res.Configuration = out
 		}
 	}
 
 	return res, nil
 }
 
-// GetCompanyCommerceSyncStatus - Get status for a company's syncs
+// GetSyncStatus - Get status for a company's syncs
 // Check the sync history and sync status for a company.
-func (s *configuration) GetCompanyCommerceSyncStatus(ctx context.Context, request operations.GetCompanyCommerceSyncStatusRequest) (*operations.GetCompanyCommerceSyncStatusResponse, error) {
+func (s *configuration) GetSyncStatus(ctx context.Context, request operations.GetSyncStatusRequest) (*operations.GetSyncStatusResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/meta/companies/{companyId}/sync/commerce/status", request, nil)
 
@@ -100,7 +101,7 @@ func (s *configuration) GetCompanyCommerceSyncStatus(ctx context.Context, reques
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetCompanyCommerceSyncStatusResponse{
+	res := &operations.GetSyncStatusResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -112,9 +113,9 @@ func (s *configuration) GetCompanyCommerceSyncStatus(ctx context.Context, reques
 	return res, nil
 }
 
-// Post - Create or update configuration.
+// SetConfiguration - Create or update configuration.
 // Make changes to configuration preferences.
-func (s *configuration) Post(ctx context.Context, request operations.PostRequest) (*operations.PostResponse, error) {
+func (s *configuration) SetConfiguration(ctx context.Context, request operations.SetConfigurationRequest) (*operations.SetConfigurationResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/config/companies/{companyId}/sync/commerce", request, nil)
 
@@ -136,7 +137,7 @@ func (s *configuration) Post(ctx context.Context, request operations.PostRequest
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.PostResponse{
+	res := &operations.SetConfigurationResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -145,12 +146,12 @@ func (s *configuration) Post(ctx context.Context, request operations.PostRequest
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.Post200ApplicationJSON
+			var out *shared.Configuration
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Post200ApplicationJSONObject = out
+			res.Configuration = out
 		}
 	}
 

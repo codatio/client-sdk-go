@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/synccommerce/pkg/utils"
 	"net/http"
 	"strings"
@@ -32,159 +33,9 @@ func newCompanyManagement(defaultClient, securityClient HTTPClient, serverURL, l
 	}
 }
 
-// AddDataConnection - Create a data connection
-// Create a data connection for company.
-func (s *companyManagement) AddDataConnection(ctx context.Context, request operations.AddDataConnectionRequest) (*operations.AddDataConnectionResponse, error) {
-	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/meta/companies/{companyId}/connections", request, nil)
-
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "string")
-	if err != nil {
-		return nil, fmt.Errorf("error serializing request body: %w", err)
-	}
-
-	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
-	if err != nil {
-		return nil, fmt.Errorf("error creating request: %w", err)
-	}
-
-	req.Header.Set("Content-Type", reqContentType)
-
-	client := s.securityClient
-
-	httpRes, err := client.Do(req)
-	if err != nil {
-		return nil, fmt.Errorf("error sending request: %w", err)
-	}
-	if httpRes == nil {
-		return nil, fmt.Errorf("error sending request: no response")
-	}
-	defer httpRes.Body.Close()
-
-	contentType := httpRes.Header.Get("Content-Type")
-
-	res := &operations.AddDataConnectionResponse{
-		StatusCode:  httpRes.StatusCode,
-		ContentType: contentType,
-		RawResponse: httpRes,
-	}
-	switch {
-	case httpRes.StatusCode == 200:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.AddDataConnection200ApplicationJSON
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
-				return nil, err
-			}
-
-			res.AddDataConnection200ApplicationJSONObject = out
-		}
-	}
-
-	return res, nil
-}
-
-// Companies - List companies
-// Retrieve a list of all companies the client has created.
-func (s *companyManagement) Companies(ctx context.Context, request operations.CompaniesRequest) (*operations.CompaniesResponse, error) {
-	baseURL := s.serverURL
-	url := strings.TrimSuffix(baseURL, "/") + "/meta/companies"
-
-	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error creating request: %w", err)
-	}
-
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
-		return nil, fmt.Errorf("error populating query params: %w", err)
-	}
-
-	client := s.securityClient
-
-	httpRes, err := client.Do(req)
-	if err != nil {
-		return nil, fmt.Errorf("error sending request: %w", err)
-	}
-	if httpRes == nil {
-		return nil, fmt.Errorf("error sending request: no response")
-	}
-	defer httpRes.Body.Close()
-
-	contentType := httpRes.Header.Get("Content-Type")
-
-	res := &operations.CompaniesResponse{
-		StatusCode:  httpRes.StatusCode,
-		ContentType: contentType,
-		RawResponse: httpRes,
-	}
-	switch {
-	case httpRes.StatusCode == 200:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.Companies200ApplicationJSON
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
-				return nil, err
-			}
-
-			res.Companies200ApplicationJSONObject = out
-		}
-	}
-
-	return res, nil
-}
-
-// GetDataconnections - List data connections
-// Retrieve previously created data connections.
-func (s *companyManagement) GetDataconnections(ctx context.Context, request operations.GetDataconnectionsRequest) (*operations.GetDataconnectionsResponse, error) {
-	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/meta/companies/{companyId}/connections", request, nil)
-
-	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error creating request: %w", err)
-	}
-
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
-		return nil, fmt.Errorf("error populating query params: %w", err)
-	}
-
-	client := s.securityClient
-
-	httpRes, err := client.Do(req)
-	if err != nil {
-		return nil, fmt.Errorf("error sending request: %w", err)
-	}
-	if httpRes == nil {
-		return nil, fmt.Errorf("error sending request: no response")
-	}
-	defer httpRes.Body.Close()
-
-	contentType := httpRes.Header.Get("Content-Type")
-
-	res := &operations.GetDataconnectionsResponse{
-		StatusCode:  httpRes.StatusCode,
-		ContentType: contentType,
-		RawResponse: httpRes,
-	}
-	switch {
-	case httpRes.StatusCode == 200:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetDataconnections200ApplicationJSON
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
-				return nil, err
-			}
-
-			res.GetDataconnections200ApplicationJSONObject = out
-		}
-	}
-
-	return res, nil
-}
-
-// PostCompanies - Create a sync for commerce company
+// CreateCompany - Create a sync for commerce company
 // Creates a Codat company with a commerce partner data connection.
-func (s *companyManagement) PostCompanies(ctx context.Context, request operations.PostCompaniesRequestBody) (*operations.PostCompaniesResponse, error) {
+func (s *companyManagement) CreateCompany(ctx context.Context, request shared.CreateCompany) (*operations.CreateCompanyResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/meta/companies/sync"
 
@@ -213,7 +64,7 @@ func (s *companyManagement) PostCompanies(ctx context.Context, request operation
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.PostCompaniesResponse{
+	res := &operations.CreateCompanyResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -222,25 +73,175 @@ func (s *companyManagement) PostCompanies(ctx context.Context, request operation
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.PostCompanies200ApplicationJSON
+			var out *shared.Company
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.PostCompanies200ApplicationJSONObject = out
+			res.Company = out
 		}
 	}
 
 	return res, nil
 }
 
-// UpdateDataConnection - Update data connection
+// CreateConnection - Create a data connection
+// Create a data connection for company.
+func (s *companyManagement) CreateConnection(ctx context.Context, request operations.CreateConnectionRequest) (*operations.CreateConnectionResponse, error) {
+	baseURL := s.serverURL
+	url := utils.GenerateURL(ctx, baseURL, "/meta/companies/{companyId}/connections", request, nil)
+
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "string")
+	if err != nil {
+		return nil, fmt.Errorf("error serializing request body: %w", err)
+	}
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+
+	req.Header.Set("Content-Type", reqContentType)
+
+	client := s.securityClient
+
+	httpRes, err := client.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
+	}
+	defer httpRes.Body.Close()
+
+	contentType := httpRes.Header.Get("Content-Type")
+
+	res := &operations.CreateConnectionResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: contentType,
+		RawResponse: httpRes,
+	}
+	switch {
+	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.Connection
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.Connection = out
+		}
+	}
+
+	return res, nil
+}
+
+// ListCompanies - List companies
+// Retrieve a list of all companies the client has created.
+func (s *companyManagement) ListCompanies(ctx context.Context, request operations.ListCompaniesRequest) (*operations.ListCompaniesResponse, error) {
+	baseURL := s.serverURL
+	url := strings.TrimSuffix(baseURL, "/") + "/meta/companies"
+
+	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
+
+	client := s.securityClient
+
+	httpRes, err := client.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
+	}
+	defer httpRes.Body.Close()
+
+	contentType := httpRes.Header.Get("Content-Type")
+
+	res := &operations.ListCompaniesResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: contentType,
+		RawResponse: httpRes,
+	}
+	switch {
+	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.Companies
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.Companies = out
+		}
+	}
+
+	return res, nil
+}
+
+// ListConnections - List data connections
+// Retrieve previously created data connections.
+func (s *companyManagement) ListConnections(ctx context.Context, request operations.ListConnectionsRequest) (*operations.ListConnectionsResponse, error) {
+	baseURL := s.serverURL
+	url := utils.GenerateURL(ctx, baseURL, "/meta/companies/{companyId}/connections", request, nil)
+
+	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
+
+	client := s.securityClient
+
+	httpRes, err := client.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
+	}
+	defer httpRes.Body.Close()
+
+	contentType := httpRes.Header.Get("Content-Type")
+
+	res := &operations.ListConnectionsResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: contentType,
+		RawResponse: httpRes,
+	}
+	switch {
+	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.Connections
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.Connections = out
+		}
+	}
+
+	return res, nil
+}
+
+// UpdateConnection - Update data connection
 // Update a data connection
-func (s *companyManagement) UpdateDataConnection(ctx context.Context, request operations.UpdateDataConnectionRequest) (*operations.UpdateDataConnectionResponse, error) {
+func (s *companyManagement) UpdateConnection(ctx context.Context, request operations.UpdateConnectionRequest) (*operations.UpdateConnectionResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/meta/companies/{companyId}/connections/{connectionId}", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "UpdateConnection", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -265,7 +266,7 @@ func (s *companyManagement) UpdateDataConnection(ctx context.Context, request op
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.UpdateDataConnectionResponse{
+	res := &operations.UpdateConnectionResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -274,12 +275,12 @@ func (s *companyManagement) UpdateDataConnection(ctx context.Context, request op
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.UpdateDataConnection200ApplicationJSON
+			var out *shared.Connection
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.UpdateDataConnection200ApplicationJSONObject = out
+			res.Connection = out
 		}
 	}
 

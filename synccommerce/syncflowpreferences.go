@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/synccommerce/pkg/utils"
 	"net/http"
 	"strings"
@@ -65,12 +66,12 @@ func (s *syncFlowPreferences) GetConfigTextSyncFlow(ctx context.Context) (*opera
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetConfigTextSyncFlow200ApplicationJSON
+			var out map[string]shared.Localization
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.GetConfigTextSyncFlow200ApplicationJSONObject = out
+			res.LocalizationInfo = out
 		}
 	}
 
@@ -114,12 +115,12 @@ func (s *syncFlowPreferences) GetSyncFlowURL(ctx context.Context, request operat
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetSyncFlowURL200ApplicationJSON
+			var out *shared.SyncFlowURL
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.GetSyncFlowURL200ApplicationJSONObject = out
+			res.SyncFlowURL = out
 		}
 	}
 
@@ -159,21 +160,21 @@ func (s *syncFlowPreferences) GetVisibleAccounts(ctx context.Context, request op
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetVisibleAccounts200ApplicationJSON
+			var out *shared.VisibleAccounts
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.GetVisibleAccounts200ApplicationJSONObject = out
+			res.VisibleAccounts = out
 		}
 	}
 
 	return res, nil
 }
 
-// PatchConfigTextSyncFlow - Update preferences for text fields on sync flow
+// UpdateConfigTextSyncFlow - Update preferences for text fields on sync flow
 // To enable update of preferences set for the text fields on sync flow.
-func (s *syncFlowPreferences) PatchConfigTextSyncFlow(ctx context.Context, request operations.PatchConfigTextSyncFlowRequestBody) (*operations.PatchConfigTextSyncFlowResponse, error) {
+func (s *syncFlowPreferences) UpdateConfigTextSyncFlow(ctx context.Context, request map[string]shared.Localization) (*operations.UpdateConfigTextSyncFlowResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/sync/commerce/config/ui/text"
 
@@ -202,7 +203,7 @@ func (s *syncFlowPreferences) PatchConfigTextSyncFlow(ctx context.Context, reque
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.PatchConfigTextSyncFlowResponse{
+	res := &operations.UpdateConfigTextSyncFlowResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -211,25 +212,25 @@ func (s *syncFlowPreferences) PatchConfigTextSyncFlow(ctx context.Context, reque
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.PatchConfigTextSyncFlow200ApplicationJSON
+			var out map[string]shared.Localization
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.PatchConfigTextSyncFlow200ApplicationJSONObject = out
+			res.LocalizationInfo = out
 		}
 	}
 
 	return res, nil
 }
 
-// PatchVisibleAccountsSyncFlow - Update the visible accounts on Sync Flow
+// UpdateVisibleAccountsSyncFlow - Update the visible accounts on Sync Flow
 // To enable update of accounts visible preferences set on Sync Flow.
-func (s *syncFlowPreferences) PatchVisibleAccountsSyncFlow(ctx context.Context, request operations.PatchVisibleAccountsSyncFlowRequest) (*operations.PatchVisibleAccountsSyncFlowResponse, error) {
+func (s *syncFlowPreferences) UpdateVisibleAccountsSyncFlow(ctx context.Context, request operations.UpdateVisibleAccountsSyncFlowRequest) (*operations.UpdateVisibleAccountsSyncFlowResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/sync/commerce/config/ui/accounts/platform/{commerceKey}", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "VisibleAccounts", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -254,7 +255,7 @@ func (s *syncFlowPreferences) PatchVisibleAccountsSyncFlow(ctx context.Context, 
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.PatchVisibleAccountsSyncFlowResponse{
+	res := &operations.UpdateVisibleAccountsSyncFlowResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -263,12 +264,12 @@ func (s *syncFlowPreferences) PatchVisibleAccountsSyncFlow(ctx context.Context, 
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.PatchVisibleAccountsSyncFlow200ApplicationJSON
+			var out *shared.VisibleAccounts
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.PatchVisibleAccountsSyncFlow200ApplicationJSONObject = out
+			res.VisibleAccounts = out
 		}
 	}
 
