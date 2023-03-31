@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-type PostBankTransactionsRequest struct {
+type CreateBankTransactionsRequest struct {
 	BankTransactions *shared.BankTransactions `request:"mediaType=application/json"`
 	// Unique identifier for an account
 	AccountID               string `pathParam:"style=simple,explode=false,name=accountId"`
@@ -17,7 +17,7 @@ type PostBankTransactionsRequest struct {
 	TimeoutInMinutes        *int   `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
 }
 
-type PostBankTransactionsResponse struct {
+type CreateBankTransactionsResponse struct {
 	ContentType string
 	// Success
 	CreateBankTransactionsResponse *shared.CreateBankTransactionsResponse

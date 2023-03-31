@@ -2,12 +2,6 @@
 
 package shared
 
-// CreateBankTransactionsResponseValidation - A human-readable object describing validation decisions Codat has made when pushing data into the platform. If a push has failed because of validation errors, they will be detailed here.
-type CreateBankTransactionsResponseValidation struct {
-	Errors   []ValidationItem `json:"errors,omitempty"`
-	Warnings []ValidationItem `json:"warnings,omitempty"`
-}
-
 // CreateBankTransactionsResponse - Success
 type CreateBankTransactionsResponse struct {
 	Changes []PushOperationChange `json:"changes,omitempty"`
@@ -83,5 +77,5 @@ type CreateBankTransactionsResponse struct {
 	TimeoutInMinutes *int                    `json:"timeoutInMinutes,omitempty"`
 	TimeoutInSeconds *int                    `json:"timeoutInSeconds,omitempty"`
 	// A human-readable object describing validation decisions Codat has made when pushing data into the platform. If a push has failed because of validation errors, they will be detailed here.
-	Validation *CreateBankTransactionsResponseValidation `json:"validation,omitempty"`
+	Validation *Validation `json:"validation,omitempty"`
 }
