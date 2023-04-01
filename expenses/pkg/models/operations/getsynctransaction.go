@@ -3,6 +3,7 @@
 package operations
 
 import (
+	"github.com/codatio/client-sdk-go/expenses/pkg/models/shared"
 	"net/http"
 )
 
@@ -14,40 +15,10 @@ type GetSyncTransactionRequest struct {
 	TransactionID string `pathParam:"style=simple,explode=false,name=transactionId"`
 }
 
-// GetSyncTransaction200ApplicationJSONIntegrationTypeEnum - Type of transaction that has been processed e.g. Expense or Bank Feed.
-type GetSyncTransaction200ApplicationJSONIntegrationTypeEnum string
-
-const (
-	GetSyncTransaction200ApplicationJSONIntegrationTypeEnumExpenses  GetSyncTransaction200ApplicationJSONIntegrationTypeEnum = "expenses"
-	GetSyncTransaction200ApplicationJSONIntegrationTypeEnumBankfeeds GetSyncTransaction200ApplicationJSONIntegrationTypeEnum = "bankfeeds"
-)
-
-// GetSyncTransaction200ApplicationJSONStatusEnum - Status of the transaction.
-type GetSyncTransaction200ApplicationJSONStatusEnum string
-
-const (
-	GetSyncTransaction200ApplicationJSONStatusEnumUnknown         GetSyncTransaction200ApplicationJSONStatusEnum = "Unknown"
-	GetSyncTransaction200ApplicationJSONStatusEnumPending         GetSyncTransaction200ApplicationJSONStatusEnum = "Pending"
-	GetSyncTransaction200ApplicationJSONStatusEnumValidationError GetSyncTransaction200ApplicationJSONStatusEnum = "ValidationError"
-	GetSyncTransaction200ApplicationJSONStatusEnumCompleted       GetSyncTransaction200ApplicationJSONStatusEnum = "Completed"
-	GetSyncTransaction200ApplicationJSONStatusEnumPushError       GetSyncTransaction200ApplicationJSONStatusEnum = "PushError"
-)
-
-type GetSyncTransaction200ApplicationJSON struct {
-	// Type of transaction that has been processed e.g. Expense or Bank Feed.
-	IntegrationType *GetSyncTransaction200ApplicationJSONIntegrationTypeEnum `json:"integrationType,omitempty"`
-	// Metadata such as validation errors or the resulting record created in the accounting software.
-	Message *string `json:"message,omitempty"`
-	// Status of the transaction.
-	Status *GetSyncTransaction200ApplicationJSONStatusEnum `json:"status,omitempty"`
-	// Your unique idenfier of the transaction.
-	TransactionID *string `json:"transactionId,omitempty"`
-}
-
 type GetSyncTransactionResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// Success
-	GetSyncTransaction200ApplicationJSONObjects []GetSyncTransaction200ApplicationJSON
+	TransactionMetadata []shared.TransactionMetadata
 }

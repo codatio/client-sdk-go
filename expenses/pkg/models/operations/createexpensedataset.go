@@ -3,99 +3,19 @@
 package operations
 
 import (
+	"github.com/codatio/client-sdk-go/expenses/pkg/models/shared"
 	"net/http"
-	"time"
 )
-
-type CreateExpenseDatasetRequestBodyItemsLinesRecordRef struct {
-	// identifier of linked reference from mapping options.
-	ID *string `json:"id,omitempty"`
-}
-
-type CreateExpenseDatasetRequestBodyItemsLines struct {
-	AccountRef CreateExpenseDatasetRequestBodyItemsLinesRecordRef `json:"accountRef"`
-	// Amount of the line, exclusive of tax.
-	NetAmount float64 `json:"netAmount"`
-	// Amount of tax for the line.
-	TaxAmount    float64                                              `json:"taxAmount"`
-	TaxRateRef   *CreateExpenseDatasetRequestBodyItemsLinesRecordRef  `json:"taxRateRef,omitempty"`
-	TrackingRefs []CreateExpenseDatasetRequestBodyItemsLinesRecordRef `json:"trackingRefs,omitempty"`
-}
-
-// CreateExpenseDatasetRequestBodyItemsTypeEnum - The type of transaction.
-type CreateExpenseDatasetRequestBodyItemsTypeEnum string
-
-const (
-	CreateExpenseDatasetRequestBodyItemsTypeEnumPayment       CreateExpenseDatasetRequestBodyItemsTypeEnum = "Payment"
-	CreateExpenseDatasetRequestBodyItemsTypeEnumRefund        CreateExpenseDatasetRequestBodyItemsTypeEnum = "Refund"
-	CreateExpenseDatasetRequestBodyItemsTypeEnumReward        CreateExpenseDatasetRequestBodyItemsTypeEnum = "Reward"
-	CreateExpenseDatasetRequestBodyItemsTypeEnumChargeback    CreateExpenseDatasetRequestBodyItemsTypeEnum = "Chargeback"
-	CreateExpenseDatasetRequestBodyItemsTypeEnumTransferIn    CreateExpenseDatasetRequestBodyItemsTypeEnum = "TransferIn"
-	CreateExpenseDatasetRequestBodyItemsTypeEnumTransferOut   CreateExpenseDatasetRequestBodyItemsTypeEnum = "TransferOut"
-	CreateExpenseDatasetRequestBodyItemsTypeEnumAdjustmentIn  CreateExpenseDatasetRequestBodyItemsTypeEnum = "AdjustmentIn"
-	CreateExpenseDatasetRequestBodyItemsTypeEnumAdjustmentOut CreateExpenseDatasetRequestBodyItemsTypeEnum = "AdjustmentOut"
-)
-
-type CreateExpenseDatasetRequestBodyItems struct {
-	// Currency the transaction was recorded in.
-	Currency string `json:"currency"`
-	// Rate to convert the total amount of the payment into the base currency for the company at the time of the payment.
-	//
-	// Currency rates in Codat are implemented as the multiple of foreign currency units to each base currency unit.
-	//
-	// Where the currency rate is provided by the underlying accounting platform, it will be available from Codat with the same precision (up to a maximum of 9 decimal places).
-	//
-	// For accounting platforms which do not provide an explicit currency rate, it is calculated as `baseCurrency / foreignCurrency` and will be returned to 9 decimal places.
-	//
-	// ## Examples with base currency of GBP
-	//
-	// | Foreign Currency | Foreign Amount | Currency Rate | Base Currency Amount (GBP) |
-	// | :--------------- | :------------- | :------------ | :------------------------- |
-	// | **USD**          | $20            | 0.781         | £15.62                     |
-	// | **EUR**          | €20            | 0.885         | £17.70                     |
-	// | **RUB**          | ₽20            | 0.011         | £0.22                      |
-	//
-	// ## Examples with base currency of USD
-	//
-	// | Foreign Currency | Foreign Amount | Currency Rate | Base Currency Amount (USD) |
-	// | :--------------- | :------------- | :------------ | :------------------------- |
-	// | **GBP**          | £20            | 1.277         | $25.54                     |
-	// | **EUR**          | €20            | 1.134         | $22.68                     |
-	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
-	CurrencyRate *float64 `json:"currencyRate,omitempty"`
-	// Your unique idenfier for the transaction.
-	ID string `json:"id"`
-	// Date of the transaction was recorded.
-	IssueDate time.Time `json:"issueDate"`
-	// Array of transaction lines.
-	Lines []CreateExpenseDatasetRequestBodyItemsLines `json:"lines,omitempty"`
-	// Name of the merchant where the purchase took place
-	MerchantName *string `json:"merchantName,omitempty"`
-	// Any private, company notes about the transaction.
-	Notes *string `json:"notes,omitempty"`
-	// The type of transaction.
-	Type CreateExpenseDatasetRequestBodyItemsTypeEnum `json:"type"`
-}
-
-type CreateExpenseDatasetRequestBody struct {
-	Items []CreateExpenseDatasetRequestBodyItems `json:"items,omitempty"`
-}
 
 type CreateExpenseDatasetRequest struct {
-	RequestBody *CreateExpenseDatasetRequestBody `request:"mediaType=application/json"`
-	CompanyID   string                           `pathParam:"style=simple,explode=false,name=companyId"`
-}
-
-// CreateExpenseDataset200ApplicationJSON - OK
-type CreateExpenseDataset200ApplicationJSON struct {
-	// Unique id of dataset created
-	DatasetID *string `json:"datasetId,omitempty"`
+	CreateExpenseRequest *shared.CreateExpenseRequest `request:"mediaType=application/json"`
+	CompanyID            string                       `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
 type CreateExpenseDatasetResponse struct {
 	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
 	// OK
-	CreateExpenseDataset200ApplicationJSONObject *CreateExpenseDataset200ApplicationJSON
+	CreateExpenseResponse *shared.CreateExpenseResponse
+	StatusCode            int
+	RawResponse           *http.Response
 }

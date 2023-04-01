@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/expenses/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/expenses/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/expenses/pkg/utils"
 	"net/http"
 )
@@ -64,21 +65,21 @@ func (s *transactionStatus) GetSyncTransaction(ctx context.Context, request oper
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out []operations.GetSyncTransaction200ApplicationJSON
+			var out []shared.TransactionMetadata
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.GetSyncTransaction200ApplicationJSONObjects = out
+			res.TransactionMetadata = out
 		}
 	}
 
 	return res, nil
 }
 
-// GetSyncTransactions - Get Sync transactions
+// ListSyncTransactions - Get Sync transactions
 // Get's the transactions and status for a sync
-func (s *transactionStatus) GetSyncTransactions(ctx context.Context, request operations.GetSyncTransactionsRequest) (*operations.GetSyncTransactionsResponse, error) {
+func (s *transactionStatus) ListSyncTransactions(ctx context.Context, request operations.ListSyncTransactionsRequest) (*operations.ListSyncTransactionsResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/sync/expenses/syncs/{syncId}/transactions", request, nil)
 
@@ -104,7 +105,7 @@ func (s *transactionStatus) GetSyncTransactions(ctx context.Context, request ope
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetSyncTransactionsResponse{
+	res := &operations.ListSyncTransactionsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -113,12 +114,12 @@ func (s *transactionStatus) GetSyncTransactions(ctx context.Context, request ope
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetSyncTransactions200ApplicationJSON
+			var out *shared.TransactionMetadataList
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.GetSyncTransactions200ApplicationJSONObject = out
+			res.TransactionMetadataList = out
 		}
 	}
 

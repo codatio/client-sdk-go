@@ -3,105 +3,21 @@
 package operations
 
 import (
+	"github.com/codatio/client-sdk-go/expenses/pkg/models/shared"
 	"net/http"
 )
 
-type SaveCompanyConfigurationRequestBodyBankAccount struct {
-	// The id of the account from which purchases are made
-	ID *string `json:"id,omitempty"`
-}
-
-type SaveCompanyConfigurationRequestBodyCustomer struct {
-	// id of the customer for all income related activities to be associated to.
-	ID *string `json:"id,omitempty"`
-}
-
-type SaveCompanyConfigurationRequestBodySupplier struct {
-	// id of the supplier for all purchases to be associated to
-	ID *string `json:"id,omitempty"`
-}
-
-type SaveCompanyConfigurationRequestBody struct {
-	BankAccount *SaveCompanyConfigurationRequestBodyBankAccount `json:"bankAccount,omitempty"`
-	Customer    *SaveCompanyConfigurationRequestBodyCustomer    `json:"customer,omitempty"`
-	Supplier    *SaveCompanyConfigurationRequestBodySupplier    `json:"supplier,omitempty"`
-}
-
 type SaveCompanyConfigurationRequest struct {
-	RequestBody *SaveCompanyConfigurationRequestBody `request:"mediaType=application/json"`
-	CompanyID   string                               `pathParam:"style=simple,explode=false,name=companyId"`
-}
-
-type SaveCompanyConfiguration400ApplicationJSONValidationErrors struct {
-	ItemID        *string `json:"itemId,omitempty"`
-	Message       *string `json:"message,omitempty"`
-	RuleID        *string `json:"ruleId,omitempty"`
-	ValidatorName *string `json:"validatorName,omitempty"`
-}
-
-type SaveCompanyConfiguration400ApplicationJSONValidationInternals struct {
-	ItemID        *string `json:"itemId,omitempty"`
-	Message       *string `json:"message,omitempty"`
-	RuleID        *string `json:"ruleId,omitempty"`
-	ValidatorName *string `json:"validatorName,omitempty"`
-}
-
-type SaveCompanyConfiguration400ApplicationJSONValidationWarnings struct {
-	ItemID        *string `json:"itemId,omitempty"`
-	Message       *string `json:"message,omitempty"`
-	RuleID        *string `json:"ruleId,omitempty"`
-	ValidatorName *string `json:"validatorName,omitempty"`
-}
-
-type SaveCompanyConfiguration400ApplicationJSONValidation struct {
-	Errors       []SaveCompanyConfiguration400ApplicationJSONValidationErrors    `json:"errors,omitempty"`
-	HasErrors    *bool                                                           `json:"hasErrors,omitempty"`
-	HasInternals *bool                                                           `json:"hasInternals,omitempty"`
-	HasWarnings  *bool                                                           `json:"hasWarnings,omitempty"`
-	Internals    []SaveCompanyConfiguration400ApplicationJSONValidationInternals `json:"internals,omitempty"`
-	Warnings     []SaveCompanyConfiguration400ApplicationJSONValidationWarnings  `json:"warnings,omitempty"`
-}
-
-// SaveCompanyConfiguration400ApplicationJSON - Bad Request
-type SaveCompanyConfiguration400ApplicationJSON struct {
-	CanBeRetried      *string                                               `json:"canBeRetried,omitempty"`
-	CorrelationID     *string                                               `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64                                                `json:"detailedErrorCode,omitempty"`
-	Error             *string                                               `json:"error,omitempty"`
-	Inner             *string                                               `json:"inner,omitempty"`
-	Service           *string                                               `json:"service,omitempty"`
-	StatusCode        *int64                                                `json:"statusCode,omitempty"`
-	Validation        *SaveCompanyConfiguration400ApplicationJSONValidation `json:"validation,omitempty"`
-}
-
-type SaveCompanyConfiguration200ApplicationJSONBankAccount struct {
-	// The id of the account from which purchases are made
-	ID *string `json:"id,omitempty"`
-}
-
-type SaveCompanyConfiguration200ApplicationJSONCustomer struct {
-	// id of the customer for all income related activities to be associated to.
-	ID *string `json:"id,omitempty"`
-}
-
-type SaveCompanyConfiguration200ApplicationJSONSupplier struct {
-	// id of the supplier for all purchases to be associated to
-	ID *string `json:"id,omitempty"`
-}
-
-// SaveCompanyConfiguration200ApplicationJSON - Success
-type SaveCompanyConfiguration200ApplicationJSON struct {
-	BankAccount *SaveCompanyConfiguration200ApplicationJSONBankAccount `json:"bankAccount,omitempty"`
-	Customer    *SaveCompanyConfiguration200ApplicationJSONCustomer    `json:"customer,omitempty"`
-	Supplier    *SaveCompanyConfiguration200ApplicationJSONSupplier    `json:"supplier,omitempty"`
+	CompanyConfiguration *shared.CompanyConfiguration `request:"mediaType=application/json"`
+	CompanyID            string                       `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
 type SaveCompanyConfigurationResponse struct {
-	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
-	// Success
-	SaveCompanyConfiguration200ApplicationJSONObject *SaveCompanyConfiguration200ApplicationJSON
 	// Bad Request
-	SaveCompanyConfiguration400ApplicationJSONObject *SaveCompanyConfiguration400ApplicationJSON
+	CodatErrorMessage *shared.CodatErrorMessage
+	// Success
+	CompanyConfiguration *shared.CompanyConfiguration
+	ContentType          string
+	StatusCode           int
+	RawResponse          *http.Response
 }
