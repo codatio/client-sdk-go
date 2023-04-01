@@ -65,6 +65,10 @@ pkg/models/shared/feessupplier.go
 pkg/models/shared/integrations.go
 pkg/models/shared/integration.go
 pkg/models/shared/sourcetypeenum.go
+pkg/models/shared/datatypefeature.go
+pkg/models/shared/supportedfeature.go
+pkg/models/shared/featuretypeenum.go
+pkg/models/shared/featurestateenum.go
 pkg/models/shared/syncsummary.go
 pkg/models/shared/daterange.go
 pkg/models/shared/synctolatestargs.go
