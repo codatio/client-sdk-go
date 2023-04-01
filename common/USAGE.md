@@ -18,8 +18,8 @@ func main() {
     )
 
     req := shared.CompanyRequestBody{
-        Description: "unde",
-        Name: "deserunt",
+        Description: "corrupti",
+        Name: "provident",
     }
 
     ctx := context.Background()

@@ -29,8 +29,8 @@ func main() {
     )
 
     req := shared.CompanyRequestBody{
-        Description: "unde",
-        Name: "deserunt",
+        Description: "corrupti",
+        Name: "provident",
     }
 
     ctx := context.Background()
@@ -47,7 +47,7 @@ func main() {
 <!-- End SDK Example Usage -->
 
 <!-- Start SDK Available Operations -->
-## SDK Available Operations
+## Available Resources and Operations
 
 
 ### Companies
