@@ -23,7 +23,7 @@ func main() {
         OrderBy: "-modifiedDate",
         Page: 1,
         PageSize: 100,
-        Query: "unde",
+        Query: "corrupti",
     }
 
     ctx := context.Background()

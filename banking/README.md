@@ -34,7 +34,7 @@ func main() {
         OrderBy: "-modifiedDate",
         Page: 1,
         PageSize: 100,
-        Query: "unde",
+        Query: "corrupti",
     }
 
     ctx := context.Background()
@@ -51,7 +51,7 @@ func main() {
 <!-- End SDK Example Usage -->
 
 <!-- Start SDK Available Operations -->
-## SDK Available Operations
+## Available Resources and Operations
 
 
 ### AccountBalances
