@@ -2,53 +2,6 @@
 
 package shared
 
-// AccountValidDataTypeLinks - When querying Codat's data model, some data types return `validDatatypeLinks` metadata in the JSON response. This indicates where that object can be used as a reference—a _valid link_—when creating or updating other data.
-//
-// For example, `validDatatypeLinks` might indicate the following references:
-//
-// - Which tax rates are valid to use on the line item of a bill.
-// - Which items can be used when creating an invoice.
-//
-// You can use `validDatatypeLinks` to present your SMB customers with only valid choices when selecting objects from a list, for example.
-//
-// ## `validDatatypeLinks` example
-//
-// The following example uses the `Accounting.Accounts` data type. It shows that, on the linked integration, this account is valid as the account on a payment or bill payment; and as the account referenced on the line item of a direct income or direct cost. Because there is no valid link to Invoices or Bills, using this account on those data types will result in an error.
-//
-// ```json validDatatypeLinks for an account
-//
-//	{
-//	            "id": "bd9e85e0-0478-433d-ae9f-0b3c4f04bfe4",
-//	            "nominalCode": "090",
-//	            "name": "Business Bank Account",
-//	            #...
-//	            "validDatatypeLinks": [
-//	                {
-//	                    "property": "Id",
-//	                    "links": [
-//	                        "Payment.AccountRef.Id",
-//	                        "BillPayment.AccountRef.Id",
-//	                        "DirectIncome.LineItems.AccountRef.Id",
-//	                        "DirectCost.LineItems.AccountRef.Id"
-//	                    ]
-//	                }
-//	            ]
-//	        }
-//
-// ```
-//
-// ## Support for `validDatatypeLinks`
-//
-// Codat currently supports `validDatatypeLinks` for some data types on our Xero, QuickBooks Online, QuickBooks Desktop, Exact (NL), and Sage Business Cloud integrations.
-//
-// If you'd like us to extend support to more data types or integrations, suggest or vote for this on our <a href="https://portal.productboard.com/codat/5-product-roadmap">Product Roadmap</a>.
-type AccountValidDataTypeLinks struct {
-	// Supported `dataTypes` that the record can be linked to.
-	Links []string `json:"links,omitempty"`
-	// The property from the account that can be linked.
-	Property *string `json:"property,omitempty"`
-}
-
 // Account - > **Language tip:** Accounts are also referred to as **chart of accounts**, **nominal accounts**, and **general ledger**.
 //
 // View the coverage for accounts in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=chartOfAccounts" target="_blank">Data coverage explorer</a>.
@@ -143,5 +96,5 @@ type Account struct {
 	// Type of account
 	Type AccountTypeEnum `json:"type"`
 	// 'The validDatatypeLinks can be used to determine whether an account can be correctly mapped to another object; for example, accounts with a `type` of `income` might only support being used on an Invoice and Direct Income. For more information, see Valid Data Type Links.'
-	ValidDatatypeLinks []AccountValidDataTypeLinks `json:"validDatatypeLinks,omitempty"`
+	ValidDatatypeLinks []ValidDataTypeLinks `json:"validDatatypeLinks,omitempty"`
 }

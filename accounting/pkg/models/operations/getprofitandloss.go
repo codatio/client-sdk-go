@@ -17,7 +17,7 @@ type GetProfitAndLossRequest struct {
 type GetProfitAndLossResponse struct {
 	ContentType string
 	// Success
-	ProfitAndLossResponse *shared.ProfitAndLossResponse
-	StatusCode            int
-	RawResponse           *http.Response
+	ProfitAndLossReport *shared.ProfitAndLossReport1
+	StatusCode          int
+	RawResponse         *http.Response
 }

@@ -69,12 +69,12 @@ func (s *financials) GetBalanceSheet(ctx context.Context, request operations.Get
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.BalanceSheetResponse
+			var out *shared.BalanceSheet1
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.BalanceSheetResponse = out
+			res.BalanceSheet = out
 		}
 	}
 
@@ -118,12 +118,12 @@ func (s *financials) GetCashFlowStatement(ctx context.Context, request operation
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.CashFlowStatementResponse
+			var out *shared.CashFlowStatement1
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.CashFlowStatementResponse = out
+			res.CashFlowStatement = out
 		}
 	}
 
@@ -167,12 +167,12 @@ func (s *financials) GetProfitAndLoss(ctx context.Context, request operations.Ge
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ProfitAndLossResponse
+			var out *shared.ProfitAndLossReport1
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.ProfitAndLossResponse = out
+			res.ProfitAndLossReport = out
 		}
 	}
 

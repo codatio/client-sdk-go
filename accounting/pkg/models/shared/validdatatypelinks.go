@@ -2,7 +2,7 @@
 
 package shared
 
-// ValidDatatypeLinksitems - When querying Codat's data model, some data types return `validDatatypeLinks` metadata in the JSON response. This indicates where that object can be used as a reference—a _valid link_—when creating or updating other data.
+// ValidDataTypeLinks - When querying Codat's data model, some data types return `validDatatypeLinks` metadata in the JSON response. This indicates where that object can be used as a reference—a _valid link_—when creating or updating other data.
 //
 // For example, `validDatatypeLinks` might indicate the following references:
 //
@@ -42,7 +42,7 @@ package shared
 // Codat currently supports `validDatatypeLinks` for some data types on our Xero, QuickBooks Online, QuickBooks Desktop, Exact (NL), and Sage Business Cloud integrations.
 //
 // If you'd like us to extend support to more data types or integrations, suggest or vote for this on our <a href="https://portal.productboard.com/codat/5-product-roadmap">Product Roadmap</a>.
-type ValidDatatypeLinksitems struct {
+type ValidDataTypeLinks struct {
 	// Supported `dataTypes` that the record can be linked to.
 	Links []string `json:"links,omitempty"`
 	// The property from the account that can be linked.

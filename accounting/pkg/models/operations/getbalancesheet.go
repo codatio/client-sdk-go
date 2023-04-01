@@ -16,8 +16,8 @@ type GetBalanceSheetRequest struct {
 
 type GetBalanceSheetResponse struct {
 	// Success
-	BalanceSheetResponse *shared.BalanceSheetResponse
-	ContentType          string
-	StatusCode           int
-	RawResponse          *http.Response
+	BalanceSheet *shared.BalanceSheet1
+	ContentType  string
+	StatusCode   int
+	RawResponse  *http.Response
 }

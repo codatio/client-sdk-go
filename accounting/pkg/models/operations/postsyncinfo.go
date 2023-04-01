@@ -14,7 +14,7 @@ type PostSyncInfoRequest struct {
 type PostSyncInfoResponse struct {
 	ContentType string
 	// Success
-	DataSet     *shared.DataSet
+	Dataset     *shared.Dataset
 	StatusCode  int
 	RawResponse *http.Response
 }

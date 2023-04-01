@@ -79,6 +79,6 @@ type TaxRate struct {
 	// - `Unknown` - Where the status of the tax rate cannot be determined from the underlying platform.
 	Status *TaxRateStatusEnum `json:"status,omitempty"`
 	// Total (not compounded) sum of the components of a tax rate.
-	TotalTaxRate       *float64                  `json:"totalTaxRate,omitempty"`
-	ValidDatatypeLinks []ValidDatatypeLinksitems `json:"validDatatypeLinks,omitempty"`
+	TotalTaxRate       *float64             `json:"totalTaxRate,omitempty"`
+	ValidDatatypeLinks []ValidDataTypeLinks `json:"validDatatypeLinks,omitempty"`
 }

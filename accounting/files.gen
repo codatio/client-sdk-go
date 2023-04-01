@@ -178,6 +178,7 @@ pkg/models/shared/validationitem.go
 pkg/models/shared/pushoperationstatusenum.go
 pkg/models/shared/datatypeenum.go
 pkg/models/shared/account.go
+pkg/models/shared/validdatatypelinks.go
 pkg/models/shared/accounttypeenum.go
 pkg/models/shared/accountstatusenum.go
 pkg/models/shared/pushoperationchange.go
@@ -266,14 +267,14 @@ pkg/models/shared/createdirectincomeresponse.go
 pkg/models/shared/directincome.go
 pkg/models/shared/directincomelineitem.go
 pkg/models/shared/directincomes.go
-pkg/models/shared/balancesheetresponse.go
+pkg/models/shared/balancesheet1.go
 pkg/models/shared/balancesheet.go
 pkg/models/shared/reportline.go
-pkg/models/shared/cashflowstatementresponse.go
+pkg/models/shared/cashflowstatement1.go
 pkg/models/shared/cashflowstatement.go
 pkg/models/shared/reportinputenum.go
 pkg/models/shared/reportbasisenum.go
-pkg/models/shared/profitandlossresponse.go
+pkg/models/shared/profitandlossreport1.go
 pkg/models/shared/profitandlossreport.go
 pkg/models/shared/createinvoiceresponse.go
 pkg/models/shared/invoice.go
@@ -329,7 +330,6 @@ pkg/models/shared/supplier.go
 pkg/models/shared/supplierstatusenum.go
 pkg/models/shared/suppliers.go
 pkg/models/shared/taxrate.go
-pkg/models/shared/validdatatypelinksitems.go
 pkg/models/shared/taxratestatusenum.go
 pkg/models/shared/taxratecomponent.go
 pkg/models/shared/taxrates.go

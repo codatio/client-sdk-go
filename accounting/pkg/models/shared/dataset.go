@@ -7,33 +7,33 @@ import (
 	"fmt"
 )
 
-type DataSetStatusEnum string
+type DatasetStatusEnum string
 
 const (
-	DataSetStatusEnumInitial            DataSetStatusEnum = "Initial"
-	DataSetStatusEnumQueued             DataSetStatusEnum = "Queued"
-	DataSetStatusEnumFetching           DataSetStatusEnum = "Fetching"
-	DataSetStatusEnumMapQueued          DataSetStatusEnum = "MapQueued"
-	DataSetStatusEnumMapping            DataSetStatusEnum = "Mapping"
-	DataSetStatusEnumComplete           DataSetStatusEnum = "Complete"
-	DataSetStatusEnumFetchError         DataSetStatusEnum = "FetchError"
-	DataSetStatusEnumMapError           DataSetStatusEnum = "MapError"
-	DataSetStatusEnumInternalError      DataSetStatusEnum = "InternalError"
-	DataSetStatusEnumProcessingQueued   DataSetStatusEnum = "ProcessingQueued"
-	DataSetStatusEnumProcessing         DataSetStatusEnum = "Processing"
-	DataSetStatusEnumProcessingError    DataSetStatusEnum = "ProcessingError"
-	DataSetStatusEnumValidationQueued   DataSetStatusEnum = "ValidationQueued"
-	DataSetStatusEnumValidating         DataSetStatusEnum = "Validating"
-	DataSetStatusEnumValidationError    DataSetStatusEnum = "ValidationError"
-	DataSetStatusEnumAuthError          DataSetStatusEnum = "AuthError"
-	DataSetStatusEnumCancelled          DataSetStatusEnum = "Cancelled"
-	DataSetStatusEnumNotSupported       DataSetStatusEnum = "NotSupported"
-	DataSetStatusEnumRateLimitError     DataSetStatusEnum = "RateLimitError"
-	DataSetStatusEnumPermissionsError   DataSetStatusEnum = "PermissionsError"
-	DataSetStatusEnumPrerequisiteNotMet DataSetStatusEnum = "PrerequisiteNotMet"
+	DatasetStatusEnumInitial            DatasetStatusEnum = "Initial"
+	DatasetStatusEnumQueued             DatasetStatusEnum = "Queued"
+	DatasetStatusEnumFetching           DatasetStatusEnum = "Fetching"
+	DatasetStatusEnumMapQueued          DatasetStatusEnum = "MapQueued"
+	DatasetStatusEnumMapping            DatasetStatusEnum = "Mapping"
+	DatasetStatusEnumComplete           DatasetStatusEnum = "Complete"
+	DatasetStatusEnumFetchError         DatasetStatusEnum = "FetchError"
+	DatasetStatusEnumMapError           DatasetStatusEnum = "MapError"
+	DatasetStatusEnumInternalError      DatasetStatusEnum = "InternalError"
+	DatasetStatusEnumProcessingQueued   DatasetStatusEnum = "ProcessingQueued"
+	DatasetStatusEnumProcessing         DatasetStatusEnum = "Processing"
+	DatasetStatusEnumProcessingError    DatasetStatusEnum = "ProcessingError"
+	DatasetStatusEnumValidationQueued   DatasetStatusEnum = "ValidationQueued"
+	DatasetStatusEnumValidating         DatasetStatusEnum = "Validating"
+	DatasetStatusEnumValidationError    DatasetStatusEnum = "ValidationError"
+	DatasetStatusEnumAuthError          DatasetStatusEnum = "AuthError"
+	DatasetStatusEnumCancelled          DatasetStatusEnum = "Cancelled"
+	DatasetStatusEnumNotSupported       DatasetStatusEnum = "NotSupported"
+	DatasetStatusEnumRateLimitError     DatasetStatusEnum = "RateLimitError"
+	DatasetStatusEnumPermissionsError   DatasetStatusEnum = "PermissionsError"
+	DatasetStatusEnumPrerequisiteNotMet DatasetStatusEnum = "PrerequisiteNotMet"
 )
 
-func (e *DataSetStatusEnum) UnmarshalJSON(data []byte) error {
+func (e *DatasetStatusEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {
 		return err
@@ -80,15 +80,15 @@ func (e *DataSetStatusEnum) UnmarshalJSON(data []byte) error {
 	case "PermissionsError":
 		fallthrough
 	case "PrerequisiteNotMet":
-		*e = DataSetStatusEnum(s)
+		*e = DatasetStatusEnum(s)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for DataSetStatusEnum: %s", s)
+		return fmt.Errorf("invalid value for DatasetStatusEnum: %s", s)
 	}
 }
 
-// DataSet - Success
-type DataSet struct {
+// Dataset - Success
+type Dataset struct {
 	CompanyID string `json:"companyId"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
@@ -138,6 +138,6 @@ type DataSet struct {
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	Requested                string            `json:"requested"`
-	Status                   DataSetStatusEnum `json:"status"`
+	Status                   DatasetStatusEnum `json:"status"`
 	ValidationInformationURL *string           `json:"validationInformationUrl,omitempty"`
 }

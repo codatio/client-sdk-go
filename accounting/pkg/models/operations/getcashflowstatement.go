@@ -16,8 +16,8 @@ type GetCashFlowStatementRequest struct {
 
 type GetCashFlowStatementResponse struct {
 	// Success
-	CashFlowStatementResponse *shared.CashFlowStatementResponse
-	ContentType               string
-	StatusCode                int
-	RawResponse               *http.Response
+	CashFlowStatement *shared.CashFlowStatement1
+	ContentType       string
+	StatusCode        int
+	RawResponse       *http.Response
 }

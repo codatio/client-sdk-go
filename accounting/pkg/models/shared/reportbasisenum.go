@@ -7,7 +7,7 @@ import (
 	"fmt"
 )
 
-// ReportBasisEnum - Accounting method used when aggregating the report data. In this case, Cash.
+// ReportBasisEnum - Accounting method used when aggregating the report data. In this case, `Cash`.
 type ReportBasisEnum string
 
 const (

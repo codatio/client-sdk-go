@@ -2,9 +2,27 @@
 
 package shared
 
-// ProfitAndLossResponse - Success
-type ProfitAndLossResponse struct {
-	// Base currency of the company in which the profit and loss report is presented.
+// CashFlowStatement1 - > View the coverage for cash flow statement in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=cashFlowStatement" target="_blank">Data coverage explorer</a>.
+//
+// > **Operating activities only**
+// >
+// > Currently, the cash flow statement shows cash that flows into and out of the company from operating activities *only*. Operating activities generate cash from the sale of goods or services.
+//
+// ## Overview
+//
+// A cash flow statement is a financial report that records all cash that is received or spent by a company during a given period. It gives you a clearer picture of the company’s performance, and their ability to pay creditors and finance growth.
+//
+// > **Cash flow statement or balance sheet?**
+// >
+// > Look at the cash flow statement to understand a company's ability to pay its bills. Although the balance sheet may show healthy earnings at a specific point in time, the cash flow statement allows you to see whether the company is meeting its financial commitments, such as paying creditors or its employees.
+type CashFlowStatement1 struct {
+	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code, e.g. _GBP_.
+	//
+	// ## Unknown currencies
+	//
+	// In line with the ISO 4217 specification, the code _XXX_ is used when the data source does not return a currency for a transaction.
+	//
+	// There are only a very small number of edge cases where this currency code is returned by the Codat system.
 	Currency string `json:"currency"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
@@ -46,8 +64,10 @@ type ProfitAndLossResponse struct {
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	MostRecentAvailableMonth *string `json:"mostRecentAvailableMonth,omitempty"`
-	// The basis of a report.
+	// Accounting method used when aggregating the report data. In this case, `Cash`.
 	ReportBasis ReportBasisEnum `json:"reportBasis"`
-	// An array of profit and loss reports.
-	Reports []ProfitAndLossReport `json:"reports"`
+	// Accounting method used to prepare the cash flow statement.
+	ReportInput ReportInputEnum `json:"reportInput"`
+	// Array of cash flow statements.
+	Reports []CashFlowStatement `json:"reports"`
 }

@@ -110,12 +110,12 @@ func (s *companyInfo) PostSyncInfo(ctx context.Context, request operations.PostS
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.DataSet
+			var out *shared.Dataset
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.DataSet = out
+			res.Dataset = out
 		}
 	}
 
