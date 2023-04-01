@@ -30,44 +30,44 @@ func main() {
 
     req := operations.CreateBankTransactionsRequest{
         BankTransactions: &shared.BankTransactions{
-            AccountID: "unde",
+            AccountID: "corrupti",
             Transactions: []shared.BankTransactionLine{
                 shared.BankTransactionLine{
                     Amount: 7151.9,
                     Balance: 8442.66,
-                    Counterparty: "id",
-                    Date: "2022-10-23T00:00:00Z",
-                    Description: "vero",
-                    ID: "perspiciatis",
+                    ClearedOnDate: "2022-10-23T00:00:00Z",
+                    Counterparty: "unde",
+                    Description: "nulla",
+                    ID: "corrupti",
                     ModifiedDate: "2022-10-23T00:00:00Z",
                     Reconciled: false,
-                    Reference: "nulla",
+                    Reference: "illum",
                     SourceModifiedDate: "2022-10-23T00:00:00Z",
                     TransactionType: "Dep",
                 },
                 shared.BankTransactionLine{
                     Amount: 6235.64,
                     Balance: 6458.94,
-                    Counterparty: "eum",
-                    Date: "2022-10-23T00:00:00Z",
-                    Description: "iusto",
-                    ID: "ullam",
+                    ClearedOnDate: "2022-10-23T00:00:00Z",
+                    Counterparty: "suscipit",
+                    Description: "iure",
+                    ID: "magnam",
                     ModifiedDate: "2022-10-23T00:00:00Z",
                     Reconciled: false,
-                    Reference: "saepe",
+                    Reference: "debitis",
                     SourceModifiedDate: "2022-10-23T00:00:00Z",
                     TransactionType: "Credit",
                 },
                 shared.BankTransactionLine{
                     Amount: 9636.63,
                     Balance: 2726.56,
-                    Counterparty: "eum",
-                    Date: "2022-10-23T00:00:00Z",
-                    Description: "voluptatum",
-                    ID: "autem",
+                    ClearedOnDate: "2022-10-23T00:00:00Z",
+                    Counterparty: "suscipit",
+                    Description: "molestiae",
+                    ID: "minus",
                     ModifiedDate: "2022-10-23T00:00:00Z",
                     Reconciled: false,
-                    Reference: "vel",
+                    Reference: "placeat",
                     SourceModifiedDate: "2022-10-23T00:00:00Z",
                     TransactionType: "Pos",
                 },
@@ -94,7 +94,7 @@ func main() {
 <!-- End SDK Example Usage -->
 
 <!-- Start SDK Available Operations -->
-## SDK Available Operations
+## Available Resources and Operations
 
 
 ### BankAccountTransactions
