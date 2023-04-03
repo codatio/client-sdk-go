@@ -2,7 +2,7 @@
 
 package shared
 
-type ExpenseTransactionLines struct {
+type ExpenseTransactionLine struct {
 	AccountRef RecordRef `json:"accountRef"`
 	// Amount of the line, exclusive of tax.
 	NetAmount float64 `json:"netAmount"`

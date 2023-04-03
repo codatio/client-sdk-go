@@ -42,7 +42,7 @@ pkg/models/shared/dataconnectionerror.go
 pkg/models/shared/createexpenseresponse.go
 pkg/models/shared/createexpenserequest.go
 pkg/models/shared/expensetransaction.go
-pkg/models/shared/expensetransactionlines.go
+pkg/models/shared/expensetransactionline.go
 pkg/models/shared/recordref.go
 pkg/models/shared/attachment.go
 pkg/models/shared/mappingoptions.go

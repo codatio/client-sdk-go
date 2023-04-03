@@ -99,7 +99,7 @@ type ExpenseTransaction struct {
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	IssueDate string `json:"issueDate"`
 	// Array of transaction lines.
-	Lines []ExpenseTransactionLines `json:"lines,omitempty"`
+	Lines []ExpenseTransactionLine `json:"lines,omitempty"`
 	// Name of the merchant where the purchase took place
 	MerchantName *string `json:"merchantName,omitempty"`
 	// Any private, company notes about the transaction.

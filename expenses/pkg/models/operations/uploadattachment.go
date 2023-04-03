@@ -22,9 +22,9 @@ type UploadAttachmentRequest struct {
 }
 
 type UploadAttachmentResponse struct {
+	// OK
+	Attachment  *shared.Attachment
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
-	// OK
-	Attachment *shared.Attachment
 }
