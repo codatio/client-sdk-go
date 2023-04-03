@@ -1,6 +1,6 @@
 configVersion: 1.0.0
 management:
-  docChecksum: b83e809fd96ca5e7c803291c8719c642
+  docChecksum: dd9aaac4bfa74252362980e310692411
   docVersion: 2.1.0
   speakeasyVersion: 1.19.3
   generationVersion: 2.16.7
@@ -10,5 +10,5 @@ generation:
   sdkFlattening: true
   singleTagPerOp: false
 go:
-  version: 0.7.2
+  version: 0.7.3
   packageName: github.com/codatio/client-sdk-go/accounting

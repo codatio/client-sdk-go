@@ -3,8 +3,8 @@
 package shared
 
 type Links struct {
-	Current  HRef  `json:"current"`
-	Next     *HRef `json:"next,omitempty"`
-	Previous *HRef `json:"previous,omitempty"`
-	Self     HRef  `json:"self"`
+	Current  HalRef  `json:"current"`
+	Next     *HalRef `json:"next,omitempty"`
+	Previous *HalRef `json:"previous,omitempty"`
+	Self     HalRef  `json:"self"`
 }

@@ -2,6 +2,6 @@
 
 package shared
 
-type HRef struct {
+type HalRef struct {
 	Href *string `json:"href,omitempty"`
 }

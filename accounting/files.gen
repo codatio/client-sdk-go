@@ -171,7 +171,7 @@ pkg/models/shared/invoiceto.go
 pkg/models/shared/bankaccountref.go
 pkg/models/shared/accounttransactions.go
 pkg/models/shared/links.go
-pkg/models/shared/href.go
+pkg/models/shared/halref.go
 pkg/models/shared/createaccountresponse.go
 pkg/models/shared/validation.go
 pkg/models/shared/validationitem.go

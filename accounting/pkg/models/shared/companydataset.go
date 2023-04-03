@@ -24,7 +24,7 @@ type CompanyDatasetAddresses struct {
 	Type AddressTypeEnum `json:"type"`
 }
 
-type CompanyDatasetPhoneNumbers struct {
+type CompanyDatasetPhone struct {
 	// A phone number.
 	Number string `json:"number"`
 	// The type of phone number
@@ -145,7 +145,7 @@ type CompanyDataset struct {
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	LedgerLockDate *string `json:"ledgerLockDate,omitempty"`
 	// An array of phone numbers.
-	PhoneNumbers []CompanyDatasetPhoneNumbers `json:"phoneNumbers,omitempty"`
+	PhoneNumbers []CompanyDatasetPhone `json:"phoneNumbers,omitempty"`
 	// Registration number given to the linked company by the companies authority in the country of origin. In the UK this is Companies House.
 	RegistrationNumber *string `json:"registrationNumber,omitempty"`
 	// URL addresses for the accounting source.
