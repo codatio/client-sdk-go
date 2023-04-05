@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/banking/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/banking/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/banking/pkg/utils"
 	"net/http"
 )
@@ -31,9 +32,9 @@ func newTransactionCategories(defaultClient, securityClient HTTPClient, serverUR
 	}
 }
 
-// GetBankTransactionCategory - Get transaction category
+// GetTransactionCategory - Get transaction category
 // Gets a specified bank transaction category for a given company
-func (s *transactionCategories) GetBankTransactionCategory(ctx context.Context, request operations.GetBankTransactionCategoryRequest) (*operations.GetBankTransactionCategoryResponse, error) {
+func (s *transactionCategories) GetTransactionCategory(ctx context.Context, request operations.GetTransactionCategoryRequest) (*operations.GetTransactionCategoryResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/banking-transactionCategories/{transactionCategoryId}", request, nil)
 
@@ -55,7 +56,7 @@ func (s *transactionCategories) GetBankTransactionCategory(ctx context.Context, 
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetBankTransactionCategoryResponse{
+	res := &operations.GetTransactionCategoryResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -64,21 +65,21 @@ func (s *transactionCategories) GetBankTransactionCategory(ctx context.Context, 
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetBankTransactionCategorySourceModifiedDate
+			var out *shared.TransactionCategory
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.SourceModifiedDate = out
+			res.TransactionCategory = out
 		}
 	}
 
 	return res, nil
 }
 
-// ListBankTransactionCategories - List all transaction categories
+// ListTransactionCategories - List all transaction categories
 // Gets a list of hierarchical categories associated with a transaction for greater contextual meaning to transactionactivity.
-func (s *transactionCategories) ListBankTransactionCategories(ctx context.Context, request operations.ListBankTransactionCategoriesRequest) (*operations.ListBankTransactionCategoriesResponse, error) {
+func (s *transactionCategories) ListTransactionCategories(ctx context.Context, request operations.ListTransactionCategoriesRequest) (*operations.ListTransactionCategoriesResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/banking-transactionCategories", request, nil)
 
@@ -104,7 +105,7 @@ func (s *transactionCategories) ListBankTransactionCategories(ctx context.Contex
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.ListBankTransactionCategoriesResponse{
+	res := &operations.ListTransactionCategoriesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -113,12 +114,12 @@ func (s *transactionCategories) ListBankTransactionCategories(ctx context.Contex
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListBankTransactionCategoriesLinks
+			var out *shared.TransactionCategories
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Links = out
+			res.TransactionCategories = out
 		}
 	}
 

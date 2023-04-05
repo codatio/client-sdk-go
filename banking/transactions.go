@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/banking/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/banking/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/banking/pkg/utils"
 	"net/http"
 )
@@ -31,9 +32,9 @@ func newTransactions(defaultClient, securityClient HTTPClient, serverURL, langua
 	}
 }
 
-// GetBankingTransaction - Get bank transaction
+// GetTransaction - Get bank transaction
 // Gets a specified bank transaction for a given company
-func (s *transactions) GetBankingTransaction(ctx context.Context, request operations.GetBankingTransactionRequest) (*operations.GetBankingTransactionResponse, error) {
+func (s *transactions) GetTransaction(ctx context.Context, request operations.GetTransactionRequest) (*operations.GetTransactionResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/banking-transactions/{transactionId}", request, nil)
 
@@ -55,7 +56,7 @@ func (s *transactions) GetBankingTransaction(ctx context.Context, request operat
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetBankingTransactionResponse{
+	res := &operations.GetTransactionResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -64,21 +65,21 @@ func (s *transactions) GetBankingTransaction(ctx context.Context, request operat
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetBankingTransactionSourceModifiedDate
+			var out *shared.Transaction
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.SourceModifiedDate = out
+			res.Transaction = out
 		}
 	}
 
 	return res, nil
 }
 
-// ListAllBankingTransactions - List banking transactions
+// ListBankTransactions - List banking transactions
 // Gets a list of transactions incurred by a company across all bank accounts.
-func (s *transactions) ListAllBankingTransactions(ctx context.Context, request operations.ListAllBankingTransactionsRequest) (*operations.ListAllBankingTransactionsResponse, error) {
+func (s *transactions) ListBankTransactions(ctx context.Context, request operations.ListBankTransactionsRequest) (*operations.ListBankTransactionsResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/banking-transactions", request, nil)
 
@@ -104,7 +105,7 @@ func (s *transactions) ListAllBankingTransactions(ctx context.Context, request o
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.ListAllBankingTransactionsResponse{
+	res := &operations.ListBankTransactionsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -113,21 +114,21 @@ func (s *transactions) ListAllBankingTransactions(ctx context.Context, request o
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListAllBankingTransactions200ApplicationJSON
+			var out *shared.Transactions
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.ListAllBankingTransactions200ApplicationJSONObject = out
+			res.Transactions = out
 		}
 	}
 
 	return res, nil
 }
 
-// ListBankingTransactions - List bank account transactions
+// ListTransactions - List transactions
 // Gets a list of transactions incurred by a bank account.
-func (s *transactions) ListBankingTransactions(ctx context.Context, request operations.ListBankingTransactionsRequest) (*operations.ListBankingTransactionsResponse, error) {
+func (s *transactions) ListTransactions(ctx context.Context, request operations.ListTransactionsRequest) (*operations.ListTransactionsResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/banking-transactions", request, nil)
 
@@ -153,7 +154,7 @@ func (s *transactions) ListBankingTransactions(ctx context.Context, request oper
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.ListBankingTransactionsResponse{
+	res := &operations.ListTransactionsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -162,12 +163,12 @@ func (s *transactions) ListBankingTransactions(ctx context.Context, request oper
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListBankingTransactions200ApplicationJSON
+			var out *shared.Transactions
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.ListBankingTransactions200ApplicationJSONObject = out
+			res.Transactions = out
 		}
 	}
 
