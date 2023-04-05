@@ -3,6 +3,7 @@
 package operations
 
 import (
+	"github.com/codatio/client-sdk-go/assess/pkg/models/shared"
 	"net/http"
 )
 
@@ -19,57 +20,10 @@ type ListAccountsCategoriesRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-type ListAccountsCategoriesLinksLinksHypertextReference struct {
-	Href *string `json:"href,omitempty"`
-}
-
-type ListAccountsCategoriesLinksLinks struct {
-	Current  ListAccountsCategoriesLinksLinksHypertextReference  `json:"current"`
-	Next     *ListAccountsCategoriesLinksLinksHypertextReference `json:"next,omitempty"`
-	Previous *ListAccountsCategoriesLinksLinksHypertextReference `json:"previous,omitempty"`
-	Self     ListAccountsCategoriesLinksLinksHypertextReference  `json:"self"`
-}
-
-// ListAccountsCategoriesLinksCategorisedAccountAccountRef - An object containing account reference data.
-type ListAccountsCategoriesLinksCategorisedAccountAccountRef struct {
-	// 'id' from the Accounts data type.
-	ID *string `json:"id,omitempty"`
-	// 'name' from the Accounts data type.
-	Name *string `json:"name,omitempty"`
-}
-
-type ListAccountsCategoriesLinksCategorisedAccountModifiedDate struct {
-	// Most granular chart of account type.
-	DetailType *string `json:"detailType,omitempty"`
-	// The date on which this record was last modified in Codat.
-	ModifiedDate *string `json:"modifiedDate,omitempty"`
-	// The account subtype.
-	Subtype *string `json:"subtype,omitempty"`
-	// The top level account type.
-	Type *string `json:"type,omitempty"`
-}
-
-type ListAccountsCategoriesLinksCategorisedAccount struct {
-	// An object containing account reference data.
-	AccountRef *ListAccountsCategoriesLinksCategorisedAccountAccountRef   `json:"accountRef,omitempty"`
-	Confirmed  *ListAccountsCategoriesLinksCategorisedAccountModifiedDate `json:"confirmed,omitempty"`
-	Suggested  *ListAccountsCategoriesLinksCategorisedAccountModifiedDate `json:"suggested,omitempty"`
-}
-
-// ListAccountsCategoriesLinks - Codat's Paging Model
-type ListAccountsCategoriesLinks struct {
-	Links      ListAccountsCategoriesLinksLinks `json:"_links"`
-	PageNumber int64                            `json:"pageNumber"`
-	PageSize   int64                            `json:"pageSize"`
-	// A list confirmed and suggested account categories.
-	Results      []ListAccountsCategoriesLinksCategorisedAccount `json:"results,omitempty"`
-	TotalResults int64                                           `json:"totalResults"`
-}
-
 type ListAccountsCategoriesResponse struct {
-	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
 	// OK
-	Links *ListAccountsCategoriesLinks
+	CategorisedAccounts *shared.CategorisedAccounts
+	ContentType         string
+	StatusCode          int
+	RawResponse         *http.Response
 }

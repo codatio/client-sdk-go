@@ -3,6 +3,7 @@
 package operations
 
 import (
+	"github.com/codatio/client-sdk-go/assess/pkg/models/shared"
 	"net/http"
 )
 
@@ -13,36 +14,9 @@ type GetAccountCategoryRequest struct {
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
-// GetAccountCategoryCategorisedAccountAccountRef - An object containing account reference data.
-type GetAccountCategoryCategorisedAccountAccountRef struct {
-	// 'id' from the Accounts data type.
-	ID *string `json:"id,omitempty"`
-	// 'name' from the Accounts data type.
-	Name *string `json:"name,omitempty"`
-}
-
-type GetAccountCategoryCategorisedAccountModifiedDate struct {
-	// Most granular chart of account type.
-	DetailType *string `json:"detailType,omitempty"`
-	// The date on which this record was last modified in Codat.
-	ModifiedDate *string `json:"modifiedDate,omitempty"`
-	// The account subtype.
-	Subtype *string `json:"subtype,omitempty"`
-	// The top level account type.
-	Type *string `json:"type,omitempty"`
-}
-
-// GetAccountCategoryCategorisedAccount - OK
-type GetAccountCategoryCategorisedAccount struct {
-	// An object containing account reference data.
-	AccountRef *GetAccountCategoryCategorisedAccountAccountRef   `json:"accountRef,omitempty"`
-	Confirmed  *GetAccountCategoryCategorisedAccountModifiedDate `json:"confirmed,omitempty"`
-	Suggested  *GetAccountCategoryCategorisedAccountModifiedDate `json:"suggested,omitempty"`
-}
-
 type GetAccountCategoryResponse struct {
 	// OK
-	CategorisedAccount *GetAccountCategoryCategorisedAccount
+	CategorisedAccount *shared.CategorisedAccount
 	ContentType        string
 	StatusCode         int
 	RawResponse        *http.Response

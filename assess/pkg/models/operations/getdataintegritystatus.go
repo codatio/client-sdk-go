@@ -3,141 +3,20 @@
 package operations
 
 import (
-	"encoding/json"
-	"fmt"
+	"github.com/codatio/client-sdk-go/assess/pkg/models/shared"
 	"net/http"
 )
-
-// GetDataIntegrityStatusDataTypeEnum - A key for a Codat data type.
-type GetDataIntegrityStatusDataTypeEnum string
-
-const (
-	GetDataIntegrityStatusDataTypeEnumBankingAccounts     GetDataIntegrityStatusDataTypeEnum = "banking-accounts"
-	GetDataIntegrityStatusDataTypeEnumBankingTransactions GetDataIntegrityStatusDataTypeEnum = "banking-transactions"
-	GetDataIntegrityStatusDataTypeEnumBankAccounts        GetDataIntegrityStatusDataTypeEnum = "bankAccounts"
-	GetDataIntegrityStatusDataTypeEnumAccountTransactions GetDataIntegrityStatusDataTypeEnum = "accountTransactions"
-)
-
-func (e *GetDataIntegrityStatusDataTypeEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
-		return err
-	}
-	switch s {
-	case "banking-accounts":
-		fallthrough
-	case "banking-transactions":
-		fallthrough
-	case "bankAccounts":
-		fallthrough
-	case "accountTransactions":
-		*e = GetDataIntegrityStatusDataTypeEnum(s)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for GetDataIntegrityStatusDataTypeEnum: %s", s)
-	}
-}
 
 type GetDataIntegrityStatusRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	// A key for a Codat data type.
-	DataType GetDataIntegrityStatusDataTypeEnum `pathParam:"style=simple,explode=false,name=dataType"`
-}
-
-// GetDataIntegrityStatus200ApplicationJSONDataIntegrityTypeAmounts - Only returned for transactions. For accounts, there is nothing returned.
-type GetDataIntegrityStatus200ApplicationJSONDataIntegrityTypeAmounts struct {
-	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code. e.g. _GBP_.
-	//
-	// ## Unknown currencies
-	//
-	// In line with the ISO 4217 specification, the code _XXX_ is used when the data source does not return a currency for a transaction.
-	//
-	// There are only a very small number of edge cases where this currency code is returned by the Codat system.
-	Currency *string `json:"currency,omitempty"`
-	// Highest value of transaction set.
-	Max *float64 `json:"max,omitempty"`
-	// Lowest value of transaction set.
-	Min *float64 `json:"min,omitempty"`
-}
-
-type GetDataIntegrityStatus200ApplicationJSONDataIntegrityTypeConnectionIds struct {
-	// An array of strings. The connection IDs for the type specified in the url.
-	Source []string `json:"source,omitempty"`
-	// An array of strings. The connection IDs for the type being matched to.
-	Target []string `json:"target,omitempty"`
-}
-
-// GetDataIntegrityStatus200ApplicationJSONDataIntegrityTypeDates - Only returned for transactions. For accounts, there is nothing returned.
-type GetDataIntegrityStatus200ApplicationJSONDataIntegrityTypeDates struct {
-	// Latest date of transaction set.
-	MaxDate *string `json:"maxDate,omitempty"`
-	// Latest date where transactions exist in both account and banking platforms.
-	MaxOverlappingDate *string `json:"maxOverlappingDate,omitempty"`
-	// Earliest date of transaction set.
-	MinDate *string `json:"minDate,omitempty"`
-	// Earliest date where transactions exist in both accounting and banking platforms.
-	MinOverlappingDate *string `json:"minOverlappingDate,omitempty"`
-}
-
-// GetDataIntegrityStatus200ApplicationJSONDataIntegrityTypeStatusInfoCurrentStatusEnum - The current status of the most recently run matching algorithm.
-type GetDataIntegrityStatus200ApplicationJSONDataIntegrityTypeStatusInfoCurrentStatusEnum string
-
-const (
-	GetDataIntegrityStatus200ApplicationJSONDataIntegrityTypeStatusInfoCurrentStatusEnumUnknown      GetDataIntegrityStatus200ApplicationJSONDataIntegrityTypeStatusInfoCurrentStatusEnum = "Unknown"
-	GetDataIntegrityStatus200ApplicationJSONDataIntegrityTypeStatusInfoCurrentStatusEnumDoesNotExist GetDataIntegrityStatus200ApplicationJSONDataIntegrityTypeStatusInfoCurrentStatusEnum = "DoesNotExist"
-	GetDataIntegrityStatus200ApplicationJSONDataIntegrityTypeStatusInfoCurrentStatusEnumError        GetDataIntegrityStatus200ApplicationJSONDataIntegrityTypeStatusInfoCurrentStatusEnum = "Error"
-	GetDataIntegrityStatus200ApplicationJSONDataIntegrityTypeStatusInfoCurrentStatusEnumComplete     GetDataIntegrityStatus200ApplicationJSONDataIntegrityTypeStatusInfoCurrentStatusEnum = "Complete"
-)
-
-func (e *GetDataIntegrityStatus200ApplicationJSONDataIntegrityTypeStatusInfoCurrentStatusEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
-		return err
-	}
-	switch s {
-	case "Unknown":
-		fallthrough
-	case "DoesNotExist":
-		fallthrough
-	case "Error":
-		fallthrough
-	case "Complete":
-		*e = GetDataIntegrityStatus200ApplicationJSONDataIntegrityTypeStatusInfoCurrentStatusEnum(s)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for GetDataIntegrityStatus200ApplicationJSONDataIntegrityTypeStatusInfoCurrentStatusEnum: %s", s)
-	}
-}
-
-type GetDataIntegrityStatus200ApplicationJSONDataIntegrityTypeStatusInfo struct {
-	// The current status of the most recently run matching algorithm.
-	CurrentStatus *GetDataIntegrityStatus200ApplicationJSONDataIntegrityTypeStatusInfoCurrentStatusEnum `json:"currentStatus,omitempty"`
-	// The date the matching algorithm last ran against the company’s data type specified.
-	LastMatched *string `json:"lastMatched,omitempty"`
-	// Detailed explanation supporting the status value.
-	StatusMessage *string `json:"statusMessage,omitempty"`
-}
-
-type GetDataIntegrityStatus200ApplicationJSONDataIntegrityType struct {
-	// Only returned for transactions. For accounts, there is nothing returned.
-	Amounts       *GetDataIntegrityStatus200ApplicationJSONDataIntegrityTypeAmounts       `json:"amounts,omitempty"`
-	ConnectionIds *GetDataIntegrityStatus200ApplicationJSONDataIntegrityTypeConnectionIds `json:"connectionIds,omitempty"`
-	// Only returned for transactions. For accounts, there is nothing returned.
-	Dates      *GetDataIntegrityStatus200ApplicationJSONDataIntegrityTypeDates      `json:"dates,omitempty"`
-	StatusInfo *GetDataIntegrityStatus200ApplicationJSONDataIntegrityTypeStatusInfo `json:"statusInfo,omitempty"`
-	// The data type which the data type in the URL has been matched against. For example, if you've matched accountTransactions and banking-transactions, and you call this endpoint with accountTransactions in the URL, this property would be banking-transactions.
-	Type *string `json:"type,omitempty"`
-}
-
-// GetDataIntegrityStatus200ApplicationJSON - OK
-type GetDataIntegrityStatus200ApplicationJSON struct {
-	Metadata []GetDataIntegrityStatus200ApplicationJSONDataIntegrityType `json:"metadata,omitempty"`
+	DataType shared.DataIntegrityDataTypeEnum `pathParam:"style=simple,explode=false,name=dataType"`
 }
 
 type GetDataIntegrityStatusResponse struct {
 	ContentType string
+	// OK
+	Status      *shared.Status
 	StatusCode  int
 	RawResponse *http.Response
-	// OK
-	GetDataIntegrityStatus200ApplicationJSONObject *GetDataIntegrityStatus200ApplicationJSON
 }

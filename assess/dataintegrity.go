@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/assess/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/assess/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/assess/pkg/utils"
 	"net/http"
 )
@@ -68,12 +69,12 @@ func (s *dataIntegrity) GetDataIntegrityDetails(ctx context.Context, request ope
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetDataIntegrityDetailsLinks
+			var out *shared.Details
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Links = out
+			res.Details = out
 		}
 	}
 
@@ -113,12 +114,12 @@ func (s *dataIntegrity) GetDataIntegrityStatus(ctx context.Context, request oper
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetDataIntegrityStatus200ApplicationJSON
+			var out *shared.Status
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.GetDataIntegrityStatus200ApplicationJSONObject = out
+			res.Status = out
 		}
 	}
 
@@ -162,12 +163,12 @@ func (s *dataIntegrity) GetDataIntegritySummaries(ctx context.Context, request o
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetDataIntegritySummaries200ApplicationJSON
+			var out *shared.Summaries
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.GetDataIntegritySummaries200ApplicationJSONObject = out
+			res.Summaries = out
 		}
 	}
 

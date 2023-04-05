@@ -3,60 +3,21 @@
 package operations
 
 import (
+	"github.com/codatio/client-sdk-go/assess/pkg/models/shared"
 	"net/http"
 )
 
-type UpdateAccountCategoryRequestBodyChartOfAccountCategory struct {
-	// Most granular chart of account type.
-	DetailType *string `json:"detailType,omitempty"`
-	// The account subtype.
-	Subtype *string `json:"subtype,omitempty"`
-	// The top level account type.
-	Type *string `json:"type,omitempty"`
-}
-
-type UpdateAccountCategoryRequestBody struct {
-	Confirmed UpdateAccountCategoryRequestBodyChartOfAccountCategory `json:"confirmed"`
-}
-
 type UpdateAccountCategoryRequest struct {
-	RequestBody *UpdateAccountCategoryRequestBody `request:"mediaType=application/json"`
+	ConfirmCategory *shared.ConfirmCategory `request:"mediaType=application/json"`
 	// Nominal account id
 	AccountID    string `pathParam:"style=simple,explode=false,name=accountId"`
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
-// UpdateAccountCategoryCategorisedAccountAccountRef - An object containing account reference data.
-type UpdateAccountCategoryCategorisedAccountAccountRef struct {
-	// 'id' from the Accounts data type.
-	ID *string `json:"id,omitempty"`
-	// 'name' from the Accounts data type.
-	Name *string `json:"name,omitempty"`
-}
-
-type UpdateAccountCategoryCategorisedAccountModifiedDate struct {
-	// Most granular chart of account type.
-	DetailType *string `json:"detailType,omitempty"`
-	// The date on which this record was last modified in Codat.
-	ModifiedDate *string `json:"modifiedDate,omitempty"`
-	// The account subtype.
-	Subtype *string `json:"subtype,omitempty"`
-	// The top level account type.
-	Type *string `json:"type,omitempty"`
-}
-
-// UpdateAccountCategoryCategorisedAccount - OK
-type UpdateAccountCategoryCategorisedAccount struct {
-	// An object containing account reference data.
-	AccountRef *UpdateAccountCategoryCategorisedAccountAccountRef   `json:"accountRef,omitempty"`
-	Confirmed  *UpdateAccountCategoryCategorisedAccountModifiedDate `json:"confirmed,omitempty"`
-	Suggested  *UpdateAccountCategoryCategorisedAccountModifiedDate `json:"suggested,omitempty"`
-}
-
 type UpdateAccountCategoryResponse struct {
 	// OK
-	CategorisedAccount *UpdateAccountCategoryCategorisedAccount
+	CategorisedAccount *shared.CategorisedAccount
 	ContentType        string
 	StatusCode         int
 	RawResponse        *http.Response

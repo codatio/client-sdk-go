@@ -3,28 +3,14 @@
 package operations
 
 import (
+	"github.com/codatio/client-sdk-go/assess/pkg/models/shared"
 	"net/http"
 )
 
-type ListAvailableAccountCategoriesChartOfAccountCategory struct {
-	// Most granular chart of account type.
-	DetailType *string `json:"detailType,omitempty"`
-	// A description of the fully categorized (to detail type) account.
-	DetailTypeDescription *string `json:"detailTypeDescription,omitempty"`
-	// Human readable detailType display name.
-	DetailTypeDisplayName *string `json:"detailTypeDisplayName,omitempty"`
-	// The account subtype.
-	Subtype *string `json:"subtype,omitempty"`
-	// Human readable subtype display name.
-	SubtypeDisplayName *string `json:"subtypeDisplayName,omitempty"`
-	// The top level account type.
-	Type *string `json:"type,omitempty"`
-}
-
 type ListAvailableAccountCategoriesResponse struct {
+	// OK
+	Categories  []shared.Categories
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
-	// OK
-	ListAvailableAccountCategoriesChartOfAccountCategoryAnies []ListAvailableAccountCategoriesChartOfAccountCategory
 }

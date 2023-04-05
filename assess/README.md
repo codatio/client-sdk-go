@@ -29,7 +29,7 @@ func main() {
     )
 
     req := operations.GetAccountCategoryRequest{
-        AccountID: "unde",
+        AccountID: "corrupti",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     }
@@ -48,7 +48,7 @@ func main() {
 <!-- End SDK Example Usage -->
 
 <!-- Start SDK Available Operations -->
-## SDK Available Operations
+## Available Resources and Operations
 
 
 ### Categories
@@ -67,10 +67,11 @@ func main() {
 
 ### ExcelReports
 
+* `DownloadExcelReport` - Download generated excel report
+* `GenerateExcelReport` - Generate an Excel report
 * `GetAccountingMarketingMetrics` - Get the marketing metrics from an accounting source for a given company.
 * `GetExcelReport` - Download generated excel report
-* `MakeRequestToDownloadExcelReport` - Request an Excel report for download
-* `RequestExcelReportForDownload` - Request an Excel report for download
+* `GetExcelReportGenerationStatus` - Get status of Excel report
 
 ### Reports
 
@@ -83,7 +84,7 @@ func main() {
 * `GetCommerceRevenueMetrics` - Commerce Revenue Metrics
 * `GetEnhancedBalanceSheet` - Enhanced Balance Sheet
 * `GetEnhancedCashFlowTransactions` - Get enhanced cash flow report
-* `GetEnhancedFinancialMetrics` - List finanicial metrics
+* `GetEnhancedFinancialMetrics` - List financial metrics
 * `GetEnhancedInvoicesReport` - Enhanced Invoices Report
 * `GetEnhancedProfitAndLoss` - Enhanced Profit and Loss
 * `GetRecurringRevenueMetrics` - Get key metrics for subscription revenue
