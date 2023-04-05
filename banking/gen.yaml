@@ -6,7 +6,7 @@ management:
   generationVersion: 2.16.7
 generation:
   telemetryEnabled: false
-  sdkClassName: codatio
+  sdkClassName: CodatBanking
   sdkFlattening: true
   singleTagPerOp: false
 go:
