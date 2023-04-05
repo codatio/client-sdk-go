@@ -14,6 +14,8 @@ type DownloadFilesRequest struct {
 
 type DownloadFilesResponse struct {
 	ContentType string
+	// Success
+	Data        []byte
 	StatusCode  int
 	RawResponse *http.Response
 }

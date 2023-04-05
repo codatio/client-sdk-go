@@ -18,7 +18,7 @@ func main() {
     )
 
     req := operations.DownloadFilesRequest{
-        CompanyID: "89bd9d8d-69a6-474e-8f46-7cc8796ed151",
+        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         Date: "2022-10-23T00:00:00Z",
     }
 
@@ -28,7 +28,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.StatusCode == http.StatusOK {
+    if res.Data != nil {
         // handle response
     }
 }
