@@ -6,7 +6,7 @@ management:
   generationVersion: 2.16.5
 generation:
   telemetryEnabled: false
-  sdkClassName: codatio
+  sdkClassName: CodatFiles
   sdkFlattening: true
   singleTagPerOp: false
 go:
