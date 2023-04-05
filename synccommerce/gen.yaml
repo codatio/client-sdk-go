@@ -1,13 +1,14 @@
 configVersion: 1.0.0
 management:
-  docChecksum: 1831d87260b6b1f4a95bd237aa0f54a2
+  docChecksum: 954c6b4093285b054f92d4d0e134ffb9
   docVersion: "1.1"
-  speakeasyVersion: 1.15.0
-  generationVersion: 2.13.1
+  speakeasyVersion: 1.19.3
+  generationVersion: 2.16.7
 generation:
   telemetryEnabled: false
   sdkClassName: codatio
   sdkFlattening: true
+  singleTagPerOp: false
 go:
-  version: 0.6.0
+  version: 0.7.1
   packageName: github.com/codatio/client-sdk-go/synccommerce

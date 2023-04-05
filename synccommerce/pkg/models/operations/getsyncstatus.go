@@ -6,11 +6,11 @@ import (
 	"net/http"
 )
 
-type GetCompanyCommerceSyncStatusRequest struct {
+type GetSyncStatusRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
-type GetCompanyCommerceSyncStatusResponse struct {
+type GetSyncStatusResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response

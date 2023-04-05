@@ -3,6 +3,7 @@
 package operations
 
 import (
+	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/shared"
 	"net/http"
 )
 
@@ -15,16 +16,10 @@ type GetSyncFlowURLRequest struct {
 	MerchantIdentifier *string `queryParam:"style=form,explode=true,name=merchantIdentifier"`
 }
 
-// GetSyncFlowURL200ApplicationJSON - Success
-type GetSyncFlowURL200ApplicationJSON struct {
-	// Sync flow URL.
-	URL *string `json:"url,omitempty"`
-}
-
 type GetSyncFlowURLResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// Success
-	GetSyncFlowURL200ApplicationJSONObject *GetSyncFlowURL200ApplicationJSON
+	SyncFlowURL *shared.SyncFlowURL
 }

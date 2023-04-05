@@ -7,12 +7,12 @@ import (
 	"net/http"
 )
 
-type GetVisibleAccountsRequest struct {
-	ClientID    string `pathParam:"style=simple,explode=false,name=clientId"`
-	PlatformKey string `pathParam:"style=simple,explode=false,name=platformKey"`
+type UpdateVisibleAccountsSyncFlowRequest struct {
+	VisibleAccounts *shared.VisibleAccounts `request:"mediaType=application/json"`
+	CommerceKey     string                  `pathParam:"style=simple,explode=false,name=commerceKey"`
 }
 
-type GetVisibleAccountsResponse struct {
+type UpdateVisibleAccountsSyncFlowResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response

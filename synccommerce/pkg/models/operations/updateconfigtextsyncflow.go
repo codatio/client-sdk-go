@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-type GetConfigTextSyncFlowResponse struct {
+type UpdateConfigTextSyncFlowResponse struct {
 	ContentType string
 	// Success
 	LocalizationInfo map[string]shared.Localization

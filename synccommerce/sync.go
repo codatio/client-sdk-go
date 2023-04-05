@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/synccommerce/pkg/utils"
 	"net/http"
 )
@@ -31,13 +32,14 @@ func newSync(defaultClient, securityClient HTTPClient, serverURL, language, sdkV
 	}
 }
 
-// PostSyncHistoric - Run a Commerce sync from a given date range
-// Run a Commerce sync from the specified start date to the specified finish date in the request payload.
-func (s *sync) PostSyncHistoric(ctx context.Context, request operations.PostSyncHistoricRequest) (*operations.PostSyncHistoricResponse, error) {
+// RequestSync - Run a Commerce sync from the last successful sync
+// Run a Commerce sync from the last successful sync up to the date provided (optional), otherwise UtcNow is used.
+// If there was no previously successful sync, the start date in the config is used.
+func (s *sync) RequestSync(ctx context.Context, request operations.RequestSyncRequest) (*operations.RequestSyncResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/meta/companies/{companyId}/sync/commerce/historic", request, nil)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/sync/commerce/latest", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "SyncToLatestArgs", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -62,7 +64,7 @@ func (s *sync) PostSyncHistoric(ctx context.Context, request operations.PostSync
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.PostSyncHistoricResponse{
+	res := &operations.RequestSyncResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -71,26 +73,25 @@ func (s *sync) PostSyncHistoric(ctx context.Context, request operations.PostSync
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.PostSyncHistoric200ApplicationJSON
+			var out *shared.SyncSummary
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.PostSyncHistoric200ApplicationJSONObject = out
+			res.SyncSummary = out
 		}
 	}
 
 	return res, nil
 }
 
-// PostSyncLatest - Run a Commerce sync from the last successful sync
-// Run a Commerce sync from the last successful sync up to the date provided (optional), otherwise UtcNow is used.
-// If there was no previously successful sync, the start date in the config is used.
-func (s *sync) PostSyncLatest(ctx context.Context, request operations.PostSyncLatestRequest) (*operations.PostSyncLatestResponse, error) {
+// RequestSyncForDateRange - Run a Commerce sync from a given date range
+// Run a Commerce sync from the specified start date to the specified finish date in the request payload.
+func (s *sync) RequestSyncForDateRange(ctx context.Context, request operations.RequestSyncForDateRangeRequest) (*operations.RequestSyncForDateRangeResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/sync/commerce/latest", request, nil)
+	url := utils.GenerateURL(ctx, baseURL, "/meta/companies/{companyId}/sync/commerce/historic", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "DateRange", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -115,7 +116,7 @@ func (s *sync) PostSyncLatest(ctx context.Context, request operations.PostSyncLa
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.PostSyncLatestResponse{
+	res := &operations.RequestSyncForDateRangeResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -124,12 +125,12 @@ func (s *sync) PostSyncLatest(ctx context.Context, request operations.PostSyncLa
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.PostSyncLatest200ApplicationJSON
+			var out *shared.SyncSummary
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.PostSyncLatest200ApplicationJSONObject = out
+			res.SyncSummary = out
 		}
 	}
 

@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/synccommerce/pkg/utils"
 	"net/http"
 	"strings"
@@ -68,9 +69,9 @@ func (s *integrations) GetIntegrationBranding(ctx context.Context, request opera
 	return res, nil
 }
 
-// GetIntegrations - List information on Codat's supported integrations
+// ListIntegrations - List information on Codat's supported integrations
 // Retrieve a list of available integrations support by datatype and state of release.
-func (s *integrations) GetIntegrations(ctx context.Context, request operations.GetIntegrationsRequest) (*operations.GetIntegrationsResponse, error) {
+func (s *integrations) ListIntegrations(ctx context.Context, request operations.ListIntegrationsRequest) (*operations.ListIntegrationsResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/config/integrations"
 
@@ -96,7 +97,7 @@ func (s *integrations) GetIntegrations(ctx context.Context, request operations.G
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetIntegrationsResponse{
+	res := &operations.ListIntegrationsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -105,12 +106,12 @@ func (s *integrations) GetIntegrations(ctx context.Context, request operations.G
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetIntegrations200ApplicationJSON
+			var out *shared.Integrations
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.GetIntegrations200ApplicationJSONObject = out
+			res.Integrations = out
 		}
 	}
 
