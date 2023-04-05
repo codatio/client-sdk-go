@@ -1,4 +1,7 @@
-# github.com/codatio/client-sdk-go/commerce
+# Commerce API
+
+Codat's Commerce API enables you to pull up-date-date commerce data from several leading payments, point-of-sale, and eCommerce systems.
+You can view your SMB customers' products, orders, payments, payouts, disputes, and more - all standardized to our Commerce data model.
 
 <!-- Start SDK Installation -->
 ## SDK Installation

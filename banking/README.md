@@ -1,4 +1,6 @@
-# github.com/codatio/client-sdk-go/banking
+# Banking API
+
+Use Codat's API to connect to your SMB customer's banks and pull up-to-date standardized account and transaction data from their bank accounts via our partner providers.
 
 <!-- Start SDK Installation -->
 ## SDK Installation

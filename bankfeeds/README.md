@@ -1,4 +1,6 @@
-# github.com/codatio/client-sdk-go/bankfeeds
+# Bank Feeds API
+
+Bank Feeds API enables your SMB users to set up bank feeds from accounts in your application to supported accounting platforms.
 
 <!-- Start SDK Installation -->
 ## SDK Installation
