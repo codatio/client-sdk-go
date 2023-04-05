@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/commerce/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/commerce/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/commerce/pkg/utils"
 	"net/http"
 )
@@ -31,9 +32,9 @@ func newDisputes(defaultClient, securityClient HTTPClient, serverURL, language, 
 	}
 }
 
-// ListCommerceDisputes - List disputes
+// ListDisputes - List disputes
 // List commerce disputes
-func (s *disputes) ListCommerceDisputes(ctx context.Context, request operations.ListCommerceDisputesRequest) (*operations.ListCommerceDisputesResponse, error) {
+func (s *disputes) ListDisputes(ctx context.Context, request operations.ListDisputesRequest) (*operations.ListDisputesResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/commerce-disputes", request, nil)
 
@@ -59,7 +60,7 @@ func (s *disputes) ListCommerceDisputes(ctx context.Context, request operations.
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.ListCommerceDisputesResponse{
+	res := &operations.ListDisputesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -68,12 +69,12 @@ func (s *disputes) ListCommerceDisputes(ctx context.Context, request operations.
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListCommerceDisputesLinks
+			var out *shared.Disputes
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Links = out
+			res.Disputes = out
 		}
 	}
 

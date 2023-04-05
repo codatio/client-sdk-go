@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/commerce/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/commerce/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/commerce/pkg/utils"
 	"net/http"
 )
@@ -31,11 +32,11 @@ func newLocations(defaultClient, securityClient HTTPClient, serverURL, language,
 	}
 }
 
-// ListCommerceLocations - List locations
+// ListLocations - List locations
 // Retrieve a list of locations as seen in the commerce platform.
 //
 // A `location` is a geographic place at which stocks of products may be held, or from where orders were placed.
-func (s *locations) ListCommerceLocations(ctx context.Context, request operations.ListCommerceLocationsRequest) (*operations.ListCommerceLocationsResponse, error) {
+func (s *locations) ListLocations(ctx context.Context, request operations.ListLocationsRequest) (*operations.ListLocationsResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/commerce-locations", request, nil)
 
@@ -57,7 +58,7 @@ func (s *locations) ListCommerceLocations(ctx context.Context, request operation
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.ListCommerceLocationsResponse{
+	res := &operations.ListLocationsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -66,12 +67,12 @@ func (s *locations) ListCommerceLocations(ctx context.Context, request operation
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListCommerceLocationsLinks
+			var out *shared.LocationsResponse
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Links = out
+			res.LocationsResponse = out
 		}
 	}
 

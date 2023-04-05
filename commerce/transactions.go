@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/commerce/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/commerce/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/commerce/pkg/utils"
 	"net/http"
 )
@@ -31,9 +32,9 @@ func newTransactions(defaultClient, securityClient HTTPClient, serverURL, langua
 	}
 }
 
-// ListCommerceTransactions - List transactions
+// ListTransactions - List transactions
 // Details of all financial transactions recorded in the commerce or point of sale system are added to the Transactions data type. For example, payments, service charges, and fees.
-func (s *transactions) ListCommerceTransactions(ctx context.Context, request operations.ListCommerceTransactionsRequest) (*operations.ListCommerceTransactionsResponse, error) {
+func (s *transactions) ListTransactions(ctx context.Context, request operations.ListTransactionsRequest) (*operations.ListTransactionsResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/commerce-transactions", request, nil)
 
@@ -59,7 +60,7 @@ func (s *transactions) ListCommerceTransactions(ctx context.Context, request ope
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.ListCommerceTransactionsResponse{
+	res := &operations.ListTransactionsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -68,12 +69,12 @@ func (s *transactions) ListCommerceTransactions(ctx context.Context, request ope
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListCommerceTransactionsLinks
+			var out *shared.Transactions
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Links = out
+			res.Transactions = out
 		}
 	}
 

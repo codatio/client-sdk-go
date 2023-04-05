@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/commerce/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/commerce/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/commerce/pkg/utils"
 	"net/http"
 )
@@ -31,11 +32,11 @@ func newCompanyInfo(defaultClient, securityClient HTTPClient, serverURL, languag
 	}
 }
 
-// GetCommerceInfo - Get company info
+// GetCompanyInfo - Get company info
 // Retrieve information about the company, as seen in the commerce platform.
 //
 // This may include information like addresses, tax registration details and social media or website information.
-func (s *companyInfo) GetCommerceInfo(ctx context.Context, request operations.GetCommerceInfoRequest) (*operations.GetCommerceInfoResponse, error) {
+func (s *companyInfo) GetCompanyInfo(ctx context.Context, request operations.GetCompanyInfoRequest) (*operations.GetCompanyInfoResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/commerce-info", request, nil)
 
@@ -57,7 +58,7 @@ func (s *companyInfo) GetCommerceInfo(ctx context.Context, request operations.Ge
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetCommerceInfoResponse{
+	res := &operations.GetCompanyInfoResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -66,12 +67,12 @@ func (s *companyInfo) GetCommerceInfo(ctx context.Context, request operations.Ge
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetCommerceInfoSourceModifiedDate
+			var out *shared.CompanyInfo
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.SourceModifiedDate = out
+			res.CompanyInfo = out
 		}
 	}
 
