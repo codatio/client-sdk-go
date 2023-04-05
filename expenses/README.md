@@ -1,4 +1,6 @@
-# github.com/codatio/client-sdk-go/expenses
+# Sync for Expenses
+
+Embedded accounting integrations for corporate card providers.
 
 <!-- Start SDK Installation -->
 ## SDK Installation

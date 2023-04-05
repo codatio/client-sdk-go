@@ -1,4 +1,7 @@
-# github.com/codatio/client-sdk-go/assess
+# Assess
+
+Assess helps you make smarter credit decisions on small businesses by enabling you to pull your customers' latest data from the operating systems they are already using.
+You can use that data for automating decisioning and surfacing new insights on the customer, all via one API.
 
 <!-- Start SDK Installation -->
 ## SDK Installation
