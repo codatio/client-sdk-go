@@ -7,18 +7,17 @@ import (
 	"net/http"
 )
 
-type UpdateBankFeedRequest struct {
-	BankFeedAccount *shared.BankFeedAccount `request:"mediaType=application/json"`
+type GetCreateBankAccountModelRequest struct {
 	// Unique identifier for an account
 	AccountID    string `pathParam:"style=simple,explode=false,name=accountId"`
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
-type UpdateBankFeedResponse struct {
+type GetCreateBankAccountModelResponse struct {
+	ContentType string
 	// Success
-	BankFeedAccount *shared.BankFeedAccount
-	ContentType     string
-	StatusCode      int
-	RawResponse     *http.Response
+	PushOption  *shared.PushOption
+	StatusCode  int
+	RawResponse *http.Response
 }
