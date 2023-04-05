@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/accounting/pkg/utils"
 	"io"
 	"net/http"
@@ -44,7 +45,7 @@ func (s *bills) CreateBill(ctx context.Context, request operations.CreateBillReq
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/bills", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Bill", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -82,61 +83,25 @@ func (s *bills) CreateBill(ctx context.Context, request operations.CreateBillReq
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.CreateBill200ApplicationJSON
+			var out *shared.CreateBillResponse
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.CreateBill200ApplicationJSONObject = out
+			res.CreateBillResponse = out
 		}
 	}
 
 	return res, nil
 }
 
-// CreateBillAttachments - Create bill attachments
-// Post bill attachments
-func (s *bills) CreateBillAttachments(ctx context.Context, request operations.CreateBillAttachmentsRequest) (*operations.CreateBillAttachmentsResponse, error) {
-	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/bills/{billId}/attachments", request, nil)
-
-	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error creating request: %w", err)
-	}
-
-	client := s.securityClient
-
-	httpRes, err := client.Do(req)
-	if err != nil {
-		return nil, fmt.Errorf("error sending request: %w", err)
-	}
-	if httpRes == nil {
-		return nil, fmt.Errorf("error sending request: no response")
-	}
-	defer httpRes.Body.Close()
-
-	contentType := httpRes.Header.Get("Content-Type")
-
-	res := &operations.CreateBillAttachmentsResponse{
-		StatusCode:  httpRes.StatusCode,
-		ContentType: contentType,
-		RawResponse: httpRes,
-	}
-	switch {
-	case httpRes.StatusCode == 200:
-	}
-
-	return res, nil
-}
-
-// DeleteCompaniesCompanyIDConnectionsConnectionIDPushBillsBillID - Delete bill
+// DeleteBill - Delete bill
 // Deletes a bill from the accounting package for a given company.
 //
 // > **Supported Integrations**
 // >
 // > This functionality is currently only supported for our Oracle NetSuite integration. Check out our [public roadmap](https://portal.productboard.com/codat/7-public-product-roadmap/tabs/46-accounting-api) to see what we're building next, and to submit ideas for new features.
-func (s *bills) DeleteCompaniesCompanyIDConnectionsConnectionIDPushBillsBillID(ctx context.Context, request operations.DeleteCompaniesCompanyIDConnectionsConnectionIDPushBillsBillIDRequest) (*operations.DeleteCompaniesCompanyIDConnectionsConnectionIDPushBillsBillIDResponse, error) {
+func (s *bills) DeleteBill(ctx context.Context, request operations.DeleteBillRequest) (*operations.DeleteBillResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/bills/{billId}", request, nil)
 
@@ -158,7 +123,7 @@ func (s *bills) DeleteCompaniesCompanyIDConnectionsConnectionIDPushBillsBillID(c
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.DeleteCompaniesCompanyIDConnectionsConnectionIDPushBillsBillIDResponse{
+	res := &operations.DeleteBillResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -167,26 +132,12 @@ func (s *bills) DeleteCompaniesCompanyIDConnectionsConnectionIDPushBillsBillID(c
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.DeleteCompaniesCompanyIDConnectionsConnectionIDPushBillsBillID200ApplicationJSON
+			var out *shared.PushOperationSummary
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.DeleteCompaniesCompanyIDConnectionsConnectionIDPushBillsBillID200ApplicationJSONObject = out
-		case utils.MatchContentType(contentType, `application/xml`):
-			out, err := io.ReadAll(httpRes.Body)
-			if err != nil {
-				return nil, fmt.Errorf("error reading response body: %w", err)
-			}
-
-			res.Body = out
-		case utils.MatchContentType(contentType, `multipart/form-data`):
-			out, err := io.ReadAll(httpRes.Body)
-			if err != nil {
-				return nil, fmt.Errorf("error reading response body: %w", err)
-			}
-
-			res.Body = out
+			res.PushOperationSummary = out
 		}
 	}
 
@@ -224,6 +175,15 @@ func (s *bills) DownloadBillAttachment(ctx context.Context, request operations.D
 	}
 	switch {
 	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/octet-stream`):
+			out, err := io.ReadAll(httpRes.Body)
+			if err != nil {
+				return nil, fmt.Errorf("error reading response body: %w", err)
+			}
+
+			res.Data = out
+		}
 	}
 
 	return res, nil
@@ -262,12 +222,12 @@ func (s *bills) GetBill(ctx context.Context, request operations.GetBillRequest) 
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetBillSourceModifiedDate
+			var out *shared.Bill
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.SourceModifiedDate = out
+			res.Bill = out
 		}
 	}
 
@@ -307,7 +267,7 @@ func (s *bills) GetBillAttachment(ctx context.Context, request operations.GetBil
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetBillAttachmentAttachment
+			var out *shared.Attachment
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -352,12 +312,12 @@ func (s *bills) GetBillAttachments(ctx context.Context, request operations.GetBi
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetBillAttachmentsAttachments
+			var out *shared.AttachmentsDataset
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Attachments = out
+			res.AttachmentsDataset = out
 		}
 	}
 
@@ -402,7 +362,7 @@ func (s *bills) GetCreateUpdateBillsModel(ctx context.Context, request operation
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetCreateUpdateBillsModelPushOption
+			var out *shared.PushOption
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -451,12 +411,12 @@ func (s *bills) ListBills(ctx context.Context, request operations.ListBillsReque
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListBillsLinks
+			var out *shared.Bills
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Links = out
+			res.Bills = out
 		}
 	}
 
@@ -475,7 +435,7 @@ func (s *bills) UpdateBill(ctx context.Context, request operations.UpdateBillReq
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/bills/{billId}", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Bill", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -513,13 +473,56 @@ func (s *bills) UpdateBill(ctx context.Context, request operations.UpdateBillReq
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.UpdateBill200ApplicationJSON
+			var out *shared.UpdateBillResponse
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.UpdateBill200ApplicationJSONObject = out
+			res.UpdateBillResponse = out
 		}
+	}
+
+	return res, nil
+}
+
+// UploadBillAttachments - Upload bill attachments
+// Upload bill attachments
+func (s *bills) UploadBillAttachments(ctx context.Context, request operations.UploadBillAttachmentsRequest) (*operations.UploadBillAttachmentsResponse, error) {
+	baseURL := s.serverURL
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/bills/{billId}/attachments", request, nil)
+
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "multipart")
+	if err != nil {
+		return nil, fmt.Errorf("error serializing request body: %w", err)
+	}
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+
+	req.Header.Set("Content-Type", reqContentType)
+
+	client := s.securityClient
+
+	httpRes, err := client.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
+	}
+	defer httpRes.Body.Close()
+
+	contentType := httpRes.Header.Get("Content-Type")
+
+	res := &operations.UploadBillAttachmentsResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: contentType,
+		RawResponse: httpRes,
+	}
+	switch {
+	case httpRes.StatusCode == 200:
 	}
 
 	return res, nil

@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/accounting/pkg/utils"
 	"net/http"
 )
@@ -43,7 +44,7 @@ func (s *transfers) CreateTransfer(ctx context.Context, request operations.Creat
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/transfers", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Transfer", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -77,12 +78,12 @@ func (s *transfers) CreateTransfer(ctx context.Context, request operations.Creat
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.CreateTransfer200ApplicationJSON
+			var out *shared.CreateTransferResponse
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.CreateTransfer200ApplicationJSONObject = out
+			res.CreateTransferResponse = out
 		}
 	}
 
@@ -128,7 +129,7 @@ func (s *transfers) GetCreateTransfersModel(ctx context.Context, request operati
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetCreateTransfersModelPushOption
+			var out *shared.PushOption
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -173,12 +174,12 @@ func (s *transfers) GetTransfer(ctx context.Context, request operations.GetTrans
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetTransferSourceModifiedDate
+			var out *shared.Transfer
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.SourceModifiedDate = out
+			res.Transfer = out
 		}
 	}
 
@@ -222,12 +223,12 @@ func (s *transfers) ListTransfers(ctx context.Context, request operations.ListTr
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListTransfersLinks
+			var out *shared.Transfers
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Links = out
+			res.Transfers = out
 		}
 	}
 

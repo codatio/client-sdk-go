@@ -17,6 +17,8 @@ type DownloadBillAttachmentRequest struct {
 
 type DownloadBillAttachmentResponse struct {
 	ContentType string
+	// Success
+	Data        []byte
 	StatusCode  int
 	RawResponse *http.Response
 }

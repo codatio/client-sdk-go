@@ -3,252 +3,85 @@
 package operations
 
 import (
+	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
 	"net/http"
-	"time"
 )
-
-// PutSupplierSourceModifiedDateAddressesTypeEnum - Type of the address.
-type PutSupplierSourceModifiedDateAddressesTypeEnum string
-
-const (
-	PutSupplierSourceModifiedDateAddressesTypeEnumUnknown  PutSupplierSourceModifiedDateAddressesTypeEnum = "Unknown"
-	PutSupplierSourceModifiedDateAddressesTypeEnumBilling  PutSupplierSourceModifiedDateAddressesTypeEnum = "Billing"
-	PutSupplierSourceModifiedDateAddressesTypeEnumDelivery PutSupplierSourceModifiedDateAddressesTypeEnum = "Delivery"
-)
-
-type PutSupplierSourceModifiedDateAddresses struct {
-	// City of the customer address.
-	City *string `json:"city,omitempty"`
-	// Country of the customer address.
-	Country *string `json:"country,omitempty"`
-	// Line 1 of the customer address.
-	Line1 *string `json:"line1,omitempty"`
-	// Line 2 of the customer address.
-	Line2 *string `json:"line2,omitempty"`
-	// Postal code or zip code.
-	PostalCode *string `json:"postalCode,omitempty"`
-	// Region of the customer address.
-	Region *string `json:"region,omitempty"`
-	// Type of the address.
-	Type PutSupplierSourceModifiedDateAddressesTypeEnum `json:"type"`
-}
-
-type PutSupplierSourceModifiedDateMetadata struct {
-	IsDeleted *bool `json:"isDeleted,omitempty"`
-}
-
-// PutSupplierSourceModifiedDateStatusEnum - Status of the supplier.
-type PutSupplierSourceModifiedDateStatusEnum string
-
-const (
-	PutSupplierSourceModifiedDateStatusEnumUnknown  PutSupplierSourceModifiedDateStatusEnum = "Unknown"
-	PutSupplierSourceModifiedDateStatusEnumActive   PutSupplierSourceModifiedDateStatusEnum = "Active"
-	PutSupplierSourceModifiedDateStatusEnumArchived PutSupplierSourceModifiedDateStatusEnum = "Archived"
-)
-
-// PutSupplierSourceModifiedDateSupplementalData - Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
-type PutSupplierSourceModifiedDateSupplementalData struct {
-	Content map[string]map[string]interface{} `json:"content,omitempty"`
-}
-
-// PutSupplierSourceModifiedDate - > View the coverage for suppliers in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=suppliers" target="_blank">Data coverage explorer</a>.
-//
-// ## Overview
-//
-// From the **Suppliers** endpoints, you can retrieve a list of [all the suppliers for a company](https://api.codat.io/swagger/index.html#/Suppliers/get_companies__companyId__data_suppliers). Suppliers' data links to accounts payable [bills](https://docs.codat.io/accounting-api#/schemas/Bill).
-type PutSupplierSourceModifiedDate struct {
-	// An array of Addresses.
-	Addresses []PutSupplierSourceModifiedDateAddresses `json:"addresses,omitempty"`
-	// Name of the main contact for the supplier.
-	ContactName *string `json:"contactName,omitempty"`
-	// Default currency the supplier's transactional data is recorded in.
-	DefaultCurrency *string `json:"defaultCurrency,omitempty"`
-	// Email address that the supplier may be contacted on.
-	EmailAddress *string `json:"emailAddress,omitempty"`
-	// Identifier for the supplier, unique to the company in the accounting platform.
-	ID       *string                                `json:"id,omitempty"`
-	Metadata *PutSupplierSourceModifiedDateMetadata `json:"metadata,omitempty"`
-	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
-	// Phone number that the supplier may be contacted on.
-	Phone *string `json:"phone,omitempty"`
-	// Company number of the supplier. In the UK, this is typically the company registration number issued by Companies House.
-	RegistrationNumber *string `json:"registrationNumber,omitempty"`
-	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
-	// Status of the supplier.
-	Status PutSupplierSourceModifiedDateStatusEnum `json:"status"`
-	// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
-	SupplementalData *PutSupplierSourceModifiedDateSupplementalData `json:"supplementalData,omitempty"`
-	//
-	// Name of the supplier as recorded in the accounting system, typically the company name.
-	SupplierName *string `json:"supplierName,omitempty"`
-	// Supplier's company tax number.
-	TaxNumber *string `json:"taxNumber,omitempty"`
-}
 
 type PutSupplierRequest struct {
-	RequestBody  *PutSupplierSourceModifiedDate `request:"mediaType=application/json"`
-	CompanyID    string                         `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID string                         `pathParam:"style=simple,explode=false,name=connectionId"`
-	ForceUpdate  *bool                          `queryParam:"style=form,explode=true,name=forceUpdate"`
+	Supplier     *shared.Supplier `request:"mediaType=application/json"`
+	CompanyID    string           `pathParam:"style=simple,explode=false,name=companyId"`
+	ConnectionID string           `pathParam:"style=simple,explode=false,name=connectionId"`
+	ForceUpdate  *bool            `queryParam:"style=form,explode=true,name=forceUpdate"`
 	// Unique identifier for a supplier
 	SupplierID       string `pathParam:"style=simple,explode=false,name=supplierId"`
 	TimeoutInMinutes *int   `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
 }
 
-type PutSupplier200ApplicationJSONChangesPushOperationRecordRef struct {
-	DataType *string `json:"dataType,omitempty"`
-	ID       *string `json:"id,omitempty"`
-}
-
-type PutSupplier200ApplicationJSONChangesTypeEnum string
-
-const (
-	PutSupplier200ApplicationJSONChangesTypeEnumUnknown            PutSupplier200ApplicationJSONChangesTypeEnum = "Unknown"
-	PutSupplier200ApplicationJSONChangesTypeEnumCreated            PutSupplier200ApplicationJSONChangesTypeEnum = "Created"
-	PutSupplier200ApplicationJSONChangesTypeEnumModified           PutSupplier200ApplicationJSONChangesTypeEnum = "Modified"
-	PutSupplier200ApplicationJSONChangesTypeEnumDeleted            PutSupplier200ApplicationJSONChangesTypeEnum = "Deleted"
-	PutSupplier200ApplicationJSONChangesTypeEnumAttachmentUploaded PutSupplier200ApplicationJSONChangesTypeEnum = "AttachmentUploaded"
-)
-
-type PutSupplier200ApplicationJSONChanges struct {
-	AttachmentID *string                                                     `json:"attachmentId,omitempty"`
-	RecordRef    *PutSupplier200ApplicationJSONChangesPushOperationRecordRef `json:"recordRef,omitempty"`
-	Type         *PutSupplier200ApplicationJSONChangesTypeEnum               `json:"type,omitempty"`
-}
-
-// PutSupplier200ApplicationJSONSourceModifiedDateAddressesTypeEnum - Type of the address.
-type PutSupplier200ApplicationJSONSourceModifiedDateAddressesTypeEnum string
-
-const (
-	PutSupplier200ApplicationJSONSourceModifiedDateAddressesTypeEnumUnknown  PutSupplier200ApplicationJSONSourceModifiedDateAddressesTypeEnum = "Unknown"
-	PutSupplier200ApplicationJSONSourceModifiedDateAddressesTypeEnumBilling  PutSupplier200ApplicationJSONSourceModifiedDateAddressesTypeEnum = "Billing"
-	PutSupplier200ApplicationJSONSourceModifiedDateAddressesTypeEnumDelivery PutSupplier200ApplicationJSONSourceModifiedDateAddressesTypeEnum = "Delivery"
-)
-
-type PutSupplier200ApplicationJSONSourceModifiedDateAddresses struct {
-	// City of the customer address.
-	City *string `json:"city,omitempty"`
-	// Country of the customer address.
-	Country *string `json:"country,omitempty"`
-	// Line 1 of the customer address.
-	Line1 *string `json:"line1,omitempty"`
-	// Line 2 of the customer address.
-	Line2 *string `json:"line2,omitempty"`
-	// Postal code or zip code.
-	PostalCode *string `json:"postalCode,omitempty"`
-	// Region of the customer address.
-	Region *string `json:"region,omitempty"`
-	// Type of the address.
-	Type PutSupplier200ApplicationJSONSourceModifiedDateAddressesTypeEnum `json:"type"`
-}
-
-type PutSupplier200ApplicationJSONSourceModifiedDateMetadata struct {
-	IsDeleted *bool `json:"isDeleted,omitempty"`
-}
-
-// PutSupplier200ApplicationJSONSourceModifiedDateStatusEnum - Status of the supplier.
-type PutSupplier200ApplicationJSONSourceModifiedDateStatusEnum string
-
-const (
-	PutSupplier200ApplicationJSONSourceModifiedDateStatusEnumUnknown  PutSupplier200ApplicationJSONSourceModifiedDateStatusEnum = "Unknown"
-	PutSupplier200ApplicationJSONSourceModifiedDateStatusEnumActive   PutSupplier200ApplicationJSONSourceModifiedDateStatusEnum = "Active"
-	PutSupplier200ApplicationJSONSourceModifiedDateStatusEnumArchived PutSupplier200ApplicationJSONSourceModifiedDateStatusEnum = "Archived"
-)
-
-// PutSupplier200ApplicationJSONSourceModifiedDateSupplementalData - Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
-type PutSupplier200ApplicationJSONSourceModifiedDateSupplementalData struct {
-	Content map[string]map[string]interface{} `json:"content,omitempty"`
-}
-
-// PutSupplier200ApplicationJSONSourceModifiedDate - > View the coverage for suppliers in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=suppliers" target="_blank">Data coverage explorer</a>.
-//
-// ## Overview
-//
-// From the **Suppliers** endpoints, you can retrieve a list of [all the suppliers for a company](https://api.codat.io/swagger/index.html#/Suppliers/get_companies__companyId__data_suppliers). Suppliers' data links to accounts payable [bills](https://docs.codat.io/accounting-api#/schemas/Bill).
-type PutSupplier200ApplicationJSONSourceModifiedDate struct {
-	// An array of Addresses.
-	Addresses []PutSupplier200ApplicationJSONSourceModifiedDateAddresses `json:"addresses,omitempty"`
-	// Name of the main contact for the supplier.
-	ContactName *string `json:"contactName,omitempty"`
-	// Default currency the supplier's transactional data is recorded in.
-	DefaultCurrency *string `json:"defaultCurrency,omitempty"`
-	// Email address that the supplier may be contacted on.
-	EmailAddress *string `json:"emailAddress,omitempty"`
-	// Identifier for the supplier, unique to the company in the accounting platform.
-	ID       *string                                                  `json:"id,omitempty"`
-	Metadata *PutSupplier200ApplicationJSONSourceModifiedDateMetadata `json:"metadata,omitempty"`
-	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
-	// Phone number that the supplier may be contacted on.
-	Phone *string `json:"phone,omitempty"`
-	// Company number of the supplier. In the UK, this is typically the company registration number issued by Companies House.
-	RegistrationNumber *string `json:"registrationNumber,omitempty"`
-	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
-	// Status of the supplier.
-	Status PutSupplier200ApplicationJSONSourceModifiedDateStatusEnum `json:"status"`
-	// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
-	SupplementalData *PutSupplier200ApplicationJSONSourceModifiedDateSupplementalData `json:"supplementalData,omitempty"`
-	//
-	// Name of the supplier as recorded in the accounting system, typically the company name.
-	SupplierName *string `json:"supplierName,omitempty"`
-	// Supplier's company tax number.
-	TaxNumber *string `json:"taxNumber,omitempty"`
-}
-
-// PutSupplier200ApplicationJSONStatusEnum - The status of the push operation.
-type PutSupplier200ApplicationJSONStatusEnum string
-
-const (
-	PutSupplier200ApplicationJSONStatusEnumPending  PutSupplier200ApplicationJSONStatusEnum = "Pending"
-	PutSupplier200ApplicationJSONStatusEnumFailed   PutSupplier200ApplicationJSONStatusEnum = "Failed"
-	PutSupplier200ApplicationJSONStatusEnumSuccess  PutSupplier200ApplicationJSONStatusEnum = "Success"
-	PutSupplier200ApplicationJSONStatusEnumTimedOut PutSupplier200ApplicationJSONStatusEnum = "TimedOut"
-)
-
-type PutSupplier200ApplicationJSONValidationValidationItem struct {
-	ItemID        *string `json:"itemId,omitempty"`
-	Message       *string `json:"message,omitempty"`
-	ValidatorName *string `json:"validatorName,omitempty"`
-}
-
-// PutSupplier200ApplicationJSONValidation - A human-readable object describing validation decisions Codat has made when pushing data into the platform. If a push has failed because of validation errors, they will be detailed here.
-type PutSupplier200ApplicationJSONValidation struct {
-	Errors   []PutSupplier200ApplicationJSONValidationValidationItem `json:"errors,omitempty"`
-	Warnings []PutSupplier200ApplicationJSONValidationValidationItem `json:"warnings,omitempty"`
-}
-
 // PutSupplier200ApplicationJSON - Success
 type PutSupplier200ApplicationJSON struct {
-	Changes []PutSupplier200ApplicationJSONChanges `json:"changes,omitempty"`
+	Changes []shared.PushOperationChange `json:"changes,omitempty"`
 	// Unique identifier for your SMB in Codat.
 	CompanyID string `json:"companyId"`
-	// The datetime when the push was completed, null if Pending.
-	CompletedOnUtc *time.Time `json:"completedOnUtc,omitempty"`
+	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
+	//
+	// ```
+	// 2020-10-08T22:40:50Z
+	// 2021-01-01T00:00:00
+	// ```
+	//
+	//
+	//
+	// When syncing data that contains `DateTime` fields from Codat, make sure you support the following cases when reading time information:
+	//
+	// - Coordinated Universal Time (UTC): `2021-11-15T06:00:00Z`
+	// - Unqualified local time: `2021-11-15T01:00:00`
+	// - UTC time offsets: `2021-11-15T01:00:00-05:00`
+	//
+	// > Time zones
+	// >
+	// > Not all dates from Codat will contain information about time zones.
+	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
+	CompletedOnUtc *string `json:"completedOnUtc,omitempty"`
 	// > View the coverage for suppliers in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=suppliers" target="_blank">Data coverage explorer</a>.
 	//
 	// ## Overview
 	//
-	// From the **Suppliers** endpoints, you can retrieve a list of [all the suppliers for a company](https://api.codat.io/swagger/index.html#/Suppliers/get_companies__companyId__data_suppliers). Suppliers' data links to accounts payable [bills](https://docs.codat.io/accounting-api#/schemas/Bill).
-	Data *PutSupplier200ApplicationJSONSourceModifiedDate `json:"data,omitempty"`
+	// From the **Suppliers** endpoints, you can retrieve a list of [all the suppliers for a company](https://docs.codat.io/accounting-api#/operations/list-suppliers). Suppliers' data links to accounts payable [bills](https://docs.codat.io/accounting-api#/schemas/Bill).
+	Data *shared.Supplier `json:"data,omitempty"`
 	// Unique identifier for a company's data connection.
 	DataConnectionKey string `json:"dataConnectionKey"`
-	// The type of data being pushed, eg invoices, customers.
-	DataType     *string `json:"dataType,omitempty"`
-	ErrorMessage *string `json:"errorMessage,omitempty"`
+	// Available Data types
+	DataType     *shared.DataTypeEnum `json:"dataType,omitempty"`
+	ErrorMessage *string              `json:"errorMessage,omitempty"`
 	// A unique identifier generated by Codat to represent this single push operation. This identifier can be used to track the status of the push, and should be persisted.
 	PushOperationKey string `json:"pushOperationKey"`
-	// The datetime when the push was requested.
-	RequestedOnUtc time.Time `json:"requestedOnUtc"`
+	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
+	//
+	// ```
+	// 2020-10-08T22:40:50Z
+	// 2021-01-01T00:00:00
+	// ```
+	//
+	//
+	//
+	// When syncing data that contains `DateTime` fields from Codat, make sure you support the following cases when reading time information:
+	//
+	// - Coordinated Universal Time (UTC): `2021-11-15T06:00:00Z`
+	// - Unqualified local time: `2021-11-15T01:00:00`
+	// - UTC time offsets: `2021-11-15T01:00:00-05:00`
+	//
+	// > Time zones
+	// >
+	// > Not all dates from Codat will contain information about time zones.
+	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
+	RequestedOnUtc string `json:"requestedOnUtc"`
 	// The status of the push operation.
-	Status           PutSupplier200ApplicationJSONStatusEnum `json:"status"`
-	StatusCode       int                                     `json:"statusCode"`
-	TimeoutInMinutes *int                                    `json:"timeoutInMinutes,omitempty"`
-	TimeoutInSeconds *int                                    `json:"timeoutInSeconds,omitempty"`
+	Status           shared.PushOperationStatusEnum `json:"status"`
+	StatusCode       int64                          `json:"statusCode"`
+	TimeoutInMinutes *int                           `json:"timeoutInMinutes,omitempty"`
+	TimeoutInSeconds *int                           `json:"timeoutInSeconds,omitempty"`
 	// A human-readable object describing validation decisions Codat has made when pushing data into the platform. If a push has failed because of validation errors, they will be detailed here.
-	Validation *PutSupplier200ApplicationJSONValidation `json:"validation,omitempty"`
+	Validation *shared.Validation `json:"validation,omitempty"`
 }
 
 type PutSupplierResponse struct {

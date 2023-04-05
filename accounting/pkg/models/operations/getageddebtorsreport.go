@@ -3,9 +3,9 @@
 package operations
 
 import (
+	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/accounting/pkg/types"
 	"net/http"
-	"time"
 )
 
 type GetAgedDebtorsReportRequest struct {
@@ -18,60 +18,10 @@ type GetAgedDebtorsReportRequest struct {
 	ReportDate *types.Date `queryParam:"style=form,explode=true,name=reportDate"`
 }
 
-type GetAgedDebtorsReportAgedDebtorsReportAgedDebtorAgedCurrencyOutstandingAgedOutstandingAmountAmountsOutstandingByDataType struct {
-	// The amount outstanding.
-	Amount *float64 `json:"amount,omitempty"`
-	// Name of data type with outstanding amount for given period.
-	Name *string `json:"name,omitempty"`
-}
-
-type GetAgedDebtorsReportAgedDebtorsReportAgedDebtorAgedCurrencyOutstandingAgedOutstandingAmount struct {
-	// The amount outstanding.
-	Amount *float64 `json:"amount,omitempty"`
-	// Array of details.
-	Details []GetAgedDebtorsReportAgedDebtorsReportAgedDebtorAgedCurrencyOutstandingAgedOutstandingAmountAmountsOutstandingByDataType `json:"details,omitempty"`
-	// Start date of period.
-	FromDate *time.Time `json:"fromDate,omitempty"`
-	// End date of period.
-	ToDate *time.Time `json:"toDate,omitempty"`
-}
-
-type GetAgedDebtorsReportAgedDebtorsReportAgedDebtorAgedCurrencyOutstanding struct {
-	// Array of outstanding amounts by period.
-	AgedOutstandingAmounts []GetAgedDebtorsReportAgedDebtorsReportAgedDebtorAgedCurrencyOutstandingAgedOutstandingAmount `json:"agedOutstandingAmounts,omitempty"`
-	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code. e.g. _GBP_.
-	//
-	// ## Unknown currencies
-	//
-	// In line with the ISO 4217 specification, the code _XXX_ is used when the data source does not return a currency for a transaction.
-	//
-	// There are only a very small number of edge cases where this currency code is returned by the Codat system.
-	Currency *string `json:"currency,omitempty"`
-}
-
-type GetAgedDebtorsReportAgedDebtorsReportAgedDebtor struct {
-	// Array of aged creditors by currency.
-	AgedCurrencyOutstanding []GetAgedDebtorsReportAgedDebtorsReportAgedDebtorAgedCurrencyOutstanding `json:"agedCurrencyOutstanding,omitempty"`
-	// Customer ID of the aged debtor.
-	CustomerID *string `json:"customerId,omitempty"`
-	// Customer name of the aged debtor.
-	CustomerName *string `json:"customerName,omitempty"`
-}
-
-// GetAgedDebtorsReportAgedDebtorsReport - OK
-type GetAgedDebtorsReportAgedDebtorsReport struct {
-	// Array of aged debtors.
-	Data []GetAgedDebtorsReportAgedDebtorsReportAgedDebtor `json:"data,omitempty"`
-	// Date and time the report was generated.
-	Generated *time.Time `json:"generated,omitempty"`
-	// Date the report is generated up to.
-	ReportDate *time.Time `json:"reportDate,omitempty"`
-}
-
 type GetAgedDebtorsReportResponse struct {
 	// OK
-	AgedDebtorsReport *GetAgedDebtorsReportAgedDebtorsReport
-	ContentType       string
-	StatusCode        int
-	RawResponse       *http.Response
+	AgedDebtorReport *shared.AgedDebtorReport
+	ContentType      string
+	StatusCode       int
+	RawResponse      *http.Response
 }

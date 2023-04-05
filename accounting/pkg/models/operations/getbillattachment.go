@@ -3,8 +3,8 @@
 package operations
 
 import (
+	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
 	"net/http"
-	"time"
 )
 
 type GetBillAttachmentRequest struct {
@@ -16,21 +16,9 @@ type GetBillAttachmentRequest struct {
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
-// GetBillAttachmentAttachment - Success
-type GetBillAttachmentAttachment struct {
-	ContentType        *string    `json:"contentType,omitempty"`
-	DateCreated        *time.Time `json:"dateCreated,omitempty"`
-	FileSize           *int       `json:"fileSize,omitempty"`
-	ID                 *string    `json:"id,omitempty"`
-	IncludeWhenSent    *bool      `json:"includeWhenSent,omitempty"`
-	ModifiedDate       *time.Time `json:"modifiedDate,omitempty"`
-	Name               *string    `json:"name,omitempty"`
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
-}
-
 type GetBillAttachmentResponse struct {
 	// Success
-	Attachment  *GetBillAttachmentAttachment
+	Attachment  *shared.Attachment
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response

@@ -6,7 +6,9 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/accounting/pkg/utils"
+	"io"
 	"net/http"
 )
 
@@ -43,7 +45,7 @@ func (s *directIncomes) CreateDirectIncome(ctx context.Context, request operatio
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/directIncomes", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "DirectIncome", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -81,12 +83,12 @@ func (s *directIncomes) CreateDirectIncome(ctx context.Context, request operatio
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.CreateDirectIncome200ApplicationJSON
+			var out *shared.CreateDirectIncomeResponse
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.CreateDirectIncome200ApplicationJSONObject = out
+			res.CreateDirectIncomeResponse = out
 		}
 	}
 
@@ -124,6 +126,15 @@ func (s *directIncomes) DownloadDirectIncomeAttachment(ctx context.Context, requ
 	}
 	switch {
 	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/octet-stream`):
+			out, err := io.ReadAll(httpRes.Body)
+			if err != nil {
+				return nil, fmt.Errorf("error reading response body: %w", err)
+			}
+
+			res.Data = out
+		}
 	}
 
 	return res, nil
@@ -168,7 +179,7 @@ func (s *directIncomes) GetCreateDirectIncomesModel(ctx context.Context, request
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetCreateDirectIncomesModelPushOption
+			var out *shared.PushOption
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -213,12 +224,12 @@ func (s *directIncomes) GetDirectIncome(ctx context.Context, request operations.
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetDirectIncomeSourceModifiedDate
+			var out *shared.DirectIncome
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.SourceModifiedDate = out
+			res.DirectIncome = out
 		}
 	}
 
@@ -262,7 +273,7 @@ func (s *directIncomes) GetDirectIncomeAttachment(ctx context.Context, request o
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetDirectIncomeAttachmentAttachment
+			var out *shared.Attachment
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -311,12 +322,12 @@ func (s *directIncomes) GetDirectIncomes(ctx context.Context, request operations
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetDirectIncomesLinks
+			var out *shared.DirectIncomes
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Links = out
+			res.DirectIncomes = out
 		}
 	}
 
@@ -356,28 +367,35 @@ func (s *directIncomes) ListDirectIncomeAttachments(ctx context.Context, request
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListDirectIncomeAttachmentsAttachments
+			var out *shared.AttachmentsDataset
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Attachments = out
+			res.AttachmentsDataset = out
 		}
 	}
 
 	return res, nil
 }
 
-// PostDirectIncomeAttachment - Create direct income attachment
+// UploadDirectIncomeAttachment - Create direct income attachment
 // Posts a new direct income attachment for a given company.
-func (s *directIncomes) PostDirectIncomeAttachment(ctx context.Context, request operations.PostDirectIncomeAttachmentRequest) (*operations.PostDirectIncomeAttachmentResponse, error) {
+func (s *directIncomes) UploadDirectIncomeAttachment(ctx context.Context, request operations.UploadDirectIncomeAttachmentRequest) (*operations.UploadDirectIncomeAttachmentResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/directIncomes/{directIncomeId}/attachment", request, nil)
 
-	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "multipart")
+	if err != nil {
+		return nil, fmt.Errorf("error serializing request body: %w", err)
+	}
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+
+	req.Header.Set("Content-Type", reqContentType)
 
 	client := s.securityClient
 
@@ -392,7 +410,7 @@ func (s *directIncomes) PostDirectIncomeAttachment(ctx context.Context, request 
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.PostDirectIncomeAttachmentResponse{
+	res := &operations.UploadDirectIncomeAttachmentResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,

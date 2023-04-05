@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/accounting/pkg/utils"
 	"net/http"
 )
@@ -68,12 +69,12 @@ func (s *reports) GetAgedCreditorsReport(ctx context.Context, request operations
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetAgedCreditorsReportAgedCreditorsReport
+			var out *shared.AgedCreditorReport
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.AgedCreditorsReport = out
+			res.AgedCreditorReport = out
 		}
 	}
 
@@ -117,12 +118,12 @@ func (s *reports) GetAgedDebtorsReport(ctx context.Context, request operations.G
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetAgedDebtorsReportAgedDebtorsReport
+			var out *shared.AgedDebtorReport
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.AgedDebtorsReport = out
+			res.AgedDebtorReport = out
 		}
 	}
 

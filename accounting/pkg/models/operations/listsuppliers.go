@@ -3,8 +3,8 @@
 package operations
 
 import (
+	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
 	"net/http"
-	"time"
 )
 
 type ListSuppliersRequest struct {
@@ -19,122 +19,10 @@ type ListSuppliersRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-type ListSuppliersLinksLinksCurrent struct {
-	Href string `json:"href"`
-}
-
-type ListSuppliersLinksLinksNext struct {
-	Href *string `json:"href,omitempty"`
-}
-
-type ListSuppliersLinksLinksPrevious struct {
-	Href *string `json:"href,omitempty"`
-}
-
-type ListSuppliersLinksLinksSelf struct {
-	Href string `json:"href"`
-}
-
-type ListSuppliersLinksLinks struct {
-	Current  ListSuppliersLinksLinksCurrent   `json:"current"`
-	Next     *ListSuppliersLinksLinksNext     `json:"next,omitempty"`
-	Previous *ListSuppliersLinksLinksPrevious `json:"previous,omitempty"`
-	Self     ListSuppliersLinksLinksSelf      `json:"self"`
-}
-
-// ListSuppliersLinksSourceModifiedDateAddressesTypeEnum - Type of the address.
-type ListSuppliersLinksSourceModifiedDateAddressesTypeEnum string
-
-const (
-	ListSuppliersLinksSourceModifiedDateAddressesTypeEnumUnknown  ListSuppliersLinksSourceModifiedDateAddressesTypeEnum = "Unknown"
-	ListSuppliersLinksSourceModifiedDateAddressesTypeEnumBilling  ListSuppliersLinksSourceModifiedDateAddressesTypeEnum = "Billing"
-	ListSuppliersLinksSourceModifiedDateAddressesTypeEnumDelivery ListSuppliersLinksSourceModifiedDateAddressesTypeEnum = "Delivery"
-)
-
-type ListSuppliersLinksSourceModifiedDateAddresses struct {
-	// City of the customer address.
-	City *string `json:"city,omitempty"`
-	// Country of the customer address.
-	Country *string `json:"country,omitempty"`
-	// Line 1 of the customer address.
-	Line1 *string `json:"line1,omitempty"`
-	// Line 2 of the customer address.
-	Line2 *string `json:"line2,omitempty"`
-	// Postal code or zip code.
-	PostalCode *string `json:"postalCode,omitempty"`
-	// Region of the customer address.
-	Region *string `json:"region,omitempty"`
-	// Type of the address.
-	Type ListSuppliersLinksSourceModifiedDateAddressesTypeEnum `json:"type"`
-}
-
-type ListSuppliersLinksSourceModifiedDateMetadata struct {
-	IsDeleted *bool `json:"isDeleted,omitempty"`
-}
-
-// ListSuppliersLinksSourceModifiedDateStatusEnum - Status of the supplier.
-type ListSuppliersLinksSourceModifiedDateStatusEnum string
-
-const (
-	ListSuppliersLinksSourceModifiedDateStatusEnumUnknown  ListSuppliersLinksSourceModifiedDateStatusEnum = "Unknown"
-	ListSuppliersLinksSourceModifiedDateStatusEnumActive   ListSuppliersLinksSourceModifiedDateStatusEnum = "Active"
-	ListSuppliersLinksSourceModifiedDateStatusEnumArchived ListSuppliersLinksSourceModifiedDateStatusEnum = "Archived"
-)
-
-// ListSuppliersLinksSourceModifiedDateSupplementalData - Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
-type ListSuppliersLinksSourceModifiedDateSupplementalData struct {
-	Content map[string]map[string]interface{} `json:"content,omitempty"`
-}
-
-// ListSuppliersLinksSourceModifiedDate - > View the coverage for suppliers in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=suppliers" target="_blank">Data coverage explorer</a>.
-//
-// ## Overview
-//
-// From the **Suppliers** endpoints, you can retrieve a list of [all the suppliers for a company](https://api.codat.io/swagger/index.html#/Suppliers/get_companies__companyId__data_suppliers). Suppliers' data links to accounts payable [bills](https://docs.codat.io/accounting-api#/schemas/Bill).
-type ListSuppliersLinksSourceModifiedDate struct {
-	// An array of Addresses.
-	Addresses []ListSuppliersLinksSourceModifiedDateAddresses `json:"addresses,omitempty"`
-	// Name of the main contact for the supplier.
-	ContactName *string `json:"contactName,omitempty"`
-	// Default currency the supplier's transactional data is recorded in.
-	DefaultCurrency *string `json:"defaultCurrency,omitempty"`
-	// Email address that the supplier may be contacted on.
-	EmailAddress *string `json:"emailAddress,omitempty"`
-	// Identifier for the supplier, unique to the company in the accounting platform.
-	ID       *string                                       `json:"id,omitempty"`
-	Metadata *ListSuppliersLinksSourceModifiedDateMetadata `json:"metadata,omitempty"`
-	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
-	// Phone number that the supplier may be contacted on.
-	Phone *string `json:"phone,omitempty"`
-	// Company number of the supplier. In the UK, this is typically the company registration number issued by Companies House.
-	RegistrationNumber *string `json:"registrationNumber,omitempty"`
-	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
-	// Status of the supplier.
-	Status ListSuppliersLinksSourceModifiedDateStatusEnum `json:"status"`
-	// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
-	SupplementalData *ListSuppliersLinksSourceModifiedDateSupplementalData `json:"supplementalData,omitempty"`
-	//
-	// Name of the supplier as recorded in the accounting system, typically the company name.
-	SupplierName *string `json:"supplierName,omitempty"`
-	// Supplier's company tax number.
-	TaxNumber *string `json:"taxNumber,omitempty"`
-}
-
-// ListSuppliersLinks - Codat's Paging Model
-type ListSuppliersLinks struct {
-	Links        ListSuppliersLinksLinks                `json:"_links"`
-	PageNumber   int64                                  `json:"pageNumber"`
-	PageSize     int64                                  `json:"pageSize"`
-	Results      []ListSuppliersLinksSourceModifiedDate `json:"results,omitempty"`
-	TotalResults int64                                  `json:"totalResults"`
-}
-
 type ListSuppliersResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// Success
-	Links *ListSuppliersLinks
+	Suppliers *shared.Suppliers
 }

@@ -17,6 +17,8 @@ type DownloadDirectCostAttachmentRequest struct {
 
 type DownloadDirectCostAttachmentResponse struct {
 	ContentType string
+	// Success
+	Data        []byte
 	StatusCode  int
 	RawResponse *http.Response
 }

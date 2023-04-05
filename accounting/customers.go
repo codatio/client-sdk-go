@@ -6,7 +6,9 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/accounting/pkg/utils"
+	"io"
 	"net/http"
 )
 
@@ -43,7 +45,7 @@ func (s *customers) CreateCustomer(ctx context.Context, request operations.Creat
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/customers", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Customer", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -81,12 +83,12 @@ func (s *customers) CreateCustomer(ctx context.Context, request operations.Creat
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.CreateCustomer200ApplicationJSON
+			var out *shared.CreateCustomerResponse
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.CreateCustomer200ApplicationJSONObject = out
+			res.CreateCustomerResponse = out
 		}
 	}
 
@@ -124,6 +126,15 @@ func (s *customers) DownloadCustomerAttachment(ctx context.Context, request oper
 	}
 	switch {
 	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/octet-stream`):
+			out, err := io.ReadAll(httpRes.Body)
+			if err != nil {
+				return nil, fmt.Errorf("error reading response body: %w", err)
+			}
+
+			res.Data = out
+		}
 	}
 
 	return res, nil
@@ -168,7 +179,7 @@ func (s *customers) GetCreateUpdateCustomersModel(ctx context.Context, request o
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetCreateUpdateCustomersModelPushOption
+			var out *shared.PushOption
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -213,12 +224,12 @@ func (s *customers) GetCustomer(ctx context.Context, request operations.GetCusto
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetCustomerSourceModifiedDate
+			var out *shared.Customer
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.SourceModifiedDate = out
+			res.Customer = out
 		}
 	}
 
@@ -258,7 +269,7 @@ func (s *customers) GetCustomerAttachment(ctx context.Context, request operation
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetCustomerAttachmentAttachment
+			var out *shared.Attachment
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -303,12 +314,12 @@ func (s *customers) GetCustomerAttachments(ctx context.Context, request operatio
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetCustomerAttachmentsAttachments
+			var out *shared.AttachmentsDataset
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Attachments = out
+			res.AttachmentsDataset = out
 		}
 	}
 
@@ -352,12 +363,12 @@ func (s *customers) GetCustomers(ctx context.Context, request operations.GetCust
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetCustomersLinks
+			var out *shared.Customers
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Links = out
+			res.Customers = out
 		}
 	}
 
@@ -376,7 +387,7 @@ func (s *customers) UpdateCustomer(ctx context.Context, request operations.Updat
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/customers/{customerId}", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Customer", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -414,12 +425,12 @@ func (s *customers) UpdateCustomer(ctx context.Context, request operations.Updat
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.UpdateCustomer200ApplicationJSON
+			var out *shared.UpdateCustomerResponse
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.UpdateCustomer200ApplicationJSONObject = out
+			res.UpdateCustomerResponse = out
 		}
 	}
 

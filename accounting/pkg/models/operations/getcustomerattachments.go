@@ -3,8 +3,8 @@
 package operations
 
 import (
+	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
 	"net/http"
-	"time"
 )
 
 type GetCustomerAttachmentsRequest struct {
@@ -13,26 +13,10 @@ type GetCustomerAttachmentsRequest struct {
 	CustomerID   string `pathParam:"style=simple,explode=false,name=customerId"`
 }
 
-type GetCustomerAttachmentsAttachmentsAttachment struct {
-	ContentType        *string    `json:"contentType,omitempty"`
-	DateCreated        *time.Time `json:"dateCreated,omitempty"`
-	FileSize           *int       `json:"fileSize,omitempty"`
-	ID                 *string    `json:"id,omitempty"`
-	IncludeWhenSent    *bool      `json:"includeWhenSent,omitempty"`
-	ModifiedDate       *time.Time `json:"modifiedDate,omitempty"`
-	Name               *string    `json:"name,omitempty"`
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
-}
-
-// GetCustomerAttachmentsAttachments - Success
-type GetCustomerAttachmentsAttachments struct {
-	Attachments []GetCustomerAttachmentsAttachmentsAttachment `json:"attachments,omitempty"`
-}
-
 type GetCustomerAttachmentsResponse struct {
 	// Success
-	Attachments *GetCustomerAttachmentsAttachments
-	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
+	AttachmentsDataset *shared.AttachmentsDataset
+	ContentType        string
+	StatusCode         int
+	RawResponse        *http.Response
 }

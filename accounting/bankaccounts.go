@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/accounting/pkg/utils"
 	"net/http"
 )
@@ -43,7 +44,7 @@ func (s *bankAccounts) CreateBankAccount(ctx context.Context, request operations
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/bankAccounts", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "BankAccount", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -81,12 +82,12 @@ func (s *bankAccounts) CreateBankAccount(ctx context.Context, request operations
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.CreateBankAccount200ApplicationJSON
+			var out *shared.CreateBankAccountResponse
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.CreateBankAccount200ApplicationJSONObject = out
+			res.CreateBankAccountResponse = out
 		}
 	}
 
@@ -130,12 +131,12 @@ func (s *bankAccounts) GetAllBankAccount(ctx context.Context, request operations
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetAllBankAccount200ApplicationJSON
+			var out *shared.BankStatementAccount
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.GetAllBankAccount200ApplicationJSONObject = out
+			res.BankStatementAccount = out
 		}
 	}
 
@@ -175,12 +176,12 @@ func (s *bankAccounts) GetBankAccount(ctx context.Context, request operations.Ge
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetBankAccountSourceModifiedDate
+			var out *shared.BankAccount
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.SourceModifiedDate = out
+			res.BankAccount = out
 		}
 	}
 
@@ -226,7 +227,7 @@ func (s *bankAccounts) GetCreateUpdateBankAccountsModel(ctx context.Context, req
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetCreateUpdateBankAccountsModelPushOption
+			var out *shared.PushOption
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -275,19 +276,19 @@ func (s *bankAccounts) ListBankAccounts(ctx context.Context, request operations.
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListBankAccountsLinks
+			var out *shared.BankAccounts
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Links = out
+			res.BankAccounts = out
 		}
 	}
 
 	return res, nil
 }
 
-// PutBankAccount - Update bank account
+// UpdateBankAccount - Update bank account
 // Posts an updated bank account to the accounting package for a given company.
 //
 // Required data may vary by integration. To see what data to post, first call []().
@@ -295,11 +296,11 @@ func (s *bankAccounts) ListBankAccounts(ctx context.Context, request operations.
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankAccounts) for integrations that support updating bank accounts.
-func (s *bankAccounts) PutBankAccount(ctx context.Context, request operations.PutBankAccountRequest) (*operations.PutBankAccountResponse, error) {
+func (s *bankAccounts) UpdateBankAccount(ctx context.Context, request operations.UpdateBankAccountRequest) (*operations.UpdateBankAccountResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/bankAccounts/{bankAccountId}", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "BankAccount", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -328,7 +329,7 @@ func (s *bankAccounts) PutBankAccount(ctx context.Context, request operations.Pu
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.PutBankAccountResponse{
+	res := &operations.UpdateBankAccountResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -337,12 +338,12 @@ func (s *bankAccounts) PutBankAccount(ctx context.Context, request operations.Pu
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.PutBankAccount200ApplicationJSON
+			var out *shared.UpdateBankAccountResponse
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.PutBankAccount200ApplicationJSONObject = out
+			res.UpdateBankAccountResponse = out
 		}
 	}
 

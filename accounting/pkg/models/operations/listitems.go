@@ -3,8 +3,8 @@
 package operations
 
 import (
+	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
 	"net/http"
-	"time"
 )
 
 type ListItemsRequest struct {
@@ -19,168 +19,10 @@ type ListItemsRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-type ListItemsLinksLinksCurrent struct {
-	Href string `json:"href"`
-}
-
-type ListItemsLinksLinksNext struct {
-	Href *string `json:"href,omitempty"`
-}
-
-type ListItemsLinksLinksPrevious struct {
-	Href *string `json:"href,omitempty"`
-}
-
-type ListItemsLinksLinksSelf struct {
-	Href string `json:"href"`
-}
-
-type ListItemsLinksLinks struct {
-	Current  ListItemsLinksLinksCurrent   `json:"current"`
-	Next     *ListItemsLinksLinksNext     `json:"next,omitempty"`
-	Previous *ListItemsLinksLinksPrevious `json:"previous,omitempty"`
-	Self     ListItemsLinksLinksSelf      `json:"self"`
-}
-
-// ListItemsLinksSourceModifiedDateBillItemAccountRef - Reference of the account to which the item is linked.
-type ListItemsLinksSourceModifiedDateBillItemAccountRef struct {
-	// 'id' from the Accounts data type.
-	ID *string `json:"id,omitempty"`
-	// 'name' from the Accounts data type.
-	Name *string `json:"name,omitempty"`
-}
-
-// ListItemsLinksSourceModifiedDateBillItemTaxRateRef - Reference of the tax rate to which the item is linked.
-type ListItemsLinksSourceModifiedDateBillItemTaxRateRef struct {
-	// Applicable tax rate.
-	EffectiveTaxRate *float64 `json:"effectiveTaxRate,omitempty"`
-	// 'id' from the 'taxRates' data type.
-	ID *string `json:"id,omitempty"`
-	// 'name' from the 'taxRates' data type.
-	Name *string `json:"name,omitempty"`
-}
-
-// ListItemsLinksSourceModifiedDateBillItem - Item details that are only for bills.
-type ListItemsLinksSourceModifiedDateBillItem struct {
-	// Reference of the account to which the item is linked.
-	AccountRef *ListItemsLinksSourceModifiedDateBillItemAccountRef `json:"accountRef,omitempty"`
-	// Short description of the product or service that has been bought by the customer.
-	Description *string `json:"description,omitempty"`
-	// Reference of the tax rate to which the item is linked.
-	TaxRateRef *ListItemsLinksSourceModifiedDateBillItemTaxRateRef `json:"taxRateRef,omitempty"`
-	// Unit price of the product or service.
-	UnitPrice *float64 `json:"unitPrice,omitempty"`
-}
-
-// ListItemsLinksSourceModifiedDateInvoiceItemAccountRef - Reference of the account to which the item is linked.
-type ListItemsLinksSourceModifiedDateInvoiceItemAccountRef struct {
-	// 'id' from the Accounts data type.
-	ID *string `json:"id,omitempty"`
-	// 'name' from the Accounts data type.
-	Name *string `json:"name,omitempty"`
-}
-
-// ListItemsLinksSourceModifiedDateInvoiceItemTaxRateRef - Reference of the tax rate to which the item is linked.
-type ListItemsLinksSourceModifiedDateInvoiceItemTaxRateRef struct {
-	// Applicable tax rate.
-	EffectiveTaxRate *float64 `json:"effectiveTaxRate,omitempty"`
-	// 'id' from the 'taxRates' data type.
-	ID *string `json:"id,omitempty"`
-	// 'name' from the 'taxRates' data type.
-	Name *string `json:"name,omitempty"`
-}
-
-// ListItemsLinksSourceModifiedDateInvoiceItem - Item details that are only for bills.
-type ListItemsLinksSourceModifiedDateInvoiceItem struct {
-	// Reference of the account to which the item is linked.
-	AccountRef *ListItemsLinksSourceModifiedDateInvoiceItemAccountRef `json:"accountRef,omitempty"`
-	// Short description of the product or service that has been bought by the customer.
-	Description *string `json:"description,omitempty"`
-	// Reference of the tax rate to which the item is linked.
-	TaxRateRef *ListItemsLinksSourceModifiedDateInvoiceItemTaxRateRef `json:"taxRateRef,omitempty"`
-	// Unit price of the product or service.
-	UnitPrice *float64 `json:"unitPrice,omitempty"`
-}
-
-// ListItemsLinksSourceModifiedDateItemStatusEnum - Current state of the item, either:
-//
-// - `Active`: Available for use
-// - `Archived`: Unavailable
-// - `Unknown`
-//
-// Due to a [limitation in Xero's API](https://docs.codat.io/integrations/accounting/xero/xero-faq#why-do-all-of-my-items-from-xero-have-their-status-as-unknown), all items from Xero are mapped as `Unknown`.
-type ListItemsLinksSourceModifiedDateItemStatusEnum string
-
-const (
-	ListItemsLinksSourceModifiedDateItemStatusEnumUnknown  ListItemsLinksSourceModifiedDateItemStatusEnum = "Unknown"
-	ListItemsLinksSourceModifiedDateItemStatusEnumActive   ListItemsLinksSourceModifiedDateItemStatusEnum = "Active"
-	ListItemsLinksSourceModifiedDateItemStatusEnumArchived ListItemsLinksSourceModifiedDateItemStatusEnum = "Archived"
-)
-
-type ListItemsLinksSourceModifiedDateMetadata struct {
-	IsDeleted *bool `json:"isDeleted,omitempty"`
-}
-
-// ListItemsLinksSourceModifiedDateTypeEnum - Type of the item.
-type ListItemsLinksSourceModifiedDateTypeEnum string
-
-const (
-	ListItemsLinksSourceModifiedDateTypeEnumUnknown      ListItemsLinksSourceModifiedDateTypeEnum = "Unknown"
-	ListItemsLinksSourceModifiedDateTypeEnumInventory    ListItemsLinksSourceModifiedDateTypeEnum = "Inventory"
-	ListItemsLinksSourceModifiedDateTypeEnumNonInventory ListItemsLinksSourceModifiedDateTypeEnum = "NonInventory"
-	ListItemsLinksSourceModifiedDateTypeEnumService      ListItemsLinksSourceModifiedDateTypeEnum = "Service"
-)
-
-// ListItemsLinksSourceModifiedDate - > View the coverage for items in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=items" target="_blank">Data coverage explorer</a>.
-//
-// ## Overview
-//
-// **Items** allow your customers to save and track details of the products and services that they buy and sell.
-type ListItemsLinksSourceModifiedDate struct {
-	// Item details that are only for bills.
-	BillItem *ListItemsLinksSourceModifiedDateBillItem `json:"billItem,omitempty"`
-	// Friendly reference for the item.
-	Code *string `json:"code,omitempty"`
-	// Identifier for the item that is unique to a company in the accounting platform.
-	ID *string `json:"id,omitempty"`
-	// Item details that are only for bills.
-	InvoiceItem *ListItemsLinksSourceModifiedDateInvoiceItem `json:"invoiceItem,omitempty"`
-	// Whether you can use this item for bills.
-	IsBillItem bool `json:"isBillItem"`
-	// Whether you can use this item for invoices.
-	IsInvoiceItem bool `json:"isInvoiceItem"`
-	// Current state of the item, either:
-	//
-	// - `Active`: Available for use
-	// - `Archived`: Unavailable
-	// - `Unknown`
-	//
-	// Due to a [limitation in Xero's API](https://docs.codat.io/integrations/accounting/xero/xero-faq#why-do-all-of-my-items-from-xero-have-their-status-as-unknown), all items from Xero are mapped as `Unknown`.
-	ItemStatus ListItemsLinksSourceModifiedDateItemStatusEnum `json:"itemStatus"`
-	Metadata   *ListItemsLinksSourceModifiedDateMetadata      `json:"metadata,omitempty"`
-	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
-	// Name of the item in the accounting platform.
-	Name *string `json:"name,omitempty"`
-	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
-	// Type of the item.
-	Type ListItemsLinksSourceModifiedDateTypeEnum `json:"type"`
-}
-
-// ListItemsLinks - Codat's Paging Model
-type ListItemsLinks struct {
-	Links        ListItemsLinksLinks                `json:"_links"`
-	PageNumber   int64                              `json:"pageNumber"`
-	PageSize     int64                              `json:"pageSize"`
-	Results      []ListItemsLinksSourceModifiedDate `json:"results,omitempty"`
-	TotalResults int64                              `json:"totalResults"`
-}
-
 type ListItemsResponse struct {
 	ContentType string
+	// Success
+	Items       *shared.Items1
 	StatusCode  int
 	RawResponse *http.Response
-	// Success
-	Links *ListItemsLinks
 }

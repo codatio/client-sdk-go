@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/accounting/pkg/utils"
 	"net/http"
 )
@@ -43,7 +44,7 @@ func (s *purchaseOrders) CreatePurchaseOrder(ctx context.Context, request operat
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/purchaseOrders", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "PurchaseOrder", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -81,12 +82,12 @@ func (s *purchaseOrders) CreatePurchaseOrder(ctx context.Context, request operat
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.CreatePurchaseOrder200ApplicationJSON
+			var out *shared.CreatePurchaseOrderResponse
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.CreatePurchaseOrder200ApplicationJSONObject = out
+			res.CreatePurchaseOrderResponse = out
 		}
 	}
 
@@ -132,7 +133,7 @@ func (s *purchaseOrders) GetCreateUpdatePurchaseOrdersModel(ctx context.Context,
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetCreateUpdatePurchaseOrdersModelPushOption
+			var out *shared.PushOption
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -177,12 +178,12 @@ func (s *purchaseOrders) GetPurchaseOrder(ctx context.Context, request operation
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetPurchaseOrderSourceModifiedDate
+			var out *shared.PurchaseOrder
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.SourceModifiedDate = out
+			res.PurchaseOrder = out
 		}
 	}
 
@@ -226,12 +227,12 @@ func (s *purchaseOrders) ListPurchaseOrders(ctx context.Context, request operati
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListPurchaseOrdersLinks
+			var out *shared.PurchaseOrders
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Links = out
+			res.PurchaseOrders = out
 		}
 	}
 
@@ -250,7 +251,7 @@ func (s *purchaseOrders) UpdatePurchaseOrder(ctx context.Context, request operat
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/purchaseOrders/{purchaseOrderId}", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "PurchaseOrder", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -288,12 +289,12 @@ func (s *purchaseOrders) UpdatePurchaseOrder(ctx context.Context, request operat
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.UpdatePurchaseOrder200ApplicationJSON
+			var out *shared.UpdatePurchaseOrderResponse
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.UpdatePurchaseOrder200ApplicationJSONObject = out
+			res.UpdatePurchaseOrderResponse = out
 		}
 	}
 

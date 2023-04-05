@@ -3,8 +3,8 @@
 package operations
 
 import (
+	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
 	"net/http"
-	"time"
 )
 
 type GetDirectCostAttachmentRequest struct {
@@ -16,21 +16,9 @@ type GetDirectCostAttachmentRequest struct {
 	DirectCostID string `pathParam:"style=simple,explode=false,name=directCostId"`
 }
 
-// GetDirectCostAttachmentAttachment - Success
-type GetDirectCostAttachmentAttachment struct {
-	ContentType        *string    `json:"contentType,omitempty"`
-	DateCreated        *time.Time `json:"dateCreated,omitempty"`
-	FileSize           *int       `json:"fileSize,omitempty"`
-	ID                 *string    `json:"id,omitempty"`
-	IncludeWhenSent    *bool      `json:"includeWhenSent,omitempty"`
-	ModifiedDate       *time.Time `json:"modifiedDate,omitempty"`
-	Name               *string    `json:"name,omitempty"`
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
-}
-
 type GetDirectCostAttachmentResponse struct {
 	// Success
-	Attachment  *GetDirectCostAttachmentAttachment
+	Attachment  *shared.Attachment
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response

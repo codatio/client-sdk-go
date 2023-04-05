@@ -28,19 +28,19 @@ func main() {
         }),
     )
 
-    req := operations.GetCreateUpdateAccountTransactionsModelRequest{
-        AccountTransactionID: "unde",
+    req := operations.GetAccountTransactionRequest{
+        AccountTransactionID: "corrupti",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     }
 
     ctx := context.Background()
-    res, err := s.AccountTransactions.GetCreateUpdateAccountTransactionsModel(ctx, req)
+    res, err := s.AccountTransactions.GetAccountTransaction(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.SourceModifiedDate != nil {
+    if res.AccountTransaction != nil {
         // handle response
     }
 }
@@ -48,27 +48,27 @@ func main() {
 <!-- End SDK Example Usage -->
 
 <!-- Start SDK Available Operations -->
-## SDK Available Operations
+## Available Resources and Operations
 
 
 ### AccountTransactions
 
-* `GetCreateUpdateAccountTransactionsModel` - Get account transaction
+* `GetAccountTransaction` - Get account transaction
 * `ListAccountTransactions` - List account transactions
 
 ### Accounts
 
 * `CreateAccount` - Create account
 * `GetAccount` - Get account
-* `GetAccounts` - List accounts
 * `GetCreateChartOfAccountsModel` - Get create account model
+* `ListAccounts` - List accounts
 
 ### BankAccountTransactions
 
-* `GetBankAccountPushOptions` - List push options for bank account bank transactions
+* `CreateBankTransactions` - Create bank transactions
+* `GetCreateBankAccountModel` - List push options for bank account bank transactions
 * `ListBankAccountTransactions` - List bank transactions for bank account
 * `ListBankTransactions` - List all bank transactions
-* `PostBankTransactions` - Create bank transactions
 
 ### BankAccounts
 
@@ -77,7 +77,7 @@ func main() {
 * `GetBankAccount` - Get bank account
 * `GetCreateUpdateBankAccountsModel` - Get create/update bank account model
 * `ListBankAccounts` - List bank accounts
-* `PutBankAccount` - Update bank account
+* `UpdateBankAccount` - Update bank account
 
 ### BillCreditNotes
 
@@ -90,7 +90,7 @@ func main() {
 ### BillPayments
 
 * `CreateBillPayment` - Create bill payments
-* `DeleteCompaniesCompanyIDConnectionsConnectionIDPushBillPaymentsBillPaymentID` - Delete bill payment
+* `DeleteBillPayment` - Delete bill payment
 * `GetBillPayments` - Get bill payment
 * `GetCreateBillPaymentsModel` - Get create bill payment model
 * `ListBillPayments` - List bill payments
@@ -98,8 +98,7 @@ func main() {
 ### Bills
 
 * `CreateBill` - Create bill
-* `CreateBillAttachments` - Create bill attachments
-* `DeleteCompaniesCompanyIDConnectionsConnectionIDPushBillsBillID` - Delete bill
+* `DeleteBill` - Delete bill
 * `DownloadBillAttachment` - Download bill attachment
 * `GetBill` - Get bill
 * `GetBillAttachment` - Get bill attachment
@@ -107,6 +106,7 @@ func main() {
 * `GetCreateUpdateBillsModel` - Get create/update bill model
 * `ListBills` - List bills
 * `UpdateBill` - Update bill
+* `UploadBillAttachments` - Upload bill attachments
 
 ### CompanyInfo
 
@@ -115,11 +115,11 @@ func main() {
 
 ### CreditNotes
 
-* `CreateCreditNote` - Update creditNote
+* `CreateCreditNote` - Create credit note
 * `GetCreateUpdateCreditNotesModel` - Get create/update credit note model
 * `GetCreditNote` - Get credit note
 * `ListCreditNotes` - List credit notes
-* `PushCreditNote` - Create credit note
+* `UpdateCreditNote` - Update creditNote
 
 ### Customers
 
@@ -141,7 +141,7 @@ func main() {
 * `GetDirectCostAttachment` - Get direct cost attachment
 * `GetDirectCosts` - List direct costs
 * `ListDirectCostAttachments` - List direct cost attachments
-* `PostDirectCostAttachment` - Create direct cost attachment
+* `UploadDirectCostAttachment` - Upload direct cost attachment
 
 ### DirectIncomes
 
@@ -152,7 +152,7 @@ func main() {
 * `GetDirectIncomeAttachment` - Get direct income attachment
 * `GetDirectIncomes` - Get direct incomes
 * `ListDirectIncomeAttachments` - List direct income attachments
-* `PostDirectIncomeAttachment` - Create direct income attachment
+* `UploadDirectIncomeAttachment` - Create direct income attachment
 
 ### Financials
 
@@ -162,16 +162,16 @@ func main() {
 
 ### Invoices
 
+* `DownloadInvoicePdf` - Get invoice as PDF
 * `CreateInvoice` - Create invoice
-* `DonwloadInvoiceAttachment` - Download invoice attachment
+* `DownloadInvoiceAttachment` - Download invoice attachment
 * `GetCreateUpdateInvoicesModel` - Get create/update invoice model
 * `GetInvoice` - Get invoice
 * `GetInvoiceAttachment` - Get invoice attachment
 * `GetInvoiceAttachments` - Get invoice attachments
-* `GetInvoicePdf` - Get invoice as PDF
 * `ListInvoices` - List invoices
-* `PushInvoiceAttachment` - Push invoice attachment
 * `UpdateInvoice` - Update invoice
+* `UploadInvoiceAttachment` - Push invoice attachment
 
 ### Items
 
@@ -228,7 +228,7 @@ func main() {
 
 ### Suppliers
 
-* `CreateSuppliers` - Create suppliers
+* `CreateSupplier` - Create suppliers
 * `DownloadSupplierAttachment` - Download supplier attachment
 * `GetCreateUpdateSuppliersModel` - Get create/update supplier model
 * `GetSupplier` - Get supplier

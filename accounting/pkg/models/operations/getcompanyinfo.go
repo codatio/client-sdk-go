@@ -3,110 +3,18 @@
 package operations
 
 import (
+	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
 	"net/http"
-	"time"
 )
 
 type GetCompanyInfoRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
-// GetCompanyInfoCompanyInfoAddressesTypeEnum - Type of the address.
-type GetCompanyInfoCompanyInfoAddressesTypeEnum string
-
-const (
-	GetCompanyInfoCompanyInfoAddressesTypeEnumUnknown  GetCompanyInfoCompanyInfoAddressesTypeEnum = "Unknown"
-	GetCompanyInfoCompanyInfoAddressesTypeEnumBilling  GetCompanyInfoCompanyInfoAddressesTypeEnum = "Billing"
-	GetCompanyInfoCompanyInfoAddressesTypeEnumDelivery GetCompanyInfoCompanyInfoAddressesTypeEnum = "Delivery"
-)
-
-type GetCompanyInfoCompanyInfoAddresses struct {
-	// City of the customer address.
-	City *string `json:"city,omitempty"`
-	// Country of the customer address.
-	Country *string `json:"country,omitempty"`
-	// Line 1 of the customer address.
-	Line1 *string `json:"line1,omitempty"`
-	// Line 2 of the customer address.
-	Line2 *string `json:"line2,omitempty"`
-	// Postal code or zip code.
-	PostalCode *string `json:"postalCode,omitempty"`
-	// Region of the customer address.
-	Region *string `json:"region,omitempty"`
-	// Type of the address.
-	Type GetCompanyInfoCompanyInfoAddressesTypeEnum `json:"type"`
-}
-
-// GetCompanyInfoCompanyInfoPhoneNumbersTypeEnum - Type of phone number.
-type GetCompanyInfoCompanyInfoPhoneNumbersTypeEnum string
-
-const (
-	GetCompanyInfoCompanyInfoPhoneNumbersTypeEnumUnknown  GetCompanyInfoCompanyInfoPhoneNumbersTypeEnum = "Unknown"
-	GetCompanyInfoCompanyInfoPhoneNumbersTypeEnumPrimary  GetCompanyInfoCompanyInfoPhoneNumbersTypeEnum = "Primary"
-	GetCompanyInfoCompanyInfoPhoneNumbersTypeEnumLandline GetCompanyInfoCompanyInfoPhoneNumbersTypeEnum = "Landline"
-	GetCompanyInfoCompanyInfoPhoneNumbersTypeEnumMobile   GetCompanyInfoCompanyInfoPhoneNumbersTypeEnum = "Mobile"
-	GetCompanyInfoCompanyInfoPhoneNumbersTypeEnumFax      GetCompanyInfoCompanyInfoPhoneNumbersTypeEnum = "Fax"
-)
-
-type GetCompanyInfoCompanyInfoPhoneNumbers struct {
-	// Phone number for a customer contact.
-	Number *string `json:"number,omitempty"`
-	// Type of phone number.
-	Type GetCompanyInfoCompanyInfoPhoneNumbersTypeEnum `json:"type"`
-}
-
-// GetCompanyInfoCompanyInfoWebLinksTypeEnum - Type of web link.
-type GetCompanyInfoCompanyInfoWebLinksTypeEnum string
-
-const (
-	GetCompanyInfoCompanyInfoWebLinksTypeEnumUnknown GetCompanyInfoCompanyInfoWebLinksTypeEnum = "Unknown"
-	GetCompanyInfoCompanyInfoWebLinksTypeEnumWebsite GetCompanyInfoCompanyInfoWebLinksTypeEnum = "Website"
-	GetCompanyInfoCompanyInfoWebLinksTypeEnumSocial  GetCompanyInfoCompanyInfoWebLinksTypeEnum = "Social"
-)
-
-type GetCompanyInfoCompanyInfoWebLinks struct {
-	// Type of web link.
-	Type GetCompanyInfoCompanyInfoWebLinksTypeEnum `json:"type"`
-	// URL of a web link for a linked company.
-	URL *string `json:"url,omitempty"`
-}
-
-// GetCompanyInfoCompanyInfo - Success
-type GetCompanyInfoCompanyInfo struct {
-	// Identifier or reference for the company in the accounting platform.
-	AccountingPlatformRef *string `json:"accountingPlatformRef,omitempty"`
-	// An array of Addresses.
-	Addresses []GetCompanyInfoCompanyInfoAddresses `json:"addresses,omitempty"`
-	// Currency set in the accounting platform of the linked company. Used by the currency rate.
-	BaseCurrency *string `json:"baseCurrency,omitempty"`
-	// Registered legal name of the linked company.
-	CompanyLegalName *string `json:"companyLegalName,omitempty"`
-	// Name of the linked company.
-	CompanyName *string `json:"companyName,omitempty"`
-	// Date the linked company was created in the accounting platform.
-	CreatedDate *time.Time `json:"createdDate,omitempty"`
-	// Start date of the financial year for the company.
-	FinancialYearStartDate *time.Time `json:"financialYearStartDate,omitempty"`
-	// If set in the accounting platform, the date (in the ISO 8601 date/time format) after which accounting transactions cannot be edited. Commonly used when books are closed at year-end.
-	LedgerLockDate *time.Time `json:"ledgerLockDate,omitempty"`
-	// An array of phone numbers.
-	PhoneNumbers []GetCompanyInfoCompanyInfoPhoneNumbers `json:"phoneNumbers,omitempty"`
-	// Registration number given to the linked company by the companies authority in the country of origin. In the UK this is Companies House.
-	RegistrationNumber *string `json:"registrationNumber,omitempty"`
-	// URL addresses for the accounting source.
-	//
-	// For example, for Xero integrations two URLs are returned. These have many potential use cases, such as deep linking.
-	SourceUrls map[string]string `json:"sourceUrls,omitempty"`
-	// Company tax number.
-	TaxNumber *string `json:"taxNumber,omitempty"`
-	// An array of weblinks.
-	WebLinks []GetCompanyInfoCompanyInfoWebLinks `json:"webLinks,omitempty"`
-}
-
 type GetCompanyInfoResponse struct {
 	// Success
-	CompanyInfo *GetCompanyInfoCompanyInfo
-	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
+	CompanyDataset *shared.CompanyDataset
+	ContentType    string
+	StatusCode     int
+	RawResponse    *http.Response
 }

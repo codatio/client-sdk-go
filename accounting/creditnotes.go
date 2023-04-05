@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/accounting/pkg/utils"
 	"net/http"
 )
@@ -31,24 +32,24 @@ func newCreditNotes(defaultClient, securityClient HTTPClient, serverURL, languag
 	}
 }
 
-// CreateCreditNote - Update creditNote
-// Posts an updated credit note to the accounting package for a given company.
+// CreateCreditNote - Create credit note
+// Push credit note
 //
 // Required data may vary by integration. To see what data to post, first call [Get create/update credit note model](https://docs.codat.io/accounting-api#/operations/get-create-update-creditNotes-model).
 //
 // > **Supported Integrations**
 // >
-// > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=creditNotes) for integrations that support updating a credit note.
+// > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=creditNotes) for integrations that support creating a credit note.
 func (s *creditNotes) CreateCreditNote(ctx context.Context, request operations.CreateCreditNoteRequest) (*operations.CreateCreditNoteResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/creditNotes/{creditNoteId}", request, nil)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/creditNotes", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "CreditNote", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "PUT", url, bodyReader)
+	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -81,12 +82,12 @@ func (s *creditNotes) CreateCreditNote(ctx context.Context, request operations.C
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.CreateCreditNote200ApplicationJSON
+			var out *shared.CreateCreditNoteResponse
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.CreateCreditNote200ApplicationJSONObject = out
+			res.CreateCreditNoteResponse = out
 		}
 	}
 
@@ -132,7 +133,7 @@ func (s *creditNotes) GetCreateUpdateCreditNotesModel(ctx context.Context, reque
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetCreateUpdateCreditNotesModelPushOption
+			var out *shared.PushOption
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -177,12 +178,12 @@ func (s *creditNotes) GetCreditNote(ctx context.Context, request operations.GetC
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetCreditNoteSourceModifiedDate
+			var out *shared.CreditNote
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.SourceModifiedDate = out
+			res.CreditNote = out
 		}
 	}
 
@@ -226,36 +227,36 @@ func (s *creditNotes) ListCreditNotes(ctx context.Context, request operations.Li
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListCreditNotesLinks
+			var out *shared.CreditNotes
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Links = out
+			res.CreditNotes = out
 		}
 	}
 
 	return res, nil
 }
 
-// PushCreditNote - Create credit note
-// Push credit note
+// UpdateCreditNote - Update creditNote
+// Posts an updated credit note to the accounting package for a given company.
 //
 // Required data may vary by integration. To see what data to post, first call [Get create/update credit note model](https://docs.codat.io/accounting-api#/operations/get-create-update-creditNotes-model).
 //
 // > **Supported Integrations**
 // >
-// > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=creditNotes) for integrations that support creating a credit note.
-func (s *creditNotes) PushCreditNote(ctx context.Context, request operations.PushCreditNoteRequest) (*operations.PushCreditNoteResponse, error) {
+// > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=creditNotes) for integrations that support updating a credit note.
+func (s *creditNotes) UpdateCreditNote(ctx context.Context, request operations.UpdateCreditNoteRequest) (*operations.UpdateCreditNoteResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/creditNotes", request, nil)
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/creditNotes/{creditNoteId}", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "CreditNote", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
+	req, err := http.NewRequestWithContext(ctx, "PUT", url, bodyReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -279,7 +280,7 @@ func (s *creditNotes) PushCreditNote(ctx context.Context, request operations.Pus
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.PushCreditNoteResponse{
+	res := &operations.UpdateCreditNoteResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -288,12 +289,12 @@ func (s *creditNotes) PushCreditNote(ctx context.Context, request operations.Pus
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.PushCreditNote200ApplicationJSON
+			var out *shared.UpdateCreditNoteResponse
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.PushCreditNote200ApplicationJSONObject = out
+			res.UpdateCreditNoteResponse = out
 		}
 	}
 

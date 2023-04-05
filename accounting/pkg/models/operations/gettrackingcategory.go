@@ -3,8 +3,8 @@
 package operations
 
 import (
+	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
 	"net/http"
-	"time"
 )
 
 type GetTrackingCategoryRequest struct {
@@ -12,119 +12,10 @@ type GetTrackingCategoryRequest struct {
 	TrackingCategoryID string `pathParam:"style=simple,explode=false,name=trackingCategoryId"`
 }
 
-// GetTrackingCategorySourceModifiedDateTrackingCategoryStatusEnum - Current state of the tracking category.
-type GetTrackingCategorySourceModifiedDateTrackingCategoryStatusEnum string
-
-const (
-	GetTrackingCategorySourceModifiedDateTrackingCategoryStatusEnumUnknown  GetTrackingCategorySourceModifiedDateTrackingCategoryStatusEnum = "Unknown"
-	GetTrackingCategorySourceModifiedDateTrackingCategoryStatusEnumActive   GetTrackingCategorySourceModifiedDateTrackingCategoryStatusEnum = "Active"
-	GetTrackingCategorySourceModifiedDateTrackingCategoryStatusEnumArchived GetTrackingCategorySourceModifiedDateTrackingCategoryStatusEnum = "Archived"
-)
-
-// GetTrackingCategorySourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnum - Current state of the tracking category.
-type GetTrackingCategorySourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnum string
-
-const (
-	GetTrackingCategorySourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnumUnknown  GetTrackingCategorySourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnum = "Unknown"
-	GetTrackingCategorySourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnumActive   GetTrackingCategorySourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnum = "Active"
-	GetTrackingCategorySourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnumArchived GetTrackingCategorySourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnum = "Archived"
-)
-
-// GetTrackingCategorySourceModifiedDateSourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnum - Current state of the tracking category.
-type GetTrackingCategorySourceModifiedDateSourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnum string
-
-const (
-	GetTrackingCategorySourceModifiedDateSourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnumUnknown  GetTrackingCategorySourceModifiedDateSourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnum = "Unknown"
-	GetTrackingCategorySourceModifiedDateSourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnumActive   GetTrackingCategorySourceModifiedDateSourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnum = "Active"
-	GetTrackingCategorySourceModifiedDateSourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnumArchived GetTrackingCategorySourceModifiedDateSourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnum = "Archived"
-)
-
-// GetTrackingCategorySourceModifiedDateSourceModifiedDateSourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnum - Current state of the tracking category.
-type GetTrackingCategorySourceModifiedDateSourceModifiedDateSourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnum string
-
-const (
-	GetTrackingCategorySourceModifiedDateSourceModifiedDateSourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnumUnknown  GetTrackingCategorySourceModifiedDateSourceModifiedDateSourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnum = "Unknown"
-	GetTrackingCategorySourceModifiedDateSourceModifiedDateSourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnumActive   GetTrackingCategorySourceModifiedDateSourceModifiedDateSourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnum = "Active"
-	GetTrackingCategorySourceModifiedDateSourceModifiedDateSourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnumArchived GetTrackingCategorySourceModifiedDateSourceModifiedDateSourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnum = "Archived"
-)
-
-type GetTrackingCategorySourceModifiedDateSourceModifiedDateSourceModifiedDateSourceModifiedDate struct {
-	// The identifier for the item, unique per tracking category
-	ID *string `json:"id,omitempty"`
-	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
-	// The name of the tracking category
-	Name *string `json:"name,omitempty"`
-	// The identifier for this item's immediate parent
-	ParentID *string `json:"parentId,omitempty"`
-	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
-	// Current state of the tracking category.
-	Status *GetTrackingCategorySourceModifiedDateSourceModifiedDateSourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnum `json:"status,omitempty"`
-}
-
-type GetTrackingCategorySourceModifiedDateSourceModifiedDateSourceModifiedDate struct {
-	// Boolean value indicating whether this category has SubCategories
-	HasChildren *bool `json:"hasChildren,omitempty"`
-	// The identifier for the item, unique per tracking category
-	ID *string `json:"id,omitempty"`
-	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
-	// The name of the tracking category
-	Name *string `json:"name,omitempty"`
-	// The identifier for this item's immediate parent
-	ParentID *string `json:"parentId,omitempty"`
-	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
-	// Current state of the tracking category.
-	Status *GetTrackingCategorySourceModifiedDateSourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnum `json:"status,omitempty"`
-	// A collection of subcategories that are nested beneath this category.
-	SubCategories []GetTrackingCategorySourceModifiedDateSourceModifiedDateSourceModifiedDateSourceModifiedDate `json:"subCategories,omitempty"`
-}
-
-type GetTrackingCategorySourceModifiedDateSourceModifiedDate struct {
-	// Boolean value indicating whether this category has SubCategories
-	HasChildren *bool `json:"hasChildren,omitempty"`
-	// The identifier for the item, unique per tracking category
-	ID *string `json:"id,omitempty"`
-	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
-	// The name of the tracking category
-	Name *string `json:"name,omitempty"`
-	// The identifier for this item's immediate parent
-	ParentID *string `json:"parentId,omitempty"`
-	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
-	// Current state of the tracking category.
-	Status *GetTrackingCategorySourceModifiedDateSourceModifiedDateTrackingCategoryStatusEnum `json:"status,omitempty"`
-	// A collection of subcategories that are nested beneath this category.
-	SubCategories []GetTrackingCategorySourceModifiedDateSourceModifiedDateSourceModifiedDate `json:"subCategories,omitempty"`
-}
-
-// GetTrackingCategorySourceModifiedDate - Success
-type GetTrackingCategorySourceModifiedDate struct {
-	// Boolean value indicating whether this category has SubCategories
-	HasChildren *bool `json:"hasChildren,omitempty"`
-	// The identifier for the item, unique per tracking category
-	ID *string `json:"id,omitempty"`
-	// The date on which this record was last modified in Codat.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
-	// The name of the tracking category
-	Name *string `json:"name,omitempty"`
-	// The identifier for this item's immediate parent
-	ParentID *string `json:"parentId,omitempty"`
-	// The date on which this record was last modified in the originating system
-	SourceModifiedDate *time.Time `json:"sourceModifiedDate,omitempty"`
-	// Current state of the tracking category.
-	Status *GetTrackingCategorySourceModifiedDateTrackingCategoryStatusEnum `json:"status,omitempty"`
-	// A collection of subcategories that are nested beneath this category.
-	SubCategories []GetTrackingCategorySourceModifiedDateSourceModifiedDate `json:"subCategories,omitempty"`
-}
-
 type GetTrackingCategoryResponse struct {
 	ContentType string
+	StatusCode  int
+	RawResponse *http.Response
 	// Success
-	SourceModifiedDate *GetTrackingCategorySourceModifiedDate
-	StatusCode         int
-	RawResponse        *http.Response
+	TrackingCategoryTree *shared.TrackingCategoryTree
 }
