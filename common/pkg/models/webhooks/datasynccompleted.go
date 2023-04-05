@@ -11,31 +11,3 @@ type DataSyncCompletedResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 }
-
-type DataSyncCompletedDataSyncCompleteWebhookData struct {
-	// Data type the sync completed for.
-	DataType *string `json:"dataType,omitempty"`
-	// Unique identifier for the dataset that completed its sync.
-	DatasetID *string `json:"datasetId,omitempty"`
-}
-
-// DataSyncCompletedDataSyncCompleteWebhook - Webhook request body to notify the completion of a data sync.
-type DataSyncCompletedDataSyncCompleteWebhook struct {
-	// Unique identifier of the alert.
-	AlertID *string `json:"alertId,omitempty"`
-	// Unique identifier for your client in Codat.
-	ClientID *string `json:"clientId,omitempty"`
-	// Name of your client in Codat.
-	ClientName *string `json:"clientName,omitempty"`
-	// Unique identifier for your SMB in Codat.
-	CompanyID *string                                       `json:"companyId,omitempty"`
-	Data      *DataSyncCompletedDataSyncCompleteWebhookData `json:"data,omitempty"`
-	// Unique identifier for a company's data connection.
-	DataConnectionID *string `json:"dataConnectionId,omitempty"`
-	// A human readable message about the webhook.
-	Message *string `json:"message,omitempty"`
-	// Unique identifier for the rule.
-	RuleID *string `json:"ruleId,omitempty"`
-	// The type of rule.
-	RuleType *string `json:"ruleType,omitempty"`
-}

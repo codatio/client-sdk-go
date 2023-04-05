@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/common/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/common/pkg/utils"
 	"net/http"
 	"strings"
@@ -32,9 +33,9 @@ func newIntegrations(defaultClient, securityClient HTTPClient, serverURL, langua
 	}
 }
 
-// GetIntegrationsPlatformKey - Get integration
+// GetIntegration - Get integration
 // Get single integration, by platformKey
-func (s *integrations) GetIntegrationsPlatformKey(ctx context.Context, request operations.GetIntegrationsPlatformKeyRequest) (*operations.GetIntegrationsPlatformKeyResponse, error) {
+func (s *integrations) GetIntegration(ctx context.Context, request operations.GetIntegrationRequest) (*operations.GetIntegrationResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/integrations/{platformKey}", request, nil)
 
@@ -56,7 +57,7 @@ func (s *integrations) GetIntegrationsPlatformKey(ctx context.Context, request o
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetIntegrationsPlatformKeyResponse{
+	res := &operations.GetIntegrationResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -65,7 +66,7 @@ func (s *integrations) GetIntegrationsPlatformKey(ctx context.Context, request o
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetIntegrationsPlatformKeyIntegration
+			var out *shared.Integration
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -73,33 +74,25 @@ func (s *integrations) GetIntegrationsPlatformKey(ctx context.Context, request o
 			res.Integration = out
 		}
 	case httpRes.StatusCode == 401:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetIntegrationsPlatformKey401ApplicationJSON
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
-				return nil, err
-			}
-
-			res.GetIntegrationsPlatformKey401ApplicationJSONObject = out
-		}
+		fallthrough
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetIntegrationsPlatformKey404ApplicationJSON
+			var out *shared.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.GetIntegrationsPlatformKey404ApplicationJSONObject = out
+			res.ErrorMessage = out
 		}
 	}
 
 	return res, nil
 }
 
-// GetIntegrationsPlatformKeyBranding - Get branding
+// GetIntegrationsBranding - Get branding
 // Get branding for platform.
-func (s *integrations) GetIntegrationsPlatformKeyBranding(ctx context.Context, request operations.GetIntegrationsPlatformKeyBrandingRequest) (*operations.GetIntegrationsPlatformKeyBrandingResponse, error) {
+func (s *integrations) GetIntegrationsBranding(ctx context.Context, request operations.GetIntegrationsBrandingRequest) (*operations.GetIntegrationsBrandingResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/integrations/{platformKey}/branding", request, nil)
 
@@ -121,7 +114,7 @@ func (s *integrations) GetIntegrationsPlatformKeyBranding(ctx context.Context, r
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetIntegrationsPlatformKeyBrandingResponse{
+	res := &operations.GetIntegrationsBrandingResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -130,7 +123,7 @@ func (s *integrations) GetIntegrationsPlatformKeyBranding(ctx context.Context, r
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetIntegrationsPlatformKeyBrandingBranding
+			var out *shared.Branding
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -179,32 +172,24 @@ func (s *integrations) ListIntegrations(ctx context.Context, request operations.
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListIntegrationsLinks
+			var out *shared.Integrations
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Links = out
+			res.Integrations = out
 		}
 	case httpRes.StatusCode == 400:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListIntegrations400ApplicationJSON
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
-				return nil, err
-			}
-
-			res.ListIntegrations400ApplicationJSONObject = out
-		}
+		fallthrough
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListIntegrations401ApplicationJSON
+			var out *shared.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.ListIntegrations401ApplicationJSONObject = out
+			res.ErrorMessage = out
 		}
 	}
 

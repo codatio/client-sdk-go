@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/common/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/common/pkg/utils"
 	"net/http"
 	"strings"
@@ -34,7 +35,7 @@ func newCompanies(defaultClient, securityClient HTTPClient, serverURL, language,
 
 // CreateCompany - Create company
 // Create a new company
-func (s *companies) CreateCompany(ctx context.Context, request operations.CreateCompanyRequestBody) (*operations.CreateCompanyResponse, error) {
+func (s *companies) CreateCompany(ctx context.Context, request shared.CompanyRequestBody) (*operations.CreateCompanyResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/companies"
 
@@ -72,22 +73,22 @@ func (s *companies) CreateCompany(ctx context.Context, request operations.Create
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.CreateCompany200ApplicationJSON
+			var out *shared.Company
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.CreateCompany200ApplicationJSONObject = out
+			res.Company = out
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.CreateCompany401ApplicationJSON
+			var out *shared.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.CreateCompany401ApplicationJSONObject = out
+			res.ErrorMessage = out
 		}
 	}
 
@@ -129,12 +130,12 @@ func (s *companies) DeleteCompany(ctx context.Context, request operations.Delete
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.DeleteCompany401ApplicationJSON
+			var out *shared.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.DeleteCompany401ApplicationJSONObject = out
+			res.ErrorMessage = out
 		}
 	}
 
@@ -174,7 +175,7 @@ func (s *companies) GetCompany(ctx context.Context, request operations.GetCompan
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetCompanyCompany
+			var out *shared.Company
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -184,12 +185,12 @@ func (s *companies) GetCompany(ctx context.Context, request operations.GetCompan
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetCompany401ApplicationJSON
+			var out *shared.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.GetCompany401ApplicationJSONObject = out
+			res.ErrorMessage = out
 		}
 	}
 
@@ -233,32 +234,24 @@ func (s *companies) ListCompanies(ctx context.Context, request operations.ListCo
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListCompaniesLinks
+			var out *shared.Companies
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Links = out
+			res.Companies = out
 		}
 	case httpRes.StatusCode == 400:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListCompanies400ApplicationJSON
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
-				return nil, err
-			}
-
-			res.ListCompanies400ApplicationJSONObject = out
-		}
+		fallthrough
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListCompanies401ApplicationJSON
+			var out *shared.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.ListCompanies401ApplicationJSONObject = out
+			res.ErrorMessage = out
 		}
 	}
 
@@ -271,7 +264,7 @@ func (s *companies) UpdateCompany(ctx context.Context, request operations.Update
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "CompanyRequestBody", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -305,7 +298,7 @@ func (s *companies) UpdateCompany(ctx context.Context, request operations.Update
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.UpdateCompanyCompany
+			var out *shared.Company
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -315,12 +308,12 @@ func (s *companies) UpdateCompany(ctx context.Context, request operations.Update
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.UpdateCompany401ApplicationJSON
+			var out *shared.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.UpdateCompany401ApplicationJSONObject = out
+			res.ErrorMessage = out
 		}
 	}
 

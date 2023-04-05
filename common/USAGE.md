@@ -17,9 +17,9 @@ func main() {
         }),
     )
 
-    req := operations.CreateCompanyRequestBody{
-        Description: "unde",
-        Name: "deserunt",
+    req := shared.CompanyRequestBody{
+        Description: "corrupti",
+        Name: "provident",
     }
 
     ctx := context.Background()
@@ -28,7 +28,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.CreateCompany200ApplicationJSONObject != nil {
+    if res.Company != nil {
         // handle response
     }
 }

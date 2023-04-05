@@ -3,6 +3,7 @@
 package operations
 
 import (
+	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
 	"net/http"
 )
 
@@ -11,49 +12,12 @@ type GetWebhookRequest struct {
 	RuleID string `pathParam:"style=simple,explode=false,name=ruleId"`
 }
 
-// GetWebhook404ApplicationJSON - One or more of the resources you referenced could not be found.
-// This might be because your company or data connection id is wrong, or was already deleted.
-type GetWebhook404ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
-}
-
-// GetWebhook401ApplicationJSON - Your API request was not properly authorized.
-type GetWebhook401ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
-}
-
-type GetWebhookWebhookNotifiers struct {
-	Emails  []string `json:"emails,omitempty"`
-	Webhook *string  `json:"webhook,omitempty"`
-}
-
-// GetWebhookWebhook - Configuration to alert to a url or list of email addresses based on the given type / condition.
-type GetWebhookWebhook struct {
-	CompanyID *string                    `json:"companyId,omitempty"`
-	ID        string                     `json:"id"`
-	Notifiers GetWebhookWebhookNotifiers `json:"notifiers"`
-	Type      string                     `json:"type"`
-}
-
 type GetWebhookResponse struct {
 	ContentType string
+	// Your API request was not properly authorized.
+	ErrorMessage *shared.ErrorMessage
+	// OK
+	Rule        *shared.Rule
 	StatusCode  int
 	RawResponse *http.Response
-	// OK
-	Webhook *GetWebhookWebhook
-	// Your API request was not properly authorized.
-	GetWebhook401ApplicationJSONObject *GetWebhook401ApplicationJSON
-	// One or more of the resources you referenced could not be found.
-	// This might be because your company or data connection id is wrong, or was already deleted.
-	GetWebhook404ApplicationJSONObject *GetWebhook404ApplicationJSON
 }

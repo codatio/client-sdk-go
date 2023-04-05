@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/common/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/common/pkg/utils"
 	"net/http"
 )
@@ -31,62 +32,9 @@ func newPushData(defaultClient, securityClient HTTPClient, serverURL, language, 
 	}
 }
 
-// GetCompaniesCompanyIDConnectionsConnectionIDPush - List push options
-// This is the generic documentation for creation and updating of data. See the equivalent endpoint for a given data type for more specific information.
-//
-// Before pushing data into accounting software, it is often necessary to collect some details from the user as to how they would like the data to be inserted. This includes names and amounts on transactional entities, but also factors such as categorisation of entities, which is often handled differently between different accounting packages. A good example of this is specifying where on the balance sheet/profit and loss reports the user would like a newly-created nominal account to appear.
-//
-// Codat tries not to limit users to pushing to a very limited number of standard categories, so we have implemented "options" endpoints, which allow us to expose to our clients the fields which are required to be pushed for a specific linked company, and the options which may be selected for each field.
-//
-// > **Supported Integrations**
-// >
-// > Check out our [Knowledge UI](https://knowledge.codat.io/) for integrations that support push (POST/PUT methods).
-func (s *pushData) GetCompaniesCompanyIDConnectionsConnectionIDPush(ctx context.Context, request operations.GetCompaniesCompanyIDConnectionsConnectionIDPushRequest) (*operations.GetCompaniesCompanyIDConnectionsConnectionIDPushResponse, error) {
-	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/{dataType}", request, nil)
-
-	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error creating request: %w", err)
-	}
-
-	client := s.securityClient
-
-	httpRes, err := client.Do(req)
-	if err != nil {
-		return nil, fmt.Errorf("error sending request: %w", err)
-	}
-	if httpRes == nil {
-		return nil, fmt.Errorf("error sending request: no response")
-	}
-	defer httpRes.Body.Close()
-
-	contentType := httpRes.Header.Get("Content-Type")
-
-	res := &operations.GetCompaniesCompanyIDConnectionsConnectionIDPushResponse{
-		StatusCode:  httpRes.StatusCode,
-		ContentType: contentType,
-		RawResponse: httpRes,
-	}
-	switch {
-	case httpRes.StatusCode == 200:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetCompaniesCompanyIDConnectionsConnectionIDPushPushOption
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
-				return nil, err
-			}
-
-			res.PushOption = out
-		}
-	}
-
-	return res, nil
-}
-
-// GetCompaniesCompanyIDPush - List push operations
+// GetCompanyPushHistory - List push operations
 // List push operation records.
-func (s *pushData) GetCompaniesCompanyIDPush(ctx context.Context, request operations.GetCompaniesCompanyIDPushRequest) (*operations.GetCompaniesCompanyIDPushResponse, error) {
+func (s *pushData) GetCompanyPushHistory(ctx context.Context, request operations.GetCompanyPushHistoryRequest) (*operations.GetCompanyPushHistoryResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/push", request, nil)
 
@@ -112,7 +60,7 @@ func (s *pushData) GetCompaniesCompanyIDPush(ctx context.Context, request operat
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetCompaniesCompanyIDPushResponse{
+	res := &operations.GetCompanyPushHistoryResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -121,21 +69,74 @@ func (s *pushData) GetCompaniesCompanyIDPush(ctx context.Context, request operat
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetCompaniesCompanyIDPushLinks
+			var out *shared.PushHistoryResponse
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Links = out
+			res.PushHistoryResponse = out
 		}
 	}
 
 	return res, nil
 }
 
-// GetCompaniesCompanyIDPushPushOperationKey - Get push operation
+// GetCreateUpdateModelOptionsByDataType - List push options
+// This is the generic documentation for creation and updating of data. See the equivalent endpoint for a given data type for more specific information.
+//
+// Before pushing data into accounting software, it is often necessary to collect some details from the user as to how they would like the data to be inserted. This includes names and amounts on transactional entities, but also factors such as categorisation of entities, which is often handled differently between different accounting packages. A good example of this is specifying where on the balance sheet/profit and loss reports the user would like a newly-created nominal account to appear.
+//
+// Codat tries not to limit users to pushing to a very limited number of standard categories, so we have implemented "options" endpoints, which allow us to expose to our clients the fields which are required to be pushed for a specific linked company, and the options which may be selected for each field.
+//
+// > **Supported Integrations**
+// >
+// > Check out our [Knowledge UI](https://knowledge.codat.io/) for integrations that support push (POST/PUT methods).
+func (s *pushData) GetCreateUpdateModelOptionsByDataType(ctx context.Context, request operations.GetCreateUpdateModelOptionsByDataTypeRequest) (*operations.GetCreateUpdateModelOptionsByDataTypeResponse, error) {
+	baseURL := s.serverURL
+	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/{dataType}", request, nil)
+
+	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+
+	client := s.securityClient
+
+	httpRes, err := client.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
+	}
+	defer httpRes.Body.Close()
+
+	contentType := httpRes.Header.Get("Content-Type")
+
+	res := &operations.GetCreateUpdateModelOptionsByDataTypeResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: contentType,
+		RawResponse: httpRes,
+	}
+	switch {
+	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.PushOption
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.PushOption = out
+		}
+	}
+
+	return res, nil
+}
+
+// GetPushOperation - Get push operation
 // Retrieve push operation.
-func (s *pushData) GetCompaniesCompanyIDPushPushOperationKey(ctx context.Context, request operations.GetCompaniesCompanyIDPushPushOperationKeyRequest) (*operations.GetCompaniesCompanyIDPushPushOperationKeyResponse, error) {
+func (s *pushData) GetPushOperation(ctx context.Context, request operations.GetPushOperationRequest) (*operations.GetPushOperationResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/push/{pushOperationKey}", request, nil)
 
@@ -157,7 +158,7 @@ func (s *pushData) GetCompaniesCompanyIDPushPushOperationKey(ctx context.Context
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetCompaniesCompanyIDPushPushOperationKeyResponse{
+	res := &operations.GetPushOperationResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -166,12 +167,12 @@ func (s *pushData) GetCompaniesCompanyIDPushPushOperationKey(ctx context.Context
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetCompaniesCompanyIDPushPushOperationKey200ApplicationJSON
+			var out *shared.PushOperation
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.GetCompaniesCompanyIDPushPushOperationKey200ApplicationJSONObject = out
+			res.PushOperation = out
 		}
 	}
 

@@ -103,3 +103,35 @@ Based on:
 - Speakeasy CLI 1.13.0 https://github.com/speakeasy-api/speakeasy
 ### Releases
 - [Go v0.6.0] https://github.com/codatio/client-sdk-go/releases/tag/common/v0.6.0 - common
+
+## 2023-03-29 00:04:37
+### Changes
+Based on:
+- OpenAPI Doc 2.1.0 https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Common.yaml
+- Speakeasy CLI 1.19.2 (2.16.5) https://github.com/speakeasy-api/speakeasy
+### Releases
+- [Go v0.7.0] https://github.com/codatio/client-sdk-go/releases/tag/common/v0.7.0 - common
+
+## 2023-03-30 00:04:38
+### Changes
+Based on:
+- OpenAPI Doc 2.1.0 https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Common.yaml
+- Speakeasy CLI 1.19.2 (2.16.5) https://github.com/speakeasy-api/speakeasy
+### Releases
+- [Go v0.7.1] https://github.com/codatio/client-sdk-go/releases/tag/common/v0.7.1 - common
+
+## 2023-03-31 00:04:22
+### Changes
+Based on:
+- OpenAPI Doc 2.1.0 https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Common.yaml
+- Speakeasy CLI 1.19.2 (2.16.5) https://github.com/speakeasy-api/speakeasy
+### Releases
+- [Go v0.7.2] https://github.com/codatio/client-sdk-go/releases/tag/common/v0.7.2 - common
+
+## 2023-04-01 00:04:44
+### Changes
+Based on:
+- OpenAPI Doc 2.1.0 https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Common.yaml
+- Speakeasy CLI 1.19.3 (2.16.7) https://github.com/speakeasy-api/speakeasy
+### Releases
+- [Go v0.7.3] https://github.com/codatio/client-sdk-go/releases/tag/common/v0.7.3 - common

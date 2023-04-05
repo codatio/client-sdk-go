@@ -3,38 +3,16 @@
 package operations
 
 import (
+	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
 	"net/http"
 )
 
-type CreateRuleWebhookNotifiers struct {
-	Emails  []string `json:"emails,omitempty"`
-	Webhook *string  `json:"webhook,omitempty"`
-}
-
-// CreateRuleWebhook - Configuration to alert to a url or list of email addresses based on the given type / condition.
-type CreateRuleWebhook struct {
-	CompanyID *string                    `json:"companyId,omitempty"`
-	ID        string                     `json:"id"`
-	Notifiers CreateRuleWebhookNotifiers `json:"notifiers"`
-	Type      string                     `json:"type"`
-}
-
-// CreateRule401ApplicationJSON - Your API request was not properly authorized.
-type CreateRule401ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
-}
-
 type CreateRuleResponse struct {
 	ContentType string
+	// Your API request was not properly authorized.
+	ErrorMessage *shared.ErrorMessage
+	// OK
+	Rule        *shared.Rule
 	StatusCode  int
 	RawResponse *http.Response
-	// OK
-	Webhook *CreateRuleWebhook
-	// Your API request was not properly authorized.
-	CreateRule401ApplicationJSONObject *CreateRule401ApplicationJSON
 }

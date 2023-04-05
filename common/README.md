@@ -28,9 +28,9 @@ func main() {
         }),
     )
 
-    req := operations.CreateCompanyRequestBody{
-        Description: "unde",
-        Name: "deserunt",
+    req := shared.CompanyRequestBody{
+        Description: "corrupti",
+        Name: "provident",
     }
 
     ctx := context.Background()
@@ -39,7 +39,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.CreateCompany200ApplicationJSONObject != nil {
+    if res.Company != nil {
         // handle response
     }
 }
@@ -47,7 +47,7 @@ func main() {
 <!-- End SDK Example Usage -->
 
 <!-- Start SDK Available Operations -->
-## SDK Available Operations
+## Available Resources and Operations
 
 
 ### Companies
@@ -62,40 +62,40 @@ func main() {
 
 * `CreateDataConnection` - Create a data connection
 * `DeleteCompanyConnection` - Delete connection
-* `GetCompanyAuthorization` - Update authorization
 * `GetCompanyConnection` - Get connection
 * `ListCompanyConnections` - List connections
 * `UnlinkCompanyConnection` - Unlink connection
+* `UpdateConnectionAuthorization` - Update authorization
 
 ### DataStatus
 
-* `GetCompaniesCompanyIDDataStatus` - Get data status
 * `GetCompanyDataHistory` - Get pull operations
+* `GetCompanyDataStatus` - Get data status
 * `GetPullOperation` - Get pull operation
 
 ### Integrations
 
-* `GetIntegrationsPlatformKey` - Get integration
-* `GetIntegrationsPlatformKeyBranding` - Get branding
+* `GetIntegration` - Get integration
+* `GetIntegrationsBranding` - Get branding
 * `ListIntegrations` - List integrations
 
 ### PushData
 
-* `GetCompaniesCompanyIDConnectionsConnectionIDPush` - List push options
-* `GetCompaniesCompanyIDPush` - List push operations
-* `GetCompaniesCompanyIDPushPushOperationKey` - Get push operation
+* `GetCompanyPushHistory` - List push operations
+* `GetCreateUpdateModelOptionsByDataType` - List push options
+* `GetPushOperation` - Get push operation
 
 ### RefreshData
 
-* `CreateManyPullOperations` - Queue pull operations
 * `CreatePullOperation` - Queue pull operation
+* `RefreshCompanyData` - Queue pull operations
 
 ### Settings
 
+* `GetProfile` - Get profile
 * `GetProfileSyncSettings` - Get sync settings
-* `GetSettingsProfile` - Get profile
-* `PostProfileSyncSettings` - Update all sync settings
-* `PutProfile` - Update profile
+* `UpdateProfile` - Update profile
+* `UpdateSyncSettings` - Update all sync settings
 
 ### Webhooks
 

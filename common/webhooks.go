@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/common/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/common/pkg/utils"
 	"net/http"
 	"strings"
@@ -34,7 +35,7 @@ func newWebhooks(defaultClient, securityClient HTTPClient, serverURL, language, 
 
 // CreateRule - Create webhook
 // Create a new webhook configuration
-func (s *webhooks) CreateRule(ctx context.Context, request operations.CreateRuleWebhook) (*operations.CreateRuleResponse, error) {
+func (s *webhooks) CreateRule(ctx context.Context, request shared.Rule) (*operations.CreateRuleResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/rules"
 
@@ -72,22 +73,22 @@ func (s *webhooks) CreateRule(ctx context.Context, request operations.CreateRule
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.CreateRuleWebhook
+			var out *shared.Rule
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Webhook = out
+			res.Rule = out
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.CreateRule401ApplicationJSON
+			var out *shared.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.CreateRule401ApplicationJSONObject = out
+			res.ErrorMessage = out
 		}
 	}
 
@@ -127,32 +128,24 @@ func (s *webhooks) GetWebhook(ctx context.Context, request operations.GetWebhook
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetWebhookWebhook
+			var out *shared.Rule
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Webhook = out
+			res.Rule = out
 		}
 	case httpRes.StatusCode == 401:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetWebhook401ApplicationJSON
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
-				return nil, err
-			}
-
-			res.GetWebhook401ApplicationJSONObject = out
-		}
+		fallthrough
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetWebhook404ApplicationJSON
+			var out *shared.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.GetWebhook404ApplicationJSONObject = out
+			res.ErrorMessage = out
 		}
 	}
 
@@ -196,32 +189,24 @@ func (s *webhooks) ListRules(ctx context.Context, request operations.ListRulesRe
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListRulesLinks
+			var out *shared.Rules
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Links = out
+			res.Rules = out
 		}
 	case httpRes.StatusCode == 400:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListRules400ApplicationJSON
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
-				return nil, err
-			}
-
-			res.ListRules400ApplicationJSONObject = out
-		}
+		fallthrough
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListRules401ApplicationJSON
+			var out *shared.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.ListRules401ApplicationJSONObject = out
+			res.ErrorMessage = out
 		}
 	}
 

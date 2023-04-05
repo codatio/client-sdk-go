@@ -3,6 +3,7 @@
 package operations
 
 import (
+	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
 	"net/http"
 )
 
@@ -17,133 +18,12 @@ type ListIntegrationsRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-// ListIntegrations401ApplicationJSON - Your API request was not properly authorized.
-type ListIntegrations401ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
-}
-
-// ListIntegrations400ApplicationJSON - Your `query` parameter was not correctly formed
-type ListIntegrations400ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
-}
-
-type ListIntegrationsLinksLinksCurrent struct {
-	Href string `json:"href"`
-}
-
-type ListIntegrationsLinksLinksNext struct {
-	Href *string `json:"href,omitempty"`
-}
-
-type ListIntegrationsLinksLinksPrevious struct {
-	Href *string `json:"href,omitempty"`
-}
-
-type ListIntegrationsLinksLinksSelf struct {
-	Href string `json:"href"`
-}
-
-type ListIntegrationsLinksLinks struct {
-	Current  ListIntegrationsLinksLinksCurrent   `json:"current"`
-	Next     *ListIntegrationsLinksLinksNext     `json:"next,omitempty"`
-	Previous *ListIntegrationsLinksLinksPrevious `json:"previous,omitempty"`
-	Self     ListIntegrationsLinksLinksSelf      `json:"self"`
-}
-
-type ListIntegrationsLinksIntegrationDatatypeFeatureSupportedFeaturesFeatureStateEnum string
-
-const (
-	ListIntegrationsLinksIntegrationDatatypeFeatureSupportedFeaturesFeatureStateEnumRelease        ListIntegrationsLinksIntegrationDatatypeFeatureSupportedFeaturesFeatureStateEnum = "Release"
-	ListIntegrationsLinksIntegrationDatatypeFeatureSupportedFeaturesFeatureStateEnumBeta           ListIntegrationsLinksIntegrationDatatypeFeatureSupportedFeaturesFeatureStateEnum = "Beta"
-	ListIntegrationsLinksIntegrationDatatypeFeatureSupportedFeaturesFeatureStateEnumDeprecated     ListIntegrationsLinksIntegrationDatatypeFeatureSupportedFeaturesFeatureStateEnum = "Deprecated"
-	ListIntegrationsLinksIntegrationDatatypeFeatureSupportedFeaturesFeatureStateEnumNotSupported   ListIntegrationsLinksIntegrationDatatypeFeatureSupportedFeaturesFeatureStateEnum = "NotSupported"
-	ListIntegrationsLinksIntegrationDatatypeFeatureSupportedFeaturesFeatureStateEnumNotImplemented ListIntegrationsLinksIntegrationDatatypeFeatureSupportedFeaturesFeatureStateEnum = "NotImplemented"
-)
-
-type ListIntegrationsLinksIntegrationDatatypeFeatureSupportedFeaturesFeatureTypeEnum string
-
-const (
-	ListIntegrationsLinksIntegrationDatatypeFeatureSupportedFeaturesFeatureTypeEnumGet                ListIntegrationsLinksIntegrationDatatypeFeatureSupportedFeaturesFeatureTypeEnum = "Get"
-	ListIntegrationsLinksIntegrationDatatypeFeatureSupportedFeaturesFeatureTypeEnumPost               ListIntegrationsLinksIntegrationDatatypeFeatureSupportedFeaturesFeatureTypeEnum = "Post"
-	ListIntegrationsLinksIntegrationDatatypeFeatureSupportedFeaturesFeatureTypeEnumCategorization     ListIntegrationsLinksIntegrationDatatypeFeatureSupportedFeaturesFeatureTypeEnum = "Categorization"
-	ListIntegrationsLinksIntegrationDatatypeFeatureSupportedFeaturesFeatureTypeEnumDelete             ListIntegrationsLinksIntegrationDatatypeFeatureSupportedFeaturesFeatureTypeEnum = "Delete"
-	ListIntegrationsLinksIntegrationDatatypeFeatureSupportedFeaturesFeatureTypeEnumPut                ListIntegrationsLinksIntegrationDatatypeFeatureSupportedFeaturesFeatureTypeEnum = "Put"
-	ListIntegrationsLinksIntegrationDatatypeFeatureSupportedFeaturesFeatureTypeEnumGetAsPdf           ListIntegrationsLinksIntegrationDatatypeFeatureSupportedFeaturesFeatureTypeEnum = "GetAsPdf"
-	ListIntegrationsLinksIntegrationDatatypeFeatureSupportedFeaturesFeatureTypeEnumDownloadAttachment ListIntegrationsLinksIntegrationDatatypeFeatureSupportedFeaturesFeatureTypeEnum = "DownloadAttachment"
-	ListIntegrationsLinksIntegrationDatatypeFeatureSupportedFeaturesFeatureTypeEnumGetAttachment      ListIntegrationsLinksIntegrationDatatypeFeatureSupportedFeaturesFeatureTypeEnum = "GetAttachment"
-	ListIntegrationsLinksIntegrationDatatypeFeatureSupportedFeaturesFeatureTypeEnumGetAttachments     ListIntegrationsLinksIntegrationDatatypeFeatureSupportedFeaturesFeatureTypeEnum = "GetAttachments"
-	ListIntegrationsLinksIntegrationDatatypeFeatureSupportedFeaturesFeatureTypeEnumUploadAttachment   ListIntegrationsLinksIntegrationDatatypeFeatureSupportedFeaturesFeatureTypeEnum = "UploadAttachment"
-)
-
-type ListIntegrationsLinksIntegrationDatatypeFeatureSupportedFeatures struct {
-	FeatureState ListIntegrationsLinksIntegrationDatatypeFeatureSupportedFeaturesFeatureStateEnum `json:"featureState"`
-	FeatureType  ListIntegrationsLinksIntegrationDatatypeFeatureSupportedFeaturesFeatureTypeEnum  `json:"featureType"`
-}
-
-// ListIntegrationsLinksIntegrationDatatypeFeature - Describes support for a given datatype and associated operations
-type ListIntegrationsLinksIntegrationDatatypeFeature struct {
-	Datatype          string                                                             `json:"datatype"`
-	SupportedFeatures []ListIntegrationsLinksIntegrationDatatypeFeatureSupportedFeatures `json:"supportedFeatures"`
-}
-
-// ListIntegrationsLinksIntegrationSourceTypeEnum - The type of platform of the connection.
-type ListIntegrationsLinksIntegrationSourceTypeEnum string
-
-const (
-	ListIntegrationsLinksIntegrationSourceTypeEnumAccounting ListIntegrationsLinksIntegrationSourceTypeEnum = "Accounting"
-	ListIntegrationsLinksIntegrationSourceTypeEnumBanking    ListIntegrationsLinksIntegrationSourceTypeEnum = "Banking"
-	ListIntegrationsLinksIntegrationSourceTypeEnumCommerce   ListIntegrationsLinksIntegrationSourceTypeEnum = "Commerce"
-	ListIntegrationsLinksIntegrationSourceTypeEnumOther      ListIntegrationsLinksIntegrationSourceTypeEnum = "Other"
-	ListIntegrationsLinksIntegrationSourceTypeEnumUnknown    ListIntegrationsLinksIntegrationSourceTypeEnum = "Unknown"
-)
-
-// ListIntegrationsLinksIntegration - An integration that Codat supports
-type ListIntegrationsLinksIntegration struct {
-	DataProvidedBy   *string                                           `json:"dataProvidedBy,omitempty"`
-	DatatypeFeatures []ListIntegrationsLinksIntegrationDatatypeFeature `json:"datatypeFeatures,omitempty"`
-	// Whether this integration is enabled for your customers to use
-	Enabled bool `json:"enabled"`
-	// A Codat ID representing the integration.
-	IntegrationID      *string `json:"integrationId,omitempty"`
-	IsBeta             *bool   `json:"isBeta,omitempty"`
-	IsOfflineConnector *bool   `json:"isOfflineConnector,omitempty"`
-	// 4 letter key for an integration. [Read more](https://docs.codat.io/integrations/accounting/accounting-platform-keys).
-	Key     string `json:"key"`
-	LogoURL string `json:"logoUrl"`
-	Name    string `json:"name"`
-	// A source-specific ID used to distinguish between different sources originating from the same data connection. In general, a data connection is a single data source. However, for TrueLayer, `sourceId` is associated with a specific bank and has a many-to-one relationship with the `integrationId`.
-	SourceID *string `json:"sourceId,omitempty"`
-	// The type of platform of the connection.
-	SourceType *ListIntegrationsLinksIntegrationSourceTypeEnum `json:"sourceType,omitempty"`
-}
-
-// ListIntegrationsLinks - Codat's Paging Model
-type ListIntegrationsLinks struct {
-	Links        ListIntegrationsLinksLinks         `json:"_links"`
-	PageNumber   int64                              `json:"pageNumber"`
-	PageSize     int64                              `json:"pageSize"`
-	Results      []ListIntegrationsLinksIntegration `json:"results,omitempty"`
-	TotalResults int64                              `json:"totalResults"`
-}
-
 type ListIntegrationsResponse struct {
 	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
-	// OK
-	Links *ListIntegrationsLinks
 	// Your `query` parameter was not correctly formed
-	ListIntegrations400ApplicationJSONObject *ListIntegrations400ApplicationJSON
-	// Your API request was not properly authorized.
-	ListIntegrations401ApplicationJSONObject *ListIntegrations401ApplicationJSON
+	ErrorMessage *shared.ErrorMessage
+	// OK
+	Integrations *shared.Integrations
+	StatusCode   int
+	RawResponse  *http.Response
 }
