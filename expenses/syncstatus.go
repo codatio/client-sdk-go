@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/expenses/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/expenses/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/expenses/pkg/utils"
 	"net/http"
 )
@@ -64,12 +65,12 @@ func (s *syncStatus) GetLastSuccessfulSync(ctx context.Context, request operatio
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetLastSuccessfulSync200ApplicationJSON
+			var out *shared.CompanySyncStatus
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.GetLastSuccessfulSync200ApplicationJSONObject = out
+			res.CompanySyncStatus = out
 		}
 	}
 
@@ -109,12 +110,12 @@ func (s *syncStatus) GetLatestSync(ctx context.Context, request operations.GetLa
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetLatestSync200ApplicationJSON
+			var out *shared.CompanySyncStatus
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.GetLatestSync200ApplicationJSONObject = out
+			res.CompanySyncStatus = out
 		}
 	}
 
@@ -154,12 +155,12 @@ func (s *syncStatus) GetSyncByID(ctx context.Context, request operations.GetSync
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetSyncByID200ApplicationJSON
+			var out *shared.CompanySyncStatus
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.GetSyncByID200ApplicationJSONObject = out
+			res.CompanySyncStatus = out
 		}
 	}
 
@@ -199,12 +200,12 @@ func (s *syncStatus) ListSyncs(ctx context.Context, request operations.ListSyncs
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out []operations.ListSyncs200ApplicationJSON
+			var out []shared.CompanySyncStatus
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.ListSyncs200ApplicationJSONObjects = out
+			res.CompanySyncStatuses = out
 		}
 	}
 

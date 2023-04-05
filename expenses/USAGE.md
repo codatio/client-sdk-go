@@ -27,7 +27,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.GetCompanyConfiguration200ApplicationJSONObject != nil {
+    if res.CompanyConfiguration != nil {
         // handle response
     }
 }

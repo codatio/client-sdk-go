@@ -3,31 +3,28 @@
 package operations
 
 import (
+	"github.com/codatio/client-sdk-go/expenses/pkg/models/shared"
 	"net/http"
 )
 
+type UploadAttachmentRequestBody struct {
+	Content     []byte `multipartForm:"content"`
+	RequestBody string `multipartForm:"name=requestBody"`
+}
+
 type UploadAttachmentRequest struct {
-	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
+	RequestBody *UploadAttachmentRequestBody `multipartForm:"file" request:"mediaType=multipart/form-data"`
+	CompanyID   string                       `pathParam:"style=simple,explode=false,name=companyId"`
 	// Unique identifier for a sync.
 	SyncID string `pathParam:"style=simple,explode=false,name=syncId"`
 	// The unique identifier for your SMB's transaction.
 	TransactionID string `pathParam:"style=simple,explode=false,name=transactionId"`
 }
 
-// UploadAttachment200ApplicationJSON - OK
-type UploadAttachment200ApplicationJSON struct {
-	// Unique ID of company in Codat
-	CompanyID *string `json:"companyId,omitempty"`
-	// Unique identifier of attachment
-	ID *string `json:"id,omitempty"`
-	// Unique identifier of transaction
-	TransactionID *string `json:"transactionId,omitempty"`
-}
-
 type UploadAttachmentResponse struct {
+	// OK
+	Attachment  *shared.Attachment
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
-	// OK
-	UploadAttachment200ApplicationJSONObject *UploadAttachment200ApplicationJSON
 }

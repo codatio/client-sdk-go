@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/expenses/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/expenses/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/expenses/pkg/utils"
 	"net/http"
 )
@@ -31,9 +32,9 @@ func newConnections(defaultClient, securityClient HTTPClient, serverURL, languag
 	}
 }
 
-// CreatePartnerexpenseConnection - Create Partner Expense connection
+// CreatePartnerExpenseConnection - Create Partner Expense connection
 // Creates a Partner Expense data connection
-func (s *connections) CreatePartnerexpenseConnection(ctx context.Context, request operations.CreatePartnerexpenseConnectionRequest) (*operations.CreatePartnerexpenseConnectionResponse, error) {
+func (s *connections) CreatePartnerExpenseConnection(ctx context.Context, request operations.CreatePartnerExpenseConnectionRequest) (*operations.CreatePartnerExpenseConnectionResponse, error) {
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/sync/expenses/connections/partnerExpense", request, nil)
 
@@ -55,7 +56,7 @@ func (s *connections) CreatePartnerexpenseConnection(ctx context.Context, reques
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.CreatePartnerexpenseConnectionResponse{
+	res := &operations.CreatePartnerExpenseConnectionResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -64,12 +65,12 @@ func (s *connections) CreatePartnerexpenseConnection(ctx context.Context, reques
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.CreatePartnerexpenseConnectionConnection
+			var out *shared.DataConnection
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.Connection = out
+			res.DataConnection = out
 		}
 	}
 

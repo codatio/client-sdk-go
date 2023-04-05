@@ -3,6 +3,7 @@
 package operations
 
 import (
+	"github.com/codatio/client-sdk-go/expenses/pkg/models/shared"
 	"net/http"
 )
 
@@ -10,32 +11,10 @@ type GetCompanyConfigurationRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
-type GetCompanyConfiguration200ApplicationJSONBankAccount struct {
-	// The id of the account from which purchases are made
-	ID *string `json:"id,omitempty"`
-}
-
-type GetCompanyConfiguration200ApplicationJSONCustomer struct {
-	// id of the customer for all income related activities to be associated to.
-	ID *string `json:"id,omitempty"`
-}
-
-type GetCompanyConfiguration200ApplicationJSONSupplier struct {
-	// id of the supplier for all purchases to be associated to
-	ID *string `json:"id,omitempty"`
-}
-
-// GetCompanyConfiguration200ApplicationJSON - Success
-type GetCompanyConfiguration200ApplicationJSON struct {
-	BankAccount *GetCompanyConfiguration200ApplicationJSONBankAccount `json:"bankAccount,omitempty"`
-	Customer    *GetCompanyConfiguration200ApplicationJSONCustomer    `json:"customer,omitempty"`
-	Supplier    *GetCompanyConfiguration200ApplicationJSONSupplier    `json:"supplier,omitempty"`
-}
-
 type GetCompanyConfigurationResponse struct {
-	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
 	// Success
-	GetCompanyConfiguration200ApplicationJSONObject *GetCompanyConfiguration200ApplicationJSON
+	CompanyConfiguration *shared.CompanyConfiguration
+	ContentType          string
+	StatusCode           int
+	RawResponse          *http.Response
 }

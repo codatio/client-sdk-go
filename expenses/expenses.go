@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/expenses/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/expenses/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/expenses/pkg/utils"
 	"net/http"
 )
@@ -37,7 +38,7 @@ func (s *expenses) CreateExpenseDataset(ctx context.Context, request operations.
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/sync/expenses/data/expense-transactions", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "CreateExpenseRequest", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -71,12 +72,12 @@ func (s *expenses) CreateExpenseDataset(ctx context.Context, request operations.
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.CreateExpenseDataset200ApplicationJSON
+			var out *shared.CreateExpenseResponse
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.CreateExpenseDataset200ApplicationJSONObject = out
+			res.CreateExpenseResponse = out
 		}
 	}
 
@@ -89,10 +90,17 @@ func (s *expenses) UploadAttachment(ctx context.Context, request operations.Uplo
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/sync/expenses/syncs/{syncId}/transactions/{transactionId}/attachments", request, nil)
 
-	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "multipart")
+	if err != nil {
+		return nil, fmt.Errorf("error serializing request body: %w", err)
+	}
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+
+	req.Header.Set("Content-Type", reqContentType)
 
 	client := s.securityClient
 
@@ -116,12 +124,12 @@ func (s *expenses) UploadAttachment(ctx context.Context, request operations.Uplo
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.UploadAttachment200ApplicationJSON
+			var out *shared.Attachment
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.UploadAttachment200ApplicationJSONObject = out
+			res.Attachment = out
 		}
 	}
 

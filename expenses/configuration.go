@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/expenses/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/expenses/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/expenses/pkg/utils"
 	"net/http"
 )
@@ -64,12 +65,12 @@ func (s *configuration) GetCompanyConfiguration(ctx context.Context, request ope
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetCompanyConfiguration200ApplicationJSON
+			var out *shared.CompanyConfiguration
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.GetCompanyConfiguration200ApplicationJSONObject = out
+			res.CompanyConfiguration = out
 		}
 	}
 
@@ -82,7 +83,7 @@ func (s *configuration) SaveCompanyConfiguration(ctx context.Context, request op
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/sync/expenses/config", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "CompanyConfiguration", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -116,22 +117,22 @@ func (s *configuration) SaveCompanyConfiguration(ctx context.Context, request op
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.SaveCompanyConfiguration200ApplicationJSON
+			var out *shared.CompanyConfiguration
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.SaveCompanyConfiguration200ApplicationJSONObject = out
+			res.CompanyConfiguration = out
 		}
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.SaveCompanyConfiguration400ApplicationJSON
+			var out *shared.CodatErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.SaveCompanyConfiguration400ApplicationJSONObject = out
+			res.CodatErrorMessage = out
 		}
 	}
 

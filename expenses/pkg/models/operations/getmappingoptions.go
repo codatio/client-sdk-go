@@ -3,108 +3,18 @@
 package operations
 
 import (
+	"github.com/codatio/client-sdk-go/expenses/pkg/models/shared"
 	"net/http"
-	"time"
 )
 
 type GetMappingOptionsRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
-// GetMappingOptions200ApplicationJSONAccountsAccountTypeEnum - Type of the account.
-type GetMappingOptions200ApplicationJSONAccountsAccountTypeEnum string
-
-const (
-	GetMappingOptions200ApplicationJSONAccountsAccountTypeEnumAsset     GetMappingOptions200ApplicationJSONAccountsAccountTypeEnum = "Asset"
-	GetMappingOptions200ApplicationJSONAccountsAccountTypeEnumLiability GetMappingOptions200ApplicationJSONAccountsAccountTypeEnum = "Liability"
-	GetMappingOptions200ApplicationJSONAccountsAccountTypeEnumIncome    GetMappingOptions200ApplicationJSONAccountsAccountTypeEnum = "Income"
-	GetMappingOptions200ApplicationJSONAccountsAccountTypeEnumExpense   GetMappingOptions200ApplicationJSONAccountsAccountTypeEnum = "Expense"
-	GetMappingOptions200ApplicationJSONAccountsAccountTypeEnumEquity    GetMappingOptions200ApplicationJSONAccountsAccountTypeEnum = "Equity"
-)
-
-type GetMappingOptions200ApplicationJSONAccountsValidTransactionTypesEnum string
-
-const (
-	GetMappingOptions200ApplicationJSONAccountsValidTransactionTypesEnumPayment       GetMappingOptions200ApplicationJSONAccountsValidTransactionTypesEnum = "Payment"
-	GetMappingOptions200ApplicationJSONAccountsValidTransactionTypesEnumRefund        GetMappingOptions200ApplicationJSONAccountsValidTransactionTypesEnum = "Refund"
-	GetMappingOptions200ApplicationJSONAccountsValidTransactionTypesEnumReward        GetMappingOptions200ApplicationJSONAccountsValidTransactionTypesEnum = "Reward"
-	GetMappingOptions200ApplicationJSONAccountsValidTransactionTypesEnumChargeback    GetMappingOptions200ApplicationJSONAccountsValidTransactionTypesEnum = "Chargeback"
-	GetMappingOptions200ApplicationJSONAccountsValidTransactionTypesEnumTransferIn    GetMappingOptions200ApplicationJSONAccountsValidTransactionTypesEnum = "TransferIn"
-	GetMappingOptions200ApplicationJSONAccountsValidTransactionTypesEnumTransferOut   GetMappingOptions200ApplicationJSONAccountsValidTransactionTypesEnum = "TransferOut"
-	GetMappingOptions200ApplicationJSONAccountsValidTransactionTypesEnumAdjustmentIn  GetMappingOptions200ApplicationJSONAccountsValidTransactionTypesEnum = "AdjustmentIn"
-	GetMappingOptions200ApplicationJSONAccountsValidTransactionTypesEnumAdjustmentOut GetMappingOptions200ApplicationJSONAccountsValidTransactionTypesEnum = "AdjustmentOut"
-)
-
-type GetMappingOptions200ApplicationJSONAccounts struct {
-	// Type of the account.
-	AccountType *GetMappingOptions200ApplicationJSONAccountsAccountTypeEnum `json:"accountType,omitempty"`
-	// Currency of the account.
-	Currency *string `json:"currency,omitempty"`
-	// Unique identifier of account.
-	ID *string `json:"id,omitempty"`
-	// Name of the account as it appears in the companies accounting software.
-	Name *string `json:"name,omitempty"`
-	// Supported transaction types for the account.
-	ValidTransactionTypes []GetMappingOptions200ApplicationJSONAccountsValidTransactionTypesEnum `json:"validTransactionTypes,omitempty"`
-}
-
-type GetMappingOptions200ApplicationJSONTaxRatesValidTransactionTypesEnum string
-
-const (
-	GetMappingOptions200ApplicationJSONTaxRatesValidTransactionTypesEnumPayment       GetMappingOptions200ApplicationJSONTaxRatesValidTransactionTypesEnum = "Payment"
-	GetMappingOptions200ApplicationJSONTaxRatesValidTransactionTypesEnumRefund        GetMappingOptions200ApplicationJSONTaxRatesValidTransactionTypesEnum = "Refund"
-	GetMappingOptions200ApplicationJSONTaxRatesValidTransactionTypesEnumReward        GetMappingOptions200ApplicationJSONTaxRatesValidTransactionTypesEnum = "Reward"
-	GetMappingOptions200ApplicationJSONTaxRatesValidTransactionTypesEnumChargeback    GetMappingOptions200ApplicationJSONTaxRatesValidTransactionTypesEnum = "Chargeback"
-	GetMappingOptions200ApplicationJSONTaxRatesValidTransactionTypesEnumTransferIn    GetMappingOptions200ApplicationJSONTaxRatesValidTransactionTypesEnum = "TransferIn"
-	GetMappingOptions200ApplicationJSONTaxRatesValidTransactionTypesEnumTransferOut   GetMappingOptions200ApplicationJSONTaxRatesValidTransactionTypesEnum = "TransferOut"
-	GetMappingOptions200ApplicationJSONTaxRatesValidTransactionTypesEnumAdjustmentIn  GetMappingOptions200ApplicationJSONTaxRatesValidTransactionTypesEnum = "AdjustmentIn"
-	GetMappingOptions200ApplicationJSONTaxRatesValidTransactionTypesEnumAdjustmentOut GetMappingOptions200ApplicationJSONTaxRatesValidTransactionTypesEnum = "AdjustmentOut"
-)
-
-type GetMappingOptions200ApplicationJSONTaxRates struct {
-	// Code for the tax rate from the accounting platform.
-	Code *string `json:"code,omitempty"`
-	// Effective tax rate.
-	EffectiveTaxRate *float64 `json:"effectiveTaxRate,omitempty"`
-	// Unique identifier of tax rate.
-	ID *string `json:"id,omitempty"`
-	// Name of the tax rate in the accounting platform.
-	Name *string `json:"name,omitempty"`
-	// Total (not compounded) sum of the components of a tax rate.
-	TotalTaxRate *float64 `json:"totalTaxRate,omitempty"`
-	// Supported transaction types for the account.
-	ValidTransactionTypes []GetMappingOptions200ApplicationJSONTaxRatesValidTransactionTypesEnum `json:"validTransactionTypes,omitempty"`
-}
-
-type GetMappingOptions200ApplicationJSONTrackingCategories struct {
-	// Boolean of whether the tracking category has child categories.
-	HasChildren *bool `json:"hasChildren,omitempty"`
-	// Unique identifier of the tracking category.
-	ID *string `json:"id,omitempty"`
-	// Datetime when the tracking category was last modified.
-	ModifiedDate *time.Time `json:"modifiedDate,omitempty"`
-	// Name of the tracking category as it appears in the accounting software.
-	Name *string `json:"name,omitempty"`
-	// ID of the parent tracking category
-	ParentID *string `json:"parentId,omitempty"`
-}
-
-// GetMappingOptions200ApplicationJSON - Success
-type GetMappingOptions200ApplicationJSON struct {
-	// Array of available accounts for mapping.
-	Accounts []GetMappingOptions200ApplicationJSONAccounts `json:"accounts,omitempty"`
-	// Name of the expense integration.
-	ExpenseProvider *string `json:"expenseProvider,omitempty"`
-	// Array of available tax rates for mapping.
-	TaxRates []GetMappingOptions200ApplicationJSONTaxRates `json:"taxRates,omitempty"`
-	// Array of available tracking categories for mapping.
-	TrackingCategories []GetMappingOptions200ApplicationJSONTrackingCategories `json:"trackingCategories,omitempty"`
-}
-
 type GetMappingOptionsResponse struct {
 	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
 	// Success
-	GetMappingOptions200ApplicationJSONObject *GetMappingOptions200ApplicationJSON
+	MappingOptions *shared.MappingOptions
+	StatusCode     int
+	RawResponse    *http.Response
 }

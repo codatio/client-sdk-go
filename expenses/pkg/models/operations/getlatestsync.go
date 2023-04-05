@@ -3,38 +3,18 @@
 package operations
 
 import (
+	"github.com/codatio/client-sdk-go/expenses/pkg/models/shared"
 	"net/http"
-	"time"
 )
 
 type GetLatestSyncRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
-// GetLatestSync200ApplicationJSON - Success
-type GetLatestSync200ApplicationJSON struct {
-	// Unique identifier for your SMB in Codat.
-	CompanyID *string `json:"companyId,omitempty"`
-	// Boolean of whether the sync resulted in data being pushed.
-	DataPushed *bool `json:"dataPushed,omitempty"`
-	// Error message of the sync.
-	ErrorMessage *string `json:"errorMessage,omitempty"`
-	// Exception message of the sync.
-	SyncExceptionMessage *string `json:"syncExceptionMessage,omitempty"`
-	// Unique identifier of the sync.
-	SyncID *string `json:"syncId,omitempty"`
-	// Text status of the sync.
-	SyncStatus *string `json:"syncStatus,omitempty"`
-	// Status code of the sync.
-	SyncStatusCode *int `json:"syncStatusCode,omitempty"`
-	// Datetime of the sync.
-	SyncUtc *time.Time `json:"syncUtc,omitempty"`
-}
-
 type GetLatestSyncResponse struct {
-	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
 	// Success
-	GetLatestSync200ApplicationJSONObject *GetLatestSync200ApplicationJSON
+	CompanySyncStatus *shared.CompanySyncStatus
+	ContentType       string
+	StatusCode        int
+	RawResponse       *http.Response
 }

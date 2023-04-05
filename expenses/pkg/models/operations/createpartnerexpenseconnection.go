@@ -3,131 +3,18 @@
 package operations
 
 import (
+	"github.com/codatio/client-sdk-go/expenses/pkg/models/shared"
 	"net/http"
-	"time"
 )
 
-type CreatePartnerexpenseConnectionRequest struct {
+type CreatePartnerExpenseConnectionRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
-type CreatePartnerexpenseConnectionConnectionConnectionInfo struct {
-	AdditionalProp1 *string `json:"additionalProp1,omitempty"`
-	AdditionalProp2 *string `json:"additionalProp2,omitempty"`
-	AdditionalProp3 *string `json:"additionalProp3,omitempty"`
-}
-
-type CreatePartnerexpenseConnectionConnectionDataConnectionErrors struct {
-	ErrorMessage *string `json:"errorMessage,omitempty"`
-	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
-	//
-	// ```
-	// 2020-10-08T22:40:50Z
-	// 2021-01-01T00:00:00
-	// ```
-	//
-	//
-	//
-	// When syncing data that contains `DateTime` fields from Codat, make sure you support the following cases when reading time information:
-	//
-	// - Coordinated Universal Time (UTC): `2021-11-15T06:00:00Z`
-	// - Unqualified local time: `2021-11-15T01:00:00`
-	// - UTC time offsets: `2021-11-15T01:00:00-05:00`
-	//
-	// > 📘 Time zones
-	// >
-	// > Not all dates from Codat will contain information about time zones.
-	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	ErroredOnUtc *time.Time `json:"erroredOnUtc,omitempty"`
-	StatusCode   *string    `json:"statusCode,omitempty"`
-	StatusText   *string    `json:"statusText,omitempty"`
-}
-
-// CreatePartnerexpenseConnectionConnectionSourceTypeEnum - The type of platform of the connection.
-type CreatePartnerexpenseConnectionConnectionSourceTypeEnum string
-
-const (
-	CreatePartnerexpenseConnectionConnectionSourceTypeEnumAccounting CreatePartnerexpenseConnectionConnectionSourceTypeEnum = "Accounting"
-	CreatePartnerexpenseConnectionConnectionSourceTypeEnumBanking    CreatePartnerexpenseConnectionConnectionSourceTypeEnum = "Banking"
-	CreatePartnerexpenseConnectionConnectionSourceTypeEnumCommerce   CreatePartnerexpenseConnectionConnectionSourceTypeEnum = "Commerce"
-	CreatePartnerexpenseConnectionConnectionSourceTypeEnumOther      CreatePartnerexpenseConnectionConnectionSourceTypeEnum = "Other"
-	CreatePartnerexpenseConnectionConnectionSourceTypeEnumUnknown    CreatePartnerexpenseConnectionConnectionSourceTypeEnum = "Unknown"
-)
-
-// CreatePartnerexpenseConnectionConnectionDataConnectionStatusEnum - The current authorization status of the data connection.
-type CreatePartnerexpenseConnectionConnectionDataConnectionStatusEnum string
-
-const (
-	CreatePartnerexpenseConnectionConnectionDataConnectionStatusEnumPendingAuth  CreatePartnerexpenseConnectionConnectionDataConnectionStatusEnum = "PendingAuth"
-	CreatePartnerexpenseConnectionConnectionDataConnectionStatusEnumLinked       CreatePartnerexpenseConnectionConnectionDataConnectionStatusEnum = "Linked"
-	CreatePartnerexpenseConnectionConnectionDataConnectionStatusEnumUnlinked     CreatePartnerexpenseConnectionConnectionDataConnectionStatusEnum = "Unlinked"
-	CreatePartnerexpenseConnectionConnectionDataConnectionStatusEnumDeauthorized CreatePartnerexpenseConnectionConnectionDataConnectionStatusEnum = "Deauthorized"
-)
-
-// CreatePartnerexpenseConnectionConnection - A connection represents the link between a `company` and a source of data.
-type CreatePartnerexpenseConnectionConnection struct {
-	ConnectionInfo *CreatePartnerexpenseConnectionConnectionConnectionInfo `json:"connectionInfo,omitempty"`
-	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
-	//
-	// ```
-	// 2020-10-08T22:40:50Z
-	// 2021-01-01T00:00:00
-	// ```
-	//
-	//
-	//
-	// When syncing data that contains `DateTime` fields from Codat, make sure you support the following cases when reading time information:
-	//
-	// - Coordinated Universal Time (UTC): `2021-11-15T06:00:00Z`
-	// - Unqualified local time: `2021-11-15T01:00:00`
-	// - UTC time offsets: `2021-11-15T01:00:00-05:00`
-	//
-	// > 📘 Time zones
-	// >
-	// > Not all dates from Codat will contain information about time zones.
-	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	Created              time.Time                                                      `json:"created"`
-	DataConnectionErrors []CreatePartnerexpenseConnectionConnectionDataConnectionErrors `json:"dataConnectionErrors,omitempty"`
-	// Unique identifier for a company's data connection.
-	ID string `json:"id"`
-	// A Codat ID representing the integration.
-	IntegrationID string `json:"integrationId"`
-	// A unique four-character ID that identifies the platform of the company's data connection. This ensures continuity if the platform changes its name in the future.
-	IntegrationKey string `json:"integrationKey"`
-	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
-	//
-	// ```
-	// 2020-10-08T22:40:50Z
-	// 2021-01-01T00:00:00
-	// ```
-	//
-	//
-	//
-	// When syncing data that contains `DateTime` fields from Codat, make sure you support the following cases when reading time information:
-	//
-	// - Coordinated Universal Time (UTC): `2021-11-15T06:00:00Z`
-	// - Unqualified local time: `2021-11-15T01:00:00`
-	// - UTC time offsets: `2021-11-15T01:00:00-05:00`
-	//
-	// > 📘 Time zones
-	// >
-	// > Not all dates from Codat will contain information about time zones.
-	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	LastSync     *time.Time `json:"lastSync,omitempty"`
-	LinkURL      string     `json:"linkUrl"`
-	PlatformName string     `json:"platformName"`
-	// A source-specific ID used to distinguish between different sources originating from the same data connection. In general, a data connection is a single data source. However, for TrueLayer, `sourceId` is associated with a specific bank and has a many-to-one relationship with the `integrationId`.
-	SourceID string `json:"sourceId"`
-	// The type of platform of the connection.
-	SourceType CreatePartnerexpenseConnectionConnectionSourceTypeEnum `json:"sourceType"`
-	// The current authorization status of the data connection.
-	Status CreatePartnerexpenseConnectionConnectionDataConnectionStatusEnum `json:"status"`
-}
-
-type CreatePartnerexpenseConnectionResponse struct {
-	// Success
-	Connection  *CreatePartnerexpenseConnectionConnection
+type CreatePartnerExpenseConnectionResponse struct {
 	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
+	// Success
+	DataConnection *shared.DataConnection
+	StatusCode     int
+	RawResponse    *http.Response
 }

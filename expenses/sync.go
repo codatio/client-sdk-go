@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/expenses/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/expenses/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/expenses/pkg/utils"
 	"net/http"
 )
@@ -37,7 +38,7 @@ func (s *sync) IntiateSync(ctx context.Context, request operations.IntiateSyncRe
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/sync/expenses/syncs", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "PostSync", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -71,42 +72,26 @@ func (s *sync) IntiateSync(ctx context.Context, request operations.IntiateSyncRe
 	case httpRes.StatusCode == 202:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.IntiateSync202ApplicationJSON
+			var out *shared.SyncInitiated
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.IntiateSync202ApplicationJSONObject = out
+			res.SyncInitiated = out
 		}
 	case httpRes.StatusCode == 400:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.IntiateSync400ApplicationJSON
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
-				return nil, err
-			}
-
-			res.IntiateSync400ApplicationJSONObject = out
-		}
+		fallthrough
 	case httpRes.StatusCode == 404:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.IntiateSync404ApplicationJSON
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
-				return nil, err
-			}
-
-			res.IntiateSync404ApplicationJSONObject = out
-		}
+		fallthrough
 	case httpRes.StatusCode == 422:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.IntiateSync422ApplicationJSON
+			var out *shared.CodatErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.IntiateSync422ApplicationJSONObject = out
+			res.CodatErrorMessage = out
 		}
 	}
 
