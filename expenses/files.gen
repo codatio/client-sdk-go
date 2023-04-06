@@ -5,7 +5,7 @@ mappingoptions.go
 sync.go
 syncstatus.go
 transactionstatus.go
-codatio.go
+codatsyncexpenses.go
 go.mod
 go.sum
 pkg/types/date.go
