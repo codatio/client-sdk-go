@@ -1,6 +1,6 @@
 bankaccounttransactions.go
 bankfeedaccounts.go
-codatio.go
+codatbankfeeds.go
 go.mod
 go.sum
 pkg/types/date.go
