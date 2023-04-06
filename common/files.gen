@@ -6,7 +6,7 @@ pushdata.go
 refreshdata.go
 settings.go
 webhooks.go
-codatio.go
+codatcommon.go
 go.mod
 go.sum
 pkg/types/date.go

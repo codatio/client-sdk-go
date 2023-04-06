@@ -22,8 +22,8 @@ import (
 )
 
 func main() {
-    s := codatio.New(
-        codatio.WithSecurity(shared.Security{
+    s := codatcommon.New(
+        codatcommon.WithSecurity(shared.Security{
             AuthHeader: "YOUR_API_KEY_HERE",
         }),
     )
