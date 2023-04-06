@@ -22,8 +22,8 @@ import (
 )
 
 func main() {
-    s := codatio.New(
-        codatio.WithSecurity(shared.Security{
+    s := codatfiles.New(
+        codatfiles.WithSecurity(shared.Security{
             AuthHeader: "YOUR_API_KEY_HERE",
         }),
     )
@@ -47,7 +47,7 @@ func main() {
 <!-- End SDK Example Usage -->
 
 <!-- Start SDK Available Operations -->
-## SDK Available Operations
+## Available Resources and Operations
 
 
 ### Files

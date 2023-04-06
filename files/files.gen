@@ -1,5 +1,5 @@
 files.go
-codatio.go
+codatfiles.go
 go.mod
 go.sum
 pkg/types/date.go
