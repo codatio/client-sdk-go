@@ -4,5 +4,6 @@ package shared
 
 type EnhancedReportAccountCategory struct {
 	Levels []AccountCategoryLevel `json:"levels,omitempty"`
-	Status *string                `json:"status,omitempty"`
+	// Returns a status of "Suggested" or "Confirmed". If an account has a confirmed category, it will replace any suggested category returned.
+	Status *string `json:"status,omitempty"`
 }

@@ -2,7 +2,7 @@ categories.go
 dataintegrity.go
 excelreports.go
 reports.go
-codatio.go
+codatassess.go
 go.mod
 go.sum
 pkg/types/date.go

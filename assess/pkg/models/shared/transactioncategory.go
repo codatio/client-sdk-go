@@ -3,6 +3,8 @@
 package shared
 
 type TransactionCategory struct {
+	// Returns the confidence of the suggested category for the transaction.
 	Confidence *float64 `json:"confidence,omitempty"`
-	Levels     []string `json:"levels,omitempty"`
+	// An array of category levels against an individual transaction.
+	Levels []string `json:"levels,omitempty"`
 }

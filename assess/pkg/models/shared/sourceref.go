@@ -2,6 +2,7 @@
 
 package shared
 
+// SourceRef - A source reference containing the `sourceType` object "Banking".
 type SourceRef struct {
 	SourceType *string `json:"sourceType,omitempty"`
 }

@@ -3,11 +3,24 @@
 package shared
 
 type Accounts struct {
-	AccountName     *string    `json:"accountName,omitempty"`
-	AccountProvider *string    `json:"accountProvider,omitempty"`
-	AccountType     *string    `json:"accountType,omitempty"`
-	Currency        *string    `json:"currency,omitempty"`
-	CurrentBalance  *float64   `json:"currentBalance,omitempty"`
-	PlatformName    *string    `json:"platformName,omitempty"`
-	SourceRef       *SourceRef `json:"sourceRef,omitempty"`
+	// The name of the account according to the provider.
+	AccountName *string `json:"accountName,omitempty"`
+	// The bank or other financial institution providing the account.
+	AccountProvider *string `json:"accountProvider,omitempty"`
+	// The type of banking account, e.g. credit or debit.
+	AccountType *string `json:"accountType,omitempty"`
+	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code, e.g. _GBP_.
+	//
+	// ## Unknown currencies
+	//
+	// In line with the ISO 4217 specification, the code _XXX_ is used when the data source does not return a currency for a transaction.
+	//
+	// There are only a very small number of edge cases where this currency code is returned by the Codat system.
+	Currency *string `json:"currency,omitempty"`
+	// The balance of the bank account.
+	CurrentBalance *float64 `json:"currentBalance,omitempty"`
+	// Name of the banking data source, e.g. "Plaid".
+	PlatformName *string `json:"platformName,omitempty"`
+	// A source reference containing the `sourceType` object "Banking".
+	SourceRef *SourceRef `json:"sourceRef,omitempty"`
 }
