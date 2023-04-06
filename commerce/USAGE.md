@@ -11,8 +11,8 @@ import (
 )
 
 func main() {
-    s := codatio.New(
-        codatio.WithSecurity(shared.Security{
+    s := codatcommerce.New(
+        codatcommerce.WithSecurity(shared.Security{
             AuthHeader: "YOUR_API_KEY_HERE",
         }),
     )

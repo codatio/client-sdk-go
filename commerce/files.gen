@@ -7,7 +7,7 @@ payments.go
 products.go
 taxcomponents.go
 transactions.go
-codatio.go
+codatcommerce.go
 go.mod
 go.sum
 pkg/types/date.go
