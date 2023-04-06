@@ -2,7 +2,7 @@ accountbalances.go
 accounts.go
 transactioncategories.go
 transactions.go
-codatio.go
+codatbanking.go
 go.mod
 go.sum
 pkg/types/date.go
