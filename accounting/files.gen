@@ -24,7 +24,7 @@ suppliers.go
 taxrates.go
 trackingcategories.go
 transfers.go
-codatio.go
+codataccounting.go
 go.mod
 go.sum
 pkg/types/date.go
