@@ -17,12 +17,12 @@ func main() {
         }),
     )
 
+    ctx := context.Background()    
     req := shared.CompanyRequestBody{
         Description: "corrupti",
         Name: "provident",
     }
 
-    ctx := context.Background()
     res, err := s.Companies.CreateCompany(ctx, req)
     if err != nil {
         log.Fatal(err)
