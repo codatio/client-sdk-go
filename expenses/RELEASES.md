@@ -127,3 +127,11 @@ Based on:
 - Speakeasy CLI 1.19.6 (2.17.8) https://github.com/speakeasy-api/speakeasy
 ### Releases
 - [Go v0.8.0] https://github.com/codatio/client-sdk-go/releases/tag/expenses/v0.8.0 - expenses
+
+## 2023-04-12 00:11:46
+### Changes
+Based on:
+- OpenAPI Doc prealpha https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Expenses.yaml
+- Speakeasy CLI 1.19.7 (2.17.9) https://github.com/speakeasy-api/speakeasy
+### Releases
+- [Go v0.8.1] https://github.com/codatio/client-sdk-go/releases/tag/expenses/v0.8.1 - expenses
