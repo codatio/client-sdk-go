@@ -17,6 +17,7 @@ func main() {
         }),
     )
 
+    ctx := context.Background()    
     req := operations.CreateBankTransactionsRequest{
         BankTransactions: &shared.BankTransactions{
             AccountID: "corrupti",
@@ -69,7 +70,6 @@ func main() {
         TimeoutInMinutes: 479977,
     }
 
-    ctx := context.Background()
     res, err := s.BankAccountTransactions.CreateBankTransactions(ctx, req)
     if err != nil {
         log.Fatal(err)
