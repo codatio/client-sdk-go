@@ -36,7 +36,10 @@ func newBankFeedAccounts(defaultClient, securityClient HTTPClient, serverURL, la
 // Put BankFeed BankAccounts for a single data source connected to a single company.
 func (s *bankFeedAccounts) CreateBankFeed(ctx context.Context, request operations.CreateBankFeedRequest) (*operations.CreateBankFeedResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/connectionInfo/bankFeedAccounts", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/connectionInfo/bankFeedAccounts", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
 	if err != nil {
@@ -88,7 +91,10 @@ func (s *bankFeedAccounts) CreateBankFeed(ctx context.Context, request operation
 // Get BankFeed BankAccounts for a single data source connected to a single company.
 func (s *bankFeedAccounts) GetBankFeeds(ctx context.Context, request operations.GetBankFeedsRequest) (*operations.GetBankFeedsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/connectionInfo/bankFeedAccounts", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/connectionInfo/bankFeedAccounts", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -133,7 +139,10 @@ func (s *bankFeedAccounts) GetBankFeeds(ctx context.Context, request operations.
 // Update a single BankFeed BankAccount for a single data source connected to a single company.
 func (s *bankFeedAccounts) UpdateBankFeed(ctx context.Context, request operations.UpdateBankFeedRequest) (*operations.UpdateBankFeedResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/connectionInfo/bankFeedAccounts/{accountId}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/connectionInfo/bankFeedAccounts/{accountId}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "BankFeedAccount", "json")
 	if err != nil {
