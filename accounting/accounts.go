@@ -42,7 +42,10 @@ func newAccounts(defaultClient, securityClient HTTPClient, serverURL, language, 
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=chartOfAccounts) for integrations that support creating an account.
 func (s *accounts) CreateAccount(ctx context.Context, request operations.CreateAccountRequest) (*operations.CreateAccountResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/accounts", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/accounts", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Account", "json")
 	if err != nil {
@@ -98,7 +101,10 @@ func (s *accounts) CreateAccount(ctx context.Context, request operations.CreateA
 // Gets a single account corresponding to the given ID.
 func (s *accounts) GetAccount(ctx context.Context, request operations.GetAccountRequest) (*operations.GetAccountResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/accounts/{accountId}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/accounts/{accountId}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -149,7 +155,10 @@ func (s *accounts) GetAccount(ctx context.Context, request operations.GetAccount
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=chartOfAccounts) for integrations that support creating an account.
 func (s *accounts) GetCreateChartOfAccountsModel(ctx context.Context, request operations.GetCreateChartOfAccountsModelRequest) (*operations.GetCreateChartOfAccountsModelResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/chartOfAccounts", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/chartOfAccounts", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -194,7 +203,10 @@ func (s *accounts) GetCreateChartOfAccountsModel(ctx context.Context, request op
 // Gets the latest accounts for a company
 func (s *accounts) ListAccounts(ctx context.Context, request operations.ListAccountsRequest) (*operations.ListAccountsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/accounts", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/accounts", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {

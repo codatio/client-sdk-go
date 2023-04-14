@@ -43,7 +43,10 @@ func newDirectCosts(defaultClient, securityClient HTTPClient, serverURL, languag
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=directCosts) for integrations that support creating direct costs.
 func (s *directCosts) CreateDirectCost(ctx context.Context, request operations.CreateDirectCostRequest) (*operations.CreateDirectCostResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/directCosts", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/directCosts", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "DirectCost", "json")
 	if err != nil {
@@ -99,7 +102,10 @@ func (s *directCosts) CreateDirectCost(ctx context.Context, request operations.C
 // Downloads an attachment for the specified direct cost for a given company.
 func (s *directCosts) DownloadDirectCostAttachment(ctx context.Context, request operations.DownloadDirectCostAttachmentRequest) (*operations.DownloadDirectCostAttachmentResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/directCosts/{directCostId}/attachments/{attachmentId}/download", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/directCosts/{directCostId}/attachments/{attachmentId}/download", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -150,7 +156,10 @@ func (s *directCosts) DownloadDirectCostAttachment(ctx context.Context, request 
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=directCosts) for integrations that support creating direct costs.
 func (s *directCosts) GetCreateDirectCostsModel(ctx context.Context, request operations.GetCreateDirectCostsModelRequest) (*operations.GetCreateDirectCostsModelResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/directCosts", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/directCosts", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -195,7 +204,10 @@ func (s *directCosts) GetCreateDirectCostsModel(ctx context.Context, request ope
 // Gets the specified direct cost for a given company.
 func (s *directCosts) GetDirectCost(ctx context.Context, request operations.GetDirectCostRequest) (*operations.GetDirectCostResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/directCosts/{directCostId}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/directCosts/{directCostId}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -240,7 +252,10 @@ func (s *directCosts) GetDirectCost(ctx context.Context, request operations.GetD
 // Gets the specified direct cost attachment for a given company.
 func (s *directCosts) GetDirectCostAttachment(ctx context.Context, request operations.GetDirectCostAttachmentRequest) (*operations.GetDirectCostAttachmentResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/directCosts/{directCostId}/attachments/{attachmentId}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/directCosts/{directCostId}/attachments/{attachmentId}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -285,7 +300,10 @@ func (s *directCosts) GetDirectCostAttachment(ctx context.Context, request opera
 // Gets the direct costs for the company.
 func (s *directCosts) GetDirectCosts(ctx context.Context, request operations.GetDirectCostsRequest) (*operations.GetDirectCostsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/directCosts", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/directCosts", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -334,7 +352,10 @@ func (s *directCosts) GetDirectCosts(ctx context.Context, request operations.Get
 // Gets all attachments for the specified direct cost for a given company.
 func (s *directCosts) ListDirectCostAttachments(ctx context.Context, request operations.ListDirectCostAttachmentsRequest) (*operations.ListDirectCostAttachmentsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/directCosts/{directCostId}/attachments", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/directCosts/{directCostId}/attachments", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -379,7 +400,10 @@ func (s *directCosts) ListDirectCostAttachments(ctx context.Context, request ope
 // Posts a new direct cost attachment for a given company.
 func (s *directCosts) UploadDirectCostAttachment(ctx context.Context, request operations.UploadDirectCostAttachmentRequest) (*operations.UploadDirectCostAttachmentResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/directCosts/{directCostId}/attachment", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/directCosts/{directCostId}/attachment", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "multipart")
 	if err != nil {

@@ -109,6 +109,7 @@ pkg/models/operations/getcashflowstatement.go
 pkg/models/operations/getprofitandloss.go
 pkg/models/operations/downloadinvoicepdf.go
 pkg/models/operations/createinvoice.go
+pkg/models/operations/deleteinvoice.go
 pkg/models/operations/downloadinvoiceattachment.go
 pkg/models/operations/getcreateupdateinvoicesmodel.go
 pkg/models/operations/getinvoice.go
@@ -122,6 +123,7 @@ pkg/models/operations/getcreateitemsmodel.go
 pkg/models/operations/getitem.go
 pkg/models/operations/listitems.go
 pkg/models/operations/createjournalentry.go
+pkg/models/operations/deletejournalentry.go
 pkg/models/operations/getcreatejournalentriesmodel.go
 pkg/models/operations/getjournalentry.go
 pkg/models/operations/listjournalentries.go

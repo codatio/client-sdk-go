@@ -167,6 +167,7 @@ func main() {
 
 * `DownloadInvoicePdf` - Get invoice as PDF
 * `CreateInvoice` - Create invoice
+* `DeleteInvoice` - Delete invoice
 * `DownloadInvoiceAttachment` - Download invoice attachment
 * `GetCreateUpdateInvoicesModel` - Get create/update invoice model
 * `GetInvoice` - Get invoice
@@ -186,6 +187,7 @@ func main() {
 ### JournalEntries
 
 * `CreateJournalEntry` - Create journal entry
+* `DeleteJournalEntry` - Delete journal entry
 * `GetCreateJournalEntriesModel` - Get create journal entry model
 * `GetJournalEntry` - Get journal entry
 * `ListJournalEntries` - List journal entries

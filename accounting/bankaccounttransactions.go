@@ -40,7 +40,10 @@ func newBankAccountTransactions(defaultClient, securityClient HTTPClient, server
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankTransactions) for integrations that support POST methods.
 func (s *bankAccountTransactions) CreateBankTransactions(ctx context.Context, request operations.CreateBankTransactionsRequest) (*operations.CreateBankTransactionsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/bankAccounts/{accountId}/bankTransactions", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/bankAccounts/{accountId}/bankTransactions", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "BankTransactions", "json")
 	if err != nil {
@@ -96,7 +99,10 @@ func (s *bankAccountTransactions) CreateBankTransactions(ctx context.Context, re
 // Gets the options of pushing bank account transactions.
 func (s *bankAccountTransactions) GetCreateBankAccountModel(ctx context.Context, request operations.GetCreateBankAccountModelRequest) (*operations.GetCreateBankAccountModelResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/bankAccounts/{accountId}/bankTransactions", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/bankAccounts/{accountId}/bankTransactions", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -141,7 +147,10 @@ func (s *bankAccountTransactions) GetCreateBankAccountModel(ctx context.Context,
 // Gets bank transactions for a given bank account ID
 func (s *bankAccountTransactions) ListBankAccountTransactions(ctx context.Context, request operations.ListBankAccountTransactionsRequest) (*operations.ListBankAccountTransactionsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/bankAccounts/{accountId}/bankTransactions", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/bankAccounts/{accountId}/bankTransactions", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -190,7 +199,10 @@ func (s *bankAccountTransactions) ListBankAccountTransactions(ctx context.Contex
 // Gets the latest bank transactions for given account ID and company. Doesn't require connection ID.
 func (s *bankAccountTransactions) ListBankTransactions(ctx context.Context, request operations.ListBankTransactionsRequest) (*operations.ListBankTransactionsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/bankAccounts/{accountId}/transactions", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/bankAccounts/{accountId}/transactions", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {

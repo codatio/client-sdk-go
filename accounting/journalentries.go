@@ -42,7 +42,10 @@ func newJournalEntries(defaultClient, securityClient HTTPClient, serverURL, lang
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journalEntries) for integrations that support creating journal entries.
 func (s *journalEntries) CreateJournalEntry(ctx context.Context, request operations.CreateJournalEntryRequest) (*operations.CreateJournalEntryResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/journalEntries", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/journalEntries", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "JournalEntry", "json")
 	if err != nil {
@@ -94,6 +97,58 @@ func (s *journalEntries) CreateJournalEntry(ctx context.Context, request operati
 	return res, nil
 }
 
+// DeleteJournalEntry - Delete journal entry
+// Deletes a journal entry from the accounting package for a given company.
+//
+// > **Supported Integrations**
+// >
+// > This functionality is currently only supported for our QuickBooks Online integration. Check out our [public roadmap](https://portal.productboard.com/codat/7-public-product-roadmap/tabs/46-accounting-api) to see what we're building next, and to submit ideas for new features.
+func (s *journalEntries) DeleteJournalEntry(ctx context.Context, request operations.DeleteJournalEntryRequest) (*operations.DeleteJournalEntryResponse, error) {
+	baseURL := s.serverURL
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/journalEntries/{journalEntryId}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	req, err := http.NewRequestWithContext(ctx, "DELETE", url, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+
+	client := s.securityClient
+
+	httpRes, err := client.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
+	}
+	defer httpRes.Body.Close()
+
+	contentType := httpRes.Header.Get("Content-Type")
+
+	res := &operations.DeleteJournalEntryResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: contentType,
+		RawResponse: httpRes,
+	}
+	switch {
+	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.PushOperationSummary
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.PushOperationSummary = out
+		}
+	}
+
+	return res, nil
+}
+
 // GetCreateJournalEntriesModel - Get create journal entry model
 // Get create journal entry model. Returns the expected data for the request payload.
 //
@@ -104,7 +159,10 @@ func (s *journalEntries) CreateJournalEntry(ctx context.Context, request operati
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journalEntries) for integrations that support creating journal entries.
 func (s *journalEntries) GetCreateJournalEntriesModel(ctx context.Context, request operations.GetCreateJournalEntriesModelRequest) (*operations.GetCreateJournalEntriesModelResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/journalEntries", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/journalEntries", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -149,7 +207,10 @@ func (s *journalEntries) GetCreateJournalEntriesModel(ctx context.Context, reque
 // Gets a single JournalEntry corresponding to the given ID.
 func (s *journalEntries) GetJournalEntry(ctx context.Context, request operations.GetJournalEntryRequest) (*operations.GetJournalEntryResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/journalEntries/{journalEntryId}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/journalEntries/{journalEntryId}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -194,7 +255,10 @@ func (s *journalEntries) GetJournalEntry(ctx context.Context, request operations
 // Gets the latest journal entries for a company, with pagination
 func (s *journalEntries) ListJournalEntries(ctx context.Context, request operations.ListJournalEntriesRequest) (*operations.ListJournalEntriesResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/journalEntries", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/journalEntries", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {

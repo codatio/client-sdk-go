@@ -36,7 +36,10 @@ func newFinancials(defaultClient, securityClient HTTPClient, serverURL, language
 // Gets the latest balance sheet for a company.
 func (s *financials) GetBalanceSheet(ctx context.Context, request operations.GetBalanceSheetRequest) (*operations.GetBalanceSheetResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/financials/balanceSheet", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/financials/balanceSheet", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -85,7 +88,10 @@ func (s *financials) GetBalanceSheet(ctx context.Context, request operations.Get
 // Gets the latest cash flow statement for a company.
 func (s *financials) GetCashFlowStatement(ctx context.Context, request operations.GetCashFlowStatementRequest) (*operations.GetCashFlowStatementResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/financials/cashFlowStatement", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/financials/cashFlowStatement", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -134,7 +140,10 @@ func (s *financials) GetCashFlowStatement(ctx context.Context, request operation
 // Gets the latest profit and loss for a company.
 func (s *financials) GetProfitAndLoss(ctx context.Context, request operations.GetProfitAndLossRequest) (*operations.GetProfitAndLossResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/financials/profitAndLoss", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/financials/profitAndLoss", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {

@@ -36,7 +36,10 @@ func newReports(defaultClient, securityClient HTTPClient, serverURL, language, s
 // Returns aged creditors report for company that shows the total balance owed by a business to its suppliers over time.
 func (s *reports) GetAgedCreditorsReport(ctx context.Context, request operations.GetAgedCreditorsReportRequest) (*operations.GetAgedCreditorsReportResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/reports/agedCreditor", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/reports/agedCreditor", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -85,7 +88,10 @@ func (s *reports) GetAgedCreditorsReport(ctx context.Context, request operations
 // Returns aged debtors report for company that shows the total outstanding balance due from customers to the business over time.
 func (s *reports) GetAgedDebtorsReport(ctx context.Context, request operations.GetAgedDebtorsReportRequest) (*operations.GetAgedDebtorsReportResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/reports/agedDebtor", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/reports/agedDebtor", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -134,7 +140,10 @@ func (s *reports) GetAgedDebtorsReport(ctx context.Context, request operations.G
 // Indicates whether the aged creditor report is available for the company.
 func (s *reports) IsAgedCreditorsReportAvailable(ctx context.Context, request operations.IsAgedCreditorsReportAvailableRequest) (*operations.IsAgedCreditorsReportAvailableResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/reports/agedCreditor/available", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/reports/agedCreditor/available", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -179,7 +188,10 @@ func (s *reports) IsAgedCreditorsReportAvailable(ctx context.Context, request op
 // Indicates whether the aged debtor report is available for the company.
 func (s *reports) IsAgedDebtorReportAvailable(ctx context.Context, request operations.IsAgedDebtorReportAvailableRequest) (*operations.IsAgedDebtorReportAvailableResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/reports/agedDebtor/available", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/reports/agedDebtor/available", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {

@@ -42,7 +42,10 @@ func newJournals(defaultClient, securityClient HTTPClient, serverURL, language, 
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journals) for integrations that support creating journals.
 func (s *journals) GetCreateJournalsModel(ctx context.Context, request operations.GetCreateJournalsModelRequest) (*operations.GetCreateJournalsModelResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/journals", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/journals", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -87,7 +90,10 @@ func (s *journals) GetCreateJournalsModel(ctx context.Context, request operation
 // Gets a single journal corresponding to the given ID.
 func (s *journals) GetJournal(ctx context.Context, request operations.GetJournalRequest) (*operations.GetJournalResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/journals/{journalId}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/journals/{journalId}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -132,7 +138,10 @@ func (s *journals) GetJournal(ctx context.Context, request operations.GetJournal
 // Gets the latest journals for a company, with pagination
 func (s *journals) ListJournals(ctx context.Context, request operations.ListJournalsRequest) (*operations.ListJournalsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/journals", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/journals", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -187,7 +196,10 @@ func (s *journals) ListJournals(ctx context.Context, request operations.ListJour
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journals) for integrations that support creating journals.
 func (s *journals) PushJournal(ctx context.Context, request operations.PushJournalRequest) (*operations.PushJournalResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/journals", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/journals", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Journal", "json")
 	if err != nil {

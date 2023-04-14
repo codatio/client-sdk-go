@@ -42,7 +42,10 @@ func newPurchaseOrders(defaultClient, securityClient HTTPClient, serverURL, lang
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=purchaseOrders) for integrations that support creating purchase orders.
 func (s *purchaseOrders) CreatePurchaseOrder(ctx context.Context, request operations.CreatePurchaseOrderRequest) (*operations.CreatePurchaseOrderResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/purchaseOrders", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/purchaseOrders", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "PurchaseOrder", "json")
 	if err != nil {
@@ -104,7 +107,10 @@ func (s *purchaseOrders) CreatePurchaseOrder(ctx context.Context, request operat
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=purchaseOrders) for integrations that support creating and updating purchase orders.
 func (s *purchaseOrders) GetCreateUpdatePurchaseOrdersModel(ctx context.Context, request operations.GetCreateUpdatePurchaseOrdersModelRequest) (*operations.GetCreateUpdatePurchaseOrdersModelResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/purchaseOrders", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/purchaseOrders", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -149,7 +155,10 @@ func (s *purchaseOrders) GetCreateUpdatePurchaseOrdersModel(ctx context.Context,
 // Get purchase order
 func (s *purchaseOrders) GetPurchaseOrder(ctx context.Context, request operations.GetPurchaseOrderRequest) (*operations.GetPurchaseOrderResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/purchaseOrders/{purchaseOrderId}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/purchaseOrders/{purchaseOrderId}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -194,7 +203,10 @@ func (s *purchaseOrders) GetPurchaseOrder(ctx context.Context, request operation
 // Get purchase orders
 func (s *purchaseOrders) ListPurchaseOrders(ctx context.Context, request operations.ListPurchaseOrdersRequest) (*operations.ListPurchaseOrdersResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/purchaseOrders", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/purchaseOrders", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -249,7 +261,10 @@ func (s *purchaseOrders) ListPurchaseOrders(ctx context.Context, request operati
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=purchaseOrders) for integrations that support updating purchase orders.
 func (s *purchaseOrders) UpdatePurchaseOrder(ctx context.Context, request operations.UpdatePurchaseOrderRequest) (*operations.UpdatePurchaseOrderResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/purchaseOrders/{purchaseOrderId}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/purchaseOrders/{purchaseOrderId}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "PurchaseOrder", "json")
 	if err != nil {

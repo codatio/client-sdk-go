@@ -42,7 +42,10 @@ func newBillCreditNotes(defaultClient, securityClient HTTPClient, serverURL, lan
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=billCreditNotes) for integrations that support creating bill credit notes.
 func (s *billCreditNotes) CreateBillCreditNote(ctx context.Context, request operations.CreateBillCreditNoteRequest) (*operations.CreateBillCreditNoteResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/billCreditNotes", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/billCreditNotes", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "BillCreditNote", "json")
 	if err != nil {
@@ -98,7 +101,10 @@ func (s *billCreditNotes) CreateBillCreditNote(ctx context.Context, request oper
 // Gets a single billCreditNote corresponding to the given ID.
 func (s *billCreditNotes) GetBillCreditNote(ctx context.Context, request operations.GetBillCreditNoteRequest) (*operations.GetBillCreditNoteResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/billCreditNotes/{billCreditNoteId}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/billCreditNotes/{billCreditNoteId}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -147,7 +153,10 @@ func (s *billCreditNotes) GetBillCreditNote(ctx context.Context, request operati
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=billCreditNotes) for integrations that support creating and updating bill credit notes.
 func (s *billCreditNotes) GetCreateUpdateBillCreditNotesModel(ctx context.Context, request operations.GetCreateUpdateBillCreditNotesModelRequest) (*operations.GetCreateUpdateBillCreditNotesModelResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/billCreditNotes", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/billCreditNotes", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -192,7 +201,10 @@ func (s *billCreditNotes) GetCreateUpdateBillCreditNotesModel(ctx context.Contex
 // Gets a list of all bill credit notes for a company, with pagination
 func (s *billCreditNotes) ListBillCreditNotes(ctx context.Context, request operations.ListBillCreditNotesRequest) (*operations.ListBillCreditNotesResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/billCreditNotes", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/billCreditNotes", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -247,7 +259,10 @@ func (s *billCreditNotes) ListBillCreditNotes(ctx context.Context, request opera
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=billCreditNotes) for integrations that support updating bill credit notes.
 func (s *billCreditNotes) UpdateBillCreditNote(ctx context.Context, request operations.UpdateBillCreditNoteRequest) (*operations.UpdateBillCreditNoteResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/billCreditNotes/{billCreditNoteId}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/billCreditNotes/{billCreditNoteId}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "BillCreditNote", "json")
 	if err != nil {

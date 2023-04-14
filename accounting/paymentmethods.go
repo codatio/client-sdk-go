@@ -36,7 +36,10 @@ func newPaymentMethods(defaultClient, securityClient HTTPClient, serverURL, lang
 // Gets the specified payment method for a given company.
 func (s *paymentMethods) GetPaymentMethod(ctx context.Context, request operations.GetPaymentMethodRequest) (*operations.GetPaymentMethodResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/paymentMethods/{paymentMethodId}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/paymentMethods/{paymentMethodId}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -81,7 +84,10 @@ func (s *paymentMethods) GetPaymentMethod(ctx context.Context, request operation
 // Gets the payment methods for a given company.
 func (s *paymentMethods) ListPaymentMethods(ctx context.Context, request operations.ListPaymentMethodsRequest) (*operations.ListPaymentMethodsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/paymentMethods", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/paymentMethods", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {

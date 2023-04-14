@@ -36,7 +36,10 @@ func newTrackingCategories(defaultClient, securityClient HTTPClient, serverURL, 
 // Gets the specified tracking categories for a given company.
 func (s *trackingCategories) GetTrackingCategory(ctx context.Context, request operations.GetTrackingCategoryRequest) (*operations.GetTrackingCategoryResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/trackingCategories/{trackingCategoryId}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/trackingCategories/{trackingCategoryId}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -81,7 +84,10 @@ func (s *trackingCategories) GetTrackingCategory(ctx context.Context, request op
 // Gets the latest tracking categories for a given company.
 func (s *trackingCategories) ListTrackingCategories(ctx context.Context, request operations.ListTrackingCategoriesRequest) (*operations.ListTrackingCategoriesResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/trackingCategories", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/trackingCategories", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {

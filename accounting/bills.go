@@ -43,7 +43,10 @@ func newBills(defaultClient, securityClient HTTPClient, serverURL, language, sdk
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bills) for integrations that support creating a bill.
 func (s *bills) CreateBill(ctx context.Context, request operations.CreateBillRequest) (*operations.CreateBillResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/bills", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/bills", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Bill", "json")
 	if err != nil {
@@ -100,10 +103,13 @@ func (s *bills) CreateBill(ctx context.Context, request operations.CreateBillReq
 //
 // > **Supported Integrations**
 // >
-// > This functionality is currently only supported for our Oracle NetSuite integration. Check out our [public roadmap](https://portal.productboard.com/codat/7-public-product-roadmap/tabs/46-accounting-api) to see what we're building next, and to submit ideas for new features.
+// > This functionality is currently only supported for our Oracle NetSuite and QuickBooks Online integrations. Check out our [public roadmap](https://portal.productboard.com/codat/7-public-product-roadmap/tabs/46-accounting-api) to see what we're building next, and to submit ideas for new features.
 func (s *bills) DeleteBill(ctx context.Context, request operations.DeleteBillRequest) (*operations.DeleteBillResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/bills/{billId}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/bills/{billId}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "DELETE", url, nil)
 	if err != nil {
@@ -148,7 +154,10 @@ func (s *bills) DeleteBill(ctx context.Context, request operations.DeleteBillReq
 // Download bill attachment
 func (s *bills) DownloadBillAttachment(ctx context.Context, request operations.DownloadBillAttachmentRequest) (*operations.DownloadBillAttachmentResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/bills/{billId}/attachments/{attachmentId}/download", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/bills/{billId}/attachments/{attachmentId}/download", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -193,7 +202,10 @@ func (s *bills) DownloadBillAttachment(ctx context.Context, request operations.D
 // Get bill
 func (s *bills) GetBill(ctx context.Context, request operations.GetBillRequest) (*operations.GetBillResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/bills/{billId}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/bills/{billId}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -238,7 +250,10 @@ func (s *bills) GetBill(ctx context.Context, request operations.GetBillRequest) 
 // Get bill attachment
 func (s *bills) GetBillAttachment(ctx context.Context, request operations.GetBillAttachmentRequest) (*operations.GetBillAttachmentResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/bills/{billId}/attachments/{attachmentId}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/bills/{billId}/attachments/{attachmentId}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -283,7 +298,10 @@ func (s *bills) GetBillAttachment(ctx context.Context, request operations.GetBil
 // Get bill attachments
 func (s *bills) GetBillAttachments(ctx context.Context, request operations.GetBillAttachmentsRequest) (*operations.GetBillAttachmentsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/bills/{billId}/attachments", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/bills/{billId}/attachments", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -333,7 +351,10 @@ func (s *bills) GetBillAttachments(ctx context.Context, request operations.GetBi
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bills) for integrations that support creating and updating a bill.
 func (s *bills) GetCreateUpdateBillsModel(ctx context.Context, request operations.GetCreateUpdateBillsModelRequest) (*operations.GetCreateUpdateBillsModelResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/bills", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/bills", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -378,7 +399,10 @@ func (s *bills) GetCreateUpdateBillsModel(ctx context.Context, request operation
 // Gets the latest bills for a company, with pagination
 func (s *bills) ListBills(ctx context.Context, request operations.ListBillsRequest) (*operations.ListBillsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/bills", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/bills", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -433,7 +457,10 @@ func (s *bills) ListBills(ctx context.Context, request operations.ListBillsReque
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bills) for integrations that support updating a bill.
 func (s *bills) UpdateBill(ctx context.Context, request operations.UpdateBillRequest) (*operations.UpdateBillResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/bills/{billId}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/bills/{billId}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Bill", "json")
 	if err != nil {
@@ -489,7 +516,10 @@ func (s *bills) UpdateBill(ctx context.Context, request operations.UpdateBillReq
 // Upload bill attachments
 func (s *bills) UploadBillAttachments(ctx context.Context, request operations.UploadBillAttachmentsRequest) (*operations.UploadBillAttachmentsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/bills/{billId}/attachments", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/bills/{billId}/attachments", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "multipart")
 	if err != nil {

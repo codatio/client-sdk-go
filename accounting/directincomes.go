@@ -43,7 +43,10 @@ func newDirectIncomes(defaultClient, securityClient HTTPClient, serverURL, langu
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=directIncomes) for integrations that support creating direct incomes.
 func (s *directIncomes) CreateDirectIncome(ctx context.Context, request operations.CreateDirectIncomeRequest) (*operations.CreateDirectIncomeResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/directIncomes", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/directIncomes", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "DirectIncome", "json")
 	if err != nil {
@@ -99,7 +102,10 @@ func (s *directIncomes) CreateDirectIncome(ctx context.Context, request operatio
 // Downloads an attachment for the specified direct income for a given company.
 func (s *directIncomes) DownloadDirectIncomeAttachment(ctx context.Context, request operations.DownloadDirectIncomeAttachmentRequest) (*operations.DownloadDirectIncomeAttachmentResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/directIncomes/{directIncomeId}/attachments/{attachmentId}/download", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/directIncomes/{directIncomeId}/attachments/{attachmentId}/download", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -150,7 +156,10 @@ func (s *directIncomes) DownloadDirectIncomeAttachment(ctx context.Context, requ
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=directIncomes) for integrations that support creating direct incomes.
 func (s *directIncomes) GetCreateDirectIncomesModel(ctx context.Context, request operations.GetCreateDirectIncomesModelRequest) (*operations.GetCreateDirectIncomesModelResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/directIncomes", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/directIncomes", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -195,7 +204,10 @@ func (s *directIncomes) GetCreateDirectIncomesModel(ctx context.Context, request
 // Gets the specified direct income for a given company and connection.
 func (s *directIncomes) GetDirectIncome(ctx context.Context, request operations.GetDirectIncomeRequest) (*operations.GetDirectIncomeResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/directIncomes/{directIncomeId}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/directIncomes/{directIncomeId}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -240,7 +252,10 @@ func (s *directIncomes) GetDirectIncome(ctx context.Context, request operations.
 // Gets the specified direct income attachment for a given company.
 func (s *directIncomes) GetDirectIncomeAttachment(ctx context.Context, request operations.GetDirectIncomeAttachmentRequest) (*operations.GetDirectIncomeAttachmentResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/directIncomes/{directIncomeId}/attachments/{attachmentId}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/directIncomes/{directIncomeId}/attachments/{attachmentId}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -289,7 +304,10 @@ func (s *directIncomes) GetDirectIncomeAttachment(ctx context.Context, request o
 // Gets the direct incomes for a given company.
 func (s *directIncomes) GetDirectIncomes(ctx context.Context, request operations.GetDirectIncomesRequest) (*operations.GetDirectIncomesResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/directIncomes", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/directIncomes", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -338,7 +356,10 @@ func (s *directIncomes) GetDirectIncomes(ctx context.Context, request operations
 // Gets all attachments for the specified direct income for a given company.
 func (s *directIncomes) ListDirectIncomeAttachments(ctx context.Context, request operations.ListDirectIncomeAttachmentsRequest) (*operations.ListDirectIncomeAttachmentsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/directIncomes/{directIncomeId}/attachments", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/directIncomes/{directIncomeId}/attachments", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -383,7 +404,10 @@ func (s *directIncomes) ListDirectIncomeAttachments(ctx context.Context, request
 // Posts a new direct income attachment for a given company.
 func (s *directIncomes) UploadDirectIncomeAttachment(ctx context.Context, request operations.UploadDirectIncomeAttachmentRequest) (*operations.UploadDirectIncomeAttachmentResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/directIncomes/{directIncomeId}/attachment", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/directIncomes/{directIncomeId}/attachment", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "multipart")
 	if err != nil {

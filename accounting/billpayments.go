@@ -42,7 +42,10 @@ func newBillPayments(defaultClient, securityClient HTTPClient, serverURL, langua
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=billPayments) for integrations that support creating bill payments.
 func (s *billPayments) CreateBillPayment(ctx context.Context, request operations.CreateBillPaymentRequest) (*operations.CreateBillPaymentResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/billPayments", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/billPayments", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "BillPayment", "json")
 	if err != nil {
@@ -102,7 +105,10 @@ func (s *billPayments) CreateBillPayment(ctx context.Context, request operations
 // > This functionality is currently only supported for our Oracle NetSuite integration. Check out our [public roadmap](https://portal.productboard.com/codat/7-public-product-roadmap/tabs/46-accounting-api) to see what we're building next, and to submit ideas for new features.
 func (s *billPayments) DeleteBillPayment(ctx context.Context, request operations.DeleteBillPaymentRequest) (*operations.DeleteBillPaymentResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/billPayments/{billPaymentId}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/billPayments/{billPaymentId}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "DELETE", url, nil)
 	if err != nil {
@@ -147,7 +153,10 @@ func (s *billPayments) DeleteBillPayment(ctx context.Context, request operations
 // Get a bill payment
 func (s *billPayments) GetBillPayments(ctx context.Context, request operations.GetBillPaymentsRequest) (*operations.GetBillPaymentsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/billPayments/{billPaymentId}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/billPayments/{billPaymentId}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -196,7 +205,10 @@ func (s *billPayments) GetBillPayments(ctx context.Context, request operations.G
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=billPayments) for integrations that support creating and deleting bill payments.
 func (s *billPayments) GetCreateBillPaymentsModel(ctx context.Context, request operations.GetCreateBillPaymentsModelRequest) (*operations.GetCreateBillPaymentsModelResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/billPayments", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/billPayments", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -241,7 +253,10 @@ func (s *billPayments) GetCreateBillPaymentsModel(ctx context.Context, request o
 // Gets the latest billPayments for a company, with pagination
 func (s *billPayments) ListBillPayments(ctx context.Context, request operations.ListBillPaymentsRequest) (*operations.ListBillPaymentsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/billPayments", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/billPayments", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {

@@ -36,7 +36,10 @@ func newSalesOrders(defaultClient, securityClient HTTPClient, serverURL, languag
 // Get sales order
 func (s *salesOrders) GetSalesOrder(ctx context.Context, request operations.GetSalesOrderRequest) (*operations.GetSalesOrderResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/salesOrders/{salesOrderId}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/salesOrders/{salesOrderId}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -81,7 +84,10 @@ func (s *salesOrders) GetSalesOrder(ctx context.Context, request operations.GetS
 // Get sales orders
 func (s *salesOrders) ListSalesOrders(ctx context.Context, request operations.ListSalesOrdersRequest) (*operations.ListSalesOrdersResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/salesOrders", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/salesOrders", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {

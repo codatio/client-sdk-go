@@ -43,7 +43,10 @@ func newSuppliers(defaultClient, securityClient HTTPClient, serverURL, language,
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=suppliers) for integrations that support creating suppliers.
 func (s *suppliers) CreateSupplier(ctx context.Context, request operations.CreateSupplierRequest) (*operations.CreateSupplierResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/suppliers", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/suppliers", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Supplier", "json")
 	if err != nil {
@@ -99,7 +102,10 @@ func (s *suppliers) CreateSupplier(ctx context.Context, request operations.Creat
 // Download supplier attachment
 func (s *suppliers) DownloadSupplierAttachment(ctx context.Context, request operations.DownloadSupplierAttachmentRequest) (*operations.DownloadSupplierAttachmentResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/suppliers/{supplierId}/attachments/{attachmentId}/download", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/suppliers/{supplierId}/attachments/{attachmentId}/download", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -150,7 +156,10 @@ func (s *suppliers) DownloadSupplierAttachment(ctx context.Context, request oper
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=suppliers) for integrations that support creating and updating suppliers.
 func (s *suppliers) GetCreateUpdateSuppliersModel(ctx context.Context, request operations.GetCreateUpdateSuppliersModelRequest) (*operations.GetCreateUpdateSuppliersModelResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/suppliers", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/suppliers", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -195,7 +204,10 @@ func (s *suppliers) GetCreateUpdateSuppliersModel(ctx context.Context, request o
 // Gets a single supplier corresponding to the given ID.
 func (s *suppliers) GetSupplier(ctx context.Context, request operations.GetSupplierRequest) (*operations.GetSupplierResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/suppliers/{supplierId}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/suppliers/{supplierId}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -240,7 +252,10 @@ func (s *suppliers) GetSupplier(ctx context.Context, request operations.GetSuppl
 // Get supplier attachment
 func (s *suppliers) GetSupplierAttachment(ctx context.Context, request operations.GetSupplierAttachmentRequest) (*operations.GetSupplierAttachmentResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/suppliers/{supplierId}/attachments/{attachmentId}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/suppliers/{supplierId}/attachments/{attachmentId}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -285,7 +300,10 @@ func (s *suppliers) GetSupplierAttachment(ctx context.Context, request operation
 // Get supplier attachments
 func (s *suppliers) ListSupplierAttachments(ctx context.Context, request operations.ListSupplierAttachmentsRequest) (*operations.ListSupplierAttachmentsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/suppliers/{supplierId}/attachments", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/suppliers/{supplierId}/attachments", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -330,7 +348,10 @@ func (s *suppliers) ListSupplierAttachments(ctx context.Context, request operati
 // Gets the latest suppliers for a company, with pagination
 func (s *suppliers) ListSuppliers(ctx context.Context, request operations.ListSuppliersRequest) (*operations.ListSuppliersResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/suppliers", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/suppliers", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -385,7 +406,10 @@ func (s *suppliers) ListSuppliers(ctx context.Context, request operations.ListSu
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=suppliers) for integrations that support updating suppliers.
 func (s *suppliers) PutSupplier(ctx context.Context, request operations.PutSupplierRequest) (*operations.PutSupplierResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/suppliers/{supplierId}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/suppliers/{supplierId}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Supplier", "json")
 	if err != nil {

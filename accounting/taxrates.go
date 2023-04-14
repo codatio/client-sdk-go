@@ -36,7 +36,10 @@ func newTaxRates(defaultClient, securityClient HTTPClient, serverURL, language, 
 // Gets the specified tax rate for a given company.
 func (s *taxRates) GetTaxRate(ctx context.Context, request operations.GetTaxRateRequest) (*operations.GetTaxRateResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/taxRates/{taxRateId}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/taxRates/{taxRateId}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -81,7 +84,10 @@ func (s *taxRates) GetTaxRate(ctx context.Context, request operations.GetTaxRate
 // Gets the latest tax rates for a given company.
 func (s *taxRates) ListTaxRates(ctx context.Context, request operations.ListTaxRatesRequest) (*operations.ListTaxRatesResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/taxRates", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/taxRates", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {

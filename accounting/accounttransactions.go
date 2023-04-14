@@ -36,7 +36,10 @@ func newAccountTransactions(defaultClient, securityClient HTTPClient, serverURL,
 // Gets the account transactions for a given company.Gets the specified account transaction for a given company and connection.
 func (s *accountTransactions) GetAccountTransaction(ctx context.Context, request operations.GetAccountTransactionRequest) (*operations.GetAccountTransactionResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/accountTransactions/{accountTransactionId}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/accountTransactions/{accountTransactionId}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -81,7 +84,10 @@ func (s *accountTransactions) GetAccountTransaction(ctx context.Context, request
 // Gets the account transactions for a given company.
 func (s *accountTransactions) ListAccountTransactions(ctx context.Context, request operations.ListAccountTransactionsRequest) (*operations.ListAccountTransactionsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/accountTransactions", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/accountTransactions", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {

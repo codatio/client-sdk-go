@@ -36,7 +36,10 @@ func newCompanyInfo(defaultClient, securityClient HTTPClient, serverURL, languag
 // Gets the latest basic info for a company.
 func (s *companyInfo) GetCompanyInfo(ctx context.Context, request operations.GetCompanyInfoRequest) (*operations.GetCompanyInfoResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/info", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/info", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -81,7 +84,10 @@ func (s *companyInfo) GetCompanyInfo(ctx context.Context, request operations.Get
 // Initiates the process of synchronising basic info for a company
 func (s *companyInfo) PostSyncInfo(ctx context.Context, request operations.PostSyncInfoRequest) (*operations.PostSyncInfoResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/info", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/info", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
 	if err != nil {
