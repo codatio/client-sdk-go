@@ -36,7 +36,10 @@ func newConnections(defaultClient, securityClient HTTPClient, serverURL, languag
 // Create a data connection for a company
 func (s *connections) CreateDataConnection(ctx context.Context, request operations.CreateDataConnectionRequest) (*operations.CreateDataConnectionResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
 	if err != nil {
@@ -99,7 +102,10 @@ func (s *connections) CreateDataConnection(ctx context.Context, request operatio
 // This operation is not reversible - the end user would need to reauthorize a new data connection if you wish to view new data for this company.
 func (s *connections) DeleteCompanyConnection(ctx context.Context, request operations.DeleteCompanyConnectionRequest) (*operations.DeleteCompanyConnectionResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "DELETE", url, nil)
 	if err != nil {
@@ -147,7 +153,10 @@ func (s *connections) DeleteCompanyConnection(ctx context.Context, request opera
 // Get a single connection for a company
 func (s *connections) GetCompanyConnection(ctx context.Context, request operations.GetCompanyConnectionRequest) (*operations.GetCompanyConnectionResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -204,7 +213,10 @@ func (s *connections) GetCompanyConnection(ctx context.Context, request operatio
 // List the connections for a company
 func (s *connections) ListCompanyConnections(ctx context.Context, request operations.ListCompanyConnectionsRequest) (*operations.ListCompanyConnectionsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -265,7 +277,10 @@ func (s *connections) ListCompanyConnections(ctx context.Context, request operat
 // This allows you to deauthorize a connection, without deleting it from Codat. This means you can still view any data that has previously been pulled into Codat, and also lets you re-authorize in future if your customer wishes to resume sharing their data.
 func (s *connections) UnlinkCompanyConnection(ctx context.Context, request operations.UnlinkCompanyConnectionRequest) (*operations.UnlinkCompanyConnectionResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
 	if err != nil {
@@ -331,7 +346,10 @@ func (s *connections) UnlinkCompanyConnection(ctx context.Context, request opera
 // Update data connection's authorization.
 func (s *connections) UpdateConnectionAuthorization(ctx context.Context, request operations.UpdateConnectionAuthorizationRequest) (*operations.UpdateConnectionAuthorizationResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/authorization", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/authorization", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
 	if err != nil {

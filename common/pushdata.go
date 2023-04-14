@@ -36,7 +36,10 @@ func newPushData(defaultClient, securityClient HTTPClient, serverURL, language, 
 // List push operation records.
 func (s *pushData) GetCompanyPushHistory(ctx context.Context, request operations.GetCompanyPushHistoryRequest) (*operations.GetCompanyPushHistoryResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/push", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/push", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -93,7 +96,10 @@ func (s *pushData) GetCompanyPushHistory(ctx context.Context, request operations
 // > Check out our [Knowledge UI](https://knowledge.codat.io/) for integrations that support push (POST/PUT methods).
 func (s *pushData) GetCreateUpdateModelOptionsByDataType(ctx context.Context, request operations.GetCreateUpdateModelOptionsByDataTypeRequest) (*operations.GetCreateUpdateModelOptionsByDataTypeResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/{dataType}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/{dataType}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -138,7 +144,10 @@ func (s *pushData) GetCreateUpdateModelOptionsByDataType(ctx context.Context, re
 // Retrieve push operation.
 func (s *pushData) GetPushOperation(ctx context.Context, request operations.GetPushOperationRequest) (*operations.GetPushOperationResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/push/{pushOperationKey}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/push/{pushOperationKey}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {

@@ -38,7 +38,10 @@ func newRefreshData(defaultClient, securityClient HTTPClient, serverURL, languag
 // This will bring updated data into Codat from the linked integration for you to view.
 func (s *refreshData) CreatePullOperation(ctx context.Context, request operations.CreatePullOperationRequest) (*operations.CreatePullOperationResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/queue/{dataType}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/queue/{dataType}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
 	if err != nil {
@@ -99,7 +102,10 @@ func (s *refreshData) CreatePullOperation(ctx context.Context, request operation
 // Refreshes all data types marked Fetch on first link.
 func (s *refreshData) RefreshCompanyData(ctx context.Context, request operations.RefreshCompanyDataRequest) (*operations.RefreshCompanyDataResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/all", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/all", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
 	if err != nil {

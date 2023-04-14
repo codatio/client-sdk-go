@@ -37,7 +37,10 @@ func newIntegrations(defaultClient, securityClient HTTPClient, serverURL, langua
 // Get single integration, by platformKey
 func (s *integrations) GetIntegration(ctx context.Context, request operations.GetIntegrationRequest) (*operations.GetIntegrationResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/integrations/{platformKey}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/integrations/{platformKey}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -94,7 +97,10 @@ func (s *integrations) GetIntegration(ctx context.Context, request operations.Ge
 // Get branding for platform.
 func (s *integrations) GetIntegrationsBranding(ctx context.Context, request operations.GetIntegrationsBrandingRequest) (*operations.GetIntegrationsBrandingResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/integrations/{platformKey}/branding", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/integrations/{platformKey}/branding", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {

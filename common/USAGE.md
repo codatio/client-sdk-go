@@ -20,7 +20,7 @@ func main() {
     ctx := context.Background()    
     req := shared.CompanyRequestBody{
         Description: "corrupti",
-        Name: "provident",
+        Name: "Kelvin Sporer",
     }
 
     res, err := s.Companies.CreateCompany(ctx, req)

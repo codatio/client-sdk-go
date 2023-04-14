@@ -36,7 +36,10 @@ func newDataStatus(defaultClient, securityClient HTTPClient, serverURL, language
 // Gets the pull operation history (datasets) for a given company.
 func (s *dataStatus) GetCompanyDataHistory(ctx context.Context, request operations.GetCompanyDataHistoryRequest) (*operations.GetCompanyDataHistoryResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/history", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/history", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -99,7 +102,10 @@ func (s *dataStatus) GetCompanyDataHistory(ctx context.Context, request operatio
 // Get the state of each data type for a company
 func (s *dataStatus) GetCompanyDataStatus(ctx context.Context, request operations.GetCompanyDataStatusRequest) (*operations.GetCompanyDataStatusResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/dataStatus", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/dataStatus", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -156,7 +162,10 @@ func (s *dataStatus) GetCompanyDataStatus(ctx context.Context, request operation
 // Retrieve information about a single dataset or pull operation.
 func (s *dataStatus) GetPullOperation(ctx context.Context, request operations.GetPullOperationRequest) (*operations.GetPullOperationResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/history/{datasetId}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/history/{datasetId}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {

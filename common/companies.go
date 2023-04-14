@@ -100,7 +100,10 @@ func (s *companies) CreateCompany(ctx context.Context, request shared.CompanyReq
 // This operation is not reversible.
 func (s *companies) DeleteCompany(ctx context.Context, request operations.DeleteCompanyRequest) (*operations.DeleteCompanyResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "DELETE", url, nil)
 	if err != nil {
@@ -146,7 +149,10 @@ func (s *companies) DeleteCompany(ctx context.Context, request operations.Delete
 // Get metadata for a single company
 func (s *companies) GetCompany(ctx context.Context, request operations.GetCompanyRequest) (*operations.GetCompanyResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -262,7 +268,10 @@ func (s *companies) ListCompanies(ctx context.Context, request operations.ListCo
 // Updates the given company with a new name and description
 func (s *companies) UpdateCompany(ctx context.Context, request operations.UpdateCompanyRequest) (*operations.UpdateCompanyResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "CompanyRequestBody", "json")
 	if err != nil {
