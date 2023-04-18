@@ -86,3 +86,4 @@ pkg/models/shared/transaction.go
 pkg/models/shared/transactiontypeenum.go
 pkg/models/shared/security.go
 USAGE.md
+pkg/models/operations/options.go
