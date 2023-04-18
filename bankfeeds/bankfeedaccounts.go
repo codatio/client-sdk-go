@@ -34,7 +34,17 @@ func newBankFeedAccounts(defaultClient, securityClient HTTPClient, serverURL, la
 
 // CreateBankFeed - Create bank feed bank accounts
 // Put BankFeed BankAccounts for a single data source connected to a single company.
-func (s *bankFeedAccounts) CreateBankFeed(ctx context.Context, request operations.CreateBankFeedRequest) (*operations.CreateBankFeedResponse, error) {
+func (s *bankFeedAccounts) CreateBankFeed(ctx context.Context, request operations.CreateBankFeedRequest, opts ...operations.Option) (*operations.CreateBankFeedResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/connectionInfo/bankFeedAccounts", request, nil)
 	if err != nil {
@@ -55,7 +65,30 @@ func (s *bankFeedAccounts) CreateBankFeed(ctx context.Context, request operation
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -89,7 +122,17 @@ func (s *bankFeedAccounts) CreateBankFeed(ctx context.Context, request operation
 
 // GetBankFeeds - List bank feed bank accounts
 // Get BankFeed BankAccounts for a single data source connected to a single company.
-func (s *bankFeedAccounts) GetBankFeeds(ctx context.Context, request operations.GetBankFeedsRequest) (*operations.GetBankFeedsResponse, error) {
+func (s *bankFeedAccounts) GetBankFeeds(ctx context.Context, request operations.GetBankFeedsRequest, opts ...operations.Option) (*operations.GetBankFeedsResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/connectionInfo/bankFeedAccounts", request, nil)
 	if err != nil {
@@ -103,7 +146,30 @@ func (s *bankFeedAccounts) GetBankFeeds(ctx context.Context, request operations.
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -137,7 +203,17 @@ func (s *bankFeedAccounts) GetBankFeeds(ctx context.Context, request operations.
 
 // UpdateBankFeed - Update bank feed bank account
 // Update a single BankFeed BankAccount for a single data source connected to a single company.
-func (s *bankFeedAccounts) UpdateBankFeed(ctx context.Context, request operations.UpdateBankFeedRequest) (*operations.UpdateBankFeedResponse, error) {
+func (s *bankFeedAccounts) UpdateBankFeed(ctx context.Context, request operations.UpdateBankFeedRequest, opts ...operations.Option) (*operations.UpdateBankFeedResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/connectionInfo/bankFeedAccounts/{accountId}", request, nil)
 	if err != nil {
@@ -158,7 +234,30 @@ func (s *bankFeedAccounts) UpdateBankFeed(ctx context.Context, request operation
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
