@@ -40,7 +40,17 @@ func newBillCreditNotes(defaultClient, securityClient HTTPClient, serverURL, lan
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=billCreditNotes) for integrations that support creating bill credit notes.
-func (s *billCreditNotes) CreateBillCreditNote(ctx context.Context, request operations.CreateBillCreditNoteRequest) (*operations.CreateBillCreditNoteResponse, error) {
+func (s *billCreditNotes) CreateBillCreditNote(ctx context.Context, request operations.CreateBillCreditNoteRequest, opts ...operations.Option) (*operations.CreateBillCreditNoteResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/billCreditNotes", request, nil)
 	if err != nil {
@@ -65,7 +75,30 @@ func (s *billCreditNotes) CreateBillCreditNote(ctx context.Context, request oper
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -99,7 +132,17 @@ func (s *billCreditNotes) CreateBillCreditNote(ctx context.Context, request oper
 
 // GetBillCreditNote - Get bill credit note
 // Gets a single billCreditNote corresponding to the given ID.
-func (s *billCreditNotes) GetBillCreditNote(ctx context.Context, request operations.GetBillCreditNoteRequest) (*operations.GetBillCreditNoteResponse, error) {
+func (s *billCreditNotes) GetBillCreditNote(ctx context.Context, request operations.GetBillCreditNoteRequest, opts ...operations.Option) (*operations.GetBillCreditNoteResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/billCreditNotes/{billCreditNoteId}", request, nil)
 	if err != nil {
@@ -113,7 +156,30 @@ func (s *billCreditNotes) GetBillCreditNote(ctx context.Context, request operati
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -151,7 +217,17 @@ func (s *billCreditNotes) GetBillCreditNote(ctx context.Context, request operati
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=billCreditNotes) for integrations that support creating and updating bill credit notes.
-func (s *billCreditNotes) GetCreateUpdateBillCreditNotesModel(ctx context.Context, request operations.GetCreateUpdateBillCreditNotesModelRequest) (*operations.GetCreateUpdateBillCreditNotesModelResponse, error) {
+func (s *billCreditNotes) GetCreateUpdateBillCreditNotesModel(ctx context.Context, request operations.GetCreateUpdateBillCreditNotesModelRequest, opts ...operations.Option) (*operations.GetCreateUpdateBillCreditNotesModelResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/billCreditNotes", request, nil)
 	if err != nil {
@@ -165,7 +241,30 @@ func (s *billCreditNotes) GetCreateUpdateBillCreditNotesModel(ctx context.Contex
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -199,7 +298,17 @@ func (s *billCreditNotes) GetCreateUpdateBillCreditNotesModel(ctx context.Contex
 
 // ListBillCreditNotes - List bill credit notes
 // Gets a list of all bill credit notes for a company, with pagination
-func (s *billCreditNotes) ListBillCreditNotes(ctx context.Context, request operations.ListBillCreditNotesRequest) (*operations.ListBillCreditNotesResponse, error) {
+func (s *billCreditNotes) ListBillCreditNotes(ctx context.Context, request operations.ListBillCreditNotesRequest, opts ...operations.Option) (*operations.ListBillCreditNotesResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/billCreditNotes", request, nil)
 	if err != nil {
@@ -217,7 +326,30 @@ func (s *billCreditNotes) ListBillCreditNotes(ctx context.Context, request opera
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -257,7 +389,17 @@ func (s *billCreditNotes) ListBillCreditNotes(ctx context.Context, request opera
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=billCreditNotes) for integrations that support updating bill credit notes.
-func (s *billCreditNotes) UpdateBillCreditNote(ctx context.Context, request operations.UpdateBillCreditNoteRequest) (*operations.UpdateBillCreditNoteResponse, error) {
+func (s *billCreditNotes) UpdateBillCreditNote(ctx context.Context, request operations.UpdateBillCreditNoteRequest, opts ...operations.Option) (*operations.UpdateBillCreditNoteResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/billCreditNotes/{billCreditNoteId}", request, nil)
 	if err != nil {
@@ -282,7 +424,30 @@ func (s *billCreditNotes) UpdateBillCreditNote(ctx context.Context, request oper
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}

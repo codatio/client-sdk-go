@@ -40,7 +40,17 @@ func newBankAccounts(defaultClient, securityClient HTTPClient, serverURL, langua
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankAccounts) for integrations that support creating bank accounts.
-func (s *bankAccounts) CreateBankAccount(ctx context.Context, request operations.CreateBankAccountRequest) (*operations.CreateBankAccountResponse, error) {
+func (s *bankAccounts) CreateBankAccount(ctx context.Context, request operations.CreateBankAccountRequest, opts ...operations.Option) (*operations.CreateBankAccountResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/bankAccounts", request, nil)
 	if err != nil {
@@ -65,7 +75,30 @@ func (s *bankAccounts) CreateBankAccount(ctx context.Context, request operations
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -99,7 +132,17 @@ func (s *bankAccounts) CreateBankAccount(ctx context.Context, request operations
 
 // GetAllBankAccount - Get bank account
 // Gets the bank account for given account ID.
-func (s *bankAccounts) GetAllBankAccount(ctx context.Context, request operations.GetAllBankAccountRequest) (*operations.GetAllBankAccountResponse, error) {
+func (s *bankAccounts) GetAllBankAccount(ctx context.Context, request operations.GetAllBankAccountRequest, opts ...operations.Option) (*operations.GetAllBankAccountResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/bankAccounts/{accountId}", request, nil)
 	if err != nil {
@@ -117,7 +160,30 @@ func (s *bankAccounts) GetAllBankAccount(ctx context.Context, request operations
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -151,7 +217,17 @@ func (s *bankAccounts) GetAllBankAccount(ctx context.Context, request operations
 
 // GetBankAccount - Get bank account
 // Gets the bank account with a given ID
-func (s *bankAccounts) GetBankAccount(ctx context.Context, request operations.GetBankAccountRequest) (*operations.GetBankAccountResponse, error) {
+func (s *bankAccounts) GetBankAccount(ctx context.Context, request operations.GetBankAccountRequest, opts ...operations.Option) (*operations.GetBankAccountResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/bankAccounts/{accountId}", request, nil)
 	if err != nil {
@@ -165,7 +241,30 @@ func (s *bankAccounts) GetBankAccount(ctx context.Context, request operations.Ge
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -205,7 +304,17 @@ func (s *bankAccounts) GetBankAccount(ctx context.Context, request operations.Ge
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankAccounts) for integrations that support creating and updating bank accounts.
-func (s *bankAccounts) GetCreateUpdateBankAccountsModel(ctx context.Context, request operations.GetCreateUpdateBankAccountsModelRequest) (*operations.GetCreateUpdateBankAccountsModelResponse, error) {
+func (s *bankAccounts) GetCreateUpdateBankAccountsModel(ctx context.Context, request operations.GetCreateUpdateBankAccountsModelRequest, opts ...operations.Option) (*operations.GetCreateUpdateBankAccountsModelResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/bankAccounts", request, nil)
 	if err != nil {
@@ -219,7 +328,30 @@ func (s *bankAccounts) GetCreateUpdateBankAccountsModel(ctx context.Context, req
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -253,7 +385,17 @@ func (s *bankAccounts) GetCreateUpdateBankAccountsModel(ctx context.Context, req
 
 // ListBankAccounts - List bank accounts
 // Gets the list of bank accounts for a given connection
-func (s *bankAccounts) ListBankAccounts(ctx context.Context, request operations.ListBankAccountsRequest) (*operations.ListBankAccountsResponse, error) {
+func (s *bankAccounts) ListBankAccounts(ctx context.Context, request operations.ListBankAccountsRequest, opts ...operations.Option) (*operations.ListBankAccountsResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/bankAccounts", request, nil)
 	if err != nil {
@@ -271,7 +413,30 @@ func (s *bankAccounts) ListBankAccounts(ctx context.Context, request operations.
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -311,7 +476,17 @@ func (s *bankAccounts) ListBankAccounts(ctx context.Context, request operations.
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankAccounts) for integrations that support updating bank accounts.
-func (s *bankAccounts) UpdateBankAccount(ctx context.Context, request operations.UpdateBankAccountRequest) (*operations.UpdateBankAccountResponse, error) {
+func (s *bankAccounts) UpdateBankAccount(ctx context.Context, request operations.UpdateBankAccountRequest, opts ...operations.Option) (*operations.UpdateBankAccountResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/bankAccounts/{bankAccountId}", request, nil)
 	if err != nil {
@@ -336,7 +511,30 @@ func (s *bankAccounts) UpdateBankAccount(ctx context.Context, request operations
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}

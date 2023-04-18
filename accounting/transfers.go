@@ -40,7 +40,17 @@ func newTransfers(defaultClient, securityClient HTTPClient, serverURL, language,
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=transfers) for integrations that support creating transfers.
-func (s *transfers) CreateTransfer(ctx context.Context, request operations.CreateTransferRequest) (*operations.CreateTransferResponse, error) {
+func (s *transfers) CreateTransfer(ctx context.Context, request operations.CreateTransferRequest, opts ...operations.Option) (*operations.CreateTransferResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/transfers", request, nil)
 	if err != nil {
@@ -61,7 +71,30 @@ func (s *transfers) CreateTransfer(ctx context.Context, request operations.Creat
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -101,7 +134,17 @@ func (s *transfers) CreateTransfer(ctx context.Context, request operations.Creat
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=transfers) for integrations that support creating transfers.
-func (s *transfers) GetCreateTransfersModel(ctx context.Context, request operations.GetCreateTransfersModelRequest) (*operations.GetCreateTransfersModelResponse, error) {
+func (s *transfers) GetCreateTransfersModel(ctx context.Context, request operations.GetCreateTransfersModelRequest, opts ...operations.Option) (*operations.GetCreateTransfersModelResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/transfers", request, nil)
 	if err != nil {
@@ -115,7 +158,30 @@ func (s *transfers) GetCreateTransfersModel(ctx context.Context, request operati
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -149,7 +215,17 @@ func (s *transfers) GetCreateTransfersModel(ctx context.Context, request operati
 
 // GetTransfer - Get transfer
 // Gets the specified transfer for a given company.
-func (s *transfers) GetTransfer(ctx context.Context, request operations.GetTransferRequest) (*operations.GetTransferResponse, error) {
+func (s *transfers) GetTransfer(ctx context.Context, request operations.GetTransferRequest, opts ...operations.Option) (*operations.GetTransferResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/transfers/{transferId}", request, nil)
 	if err != nil {
@@ -163,7 +239,30 @@ func (s *transfers) GetTransfer(ctx context.Context, request operations.GetTrans
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -197,7 +296,17 @@ func (s *transfers) GetTransfer(ctx context.Context, request operations.GetTrans
 
 // ListTransfers - List transfers
 // Gets the transfers for a given company.
-func (s *transfers) ListTransfers(ctx context.Context, request operations.ListTransfersRequest) (*operations.ListTransfersResponse, error) {
+func (s *transfers) ListTransfers(ctx context.Context, request operations.ListTransfersRequest, opts ...operations.Option) (*operations.ListTransfersResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/transfers", request, nil)
 	if err != nil {
@@ -215,7 +324,30 @@ func (s *transfers) ListTransfers(ctx context.Context, request operations.ListTr
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}

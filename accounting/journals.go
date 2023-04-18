@@ -40,7 +40,17 @@ func newJournals(defaultClient, securityClient HTTPClient, serverURL, language, 
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journals) for integrations that support creating journals.
-func (s *journals) GetCreateJournalsModel(ctx context.Context, request operations.GetCreateJournalsModelRequest) (*operations.GetCreateJournalsModelResponse, error) {
+func (s *journals) GetCreateJournalsModel(ctx context.Context, request operations.GetCreateJournalsModelRequest, opts ...operations.Option) (*operations.GetCreateJournalsModelResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/journals", request, nil)
 	if err != nil {
@@ -54,7 +64,30 @@ func (s *journals) GetCreateJournalsModel(ctx context.Context, request operation
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -88,7 +121,17 @@ func (s *journals) GetCreateJournalsModel(ctx context.Context, request operation
 
 // GetJournal - Get journal
 // Gets a single journal corresponding to the given ID.
-func (s *journals) GetJournal(ctx context.Context, request operations.GetJournalRequest) (*operations.GetJournalResponse, error) {
+func (s *journals) GetJournal(ctx context.Context, request operations.GetJournalRequest, opts ...operations.Option) (*operations.GetJournalResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/journals/{journalId}", request, nil)
 	if err != nil {
@@ -102,7 +145,30 @@ func (s *journals) GetJournal(ctx context.Context, request operations.GetJournal
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -136,7 +202,17 @@ func (s *journals) GetJournal(ctx context.Context, request operations.GetJournal
 
 // ListJournals - List journals
 // Gets the latest journals for a company, with pagination
-func (s *journals) ListJournals(ctx context.Context, request operations.ListJournalsRequest) (*operations.ListJournalsResponse, error) {
+func (s *journals) ListJournals(ctx context.Context, request operations.ListJournalsRequest, opts ...operations.Option) (*operations.ListJournalsResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/journals", request, nil)
 	if err != nil {
@@ -154,7 +230,30 @@ func (s *journals) ListJournals(ctx context.Context, request operations.ListJour
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -194,7 +293,17 @@ func (s *journals) ListJournals(ctx context.Context, request operations.ListJour
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journals) for integrations that support creating journals.
-func (s *journals) PushJournal(ctx context.Context, request operations.PushJournalRequest) (*operations.PushJournalResponse, error) {
+func (s *journals) PushJournal(ctx context.Context, request operations.PushJournalRequest, opts ...operations.Option) (*operations.PushJournalResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/journals", request, nil)
 	if err != nil {
@@ -219,7 +328,30 @@ func (s *journals) PushJournal(ctx context.Context, request operations.PushJourn
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}

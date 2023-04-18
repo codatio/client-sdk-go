@@ -34,7 +34,17 @@ func newCompanyInfo(defaultClient, securityClient HTTPClient, serverURL, languag
 
 // GetCompanyInfo - Get company info
 // Gets the latest basic info for a company.
-func (s *companyInfo) GetCompanyInfo(ctx context.Context, request operations.GetCompanyInfoRequest) (*operations.GetCompanyInfoResponse, error) {
+func (s *companyInfo) GetCompanyInfo(ctx context.Context, request operations.GetCompanyInfoRequest, opts ...operations.Option) (*operations.GetCompanyInfoResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/info", request, nil)
 	if err != nil {
@@ -48,7 +58,30 @@ func (s *companyInfo) GetCompanyInfo(ctx context.Context, request operations.Get
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -82,7 +115,17 @@ func (s *companyInfo) GetCompanyInfo(ctx context.Context, request operations.Get
 
 // PostSyncInfo - Refresh company info
 // Initiates the process of synchronising basic info for a company
-func (s *companyInfo) PostSyncInfo(ctx context.Context, request operations.PostSyncInfoRequest) (*operations.PostSyncInfoResponse, error) {
+func (s *companyInfo) PostSyncInfo(ctx context.Context, request operations.PostSyncInfoRequest, opts ...operations.Option) (*operations.PostSyncInfoResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/info", request, nil)
 	if err != nil {
@@ -96,7 +139,30 @@ func (s *companyInfo) PostSyncInfo(ctx context.Context, request operations.PostS
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}

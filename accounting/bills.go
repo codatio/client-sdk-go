@@ -41,7 +41,17 @@ func newBills(defaultClient, securityClient HTTPClient, serverURL, language, sdk
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bills) for integrations that support creating a bill.
-func (s *bills) CreateBill(ctx context.Context, request operations.CreateBillRequest) (*operations.CreateBillResponse, error) {
+func (s *bills) CreateBill(ctx context.Context, request operations.CreateBillRequest, opts ...operations.Option) (*operations.CreateBillResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/bills", request, nil)
 	if err != nil {
@@ -66,7 +76,30 @@ func (s *bills) CreateBill(ctx context.Context, request operations.CreateBillReq
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -104,7 +137,17 @@ func (s *bills) CreateBill(ctx context.Context, request operations.CreateBillReq
 // > **Supported Integrations**
 // >
 // > This functionality is currently only supported for our Oracle NetSuite and QuickBooks Online integrations. Check out our [public roadmap](https://portal.productboard.com/codat/7-public-product-roadmap/tabs/46-accounting-api) to see what we're building next, and to submit ideas for new features.
-func (s *bills) DeleteBill(ctx context.Context, request operations.DeleteBillRequest) (*operations.DeleteBillResponse, error) {
+func (s *bills) DeleteBill(ctx context.Context, request operations.DeleteBillRequest, opts ...operations.Option) (*operations.DeleteBillResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/bills/{billId}", request, nil)
 	if err != nil {
@@ -118,7 +161,30 @@ func (s *bills) DeleteBill(ctx context.Context, request operations.DeleteBillReq
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -152,7 +218,17 @@ func (s *bills) DeleteBill(ctx context.Context, request operations.DeleteBillReq
 
 // DownloadBillAttachment - Download bill attachment
 // Download bill attachment
-func (s *bills) DownloadBillAttachment(ctx context.Context, request operations.DownloadBillAttachmentRequest) (*operations.DownloadBillAttachmentResponse, error) {
+func (s *bills) DownloadBillAttachment(ctx context.Context, request operations.DownloadBillAttachmentRequest, opts ...operations.Option) (*operations.DownloadBillAttachmentResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/bills/{billId}/attachments/{attachmentId}/download", request, nil)
 	if err != nil {
@@ -166,7 +242,30 @@ func (s *bills) DownloadBillAttachment(ctx context.Context, request operations.D
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -200,7 +299,17 @@ func (s *bills) DownloadBillAttachment(ctx context.Context, request operations.D
 
 // GetBill - Get bill
 // Get bill
-func (s *bills) GetBill(ctx context.Context, request operations.GetBillRequest) (*operations.GetBillResponse, error) {
+func (s *bills) GetBill(ctx context.Context, request operations.GetBillRequest, opts ...operations.Option) (*operations.GetBillResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/bills/{billId}", request, nil)
 	if err != nil {
@@ -214,7 +323,30 @@ func (s *bills) GetBill(ctx context.Context, request operations.GetBillRequest) 
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -248,7 +380,17 @@ func (s *bills) GetBill(ctx context.Context, request operations.GetBillRequest) 
 
 // GetBillAttachment - Get bill attachment
 // Get bill attachment
-func (s *bills) GetBillAttachment(ctx context.Context, request operations.GetBillAttachmentRequest) (*operations.GetBillAttachmentResponse, error) {
+func (s *bills) GetBillAttachment(ctx context.Context, request operations.GetBillAttachmentRequest, opts ...operations.Option) (*operations.GetBillAttachmentResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/bills/{billId}/attachments/{attachmentId}", request, nil)
 	if err != nil {
@@ -262,7 +404,30 @@ func (s *bills) GetBillAttachment(ctx context.Context, request operations.GetBil
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -296,7 +461,17 @@ func (s *bills) GetBillAttachment(ctx context.Context, request operations.GetBil
 
 // GetBillAttachments - List bill attachments
 // Get bill attachments
-func (s *bills) GetBillAttachments(ctx context.Context, request operations.GetBillAttachmentsRequest) (*operations.GetBillAttachmentsResponse, error) {
+func (s *bills) GetBillAttachments(ctx context.Context, request operations.GetBillAttachmentsRequest, opts ...operations.Option) (*operations.GetBillAttachmentsResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/bills/{billId}/attachments", request, nil)
 	if err != nil {
@@ -310,7 +485,30 @@ func (s *bills) GetBillAttachments(ctx context.Context, request operations.GetBi
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -349,7 +547,17 @@ func (s *bills) GetBillAttachments(ctx context.Context, request operations.GetBi
 //
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bills) for integrations that support creating and updating a bill.
-func (s *bills) GetCreateUpdateBillsModel(ctx context.Context, request operations.GetCreateUpdateBillsModelRequest) (*operations.GetCreateUpdateBillsModelResponse, error) {
+func (s *bills) GetCreateUpdateBillsModel(ctx context.Context, request operations.GetCreateUpdateBillsModelRequest, opts ...operations.Option) (*operations.GetCreateUpdateBillsModelResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/bills", request, nil)
 	if err != nil {
@@ -363,7 +571,30 @@ func (s *bills) GetCreateUpdateBillsModel(ctx context.Context, request operation
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -397,7 +628,17 @@ func (s *bills) GetCreateUpdateBillsModel(ctx context.Context, request operation
 
 // ListBills - List bills
 // Gets the latest bills for a company, with pagination
-func (s *bills) ListBills(ctx context.Context, request operations.ListBillsRequest) (*operations.ListBillsResponse, error) {
+func (s *bills) ListBills(ctx context.Context, request operations.ListBillsRequest, opts ...operations.Option) (*operations.ListBillsResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/bills", request, nil)
 	if err != nil {
@@ -415,7 +656,30 @@ func (s *bills) ListBills(ctx context.Context, request operations.ListBillsReque
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -455,7 +719,17 @@ func (s *bills) ListBills(ctx context.Context, request operations.ListBillsReque
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bills) for integrations that support updating a bill.
-func (s *bills) UpdateBill(ctx context.Context, request operations.UpdateBillRequest) (*operations.UpdateBillResponse, error) {
+func (s *bills) UpdateBill(ctx context.Context, request operations.UpdateBillRequest, opts ...operations.Option) (*operations.UpdateBillResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/bills/{billId}", request, nil)
 	if err != nil {
@@ -480,7 +754,30 @@ func (s *bills) UpdateBill(ctx context.Context, request operations.UpdateBillReq
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -514,7 +811,17 @@ func (s *bills) UpdateBill(ctx context.Context, request operations.UpdateBillReq
 
 // UploadBillAttachments - Upload bill attachments
 // Upload bill attachments
-func (s *bills) UploadBillAttachments(ctx context.Context, request operations.UploadBillAttachmentsRequest) (*operations.UploadBillAttachmentsResponse, error) {
+func (s *bills) UploadBillAttachments(ctx context.Context, request operations.UploadBillAttachmentsRequest, opts ...operations.Option) (*operations.UploadBillAttachmentsResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/bills/{billId}/attachments", request, nil)
 	if err != nil {
@@ -535,7 +842,30 @@ func (s *bills) UploadBillAttachments(ctx context.Context, request operations.Up
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}

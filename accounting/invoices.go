@@ -35,7 +35,17 @@ func newInvoices(defaultClient, securityClient HTTPClient, serverURL, language, 
 
 // DownloadInvoicePdf - Get invoice as PDF
 // Get invoice as PDF
-func (s *invoices) DownloadInvoicePdf(ctx context.Context, request operations.DownloadInvoicePdfRequest) (*operations.DownloadInvoicePdfResponse, error) {
+func (s *invoices) DownloadInvoicePdf(ctx context.Context, request operations.DownloadInvoicePdfRequest, opts ...operations.Option) (*operations.DownloadInvoicePdfResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/invoices/{invoiceId}/pdf", request, nil)
 	if err != nil {
@@ -49,7 +59,30 @@ func (s *invoices) DownloadInvoicePdf(ctx context.Context, request operations.Do
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -89,7 +122,17 @@ func (s *invoices) DownloadInvoicePdf(ctx context.Context, request operations.Do
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=invoices) for integrations that support creating invoices.
-func (s *invoices) CreateInvoice(ctx context.Context, request operations.CreateInvoiceRequest) (*operations.CreateInvoiceResponse, error) {
+func (s *invoices) CreateInvoice(ctx context.Context, request operations.CreateInvoiceRequest, opts ...operations.Option) (*operations.CreateInvoiceResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/invoices", request, nil)
 	if err != nil {
@@ -114,7 +157,30 @@ func (s *invoices) CreateInvoice(ctx context.Context, request operations.CreateI
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -152,7 +218,17 @@ func (s *invoices) CreateInvoice(ctx context.Context, request operations.CreateI
 // > **Supported Integrations**
 // >
 // > This functionality is currently only supported for our QuickBooks Online integration. Check out our [public roadmap](https://portal.productboard.com/codat/7-public-product-roadmap/tabs/46-accounting-api) to see what we're building next, and to submit ideas for new features.
-func (s *invoices) DeleteInvoice(ctx context.Context, request operations.DeleteInvoiceRequest) (*operations.DeleteInvoiceResponse, error) {
+func (s *invoices) DeleteInvoice(ctx context.Context, request operations.DeleteInvoiceRequest, opts ...operations.Option) (*operations.DeleteInvoiceResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/invoices/{invoiceId}", request, nil)
 	if err != nil {
@@ -166,7 +242,30 @@ func (s *invoices) DeleteInvoice(ctx context.Context, request operations.DeleteI
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -200,7 +299,17 @@ func (s *invoices) DeleteInvoice(ctx context.Context, request operations.DeleteI
 
 // DownloadInvoiceAttachment - Download invoice attachment
 // Download invoice attachments
-func (s *invoices) DownloadInvoiceAttachment(ctx context.Context, request operations.DownloadInvoiceAttachmentRequest) (*operations.DownloadInvoiceAttachmentResponse, error) {
+func (s *invoices) DownloadInvoiceAttachment(ctx context.Context, request operations.DownloadInvoiceAttachmentRequest, opts ...operations.Option) (*operations.DownloadInvoiceAttachmentResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/invoices/{invoiceId}/attachments/{attachmentId}/download", request, nil)
 	if err != nil {
@@ -214,7 +323,30 @@ func (s *invoices) DownloadInvoiceAttachment(ctx context.Context, request operat
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -254,7 +386,17 @@ func (s *invoices) DownloadInvoiceAttachment(ctx context.Context, request operat
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=invoices) for integrations that support creating and updating invoices.
-func (s *invoices) GetCreateUpdateInvoicesModel(ctx context.Context, request operations.GetCreateUpdateInvoicesModelRequest) (*operations.GetCreateUpdateInvoicesModelResponse, error) {
+func (s *invoices) GetCreateUpdateInvoicesModel(ctx context.Context, request operations.GetCreateUpdateInvoicesModelRequest, opts ...operations.Option) (*operations.GetCreateUpdateInvoicesModelResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/invoices", request, nil)
 	if err != nil {
@@ -268,7 +410,30 @@ func (s *invoices) GetCreateUpdateInvoicesModel(ctx context.Context, request ope
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -302,7 +467,17 @@ func (s *invoices) GetCreateUpdateInvoicesModel(ctx context.Context, request ope
 
 // GetInvoice - Get invoice
 // Get invoice
-func (s *invoices) GetInvoice(ctx context.Context, request operations.GetInvoiceRequest) (*operations.GetInvoiceResponse, error) {
+func (s *invoices) GetInvoice(ctx context.Context, request operations.GetInvoiceRequest, opts ...operations.Option) (*operations.GetInvoiceResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/invoices/{invoiceId}", request, nil)
 	if err != nil {
@@ -316,7 +491,30 @@ func (s *invoices) GetInvoice(ctx context.Context, request operations.GetInvoice
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -350,7 +548,17 @@ func (s *invoices) GetInvoice(ctx context.Context, request operations.GetInvoice
 
 // GetInvoiceAttachment - Get invoice attachment
 // Get invoice attachment
-func (s *invoices) GetInvoiceAttachment(ctx context.Context, request operations.GetInvoiceAttachmentRequest) (*operations.GetInvoiceAttachmentResponse, error) {
+func (s *invoices) GetInvoiceAttachment(ctx context.Context, request operations.GetInvoiceAttachmentRequest, opts ...operations.Option) (*operations.GetInvoiceAttachmentResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/invoices/{invoiceId}/attachments/{attachmentId}", request, nil)
 	if err != nil {
@@ -364,7 +572,30 @@ func (s *invoices) GetInvoiceAttachment(ctx context.Context, request operations.
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -398,7 +629,17 @@ func (s *invoices) GetInvoiceAttachment(ctx context.Context, request operations.
 
 // GetInvoiceAttachments - Get invoice attachments
 // Get invoice attachments
-func (s *invoices) GetInvoiceAttachments(ctx context.Context, request operations.GetInvoiceAttachmentsRequest) (*operations.GetInvoiceAttachmentsResponse, error) {
+func (s *invoices) GetInvoiceAttachments(ctx context.Context, request operations.GetInvoiceAttachmentsRequest, opts ...operations.Option) (*operations.GetInvoiceAttachmentsResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/invoices/{invoiceId}/attachments", request, nil)
 	if err != nil {
@@ -412,7 +653,30 @@ func (s *invoices) GetInvoiceAttachments(ctx context.Context, request operations
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -446,7 +710,17 @@ func (s *invoices) GetInvoiceAttachments(ctx context.Context, request operations
 
 // ListInvoices - List invoices
 // Gets the latest invoices for a company, with pagination
-func (s *invoices) ListInvoices(ctx context.Context, request operations.ListInvoicesRequest) (*operations.ListInvoicesResponse, error) {
+func (s *invoices) ListInvoices(ctx context.Context, request operations.ListInvoicesRequest, opts ...operations.Option) (*operations.ListInvoicesResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/invoices", request, nil)
 	if err != nil {
@@ -464,7 +738,30 @@ func (s *invoices) ListInvoices(ctx context.Context, request operations.ListInvo
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -504,7 +801,17 @@ func (s *invoices) ListInvoices(ctx context.Context, request operations.ListInvo
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=invoices) for integrations that support updating invoices.
-func (s *invoices) UpdateInvoice(ctx context.Context, request operations.UpdateInvoiceRequest) (*operations.UpdateInvoiceResponse, error) {
+func (s *invoices) UpdateInvoice(ctx context.Context, request operations.UpdateInvoiceRequest, opts ...operations.Option) (*operations.UpdateInvoiceResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/invoices/{invoiceId}", request, nil)
 	if err != nil {
@@ -529,7 +836,30 @@ func (s *invoices) UpdateInvoice(ctx context.Context, request operations.UpdateI
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -563,7 +893,17 @@ func (s *invoices) UpdateInvoice(ctx context.Context, request operations.UpdateI
 
 // UploadInvoiceAttachment - Push invoice attachment
 // Push invoice attachment
-func (s *invoices) UploadInvoiceAttachment(ctx context.Context, request operations.UploadInvoiceAttachmentRequest) (*operations.UploadInvoiceAttachmentResponse, error) {
+func (s *invoices) UploadInvoiceAttachment(ctx context.Context, request operations.UploadInvoiceAttachmentRequest, opts ...operations.Option) (*operations.UploadInvoiceAttachmentResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/invoices/{invoiceId}/attachment", request, nil)
 	if err != nil {
@@ -584,7 +924,30 @@ func (s *invoices) UploadInvoiceAttachment(ctx context.Context, request operatio
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}

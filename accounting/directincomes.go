@@ -41,7 +41,17 @@ func newDirectIncomes(defaultClient, securityClient HTTPClient, serverURL, langu
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=directIncomes) for integrations that support creating direct incomes.
-func (s *directIncomes) CreateDirectIncome(ctx context.Context, request operations.CreateDirectIncomeRequest) (*operations.CreateDirectIncomeResponse, error) {
+func (s *directIncomes) CreateDirectIncome(ctx context.Context, request operations.CreateDirectIncomeRequest, opts ...operations.Option) (*operations.CreateDirectIncomeResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/directIncomes", request, nil)
 	if err != nil {
@@ -66,7 +76,30 @@ func (s *directIncomes) CreateDirectIncome(ctx context.Context, request operatio
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -100,7 +133,17 @@ func (s *directIncomes) CreateDirectIncome(ctx context.Context, request operatio
 
 // DownloadDirectIncomeAttachment - Download direct income attachment
 // Downloads an attachment for the specified direct income for a given company.
-func (s *directIncomes) DownloadDirectIncomeAttachment(ctx context.Context, request operations.DownloadDirectIncomeAttachmentRequest) (*operations.DownloadDirectIncomeAttachmentResponse, error) {
+func (s *directIncomes) DownloadDirectIncomeAttachment(ctx context.Context, request operations.DownloadDirectIncomeAttachmentRequest, opts ...operations.Option) (*operations.DownloadDirectIncomeAttachmentResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/directIncomes/{directIncomeId}/attachments/{attachmentId}/download", request, nil)
 	if err != nil {
@@ -114,7 +157,30 @@ func (s *directIncomes) DownloadDirectIncomeAttachment(ctx context.Context, requ
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -154,7 +220,17 @@ func (s *directIncomes) DownloadDirectIncomeAttachment(ctx context.Context, requ
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=directIncomes) for integrations that support creating direct incomes.
-func (s *directIncomes) GetCreateDirectIncomesModel(ctx context.Context, request operations.GetCreateDirectIncomesModelRequest) (*operations.GetCreateDirectIncomesModelResponse, error) {
+func (s *directIncomes) GetCreateDirectIncomesModel(ctx context.Context, request operations.GetCreateDirectIncomesModelRequest, opts ...operations.Option) (*operations.GetCreateDirectIncomesModelResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/directIncomes", request, nil)
 	if err != nil {
@@ -168,7 +244,30 @@ func (s *directIncomes) GetCreateDirectIncomesModel(ctx context.Context, request
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -202,7 +301,17 @@ func (s *directIncomes) GetCreateDirectIncomesModel(ctx context.Context, request
 
 // GetDirectIncome - Get direct income
 // Gets the specified direct income for a given company and connection.
-func (s *directIncomes) GetDirectIncome(ctx context.Context, request operations.GetDirectIncomeRequest) (*operations.GetDirectIncomeResponse, error) {
+func (s *directIncomes) GetDirectIncome(ctx context.Context, request operations.GetDirectIncomeRequest, opts ...operations.Option) (*operations.GetDirectIncomeResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/directIncomes/{directIncomeId}", request, nil)
 	if err != nil {
@@ -216,7 +325,30 @@ func (s *directIncomes) GetDirectIncome(ctx context.Context, request operations.
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -250,7 +382,17 @@ func (s *directIncomes) GetDirectIncome(ctx context.Context, request operations.
 
 // GetDirectIncomeAttachment - Get direct income attachment
 // Gets the specified direct income attachment for a given company.
-func (s *directIncomes) GetDirectIncomeAttachment(ctx context.Context, request operations.GetDirectIncomeAttachmentRequest) (*operations.GetDirectIncomeAttachmentResponse, error) {
+func (s *directIncomes) GetDirectIncomeAttachment(ctx context.Context, request operations.GetDirectIncomeAttachmentRequest, opts ...operations.Option) (*operations.GetDirectIncomeAttachmentResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/directIncomes/{directIncomeId}/attachments/{attachmentId}", request, nil)
 	if err != nil {
@@ -268,7 +410,30 @@ func (s *directIncomes) GetDirectIncomeAttachment(ctx context.Context, request o
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -302,7 +467,17 @@ func (s *directIncomes) GetDirectIncomeAttachment(ctx context.Context, request o
 
 // GetDirectIncomes - Get direct incomes
 // Gets the direct incomes for a given company.
-func (s *directIncomes) GetDirectIncomes(ctx context.Context, request operations.GetDirectIncomesRequest) (*operations.GetDirectIncomesResponse, error) {
+func (s *directIncomes) GetDirectIncomes(ctx context.Context, request operations.GetDirectIncomesRequest, opts ...operations.Option) (*operations.GetDirectIncomesResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/directIncomes", request, nil)
 	if err != nil {
@@ -320,7 +495,30 @@ func (s *directIncomes) GetDirectIncomes(ctx context.Context, request operations
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -354,7 +552,17 @@ func (s *directIncomes) GetDirectIncomes(ctx context.Context, request operations
 
 // ListDirectIncomeAttachments - List direct income attachments
 // Gets all attachments for the specified direct income for a given company.
-func (s *directIncomes) ListDirectIncomeAttachments(ctx context.Context, request operations.ListDirectIncomeAttachmentsRequest) (*operations.ListDirectIncomeAttachmentsResponse, error) {
+func (s *directIncomes) ListDirectIncomeAttachments(ctx context.Context, request operations.ListDirectIncomeAttachmentsRequest, opts ...operations.Option) (*operations.ListDirectIncomeAttachmentsResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/directIncomes/{directIncomeId}/attachments", request, nil)
 	if err != nil {
@@ -368,7 +576,30 @@ func (s *directIncomes) ListDirectIncomeAttachments(ctx context.Context, request
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -402,7 +633,17 @@ func (s *directIncomes) ListDirectIncomeAttachments(ctx context.Context, request
 
 // UploadDirectIncomeAttachment - Create direct income attachment
 // Posts a new direct income attachment for a given company.
-func (s *directIncomes) UploadDirectIncomeAttachment(ctx context.Context, request operations.UploadDirectIncomeAttachmentRequest) (*operations.UploadDirectIncomeAttachmentResponse, error) {
+func (s *directIncomes) UploadDirectIncomeAttachment(ctx context.Context, request operations.UploadDirectIncomeAttachmentRequest, opts ...operations.Option) (*operations.UploadDirectIncomeAttachmentResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/directIncomes/{directIncomeId}/attachment", request, nil)
 	if err != nil {
@@ -423,7 +664,30 @@ func (s *directIncomes) UploadDirectIncomeAttachment(ctx context.Context, reques
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}

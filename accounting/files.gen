@@ -345,3 +345,4 @@ pkg/models/shared/transferaccount.go
 pkg/models/shared/transfers.go
 pkg/models/shared/security.go
 USAGE.md
+pkg/models/operations/options.go

@@ -34,7 +34,17 @@ func newPaymentMethods(defaultClient, securityClient HTTPClient, serverURL, lang
 
 // GetPaymentMethod - Get payment method
 // Gets the specified payment method for a given company.
-func (s *paymentMethods) GetPaymentMethod(ctx context.Context, request operations.GetPaymentMethodRequest) (*operations.GetPaymentMethodResponse, error) {
+func (s *paymentMethods) GetPaymentMethod(ctx context.Context, request operations.GetPaymentMethodRequest, opts ...operations.Option) (*operations.GetPaymentMethodResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/paymentMethods/{paymentMethodId}", request, nil)
 	if err != nil {
@@ -48,7 +58,30 @@ func (s *paymentMethods) GetPaymentMethod(ctx context.Context, request operation
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -82,7 +115,17 @@ func (s *paymentMethods) GetPaymentMethod(ctx context.Context, request operation
 
 // ListPaymentMethods - List all payment methods
 // Gets the payment methods for a given company.
-func (s *paymentMethods) ListPaymentMethods(ctx context.Context, request operations.ListPaymentMethodsRequest) (*operations.ListPaymentMethodsResponse, error) {
+func (s *paymentMethods) ListPaymentMethods(ctx context.Context, request operations.ListPaymentMethodsRequest, opts ...operations.Option) (*operations.ListPaymentMethodsResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/paymentMethods", request, nil)
 	if err != nil {
@@ -100,7 +143,30 @@ func (s *paymentMethods) ListPaymentMethods(ctx context.Context, request operati
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}

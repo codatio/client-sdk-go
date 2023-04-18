@@ -41,7 +41,17 @@ func newCustomers(defaultClient, securityClient HTTPClient, serverURL, language,
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=customers) for integrations that support creating customers.
-func (s *customers) CreateCustomer(ctx context.Context, request operations.CreateCustomerRequest) (*operations.CreateCustomerResponse, error) {
+func (s *customers) CreateCustomer(ctx context.Context, request operations.CreateCustomerRequest, opts ...operations.Option) (*operations.CreateCustomerResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/customers", request, nil)
 	if err != nil {
@@ -66,7 +76,30 @@ func (s *customers) CreateCustomer(ctx context.Context, request operations.Creat
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -100,7 +133,17 @@ func (s *customers) CreateCustomer(ctx context.Context, request operations.Creat
 
 // DownloadCustomerAttachment - Download customer attachment
 // Download customer attachment
-func (s *customers) DownloadCustomerAttachment(ctx context.Context, request operations.DownloadCustomerAttachmentRequest) (*operations.DownloadCustomerAttachmentResponse, error) {
+func (s *customers) DownloadCustomerAttachment(ctx context.Context, request operations.DownloadCustomerAttachmentRequest, opts ...operations.Option) (*operations.DownloadCustomerAttachmentResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/customers/{customerId}/attachments/{attachmentId}/download", request, nil)
 	if err != nil {
@@ -114,7 +157,30 @@ func (s *customers) DownloadCustomerAttachment(ctx context.Context, request oper
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -154,7 +220,17 @@ func (s *customers) DownloadCustomerAttachment(ctx context.Context, request oper
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=customers) for integrations that support creating and updating customers.
-func (s *customers) GetCreateUpdateCustomersModel(ctx context.Context, request operations.GetCreateUpdateCustomersModelRequest) (*operations.GetCreateUpdateCustomersModelResponse, error) {
+func (s *customers) GetCreateUpdateCustomersModel(ctx context.Context, request operations.GetCreateUpdateCustomersModelRequest, opts ...operations.Option) (*operations.GetCreateUpdateCustomersModelResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/customers", request, nil)
 	if err != nil {
@@ -168,7 +244,30 @@ func (s *customers) GetCreateUpdateCustomersModel(ctx context.Context, request o
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -202,7 +301,17 @@ func (s *customers) GetCreateUpdateCustomersModel(ctx context.Context, request o
 
 // GetCustomer - Get customer
 // Gets a single customer corresponding to the given ID.
-func (s *customers) GetCustomer(ctx context.Context, request operations.GetCustomerRequest) (*operations.GetCustomerResponse, error) {
+func (s *customers) GetCustomer(ctx context.Context, request operations.GetCustomerRequest, opts ...operations.Option) (*operations.GetCustomerResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/customers/{customerId}", request, nil)
 	if err != nil {
@@ -216,7 +325,30 @@ func (s *customers) GetCustomer(ctx context.Context, request operations.GetCusto
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -250,7 +382,17 @@ func (s *customers) GetCustomer(ctx context.Context, request operations.GetCusto
 
 // GetCustomerAttachment - Get customer attachment
 // Get  customer attachment
-func (s *customers) GetCustomerAttachment(ctx context.Context, request operations.GetCustomerAttachmentRequest) (*operations.GetCustomerAttachmentResponse, error) {
+func (s *customers) GetCustomerAttachment(ctx context.Context, request operations.GetCustomerAttachmentRequest, opts ...operations.Option) (*operations.GetCustomerAttachmentResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/customers/{customerId}/attachments/{attachmentId}", request, nil)
 	if err != nil {
@@ -264,7 +406,30 @@ func (s *customers) GetCustomerAttachment(ctx context.Context, request operation
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -298,7 +463,17 @@ func (s *customers) GetCustomerAttachment(ctx context.Context, request operation
 
 // GetCustomerAttachments - List customer attachments
 // Get customer attachments
-func (s *customers) GetCustomerAttachments(ctx context.Context, request operations.GetCustomerAttachmentsRequest) (*operations.GetCustomerAttachmentsResponse, error) {
+func (s *customers) GetCustomerAttachments(ctx context.Context, request operations.GetCustomerAttachmentsRequest, opts ...operations.Option) (*operations.GetCustomerAttachmentsResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/customers/{customerId}/attachments", request, nil)
 	if err != nil {
@@ -312,7 +487,30 @@ func (s *customers) GetCustomerAttachments(ctx context.Context, request operatio
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -346,7 +544,17 @@ func (s *customers) GetCustomerAttachments(ctx context.Context, request operatio
 
 // GetCustomers - List customers
 // Gets the latest customers for a company, with pagination
-func (s *customers) GetCustomers(ctx context.Context, request operations.GetCustomersRequest) (*operations.GetCustomersResponse, error) {
+func (s *customers) GetCustomers(ctx context.Context, request operations.GetCustomersRequest, opts ...operations.Option) (*operations.GetCustomersResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/customers", request, nil)
 	if err != nil {
@@ -364,7 +572,30 @@ func (s *customers) GetCustomers(ctx context.Context, request operations.GetCust
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -404,7 +635,17 @@ func (s *customers) GetCustomers(ctx context.Context, request operations.GetCust
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=customers) for integrations that support updating customers.
-func (s *customers) UpdateCustomer(ctx context.Context, request operations.UpdateCustomerRequest) (*operations.UpdateCustomerResponse, error) {
+func (s *customers) UpdateCustomer(ctx context.Context, request operations.UpdateCustomerRequest, opts ...operations.Option) (*operations.UpdateCustomerResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/customers/{customerId}", request, nil)
 	if err != nil {
@@ -429,7 +670,30 @@ func (s *customers) UpdateCustomer(ctx context.Context, request operations.Updat
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}

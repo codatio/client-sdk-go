@@ -40,7 +40,17 @@ func newPurchaseOrders(defaultClient, securityClient HTTPClient, serverURL, lang
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=purchaseOrders) for integrations that support creating purchase orders.
-func (s *purchaseOrders) CreatePurchaseOrder(ctx context.Context, request operations.CreatePurchaseOrderRequest) (*operations.CreatePurchaseOrderResponse, error) {
+func (s *purchaseOrders) CreatePurchaseOrder(ctx context.Context, request operations.CreatePurchaseOrderRequest, opts ...operations.Option) (*operations.CreatePurchaseOrderResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/purchaseOrders", request, nil)
 	if err != nil {
@@ -65,7 +75,30 @@ func (s *purchaseOrders) CreatePurchaseOrder(ctx context.Context, request operat
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -105,7 +138,17 @@ func (s *purchaseOrders) CreatePurchaseOrder(ctx context.Context, request operat
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=purchaseOrders) for integrations that support creating and updating purchase orders.
-func (s *purchaseOrders) GetCreateUpdatePurchaseOrdersModel(ctx context.Context, request operations.GetCreateUpdatePurchaseOrdersModelRequest) (*operations.GetCreateUpdatePurchaseOrdersModelResponse, error) {
+func (s *purchaseOrders) GetCreateUpdatePurchaseOrdersModel(ctx context.Context, request operations.GetCreateUpdatePurchaseOrdersModelRequest, opts ...operations.Option) (*operations.GetCreateUpdatePurchaseOrdersModelResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/purchaseOrders", request, nil)
 	if err != nil {
@@ -119,7 +162,30 @@ func (s *purchaseOrders) GetCreateUpdatePurchaseOrdersModel(ctx context.Context,
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -153,7 +219,17 @@ func (s *purchaseOrders) GetCreateUpdatePurchaseOrdersModel(ctx context.Context,
 
 // GetPurchaseOrder - Get purchase order
 // Get purchase order
-func (s *purchaseOrders) GetPurchaseOrder(ctx context.Context, request operations.GetPurchaseOrderRequest) (*operations.GetPurchaseOrderResponse, error) {
+func (s *purchaseOrders) GetPurchaseOrder(ctx context.Context, request operations.GetPurchaseOrderRequest, opts ...operations.Option) (*operations.GetPurchaseOrderResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/purchaseOrders/{purchaseOrderId}", request, nil)
 	if err != nil {
@@ -167,7 +243,30 @@ func (s *purchaseOrders) GetPurchaseOrder(ctx context.Context, request operation
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -201,7 +300,17 @@ func (s *purchaseOrders) GetPurchaseOrder(ctx context.Context, request operation
 
 // ListPurchaseOrders - List purchase orders
 // Get purchase orders
-func (s *purchaseOrders) ListPurchaseOrders(ctx context.Context, request operations.ListPurchaseOrdersRequest) (*operations.ListPurchaseOrdersResponse, error) {
+func (s *purchaseOrders) ListPurchaseOrders(ctx context.Context, request operations.ListPurchaseOrdersRequest, opts ...operations.Option) (*operations.ListPurchaseOrdersResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/purchaseOrders", request, nil)
 	if err != nil {
@@ -219,7 +328,30 @@ func (s *purchaseOrders) ListPurchaseOrders(ctx context.Context, request operati
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -259,7 +391,17 @@ func (s *purchaseOrders) ListPurchaseOrders(ctx context.Context, request operati
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=purchaseOrders) for integrations that support updating purchase orders.
-func (s *purchaseOrders) UpdatePurchaseOrder(ctx context.Context, request operations.UpdatePurchaseOrderRequest) (*operations.UpdatePurchaseOrderResponse, error) {
+func (s *purchaseOrders) UpdatePurchaseOrder(ctx context.Context, request operations.UpdatePurchaseOrderRequest, opts ...operations.Option) (*operations.UpdatePurchaseOrderResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/purchaseOrders/{purchaseOrderId}", request, nil)
 	if err != nil {
@@ -284,7 +426,30 @@ func (s *purchaseOrders) UpdatePurchaseOrder(ctx context.Context, request operat
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}

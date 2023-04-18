@@ -41,7 +41,17 @@ func newSuppliers(defaultClient, securityClient HTTPClient, serverURL, language,
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=suppliers) for integrations that support creating suppliers.
-func (s *suppliers) CreateSupplier(ctx context.Context, request operations.CreateSupplierRequest) (*operations.CreateSupplierResponse, error) {
+func (s *suppliers) CreateSupplier(ctx context.Context, request operations.CreateSupplierRequest, opts ...operations.Option) (*operations.CreateSupplierResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/suppliers", request, nil)
 	if err != nil {
@@ -66,7 +76,30 @@ func (s *suppliers) CreateSupplier(ctx context.Context, request operations.Creat
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -100,7 +133,17 @@ func (s *suppliers) CreateSupplier(ctx context.Context, request operations.Creat
 
 // DownloadSupplierAttachment - Download supplier attachment
 // Download supplier attachment
-func (s *suppliers) DownloadSupplierAttachment(ctx context.Context, request operations.DownloadSupplierAttachmentRequest) (*operations.DownloadSupplierAttachmentResponse, error) {
+func (s *suppliers) DownloadSupplierAttachment(ctx context.Context, request operations.DownloadSupplierAttachmentRequest, opts ...operations.Option) (*operations.DownloadSupplierAttachmentResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/suppliers/{supplierId}/attachments/{attachmentId}/download", request, nil)
 	if err != nil {
@@ -114,7 +157,30 @@ func (s *suppliers) DownloadSupplierAttachment(ctx context.Context, request oper
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -154,7 +220,17 @@ func (s *suppliers) DownloadSupplierAttachment(ctx context.Context, request oper
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=suppliers) for integrations that support creating and updating suppliers.
-func (s *suppliers) GetCreateUpdateSuppliersModel(ctx context.Context, request operations.GetCreateUpdateSuppliersModelRequest) (*operations.GetCreateUpdateSuppliersModelResponse, error) {
+func (s *suppliers) GetCreateUpdateSuppliersModel(ctx context.Context, request operations.GetCreateUpdateSuppliersModelRequest, opts ...operations.Option) (*operations.GetCreateUpdateSuppliersModelResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/suppliers", request, nil)
 	if err != nil {
@@ -168,7 +244,30 @@ func (s *suppliers) GetCreateUpdateSuppliersModel(ctx context.Context, request o
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -202,7 +301,17 @@ func (s *suppliers) GetCreateUpdateSuppliersModel(ctx context.Context, request o
 
 // GetSupplier - Get supplier
 // Gets a single supplier corresponding to the given ID.
-func (s *suppliers) GetSupplier(ctx context.Context, request operations.GetSupplierRequest) (*operations.GetSupplierResponse, error) {
+func (s *suppliers) GetSupplier(ctx context.Context, request operations.GetSupplierRequest, opts ...operations.Option) (*operations.GetSupplierResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/suppliers/{supplierId}", request, nil)
 	if err != nil {
@@ -216,7 +325,30 @@ func (s *suppliers) GetSupplier(ctx context.Context, request operations.GetSuppl
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -250,7 +382,17 @@ func (s *suppliers) GetSupplier(ctx context.Context, request operations.GetSuppl
 
 // GetSupplierAttachment - Get supplier attachment
 // Get supplier attachment
-func (s *suppliers) GetSupplierAttachment(ctx context.Context, request operations.GetSupplierAttachmentRequest) (*operations.GetSupplierAttachmentResponse, error) {
+func (s *suppliers) GetSupplierAttachment(ctx context.Context, request operations.GetSupplierAttachmentRequest, opts ...operations.Option) (*operations.GetSupplierAttachmentResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/suppliers/{supplierId}/attachments/{attachmentId}", request, nil)
 	if err != nil {
@@ -264,7 +406,30 @@ func (s *suppliers) GetSupplierAttachment(ctx context.Context, request operation
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -298,7 +463,17 @@ func (s *suppliers) GetSupplierAttachment(ctx context.Context, request operation
 
 // ListSupplierAttachments - List supplier attachments
 // Get supplier attachments
-func (s *suppliers) ListSupplierAttachments(ctx context.Context, request operations.ListSupplierAttachmentsRequest) (*operations.ListSupplierAttachmentsResponse, error) {
+func (s *suppliers) ListSupplierAttachments(ctx context.Context, request operations.ListSupplierAttachmentsRequest, opts ...operations.Option) (*operations.ListSupplierAttachmentsResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/suppliers/{supplierId}/attachments", request, nil)
 	if err != nil {
@@ -312,7 +487,30 @@ func (s *suppliers) ListSupplierAttachments(ctx context.Context, request operati
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -346,7 +544,17 @@ func (s *suppliers) ListSupplierAttachments(ctx context.Context, request operati
 
 // ListSuppliers - List suppliers
 // Gets the latest suppliers for a company, with pagination
-func (s *suppliers) ListSuppliers(ctx context.Context, request operations.ListSuppliersRequest) (*operations.ListSuppliersResponse, error) {
+func (s *suppliers) ListSuppliers(ctx context.Context, request operations.ListSuppliersRequest, opts ...operations.Option) (*operations.ListSuppliersResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/suppliers", request, nil)
 	if err != nil {
@@ -364,7 +572,30 @@ func (s *suppliers) ListSuppliers(ctx context.Context, request operations.ListSu
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -404,7 +635,17 @@ func (s *suppliers) ListSuppliers(ctx context.Context, request operations.ListSu
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=suppliers) for integrations that support updating suppliers.
-func (s *suppliers) PutSupplier(ctx context.Context, request operations.PutSupplierRequest) (*operations.PutSupplierResponse, error) {
+func (s *suppliers) PutSupplier(ctx context.Context, request operations.PutSupplierRequest, opts ...operations.Option) (*operations.PutSupplierResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/suppliers/{supplierId}", request, nil)
 	if err != nil {
@@ -429,7 +670,30 @@ func (s *suppliers) PutSupplier(ctx context.Context, request operations.PutSuppl
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}

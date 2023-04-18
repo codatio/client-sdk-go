@@ -38,7 +38,17 @@ func newBankAccountTransactions(defaultClient, securityClient HTTPClient, server
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankTransactions) for integrations that support POST methods.
-func (s *bankAccountTransactions) CreateBankTransactions(ctx context.Context, request operations.CreateBankTransactionsRequest) (*operations.CreateBankTransactionsResponse, error) {
+func (s *bankAccountTransactions) CreateBankTransactions(ctx context.Context, request operations.CreateBankTransactionsRequest, opts ...operations.Option) (*operations.CreateBankTransactionsResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/bankAccounts/{accountId}/bankTransactions", request, nil)
 	if err != nil {
@@ -63,7 +73,30 @@ func (s *bankAccountTransactions) CreateBankTransactions(ctx context.Context, re
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -97,7 +130,17 @@ func (s *bankAccountTransactions) CreateBankTransactions(ctx context.Context, re
 
 // GetCreateBankAccountModel - List push options for bank account bank transactions
 // Gets the options of pushing bank account transactions.
-func (s *bankAccountTransactions) GetCreateBankAccountModel(ctx context.Context, request operations.GetCreateBankAccountModelRequest) (*operations.GetCreateBankAccountModelResponse, error) {
+func (s *bankAccountTransactions) GetCreateBankAccountModel(ctx context.Context, request operations.GetCreateBankAccountModelRequest, opts ...operations.Option) (*operations.GetCreateBankAccountModelResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/bankAccounts/{accountId}/bankTransactions", request, nil)
 	if err != nil {
@@ -111,7 +154,30 @@ func (s *bankAccountTransactions) GetCreateBankAccountModel(ctx context.Context,
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -145,7 +211,17 @@ func (s *bankAccountTransactions) GetCreateBankAccountModel(ctx context.Context,
 
 // ListBankAccountTransactions - List bank transactions for bank account
 // Gets bank transactions for a given bank account ID
-func (s *bankAccountTransactions) ListBankAccountTransactions(ctx context.Context, request operations.ListBankAccountTransactionsRequest) (*operations.ListBankAccountTransactionsResponse, error) {
+func (s *bankAccountTransactions) ListBankAccountTransactions(ctx context.Context, request operations.ListBankAccountTransactionsRequest, opts ...operations.Option) (*operations.ListBankAccountTransactionsResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/bankAccounts/{accountId}/bankTransactions", request, nil)
 	if err != nil {
@@ -163,7 +239,30 @@ func (s *bankAccountTransactions) ListBankAccountTransactions(ctx context.Contex
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -197,7 +296,17 @@ func (s *bankAccountTransactions) ListBankAccountTransactions(ctx context.Contex
 
 // ListBankTransactions - List all bank transactions
 // Gets the latest bank transactions for given account ID and company. Doesn't require connection ID.
-func (s *bankAccountTransactions) ListBankTransactions(ctx context.Context, request operations.ListBankTransactionsRequest) (*operations.ListBankTransactionsResponse, error) {
+func (s *bankAccountTransactions) ListBankTransactions(ctx context.Context, request operations.ListBankTransactionsRequest, opts ...operations.Option) (*operations.ListBankTransactionsResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/bankAccounts/{accountId}/transactions", request, nil)
 	if err != nil {
@@ -215,7 +324,30 @@ func (s *bankAccountTransactions) ListBankTransactions(ctx context.Context, requ
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
