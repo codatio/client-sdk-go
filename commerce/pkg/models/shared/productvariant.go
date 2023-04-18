@@ -55,8 +55,7 @@ type ProductVariant struct {
 	// Name of the product recorded in the commerce or point of sale platform.
 	Name *string `json:"name,omitempty"`
 	// Prices for the product variants in different currencies.
-	Prices   []ProductPrice `json:"prices,omitempty"`
-	Quantity *float64       `json:"quantity,omitempty"`
+	Prices []ProductPrice `json:"prices,omitempty"`
 	// Indicates whether or not the product requires physical delivery.
 	ShippingRequired *bool `json:"shippingRequired,omitempty"`
 	// SKU (stock keeping unit) of the variant, as defined by the merchant.
