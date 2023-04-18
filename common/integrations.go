@@ -35,7 +35,17 @@ func newIntegrations(defaultClient, securityClient HTTPClient, serverURL, langua
 
 // GetIntegration - Get integration
 // Get single integration, by platformKey
-func (s *integrations) GetIntegration(ctx context.Context, request operations.GetIntegrationRequest) (*operations.GetIntegrationResponse, error) {
+func (s *integrations) GetIntegration(ctx context.Context, request operations.GetIntegrationRequest, opts ...operations.Option) (*operations.GetIntegrationResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/integrations/{platformKey}", request, nil)
 	if err != nil {
@@ -49,7 +59,30 @@ func (s *integrations) GetIntegration(ctx context.Context, request operations.Ge
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -95,7 +128,17 @@ func (s *integrations) GetIntegration(ctx context.Context, request operations.Ge
 
 // GetIntegrationsBranding - Get branding
 // Get branding for platform.
-func (s *integrations) GetIntegrationsBranding(ctx context.Context, request operations.GetIntegrationsBrandingRequest) (*operations.GetIntegrationsBrandingResponse, error) {
+func (s *integrations) GetIntegrationsBranding(ctx context.Context, request operations.GetIntegrationsBrandingRequest, opts ...operations.Option) (*operations.GetIntegrationsBrandingResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/integrations/{platformKey}/branding", request, nil)
 	if err != nil {
@@ -109,7 +152,30 @@ func (s *integrations) GetIntegrationsBranding(ctx context.Context, request oper
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -143,7 +209,17 @@ func (s *integrations) GetIntegrationsBranding(ctx context.Context, request oper
 
 // ListIntegrations - List integrations
 // List your available integrations
-func (s *integrations) ListIntegrations(ctx context.Context, request operations.ListIntegrationsRequest) (*operations.ListIntegrationsResponse, error) {
+func (s *integrations) ListIntegrations(ctx context.Context, request operations.ListIntegrationsRequest, opts ...operations.Option) (*operations.ListIntegrationsResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/integrations"
 
@@ -158,7 +234,30 @@ func (s *integrations) ListIntegrations(ctx context.Context, request operations.
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}

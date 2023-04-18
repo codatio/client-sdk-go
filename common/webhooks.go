@@ -35,7 +35,17 @@ func newWebhooks(defaultClient, securityClient HTTPClient, serverURL, language, 
 
 // CreateRule - Create webhook
 // Create a new webhook configuration
-func (s *webhooks) CreateRule(ctx context.Context, request shared.Rule) (*operations.CreateRuleResponse, error) {
+func (s *webhooks) CreateRule(ctx context.Context, request shared.Rule, opts ...operations.Option) (*operations.CreateRuleResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/rules"
 
@@ -53,7 +63,30 @@ func (s *webhooks) CreateRule(ctx context.Context, request shared.Rule) (*operat
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -97,7 +130,17 @@ func (s *webhooks) CreateRule(ctx context.Context, request shared.Rule) (*operat
 
 // GetWebhook - Get webhook
 // Get a single webhook
-func (s *webhooks) GetWebhook(ctx context.Context, request operations.GetWebhookRequest) (*operations.GetWebhookResponse, error) {
+func (s *webhooks) GetWebhook(ctx context.Context, request operations.GetWebhookRequest, opts ...operations.Option) (*operations.GetWebhookResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/rules/{ruleId}", request, nil)
 	if err != nil {
@@ -111,7 +154,30 @@ func (s *webhooks) GetWebhook(ctx context.Context, request operations.GetWebhook
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -157,7 +223,17 @@ func (s *webhooks) GetWebhook(ctx context.Context, request operations.GetWebhook
 
 // ListRules - List webhooks
 // List webhooks that you are subscribed to.
-func (s *webhooks) ListRules(ctx context.Context, request operations.ListRulesRequest) (*operations.ListRulesResponse, error) {
+func (s *webhooks) ListRules(ctx context.Context, request operations.ListRulesRequest, opts ...operations.Option) (*operations.ListRulesResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/rules"
 
@@ -172,7 +248,30 @@ func (s *webhooks) ListRules(ctx context.Context, request operations.ListRulesRe
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}

@@ -34,7 +34,17 @@ func newConnections(defaultClient, securityClient HTTPClient, serverURL, languag
 
 // CreateDataConnection - Create a data connection
 // Create a data connection for a company
-func (s *connections) CreateDataConnection(ctx context.Context, request operations.CreateDataConnectionRequest) (*operations.CreateDataConnectionResponse, error) {
+func (s *connections) CreateDataConnection(ctx context.Context, request operations.CreateDataConnectionRequest, opts ...operations.Option) (*operations.CreateDataConnectionResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections", request, nil)
 	if err != nil {
@@ -55,7 +65,30 @@ func (s *connections) CreateDataConnection(ctx context.Context, request operatio
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -100,7 +133,17 @@ func (s *connections) CreateDataConnection(ctx context.Context, request operatio
 // DeleteCompanyConnection - Delete connection
 // Revoke and remove a connection from a company.
 // This operation is not reversible - the end user would need to reauthorize a new data connection if you wish to view new data for this company.
-func (s *connections) DeleteCompanyConnection(ctx context.Context, request operations.DeleteCompanyConnectionRequest) (*operations.DeleteCompanyConnectionResponse, error) {
+func (s *connections) DeleteCompanyConnection(ctx context.Context, request operations.DeleteCompanyConnectionRequest, opts ...operations.Option) (*operations.DeleteCompanyConnectionResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}", request, nil)
 	if err != nil {
@@ -114,7 +157,30 @@ func (s *connections) DeleteCompanyConnection(ctx context.Context, request opera
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -151,7 +217,17 @@ func (s *connections) DeleteCompanyConnection(ctx context.Context, request opera
 
 // GetCompanyConnection - Get connection
 // Get a single connection for a company
-func (s *connections) GetCompanyConnection(ctx context.Context, request operations.GetCompanyConnectionRequest) (*operations.GetCompanyConnectionResponse, error) {
+func (s *connections) GetCompanyConnection(ctx context.Context, request operations.GetCompanyConnectionRequest, opts ...operations.Option) (*operations.GetCompanyConnectionResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}", request, nil)
 	if err != nil {
@@ -165,7 +241,30 @@ func (s *connections) GetCompanyConnection(ctx context.Context, request operatio
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -211,7 +310,17 @@ func (s *connections) GetCompanyConnection(ctx context.Context, request operatio
 
 // ListCompanyConnections - List connections
 // List the connections for a company
-func (s *connections) ListCompanyConnections(ctx context.Context, request operations.ListCompanyConnectionsRequest) (*operations.ListCompanyConnectionsResponse, error) {
+func (s *connections) ListCompanyConnections(ctx context.Context, request operations.ListCompanyConnectionsRequest, opts ...operations.Option) (*operations.ListCompanyConnectionsResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections", request, nil)
 	if err != nil {
@@ -229,7 +338,30 @@ func (s *connections) ListCompanyConnections(ctx context.Context, request operat
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -275,7 +407,17 @@ func (s *connections) ListCompanyConnections(ctx context.Context, request operat
 
 // UnlinkCompanyConnection - Unlink connection
 // This allows you to deauthorize a connection, without deleting it from Codat. This means you can still view any data that has previously been pulled into Codat, and also lets you re-authorize in future if your customer wishes to resume sharing their data.
-func (s *connections) UnlinkCompanyConnection(ctx context.Context, request operations.UnlinkCompanyConnectionRequest) (*operations.UnlinkCompanyConnectionResponse, error) {
+func (s *connections) UnlinkCompanyConnection(ctx context.Context, request operations.UnlinkCompanyConnectionRequest, opts ...operations.Option) (*operations.UnlinkCompanyConnectionResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}", request, nil)
 	if err != nil {
@@ -296,7 +438,30 @@ func (s *connections) UnlinkCompanyConnection(ctx context.Context, request opera
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -344,7 +509,17 @@ func (s *connections) UnlinkCompanyConnection(ctx context.Context, request opera
 
 // UpdateConnectionAuthorization - Update authorization
 // Update data connection's authorization.
-func (s *connections) UpdateConnectionAuthorization(ctx context.Context, request operations.UpdateConnectionAuthorizationRequest) (*operations.UpdateConnectionAuthorizationResponse, error) {
+func (s *connections) UpdateConnectionAuthorization(ctx context.Context, request operations.UpdateConnectionAuthorizationRequest, opts ...operations.Option) (*operations.UpdateConnectionAuthorizationResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/authorization", request, nil)
 	if err != nil {
@@ -365,7 +540,30 @@ func (s *connections) UpdateConnectionAuthorization(ctx context.Context, request
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}

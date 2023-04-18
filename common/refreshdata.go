@@ -36,7 +36,17 @@ func newRefreshData(defaultClient, securityClient HTTPClient, serverURL, languag
 // Queue a single pull operation for the given company and data type.
 //
 // This will bring updated data into Codat from the linked integration for you to view.
-func (s *refreshData) CreatePullOperation(ctx context.Context, request operations.CreatePullOperationRequest) (*operations.CreatePullOperationResponse, error) {
+func (s *refreshData) CreatePullOperation(ctx context.Context, request operations.CreatePullOperationRequest, opts ...operations.Option) (*operations.CreatePullOperationResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/queue/{dataType}", request, nil)
 	if err != nil {
@@ -54,7 +64,30 @@ func (s *refreshData) CreatePullOperation(ctx context.Context, request operation
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -100,7 +133,17 @@ func (s *refreshData) CreatePullOperation(ctx context.Context, request operation
 
 // RefreshCompanyData - Queue pull operations
 // Refreshes all data types marked Fetch on first link.
-func (s *refreshData) RefreshCompanyData(ctx context.Context, request operations.RefreshCompanyDataRequest) (*operations.RefreshCompanyDataResponse, error) {
+func (s *refreshData) RefreshCompanyData(ctx context.Context, request operations.RefreshCompanyDataRequest, opts ...operations.Option) (*operations.RefreshCompanyDataResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/all", request, nil)
 	if err != nil {
@@ -114,7 +157,30 @@ func (s *refreshData) RefreshCompanyData(ctx context.Context, request operations
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}

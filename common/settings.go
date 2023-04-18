@@ -35,7 +35,17 @@ func newSettings(defaultClient, securityClient HTTPClient, serverURL, language, 
 
 // GetProfile - Get profile
 // Fetch your Codat profile.
-func (s *settings) GetProfile(ctx context.Context) (*operations.GetProfileResponse, error) {
+func (s *settings) GetProfile(ctx context.Context, opts ...operations.Option) (*operations.GetProfileResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/profile"
 
@@ -46,7 +56,30 @@ func (s *settings) GetProfile(ctx context.Context) (*operations.GetProfileRespon
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -90,7 +123,17 @@ func (s *settings) GetProfile(ctx context.Context) (*operations.GetProfileRespon
 
 // GetProfileSyncSettings - Get sync settings
 // Retrieve the sync settings for your client. This includes how often data types should be queued to be updated, and how much history should be fetched.
-func (s *settings) GetProfileSyncSettings(ctx context.Context) (*operations.GetProfileSyncSettingsResponse, error) {
+func (s *settings) GetProfileSyncSettings(ctx context.Context, opts ...operations.Option) (*operations.GetProfileSyncSettingsResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/profile/syncSettings"
 
@@ -101,7 +144,30 @@ func (s *settings) GetProfileSyncSettings(ctx context.Context) (*operations.GetP
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -145,7 +211,17 @@ func (s *settings) GetProfileSyncSettings(ctx context.Context) (*operations.GetP
 
 // UpdateProfile - Update profile
 // Update your Codat profile
-func (s *settings) UpdateProfile(ctx context.Context, request shared.Profile) (*operations.UpdateProfileResponse, error) {
+func (s *settings) UpdateProfile(ctx context.Context, request shared.Profile, opts ...operations.Option) (*operations.UpdateProfileResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/profile"
 
@@ -163,7 +239,30 @@ func (s *settings) UpdateProfile(ctx context.Context, request shared.Profile) (*
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -207,7 +306,17 @@ func (s *settings) UpdateProfile(ctx context.Context, request shared.Profile) (*
 
 // UpdateSyncSettings - Update all sync settings
 // Update sync settings for all data types.
-func (s *settings) UpdateSyncSettings(ctx context.Context, request operations.UpdateSyncSettingsRequestBody) (*operations.UpdateSyncSettingsResponse, error) {
+func (s *settings) UpdateSyncSettings(ctx context.Context, request operations.UpdateSyncSettingsRequestBody, opts ...operations.Option) (*operations.UpdateSyncSettingsResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/profile/syncSettings"
 
@@ -225,7 +334,30 @@ func (s *settings) UpdateSyncSettings(ctx context.Context, request operations.Up
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
