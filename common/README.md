@@ -22,18 +22,18 @@ import (
 )
 
 func main() {
-    s := codatio.New(
-        codatio.WithSecurity(shared.Security{
+    s := codatcommon.New(
+        codatcommon.WithSecurity(shared.Security{
             AuthHeader: "YOUR_API_KEY_HERE",
         }),
     )
 
+    ctx := context.Background()    
     req := shared.CompanyRequestBody{
         Description: "corrupti",
-        Name: "provident",
+        Name: "Kelvin Sporer",
     }
 
-    ctx := context.Background()
     res, err := s.Companies.CreateCompany(ctx, req)
     if err != nil {
         log.Fatal(err)

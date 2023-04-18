@@ -6,7 +6,7 @@ pushdata.go
 refreshdata.go
 settings.go
 webhooks.go
-codatio.go
+codatcommon.go
 go.mod
 go.sum
 pkg/types/date.go
@@ -111,3 +111,4 @@ pkg/models/webhooks/newcompanysynchronized.go
 pkg/models/webhooks/pushoperationhastimedout.go
 pkg/models/webhooks/pushoperationstatushaschanged.go
 USAGE.md
+pkg/models/operations/options.go
