@@ -103,3 +103,4 @@ pkg/models/shared/security.go
 pkg/models/shared/accountcategoriesupdatedwebhook.go
 pkg/models/webhooks/accountcategoriesupdated.go
 USAGE.md
+pkg/models/operations/options.go
