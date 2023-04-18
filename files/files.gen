@@ -1,5 +1,5 @@
 files.go
-codatio.go
+codatfiles.go
 go.mod
 go.sum
 pkg/types/date.go
@@ -18,3 +18,4 @@ pkg/models/operations/uploadfiles.go
 pkg/models/shared/file.go
 pkg/models/shared/security.go
 USAGE.md
+pkg/models/operations/options.go
