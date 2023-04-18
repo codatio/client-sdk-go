@@ -24,12 +24,13 @@ import (
 )
 
 func main() {
-    s := codatio.New(
-        codatio.WithSecurity(shared.Security{
+    s := codatbankfeeds.New(
+        codatbankfeeds.WithSecurity(shared.Security{
             AuthHeader: "YOUR_API_KEY_HERE",
         }),
     )
 
+    ctx := context.Background()    
     req := operations.CreateBankTransactionsRequest{
         BankTransactions: &shared.BankTransactions{
             AccountID: "corrupti",
@@ -40,38 +41,38 @@ func main() {
                     ClearedOnDate: "2022-10-23T00:00:00Z",
                     Counterparty: "unde",
                     Description: "nulla",
-                    ID: "corrupti",
+                    ID: "8d69a674-e0f4-467c-8879-6ed151a05dfc",
                     ModifiedDate: "2022-10-23T00:00:00Z",
                     Reconciled: false,
-                    Reference: "illum",
+                    Reference: "odit",
                     SourceModifiedDate: "2022-10-23T00:00:00Z",
-                    TransactionType: "Dep",
+                    TransactionType: "DirectDebit",
                 },
                 shared.BankTransactionLine{
-                    Amount: 6235.64,
-                    Balance: 6458.94,
+                    Amount: 8700.88,
+                    Balance: 9786.19,
                     ClearedOnDate: "2022-10-23T00:00:00Z",
-                    Counterparty: "suscipit",
-                    Description: "iure",
-                    ID: "magnam",
+                    Counterparty: "molestiae",
+                    Description: "quod",
+                    ID: "c78ca1ba-928f-4c81-a742-cb7392059293",
                     ModifiedDate: "2022-10-23T00:00:00Z",
                     Reconciled: false,
-                    Reference: "debitis",
+                    Reference: "natus",
                     SourceModifiedDate: "2022-10-23T00:00:00Z",
-                    TransactionType: "Credit",
+                    TransactionType: "SerChg",
                 },
                 shared.BankTransactionLine{
-                    Amount: 9636.63,
-                    Balance: 2726.56,
+                    Amount: 9437.49,
+                    Balance: 9025.99,
                     ClearedOnDate: "2022-10-23T00:00:00Z",
-                    Counterparty: "suscipit",
-                    Description: "molestiae",
-                    ID: "minus",
+                    Counterparty: "fuga",
+                    Description: "in",
+                    ID: "596eb10f-aaa2-4352-8595-5907aff1a3a2",
                     ModifiedDate: "2022-10-23T00:00:00Z",
                     Reconciled: false,
-                    Reference: "placeat",
+                    Reference: "repellat",
                     SourceModifiedDate: "2022-10-23T00:00:00Z",
-                    TransactionType: "Pos",
+                    TransactionType: "Check",
                 },
             },
         },
@@ -79,10 +80,9 @@ func main() {
         AllowSyncOnPushComplete: false,
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: 479977,
+        TimeoutInMinutes: 581850,
     }
 
-    ctx := context.Background()
     res, err := s.BankAccountTransactions.CreateBankTransactions(ctx, req)
     if err != nil {
         log.Fatal(err)

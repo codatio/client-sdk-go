@@ -1,6 +1,6 @@
 bankaccounttransactions.go
 bankfeedaccounts.go
-codatio.go
+codatbankfeeds.go
 go.mod
 go.sum
 pkg/types/date.go
@@ -42,3 +42,4 @@ pkg/models/shared/href.go
 pkg/models/shared/bankfeedaccount.go
 pkg/models/shared/security.go
 USAGE.md
+pkg/models/operations/options.go
