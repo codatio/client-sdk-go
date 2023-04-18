@@ -59,3 +59,4 @@ pkg/models/shared/transactionmetadatalist.go
 pkg/models/shared/hallink.go
 pkg/models/shared/security.go
 USAGE.md
+pkg/models/operations/options.go

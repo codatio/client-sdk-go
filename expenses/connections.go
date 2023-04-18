@@ -34,9 +34,22 @@ func newConnections(defaultClient, securityClient HTTPClient, serverURL, languag
 
 // CreatePartnerExpenseConnection - Create Partner Expense connection
 // Creates a Partner Expense data connection
-func (s *connections) CreatePartnerExpenseConnection(ctx context.Context, request operations.CreatePartnerExpenseConnectionRequest) (*operations.CreatePartnerExpenseConnectionResponse, error) {
+func (s *connections) CreatePartnerExpenseConnection(ctx context.Context, request operations.CreatePartnerExpenseConnectionRequest, opts ...operations.Option) (*operations.CreatePartnerExpenseConnectionResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/sync/expenses/connections/partnerExpense", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/sync/expenses/connections/partnerExpense", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
 	if err != nil {
@@ -45,7 +58,30 @@ func (s *connections) CreatePartnerExpenseConnection(ctx context.Context, reques
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}

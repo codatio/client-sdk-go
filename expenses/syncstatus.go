@@ -34,9 +34,22 @@ func newSyncStatus(defaultClient, securityClient HTTPClient, serverURL, language
 
 // GetLastSuccessfulSync - Last successful sync
 // Gets the status of the last successfull sync
-func (s *syncStatus) GetLastSuccessfulSync(ctx context.Context, request operations.GetLastSuccessfulSyncRequest) (*operations.GetLastSuccessfulSyncResponse, error) {
+func (s *syncStatus) GetLastSuccessfulSync(ctx context.Context, request operations.GetLastSuccessfulSyncRequest, opts ...operations.Option) (*operations.GetLastSuccessfulSyncResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/sync/expenses/syncs/lastSuccessful/status", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/sync/expenses/syncs/lastSuccessful/status", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -45,7 +58,30 @@ func (s *syncStatus) GetLastSuccessfulSync(ctx context.Context, request operatio
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -79,9 +115,22 @@ func (s *syncStatus) GetLastSuccessfulSync(ctx context.Context, request operatio
 
 // GetLatestSync - Latest sync status
 // Gets the latest sync status
-func (s *syncStatus) GetLatestSync(ctx context.Context, request operations.GetLatestSyncRequest) (*operations.GetLatestSyncResponse, error) {
+func (s *syncStatus) GetLatestSync(ctx context.Context, request operations.GetLatestSyncRequest, opts ...operations.Option) (*operations.GetLatestSyncResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/sync/expenses/syncs/latest/status", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/sync/expenses/syncs/latest/status", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -90,7 +139,30 @@ func (s *syncStatus) GetLatestSync(ctx context.Context, request operations.GetLa
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -124,9 +196,22 @@ func (s *syncStatus) GetLatestSync(ctx context.Context, request operations.GetLa
 
 // GetSyncByID - Get Sync status
 // Get the sync status for a specified sync
-func (s *syncStatus) GetSyncByID(ctx context.Context, request operations.GetSyncByIDRequest) (*operations.GetSyncByIDResponse, error) {
+func (s *syncStatus) GetSyncByID(ctx context.Context, request operations.GetSyncByIDRequest, opts ...operations.Option) (*operations.GetSyncByIDResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/sync/expenses/syncs/{syncId}/status", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/sync/expenses/syncs/{syncId}/status", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -135,7 +220,30 @@ func (s *syncStatus) GetSyncByID(ctx context.Context, request operations.GetSync
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -169,9 +277,22 @@ func (s *syncStatus) GetSyncByID(ctx context.Context, request operations.GetSync
 
 // ListSyncs - List sync statuses
 // Gets a list of sync statuses
-func (s *syncStatus) ListSyncs(ctx context.Context, request operations.ListSyncsRequest) (*operations.ListSyncsResponse, error) {
+func (s *syncStatus) ListSyncs(ctx context.Context, request operations.ListSyncsRequest, opts ...operations.Option) (*operations.ListSyncsResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/sync/expenses/syncs/list/status", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/sync/expenses/syncs/list/status", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -180,7 +301,30 @@ func (s *syncStatus) ListSyncs(ctx context.Context, request operations.ListSyncs
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
