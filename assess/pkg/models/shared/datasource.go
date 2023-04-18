@@ -3,5 +3,6 @@
 package shared
 
 type DataSource struct {
+	// An array containing bank account data for each connected banking data source that have the following data types enabled: `banking-accounts`, `banking-transactions`.
 	Accounts []Accounts `json:"accounts,omitempty"`
 }

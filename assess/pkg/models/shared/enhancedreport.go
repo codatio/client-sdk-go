@@ -2,12 +2,14 @@
 
 package shared
 
-type EnhancedReportReportItems struct {
+type EnhancedReportReportItem struct {
 	AccountCategory *EnhancedReportAccountCategory `json:"accountCategory,omitempty"`
 	// The unique account ID.
-	AccountID   *string  `json:"accountId,omitempty"`
-	AccountName *string  `json:"accountName,omitempty"`
-	Balance     *float64 `json:"balance,omitempty"`
+	AccountID *string `json:"accountId,omitempty"`
+	// Name of the account.
+	AccountName *string `json:"accountName,omitempty"`
+	// Balance of the account as reported on the profit and loss or Balance sheet.
+	Balance *float64 `json:"balance,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -34,5 +36,5 @@ type EnhancedReportReportItems struct {
 type EnhancedReport struct {
 	ReportInfo *EnhancedReportInfo `json:"reportInfo,omitempty"`
 	// An array of report items.
-	ReportItems []EnhancedReportReportItems `json:"reportItems,omitempty"`
+	ReportItems []EnhancedReportReportItem `json:"reportItems,omitempty"`
 }

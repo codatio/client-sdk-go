@@ -3,5 +3,6 @@
 package shared
 
 type EnhancedCashFlowItem struct {
+	// An array of transaction data.
 	Transactions []EnhancedCashFlowTransaction `json:"transactions,omitempty"`
 }

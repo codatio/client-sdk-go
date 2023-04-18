@@ -3,7 +3,7 @@
 package shared
 
 type EnhancedReportInfo struct {
-	// Company name the report was generated for.
+	// Name of the company queried.
 	CompanyName *string `json:"companyName,omitempty"`
 	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code, e.g. _GBP_.
 	//
