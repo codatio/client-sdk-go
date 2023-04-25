@@ -1,4 +1,9 @@
-<!-- Start SDK Example Usage -->
+# ListFiles
+Available in: `Files`
+
+Returns an array of files that have been uploaded for a given company.
+
+## Example Usage
 ```go
 package main
 
@@ -17,19 +22,17 @@ func main() {
     )
 
     ctx := context.Background()    
-    req := operations.DownloadFilesRequest{
+    req := operations.ListFilesRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        Date: codatfiles.String("2022-10-23T00:00:00Z"),
     }
 
-    res, err := s.Files.DownloadFiles(ctx, req)
+    res, err := s.Files.ListFiles(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.Data != nil {
+    if res.Files != nil {
         // handle response
     }
 }
 ```
-<!-- End SDK Example Usage -->

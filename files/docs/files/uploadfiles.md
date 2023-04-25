@@ -1,4 +1,9 @@
-<!-- Start SDK Example Usage -->
+# UploadFiles
+Available in: `Files`
+
+Upload files
+
+## Example Usage
 ```go
 package main
 
@@ -17,19 +22,22 @@ func main() {
     )
 
     ctx := context.Background()    
-    req := operations.DownloadFilesRequest{
+    req := operations.UploadFilesRequest{
+        RequestBody: &operations.UploadFilesRequestBody{
+            Content: []byte("corrupti"),
+            RequestBody: "provident",
+        },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        Date: codatfiles.String("2022-10-23T00:00:00Z"),
+        ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     }
 
-    res, err := s.Files.DownloadFiles(ctx, req)
+    res, err := s.Files.UploadFiles(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.Data != nil {
+    if res.StatusCode == http.StatusOK {
         // handle response
     }
 }
 ```
-<!-- End SDK Example Usage -->

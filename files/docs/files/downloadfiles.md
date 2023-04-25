@@ -1,4 +1,9 @@
-<!-- Start SDK Example Usage -->
+# DownloadFiles
+Available in: `Files`
+
+You can specify a date to download specific files for.
+
+## Example Usage
 ```go
 package main
 
@@ -32,4 +37,3 @@ func main() {
     }
 }
 ```
-<!-- End SDK Example Usage -->
