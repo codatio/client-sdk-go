@@ -1,4 +1,11 @@
-<!-- Start SDK Example Usage -->
+# GetCompanyInfo
+Available in: `CompanyInfo`
+
+Retrieve information about the company, as seen in the commerce platform.
+
+This may include information like addresses, tax registration details and social media or website information.
+
+## Example Usage
 ```go
 package main
 
@@ -32,4 +39,3 @@ func main() {
     }
 }
 ```
-<!-- End SDK Example Usage -->

@@ -38,8 +38,9 @@ type Dispute struct {
 	// In line with the ISO 4217 specification, the code _XXX_ is used when the data source does not return a currency for a transaction.
 	//
 	// There are only a very small number of edge cases where this currency code is returned by the Codat system.
-	Currency             string                `json:"currency"`
-	DisputedTransactions *TransactionSourceRef `json:"disputedTransactions,omitempty"`
+	Currency string `json:"currency"`
+	// Link to the source event(s) which triggered this transaction.
+	DisputedTransactions []TransactionSourceRef `json:"disputedTransactions,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```

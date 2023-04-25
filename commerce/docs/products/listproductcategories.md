@@ -1,4 +1,9 @@
-<!-- Start SDK Example Usage -->
+# ListProductCategories
+Available in: `Products`
+
+Product categories are used to classify a group of products together, either by type (eg "Furniture"), or sometimes by tax profile.
+
+## Example Usage
 ```go
 package main
 
@@ -17,19 +22,22 @@ func main() {
     )
 
     ctx := context.Background()    
-    req := operations.GetCompanyInfoRequest{
+    req := operations.ListProductCategoriesRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
+        OrderBy: codatcommerce.String("-modifiedDate"),
+        Page: 1,
+        PageSize: codatcommerce.Int(100),
+        Query: codatcommerce.String("nulla"),
     }
 
-    res, err := s.CompanyInfo.GetCompanyInfo(ctx, req)
+    res, err := s.Products.ListProductCategories(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.CompanyInfo != nil {
+    if res.ProductCategories != nil {
         // handle response
     }
 }
 ```
-<!-- End SDK Example Usage -->

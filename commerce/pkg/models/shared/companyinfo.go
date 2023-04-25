@@ -16,6 +16,10 @@ const (
 	CompanyInfoWeblinkTypeEnumUnknown CompanyInfoWeblinkTypeEnum = "Unknown"
 )
 
+func (e CompanyInfoWeblinkTypeEnum) ToPointer() *CompanyInfoWeblinkTypeEnum {
+	return &e
+}
+
 func (e *CompanyInfoWeblinkTypeEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

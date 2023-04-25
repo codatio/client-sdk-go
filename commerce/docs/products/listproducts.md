@@ -1,4 +1,9 @@
-<!-- Start SDK Example Usage -->
+# ListProducts
+Available in: `Products`
+
+The Products data type provides the company's product inventory, and includes the price and quantity of all products, and product variants, available for sale.
+
+## Example Usage
 ```go
 package main
 
@@ -17,19 +22,22 @@ func main() {
     )
 
     ctx := context.Background()    
-    req := operations.GetCompanyInfoRequest{
+    req := operations.ListProductsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
+        OrderBy: codatcommerce.String("-modifiedDate"),
+        Page: 1,
+        PageSize: codatcommerce.Int(100),
+        Query: codatcommerce.String("corrupti"),
     }
 
-    res, err := s.CompanyInfo.GetCompanyInfo(ctx, req)
+    res, err := s.Products.ListProducts(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.CompanyInfo != nil {
+    if res.Products != nil {
         // handle response
     }
 }
 ```
-<!-- End SDK Example Usage -->

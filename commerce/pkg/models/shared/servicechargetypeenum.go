@@ -17,6 +17,10 @@ const (
 	ServiceChargeTypeEnumUnknown     ServiceChargeTypeEnum = "Unknown"
 )
 
+func (e ServiceChargeTypeEnum) ToPointer() *ServiceChargeTypeEnum {
+	return &e
+}
+
 func (e *ServiceChargeTypeEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

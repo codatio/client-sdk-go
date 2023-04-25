@@ -29,7 +29,7 @@ type ProductVariant struct {
 	// A unique, persistent identifier for this record
 	ID string `json:"id"`
 	// Information about the total inventory as well as the locations inventory is in.
-	Inventory []ProductInventory `json:"inventory,omitempty"`
+	Inventory *ProductInventory `json:"inventory,omitempty"`
 	// Whether sales taxes are enabled for this product variant.
 	IsTaxEnabled *bool `json:"isTaxEnabled,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
