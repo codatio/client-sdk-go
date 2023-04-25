@@ -17,6 +17,10 @@ const (
 	DataIntegrityDataTypeEnumAccountTransactions DataIntegrityDataTypeEnum = "accountTransactions"
 )
 
+func (e DataIntegrityDataTypeEnum) ToPointer() *DataIntegrityDataTypeEnum {
+	return &e
+}
+
 func (e *DataIntegrityDataTypeEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

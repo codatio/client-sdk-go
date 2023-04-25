@@ -4,7 +4,7 @@ package shared
 
 type CustomerRef struct {
 	// `customerName` from the Customer data type
-	CompanyName *string `json:"companyName,omitempty"`
+	CustomerName *string `json:"customerName,omitempty"`
 	// `id` from the Customers data type
-	ID string `json:"id"`
+	ID *string `json:"id,omitempty"`
 }

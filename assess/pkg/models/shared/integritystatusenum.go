@@ -17,6 +17,10 @@ const (
 	IntegrityStatusEnumComplete     IntegrityStatusEnum = "Complete"
 )
 
+func (e IntegrityStatusEnum) ToPointer() *IntegrityStatusEnum {
+	return &e
+}
+
 func (e *IntegrityStatusEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

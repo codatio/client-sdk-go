@@ -1,4 +1,9 @@
-<!-- Start SDK Example Usage -->
+# GetExcelReportGenerationStatus
+Available in: `ExcelReports`
+
+Returns the status of the latest report requested.
+
+## Example Usage
 ```go
 package main
 
@@ -7,6 +12,7 @@ import(
 	"log"
 	"github.com/codatio/client-sdk-go/assess"
 	"github.com/codatio/client-sdk-go/assess/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/assess/pkg/models/shared"
 )
 
 func main() {
@@ -17,20 +23,18 @@ func main() {
     )
 
     ctx := context.Background()    
-    req := operations.GetAccountCategoryRequest{
-        AccountID: "corrupti",
+    req := operations.GetExcelReportGenerationStatusRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
+        ReportType: shared.ExcelReportTypeEnumAssess,
     }
 
-    res, err := s.Categories.GetAccountCategory(ctx, req)
+    res, err := s.ExcelReports.GetExcelReportGenerationStatus(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.CategorisedAccount != nil {
+    if res.ExcelStatus != nil {
         // handle response
     }
 }
 ```
-<!-- End SDK Example Usage -->

@@ -17,6 +17,10 @@ const (
 	FinancialMetricErrorsTypeEnumInputDataError        FinancialMetricErrorsTypeEnum = "InputDataError"
 )
 
+func (e FinancialMetricErrorsTypeEnum) ToPointer() *FinancialMetricErrorsTypeEnum {
+	return &e
+}
+
 func (e *FinancialMetricErrorsTypeEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {
@@ -69,6 +73,10 @@ const (
 	FinancialMetricKeyEnumDaysSalesOutstanding        FinancialMetricKeyEnum = "DaysSalesOutstanding"
 	FinancialMetricKeyEnumDaysPayablesOutstanding     FinancialMetricKeyEnum = "DaysPayablesOutstanding"
 )
+
+func (e FinancialMetricKeyEnum) ToPointer() *FinancialMetricKeyEnum {
+	return &e
+}
 
 func (e *FinancialMetricKeyEnum) UnmarshalJSON(data []byte) error {
 	var s string
@@ -131,6 +139,10 @@ const (
 	FinancialMetricMetricUnitEnumMoney FinancialMetricMetricUnitEnum = "Money"
 )
 
+func (e FinancialMetricMetricUnitEnum) ToPointer() *FinancialMetricMetricUnitEnum {
+	return &e
+}
+
 func (e *FinancialMetricMetricUnitEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {
@@ -154,6 +166,10 @@ const (
 	FinancialMetricPeriodsErrorsTypeEnumMissingAccountData FinancialMetricPeriodsErrorsTypeEnum = "MissingAccountData"
 	FinancialMetricPeriodsErrorsTypeEnumDatesOutOfRange    FinancialMetricPeriodsErrorsTypeEnum = "DatesOutOfRange"
 )
+
+func (e FinancialMetricPeriodsErrorsTypeEnum) ToPointer() *FinancialMetricPeriodsErrorsTypeEnum {
+	return &e
+}
 
 func (e *FinancialMetricPeriodsErrorsTypeEnum) UnmarshalJSON(data []byte) error {
 	var s string

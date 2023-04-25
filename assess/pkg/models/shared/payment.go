@@ -2,6 +2,14 @@
 
 package shared
 
+// PaymentCustomerRef - Customer the payment is recorded against in the accounting platform.
+type PaymentCustomerRef struct {
+	// `customerName` from the Customer data type
+	CompanyName *string `json:"companyName,omitempty"`
+	// `id` from the Customers data type
+	ID string `json:"id"`
+}
+
 type PaymentMetadata struct {
 	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
@@ -736,8 +744,9 @@ type Payment struct {
 	// | **GBP**          | £20            | 1.277         | $25.54                     |
 	// | **EUR**          | €20            | 1.134         | $22.68                     |
 	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
-	CurrencyRate *float64     `json:"currencyRate,omitempty"`
-	CustomerRef  *CustomerRef `json:"customerRef,omitempty"`
+	CurrencyRate *float64 `json:"currencyRate,omitempty"`
+	// Customer the payment is recorded against in the accounting platform.
+	CustomerRef *PaymentCustomerRef `json:"customerRef,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```

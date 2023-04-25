@@ -1,4 +1,9 @@
-<!-- Start SDK Example Usage -->
+# UpdateAccountCategory
+Available in: `Categories`
+
+Update category for a specific nominal account
+
+## Example Usage
 ```go
 package main
 
@@ -7,6 +12,7 @@ import(
 	"log"
 	"github.com/codatio/client-sdk-go/assess"
 	"github.com/codatio/client-sdk-go/assess/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/assess/pkg/models/shared"
 )
 
 func main() {
@@ -17,13 +23,20 @@ func main() {
     )
 
     ctx := context.Background()    
-    req := operations.GetAccountCategoryRequest{
+    req := operations.UpdateAccountCategoryRequest{
+        ConfirmCategory: &shared.ConfirmCategory{
+            Confirmed: shared.AccountCategory{
+                DetailType: codatassess.String("quibusdam"),
+                Subtype: codatassess.String("unde"),
+                Type: codatassess.String("nulla"),
+            },
+        },
         AccountID: "corrupti",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     }
 
-    res, err := s.Categories.GetAccountCategory(ctx, req)
+    res, err := s.Categories.UpdateAccountCategory(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
@@ -33,4 +46,3 @@ func main() {
     }
 }
 ```
-<!-- End SDK Example Usage -->

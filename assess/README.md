@@ -16,12 +16,11 @@ go get github.com/codatio/client-sdk-go/assess
 ```go
 package main
 
-import (
-    "context"
-    "log"
-    "github.com/codatio/client-sdk-go/assess"
-    "github.com/codatio/client-sdk-go/assess/pkg/models/shared"
-    "github.com/codatio/client-sdk-go/assess/pkg/models/operations"
+import(
+	"context"
+	"log"
+	"github.com/codatio/client-sdk-go/assess"
+	"github.com/codatio/client-sdk-go/assess/pkg/models/operations"
 )
 
 func main() {
@@ -54,44 +53,44 @@ func main() {
 ## Available Resources and Operations
 
 
-### Categories
+### [Categories](docs/categories/README.md)
 
-* `GetAccountCategory` - Get suggested and/or confirmed category for a specific account
-* `ListAccountsCategories` - List suggested and confirmed account categories
-* `ListAvailableAccountCategories` - List account categories
-* `UpdateAccountCategory` - Patch account categories
-* `UpdateAccountsCategories` - Confirm categories for accounts
+* [GetAccountCategory](docs/categories/getaccountcategory.md) - Get suggested and/or confirmed category for a specific account
+* [ListAccountsCategories](docs/categories/listaccountscategories.md) - List suggested and confirmed account categories
+* [ListAvailableAccountCategories](docs/categories/listavailableaccountcategories.md) - List account categories
+* [UpdateAccountCategory](docs/categories/updateaccountcategory.md) - Patch account categories
+* [UpdateAccountsCategories](docs/categories/updateaccountscategories.md) - Confirm categories for accounts
 
-### DataIntegrity
+### [DataIntegrity](docs/dataintegrity/README.md)
 
-* `GetDataIntegrityDetails` - Lists data integrity details for date type
-* `GetDataIntegrityStatus` - Get data integrity status
-* `GetDataIntegritySummaries` - Get data integrity summary
+* [GetDataIntegrityDetails](docs/dataintegrity/getdataintegritydetails.md) - Lists data integrity details for date type
+* [GetDataIntegrityStatus](docs/dataintegrity/getdataintegritystatus.md) - Get data integrity status
+* [GetDataIntegritySummaries](docs/dataintegrity/getdataintegritysummaries.md) - Get data integrity summary
 
-### ExcelReports
+### [ExcelReports](docs/excelreports/README.md)
 
-* `DownloadExcelReport` - Download generated excel report
-* `GenerateExcelReport` - Generate an Excel report
-* `GetAccountingMarketingMetrics` - Get the marketing metrics from an accounting source for a given company.
-* `GetExcelReport` - Download generated excel report
-* `GetExcelReportGenerationStatus` - Get status of Excel report
+* [DownloadExcelReport](docs/excelreports/downloadexcelreport.md) - Download generated excel report
+* [GenerateExcelReport](docs/excelreports/generateexcelreport.md) - Generate an Excel report
+* [GetAccountingMarketingMetrics](docs/excelreports/getaccountingmarketingmetrics.md) - Get the marketing metrics from an accounting source for a given company.
+* [GetExcelReport](docs/excelreports/getexcelreport.md) - Download generated excel report
+* [GetExcelReportGenerationStatus](docs/excelreports/getexcelreportgenerationstatus.md) - Get status of Excel report
 
-### Reports
+### [Reports](docs/reports/README.md)
 
-* `GetAccountsForEnhancedBalanceSheet` - Enhanced Balance Sheet Accounts
-* `GetAccountsForEnhancedProfitAndLoss` - Enhanced Profit and Loss Accounts
-* `GetCommerceCustomerRetentionMetrics` - Get the customer retention metrics for a specific company.
-* `GetCommerceLifetimeValueMetrics` - Get the lifetime value metric for a specific company.
-* `GetCommerceOrdersMetrics` - Get order information for a specific company
-* `GetCommerceRefundsMetrics` - Get the refunds information for a specific company
-* `GetCommerceRevenueMetrics` - Commerce Revenue Metrics
-* `GetEnhancedBalanceSheet` - Enhanced Balance Sheet
-* `GetEnhancedCashFlowTransactions` - Get enhanced cash flow report
-* `GetEnhancedFinancialMetrics` - List financial metrics
-* `GetEnhancedInvoicesReport` - Enhanced Invoices Report
-* `GetEnhancedProfitAndLoss` - Enhanced Profit and Loss
-* `GetRecurringRevenueMetrics` - Get key metrics for subscription revenue
-* `RequestRecurringRevenueMetrics` - Request production of key subscription revenue metrics
+* [GetAccountsForEnhancedBalanceSheet](docs/reports/getaccountsforenhancedbalancesheet.md) - Enhanced Balance Sheet Accounts
+* [GetAccountsForEnhancedProfitAndLoss](docs/reports/getaccountsforenhancedprofitandloss.md) - Enhanced Profit and Loss Accounts
+* [GetCommerceCustomerRetentionMetrics](docs/reports/getcommercecustomerretentionmetrics.md) - Get the customer retention metrics for a specific company.
+* [GetCommerceLifetimeValueMetrics](docs/reports/getcommercelifetimevaluemetrics.md) - Get the lifetime value metric for a specific company.
+* [GetCommerceOrdersMetrics](docs/reports/getcommerceordersmetrics.md) - Get order information for a specific company
+* [GetCommerceRefundsMetrics](docs/reports/getcommercerefundsmetrics.md) - Get the refunds information for a specific company
+* [GetCommerceRevenueMetrics](docs/reports/getcommercerevenuemetrics.md) - Commerce Revenue Metrics
+* [GetEnhancedBalanceSheet](docs/reports/getenhancedbalancesheet.md) - Enhanced Balance Sheet
+* [GetEnhancedCashFlowTransactions](docs/reports/getenhancedcashflowtransactions.md) - Get enhanced cash flow report
+* [GetEnhancedFinancialMetrics](docs/reports/getenhancedfinancialmetrics.md) - List financial metrics
+* [GetEnhancedInvoicesReport](docs/reports/getenhancedinvoicesreport.md) - Enhanced Invoices Report
+* [GetEnhancedProfitAndLoss](docs/reports/getenhancedprofitandloss.md) - Enhanced Profit and Loss
+* [GetRecurringRevenueMetrics](docs/reports/getrecurringrevenuemetrics.md) - Get key metrics for subscription revenue
+* [RequestRecurringRevenueMetrics](docs/reports/requestrecurringrevenuemetrics.md) - Request production of key subscription revenue metrics
 <!-- End SDK Available Operations -->
 
 ### SDK Generated by [Speakeasy](https://docs.speakeasyapi.dev/docs/using-speakeasy/client-sdks)
