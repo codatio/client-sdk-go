@@ -1,4 +1,9 @@
-<!-- Start SDK Example Usage -->
+# GetCompany
+Available in: `Companies`
+
+Get metadata for a single company
+
+## Example Usage
 ```go
 package main
 
@@ -6,7 +11,7 @@ import(
 	"context"
 	"log"
 	"github.com/codatio/client-sdk-go/common"
-	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/common/pkg/models/operations"
 )
 
 func main() {
@@ -17,12 +22,11 @@ func main() {
     )
 
     ctx := context.Background()    
-    req := shared.CompanyRequestBody{
-        Description: codatcommon.String("corrupti"),
-        Name: "Kelvin Sporer",
+    req := operations.GetCompanyRequest{
+        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     }
 
-    res, err := s.Companies.CreateCompany(ctx, req)
+    res, err := s.Companies.GetCompany(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
@@ -32,4 +36,3 @@ func main() {
     }
 }
 ```
-<!-- End SDK Example Usage -->

@@ -17,6 +17,10 @@ const (
 	PushOperationStatusEnumTimedOut PushOperationStatusEnum = "TimedOut"
 )
 
+func (e PushOperationStatusEnum) ToPointer() *PushOperationStatusEnum {
+	return &e
+}
+
 func (e *PushOperationStatusEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

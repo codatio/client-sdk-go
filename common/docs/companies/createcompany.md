@@ -1,4 +1,9 @@
-<!-- Start SDK Example Usage -->
+# CreateCompany
+Available in: `Companies`
+
+Create a new company
+
+## Example Usage
 ```go
 package main
 
@@ -19,7 +24,7 @@ func main() {
     ctx := context.Background()    
     req := shared.CompanyRequestBody{
         Description: codatcommon.String("corrupti"),
-        Name: "Kelvin Sporer",
+        Name: "Ben Mueller",
     }
 
     res, err := s.Companies.CreateCompany(ctx, req)
@@ -32,4 +37,3 @@ func main() {
     }
 }
 ```
-<!-- End SDK Example Usage -->

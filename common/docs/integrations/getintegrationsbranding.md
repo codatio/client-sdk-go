@@ -1,4 +1,9 @@
-<!-- Start SDK Example Usage -->
+# GetIntegrationsBranding
+Available in: `Integrations`
+
+Get branding for platform.
+
+## Example Usage
 ```go
 package main
 
@@ -6,7 +11,7 @@ import(
 	"context"
 	"log"
 	"github.com/codatio/client-sdk-go/common"
-	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/common/pkg/models/operations"
 )
 
 func main() {
@@ -17,19 +22,17 @@ func main() {
     )
 
     ctx := context.Background()    
-    req := shared.CompanyRequestBody{
-        Description: codatcommon.String("corrupti"),
-        Name: "Kelvin Sporer",
+    req := operations.GetIntegrationsBrandingRequest{
+        PlatformKey: "gbol",
     }
 
-    res, err := s.Companies.CreateCompany(ctx, req)
+    res, err := s.Integrations.GetIntegrationsBranding(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.Company != nil {
+    if res.Branding != nil {
         // handle response
     }
 }
 ```
-<!-- End SDK Example Usage -->

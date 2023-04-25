@@ -55,6 +55,10 @@ const (
 	SyncSettingDataTypeEnumCommerceTransactions         SyncSettingDataTypeEnum = "commerce-transactions"
 )
 
+func (e SyncSettingDataTypeEnum) ToPointer() *SyncSettingDataTypeEnum {
+	return &e
+}
+
 func (e *SyncSettingDataTypeEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

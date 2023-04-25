@@ -1,4 +1,9 @@
-<!-- Start SDK Example Usage -->
+# GetWebhook
+Available in: `Webhooks`
+
+Get a single webhook
+
+## Example Usage
 ```go
 package main
 
@@ -6,7 +11,7 @@ import(
 	"context"
 	"log"
 	"github.com/codatio/client-sdk-go/common"
-	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/common/pkg/models/operations"
 )
 
 func main() {
@@ -17,19 +22,17 @@ func main() {
     )
 
     ctx := context.Background()    
-    req := shared.CompanyRequestBody{
-        Description: codatcommon.String("corrupti"),
-        Name: "Kelvin Sporer",
+    req := operations.GetWebhookRequest{
+        RuleID: "7318949f-c008-4936-a8ff-10d7ab563fa6",
     }
 
-    res, err := s.Companies.CreateCompany(ctx, req)
+    res, err := s.Webhooks.GetWebhook(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.Company != nil {
+    if res.Rule != nil {
         // handle response
     }
 }
 ```
-<!-- End SDK Example Usage -->
