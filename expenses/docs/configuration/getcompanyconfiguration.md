@@ -1,4 +1,9 @@
-<!-- Start SDK Example Usage -->
+# GetCompanyConfiguration
+Available in: `Configuration`
+
+Gets a companies expense sync configuration
+
+## Example Usage
 ```go
 package main
 
@@ -31,4 +36,3 @@ func main() {
     }
 }
 ```
-<!-- End SDK Example Usage -->

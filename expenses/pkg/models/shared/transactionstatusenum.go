@@ -18,6 +18,10 @@ const (
 	TransactionStatusEnumPushError       TransactionStatusEnum = "PushError"
 )
 
+func (e TransactionStatusEnum) ToPointer() *TransactionStatusEnum {
+	return &e
+}
+
 func (e *TransactionStatusEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

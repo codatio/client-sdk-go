@@ -1,4 +1,9 @@
-<!-- Start SDK Example Usage -->
+# CreatePartnerExpenseConnection
+Available in: `Connections`
+
+Creates a Partner Expense data connection
+
+## Example Usage
 ```go
 package main
 
@@ -17,18 +22,17 @@ func main() {
     )
 
     ctx := context.Background()    
-    req := operations.GetCompanyConfigurationRequest{
+    req := operations.CreatePartnerExpenseConnectionRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     }
 
-    res, err := s.Configuration.GetCompanyConfiguration(ctx, req)
+    res, err := s.Connections.CreatePartnerExpenseConnection(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.CompanyConfiguration != nil {
+    if res.DataConnection != nil {
         // handle response
     }
 }
 ```
-<!-- End SDK Example Usage -->

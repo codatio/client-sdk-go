@@ -1,4 +1,9 @@
-<!-- Start SDK Example Usage -->
+# GetSyncTransaction
+Available in: `TransactionStatus`
+
+Gets the status of a transaction for a sync
+
+## Example Usage
 ```go
 package main
 
@@ -17,18 +22,19 @@ func main() {
     )
 
     ctx := context.Background()    
-    req := operations.GetCompanyConfigurationRequest{
+    req := operations.GetSyncTransactionRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+        SyncID: "6fb40d5e-b13e-11ed-afa1-0242ac120002",
+        TransactionID: "336694d8-2dca-4cb5-a28d-3ccb83e55eee",
     }
 
-    res, err := s.Configuration.GetCompanyConfiguration(ctx, req)
+    res, err := s.TransactionStatus.GetSyncTransaction(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.CompanyConfiguration != nil {
+    if res.TransactionMetadata != nil {
         // handle response
     }
 }
 ```
-<!-- End SDK Example Usage -->

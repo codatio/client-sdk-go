@@ -4,7 +4,7 @@ package shared
 
 // CompanyConfiguration - Success
 type CompanyConfiguration struct {
-	BankAccount *BankAccount `json:"bankAccount,omitempty"`
-	Customer    *Customer    `json:"customer,omitempty"`
-	Supplier    *Supplier    `json:"supplier,omitempty"`
+	BankAccount BankAccount `json:"bankAccount"`
+	Customer    Customer    `json:"customer"`
+	Supplier    Supplier    `json:"supplier"`
 }

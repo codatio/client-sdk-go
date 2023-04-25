@@ -1,4 +1,9 @@
-<!-- Start SDK Example Usage -->
+# GetLatestSync
+Available in: `SyncStatus`
+
+Gets the latest sync status
+
+## Example Usage
 ```go
 package main
 
@@ -17,18 +22,17 @@ func main() {
     )
 
     ctx := context.Background()    
-    req := operations.GetCompanyConfigurationRequest{
+    req := operations.GetLatestSyncRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     }
 
-    res, err := s.Configuration.GetCompanyConfiguration(ctx, req)
+    res, err := s.SyncStatus.GetLatestSync(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.CompanyConfiguration != nil {
+    if res.CompanySyncStatus != nil {
         // handle response
     }
 }
 ```
-<!-- End SDK Example Usage -->

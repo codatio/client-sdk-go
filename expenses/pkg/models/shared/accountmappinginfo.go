@@ -18,6 +18,10 @@ const (
 	AccountMappingInfoAccountTypeEnumEquity    AccountMappingInfoAccountTypeEnum = "Equity"
 )
 
+func (e AccountMappingInfoAccountTypeEnum) ToPointer() *AccountMappingInfoAccountTypeEnum {
+	return &e
+}
+
 func (e *AccountMappingInfoAccountTypeEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {
@@ -52,6 +56,10 @@ const (
 	AccountMappingInfoValidTransactionTypesEnumAdjustmentIn  AccountMappingInfoValidTransactionTypesEnum = "AdjustmentIn"
 	AccountMappingInfoValidTransactionTypesEnumAdjustmentOut AccountMappingInfoValidTransactionTypesEnum = "AdjustmentOut"
 )
+
+func (e AccountMappingInfoValidTransactionTypesEnum) ToPointer() *AccountMappingInfoValidTransactionTypesEnum {
+	return &e
+}
 
 func (e *AccountMappingInfoValidTransactionTypesEnum) UnmarshalJSON(data []byte) error {
 	var s string

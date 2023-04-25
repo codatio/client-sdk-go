@@ -20,6 +20,10 @@ const (
 	TaxRateMappingInfoValidTransactionTypesEnumAdjustmentOut TaxRateMappingInfoValidTransactionTypesEnum = "AdjustmentOut"
 )
 
+func (e TaxRateMappingInfoValidTransactionTypesEnum) ToPointer() *TaxRateMappingInfoValidTransactionTypesEnum {
+	return &e
+}
+
 func (e *TaxRateMappingInfoValidTransactionTypesEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

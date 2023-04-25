@@ -1,4 +1,9 @@
-<!-- Start SDK Example Usage -->
+# IntiateSync
+Available in: `Sync`
+
+Initiate sync of pending transactions.
+
+## Example Usage
 ```go
 package main
 
@@ -7,6 +12,7 @@ import(
 	"log"
 	"github.com/codatio/client-sdk-go/expenses"
 	"github.com/codatio/client-sdk-go/expenses/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/expenses/pkg/models/shared"
 )
 
 func main() {
@@ -17,18 +23,23 @@ func main() {
     )
 
     ctx := context.Background()    
-    req := operations.GetCompanyConfigurationRequest{
+    req := operations.IntiateSyncRequest{
+        PostSync: &shared.PostSync{
+            DatasetIds: []string{
+                "7cc8796e-d151-4a05-9fc2-ddf7cc78ca1b",
+                "a928fc81-6742-4cb7-b920-5929396fea75",
+            },
+        },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     }
 
-    res, err := s.Configuration.GetCompanyConfiguration(ctx, req)
+    res, err := s.Sync.IntiateSync(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.CompanyConfiguration != nil {
+    if res.SyncInitiated != nil {
         // handle response
     }
 }
 ```
-<!-- End SDK Example Usage -->
