@@ -20,6 +20,10 @@ const (
 	AccountIdentifierTypeEnumOther      AccountIdentifierTypeEnum = "Other"
 )
 
+func (e AccountIdentifierTypeEnum) ToPointer() *AccountIdentifierTypeEnum {
+	return &e
+}
+
 func (e *AccountIdentifierTypeEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

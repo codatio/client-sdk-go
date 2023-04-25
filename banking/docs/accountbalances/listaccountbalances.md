@@ -1,4 +1,9 @@
-<!-- Start SDK Example Usage -->
+# ListAccountBalances
+Available in: `AccountBalances`
+
+Gets a list of balances for a bank account including end-of-day batch balance or running balances per transaction.
+
+## Example Usage
 ```go
 package main
 
@@ -23,7 +28,7 @@ func main() {
         OrderBy: codatbanking.String("-modifiedDate"),
         Page: 1,
         PageSize: codatbanking.Int(100),
-        Query: codatbanking.String("corrupti"),
+        Query: codatbanking.String("provident"),
     }
 
     res, err := s.AccountBalances.ListAccountBalances(ctx, req)
@@ -36,4 +41,3 @@ func main() {
     }
 }
 ```
-<!-- End SDK Example Usage -->
