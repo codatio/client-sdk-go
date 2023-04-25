@@ -18,6 +18,10 @@ const (
 	SalesOrderStatusEnumVoid    SalesOrderStatusEnum = "Void"
 )
 
+func (e SalesOrderStatusEnum) ToPointer() *SalesOrderStatusEnum {
+	return &e
+}
+
 func (e *SalesOrderStatusEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

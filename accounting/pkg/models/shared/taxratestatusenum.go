@@ -19,6 +19,10 @@ const (
 	TaxRateStatusEnumArchived TaxRateStatusEnum = "Archived"
 )
 
+func (e TaxRateStatusEnum) ToPointer() *TaxRateStatusEnum {
+	return &e
+}
+
 func (e *TaxRateStatusEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

@@ -16,6 +16,10 @@ const (
 	StatusEnumArchived StatusEnum = "Archived"
 )
 
+func (e StatusEnum) ToPointer() *StatusEnum {
+	return &e
+}
+
 func (e *StatusEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

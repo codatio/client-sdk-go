@@ -18,6 +18,10 @@ const (
 	PhoneNumberTypeEnumUnknown  PhoneNumberTypeEnum = "Unknown"
 )
 
+func (e PhoneNumberTypeEnum) ToPointer() *PhoneNumberTypeEnum {
+	return &e
+}
+
 func (e *PhoneNumberTypeEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

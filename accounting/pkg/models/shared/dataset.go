@@ -33,6 +33,10 @@ const (
 	DatasetStatusEnumPrerequisiteNotMet DatasetStatusEnum = "PrerequisiteNotMet"
 )
 
+func (e DatasetStatusEnum) ToPointer() *DatasetStatusEnum {
+	return &e
+}
+
 func (e *DatasetStatusEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

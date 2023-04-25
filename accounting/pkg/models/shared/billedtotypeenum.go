@@ -16,6 +16,10 @@ const (
 	BilledToTypeEnumProject       BilledToTypeEnum = "Project"
 )
 
+func (e BilledToTypeEnum) ToPointer() *BilledToTypeEnum {
+	return &e
+}
+
 func (e *BilledToTypeEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

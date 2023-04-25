@@ -16,6 +16,10 @@ const (
 	ReportBasisEnumCash    ReportBasisEnum = "Cash"
 )
 
+func (e ReportBasisEnum) ToPointer() *ReportBasisEnum {
+	return &e
+}
+
 func (e *ReportBasisEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

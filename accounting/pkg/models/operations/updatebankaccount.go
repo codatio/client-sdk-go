@@ -10,11 +10,12 @@ import (
 type UpdateBankAccountRequest struct {
 	BankAccount *shared.BankAccount `request:"mediaType=application/json"`
 	// Unique identifier for a bank account
-	BankAccountID    string `pathParam:"style=simple,explode=false,name=bankAccountId"`
-	CompanyID        string `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID     string `pathParam:"style=simple,explode=false,name=connectionId"`
-	ForceUpdate      *bool  `queryParam:"style=form,explode=true,name=forceUpdate"`
-	TimeoutInMinutes *int   `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
+	BankAccountID string `pathParam:"style=simple,explode=false,name=bankAccountId"`
+	CompanyID     string `pathParam:"style=simple,explode=false,name=companyId"`
+	ConnectionID  string `pathParam:"style=simple,explode=false,name=connectionId"`
+	// When updating data in the destination platform Codat checks the `sourceModifiedDate` against the `lastupdated` date from the accounting platform, if they're different Codat will return an error suggesting you should initiate another pull of the data. If this is set to `true` then the update will override this check.
+	ForceUpdate      *bool `queryParam:"style=form,explode=true,name=forceUpdate"`
+	TimeoutInMinutes *int  `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
 }
 
 type UpdateBankAccountResponse struct {

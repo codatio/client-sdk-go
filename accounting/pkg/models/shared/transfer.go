@@ -33,7 +33,8 @@ type Transfer struct {
 	// >
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	Date                *string  `json:"date,omitempty"`
+	Date *string `json:"date,omitempty"`
+	// List of selected transactions to associate with the transfer. Use this field to include transactions which are posted to the _undeposited funds_ (or other holding) account within the transfer.
 	DepositedRecordRefs []string `json:"depositedRecordRefs,omitempty"`
 	// Description of the transfer.
 	Description *string          `json:"description,omitempty"`

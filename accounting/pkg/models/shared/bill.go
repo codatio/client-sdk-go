@@ -94,7 +94,14 @@ type BillWithholdingTax struct {
 type Bill struct {
 	// Amount outstanding on the bill.
 	AmountDue *float64 `json:"amountDue,omitempty"`
-	Currency  *string  `json:"currency,omitempty"`
+	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code, e.g. _GBP_.
+	//
+	// ## Unknown currencies
+	//
+	// In line with the ISO 4217 specification, the code _XXX_ is used when the data source does not return a currency for a transaction.
+	//
+	// There are only a very small number of edge cases where this currency code is returned by the Codat system.
+	Currency *string `json:"currency,omitempty"`
 	// Rate to convert the total amount of the payment into the base currency for the company at the time of the payment.
 	//
 	// Currency rates in Codat are implemented as the multiple of foreign currency units to each base currency unit.

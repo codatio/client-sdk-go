@@ -16,6 +16,10 @@ const (
 	ReportInputEnumDirect   ReportInputEnum = "Direct"
 )
 
+func (e ReportInputEnum) ToPointer() *ReportInputEnum {
+	return &e
+}
+
 func (e *ReportInputEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

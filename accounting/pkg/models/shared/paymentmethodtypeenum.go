@@ -20,6 +20,10 @@ const (
 	PaymentMethodTypeEnumOther        PaymentMethodTypeEnum = "Other"
 )
 
+func (e PaymentMethodTypeEnum) ToPointer() *PaymentMethodTypeEnum {
+	return &e
+}
+
 func (e *PaymentMethodTypeEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

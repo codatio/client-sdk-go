@@ -19,6 +19,10 @@ const (
 	BillStatusEnumDraft         BillStatusEnum = "Draft"
 )
 
+func (e BillStatusEnum) ToPointer() *BillStatusEnum {
+	return &e
+}
+
 func (e *BillStatusEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {
