@@ -20,6 +20,10 @@ const (
 	PushOptionTypeEnumMultiPart PushOptionTypeEnum = "MultiPart"
 )
 
+func (e PushOptionTypeEnum) ToPointer() *PushOptionTypeEnum {
+	return &e
+}
+
 func (e *PushOptionTypeEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

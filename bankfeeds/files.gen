@@ -4,6 +4,7 @@ codatbankfeeds.go
 go.mod
 go.sum
 pkg/types/date.go
+pkg/types/datetime.go
 pkg/utils/contenttype.go
 pkg/utils/form.go
 pkg/utils/headers.go
@@ -41,5 +42,14 @@ pkg/models/shared/links.go
 pkg/models/shared/href.go
 pkg/models/shared/bankfeedaccount.go
 pkg/models/shared/security.go
+docs/codatbankfeeds/README.md
+docs/bankaccounttransactions/README.md
+docs/bankaccounttransactions/createbanktransactions.md
+docs/bankaccounttransactions/getcreatebankaccountmodel.md
+docs/bankaccounttransactions/listbankaccounttransactions.md
+docs/bankfeedaccounts/README.md
+docs/bankfeedaccounts/createbankfeed.md
+docs/bankfeedaccounts/getbankfeeds.md
+docs/bankfeedaccounts/updatebankfeed.md
 USAGE.md
 pkg/models/operations/options.go

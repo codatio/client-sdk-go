@@ -17,6 +17,10 @@ const (
 	PushChangeTypeEnumAttachmentUploaded PushChangeTypeEnum = "AttachmentUploaded"
 )
 
+func (e PushChangeTypeEnum) ToPointer() *PushChangeTypeEnum {
+	return &e
+}
+
 func (e *PushChangeTypeEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

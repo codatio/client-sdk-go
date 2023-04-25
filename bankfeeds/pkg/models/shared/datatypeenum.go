@@ -55,6 +55,10 @@ const (
 	DataTypeEnumCommerceTransactions         DataTypeEnum = "commerce-transactions"
 )
 
+func (e DataTypeEnum) ToPointer() *DataTypeEnum {
+	return &e
+}
+
 func (e *DataTypeEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {
