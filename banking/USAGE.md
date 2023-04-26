@@ -26,7 +26,7 @@ func main() {
         Query: codatbanking.String("corrupti"),
     }
 
-    res, err := s.AccountBalances.ListAccountBalances(ctx, req)
+    res, err := s.AccountBalances.List(ctx, req)
     if err != nil {
         log.Fatal(err)
     }

@@ -32,9 +32,9 @@ func newTransactions(defaultClient, securityClient HTTPClient, serverURL, langua
 	}
 }
 
-// GetTransaction - Get bank transaction
+// Get - Get bank transaction
 // Gets a specified bank transaction for a given company
-func (s *transactions) GetTransaction(ctx context.Context, request operations.GetTransactionRequest, opts ...operations.Option) (*operations.GetTransactionResponse, error) {
+func (s *transactions) Get(ctx context.Context, request operations.GetTransactionRequest, opts ...operations.Option) (*operations.GetTransactionResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -113,9 +113,9 @@ func (s *transactions) GetTransaction(ctx context.Context, request operations.Ge
 	return res, nil
 }
 
-// ListBankTransactions - List banking transactions
+// List - List banking transactions
 // Gets a list of transactions incurred by a company across all bank accounts.
-func (s *transactions) ListBankTransactions(ctx context.Context, request operations.ListBankTransactionsRequest, opts ...operations.Option) (*operations.ListBankTransactionsResponse, error) {
+func (s *transactions) List(ctx context.Context, request operations.ListBankTransactionsRequest, opts ...operations.Option) (*operations.ListBankTransactionsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -198,9 +198,9 @@ func (s *transactions) ListBankTransactions(ctx context.Context, request operati
 	return res, nil
 }
 
-// ListTransactions - List transactions
+// List - List transactions
 // Gets a list of transactions incurred by a bank account.
-func (s *transactions) ListTransactions(ctx context.Context, request operations.ListTransactionsRequest, opts ...operations.Option) (*operations.ListTransactionsResponse, error) {
+func (s *transactions) List(ctx context.Context, request operations.ListTransactionsRequest, opts ...operations.Option) (*operations.ListTransactionsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,

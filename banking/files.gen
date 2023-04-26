@@ -45,16 +45,8 @@ pkg/models/shared/transactions.go
 pkg/models/shared/security.go
 docs/codatbanking/README.md
 docs/accountbalances/README.md
-docs/accountbalances/listaccountbalances.md
 docs/accounts/README.md
-docs/accounts/getaccount.md
-docs/accounts/listaccounts.md
 docs/transactioncategories/README.md
-docs/transactioncategories/gettransactioncategory.md
-docs/transactioncategories/listtransactioncategories.md
 docs/transactions/README.md
-docs/transactions/gettransaction.md
-docs/transactions/listbanktransactions.md
-docs/transactions/listtransactions.md
 USAGE.md
 pkg/models/operations/options.go

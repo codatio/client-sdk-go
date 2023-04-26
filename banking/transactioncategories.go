@@ -32,9 +32,9 @@ func newTransactionCategories(defaultClient, securityClient HTTPClient, serverUR
 	}
 }
 
-// GetTransactionCategory - Get transaction category
+// Get - Get transaction category
 // Gets a specified bank transaction category for a given company
-func (s *transactionCategories) GetTransactionCategory(ctx context.Context, request operations.GetTransactionCategoryRequest, opts ...operations.Option) (*operations.GetTransactionCategoryResponse, error) {
+func (s *transactionCategories) Get(ctx context.Context, request operations.GetTransactionCategoryRequest, opts ...operations.Option) (*operations.GetTransactionCategoryResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -113,9 +113,9 @@ func (s *transactionCategories) GetTransactionCategory(ctx context.Context, requ
 	return res, nil
 }
 
-// ListTransactionCategories - List all transaction categories
+// List - List all transaction categories
 // Gets a list of hierarchical categories associated with a transaction for greater contextual meaning to transactionactivity.
-func (s *transactionCategories) ListTransactionCategories(ctx context.Context, request operations.ListTransactionCategoriesRequest, opts ...operations.Option) (*operations.ListTransactionCategoriesResponse, error) {
+func (s *transactionCategories) List(ctx context.Context, request operations.ListTransactionCategoriesRequest, opts ...operations.Option) (*operations.ListTransactionCategoriesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
