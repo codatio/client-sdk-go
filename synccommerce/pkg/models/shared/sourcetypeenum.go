@@ -18,6 +18,10 @@ const (
 	SourceTypeEnumUnknown    SourceTypeEnum = "Unknown"
 )
 
+func (e SourceTypeEnum) ToPointer() *SourceTypeEnum {
+	return &e
+}
+
 func (e *SourceTypeEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

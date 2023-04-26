@@ -3,10 +3,11 @@ configuration.go
 integrations.go
 sync.go
 syncflowpreferences.go
-codatio.go
+codatsynccommerce.go
 go.mod
 go.sum
 pkg/types/date.go
+pkg/types/datetime.go
 pkg/utils/contenttype.go
 pkg/utils/form.go
 pkg/utils/headers.go
@@ -62,6 +63,11 @@ pkg/models/shared/payments.go
 pkg/models/shared/newpayments.go
 pkg/models/shared/fees.go
 pkg/models/shared/feessupplier.go
+pkg/models/shared/branding.go
+pkg/models/shared/brandinglogo.go
+pkg/models/shared/brandingimage.go
+pkg/models/shared/imagereference.go
+pkg/models/shared/brandingbutton.go
 pkg/models/shared/integrations.go
 pkg/models/shared/integration.go
 pkg/models/shared/sourcetypeenum.go
@@ -76,4 +82,11 @@ pkg/models/shared/localization.go
 pkg/models/shared/syncflowurl.go
 pkg/models/shared/visibleaccounts.go
 pkg/models/shared/security.go
+docs/codatsynccommerce/README.md
+docs/companymanagement/README.md
+docs/configuration/README.md
+docs/integrations/README.md
+docs/sync/README.md
+docs/syncflowpreferences/README.md
 USAGE.md
+pkg/models/operations/options.go

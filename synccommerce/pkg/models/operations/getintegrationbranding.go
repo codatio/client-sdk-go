@@ -3,6 +3,7 @@
 package operations
 
 import (
+	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/shared"
 	"net/http"
 )
 
@@ -12,6 +13,8 @@ type GetIntegrationBrandingRequest struct {
 }
 
 type GetIntegrationBrandingResponse struct {
+	// Success
+	Branding    *shared.Branding
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response

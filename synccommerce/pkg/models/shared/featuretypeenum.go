@@ -22,6 +22,10 @@ const (
 	FeatureTypeEnumUploadAttachment   FeatureTypeEnum = "UploadAttachment"
 )
 
+func (e FeatureTypeEnum) ToPointer() *FeatureTypeEnum {
+	return &e
+}
+
 func (e *FeatureTypeEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {
