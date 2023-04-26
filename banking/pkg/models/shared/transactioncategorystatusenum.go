@@ -15,6 +15,10 @@ const (
 	TransactionCategoryStatusEnumArchived TransactionCategoryStatusEnum = "Archived"
 )
 
+func (e TransactionCategoryStatusEnum) ToPointer() *TransactionCategoryStatusEnum {
+	return &e
+}
+
 func (e *TransactionCategoryStatusEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

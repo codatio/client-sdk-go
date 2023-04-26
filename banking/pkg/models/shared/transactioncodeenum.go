@@ -28,6 +28,10 @@ const (
 	TransactionCodeEnumNotSupported  TransactionCodeEnum = "NotSupported"
 )
 
+func (e TransactionCodeEnum) ToPointer() *TransactionCodeEnum {
+	return &e
+}
+
 func (e *TransactionCodeEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

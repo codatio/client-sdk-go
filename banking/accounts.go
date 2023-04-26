@@ -32,9 +32,9 @@ func newAccounts(defaultClient, securityClient HTTPClient, serverURL, language, 
 	}
 }
 
-// GetAccount - Get account
+// Get - Get account
 // Gets a specified bank account for a given company
-func (s *accounts) GetAccount(ctx context.Context, request operations.GetAccountRequest, opts ...operations.Option) (*operations.GetAccountResponse, error) {
+func (s *accounts) Get(ctx context.Context, request operations.GetAccountRequest, opts ...operations.Option) (*operations.GetAccountResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -113,9 +113,9 @@ func (s *accounts) GetAccount(ctx context.Context, request operations.GetAccount
 	return res, nil
 }
 
-// ListAccounts - List accounts
+// List - List accounts
 // Gets a list of all bank accounts of the SMB, with rich data like balances, account numbers and institutions holdingthe accounts.
-func (s *accounts) ListAccounts(ctx context.Context, request operations.ListAccountsRequest, opts ...operations.Option) (*operations.ListAccountsResponse, error) {
+func (s *accounts) List(ctx context.Context, request operations.ListAccountsRequest, opts ...operations.Option) (*operations.ListAccountsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
