@@ -17,6 +17,10 @@ const (
 	ConnectionStatusEnumDeauthorized ConnectionStatusEnum = "Deauthorized"
 )
 
+func (e ConnectionStatusEnum) ToPointer() *ConnectionStatusEnum {
+	return &e
+}
+
 func (e *ConnectionStatusEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

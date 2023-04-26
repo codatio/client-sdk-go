@@ -32,7 +32,7 @@ func newConnections(defaultClient, securityClient HTTPClient, serverURL, languag
 	}
 }
 
-// CreateDataConnection - Create a data connection
+// CreateDataConnection - Create connection
 // Create a data connection for a company
 func (s *connections) CreateDataConnection(ctx context.Context, request operations.CreateDataConnectionRequest, opts ...operations.Option) (*operations.CreateDataConnectionResponse, error) {
 	o := operations.Options{}

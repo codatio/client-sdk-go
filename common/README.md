@@ -13,12 +13,11 @@ go get github.com/codatio/client-sdk-go/common
 ```go
 package main
 
-import (
-    "context"
-    "log"
-    "github.com/codatio/client-sdk-go/common"
-    "github.com/codatio/client-sdk-go/common/pkg/models/shared"
-    "github.com/codatio/client-sdk-go/common/pkg/models/operations"
+import(
+	"context"
+	"log"
+	"github.com/codatio/client-sdk-go/common"
+	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
 )
 
 func main() {
@@ -30,7 +29,7 @@ func main() {
 
     ctx := context.Background()    
     req := shared.CompanyRequestBody{
-        Description: "corrupti",
+        Description: codatcommon.String("corrupti"),
         Name: "Kelvin Sporer",
     }
 
@@ -50,58 +49,58 @@ func main() {
 ## Available Resources and Operations
 
 
-### Companies
+### [Companies](docs/companies/README.md)
 
-* `CreateCompany` - Create company
-* `DeleteCompany` - Delete a company
-* `GetCompany` - Get company
-* `ListCompanies` - List companies
-* `UpdateCompany` - Update company
+* [CreateCompany](docs/companies/README.md#createcompany) - Create company
+* [DeleteCompany](docs/companies/README.md#deletecompany) - Delete a company
+* [GetCompany](docs/companies/README.md#getcompany) - Get company
+* [ListCompanies](docs/companies/README.md#listcompanies) - List companies
+* [UpdateCompany](docs/companies/README.md#updatecompany) - Update company
 
-### Connections
+### [Connections](docs/connections/README.md)
 
-* `CreateDataConnection` - Create a data connection
-* `DeleteCompanyConnection` - Delete connection
-* `GetCompanyConnection` - Get connection
-* `ListCompanyConnections` - List connections
-* `UnlinkCompanyConnection` - Unlink connection
-* `UpdateConnectionAuthorization` - Update authorization
+* [CreateDataConnection](docs/connections/README.md#createdataconnection) - Create connection
+* [DeleteCompanyConnection](docs/connections/README.md#deletecompanyconnection) - Delete connection
+* [GetCompanyConnection](docs/connections/README.md#getcompanyconnection) - Get connection
+* [ListCompanyConnections](docs/connections/README.md#listcompanyconnections) - List connections
+* [UnlinkCompanyConnection](docs/connections/README.md#unlinkcompanyconnection) - Unlink connection
+* [UpdateConnectionAuthorization](docs/connections/README.md#updateconnectionauthorization) - Update authorization
 
-### DataStatus
+### [DataStatus](docs/datastatus/README.md)
 
-* `GetCompanyDataHistory` - Get pull operations
-* `GetCompanyDataStatus` - Get data status
-* `GetPullOperation` - Get pull operation
+* [GetCompanyDataHistory](docs/datastatus/README.md#getcompanydatahistory) - Get pull operations
+* [GetCompanyDataStatus](docs/datastatus/README.md#getcompanydatastatus) - Get data status
+* [GetPullOperation](docs/datastatus/README.md#getpulloperation) - Get pull operation
 
-### Integrations
+### [Integrations](docs/integrations/README.md)
 
-* `GetIntegration` - Get integration
-* `GetIntegrationsBranding` - Get branding
-* `ListIntegrations` - List integrations
+* [GetIntegration](docs/integrations/README.md#getintegration) - Get integration
+* [GetIntegrationsBranding](docs/integrations/README.md#getintegrationsbranding) - Get branding
+* [ListIntegrations](docs/integrations/README.md#listintegrations) - List integrations
 
-### PushData
+### [PushData](docs/pushdata/README.md)
 
-* `GetCompanyPushHistory` - List push operations
-* `GetCreateUpdateModelOptionsByDataType` - List push options
-* `GetPushOperation` - Get push operation
+* [GetCompanyPushHistory](docs/pushdata/README.md#getcompanypushhistory) - List push operations
+* [GetCreateUpdateModelOptionsByDataType](docs/pushdata/README.md#getcreateupdatemodeloptionsbydatatype) - List push options
+* [GetPushOperation](docs/pushdata/README.md#getpushoperation) - Get push operation
 
-### RefreshData
+### [RefreshData](docs/refreshdata/README.md)
 
-* `CreatePullOperation` - Queue pull operation
-* `RefreshCompanyData` - Queue pull operations
+* [CreatePullOperation](docs/refreshdata/README.md#createpulloperation) - Queue pull operation
+* [RefreshCompanyData](docs/refreshdata/README.md#refreshcompanydata) - Queue pull operations
 
-### Settings
+### [Settings](docs/settings/README.md)
 
-* `GetProfile` - Get profile
-* `GetProfileSyncSettings` - Get sync settings
-* `UpdateProfile` - Update profile
-* `UpdateSyncSettings` - Update all sync settings
+* [GetProfile](docs/settings/README.md#getprofile) - Get profile
+* [GetProfileSyncSettings](docs/settings/README.md#getprofilesyncsettings) - Get sync settings
+* [UpdateProfile](docs/settings/README.md#updateprofile) - Update profile
+* [UpdateSyncSettings](docs/settings/README.md#updatesyncsettings) - Update all sync settings
 
-### Webhooks
+### [Webhooks](docs/webhooks/README.md)
 
-* `CreateRule` - Create webhook
-* `GetWebhook` - Get webhook
-* `ListRules` - List webhooks
+* [CreateRule](docs/webhooks/README.md#createrule) - Create webhook
+* [GetWebhook](docs/webhooks/README.md#getwebhook) - Get webhook
+* [ListRules](docs/webhooks/README.md#listrules) - List webhooks
 <!-- End SDK Available Operations -->
 
 ### SDK Generated by [Speakeasy](https://docs.speakeasyapi.dev/docs/using-speakeasy/client-sdks)

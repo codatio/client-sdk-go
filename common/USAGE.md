@@ -2,12 +2,11 @@
 ```go
 package main
 
-import (
-    "context"
-    "log"
-    "github.com/codatio/client-sdk-go/common"
-    "github.com/codatio/client-sdk-go/common/pkg/models/shared"
-    "github.com/codatio/client-sdk-go/common/pkg/models/operations"
+import(
+	"context"
+	"log"
+	"github.com/codatio/client-sdk-go/common"
+	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
 )
 
 func main() {
@@ -19,7 +18,7 @@ func main() {
 
     ctx := context.Background()    
     req := shared.CompanyRequestBody{
-        Description: "corrupti",
+        Description: codatcommon.String("corrupti"),
         Name: "Kelvin Sporer",
     }
 

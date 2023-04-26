@@ -17,6 +17,10 @@ const (
 	FeatureStateEnumNotImplemented FeatureStateEnum = "NotImplemented"
 )
 
+func (e FeatureStateEnum) ToPointer() *FeatureStateEnum {
+	return &e
+}
+
 func (e *FeatureStateEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {
