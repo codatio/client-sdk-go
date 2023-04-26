@@ -15,12 +15,12 @@ go get github.com/codatio/client-sdk-go/bankfeeds
 ```go
 package main
 
-import (
-    "context"
-    "log"
-    "github.com/codatio/client-sdk-go/bankfeeds"
-    "github.com/codatio/client-sdk-go/bankfeeds/pkg/models/shared"
-    "github.com/codatio/client-sdk-go/bankfeeds/pkg/models/operations"
+import(
+	"context"
+	"log"
+	"github.com/codatio/client-sdk-go/bankfeeds"
+	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/shared"
 )
 
 func main() {
@@ -33,54 +33,54 @@ func main() {
     ctx := context.Background()    
     req := operations.CreateBankTransactionsRequest{
         BankTransactions: &shared.BankTransactions{
-            AccountID: "corrupti",
+            AccountID: codatbankfeeds.String("corrupti"),
             Transactions: []shared.BankTransactionLine{
                 shared.BankTransactionLine{
                     Amount: 7151.9,
                     Balance: 8442.66,
-                    ClearedOnDate: "2022-10-23T00:00:00Z",
-                    Counterparty: "unde",
-                    Description: "nulla",
-                    ID: "8d69a674-e0f4-467c-8879-6ed151a05dfc",
-                    ModifiedDate: "2022-10-23T00:00:00Z",
+                    ClearedOnDate: codatbankfeeds.String("unde"),
+                    Counterparty: codatbankfeeds.String("nulla"),
+                    Description: codatbankfeeds.String("corrupti"),
+                    ID: codatbankfeeds.String("d69a674e-0f46-47cc-8796-ed151a05dfc2"),
+                    ModifiedDate: codatbankfeeds.String("at"),
                     Reconciled: false,
-                    Reference: "odit",
-                    SourceModifiedDate: "2022-10-23T00:00:00Z",
-                    TransactionType: "DirectDebit",
+                    Reference: codatbankfeeds.String("at"),
+                    SourceModifiedDate: codatbankfeeds.String("maiores"),
+                    TransactionType: shared.BankTransactionTypeEnumAtm,
                 },
                 shared.BankTransactionLine{
-                    Amount: 8700.88,
-                    Balance: 9786.19,
-                    ClearedOnDate: "2022-10-23T00:00:00Z",
-                    Counterparty: "molestiae",
-                    Description: "quod",
-                    ID: "c78ca1ba-928f-4c81-a742-cb7392059293",
-                    ModifiedDate: "2022-10-23T00:00:00Z",
+                    Amount: 7991.59,
+                    Balance: 8009.11,
+                    ClearedOnDate: codatbankfeeds.String("esse"),
+                    Counterparty: codatbankfeeds.String("totam"),
+                    Description: codatbankfeeds.String("porro"),
+                    ID: codatbankfeeds.String("a1ba928f-c816-4742-8b73-9205929396fe"),
+                    ModifiedDate: codatbankfeeds.String("fuga"),
                     Reconciled: false,
-                    Reference: "natus",
-                    SourceModifiedDate: "2022-10-23T00:00:00Z",
-                    TransactionType: "SerChg",
+                    Reference: codatbankfeeds.String("in"),
+                    SourceModifiedDate: codatbankfeeds.String("corporis"),
+                    TransactionType: shared.BankTransactionTypeEnumCheck,
                 },
                 shared.BankTransactionLine{
-                    Amount: 9437.49,
-                    Balance: 9025.99,
-                    ClearedOnDate: "2022-10-23T00:00:00Z",
-                    Counterparty: "fuga",
-                    Description: "in",
-                    ID: "596eb10f-aaa2-4352-8595-5907aff1a3a2",
-                    ModifiedDate: "2022-10-23T00:00:00Z",
+                    Amount: 4370.32,
+                    Balance: 9023.49,
+                    ClearedOnDate: codatbankfeeds.String("quidem"),
+                    Counterparty: codatbankfeeds.String("architecto"),
+                    Description: codatbankfeeds.String("ipsa"),
+                    ID: codatbankfeeds.String("faaa2352-c595-4590-baff-1a3a2fa94677"),
+                    ModifiedDate: codatbankfeeds.String("velit"),
                     Reconciled: false,
-                    Reference: "repellat",
-                    SourceModifiedDate: "2022-10-23T00:00:00Z",
-                    TransactionType: "Check",
+                    Reference: codatbankfeeds.String("error"),
+                    SourceModifiedDate: codatbankfeeds.String("quia"),
+                    TransactionType: shared.BankTransactionTypeEnumSerChg,
                 },
             },
         },
         AccountID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        AllowSyncOnPushComplete: false,
+        AllowSyncOnPushComplete: codatbankfeeds.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: 581850,
+        TimeoutInMinutes: codatbankfeeds.Int(110375),
     }
 
     res, err := s.BankAccountTransactions.CreateBankTransactions(ctx, req)
@@ -99,17 +99,17 @@ func main() {
 ## Available Resources and Operations
 
 
-### BankAccountTransactions
+### [BankAccountTransactions](docs/bankaccounttransactions/README.md)
 
-* `CreateBankTransactions` - Create bank transactions
-* `GetCreateBankAccountModel` - List push options for bank account bank transactions
-* `ListBankAccountTransactions` - List bank transactions for bank account
+* [CreateBankTransactions](docs/bankaccounttransactions/README.md#createbanktransactions) - Create bank transactions
+* [GetCreateBankAccountModel](docs/bankaccounttransactions/README.md#getcreatebankaccountmodel) - List push options for bank account bank transactions
+* [ListBankAccountTransactions](docs/bankaccounttransactions/README.md#listbankaccounttransactions) - List bank transactions for bank account
 
-### BankFeedAccounts
+### [BankFeedAccounts](docs/bankfeedaccounts/README.md)
 
-* `CreateBankFeed` - Create bank feed bank accounts
-* `GetBankFeeds` - List bank feed bank accounts
-* `UpdateBankFeed` - Update bank feed bank account
+* [CreateBankFeed](docs/bankfeedaccounts/README.md#createbankfeed) - Create bank feed bank accounts
+* [GetBankFeeds](docs/bankfeedaccounts/README.md#getbankfeeds) - List bank feed bank accounts
+* [UpdateBankFeed](docs/bankfeedaccounts/README.md#updatebankfeed) - Update bank feed bank account
 <!-- End SDK Available Operations -->
 
 ### SDK Generated by [Speakeasy](https://docs.speakeasyapi.dev/docs/using-speakeasy/client-sdks)

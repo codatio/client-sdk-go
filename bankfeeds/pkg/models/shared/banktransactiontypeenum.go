@@ -31,6 +31,10 @@ const (
 	BankTransactionTypeEnumOther       BankTransactionTypeEnum = "Other"
 )
 
+func (e BankTransactionTypeEnum) ToPointer() *BankTransactionTypeEnum {
+	return &e
+}
+
 func (e *BankTransactionTypeEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {
