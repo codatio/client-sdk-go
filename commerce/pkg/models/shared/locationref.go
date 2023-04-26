@@ -7,5 +7,5 @@ type LocationRef struct {
 	// The unique identitifer of the location being referenced.
 	ID string `json:"id"`
 	// Name of the location being referenced.
-	Name string `json:"name"`
+	Name *string `json:"name,omitempty"`
 }

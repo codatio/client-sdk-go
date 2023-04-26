@@ -11,6 +11,7 @@ codatcommerce.go
 go.mod
 go.sum
 pkg/types/date.go
+pkg/types/datetime.go
 pkg/utils/contenttype.go
 pkg/utils/form.go
 pkg/utils/headers.go
@@ -85,5 +86,15 @@ pkg/models/shared/transactions.go
 pkg/models/shared/transaction.go
 pkg/models/shared/transactiontypeenum.go
 pkg/models/shared/security.go
+docs/codatcommerce/README.md
+docs/companyinfo/README.md
+docs/customers/README.md
+docs/disputes/README.md
+docs/locations/README.md
+docs/orders/README.md
+docs/payments/README.md
+docs/products/README.md
+docs/taxcomponents/README.md
+docs/transactions/README.md
 USAGE.md
 pkg/models/operations/options.go

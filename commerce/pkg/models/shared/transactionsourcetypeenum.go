@@ -17,6 +17,10 @@ const (
 	TransactionSourceTypeEnumUnknown       TransactionSourceTypeEnum = "Unknown"
 )
 
+func (e TransactionSourceTypeEnum) ToPointer() *TransactionSourceTypeEnum {
+	return &e
+}
+
 func (e *TransactionSourceTypeEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

@@ -1,4 +1,21 @@
-<!-- Start SDK Example Usage -->
+# CompanyInfo
+
+## Overview
+
+Retrieve standardized data from linked commerce platforms.
+
+### Available Operations
+
+* [GetCompanyInfo](#getcompanyinfo) - Get company info
+
+## GetCompanyInfo
+
+Retrieve information about the company, as seen in the commerce platform.
+
+This may include information like addresses, tax registration details and social media or website information.
+
+### Example Usage
+
 ```go
 package main
 
@@ -32,4 +49,3 @@ func main() {
     }
 }
 ```
-<!-- End SDK Example Usage -->

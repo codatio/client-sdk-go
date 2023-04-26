@@ -15,6 +15,10 @@ const (
 	ProductVariantStatusEnumUnpublished ProductVariantStatusEnum = "Unpublished"
 )
 
+func (e ProductVariantStatusEnum) ToPointer() *ProductVariantStatusEnum {
+	return &e
+}
+
 func (e *ProductVariantStatusEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

@@ -18,6 +18,10 @@ const (
 	AddressTypeEnumUnknown   AddressTypeEnum = "Unknown"
 )
 
+func (e AddressTypeEnum) ToPointer() *AddressTypeEnum {
+	return &e
+}
+
 func (e *AddressTypeEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

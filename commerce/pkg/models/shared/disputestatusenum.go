@@ -24,6 +24,10 @@ const (
 	DisputeStatusEnumUnknown                 DisputeStatusEnum = "Unknown"
 )
 
+func (e DisputeStatusEnum) ToPointer() *DisputeStatusEnum {
+	return &e
+}
+
 func (e *DisputeStatusEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

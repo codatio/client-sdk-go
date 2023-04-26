@@ -1,4 +1,21 @@
-<!-- Start SDK Example Usage -->
+# Locations
+
+## Overview
+
+Retrieve standardized data from linked commerce platforms.
+
+### Available Operations
+
+* [ListLocations](#listlocations) - List locations
+
+## ListLocations
+
+Retrieve a list of locations as seen in the commerce platform.
+
+A `location` is a geographic place at which stocks of products may be held, or from where orders were placed.
+
+### Example Usage
+
 ```go
 package main
 
@@ -17,19 +34,18 @@ func main() {
     )
 
     ctx := context.Background()    
-    req := operations.GetCompanyInfoRequest{
+    req := operations.ListLocationsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     }
 
-    res, err := s.CompanyInfo.GetCompanyInfo(ctx, req)
+    res, err := s.Locations.ListLocations(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.CompanyInfo != nil {
+    if res.LocationsResponse != nil {
         // handle response
     }
 }
 ```
-<!-- End SDK Example Usage -->

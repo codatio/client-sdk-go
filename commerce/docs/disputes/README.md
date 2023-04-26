@@ -1,4 +1,19 @@
-<!-- Start SDK Example Usage -->
+# Disputes
+
+## Overview
+
+Retrieve standardized data from linked commerce platforms.
+
+### Available Operations
+
+* [ListDisputes](#listdisputes) - List disputes
+
+## ListDisputes
+
+List commerce disputes
+
+### Example Usage
+
 ```go
 package main
 
@@ -17,19 +32,22 @@ func main() {
     )
 
     ctx := context.Background()    
-    req := operations.GetCompanyInfoRequest{
+    req := operations.ListDisputesRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
+        OrderBy: codatcommerce.String("-modifiedDate"),
+        Page: 1,
+        PageSize: codatcommerce.Int(100),
+        Query: codatcommerce.String("provident"),
     }
 
-    res, err := s.CompanyInfo.GetCompanyInfo(ctx, req)
+    res, err := s.Disputes.ListDisputes(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.CompanyInfo != nil {
+    if res.Disputes != nil {
         // handle response
     }
 }
 ```
-<!-- End SDK Example Usage -->

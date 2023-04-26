@@ -1,13 +1,13 @@
 configVersion: 1.0.0
 management:
-  docChecksum: 63f3c5f50c45c4857130b0c6c9fb4f79
+  docChecksum: 700f4cb43fb4b7bf4e85e0c35b0a59bc
   docVersion: 2.1.0
-  speakeasyVersion: 1.20.1
-  generationVersion: 2.18.1
+  speakeasyVersion: 1.23.1
+  generationVersion: 2.21.1
 generation:
   telemetryEnabled: false
   sdkClassName: CodatCommerce
   singleTagPerOp: false
 go:
-  version: 0.9.0
+  version: 0.10.1
   packageName: github.com/codatio/client-sdk-go/commerce
