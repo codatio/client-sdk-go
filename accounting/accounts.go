@@ -32,7 +32,7 @@ func newAccounts(defaultClient, securityClient HTTPClient, serverURL, language, 
 	}
 }
 
-// CreateAccount - Create account
+// Create - Create account
 // Creates a new account for a given company.
 //
 // Required data may vary by integration. To see what data to post, first call [Get create account model](https://docs.codat.io/accounting-api#/operations/get-create-chartOfAccounts-model).
@@ -40,7 +40,7 @@ func newAccounts(defaultClient, securityClient HTTPClient, serverURL, language, 
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=chartOfAccounts) for integrations that support creating an account.
-func (s *accounts) CreateAccount(ctx context.Context, request operations.CreateAccountRequest, opts ...operations.Option) (*operations.CreateAccountResponse, error) {
+func (s *accounts) Create(ctx context.Context, request operations.CreateAccountRequest, opts ...operations.Option) (*operations.CreateAccountResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -130,9 +130,9 @@ func (s *accounts) CreateAccount(ctx context.Context, request operations.CreateA
 	return res, nil
 }
 
-// GetAccount - Get account
+// Get - Get account
 // Gets a single account corresponding to the given ID.
-func (s *accounts) GetAccount(ctx context.Context, request operations.GetAccountRequest, opts ...operations.Option) (*operations.GetAccountResponse, error) {
+func (s *accounts) Get(ctx context.Context, request operations.GetAccountRequest, opts ...operations.Option) (*operations.GetAccountResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -211,7 +211,7 @@ func (s *accounts) GetAccount(ctx context.Context, request operations.GetAccount
 	return res, nil
 }
 
-// GetCreateChartOfAccountsModel - Get create account model
+// GetCreateModel - Get create account model
 // Get create account model. Returns the expected data for the request payload.
 //
 // See the examples for integration-specific indicative models.
@@ -219,7 +219,7 @@ func (s *accounts) GetAccount(ctx context.Context, request operations.GetAccount
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=chartOfAccounts) for integrations that support creating an account.
-func (s *accounts) GetCreateChartOfAccountsModel(ctx context.Context, request operations.GetCreateChartOfAccountsModelRequest, opts ...operations.Option) (*operations.GetCreateChartOfAccountsModelResponse, error) {
+func (s *accounts) GetCreateModel(ctx context.Context, request operations.GetCreateChartOfAccountsModelRequest, opts ...operations.Option) (*operations.GetCreateChartOfAccountsModelResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -298,9 +298,9 @@ func (s *accounts) GetCreateChartOfAccountsModel(ctx context.Context, request op
 	return res, nil
 }
 
-// ListAccounts - List accounts
+// List - List accounts
 // Gets the latest accounts for a company
-func (s *accounts) ListAccounts(ctx context.Context, request operations.ListAccountsRequest, opts ...operations.Option) (*operations.ListAccountsResponse, error) {
+func (s *accounts) List(ctx context.Context, request operations.ListAccountsRequest, opts ...operations.Option) (*operations.ListAccountsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,

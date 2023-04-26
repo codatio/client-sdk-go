@@ -6,14 +6,13 @@ Bank accounts
 
 ### Available Operations
 
-* [CreateBankAccount](#createbankaccount) - Create bank account
-* [GetAllBankAccount](#getallbankaccount) - Get bank account
-* [GetBankAccount](#getbankaccount) - Get bank account
-* [GetCreateUpdateBankAccountsModel](#getcreateupdatebankaccountsmodel) - Get create/update bank account model
-* [ListBankAccounts](#listbankaccounts) - List bank accounts
-* [UpdateBankAccount](#updatebankaccount) - Update bank account
+* [Create](#create) - Create bank account
+* [Get](#get) - Get bank account
+* [GetCreateUpdateModel](#getcreateupdatemodel) - Get create/update bank account model
+* [List](#list) - List bank accounts
+* [Update](#update) - Update bank account
 
-## CreateBankAccount
+## Create
 
 Posts a new bank account to the accounting package for a given company.
 
@@ -46,31 +45,31 @@ func main() {
     ctx := context.Background()    
     req := operations.CreateBankAccountRequest{
         BankAccount: &shared.BankAccount{
-            AccountName: codataccounting.String("repellat"),
-            AccountNumber: codataccounting.String("mollitia"),
-            AccountType: shared.BankAccountBankAccountTypeEnumCredit.ToPointer(),
-            AvailableBalance: codataccounting.Float64(2532.91),
-            Balance: codataccounting.Float64(4143.69),
-            Currency: codataccounting.String("quam"),
-            IBan: codataccounting.String("molestiae"),
-            ID: codataccounting.String("39251aa5-2c3f-45ad-819d-a1ffe78f097b"),
-            Institution: codataccounting.String("perferendis"),
+            AccountName: codataccounting.String("natus"),
+            AccountNumber: codataccounting.String("laboriosam"),
+            AccountType: shared.BankAccountBankAccountTypeEnumDebit.ToPointer(),
+            AvailableBalance: codataccounting.Float64(9025.99),
+            Balance: codataccounting.Float64(6818.2),
+            Currency: codataccounting.String("in"),
+            IBan: codataccounting.String("corporis"),
+            ID: codataccounting.String("96eb10fa-aa23-452c-9955-907aff1a3a2f"),
+            Institution: codataccounting.String("mollitia"),
             Metadata: &shared.Metadata{
                 IsDeleted: codataccounting.Bool(false),
             },
-            ModifiedDate: codataccounting.String("doloremque"),
-            NominalCode: codataccounting.String("reprehenderit"),
-            OverdraftLimit: codataccounting.Float64(2828.07),
-            SortCode: codataccounting.String("maiores"),
-            SourceModifiedDate: codataccounting.String("dicta"),
+            ModifiedDate: codataccounting.String("occaecati"),
+            NominalCode: codataccounting.String("numquam"),
+            OverdraftLimit: codataccounting.Float64(4143.69),
+            SortCode: codataccounting.String("quam"),
+            SourceModifiedDate: codataccounting.String("molestiae"),
         },
         AllowSyncOnPushComplete: codataccounting.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codataccounting.Int(359444),
+        TimeoutInMinutes: codataccounting.Int(244425),
     }
 
-    res, err := s.BankAccounts.CreateBankAccount(ctx, req)
+    res, err := s.BankAccounts.Create(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
@@ -81,48 +80,7 @@ func main() {
 }
 ```
 
-## GetAllBankAccount
-
-Gets the bank account for given account ID.
-
-### Example Usage
-
-```go
-package main
-
-import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/accounting"
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
-)
-
-func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
-        }),
-    )
-
-    ctx := context.Background()    
-    req := operations.GetAllBankAccountRequest{
-        AccountID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        Query: codataccounting.String("dolore"),
-    }
-
-    res, err := s.BankAccounts.GetAllBankAccount(ctx, req)
-    if err != nil {
-        log.Fatal(err)
-    }
-
-    if res.BankStatementAccount != nil {
-        // handle response
-    }
-}
-```
-
-## GetBankAccount
+## Get
 
 Gets the bank account with a given ID
 
@@ -152,7 +110,7 @@ func main() {
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     }
 
-    res, err := s.BankAccounts.GetBankAccount(ctx, req)
+    res, err := s.BankAccounts.Get(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
@@ -163,7 +121,7 @@ func main() {
 }
 ```
 
-## GetCreateUpdateBankAccountsModel
+## GetCreateUpdateModel
 
 Get create/update bank account model. Returns the expected data for the request payload.
 
@@ -198,7 +156,7 @@ func main() {
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     }
 
-    res, err := s.BankAccounts.GetCreateUpdateBankAccountsModel(ctx, req)
+    res, err := s.BankAccounts.GetCreateUpdateModel(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
@@ -209,7 +167,7 @@ func main() {
 }
 ```
 
-## ListBankAccounts
+## List
 
 Gets the list of bank accounts for a given connection
 
@@ -239,10 +197,10 @@ func main() {
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: 1,
         PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("iusto"),
+        Query: codataccounting.String("error"),
     }
 
-    res, err := s.BankAccounts.ListBankAccounts(ctx, req)
+    res, err := s.BankAccounts.List(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
@@ -253,7 +211,7 @@ func main() {
 }
 ```
 
-## UpdateBankAccount
+## Update
 
 Posts an updated bank account to the accounting package for a given company.
 
@@ -286,32 +244,32 @@ func main() {
     ctx := context.Background()    
     req := operations.UpdateBankAccountRequest{
         BankAccount: &shared.BankAccount{
-            AccountName: codataccounting.String("dicta"),
-            AccountNumber: codataccounting.String("harum"),
+            AccountName: codataccounting.String("quia"),
+            AccountNumber: codataccounting.String("quis"),
             AccountType: shared.BankAccountBankAccountTypeEnumUnknown.ToPointer(),
-            AvailableBalance: codataccounting.Float64(8804.76),
-            Balance: codataccounting.Float64(4142.63),
-            Currency: codataccounting.String("repudiandae"),
-            IBan: codataccounting.String("quae"),
-            ID: codataccounting.String("3b99d488-e1e9-41e4-90ad-2abd44269802"),
-            Institution: codataccounting.String("assumenda"),
+            AvailableBalance: codataccounting.Float64(6747.52),
+            Balance: codataccounting.Float64(6563.3),
+            Currency: codataccounting.String("enim"),
+            IBan: codataccounting.String("odit"),
+            ID: codataccounting.String("c3f5ad01-9da1-4ffe-b8f0-97b0074f1547"),
+            Institution: codataccounting.String("dicta"),
             Metadata: &shared.Metadata{
                 IsDeleted: codataccounting.Bool(false),
             },
-            ModifiedDate: codataccounting.String("ipsam"),
-            NominalCode: codataccounting.String("alias"),
-            OverdraftLimit: codataccounting.Float64(1464.41),
-            SortCode: codataccounting.String("dolorum"),
-            SourceModifiedDate: codataccounting.String("excepturi"),
+            ModifiedDate: codataccounting.String("harum"),
+            NominalCode: codataccounting.String("enim"),
+            OverdraftLimit: codataccounting.Float64(8804.76),
+            SortCode: codataccounting.String("commodi"),
+            SourceModifiedDate: codataccounting.String("repudiandae"),
         },
         BankAccountID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         ForceUpdate: codataccounting.Bool(false),
-        TimeoutInMinutes: codataccounting.Int(270008),
+        TimeoutInMinutes: codataccounting.Int(64147),
     }
 
-    res, err := s.BankAccounts.UpdateBankAccount(ctx, req)
+    res, err := s.BankAccounts.Update(ctx, req)
     if err != nil {
         log.Fatal(err)
     }

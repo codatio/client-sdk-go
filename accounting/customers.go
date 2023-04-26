@@ -33,7 +33,7 @@ func newCustomers(defaultClient, securityClient HTTPClient, serverURL, language,
 	}
 }
 
-// CreateCustomer - Create customer
+// Create - Create customer
 // Posts an individual customer for a given company.
 //
 // Required data may vary by integration. To see what data to post, first call [Get create/update customer model](https://docs.codat.io/accounting-api#/operations/get-create-update-customers-model).
@@ -41,7 +41,7 @@ func newCustomers(defaultClient, securityClient HTTPClient, serverURL, language,
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=customers) for integrations that support creating customers.
-func (s *customers) CreateCustomer(ctx context.Context, request operations.CreateCustomerRequest, opts ...operations.Option) (*operations.CreateCustomerResponse, error) {
+func (s *customers) Create(ctx context.Context, request operations.CreateCustomerRequest, opts ...operations.Option) (*operations.CreateCustomerResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -131,9 +131,9 @@ func (s *customers) CreateCustomer(ctx context.Context, request operations.Creat
 	return res, nil
 }
 
-// DownloadCustomerAttachment - Download customer attachment
+// DownloadAttachment - Download customer attachment
 // Download customer attachment
-func (s *customers) DownloadCustomerAttachment(ctx context.Context, request operations.DownloadCustomerAttachmentRequest, opts ...operations.Option) (*operations.DownloadCustomerAttachmentResponse, error) {
+func (s *customers) DownloadAttachment(ctx context.Context, request operations.DownloadCustomerAttachmentRequest, opts ...operations.Option) (*operations.DownloadCustomerAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -212,96 +212,9 @@ func (s *customers) DownloadCustomerAttachment(ctx context.Context, request oper
 	return res, nil
 }
 
-// GetCreateUpdateCustomersModel - Get create/update customer model
-// Get create/update customer model. Returns the expected data for the request payload.
-//
-// See the examples for integration-specific indicative models.
-//
-// > **Supported Integrations**
-// >
-// > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=customers) for integrations that support creating and updating customers.
-func (s *customers) GetCreateUpdateCustomersModel(ctx context.Context, request operations.GetCreateUpdateCustomersModelRequest, opts ...operations.Option) (*operations.GetCreateUpdateCustomersModelResponse, error) {
-	o := operations.Options{}
-	supportedOptions := []string{
-		operations.SupportedOptionRetries,
-	}
-
-	for _, opt := range opts {
-		if err := opt(&o, supportedOptions...); err != nil {
-			return nil, fmt.Errorf("error applying option: %w", err)
-		}
-	}
-	baseURL := s.serverURL
-	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/customers", request, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error generating URL: %w", err)
-	}
-
-	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error creating request: %w", err)
-	}
-
-	client := s.securityClient
-
-	retryConfig := o.Retries
-	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
-		}
-	}
-
-	httpRes, err := utils.Retry(ctx, utils.Retries{
-		Config: retryConfig,
-		StatusCodes: []string{
-			"408",
-			"429",
-			"5XX",
-		},
-	}, func() (*http.Response, error) {
-		return client.Do(req)
-	})
-	if err != nil {
-		return nil, fmt.Errorf("error sending request: %w", err)
-	}
-	if httpRes == nil {
-		return nil, fmt.Errorf("error sending request: no response")
-	}
-	defer httpRes.Body.Close()
-
-	contentType := httpRes.Header.Get("Content-Type")
-
-	res := &operations.GetCreateUpdateCustomersModelResponse{
-		StatusCode:  httpRes.StatusCode,
-		ContentType: contentType,
-		RawResponse: httpRes,
-	}
-	switch {
-	case httpRes.StatusCode == 200:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.PushOption
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
-				return nil, err
-			}
-
-			res.PushOption = out
-		}
-	}
-
-	return res, nil
-}
-
-// GetCustomer - Get customer
+// Get - Get customer
 // Gets a single customer corresponding to the given ID.
-func (s *customers) GetCustomer(ctx context.Context, request operations.GetCustomerRequest, opts ...operations.Option) (*operations.GetCustomerResponse, error) {
+func (s *customers) Get(ctx context.Context, request operations.GetCustomerRequest, opts ...operations.Option) (*operations.GetCustomerResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -380,9 +293,9 @@ func (s *customers) GetCustomer(ctx context.Context, request operations.GetCusto
 	return res, nil
 }
 
-// GetCustomerAttachment - Get customer attachment
+// GetAttachment - Get customer attachment
 // Get  customer attachment
-func (s *customers) GetCustomerAttachment(ctx context.Context, request operations.GetCustomerAttachmentRequest, opts ...operations.Option) (*operations.GetCustomerAttachmentResponse, error) {
+func (s *customers) GetAttachment(ctx context.Context, request operations.GetCustomerAttachmentRequest, opts ...operations.Option) (*operations.GetCustomerAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -461,9 +374,15 @@ func (s *customers) GetCustomerAttachment(ctx context.Context, request operation
 	return res, nil
 }
 
-// GetCustomerAttachments - List customer attachments
-// Get customer attachments
-func (s *customers) GetCustomerAttachments(ctx context.Context, request operations.GetCustomerAttachmentsRequest, opts ...operations.Option) (*operations.GetCustomerAttachmentsResponse, error) {
+// GetCreateUpdateModel - Get create/update customer model
+// Get create/update customer model. Returns the expected data for the request payload.
+//
+// See the examples for integration-specific indicative models.
+//
+// > **Supported Integrations**
+// >
+// > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=customers) for integrations that support creating and updating customers.
+func (s *customers) GetCreateUpdateModel(ctx context.Context, request operations.GetCreateUpdateCustomersModelRequest, opts ...operations.Option) (*operations.GetCreateUpdateCustomersModelResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -475,7 +394,7 @@ func (s *customers) GetCustomerAttachments(ctx context.Context, request operatio
 		}
 	}
 	baseURL := s.serverURL
-	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/customers/{customerId}/attachments", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/customers", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -521,7 +440,7 @@ func (s *customers) GetCustomerAttachments(ctx context.Context, request operatio
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetCustomerAttachmentsResponse{
+	res := &operations.GetCreateUpdateCustomersModelResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -530,21 +449,21 @@ func (s *customers) GetCustomerAttachments(ctx context.Context, request operatio
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.AttachmentsDataset
+			var out *shared.PushOption
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.AttachmentsDataset = out
+			res.PushOption = out
 		}
 	}
 
 	return res, nil
 }
 
-// GetCustomers - List customers
+// List - List customers
 // Gets the latest customers for a company, with pagination
-func (s *customers) GetCustomers(ctx context.Context, request operations.GetCustomersRequest, opts ...operations.Option) (*operations.GetCustomersResponse, error) {
+func (s *customers) List(ctx context.Context, request operations.ListCustomersRequest, opts ...operations.Option) (*operations.ListCustomersResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -606,7 +525,7 @@ func (s *customers) GetCustomers(ctx context.Context, request operations.GetCust
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetCustomersResponse{
+	res := &operations.ListCustomersResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -627,7 +546,88 @@ func (s *customers) GetCustomers(ctx context.Context, request operations.GetCust
 	return res, nil
 }
 
-// UpdateCustomer - Update customer
+// ListAttachments - List customer attachments
+// List customer attachments
+func (s *customers) ListAttachments(ctx context.Context, request operations.ListCustomerAttachmentsRequest, opts ...operations.Option) (*operations.ListCustomerAttachmentsResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
+	baseURL := s.serverURL
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/customers/{customerId}/attachments", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+
+	client := s.securityClient
+
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
+	if err != nil {
+		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
+	}
+	defer httpRes.Body.Close()
+
+	contentType := httpRes.Header.Get("Content-Type")
+
+	res := &operations.ListCustomerAttachmentsResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: contentType,
+		RawResponse: httpRes,
+	}
+	switch {
+	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.AttachmentsDataset
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.AttachmentsDataset = out
+		}
+	}
+
+	return res, nil
+}
+
+// Update - Update customer
 // Posts an updated customer for a given company.
 //
 // Required data may vary by integration. To see what data to post, first call [Get create/update customer model](https://docs.codat.io/accounting-api#/operations/get-create-update-customers-model).
@@ -635,7 +635,7 @@ func (s *customers) GetCustomers(ctx context.Context, request operations.GetCust
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=customers) for integrations that support updating customers.
-func (s *customers) UpdateCustomer(ctx context.Context, request operations.UpdateCustomerRequest, opts ...operations.Option) (*operations.UpdateCustomerResponse, error) {
+func (s *customers) Update(ctx context.Context, request operations.UpdateCustomerRequest, opts ...operations.Option) (*operations.UpdateCustomerResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,

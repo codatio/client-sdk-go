@@ -36,9 +36,9 @@ func main() {
     ctx := context.Background()    
     req := operations.GetBalanceSheetRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        PeriodLength: 690865,
-        PeriodsToCompare: 125404,
-        StartMonth: codataccounting.String("facere"),
+        PeriodLength: 181836,
+        PeriodsToCompare: 754041,
+        StartMonth: codataccounting.String("perspiciatis"),
     }
 
     res, err := s.Financials.GetBalanceSheet(ctx, req)
@@ -78,9 +78,9 @@ func main() {
     ctx := context.Background()    
     req := operations.GetCashFlowStatementRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        PeriodLength: 170992,
-        PeriodsToCompare: 446583,
-        StartMonth: codataccounting.String("repudiandae"),
+        PeriodLength: 431723,
+        PeriodsToCompare: 576232,
+        StartMonth: codataccounting.String("eligendi"),
     }
 
     res, err := s.Financials.GetCashFlowStatement(ctx, req)
@@ -120,9 +120,9 @@ func main() {
     ctx := context.Background()    
     req := operations.GetProfitAndLossRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        PeriodLength: 698306,
-        PeriodsToCompare: 457632,
-        StartMonth: codataccounting.String("accusantium"),
+        PeriodLength: 276507,
+        PeriodsToCompare: 790080,
+        StartMonth: codataccounting.String("quod"),
     }
 
     res, err := s.Financials.GetProfitAndLoss(ctx, req)

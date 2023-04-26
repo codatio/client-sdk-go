@@ -6,10 +6,10 @@ Payment methods
 
 ### Available Operations
 
-* [GetPaymentMethod](#getpaymentmethod) - Get payment method
-* [ListPaymentMethods](#listpaymentmethods) - List all payment methods
+* [Get](#get) - Get payment method
+* [List](#list) - List all payment methods
 
-## GetPaymentMethod
+## Get
 
 Gets the specified payment method for a given company.
 
@@ -35,10 +35,10 @@ func main() {
     ctx := context.Background()    
     req := operations.GetPaymentMethodRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        PaymentMethodID: "harum",
+        PaymentMethodID: "ea",
     }
 
-    res, err := s.PaymentMethods.GetPaymentMethod(ctx, req)
+    res, err := s.PaymentMethods.Get(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
@@ -49,7 +49,7 @@ func main() {
 }
 ```
 
-## ListPaymentMethods
+## List
 
 Gets the payment methods for a given company.
 
@@ -81,7 +81,7 @@ func main() {
         Query: codataccounting.String("error"),
     }
 
-    res, err := s.PaymentMethods.ListPaymentMethods(ctx, req)
+    res, err := s.PaymentMethods.List(ctx, req)
     if err != nil {
         log.Fatal(err)
     }

@@ -6,10 +6,10 @@ Company info
 
 ### Available Operations
 
-* [GetCompanyInfo](#getcompanyinfo) - Get company info
-* [PostSyncInfo](#postsyncinfo) - Refresh company info
+* [Get](#get) - Get company info
+* [Refresh](#refresh) - Refresh company info
 
-## GetCompanyInfo
+## Get
 
 Gets the latest basic info for a company.
 
@@ -37,7 +37,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     }
 
-    res, err := s.CompanyInfo.GetCompanyInfo(ctx, req)
+    res, err := s.CompanyInfo.Get(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
@@ -48,7 +48,7 @@ func main() {
 }
 ```
 
-## PostSyncInfo
+## Refresh
 
 Initiates the process of synchronising basic info for a company
 
@@ -72,11 +72,11 @@ func main() {
     )
 
     ctx := context.Background()    
-    req := operations.PostSyncInfoRequest{
+    req := operations.RefreshCompanyInfoRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     }
 
-    res, err := s.CompanyInfo.PostSyncInfo(ctx, req)
+    res, err := s.CompanyInfo.Refresh(ctx, req)
     if err != nil {
         log.Fatal(err)
     }

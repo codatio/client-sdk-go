@@ -7,14 +7,14 @@ import (
 	"net/http"
 )
 
-type GetInvoiceAttachmentsRequest struct {
+type ListBillAttachmentsRequest struct {
+	// Unique identifier for a bill
+	BillID       string `pathParam:"style=simple,explode=false,name=billId"`
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
-	// Unique identifier for an invoice
-	InvoiceID string `pathParam:"style=simple,explode=false,name=invoiceId"`
 }
 
-type GetInvoiceAttachmentsResponse struct {
+type ListBillAttachmentsResponse struct {
 	// Success
 	AttachmentsDataset *shared.AttachmentsDataset
 	ContentType        string

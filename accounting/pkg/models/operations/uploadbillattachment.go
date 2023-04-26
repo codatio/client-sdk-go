@@ -6,20 +6,20 @@ import (
 	"net/http"
 )
 
-type UploadBillAttachmentsRequestBody struct {
+type UploadBillAttachmentRequestBody struct {
 	Content     []byte `multipartForm:"content"`
 	RequestBody string `multipartForm:"name=requestBody"`
 }
 
-type UploadBillAttachmentsRequest struct {
-	RequestBody *UploadBillAttachmentsRequestBody `multipartForm:"file" request:"mediaType=multipart/form-data"`
+type UploadBillAttachmentRequest struct {
+	RequestBody *UploadBillAttachmentRequestBody `multipartForm:"file" request:"mediaType=multipart/form-data"`
 	// Unique identifier for a bill
 	BillID       string `pathParam:"style=simple,explode=false,name=billId"`
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
-type UploadBillAttachmentsResponse struct {
+type UploadBillAttachmentResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response

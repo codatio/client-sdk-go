@@ -6,10 +6,10 @@ Sales orders
 
 ### Available Operations
 
-* [GetSalesOrder](#getsalesorder) - Get sales order
-* [ListSalesOrders](#listsalesorders) - List sales orders
+* [Get](#get) - Get sales order
+* [List](#list) - List sales orders
 
-## GetSalesOrder
+## Get
 
 Get sales order
 
@@ -35,10 +35,10 @@ func main() {
     ctx := context.Background()    
     req := operations.GetSalesOrderRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        SalesOrderID: "accusamus",
+        SalesOrderID: "vel",
     }
 
-    res, err := s.SalesOrders.GetSalesOrder(ctx, req)
+    res, err := s.SalesOrders.Get(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
@@ -49,7 +49,7 @@ func main() {
 }
 ```
 
-## ListSalesOrders
+## List
 
 Get sales orders
 
@@ -78,10 +78,10 @@ func main() {
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: 1,
         PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("sunt"),
+        Query: codataccounting.String("exercitationem"),
     }
 
-    res, err := s.SalesOrders.ListSalesOrders(ctx, req)
+    res, err := s.SalesOrders.List(ctx, req)
     if err != nil {
         log.Fatal(err)
     }

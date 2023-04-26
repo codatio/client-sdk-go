@@ -6,10 +6,10 @@ Account transactions
 
 ### Available Operations
 
-* [GetAccountTransaction](#getaccounttransaction) - Get account transaction
-* [ListAccountTransactions](#listaccounttransactions) - List account transactions
+* [Get](#get) - Get account transaction
+* [List](#list) - List account transactions
 
-## GetAccountTransaction
+## Get
 
 Returns a specific [account transaction](https://docs.codat.io/accounting-api#/schemas/AccountTransaction).
 
@@ -39,7 +39,7 @@ func main() {
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     }
 
-    res, err := s.AccountTransactions.GetAccountTransaction(ctx, req)
+    res, err := s.AccountTransactions.Get(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
@@ -50,7 +50,7 @@ func main() {
 }
 ```
 
-## ListAccountTransactions
+## List
 
 Returns a list of [account transactions](https://docs.codat.io/accounting-api#/schemas/AccountTransaction) for a given company's connection.
 
@@ -83,7 +83,7 @@ func main() {
         Query: codataccounting.String("distinctio"),
     }
 
-    res, err := s.AccountTransactions.ListAccountTransactions(ctx, req)
+    res, err := s.AccountTransactions.List(ctx, req)
     if err != nil {
         log.Fatal(err)
     }

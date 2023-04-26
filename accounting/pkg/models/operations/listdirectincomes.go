@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-type GetDirectCostsRequest struct {
+type ListDirectIncomesRequest struct {
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 	// Field to order results by. [Read more](https://docs.codat.io/using-the-api/ordering-results).
@@ -20,10 +20,10 @@ type GetDirectCostsRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-type GetDirectCostsResponse struct {
+type ListDirectIncomesResponse struct {
 	ContentType string
 	// Success
-	DirectCosts *shared.DirectCosts
-	StatusCode  int
-	RawResponse *http.Response
+	DirectIncomes *shared.DirectIncomes
+	StatusCode    int
+	RawResponse   *http.Response
 }

@@ -33,7 +33,7 @@ func newDirectIncomes(defaultClient, securityClient HTTPClient, serverURL, langu
 	}
 }
 
-// CreateDirectIncome - Create direct income
+// Create - Create direct income
 // Posts a new direct income to the accounting package for a given company.
 //
 // Required data may vary by integration. To see what data to post, first call [Get create direct income model](https://docs.codat.io/accounting-api#/operations/get-create-directIncomes-model).
@@ -41,7 +41,7 @@ func newDirectIncomes(defaultClient, securityClient HTTPClient, serverURL, langu
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=directIncomes) for integrations that support creating direct incomes.
-func (s *directIncomes) CreateDirectIncome(ctx context.Context, request operations.CreateDirectIncomeRequest, opts ...operations.Option) (*operations.CreateDirectIncomeResponse, error) {
+func (s *directIncomes) Create(ctx context.Context, request operations.CreateDirectIncomeRequest, opts ...operations.Option) (*operations.CreateDirectIncomeResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -131,9 +131,9 @@ func (s *directIncomes) CreateDirectIncome(ctx context.Context, request operatio
 	return res, nil
 }
 
-// DownloadDirectIncomeAttachment - Download direct income attachment
+// DownloadAttachment - Download direct income attachment
 // Downloads an attachment for the specified direct income for a given company.
-func (s *directIncomes) DownloadDirectIncomeAttachment(ctx context.Context, request operations.DownloadDirectIncomeAttachmentRequest, opts ...operations.Option) (*operations.DownloadDirectIncomeAttachmentResponse, error) {
+func (s *directIncomes) DownloadAttachment(ctx context.Context, request operations.DownloadDirectIncomeAttachmentRequest, opts ...operations.Option) (*operations.DownloadDirectIncomeAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -212,96 +212,9 @@ func (s *directIncomes) DownloadDirectIncomeAttachment(ctx context.Context, requ
 	return res, nil
 }
 
-// GetCreateDirectIncomesModel - Get create direct income model
-// Get create direct income model. Returns the expected data for the request payload.
-//
-// See the examples for integration-specific indicative models.
-//
-// > **Supported Integrations**
-// >
-// > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=directIncomes) for integrations that support creating direct incomes.
-func (s *directIncomes) GetCreateDirectIncomesModel(ctx context.Context, request operations.GetCreateDirectIncomesModelRequest, opts ...operations.Option) (*operations.GetCreateDirectIncomesModelResponse, error) {
-	o := operations.Options{}
-	supportedOptions := []string{
-		operations.SupportedOptionRetries,
-	}
-
-	for _, opt := range opts {
-		if err := opt(&o, supportedOptions...); err != nil {
-			return nil, fmt.Errorf("error applying option: %w", err)
-		}
-	}
-	baseURL := s.serverURL
-	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/directIncomes", request, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error generating URL: %w", err)
-	}
-
-	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error creating request: %w", err)
-	}
-
-	client := s.securityClient
-
-	retryConfig := o.Retries
-	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
-		}
-	}
-
-	httpRes, err := utils.Retry(ctx, utils.Retries{
-		Config: retryConfig,
-		StatusCodes: []string{
-			"408",
-			"429",
-			"5XX",
-		},
-	}, func() (*http.Response, error) {
-		return client.Do(req)
-	})
-	if err != nil {
-		return nil, fmt.Errorf("error sending request: %w", err)
-	}
-	if httpRes == nil {
-		return nil, fmt.Errorf("error sending request: no response")
-	}
-	defer httpRes.Body.Close()
-
-	contentType := httpRes.Header.Get("Content-Type")
-
-	res := &operations.GetCreateDirectIncomesModelResponse{
-		StatusCode:  httpRes.StatusCode,
-		ContentType: contentType,
-		RawResponse: httpRes,
-	}
-	switch {
-	case httpRes.StatusCode == 200:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.PushOption
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
-				return nil, err
-			}
-
-			res.PushOption = out
-		}
-	}
-
-	return res, nil
-}
-
-// GetDirectIncome - Get direct income
+// Get - Get direct income
 // Gets the specified direct income for a given company and connection.
-func (s *directIncomes) GetDirectIncome(ctx context.Context, request operations.GetDirectIncomeRequest, opts ...operations.Option) (*operations.GetDirectIncomeResponse, error) {
+func (s *directIncomes) Get(ctx context.Context, request operations.GetDirectIncomeRequest, opts ...operations.Option) (*operations.GetDirectIncomeResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -380,9 +293,9 @@ func (s *directIncomes) GetDirectIncome(ctx context.Context, request operations.
 	return res, nil
 }
 
-// GetDirectIncomeAttachment - Get direct income attachment
+// GetAttachment - Get direct income attachment
 // Gets the specified direct income attachment for a given company.
-func (s *directIncomes) GetDirectIncomeAttachment(ctx context.Context, request operations.GetDirectIncomeAttachmentRequest, opts ...operations.Option) (*operations.GetDirectIncomeAttachmentResponse, error) {
+func (s *directIncomes) GetAttachment(ctx context.Context, request operations.GetDirectIncomeAttachmentRequest, opts ...operations.Option) (*operations.GetDirectIncomeAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -465,9 +378,96 @@ func (s *directIncomes) GetDirectIncomeAttachment(ctx context.Context, request o
 	return res, nil
 }
 
-// GetDirectIncomes - Get direct incomes
-// Gets the direct incomes for a given company.
-func (s *directIncomes) GetDirectIncomes(ctx context.Context, request operations.GetDirectIncomesRequest, opts ...operations.Option) (*operations.GetDirectIncomesResponse, error) {
+// GetCreateModel - Get create direct income model
+// Get create direct income model. Returns the expected data for the request payload.
+//
+// See the examples for integration-specific indicative models.
+//
+// > **Supported Integrations**
+// >
+// > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=directIncomes) for integrations that support creating direct incomes.
+func (s *directIncomes) GetCreateModel(ctx context.Context, request operations.GetCreateDirectIncomesModelRequest, opts ...operations.Option) (*operations.GetCreateDirectIncomesModelResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
+	baseURL := s.serverURL
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/directIncomes", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+
+	client := s.securityClient
+
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
+	if err != nil {
+		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
+	}
+	defer httpRes.Body.Close()
+
+	contentType := httpRes.Header.Get("Content-Type")
+
+	res := &operations.GetCreateDirectIncomesModelResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: contentType,
+		RawResponse: httpRes,
+	}
+	switch {
+	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.PushOption
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.PushOption = out
+		}
+	}
+
+	return res, nil
+}
+
+// List - List direct incomes
+// Lists the direct incomes for a given company.
+func (s *directIncomes) List(ctx context.Context, request operations.ListDirectIncomesRequest, opts ...operations.Option) (*operations.ListDirectIncomesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -529,7 +529,7 @@ func (s *directIncomes) GetDirectIncomes(ctx context.Context, request operations
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetDirectIncomesResponse{
+	res := &operations.ListDirectIncomesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -550,9 +550,9 @@ func (s *directIncomes) GetDirectIncomes(ctx context.Context, request operations
 	return res, nil
 }
 
-// ListDirectIncomeAttachments - List direct income attachments
+// ListAttachments - List direct income attachments
 // Gets all attachments for the specified direct income for a given company.
-func (s *directIncomes) ListDirectIncomeAttachments(ctx context.Context, request operations.ListDirectIncomeAttachmentsRequest, opts ...operations.Option) (*operations.ListDirectIncomeAttachmentsResponse, error) {
+func (s *directIncomes) ListAttachments(ctx context.Context, request operations.ListDirectIncomeAttachmentsRequest, opts ...operations.Option) (*operations.ListDirectIncomeAttachmentsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -631,9 +631,9 @@ func (s *directIncomes) ListDirectIncomeAttachments(ctx context.Context, request
 	return res, nil
 }
 
-// UploadDirectIncomeAttachment - Create direct income attachment
+// UploadAttachment - Create direct income attachment
 // Posts a new direct income attachment for a given company.
-func (s *directIncomes) UploadDirectIncomeAttachment(ctx context.Context, request operations.UploadDirectIncomeAttachmentRequest, opts ...operations.Option) (*operations.UploadDirectIncomeAttachmentResponse, error) {
+func (s *directIncomes) UploadAttachment(ctx context.Context, request operations.UploadDirectIncomeAttachmentRequest, opts ...operations.Option) (*operations.UploadDirectIncomeAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,

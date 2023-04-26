@@ -32,7 +32,7 @@ func newCreditNotes(defaultClient, securityClient HTTPClient, serverURL, languag
 	}
 }
 
-// CreateCreditNote - Create credit note
+// Create - Create credit note
 // Push credit note
 //
 // Required data may vary by integration. To see what data to post, first call [Get create/update credit note model](https://docs.codat.io/accounting-api#/operations/get-create-update-creditNotes-model).
@@ -40,7 +40,7 @@ func newCreditNotes(defaultClient, securityClient HTTPClient, serverURL, languag
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=creditNotes) for integrations that support creating a credit note.
-func (s *creditNotes) CreateCreditNote(ctx context.Context, request operations.CreateCreditNoteRequest, opts ...operations.Option) (*operations.CreateCreditNoteResponse, error) {
+func (s *creditNotes) Create(ctx context.Context, request operations.CreateCreditNoteRequest, opts ...operations.Option) (*operations.CreateCreditNoteResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -130,96 +130,9 @@ func (s *creditNotes) CreateCreditNote(ctx context.Context, request operations.C
 	return res, nil
 }
 
-// GetCreateUpdateCreditNotesModel - Get create/update credit note model
-// Get create/update credit note model. Returns the expected data for the request payload.
-//
-// See the examples for integration-specific indicative models.
-//
-// > **Supported Integrations**
-// >
-// > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=creditNotes) for integrations that support creating and updating a credit note.
-func (s *creditNotes) GetCreateUpdateCreditNotesModel(ctx context.Context, request operations.GetCreateUpdateCreditNotesModelRequest, opts ...operations.Option) (*operations.GetCreateUpdateCreditNotesModelResponse, error) {
-	o := operations.Options{}
-	supportedOptions := []string{
-		operations.SupportedOptionRetries,
-	}
-
-	for _, opt := range opts {
-		if err := opt(&o, supportedOptions...); err != nil {
-			return nil, fmt.Errorf("error applying option: %w", err)
-		}
-	}
-	baseURL := s.serverURL
-	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/creditNotes", request, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error generating URL: %w", err)
-	}
-
-	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error creating request: %w", err)
-	}
-
-	client := s.securityClient
-
-	retryConfig := o.Retries
-	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
-		}
-	}
-
-	httpRes, err := utils.Retry(ctx, utils.Retries{
-		Config: retryConfig,
-		StatusCodes: []string{
-			"408",
-			"429",
-			"5XX",
-		},
-	}, func() (*http.Response, error) {
-		return client.Do(req)
-	})
-	if err != nil {
-		return nil, fmt.Errorf("error sending request: %w", err)
-	}
-	if httpRes == nil {
-		return nil, fmt.Errorf("error sending request: no response")
-	}
-	defer httpRes.Body.Close()
-
-	contentType := httpRes.Header.Get("Content-Type")
-
-	res := &operations.GetCreateUpdateCreditNotesModelResponse{
-		StatusCode:  httpRes.StatusCode,
-		ContentType: contentType,
-		RawResponse: httpRes,
-	}
-	switch {
-	case httpRes.StatusCode == 200:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.PushOption
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
-				return nil, err
-			}
-
-			res.PushOption = out
-		}
-	}
-
-	return res, nil
-}
-
-// GetCreditNote - Get credit note
+// Get - Get credit note
 // Gets a single creditNote corresponding to the given ID.
-func (s *creditNotes) GetCreditNote(ctx context.Context, request operations.GetCreditNoteRequest, opts ...operations.Option) (*operations.GetCreditNoteResponse, error) {
+func (s *creditNotes) Get(ctx context.Context, request operations.GetCreditNoteRequest, opts ...operations.Option) (*operations.GetCreditNoteResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -298,9 +211,96 @@ func (s *creditNotes) GetCreditNote(ctx context.Context, request operations.GetC
 	return res, nil
 }
 
-// ListCreditNotes - List credit notes
+// GetCreateUpdateModel - Get create/update credit note model
+// Get create/update credit note model. Returns the expected data for the request payload.
+//
+// See the examples for integration-specific indicative models.
+//
+// > **Supported Integrations**
+// >
+// > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=creditNotes) for integrations that support creating and updating a credit note.
+func (s *creditNotes) GetCreateUpdateModel(ctx context.Context, request operations.GetCreateUpdateCreditNotesModelRequest, opts ...operations.Option) (*operations.GetCreateUpdateCreditNotesModelResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
+	baseURL := s.serverURL
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/creditNotes", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+
+	client := s.securityClient
+
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
+	if err != nil {
+		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
+	}
+	defer httpRes.Body.Close()
+
+	contentType := httpRes.Header.Get("Content-Type")
+
+	res := &operations.GetCreateUpdateCreditNotesModelResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: contentType,
+		RawResponse: httpRes,
+	}
+	switch {
+	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.PushOption
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.PushOption = out
+		}
+	}
+
+	return res, nil
+}
+
+// List - List credit notes
 // Gets a list of all credit notes for a company, with pagination
-func (s *creditNotes) ListCreditNotes(ctx context.Context, request operations.ListCreditNotesRequest, opts ...operations.Option) (*operations.ListCreditNotesResponse, error) {
+func (s *creditNotes) List(ctx context.Context, request operations.ListCreditNotesRequest, opts ...operations.Option) (*operations.ListCreditNotesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -383,7 +383,7 @@ func (s *creditNotes) ListCreditNotes(ctx context.Context, request operations.Li
 	return res, nil
 }
 
-// UpdateCreditNote - Update creditNote
+// Update - Update creditNote
 // Posts an updated credit note to the accounting package for a given company.
 //
 // Required data may vary by integration. To see what data to post, first call [Get create/update credit note model](https://docs.codat.io/accounting-api#/operations/get-create-update-creditNotes-model).
@@ -391,7 +391,7 @@ func (s *creditNotes) ListCreditNotes(ctx context.Context, request operations.Li
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=creditNotes) for integrations that support updating a credit note.
-func (s *creditNotes) UpdateCreditNote(ctx context.Context, request operations.UpdateCreditNoteRequest, opts ...operations.Option) (*operations.UpdateCreditNoteResponse, error) {
+func (s *creditNotes) Update(ctx context.Context, request operations.UpdateCreditNoteRequest, opts ...operations.Option) (*operations.UpdateCreditNoteResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,

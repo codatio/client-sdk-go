@@ -6,12 +6,12 @@ Transfers
 
 ### Available Operations
 
-* [CreateTransfer](#createtransfer) - Create transfer
-* [GetCreateTransfersModel](#getcreatetransfersmodel) - Get create transfer model
-* [GetTransfer](#gettransfer) - Get transfer
-* [ListTransfers](#listtransfers) - List transfers
+* [Create](#create) - Create transfer
+* [Get](#get) - Get transfer
+* [GetCreateModel](#getcreatemodel) - Get create transfer model
+* [List](#list) - List transfers
 
-## CreateTransfer
+## Create
 
 Posts a new transfer to the accounting package for a given company.
 
@@ -45,61 +45,70 @@ func main() {
     req := operations.CreateTransferRequest{
         Transfer: &shared.Transfer{
             ContactRef: &shared.TransferContactRef{
-                DataType: codataccounting.String("quisquam"),
-                ID: "b4bedef3-c127-4c39-8995-528250dcbbcd",
+                DataType: codataccounting.String("laborum"),
+                ID: "9ffc5619-29cc-4a95-a0a1-395918da1d48",
             },
-            Date: codataccounting.String("velit"),
+            Date: codataccounting.String("recusandae"),
             DepositedRecordRefs: []string{
-                "architecto",
-                "magni",
-                "dicta",
+                "quas",
+                "officiis",
             },
-            Description: codataccounting.String("tempore"),
+            Description: codataccounting.String("ipsum"),
             From: &shared.TransferAccount{
                 AccountRef: &shared.AccountRef{
-                    ID: codataccounting.String("88c1ee5e-7a06-4139-9cc8-fa0b7d176492"),
-                    Name: codataccounting.String("Flora Auer"),
+                    ID: codataccounting.String("cf8e1143-da93-408b-a7a0-8af22184439b"),
+                    Name: codataccounting.String("Desiree Walsh"),
                 },
-                Amount: codataccounting.Float64(3249.63),
-                Currency: codataccounting.String("recusandae"),
+                Amount: codataccounting.Float64(3395.66),
+                Currency: codataccounting.String("eum"),
             },
-            ID: codataccounting.String("6cb6ebab-e5e0-4b99-b3b1-358d6a87bb7a"),
+            ID: codataccounting.String("ccce470c-d214-47b6-a615-2cf01d0d8c3a"),
             Metadata: &shared.Metadata{
                 IsDeleted: codataccounting.Bool(false),
             },
-            ModifiedDate: codataccounting.String("voluptates"),
-            SourceModifiedDate: codataccounting.String("minus"),
+            ModifiedDate: codataccounting.String("magnam"),
+            SourceModifiedDate: codataccounting.String("facilis"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "recusandae": map[string]interface{}{
-                        "eum": "iste",
-                        "at": "voluptate",
+                    "laborum": map[string]interface{}{
+                        "quidem": "repellat",
+                        "molestias": "amet",
                     },
-                    "alias": map[string]interface{}{
-                        "expedita": "consequatur",
-                        "suscipit": "cupiditate",
-                        "occaecati": "sit",
-                        "dignissimos": "maiores",
+                    "veniam": map[string]interface{}{
+                        "voluptatibus": "vero",
+                        "provident": "iure",
+                        "incidunt": "repellat",
+                        "similique": "ut",
                     },
-                    "provident": map[string]interface{}{
-                        "omnis": "incidunt",
-                        "incidunt": "vitae",
-                        "incidunt": "nostrum",
+                    "tempore": map[string]interface{}{
+                        "voluptates": "excepturi",
                     },
                 },
             },
             To: &shared.TransferAccount{
                 AccountRef: &shared.AccountRef{
-                    ID: codataccounting.String("2a9f01f3-442c-461b-a133-bacde532b652"),
-                    Name: codataccounting.String("Johanna Lang"),
+                    ID: codataccounting.String("c097eda6-2344-42e1-a923-7e9984c80b47"),
+                    Name: codataccounting.String("Bert Lind V"),
                 },
-                Amount: codataccounting.Float64(5511.24),
-                Currency: codataccounting.String("corporis"),
+                Amount: codataccounting.Float64(1752.16),
+                Currency: codataccounting.String("dolorem"),
             },
             TrackingCategoryRefs: []shared.TrackingCategoryRef{
                 shared.TrackingCategoryRef{
-                    ID: "fe2859ce-3222-431f-a666-4c41d2fba5cb",
-                    Name: codataccounting.String("Daniel Keeling"),
+                    ID: "18ca8d69-c568-4921-8fa2-0207e4fae038",
+                    Name: codataccounting.String("Carroll Klocko DDS"),
+                },
+                shared.TrackingCategoryRef{
+                    ID: "c2cabaf7-fc2c-4cba-8bef-0df68eaedb2e",
+                    Name: codataccounting.String("Darryl Altenwerth"),
+                },
+                shared.TrackingCategoryRef{
+                    ID: "069fb36a-dd70-4408-8e0a-3fc73a5a034b",
+                    Name: codataccounting.String("Rebecca Graham"),
+                },
+                shared.TrackingCategoryRef{
+                    ID: "243afa69-87a4-472b-b09a-153e22301068",
+                    Name: codataccounting.String("Tracy Monahan"),
                 },
             },
         },
@@ -107,7 +116,7 @@ func main() {
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     }
 
-    res, err := s.Transfers.CreateTransfer(ctx, req)
+    res, err := s.Transfers.Create(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
@@ -118,7 +127,48 @@ func main() {
 }
 ```
 
-## GetCreateTransfersModel
+## Get
+
+Gets the specified transfer for a given company.
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"log"
+	"github.com/codatio/client-sdk-go/accounting"
+	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
+)
+
+func main() {
+    s := codataccounting.New(
+        codataccounting.WithSecurity(shared.Security{
+            AuthHeader: "YOUR_API_KEY_HERE",
+        }),
+    )
+
+    ctx := context.Background()    
+    req := operations.GetTransferRequest{
+        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+        ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
+        TransferID: "ipsa",
+    }
+
+    res, err := s.Transfers.Get(ctx, req)
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.Transfer != nil {
+        // handle response
+    }
+}
+```
+
+## GetCreateModel
 
 Get create transfer model. Returns the expected data for the request payload.
 
@@ -153,7 +203,7 @@ func main() {
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     }
 
-    res, err := s.Transfers.GetCreateTransfersModel(ctx, req)
+    res, err := s.Transfers.GetCreateModel(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
@@ -164,48 +214,7 @@ func main() {
 }
 ```
 
-## GetTransfer
-
-Gets the specified transfer for a given company.
-
-### Example Usage
-
-```go
-package main
-
-import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/accounting"
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
-)
-
-func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
-        }),
-    )
-
-    ctx := context.Background()    
-    req := operations.GetTransferRequest{
-        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TransferID: "corrupti",
-    }
-
-    res, err := s.Transfers.GetTransfer(ctx, req)
-    if err != nil {
-        log.Fatal(err)
-    }
-
-    if res.Transfer != nil {
-        // handle response
-    }
-}
-```
-
-## ListTransfers
+## List
 
 Gets the transfers for a given company.
 
@@ -235,10 +244,10 @@ func main() {
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: 1,
         PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("at"),
+        Query: codataccounting.String("perspiciatis"),
     }
 
-    res, err := s.Transfers.ListTransfers(ctx, req)
+    res, err := s.Transfers.List(ctx, req)
     if err != nil {
         log.Fatal(err)
     }

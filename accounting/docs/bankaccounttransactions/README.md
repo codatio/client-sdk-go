@@ -6,12 +6,12 @@ Bank transactions for bank accounts
 
 ### Available Operations
 
-* [CreateBankTransactions](#createbanktransactions) - Create bank transactions
-* [GetCreateBankAccountModel](#getcreatebankaccountmodel) - List push options for bank account bank transactions
-* [ListBankAccountTransactions](#listbankaccounttransactions) - List bank transactions for bank account
-* [ListBankTransactions](#listbanktransactions) - List all bank transactions
+* [Create](#create) - Create bank transactions
+* [GetCreateModel](#getcreatemodel) - List push options for bank account bank transactions
+* [List](#list) - List bank transactions for bank account
+* [ListTransactions](#listtransactions) - List all bank transactions
 
-## CreateBankTransactions
+## Create
 
 Posts bank transactions to the accounting package for a given company.
 
@@ -42,19 +42,19 @@ func main() {
     ctx := context.Background()    
     req := operations.CreateBankTransactionsRequest{
         BankTransactions: &shared.BankTransactions{
-            AccountID: codataccounting.String("excepturi"),
+            AccountID: codataccounting.String("quis"),
             Transactions: []shared.BankTransactionLine{
                 shared.BankTransactionLine{
-                    Amount: 187.89,
-                    Balance: 3241.41,
-                    ClearedOnDate: codataccounting.String("natus"),
-                    Counterparty: codataccounting.String("sed"),
-                    Description: codataccounting.String("iste"),
-                    ID: codataccounting.String("396fea75-96eb-410f-aaa2-352c5955907a"),
-                    ModifiedDate: codataccounting.String("doloribus"),
+                    Amount: 6481.72,
+                    Balance: 202.18,
+                    ClearedOnDate: codataccounting.String("ipsam"),
+                    Counterparty: codataccounting.String("repellendus"),
+                    Description: codataccounting.String("sapiente"),
+                    ID: codataccounting.String("c2ddf7cc-78ca-41ba-928f-c816742cb739"),
+                    ModifiedDate: codataccounting.String("aspernatur"),
                     Reconciled: false,
-                    Reference: codataccounting.String("sapiente"),
-                    SourceModifiedDate: codataccounting.String("architecto"),
+                    Reference: codataccounting.String("perferendis"),
+                    SourceModifiedDate: codataccounting.String("ad"),
                     TransactionType: shared.BankTransactionTypeEnumCheck,
                 },
             },
@@ -63,10 +63,10 @@ func main() {
         AllowSyncOnPushComplete: codataccounting.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codataccounting.Int(208876),
+        TimeoutInMinutes: codataccounting.Int(149675),
     }
 
-    res, err := s.BankAccountTransactions.CreateBankTransactions(ctx, req)
+    res, err := s.BankAccountTransactions.Create(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
@@ -77,7 +77,7 @@ func main() {
 }
 ```
 
-## GetCreateBankAccountModel
+## GetCreateModel
 
 Gets the options of pushing bank account transactions.
 
@@ -107,7 +107,7 @@ func main() {
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     }
 
-    res, err := s.BankAccountTransactions.GetCreateBankAccountModel(ctx, req)
+    res, err := s.BankAccountTransactions.GetCreateModel(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
@@ -118,7 +118,7 @@ func main() {
 }
 ```
 
-## ListBankAccountTransactions
+## List
 
 Gets bank transactions for a given bank account ID
 
@@ -149,10 +149,10 @@ func main() {
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: 1,
         PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("culpa"),
+        Query: codataccounting.String("iste"),
     }
 
-    res, err := s.BankAccountTransactions.ListBankAccountTransactions(ctx, req)
+    res, err := s.BankAccountTransactions.List(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
@@ -163,7 +163,7 @@ func main() {
 }
 ```
 
-## ListBankTransactions
+## ListTransactions
 
 Gets the latest bank transactions for given account ID and company. Doesn't require connection ID.
 
@@ -193,10 +193,10 @@ func main() {
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: 1,
         PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("consequuntur"),
+        Query: codataccounting.String("dolor"),
     }
 
-    res, err := s.BankAccountTransactions.ListBankTransactions(ctx, req)
+    res, err := s.BankAccountTransactions.ListTransactions(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
