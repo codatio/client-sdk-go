@@ -58,52 +58,14 @@ type Order struct {
 	// A unique, persistent identifier for this record
 	ID string `json:"id"`
 	// Reference to the geographic location where the order was placed.
-	LocationRef *LocationRef `json:"locationRef,omitempty"`
-	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
-	//
-	// ```
-	// 2020-10-08T22:40:50Z
-	// 2021-01-01T00:00:00
-	// ```
-	//
-	//
-	//
-	// When syncing data that contains `DateTime` fields from Codat, make sure you support the following cases when reading time information:
-	//
-	// - Coordinated Universal Time (UTC): `2021-11-15T06:00:00Z`
-	// - Unqualified local time: `2021-11-15T01:00:00`
-	// - UTC time offsets: `2021-11-15T01:00:00-05:00`
-	//
-	// > Time zones
-	// >
-	// > Not all dates from Codat will contain information about time zones.
-	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
+	LocationRef    *LocationRef    `json:"locationRef,omitempty"`
 	ModifiedDate   *string         `json:"modifiedDate,omitempty"`
 	OrderLineItems []OrderLineItem `json:"orderLineItems,omitempty"`
 	// Friendly reference for the order in the commerce or point of sale platform.
-	OrderNumber    *string         `json:"orderNumber,omitempty"`
-	Payments       []PaymentRef    `json:"payments,omitempty"`
-	ServiceCharges []ServiceCharge `json:"serviceCharges,omitempty"`
-	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
-	//
-	// ```
-	// 2020-10-08T22:40:50Z
-	// 2021-01-01T00:00:00
-	// ```
-	//
-	//
-	//
-	// When syncing data that contains `DateTime` fields from Codat, make sure you support the following cases when reading time information:
-	//
-	// - Coordinated Universal Time (UTC): `2021-11-15T06:00:00Z`
-	// - Unqualified local time: `2021-11-15T01:00:00`
-	// - UTC time offsets: `2021-11-15T01:00:00-05:00`
-	//
-	// > Time zones
-	// >
-	// > Not all dates from Codat will contain information about time zones.
-	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
+	OrderNumber        *string         `json:"orderNumber,omitempty"`
+	Payments           []PaymentRef    `json:"payments,omitempty"`
+	ServiceCharges     []ServiceCharge `json:"serviceCharges,omitempty"`
+	SourceModifiedDate *string         `json:"sourceModifiedDate,omitempty"`
 	// Total amount of the order, including tax, net of any discounts and refunds.
 	TotalAmount *float64 `json:"totalAmount,omitempty"`
 	// Total amount of discount applied to the order.
