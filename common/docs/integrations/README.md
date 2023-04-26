@@ -6,11 +6,11 @@ View and manage your available integrations in Codat.
 
 ### Available Operations
 
-* [GetIntegration](#getintegration) - Get integration
-* [GetIntegrationsBranding](#getintegrationsbranding) - Get branding
-* [ListIntegrations](#listintegrations) - List integrations
+* [Get](#get) - Get integration
+* [GetBranding](#getbranding) - Get branding
+* [List](#list) - List integrations
 
-## GetIntegration
+## Get
 
 Get single integration, by platformKey
 
@@ -38,7 +38,7 @@ func main() {
         PlatformKey: "gbol",
     }
 
-    res, err := s.Integrations.GetIntegration(ctx, req)
+    res, err := s.Integrations.Get(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
@@ -49,7 +49,7 @@ func main() {
 }
 ```
 
-## GetIntegrationsBranding
+## GetBranding
 
 Get branding for platform.
 
@@ -77,7 +77,7 @@ func main() {
         PlatformKey: "gbol",
     }
 
-    res, err := s.Integrations.GetIntegrationsBranding(ctx, req)
+    res, err := s.Integrations.GetBranding(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
@@ -88,7 +88,7 @@ func main() {
 }
 ```
 
-## ListIntegrations
+## List
 
 List your available integrations
 
@@ -119,7 +119,7 @@ func main() {
         Query: codatcommon.String("veritatis"),
     }
 
-    res, err := s.Integrations.ListIntegrations(ctx, req)
+    res, err := s.Integrations.List(ctx, req)
     if err != nil {
         log.Fatal(err)
     }

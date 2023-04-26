@@ -32,11 +32,95 @@ func newRefreshData(defaultClient, securityClient HTTPClient, serverURL, languag
 	}
 }
 
-// CreatePullOperation - Queue pull operation
+// All - Queue pull operations
+// Refreshes all data types marked Fetch on first link.
+func (s *refreshData) All(ctx context.Context, request operations.RefreshCompanyDataRequest, opts ...operations.Option) (*operations.RefreshCompanyDataResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
+	baseURL := s.serverURL
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/all", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+
+	client := s.securityClient
+
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
+	if err != nil {
+		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
+	}
+	defer httpRes.Body.Close()
+
+	contentType := httpRes.Header.Get("Content-Type")
+
+	res := &operations.RefreshCompanyDataResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: contentType,
+		RawResponse: httpRes,
+	}
+	switch {
+	case httpRes.StatusCode == 204:
+	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode == 404:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.ErrorMessage
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.ErrorMessage = out
+		}
+	}
+
+	return res, nil
+}
+
+// ByDataType - Queue pull operation
 // Queue a single pull operation for the given company and data type.
 //
 // This will bring updated data into Codat from the linked integration for you to view.
-func (s *refreshData) CreatePullOperation(ctx context.Context, request operations.CreatePullOperationRequest, opts ...operations.Option) (*operations.CreatePullOperationResponse, error) {
+func (s *refreshData) ByDataType(ctx context.Context, request operations.CreatePullOperationRequest, opts ...operations.Option) (*operations.CreatePullOperationResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -114,90 +198,6 @@ func (s *refreshData) CreatePullOperation(ctx context.Context, request operation
 
 			res.PullOperation = out
 		}
-	case httpRes.StatusCode == 401:
-		fallthrough
-	case httpRes.StatusCode == 404:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ErrorMessage
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
-				return nil, err
-			}
-
-			res.ErrorMessage = out
-		}
-	}
-
-	return res, nil
-}
-
-// RefreshCompanyData - Queue pull operations
-// Refreshes all data types marked Fetch on first link.
-func (s *refreshData) RefreshCompanyData(ctx context.Context, request operations.RefreshCompanyDataRequest, opts ...operations.Option) (*operations.RefreshCompanyDataResponse, error) {
-	o := operations.Options{}
-	supportedOptions := []string{
-		operations.SupportedOptionRetries,
-	}
-
-	for _, opt := range opts {
-		if err := opt(&o, supportedOptions...); err != nil {
-			return nil, fmt.Errorf("error applying option: %w", err)
-		}
-	}
-	baseURL := s.serverURL
-	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/all", request, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error generating URL: %w", err)
-	}
-
-	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error creating request: %w", err)
-	}
-
-	client := s.securityClient
-
-	retryConfig := o.Retries
-	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
-		}
-	}
-
-	httpRes, err := utils.Retry(ctx, utils.Retries{
-		Config: retryConfig,
-		StatusCodes: []string{
-			"408",
-			"429",
-			"5XX",
-		},
-	}, func() (*http.Response, error) {
-		return client.Do(req)
-	})
-	if err != nil {
-		return nil, fmt.Errorf("error sending request: %w", err)
-	}
-	if httpRes == nil {
-		return nil, fmt.Errorf("error sending request: no response")
-	}
-	defer httpRes.Body.Close()
-
-	contentType := httpRes.Header.Get("Content-Type")
-
-	res := &operations.RefreshCompanyDataResponse{
-		StatusCode:  httpRes.StatusCode,
-		ContentType: contentType,
-		RawResponse: httpRes,
-	}
-	switch {
-	case httpRes.StatusCode == 204:
 	case httpRes.StatusCode == 401:
 		fallthrough
 	case httpRes.StatusCode == 404:

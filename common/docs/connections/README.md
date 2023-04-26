@@ -6,14 +6,14 @@ Manage your companies' data connections.
 
 ### Available Operations
 
-* [CreateDataConnection](#createdataconnection) - Create connection
-* [DeleteCompanyConnection](#deletecompanyconnection) - Delete connection
-* [GetCompanyConnection](#getcompanyconnection) - Get connection
-* [ListCompanyConnections](#listcompanyconnections) - List connections
-* [UnlinkCompanyConnection](#unlinkcompanyconnection) - Unlink connection
-* [UpdateConnectionAuthorization](#updateconnectionauthorization) - Update authorization
+* [Create](#create) - Create connection
+* [Delete](#delete) - Delete connection
+* [Get](#get) - Get connection
+* [List](#list) - List connections
+* [UnlinkConnection](#unlinkconnection) - Unlink connection
+* [UpdateAuthorization](#updateauthorization) - Update authorization
 
-## CreateDataConnection
+## Create
 
 Create a data connection for a company
 
@@ -44,7 +44,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     }
 
-    res, err := s.Connections.CreateDataConnection(ctx, req)
+    res, err := s.Connections.Create(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
@@ -55,7 +55,7 @@ func main() {
 }
 ```
 
-## DeleteCompanyConnection
+## Delete
 
 Revoke and remove a connection from a company.
 This operation is not reversible - the end user would need to reauthorize a new data connection if you wish to view new data for this company.
@@ -85,7 +85,7 @@ func main() {
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     }
 
-    res, err := s.Connections.DeleteCompanyConnection(ctx, req)
+    res, err := s.Connections.Delete(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
@@ -96,7 +96,7 @@ func main() {
 }
 ```
 
-## GetCompanyConnection
+## Get
 
 Get a single connection for a company
 
@@ -125,7 +125,7 @@ func main() {
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     }
 
-    res, err := s.Connections.GetCompanyConnection(ctx, req)
+    res, err := s.Connections.Get(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
@@ -136,7 +136,7 @@ func main() {
 }
 ```
 
-## ListCompanyConnections
+## List
 
 List the connections for a company
 
@@ -168,7 +168,7 @@ func main() {
         Query: codatcommon.String("minus"),
     }
 
-    res, err := s.Connections.ListCompanyConnections(ctx, req)
+    res, err := s.Connections.List(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
@@ -179,7 +179,7 @@ func main() {
 }
 ```
 
-## UnlinkCompanyConnection
+## UnlinkConnection
 
 This allows you to deauthorize a connection, without deleting it from Codat. This means you can still view any data that has previously been pulled into Codat, and also lets you re-authorize in future if your customer wishes to resume sharing their data.
 
@@ -203,15 +203,15 @@ func main() {
     )
 
     ctx := context.Background()    
-    req := operations.UnlinkCompanyConnectionRequest{
-        RequestBody: &operations.UnlinkCompanyConnectionRequestBody{
+    req := operations.UnlinkConnectionRequest{
+        RequestBody: &operations.UnlinkConnectionRequestBody{
             Status: codatcommon.String("placeat"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     }
 
-    res, err := s.Connections.UnlinkCompanyConnection(ctx, req)
+    res, err := s.Connections.UnlinkConnection(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
@@ -222,7 +222,7 @@ func main() {
 }
 ```
 
-## UpdateConnectionAuthorization
+## UpdateAuthorization
 
 Update data connection's authorization.
 
@@ -256,7 +256,7 @@ func main() {
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     }
 
-    res, err := s.Connections.UpdateConnectionAuthorization(ctx, req)
+    res, err := s.Connections.UpdateAuthorization(ctx, req)
     if err != nil {
         log.Fatal(err)
     }

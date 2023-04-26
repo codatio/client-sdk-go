@@ -11,6 +11,7 @@ type FeatureStateEnum string
 
 const (
 	FeatureStateEnumRelease        FeatureStateEnum = "Release"
+	FeatureStateEnumAlpha          FeatureStateEnum = "Alpha"
 	FeatureStateEnumBeta           FeatureStateEnum = "Beta"
 	FeatureStateEnumDeprecated     FeatureStateEnum = "Deprecated"
 	FeatureStateEnumNotSupported   FeatureStateEnum = "NotSupported"
@@ -28,6 +29,8 @@ func (e *FeatureStateEnum) UnmarshalJSON(data []byte) error {
 	}
 	switch s {
 	case "Release":
+		fallthrough
+	case "Alpha":
 		fallthrough
 	case "Beta":
 		fallthrough

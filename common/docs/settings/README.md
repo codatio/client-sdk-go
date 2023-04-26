@@ -7,9 +7,8 @@ Manage your Codat instance.
 ### Available Operations
 
 * [GetProfile](#getprofile) - Get profile
-* [GetProfileSyncSettings](#getprofilesyncsettings) - Get sync settings
+* [GetSyncSettings](#getsyncsettings) - Update all sync settings
 * [UpdateProfile](#updateprofile) - Update profile
-* [UpdateSyncSettings](#updatesyncsettings) - Update all sync settings
 
 ## GetProfile
 
@@ -45,90 +44,7 @@ func main() {
 }
 ```
 
-## GetProfileSyncSettings
-
-Retrieve the sync settings for your client. This includes how often data types should be queued to be updated, and how much history should be fetched.
-
-### Example Usage
-
-```go
-package main
-
-import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/common"
-)
-
-func main() {
-    s := codatcommon.New(
-        codatcommon.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
-        }),
-    )
-
-    ctx := context.Background()
-    res, err := s.Settings.GetProfileSyncSettings(ctx)
-    if err != nil {
-        log.Fatal(err)
-    }
-
-    if res.SyncSettings != nil {
-        // handle response
-    }
-}
-```
-
-## UpdateProfile
-
-Update your Codat profile
-
-### Example Usage
-
-```go
-package main
-
-import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/common"
-	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
-)
-
-func main() {
-    s := codatcommon.New(
-        codatcommon.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
-        }),
-    )
-
-    ctx := context.Background()    
-    req := shared.Profile{
-        AlertAuthHeader: codatcommon.String("explicabo"),
-        APIKey: codatcommon.String("nobis"),
-        ConfirmCompanyName: codatcommon.Bool(false),
-        IconURL: codatcommon.String("enim"),
-        LogoURL: codatcommon.String("omnis"),
-        Name: "Bob's Burgers",
-        RedirectURL: "nemo",
-        WhiteListUrls: []string{
-            "https://bobs-burgers.com/redirect",
-            "https://bobs-burgers.com/redirect",
-        },
-    }
-
-    res, err := s.Settings.UpdateProfile(ctx, req)
-    if err != nil {
-        log.Fatal(err)
-    }
-
-    if res.Profile != nil {
-        // handle response
-    }
-}
-```
-
-## UpdateSyncSettings
+## GetSyncSettings
 
 Update sync settings for all data types.
 
@@ -162,40 +78,70 @@ func main() {
                 FetchOnFirstLink: false,
                 IsLocked: codatcommon.Bool(false),
                 MonthsToSync: codatcommon.Int64(24),
-                SyncFromUtc: codatcommon.String("accusantium"),
+                SyncFromUtc: codatcommon.String("nobis"),
                 SyncFromWindow: codatcommon.Int64(24),
-                SyncOrder: 438601,
-                SyncSchedule: 24,
-            },
-            shared.SyncSetting{
-                DataType: shared.SyncSettingDataTypeEnumInvoices,
-                FetchOnFirstLink: false,
-                IsLocked: codatcommon.Bool(false),
-                MonthsToSync: codatcommon.Int64(24),
-                SyncFromUtc: codatcommon.String("culpa"),
-                SyncFromWindow: codatcommon.Int64(24),
-                SyncOrder: 988374,
-                SyncSchedule: 24,
-            },
-            shared.SyncSetting{
-                DataType: shared.SyncSettingDataTypeEnumInvoices,
-                FetchOnFirstLink: false,
-                IsLocked: codatcommon.Bool(false),
-                MonthsToSync: codatcommon.Int64(24),
-                SyncFromUtc: codatcommon.String("sapiente"),
-                SyncFromWindow: codatcommon.Int64(24),
-                SyncOrder: 102044,
+                SyncOrder: 315428,
                 SyncSchedule: 24,
             },
         },
     }
 
-    res, err := s.Settings.UpdateSyncSettings(ctx, req)
+    res, err := s.Settings.GetSyncSettings(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
 
     if res.StatusCode == http.StatusOK {
+        // handle response
+    }
+}
+```
+
+## UpdateProfile
+
+Update your Codat profile
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"log"
+	"github.com/codatio/client-sdk-go/common"
+	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
+)
+
+func main() {
+    s := codatcommon.New(
+        codatcommon.WithSecurity(shared.Security{
+            AuthHeader: "YOUR_API_KEY_HERE",
+        }),
+    )
+
+    ctx := context.Background()    
+    req := shared.Profile{
+        AlertAuthHeader: codatcommon.String("Bearer tXEiHiRK7XCtI8TNHbpGs1LI1pumdb4Cl1QIo7B2"),
+        APIKey: codatcommon.String("sartANTjHAkLdbyDfaynoTQb7pkmj6hXHmnQKMrB"),
+        ConfirmCompanyName: codatcommon.Bool(false),
+        IconURL: codatcommon.String("https://client-images.codat.io/icon/042399f5-d104-4f38-9ce8-cac3524f4e88_3f5623af-d992-4c22-bc08-e58c520a8526.ico"),
+        LogoURL: codatcommon.String("https://client-images.codat.io/logo/042399f5-d104-4f38-9ce8-cac3524f4e88_5806cb1f-7342-4c0e-a0a8-99bfbc47b0ff.png"),
+        Name: "Bob's Burgers",
+        RedirectURL: "https://bobs-burgers.{countrySuffix}/{companyId}",
+        WhiteListUrls: []string{
+            "https://bobs-burgers.com",
+            "https://bobs-burgers.com",
+            "https://bobs-burgers.com",
+        },
+    }
+
+    res, err := s.Settings.UpdateProfile(ctx, req)
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.Profile != nil {
         // handle response
     }
 }
