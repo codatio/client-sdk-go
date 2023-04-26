@@ -32,9 +32,9 @@ func newDisputes(defaultClient, securityClient HTTPClient, serverURL, language, 
 	}
 }
 
-// ListDisputes - List disputes
+// List - List disputes
 // List commerce disputes
-func (s *disputes) ListDisputes(ctx context.Context, request operations.ListDisputesRequest, opts ...operations.Option) (*operations.ListDisputesResponse, error) {
+func (s *disputes) List(ctx context.Context, request operations.ListDisputesRequest, opts ...operations.Option) (*operations.ListDisputesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,

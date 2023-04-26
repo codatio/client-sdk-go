@@ -6,9 +6,9 @@ Retrieve standardized data from linked commerce platforms.
 
 ### Available Operations
 
-* [GetTaxComponents](#gettaxcomponents) - List tax components
+* [Get](#get) - List tax components
 
-## GetTaxComponents
+## Get
 
 This endpoint returns a lits of tax rates from the commerce platform, including tax rate names and values. This supports the mapping of tax rates from the commerce platform to the accounting platform.
 
@@ -37,7 +37,7 @@ func main() {
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     }
 
-    res, err := s.TaxComponents.GetTaxComponents(ctx, req)
+    res, err := s.TaxComponents.Get(ctx, req)
     if err != nil {
         log.Fatal(err)
     }

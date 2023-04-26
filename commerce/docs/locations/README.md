@@ -6,9 +6,9 @@ Retrieve standardized data from linked commerce platforms.
 
 ### Available Operations
 
-* [ListLocations](#listlocations) - List locations
+* [List](#list) - List locations
 
-## ListLocations
+## List
 
 Retrieve a list of locations as seen in the commerce platform.
 
@@ -39,7 +39,7 @@ func main() {
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     }
 
-    res, err := s.Locations.ListLocations(ctx, req)
+    res, err := s.Locations.List(ctx, req)
     if err != nil {
         log.Fatal(err)
     }

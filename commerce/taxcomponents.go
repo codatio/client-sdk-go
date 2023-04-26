@@ -32,9 +32,9 @@ func newTaxComponents(defaultClient, securityClient HTTPClient, serverURL, langu
 	}
 }
 
-// GetTaxComponents - List tax components
+// Get - List tax components
 // This endpoint returns a lits of tax rates from the commerce platform, including tax rate names and values. This supports the mapping of tax rates from the commerce platform to the accounting platform.
-func (s *taxComponents) GetTaxComponents(ctx context.Context, request operations.GetTaxComponentsRequest, opts ...operations.Option) (*operations.GetTaxComponentsResponse, error) {
+func (s *taxComponents) Get(ctx context.Context, request operations.GetTaxComponentsRequest, opts ...operations.Option) (*operations.GetTaxComponentsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,

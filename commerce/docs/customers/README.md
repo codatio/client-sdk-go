@@ -6,9 +6,9 @@ Retrieve standardized data from linked commerce platforms.
 
 ### Available Operations
 
-* [ListCustomers](#listcustomers) - List customers
+* [List](#list) - List customers
 
-## ListCustomers
+## List
 
 List all commerce customers for the given company and data connection
 
@@ -41,7 +41,7 @@ func main() {
         Query: codatcommerce.String("corrupti"),
     }
 
-    res, err := s.Customers.ListCustomers(ctx, req)
+    res, err := s.Customers.List(ctx, req)
     if err != nil {
         log.Fatal(err)
     }

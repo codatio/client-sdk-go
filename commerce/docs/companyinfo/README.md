@@ -6,9 +6,9 @@ Retrieve standardized data from linked commerce platforms.
 
 ### Available Operations
 
-* [GetCompanyInfo](#getcompanyinfo) - Get company info
+* [Get](#get) - Get company info
 
-## GetCompanyInfo
+## Get
 
 Retrieve information about the company, as seen in the commerce platform.
 
@@ -39,7 +39,7 @@ func main() {
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     }
 
-    res, err := s.CompanyInfo.GetCompanyInfo(ctx, req)
+    res, err := s.CompanyInfo.Get(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
