@@ -1,13 +1,13 @@
 configVersion: 1.0.0
 management:
-  docChecksum: 813f80f3f0fc4a4685abaeae0535a244
+  docChecksum: b7464767a30f731e4bc683df7e531431
   docVersion: 2.1.0
-  speakeasyVersion: 1.23.0
-  generationVersion: 2.21.0
+  speakeasyVersion: 1.23.1
+  generationVersion: 2.21.1
 generation:
   telemetryEnabled: false
   sdkClassName: CodatBankFeeds
   singleTagPerOp: false
 go:
-  version: 0.10.0
+  version: 0.10.1
   packageName: github.com/codatio/client-sdk-go/bankfeeds
