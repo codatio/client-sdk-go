@@ -19,7 +19,7 @@ func main() {
     ctx := context.Background()    
     req := operations.DownloadFilesRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        Date: codatfiles.String("2022-10-23T00:00:00Z"),
+        Date: codatfiles.String("corrupti"),
     }
 
     res, err := s.Files.DownloadFiles(ctx, req)

@@ -20,8 +20,5 @@ pkg/models/shared/file.go
 pkg/models/shared/security.go
 docs/codatfiles/README.md
 docs/files/README.md
-docs/files/downloadfiles.md
-docs/files/listfiles.md
-docs/files/uploadfiles.md
 USAGE.md
 pkg/models/operations/options.go
