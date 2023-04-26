@@ -52,28 +52,9 @@ type JournalEntry struct {
 	// An array of journal lines.
 	JournalLines []JournalLine `json:"journalLines,omitempty"`
 	// Links journal entries to the relevant journal in accounting integrations that use multi-book accounting (multiple journals).
-	JournalRef *JournalRef `json:"journalRef,omitempty"`
-	Metadata   *Metadata   `json:"metadata,omitempty"`
-	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
-	//
-	// ```
-	// 2020-10-08T22:40:50Z
-	// 2021-01-01T00:00:00
-	// ```
-	//
-	//
-	//
-	// When syncing data that contains `DateTime` fields from Codat, make sure you support the following cases when reading time information:
-	//
-	// - Coordinated Universal Time (UTC): `2021-11-15T06:00:00Z`
-	// - Unqualified local time: `2021-11-15T01:00:00`
-	// - UTC time offsets: `2021-11-15T01:00:00-05:00`
-	//
-	// > Time zones
-	// >
-	// > Not all dates from Codat will contain information about time zones.
-	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	ModifiedDate *string `json:"modifiedDate,omitempty"`
+	JournalRef   *JournalRef `json:"journalRef,omitempty"`
+	Metadata     *Metadata   `json:"metadata,omitempty"`
+	ModifiedDate *string     `json:"modifiedDate,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -102,27 +83,8 @@ type JournalEntry struct {
 	// - Account transactions
 	// - Invoices
 	// - Transfers
-	RecordRef *InvoiceTo `json:"recordRef,omitempty"`
-	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
-	//
-	// ```
-	// 2020-10-08T22:40:50Z
-	// 2021-01-01T00:00:00
-	// ```
-	//
-	//
-	//
-	// When syncing data that contains `DateTime` fields from Codat, make sure you support the following cases when reading time information:
-	//
-	// - Coordinated Universal Time (UTC): `2021-11-15T06:00:00Z`
-	// - Unqualified local time: `2021-11-15T01:00:00`
-	// - UTC time offsets: `2021-11-15T01:00:00-05:00`
-	//
-	// > Time zones
-	// >
-	// > Not all dates from Codat will contain information about time zones.
-	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
+	RecordRef          *InvoiceTo `json:"recordRef,omitempty"`
+	SourceModifiedDate *string    `json:"sourceModifiedDate,omitempty"`
 	// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 	SupplementalData *SupplementalData `json:"supplementalData,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
