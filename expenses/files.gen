@@ -9,6 +9,7 @@ codatsyncexpenses.go
 go.mod
 go.sum
 pkg/types/date.go
+pkg/types/datetime.go
 pkg/utils/contenttype.go
 pkg/utils/form.go
 pkg/utils/headers.go
@@ -58,5 +59,13 @@ pkg/models/shared/integrationtypeenum.go
 pkg/models/shared/transactionmetadatalist.go
 pkg/models/shared/hallink.go
 pkg/models/shared/security.go
+docs/codatsyncexpenses/README.md
+docs/configuration/README.md
+docs/connections/README.md
+docs/expenses/README.md
+docs/mappingoptions/README.md
+docs/sync/README.md
+docs/syncstatus/README.md
+docs/transactionstatus/README.md
 USAGE.md
 pkg/models/operations/options.go

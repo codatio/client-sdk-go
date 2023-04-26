@@ -15,6 +15,10 @@ const (
 	IntegrationTypeEnumBankfeeds IntegrationTypeEnum = "bankfeeds"
 )
 
+func (e IntegrationTypeEnum) ToPointer() *IntegrationTypeEnum {
+	return &e
+}
+
 func (e *IntegrationTypeEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

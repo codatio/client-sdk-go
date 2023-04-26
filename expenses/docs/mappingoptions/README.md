@@ -1,4 +1,19 @@
-<!-- Start SDK Example Usage -->
+# MappingOptions
+
+## Overview
+
+Mapping options for a companies expenses.
+
+### Available Operations
+
+* [GetMappingOptions](#getmappingoptions) - Mapping options
+
+## GetMappingOptions
+
+Gets the expense mapping options for a companies accounting software
+
+### Example Usage
+
 ```go
 package main
 
@@ -17,18 +32,17 @@ func main() {
     )
 
     ctx := context.Background()    
-    req := operations.GetCompanyConfigurationRequest{
+    req := operations.GetMappingOptionsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     }
 
-    res, err := s.Configuration.GetCompanyConfiguration(ctx, req)
+    res, err := s.MappingOptions.GetMappingOptions(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.CompanyConfiguration != nil {
+    if res.MappingOptions != nil {
         // handle response
     }
 }
 ```
-<!-- End SDK Example Usage -->

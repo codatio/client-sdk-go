@@ -21,6 +21,10 @@ const (
 	ExpenseTransactionTypeEnumAdjustmentOut ExpenseTransactionTypeEnum = "AdjustmentOut"
 )
 
+func (e ExpenseTransactionTypeEnum) ToPointer() *ExpenseTransactionTypeEnum {
+	return &e
+}
+
 func (e *ExpenseTransactionTypeEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {
@@ -76,7 +80,7 @@ type ExpenseTransaction struct {
 	// | **EUR**          | €20            | 1.134         | $22.68                     |
 	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
 	CurrencyRate *float64 `json:"currencyRate,omitempty"`
-	// Your unique idenfier for the transaction.
+	// Your unique identifier for the transaction.
 	ID string `json:"id"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//

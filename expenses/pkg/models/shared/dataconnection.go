@@ -18,6 +18,10 @@ const (
 	DataConnectionSourceTypeEnumUnknown    DataConnectionSourceTypeEnum = "Unknown"
 )
 
+func (e DataConnectionSourceTypeEnum) ToPointer() *DataConnectionSourceTypeEnum {
+	return &e
+}
+
 func (e *DataConnectionSourceTypeEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {
