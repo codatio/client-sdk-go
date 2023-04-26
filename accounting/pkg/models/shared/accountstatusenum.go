@@ -17,6 +17,10 @@ const (
 	AccountStatusEnumPending  AccountStatusEnum = "Pending"
 )
 
+func (e AccountStatusEnum) ToPointer() *AccountStatusEnum {
+	return &e
+}
+
 func (e *AccountStatusEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

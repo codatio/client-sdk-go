@@ -12,8 +12,9 @@ type UpdateBillCreditNoteRequest struct {
 	BillCreditNoteID string                 `pathParam:"style=simple,explode=false,name=billCreditNoteId"`
 	CompanyID        string                 `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID     string                 `pathParam:"style=simple,explode=false,name=connectionId"`
-	ForceUpdate      *bool                  `queryParam:"style=form,explode=true,name=forceUpdate"`
-	TimeoutInMinutes *int                   `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
+	// When updating data in the destination platform Codat checks the `sourceModifiedDate` against the `lastupdated` date from the accounting platform, if they're different Codat will return an error suggesting you should initiate another pull of the data. If this is set to `true` then the update will override this check.
+	ForceUpdate      *bool `queryParam:"style=form,explode=true,name=forceUpdate"`
+	TimeoutInMinutes *int  `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
 }
 
 type UpdateBillCreditNoteResponse struct {

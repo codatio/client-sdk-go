@@ -17,6 +17,10 @@ const (
 	SalesOrderInvoiceStatusEnumNotInvoiced       SalesOrderInvoiceStatusEnum = "NotInvoiced"
 )
 
+func (e SalesOrderInvoiceStatusEnum) ToPointer() *SalesOrderInvoiceStatusEnum {
+	return &e
+}
+
 func (e *SalesOrderInvoiceStatusEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

@@ -94,7 +94,14 @@ type BillWithholdingTax struct {
 type Bill struct {
 	// Amount outstanding on the bill.
 	AmountDue *float64 `json:"amountDue,omitempty"`
-	Currency  *string  `json:"currency,omitempty"`
+	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code, e.g. _GBP_.
+	//
+	// ## Unknown currencies
+	//
+	// In line with the ISO 4217 specification, the code _XXX_ is used when the data source does not return a currency for a transaction.
+	//
+	// There are only a very small number of edge cases where this currency code is returned by the Codat system.
+	Currency *string `json:"currency,omitempty"`
 	// Rate to convert the total amount of the payment into the base currency for the company at the time of the payment.
 	//
 	// Currency rates in Codat are implemented as the multiple of foreign currency units to each base currency unit.
@@ -124,54 +131,16 @@ type Bill struct {
 	ID        *string `json:"id,omitempty"`
 	IssueDate string  `json:"issueDate"`
 	// Array of Bill line items.
-	LineItems []BillLineItem `json:"lineItems,omitempty"`
-	Metadata  *Metadata      `json:"metadata,omitempty"`
-	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
-	//
-	// ```
-	// 2020-10-08T22:40:50Z
-	// 2021-01-01T00:00:00
-	// ```
-	//
-	//
-	//
-	// When syncing data that contains `DateTime` fields from Codat, make sure you support the following cases when reading time information:
-	//
-	// - Coordinated Universal Time (UTC): `2021-11-15T06:00:00Z`
-	// - Unqualified local time: `2021-11-15T01:00:00`
-	// - UTC time offsets: `2021-11-15T01:00:00-05:00`
-	//
-	// > Time zones
-	// >
-	// > Not all dates from Codat will contain information about time zones.
-	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	ModifiedDate *string `json:"modifiedDate,omitempty"`
+	LineItems    []BillLineItem `json:"lineItems,omitempty"`
+	Metadata     *Metadata      `json:"metadata,omitempty"`
+	ModifiedDate *string        `json:"modifiedDate,omitempty"`
 	// Any private, company notes about the bill, such as payment information.
 	Note *string `json:"note,omitempty"`
 	// An array of payment allocations.
 	PaymentAllocations []BillPaymentAllocation `json:"paymentAllocations,omitempty"`
 	PurchaseOrderRefs  []PurchaseOrderRef      `json:"purchaseOrderRefs,omitempty"`
 	// User-friendly reference for the bill.
-	Reference *string `json:"reference,omitempty"`
-	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
-	//
-	// ```
-	// 2020-10-08T22:40:50Z
-	// 2021-01-01T00:00:00
-	// ```
-	//
-	//
-	//
-	// When syncing data that contains `DateTime` fields from Codat, make sure you support the following cases when reading time information:
-	//
-	// - Coordinated Universal Time (UTC): `2021-11-15T06:00:00Z`
-	// - Unqualified local time: `2021-11-15T01:00:00`
-	// - UTC time offsets: `2021-11-15T01:00:00-05:00`
-	//
-	// > Time zones
-	// >
-	// > Not all dates from Codat will contain information about time zones.
-	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
+	Reference          *string `json:"reference,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Current state of the bill.
 	Status BillStatusEnum `json:"status"`

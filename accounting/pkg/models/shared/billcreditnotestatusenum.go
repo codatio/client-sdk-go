@@ -19,6 +19,10 @@ const (
 	BillCreditNoteStatusEnumPartiallyPaid BillCreditNoteStatusEnum = "PartiallyPaid"
 )
 
+func (e BillCreditNoteStatusEnum) ToPointer() *BillCreditNoteStatusEnum {
+	return &e
+}
+
 func (e *BillCreditNoteStatusEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {
