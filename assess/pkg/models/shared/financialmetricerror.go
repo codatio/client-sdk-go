@@ -16,6 +16,10 @@ const (
 	FinancialMetricErrorTypeEnumDataTypeNotEnabled FinancialMetricErrorTypeEnum = "DataTypeNotEnabled"
 )
 
+func (e FinancialMetricErrorTypeEnum) ToPointer() *FinancialMetricErrorTypeEnum {
+	return &e
+}
+
 func (e *FinancialMetricErrorTypeEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

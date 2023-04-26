@@ -17,6 +17,10 @@ const (
 	PeriodUnitEnumYear  PeriodUnitEnum = "Year"
 )
 
+func (e PeriodUnitEnum) ToPointer() *PeriodUnitEnum {
+	return &e
+}
+
 func (e *PeriodUnitEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

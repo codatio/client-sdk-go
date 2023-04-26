@@ -2,6 +2,14 @@
 
 package shared
 
+// PaymentCustomerRef - Customer the payment is recorded against in the accounting platform.
+type PaymentCustomerRef struct {
+	// `customerName` from the Customer data type
+	CompanyName *string `json:"companyName,omitempty"`
+	// `id` from the Customers data type
+	ID string `json:"id"`
+}
+
 type PaymentMetadata struct {
 	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
@@ -736,8 +744,9 @@ type Payment struct {
 	// | **GBP**          | £20            | 1.277         | $25.54                     |
 	// | **EUR**          | €20            | 1.134         | $22.68                     |
 	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
-	CurrencyRate *float64     `json:"currencyRate,omitempty"`
-	CustomerRef  *CustomerRef `json:"customerRef,omitempty"`
+	CurrencyRate *float64 `json:"currencyRate,omitempty"`
+	// Customer the payment is recorded against in the accounting platform.
+	CustomerRef *PaymentCustomerRef `json:"customerRef,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -761,53 +770,15 @@ type Payment struct {
 	// Identifier for the payment, unique to the company in the accounting platform.
 	ID *string `json:"id,omitempty"`
 	// An array of payment lines.
-	Lines    []PaymentLine    `json:"lines,omitempty"`
-	Metadata *PaymentMetadata `json:"metadata,omitempty"`
-	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
-	//
-	// ```
-	// 2020-10-08T22:40:50Z
-	// 2021-01-01T00:00:00
-	// ```
-	//
-	//
-	//
-	// When syncing data that contains `DateTime` fields from Codat, make sure you support the following cases when reading time information:
-	//
-	// - Coordinated Universal Time (UTC): `2021-11-15T06:00:00Z`
-	// - Unqualified local time: `2021-11-15T01:00:00`
-	// - UTC time offsets: `2021-11-15T01:00:00-05:00`
-	//
-	// > Time zones
-	// >
-	// > Not all dates from Codat will contain information about time zones.
-	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	ModifiedDate *string `json:"modifiedDate,omitempty"`
+	Lines        []PaymentLine    `json:"lines,omitempty"`
+	Metadata     *PaymentMetadata `json:"metadata,omitempty"`
+	ModifiedDate *string          `json:"modifiedDate,omitempty"`
 	// Any additional information associated with the payment.
 	Note *string `json:"note,omitempty"`
 	// The Payment Method to which the payment is linked in the accounting platform.
 	PaymentMethodRef *PaymentPaymentMethodRef `json:"paymentMethodRef,omitempty"`
 	// Friendly reference for the payment.
-	Reference *string `json:"reference,omitempty"`
-	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
-	//
-	// ```
-	// 2020-10-08T22:40:50Z
-	// 2021-01-01T00:00:00
-	// ```
-	//
-	//
-	//
-	// When syncing data that contains `DateTime` fields from Codat, make sure you support the following cases when reading time information:
-	//
-	// - Coordinated Universal Time (UTC): `2021-11-15T06:00:00Z`
-	// - Unqualified local time: `2021-11-15T01:00:00`
-	// - UTC time offsets: `2021-11-15T01:00:00-05:00`
-	//
-	// > Time zones
-	// >
-	// > Not all dates from Codat will contain information about time zones.
-	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
+	Reference          *string `json:"reference,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 	SupplementalData *PaymentSupplementalData `json:"supplementalData,omitempty"`

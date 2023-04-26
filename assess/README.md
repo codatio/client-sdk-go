@@ -16,12 +16,11 @@ go get github.com/codatio/client-sdk-go/assess
 ```go
 package main
 
-import (
-    "context"
-    "log"
-    "github.com/codatio/client-sdk-go/assess"
-    "github.com/codatio/client-sdk-go/assess/pkg/models/shared"
-    "github.com/codatio/client-sdk-go/assess/pkg/models/operations"
+import(
+	"context"
+	"log"
+	"github.com/codatio/client-sdk-go/assess"
+	"github.com/codatio/client-sdk-go/assess/pkg/models/operations"
 )
 
 func main() {
@@ -54,44 +53,44 @@ func main() {
 ## Available Resources and Operations
 
 
-### Categories
+### [Categories](docs/categories/README.md)
 
-* `GetAccountCategory` - Get suggested and/or confirmed category for a specific account
-* `ListAccountsCategories` - List suggested and confirmed account categories
-* `ListAvailableAccountCategories` - List account categories
-* `UpdateAccountCategory` - Patch account categories
-* `UpdateAccountsCategories` - Confirm categories for accounts
+* [GetAccountCategory](docs/categories/README.md#getaccountcategory) - Get suggested and/or confirmed category for a specific account
+* [ListAccountsCategories](docs/categories/README.md#listaccountscategories) - List suggested and confirmed account categories
+* [ListAvailableAccountCategories](docs/categories/README.md#listavailableaccountcategories) - List account categories
+* [UpdateAccountCategory](docs/categories/README.md#updateaccountcategory) - Patch account categories
+* [UpdateAccountsCategories](docs/categories/README.md#updateaccountscategories) - Confirm categories for accounts
 
-### DataIntegrity
+### [DataIntegrity](docs/dataintegrity/README.md)
 
-* `GetDataIntegrityDetails` - Lists data integrity details for date type
-* `GetDataIntegrityStatus` - Get data integrity status
-* `GetDataIntegritySummaries` - Get data integrity summary
+* [GetDataIntegrityDetails](docs/dataintegrity/README.md#getdataintegritydetails) - Lists data integrity details for date type
+* [GetDataIntegrityStatus](docs/dataintegrity/README.md#getdataintegritystatus) - Get data integrity status
+* [GetDataIntegritySummaries](docs/dataintegrity/README.md#getdataintegritysummaries) - Get data integrity summary
 
-### ExcelReports
+### [ExcelReports](docs/excelreports/README.md)
 
-* `DownloadExcelReport` - Download generated excel report
-* `GenerateExcelReport` - Generate an Excel report
-* `GetAccountingMarketingMetrics` - Get the marketing metrics from an accounting source for a given company.
-* `GetExcelReport` - Download generated excel report
-* `GetExcelReportGenerationStatus` - Get status of Excel report
+* [DownloadExcelReport](docs/excelreports/README.md#downloadexcelreport) - Download generated excel report
+* [GenerateExcelReport](docs/excelreports/README.md#generateexcelreport) - Generate an Excel report
+* [GetAccountingMarketingMetrics](docs/excelreports/README.md#getaccountingmarketingmetrics) - Get the marketing metrics from an accounting source for a given company.
+* [GetExcelReport](docs/excelreports/README.md#getexcelreport) - Download generated excel report
+* [GetExcelReportGenerationStatus](docs/excelreports/README.md#getexcelreportgenerationstatus) - Get status of Excel report
 
-### Reports
+### [Reports](docs/reports/README.md)
 
-* `GetAccountsForEnhancedBalanceSheet` - Enhanced Balance Sheet Accounts
-* `GetAccountsForEnhancedProfitAndLoss` - Enhanced Profit and Loss Accounts
-* `GetCommerceCustomerRetentionMetrics` - Get the customer retention metrics for a specific company.
-* `GetCommerceLifetimeValueMetrics` - Get the lifetime value metric for a specific company.
-* `GetCommerceOrdersMetrics` - Get order information for a specific company
-* `GetCommerceRefundsMetrics` - Get the refunds information for a specific company
-* `GetCommerceRevenueMetrics` - Commerce Revenue Metrics
-* `GetEnhancedBalanceSheet` - Enhanced Balance Sheet
-* `GetEnhancedCashFlowTransactions` - Get enhanced cash flow report
-* `GetEnhancedFinancialMetrics` - List financial metrics
-* `GetEnhancedInvoicesReport` - Enhanced Invoices Report
-* `GetEnhancedProfitAndLoss` - Enhanced Profit and Loss
-* `GetRecurringRevenueMetrics` - Get key metrics for subscription revenue
-* `RequestRecurringRevenueMetrics` - Request production of key subscription revenue metrics
+* [GetAccountsForEnhancedBalanceSheet](docs/reports/README.md#getaccountsforenhancedbalancesheet) - Enhanced Balance Sheet Accounts
+* [GetAccountsForEnhancedProfitAndLoss](docs/reports/README.md#getaccountsforenhancedprofitandloss) - Enhanced Profit and Loss Accounts
+* [GetCommerceCustomerRetentionMetrics](docs/reports/README.md#getcommercecustomerretentionmetrics) - Get the customer retention metrics for a specific company.
+* [GetCommerceLifetimeValueMetrics](docs/reports/README.md#getcommercelifetimevaluemetrics) - Get the lifetime value metric for a specific company.
+* [GetCommerceOrdersMetrics](docs/reports/README.md#getcommerceordersmetrics) - Get order information for a specific company
+* [GetCommerceRefundsMetrics](docs/reports/README.md#getcommercerefundsmetrics) - Get the refunds information for a specific company
+* [GetCommerceRevenueMetrics](docs/reports/README.md#getcommercerevenuemetrics) - Commerce Revenue Metrics
+* [GetEnhancedBalanceSheet](docs/reports/README.md#getenhancedbalancesheet) - Enhanced Balance Sheet
+* [GetEnhancedCashFlowTransactions](docs/reports/README.md#getenhancedcashflowtransactions) - Get enhanced cash flow report
+* [GetEnhancedFinancialMetrics](docs/reports/README.md#getenhancedfinancialmetrics) - List financial metrics
+* [GetEnhancedInvoicesReport](docs/reports/README.md#getenhancedinvoicesreport) - Enhanced Invoices Report
+* [GetEnhancedProfitAndLoss](docs/reports/README.md#getenhancedprofitandloss) - Enhanced Profit and Loss
+* [GetRecurringRevenueMetrics](docs/reports/README.md#getrecurringrevenuemetrics) - Get key metrics for subscription revenue
+* [RequestRecurringRevenueMetrics](docs/reports/README.md#requestrecurringrevenuemetrics) - Request production of key subscription revenue metrics
 <!-- End SDK Available Operations -->
 
 ### SDK Generated by [Speakeasy](https://docs.speakeasyapi.dev/docs/using-speakeasy/client-sdks)

@@ -11,9 +11,13 @@ import (
 type ExcelReportTypeEnum string
 
 const (
-	ExcelReportTypeEnumAudit              ExcelReportTypeEnum = "audit"
-	ExcelReportTypeEnumEnhancedFinancials ExcelReportTypeEnum = "enhancedFinancials"
+	ExcelReportTypeEnumAssess ExcelReportTypeEnum = "assess"
+	ExcelReportTypeEnumAudit  ExcelReportTypeEnum = "audit"
 )
+
+func (e ExcelReportTypeEnum) ToPointer() *ExcelReportTypeEnum {
+	return &e
+}
 
 func (e *ExcelReportTypeEnum) UnmarshalJSON(data []byte) error {
 	var s string
@@ -21,9 +25,9 @@ func (e *ExcelReportTypeEnum) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	switch s {
-	case "audit":
+	case "assess":
 		fallthrough
-	case "enhancedFinancials":
+	case "audit":
 		*e = ExcelReportTypeEnum(s)
 		return nil
 	default:

@@ -33,6 +33,10 @@ const (
 	PaymentLinkTypeEnumDiscount         PaymentLinkTypeEnum = "Discount"
 )
 
+func (e PaymentLinkTypeEnum) ToPointer() *PaymentLinkTypeEnum {
+	return &e
+}
+
 func (e *PaymentLinkTypeEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

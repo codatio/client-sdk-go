@@ -15,6 +15,10 @@ const (
 	FinancialMetricsPeriodUnitEnumDay   FinancialMetricsPeriodUnitEnum = "Day"
 )
 
+func (e FinancialMetricsPeriodUnitEnum) ToPointer() *FinancialMetricsPeriodUnitEnum {
+	return &e
+}
+
 func (e *FinancialMetricsPeriodUnitEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {
