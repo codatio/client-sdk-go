@@ -147,8 +147,8 @@ func WithSecurity(security shared.Security) SDKOption {
 func New(opts ...SDKOption) *CodatAccounting {
 	sdk := &CodatAccounting{
 		_language:   "go",
-		_sdkVersion: "0.12.0",
-		_genVersion: "2.23.0",
+		_sdkVersion: "0.12.1",
+		_genVersion: "2.23.1",
 	}
 	for _, opt := range opts {
 		opt(sdk)
