@@ -22,7 +22,6 @@ pkg/models/operations/listaccounts.go
 pkg/models/operations/gettransactioncategory.go
 pkg/models/operations/listtransactioncategories.go
 pkg/models/operations/gettransaction.go
-pkg/models/operations/listbanktransactions.go
 pkg/models/operations/listtransactions.go
 pkg/models/shared/accountbalances.go
 pkg/models/shared/accountbalance.go
