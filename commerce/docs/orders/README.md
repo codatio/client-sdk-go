@@ -6,9 +6,9 @@ Retrieve standardized data from linked commerce platforms.
 
 ### Available Operations
 
-* [ListOrders](#listorders) - List orders
+* [List](#list) - List orders
 
-## ListOrders
+## List
 
 Get a list of orders placed or held on the linked commerce platform
 
@@ -41,7 +41,7 @@ func main() {
         Query: codatcommerce.String("distinctio"),
     }
 
-    res, err := s.Orders.ListOrders(ctx, req)
+    res, err := s.Orders.List(ctx, req)
     if err != nil {
         log.Fatal(err)
     }

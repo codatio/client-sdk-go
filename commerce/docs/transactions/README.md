@@ -6,9 +6,9 @@ Retrieve standardized data from linked commerce platforms.
 
 ### Available Operations
 
-* [ListTransactions](#listtransactions) - List transactions
+* [List](#list) - List transactions
 
-## ListTransactions
+## List
 
 Details of all financial transactions recorded in the commerce or point of sale system are added to the Transactions data type. For example, payments, service charges, and fees.
 
@@ -41,7 +41,7 @@ func main() {
         Query: codatcommerce.String("illum"),
     }
 
-    res, err := s.Transactions.ListTransactions(ctx, req)
+    res, err := s.Transactions.List(ctx, req)
     if err != nil {
         log.Fatal(err)
     }

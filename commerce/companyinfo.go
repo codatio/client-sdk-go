@@ -32,11 +32,11 @@ func newCompanyInfo(defaultClient, securityClient HTTPClient, serverURL, languag
 	}
 }
 
-// GetCompanyInfo - Get company info
+// Get - Get company info
 // Retrieve information about the company, as seen in the commerce platform.
 //
 // This may include information like addresses, tax registration details and social media or website information.
-func (s *companyInfo) GetCompanyInfo(ctx context.Context, request operations.GetCompanyInfoRequest, opts ...operations.Option) (*operations.GetCompanyInfoResponse, error) {
+func (s *companyInfo) Get(ctx context.Context, request operations.GetCompanyInfoRequest, opts ...operations.Option) (*operations.GetCompanyInfoResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,

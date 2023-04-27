@@ -32,9 +32,9 @@ func newCustomers(defaultClient, securityClient HTTPClient, serverURL, language,
 	}
 }
 
-// ListCustomers - List customers
+// List - List customers
 // List all commerce customers for the given company and data connection
-func (s *customers) ListCustomers(ctx context.Context, request operations.ListCustomersRequest, opts ...operations.Option) (*operations.ListCustomersResponse, error) {
+func (s *customers) List(ctx context.Context, request operations.ListCustomersRequest, opts ...operations.Option) (*operations.ListCustomersResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,

@@ -6,9 +6,9 @@ Retrieve standardized data from linked commerce platforms.
 
 ### Available Operations
 
-* [ListDisputes](#listdisputes) - List disputes
+* [List](#list) - List disputes
 
-## ListDisputes
+## List
 
 List commerce disputes
 
@@ -41,7 +41,7 @@ func main() {
         Query: codatcommerce.String("provident"),
     }
 
-    res, err := s.Disputes.ListDisputes(ctx, req)
+    res, err := s.Disputes.List(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
