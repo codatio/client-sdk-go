@@ -175,3 +175,11 @@ Based on:
 - Speakeasy CLI 1.26.0 (2.23.0) https://github.com/speakeasy-api/speakeasy
 ### Releases
 - [Go v0.12.0] https://github.com/codatio/client-sdk-go/releases/tag/banking/v0.12.0 - banking
+
+## 2023-04-27 15:45:32
+### Changes
+Based on:
+- OpenAPI Doc 2.1.0 https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Banking.yaml
+- Speakeasy CLI 1.26.1 (2.23.1) https://github.com/speakeasy-api/speakeasy
+### Releases
+- [Go v0.12.1] https://github.com/codatio/client-sdk-go/releases/tag/banking/v0.12.1 - banking
