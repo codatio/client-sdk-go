@@ -6,54 +6,11 @@ View push options and get push statuses.
 
 ### Available Operations
 
-* [GetCompanyPushHistory](#getcompanypushhistory) - List push operations
-* [GetCreateUpdateModelOptionsByDataType](#getcreateupdatemodeloptionsbydatatype) - List push options
-* [GetPushOperation](#getpushoperation) - Get push operation
+* [GetModelOptions](#getmodeloptions) - Get push options
+* [GetOperation](#getoperation) - Get push operation
+* [ListOperations](#listoperations) - List push operations
 
-## GetCompanyPushHistory
-
-List push operation records.
-
-### Example Usage
-
-```go
-package main
-
-import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/common"
-	"github.com/codatio/client-sdk-go/common/pkg/models/operations"
-)
-
-func main() {
-    s := codatcommon.New(
-        codatcommon.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
-        }),
-    )
-
-    ctx := context.Background()    
-    req := operations.GetCompanyPushHistoryRequest{
-        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        OrderBy: codatcommon.String("-modifiedDate"),
-        Page: 1,
-        PageSize: codatcommon.Int(100),
-        Query: codatcommon.String("deserunt"),
-    }
-
-    res, err := s.PushData.GetCompanyPushHistory(ctx, req)
-    if err != nil {
-        log.Fatal(err)
-    }
-
-    if res.PushHistoryResponse != nil {
-        // handle response
-    }
-}
-```
-
-## GetCreateUpdateModelOptionsByDataType
+## GetModelOptions
 
 This is the generic documentation for creation and updating of data. See the equivalent endpoint for a given data type for more specific information. 
 
@@ -93,7 +50,7 @@ func main() {
         DataType: shared.DataTypeEnumInvoices,
     }
 
-    res, err := s.PushData.GetCreateUpdateModelOptionsByDataType(ctx, req)
+    res, err := s.PushData.GetModelOptions(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
@@ -104,7 +61,7 @@ func main() {
 }
 ```
 
-## GetPushOperation
+## GetOperation
 
 Retrieve push operation.
 
@@ -130,15 +87,58 @@ func main() {
     ctx := context.Background()    
     req := operations.GetPushOperationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        PushOperationKey: "05dfc2dd-f7cc-478c-a1ba-928fc816742c",
+        PushOperationKey: "a05dfc2d-df7c-4c78-8a1b-a928fc816742",
     }
 
-    res, err := s.PushData.GetPushOperation(ctx, req)
+    res, err := s.PushData.GetOperation(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
 
     if res.PushOperation != nil {
+        // handle response
+    }
+}
+```
+
+## ListOperations
+
+List push operation records.
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"log"
+	"github.com/codatio/client-sdk-go/common"
+	"github.com/codatio/client-sdk-go/common/pkg/models/operations"
+)
+
+func main() {
+    s := codatcommon.New(
+        codatcommon.WithSecurity(shared.Security{
+            AuthHeader: "YOUR_API_KEY_HERE",
+        }),
+    )
+
+    ctx := context.Background()    
+    req := operations.GetCompanyPushHistoryRequest{
+        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+        OrderBy: codatcommon.String("-modifiedDate"),
+        Page: 1,
+        PageSize: codatcommon.Int(100),
+        Query: codatcommon.String("impedit"),
+    }
+
+    res, err := s.PushData.ListOperations(ctx, req)
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.PushHistoryResponse != nil {
         // handle response
     }
 }

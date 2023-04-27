@@ -6,13 +6,13 @@ Create and manage your Codat companies.
 
 ### Available Operations
 
-* [CreateCompany](#createcompany) - Create company
-* [DeleteCompany](#deletecompany) - Delete a company
-* [GetCompany](#getcompany) - Get company
-* [ListCompanies](#listcompanies) - List companies
-* [UpdateCompany](#updatecompany) - Update company
+* [Create](#create) - Create company
+* [Delete](#delete) - Delete a company
+* [Get](#get) - Get company
+* [List](#list) - List companies
+* [Update](#update) - Update company
 
-## CreateCompany
+## Create
 
 Create a new company
 
@@ -41,7 +41,7 @@ func main() {
         Name: "Ben Mueller",
     }
 
-    res, err := s.Companies.CreateCompany(ctx, req)
+    res, err := s.Companies.Create(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
@@ -52,7 +52,7 @@ func main() {
 }
 ```
 
-## DeleteCompany
+## Delete
 
 Delete the given company from Codat.
 This operation is not reversible.
@@ -81,7 +81,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     }
 
-    res, err := s.Companies.DeleteCompany(ctx, req)
+    res, err := s.Companies.Delete(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
@@ -92,7 +92,7 @@ func main() {
 }
 ```
 
-## GetCompany
+## Get
 
 Get metadata for a single company
 
@@ -120,7 +120,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     }
 
-    res, err := s.Companies.GetCompany(ctx, req)
+    res, err := s.Companies.Get(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
@@ -131,7 +131,7 @@ func main() {
 }
 ```
 
-## ListCompanies
+## List
 
 List all companies that you have created in Codat.
 
@@ -162,7 +162,7 @@ func main() {
         Query: codatcommon.String("iure"),
     }
 
-    res, err := s.Companies.ListCompanies(ctx, req)
+    res, err := s.Companies.List(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
@@ -173,7 +173,7 @@ func main() {
 }
 ```
 
-## UpdateCompany
+## Update
 
 Updates the given company with a new name and description
 
@@ -206,7 +206,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     }
 
-    res, err := s.Companies.UpdateCompany(ctx, req)
+    res, err := s.Companies.Update(ctx, req)
     if err != nil {
         log.Fatal(err)
     }

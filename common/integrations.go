@@ -33,9 +33,9 @@ func newIntegrations(defaultClient, securityClient HTTPClient, serverURL, langua
 	}
 }
 
-// GetIntegration - Get integration
+// Get - Get integration
 // Get single integration, by platformKey
-func (s *integrations) GetIntegration(ctx context.Context, request operations.GetIntegrationRequest, opts ...operations.Option) (*operations.GetIntegrationResponse, error) {
+func (s *integrations) Get(ctx context.Context, request operations.GetIntegrationRequest, opts ...operations.Option) (*operations.GetIntegrationResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -126,9 +126,9 @@ func (s *integrations) GetIntegration(ctx context.Context, request operations.Ge
 	return res, nil
 }
 
-// GetIntegrationsBranding - Get branding
+// GetBranding - Get branding
 // Get branding for platform.
-func (s *integrations) GetIntegrationsBranding(ctx context.Context, request operations.GetIntegrationsBrandingRequest, opts ...operations.Option) (*operations.GetIntegrationsBrandingResponse, error) {
+func (s *integrations) GetBranding(ctx context.Context, request operations.GetIntegrationsBrandingRequest, opts ...operations.Option) (*operations.GetIntegrationsBrandingResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -207,9 +207,9 @@ func (s *integrations) GetIntegrationsBranding(ctx context.Context, request oper
 	return res, nil
 }
 
-// ListIntegrations - List integrations
+// List - List integrations
 // List your available integrations
-func (s *integrations) ListIntegrations(ctx context.Context, request operations.ListIntegrationsRequest, opts ...operations.Option) (*operations.ListIntegrationsResponse, error) {
+func (s *integrations) List(ctx context.Context, request operations.ListIntegrationsRequest, opts ...operations.Option) (*operations.ListIntegrationsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,

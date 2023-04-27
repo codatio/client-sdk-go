@@ -32,9 +32,9 @@ func newConnections(defaultClient, securityClient HTTPClient, serverURL, languag
 	}
 }
 
-// CreateDataConnection - Create connection
+// Create - Create connection
 // Create a data connection for a company
-func (s *connections) CreateDataConnection(ctx context.Context, request operations.CreateDataConnectionRequest, opts ...operations.Option) (*operations.CreateDataConnectionResponse, error) {
+func (s *connections) Create(ctx context.Context, request operations.CreateDataConnectionRequest, opts ...operations.Option) (*operations.CreateDataConnectionResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -130,10 +130,10 @@ func (s *connections) CreateDataConnection(ctx context.Context, request operatio
 	return res, nil
 }
 
-// DeleteCompanyConnection - Delete connection
+// Delete - Delete connection
 // Revoke and remove a connection from a company.
 // This operation is not reversible - the end user would need to reauthorize a new data connection if you wish to view new data for this company.
-func (s *connections) DeleteCompanyConnection(ctx context.Context, request operations.DeleteCompanyConnectionRequest, opts ...operations.Option) (*operations.DeleteCompanyConnectionResponse, error) {
+func (s *connections) Delete(ctx context.Context, request operations.DeleteCompanyConnectionRequest, opts ...operations.Option) (*operations.DeleteCompanyConnectionResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -215,9 +215,9 @@ func (s *connections) DeleteCompanyConnection(ctx context.Context, request opera
 	return res, nil
 }
 
-// GetCompanyConnection - Get connection
+// Get - Get connection
 // Get a single connection for a company
-func (s *connections) GetCompanyConnection(ctx context.Context, request operations.GetCompanyConnectionRequest, opts ...operations.Option) (*operations.GetCompanyConnectionResponse, error) {
+func (s *connections) Get(ctx context.Context, request operations.GetCompanyConnectionRequest, opts ...operations.Option) (*operations.GetCompanyConnectionResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -308,9 +308,9 @@ func (s *connections) GetCompanyConnection(ctx context.Context, request operatio
 	return res, nil
 }
 
-// ListCompanyConnections - List connections
+// List - List connections
 // List the connections for a company
-func (s *connections) ListCompanyConnections(ctx context.Context, request operations.ListCompanyConnectionsRequest, opts ...operations.Option) (*operations.ListCompanyConnectionsResponse, error) {
+func (s *connections) List(ctx context.Context, request operations.ListCompanyConnectionsRequest, opts ...operations.Option) (*operations.ListCompanyConnectionsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -405,9 +405,9 @@ func (s *connections) ListCompanyConnections(ctx context.Context, request operat
 	return res, nil
 }
 
-// UnlinkCompanyConnection - Unlink connection
+// UnlinkConnection - Unlink connection
 // This allows you to deauthorize a connection, without deleting it from Codat. This means you can still view any data that has previously been pulled into Codat, and also lets you re-authorize in future if your customer wishes to resume sharing their data.
-func (s *connections) UnlinkCompanyConnection(ctx context.Context, request operations.UnlinkCompanyConnectionRequest, opts ...operations.Option) (*operations.UnlinkCompanyConnectionResponse, error) {
+func (s *connections) UnlinkConnection(ctx context.Context, request operations.UnlinkConnectionRequest, opts ...operations.Option) (*operations.UnlinkConnectionResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -472,7 +472,7 @@ func (s *connections) UnlinkCompanyConnection(ctx context.Context, request opera
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.UnlinkCompanyConnectionResponse{
+	res := &operations.UnlinkConnectionResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -507,9 +507,9 @@ func (s *connections) UnlinkCompanyConnection(ctx context.Context, request opera
 	return res, nil
 }
 
-// UpdateConnectionAuthorization - Update authorization
+// UpdateAuthorization - Update authorization
 // Update data connection's authorization.
-func (s *connections) UpdateConnectionAuthorization(ctx context.Context, request operations.UpdateConnectionAuthorizationRequest, opts ...operations.Option) (*operations.UpdateConnectionAuthorizationResponse, error) {
+func (s *connections) UpdateAuthorization(ctx context.Context, request operations.UpdateConnectionAuthorizationRequest, opts ...operations.Option) (*operations.UpdateConnectionAuthorizationResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,

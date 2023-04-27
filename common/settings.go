@@ -121,9 +121,9 @@ func (s *settings) GetProfile(ctx context.Context, opts ...operations.Option) (*
 	return res, nil
 }
 
-// GetProfileSyncSettings - Get sync settings
-// Retrieve the sync settings for your client. This includes how often data types should be queued to be updated, and how much history should be fetched.
-func (s *settings) GetProfileSyncSettings(ctx context.Context, opts ...operations.Option) (*operations.GetProfileSyncSettingsResponse, error) {
+// GetSyncSettings - Update all sync settings
+// Update sync settings for all data types.
+func (s *settings) GetSyncSettings(ctx context.Context, request operations.UpdateSyncSettingsRequestBody, opts ...operations.Option) (*operations.UpdateSyncSettingsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -137,10 +137,17 @@ func (s *settings) GetProfileSyncSettings(ctx context.Context, opts ...operation
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/profile/syncSettings"
 
-	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
+	if err != nil {
+		return nil, fmt.Errorf("error serializing request body: %w", err)
+	}
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+
+	req.Header.Set("Content-Type", reqContentType)
 
 	client := s.securityClient
 
@@ -178,22 +185,13 @@ func (s *settings) GetProfileSyncSettings(ctx context.Context, opts ...operation
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetProfileSyncSettingsResponse{
+	res := &operations.UpdateSyncSettingsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
 	}
 	switch {
-	case httpRes.StatusCode == 200:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.SyncSettings
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
-				return nil, err
-			}
-
-			res.SyncSettings = out
-		}
+	case httpRes.StatusCode == 204:
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
@@ -289,92 +287,6 @@ func (s *settings) UpdateProfile(ctx context.Context, request shared.Profile, op
 
 			res.Profile = out
 		}
-	case httpRes.StatusCode == 401:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ErrorMessage
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
-				return nil, err
-			}
-
-			res.ErrorMessage = out
-		}
-	}
-
-	return res, nil
-}
-
-// UpdateSyncSettings - Update all sync settings
-// Update sync settings for all data types.
-func (s *settings) UpdateSyncSettings(ctx context.Context, request operations.UpdateSyncSettingsRequestBody, opts ...operations.Option) (*operations.UpdateSyncSettingsResponse, error) {
-	o := operations.Options{}
-	supportedOptions := []string{
-		operations.SupportedOptionRetries,
-	}
-
-	for _, opt := range opts {
-		if err := opt(&o, supportedOptions...); err != nil {
-			return nil, fmt.Errorf("error applying option: %w", err)
-		}
-	}
-	baseURL := s.serverURL
-	url := strings.TrimSuffix(baseURL, "/") + "/profile/syncSettings"
-
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
-	if err != nil {
-		return nil, fmt.Errorf("error serializing request body: %w", err)
-	}
-
-	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
-	if err != nil {
-		return nil, fmt.Errorf("error creating request: %w", err)
-	}
-
-	req.Header.Set("Content-Type", reqContentType)
-
-	client := s.securityClient
-
-	retryConfig := o.Retries
-	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
-		}
-	}
-
-	httpRes, err := utils.Retry(ctx, utils.Retries{
-		Config: retryConfig,
-		StatusCodes: []string{
-			"408",
-			"429",
-			"5XX",
-		},
-	}, func() (*http.Response, error) {
-		return client.Do(req)
-	})
-	if err != nil {
-		return nil, fmt.Errorf("error sending request: %w", err)
-	}
-	if httpRes == nil {
-		return nil, fmt.Errorf("error sending request: no response")
-	}
-	defer httpRes.Body.Close()
-
-	contentType := httpRes.Header.Get("Content-Type")
-
-	res := &operations.UpdateSyncSettingsResponse{
-		StatusCode:  httpRes.StatusCode,
-		ContentType: contentType,
-		RawResponse: httpRes,
-	}
-	switch {
-	case httpRes.StatusCode == 204:
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):

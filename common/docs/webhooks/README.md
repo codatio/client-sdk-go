@@ -6,11 +6,11 @@ Manage webhooks, rules and alerts.
 
 ### Available Operations
 
-* [CreateRule](#createrule) - Create webhook
-* [GetWebhook](#getwebhook) - Get webhook
-* [ListRules](#listrules) - List webhooks
+* [Create](#create) - Create webhook
+* [Get](#get) - Get webhook
+* [List](#list) - List webhooks
 
-## CreateRule
+## Create
 
 Create a new webhook configuration
 
@@ -41,14 +41,13 @@ func main() {
             Emails: []string{
                 "info@client.com",
                 "info@client.com",
-                "info@client.com",
             },
             Webhook: codatcommon.String("https://webhook.client.com"),
         },
-        Type: "dolorem",
+        Type: "minima",
     }
 
-    res, err := s.Webhooks.CreateRule(ctx, req)
+    res, err := s.Webhooks.Create(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
@@ -59,7 +58,7 @@ func main() {
 }
 ```
 
-## GetWebhook
+## Get
 
 Get a single webhook
 
@@ -87,7 +86,7 @@ func main() {
         RuleID: "7318949f-c008-4936-a8ff-10d7ab563fa6",
     }
 
-    res, err := s.Webhooks.GetWebhook(ctx, req)
+    res, err := s.Webhooks.Get(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
@@ -98,7 +97,7 @@ func main() {
 }
 ```
 
-## ListRules
+## List
 
 List webhooks that you are subscribed to.
 
@@ -126,10 +125,10 @@ func main() {
         OrderBy: codatcommon.String("-modifiedDate"),
         Page: 1,
         PageSize: codatcommon.Int(100),
-        Query: codatcommon.String("culpa"),
+        Query: codatcommon.String("excepturi"),
     }
 
-    res, err := s.Webhooks.ListRules(ctx, req)
+    res, err := s.Webhooks.List(ctx, req)
     if err != nil {
         log.Fatal(err)
     }

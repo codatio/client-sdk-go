@@ -22,7 +22,7 @@ func main() {
         Name: "Kelvin Sporer",
     }
 
-    res, err := s.Companies.CreateCompany(ctx, req)
+    res, err := s.Companies.Create(ctx, req)
     if err != nil {
         log.Fatal(err)
     }

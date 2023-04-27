@@ -33,9 +33,9 @@ func newWebhooks(defaultClient, securityClient HTTPClient, serverURL, language, 
 	}
 }
 
-// CreateRule - Create webhook
+// Create - Create webhook
 // Create a new webhook configuration
-func (s *webhooks) CreateRule(ctx context.Context, request shared.Rule, opts ...operations.Option) (*operations.CreateRuleResponse, error) {
+func (s *webhooks) Create(ctx context.Context, request shared.Rule, opts ...operations.Option) (*operations.CreateRuleResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -128,9 +128,9 @@ func (s *webhooks) CreateRule(ctx context.Context, request shared.Rule, opts ...
 	return res, nil
 }
 
-// GetWebhook - Get webhook
+// Get - Get webhook
 // Get a single webhook
-func (s *webhooks) GetWebhook(ctx context.Context, request operations.GetWebhookRequest, opts ...operations.Option) (*operations.GetWebhookResponse, error) {
+func (s *webhooks) Get(ctx context.Context, request operations.GetWebhookRequest, opts ...operations.Option) (*operations.GetWebhookResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -221,9 +221,9 @@ func (s *webhooks) GetWebhook(ctx context.Context, request operations.GetWebhook
 	return res, nil
 }
 
-// ListRules - List webhooks
+// List - List webhooks
 // List webhooks that you are subscribed to.
-func (s *webhooks) ListRules(ctx context.Context, request operations.ListRulesRequest, opts ...operations.Option) (*operations.ListRulesResponse, error) {
+func (s *webhooks) List(ctx context.Context, request operations.ListRulesRequest, opts ...operations.Option) (*operations.ListRulesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
