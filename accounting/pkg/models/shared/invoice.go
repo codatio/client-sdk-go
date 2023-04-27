@@ -2,7 +2,13 @@
 
 package shared
 
-// Invoice - > View the coverage for invoices in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=invoices" target="_blank">Data coverage explorer</a>.
+// Invoice - > **Invoices or bills?**
+// >
+// > We distinguish between invoices where the company *owes money* vs. *is owed money*. If the company issued an invoice, and is owed money (accounts receivable) we call this an Invoice.
+// >
+// > See [Bills](https://docs.codat.io/accounting-api#/schemas/Bill) for the accounts payable equivalent of bills.
+//
+// View the coverage for invoices in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=invoices" target="_blank">Data coverage explorer</a>.
 //
 // ## Overview
 //
@@ -15,10 +21,6 @@ package shared
 // - Who the invoice has been raised to; the _customer_.
 // - The breakdown of what the invoice is for; the _line items_.
 // - Any [payments](https://docs.codat.io/accounting-api#/schemas/Payment) assigned to the invoice; the _payment allocations_.
-//
-// > **Invoices or bills?**
-// >
-// > In Codat, invoices represent accounts receivable only. For accounts payable invoices, see [Bills](https://docs.codat.io/accounting-api#/schemas/Bill).
 //
 // > **Invoice PDF downloads**
 // >

@@ -33,7 +33,7 @@ func newSuppliers(defaultClient, securityClient HTTPClient, serverURL, language,
 	}
 }
 
-// CreateSupplier - Create suppliers
+// Create - Create supplier
 // Push suppliers
 //
 // Required data may vary by integration. To see what data to post, first call [Get create/update supplier model](https://docs.codat.io/accounting-api#/operations/get-create-update-suppliers-model).
@@ -41,7 +41,7 @@ func newSuppliers(defaultClient, securityClient HTTPClient, serverURL, language,
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=suppliers) for integrations that support creating suppliers.
-func (s *suppliers) CreateSupplier(ctx context.Context, request operations.CreateSupplierRequest, opts ...operations.Option) (*operations.CreateSupplierResponse, error) {
+func (s *suppliers) Create(ctx context.Context, request operations.CreateSupplierRequest, opts ...operations.Option) (*operations.CreateSupplierResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -131,9 +131,9 @@ func (s *suppliers) CreateSupplier(ctx context.Context, request operations.Creat
 	return res, nil
 }
 
-// DownloadSupplierAttachment - Download supplier attachment
+// DownloadAttachment - Download supplier attachment
 // Download supplier attachment
-func (s *suppliers) DownloadSupplierAttachment(ctx context.Context, request operations.DownloadSupplierAttachmentRequest, opts ...operations.Option) (*operations.DownloadSupplierAttachmentResponse, error) {
+func (s *suppliers) DownloadAttachment(ctx context.Context, request operations.DownloadSupplierAttachmentRequest, opts ...operations.Option) (*operations.DownloadSupplierAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -212,96 +212,9 @@ func (s *suppliers) DownloadSupplierAttachment(ctx context.Context, request oper
 	return res, nil
 }
 
-// GetCreateUpdateSuppliersModel - Get create/update supplier model
-// Get create/update supplier model. Returns the expected data for the request payload.
-//
-// See the examples for integration-specific indicative models.
-//
-// > **Supported Integrations**
-// >
-// > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=suppliers) for integrations that support creating and updating suppliers.
-func (s *suppliers) GetCreateUpdateSuppliersModel(ctx context.Context, request operations.GetCreateUpdateSuppliersModelRequest, opts ...operations.Option) (*operations.GetCreateUpdateSuppliersModelResponse, error) {
-	o := operations.Options{}
-	supportedOptions := []string{
-		operations.SupportedOptionRetries,
-	}
-
-	for _, opt := range opts {
-		if err := opt(&o, supportedOptions...); err != nil {
-			return nil, fmt.Errorf("error applying option: %w", err)
-		}
-	}
-	baseURL := s.serverURL
-	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/suppliers", request, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error generating URL: %w", err)
-	}
-
-	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error creating request: %w", err)
-	}
-
-	client := s.securityClient
-
-	retryConfig := o.Retries
-	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
-		}
-	}
-
-	httpRes, err := utils.Retry(ctx, utils.Retries{
-		Config: retryConfig,
-		StatusCodes: []string{
-			"408",
-			"429",
-			"5XX",
-		},
-	}, func() (*http.Response, error) {
-		return client.Do(req)
-	})
-	if err != nil {
-		return nil, fmt.Errorf("error sending request: %w", err)
-	}
-	if httpRes == nil {
-		return nil, fmt.Errorf("error sending request: no response")
-	}
-	defer httpRes.Body.Close()
-
-	contentType := httpRes.Header.Get("Content-Type")
-
-	res := &operations.GetCreateUpdateSuppliersModelResponse{
-		StatusCode:  httpRes.StatusCode,
-		ContentType: contentType,
-		RawResponse: httpRes,
-	}
-	switch {
-	case httpRes.StatusCode == 200:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.PushOption
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
-				return nil, err
-			}
-
-			res.PushOption = out
-		}
-	}
-
-	return res, nil
-}
-
-// GetSupplier - Get supplier
+// Get - Get supplier
 // Gets a single supplier corresponding to the given ID.
-func (s *suppliers) GetSupplier(ctx context.Context, request operations.GetSupplierRequest, opts ...operations.Option) (*operations.GetSupplierResponse, error) {
+func (s *suppliers) Get(ctx context.Context, request operations.GetSupplierRequest, opts ...operations.Option) (*operations.GetSupplierResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -380,9 +293,9 @@ func (s *suppliers) GetSupplier(ctx context.Context, request operations.GetSuppl
 	return res, nil
 }
 
-// GetSupplierAttachment - Get supplier attachment
+// GetAttachment - Get supplier attachment
 // Get supplier attachment
-func (s *suppliers) GetSupplierAttachment(ctx context.Context, request operations.GetSupplierAttachmentRequest, opts ...operations.Option) (*operations.GetSupplierAttachmentResponse, error) {
+func (s *suppliers) GetAttachment(ctx context.Context, request operations.GetSupplierAttachmentRequest, opts ...operations.Option) (*operations.GetSupplierAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -461,9 +374,15 @@ func (s *suppliers) GetSupplierAttachment(ctx context.Context, request operation
 	return res, nil
 }
 
-// ListSupplierAttachments - List supplier attachments
-// Get supplier attachments
-func (s *suppliers) ListSupplierAttachments(ctx context.Context, request operations.ListSupplierAttachmentsRequest, opts ...operations.Option) (*operations.ListSupplierAttachmentsResponse, error) {
+// GetCreateUpdateModel - Get create/update supplier model
+// Get create/update supplier model. Returns the expected data for the request payload.
+//
+// See the examples for integration-specific indicative models.
+//
+// > **Supported Integrations**
+// >
+// > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=suppliers) for integrations that support creating and updating suppliers.
+func (s *suppliers) GetCreateUpdateModel(ctx context.Context, request operations.GetCreateUpdateSuppliersModelRequest, opts ...operations.Option) (*operations.GetCreateUpdateSuppliersModelResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -475,7 +394,7 @@ func (s *suppliers) ListSupplierAttachments(ctx context.Context, request operati
 		}
 	}
 	baseURL := s.serverURL
-	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/suppliers/{supplierId}/attachments", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/suppliers", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -521,7 +440,7 @@ func (s *suppliers) ListSupplierAttachments(ctx context.Context, request operati
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.ListSupplierAttachmentsResponse{
+	res := &operations.GetCreateUpdateSuppliersModelResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -530,21 +449,21 @@ func (s *suppliers) ListSupplierAttachments(ctx context.Context, request operati
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.AttachmentsDataset
+			var out *shared.PushOption
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.AttachmentsDataset = out
+			res.PushOption = out
 		}
 	}
 
 	return res, nil
 }
 
-// ListSuppliers - List suppliers
+// List - List suppliers
 // Gets the latest suppliers for a company, with pagination
-func (s *suppliers) ListSuppliers(ctx context.Context, request operations.ListSuppliersRequest, opts ...operations.Option) (*operations.ListSuppliersResponse, error) {
+func (s *suppliers) List(ctx context.Context, request operations.ListSuppliersRequest, opts ...operations.Option) (*operations.ListSuppliersResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -627,15 +546,96 @@ func (s *suppliers) ListSuppliers(ctx context.Context, request operations.ListSu
 	return res, nil
 }
 
-// PutSupplier - Update supplier
-// Push supplier
+// ListAttachments - List supplier attachments
+// Get supplier attachments
+func (s *suppliers) ListAttachments(ctx context.Context, request operations.ListSupplierAttachmentsRequest, opts ...operations.Option) (*operations.ListSupplierAttachmentsResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
+	baseURL := s.serverURL
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/suppliers/{supplierId}/attachments", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+
+	client := s.securityClient
+
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
+	if err != nil {
+		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
+	}
+	defer httpRes.Body.Close()
+
+	contentType := httpRes.Header.Get("Content-Type")
+
+	res := &operations.ListSupplierAttachmentsResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: contentType,
+		RawResponse: httpRes,
+	}
+	switch {
+	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.AttachmentsDataset
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.AttachmentsDataset = out
+		}
+	}
+
+	return res, nil
+}
+
+// Update - Update supplier
+// Update supplier
 //
 // Required data may vary by integration. To see what data to post, first call [Get create/update supplier model](https://docs.codat.io/accounting-api#/operations/get-create-update-suppliers-model).
 //
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=suppliers) for integrations that support updating suppliers.
-func (s *suppliers) PutSupplier(ctx context.Context, request operations.PutSupplierRequest, opts ...operations.Option) (*operations.PutSupplierResponse, error) {
+func (s *suppliers) Update(ctx context.Context, request operations.UpdateSupplierRequest, opts ...operations.Option) (*operations.UpdateSupplierResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -704,7 +704,7 @@ func (s *suppliers) PutSupplier(ctx context.Context, request operations.PutSuppl
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.PutSupplierResponse{
+	res := &operations.UpdateSupplierResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -713,12 +713,12 @@ func (s *suppliers) PutSupplier(ctx context.Context, request operations.PutSuppl
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.PutSupplier200ApplicationJSON
+			var out *shared.UpdateSupplierResponse
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.PutSupplier200ApplicationJSONObject = out
+			res.UpdateSupplierResponse = out
 		}
 	}
 

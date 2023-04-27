@@ -32,7 +32,7 @@ func newPayments(defaultClient, securityClient HTTPClient, serverURL, language, 
 	}
 }
 
-// CreatePayment - Create payment
+// Create - Create payment
 // Posts a new payment to the accounting package for a given company.
 //
 // Required data may vary by integration. To see what data to post, first call [Get create payment model](https://docs.codat.io/accounting-api#/operations/get-create-payments-model).
@@ -40,7 +40,7 @@ func newPayments(defaultClient, securityClient HTTPClient, serverURL, language, 
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=payments) for integrations that support creating payments.
-func (s *payments) CreatePayment(ctx context.Context, request operations.CreatePaymentRequest, opts ...operations.Option) (*operations.CreatePaymentResponse, error) {
+func (s *payments) Create(ctx context.Context, request operations.CreatePaymentRequest, opts ...operations.Option) (*operations.CreatePaymentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -130,96 +130,9 @@ func (s *payments) CreatePayment(ctx context.Context, request operations.CreateP
 	return res, nil
 }
 
-// GetCreatePaymentsModel - Get create payment model
-// Get create payment model. Returns the expected data for the request payload.
-//
-// See the examples for integration-specific indicative models.
-//
-// > **Supported Integrations**
-// >
-// > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=payments) for integrations that support creating payments.
-func (s *payments) GetCreatePaymentsModel(ctx context.Context, request operations.GetCreatePaymentsModelRequest, opts ...operations.Option) (*operations.GetCreatePaymentsModelResponse, error) {
-	o := operations.Options{}
-	supportedOptions := []string{
-		operations.SupportedOptionRetries,
-	}
-
-	for _, opt := range opts {
-		if err := opt(&o, supportedOptions...); err != nil {
-			return nil, fmt.Errorf("error applying option: %w", err)
-		}
-	}
-	baseURL := s.serverURL
-	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/payments", request, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error generating URL: %w", err)
-	}
-
-	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error creating request: %w", err)
-	}
-
-	client := s.securityClient
-
-	retryConfig := o.Retries
-	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
-		}
-	}
-
-	httpRes, err := utils.Retry(ctx, utils.Retries{
-		Config: retryConfig,
-		StatusCodes: []string{
-			"408",
-			"429",
-			"5XX",
-		},
-	}, func() (*http.Response, error) {
-		return client.Do(req)
-	})
-	if err != nil {
-		return nil, fmt.Errorf("error sending request: %w", err)
-	}
-	if httpRes == nil {
-		return nil, fmt.Errorf("error sending request: no response")
-	}
-	defer httpRes.Body.Close()
-
-	contentType := httpRes.Header.Get("Content-Type")
-
-	res := &operations.GetCreatePaymentsModelResponse{
-		StatusCode:  httpRes.StatusCode,
-		ContentType: contentType,
-		RawResponse: httpRes,
-	}
-	switch {
-	case httpRes.StatusCode == 200:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.PushOption
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
-				return nil, err
-			}
-
-			res.PushOption = out
-		}
-	}
-
-	return res, nil
-}
-
-// GetPayment - Get payment
+// Get - Get payment
 // Get payment
-func (s *payments) GetPayment(ctx context.Context, request operations.GetPaymentRequest, opts ...operations.Option) (*operations.GetPaymentResponse, error) {
+func (s *payments) Get(ctx context.Context, request operations.GetPaymentRequest, opts ...operations.Option) (*operations.GetPaymentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -298,9 +211,96 @@ func (s *payments) GetPayment(ctx context.Context, request operations.GetPayment
 	return res, nil
 }
 
-// ListPayments - List payments
+// GetCreateModel - Get create payment model
+// Get create payment model. Returns the expected data for the request payload.
+//
+// See the examples for integration-specific indicative models.
+//
+// > **Supported Integrations**
+// >
+// > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=payments) for integrations that support creating payments.
+func (s *payments) GetCreateModel(ctx context.Context, request operations.GetCreatePaymentsModelRequest, opts ...operations.Option) (*operations.GetCreatePaymentsModelResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
+	baseURL := s.serverURL
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/payments", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+
+	client := s.securityClient
+
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
+	if err != nil {
+		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
+	}
+	defer httpRes.Body.Close()
+
+	contentType := httpRes.Header.Get("Content-Type")
+
+	res := &operations.GetCreatePaymentsModelResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: contentType,
+		RawResponse: httpRes,
+	}
+	switch {
+	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.PushOption
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.PushOption = out
+		}
+	}
+
+	return res, nil
+}
+
+// List - List payments
 // Gets the latest payments for a company, with pagination
-func (s *payments) ListPayments(ctx context.Context, request operations.ListPaymentsRequest, opts ...operations.Option) (*operations.ListPaymentsResponse, error) {
+func (s *payments) List(ctx context.Context, request operations.ListPaymentsRequest, opts ...operations.Option) (*operations.ListPaymentsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,

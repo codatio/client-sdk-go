@@ -6,10 +6,10 @@ Tracking categories
 
 ### Available Operations
 
-* [GetTrackingCategory](#gettrackingcategory) - Get tracking categories
-* [ListTrackingCategories](#listtrackingcategories) - List tracking categories
+* [Get](#get) - Get tracking categories
+* [List](#list) - List tracking categories
 
-## GetTrackingCategory
+## Get
 
 Gets the specified tracking categories for a given company.
 
@@ -35,10 +35,10 @@ func main() {
     ctx := context.Background()    
     req := operations.GetTrackingCategoryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        TrackingCategoryID: "perferendis",
+        TrackingCategoryID: "animi",
     }
 
-    res, err := s.TrackingCategories.GetTrackingCategory(ctx, req)
+    res, err := s.TrackingCategories.Get(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
@@ -49,7 +49,7 @@ func main() {
 }
 ```
 
-## ListTrackingCategories
+## List
 
 Gets the latest tracking categories for a given company.
 
@@ -78,10 +78,10 @@ func main() {
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: 1,
         PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("nostrum"),
+        Query: codataccounting.String("autem"),
     }
 
-    res, err := s.TrackingCategories.ListTrackingCategories(ctx, req)
+    res, err := s.TrackingCategories.List(ctx, req)
     if err != nil {
         log.Fatal(err)
     }

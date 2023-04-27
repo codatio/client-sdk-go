@@ -6,12 +6,12 @@ Accounts
 
 ### Available Operations
 
-* [CreateAccount](#createaccount) - Create account
-* [GetAccount](#getaccount) - Get account
-* [GetCreateChartOfAccountsModel](#getcreatechartofaccountsmodel) - Get create account model
-* [ListAccounts](#listaccounts) - List accounts
+* [Create](#create) - Create account
+* [Get](#get) - Get account
+* [GetCreateModel](#getcreatemodel) - Get create account model
+* [List](#list) - List accounts
 
-## CreateAccount
+## Create
 
 Creates a new account for a given company.
 
@@ -46,52 +46,60 @@ func main() {
         Account: &shared.Account{
             Currency: codataccounting.String("quibusdam"),
             CurrentBalance: codataccounting.Float64(6027.63),
-            Description: codataccounting.String("nulla"),
-            FullyQualifiedCategory: codataccounting.String("corrupti"),
-            FullyQualifiedName: codataccounting.String("illum"),
-            ID: codataccounting.String("69a674e0-f467-4cc8-b96e-d151a05dfc2d"),
+            Description: codataccounting.String("Invoices the business has issued but has not yet collected payment on."),
+            FullyQualifiedCategory: codataccounting.String("Asset.Current"),
+            FullyQualifiedName: codataccounting.String("Asset.Current.Accounts Receivable"),
+            ID: codataccounting.String("1b6266d1-1e44-46c5-8eb5-a8f98e03124e"),
             IsBankAccount: false,
             Metadata: &shared.Metadata{
                 IsDeleted: codataccounting.Bool(false),
             },
-            ModifiedDate: codataccounting.String("at"),
-            Name: codataccounting.String("Javier Schmidt"),
-            NominalCode: codataccounting.String("totam"),
-            SourceModifiedDate: codataccounting.String("porro"),
-            Status: shared.AccountStatusEnumArchived,
-            Type: shared.AccountTypeEnumUnknown,
+            ModifiedDate: codataccounting.String("nulla"),
+            Name: codataccounting.String("Accounts Receivable"),
+            NominalCode: codataccounting.String("610"),
+            SourceModifiedDate: codataccounting.String("corrupti"),
+            Status: shared.AccountStatusEnumActive,
+            Type: shared.AccountTypeEnumAsset,
             ValidDatatypeLinks: []shared.ValidDataTypeLinks{
                 shared.ValidDataTypeLinks{
                     Links: []string{
-                        "occaecati",
-                        "fugit",
-                        "deleniti",
+                        "error",
+                        "deserunt",
                     },
-                    Property: codataccounting.String("hic"),
+                    Property: codataccounting.String("suscipit"),
                 },
                 shared.ValidDataTypeLinks{
                     Links: []string{
-                        "totam",
-                        "beatae",
-                        "commodi",
+                        "magnam",
+                        "debitis",
+                    },
+                    Property: codataccounting.String("ipsa"),
+                },
+                shared.ValidDataTypeLinks{
+                    Links: []string{
+                        "tempora",
+                        "suscipit",
                         "molestiae",
+                        "minus",
                     },
-                    Property: codataccounting.String("modi"),
+                    Property: codataccounting.String("placeat"),
                 },
                 shared.ValidDataTypeLinks{
                     Links: []string{
-                        "impedit",
+                        "iusto",
+                        "excepturi",
+                        "nisi",
                     },
-                    Property: codataccounting.String("cum"),
+                    Property: codataccounting.String("recusandae"),
                 },
             },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codataccounting.Int(456150),
+        TimeoutInMinutes: codataccounting.Int(836079),
     }
 
-    res, err := s.Accounts.CreateAccount(ctx, req)
+    res, err := s.Accounts.Create(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
@@ -102,7 +110,7 @@ func main() {
 }
 ```
 
-## GetAccount
+## Get
 
 Gets a single account corresponding to the given ID.
 
@@ -131,7 +139,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     }
 
-    res, err := s.Accounts.GetAccount(ctx, req)
+    res, err := s.Accounts.Get(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
@@ -142,7 +150,7 @@ func main() {
 }
 ```
 
-## GetCreateChartOfAccountsModel
+## GetCreateModel
 
 Get create account model. Returns the expected data for the request payload.
 
@@ -177,7 +185,7 @@ func main() {
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     }
 
-    res, err := s.Accounts.GetCreateChartOfAccountsModel(ctx, req)
+    res, err := s.Accounts.GetCreateModel(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
@@ -188,7 +196,7 @@ func main() {
 }
 ```
 
-## ListAccounts
+## List
 
 Gets the latest accounts for a company
 
@@ -217,10 +225,10 @@ func main() {
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: 1,
         PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("ipsum"),
+        Query: codataccounting.String("ab"),
     }
 
-    res, err := s.Accounts.ListAccounts(ctx, req)
+    res, err := s.Accounts.List(ctx, req)
     if err != nil {
         log.Fatal(err)
     }

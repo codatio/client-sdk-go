@@ -32,7 +32,7 @@ func newBillCreditNotes(defaultClient, securityClient HTTPClient, serverURL, lan
 	}
 }
 
-// CreateBillCreditNote - Create bill credit note
+// Create - Create bill credit note
 // Posts a new billCreditNote to the accounting package for a given company.
 //
 // Required data may vary by integration. To see what data to post, first call [Get create/update bill credit note model](https://docs.codat.io/accounting-api#/operations/get-create-update-billCreditNotes-model).
@@ -40,7 +40,7 @@ func newBillCreditNotes(defaultClient, securityClient HTTPClient, serverURL, lan
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=billCreditNotes) for integrations that support creating bill credit notes.
-func (s *billCreditNotes) CreateBillCreditNote(ctx context.Context, request operations.CreateBillCreditNoteRequest, opts ...operations.Option) (*operations.CreateBillCreditNoteResponse, error) {
+func (s *billCreditNotes) Create(ctx context.Context, request operations.CreateBillCreditNoteRequest, opts ...operations.Option) (*operations.CreateBillCreditNoteResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -130,9 +130,9 @@ func (s *billCreditNotes) CreateBillCreditNote(ctx context.Context, request oper
 	return res, nil
 }
 
-// GetBillCreditNote - Get bill credit note
+// Get - Get bill credit note
 // Gets a single billCreditNote corresponding to the given ID.
-func (s *billCreditNotes) GetBillCreditNote(ctx context.Context, request operations.GetBillCreditNoteRequest, opts ...operations.Option) (*operations.GetBillCreditNoteResponse, error) {
+func (s *billCreditNotes) Get(ctx context.Context, request operations.GetBillCreditNoteRequest, opts ...operations.Option) (*operations.GetBillCreditNoteResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -211,13 +211,13 @@ func (s *billCreditNotes) GetBillCreditNote(ctx context.Context, request operati
 	return res, nil
 }
 
-// GetCreateUpdateBillCreditNotesModel - Get create/update bill credit note model
+// GetCreateUpdateModel - Get create/update bill credit note model
 // Get create/update bill credit note model.
 //
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=billCreditNotes) for integrations that support creating and updating bill credit notes.
-func (s *billCreditNotes) GetCreateUpdateBillCreditNotesModel(ctx context.Context, request operations.GetCreateUpdateBillCreditNotesModelRequest, opts ...operations.Option) (*operations.GetCreateUpdateBillCreditNotesModelResponse, error) {
+func (s *billCreditNotes) GetCreateUpdateModel(ctx context.Context, request operations.GetCreateUpdateBillCreditNotesModelRequest, opts ...operations.Option) (*operations.GetCreateUpdateBillCreditNotesModelResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -296,9 +296,9 @@ func (s *billCreditNotes) GetCreateUpdateBillCreditNotesModel(ctx context.Contex
 	return res, nil
 }
 
-// ListBillCreditNotes - List bill credit notes
+// List - List bill credit notes
 // Gets a list of all bill credit notes for a company, with pagination
-func (s *billCreditNotes) ListBillCreditNotes(ctx context.Context, request operations.ListBillCreditNotesRequest, opts ...operations.Option) (*operations.ListBillCreditNotesResponse, error) {
+func (s *billCreditNotes) List(ctx context.Context, request operations.ListBillCreditNotesRequest, opts ...operations.Option) (*operations.ListBillCreditNotesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -381,7 +381,7 @@ func (s *billCreditNotes) ListBillCreditNotes(ctx context.Context, request opera
 	return res, nil
 }
 
-// UpdateBillCreditNote - Update bill credit note
+// Update - Update bill credit note
 // Posts an updated billCreditNote to the accounting package for a given company.
 //
 // Required data may vary by integration. To see what data to post, first call [Get create/update bill credit note model](https://docs.codat.io/accounting-api#/operations/get-create-update-billCreditNotes-model).
@@ -389,7 +389,7 @@ func (s *billCreditNotes) ListBillCreditNotes(ctx context.Context, request opera
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=billCreditNotes) for integrations that support updating bill credit notes.
-func (s *billCreditNotes) UpdateBillCreditNote(ctx context.Context, request operations.UpdateBillCreditNoteRequest, opts ...operations.Option) (*operations.UpdateBillCreditNoteResponse, error) {
+func (s *billCreditNotes) Update(ctx context.Context, request operations.UpdateBillCreditNoteRequest, opts ...operations.Option) (*operations.UpdateBillCreditNoteResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,

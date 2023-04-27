@@ -32,7 +32,7 @@ func newBillPayments(defaultClient, securityClient HTTPClient, serverURL, langua
 	}
 }
 
-// CreateBillPayment - Create bill payments
+// Create - Create bill payments
 // Posts a new bill payment to the accounting package for a given company.
 //
 // Required data may vary by integration. To see what data to post, first call [Get create bill payment model](https://docs.codat.io/accounting-api#/operations/get-create-billPayments-model).
@@ -40,7 +40,7 @@ func newBillPayments(defaultClient, securityClient HTTPClient, serverURL, langua
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=billPayments) for integrations that support creating bill payments.
-func (s *billPayments) CreateBillPayment(ctx context.Context, request operations.CreateBillPaymentRequest, opts ...operations.Option) (*operations.CreateBillPaymentResponse, error) {
+func (s *billPayments) Create(ctx context.Context, request operations.CreateBillPaymentRequest, opts ...operations.Option) (*operations.CreateBillPaymentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -130,13 +130,13 @@ func (s *billPayments) CreateBillPayment(ctx context.Context, request operations
 	return res, nil
 }
 
-// DeleteBillPayment - Delete bill payment
+// Delete - Delete bill payment
 // Deletes a bill payment from the accounting package for a given company.
 //
 // > **Supported Integrations**
 // >
 // > This functionality is currently only supported for our Oracle NetSuite integration. Check out our [public roadmap](https://portal.productboard.com/codat/7-public-product-roadmap/tabs/46-accounting-api) to see what we're building next, and to submit ideas for new features.
-func (s *billPayments) DeleteBillPayment(ctx context.Context, request operations.DeleteBillPaymentRequest, opts ...operations.Option) (*operations.DeleteBillPaymentResponse, error) {
+func (s *billPayments) Delete(ctx context.Context, request operations.DeleteBillPaymentRequest, opts ...operations.Option) (*operations.DeleteBillPaymentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -215,9 +215,9 @@ func (s *billPayments) DeleteBillPayment(ctx context.Context, request operations
 	return res, nil
 }
 
-// GetBillPayments - Get bill payment
+// Get - Get bill payment
 // Get a bill payment
-func (s *billPayments) GetBillPayments(ctx context.Context, request operations.GetBillPaymentsRequest, opts ...operations.Option) (*operations.GetBillPaymentsResponse, error) {
+func (s *billPayments) Get(ctx context.Context, request operations.GetBillPaymentsRequest, opts ...operations.Option) (*operations.GetBillPaymentsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -296,13 +296,13 @@ func (s *billPayments) GetBillPayments(ctx context.Context, request operations.G
 	return res, nil
 }
 
-// GetCreateBillPaymentsModel - Get create bill payment model
+// GetCreateModel - Get create bill payment model
 // Get create bill payment model.
 //
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=billPayments) for integrations that support creating and deleting bill payments.
-func (s *billPayments) GetCreateBillPaymentsModel(ctx context.Context, request operations.GetCreateBillPaymentsModelRequest, opts ...operations.Option) (*operations.GetCreateBillPaymentsModelResponse, error) {
+func (s *billPayments) GetCreateModel(ctx context.Context, request operations.GetCreateBillPaymentsModelRequest, opts ...operations.Option) (*operations.GetCreateBillPaymentsModelResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -381,9 +381,9 @@ func (s *billPayments) GetCreateBillPaymentsModel(ctx context.Context, request o
 	return res, nil
 }
 
-// ListBillPayments - List bill payments
+// List - List bill payments
 // Gets the latest billPayments for a company, with pagination
-func (s *billPayments) ListBillPayments(ctx context.Context, request operations.ListBillPaymentsRequest, opts ...operations.Option) (*operations.ListBillPaymentsResponse, error) {
+func (s *billPayments) List(ctx context.Context, request operations.ListBillPaymentsRequest, opts ...operations.Option) (*operations.ListBillPaymentsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,

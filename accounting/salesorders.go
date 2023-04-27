@@ -32,9 +32,9 @@ func newSalesOrders(defaultClient, securityClient HTTPClient, serverURL, languag
 	}
 }
 
-// GetSalesOrder - Get sales order
+// Get - Get sales order
 // Get sales order
-func (s *salesOrders) GetSalesOrder(ctx context.Context, request operations.GetSalesOrderRequest, opts ...operations.Option) (*operations.GetSalesOrderResponse, error) {
+func (s *salesOrders) Get(ctx context.Context, request operations.GetSalesOrderRequest, opts ...operations.Option) (*operations.GetSalesOrderResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -113,9 +113,9 @@ func (s *salesOrders) GetSalesOrder(ctx context.Context, request operations.GetS
 	return res, nil
 }
 
-// ListSalesOrders - List sales orders
+// List - List sales orders
 // Get sales orders
-func (s *salesOrders) ListSalesOrders(ctx context.Context, request operations.ListSalesOrdersRequest, opts ...operations.Option) (*operations.ListSalesOrdersResponse, error) {
+func (s *salesOrders) List(ctx context.Context, request operations.ListSalesOrdersRequest, opts ...operations.Option) (*operations.ListSalesOrdersResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,

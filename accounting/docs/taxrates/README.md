@@ -6,10 +6,10 @@ Tax rates
 
 ### Available Operations
 
-* [GetTaxRate](#gettaxrate) - Get tax rate
-* [ListTaxRates](#listtaxrates) - List all tax rates
+* [Get](#get) - Get tax rate
+* [List](#list) - List all tax rates
 
-## GetTaxRate
+## Get
 
 Gets the specified tax rate for a given company.
 
@@ -35,10 +35,10 @@ func main() {
     ctx := context.Background()    
     req := operations.GetTaxRateRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        TaxRateID: "at",
+        TaxRateID: "inventore",
     }
 
-    res, err := s.TaxRates.GetTaxRate(ctx, req)
+    res, err := s.TaxRates.Get(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
@@ -49,7 +49,7 @@ func main() {
 }
 ```
 
-## ListTaxRates
+## List
 
 Gets the latest tax rates for a given company.
 
@@ -78,10 +78,10 @@ func main() {
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: 1,
         PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("excepturi"),
+        Query: codataccounting.String("eligendi"),
     }
 
-    res, err := s.TaxRates.ListTaxRates(ctx, req)
+    res, err := s.TaxRates.List(ctx, req)
     if err != nil {
         log.Fatal(err)
     }

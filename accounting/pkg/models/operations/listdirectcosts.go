@@ -7,8 +7,9 @@ import (
 	"net/http"
 )
 
-type GetCustomersRequest struct {
-	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
+type ListDirectCostsRequest struct {
+	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
+	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 	// Field to order results by. [Read more](https://docs.codat.io/using-the-api/ordering-results).
 	OrderBy *string `queryParam:"style=form,explode=true,name=orderBy"`
 	// Page number. [Read more](https://docs.codat.io/using-the-api/paging).
@@ -19,10 +20,10 @@ type GetCustomersRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-type GetCustomersResponse struct {
+type ListDirectCostsResponse struct {
 	ContentType string
 	// Success
-	Customers   *shared.Customers
+	DirectCosts *shared.DirectCosts
 	StatusCode  int
 	RawResponse *http.Response
 }

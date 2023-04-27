@@ -33,7 +33,7 @@ func newDirectCosts(defaultClient, securityClient HTTPClient, serverURL, languag
 	}
 }
 
-// CreateDirectCost - Create direct cost
+// Create - Create direct cost
 // Posts a new direct cost to the accounting package for a given company.
 //
 // Required data may vary by integration. To see what data to post, first call [Get create direct cost model](https://docs.codat.io/accounting-api#/operations/get-create-directCosts-model).
@@ -41,7 +41,7 @@ func newDirectCosts(defaultClient, securityClient HTTPClient, serverURL, languag
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=directCosts) for integrations that support creating direct costs.
-func (s *directCosts) CreateDirectCost(ctx context.Context, request operations.CreateDirectCostRequest, opts ...operations.Option) (*operations.CreateDirectCostResponse, error) {
+func (s *directCosts) Create(ctx context.Context, request operations.CreateDirectCostRequest, opts ...operations.Option) (*operations.CreateDirectCostResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -131,9 +131,9 @@ func (s *directCosts) CreateDirectCost(ctx context.Context, request operations.C
 	return res, nil
 }
 
-// DownloadDirectCostAttachment - Download direct cost attachment
+// DownloadAttachment - Download direct cost attachment
 // Downloads an attachment for the specified direct cost for a given company.
-func (s *directCosts) DownloadDirectCostAttachment(ctx context.Context, request operations.DownloadDirectCostAttachmentRequest, opts ...operations.Option) (*operations.DownloadDirectCostAttachmentResponse, error) {
+func (s *directCosts) DownloadAttachment(ctx context.Context, request operations.DownloadDirectCostAttachmentRequest, opts ...operations.Option) (*operations.DownloadDirectCostAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -212,96 +212,9 @@ func (s *directCosts) DownloadDirectCostAttachment(ctx context.Context, request 
 	return res, nil
 }
 
-// GetCreateDirectCostsModel - Get create direct cost model
-// Get create direct cost model. Returns the expected data for the request payload.
-//
-// See the examples for integration-specific indicative models.
-//
-// > **Supported Integrations**
-// >
-// > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=directCosts) for integrations that support creating direct costs.
-func (s *directCosts) GetCreateDirectCostsModel(ctx context.Context, request operations.GetCreateDirectCostsModelRequest, opts ...operations.Option) (*operations.GetCreateDirectCostsModelResponse, error) {
-	o := operations.Options{}
-	supportedOptions := []string{
-		operations.SupportedOptionRetries,
-	}
-
-	for _, opt := range opts {
-		if err := opt(&o, supportedOptions...); err != nil {
-			return nil, fmt.Errorf("error applying option: %w", err)
-		}
-	}
-	baseURL := s.serverURL
-	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/directCosts", request, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error generating URL: %w", err)
-	}
-
-	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error creating request: %w", err)
-	}
-
-	client := s.securityClient
-
-	retryConfig := o.Retries
-	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
-		}
-	}
-
-	httpRes, err := utils.Retry(ctx, utils.Retries{
-		Config: retryConfig,
-		StatusCodes: []string{
-			"408",
-			"429",
-			"5XX",
-		},
-	}, func() (*http.Response, error) {
-		return client.Do(req)
-	})
-	if err != nil {
-		return nil, fmt.Errorf("error sending request: %w", err)
-	}
-	if httpRes == nil {
-		return nil, fmt.Errorf("error sending request: no response")
-	}
-	defer httpRes.Body.Close()
-
-	contentType := httpRes.Header.Get("Content-Type")
-
-	res := &operations.GetCreateDirectCostsModelResponse{
-		StatusCode:  httpRes.StatusCode,
-		ContentType: contentType,
-		RawResponse: httpRes,
-	}
-	switch {
-	case httpRes.StatusCode == 200:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.PushOption
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
-				return nil, err
-			}
-
-			res.PushOption = out
-		}
-	}
-
-	return res, nil
-}
-
-// GetDirectCost - Get direct cost
+// Get - Get direct cost
 // Gets the specified direct cost for a given company.
-func (s *directCosts) GetDirectCost(ctx context.Context, request operations.GetDirectCostRequest, opts ...operations.Option) (*operations.GetDirectCostResponse, error) {
+func (s *directCosts) Get(ctx context.Context, request operations.GetDirectCostRequest, opts ...operations.Option) (*operations.GetDirectCostResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -380,9 +293,9 @@ func (s *directCosts) GetDirectCost(ctx context.Context, request operations.GetD
 	return res, nil
 }
 
-// GetDirectCostAttachment - Get direct cost attachment
+// GetAttachment - Get direct cost attachment
 // Gets the specified direct cost attachment for a given company.
-func (s *directCosts) GetDirectCostAttachment(ctx context.Context, request operations.GetDirectCostAttachmentRequest, opts ...operations.Option) (*operations.GetDirectCostAttachmentResponse, error) {
+func (s *directCosts) GetAttachment(ctx context.Context, request operations.GetDirectCostAttachmentRequest, opts ...operations.Option) (*operations.GetDirectCostAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -461,9 +374,96 @@ func (s *directCosts) GetDirectCostAttachment(ctx context.Context, request opera
 	return res, nil
 }
 
-// GetDirectCosts - List direct costs
+// GetCreateModel - Get create direct cost model
+// Get create direct cost model. Returns the expected data for the request payload.
+//
+// See the examples for integration-specific indicative models.
+//
+// > **Supported Integrations**
+// >
+// > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=directCosts) for integrations that support creating direct costs.
+func (s *directCosts) GetCreateModel(ctx context.Context, request operations.GetCreateDirectCostsModelRequest, opts ...operations.Option) (*operations.GetCreateDirectCostsModelResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
+	baseURL := s.serverURL
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/directCosts", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+
+	client := s.securityClient
+
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
+	if err != nil {
+		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
+	}
+	defer httpRes.Body.Close()
+
+	contentType := httpRes.Header.Get("Content-Type")
+
+	res := &operations.GetCreateDirectCostsModelResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: contentType,
+		RawResponse: httpRes,
+	}
+	switch {
+	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.PushOption
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.PushOption = out
+		}
+	}
+
+	return res, nil
+}
+
+// List - List direct costs
 // Gets the direct costs for the company.
-func (s *directCosts) GetDirectCosts(ctx context.Context, request operations.GetDirectCostsRequest, opts ...operations.Option) (*operations.GetDirectCostsResponse, error) {
+func (s *directCosts) List(ctx context.Context, request operations.ListDirectCostsRequest, opts ...operations.Option) (*operations.ListDirectCostsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -525,7 +525,7 @@ func (s *directCosts) GetDirectCosts(ctx context.Context, request operations.Get
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetDirectCostsResponse{
+	res := &operations.ListDirectCostsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -546,9 +546,9 @@ func (s *directCosts) GetDirectCosts(ctx context.Context, request operations.Get
 	return res, nil
 }
 
-// ListDirectCostAttachments - List direct cost attachments
+// ListAttachments - List direct cost attachments
 // Gets all attachments for the specified direct cost for a given company.
-func (s *directCosts) ListDirectCostAttachments(ctx context.Context, request operations.ListDirectCostAttachmentsRequest, opts ...operations.Option) (*operations.ListDirectCostAttachmentsResponse, error) {
+func (s *directCosts) ListAttachments(ctx context.Context, request operations.ListDirectCostAttachmentsRequest, opts ...operations.Option) (*operations.ListDirectCostAttachmentsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -627,9 +627,9 @@ func (s *directCosts) ListDirectCostAttachments(ctx context.Context, request ope
 	return res, nil
 }
 
-// UploadDirectCostAttachment - Upload direct cost attachment
+// UploadAttachment - Upload direct cost attachment
 // Posts a new direct cost attachment for a given company.
-func (s *directCosts) UploadDirectCostAttachment(ctx context.Context, request operations.UploadDirectCostAttachmentRequest, opts ...operations.Option) (*operations.UploadDirectCostAttachmentResponse, error) {
+func (s *directCosts) UploadAttachment(ctx context.Context, request operations.UploadDirectCostAttachmentRequest, opts ...operations.Option) (*operations.UploadDirectCostAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,

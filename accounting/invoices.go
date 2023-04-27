@@ -33,88 +33,7 @@ func newInvoices(defaultClient, securityClient HTTPClient, serverURL, language, 
 	}
 }
 
-// DownloadInvoicePdf - Get invoice as PDF
-// Get invoice as PDF
-func (s *invoices) DownloadInvoicePdf(ctx context.Context, request operations.DownloadInvoicePdfRequest, opts ...operations.Option) (*operations.DownloadInvoicePdfResponse, error) {
-	o := operations.Options{}
-	supportedOptions := []string{
-		operations.SupportedOptionRetries,
-	}
-
-	for _, opt := range opts {
-		if err := opt(&o, supportedOptions...); err != nil {
-			return nil, fmt.Errorf("error applying option: %w", err)
-		}
-	}
-	baseURL := s.serverURL
-	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/invoices/{invoiceId}/pdf", request, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error generating URL: %w", err)
-	}
-
-	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error creating request: %w", err)
-	}
-
-	client := s.securityClient
-
-	retryConfig := o.Retries
-	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
-		}
-	}
-
-	httpRes, err := utils.Retry(ctx, utils.Retries{
-		Config: retryConfig,
-		StatusCodes: []string{
-			"408",
-			"429",
-			"5XX",
-		},
-	}, func() (*http.Response, error) {
-		return client.Do(req)
-	})
-	if err != nil {
-		return nil, fmt.Errorf("error sending request: %w", err)
-	}
-	if httpRes == nil {
-		return nil, fmt.Errorf("error sending request: no response")
-	}
-	defer httpRes.Body.Close()
-
-	contentType := httpRes.Header.Get("Content-Type")
-
-	res := &operations.DownloadInvoicePdfResponse{
-		StatusCode:  httpRes.StatusCode,
-		ContentType: contentType,
-		RawResponse: httpRes,
-	}
-	switch {
-	case httpRes.StatusCode == 200:
-		switch {
-		case utils.MatchContentType(contentType, `application/octet-stream`):
-			out, err := io.ReadAll(httpRes.Body)
-			if err != nil {
-				return nil, fmt.Errorf("error reading response body: %w", err)
-			}
-
-			res.Data = out
-		}
-	}
-
-	return res, nil
-}
-
-// CreateInvoice - Create invoice
+// Create - Create invoice
 // Posts a new invoice to the accounting package for a given company.
 //
 // Required data may vary by integration. To see what data to post, first call [Get create/update invoice model](https://docs.codat.io/accounting-api#/operations/get-create-update-invoices-model).
@@ -122,7 +41,7 @@ func (s *invoices) DownloadInvoicePdf(ctx context.Context, request operations.Do
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=invoices) for integrations that support creating invoices.
-func (s *invoices) CreateInvoice(ctx context.Context, request operations.CreateInvoiceRequest, opts ...operations.Option) (*operations.CreateInvoiceResponse, error) {
+func (s *invoices) Create(ctx context.Context, request operations.CreateInvoiceRequest, opts ...operations.Option) (*operations.CreateInvoiceResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -212,13 +131,13 @@ func (s *invoices) CreateInvoice(ctx context.Context, request operations.CreateI
 	return res, nil
 }
 
-// DeleteInvoice - Delete invoice
+// Delete - Delete invoice
 // Deletes an invoice from the accounting package for a given company.
 //
 // > **Supported Integrations**
 // >
 // > This functionality is currently only supported for our QuickBooks Online integration. Check out our [public roadmap](https://portal.productboard.com/codat/7-public-product-roadmap/tabs/46-accounting-api) to see what we're building next, and to submit ideas for new features.
-func (s *invoices) DeleteInvoice(ctx context.Context, request operations.DeleteInvoiceRequest, opts ...operations.Option) (*operations.DeleteInvoiceResponse, error) {
+func (s *invoices) Delete(ctx context.Context, request operations.DeleteInvoiceRequest, opts ...operations.Option) (*operations.DeleteInvoiceResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -297,9 +216,9 @@ func (s *invoices) DeleteInvoice(ctx context.Context, request operations.DeleteI
 	return res, nil
 }
 
-// DownloadInvoiceAttachment - Download invoice attachment
+// DownloadAttachment - Download invoice attachment
 // Download invoice attachments
-func (s *invoices) DownloadInvoiceAttachment(ctx context.Context, request operations.DownloadInvoiceAttachmentRequest, opts ...operations.Option) (*operations.DownloadInvoiceAttachmentResponse, error) {
+func (s *invoices) DownloadAttachment(ctx context.Context, request operations.DownloadInvoiceAttachmentRequest, opts ...operations.Option) (*operations.DownloadInvoiceAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -378,15 +297,9 @@ func (s *invoices) DownloadInvoiceAttachment(ctx context.Context, request operat
 	return res, nil
 }
 
-// GetCreateUpdateInvoicesModel - Get create/update invoice model
-// Get create/update invoice model. Returns the expected data for the request payload.
-//
-// See the examples for integration-specific indicative models.
-//
-// > **Supported Integrations**
-// >
-// > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=invoices) for integrations that support creating and updating invoices.
-func (s *invoices) GetCreateUpdateInvoicesModel(ctx context.Context, request operations.GetCreateUpdateInvoicesModelRequest, opts ...operations.Option) (*operations.GetCreateUpdateInvoicesModelResponse, error) {
+// DownloadPdf - Get invoice as PDF
+// Get invoice as PDF
+func (s *invoices) DownloadPdf(ctx context.Context, request operations.DownloadInvoicePdfRequest, opts ...operations.Option) (*operations.DownloadInvoicePdfResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -398,7 +311,7 @@ func (s *invoices) GetCreateUpdateInvoicesModel(ctx context.Context, request ope
 		}
 	}
 	baseURL := s.serverURL
-	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/invoices", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/invoices/{invoiceId}/pdf", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -444,7 +357,7 @@ func (s *invoices) GetCreateUpdateInvoicesModel(ctx context.Context, request ope
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetCreateUpdateInvoicesModelResponse{
+	res := &operations.DownloadInvoicePdfResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -452,22 +365,22 @@ func (s *invoices) GetCreateUpdateInvoicesModel(ctx context.Context, request ope
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.PushOption
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
-				return nil, err
+		case utils.MatchContentType(contentType, `application/octet-stream`):
+			out, err := io.ReadAll(httpRes.Body)
+			if err != nil {
+				return nil, fmt.Errorf("error reading response body: %w", err)
 			}
 
-			res.PushOption = out
+			res.Data = out
 		}
 	}
 
 	return res, nil
 }
 
-// GetInvoice - Get invoice
+// Get - Get invoice
 // Get invoice
-func (s *invoices) GetInvoice(ctx context.Context, request operations.GetInvoiceRequest, opts ...operations.Option) (*operations.GetInvoiceResponse, error) {
+func (s *invoices) Get(ctx context.Context, request operations.GetInvoiceRequest, opts ...operations.Option) (*operations.GetInvoiceResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -546,9 +459,9 @@ func (s *invoices) GetInvoice(ctx context.Context, request operations.GetInvoice
 	return res, nil
 }
 
-// GetInvoiceAttachment - Get invoice attachment
+// GetAttachment - Get invoice attachment
 // Get invoice attachment
-func (s *invoices) GetInvoiceAttachment(ctx context.Context, request operations.GetInvoiceAttachmentRequest, opts ...operations.Option) (*operations.GetInvoiceAttachmentResponse, error) {
+func (s *invoices) GetAttachment(ctx context.Context, request operations.GetInvoiceAttachmentRequest, opts ...operations.Option) (*operations.GetInvoiceAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -627,9 +540,15 @@ func (s *invoices) GetInvoiceAttachment(ctx context.Context, request operations.
 	return res, nil
 }
 
-// GetInvoiceAttachments - Get invoice attachments
-// Get invoice attachments
-func (s *invoices) GetInvoiceAttachments(ctx context.Context, request operations.GetInvoiceAttachmentsRequest, opts ...operations.Option) (*operations.GetInvoiceAttachmentsResponse, error) {
+// GetCreateUpdateModel - Get create/update invoice model
+// Get create/update invoice model. Returns the expected data for the request payload.
+//
+// See the examples for integration-specific indicative models.
+//
+// > **Supported Integrations**
+// >
+// > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=invoices) for integrations that support creating and updating invoices.
+func (s *invoices) GetCreateUpdateModel(ctx context.Context, request operations.GetCreateUpdateInvoicesModelRequest, opts ...operations.Option) (*operations.GetCreateUpdateInvoicesModelResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -641,7 +560,7 @@ func (s *invoices) GetInvoiceAttachments(ctx context.Context, request operations
 		}
 	}
 	baseURL := s.serverURL
-	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/invoices/{invoiceId}/attachments", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/invoices", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -687,7 +606,7 @@ func (s *invoices) GetInvoiceAttachments(ctx context.Context, request operations
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetInvoiceAttachmentsResponse{
+	res := &operations.GetCreateUpdateInvoicesModelResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -696,21 +615,21 @@ func (s *invoices) GetInvoiceAttachments(ctx context.Context, request operations
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.AttachmentsDataset
+			var out *shared.PushOption
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.AttachmentsDataset = out
+			res.PushOption = out
 		}
 	}
 
 	return res, nil
 }
 
-// ListInvoices - List invoices
+// List - List invoices
 // Gets the latest invoices for a company, with pagination
-func (s *invoices) ListInvoices(ctx context.Context, request operations.ListInvoicesRequest, opts ...operations.Option) (*operations.ListInvoicesResponse, error) {
+func (s *invoices) List(ctx context.Context, request operations.ListInvoicesRequest, opts ...operations.Option) (*operations.ListInvoicesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -793,7 +712,88 @@ func (s *invoices) ListInvoices(ctx context.Context, request operations.ListInvo
 	return res, nil
 }
 
-// UpdateInvoice - Update invoice
+// ListAttachments - List invoice attachments
+// List invoice attachments
+func (s *invoices) ListAttachments(ctx context.Context, request operations.ListInvoiceAttachmentsRequest, opts ...operations.Option) (*operations.ListInvoiceAttachmentsResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
+	baseURL := s.serverURL
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/invoices/{invoiceId}/attachments", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+
+	client := s.securityClient
+
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
+	if err != nil {
+		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
+	}
+	defer httpRes.Body.Close()
+
+	contentType := httpRes.Header.Get("Content-Type")
+
+	res := &operations.ListInvoiceAttachmentsResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: contentType,
+		RawResponse: httpRes,
+	}
+	switch {
+	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.AttachmentsDataset
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.AttachmentsDataset = out
+		}
+	}
+
+	return res, nil
+}
+
+// Update - Update invoice
 // Posts an updated invoice to the accounting package for a given company.
 //
 // Required data may vary by integration. To see what data to post, first call [Get create/update invoice model](https://docs.codat.io/accounting-api#/operations/get-create-update-invoices-model).
@@ -801,7 +801,7 @@ func (s *invoices) ListInvoices(ctx context.Context, request operations.ListInvo
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=invoices) for integrations that support updating invoices.
-func (s *invoices) UpdateInvoice(ctx context.Context, request operations.UpdateInvoiceRequest, opts ...operations.Option) (*operations.UpdateInvoiceResponse, error) {
+func (s *invoices) Update(ctx context.Context, request operations.UpdateInvoiceRequest, opts ...operations.Option) (*operations.UpdateInvoiceResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -891,9 +891,9 @@ func (s *invoices) UpdateInvoice(ctx context.Context, request operations.UpdateI
 	return res, nil
 }
 
-// UploadInvoiceAttachment - Push invoice attachment
+// UploadAttachment - Push invoice attachment
 // Push invoice attachment
-func (s *invoices) UploadInvoiceAttachment(ctx context.Context, request operations.UploadInvoiceAttachmentRequest, opts ...operations.Option) (*operations.UploadInvoiceAttachmentResponse, error) {
+func (s *invoices) UploadAttachment(ctx context.Context, request operations.UploadInvoiceAttachmentRequest, opts ...operations.Option) (*operations.UploadInvoiceAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,

@@ -32,15 +32,15 @@ func newJournals(defaultClient, securityClient HTTPClient, serverURL, language, 
 	}
 }
 
-// GetCreateJournalsModel - Get create journal model
-// Get create journal model. Returns the expected data for the request payload.
+// Create - Create journal
+// Posts a new journal to the accounting package for a given company.
 //
-// See the examples for integration-specific indicative models.
+// Required data may vary by integration. To see what data to post, first call [Get create journal model](https://docs.codat.io/accounting-api#/operations/get-create-journals-model).
 //
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journals) for integrations that support creating journals.
-func (s *journals) GetCreateJournalsModel(ctx context.Context, request operations.GetCreateJournalsModelRequest, opts ...operations.Option) (*operations.GetCreateJournalsModelResponse, error) {
+func (s *journals) Create(ctx context.Context, request operations.CreateJournalRequest, opts ...operations.Option) (*operations.CreateJournalResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -52,14 +52,25 @@ func (s *journals) GetCreateJournalsModel(ctx context.Context, request operation
 		}
 	}
 	baseURL := s.serverURL
-	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/journals", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/journals", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Journal", "json")
+	if err != nil {
+		return nil, fmt.Errorf("error serializing request body: %w", err)
+	}
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+
+	req.Header.Set("Content-Type", reqContentType)
+
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
 	client := s.securityClient
@@ -98,7 +109,7 @@ func (s *journals) GetCreateJournalsModel(ctx context.Context, request operation
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetCreateJournalsModelResponse{
+	res := &operations.CreateJournalResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -107,21 +118,21 @@ func (s *journals) GetCreateJournalsModel(ctx context.Context, request operation
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.PushOption
+			var out *shared.CreateJournalResponse
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
 
-			res.PushOption = out
+			res.CreateJournalResponse = out
 		}
 	}
 
 	return res, nil
 }
 
-// GetJournal - Get journal
+// Get - Get journal
 // Gets a single journal corresponding to the given ID.
-func (s *journals) GetJournal(ctx context.Context, request operations.GetJournalRequest, opts ...operations.Option) (*operations.GetJournalResponse, error) {
+func (s *journals) Get(ctx context.Context, request operations.GetJournalRequest, opts ...operations.Option) (*operations.GetJournalResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -200,9 +211,96 @@ func (s *journals) GetJournal(ctx context.Context, request operations.GetJournal
 	return res, nil
 }
 
-// ListJournals - List journals
+// GetCreateModel - Get create journal model
+// Get create journal model. Returns the expected data for the request payload.
+//
+// See the examples for integration-specific indicative models.
+//
+// > **Supported Integrations**
+// >
+// > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journals) for integrations that support creating journals.
+func (s *journals) GetCreateModel(ctx context.Context, request operations.GetCreateJournalsModelRequest, opts ...operations.Option) (*operations.GetCreateJournalsModelResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
+	baseURL := s.serverURL
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/journals", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+
+	client := s.securityClient
+
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
+	if err != nil {
+		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
+	}
+	defer httpRes.Body.Close()
+
+	contentType := httpRes.Header.Get("Content-Type")
+
+	res := &operations.GetCreateJournalsModelResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: contentType,
+		RawResponse: httpRes,
+	}
+	switch {
+	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.PushOption
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.PushOption = out
+		}
+	}
+
+	return res, nil
+}
+
+// List - List journals
 // Gets the latest journals for a company, with pagination
-func (s *journals) ListJournals(ctx context.Context, request operations.ListJournalsRequest, opts ...operations.Option) (*operations.ListJournalsResponse, error) {
+func (s *journals) List(ctx context.Context, request operations.ListJournalsRequest, opts ...operations.Option) (*operations.ListJournalsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -279,104 +377,6 @@ func (s *journals) ListJournals(ctx context.Context, request operations.ListJour
 			}
 
 			res.Journals = out
-		}
-	}
-
-	return res, nil
-}
-
-// PushJournal - Create journal
-// Posts a new journal to the accounting package for a given company.
-//
-// Required data may vary by integration. To see what data to post, first call [Get create journal model](https://docs.codat.io/accounting-api#/operations/get-create-journals-model).
-//
-// > **Supported Integrations**
-// >
-// > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journals) for integrations that support creating journals.
-func (s *journals) PushJournal(ctx context.Context, request operations.PushJournalRequest, opts ...operations.Option) (*operations.PushJournalResponse, error) {
-	o := operations.Options{}
-	supportedOptions := []string{
-		operations.SupportedOptionRetries,
-	}
-
-	for _, opt := range opts {
-		if err := opt(&o, supportedOptions...); err != nil {
-			return nil, fmt.Errorf("error applying option: %w", err)
-		}
-	}
-	baseURL := s.serverURL
-	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/journals", request, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error generating URL: %w", err)
-	}
-
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Journal", "json")
-	if err != nil {
-		return nil, fmt.Errorf("error serializing request body: %w", err)
-	}
-
-	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
-	if err != nil {
-		return nil, fmt.Errorf("error creating request: %w", err)
-	}
-
-	req.Header.Set("Content-Type", reqContentType)
-
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
-		return nil, fmt.Errorf("error populating query params: %w", err)
-	}
-
-	client := s.securityClient
-
-	retryConfig := o.Retries
-	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
-		}
-	}
-
-	httpRes, err := utils.Retry(ctx, utils.Retries{
-		Config: retryConfig,
-		StatusCodes: []string{
-			"408",
-			"429",
-			"5XX",
-		},
-	}, func() (*http.Response, error) {
-		return client.Do(req)
-	})
-	if err != nil {
-		return nil, fmt.Errorf("error sending request: %w", err)
-	}
-	if httpRes == nil {
-		return nil, fmt.Errorf("error sending request: no response")
-	}
-	defer httpRes.Body.Close()
-
-	contentType := httpRes.Header.Get("Content-Type")
-
-	res := &operations.PushJournalResponse{
-		StatusCode:  httpRes.StatusCode,
-		ContentType: contentType,
-		RawResponse: httpRes,
-	}
-	switch {
-	case httpRes.StatusCode == 200:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.PushJournal200ApplicationJSON
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
-				return nil, err
-			}
-
-			res.PushJournal200ApplicationJSONObject = out
 		}
 	}
 

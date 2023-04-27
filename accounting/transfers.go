@@ -32,7 +32,7 @@ func newTransfers(defaultClient, securityClient HTTPClient, serverURL, language,
 	}
 }
 
-// CreateTransfer - Create transfer
+// Create - Create transfer
 // Posts a new transfer to the accounting package for a given company.
 //
 // Required data may vary by integration. To see what data to post, first call [Get create transfer model](https://docs.codat.io/accounting-api#/operations/get-create-transfers-model).
@@ -40,7 +40,7 @@ func newTransfers(defaultClient, securityClient HTTPClient, serverURL, language,
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=transfers) for integrations that support creating transfers.
-func (s *transfers) CreateTransfer(ctx context.Context, request operations.CreateTransferRequest, opts ...operations.Option) (*operations.CreateTransferResponse, error) {
+func (s *transfers) Create(ctx context.Context, request operations.CreateTransferRequest, opts ...operations.Option) (*operations.CreateTransferResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -126,96 +126,9 @@ func (s *transfers) CreateTransfer(ctx context.Context, request operations.Creat
 	return res, nil
 }
 
-// GetCreateTransfersModel - Get create transfer model
-// Get create transfer model. Returns the expected data for the request payload.
-//
-// See the examples for integration-specific indicative models.
-//
-// > **Supported Integrations**
-// >
-// > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=transfers) for integrations that support creating transfers.
-func (s *transfers) GetCreateTransfersModel(ctx context.Context, request operations.GetCreateTransfersModelRequest, opts ...operations.Option) (*operations.GetCreateTransfersModelResponse, error) {
-	o := operations.Options{}
-	supportedOptions := []string{
-		operations.SupportedOptionRetries,
-	}
-
-	for _, opt := range opts {
-		if err := opt(&o, supportedOptions...); err != nil {
-			return nil, fmt.Errorf("error applying option: %w", err)
-		}
-	}
-	baseURL := s.serverURL
-	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/transfers", request, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error generating URL: %w", err)
-	}
-
-	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error creating request: %w", err)
-	}
-
-	client := s.securityClient
-
-	retryConfig := o.Retries
-	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
-		}
-	}
-
-	httpRes, err := utils.Retry(ctx, utils.Retries{
-		Config: retryConfig,
-		StatusCodes: []string{
-			"408",
-			"429",
-			"5XX",
-		},
-	}, func() (*http.Response, error) {
-		return client.Do(req)
-	})
-	if err != nil {
-		return nil, fmt.Errorf("error sending request: %w", err)
-	}
-	if httpRes == nil {
-		return nil, fmt.Errorf("error sending request: no response")
-	}
-	defer httpRes.Body.Close()
-
-	contentType := httpRes.Header.Get("Content-Type")
-
-	res := &operations.GetCreateTransfersModelResponse{
-		StatusCode:  httpRes.StatusCode,
-		ContentType: contentType,
-		RawResponse: httpRes,
-	}
-	switch {
-	case httpRes.StatusCode == 200:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.PushOption
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
-				return nil, err
-			}
-
-			res.PushOption = out
-		}
-	}
-
-	return res, nil
-}
-
-// GetTransfer - Get transfer
+// Get - Get transfer
 // Gets the specified transfer for a given company.
-func (s *transfers) GetTransfer(ctx context.Context, request operations.GetTransferRequest, opts ...operations.Option) (*operations.GetTransferResponse, error) {
+func (s *transfers) Get(ctx context.Context, request operations.GetTransferRequest, opts ...operations.Option) (*operations.GetTransferResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -294,9 +207,96 @@ func (s *transfers) GetTransfer(ctx context.Context, request operations.GetTrans
 	return res, nil
 }
 
-// ListTransfers - List transfers
+// GetCreateModel - Get create transfer model
+// Get create transfer model. Returns the expected data for the request payload.
+//
+// See the examples for integration-specific indicative models.
+//
+// > **Supported Integrations**
+// >
+// > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=transfers) for integrations that support creating transfers.
+func (s *transfers) GetCreateModel(ctx context.Context, request operations.GetCreateTransfersModelRequest, opts ...operations.Option) (*operations.GetCreateTransfersModelResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
+	baseURL := s.serverURL
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/transfers", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+
+	client := s.securityClient
+
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
+	if err != nil {
+		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
+	}
+	defer httpRes.Body.Close()
+
+	contentType := httpRes.Header.Get("Content-Type")
+
+	res := &operations.GetCreateTransfersModelResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: contentType,
+		RawResponse: httpRes,
+	}
+	switch {
+	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.PushOption
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.PushOption = out
+		}
+	}
+
+	return res, nil
+}
+
+// List - List transfers
 // Gets the transfers for a given company.
-func (s *transfers) ListTransfers(ctx context.Context, request operations.ListTransfersRequest, opts ...operations.Option) (*operations.ListTransfersResponse, error) {
+func (s *transfers) List(ctx context.Context, request operations.ListTransfersRequest, opts ...operations.Option) (*operations.ListTransfersResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,

@@ -175,3 +175,11 @@ Based on:
 - Speakeasy CLI 1.23.1 (2.21.1) https://github.com/speakeasy-api/speakeasy
 ### Releases
 - [Go v0.10.1] https://github.com/codatio/client-sdk-go/releases/tag/accounting/v0.10.1 - accounting
+
+## 2023-04-26 16:26:01
+### Changes
+Based on:
+- OpenAPI Doc 2.1.0 https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Accounting.yaml
+- Speakeasy CLI 1.25.1 (2.22.0) https://github.com/speakeasy-api/speakeasy
+### Releases
+- [Go v0.11.0] https://github.com/codatio/client-sdk-go/releases/tag/accounting/v0.11.0 - accounting

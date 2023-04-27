@@ -7,11 +7,11 @@ import (
 	"net/http"
 )
 
-type PostSyncInfoRequest struct {
+type RefreshCompanyInfoRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
-type PostSyncInfoResponse struct {
+type RefreshCompanyInfoResponse struct {
 	ContentType string
 	// Success
 	Dataset     *shared.Dataset

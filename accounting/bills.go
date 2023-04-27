@@ -33,7 +33,7 @@ func newBills(defaultClient, securityClient HTTPClient, serverURL, language, sdk
 	}
 }
 
-// CreateBill - Create bill
+// Create - Create bill
 // Posts a new bill to the accounting package for a given company.
 //
 // Required data may vary by integration. To see what data to post, first call [Get create/update bill model](https://docs.codat.io/accounting-api#/operations/get-create-update-bills-model).
@@ -41,7 +41,7 @@ func newBills(defaultClient, securityClient HTTPClient, serverURL, language, sdk
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bills) for integrations that support creating a bill.
-func (s *bills) CreateBill(ctx context.Context, request operations.CreateBillRequest, opts ...operations.Option) (*operations.CreateBillResponse, error) {
+func (s *bills) Create(ctx context.Context, request operations.CreateBillRequest, opts ...operations.Option) (*operations.CreateBillResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -131,13 +131,13 @@ func (s *bills) CreateBill(ctx context.Context, request operations.CreateBillReq
 	return res, nil
 }
 
-// DeleteBill - Delete bill
+// Delete - Delete bill
 // Deletes a bill from the accounting package for a given company.
 //
 // > **Supported Integrations**
 // >
 // > This functionality is currently only supported for our Oracle NetSuite and QuickBooks Online integrations. Check out our [public roadmap](https://portal.productboard.com/codat/7-public-product-roadmap/tabs/46-accounting-api) to see what we're building next, and to submit ideas for new features.
-func (s *bills) DeleteBill(ctx context.Context, request operations.DeleteBillRequest, opts ...operations.Option) (*operations.DeleteBillResponse, error) {
+func (s *bills) Delete(ctx context.Context, request operations.DeleteBillRequest, opts ...operations.Option) (*operations.DeleteBillResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -216,9 +216,9 @@ func (s *bills) DeleteBill(ctx context.Context, request operations.DeleteBillReq
 	return res, nil
 }
 
-// DownloadBillAttachment - Download bill attachment
+// DownloadAttachment - Download bill attachment
 // Download bill attachment
-func (s *bills) DownloadBillAttachment(ctx context.Context, request operations.DownloadBillAttachmentRequest, opts ...operations.Option) (*operations.DownloadBillAttachmentResponse, error) {
+func (s *bills) DownloadAttachment(ctx context.Context, request operations.DownloadBillAttachmentRequest, opts ...operations.Option) (*operations.DownloadBillAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -297,9 +297,9 @@ func (s *bills) DownloadBillAttachment(ctx context.Context, request operations.D
 	return res, nil
 }
 
-// GetBill - Get bill
+// Get - Get bill
 // Get bill
-func (s *bills) GetBill(ctx context.Context, request operations.GetBillRequest, opts ...operations.Option) (*operations.GetBillResponse, error) {
+func (s *bills) Get(ctx context.Context, request operations.GetBillRequest, opts ...operations.Option) (*operations.GetBillResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -378,9 +378,9 @@ func (s *bills) GetBill(ctx context.Context, request operations.GetBillRequest, 
 	return res, nil
 }
 
-// GetBillAttachment - Get bill attachment
+// GetAttachment - Get bill attachment
 // Get bill attachment
-func (s *bills) GetBillAttachment(ctx context.Context, request operations.GetBillAttachmentRequest, opts ...operations.Option) (*operations.GetBillAttachmentResponse, error) {
+func (s *bills) GetAttachment(ctx context.Context, request operations.GetBillAttachmentRequest, opts ...operations.Option) (*operations.GetBillAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -459,95 +459,14 @@ func (s *bills) GetBillAttachment(ctx context.Context, request operations.GetBil
 	return res, nil
 }
 
-// GetBillAttachments - List bill attachments
-// Get bill attachments
-func (s *bills) GetBillAttachments(ctx context.Context, request operations.GetBillAttachmentsRequest, opts ...operations.Option) (*operations.GetBillAttachmentsResponse, error) {
-	o := operations.Options{}
-	supportedOptions := []string{
-		operations.SupportedOptionRetries,
-	}
-
-	for _, opt := range opts {
-		if err := opt(&o, supportedOptions...); err != nil {
-			return nil, fmt.Errorf("error applying option: %w", err)
-		}
-	}
-	baseURL := s.serverURL
-	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/bills/{billId}/attachments", request, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error generating URL: %w", err)
-	}
-
-	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error creating request: %w", err)
-	}
-
-	client := s.securityClient
-
-	retryConfig := o.Retries
-	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
-		}
-	}
-
-	httpRes, err := utils.Retry(ctx, utils.Retries{
-		Config: retryConfig,
-		StatusCodes: []string{
-			"408",
-			"429",
-			"5XX",
-		},
-	}, func() (*http.Response, error) {
-		return client.Do(req)
-	})
-	if err != nil {
-		return nil, fmt.Errorf("error sending request: %w", err)
-	}
-	if httpRes == nil {
-		return nil, fmt.Errorf("error sending request: no response")
-	}
-	defer httpRes.Body.Close()
-
-	contentType := httpRes.Header.Get("Content-Type")
-
-	res := &operations.GetBillAttachmentsResponse{
-		StatusCode:  httpRes.StatusCode,
-		ContentType: contentType,
-		RawResponse: httpRes,
-	}
-	switch {
-	case httpRes.StatusCode == 200:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.AttachmentsDataset
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
-				return nil, err
-			}
-
-			res.AttachmentsDataset = out
-		}
-	}
-
-	return res, nil
-}
-
-// GetCreateUpdateBillsModel - Get create/update bill model
+// GetCreateUpdateModel - Get create/update bill model
 // Get create/update bill model.
 //
 //	> **Supported Integrations**
 //
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bills) for integrations that support creating and updating a bill.
-func (s *bills) GetCreateUpdateBillsModel(ctx context.Context, request operations.GetCreateUpdateBillsModelRequest, opts ...operations.Option) (*operations.GetCreateUpdateBillsModelResponse, error) {
+func (s *bills) GetCreateUpdateModel(ctx context.Context, request operations.GetCreateUpdateBillsModelRequest, opts ...operations.Option) (*operations.GetCreateUpdateBillsModelResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -626,9 +545,9 @@ func (s *bills) GetCreateUpdateBillsModel(ctx context.Context, request operation
 	return res, nil
 }
 
-// ListBills - List bills
+// List - List bills
 // Gets the latest bills for a company, with pagination
-func (s *bills) ListBills(ctx context.Context, request operations.ListBillsRequest, opts ...operations.Option) (*operations.ListBillsResponse, error) {
+func (s *bills) List(ctx context.Context, request operations.ListBillsRequest, opts ...operations.Option) (*operations.ListBillsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -711,7 +630,88 @@ func (s *bills) ListBills(ctx context.Context, request operations.ListBillsReque
 	return res, nil
 }
 
-// UpdateBill - Update bill
+// ListAttachments - List bill attachments
+// List bill attachments
+func (s *bills) ListAttachments(ctx context.Context, request operations.ListBillAttachmentsRequest, opts ...operations.Option) (*operations.ListBillAttachmentsResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
+	baseURL := s.serverURL
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/bills/{billId}/attachments", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+
+	client := s.securityClient
+
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
+	if err != nil {
+		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
+	}
+	defer httpRes.Body.Close()
+
+	contentType := httpRes.Header.Get("Content-Type")
+
+	res := &operations.ListBillAttachmentsResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: contentType,
+		RawResponse: httpRes,
+	}
+	switch {
+	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.AttachmentsDataset
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.AttachmentsDataset = out
+		}
+	}
+
+	return res, nil
+}
+
+// Update - Update bill
 // Posts an updated bill to the accounting package for a given company.
 //
 // Required data may vary by integration. To see what data to post, first call [Get create/update bill model](https://docs.codat.io/accounting-api#/operations/get-create-update-bills-model).
@@ -719,7 +719,7 @@ func (s *bills) ListBills(ctx context.Context, request operations.ListBillsReque
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bills) for integrations that support updating a bill.
-func (s *bills) UpdateBill(ctx context.Context, request operations.UpdateBillRequest, opts ...operations.Option) (*operations.UpdateBillResponse, error) {
+func (s *bills) Update(ctx context.Context, request operations.UpdateBillRequest, opts ...operations.Option) (*operations.UpdateBillResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -809,9 +809,9 @@ func (s *bills) UpdateBill(ctx context.Context, request operations.UpdateBillReq
 	return res, nil
 }
 
-// UploadBillAttachments - Upload bill attachments
-// Upload bill attachments
-func (s *bills) UploadBillAttachments(ctx context.Context, request operations.UploadBillAttachmentsRequest, opts ...operations.Option) (*operations.UploadBillAttachmentsResponse, error) {
+// UploadAttachment - Upload bill attachment
+// Upload bill attachment
+func (s *bills) UploadAttachment(ctx context.Context, request operations.UploadBillAttachmentRequest, opts ...operations.Option) (*operations.UploadBillAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -876,7 +876,7 @@ func (s *bills) UploadBillAttachments(ctx context.Context, request operations.Up
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.UploadBillAttachmentsResponse{
+	res := &operations.UploadBillAttachmentResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,

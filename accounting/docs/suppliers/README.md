@@ -6,16 +6,16 @@ Suppliers
 
 ### Available Operations
 
-* [CreateSupplier](#createsupplier) - Create suppliers
-* [DownloadSupplierAttachment](#downloadsupplierattachment) - Download supplier attachment
-* [GetCreateUpdateSuppliersModel](#getcreateupdatesuppliersmodel) - Get create/update supplier model
-* [GetSupplier](#getsupplier) - Get supplier
-* [GetSupplierAttachment](#getsupplierattachment) - Get supplier attachment
-* [ListSupplierAttachments](#listsupplierattachments) - List supplier attachments
-* [ListSuppliers](#listsuppliers) - List suppliers
-* [PutSupplier](#putsupplier) - Update supplier
+* [Create](#create) - Create supplier
+* [DownloadAttachment](#downloadattachment) - Download supplier attachment
+* [Get](#get) - Get supplier
+* [GetAttachment](#getattachment) - Get supplier attachment
+* [GetCreateUpdateModel](#getcreateupdatemodel) - Get create/update supplier model
+* [List](#list) - List suppliers
+* [ListAttachments](#listattachments) - List supplier attachments
+* [Update](#update) - Update supplier
 
-## CreateSupplier
+## Create
 
 Push suppliers
 
@@ -50,76 +50,46 @@ func main() {
         Supplier: &shared.Supplier{
             Addresses: []shared.Addressesitems{
                 shared.Addressesitems{
-                    City: codataccounting.String("South Gavin"),
-                    Country: codataccounting.String("Saint Lucia"),
-                    Line1: codataccounting.String("explicabo"),
-                    Line2: codataccounting.String("expedita"),
-                    PostalCode: codataccounting.String("89844-4509"),
-                    Region: codataccounting.String("temporibus"),
+                    City: codataccounting.String("Thousand Oaks"),
+                    Country: codataccounting.String("Papua New Guinea"),
+                    Line1: codataccounting.String("amet"),
+                    Line2: codataccounting.String("tempore"),
+                    PostalCode: codataccounting.String("81317"),
+                    Region: codataccounting.String("adipisci"),
                     Type: shared.AddressTypeEnumUnknown,
                 },
-                shared.Addressesitems{
-                    City: codataccounting.String("Blockview"),
-                    Country: codataccounting.String("Oman"),
-                    Line1: codataccounting.String("molestiae"),
-                    Line2: codataccounting.String("harum"),
-                    PostalCode: codataccounting.String("24520-2256"),
-                    Region: codataccounting.String("repellat"),
-                    Type: shared.AddressTypeEnumBilling,
-                },
-                shared.Addressesitems{
-                    City: codataccounting.String("Jeniferton"),
-                    Country: codataccounting.String("Ukraine"),
-                    Line1: codataccounting.String("earum"),
-                    Line2: codataccounting.String("ipsa"),
-                    PostalCode: codataccounting.String("50506"),
-                    Region: codataccounting.String("dolores"),
-                    Type: shared.AddressTypeEnumDelivery,
-                },
             },
-            ContactName: codataccounting.String("culpa"),
-            DefaultCurrency: codataccounting.String("fugit"),
-            EmailAddress: codataccounting.String("nemo"),
-            ID: codataccounting.String("ee6c75af-8a60-4a7a-a346-e0979e5afe60"),
+            ContactName: codataccounting.String("alias"),
+            DefaultCurrency: codataccounting.String("occaecati"),
+            EmailAddress: codataccounting.String("perspiciatis"),
+            ID: codataccounting.String("83663c66-dcbb-47df-acb0-9c8b408e0713"),
             Metadata: &shared.Metadata{
                 IsDeleted: codataccounting.Bool(false),
             },
-            ModifiedDate: codataccounting.String("culpa"),
-            Phone: codataccounting.String("776-533-8955 x34331"),
-            RegistrationNumber: codataccounting.String("deserunt"),
-            SourceModifiedDate: codataccounting.String("iste"),
+            ModifiedDate: codataccounting.String("molestiae"),
+            Phone: codataccounting.String("489.499.8000 x854"),
+            RegistrationNumber: codataccounting.String("praesentium"),
+            SourceModifiedDate: codataccounting.String("aperiam"),
             Status: shared.SupplierStatusEnumArchived,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "eveniet": map[string]interface{}{
-                        "quae": "voluptates",
-                        "impedit": "sunt",
-                    },
-                    "optio": map[string]interface{}{
-                        "occaecati": "officia",
-                        "consectetur": "excepturi",
-                    },
-                    "fuga": map[string]interface{}{
-                        "ipsam": "fuga",
-                        "magnam": "assumenda",
-                        "nemo": "id",
-                        "laboriosam": "nostrum",
-                    },
-                    "expedita": map[string]interface{}{
-                        "fugiat": "exercitationem",
-                        "veniam": "ea",
+                    "doloremque": map[string]interface{}{
+                        "eius": "odio",
+                        "rerum": "provident",
+                        "nostrum": "perferendis",
+                        "aliquam": "accusantium",
                     },
                 },
             },
-            SupplierName: codataccounting.String("aspernatur"),
-            TaxNumber: codataccounting.String("assumenda"),
+            SupplierName: codataccounting.String("possimus"),
+            TaxNumber: codataccounting.String("vel"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codataccounting.Int(587240),
+        TimeoutInMinutes: codataccounting.Int(796063),
     }
 
-    res, err := s.Suppliers.CreateSupplier(ctx, req)
+    res, err := s.Suppliers.Create(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
@@ -130,7 +100,7 @@ func main() {
 }
 ```
 
-## DownloadSupplierAttachment
+## DownloadAttachment
 
 Download supplier attachment
 
@@ -161,7 +131,7 @@ func main() {
         SupplierID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     }
 
-    res, err := s.Suppliers.DownloadSupplierAttachment(ctx, req)
+    res, err := s.Suppliers.DownloadAttachment(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
@@ -172,7 +142,89 @@ func main() {
 }
 ```
 
-## GetCreateUpdateSuppliersModel
+## Get
+
+Gets a single supplier corresponding to the given ID.
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"log"
+	"github.com/codatio/client-sdk-go/accounting"
+	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
+)
+
+func main() {
+    s := codataccounting.New(
+        codataccounting.WithSecurity(shared.Security{
+            AuthHeader: "YOUR_API_KEY_HERE",
+        }),
+    )
+
+    ctx := context.Background()    
+    req := operations.GetSupplierRequest{
+        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+        SupplierID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+    }
+
+    res, err := s.Suppliers.Get(ctx, req)
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.Supplier != nil {
+        // handle response
+    }
+}
+```
+
+## GetAttachment
+
+Get supplier attachment
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"log"
+	"github.com/codatio/client-sdk-go/accounting"
+	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
+)
+
+func main() {
+    s := codataccounting.New(
+        codataccounting.WithSecurity(shared.Security{
+            AuthHeader: "YOUR_API_KEY_HERE",
+        }),
+    )
+
+    ctx := context.Background()    
+    req := operations.GetSupplierAttachmentRequest{
+        AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+        ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
+        SupplierID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+    }
+
+    res, err := s.Suppliers.GetAttachment(ctx, req)
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.Attachment != nil {
+        // handle response
+    }
+}
+```
+
+## GetCreateUpdateModel
 
 Get create/update supplier model. Returns the expected data for the request payload.
 
@@ -207,7 +259,7 @@ func main() {
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     }
 
-    res, err := s.Suppliers.GetCreateUpdateSuppliersModel(ctx, req)
+    res, err := s.Suppliers.GetCreateUpdateModel(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
@@ -218,49 +270,9 @@ func main() {
 }
 ```
 
-## GetSupplier
+## List
 
-Gets a single supplier corresponding to the given ID.
-
-### Example Usage
-
-```go
-package main
-
-import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/accounting"
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
-)
-
-func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
-        }),
-    )
-
-    ctx := context.Background()    
-    req := operations.GetSupplierRequest{
-        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        SupplierID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    }
-
-    res, err := s.Suppliers.GetSupplier(ctx, req)
-    if err != nil {
-        log.Fatal(err)
-    }
-
-    if res.Supplier != nil {
-        // handle response
-    }
-}
-```
-
-## GetSupplierAttachment
-
-Get supplier attachment
+Gets the latest suppliers for a company, with pagination
 
 ### Example Usage
 
@@ -282,25 +294,26 @@ func main() {
     )
 
     ctx := context.Background()    
-    req := operations.GetSupplierAttachmentRequest{
-        AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+    req := operations.ListSuppliersRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        SupplierID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+        OrderBy: codataccounting.String("-modifiedDate"),
+        Page: 1,
+        PageSize: codataccounting.Int(100),
+        Query: codataccounting.String("blanditiis"),
     }
 
-    res, err := s.Suppliers.GetSupplierAttachment(ctx, req)
+    res, err := s.Suppliers.List(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.Attachment != nil {
+    if res.Suppliers != nil {
         // handle response
     }
 }
 ```
 
-## ListSupplierAttachments
+## ListAttachments
 
 Get supplier attachments
 
@@ -330,7 +343,7 @@ func main() {
         SupplierID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     }
 
-    res, err := s.Suppliers.ListSupplierAttachments(ctx, req)
+    res, err := s.Suppliers.ListAttachments(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
@@ -341,52 +354,9 @@ func main() {
 }
 ```
 
-## ListSuppliers
+## Update
 
-Gets the latest suppliers for a company, with pagination
-
-### Example Usage
-
-```go
-package main
-
-import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/accounting"
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
-)
-
-func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
-        }),
-    )
-
-    ctx := context.Background()    
-    req := operations.ListSuppliersRequest{
-        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        OrderBy: codataccounting.String("-modifiedDate"),
-        Page: 1,
-        PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("expedita"),
-    }
-
-    res, err := s.Suppliers.ListSuppliers(ctx, req)
-    if err != nil {
-        log.Fatal(err)
-    }
-
-    if res.Suppliers != nil {
-        // handle response
-    }
-}
-```
-
-## PutSupplier
-
-Push supplier
+Update supplier
 
 Required data may vary by integration. To see what data to post, first call [Get create/update supplier model](https://docs.codat.io/accounting-api#/operations/get-create-update-suppliers-model).
 
@@ -415,76 +385,82 @@ func main() {
     )
 
     ctx := context.Background()    
-    req := operations.PutSupplierRequest{
+    req := operations.UpdateSupplierRequest{
         Supplier: &shared.Supplier{
             Addresses: []shared.Addressesitems{
                 shared.Addressesitems{
-                    City: codataccounting.String("Missoula"),
-                    Country: codataccounting.String("Tuvalu"),
-                    Line1: codataccounting.String("eos"),
-                    Line2: codataccounting.String("facere"),
-                    PostalCode: codataccounting.String("97933"),
-                    Region: codataccounting.String("esse"),
+                    City: codataccounting.String("Lake Gabriellashire"),
+                    Country: codataccounting.String("Afghanistan"),
+                    Line1: codataccounting.String("perferendis"),
+                    Line2: codataccounting.String("aspernatur"),
+                    PostalCode: codataccounting.String("04820"),
+                    Region: codataccounting.String("dolore"),
                     Type: shared.AddressTypeEnumBilling,
                 },
                 shared.Addressesitems{
-                    City: codataccounting.String("New Sabrynachester"),
-                    Country: codataccounting.String("Malta"),
-                    Line1: codataccounting.String("quam"),
-                    Line2: codataccounting.String("ad"),
-                    PostalCode: codataccounting.String("16550-1516"),
-                    Region: codataccounting.String("enim"),
+                    City: codataccounting.String("Mountain View"),
+                    Country: codataccounting.String("Armenia"),
+                    Line1: codataccounting.String("alias"),
+                    Line2: codataccounting.String("sit"),
+                    PostalCode: codataccounting.String("98150-1458"),
+                    Region: codataccounting.String("quidem"),
+                    Type: shared.AddressTypeEnumUnknown,
+                },
+                shared.Addressesitems{
+                    City: codataccounting.String("Watersfurt"),
+                    Country: codataccounting.String("Syrian Arab Republic"),
+                    Line1: codataccounting.String("suscipit"),
+                    Line2: codataccounting.String("ut"),
+                    PostalCode: codataccounting.String("40961"),
+                    Region: codataccounting.String("corporis"),
                     Type: shared.AddressTypeEnumUnknown,
                 },
             },
-            ContactName: codataccounting.String("delectus"),
-            DefaultCurrency: codataccounting.String("magnam"),
-            EmailAddress: codataccounting.String("illo"),
-            ID: codataccounting.String("cf6796ed-3d72-44c1-8f58-1e98cce3f716"),
+            ContactName: codataccounting.String("alias"),
+            DefaultCurrency: codataccounting.String("ratione"),
+            EmailAddress: codataccounting.String("sed"),
+            ID: codataccounting.String("3b2c09b9-2477-41f5-a69e-5b7ec7626649"),
             Metadata: &shared.Metadata{
                 IsDeleted: codataccounting.Bool(false),
             },
-            ModifiedDate: codataccounting.String("aliquid"),
-            Phone: codataccounting.String("286-282-6630"),
-            RegistrationNumber: codataccounting.String("optio"),
-            SourceModifiedDate: codataccounting.String("ex"),
-            Status: shared.SupplierStatusEnumArchived,
+            ModifiedDate: codataccounting.String("possimus"),
+            Phone: codataccounting.String("487-692-7981 x1448"),
+            RegistrationNumber: codataccounting.String("sit"),
+            SourceModifiedDate: codataccounting.String("expedita"),
+            Status: shared.SupplierStatusEnumActive,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "alias": map[string]interface{}{
-                        "assumenda": "totam",
-                        "minima": "explicabo",
-                        "soluta": "ad",
+                    "repellat": map[string]interface{}{
+                        "atque": "iure",
+                        "nulla": "aliquid",
+                        "asperiores": "similique",
                     },
-                    "adipisci": map[string]interface{}{
-                        "nesciunt": "eos",
-                        "placeat": "blanditiis",
-                        "cumque": "dignissimos",
+                    "veniam": map[string]interface{}{
+                        "vel": "earum",
+                        "corrupti": "temporibus",
+                        "libero": "sapiente",
                     },
-                    "placeat": map[string]interface{}{
-                        "eligendi": "esse",
-                    },
-                    "quasi": map[string]interface{}{
-                        "accusamus": "inventore",
+                    "praesentium": map[string]interface{}{
+                        "qui": "asperiores",
                     },
                 },
             },
-            SupplierName: codataccounting.String("voluptas"),
-            TaxNumber: codataccounting.String("molestiae"),
+            SupplierName: codataccounting.String("blanditiis"),
+            TaxNumber: codataccounting.String("nesciunt"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         ForceUpdate: codataccounting.Bool(false),
         SupplierID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        TimeoutInMinutes: codataccounting.Int(219664),
+        TimeoutInMinutes: codataccounting.Int(721212),
     }
 
-    res, err := s.Suppliers.PutSupplier(ctx, req)
+    res, err := s.Suppliers.Update(ctx, req)
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.PutSupplier200ApplicationJSONObject != nil {
+    if res.UpdateSupplierResponse != nil {
         // handle response
     }
 }

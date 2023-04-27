@@ -32,9 +32,9 @@ func newCompanyInfo(defaultClient, securityClient HTTPClient, serverURL, languag
 	}
 }
 
-// GetCompanyInfo - Get company info
+// Get - Get company info
 // Gets the latest basic info for a company.
-func (s *companyInfo) GetCompanyInfo(ctx context.Context, request operations.GetCompanyInfoRequest, opts ...operations.Option) (*operations.GetCompanyInfoResponse, error) {
+func (s *companyInfo) Get(ctx context.Context, request operations.GetCompanyInfoRequest, opts ...operations.Option) (*operations.GetCompanyInfoResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -113,9 +113,9 @@ func (s *companyInfo) GetCompanyInfo(ctx context.Context, request operations.Get
 	return res, nil
 }
 
-// PostSyncInfo - Refresh company info
+// Refresh - Refresh company info
 // Initiates the process of synchronising basic info for a company
-func (s *companyInfo) PostSyncInfo(ctx context.Context, request operations.PostSyncInfoRequest, opts ...operations.Option) (*operations.PostSyncInfoResponse, error) {
+func (s *companyInfo) Refresh(ctx context.Context, request operations.RefreshCompanyInfoRequest, opts ...operations.Option) (*operations.RefreshCompanyInfoResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -173,7 +173,7 @@ func (s *companyInfo) PostSyncInfo(ctx context.Context, request operations.PostS
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.PostSyncInfoResponse{
+	res := &operations.RefreshCompanyInfoResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
