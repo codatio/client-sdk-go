@@ -11,11 +11,16 @@ type FeatureStateEnum string
 
 const (
 	FeatureStateEnumRelease        FeatureStateEnum = "Release"
+	FeatureStateEnumAlpha          FeatureStateEnum = "Alpha"
 	FeatureStateEnumBeta           FeatureStateEnum = "Beta"
 	FeatureStateEnumDeprecated     FeatureStateEnum = "Deprecated"
 	FeatureStateEnumNotSupported   FeatureStateEnum = "NotSupported"
 	FeatureStateEnumNotImplemented FeatureStateEnum = "NotImplemented"
 )
+
+func (e FeatureStateEnum) ToPointer() *FeatureStateEnum {
+	return &e
+}
 
 func (e *FeatureStateEnum) UnmarshalJSON(data []byte) error {
 	var s string
@@ -24,6 +29,8 @@ func (e *FeatureStateEnum) UnmarshalJSON(data []byte) error {
 	}
 	switch s {
 	case "Release":
+		fallthrough
+	case "Alpha":
 		fallthrough
 	case "Beta":
 		fallthrough
