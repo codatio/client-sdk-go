@@ -38,8 +38,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.CreateBankTransactionsRequest{
+    ctx := context.Background()
+    res, err := s.BankAccountTransactions.CreateBankTransactions(ctx, operations.CreateBankTransactionsRequest{
         BankTransactions: &shared.BankTransactions{
             AccountID: codatbankfeeds.String("laborum"),
             Transactions: []shared.BankTransactionLine{
@@ -89,9 +89,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         TimeoutInMinutes: codatbankfeeds.Int(230533),
-    }
-
-    res, err := s.BankAccountTransactions.CreateBankTransactions(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -125,14 +123,12 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetCreateBankAccountModelRequest{
+    ctx := context.Background()
+    res, err := s.BankAccountTransactions.GetCreateBankAccountModel(ctx, operations.GetCreateBankAccountModelRequest{
         AccountID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-    }
-
-    res, err := s.BankAccountTransactions.GetCreateBankAccountModel(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -166,8 +162,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ListBankAccountTransactionsRequest{
+    ctx := context.Background()
+    res, err := s.BankAccountTransactions.ListBankAccountTransactions(ctx, operations.ListBankAccountTransactionsRequest{
         AccountID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -175,9 +171,7 @@ func main() {
         Page: 1,
         PageSize: codatbankfeeds.Int(100),
         Query: codatbankfeeds.String("deserunt"),
-    }
-
-    res, err := s.BankAccountTransactions.ListBankAccountTransactions(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
