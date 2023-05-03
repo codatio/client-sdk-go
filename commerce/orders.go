@@ -34,6 +34,7 @@ func newOrders(defaultClient, securityClient HTTPClient, serverURL, language, sd
 
 // List - List orders
 // Get a list of orders placed or held on the linked commerce platform
+
 func (s *orders) List(ctx context.Context, request operations.ListOrdersRequest, opts ...operations.Option) (*operations.ListOrdersResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

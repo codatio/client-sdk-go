@@ -29,11 +29,11 @@ func (e DisputeStatusEnum) ToPointer() *DisputeStatusEnum {
 }
 
 func (e *DisputeStatusEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "Won":
 		fallthrough
 	case "Lost":
@@ -55,9 +55,9 @@ func (e *DisputeStatusEnum) UnmarshalJSON(data []byte) error {
 	case "WaitingThirdParty":
 		fallthrough
 	case "Unknown":
-		*e = DisputeStatusEnum(s)
+		*e = DisputeStatusEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for DisputeStatusEnum: %s", s)
+		return fmt.Errorf("invalid value for DisputeStatusEnum: %v", v)
 	}
 }

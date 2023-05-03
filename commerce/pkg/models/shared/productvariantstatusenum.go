@@ -20,19 +20,19 @@ func (e ProductVariantStatusEnum) ToPointer() *ProductVariantStatusEnum {
 }
 
 func (e *ProductVariantStatusEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "Unknown":
 		fallthrough
 	case "Published":
 		fallthrough
 	case "Unpublished":
-		*e = ProductVariantStatusEnum(s)
+		*e = ProductVariantStatusEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ProductVariantStatusEnum: %s", s)
+		return fmt.Errorf("invalid value for ProductVariantStatusEnum: %v", v)
 	}
 }
