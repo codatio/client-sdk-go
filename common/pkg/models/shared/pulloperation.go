@@ -40,11 +40,11 @@ func (e PullOperationStatusEnum) ToPointer() *PullOperationStatusEnum {
 }
 
 func (e *PullOperationStatusEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "Initial":
 		fallthrough
 	case "Queued":
@@ -90,10 +90,10 @@ func (e *PullOperationStatusEnum) UnmarshalJSON(data []byte) error {
 	case "PermissionsError":
 		fallthrough
 	case "PrerequisiteNotMet":
-		*e = PullOperationStatusEnum(s)
+		*e = PullOperationStatusEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for PullOperationStatusEnum: %s", s)
+		return fmt.Errorf("invalid value for PullOperationStatusEnum: %v", v)
 	}
 }
 

@@ -39,9 +39,11 @@ func newPushData(defaultClient, securityClient HTTPClient, serverURL, language, 
 //
 // Codat tries not to limit users to pushing to a very limited number of standard categories, so we have implemented "options" endpoints, which allow us to expose to our clients the fields which are required to be pushed for a specific linked company, and the options which may be selected for each field.
 //
+//
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/) for integrations that support push (POST/PUT methods).
+
 func (s *pushData) GetModelOptions(ctx context.Context, request operations.GetCreateUpdateModelOptionsByDataTypeRequest, opts ...operations.Option) (*operations.GetCreateUpdateModelOptionsByDataTypeResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -123,6 +125,7 @@ func (s *pushData) GetModelOptions(ctx context.Context, request operations.GetCr
 
 // GetOperation - Get push operation
 // Retrieve push operation.
+
 func (s *pushData) GetOperation(ctx context.Context, request operations.GetPushOperationRequest, opts ...operations.Option) (*operations.GetPushOperationResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -204,6 +207,7 @@ func (s *pushData) GetOperation(ctx context.Context, request operations.GetPushO
 
 // ListOperations - List push operations
 // List push operation records.
+
 func (s *pushData) ListOperations(ctx context.Context, request operations.GetCompanyPushHistoryRequest, opts ...operations.Option) (*operations.GetCompanyPushHistoryResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

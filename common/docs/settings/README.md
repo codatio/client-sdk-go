@@ -68,8 +68,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.UpdateSyncSettingsRequestBody{
+    ctx := context.Background()
+    res, err := s.Settings.GetSyncSettings(ctx, operations.UpdateSyncSettingsRequestBody{
         ClientID: "367f7975-267b-439b-90c6-a6040ee680f3",
         OverridesDefaults: false,
         Settings: []shared.SyncSetting{
@@ -84,9 +84,7 @@ func main() {
                 SyncSchedule: 24,
             },
         },
-    }
-
-    res, err := s.Settings.GetSyncSettings(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -120,8 +118,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := shared.Profile{
+    ctx := context.Background()
+    res, err := s.Settings.UpdateProfile(ctx, shared.Profile{
         AlertAuthHeader: codatcommon.String("Bearer tXEiHiRK7XCtI8TNHbpGs1LI1pumdb4Cl1QIo7B2"),
         APIKey: codatcommon.String("sartANTjHAkLdbyDfaynoTQb7pkmj6hXHmnQKMrB"),
         ConfirmCompanyName: codatcommon.Bool(false),
@@ -134,9 +132,7 @@ func main() {
             "https://bobs-burgers.com",
             "https://bobs-burgers.com",
         },
-    }
-
-    res, err := s.Settings.UpdateProfile(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

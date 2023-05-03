@@ -34,6 +34,7 @@ func newRefreshData(defaultClient, securityClient HTTPClient, serverURL, languag
 
 // All - Queue pull operations
 // Refreshes all data types marked Fetch on first link.
+
 func (s *refreshData) All(ctx context.Context, request operations.RefreshCompanyDataRequest, opts ...operations.Option) (*operations.RefreshCompanyDataResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -120,6 +121,7 @@ func (s *refreshData) All(ctx context.Context, request operations.RefreshCompany
 // Queue a single pull operation for the given company and data type.
 //
 // This will bring updated data into Codat from the linked integration for you to view.
+
 func (s *refreshData) ByDataType(ctx context.Context, request operations.CreatePullOperationRequest, opts ...operations.Option) (*operations.CreatePullOperationResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

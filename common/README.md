@@ -27,13 +27,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := shared.CompanyRequestBody{
+    ctx := context.Background()
+    res, err := s.Companies.Create(ctx, shared.CompanyRequestBody{
         Description: codatcommon.String("corrupti"),
         Name: "Kelvin Sporer",
-    }
-
-    res, err := s.Companies.Create(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

@@ -33,12 +33,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetIntegrationRequest{
+    ctx := context.Background()
+    res, err := s.Integrations.Get(ctx, operations.GetIntegrationRequest{
         PlatformKey: "gbol",
-    }
-
-    res, err := s.Integrations.Get(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -72,12 +70,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetIntegrationsBrandingRequest{
+    ctx := context.Background()
+    res, err := s.Integrations.GetBranding(ctx, operations.GetIntegrationsBrandingRequest{
         PlatformKey: "gbol",
-    }
-
-    res, err := s.Integrations.GetBranding(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -111,15 +107,13 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ListIntegrationsRequest{
+    ctx := context.Background()
+    res, err := s.Integrations.List(ctx, operations.ListIntegrationsRequest{
         OrderBy: codatcommon.String("-modifiedDate"),
         Page: 1,
         PageSize: codatcommon.Int(100),
         Query: codatcommon.String("veritatis"),
-    }
-
-    res, err := s.Integrations.List(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

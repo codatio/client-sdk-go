@@ -35,13 +35,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := shared.CompanyRequestBody{
+    ctx := context.Background()
+    res, err := s.Companies.Create(ctx, shared.CompanyRequestBody{
         Description: codatcommon.String("corrupti"),
         Name: "Ben Mueller",
-    }
-
-    res, err := s.Companies.Create(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -76,12 +74,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.DeleteCompanyRequest{
+    ctx := context.Background()
+    res, err := s.Companies.Delete(ctx, operations.DeleteCompanyRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    }
-
-    res, err := s.Companies.Delete(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -115,12 +111,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetCompanyRequest{
+    ctx := context.Background()
+    res, err := s.Companies.Get(ctx, operations.GetCompanyRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    }
-
-    res, err := s.Companies.Get(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -154,15 +148,13 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ListCompaniesRequest{
+    ctx := context.Background()
+    res, err := s.Companies.List(ctx, operations.ListCompaniesRequest{
         OrderBy: codatcommon.String("-modifiedDate"),
         Page: 1,
         PageSize: codatcommon.Int(100),
         Query: codatcommon.String("iure"),
-    }
-
-    res, err := s.Companies.List(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -197,16 +189,14 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.UpdateCompanyRequest{
+    ctx := context.Background()
+    res, err := s.Companies.Update(ctx, operations.UpdateCompanyRequest{
         CompanyRequestBody: &shared.CompanyRequestBody{
             Description: codatcommon.String("magnam"),
             Name: "Larry Windler",
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    }
-
-    res, err := s.Companies.Update(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

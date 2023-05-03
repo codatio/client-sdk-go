@@ -36,15 +36,13 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.CreateDataConnectionRequest{
+    ctx := context.Background()
+    res, err := s.Connections.Create(ctx, operations.CreateDataConnectionRequest{
         RequestBody: &operations.CreateDataConnectionRequestBody{
             PlatformKey: codatcommon.String("molestiae"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    }
-
-    res, err := s.Connections.Create(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -79,13 +77,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.DeleteCompanyConnectionRequest{
+    ctx := context.Background()
+    res, err := s.Connections.Delete(ctx, operations.DeleteCompanyConnectionRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-    }
-
-    res, err := s.Connections.Delete(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -119,13 +115,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetCompanyConnectionRequest{
+    ctx := context.Background()
+    res, err := s.Connections.Get(ctx, operations.GetCompanyConnectionRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-    }
-
-    res, err := s.Connections.Get(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -159,16 +153,14 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ListCompanyConnectionsRequest{
+    ctx := context.Background()
+    res, err := s.Connections.List(ctx, operations.ListCompanyConnectionsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         OrderBy: codatcommon.String("-modifiedDate"),
         Page: 1,
         PageSize: codatcommon.Int(100),
         Query: codatcommon.String("minus"),
-    }
-
-    res, err := s.Connections.List(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -202,16 +194,14 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.UnlinkConnectionRequest{
+    ctx := context.Background()
+    res, err := s.Connections.UnlinkConnection(ctx, operations.UnlinkConnectionRequest{
         RequestBody: &operations.UnlinkConnectionRequestBody{
             Status: codatcommon.String("placeat"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-    }
-
-    res, err := s.Connections.UnlinkConnection(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -245,8 +235,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.UpdateConnectionAuthorizationRequest{
+    ctx := context.Background()
+    res, err := s.Connections.UpdateAuthorization(ctx, operations.UpdateConnectionAuthorizationRequest{
         RequestBody: map[string]string{
             "iusto": "excepturi",
             "nisi": "recusandae",
@@ -254,9 +244,7 @@ func main() {
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-    }
-
-    res, err := s.Connections.UpdateAuthorization(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

@@ -23,11 +23,11 @@ func (e FeatureStateEnum) ToPointer() *FeatureStateEnum {
 }
 
 func (e *FeatureStateEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "Release":
 		fallthrough
 	case "Alpha":
@@ -39,9 +39,9 @@ func (e *FeatureStateEnum) UnmarshalJSON(data []byte) error {
 	case "NotSupported":
 		fallthrough
 	case "NotImplemented":
-		*e = FeatureStateEnum(s)
+		*e = FeatureStateEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for FeatureStateEnum: %s", s)
+		return fmt.Errorf("invalid value for FeatureStateEnum: %v", v)
 	}
 }

@@ -32,12 +32,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.RefreshCompanyDataRequest{
+    ctx := context.Background()
+    res, err := s.RefreshData.All(ctx, operations.RefreshCompanyDataRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    }
-
-    res, err := s.RefreshData.All(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -74,14 +72,12 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.CreatePullOperationRequest{
+    ctx := context.Background()
+    res, err := s.RefreshData.ByDataType(ctx, operations.CreatePullOperationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: codatcommon.String("b7392059-2939-46fe-a759-6eb10faaa235"),
         DataType: shared.DataTypeEnumInvoices,
-    }
-
-    res, err := s.RefreshData.ByDataType(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
