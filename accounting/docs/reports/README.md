@@ -35,15 +35,13 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetAgedCreditorsReportRequest{
+    ctx := context.Background()
+    res, err := s.Reports.GetAgedCreditorsReport(ctx, operations.GetAgedCreditorsReportRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         NumberOfPeriods: codataccounting.Int(12),
         PeriodLengthDays: codataccounting.Int(30),
         ReportDate: types.MustDateFromString("2022-12-31"),
-    }
-
-    res, err := s.Reports.GetAgedCreditorsReport(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -78,15 +76,13 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetAgedDebtorsReportRequest{
+    ctx := context.Background()
+    res, err := s.Reports.GetAgedDebtorsReport(ctx, operations.GetAgedDebtorsReportRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         NumberOfPeriods: codataccounting.Int(12),
         PeriodLengthDays: codataccounting.Int(30),
         ReportDate: types.MustDateFromString("2022-12-31"),
-    }
-
-    res, err := s.Reports.GetAgedDebtorsReport(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -120,12 +116,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.IsAgedCreditorsReportAvailableRequest{
+    ctx := context.Background()
+    res, err := s.Reports.IsAgedCreditorsReportAvailable(ctx, operations.IsAgedCreditorsReportAvailableRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    }
-
-    res, err := s.Reports.IsAgedCreditorsReportAvailable(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -159,12 +153,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.IsAgedDebtorReportAvailableRequest{
+    ctx := context.Background()
+    res, err := s.Reports.IsAgedDebtorReportAvailable(ctx, operations.IsAgedDebtorReportAvailableRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    }
-
-    res, err := s.Reports.IsAgedDebtorReportAvailable(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

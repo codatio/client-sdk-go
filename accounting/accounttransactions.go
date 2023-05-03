@@ -34,6 +34,7 @@ func newAccountTransactions(defaultClient, securityClient HTTPClient, serverURL,
 
 // Get - Get account transaction
 // Returns a specific [account transaction](https://docs.codat.io/accounting-api#/schemas/AccountTransaction).
+
 func (s *accountTransactions) Get(ctx context.Context, request operations.GetAccountTransactionRequest, opts ...operations.Option) (*operations.GetAccountTransactionResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -115,6 +116,7 @@ func (s *accountTransactions) Get(ctx context.Context, request operations.GetAcc
 
 // List - List account transactions
 // Returns a list of [account transactions](https://docs.codat.io/accounting-api#/schemas/AccountTransaction) for a given company's connection.
+
 func (s *accountTransactions) List(ctx context.Context, request operations.ListAccountTransactionsRequest, opts ...operations.Option) (*operations.ListAccountTransactionsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

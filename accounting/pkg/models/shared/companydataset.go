@@ -45,20 +45,20 @@ func (e CompanyDatasetWeblinkTypeEnum) ToPointer() *CompanyDatasetWeblinkTypeEnu
 }
 
 func (e *CompanyDatasetWeblinkTypeEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "Website":
 		fallthrough
 	case "Social":
 		fallthrough
 	case "Unknown":
-		*e = CompanyDatasetWeblinkTypeEnum(s)
+		*e = CompanyDatasetWeblinkTypeEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for CompanyDatasetWeblinkTypeEnum: %s", s)
+		return fmt.Errorf("invalid value for CompanyDatasetWeblinkTypeEnum: %v", v)
 	}
 }
 

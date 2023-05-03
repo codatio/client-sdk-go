@@ -32,13 +32,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetPaymentMethodRequest{
+    ctx := context.Background()
+    res, err := s.PaymentMethods.Get(ctx, operations.GetPaymentMethodRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         PaymentMethodID: "ea",
-    }
-
-    res, err := s.PaymentMethods.Get(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -72,16 +70,14 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ListPaymentMethodsRequest{
+    ctx := context.Background()
+    res, err := s.PaymentMethods.List(ctx, operations.ListPaymentMethodsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: 1,
         PageSize: codataccounting.Int(100),
         Query: codataccounting.String("error"),
-    }
-
-    res, err := s.PaymentMethods.List(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

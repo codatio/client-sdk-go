@@ -32,13 +32,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetTrackingCategoryRequest{
+    ctx := context.Background()
+    res, err := s.TrackingCategories.Get(ctx, operations.GetTrackingCategoryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         TrackingCategoryID: "animi",
-    }
-
-    res, err := s.TrackingCategories.Get(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -72,16 +70,14 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ListTrackingCategoriesRequest{
+    ctx := context.Background()
+    res, err := s.TrackingCategories.List(ctx, operations.ListTrackingCategoriesRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: 1,
         PageSize: codataccounting.Int(100),
         Query: codataccounting.String("autem"),
-    }
-
-    res, err := s.TrackingCategories.List(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

@@ -21,19 +21,19 @@ func (e AddressTypeEnum) ToPointer() *AddressTypeEnum {
 }
 
 func (e *AddressTypeEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "Unknown":
 		fallthrough
 	case "Billing":
 		fallthrough
 	case "Delivery":
-		*e = AddressTypeEnum(s)
+		*e = AddressTypeEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for AddressTypeEnum: %s", s)
+		return fmt.Errorf("invalid value for AddressTypeEnum: %v", v)
 	}
 }

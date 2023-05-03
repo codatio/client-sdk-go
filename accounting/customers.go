@@ -41,6 +41,7 @@ func newCustomers(defaultClient, securityClient HTTPClient, serverURL, language,
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=customers) for integrations that support creating customers.
+
 func (s *customers) Create(ctx context.Context, request operations.CreateCustomerRequest, opts ...operations.Option) (*operations.CreateCustomerResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -133,6 +134,7 @@ func (s *customers) Create(ctx context.Context, request operations.CreateCustome
 
 // DownloadAttachment - Download customer attachment
 // Download customer attachment
+
 func (s *customers) DownloadAttachment(ctx context.Context, request operations.DownloadCustomerAttachmentRequest, opts ...operations.Option) (*operations.DownloadCustomerAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -214,6 +216,7 @@ func (s *customers) DownloadAttachment(ctx context.Context, request operations.D
 
 // Get - Get customer
 // Gets a single customer corresponding to the given ID.
+
 func (s *customers) Get(ctx context.Context, request operations.GetCustomerRequest, opts ...operations.Option) (*operations.GetCustomerResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -295,6 +298,7 @@ func (s *customers) Get(ctx context.Context, request operations.GetCustomerReque
 
 // GetAttachment - Get customer attachment
 // Get  customer attachment
+
 func (s *customers) GetAttachment(ctx context.Context, request operations.GetCustomerAttachmentRequest, opts ...operations.Option) (*operations.GetCustomerAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -382,6 +386,7 @@ func (s *customers) GetAttachment(ctx context.Context, request operations.GetCus
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=customers) for integrations that support creating and updating customers.
+
 func (s *customers) GetCreateUpdateModel(ctx context.Context, request operations.GetCreateUpdateCustomersModelRequest, opts ...operations.Option) (*operations.GetCreateUpdateCustomersModelResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -463,6 +468,7 @@ func (s *customers) GetCreateUpdateModel(ctx context.Context, request operations
 
 // List - List customers
 // Gets the latest customers for a company, with pagination
+
 func (s *customers) List(ctx context.Context, request operations.ListCustomersRequest, opts ...operations.Option) (*operations.ListCustomersResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -548,6 +554,7 @@ func (s *customers) List(ctx context.Context, request operations.ListCustomersRe
 
 // ListAttachments - List customer attachments
 // List customer attachments
+
 func (s *customers) ListAttachments(ctx context.Context, request operations.ListCustomerAttachmentsRequest, opts ...operations.Option) (*operations.ListCustomerAttachmentsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -635,6 +642,7 @@ func (s *customers) ListAttachments(ctx context.Context, request operations.List
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=customers) for integrations that support updating customers.
+
 func (s *customers) Update(ctx context.Context, request operations.UpdateCustomerRequest, opts ...operations.Option) (*operations.UpdateCustomerResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

@@ -42,8 +42,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.CreateBankAccountRequest{
+    ctx := context.Background()
+    res, err := s.BankAccounts.Create(ctx, operations.CreateBankAccountRequest{
         BankAccount: &shared.BankAccount{
             AccountName: codataccounting.String("natus"),
             AccountNumber: codataccounting.String("laboriosam"),
@@ -67,9 +67,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         TimeoutInMinutes: codataccounting.Int(244425),
-    }
-
-    res, err := s.BankAccounts.Create(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -103,14 +101,12 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetBankAccountRequest{
+    ctx := context.Background()
+    res, err := s.BankAccounts.Get(ctx, operations.GetBankAccountRequest{
         AccountID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-    }
-
-    res, err := s.BankAccounts.Get(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -150,13 +146,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetCreateUpdateBankAccountsModelRequest{
+    ctx := context.Background()
+    res, err := s.BankAccounts.GetCreateUpdateModel(ctx, operations.GetCreateUpdateBankAccountsModelRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-    }
-
-    res, err := s.BankAccounts.GetCreateUpdateModel(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -190,17 +184,15 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ListBankAccountsRequest{
+    ctx := context.Background()
+    res, err := s.BankAccounts.List(ctx, operations.ListBankAccountsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: 1,
         PageSize: codataccounting.Int(100),
         Query: codataccounting.String("error"),
-    }
-
-    res, err := s.BankAccounts.List(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -241,8 +233,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.UpdateBankAccountRequest{
+    ctx := context.Background()
+    res, err := s.BankAccounts.Update(ctx, operations.UpdateBankAccountRequest{
         BankAccount: &shared.BankAccount{
             AccountName: codataccounting.String("quia"),
             AccountNumber: codataccounting.String("quis"),
@@ -267,9 +259,7 @@ func main() {
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         ForceUpdate: codataccounting.Bool(false),
         TimeoutInMinutes: codataccounting.Int(64147),
-    }
-
-    res, err := s.BankAccounts.Update(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

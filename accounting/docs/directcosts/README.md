@@ -45,8 +45,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.CreateDirectCostRequest{
+    ctx := context.Background()
+    res, err := s.DirectCosts.Create(ctx, operations.CreateDirectCostRequest{
         DirectCost: &shared.DirectCost{
             ContactRef: &shared.ContactRef{
                 DataType: codataccounting.String("tempore"),
@@ -282,9 +282,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         TimeoutInMinutes: codataccounting.Int(898366),
-    }
-
-    res, err := s.DirectCosts.Create(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -318,15 +316,13 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.DownloadDirectCostAttachmentRequest{
+    ctx := context.Background()
+    res, err := s.DirectCosts.DownloadAttachment(ctx, operations.DownloadDirectCostAttachmentRequest{
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         DirectCostID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    }
-
-    res, err := s.DirectCosts.DownloadAttachment(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -360,14 +356,12 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetDirectCostRequest{
+    ctx := context.Background()
+    res, err := s.DirectCosts.Get(ctx, operations.GetDirectCostRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         DirectCostID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    }
-
-    res, err := s.DirectCosts.Get(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -401,15 +395,13 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetDirectCostAttachmentRequest{
+    ctx := context.Background()
+    res, err := s.DirectCosts.GetAttachment(ctx, operations.GetDirectCostAttachmentRequest{
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         DirectCostID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    }
-
-    res, err := s.DirectCosts.GetAttachment(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -449,13 +441,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetCreateDirectCostsModelRequest{
+    ctx := context.Background()
+    res, err := s.DirectCosts.GetCreateModel(ctx, operations.GetCreateDirectCostsModelRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-    }
-
-    res, err := s.DirectCosts.GetCreateModel(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -489,17 +479,15 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ListDirectCostsRequest{
+    ctx := context.Background()
+    res, err := s.DirectCosts.List(ctx, operations.ListDirectCostsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: 1,
         PageSize: codataccounting.Int(100),
         Query: codataccounting.String("culpa"),
-    }
-
-    res, err := s.DirectCosts.List(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -533,14 +521,12 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ListDirectCostAttachmentsRequest{
+    ctx := context.Background()
+    res, err := s.DirectCosts.ListAttachments(ctx, operations.ListDirectCostAttachmentsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         DirectCostID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    }
-
-    res, err := s.DirectCosts.ListAttachments(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -574,8 +560,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.UploadDirectCostAttachmentRequest{
+    ctx := context.Background()
+    res, err := s.DirectCosts.UploadAttachment(ctx, operations.UploadDirectCostAttachmentRequest{
         RequestBody: &operations.UploadDirectCostAttachmentRequestBody{
             Content: []byte("in"),
             RequestBody: "aliquid",
@@ -583,9 +569,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         DirectCostID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    }
-
-    res, err := s.DirectCosts.UploadAttachment(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

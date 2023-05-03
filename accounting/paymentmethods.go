@@ -34,6 +34,7 @@ func newPaymentMethods(defaultClient, securityClient HTTPClient, serverURL, lang
 
 // Get - Get payment method
 // Gets the specified payment method for a given company.
+
 func (s *paymentMethods) Get(ctx context.Context, request operations.GetPaymentMethodRequest, opts ...operations.Option) (*operations.GetPaymentMethodResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -115,6 +116,7 @@ func (s *paymentMethods) Get(ctx context.Context, request operations.GetPaymentM
 
 // List - List all payment methods
 // Gets the payment methods for a given company.
+
 func (s *paymentMethods) List(ctx context.Context, request operations.ListPaymentMethodsRequest, opts ...operations.Option) (*operations.ListPaymentMethodsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

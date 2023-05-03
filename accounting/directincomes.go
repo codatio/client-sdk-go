@@ -41,6 +41,7 @@ func newDirectIncomes(defaultClient, securityClient HTTPClient, serverURL, langu
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=directIncomes) for integrations that support creating direct incomes.
+
 func (s *directIncomes) Create(ctx context.Context, request operations.CreateDirectIncomeRequest, opts ...operations.Option) (*operations.CreateDirectIncomeResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -133,6 +134,7 @@ func (s *directIncomes) Create(ctx context.Context, request operations.CreateDir
 
 // DownloadAttachment - Download direct income attachment
 // Downloads an attachment for the specified direct income for a given company.
+
 func (s *directIncomes) DownloadAttachment(ctx context.Context, request operations.DownloadDirectIncomeAttachmentRequest, opts ...operations.Option) (*operations.DownloadDirectIncomeAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -214,6 +216,7 @@ func (s *directIncomes) DownloadAttachment(ctx context.Context, request operatio
 
 // Get - Get direct income
 // Gets the specified direct income for a given company and connection.
+
 func (s *directIncomes) Get(ctx context.Context, request operations.GetDirectIncomeRequest, opts ...operations.Option) (*operations.GetDirectIncomeResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -295,6 +298,7 @@ func (s *directIncomes) Get(ctx context.Context, request operations.GetDirectInc
 
 // GetAttachment - Get direct income attachment
 // Gets the specified direct income attachment for a given company.
+
 func (s *directIncomes) GetAttachment(ctx context.Context, request operations.GetDirectIncomeAttachmentRequest, opts ...operations.Option) (*operations.GetDirectIncomeAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -386,6 +390,7 @@ func (s *directIncomes) GetAttachment(ctx context.Context, request operations.Ge
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=directIncomes) for integrations that support creating direct incomes.
+
 func (s *directIncomes) GetCreateModel(ctx context.Context, request operations.GetCreateDirectIncomesModelRequest, opts ...operations.Option) (*operations.GetCreateDirectIncomesModelResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -467,6 +472,7 @@ func (s *directIncomes) GetCreateModel(ctx context.Context, request operations.G
 
 // List - List direct incomes
 // Lists the direct incomes for a given company.
+
 func (s *directIncomes) List(ctx context.Context, request operations.ListDirectIncomesRequest, opts ...operations.Option) (*operations.ListDirectIncomesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -552,6 +558,7 @@ func (s *directIncomes) List(ctx context.Context, request operations.ListDirectI
 
 // ListAttachments - List direct income attachments
 // Gets all attachments for the specified direct income for a given company.
+
 func (s *directIncomes) ListAttachments(ctx context.Context, request operations.ListDirectIncomeAttachmentsRequest, opts ...operations.Option) (*operations.ListDirectIncomeAttachmentsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -633,6 +640,7 @@ func (s *directIncomes) ListAttachments(ctx context.Context, request operations.
 
 // UploadAttachment - Create direct income attachment
 // Posts a new direct income attachment for a given company.
+
 func (s *directIncomes) UploadAttachment(ctx context.Context, request operations.UploadDirectIncomeAttachmentRequest, opts ...operations.Option) (*operations.UploadDirectIncomeAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

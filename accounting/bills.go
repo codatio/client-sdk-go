@@ -41,6 +41,7 @@ func newBills(defaultClient, securityClient HTTPClient, serverURL, language, sdk
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bills) for integrations that support creating a bill.
+
 func (s *bills) Create(ctx context.Context, request operations.CreateBillRequest, opts ...operations.Option) (*operations.CreateBillResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -137,6 +138,7 @@ func (s *bills) Create(ctx context.Context, request operations.CreateBillRequest
 // > **Supported Integrations**
 // >
 // > This functionality is currently only supported for our Oracle NetSuite and QuickBooks Online integrations. Check out our [public roadmap](https://portal.productboard.com/codat/7-public-product-roadmap/tabs/46-accounting-api) to see what we're building next, and to submit ideas for new features.
+
 func (s *bills) Delete(ctx context.Context, request operations.DeleteBillRequest, opts ...operations.Option) (*operations.DeleteBillResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -218,6 +220,7 @@ func (s *bills) Delete(ctx context.Context, request operations.DeleteBillRequest
 
 // DownloadAttachment - Download bill attachment
 // Download bill attachment
+
 func (s *bills) DownloadAttachment(ctx context.Context, request operations.DownloadBillAttachmentRequest, opts ...operations.Option) (*operations.DownloadBillAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -299,6 +302,7 @@ func (s *bills) DownloadAttachment(ctx context.Context, request operations.Downl
 
 // Get - Get bill
 // Get bill
+
 func (s *bills) Get(ctx context.Context, request operations.GetBillRequest, opts ...operations.Option) (*operations.GetBillResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -380,6 +384,7 @@ func (s *bills) Get(ctx context.Context, request operations.GetBillRequest, opts
 
 // GetAttachment - Get bill attachment
 // Get bill attachment
+
 func (s *bills) GetAttachment(ctx context.Context, request operations.GetBillAttachmentRequest, opts ...operations.Option) (*operations.GetBillAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -462,10 +467,10 @@ func (s *bills) GetAttachment(ctx context.Context, request operations.GetBillAtt
 // GetCreateUpdateModel - Get create/update bill model
 // Get create/update bill model.
 //
-//	> **Supported Integrations**
-//
+//  > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bills) for integrations that support creating and updating a bill.
+
 func (s *bills) GetCreateUpdateModel(ctx context.Context, request operations.GetCreateUpdateBillsModelRequest, opts ...operations.Option) (*operations.GetCreateUpdateBillsModelResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -547,6 +552,7 @@ func (s *bills) GetCreateUpdateModel(ctx context.Context, request operations.Get
 
 // List - List bills
 // Gets the latest bills for a company, with pagination
+
 func (s *bills) List(ctx context.Context, request operations.ListBillsRequest, opts ...operations.Option) (*operations.ListBillsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -632,6 +638,7 @@ func (s *bills) List(ctx context.Context, request operations.ListBillsRequest, o
 
 // ListAttachments - List bill attachments
 // List bill attachments
+
 func (s *bills) ListAttachments(ctx context.Context, request operations.ListBillAttachmentsRequest, opts ...operations.Option) (*operations.ListBillAttachmentsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -719,6 +726,7 @@ func (s *bills) ListAttachments(ctx context.Context, request operations.ListBill
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bills) for integrations that support updating a bill.
+
 func (s *bills) Update(ctx context.Context, request operations.UpdateBillRequest, opts ...operations.Option) (*operations.UpdateBillResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -811,6 +819,7 @@ func (s *bills) Update(ctx context.Context, request operations.UpdateBillRequest
 
 // UploadAttachment - Upload bill attachment
 // Upload bill attachment
+
 func (s *bills) UploadAttachment(ctx context.Context, request operations.UploadBillAttachmentRequest, opts ...operations.Option) (*operations.UploadBillAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

@@ -41,6 +41,7 @@ func newInvoices(defaultClient, securityClient HTTPClient, serverURL, language, 
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=invoices) for integrations that support creating invoices.
+
 func (s *invoices) Create(ctx context.Context, request operations.CreateInvoiceRequest, opts ...operations.Option) (*operations.CreateInvoiceResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -137,6 +138,7 @@ func (s *invoices) Create(ctx context.Context, request operations.CreateInvoiceR
 // > **Supported Integrations**
 // >
 // > This functionality is currently only supported for our QuickBooks Online integration. Check out our [public roadmap](https://portal.productboard.com/codat/7-public-product-roadmap/tabs/46-accounting-api) to see what we're building next, and to submit ideas for new features.
+
 func (s *invoices) Delete(ctx context.Context, request operations.DeleteInvoiceRequest, opts ...operations.Option) (*operations.DeleteInvoiceResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -218,6 +220,7 @@ func (s *invoices) Delete(ctx context.Context, request operations.DeleteInvoiceR
 
 // DownloadAttachment - Download invoice attachment
 // Download invoice attachments
+
 func (s *invoices) DownloadAttachment(ctx context.Context, request operations.DownloadInvoiceAttachmentRequest, opts ...operations.Option) (*operations.DownloadInvoiceAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -299,6 +302,7 @@ func (s *invoices) DownloadAttachment(ctx context.Context, request operations.Do
 
 // DownloadPdf - Get invoice as PDF
 // Get invoice as PDF
+
 func (s *invoices) DownloadPdf(ctx context.Context, request operations.DownloadInvoicePdfRequest, opts ...operations.Option) (*operations.DownloadInvoicePdfResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -380,6 +384,7 @@ func (s *invoices) DownloadPdf(ctx context.Context, request operations.DownloadI
 
 // Get - Get invoice
 // Get invoice
+
 func (s *invoices) Get(ctx context.Context, request operations.GetInvoiceRequest, opts ...operations.Option) (*operations.GetInvoiceResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -461,6 +466,7 @@ func (s *invoices) Get(ctx context.Context, request operations.GetInvoiceRequest
 
 // GetAttachment - Get invoice attachment
 // Get invoice attachment
+
 func (s *invoices) GetAttachment(ctx context.Context, request operations.GetInvoiceAttachmentRequest, opts ...operations.Option) (*operations.GetInvoiceAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -548,6 +554,7 @@ func (s *invoices) GetAttachment(ctx context.Context, request operations.GetInvo
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=invoices) for integrations that support creating and updating invoices.
+
 func (s *invoices) GetCreateUpdateModel(ctx context.Context, request operations.GetCreateUpdateInvoicesModelRequest, opts ...operations.Option) (*operations.GetCreateUpdateInvoicesModelResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -629,6 +636,7 @@ func (s *invoices) GetCreateUpdateModel(ctx context.Context, request operations.
 
 // List - List invoices
 // Gets the latest invoices for a company, with pagination
+
 func (s *invoices) List(ctx context.Context, request operations.ListInvoicesRequest, opts ...operations.Option) (*operations.ListInvoicesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -714,6 +722,7 @@ func (s *invoices) List(ctx context.Context, request operations.ListInvoicesRequ
 
 // ListAttachments - List invoice attachments
 // List invoice attachments
+
 func (s *invoices) ListAttachments(ctx context.Context, request operations.ListInvoiceAttachmentsRequest, opts ...operations.Option) (*operations.ListInvoiceAttachmentsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -801,6 +810,7 @@ func (s *invoices) ListAttachments(ctx context.Context, request operations.ListI
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=invoices) for integrations that support updating invoices.
+
 func (s *invoices) Update(ctx context.Context, request operations.UpdateInvoiceRequest, opts ...operations.Option) (*operations.UpdateInvoiceResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -893,6 +903,7 @@ func (s *invoices) Update(ctx context.Context, request operations.UpdateInvoiceR
 
 // UploadAttachment - Push invoice attachment
 // Push invoice attachment
+
 func (s *invoices) UploadAttachment(ctx context.Context, request operations.UploadInvoiceAttachmentRequest, opts ...operations.Option) (*operations.UploadInvoiceAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

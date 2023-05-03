@@ -47,8 +47,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.CreateBillRequest{
+    ctx := context.Background()
+    res, err := s.Bills.Create(ctx, operations.CreateBillRequest{
         Bill: &shared.Bill{
             AmountDue: codataccounting.Float64(7068.72),
             Currency: codataccounting.String("non"),
@@ -310,9 +310,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         TimeoutInMinutes: codataccounting.Int(209602),
-    }
-
-    res, err := s.Bills.Create(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -350,14 +348,12 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.DeleteBillRequest{
+    ctx := context.Background()
+    res, err := s.Bills.Delete(ctx, operations.DeleteBillRequest{
         BillID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-    }
-
-    res, err := s.Bills.Delete(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -391,15 +387,13 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.DownloadBillAttachmentRequest{
+    ctx := context.Background()
+    res, err := s.Bills.DownloadAttachment(ctx, operations.DownloadBillAttachmentRequest{
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         BillID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-    }
-
-    res, err := s.Bills.DownloadAttachment(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -433,13 +427,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetBillRequest{
+    ctx := context.Background()
+    res, err := s.Bills.Get(ctx, operations.GetBillRequest{
         BillID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    }
-
-    res, err := s.Bills.Get(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -473,15 +465,13 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetBillAttachmentRequest{
+    ctx := context.Background()
+    res, err := s.Bills.GetAttachment(ctx, operations.GetBillAttachmentRequest{
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         BillID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-    }
-
-    res, err := s.Bills.GetAttachment(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -519,13 +509,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetCreateUpdateBillsModelRequest{
+    ctx := context.Background()
+    res, err := s.Bills.GetCreateUpdateModel(ctx, operations.GetCreateUpdateBillsModelRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-    }
-
-    res, err := s.Bills.GetCreateUpdateModel(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -559,16 +547,14 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ListBillsRequest{
+    ctx := context.Background()
+    res, err := s.Bills.List(ctx, operations.ListBillsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: 1,
         PageSize: codataccounting.Int(100),
         Query: codataccounting.String("eaque"),
-    }
-
-    res, err := s.Bills.List(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -602,14 +588,12 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ListBillAttachmentsRequest{
+    ctx := context.Background()
+    res, err := s.Bills.ListAttachments(ctx, operations.ListBillAttachmentsRequest{
         BillID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-    }
-
-    res, err := s.Bills.ListAttachments(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -650,8 +634,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.UpdateBillRequest{
+    ctx := context.Background()
+    res, err := s.Bills.Update(ctx, operations.UpdateBillRequest{
         Bill: &shared.Bill{
             AmountDue: codataccounting.Float64(3474.6),
             Currency: codataccounting.String("amet"),
@@ -884,9 +868,7 @@ func main() {
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         ForceUpdate: codataccounting.Bool(false),
         TimeoutInMinutes: codataccounting.Int(990454),
-    }
-
-    res, err := s.Bills.Update(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -920,8 +902,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.UploadBillAttachmentRequest{
+    ctx := context.Background()
+    res, err := s.Bills.UploadAttachment(ctx, operations.UploadBillAttachmentRequest{
         RequestBody: &operations.UploadBillAttachmentRequestBody{
             Content: []byte("at"),
             RequestBody: "quibusdam",
@@ -929,9 +911,7 @@ func main() {
         BillID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-    }
-
-    res, err := s.Bills.UploadAttachment(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

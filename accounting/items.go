@@ -40,6 +40,7 @@ func newItems(defaultClient, securityClient HTTPClient, serverURL, language, sdk
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=items) for integrations that support creating items.
+
 func (s *items) Create(ctx context.Context, request operations.CreateItemRequest, opts ...operations.Option) (*operations.CreateItemResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -132,6 +133,7 @@ func (s *items) Create(ctx context.Context, request operations.CreateItemRequest
 
 // Get - Get item
 // Gets the specified item for a given company.
+
 func (s *items) Get(ctx context.Context, request operations.GetItemRequest, opts ...operations.Option) (*operations.GetItemResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -219,6 +221,7 @@ func (s *items) Get(ctx context.Context, request operations.GetItemRequest, opts
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=items) for integrations that support creating items.
+
 func (s *items) GetCreateModel(ctx context.Context, request operations.GetCreateItemsModelRequest, opts ...operations.Option) (*operations.GetCreateItemsModelResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -300,6 +303,7 @@ func (s *items) GetCreateModel(ctx context.Context, request operations.GetCreate
 
 // List - List items
 // Gets the items for a given company.
+
 func (s *items) List(ctx context.Context, request operations.ListItemsRequest, opts ...operations.Option) (*operations.ListItemsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

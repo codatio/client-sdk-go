@@ -41,6 +41,7 @@ func newSuppliers(defaultClient, securityClient HTTPClient, serverURL, language,
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=suppliers) for integrations that support creating suppliers.
+
 func (s *suppliers) Create(ctx context.Context, request operations.CreateSupplierRequest, opts ...operations.Option) (*operations.CreateSupplierResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -133,6 +134,7 @@ func (s *suppliers) Create(ctx context.Context, request operations.CreateSupplie
 
 // DownloadAttachment - Download supplier attachment
 // Download supplier attachment
+
 func (s *suppliers) DownloadAttachment(ctx context.Context, request operations.DownloadSupplierAttachmentRequest, opts ...operations.Option) (*operations.DownloadSupplierAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -214,6 +216,7 @@ func (s *suppliers) DownloadAttachment(ctx context.Context, request operations.D
 
 // Get - Get supplier
 // Gets a single supplier corresponding to the given ID.
+
 func (s *suppliers) Get(ctx context.Context, request operations.GetSupplierRequest, opts ...operations.Option) (*operations.GetSupplierResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -295,6 +298,7 @@ func (s *suppliers) Get(ctx context.Context, request operations.GetSupplierReque
 
 // GetAttachment - Get supplier attachment
 // Get supplier attachment
+
 func (s *suppliers) GetAttachment(ctx context.Context, request operations.GetSupplierAttachmentRequest, opts ...operations.Option) (*operations.GetSupplierAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -382,6 +386,7 @@ func (s *suppliers) GetAttachment(ctx context.Context, request operations.GetSup
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=suppliers) for integrations that support creating and updating suppliers.
+
 func (s *suppliers) GetCreateUpdateModel(ctx context.Context, request operations.GetCreateUpdateSuppliersModelRequest, opts ...operations.Option) (*operations.GetCreateUpdateSuppliersModelResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -463,6 +468,7 @@ func (s *suppliers) GetCreateUpdateModel(ctx context.Context, request operations
 
 // List - List suppliers
 // Gets the latest suppliers for a company, with pagination
+
 func (s *suppliers) List(ctx context.Context, request operations.ListSuppliersRequest, opts ...operations.Option) (*operations.ListSuppliersResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -548,6 +554,7 @@ func (s *suppliers) List(ctx context.Context, request operations.ListSuppliersRe
 
 // ListAttachments - List supplier attachments
 // Get supplier attachments
+
 func (s *suppliers) ListAttachments(ctx context.Context, request operations.ListSupplierAttachmentsRequest, opts ...operations.Option) (*operations.ListSupplierAttachmentsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -635,6 +642,7 @@ func (s *suppliers) ListAttachments(ctx context.Context, request operations.List
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=suppliers) for integrations that support updating suppliers.
+
 func (s *suppliers) Update(ctx context.Context, request operations.UpdateSupplierRequest, opts ...operations.Option) (*operations.UpdateSupplierResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

@@ -34,6 +34,7 @@ func newTaxRates(defaultClient, securityClient HTTPClient, serverURL, language, 
 
 // Get - Get tax rate
 // Gets the specified tax rate for a given company.
+
 func (s *taxRates) Get(ctx context.Context, request operations.GetTaxRateRequest, opts ...operations.Option) (*operations.GetTaxRateResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -115,6 +116,7 @@ func (s *taxRates) Get(ctx context.Context, request operations.GetTaxRateRequest
 
 // List - List all tax rates
 // Gets the latest tax rates for a given company.
+
 func (s *taxRates) List(ctx context.Context, request operations.ListTaxRatesRequest, opts ...operations.Option) (*operations.ListTaxRatesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

@@ -21,11 +21,11 @@ func (e BilledToTypeEnum) ToPointer() *BilledToTypeEnum {
 }
 
 func (e *BilledToTypeEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "Unknown":
 		fallthrough
 	case "NotApplicable":
@@ -33,9 +33,9 @@ func (e *BilledToTypeEnum) UnmarshalJSON(data []byte) error {
 	case "Customer":
 		fallthrough
 	case "Project":
-		*e = BilledToTypeEnum(s)
+		*e = BilledToTypeEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for BilledToTypeEnum: %s", s)
+		return fmt.Errorf("invalid value for BilledToTypeEnum: %v", v)
 	}
 }

@@ -41,8 +41,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.CreateJournalRequest{
+    ctx := context.Background()
+    res, err := s.Journals.Create(ctx, operations.CreateJournalRequest{
         Journal: &shared.Journal{
             CreatedOn: codataccounting.String("eos"),
             HasChildren: codataccounting.Bool(false),
@@ -61,9 +61,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         TimeoutInMinutes: codataccounting.Int(569651),
-    }
-
-    res, err := s.Journals.Create(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -97,13 +95,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetJournalRequest{
+    ctx := context.Background()
+    res, err := s.Journals.Get(ctx, operations.GetJournalRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         JournalID: "quod",
-    }
-
-    res, err := s.Journals.Get(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -143,13 +139,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetCreateJournalsModelRequest{
+    ctx := context.Background()
+    res, err := s.Journals.GetCreateModel(ctx, operations.GetCreateJournalsModelRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-    }
-
-    res, err := s.Journals.GetCreateModel(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -183,16 +177,14 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ListJournalsRequest{
+    ctx := context.Background()
+    res, err := s.Journals.List(ctx, operations.ListJournalsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: 1,
         PageSize: codataccounting.Int(100),
         Query: codataccounting.String("vel"),
-    }
-
-    res, err := s.Journals.List(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

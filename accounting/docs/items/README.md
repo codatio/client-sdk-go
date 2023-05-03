@@ -41,8 +41,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.CreateItemRequest{
+    ctx := context.Background()
+    res, err := s.Items.Create(ctx, operations.CreateItemRequest{
         Item: &shared.Item{
             BillItem: &shared.BillItem{
                 AccountRef: &shared.AccountRef{
@@ -86,9 +86,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         TimeoutInMinutes: codataccounting.Int(420757),
-    }
-
-    res, err := s.Items.Create(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -122,13 +120,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetItemRequest{
+    ctx := context.Background()
+    res, err := s.Items.Get(ctx, operations.GetItemRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ItemID: "ea",
-    }
-
-    res, err := s.Items.Get(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -168,13 +164,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetCreateItemsModelRequest{
+    ctx := context.Background()
+    res, err := s.Items.GetCreateModel(ctx, operations.GetCreateItemsModelRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-    }
-
-    res, err := s.Items.GetCreateModel(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -208,16 +202,14 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ListItemsRequest{
+    ctx := context.Background()
+    res, err := s.Items.List(ctx, operations.ListItemsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: 1,
         PageSize: codataccounting.Int(100),
         Query: codataccounting.String("nulla"),
-    }
-
-    res, err := s.Items.List(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
