@@ -35,6 +35,7 @@ func newFiles(defaultClient, securityClient HTTPClient, serverURL, language, sdk
 
 // DownloadFiles - Download all files for a company
 // You can specify a date to download specific files for.
+
 func (s *files) DownloadFiles(ctx context.Context, request operations.DownloadFilesRequest, opts ...operations.Option) (*operations.DownloadFilesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -120,6 +121,7 @@ func (s *files) DownloadFiles(ctx context.Context, request operations.DownloadFi
 
 // ListFiles - List all files uploaded by a company
 // Returns an array of files that have been uploaded for a given company.
+
 func (s *files) ListFiles(ctx context.Context, request operations.ListFilesRequest, opts ...operations.Option) (*operations.ListFilesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -201,6 +203,7 @@ func (s *files) ListFiles(ctx context.Context, request operations.ListFilesReque
 
 // UploadFiles - Upload files for a company
 // Upload files
+
 func (s *files) UploadFiles(ctx context.Context, request operations.UploadFilesRequest, opts ...operations.Option) (*operations.UploadFilesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
