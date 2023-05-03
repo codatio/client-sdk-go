@@ -35,14 +35,12 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetAccountCategoryRequest{
+    ctx := context.Background()
+    res, err := s.Categories.GetAccountCategory(ctx, operations.GetAccountCategoryRequest{
         AccountID: "provident",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-    }
-
-    res, err := s.Categories.GetAccountCategory(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -76,17 +74,15 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ListAccountsCategoriesRequest{
+    ctx := context.Background()
+    res, err := s.Categories.ListAccountsCategories(ctx, operations.ListAccountsCategoriesRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         OrderBy: codatassess.String("-modifiedDate"),
         Page: 1,
         PageSize: codatassess.Int(100),
         Query: codatassess.String("distinctio"),
-    }
-
-    res, err := s.Categories.ListAccountsCategories(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -155,8 +151,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.UpdateAccountCategoryRequest{
+    ctx := context.Background()
+    res, err := s.Categories.UpdateAccountCategory(ctx, operations.UpdateAccountCategoryRequest{
         ConfirmCategory: &shared.ConfirmCategory{
             Confirmed: shared.AccountCategory{
                 DetailType: codatassess.String("quibusdam"),
@@ -167,9 +163,7 @@ func main() {
         AccountID: "corrupti",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-    }
-
-    res, err := s.Categories.UpdateAccountCategory(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -204,8 +198,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.UpdateAccountsCategoriesRequest{
+    ctx := context.Background()
+    res, err := s.Categories.UpdateAccountsCategories(ctx, operations.UpdateAccountsCategoriesRequest{
         ConfirmCategories: &shared.ConfirmCategories{
             Categories: []shared.ConfirmCategoriesCategories{
                 shared.ConfirmCategoriesCategories{
@@ -252,9 +246,7 @@ func main() {
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-    }
-
-    res, err := s.Categories.UpdateAccountsCategories(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

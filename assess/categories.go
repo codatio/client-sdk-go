@@ -35,6 +35,7 @@ func newCategories(defaultClient, securityClient HTTPClient, serverURL, language
 
 // GetAccountCategory - Get suggested and/or confirmed category for a specific account
 // Get category for specific nominal account.
+
 func (s *categories) GetAccountCategory(ctx context.Context, request operations.GetAccountCategoryRequest, opts ...operations.Option) (*operations.GetAccountCategoryResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -116,6 +117,7 @@ func (s *categories) GetAccountCategory(ctx context.Context, request operations.
 
 // ListAccountsCategories - List suggested and confirmed account categories
 // Lists suggested and confirmed chart of account categories for the given company and data connection.
+
 func (s *categories) ListAccountsCategories(ctx context.Context, request operations.ListAccountsCategoriesRequest, opts ...operations.Option) (*operations.ListAccountsCategoriesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -201,6 +203,7 @@ func (s *categories) ListAccountsCategories(ctx context.Context, request operati
 
 // ListAvailableAccountCategories - List account categories
 // Lists available account categories Codat's categorisation engine can provide.
+
 func (s *categories) ListAvailableAccountCategories(ctx context.Context, opts ...operations.Option) (*operations.ListAvailableAccountCategoriesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -279,6 +282,7 @@ func (s *categories) ListAvailableAccountCategories(ctx context.Context, opts ..
 
 // UpdateAccountCategory - Patch account categories
 // Update category for a specific nominal account
+
 func (s *categories) UpdateAccountCategory(ctx context.Context, request operations.UpdateAccountCategoryRequest, opts ...operations.Option) (*operations.UpdateAccountCategoryResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -367,6 +371,7 @@ func (s *categories) UpdateAccountCategory(ctx context.Context, request operatio
 
 // UpdateAccountsCategories - Confirm categories for accounts
 // Comfirms the categories for all or a batch of accounts for a specific connection.
+
 func (s *categories) UpdateAccountsCategories(ctx context.Context, request operations.UpdateAccountsCategoriesRequest, opts ...operations.Option) (*operations.UpdateAccountsCategoriesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

@@ -46,14 +46,12 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetAccountsForEnhancedBalanceSheetRequest{
+    ctx := context.Background()
+    res, err := s.Reports.GetAccountsForEnhancedBalanceSheet(ctx, operations.GetAccountsForEnhancedBalanceSheetRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         NumberOfPeriods: 979587,
         ReportDate: "29-09-2020",
-    }
-
-    res, err := s.Reports.GetAccountsForEnhancedBalanceSheet(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -89,14 +87,12 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetAccountsForEnhancedProfitAndLossRequest{
+    ctx := context.Background()
+    res, err := s.Reports.GetAccountsForEnhancedProfitAndLoss(ctx, operations.GetAccountsForEnhancedProfitAndLossRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         NumberOfPeriods: 120196,
         ReportDate: "29-09-2020",
-    }
-
-    res, err := s.Reports.GetAccountsForEnhancedProfitAndLoss(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -131,8 +127,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetCommerceCustomerRetentionMetricsRequest{
+    ctx := context.Background()
+    res, err := s.Reports.GetCommerceCustomerRetentionMetrics(ctx, operations.GetCommerceCustomerRetentionMetricsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         IncludeDisplayNames: codatassess.Bool(false),
@@ -140,9 +136,7 @@ func main() {
         PeriodLength: 296140,
         PeriodUnit: shared.PeriodUnitEnumWeek,
         ReportDate: "29-09-2020",
-    }
-
-    res, err := s.Reports.GetCommerceCustomerRetentionMetrics(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -177,8 +171,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetCommerceLifetimeValueMetricsRequest{
+    ctx := context.Background()
+    res, err := s.Reports.GetCommerceLifetimeValueMetrics(ctx, operations.GetCommerceLifetimeValueMetricsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         IncludeDisplayNames: codatassess.Bool(false),
@@ -186,9 +180,7 @@ func main() {
         PeriodLength: 688661,
         PeriodUnit: shared.PeriodUnitEnumWeek,
         ReportDate: "29-09-2020",
-    }
-
-    res, err := s.Reports.GetCommerceLifetimeValueMetrics(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -223,8 +215,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetCommerceOrdersMetricsRequest{
+    ctx := context.Background()
+    res, err := s.Reports.GetCommerceOrdersMetrics(ctx, operations.GetCommerceOrdersMetricsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         IncludeDisplayNames: codatassess.Bool(false),
@@ -232,9 +224,7 @@ func main() {
         PeriodLength: 414263,
         PeriodUnit: shared.PeriodUnitEnumYear,
         ReportDate: "29-09-2020",
-    }
-
-    res, err := s.Reports.GetCommerceOrdersMetrics(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -269,8 +259,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetCommerceRefundsMetricsRequest{
+    ctx := context.Background()
+    res, err := s.Reports.GetCommerceRefundsMetrics(ctx, operations.GetCommerceRefundsMetricsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         IncludeDisplayNames: codatassess.Bool(false),
@@ -278,9 +268,7 @@ func main() {
         PeriodLength: 216822,
         PeriodUnit: shared.PeriodUnitEnumMonth,
         ReportDate: "29-09-2020",
-    }
-
-    res, err := s.Reports.GetCommerceRefundsMetrics(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -315,8 +303,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetCommerceRevenueMetricsRequest{
+    ctx := context.Background()
+    res, err := s.Reports.GetCommerceRevenueMetrics(ctx, operations.GetCommerceRevenueMetricsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         IncludeDisplayNames: codatassess.Bool(false),
@@ -324,9 +312,7 @@ func main() {
         PeriodLength: 566602,
         PeriodUnit: shared.PeriodUnitEnumYear,
         ReportDate: "29-09-2020",
-    }
-
-    res, err := s.Reports.GetCommerceRevenueMetrics(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -360,17 +346,15 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetEnhancedBalanceSheetRequest{
+    ctx := context.Background()
+    res, err := s.Reports.GetEnhancedBalanceSheet(ctx, operations.GetEnhancedBalanceSheetRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         IncludeDisplayNames: codatassess.Bool(false),
         NumberOfPeriods: 265389,
         PeriodLength: 508969,
         ReportDate: "29-09-2020",
-    }
-
-    res, err := s.Reports.GetEnhancedBalanceSheet(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -404,15 +388,13 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetEnhancedCashFlowTransactionsRequest{
+    ctx := context.Background()
+    res, err := s.Reports.GetEnhancedCashFlowTransactions(ctx, operations.GetEnhancedCashFlowTransactionsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         Page: 1,
         PageSize: codatassess.Int(100),
         Query: codatassess.String("rem"),
-    }
-
-    res, err := s.Reports.GetEnhancedCashFlowTransactions(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -446,17 +428,15 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetEnhancedFinancialMetricsRequest{
+    ctx := context.Background()
+    res, err := s.Reports.GetEnhancedFinancialMetrics(ctx, operations.GetEnhancedFinancialMetricsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         NumberOfPeriods: 916723,
         PeriodLength: 93940,
         ReportDate: "29-09-2020",
         ShowMetricInputs: codatassess.Bool(false),
-    }
-
-    res, err := s.Reports.GetEnhancedFinancialMetrics(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -490,15 +470,13 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetEnhancedInvoicesReportRequest{
+    ctx := context.Background()
+    res, err := s.Reports.GetEnhancedInvoicesReport(ctx, operations.GetEnhancedInvoicesReportRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         Page: 1,
         PageSize: codatassess.Int(100),
         Query: codatassess.String("repudiandae"),
-    }
-
-    res, err := s.Reports.GetEnhancedInvoicesReport(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -532,17 +510,15 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetEnhancedProfitAndLossRequest{
+    ctx := context.Background()
+    res, err := s.Reports.GetEnhancedProfitAndLoss(ctx, operations.GetEnhancedProfitAndLossRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         IncludeDisplayNames: codatassess.Bool(false),
         NumberOfPeriods: 575947,
         PeriodLength: 83112,
         ReportDate: "29-09-2020",
-    }
-
-    res, err := s.Reports.GetEnhancedProfitAndLoss(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -576,13 +552,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetRecurringRevenueMetricsRequest{
+    ctx := context.Background()
+    res, err := s.Reports.GetRecurringRevenueMetrics(ctx, operations.GetRecurringRevenueMetricsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-    }
-
-    res, err := s.Reports.GetRecurringRevenueMetrics(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -616,13 +590,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.RequestRecurringRevenueMetricsRequest{
+    ctx := context.Background()
+    res, err := s.Reports.RequestRecurringRevenueMetrics(ctx, operations.RequestRecurringRevenueMetricsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-    }
-
-    res, err := s.Reports.RequestRecurringRevenueMetrics(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

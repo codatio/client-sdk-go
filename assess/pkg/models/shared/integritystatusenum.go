@@ -22,11 +22,11 @@ func (e IntegrityStatusEnum) ToPointer() *IntegrityStatusEnum {
 }
 
 func (e *IntegrityStatusEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "Unknown":
 		fallthrough
 	case "DoesNotExist":
@@ -34,9 +34,9 @@ func (e *IntegrityStatusEnum) UnmarshalJSON(data []byte) error {
 	case "Error":
 		fallthrough
 	case "Complete":
-		*e = IntegrityStatusEnum(s)
+		*e = IntegrityStatusEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for IntegrityStatusEnum: %s", s)
+		return fmt.Errorf("invalid value for IntegrityStatusEnum: %v", v)
 	}
 }
