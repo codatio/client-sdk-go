@@ -29,12 +29,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := shared.CreateCompany{
+    ctx := context.Background()
+    res, err := s.CompanyManagement.CreateCompany(ctx, shared.CreateCompany{
         Name: "Bob's Burgers",
-    }
-
-    res, err := s.CompanyManagement.CreateCompany(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

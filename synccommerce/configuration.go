@@ -34,6 +34,7 @@ func newConfiguration(defaultClient, securityClient HTTPClient, serverURL, langu
 
 // GetConfiguration - Retrieve config preferences set for a company.
 // Retrieve current config preferences.
+
 func (s *configuration) GetConfiguration(ctx context.Context, request operations.GetConfigurationRequest, opts ...operations.Option) (*operations.GetConfigurationResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -115,6 +116,7 @@ func (s *configuration) GetConfiguration(ctx context.Context, request operations
 
 // GetSyncStatus - Get status for a company's syncs
 // Check the sync history and sync status for a company.
+
 func (s *configuration) GetSyncStatus(ctx context.Context, request operations.GetSyncStatusRequest, opts ...operations.Option) (*operations.GetSyncStatusResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -187,6 +189,7 @@ func (s *configuration) GetSyncStatus(ctx context.Context, request operations.Ge
 
 // SetConfiguration - Create or update configuration.
 // Make changes to configuration preferences.
+
 func (s *configuration) SetConfiguration(ctx context.Context, request operations.SetConfigurationRequest, opts ...operations.Option) (*operations.SetConfigurationResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

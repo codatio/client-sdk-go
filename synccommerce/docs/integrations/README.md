@@ -32,12 +32,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetIntegrationBrandingRequest{
+    ctx := context.Background()
+    res, err := s.Integrations.GetIntegrationBranding(ctx, operations.GetIntegrationBrandingRequest{
         PlatformKey: "quibusdam",
-    }
-
-    res, err := s.Integrations.GetIntegrationBranding(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -71,15 +69,13 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ListIntegrationsRequest{
+    ctx := context.Background()
+    res, err := s.Integrations.ListIntegrations(ctx, operations.ListIntegrationsRequest{
         OrderBy: codatsynccommerce.String("-modifiedDate"),
         Page: 1,
         PageSize: codatsynccommerce.Int(100),
         Query: codatsynccommerce.String("unde"),
-    }
-
-    res, err := s.Integrations.ListIntegrations(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

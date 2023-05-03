@@ -22,11 +22,11 @@ func (e DataConnectionStatusEnum) ToPointer() *DataConnectionStatusEnum {
 }
 
 func (e *DataConnectionStatusEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "PendingAuth":
 		fallthrough
 	case "Linked":
@@ -34,9 +34,9 @@ func (e *DataConnectionStatusEnum) UnmarshalJSON(data []byte) error {
 	case "Unlinked":
 		fallthrough
 	case "Deauthorized":
-		*e = DataConnectionStatusEnum(s)
+		*e = DataConnectionStatusEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for DataConnectionStatusEnum: %s", s)
+		return fmt.Errorf("invalid value for DataConnectionStatusEnum: %v", v)
 	}
 }
