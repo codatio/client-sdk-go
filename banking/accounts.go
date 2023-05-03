@@ -34,6 +34,7 @@ func newAccounts(defaultClient, securityClient HTTPClient, serverURL, language, 
 
 // Get - Get account
 // Gets a specified bank account for a given company
+
 func (s *accounts) Get(ctx context.Context, request operations.GetAccountRequest, opts ...operations.Option) (*operations.GetAccountResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -115,6 +116,7 @@ func (s *accounts) Get(ctx context.Context, request operations.GetAccountRequest
 
 // List - List accounts
 // Gets a list of all bank accounts of the SMB, with rich data like balances, account numbers and institutions holdingthe accounts.
+
 func (s *accounts) List(ctx context.Context, request operations.ListAccountsRequest, opts ...operations.Option) (*operations.ListAccountsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

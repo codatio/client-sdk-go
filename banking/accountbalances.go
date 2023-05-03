@@ -34,6 +34,7 @@ func newAccountBalances(defaultClient, securityClient HTTPClient, serverURL, lan
 
 // List - List account balances
 // Gets a list of balances for a bank account including end-of-day batch balance or running balances per transaction.
+
 func (s *accountBalances) List(ctx context.Context, request operations.ListAccountBalancesRequest, opts ...operations.Option) (*operations.ListAccountBalancesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
