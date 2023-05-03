@@ -31,12 +31,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetMappingOptionsRequest{
+    ctx := context.Background()
+    res, err := s.MappingOptions.GetMappingOptions(ctx, operations.GetMappingOptionsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    }
-
-    res, err := s.MappingOptions.GetMappingOptions(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

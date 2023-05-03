@@ -34,6 +34,7 @@ func newSyncStatus(defaultClient, securityClient HTTPClient, serverURL, language
 
 // GetLastSuccessfulSync - Last successful sync
 // Gets the status of the last successfull sync
+
 func (s *syncStatus) GetLastSuccessfulSync(ctx context.Context, request operations.GetLastSuccessfulSyncRequest, opts ...operations.Option) (*operations.GetLastSuccessfulSyncResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -115,6 +116,7 @@ func (s *syncStatus) GetLastSuccessfulSync(ctx context.Context, request operatio
 
 // GetLatestSync - Latest sync status
 // Gets the latest sync status
+
 func (s *syncStatus) GetLatestSync(ctx context.Context, request operations.GetLatestSyncRequest, opts ...operations.Option) (*operations.GetLatestSyncResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -196,6 +198,7 @@ func (s *syncStatus) GetLatestSync(ctx context.Context, request operations.GetLa
 
 // GetSyncByID - Get Sync status
 // Get the sync status for a specified sync
+
 func (s *syncStatus) GetSyncByID(ctx context.Context, request operations.GetSyncByIDRequest, opts ...operations.Option) (*operations.GetSyncByIDResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -277,6 +280,7 @@ func (s *syncStatus) GetSyncByID(ctx context.Context, request operations.GetSync
 
 // ListSyncs - List sync statuses
 // Gets a list of sync statuses
+
 func (s *syncStatus) ListSyncs(ctx context.Context, request operations.ListSyncsRequest, opts ...operations.Option) (*operations.ListSyncsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

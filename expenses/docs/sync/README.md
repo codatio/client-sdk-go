@@ -32,8 +32,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.IntiateSyncRequest{
+    ctx := context.Background()
+    res, err := s.Sync.IntiateSync(ctx, operations.IntiateSyncRequest{
         PostSync: &shared.PostSync{
             DatasetIds: []string{
                 "96ed151a-05df-4c2d-9f7c-c78ca1ba928f",
@@ -41,9 +41,7 @@ func main() {
             },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    }
-
-    res, err := s.Sync.IntiateSync(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

@@ -34,6 +34,7 @@ func newConfiguration(defaultClient, securityClient HTTPClient, serverURL, langu
 
 // GetCompanyConfiguration - Get company configuration
 // Gets a companies expense sync configuration
+
 func (s *configuration) GetCompanyConfiguration(ctx context.Context, request operations.GetCompanyConfigurationRequest, opts ...operations.Option) (*operations.GetCompanyConfigurationResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -115,6 +116,7 @@ func (s *configuration) GetCompanyConfiguration(ctx context.Context, request ope
 
 // SaveCompanyConfiguration - Set company configuration
 // Sets a companies expense sync configuration
+
 func (s *configuration) SaveCompanyConfiguration(ctx context.Context, request operations.SaveCompanyConfigurationRequest, opts ...operations.Option) (*operations.SaveCompanyConfigurationResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
