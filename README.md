@@ -10,6 +10,10 @@
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge" /></a>
 </div>
 
+> **Alpha Release**
+> 
+> We are currently finalizing our design for the Go client library. Beta release coming very soon!
+
 ## Authentication
 
 Codat uses API keys to control access to the API.
