@@ -29,8 +29,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Companies.Create(ctx, shared.CompanyRequestBody{
-        Description: codatcommon.String("corrupti"),
-        Name: "Kelvin Sporer",
+        Description: codatcommon.String("Requested early access to the new financing scheme."),
+        Name: "Bank of Dave",
     })
     if err != nil {
         log.Fatal(err)

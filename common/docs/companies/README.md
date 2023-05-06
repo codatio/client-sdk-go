@@ -37,8 +37,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Companies.Create(ctx, shared.CompanyRequestBody{
-        Description: codatcommon.String("corrupti"),
-        Name: "Ben Mueller",
+        Description: codatcommon.String("Requested early access to the new financing scheme."),
+        Name: "Bank of Dave",
     })
     if err != nil {
         log.Fatal(err)
@@ -153,7 +153,7 @@ func main() {
         OrderBy: codatcommon.String("-modifiedDate"),
         Page: 1,
         PageSize: codatcommon.Int(100),
-        Query: codatcommon.String("iure"),
+        Query: codatcommon.String("corrupti"),
     })
     if err != nil {
         log.Fatal(err)
@@ -192,8 +192,8 @@ func main() {
     ctx := context.Background()
     res, err := s.Companies.Update(ctx, operations.UpdateCompanyRequest{
         CompanyRequestBody: &shared.CompanyRequestBody{
-            Description: codatcommon.String("magnam"),
-            Name: "Larry Windler",
+            Description: codatcommon.String("Requested early access to the new financing scheme."),
+            Name: "Bank of Dave",
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })

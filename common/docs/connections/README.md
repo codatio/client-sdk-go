@@ -39,7 +39,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Connections.Create(ctx, operations.CreateDataConnectionRequest{
         RequestBody: &operations.CreateDataConnectionRequestBody{
-            PlatformKey: codatcommon.String("molestiae"),
+            PlatformKey: codatcommon.String("provident"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
@@ -159,7 +159,7 @@ func main() {
         OrderBy: codatcommon.String("-modifiedDate"),
         Page: 1,
         PageSize: codatcommon.Int(100),
-        Query: codatcommon.String("minus"),
+        Query: codatcommon.String("distinctio"),
     })
     if err != nil {
         log.Fatal(err)
@@ -197,7 +197,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Connections.UnlinkConnection(ctx, operations.UnlinkConnectionRequest{
         RequestBody: &operations.UnlinkConnectionRequestBody{
-            Status: codatcommon.String("placeat"),
+            Status: codatcommon.String("quibusdam"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -238,9 +238,9 @@ func main() {
     ctx := context.Background()
     res, err := s.Connections.UpdateAuthorization(ctx, operations.UpdateConnectionAuthorizationRequest{
         RequestBody: map[string]string{
-            "iusto": "excepturi",
-            "nisi": "recusandae",
-            "temporibus": "ab",
+            "nulla": "corrupti",
+            "illum": "vel",
+            "error": "deserunt",
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",

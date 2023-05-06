@@ -114,7 +114,7 @@ func main() {
         OrderBy: codatcommon.String("-modifiedDate"),
         Page: 1,
         PageSize: codatcommon.Int(100),
-        Query: codatcommon.String("quis"),
+        Query: codatcommon.String("suscipit"),
     })
     if err != nil {
         log.Fatal(err)
