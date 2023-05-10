@@ -2,7 +2,11 @@
 
 package shared
 
-type PaymentLine struct {
+type BankingTransactionRef struct {
+	AccountID        *string  `json:"accountId,omitempty"`
+	AccountName      *string  `json:"accountName,omitempty"`
+	Amount           *float64 `json:"amount,omitempty"`
+	DataConnectionID *string  `json:"dataConnectionId,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -22,8 +26,7 @@ type PaymentLine struct {
 	// >
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	AllocatedOnDate *string `json:"allocatedOnDate,omitempty"`
-	// Amount in the payment currency.
-	Amount float64           `json:"amount"`
-	Links  []PaymentLineLink `json:"links,omitempty"`
+	Date        *string `json:"date,omitempty"`
+	Description *string `json:"description,omitempty"`
+	ID          *string `json:"id,omitempty"`
 }

@@ -53,11 +53,11 @@ func main() {
 
 ### [Categories](docs/categories/README.md)
 
-* [GetAccountCategory](docs/categories/README.md#getaccountcategory) - Get suggested and/or confirmed category for a specific account
-* [ListAccountsCategories](docs/categories/README.md#listaccountscategories) - List suggested and confirmed account categories
-* [ListAvailableAccountCategories](docs/categories/README.md#listavailableaccountcategories) - List account categories
-* [UpdateAccountCategory](docs/categories/README.md#updateaccountcategory) - Patch account categories
-* [UpdateAccountsCategories](docs/categories/README.md#updateaccountscategories) - Confirm categories for accounts
+* [~~GetAccountCategory~~](docs/categories/README.md#getaccountcategory) - Get suggested and/or confirmed category for a specific account :warning: **Deprecated**
+* [~~ListAccountsCategories~~](docs/categories/README.md#listaccountscategories) - List suggested and confirmed account categories :warning: **Deprecated**
+* [~~ListAvailableAccountCategories~~](docs/categories/README.md#listavailableaccountcategories) - List account categories :warning: **Deprecated**
+* [~~UpdateAccountCategory~~](docs/categories/README.md#updateaccountcategory) - Patch account categories :warning: **Deprecated**
+* [~~UpdateAccountsCategories~~](docs/categories/README.md#updateaccountscategories) - Confirm categories for accounts :warning: **Deprecated**
 
 ### [DataIntegrity](docs/dataintegrity/README.md)
 
@@ -67,7 +67,7 @@ func main() {
 
 ### [ExcelReports](docs/excelreports/README.md)
 
-* [DownloadExcelReport](docs/excelreports/README.md#downloadexcelreport) - Download generated excel report
+* [~~DownloadExcelReport~~](docs/excelreports/README.md#downloadexcelreport) - Download generated excel report :warning: **Deprecated**
 * [GenerateExcelReport](docs/excelreports/README.md#generateexcelreport) - Generate an Excel report
 * [GetAccountingMarketingMetrics](docs/excelreports/README.md#getaccountingmarketingmetrics) - Get the marketing metrics from an accounting source for a given company.
 * [GetExcelReport](docs/excelreports/README.md#getexcelreport) - Download generated excel report
@@ -82,11 +82,11 @@ func main() {
 * [GetCommerceOrdersMetrics](docs/reports/README.md#getcommerceordersmetrics) - Get order information for a specific company
 * [GetCommerceRefundsMetrics](docs/reports/README.md#getcommercerefundsmetrics) - Get the refunds information for a specific company
 * [GetCommerceRevenueMetrics](docs/reports/README.md#getcommercerevenuemetrics) - Commerce Revenue Metrics
-* [GetEnhancedBalanceSheet](docs/reports/README.md#getenhancedbalancesheet) - Enhanced Balance Sheet
+* [~~GetEnhancedBalanceSheet~~](docs/reports/README.md#getenhancedbalancesheet) - Enhanced Balance Sheet :warning: **Deprecated**
 * [GetEnhancedCashFlowTransactions](docs/reports/README.md#getenhancedcashflowtransactions) - Get enhanced cash flow report
-* [GetEnhancedFinancialMetrics](docs/reports/README.md#getenhancedfinancialmetrics) - List financial metrics
+* [~~GetEnhancedFinancialMetrics~~](docs/reports/README.md#getenhancedfinancialmetrics) - List financial metrics :warning: **Deprecated**
 * [GetEnhancedInvoicesReport](docs/reports/README.md#getenhancedinvoicesreport) - Enhanced Invoices Report
-* [GetEnhancedProfitAndLoss](docs/reports/README.md#getenhancedprofitandloss) - Enhanced Profit and Loss
+* [~~GetEnhancedProfitAndLoss~~](docs/reports/README.md#getenhancedprofitandloss) - Enhanced Profit and Loss :warning: **Deprecated**
 * [GetRecurringRevenueMetrics](docs/reports/README.md#getrecurringrevenuemetrics) - Get key metrics for subscription revenue
 * [RequestRecurringRevenueMetrics](docs/reports/README.md#requestrecurringrevenuemetrics) - Request production of key subscription revenue metrics
 <!-- End SDK Available Operations -->

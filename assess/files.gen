@@ -96,9 +96,7 @@ pkg/models/shared/enhancedinvoicesreport.go
 pkg/models/shared/enhancedinvoicereportitem.go
 pkg/models/shared/invoicestatusenum.go
 pkg/models/shared/payment.go
-pkg/models/shared/paymentline.go
-pkg/models/shared/paymentlinelink.go
-pkg/models/shared/paymentlinktypeenum.go
+pkg/models/shared/bankingtransactionref.go
 pkg/models/shared/customerref.go
 pkg/models/shared/security.go
 pkg/models/shared/accountcategoriesupdatedwebhook.go

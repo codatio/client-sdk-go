@@ -13,11 +13,11 @@ Data integrity is important
 * [GetCommerceOrdersMetrics](#getcommerceordersmetrics) - Get order information for a specific company
 * [GetCommerceRefundsMetrics](#getcommercerefundsmetrics) - Get the refunds information for a specific company
 * [GetCommerceRevenueMetrics](#getcommercerevenuemetrics) - Commerce Revenue Metrics
-* [GetEnhancedBalanceSheet](#getenhancedbalancesheet) - Enhanced Balance Sheet
+* [~~GetEnhancedBalanceSheet~~](#getenhancedbalancesheet) - Enhanced Balance Sheet :warning: **Deprecated**
 * [GetEnhancedCashFlowTransactions](#getenhancedcashflowtransactions) - Get enhanced cash flow report
-* [GetEnhancedFinancialMetrics](#getenhancedfinancialmetrics) - List financial metrics
+* [~~GetEnhancedFinancialMetrics~~](#getenhancedfinancialmetrics) - List financial metrics :warning: **Deprecated**
 * [GetEnhancedInvoicesReport](#getenhancedinvoicesreport) - Enhanced Invoices Report
-* [GetEnhancedProfitAndLoss](#getenhancedprofitandloss) - Enhanced Profit and Loss
+* [~~GetEnhancedProfitAndLoss~~](#getenhancedprofitandloss) - Enhanced Profit and Loss :warning: **Deprecated**
 * [GetRecurringRevenueMetrics](#getrecurringrevenuemetrics) - Get key metrics for subscription revenue
 * [RequestRecurringRevenueMetrics](#requestrecurringrevenuemetrics) - Request production of key subscription revenue metrics
 
@@ -323,9 +323,11 @@ func main() {
 }
 ```
 
-## GetEnhancedBalanceSheet
+## ~~GetEnhancedBalanceSheet~~
 
 Gets a fully categorized balance sheet statement for a given company, over one or more period(s).
+
+> :warning: **DEPRECATED**: this method will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
@@ -405,9 +407,11 @@ func main() {
 }
 ```
 
-## GetEnhancedFinancialMetrics
+## ~~GetEnhancedFinancialMetrics~~
 
 Gets all the available financial metrics for a given company, over one or more periods.
+
+> :warning: **DEPRECATED**: this method will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
@@ -487,9 +491,11 @@ func main() {
 }
 ```
 
-## GetEnhancedProfitAndLoss
+## ~~GetEnhancedProfitAndLoss~~
 
 Gets a fully categorized profit and loss statement for a given company, over one or more period(s).
+
+> :warning: **DEPRECATED**: this method will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 

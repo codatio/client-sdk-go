@@ -6,15 +6,17 @@ Downloadable reports
 
 ### Available Operations
 
-* [DownloadExcelReport](#downloadexcelreport) - Download generated excel report
+* [~~DownloadExcelReport~~](#downloadexcelreport) - Download generated excel report :warning: **Deprecated**
 * [GenerateExcelReport](#generateexcelreport) - Generate an Excel report
 * [GetAccountingMarketingMetrics](#getaccountingmarketingmetrics) - Get the marketing metrics from an accounting source for a given company.
 * [GetExcelReport](#getexcelreport) - Download generated excel report
 * [GetExcelReportGenerationStatus](#getexcelreportgenerationstatus) - Get status of Excel report
 
-## DownloadExcelReport
+## ~~DownloadExcelReport~~
 
 Download the previously generated Excel report to a local drive.
+
+> :warning: **DEPRECATED**: this method will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
@@ -39,7 +41,7 @@ func main() {
     ctx := context.Background()
     res, err := s.ExcelReports.DownloadExcelReport(ctx, operations.DownloadExcelReportRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ReportType: shared.ExcelReportTypeEnumAudit,
+        ReportType: shared.ExcelReportTypeEnumEnhancedFinancials,
     })
     if err != nil {
         log.Fatal(err)
@@ -78,7 +80,7 @@ func main() {
     ctx := context.Background()
     res, err := s.ExcelReports.GenerateExcelReport(ctx, operations.GenerateExcelReportRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ReportType: shared.ExcelReportTypeEnumAssess,
+        ReportType: shared.ExcelReportTypeEnumBanking,
     })
     if err != nil {
         log.Fatal(err)
@@ -162,7 +164,7 @@ func main() {
     ctx := context.Background()
     res, err := s.ExcelReports.GetExcelReport(ctx, operations.GetExcelReportRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ReportType: shared.ExcelReportTypeEnumAssess,
+        ReportType: shared.ExcelReportTypeEnumBanking,
     })
     if err != nil {
         log.Fatal(err)
@@ -201,7 +203,7 @@ func main() {
     ctx := context.Background()
     res, err := s.ExcelReports.GetExcelReportGenerationStatus(ctx, operations.GetExcelReportGenerationStatusRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ReportType: shared.ExcelReportTypeEnumAssess,
+        ReportType: shared.ExcelReportTypeEnumAudit,
     })
     if err != nil {
         log.Fatal(err)

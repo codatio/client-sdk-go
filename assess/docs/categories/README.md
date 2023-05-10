@@ -6,15 +6,17 @@ Categorisation
 
 ### Available Operations
 
-* [GetAccountCategory](#getaccountcategory) - Get suggested and/or confirmed category for a specific account
-* [ListAccountsCategories](#listaccountscategories) - List suggested and confirmed account categories
-* [ListAvailableAccountCategories](#listavailableaccountcategories) - List account categories
-* [UpdateAccountCategory](#updateaccountcategory) - Patch account categories
-* [UpdateAccountsCategories](#updateaccountscategories) - Confirm categories for accounts
+* [~~GetAccountCategory~~](#getaccountcategory) - Get suggested and/or confirmed category for a specific account :warning: **Deprecated**
+* [~~ListAccountsCategories~~](#listaccountscategories) - List suggested and confirmed account categories :warning: **Deprecated**
+* [~~ListAvailableAccountCategories~~](#listavailableaccountcategories) - List account categories :warning: **Deprecated**
+* [~~UpdateAccountCategory~~](#updateaccountcategory) - Patch account categories :warning: **Deprecated**
+* [~~UpdateAccountsCategories~~](#updateaccountscategories) - Confirm categories for accounts :warning: **Deprecated**
 
-## GetAccountCategory
+## ~~GetAccountCategory~~
 
 Get category for specific nominal account.
+
+> :warning: **DEPRECATED**: this method will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
@@ -51,9 +53,11 @@ func main() {
 }
 ```
 
-## ListAccountsCategories
+## ~~ListAccountsCategories~~
 
 Lists suggested and confirmed chart of account categories for the given company and data connection.
+
+> :warning: **DEPRECATED**: this method will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
@@ -93,9 +97,11 @@ func main() {
 }
 ```
 
-## ListAvailableAccountCategories
+## ~~ListAvailableAccountCategories~~
 
 Lists available account categories Codat's categorisation engine can provide. 
+
+> :warning: **DEPRECATED**: this method will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
@@ -127,9 +133,11 @@ func main() {
 }
 ```
 
-## UpdateAccountCategory
+## ~~UpdateAccountCategory~~
 
 Update category for a specific nominal account
+
+> :warning: **DEPRECATED**: this method will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
@@ -174,9 +182,11 @@ func main() {
 }
 ```
 
-## UpdateAccountsCategories
+## ~~UpdateAccountsCategories~~
 
 Comfirms the categories for all or a batch of accounts for a specific connection.
+
+> :warning: **DEPRECATED**: this method will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 

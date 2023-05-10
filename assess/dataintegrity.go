@@ -34,7 +34,6 @@ func newDataIntegrity(defaultClient, securityClient HTTPClient, serverURL, langu
 
 // GetDataIntegrityDetails - Lists data integrity details for date type
 // Gets record-by-record match results for a given company and datatype, optionally restricted by a Codat query string.
-
 func (s *dataIntegrity) GetDataIntegrityDetails(ctx context.Context, request operations.GetDataIntegrityDetailsRequest, opts ...operations.Option) (*operations.GetDataIntegrityDetailsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -120,7 +119,6 @@ func (s *dataIntegrity) GetDataIntegrityDetails(ctx context.Context, request ope
 
 // GetDataIntegrityStatus - Get data integrity status
 // Gets match status for a given company and datatype.
-
 func (s *dataIntegrity) GetDataIntegrityStatus(ctx context.Context, request operations.GetDataIntegrityStatusRequest, opts ...operations.Option) (*operations.GetDataIntegrityStatusResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -202,7 +200,6 @@ func (s *dataIntegrity) GetDataIntegrityStatus(ctx context.Context, request oper
 
 // GetDataIntegritySummaries - Get data integrity summary
 // Gets match summary for a given company and datatype, optionally restricted by a Codat query string.
-
 func (s *dataIntegrity) GetDataIntegritySummaries(ctx context.Context, request operations.GetDataIntegritySummariesRequest, opts ...operations.Option) (*operations.GetDataIntegritySummariesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

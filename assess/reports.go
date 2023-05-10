@@ -36,7 +36,6 @@ func newReports(defaultClient, securityClient HTTPClient, serverURL, language, s
 // The Enhanced Balance Sheet Accounts endpoint returns a list of categorized accounts that appear on a company’s Balance Sheet along with a balance per financial statement date.
 //
 // Codat suggests a category for each account automatically, but you can [change it](/docs/assess-categorizing-accounts-ecommerce-lending) to a more suitable one.
-
 func (s *reports) GetAccountsForEnhancedBalanceSheet(ctx context.Context, request operations.GetAccountsForEnhancedBalanceSheetRequest, opts ...operations.Option) (*operations.GetAccountsForEnhancedBalanceSheetResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -124,7 +123,6 @@ func (s *reports) GetAccountsForEnhancedBalanceSheet(ctx context.Context, reques
 // The Enhanced Profit and Loss Accounts endpoint returns a list of categorized accounts that appear on a company’s Profit and Loss. It also includes a balance per the financial statement date.
 //
 // Codat suggests a category for each account automatically, but you can [change it](/docs/assess-categorizing-accounts-ecommerce-lending) to a more suitable one.
-
 func (s *reports) GetAccountsForEnhancedProfitAndLoss(ctx context.Context, request operations.GetAccountsForEnhancedProfitAndLossRequest, opts ...operations.Option) (*operations.GetAccountsForEnhancedProfitAndLossResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -210,7 +208,6 @@ func (s *reports) GetAccountsForEnhancedProfitAndLoss(ctx context.Context, reque
 
 // GetCommerceCustomerRetentionMetrics - Get the customer retention metrics for a specific company.
 // Gets the customer retention metrics for a specific company connection, over one or more periods of time.
-
 func (s *reports) GetCommerceCustomerRetentionMetrics(ctx context.Context, request operations.GetCommerceCustomerRetentionMetricsRequest, opts ...operations.Option) (*operations.GetCommerceCustomerRetentionMetricsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -296,7 +293,6 @@ func (s *reports) GetCommerceCustomerRetentionMetrics(ctx context.Context, reque
 
 // GetCommerceLifetimeValueMetrics - Get the lifetime value metric for a specific company.
 // Gets the lifetime value metric for a specific company connection, over one or more periods of time.
-
 func (s *reports) GetCommerceLifetimeValueMetrics(ctx context.Context, request operations.GetCommerceLifetimeValueMetricsRequest, opts ...operations.Option) (*operations.GetCommerceLifetimeValueMetricsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -382,7 +378,6 @@ func (s *reports) GetCommerceLifetimeValueMetrics(ctx context.Context, request o
 
 // GetCommerceOrdersMetrics - Get order information for a specific company
 // Gets the order information for a specific company connection, over one or more periods of time.
-
 func (s *reports) GetCommerceOrdersMetrics(ctx context.Context, request operations.GetCommerceOrdersMetricsRequest, opts ...operations.Option) (*operations.GetCommerceOrdersMetricsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -468,7 +463,6 @@ func (s *reports) GetCommerceOrdersMetrics(ctx context.Context, request operatio
 
 // GetCommerceRefundsMetrics - Get the refunds information for a specific company
 // Gets the refunds information for a specific company connection, over one or more periods of time.
-
 func (s *reports) GetCommerceRefundsMetrics(ctx context.Context, request operations.GetCommerceRefundsMetricsRequest, opts ...operations.Option) (*operations.GetCommerceRefundsMetricsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -554,7 +548,6 @@ func (s *reports) GetCommerceRefundsMetrics(ctx context.Context, request operati
 
 // GetCommerceRevenueMetrics - Commerce Revenue Metrics
 // Get the revenue and revenue growth for a specific company connection, over one or more periods of time.
-
 func (s *reports) GetCommerceRevenueMetrics(ctx context.Context, request operations.GetCommerceRevenueMetricsRequest, opts ...operations.Option) (*operations.GetCommerceRevenueMetricsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -640,7 +633,8 @@ func (s *reports) GetCommerceRevenueMetrics(ctx context.Context, request operati
 
 // GetEnhancedBalanceSheet - Enhanced Balance Sheet
 // Gets a fully categorized balance sheet statement for a given company, over one or more period(s).
-
+//
+// Deprecated: this method will be removed in a future release, please migrate away from it as soon as possible.
 func (s *reports) GetEnhancedBalanceSheet(ctx context.Context, request operations.GetEnhancedBalanceSheetRequest, opts ...operations.Option) (*operations.GetEnhancedBalanceSheetResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -726,7 +720,6 @@ func (s *reports) GetEnhancedBalanceSheet(ctx context.Context, request operation
 
 // GetEnhancedCashFlowTransactions - Get enhanced cash flow report
 // The Enhanced Cash Flow Transactions endpoint provides a fully categorized list of banking transactions for a company. Accounts and transaction data are obtained from the company's banking data sources.
-
 func (s *reports) GetEnhancedCashFlowTransactions(ctx context.Context, request operations.GetEnhancedCashFlowTransactionsRequest, opts ...operations.Option) (*operations.GetEnhancedCashFlowTransactionsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -812,7 +805,8 @@ func (s *reports) GetEnhancedCashFlowTransactions(ctx context.Context, request o
 
 // GetEnhancedFinancialMetrics - List financial metrics
 // Gets all the available financial metrics for a given company, over one or more periods.
-
+//
+// Deprecated: this method will be removed in a future release, please migrate away from it as soon as possible.
 func (s *reports) GetEnhancedFinancialMetrics(ctx context.Context, request operations.GetEnhancedFinancialMetricsRequest, opts ...operations.Option) (*operations.GetEnhancedFinancialMetricsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -898,7 +892,6 @@ func (s *reports) GetEnhancedFinancialMetrics(ctx context.Context, request opera
 
 // GetEnhancedInvoicesReport - Enhanced Invoices Report
 // Gets a list of invoices linked to the corresponding banking transaction
-
 func (s *reports) GetEnhancedInvoicesReport(ctx context.Context, request operations.GetEnhancedInvoicesReportRequest, opts ...operations.Option) (*operations.GetEnhancedInvoicesReportResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -984,7 +977,8 @@ func (s *reports) GetEnhancedInvoicesReport(ctx context.Context, request operati
 
 // GetEnhancedProfitAndLoss - Enhanced Profit and Loss
 // Gets a fully categorized profit and loss statement for a given company, over one or more period(s).
-
+//
+// Deprecated: this method will be removed in a future release, please migrate away from it as soon as possible.
 func (s *reports) GetEnhancedProfitAndLoss(ctx context.Context, request operations.GetEnhancedProfitAndLossRequest, opts ...operations.Option) (*operations.GetEnhancedProfitAndLossResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -1070,7 +1064,6 @@ func (s *reports) GetEnhancedProfitAndLoss(ctx context.Context, request operatio
 
 // GetRecurringRevenueMetrics - Get key metrics for subscription revenue
 // Gets key metrics for subscription revenue.
-
 func (s *reports) GetRecurringRevenueMetrics(ctx context.Context, request operations.GetRecurringRevenueMetricsRequest, opts ...operations.Option) (*operations.GetRecurringRevenueMetricsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -1152,7 +1145,6 @@ func (s *reports) GetRecurringRevenueMetrics(ctx context.Context, request operat
 
 // RequestRecurringRevenueMetrics - Request production of key subscription revenue metrics
 // Request production of key subscription revenue metrics.
-
 func (s *reports) RequestRecurringRevenueMetrics(ctx context.Context, request operations.RequestRecurringRevenueMetricsRequest, opts ...operations.Option) (*operations.RequestRecurringRevenueMetricsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

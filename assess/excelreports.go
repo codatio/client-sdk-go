@@ -35,7 +35,8 @@ func newExcelReports(defaultClient, securityClient HTTPClient, serverURL, langua
 
 // DownloadExcelReport - Download generated excel report
 // Download the previously generated Excel report to a local drive.
-
+//
+// Deprecated: this method will be removed in a future release, please migrate away from it as soon as possible.
 func (s *excelReports) DownloadExcelReport(ctx context.Context, request operations.DownloadExcelReportRequest, opts ...operations.Option) (*operations.DownloadExcelReportResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -121,7 +122,6 @@ func (s *excelReports) DownloadExcelReport(ctx context.Context, request operatio
 
 // GenerateExcelReport - Generate an Excel report
 // Generate an Excel report which can subsequently be downloaded.
-
 func (s *excelReports) GenerateExcelReport(ctx context.Context, request operations.GenerateExcelReportRequest, opts ...operations.Option) (*operations.GenerateExcelReportResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -207,7 +207,6 @@ func (s *excelReports) GenerateExcelReport(ctx context.Context, request operatio
 
 // GetAccountingMarketingMetrics - Get the marketing metrics from an accounting source for a given company.
 // Request an Excel report for download.
-
 func (s *excelReports) GetAccountingMarketingMetrics(ctx context.Context, request operations.GetAccountingMarketingMetricsRequest, opts ...operations.Option) (*operations.GetAccountingMarketingMetricsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -293,7 +292,6 @@ func (s *excelReports) GetAccountingMarketingMetrics(ctx context.Context, reques
 
 // GetExcelReport - Download generated excel report
 // Download the previously generated Excel report to a local drive.
-
 func (s *excelReports) GetExcelReport(ctx context.Context, request operations.GetExcelReportRequest, opts ...operations.Option) (*operations.GetExcelReportResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -379,7 +377,6 @@ func (s *excelReports) GetExcelReport(ctx context.Context, request operations.Ge
 
 // GetExcelReportGenerationStatus - Get status of Excel report
 // Returns the status of the latest report requested.
-
 func (s *excelReports) GetExcelReportGenerationStatus(ctx context.Context, request operations.GetExcelReportGenerationStatusRequest, opts ...operations.Option) (*operations.GetExcelReportGenerationStatusResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
