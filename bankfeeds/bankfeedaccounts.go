@@ -34,6 +34,7 @@ func newBankFeedAccounts(defaultClient, securityClient HTTPClient, serverURL, la
 
 // CreateBankFeed - Create bank feed bank accounts
 // Put BankFeed BankAccounts for a single data source connected to a single company.
+
 func (s *bankFeedAccounts) CreateBankFeed(ctx context.Context, request operations.CreateBankFeedRequest, opts ...operations.Option) (*operations.CreateBankFeedResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -122,6 +123,7 @@ func (s *bankFeedAccounts) CreateBankFeed(ctx context.Context, request operation
 
 // GetBankFeeds - List bank feed bank accounts
 // Get BankFeed BankAccounts for a single data source connected to a single company.
+
 func (s *bankFeedAccounts) GetBankFeeds(ctx context.Context, request operations.GetBankFeedsRequest, opts ...operations.Option) (*operations.GetBankFeedsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -203,6 +205,7 @@ func (s *bankFeedAccounts) GetBankFeeds(ctx context.Context, request operations.
 
 // UpdateBankFeed - Update bank feed bank account
 // Update a single BankFeed BankAccount for a single data source connected to a single company.
+
 func (s *bankFeedAccounts) UpdateBankFeed(ctx context.Context, request operations.UpdateBankFeedRequest, opts ...operations.Option) (*operations.UpdateBankFeedResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

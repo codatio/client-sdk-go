@@ -17,8 +17,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.CreateBankTransactionsRequest{
+    ctx := context.Background()
+    res, err := s.BankAccountTransactions.CreateBankTransactions(ctx, operations.CreateBankTransactionsRequest{
         BankTransactions: &shared.BankTransactions{
             AccountID: codatbankfeeds.String("corrupti"),
             Transactions: []shared.BankTransactionLine{
@@ -68,9 +68,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         TimeoutInMinutes: codatbankfeeds.Int(110375),
-    }
-
-    res, err := s.BankAccountTransactions.CreateBankTransactions(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

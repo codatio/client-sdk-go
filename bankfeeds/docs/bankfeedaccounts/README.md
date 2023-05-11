@@ -34,8 +34,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.CreateBankFeedRequest{
+    ctx := context.Background()
+    res, err := s.BankFeedAccounts.CreateBankFeed(ctx, operations.CreateBankFeedRequest{
         RequestBody: []shared.BankFeedAccount{
             shared.BankFeedAccount{
                 AccountName: codatbankfeeds.String("vel"),
@@ -64,9 +64,7 @@ func main() {
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-    }
-
-    res, err := s.BankFeedAccounts.CreateBankFeed(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -100,13 +98,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetBankFeedsRequest{
+    ctx := context.Background()
+    res, err := s.BankFeedAccounts.GetBankFeeds(ctx, operations.GetBankFeedsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-    }
-
-    res, err := s.BankFeedAccounts.GetBankFeeds(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -141,8 +137,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.UpdateBankFeedRequest{
+    ctx := context.Background()
+    res, err := s.BankFeedAccounts.UpdateBankFeed(ctx, operations.UpdateBankFeedRequest{
         BankFeedAccount: &shared.BankFeedAccount{
             AccountName: codatbankfeeds.String("voluptatibus"),
             AccountNumber: codatbankfeeds.String("perferendis"),
@@ -158,9 +154,7 @@ func main() {
         AccountID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-    }
-
-    res, err := s.BankFeedAccounts.UpdateBankFeed(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
