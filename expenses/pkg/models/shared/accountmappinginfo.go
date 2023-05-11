@@ -23,11 +23,11 @@ func (e AccountMappingInfoAccountTypeEnum) ToPointer() *AccountMappingInfoAccoun
 }
 
 func (e *AccountMappingInfoAccountTypeEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "Asset":
 		fallthrough
 	case "Liability":
@@ -37,10 +37,10 @@ func (e *AccountMappingInfoAccountTypeEnum) UnmarshalJSON(data []byte) error {
 	case "Expense":
 		fallthrough
 	case "Equity":
-		*e = AccountMappingInfoAccountTypeEnum(s)
+		*e = AccountMappingInfoAccountTypeEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for AccountMappingInfoAccountTypeEnum: %s", s)
+		return fmt.Errorf("invalid value for AccountMappingInfoAccountTypeEnum: %v", v)
 	}
 }
 
@@ -62,11 +62,11 @@ func (e AccountMappingInfoValidTransactionTypesEnum) ToPointer() *AccountMapping
 }
 
 func (e *AccountMappingInfoValidTransactionTypesEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "Payment":
 		fallthrough
 	case "Refund":
@@ -82,10 +82,10 @@ func (e *AccountMappingInfoValidTransactionTypesEnum) UnmarshalJSON(data []byte)
 	case "AdjustmentIn":
 		fallthrough
 	case "AdjustmentOut":
-		*e = AccountMappingInfoValidTransactionTypesEnum(s)
+		*e = AccountMappingInfoValidTransactionTypesEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for AccountMappingInfoValidTransactionTypesEnum: %s", s)
+		return fmt.Errorf("invalid value for AccountMappingInfoValidTransactionTypesEnum: %v", v)
 	}
 }
 

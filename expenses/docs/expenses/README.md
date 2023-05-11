@@ -33,8 +33,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.CreateExpenseDatasetRequest{
+    ctx := context.Background()
+    res, err := s.Expenses.CreateExpenseDataset(ctx, operations.CreateExpenseDatasetRequest{
         CreateExpenseRequest: &shared.CreateExpenseRequest{
             Items: []shared.ExpenseTransaction{
                 shared.ExpenseTransaction{
@@ -295,9 +295,7 @@ func main() {
             },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    }
-
-    res, err := s.Expenses.CreateExpenseDataset(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -331,8 +329,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.UploadAttachmentRequest{
+    ctx := context.Background()
+    res, err := s.Expenses.UploadAttachment(ctx, operations.UploadAttachmentRequest{
         RequestBody: &operations.UploadAttachmentRequestBody{
             Content: []byte("placeat"),
             RequestBody: "voluptatum",
@@ -340,9 +338,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         SyncID: "6fb40d5e-b13e-11ed-afa1-0242ac120002",
         TransactionID: "336694d8-2dca-4cb5-a28d-3ccb83e55eee",
-    }
-
-    res, err := s.Expenses.UploadAttachment(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

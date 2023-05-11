@@ -34,12 +34,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetLastSuccessfulSyncRequest{
+    ctx := context.Background()
+    res, err := s.SyncStatus.GetLastSuccessfulSync(ctx, operations.GetLastSuccessfulSyncRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    }
-
-    res, err := s.SyncStatus.GetLastSuccessfulSync(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -73,12 +71,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetLatestSyncRequest{
+    ctx := context.Background()
+    res, err := s.SyncStatus.GetLatestSync(ctx, operations.GetLatestSyncRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    }
-
-    res, err := s.SyncStatus.GetLatestSync(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -112,13 +108,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetSyncByIDRequest{
+    ctx := context.Background()
+    res, err := s.SyncStatus.GetSyncByID(ctx, operations.GetSyncByIDRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         SyncID: "6fb40d5e-b13e-11ed-afa1-0242ac120002",
-    }
-
-    res, err := s.SyncStatus.GetSyncByID(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -152,12 +146,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ListSyncsRequest{
+    ctx := context.Background()
+    res, err := s.SyncStatus.ListSyncs(ctx, operations.ListSyncsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    }
-
-    res, err := s.SyncStatus.ListSyncs(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

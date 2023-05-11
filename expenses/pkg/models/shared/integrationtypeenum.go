@@ -20,17 +20,17 @@ func (e IntegrationTypeEnum) ToPointer() *IntegrationTypeEnum {
 }
 
 func (e *IntegrationTypeEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "expenses":
 		fallthrough
 	case "bankfeeds":
-		*e = IntegrationTypeEnum(s)
+		*e = IntegrationTypeEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for IntegrationTypeEnum: %s", s)
+		return fmt.Errorf("invalid value for IntegrationTypeEnum: %v", v)
 	}
 }

@@ -34,6 +34,7 @@ func newConnections(defaultClient, securityClient HTTPClient, serverURL, languag
 
 // CreatePartnerExpenseConnection - Create Partner Expense connection
 // Creates a Partner Expense data connection
+
 func (s *connections) CreatePartnerExpenseConnection(ctx context.Context, request operations.CreatePartnerExpenseConnectionRequest, opts ...operations.Option) (*operations.CreatePartnerExpenseConnectionResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

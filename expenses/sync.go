@@ -34,6 +34,7 @@ func newSync(defaultClient, securityClient HTTPClient, serverURL, language, sdkV
 
 // IntiateSync - Initiate sync
 // Initiate sync of pending transactions.
+
 func (s *sync) IntiateSync(ctx context.Context, request operations.IntiateSyncRequest, opts ...operations.Option) (*operations.IntiateSyncResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

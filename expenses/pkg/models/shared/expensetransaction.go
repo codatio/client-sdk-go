@@ -26,11 +26,11 @@ func (e ExpenseTransactionTypeEnum) ToPointer() *ExpenseTransactionTypeEnum {
 }
 
 func (e *ExpenseTransactionTypeEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "Payment":
 		fallthrough
 	case "Refund":
@@ -46,10 +46,10 @@ func (e *ExpenseTransactionTypeEnum) UnmarshalJSON(data []byte) error {
 	case "AdjustmentIn":
 		fallthrough
 	case "AdjustmentOut":
-		*e = ExpenseTransactionTypeEnum(s)
+		*e = ExpenseTransactionTypeEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ExpenseTransactionTypeEnum: %s", s)
+		return fmt.Errorf("invalid value for ExpenseTransactionTypeEnum: %v", v)
 	}
 }
 

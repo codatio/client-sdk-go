@@ -32,12 +32,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetCompanyConfigurationRequest{
+    ctx := context.Background()
+    res, err := s.Configuration.GetCompanyConfiguration(ctx, operations.GetCompanyConfigurationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    }
-
-    res, err := s.Configuration.GetCompanyConfiguration(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -72,8 +70,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.SaveCompanyConfigurationRequest{
+    ctx := context.Background()
+    res, err := s.Configuration.SaveCompanyConfiguration(ctx, operations.SaveCompanyConfigurationRequest{
         CompanyConfiguration: &shared.CompanyConfiguration{
             BankAccount: shared.BankAccount{
                 ID: codatsyncexpenses.String("32"),
@@ -86,9 +84,7 @@ func main() {
             },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    }
-
-    res, err := s.Configuration.SaveCompanyConfiguration(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
