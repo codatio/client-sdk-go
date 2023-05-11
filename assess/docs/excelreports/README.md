@@ -41,7 +41,7 @@ func main() {
     ctx := context.Background()
     res, err := s.ExcelReports.DownloadExcelReport(ctx, operations.DownloadExcelReportRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ReportType: shared.ExcelReportTypeEnumEnhancedFinancials,
+        ReportType: shared.ExcelReportTypeEnumEnhancedInvoices,
     })
     if err != nil {
         log.Fatal(err)
@@ -80,7 +80,7 @@ func main() {
     ctx := context.Background()
     res, err := s.ExcelReports.GenerateExcelReport(ctx, operations.GenerateExcelReportRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ReportType: shared.ExcelReportTypeEnumBanking,
+        ReportType: shared.ExcelReportTypeEnumEnhancedFinancials,
     })
     if err != nil {
         log.Fatal(err)
@@ -164,7 +164,7 @@ func main() {
     ctx := context.Background()
     res, err := s.ExcelReports.GetExcelReport(ctx, operations.GetExcelReportRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ReportType: shared.ExcelReportTypeEnumBanking,
+        ReportType: shared.ExcelReportTypeEnumEnhancedFinancials,
     })
     if err != nil {
         log.Fatal(err)
