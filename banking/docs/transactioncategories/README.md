@@ -32,14 +32,12 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetTransactionCategoryRequest{
+    ctx := context.Background()
+    res, err := s.TransactionCategories.Get(ctx, operations.GetTransactionCategoryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         TransactionCategoryID: "quibusdam",
-    }
-
-    res, err := s.TransactionCategories.Get(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -73,17 +71,15 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ListTransactionCategoriesRequest{
+    ctx := context.Background()
+    res, err := s.TransactionCategories.List(ctx, operations.ListTransactionCategoriesRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         OrderBy: codatbanking.String("-modifiedDate"),
         Page: 1,
         PageSize: codatbanking.Int(100),
         Query: codatbanking.String("unde"),
-    }
-
-    res, err := s.TransactionCategories.List(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

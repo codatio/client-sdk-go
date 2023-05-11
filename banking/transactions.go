@@ -34,6 +34,7 @@ func newTransactions(defaultClient, securityClient HTTPClient, serverURL, langua
 
 // Get - Get bank transaction
 // Gets a specified bank transaction for a given company
+
 func (s *transactions) Get(ctx context.Context, request operations.GetTransactionRequest, opts ...operations.Option) (*operations.GetTransactionResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -115,6 +116,7 @@ func (s *transactions) Get(ctx context.Context, request operations.GetTransactio
 
 // List - List transactions
 // Gets a list of transactions incurred by a bank account.
+
 func (s *transactions) List(ctx context.Context, request operations.ListTransactionsRequest, opts ...operations.Option) (*operations.ListTransactionsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
