@@ -5,7 +5,7 @@ management:
   speakeasyVersion: 1.26.1
   generationVersion: 2.23.1
 generation:
-  telemetryEnabled: false
+  telemetryEnabled: true
   sdkClassName: CodatBanking
   singleTagPerOp: false
 go:
