@@ -33,13 +33,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.DownloadFilesRequest{
+    ctx := context.Background()
+    res, err := s.Files.DownloadFiles(ctx, operations.DownloadFilesRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         Date: codatfiles.String("provident"),
-    }
-
-    res, err := s.Files.DownloadFiles(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -73,12 +71,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ListFilesRequest{
+    ctx := context.Background()
+    res, err := s.Files.ListFiles(ctx, operations.ListFilesRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    }
-
-    res, err := s.Files.ListFiles(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -112,17 +108,15 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.UploadFilesRequest{
+    ctx := context.Background()
+    res, err := s.Files.UploadFiles(ctx, operations.UploadFilesRequest{
         RequestBody: &operations.UploadFilesRequestBody{
             Content: []byte("distinctio"),
             RequestBody: "quibusdam",
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-    }
-
-    res, err := s.Files.UploadFiles(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

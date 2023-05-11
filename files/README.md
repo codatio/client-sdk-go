@@ -27,13 +27,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.DownloadFilesRequest{
+    ctx := context.Background()
+    res, err := s.Files.DownloadFiles(ctx, operations.DownloadFilesRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         Date: codatfiles.String("corrupti"),
-    }
-
-    res, err := s.Files.DownloadFiles(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
