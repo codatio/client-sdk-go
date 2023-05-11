@@ -34,17 +34,15 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetDataIntegrityDetailsRequest{
+    ctx := context.Background()
+    res, err := s.DataIntegrity.GetDataIntegrityDetails(ctx, operations.GetDataIntegrityDetailsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         DataType: shared.DataIntegrityDataTypeEnumBankingAccounts,
         OrderBy: codatassess.String("-modifiedDate"),
         Page: 1,
         PageSize: codatassess.Int(100),
         Query: codatassess.String("voluptatibus"),
-    }
-
-    res, err := s.DataIntegrity.GetDataIntegrityDetails(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -79,13 +77,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetDataIntegrityStatusRequest{
+    ctx := context.Background()
+    res, err := s.DataIntegrity.GetDataIntegrityStatus(ctx, operations.GetDataIntegrityStatusRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         DataType: shared.DataIntegrityDataTypeEnumBankingAccounts,
-    }
-
-    res, err := s.DataIntegrity.GetDataIntegrityStatus(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -120,14 +116,12 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetDataIntegritySummariesRequest{
+    ctx := context.Background()
+    res, err := s.DataIntegrity.GetDataIntegritySummaries(ctx, operations.GetDataIntegritySummariesRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         DataType: shared.DataIntegrityDataTypeEnumBankingAccounts,
         Query: codatassess.String("ipsa"),
-    }
-
-    res, err := s.DataIntegrity.GetDataIntegritySummaries(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

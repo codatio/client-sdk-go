@@ -35,6 +35,8 @@ func newExcelReports(defaultClient, securityClient HTTPClient, serverURL, langua
 
 // DownloadExcelReport - Download generated excel report
 // Download the previously generated Excel report to a local drive.
+//
+// Deprecated: this method will be removed in a future release, please migrate away from it as soon as possible.
 func (s *excelReports) DownloadExcelReport(ctx context.Context, request operations.DownloadExcelReportRequest, opts ...operations.Option) (*operations.DownloadExcelReportResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

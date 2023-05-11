@@ -20,20 +20,20 @@ func (e FinancialMetricsPeriodUnitEnum) ToPointer() *FinancialMetricsPeriodUnitE
 }
 
 func (e *FinancialMetricsPeriodUnitEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "Month":
 		fallthrough
 	case "Week":
 		fallthrough
 	case "Day":
-		*e = FinancialMetricsPeriodUnitEnum(s)
+		*e = FinancialMetricsPeriodUnitEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for FinancialMetricsPeriodUnitEnum: %s", s)
+		return fmt.Errorf("invalid value for FinancialMetricsPeriodUnitEnum: %v", v)
 	}
 }
 

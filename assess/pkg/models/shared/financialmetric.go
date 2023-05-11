@@ -22,20 +22,20 @@ func (e FinancialMetricErrorsTypeEnum) ToPointer() *FinancialMetricErrorsTypeEnu
 }
 
 func (e *FinancialMetricErrorsTypeEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "UncategorizedAccounts":
 		fallthrough
 	case "MissingInputData":
 		fallthrough
 	case "InputDataError":
-		*e = FinancialMetricErrorsTypeEnum(s)
+		*e = FinancialMetricErrorsTypeEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for FinancialMetricErrorsTypeEnum: %s", s)
+		return fmt.Errorf("invalid value for FinancialMetricErrorsTypeEnum: %v", v)
 	}
 }
 
@@ -79,11 +79,11 @@ func (e FinancialMetricKeyEnum) ToPointer() *FinancialMetricKeyEnum {
 }
 
 func (e *FinancialMetricKeyEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "Unknown":
 		fallthrough
 	case "EBITDA":
@@ -125,10 +125,10 @@ func (e *FinancialMetricKeyEnum) UnmarshalJSON(data []byte) error {
 	case "DaysSalesOutstanding":
 		fallthrough
 	case "DaysPayablesOutstanding":
-		*e = FinancialMetricKeyEnum(s)
+		*e = FinancialMetricKeyEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for FinancialMetricKeyEnum: %s", s)
+		return fmt.Errorf("invalid value for FinancialMetricKeyEnum: %v", v)
 	}
 }
 
@@ -144,18 +144,18 @@ func (e FinancialMetricMetricUnitEnum) ToPointer() *FinancialMetricMetricUnitEnu
 }
 
 func (e *FinancialMetricMetricUnitEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "Ratio":
 		fallthrough
 	case "Money":
-		*e = FinancialMetricMetricUnitEnum(s)
+		*e = FinancialMetricMetricUnitEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for FinancialMetricMetricUnitEnum: %s", s)
+		return fmt.Errorf("invalid value for FinancialMetricMetricUnitEnum: %v", v)
 	}
 }
 
@@ -172,18 +172,18 @@ func (e FinancialMetricPeriodsErrorsTypeEnum) ToPointer() *FinancialMetricPeriod
 }
 
 func (e *FinancialMetricPeriodsErrorsTypeEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "MissingAccountData":
 		fallthrough
 	case "DatesOutOfRange":
-		*e = FinancialMetricPeriodsErrorsTypeEnum(s)
+		*e = FinancialMetricPeriodsErrorsTypeEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for FinancialMetricPeriodsErrorsTypeEnum: %s", s)
+		return fmt.Errorf("invalid value for FinancialMetricPeriodsErrorsTypeEnum: %v", v)
 	}
 }
 

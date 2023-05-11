@@ -6,15 +6,17 @@ Categorisation
 
 ### Available Operations
 
-* [GetAccountCategory](#getaccountcategory) - Get suggested and/or confirmed category for a specific account
-* [ListAccountsCategories](#listaccountscategories) - List suggested and confirmed account categories
-* [ListAvailableAccountCategories](#listavailableaccountcategories) - List account categories
-* [UpdateAccountCategory](#updateaccountcategory) - Patch account categories
-* [UpdateAccountsCategories](#updateaccountscategories) - Confirm categories for accounts
+* [~~GetAccountCategory~~](#getaccountcategory) - Get suggested and/or confirmed category for a specific account :warning: **Deprecated**
+* [~~ListAccountsCategories~~](#listaccountscategories) - List suggested and confirmed account categories :warning: **Deprecated**
+* [~~ListAvailableAccountCategories~~](#listavailableaccountcategories) - List account categories :warning: **Deprecated**
+* [~~UpdateAccountCategory~~](#updateaccountcategory) - Patch account categories :warning: **Deprecated**
+* [~~UpdateAccountsCategories~~](#updateaccountscategories) - Confirm categories for accounts :warning: **Deprecated**
 
-## GetAccountCategory
+## ~~GetAccountCategory~~
 
 Get category for specific nominal account.
+
+> :warning: **DEPRECATED**: this method will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
@@ -35,14 +37,12 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetAccountCategoryRequest{
+    ctx := context.Background()
+    res, err := s.Categories.GetAccountCategory(ctx, operations.GetAccountCategoryRequest{
         AccountID: "provident",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-    }
-
-    res, err := s.Categories.GetAccountCategory(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -53,9 +53,11 @@ func main() {
 }
 ```
 
-## ListAccountsCategories
+## ~~ListAccountsCategories~~
 
 Lists suggested and confirmed chart of account categories for the given company and data connection.
+
+> :warning: **DEPRECATED**: this method will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
@@ -76,17 +78,15 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ListAccountsCategoriesRequest{
+    ctx := context.Background()
+    res, err := s.Categories.ListAccountsCategories(ctx, operations.ListAccountsCategoriesRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         OrderBy: codatassess.String("-modifiedDate"),
         Page: 1,
         PageSize: codatassess.Int(100),
         Query: codatassess.String("distinctio"),
-    }
-
-    res, err := s.Categories.ListAccountsCategories(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -97,9 +97,11 @@ func main() {
 }
 ```
 
-## ListAvailableAccountCategories
+## ~~ListAvailableAccountCategories~~
 
 Lists available account categories Codat's categorisation engine can provide. 
+
+> :warning: **DEPRECATED**: this method will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
@@ -131,9 +133,11 @@ func main() {
 }
 ```
 
-## UpdateAccountCategory
+## ~~UpdateAccountCategory~~
 
 Update category for a specific nominal account
+
+> :warning: **DEPRECATED**: this method will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
@@ -155,8 +159,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.UpdateAccountCategoryRequest{
+    ctx := context.Background()
+    res, err := s.Categories.UpdateAccountCategory(ctx, operations.UpdateAccountCategoryRequest{
         ConfirmCategory: &shared.ConfirmCategory{
             Confirmed: shared.AccountCategory{
                 DetailType: codatassess.String("quibusdam"),
@@ -167,9 +171,7 @@ func main() {
         AccountID: "corrupti",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-    }
-
-    res, err := s.Categories.UpdateAccountCategory(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -180,9 +182,11 @@ func main() {
 }
 ```
 
-## UpdateAccountsCategories
+## ~~UpdateAccountsCategories~~
 
 Comfirms the categories for all or a batch of accounts for a specific connection.
+
+> :warning: **DEPRECATED**: this method will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
@@ -204,8 +208,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.UpdateAccountsCategoriesRequest{
+    ctx := context.Background()
+    res, err := s.Categories.UpdateAccountsCategories(ctx, operations.UpdateAccountsCategoriesRequest{
         ConfirmCategories: &shared.ConfirmCategories{
             Categories: []shared.ConfirmCategoriesCategories{
                 shared.ConfirmCategoriesCategories{
@@ -252,9 +256,7 @@ func main() {
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-    }
-
-    res, err := s.Categories.UpdateAccountsCategories(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

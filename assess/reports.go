@@ -633,6 +633,8 @@ func (s *reports) GetCommerceRevenueMetrics(ctx context.Context, request operati
 
 // GetEnhancedBalanceSheet - Enhanced Balance Sheet
 // Gets a fully categorized balance sheet statement for a given company, over one or more period(s).
+//
+// Deprecated: this method will be removed in a future release, please migrate away from it as soon as possible.
 func (s *reports) GetEnhancedBalanceSheet(ctx context.Context, request operations.GetEnhancedBalanceSheetRequest, opts ...operations.Option) (*operations.GetEnhancedBalanceSheetResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -803,6 +805,8 @@ func (s *reports) GetEnhancedCashFlowTransactions(ctx context.Context, request o
 
 // GetEnhancedFinancialMetrics - List financial metrics
 // Gets all the available financial metrics for a given company, over one or more periods.
+//
+// Deprecated: this method will be removed in a future release, please migrate away from it as soon as possible.
 func (s *reports) GetEnhancedFinancialMetrics(ctx context.Context, request operations.GetEnhancedFinancialMetricsRequest, opts ...operations.Option) (*operations.GetEnhancedFinancialMetricsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -973,6 +977,8 @@ func (s *reports) GetEnhancedInvoicesReport(ctx context.Context, request operati
 
 // GetEnhancedProfitAndLoss - Enhanced Profit and Loss
 // Gets a fully categorized profit and loss statement for a given company, over one or more period(s).
+//
+// Deprecated: this method will be removed in a future release, please migrate away from it as soon as possible.
 func (s *reports) GetEnhancedProfitAndLoss(ctx context.Context, request operations.GetEnhancedProfitAndLossRequest, opts ...operations.Option) (*operations.GetEnhancedProfitAndLossResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

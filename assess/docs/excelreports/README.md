@@ -6,15 +6,17 @@ Downloadable reports
 
 ### Available Operations
 
-* [DownloadExcelReport](#downloadexcelreport) - Download generated excel report
+* [~~DownloadExcelReport~~](#downloadexcelreport) - Download generated excel report :warning: **Deprecated**
 * [GenerateExcelReport](#generateexcelreport) - Generate an Excel report
 * [GetAccountingMarketingMetrics](#getaccountingmarketingmetrics) - Get the marketing metrics from an accounting source for a given company.
 * [GetExcelReport](#getexcelreport) - Download generated excel report
 * [GetExcelReportGenerationStatus](#getexcelreportgenerationstatus) - Get status of Excel report
 
-## DownloadExcelReport
+## ~~DownloadExcelReport~~
 
 Download the previously generated Excel report to a local drive.
+
+> :warning: **DEPRECATED**: this method will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
@@ -36,13 +38,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.DownloadExcelReportRequest{
+    ctx := context.Background()
+    res, err := s.ExcelReports.DownloadExcelReport(ctx, operations.DownloadExcelReportRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ReportType: shared.ExcelReportTypeEnumAudit,
-    }
-
-    res, err := s.ExcelReports.DownloadExcelReport(ctx, req)
+        ReportType: shared.ExcelReportTypeEnumEnhancedInvoices,
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -77,13 +77,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GenerateExcelReportRequest{
+    ctx := context.Background()
+    res, err := s.ExcelReports.GenerateExcelReport(ctx, operations.GenerateExcelReportRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ReportType: shared.ExcelReportTypeEnumAssess,
-    }
-
-    res, err := s.ExcelReports.GenerateExcelReport(ctx, req)
+        ReportType: shared.ExcelReportTypeEnumEnhancedFinancials,
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -118,8 +116,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetAccountingMarketingMetricsRequest{
+    ctx := context.Background()
+    res, err := s.ExcelReports.GetAccountingMarketingMetrics(ctx, operations.GetAccountingMarketingMetricsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         IncludeDisplayNames: codatassess.Bool(false),
@@ -128,9 +126,7 @@ func main() {
         PeriodUnit: shared.PeriodUnitEnumDay,
         ReportDate: "29-09-2020",
         ShowInputValues: codatassess.Bool(false),
-    }
-
-    res, err := s.ExcelReports.GetAccountingMarketingMetrics(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -165,13 +161,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetExcelReportRequest{
+    ctx := context.Background()
+    res, err := s.ExcelReports.GetExcelReport(ctx, operations.GetExcelReportRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ReportType: shared.ExcelReportTypeEnumAssess,
-    }
-
-    res, err := s.ExcelReports.GetExcelReport(ctx, req)
+        ReportType: shared.ExcelReportTypeEnumEnhancedFinancials,
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -206,13 +200,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetExcelReportGenerationStatusRequest{
+    ctx := context.Background()
+    res, err := s.ExcelReports.GetExcelReportGenerationStatus(ctx, operations.GetExcelReportGenerationStatusRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ReportType: shared.ExcelReportTypeEnumAssess,
-    }
-
-    res, err := s.ExcelReports.GetExcelReportGenerationStatus(ctx, req)
+        ReportType: shared.ExcelReportTypeEnumAudit,
+    })
     if err != nil {
         log.Fatal(err)
     }
