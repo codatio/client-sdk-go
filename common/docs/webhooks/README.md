@@ -33,21 +33,18 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := shared.Rule{
+    ctx := context.Background()
+    res, err := s.Webhooks.Create(ctx, shared.Rule{
         CompanyID: codatcommon.String("39b73b17-cc2e-429e-915d-71654e9dcd1e"),
         ID: "ff89c50e-a719-4ef5-a182-9917e53927b6",
         Notifiers: shared.RuleNotifiers{
             Emails: []string{
                 "info@client.com",
-                "info@client.com",
             },
             Webhook: codatcommon.String("https://webhook.client.com"),
         },
-        Type: "minima",
-    }
-
-    res, err := s.Webhooks.Create(ctx, req)
+        Type: "reiciendis",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -81,12 +78,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetWebhookRequest{
+    ctx := context.Background()
+    res, err := s.Webhooks.Get(ctx, operations.GetWebhookRequest{
         RuleID: "7318949f-c008-4936-a8ff-10d7ab563fa6",
-    }
-
-    res, err := s.Webhooks.Get(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -120,15 +115,13 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ListRulesRequest{
+    ctx := context.Background()
+    res, err := s.Webhooks.List(ctx, operations.ListRulesRequest{
         OrderBy: codatcommon.String("-modifiedDate"),
         Page: 1,
         PageSize: codatcommon.Int(100),
-        Query: codatcommon.String("excepturi"),
-    }
-
-    res, err := s.Webhooks.List(ctx, req)
+        Query: codatcommon.String("est"),
+    })
     if err != nil {
         log.Fatal(err)
     }

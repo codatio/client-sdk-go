@@ -35,6 +35,7 @@ func newCompanies(defaultClient, securityClient HTTPClient, serverURL, language,
 
 // Create - Create company
 // Create a new company
+
 func (s *companies) Create(ctx context.Context, request shared.CompanyRequestBody, opts ...operations.Option) (*operations.CreateCompanyResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -131,6 +132,7 @@ func (s *companies) Create(ctx context.Context, request shared.CompanyRequestBod
 // Delete - Delete a company
 // Delete the given company from Codat.
 // This operation is not reversible.
+
 func (s *companies) Delete(ctx context.Context, request operations.DeleteCompanyRequest, opts ...operations.Option) (*operations.DeleteCompanyResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -213,6 +215,7 @@ func (s *companies) Delete(ctx context.Context, request operations.DeleteCompany
 
 // Get - Get company
 // Get metadata for a single company
+
 func (s *companies) Get(ctx context.Context, request operations.GetCompanyRequest, opts ...operations.Option) (*operations.GetCompanyResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -304,6 +307,7 @@ func (s *companies) Get(ctx context.Context, request operations.GetCompanyReques
 
 // List - List companies
 // List all companies that you have created in Codat.
+
 func (s *companies) List(ctx context.Context, request operations.ListCompaniesRequest, opts ...operations.Option) (*operations.ListCompaniesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -398,6 +402,7 @@ func (s *companies) List(ctx context.Context, request operations.ListCompaniesRe
 
 // Update - Update company
 // Updates the given company with a new name and description
+
 func (s *companies) Update(ctx context.Context, request operations.UpdateCompanyRequest, opts ...operations.Option) (*operations.UpdateCompanyResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

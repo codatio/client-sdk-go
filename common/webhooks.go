@@ -35,6 +35,7 @@ func newWebhooks(defaultClient, securityClient HTTPClient, serverURL, language, 
 
 // Create - Create webhook
 // Create a new webhook configuration
+
 func (s *webhooks) Create(ctx context.Context, request shared.Rule, opts ...operations.Option) (*operations.CreateRuleResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -130,6 +131,7 @@ func (s *webhooks) Create(ctx context.Context, request shared.Rule, opts ...oper
 
 // Get - Get webhook
 // Get a single webhook
+
 func (s *webhooks) Get(ctx context.Context, request operations.GetWebhookRequest, opts ...operations.Option) (*operations.GetWebhookResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -223,6 +225,7 @@ func (s *webhooks) Get(ctx context.Context, request operations.GetWebhookRequest
 
 // List - List webhooks
 // List webhooks that you are subscribed to.
+
 func (s *webhooks) List(ctx context.Context, request operations.ListRulesRequest, opts ...operations.Option) (*operations.ListRulesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

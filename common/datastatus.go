@@ -34,6 +34,7 @@ func newDataStatus(defaultClient, securityClient HTTPClient, serverURL, language
 
 // Get - Get data status
 // Get the state of each data type for a company
+
 func (s *dataStatus) Get(ctx context.Context, request operations.GetCompanyDataStatusRequest, opts ...operations.Option) (*operations.GetCompanyDataStatusResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -127,6 +128,7 @@ func (s *dataStatus) Get(ctx context.Context, request operations.GetCompanyDataS
 
 // GetPullOperation - Get pull operation
 // Retrieve information about a single dataset or pull operation.
+
 func (s *dataStatus) GetPullOperation(ctx context.Context, request operations.GetPullOperationRequest, opts ...operations.Option) (*operations.GetPullOperationResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -220,6 +222,7 @@ func (s *dataStatus) GetPullOperation(ctx context.Context, request operations.Ge
 
 // ListPullOperations - Get pull operations
 // Gets the pull operation history (datasets) for a given company.
+
 func (s *dataStatus) ListPullOperations(ctx context.Context, request operations.ListPullOperationsRequest, opts ...operations.Option) (*operations.ListPullOperationsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

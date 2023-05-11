@@ -43,14 +43,12 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetCreateUpdateModelOptionsByDataTypeRequest{
+    ctx := context.Background()
+    res, err := s.PushData.GetModelOptions(ctx, operations.GetCreateUpdateModelOptionsByDataTypeRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         DataType: shared.DataTypeEnumInvoices,
-    }
-
-    res, err := s.PushData.GetModelOptions(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -84,13 +82,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetPushOperationRequest{
+    ctx := context.Background()
+    res, err := s.PushData.GetOperation(ctx, operations.GetPushOperationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        PushOperationKey: "a05dfc2d-df7c-4c78-8a1b-a928fc816742",
-    }
-
-    res, err := s.PushData.GetOperation(ctx, req)
+        PushOperationKey: "4e0f467c-c879-46ed-951a-05dfc2ddf7cc",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -124,16 +120,14 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetCompanyPushHistoryRequest{
+    ctx := context.Background()
+    res, err := s.PushData.ListOperations(ctx, operations.GetCompanyPushHistoryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         OrderBy: codatcommon.String("-modifiedDate"),
         Page: 1,
         PageSize: codatcommon.Int(100),
-        Query: codatcommon.String("impedit"),
-    }
-
-    res, err := s.PushData.ListOperations(ctx, req)
+        Query: codatcommon.String("esse"),
+    })
     if err != nil {
         log.Fatal(err)
     }

@@ -35,6 +35,7 @@ func newIntegrations(defaultClient, securityClient HTTPClient, serverURL, langua
 
 // Get - Get integration
 // Get single integration, by platformKey
+
 func (s *integrations) Get(ctx context.Context, request operations.GetIntegrationRequest, opts ...operations.Option) (*operations.GetIntegrationResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -128,6 +129,7 @@ func (s *integrations) Get(ctx context.Context, request operations.GetIntegratio
 
 // GetBranding - Get branding
 // Get branding for platform.
+
 func (s *integrations) GetBranding(ctx context.Context, request operations.GetIntegrationsBrandingRequest, opts ...operations.Option) (*operations.GetIntegrationsBrandingResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -209,6 +211,7 @@ func (s *integrations) GetBranding(ctx context.Context, request operations.GetIn
 
 // List - List integrations
 // List your available integrations
+
 func (s *integrations) List(ctx context.Context, request operations.ListIntegrationsRequest, opts ...operations.Option) (*operations.ListIntegrationsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

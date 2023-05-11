@@ -33,12 +33,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetCompanyDataStatusRequest{
+    ctx := context.Background()
+    res, err := s.DataStatus.Get(ctx, operations.GetCompanyDataStatusRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    }
-
-    res, err := s.DataStatus.Get(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -72,13 +70,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetPullOperationRequest{
+    ctx := context.Background()
+    res, err := s.DataStatus.GetPullOperation(ctx, operations.GetPullOperationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         DatasetID: "eaed9f0f-e77b-4bc9-a58f-ab8b4b99ab18",
-    }
-
-    res, err := s.DataStatus.GetPullOperation(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -112,16 +108,14 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ListPullOperationsRequest{
+    ctx := context.Background()
+    res, err := s.DataStatus.ListPullOperations(ctx, operations.ListPullOperationsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         OrderBy: codatcommon.String("-modifiedDate"),
         Page: 1,
         PageSize: codatcommon.Int(100),
-        Query: codatcommon.String("quis"),
-    }
-
-    res, err := s.DataStatus.ListPullOperations(ctx, req)
+        Query: codatcommon.String("suscipit"),
+    })
     if err != nil {
         log.Fatal(err)
     }

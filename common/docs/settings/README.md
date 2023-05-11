@@ -68,8 +68,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.UpdateSyncSettingsRequestBody{
+    ctx := context.Background()
+    res, err := s.Settings.GetSyncSettings(ctx, operations.UpdateSyncSettingsRequestBody{
         ClientID: "367f7975-267b-439b-90c6-a6040ee680f3",
         OverridesDefaults: false,
         Settings: []shared.SyncSetting{
@@ -78,15 +78,43 @@ func main() {
                 FetchOnFirstLink: false,
                 IsLocked: codatcommon.Bool(false),
                 MonthsToSync: codatcommon.Int64(24),
-                SyncFromUtc: codatcommon.String("nobis"),
+                SyncFromUtc: codatcommon.String("saepe"),
                 SyncFromWindow: codatcommon.Int64(24),
-                SyncOrder: 315428,
+                SyncOrder: 681820,
+                SyncSchedule: 24,
+            },
+            shared.SyncSetting{
+                DataType: shared.SyncSettingDataTypeEnumInvoices,
+                FetchOnFirstLink: false,
+                IsLocked: codatcommon.Bool(false),
+                MonthsToSync: codatcommon.Int64(24),
+                SyncFromUtc: codatcommon.String("in"),
+                SyncFromWindow: codatcommon.Int64(24),
+                SyncOrder: 359508,
+                SyncSchedule: 24,
+            },
+            shared.SyncSetting{
+                DataType: shared.SyncSettingDataTypeEnumInvoices,
+                FetchOnFirstLink: false,
+                IsLocked: codatcommon.Bool(false),
+                MonthsToSync: codatcommon.Int64(24),
+                SyncFromUtc: codatcommon.String("iste"),
+                SyncFromWindow: codatcommon.Int64(24),
+                SyncOrder: 437032,
+                SyncSchedule: 24,
+            },
+            shared.SyncSetting{
+                DataType: shared.SyncSettingDataTypeEnumInvoices,
+                FetchOnFirstLink: false,
+                IsLocked: codatcommon.Bool(false),
+                MonthsToSync: codatcommon.Int64(24),
+                SyncFromUtc: codatcommon.String("saepe"),
+                SyncFromWindow: codatcommon.Int64(24),
+                SyncOrder: 697631,
                 SyncSchedule: 24,
             },
         },
-    }
-
-    res, err := s.Settings.GetSyncSettings(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -120,8 +148,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := shared.Profile{
+    ctx := context.Background()
+    res, err := s.Settings.UpdateProfile(ctx, shared.Profile{
         AlertAuthHeader: codatcommon.String("Bearer tXEiHiRK7XCtI8TNHbpGs1LI1pumdb4Cl1QIo7B2"),
         APIKey: codatcommon.String("sartANTjHAkLdbyDfaynoTQb7pkmj6hXHmnQKMrB"),
         ConfirmCompanyName: codatcommon.Bool(false),
@@ -131,12 +159,8 @@ func main() {
         RedirectURL: "https://bobs-burgers.{countrySuffix}/{companyId}",
         WhiteListUrls: []string{
             "https://bobs-burgers.com",
-            "https://bobs-burgers.com",
-            "https://bobs-burgers.com",
         },
-    }
-
-    res, err := s.Settings.UpdateProfile(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

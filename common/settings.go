@@ -35,6 +35,7 @@ func newSettings(defaultClient, securityClient HTTPClient, serverURL, language, 
 
 // GetProfile - Get profile
 // Fetch your Codat profile.
+
 func (s *settings) GetProfile(ctx context.Context, opts ...operations.Option) (*operations.GetProfileResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -123,6 +124,7 @@ func (s *settings) GetProfile(ctx context.Context, opts ...operations.Option) (*
 
 // GetSyncSettings - Update all sync settings
 // Update sync settings for all data types.
+
 func (s *settings) GetSyncSettings(ctx context.Context, request operations.UpdateSyncSettingsRequestBody, opts ...operations.Option) (*operations.UpdateSyncSettingsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -209,6 +211,7 @@ func (s *settings) GetSyncSettings(ctx context.Context, request operations.Updat
 
 // UpdateProfile - Update profile
 // Update your Codat profile
+
 func (s *settings) UpdateProfile(ctx context.Context, request shared.Profile, opts ...operations.Option) (*operations.UpdateProfileResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
