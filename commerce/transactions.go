@@ -34,6 +34,7 @@ func newTransactions(defaultClient, securityClient HTTPClient, serverURL, langua
 
 // List - List transactions
 // Details of all financial transactions recorded in the commerce or point of sale system are added to the Transactions data type. For example, payments, service charges, and fees.
+
 func (s *transactions) List(ctx context.Context, request operations.ListTransactionsRequest, opts ...operations.Option) (*operations.ListTransactionsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

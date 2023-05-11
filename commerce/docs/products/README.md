@@ -32,17 +32,15 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ListProductsRequest{
+    ctx := context.Background()
+    res, err := s.Products.List(ctx, operations.ListProductsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         OrderBy: codatcommerce.String("-modifiedDate"),
         Page: 1,
         PageSize: codatcommerce.Int(100),
         Query: codatcommerce.String("nulla"),
-    }
-
-    res, err := s.Products.List(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -76,17 +74,15 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ListProductCategoriesRequest{
+    ctx := context.Background()
+    res, err := s.Products.ListCategories(ctx, operations.ListProductCategoriesRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         OrderBy: codatcommerce.String("-modifiedDate"),
         Page: 1,
         PageSize: codatcommerce.Int(100),
         Query: codatcommerce.String("corrupti"),
-    }
-
-    res, err := s.Products.ListCategories(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

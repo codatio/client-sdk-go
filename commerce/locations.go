@@ -36,6 +36,7 @@ func newLocations(defaultClient, securityClient HTTPClient, serverURL, language,
 // Retrieve a list of locations as seen in the commerce platform.
 //
 // A `location` is a geographic place at which stocks of products may be held, or from where orders were placed.
+
 func (s *locations) List(ctx context.Context, request operations.ListLocationsRequest, opts ...operations.Option) (*operations.ListLocationsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

@@ -22,11 +22,11 @@ func (e ServiceChargeTypeEnum) ToPointer() *ServiceChargeTypeEnum {
 }
 
 func (e *ServiceChargeTypeEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "Generic":
 		fallthrough
 	case "Shipping":
@@ -34,9 +34,9 @@ func (e *ServiceChargeTypeEnum) UnmarshalJSON(data []byte) error {
 	case "Overpayment":
 		fallthrough
 	case "Unknown":
-		*e = ServiceChargeTypeEnum(s)
+		*e = ServiceChargeTypeEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ServiceChargeTypeEnum: %s", s)
+		return fmt.Errorf("invalid value for ServiceChargeTypeEnum: %v", v)
 	}
 }

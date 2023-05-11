@@ -34,6 +34,7 @@ func newDisputes(defaultClient, securityClient HTTPClient, serverURL, language, 
 
 // List - List disputes
 // List commerce disputes
+
 func (s *disputes) List(ctx context.Context, request operations.ListDisputesRequest, opts ...operations.Option) (*operations.ListDisputesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
