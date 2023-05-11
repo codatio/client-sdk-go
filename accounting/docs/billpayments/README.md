@@ -42,8 +42,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.CreateBillPaymentRequest{
+    ctx := context.Background()
+    res, err := s.BillPayments.Create(ctx, operations.CreateBillPaymentRequest{
         BillPayment: &shared.BillPayment{
             AccountRef: &shared.AccountRef{
                 ID: codataccounting.String("57eb809e-2810-4331-b398-1d4c700b607f"),
@@ -142,9 +142,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         TimeoutInMinutes: codataccounting.Int(423054),
-    }
-
-    res, err := s.BillPayments.Create(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -182,14 +180,12 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.DeleteBillPaymentRequest{
+    ctx := context.Background()
+    res, err := s.BillPayments.Delete(ctx, operations.DeleteBillPaymentRequest{
         BillPaymentID: "quo",
         CompanyID: "nesciunt",
         ConnectionID: "illum",
-    }
-
-    res, err := s.BillPayments.Delete(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -223,13 +219,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetBillPaymentsRequest{
+    ctx := context.Background()
+    res, err := s.BillPayments.Get(ctx, operations.GetBillPaymentsRequest{
         BillPaymentID: "nemo",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    }
-
-    res, err := s.BillPayments.Get(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -267,13 +261,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetCreateBillPaymentsModelRequest{
+    ctx := context.Background()
+    res, err := s.BillPayments.GetCreateModel(ctx, operations.GetCreateBillPaymentsModelRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-    }
-
-    res, err := s.BillPayments.GetCreateModel(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -307,16 +299,14 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ListBillPaymentsRequest{
+    ctx := context.Background()
+    res, err := s.BillPayments.List(ctx, operations.ListBillPaymentsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: 1,
         PageSize: codataccounting.Int(100),
         Query: codataccounting.String("illum"),
-    }
-
-    res, err := s.BillPayments.List(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

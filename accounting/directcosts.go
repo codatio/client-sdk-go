@@ -41,6 +41,7 @@ func newDirectCosts(defaultClient, securityClient HTTPClient, serverURL, languag
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=directCosts) for integrations that support creating direct costs.
+
 func (s *directCosts) Create(ctx context.Context, request operations.CreateDirectCostRequest, opts ...operations.Option) (*operations.CreateDirectCostResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -133,6 +134,7 @@ func (s *directCosts) Create(ctx context.Context, request operations.CreateDirec
 
 // DownloadAttachment - Download direct cost attachment
 // Downloads an attachment for the specified direct cost for a given company.
+
 func (s *directCosts) DownloadAttachment(ctx context.Context, request operations.DownloadDirectCostAttachmentRequest, opts ...operations.Option) (*operations.DownloadDirectCostAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -214,6 +216,7 @@ func (s *directCosts) DownloadAttachment(ctx context.Context, request operations
 
 // Get - Get direct cost
 // Gets the specified direct cost for a given company.
+
 func (s *directCosts) Get(ctx context.Context, request operations.GetDirectCostRequest, opts ...operations.Option) (*operations.GetDirectCostResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -295,6 +298,7 @@ func (s *directCosts) Get(ctx context.Context, request operations.GetDirectCostR
 
 // GetAttachment - Get direct cost attachment
 // Gets the specified direct cost attachment for a given company.
+
 func (s *directCosts) GetAttachment(ctx context.Context, request operations.GetDirectCostAttachmentRequest, opts ...operations.Option) (*operations.GetDirectCostAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -382,6 +386,7 @@ func (s *directCosts) GetAttachment(ctx context.Context, request operations.GetD
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=directCosts) for integrations that support creating direct costs.
+
 func (s *directCosts) GetCreateModel(ctx context.Context, request operations.GetCreateDirectCostsModelRequest, opts ...operations.Option) (*operations.GetCreateDirectCostsModelResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -463,6 +468,7 @@ func (s *directCosts) GetCreateModel(ctx context.Context, request operations.Get
 
 // List - List direct costs
 // Gets the direct costs for the company.
+
 func (s *directCosts) List(ctx context.Context, request operations.ListDirectCostsRequest, opts ...operations.Option) (*operations.ListDirectCostsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -548,6 +554,7 @@ func (s *directCosts) List(ctx context.Context, request operations.ListDirectCos
 
 // ListAttachments - List direct cost attachments
 // Gets all attachments for the specified direct cost for a given company.
+
 func (s *directCosts) ListAttachments(ctx context.Context, request operations.ListDirectCostAttachmentsRequest, opts ...operations.Option) (*operations.ListDirectCostAttachmentsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -629,6 +636,7 @@ func (s *directCosts) ListAttachments(ctx context.Context, request operations.Li
 
 // UploadAttachment - Upload direct cost attachment
 // Posts a new direct cost attachment for a given company.
+
 func (s *directCosts) UploadAttachment(ctx context.Context, request operations.UploadDirectCostAttachmentRequest, opts ...operations.Option) (*operations.UploadDirectCostAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

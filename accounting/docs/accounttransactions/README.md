@@ -32,14 +32,12 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetAccountTransactionRequest{
+    ctx := context.Background()
+    res, err := s.AccountTransactions.Get(ctx, operations.GetAccountTransactionRequest{
         AccountTransactionID: "provident",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-    }
-
-    res, err := s.AccountTransactions.Get(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -73,17 +71,15 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ListAccountTransactionsRequest{
+    ctx := context.Background()
+    res, err := s.AccountTransactions.List(ctx, operations.ListAccountTransactionsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: 1,
         PageSize: codataccounting.Int(100),
         Query: codataccounting.String("distinctio"),
-    }
-
-    res, err := s.AccountTransactions.List(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

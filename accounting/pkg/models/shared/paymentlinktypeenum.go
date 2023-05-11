@@ -38,11 +38,11 @@ func (e PaymentLinkTypeEnum) ToPointer() *PaymentLinkTypeEnum {
 }
 
 func (e *PaymentLinkTypeEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "Unknown":
 		fallthrough
 	case "Unlinked":
@@ -62,9 +62,9 @@ func (e *PaymentLinkTypeEnum) UnmarshalJSON(data []byte) error {
 	case "ManualJournal":
 		fallthrough
 	case "Discount":
-		*e = PaymentLinkTypeEnum(s)
+		*e = PaymentLinkTypeEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for PaymentLinkTypeEnum: %s", s)
+		return fmt.Errorf("invalid value for PaymentLinkTypeEnum: %v", v)
 	}
 }

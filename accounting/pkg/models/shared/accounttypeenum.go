@@ -24,11 +24,11 @@ func (e AccountTypeEnum) ToPointer() *AccountTypeEnum {
 }
 
 func (e *AccountTypeEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "Unknown":
 		fallthrough
 	case "Asset":
@@ -40,9 +40,9 @@ func (e *AccountTypeEnum) UnmarshalJSON(data []byte) error {
 	case "Liability":
 		fallthrough
 	case "Equity":
-		*e = AccountTypeEnum(s)
+		*e = AccountTypeEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for AccountTypeEnum: %s", s)
+		return fmt.Errorf("invalid value for AccountTypeEnum: %v", v)
 	}
 }

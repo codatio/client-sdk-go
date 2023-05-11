@@ -40,6 +40,7 @@ func newAccounts(defaultClient, securityClient HTTPClient, serverURL, language, 
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=chartOfAccounts) for integrations that support creating an account.
+
 func (s *accounts) Create(ctx context.Context, request operations.CreateAccountRequest, opts ...operations.Option) (*operations.CreateAccountResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -132,6 +133,7 @@ func (s *accounts) Create(ctx context.Context, request operations.CreateAccountR
 
 // Get - Get account
 // Gets a single account corresponding to the given ID.
+
 func (s *accounts) Get(ctx context.Context, request operations.GetAccountRequest, opts ...operations.Option) (*operations.GetAccountResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -219,6 +221,7 @@ func (s *accounts) Get(ctx context.Context, request operations.GetAccountRequest
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=chartOfAccounts) for integrations that support creating an account.
+
 func (s *accounts) GetCreateModel(ctx context.Context, request operations.GetCreateChartOfAccountsModelRequest, opts ...operations.Option) (*operations.GetCreateChartOfAccountsModelResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -300,6 +303,7 @@ func (s *accounts) GetCreateModel(ctx context.Context, request operations.GetCre
 
 // List - List accounts
 // Gets the latest accounts for a company
+
 func (s *accounts) List(ctx context.Context, request operations.ListAccountsRequest, opts ...operations.Option) (*operations.ListAccountsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

@@ -40,6 +40,7 @@ func newPurchaseOrders(defaultClient, securityClient HTTPClient, serverURL, lang
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=purchaseOrders) for integrations that support creating purchase orders.
+
 func (s *purchaseOrders) Create(ctx context.Context, request operations.CreatePurchaseOrderRequest, opts ...operations.Option) (*operations.CreatePurchaseOrderResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -132,6 +133,7 @@ func (s *purchaseOrders) Create(ctx context.Context, request operations.CreatePu
 
 // Get - Get purchase order
 // Get purchase order
+
 func (s *purchaseOrders) Get(ctx context.Context, request operations.GetPurchaseOrderRequest, opts ...operations.Option) (*operations.GetPurchaseOrderResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -219,6 +221,7 @@ func (s *purchaseOrders) Get(ctx context.Context, request operations.GetPurchase
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=purchaseOrders) for integrations that support creating and updating purchase orders.
+
 func (s *purchaseOrders) GetCreateUpdateModel(ctx context.Context, request operations.GetCreateUpdatePurchaseOrdersModelRequest, opts ...operations.Option) (*operations.GetCreateUpdatePurchaseOrdersModelResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -300,6 +303,7 @@ func (s *purchaseOrders) GetCreateUpdateModel(ctx context.Context, request opera
 
 // List - List purchase orders
 // Get purchase orders
+
 func (s *purchaseOrders) List(ctx context.Context, request operations.ListPurchaseOrdersRequest, opts ...operations.Option) (*operations.ListPurchaseOrdersResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -391,6 +395,7 @@ func (s *purchaseOrders) List(ctx context.Context, request operations.ListPurcha
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=purchaseOrders) for integrations that support updating purchase orders.
+
 func (s *purchaseOrders) Update(ctx context.Context, request operations.UpdatePurchaseOrderRequest, opts ...operations.Option) (*operations.UpdatePurchaseOrderResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

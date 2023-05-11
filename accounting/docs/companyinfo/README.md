@@ -32,12 +32,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetCompanyInfoRequest{
+    ctx := context.Background()
+    res, err := s.CompanyInfo.Get(ctx, operations.GetCompanyInfoRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    }
-
-    res, err := s.CompanyInfo.Get(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -71,12 +69,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.RefreshCompanyInfoRequest{
+    ctx := context.Background()
+    res, err := s.CompanyInfo.Refresh(ctx, operations.RefreshCompanyInfoRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    }
-
-    res, err := s.CompanyInfo.Refresh(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

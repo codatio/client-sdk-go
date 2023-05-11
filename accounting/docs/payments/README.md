@@ -41,8 +41,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.CreatePaymentRequest{
+    ctx := context.Background()
+    res, err := s.Payments.Create(ctx, operations.CreatePaymentRequest{
         Payment: &shared.Payment{
             AccountRef: &shared.AccountRef{
                 ID: codataccounting.String("2de7b356-2201-4a6a-ab4a-e7b1a5b908d4"),
@@ -146,9 +146,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         TimeoutInMinutes: codataccounting.Int(321921),
-    }
-
-    res, err := s.Payments.Create(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -182,13 +180,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetPaymentRequest{
+    ctx := context.Background()
+    res, err := s.Payments.Get(ctx, operations.GetPaymentRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         PaymentID: "odio",
-    }
-
-    res, err := s.Payments.Get(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -228,13 +224,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetCreatePaymentsModelRequest{
+    ctx := context.Background()
+    res, err := s.Payments.GetCreateModel(ctx, operations.GetCreatePaymentsModelRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-    }
-
-    res, err := s.Payments.GetCreateModel(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -268,16 +262,14 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ListPaymentsRequest{
+    ctx := context.Background()
+    res, err := s.Payments.List(ctx, operations.ListPaymentsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: 1,
         PageSize: codataccounting.Int(100),
         Query: codataccounting.String("omnis"),
-    }
-
-    res, err := s.Payments.List(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

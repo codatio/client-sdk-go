@@ -22,11 +22,11 @@ func (e PushOperationStatusEnum) ToPointer() *PushOperationStatusEnum {
 }
 
 func (e *PushOperationStatusEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "Pending":
 		fallthrough
 	case "Failed":
@@ -34,9 +34,9 @@ func (e *PushOperationStatusEnum) UnmarshalJSON(data []byte) error {
 	case "Success":
 		fallthrough
 	case "TimedOut":
-		*e = PushOperationStatusEnum(s)
+		*e = PushOperationStatusEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for PushOperationStatusEnum: %s", s)
+		return fmt.Errorf("invalid value for PushOperationStatusEnum: %v", v)
 	}
 }

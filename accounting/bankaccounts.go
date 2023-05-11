@@ -40,6 +40,7 @@ func newBankAccounts(defaultClient, securityClient HTTPClient, serverURL, langua
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankAccounts) for integrations that support creating bank accounts.
+
 func (s *bankAccounts) Create(ctx context.Context, request operations.CreateBankAccountRequest, opts ...operations.Option) (*operations.CreateBankAccountResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -132,6 +133,7 @@ func (s *bankAccounts) Create(ctx context.Context, request operations.CreateBank
 
 // Get - Get bank account
 // Gets the bank account with a given ID
+
 func (s *bankAccounts) Get(ctx context.Context, request operations.GetBankAccountRequest, opts ...operations.Option) (*operations.GetBankAccountResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -219,6 +221,7 @@ func (s *bankAccounts) Get(ctx context.Context, request operations.GetBankAccoun
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankAccounts) for integrations that support creating and updating bank accounts.
+
 func (s *bankAccounts) GetCreateUpdateModel(ctx context.Context, request operations.GetCreateUpdateBankAccountsModelRequest, opts ...operations.Option) (*operations.GetCreateUpdateBankAccountsModelResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -300,6 +303,7 @@ func (s *bankAccounts) GetCreateUpdateModel(ctx context.Context, request operati
 
 // List - List bank accounts
 // Gets the list of bank accounts for a given connection
+
 func (s *bankAccounts) List(ctx context.Context, request operations.ListBankAccountsRequest, opts ...operations.Option) (*operations.ListBankAccountsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -391,6 +395,7 @@ func (s *bankAccounts) List(ctx context.Context, request operations.ListBankAcco
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankAccounts) for integrations that support updating bank accounts.
+
 func (s *bankAccounts) Update(ctx context.Context, request operations.UpdateBankAccountRequest, opts ...operations.Option) (*operations.UpdateBankAccountResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

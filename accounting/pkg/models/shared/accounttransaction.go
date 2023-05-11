@@ -22,11 +22,11 @@ func (e AccountTransactionStatusEnum) ToPointer() *AccountTransactionStatusEnum 
 }
 
 func (e *AccountTransactionStatusEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "Unknown":
 		fallthrough
 	case "Unreconciled":
@@ -34,10 +34,10 @@ func (e *AccountTransactionStatusEnum) UnmarshalJSON(data []byte) error {
 	case "Reconciled":
 		fallthrough
 	case "Void":
-		*e = AccountTransactionStatusEnum(s)
+		*e = AccountTransactionStatusEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for AccountTransactionStatusEnum: %s", s)
+		return fmt.Errorf("invalid value for AccountTransactionStatusEnum: %v", v)
 	}
 }
 

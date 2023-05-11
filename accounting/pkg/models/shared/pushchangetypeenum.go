@@ -22,11 +22,11 @@ func (e PushChangeTypeEnum) ToPointer() *PushChangeTypeEnum {
 }
 
 func (e *PushChangeTypeEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "Unknown":
 		fallthrough
 	case "Created":
@@ -36,9 +36,9 @@ func (e *PushChangeTypeEnum) UnmarshalJSON(data []byte) error {
 	case "Deleted":
 		fallthrough
 	case "AttachmentUploaded":
-		*e = PushChangeTypeEnum(s)
+		*e = PushChangeTypeEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for PushChangeTypeEnum: %s", s)
+		return fmt.Errorf("invalid value for PushChangeTypeEnum: %v", v)
 	}
 }

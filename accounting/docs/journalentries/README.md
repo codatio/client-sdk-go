@@ -42,8 +42,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.CreateJournalEntryRequest{
+    ctx := context.Background()
+    res, err := s.JournalEntries.Create(ctx, operations.CreateJournalEntryRequest{
         JournalEntry: &shared.JournalEntry{
             CreatedOn: codataccounting.String("delectus"),
             Description: codataccounting.String("id"),
@@ -176,9 +176,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         TimeoutInMinutes: codataccounting.Int(907650),
-    }
-
-    res, err := s.JournalEntries.Create(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -216,14 +214,12 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.DeleteJournalEntryRequest{
+    ctx := context.Background()
+    res, err := s.JournalEntries.Delete(ctx, operations.DeleteJournalEntryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         JournalEntryID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    }
-
-    res, err := s.JournalEntries.Delete(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -257,13 +253,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetJournalEntryRequest{
+    ctx := context.Background()
+    res, err := s.JournalEntries.Get(ctx, operations.GetJournalEntryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         JournalEntryID: "dolorem",
-    }
-
-    res, err := s.JournalEntries.Get(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -303,13 +297,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetCreateJournalEntriesModelRequest{
+    ctx := context.Background()
+    res, err := s.JournalEntries.GetCreateModel(ctx, operations.GetCreateJournalEntriesModelRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-    }
-
-    res, err := s.JournalEntries.GetCreateModel(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -343,16 +335,14 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ListJournalEntriesRequest{
+    ctx := context.Background()
+    res, err := s.JournalEntries.List(ctx, operations.ListJournalEntriesRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: 1,
         PageSize: codataccounting.Int(100),
         Query: codataccounting.String("laborum"),
-    }
-
-    res, err := s.JournalEntries.List(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

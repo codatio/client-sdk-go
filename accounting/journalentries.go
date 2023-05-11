@@ -40,6 +40,7 @@ func newJournalEntries(defaultClient, securityClient HTTPClient, serverURL, lang
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journalEntries) for integrations that support creating journal entries.
+
 func (s *journalEntries) Create(ctx context.Context, request operations.CreateJournalEntryRequest, opts ...operations.Option) (*operations.CreateJournalEntryResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -136,6 +137,7 @@ func (s *journalEntries) Create(ctx context.Context, request operations.CreateJo
 // > **Supported Integrations**
 // >
 // > This functionality is currently only supported for our QuickBooks Online integration. Check out our [public roadmap](https://portal.productboard.com/codat/7-public-product-roadmap/tabs/46-accounting-api) to see what we're building next, and to submit ideas for new features.
+
 func (s *journalEntries) Delete(ctx context.Context, request operations.DeleteJournalEntryRequest, opts ...operations.Option) (*operations.DeleteJournalEntryResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -217,6 +219,7 @@ func (s *journalEntries) Delete(ctx context.Context, request operations.DeleteJo
 
 // Get - Get journal entry
 // Gets a single JournalEntry corresponding to the given ID.
+
 func (s *journalEntries) Get(ctx context.Context, request operations.GetJournalEntryRequest, opts ...operations.Option) (*operations.GetJournalEntryResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -304,6 +307,7 @@ func (s *journalEntries) Get(ctx context.Context, request operations.GetJournalE
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journalEntries) for integrations that support creating journal entries.
+
 func (s *journalEntries) GetCreateModel(ctx context.Context, request operations.GetCreateJournalEntriesModelRequest, opts ...operations.Option) (*operations.GetCreateJournalEntriesModelResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -385,6 +389,7 @@ func (s *journalEntries) GetCreateModel(ctx context.Context, request operations.
 
 // List - List journal entries
 // Gets the latest journal entries for a company, with pagination
+
 func (s *journalEntries) List(ctx context.Context, request operations.ListJournalEntriesRequest, opts ...operations.Option) (*operations.ListJournalEntriesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

@@ -40,6 +40,7 @@ func newBillPayments(defaultClient, securityClient HTTPClient, serverURL, langua
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=billPayments) for integrations that support creating bill payments.
+
 func (s *billPayments) Create(ctx context.Context, request operations.CreateBillPaymentRequest, opts ...operations.Option) (*operations.CreateBillPaymentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -136,6 +137,7 @@ func (s *billPayments) Create(ctx context.Context, request operations.CreateBill
 // > **Supported Integrations**
 // >
 // > This functionality is currently only supported for our Oracle NetSuite integration. Check out our [public roadmap](https://portal.productboard.com/codat/7-public-product-roadmap/tabs/46-accounting-api) to see what we're building next, and to submit ideas for new features.
+
 func (s *billPayments) Delete(ctx context.Context, request operations.DeleteBillPaymentRequest, opts ...operations.Option) (*operations.DeleteBillPaymentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -217,6 +219,7 @@ func (s *billPayments) Delete(ctx context.Context, request operations.DeleteBill
 
 // Get - Get bill payment
 // Get a bill payment
+
 func (s *billPayments) Get(ctx context.Context, request operations.GetBillPaymentsRequest, opts ...operations.Option) (*operations.GetBillPaymentsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -302,6 +305,7 @@ func (s *billPayments) Get(ctx context.Context, request operations.GetBillPaymen
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=billPayments) for integrations that support creating and deleting bill payments.
+
 func (s *billPayments) GetCreateModel(ctx context.Context, request operations.GetCreateBillPaymentsModelRequest, opts ...operations.Option) (*operations.GetCreateBillPaymentsModelResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -383,6 +387,7 @@ func (s *billPayments) GetCreateModel(ctx context.Context, request operations.Ge
 
 // List - List bill payments
 // Gets the latest billPayments for a company, with pagination
+
 func (s *billPayments) List(ctx context.Context, request operations.ListBillPaymentsRequest, opts ...operations.Option) (*operations.ListBillPaymentsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

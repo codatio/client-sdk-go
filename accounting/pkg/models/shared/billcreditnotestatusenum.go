@@ -24,11 +24,11 @@ func (e BillCreditNoteStatusEnum) ToPointer() *BillCreditNoteStatusEnum {
 }
 
 func (e *BillCreditNoteStatusEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "Unknown":
 		fallthrough
 	case "Draft":
@@ -40,9 +40,9 @@ func (e *BillCreditNoteStatusEnum) UnmarshalJSON(data []byte) error {
 	case "Void":
 		fallthrough
 	case "PartiallyPaid":
-		*e = BillCreditNoteStatusEnum(s)
+		*e = BillCreditNoteStatusEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for BillCreditNoteStatusEnum: %s", s)
+		return fmt.Errorf("invalid value for BillCreditNoteStatusEnum: %v", v)
 	}
 }

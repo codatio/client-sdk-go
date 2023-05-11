@@ -45,8 +45,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.CreateSupplierRequest{
+    ctx := context.Background()
+    res, err := s.Suppliers.Create(ctx, operations.CreateSupplierRequest{
         Supplier: &shared.Supplier{
             Addresses: []shared.Addressesitems{
                 shared.Addressesitems{
@@ -87,9 +87,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         TimeoutInMinutes: codataccounting.Int(796063),
-    }
-
-    res, err := s.Suppliers.Create(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -123,15 +121,13 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.DownloadSupplierAttachmentRequest{
+    ctx := context.Background()
+    res, err := s.Suppliers.DownloadAttachment(ctx, operations.DownloadSupplierAttachmentRequest{
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         SupplierID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    }
-
-    res, err := s.Suppliers.DownloadAttachment(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -165,13 +161,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetSupplierRequest{
+    ctx := context.Background()
+    res, err := s.Suppliers.Get(ctx, operations.GetSupplierRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         SupplierID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    }
-
-    res, err := s.Suppliers.Get(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -205,15 +199,13 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetSupplierAttachmentRequest{
+    ctx := context.Background()
+    res, err := s.Suppliers.GetAttachment(ctx, operations.GetSupplierAttachmentRequest{
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         SupplierID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    }
-
-    res, err := s.Suppliers.GetAttachment(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -253,13 +245,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetCreateUpdateSuppliersModelRequest{
+    ctx := context.Background()
+    res, err := s.Suppliers.GetCreateUpdateModel(ctx, operations.GetCreateUpdateSuppliersModelRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-    }
-
-    res, err := s.Suppliers.GetCreateUpdateModel(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -293,16 +283,14 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ListSuppliersRequest{
+    ctx := context.Background()
+    res, err := s.Suppliers.List(ctx, operations.ListSuppliersRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: 1,
         PageSize: codataccounting.Int(100),
         Query: codataccounting.String("blanditiis"),
-    }
-
-    res, err := s.Suppliers.List(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -336,14 +324,12 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ListSupplierAttachmentsRequest{
+    ctx := context.Background()
+    res, err := s.Suppliers.ListAttachments(ctx, operations.ListSupplierAttachmentsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         SupplierID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    }
-
-    res, err := s.Suppliers.ListAttachments(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -384,8 +370,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.UpdateSupplierRequest{
+    ctx := context.Background()
+    res, err := s.Suppliers.Update(ctx, operations.UpdateSupplierRequest{
         Supplier: &shared.Supplier{
             Addresses: []shared.Addressesitems{
                 shared.Addressesitems{
@@ -453,9 +439,7 @@ func main() {
         ForceUpdate: codataccounting.Bool(false),
         SupplierID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         TimeoutInMinutes: codataccounting.Int(721212),
-    }
-
-    res, err := s.Suppliers.Update(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

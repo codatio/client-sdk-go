@@ -34,6 +34,7 @@ func newTrackingCategories(defaultClient, securityClient HTTPClient, serverURL, 
 
 // Get - Get tracking categories
 // Gets the specified tracking categories for a given company.
+
 func (s *trackingCategories) Get(ctx context.Context, request operations.GetTrackingCategoryRequest, opts ...operations.Option) (*operations.GetTrackingCategoryResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -115,6 +116,7 @@ func (s *trackingCategories) Get(ctx context.Context, request operations.GetTrac
 
 // List - List tracking categories
 // Gets the latest tracking categories for a given company.
+
 func (s *trackingCategories) List(ctx context.Context, request operations.ListTrackingCategoriesRequest, opts ...operations.Option) (*operations.ListTrackingCategoriesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

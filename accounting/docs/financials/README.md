@@ -33,15 +33,13 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetBalanceSheetRequest{
+    ctx := context.Background()
+    res, err := s.Financials.GetBalanceSheet(ctx, operations.GetBalanceSheetRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         PeriodLength: 181836,
         PeriodsToCompare: 754041,
         StartMonth: codataccounting.String("perspiciatis"),
-    }
-
-    res, err := s.Financials.GetBalanceSheet(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -75,15 +73,13 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetCashFlowStatementRequest{
+    ctx := context.Background()
+    res, err := s.Financials.GetCashFlowStatement(ctx, operations.GetCashFlowStatementRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         PeriodLength: 431723,
         PeriodsToCompare: 576232,
         StartMonth: codataccounting.String("eligendi"),
-    }
-
-    res, err := s.Financials.GetCashFlowStatement(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -117,15 +113,13 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetProfitAndLossRequest{
+    ctx := context.Background()
+    res, err := s.Financials.GetProfitAndLoss(ctx, operations.GetProfitAndLossRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         PeriodLength: 276507,
         PeriodsToCompare: 790080,
         StartMonth: codataccounting.String("quod"),
-    }
-
-    res, err := s.Financials.GetProfitAndLoss(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

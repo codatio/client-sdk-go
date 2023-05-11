@@ -45,8 +45,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.CreateCustomerRequest{
+    ctx := context.Background()
+    res, err := s.Customers.Create(ctx, operations.CreateCustomerRequest{
         Customer: &shared.Customer{
             Addresses: []shared.Addressesitems{
                 shared.Addressesitems{
@@ -143,9 +143,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         TimeoutInMinutes: codataccounting.Int(583959),
-    }
-
-    res, err := s.Customers.Create(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -179,15 +177,13 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.DownloadCustomerAttachmentRequest{
+    ctx := context.Background()
+    res, err := s.Customers.DownloadAttachment(ctx, operations.DownloadCustomerAttachmentRequest{
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         CustomerID: "minima",
-    }
-
-    res, err := s.Customers.DownloadAttachment(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -221,13 +217,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetCustomerRequest{
+    ctx := context.Background()
+    res, err := s.Customers.Get(ctx, operations.GetCustomerRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CustomerID: "quo",
-    }
-
-    res, err := s.Customers.Get(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -261,15 +255,13 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetCustomerAttachmentRequest{
+    ctx := context.Background()
+    res, err := s.Customers.GetAttachment(ctx, operations.GetCustomerAttachmentRequest{
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         CustomerID: "quis",
-    }
-
-    res, err := s.Customers.GetAttachment(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -309,13 +301,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetCreateUpdateCustomersModelRequest{
+    ctx := context.Background()
+    res, err := s.Customers.GetCreateUpdateModel(ctx, operations.GetCreateUpdateCustomersModelRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-    }
-
-    res, err := s.Customers.GetCreateUpdateModel(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -349,16 +339,14 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ListCustomersRequest{
+    ctx := context.Background()
+    res, err := s.Customers.List(ctx, operations.ListCustomersRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: 1,
         PageSize: codataccounting.Int(100),
         Query: codataccounting.String("facere"),
-    }
-
-    res, err := s.Customers.List(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -392,14 +380,12 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ListCustomerAttachmentsRequest{
+    ctx := context.Background()
+    res, err := s.Customers.ListAttachments(ctx, operations.ListCustomerAttachmentsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         CustomerID: "quidem",
-    }
-
-    res, err := s.Customers.ListAttachments(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -440,8 +426,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.UpdateCustomerRequest{
+    ctx := context.Background()
+    res, err := s.Customers.Update(ctx, operations.UpdateCustomerRequest{
         Customer: &shared.Customer{
             Addresses: []shared.Addressesitems{
                 shared.Addressesitems{
@@ -582,9 +568,7 @@ func main() {
         CustomerID: "error",
         ForceUpdate: codataccounting.Bool(false),
         TimeoutInMinutes: codataccounting.Int(535903),
-    }
-
-    res, err := s.Customers.Update(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

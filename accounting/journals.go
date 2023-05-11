@@ -40,6 +40,7 @@ func newJournals(defaultClient, securityClient HTTPClient, serverURL, language, 
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journals) for integrations that support creating journals.
+
 func (s *journals) Create(ctx context.Context, request operations.CreateJournalRequest, opts ...operations.Option) (*operations.CreateJournalResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -132,6 +133,7 @@ func (s *journals) Create(ctx context.Context, request operations.CreateJournalR
 
 // Get - Get journal
 // Gets a single journal corresponding to the given ID.
+
 func (s *journals) Get(ctx context.Context, request operations.GetJournalRequest, opts ...operations.Option) (*operations.GetJournalResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -219,6 +221,7 @@ func (s *journals) Get(ctx context.Context, request operations.GetJournalRequest
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journals) for integrations that support creating journals.
+
 func (s *journals) GetCreateModel(ctx context.Context, request operations.GetCreateJournalsModelRequest, opts ...operations.Option) (*operations.GetCreateJournalsModelResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -300,6 +303,7 @@ func (s *journals) GetCreateModel(ctx context.Context, request operations.GetCre
 
 // List - List journals
 // Gets the latest journals for a company, with pagination
+
 func (s *journals) List(ctx context.Context, request operations.ListJournalsRequest, opts ...operations.Option) (*operations.ListJournalsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

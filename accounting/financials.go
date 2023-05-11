@@ -34,6 +34,7 @@ func newFinancials(defaultClient, securityClient HTTPClient, serverURL, language
 
 // GetBalanceSheet - Get balance sheet
 // Gets the latest balance sheet for a company.
+
 func (s *financials) GetBalanceSheet(ctx context.Context, request operations.GetBalanceSheetRequest, opts ...operations.Option) (*operations.GetBalanceSheetResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -119,6 +120,7 @@ func (s *financials) GetBalanceSheet(ctx context.Context, request operations.Get
 
 // GetCashFlowStatement - Get cash flow statement
 // Gets the latest cash flow statement for a company.
+
 func (s *financials) GetCashFlowStatement(ctx context.Context, request operations.GetCashFlowStatementRequest, opts ...operations.Option) (*operations.GetCashFlowStatementResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -204,6 +206,7 @@ func (s *financials) GetCashFlowStatement(ctx context.Context, request operation
 
 // GetProfitAndLoss - Get profit and loss
 // Gets the latest profit and loss for a company.
+
 func (s *financials) GetProfitAndLoss(ctx context.Context, request operations.GetProfitAndLossRequest, opts ...operations.Option) (*operations.GetProfitAndLossResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

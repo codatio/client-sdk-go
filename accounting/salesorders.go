@@ -34,6 +34,7 @@ func newSalesOrders(defaultClient, securityClient HTTPClient, serverURL, languag
 
 // Get - Get sales order
 // Get sales order
+
 func (s *salesOrders) Get(ctx context.Context, request operations.GetSalesOrderRequest, opts ...operations.Option) (*operations.GetSalesOrderResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -115,6 +116,7 @@ func (s *salesOrders) Get(ctx context.Context, request operations.GetSalesOrderR
 
 // List - List sales orders
 // Get sales orders
+
 func (s *salesOrders) List(ctx context.Context, request operations.ListSalesOrdersRequest, opts ...operations.Option) (*operations.ListSalesOrdersResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

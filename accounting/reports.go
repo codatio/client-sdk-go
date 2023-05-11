@@ -34,6 +34,7 @@ func newReports(defaultClient, securityClient HTTPClient, serverURL, language, s
 
 // GetAgedCreditorsReport - Aged creditors report
 // Returns aged creditors report for company that shows the total balance owed by a business to its suppliers over time.
+
 func (s *reports) GetAgedCreditorsReport(ctx context.Context, request operations.GetAgedCreditorsReportRequest, opts ...operations.Option) (*operations.GetAgedCreditorsReportResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -119,6 +120,7 @@ func (s *reports) GetAgedCreditorsReport(ctx context.Context, request operations
 
 // GetAgedDebtorsReport - Aged debtors report
 // Returns aged debtors report for company that shows the total outstanding balance due from customers to the business over time.
+
 func (s *reports) GetAgedDebtorsReport(ctx context.Context, request operations.GetAgedDebtorsReportRequest, opts ...operations.Option) (*operations.GetAgedDebtorsReportResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -204,6 +206,7 @@ func (s *reports) GetAgedDebtorsReport(ctx context.Context, request operations.G
 
 // IsAgedCreditorsReportAvailable - Aged creditors report available
 // Indicates whether the aged creditor report is available for the company.
+
 func (s *reports) IsAgedCreditorsReportAvailable(ctx context.Context, request operations.IsAgedCreditorsReportAvailableRequest, opts ...operations.Option) (*operations.IsAgedCreditorsReportAvailableResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -285,6 +288,7 @@ func (s *reports) IsAgedCreditorsReportAvailable(ctx context.Context, request op
 
 // IsAgedDebtorReportAvailable - Aged debtors report available
 // Indicates whether the aged debtor report is available for the company.
+
 func (s *reports) IsAgedDebtorReportAvailable(ctx context.Context, request operations.IsAgedDebtorReportAvailableRequest, opts ...operations.Option) (*operations.IsAgedDebtorReportAvailableResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

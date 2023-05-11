@@ -43,8 +43,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.CreateCreditNoteRequest{
+    ctx := context.Background()
+    res, err := s.CreditNotes.Create(ctx, operations.CreateCreditNoteRequest{
         CreditNote: &shared.CreditNote{
             AdditionalTaxAmount: codataccounting.Float64(4618.53),
             AdditionalTaxPercentage: codataccounting.Float64(5345.09),
@@ -242,9 +242,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         TimeoutInMinutes: codataccounting.Int(419585),
-    }
-
-    res, err := s.CreditNotes.Create(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -278,13 +276,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetCreditNoteRequest{
+    ctx := context.Background()
+    res, err := s.CreditNotes.Get(ctx, operations.GetCreditNoteRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CreditNoteID: "praesentium",
-    }
-
-    res, err := s.CreditNotes.Get(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -324,13 +320,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetCreateUpdateCreditNotesModelRequest{
+    ctx := context.Background()
+    res, err := s.CreditNotes.GetCreateUpdateModel(ctx, operations.GetCreateUpdateCreditNotesModelRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-    }
-
-    res, err := s.CreditNotes.GetCreateUpdateModel(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -364,16 +358,14 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ListCreditNotesRequest{
+    ctx := context.Background()
+    res, err := s.CreditNotes.List(ctx, operations.ListCreditNotesRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: 1,
         PageSize: codataccounting.Int(100),
         Query: codataccounting.String("magni"),
-    }
-
-    res, err := s.CreditNotes.List(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -414,8 +406,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.UpdateCreditNoteRequest{
+    ctx := context.Background()
+    res, err := s.CreditNotes.Update(ctx, operations.UpdateCreditNoteRequest{
         CreditNote: &shared.CreditNote{
             AdditionalTaxAmount: codataccounting.Float64(7874.67),
             AdditionalTaxPercentage: codataccounting.Float64(7118.19),
@@ -745,9 +737,7 @@ func main() {
         CreditNoteID: "ipsam",
         ForceUpdate: codataccounting.Bool(false),
         TimeoutInMinutes: codataccounting.Int(788995),
-    }
-
-    res, err := s.CreditNotes.Update(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

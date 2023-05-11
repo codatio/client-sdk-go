@@ -42,8 +42,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.CreatePurchaseOrderRequest{
+    ctx := context.Background()
+    res, err := s.PurchaseOrders.Create(ctx, operations.CreatePurchaseOrderRequest{
         PurchaseOrder: &shared.PurchaseOrder{
             Currency: codataccounting.String("quo"),
             CurrencyRate: codataccounting.Float64(9804.63),
@@ -152,9 +152,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         TimeoutInMinutes: codataccounting.Int(117700),
-    }
-
-    res, err := s.PurchaseOrders.Create(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -188,13 +186,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetPurchaseOrderRequest{
+    ctx := context.Background()
+    res, err := s.PurchaseOrders.Get(ctx, operations.GetPurchaseOrderRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         PurchaseOrderID: "architecto",
-    }
-
-    res, err := s.PurchaseOrders.Get(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -234,13 +230,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetCreateUpdatePurchaseOrdersModelRequest{
+    ctx := context.Background()
+    res, err := s.PurchaseOrders.GetCreateUpdateModel(ctx, operations.GetCreateUpdatePurchaseOrdersModelRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-    }
-
-    res, err := s.PurchaseOrders.GetCreateUpdateModel(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -274,16 +268,14 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ListPurchaseOrdersRequest{
+    ctx := context.Background()
+    res, err := s.PurchaseOrders.List(ctx, operations.ListPurchaseOrdersRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: 1,
         PageSize: codataccounting.Int(100),
         Query: codataccounting.String("fugiat"),
-    }
-
-    res, err := s.PurchaseOrders.List(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -324,8 +316,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.UpdatePurchaseOrderRequest{
+    ctx := context.Background()
+    res, err := s.PurchaseOrders.Update(ctx, operations.UpdatePurchaseOrderRequest{
         PurchaseOrder: &shared.PurchaseOrder{
             Currency: codataccounting.String("eum"),
             CurrencyRate: codataccounting.Float64(1110.45),
@@ -411,9 +403,7 @@ func main() {
         ForceUpdate: codataccounting.Bool(false),
         PurchaseOrderID: "sequi",
         TimeoutInMinutes: codataccounting.Int(122858),
-    }
-
-    res, err := s.PurchaseOrders.Update(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

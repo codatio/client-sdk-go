@@ -42,8 +42,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.CreateBillCreditNoteRequest{
+    ctx := context.Background()
+    res, err := s.BillCreditNotes.Create(ctx, operations.CreateBillCreditNoteRequest{
         BillCreditNote: &shared.BillCreditNote{
             AllocatedOnDate: codataccounting.String("ipsum"),
             BillCreditNoteNumber: codataccounting.String("91fe2a83-e161-4c21-929d-c5c10c4b07e5"),
@@ -287,9 +287,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         TimeoutInMinutes: codataccounting.Int(52508),
-    }
-
-    res, err := s.BillCreditNotes.Create(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -323,13 +321,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetBillCreditNoteRequest{
+    ctx := context.Background()
+    res, err := s.BillCreditNotes.Get(ctx, operations.GetBillCreditNoteRequest{
         BillCreditNoteID: "earum",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    }
-
-    res, err := s.BillCreditNotes.Get(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -367,13 +363,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetCreateUpdateBillCreditNotesModelRequest{
+    ctx := context.Background()
+    res, err := s.BillCreditNotes.GetCreateUpdateModel(ctx, operations.GetCreateUpdateBillCreditNotesModelRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-    }
-
-    res, err := s.BillCreditNotes.GetCreateUpdateModel(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -407,16 +401,14 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ListBillCreditNotesRequest{
+    ctx := context.Background()
+    res, err := s.BillCreditNotes.List(ctx, operations.ListBillCreditNotesRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: 1,
         PageSize: codataccounting.Int(100),
         Query: codataccounting.String("perspiciatis"),
-    }
-
-    res, err := s.BillCreditNotes.List(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -457,8 +449,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.UpdateBillCreditNoteRequest{
+    ctx := context.Background()
+    res, err := s.BillCreditNotes.Update(ctx, operations.UpdateBillCreditNoteRequest{
         BillCreditNote: &shared.BillCreditNote{
             AllocatedOnDate: codataccounting.String("maiores"),
             BillCreditNoteNumber: codataccounting.String("91fe2a83-e161-4c21-929d-c5c10c4b07e5"),
@@ -671,9 +663,7 @@ func main() {
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         ForceUpdate: codataccounting.Bool(false),
         TimeoutInMinutes: codataccounting.Int(10063),
-    }
-
-    res, err := s.BillCreditNotes.Update(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

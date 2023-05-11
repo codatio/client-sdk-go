@@ -38,6 +38,7 @@ func newBankAccountTransactions(defaultClient, securityClient HTTPClient, server
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankTransactions) for integrations that support POST methods.
+
 func (s *bankAccountTransactions) Create(ctx context.Context, request operations.CreateBankTransactionsRequest, opts ...operations.Option) (*operations.CreateBankTransactionsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -130,6 +131,7 @@ func (s *bankAccountTransactions) Create(ctx context.Context, request operations
 
 // GetCreateModel - List push options for bank account bank transactions
 // Gets the options of pushing bank account transactions.
+
 func (s *bankAccountTransactions) GetCreateModel(ctx context.Context, request operations.GetCreateBankAccountModelRequest, opts ...operations.Option) (*operations.GetCreateBankAccountModelResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -211,6 +213,7 @@ func (s *bankAccountTransactions) GetCreateModel(ctx context.Context, request op
 
 // List - List bank transactions for bank account
 // Gets bank transactions for a given bank account ID
+
 func (s *bankAccountTransactions) List(ctx context.Context, request operations.ListBankAccountTransactionsRequest, opts ...operations.Option) (*operations.ListBankAccountTransactionsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -296,6 +299,7 @@ func (s *bankAccountTransactions) List(ctx context.Context, request operations.L
 
 // ListTransactions - List all bank transactions
 // Gets the latest bank transactions for given account ID and company. Doesn't require connection ID.
+
 func (s *bankAccountTransactions) ListTransactions(ctx context.Context, request operations.ListBankTransactionsRequest, opts ...operations.Option) (*operations.ListBankTransactionsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

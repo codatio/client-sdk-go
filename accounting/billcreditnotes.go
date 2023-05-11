@@ -40,6 +40,7 @@ func newBillCreditNotes(defaultClient, securityClient HTTPClient, serverURL, lan
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=billCreditNotes) for integrations that support creating bill credit notes.
+
 func (s *billCreditNotes) Create(ctx context.Context, request operations.CreateBillCreditNoteRequest, opts ...operations.Option) (*operations.CreateBillCreditNoteResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -132,6 +133,7 @@ func (s *billCreditNotes) Create(ctx context.Context, request operations.CreateB
 
 // Get - Get bill credit note
 // Gets a single billCreditNote corresponding to the given ID.
+
 func (s *billCreditNotes) Get(ctx context.Context, request operations.GetBillCreditNoteRequest, opts ...operations.Option) (*operations.GetBillCreditNoteResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -217,6 +219,7 @@ func (s *billCreditNotes) Get(ctx context.Context, request operations.GetBillCre
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=billCreditNotes) for integrations that support creating and updating bill credit notes.
+
 func (s *billCreditNotes) GetCreateUpdateModel(ctx context.Context, request operations.GetCreateUpdateBillCreditNotesModelRequest, opts ...operations.Option) (*operations.GetCreateUpdateBillCreditNotesModelResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -298,6 +301,7 @@ func (s *billCreditNotes) GetCreateUpdateModel(ctx context.Context, request oper
 
 // List - List bill credit notes
 // Gets a list of all bill credit notes for a company, with pagination
+
 func (s *billCreditNotes) List(ctx context.Context, request operations.ListBillCreditNotesRequest, opts ...operations.Option) (*operations.ListBillCreditNotesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -389,6 +393,7 @@ func (s *billCreditNotes) List(ctx context.Context, request operations.ListBillC
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=billCreditNotes) for integrations that support updating bill credit notes.
+
 func (s *billCreditNotes) Update(ctx context.Context, request operations.UpdateBillCreditNoteRequest, opts ...operations.Option) (*operations.UpdateBillCreditNoteResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

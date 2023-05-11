@@ -32,13 +32,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetTaxRateRequest{
+    ctx := context.Background()
+    res, err := s.TaxRates.Get(ctx, operations.GetTaxRateRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         TaxRateID: "inventore",
-    }
-
-    res, err := s.TaxRates.Get(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -72,16 +70,14 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ListTaxRatesRequest{
+    ctx := context.Background()
+    res, err := s.TaxRates.List(ctx, operations.ListTaxRatesRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: 1,
         PageSize: codataccounting.Int(100),
         Query: codataccounting.String("eligendi"),
-    }
-
-    res, err := s.TaxRates.List(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

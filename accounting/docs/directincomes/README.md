@@ -45,8 +45,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.CreateDirectIncomeRequest{
+    ctx := context.Background()
+    res, err := s.DirectIncomes.Create(ctx, operations.CreateDirectIncomeRequest{
         DirectIncome: &shared.DirectIncome{
             ContactRef: &shared.ContactRef{
                 DataType: codataccounting.String("amet"),
@@ -178,9 +178,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         TimeoutInMinutes: codataccounting.Int(599915),
-    }
-
-    res, err := s.DirectIncomes.Create(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -214,15 +212,13 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.DownloadDirectIncomeAttachmentRequest{
+    ctx := context.Background()
+    res, err := s.DirectIncomes.DownloadAttachment(ctx, operations.DownloadDirectIncomeAttachmentRequest{
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         DirectIncomeID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    }
-
-    res, err := s.DirectIncomes.DownloadAttachment(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -256,14 +252,12 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetDirectIncomeRequest{
+    ctx := context.Background()
+    res, err := s.DirectIncomes.Get(ctx, operations.GetDirectIncomeRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         DirectIncomeID: "sunt",
-    }
-
-    res, err := s.DirectIncomes.Get(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -297,16 +291,14 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetDirectIncomeAttachmentRequest{
+    ctx := context.Background()
+    res, err := s.DirectIncomes.GetAttachment(ctx, operations.GetDirectIncomeAttachmentRequest{
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         DirectIncomeID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         TimeoutInMinutes: codataccounting.Int(226197),
-    }
-
-    res, err := s.DirectIncomes.GetAttachment(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -346,13 +338,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetCreateDirectIncomesModelRequest{
+    ctx := context.Background()
+    res, err := s.DirectIncomes.GetCreateModel(ctx, operations.GetCreateDirectIncomesModelRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-    }
-
-    res, err := s.DirectIncomes.GetCreateModel(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -386,17 +376,15 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ListDirectIncomesRequest{
+    ctx := context.Background()
+    res, err := s.DirectIncomes.List(ctx, operations.ListDirectIncomesRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: 1,
         PageSize: codataccounting.Int(100),
         Query: codataccounting.String("laudantium"),
-    }
-
-    res, err := s.DirectIncomes.List(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -430,14 +418,12 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ListDirectIncomeAttachmentsRequest{
+    ctx := context.Background()
+    res, err := s.DirectIncomes.ListAttachments(ctx, operations.ListDirectIncomeAttachmentsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         DirectIncomeID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    }
-
-    res, err := s.DirectIncomes.ListAttachments(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -471,8 +457,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.UploadDirectIncomeAttachmentRequest{
+    ctx := context.Background()
+    res, err := s.DirectIncomes.UploadAttachment(ctx, operations.UploadDirectIncomeAttachmentRequest{
         RequestBody: &operations.UploadDirectIncomeAttachmentRequestBody{
             Content: []byte("commodi"),
             RequestBody: "a",
@@ -480,9 +466,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         DirectIncomeID: "aliquid",
-    }
-
-    res, err := s.DirectIncomes.UploadAttachment(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

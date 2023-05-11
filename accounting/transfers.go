@@ -40,6 +40,7 @@ func newTransfers(defaultClient, securityClient HTTPClient, serverURL, language,
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=transfers) for integrations that support creating transfers.
+
 func (s *transfers) Create(ctx context.Context, request operations.CreateTransferRequest, opts ...operations.Option) (*operations.CreateTransferResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -128,6 +129,7 @@ func (s *transfers) Create(ctx context.Context, request operations.CreateTransfe
 
 // Get - Get transfer
 // Gets the specified transfer for a given company.
+
 func (s *transfers) Get(ctx context.Context, request operations.GetTransferRequest, opts ...operations.Option) (*operations.GetTransferResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -215,6 +217,7 @@ func (s *transfers) Get(ctx context.Context, request operations.GetTransferReque
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=transfers) for integrations that support creating transfers.
+
 func (s *transfers) GetCreateModel(ctx context.Context, request operations.GetCreateTransfersModelRequest, opts ...operations.Option) (*operations.GetCreateTransfersModelResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -296,6 +299,7 @@ func (s *transfers) GetCreateModel(ctx context.Context, request operations.GetCr
 
 // List - List transfers
 // Gets the transfers for a given company.
+
 func (s *transfers) List(ctx context.Context, request operations.ListTransfersRequest, opts ...operations.Option) (*operations.ListTransfersResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

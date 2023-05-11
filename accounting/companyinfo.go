@@ -34,6 +34,7 @@ func newCompanyInfo(defaultClient, securityClient HTTPClient, serverURL, languag
 
 // Get - Get company info
 // Gets the latest basic info for a company.
+
 func (s *companyInfo) Get(ctx context.Context, request operations.GetCompanyInfoRequest, opts ...operations.Option) (*operations.GetCompanyInfoResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -115,6 +116,7 @@ func (s *companyInfo) Get(ctx context.Context, request operations.GetCompanyInfo
 
 // Refresh - Refresh company info
 // Initiates the process of synchronising basic info for a company
+
 func (s *companyInfo) Refresh(ctx context.Context, request operations.RefreshCompanyInfoRequest, opts ...operations.Option) (*operations.RefreshCompanyInfoResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

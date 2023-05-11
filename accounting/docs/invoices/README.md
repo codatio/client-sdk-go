@@ -48,8 +48,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.CreateInvoiceRequest{
+    ctx := context.Background()
+    res, err := s.Invoices.Create(ctx, operations.CreateInvoiceRequest{
         Invoice: &shared.Invoice{
             AdditionalTaxAmount: codataccounting.Float64(3856.2),
             AdditionalTaxPercentage: codataccounting.Float64(6970.56),
@@ -351,9 +351,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         TimeoutInMinutes: codataccounting.Int(289108),
-    }
-
-    res, err := s.Invoices.Create(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -391,14 +389,12 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.DeleteInvoiceRequest{
+    ctx := context.Background()
+    res, err := s.Invoices.Delete(ctx, operations.DeleteInvoiceRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         InvoiceID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    }
-
-    res, err := s.Invoices.Delete(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -432,15 +428,13 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.DownloadInvoiceAttachmentRequest{
+    ctx := context.Background()
+    res, err := s.Invoices.DownloadAttachment(ctx, operations.DownloadInvoiceAttachmentRequest{
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         InvoiceID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    }
-
-    res, err := s.Invoices.DownloadAttachment(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -474,13 +468,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.DownloadInvoicePdfRequest{
+    ctx := context.Background()
+    res, err := s.Invoices.DownloadPdf(ctx, operations.DownloadInvoicePdfRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         InvoiceID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    }
-
-    res, err := s.Invoices.DownloadPdf(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -514,13 +506,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetInvoiceRequest{
+    ctx := context.Background()
+    res, err := s.Invoices.Get(ctx, operations.GetInvoiceRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         InvoiceID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    }
-
-    res, err := s.Invoices.Get(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -554,15 +544,13 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetInvoiceAttachmentRequest{
+    ctx := context.Background()
+    res, err := s.Invoices.GetAttachment(ctx, operations.GetInvoiceAttachmentRequest{
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         InvoiceID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    }
-
-    res, err := s.Invoices.GetAttachment(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -602,13 +590,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetCreateUpdateInvoicesModelRequest{
+    ctx := context.Background()
+    res, err := s.Invoices.GetCreateUpdateModel(ctx, operations.GetCreateUpdateInvoicesModelRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-    }
-
-    res, err := s.Invoices.GetCreateUpdateModel(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -642,16 +628,14 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ListInvoicesRequest{
+    ctx := context.Background()
+    res, err := s.Invoices.List(ctx, operations.ListInvoicesRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: 1,
         PageSize: codataccounting.Int(100),
         Query: codataccounting.String("harum"),
-    }
-
-    res, err := s.Invoices.List(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -685,14 +669,12 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ListInvoiceAttachmentsRequest{
+    ctx := context.Background()
+    res, err := s.Invoices.ListAttachments(ctx, operations.ListInvoiceAttachmentsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         InvoiceID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    }
-
-    res, err := s.Invoices.ListAttachments(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -733,8 +715,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.UpdateInvoiceRequest{
+    ctx := context.Background()
+    res, err := s.Invoices.Update(ctx, operations.UpdateInvoiceRequest{
         Invoice: &shared.Invoice{
             AdditionalTaxAmount: codataccounting.Float64(6791.83),
             AdditionalTaxPercentage: codataccounting.Float64(5932.05),
@@ -959,9 +941,7 @@ func main() {
         ForceUpdate: codataccounting.Bool(false),
         InvoiceID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         TimeoutInMinutes: codataccounting.Int(329849),
-    }
-
-    res, err := s.Invoices.Update(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -995,8 +975,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.UploadInvoiceAttachmentRequest{
+    ctx := context.Background()
+    res, err := s.Invoices.UploadAttachment(ctx, operations.UploadInvoiceAttachmentRequest{
         RequestBody: &operations.UploadInvoiceAttachmentRequestBody{
             Content: []byte("facere"),
             RequestBody: "excepturi",
@@ -1004,9 +984,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         InvoiceID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    }
-
-    res, err := s.Invoices.UploadAttachment(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

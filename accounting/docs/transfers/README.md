@@ -41,8 +41,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.CreateTransferRequest{
+    ctx := context.Background()
+    res, err := s.Transfers.Create(ctx, operations.CreateTransferRequest{
         Transfer: &shared.Transfer{
             ContactRef: &shared.TransferContactRef{
                 DataType: codataccounting.String("laborum"),
@@ -114,9 +114,7 @@ func main() {
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-    }
-
-    res, err := s.Transfers.Create(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -150,14 +148,12 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetTransferRequest{
+    ctx := context.Background()
+    res, err := s.Transfers.Get(ctx, operations.GetTransferRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         TransferID: "ipsa",
-    }
-
-    res, err := s.Transfers.Get(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -197,13 +193,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetCreateTransfersModelRequest{
+    ctx := context.Background()
+    res, err := s.Transfers.GetCreateModel(ctx, operations.GetCreateTransfersModelRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-    }
-
-    res, err := s.Transfers.GetCreateModel(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -237,17 +231,15 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ListTransfersRequest{
+    ctx := context.Background()
+    res, err := s.Transfers.List(ctx, operations.ListTransfersRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: 1,
         PageSize: codataccounting.Int(100),
         Query: codataccounting.String("perspiciatis"),
-    }
-
-    res, err := s.Transfers.List(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
