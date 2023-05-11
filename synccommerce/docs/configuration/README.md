@@ -33,12 +33,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetConfigurationRequest{
+    ctx := context.Background()
+    res, err := s.Configuration.GetConfiguration(ctx, operations.GetConfigurationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    }
-
-    res, err := s.Configuration.GetConfiguration(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -72,12 +70,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetSyncStatusRequest{
+    ctx := context.Background()
+    res, err := s.Configuration.GetSyncStatus(ctx, operations.GetSyncStatusRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    }
-
-    res, err := s.Configuration.GetSyncStatus(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -111,12 +107,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.SetConfigurationRequest{
+    ctx := context.Background()
+    res, err := s.Configuration.SetConfiguration(ctx, operations.SetConfigurationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    }
-
-    res, err := s.Configuration.SetConfiguration(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

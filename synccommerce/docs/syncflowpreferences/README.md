@@ -69,14 +69,12 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetSyncFlowURLRequest{
+    ctx := context.Background()
+    res, err := s.SyncFlowPreferences.GetSyncFlowURL(ctx, operations.GetSyncFlowURLRequest{
         AccountingKey: "vel",
         CommerceKey: "error",
         MerchantIdentifier: codatsynccommerce.String("deserunt"),
-    }
-
-    res, err := s.SyncFlowPreferences.GetSyncFlowURL(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -110,13 +108,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetVisibleAccountsRequest{
+    ctx := context.Background()
+    res, err := s.SyncFlowPreferences.GetVisibleAccounts(ctx, operations.GetVisibleAccountsRequest{
         ClientID: "674e0f46-7cc8-4796-ad15-1a05dfc2ddf7",
         PlatformKey: "cc78ca1b-a928-4fc8-9674-2cb739205929",
-    }
-
-    res, err := s.SyncFlowPreferences.GetVisibleAccounts(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -150,15 +146,13 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := map[string]shared.Localization{
+    ctx := context.Background()
+    res, err := s.SyncFlowPreferences.UpdateConfigTextSyncFlow(ctx, map[string]shared.Localization{
         "natus": shared.Localization{
             Required: codatsynccommerce.Bool(false),
             Text: codatsynccommerce.String("laboriosam"),
         },
-    }
-
-    res, err := s.SyncFlowPreferences.UpdateConfigTextSyncFlow(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -193,8 +187,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.UpdateVisibleAccountsSyncFlowRequest{
+    ctx := context.Background()
+    res, err := s.SyncFlowPreferences.UpdateVisibleAccountsSyncFlow(ctx, operations.UpdateVisibleAccountsSyncFlowRequest{
         VisibleAccounts: &shared.VisibleAccounts{
             VisibleAccounts: []string{
                 "saepe",
@@ -204,9 +198,7 @@ func main() {
             },
         },
         CommerceKey: "96eb10fa-aa23-452c-9955-907aff1a3a2f",
-    }
-
-    res, err := s.SyncFlowPreferences.UpdateVisibleAccountsSyncFlow(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

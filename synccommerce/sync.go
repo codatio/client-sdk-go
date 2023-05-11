@@ -35,6 +35,7 @@ func newSync(defaultClient, securityClient HTTPClient, serverURL, language, sdkV
 // RequestSync - Run a Commerce sync from the last successful sync
 // Run a Commerce sync from the last successful sync up to the date provided (optional), otherwise UtcNow is used.
 // If there was no previously successful sync, the start date in the config is used.
+
 func (s *sync) RequestSync(ctx context.Context, request operations.RequestSyncRequest, opts ...operations.Option) (*operations.RequestSyncResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -123,6 +124,7 @@ func (s *sync) RequestSync(ctx context.Context, request operations.RequestSyncRe
 
 // RequestSyncForDateRange - Run a Commerce sync from a given date range
 // Run a Commerce sync from the specified start date to the specified finish date in the request payload.
+
 func (s *sync) RequestSyncForDateRange(ctx context.Context, request operations.RequestSyncForDateRangeRequest, opts ...operations.Option) (*operations.RequestSyncForDateRangeResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

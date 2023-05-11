@@ -35,12 +35,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := shared.CreateCompany{
+    ctx := context.Background()
+    res, err := s.CompanyManagement.CreateCompany(ctx, shared.CreateCompany{
         Name: "Bob's Burgers",
-    }
-
-    res, err := s.CompanyManagement.CreateCompany(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -74,13 +72,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.CreateConnectionRequest{
+    ctx := context.Background()
+    res, err := s.CompanyManagement.CreateConnection(ctx, operations.CreateConnectionRequest{
         RequestBody: codatsynccommerce.String("corrupti"),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    }
-
-    res, err := s.CompanyManagement.CreateConnection(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -114,15 +110,13 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ListCompaniesRequest{
+    ctx := context.Background()
+    res, err := s.CompanyManagement.ListCompanies(ctx, operations.ListCompaniesRequest{
         OrderBy: codatsynccommerce.String("-modifiedDate"),
         Page: 1,
         PageSize: codatsynccommerce.Int(100),
         Query: codatsynccommerce.String("provident"),
-    }
-
-    res, err := s.CompanyManagement.ListCompanies(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -156,16 +150,14 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ListConnectionsRequest{
+    ctx := context.Background()
+    res, err := s.CompanyManagement.ListConnections(ctx, operations.ListConnectionsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         OrderBy: codatsynccommerce.String("-modifiedDate"),
         Page: 1,
         PageSize: codatsynccommerce.Int(100),
         Query: codatsynccommerce.String("distinctio"),
-    }
-
-    res, err := s.CompanyManagement.ListConnections(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -200,16 +192,14 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.UpdateConnectionRequest{
+    ctx := context.Background()
+    res, err := s.CompanyManagement.UpdateConnection(ctx, operations.UpdateConnectionRequest{
         UpdateConnection: &shared.UpdateConnection{
             Status: codatsynccommerce.String("Linked"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-    }
-
-    res, err := s.CompanyManagement.UpdateConnection(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

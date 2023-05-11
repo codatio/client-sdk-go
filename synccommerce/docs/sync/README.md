@@ -34,15 +34,13 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.RequestSyncRequest{
+    ctx := context.Background()
+    res, err := s.Sync.RequestSync(ctx, operations.RequestSyncRequest{
         SyncToLatestArgs: &shared.SyncToLatestArgs{
             SyncTo: codatsynccommerce.String("nulla"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    }
-
-    res, err := s.Sync.RequestSync(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -77,16 +75,14 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.RequestSyncForDateRangeRequest{
+    ctx := context.Background()
+    res, err := s.Sync.RequestSyncForDateRange(ctx, operations.RequestSyncForDateRangeRequest{
         DateRange: &shared.DateRange{
             Finish: codatsynccommerce.String("corrupti"),
             Start: codatsynccommerce.String("illum"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    }
-
-    res, err := s.Sync.RequestSyncForDateRange(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

@@ -35,6 +35,7 @@ func newSyncFlowPreferences(defaultClient, securityClient HTTPClient, serverURL,
 
 // GetConfigTextSyncFlow - Retrieve preferences for text fields on Sync Flow
 // To enable retrieval of preferences set for the text fields on Sync Flow.
+
 func (s *syncFlowPreferences) GetConfigTextSyncFlow(ctx context.Context, opts ...operations.Option) (*operations.GetConfigTextSyncFlowResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -113,6 +114,7 @@ func (s *syncFlowPreferences) GetConfigTextSyncFlow(ctx context.Context, opts ..
 
 // GetSyncFlowURL - Retrieve sync flow url
 // Get a URL for Sync Flow including a one time passcode.
+
 func (s *syncFlowPreferences) GetSyncFlowURL(ctx context.Context, request operations.GetSyncFlowURLRequest, opts ...operations.Option) (*operations.GetSyncFlowURLResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -198,6 +200,7 @@ func (s *syncFlowPreferences) GetSyncFlowURL(ctx context.Context, request operat
 
 // GetVisibleAccounts - List visible accounts
 // Enable retrieval for accounts which are visible on sync flow.
+
 func (s *syncFlowPreferences) GetVisibleAccounts(ctx context.Context, request operations.GetVisibleAccountsRequest, opts ...operations.Option) (*operations.GetVisibleAccountsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -279,6 +282,7 @@ func (s *syncFlowPreferences) GetVisibleAccounts(ctx context.Context, request op
 
 // UpdateConfigTextSyncFlow - Update preferences for text fields on sync flow
 // To enable update of preferences set for the text fields on sync flow.
+
 func (s *syncFlowPreferences) UpdateConfigTextSyncFlow(ctx context.Context, request map[string]shared.Localization, opts ...operations.Option) (*operations.UpdateConfigTextSyncFlowResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -364,6 +368,7 @@ func (s *syncFlowPreferences) UpdateConfigTextSyncFlow(ctx context.Context, requ
 
 // UpdateVisibleAccountsSyncFlow - Update the visible accounts on Sync Flow
 // To enable update of accounts visible preferences set on Sync Flow.
+
 func (s *syncFlowPreferences) UpdateVisibleAccountsSyncFlow(ctx context.Context, request operations.UpdateVisibleAccountsSyncFlowRequest, opts ...operations.Option) (*operations.UpdateVisibleAccountsSyncFlowResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

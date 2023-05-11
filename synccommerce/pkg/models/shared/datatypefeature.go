@@ -60,11 +60,11 @@ func (e DataTypeFeatureDataTypeEnum) ToPointer() *DataTypeFeatureDataTypeEnum {
 }
 
 func (e *DataTypeFeatureDataTypeEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "accountTransactions":
 		fallthrough
 	case "balanceSheet":
@@ -148,10 +148,10 @@ func (e *DataTypeFeatureDataTypeEnum) UnmarshalJSON(data []byte) error {
 	case "commerce-taxComponents":
 		fallthrough
 	case "commerce-transactions":
-		*e = DataTypeFeatureDataTypeEnum(s)
+		*e = DataTypeFeatureDataTypeEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for DataTypeFeatureDataTypeEnum: %s", s)
+		return fmt.Errorf("invalid value for DataTypeFeatureDataTypeEnum: %v", v)
 	}
 }
 
