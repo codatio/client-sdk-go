@@ -4,5 +4,9 @@ package shared
 
 // TaxComponents - OK
 type TaxComponents struct {
-	TaxComponents []TaxComponent `json:"taxComponents,omitempty"`
+	Links        Links          `json:"_links"`
+	PageNumber   int64          `json:"pageNumber"`
+	PageSize     int64          `json:"pageSize"`
+	Results      []TaxComponent `json:"results,omitempty"`
+	TotalResults int64          `json:"totalResults"`
 }

@@ -7,5 +7,5 @@ type CustomerRef struct {
 	// The unique identitifer of the customer being referenced
 	ID string `json:"id"`
 	// Name of the customer being referenced.
-	Name string `json:"name"`
+	Name *string `json:"name,omitempty"`
 }

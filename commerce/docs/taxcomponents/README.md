@@ -10,7 +10,7 @@ Retrieve standardized data from linked commerce platforms.
 
 ## Get
 
-This endpoint returns a lits of tax rates from the commerce platform, including tax rate names and values. This supports the mapping of tax rates from the commerce platform to the accounting platform.
+This endpoint returns a lists of tax rates from the commerce platform, including tax rate names and values. This supports the mapping of tax rates from the commerce platform to the accounting platform.
 
 ### Example Usage
 
