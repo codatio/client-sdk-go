@@ -35,7 +35,6 @@ func newCompanyManagement(defaultClient, securityClient HTTPClient, serverURL, l
 
 // CreateCompany - Create Sync for Commerce company
 // Creates a Codat company with a commerce partner data connection.
-
 func (s *companyManagement) CreateCompany(ctx context.Context, request shared.CreateCompany, opts ...operations.Option) (*operations.CreateCompanyResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -121,7 +120,6 @@ func (s *companyManagement) CreateCompany(ctx context.Context, request shared.Cr
 
 // CreateConnection - Create connection
 // Create a data connection for company.
-
 func (s *companyManagement) CreateConnection(ctx context.Context, request operations.CreateConnectionRequest, opts ...operations.Option) (*operations.CreateConnectionResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -210,7 +208,6 @@ func (s *companyManagement) CreateConnection(ctx context.Context, request operat
 
 // ListCompanies - List companies
 // Retrieve a list of all companies the client has created.
-
 func (s *companyManagement) ListCompanies(ctx context.Context, request operations.ListCompaniesRequest, opts ...operations.Option) (*operations.ListCompaniesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -293,7 +290,6 @@ func (s *companyManagement) ListCompanies(ctx context.Context, request operation
 
 // ListConnections - List data connections
 // Retrieve previously created data connections.
-
 func (s *companyManagement) ListConnections(ctx context.Context, request operations.ListConnectionsRequest, opts ...operations.Option) (*operations.ListConnectionsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -379,7 +375,6 @@ func (s *companyManagement) ListConnections(ctx context.Context, request operati
 
 // UpdateConnection - Update data connection
 // Update a data connection
-
 func (s *companyManagement) UpdateConnection(ctx context.Context, request operations.UpdateConnectionRequest, opts ...operations.Option) (*operations.UpdateConnectionResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
