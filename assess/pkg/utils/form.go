@@ -4,6 +4,7 @@ package utils
 
 import (
 	"fmt"
+	"math/big"
 	"net/url"
 	"reflect"
 	"strings"
@@ -12,7 +13,7 @@ import (
 	"github.com/codatio/client-sdk-go/assess/pkg/types"
 )
 
-func populateForm(paramName string, explode bool, objType reflect.Type, objValue reflect.Value, arrayDelimiter string, getFieldName func(reflect.StructField) string) url.Values {
+func populateForm(paramName string, explode bool, objType reflect.Type, objValue reflect.Value, delimiter string, getFieldName func(reflect.StructField) string) url.Values {
 
 	formValues := url.Values{}
 
@@ -30,6 +31,10 @@ func populateForm(paramName string, explode bool, objType reflect.Type, objValue
 		case time.Time:
 			formValues.Add(paramName, valToString(objValue.Interface()))
 		case types.Date:
+			formValues.Add(paramName, valToString(objValue.Interface()))
+		case types.BigInt:
+			formValues.Add(paramName, valToString(objValue.Interface()))
+		case big.Int:
 			formValues.Add(paramName, valToString(objValue.Interface()))
 		default:
 			var items []string
@@ -54,12 +59,12 @@ func populateForm(paramName string, explode bool, objType reflect.Type, objValue
 				if explode {
 					formValues.Add(fieldName, valToString(valType.Interface()))
 				} else {
-					items = append(items, fmt.Sprintf("%s,%s", fieldName, valToString(valType.Interface())))
+					items = append(items, fmt.Sprintf("%s%s%s", fieldName, delimiter, valToString(valType.Interface())))
 				}
 			}
 
 			if len(items) > 0 {
-				formValues.Add(paramName, strings.Join(items, ","))
+				formValues.Add(paramName, strings.Join(items, delimiter))
 			}
 		}
 	case reflect.Map:
@@ -70,15 +75,15 @@ func populateForm(paramName string, explode bool, objType reflect.Type, objValue
 			if explode {
 				formValues.Add(iter.Key().String(), valToString(iter.Value().Interface()))
 			} else {
-				items = append(items, fmt.Sprintf("%s,%s", iter.Key().String(), valToString(iter.Value().Interface())))
+				items = append(items, fmt.Sprintf("%s%s%s", iter.Key().String(), delimiter, valToString(iter.Value().Interface())))
 			}
 		}
 
 		if len(items) > 0 {
-			formValues.Add(paramName, strings.Join(items, ","))
+			formValues.Add(paramName, strings.Join(items, delimiter))
 		}
 	case reflect.Slice, reflect.Array:
-		values := parseDelimitedArray(explode, objValue, arrayDelimiter)
+		values := parseDelimitedArray(explode, objValue, delimiter)
 		for _, v := range values {
 			formValues.Add(paramName, v)
 		}
