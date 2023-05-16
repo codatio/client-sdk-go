@@ -34,7 +34,6 @@ func newConnections(defaultClient, securityClient HTTPClient, serverURL, languag
 
 // Create - Create connection
 // Create a data connection for a company
-
 func (s *connections) Create(ctx context.Context, request operations.CreateDataConnectionRequest, opts ...operations.Option) (*operations.CreateDataConnectionResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -134,7 +133,6 @@ func (s *connections) Create(ctx context.Context, request operations.CreateDataC
 // Delete - Delete connection
 // Revoke and remove a connection from a company.
 // This operation is not reversible - the end user would need to reauthorize a new data connection if you wish to view new data for this company.
-
 func (s *connections) Delete(ctx context.Context, request operations.DeleteCompanyConnectionRequest, opts ...operations.Option) (*operations.DeleteCompanyConnectionResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -219,7 +217,6 @@ func (s *connections) Delete(ctx context.Context, request operations.DeleteCompa
 
 // Get - Get connection
 // Get a single connection for a company
-
 func (s *connections) Get(ctx context.Context, request operations.GetCompanyConnectionRequest, opts ...operations.Option) (*operations.GetCompanyConnectionResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -313,7 +310,6 @@ func (s *connections) Get(ctx context.Context, request operations.GetCompanyConn
 
 // List - List connections
 // List the connections for a company
-
 func (s *connections) List(ctx context.Context, request operations.ListCompanyConnectionsRequest, opts ...operations.Option) (*operations.ListCompanyConnectionsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -411,7 +407,6 @@ func (s *connections) List(ctx context.Context, request operations.ListCompanyCo
 
 // UnlinkConnection - Unlink connection
 // This allows you to deauthorize a connection, without deleting it from Codat. This means you can still view any data that has previously been pulled into Codat, and also lets you re-authorize in future if your customer wishes to resume sharing their data.
-
 func (s *connections) UnlinkConnection(ctx context.Context, request operations.UnlinkConnectionRequest, opts ...operations.Option) (*operations.UnlinkConnectionResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -514,7 +509,6 @@ func (s *connections) UnlinkConnection(ctx context.Context, request operations.U
 
 // UpdateAuthorization - Update authorization
 // Update data connection's authorization.
-
 func (s *connections) UpdateAuthorization(ctx context.Context, request operations.UpdateConnectionAuthorizationRequest, opts ...operations.Option) (*operations.UpdateConnectionAuthorizationResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

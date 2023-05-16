@@ -89,7 +89,7 @@ func main() {
 
 ### [Settings](docs/settings/README.md)
 
-* [GetProfile](docs/settings/README.md#getprofile) - Get profile
+* [~~GetProfile~~](docs/settings/README.md#getprofile) - Get profile :warning: **Deprecated**
 * [GetSyncSettings](docs/settings/README.md#getsyncsettings) - Update all sync settings
 * [UpdateProfile](docs/settings/README.md#updateprofile) - Update profile
 
