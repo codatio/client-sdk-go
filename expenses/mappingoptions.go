@@ -34,7 +34,6 @@ func newMappingOptions(defaultClient, securityClient HTTPClient, serverURL, lang
 
 // GetMappingOptions - Mapping options
 // Gets the expense mapping options for a companies accounting software
-
 func (s *mappingOptions) GetMappingOptions(ctx context.Context, request operations.GetMappingOptionsRequest, opts ...operations.Option) (*operations.GetMappingOptionsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

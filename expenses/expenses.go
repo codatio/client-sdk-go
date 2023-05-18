@@ -34,7 +34,6 @@ func newExpenses(defaultClient, securityClient HTTPClient, serverURL, language, 
 
 // CreateExpenseDataset - Create expense-transactions
 // Create an expense transaction
-
 func (s *expenses) CreateExpenseDataset(ctx context.Context, request operations.CreateExpenseDatasetRequest, opts ...operations.Option) (*operations.CreateExpenseDatasetResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -123,7 +122,6 @@ func (s *expenses) CreateExpenseDataset(ctx context.Context, request operations.
 
 // UploadAttachment - Upload attachment
 // Creates an attachment in the accounting software against the given transactionId
-
 func (s *expenses) UploadAttachment(ctx context.Context, request operations.UploadAttachmentRequest, opts ...operations.Option) (*operations.UploadAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

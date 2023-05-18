@@ -34,7 +34,6 @@ func newTransactionStatus(defaultClient, securityClient HTTPClient, serverURL, l
 
 // GetSyncTransaction - Get Sync Transaction
 // Gets the status of a transaction for a sync
-
 func (s *transactionStatus) GetSyncTransaction(ctx context.Context, request operations.GetSyncTransactionRequest, opts ...operations.Option) (*operations.GetSyncTransactionResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -116,7 +115,6 @@ func (s *transactionStatus) GetSyncTransaction(ctx context.Context, request oper
 
 // ListSyncTransactions - Get Sync transactions
 // Get's the transactions and status for a sync
-
 func (s *transactionStatus) ListSyncTransactions(ctx context.Context, request operations.ListSyncTransactionsRequest, opts ...operations.Option) (*operations.ListSyncTransactionsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
