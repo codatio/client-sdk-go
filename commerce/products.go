@@ -34,7 +34,6 @@ func newProducts(defaultClient, securityClient HTTPClient, serverURL, language, 
 
 // List - List products
 // The Products data type provides the company's product inventory, and includes the price and quantity of all products, and product variants, available for sale.
-
 func (s *products) List(ctx context.Context, request operations.ListProductsRequest, opts ...operations.Option) (*operations.ListProductsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -120,7 +119,6 @@ func (s *products) List(ctx context.Context, request operations.ListProductsRequ
 
 // ListCategories - List product categories
 // Product categories are used to classify a group of products together, either by type (eg "Furniture"), or sometimes by tax profile.
-
 func (s *products) ListCategories(ctx context.Context, request operations.ListProductCategoriesRequest, opts ...operations.Option) (*operations.ListProductCategoriesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

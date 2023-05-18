@@ -34,7 +34,6 @@ func newPayments(defaultClient, securityClient HTTPClient, serverURL, language, 
 
 // List - List payments
 // List commerce payments for the given company & data connection.
-
 func (s *payments) List(ctx context.Context, request operations.ListPaymentsRequest, opts ...operations.Option) (*operations.ListPaymentsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -120,7 +119,6 @@ func (s *payments) List(ctx context.Context, request operations.ListPaymentsRequ
 
 // ListMethods - List payment methods
 // Retrieve a list of payment methods, such as card, cash or other online payment methods, as held in the linked commerce platform.
-
 func (s *payments) ListMethods(ctx context.Context, request operations.ListPaymentMethodsRequest, opts ...operations.Option) (*operations.ListPaymentMethodsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

@@ -7,5 +7,5 @@ type ProductRef struct {
 	// The unique identitifer of the product being referenced.
 	ID string `json:"id"`
 	// Name of the product being referenced.
-	Name string `json:"name"`
+	Name *string `json:"name,omitempty"`
 }
