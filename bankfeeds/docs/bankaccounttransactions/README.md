@@ -16,7 +16,7 @@ Posts bank transactions to the accounting package for a given company.
 
 > **Supported Integrations**
 > 
-> Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankTransactions) for integrations that support POST methods.
+> Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankTransactions) for integrations that support POST methods.
 
 ### Example Usage
 
@@ -54,7 +54,7 @@ func main() {
                     Reconciled: false,
                     Reference: codatbankfeeds.String("commodi"),
                     SourceModifiedDate: codatbankfeeds.String("repudiandae"),
-                    TransactionType: shared.BankTransactionTypeEnumCredit,
+                    TransactionType: shared.BankTransactionTypeCredit,
                 },
                 shared.BankTransactionLine{
                     Amount: 2168.22,
@@ -67,7 +67,7 @@ func main() {
                     Reconciled: false,
                     Reference: codatbankfeeds.String("tempora"),
                     SourceModifiedDate: codatbankfeeds.String("facilis"),
-                    TransactionType: shared.BankTransactionTypeEnumCash,
+                    TransactionType: shared.BankTransactionTypeCash,
                 },
                 shared.BankTransactionLine{
                     Amount: 2884.76,
@@ -80,7 +80,7 @@ func main() {
                     Reconciled: false,
                     Reference: codatbankfeeds.String("blanditiis"),
                     SourceModifiedDate: codatbankfeeds.String("deleniti"),
-                    TransactionType: shared.BankTransactionTypeEnumOther,
+                    TransactionType: shared.BankTransactionTypeOther,
                 },
             },
         },
