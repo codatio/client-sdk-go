@@ -7,22 +7,22 @@ import (
 	"fmt"
 )
 
-// DataConnectionSourceTypeEnum - The type of platform of the connection.
-type DataConnectionSourceTypeEnum string
+// DataConnectionSourceType - The type of platform of the connection.
+type DataConnectionSourceType string
 
 const (
-	DataConnectionSourceTypeEnumAccounting DataConnectionSourceTypeEnum = "Accounting"
-	DataConnectionSourceTypeEnumBanking    DataConnectionSourceTypeEnum = "Banking"
-	DataConnectionSourceTypeEnumCommerce   DataConnectionSourceTypeEnum = "Commerce"
-	DataConnectionSourceTypeEnumOther      DataConnectionSourceTypeEnum = "Other"
-	DataConnectionSourceTypeEnumUnknown    DataConnectionSourceTypeEnum = "Unknown"
+	DataConnectionSourceTypeAccounting DataConnectionSourceType = "Accounting"
+	DataConnectionSourceTypeBanking    DataConnectionSourceType = "Banking"
+	DataConnectionSourceTypeCommerce   DataConnectionSourceType = "Commerce"
+	DataConnectionSourceTypeOther      DataConnectionSourceType = "Other"
+	DataConnectionSourceTypeUnknown    DataConnectionSourceType = "Unknown"
 )
 
-func (e DataConnectionSourceTypeEnum) ToPointer() *DataConnectionSourceTypeEnum {
+func (e DataConnectionSourceType) ToPointer() *DataConnectionSourceType {
 	return &e
 }
 
-func (e *DataConnectionSourceTypeEnum) UnmarshalJSON(data []byte) error {
+func (e *DataConnectionSourceType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -37,10 +37,10 @@ func (e *DataConnectionSourceTypeEnum) UnmarshalJSON(data []byte) error {
 	case "Other":
 		fallthrough
 	case "Unknown":
-		*e = DataConnectionSourceTypeEnum(v)
+		*e = DataConnectionSourceType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for DataConnectionSourceTypeEnum: %v", v)
+		return fmt.Errorf("invalid value for DataConnectionSourceType: %v", v)
 	}
 }
 
@@ -100,7 +100,7 @@ type DataConnection struct {
 	// A source-specific ID used to distinguish between different sources originating from the same data connection. In general, a data connection is a single data source. However, for TrueLayer, `sourceId` is associated with a specific bank and has a many-to-one relationship with the `integrationId`.
 	SourceID string `json:"sourceId"`
 	// The type of platform of the connection.
-	SourceType DataConnectionSourceTypeEnum `json:"sourceType"`
+	SourceType DataConnectionSourceType `json:"sourceType"`
 	// The current authorization status of the data connection.
-	Status DataConnectionStatusEnum `json:"status"`
+	Status DataConnectionStatus `json:"status"`
 }

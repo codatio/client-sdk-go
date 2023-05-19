@@ -39,7 +39,7 @@ pkg/models/shared/customer.go
 pkg/models/shared/bankaccount.go
 pkg/models/shared/codaterrormessage.go
 pkg/models/shared/dataconnection.go
-pkg/models/shared/dataconnectionstatusenum.go
+pkg/models/shared/dataconnectionstatus.go
 pkg/models/shared/dataconnectionerror.go
 pkg/models/shared/createexpenseresponse.go
 pkg/models/shared/createexpenserequest.go
@@ -55,8 +55,8 @@ pkg/models/shared/syncinitiated.go
 pkg/models/shared/postsync.go
 pkg/models/shared/companysyncstatus.go
 pkg/models/shared/transactionmetadata.go
-pkg/models/shared/transactionstatusenum.go
-pkg/models/shared/integrationtypeenum.go
+pkg/models/shared/transactionstatus.go
+pkg/models/shared/integrationtype.go
 pkg/models/shared/transactionmetadatalist.go
 pkg/models/shared/hallink.go
 pkg/models/shared/security.go

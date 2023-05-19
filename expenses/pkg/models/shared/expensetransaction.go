@@ -7,25 +7,25 @@ import (
 	"fmt"
 )
 
-// ExpenseTransactionTypeEnum - The type of transaction.
-type ExpenseTransactionTypeEnum string
+// ExpenseTransactionType - The type of transaction.
+type ExpenseTransactionType string
 
 const (
-	ExpenseTransactionTypeEnumPayment       ExpenseTransactionTypeEnum = "Payment"
-	ExpenseTransactionTypeEnumRefund        ExpenseTransactionTypeEnum = "Refund"
-	ExpenseTransactionTypeEnumReward        ExpenseTransactionTypeEnum = "Reward"
-	ExpenseTransactionTypeEnumChargeback    ExpenseTransactionTypeEnum = "Chargeback"
-	ExpenseTransactionTypeEnumTransferIn    ExpenseTransactionTypeEnum = "TransferIn"
-	ExpenseTransactionTypeEnumTransferOut   ExpenseTransactionTypeEnum = "TransferOut"
-	ExpenseTransactionTypeEnumAdjustmentIn  ExpenseTransactionTypeEnum = "AdjustmentIn"
-	ExpenseTransactionTypeEnumAdjustmentOut ExpenseTransactionTypeEnum = "AdjustmentOut"
+	ExpenseTransactionTypePayment       ExpenseTransactionType = "Payment"
+	ExpenseTransactionTypeRefund        ExpenseTransactionType = "Refund"
+	ExpenseTransactionTypeReward        ExpenseTransactionType = "Reward"
+	ExpenseTransactionTypeChargeback    ExpenseTransactionType = "Chargeback"
+	ExpenseTransactionTypeTransferIn    ExpenseTransactionType = "TransferIn"
+	ExpenseTransactionTypeTransferOut   ExpenseTransactionType = "TransferOut"
+	ExpenseTransactionTypeAdjustmentIn  ExpenseTransactionType = "AdjustmentIn"
+	ExpenseTransactionTypeAdjustmentOut ExpenseTransactionType = "AdjustmentOut"
 )
 
-func (e ExpenseTransactionTypeEnum) ToPointer() *ExpenseTransactionTypeEnum {
+func (e ExpenseTransactionType) ToPointer() *ExpenseTransactionType {
 	return &e
 }
 
-func (e *ExpenseTransactionTypeEnum) UnmarshalJSON(data []byte) error {
+func (e *ExpenseTransactionType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -46,10 +46,10 @@ func (e *ExpenseTransactionTypeEnum) UnmarshalJSON(data []byte) error {
 	case "AdjustmentIn":
 		fallthrough
 	case "AdjustmentOut":
-		*e = ExpenseTransactionTypeEnum(v)
+		*e = ExpenseTransactionType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ExpenseTransactionTypeEnum: %v", v)
+		return fmt.Errorf("invalid value for ExpenseTransactionType: %v", v)
 	}
 }
 
@@ -109,5 +109,5 @@ type ExpenseTransaction struct {
 	// Any private, company notes about the transaction.
 	Notes *string `json:"notes,omitempty"`
 	// The type of transaction.
-	Type ExpenseTransactionTypeEnum `json:"type"`
+	Type ExpenseTransactionType `json:"type"`
 }

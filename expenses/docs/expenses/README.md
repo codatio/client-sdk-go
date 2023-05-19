@@ -136,7 +136,7 @@ func main() {
                     },
                     MerchantName: codatsyncexpenses.String("Amazon UK"),
                     Notes: codatsyncexpenses.String("APPLE.COM/BILL - 09001077498 - Card Ending: 4590"),
-                    Type: shared.ExpenseTransactionTypeEnumPayment,
+                    Type: shared.ExpenseTransactionTypePayment,
                 },
                 shared.ExpenseTransaction{
                     Currency: "GBP",
@@ -201,7 +201,7 @@ func main() {
                     },
                     MerchantName: codatsyncexpenses.String("Amazon UK"),
                     Notes: codatsyncexpenses.String("APPLE.COM/BILL - 09001077498 - Card Ending: 4590"),
-                    Type: shared.ExpenseTransactionTypeEnumPayment,
+                    Type: shared.ExpenseTransactionTypePayment,
                 },
                 shared.ExpenseTransaction{
                     Currency: "GBP",
@@ -290,7 +290,7 @@ func main() {
                     },
                     MerchantName: codatsyncexpenses.String("Amazon UK"),
                     Notes: codatsyncexpenses.String("APPLE.COM/BILL - 09001077498 - Card Ending: 4590"),
-                    Type: shared.ExpenseTransactionTypeEnumPayment,
+                    Type: shared.ExpenseTransactionTypePayment,
                 },
             },
         },
