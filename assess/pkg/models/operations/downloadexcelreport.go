@@ -10,7 +10,7 @@ import (
 type DownloadExcelReportRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	// The type of report you want to generate and download.
-	ReportType shared.ExcelReportTypeEnum `queryParam:"style=form,explode=true,name=reportType"`
+	ReportType shared.ExcelReportType `queryParam:"style=form,explode=true,name=reportType"`
 }
 
 type DownloadExcelReportResponse struct {

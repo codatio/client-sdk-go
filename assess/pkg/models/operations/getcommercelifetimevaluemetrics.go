@@ -17,7 +17,7 @@ type GetCommerceLifetimeValueMetricsRequest struct {
 	// The number of months per period. E.g. 2 = 2 months per period.
 	PeriodLength int64 `queryParam:"style=form,explode=true,name=periodLength"`
 	// The period unit of time returned.
-	PeriodUnit shared.PeriodUnitEnum `queryParam:"style=form,explode=true,name=periodUnit"`
+	PeriodUnit shared.PeriodUnit `queryParam:"style=form,explode=true,name=periodUnit"`
 	// The date in which the report is created up to. Users must specify a specific date, however the response will be provided for the full month.
 	ReportDate string `queryParam:"style=form,explode=true,name=reportDate"`
 }

@@ -7,19 +7,19 @@ import (
 	"fmt"
 )
 
-type FinancialMetricsPeriodUnitEnum string
+type FinancialMetricsPeriodUnit string
 
 const (
-	FinancialMetricsPeriodUnitEnumMonth FinancialMetricsPeriodUnitEnum = "Month"
-	FinancialMetricsPeriodUnitEnumWeek  FinancialMetricsPeriodUnitEnum = "Week"
-	FinancialMetricsPeriodUnitEnumDay   FinancialMetricsPeriodUnitEnum = "Day"
+	FinancialMetricsPeriodUnitMonth FinancialMetricsPeriodUnit = "Month"
+	FinancialMetricsPeriodUnitWeek  FinancialMetricsPeriodUnit = "Week"
+	FinancialMetricsPeriodUnitDay   FinancialMetricsPeriodUnit = "Day"
 )
 
-func (e FinancialMetricsPeriodUnitEnum) ToPointer() *FinancialMetricsPeriodUnitEnum {
+func (e FinancialMetricsPeriodUnit) ToPointer() *FinancialMetricsPeriodUnit {
 	return &e
 }
 
-func (e *FinancialMetricsPeriodUnitEnum) UnmarshalJSON(data []byte) error {
+func (e *FinancialMetricsPeriodUnit) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -30,10 +30,10 @@ func (e *FinancialMetricsPeriodUnitEnum) UnmarshalJSON(data []byte) error {
 	case "Week":
 		fallthrough
 	case "Day":
-		*e = FinancialMetricsPeriodUnitEnum(v)
+		*e = FinancialMetricsPeriodUnit(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for FinancialMetricsPeriodUnitEnum: %v", v)
+		return fmt.Errorf("invalid value for FinancialMetricsPeriodUnit: %v", v)
 	}
 }
 
@@ -48,7 +48,7 @@ type FinancialMetrics struct {
 	// There are only a very small number of edge cases where this currency code is returned by the Codat system.
 	Currency *string `json:"currency,omitempty"`
 	// If there are no errors, an empty array is returned.
-	Errors     []FinancialMetricError          `json:"errors,omitempty"`
-	Metrics    []FinancialMetric               `json:"metrics,omitempty"`
-	PeriodUnit *FinancialMetricsPeriodUnitEnum `json:"periodUnit,omitempty"`
+	Errors     []FinancialMetricError      `json:"errors,omitempty"`
+	Metrics    []FinancialMetric           `json:"metrics,omitempty"`
+	PeriodUnit *FinancialMetricsPeriodUnit `json:"periodUnit,omitempty"`
 }

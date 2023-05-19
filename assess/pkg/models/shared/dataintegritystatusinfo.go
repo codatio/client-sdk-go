@@ -4,7 +4,7 @@ package shared
 
 type DataIntegrityStatusInfo struct {
 	// The current status of the most recently run matching algorithm.
-	CurrentStatus *IntegrityStatusEnum `json:"currentStatus,omitempty"`
+	CurrentStatus *IntegrityStatus `json:"currentStatus,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```

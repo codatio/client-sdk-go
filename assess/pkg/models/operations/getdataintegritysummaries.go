@@ -10,7 +10,7 @@ import (
 type GetDataIntegritySummariesRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	// A key for a Codat data type.
-	DataType shared.DataIntegrityDataTypeEnum `pathParam:"style=simple,explode=false,name=dataType"`
+	DataType shared.DataIntegrityDataType `pathParam:"style=simple,explode=false,name=dataType"`
 	// Codat query string. [Read more](https://docs.codat.io/using-the-api/querying).
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
