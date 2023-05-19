@@ -16,5 +16,5 @@ type ServiceCharge struct {
 	// Total service charge, including taxes.
 	TotalAmount *float64 `json:"totalAmount,omitempty"`
 	// The type of the service charge.
-	Type *ServiceChargeTypeEnum `json:"type,omitempty"`
+	Type *ServiceChargeType `json:"type,omitempty"`
 }

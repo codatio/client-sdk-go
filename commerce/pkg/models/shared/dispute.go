@@ -68,7 +68,7 @@ type Dispute struct {
 	Reason             *string `json:"reason,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Current status of the dispute
-	Status *DisputeStatusEnum `json:"status,omitempty"`
+	Status *DisputeStatus `json:"status,omitempty"`
 	// Total transaction amount that is under dispute.
 	TotalAmount *float64 `json:"totalAmount,omitempty"`
 }

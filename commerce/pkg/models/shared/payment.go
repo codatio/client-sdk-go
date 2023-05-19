@@ -69,5 +69,5 @@ type Payment struct {
 	PaymentProvider    *string `json:"paymentProvider,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Status of the payment
-	Status *PaymentStatusEnum `json:"status,omitempty"`
+	Status *PaymentStatus `json:"status,omitempty"`
 }
