@@ -3,10 +3,10 @@
 package shared
 
 type PushOptionChoice struct {
-	Description *string             `json:"description,omitempty"`
-	DisplayName *string             `json:"displayName,omitempty"`
-	Required    *bool               `json:"required,omitempty"`
-	Type        *PushOptionTypeEnum `json:"type,omitempty"`
+	Description *string         `json:"description,omitempty"`
+	DisplayName *string         `json:"displayName,omitempty"`
+	Required    *bool           `json:"required,omitempty"`
+	Type        *PushOptionType `json:"type,omitempty"`
 	// Allowed value for field.
 	Value *string `json:"value,omitempty"`
 }

@@ -19,5 +19,5 @@ type Integration struct {
 	// A source-specific ID used to distinguish between different sources originating from the same data connection. In general, a data connection is a single data source. However, for TrueLayer, `sourceId` is associated with a specific bank and has a many-to-one relationship with the `integrationId`.
 	SourceID *string `json:"sourceId,omitempty"`
 	// The type of platform of the connection.
-	SourceType *SourceTypeEnum `json:"sourceType,omitempty"`
+	SourceType *SourceType `json:"sourceType,omitempty"`
 }

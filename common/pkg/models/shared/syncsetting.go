@@ -7,59 +7,59 @@ import (
 	"fmt"
 )
 
-// SyncSettingDataTypeEnum - Available Data types
-type SyncSettingDataTypeEnum string
+// SyncSettingDataType - Available Data types
+type SyncSettingDataType string
 
 const (
-	SyncSettingDataTypeEnumAccountTransactions          SyncSettingDataTypeEnum = "accountTransactions"
-	SyncSettingDataTypeEnumBalanceSheet                 SyncSettingDataTypeEnum = "balanceSheet"
-	SyncSettingDataTypeEnumBankAccounts                 SyncSettingDataTypeEnum = "bankAccounts"
-	SyncSettingDataTypeEnumBankTransactions             SyncSettingDataTypeEnum = "bankTransactions"
-	SyncSettingDataTypeEnumBillCreditNotes              SyncSettingDataTypeEnum = "billCreditNotes"
-	SyncSettingDataTypeEnumBillPayments                 SyncSettingDataTypeEnum = "billPayments"
-	SyncSettingDataTypeEnumBills                        SyncSettingDataTypeEnum = "bills"
-	SyncSettingDataTypeEnumCashFlowStatement            SyncSettingDataTypeEnum = "cashFlowStatement"
-	SyncSettingDataTypeEnumChartOfAccounts              SyncSettingDataTypeEnum = "chartOfAccounts"
-	SyncSettingDataTypeEnumCompany                      SyncSettingDataTypeEnum = "company"
-	SyncSettingDataTypeEnumCreditNotes                  SyncSettingDataTypeEnum = "creditNotes"
-	SyncSettingDataTypeEnumCustomers                    SyncSettingDataTypeEnum = "customers"
-	SyncSettingDataTypeEnumDirectCosts                  SyncSettingDataTypeEnum = "directCosts"
-	SyncSettingDataTypeEnumDirectIncomes                SyncSettingDataTypeEnum = "directIncomes"
-	SyncSettingDataTypeEnumInvoices                     SyncSettingDataTypeEnum = "invoices"
-	SyncSettingDataTypeEnumItems                        SyncSettingDataTypeEnum = "items"
-	SyncSettingDataTypeEnumJournalEntries               SyncSettingDataTypeEnum = "journalEntries"
-	SyncSettingDataTypeEnumJournals                     SyncSettingDataTypeEnum = "journals"
-	SyncSettingDataTypeEnumPaymentMethods               SyncSettingDataTypeEnum = "paymentMethods"
-	SyncSettingDataTypeEnumPayments                     SyncSettingDataTypeEnum = "payments"
-	SyncSettingDataTypeEnumProfitAndLoss                SyncSettingDataTypeEnum = "profitAndLoss"
-	SyncSettingDataTypeEnumPurchaseOrders               SyncSettingDataTypeEnum = "purchaseOrders"
-	SyncSettingDataTypeEnumSalesOrders                  SyncSettingDataTypeEnum = "salesOrders"
-	SyncSettingDataTypeEnumSuppliers                    SyncSettingDataTypeEnum = "suppliers"
-	SyncSettingDataTypeEnumTaxRates                     SyncSettingDataTypeEnum = "taxRates"
-	SyncSettingDataTypeEnumTrackingCategories           SyncSettingDataTypeEnum = "trackingCategories"
-	SyncSettingDataTypeEnumTransfers                    SyncSettingDataTypeEnum = "transfers"
-	SyncSettingDataTypeEnumBankingAccountBalances       SyncSettingDataTypeEnum = "banking-accountBalances"
-	SyncSettingDataTypeEnumBankingAccounts              SyncSettingDataTypeEnum = "banking-accounts"
-	SyncSettingDataTypeEnumBankingTransactionCategories SyncSettingDataTypeEnum = "banking-transactionCategories"
-	SyncSettingDataTypeEnumBankingTransactions          SyncSettingDataTypeEnum = "banking-transactions"
-	SyncSettingDataTypeEnumCommerceCompanyInfo          SyncSettingDataTypeEnum = "commerce-companyInfo"
-	SyncSettingDataTypeEnumCommerceCustomers            SyncSettingDataTypeEnum = "commerce-customers"
-	SyncSettingDataTypeEnumCommerceDisputes             SyncSettingDataTypeEnum = "commerce-disputes"
-	SyncSettingDataTypeEnumCommerceLocations            SyncSettingDataTypeEnum = "commerce-locations"
-	SyncSettingDataTypeEnumCommerceOrders               SyncSettingDataTypeEnum = "commerce-orders"
-	SyncSettingDataTypeEnumCommercePaymentMethods       SyncSettingDataTypeEnum = "commerce-paymentMethods"
-	SyncSettingDataTypeEnumCommercePayments             SyncSettingDataTypeEnum = "commerce-payments"
-	SyncSettingDataTypeEnumCommerceProductCategories    SyncSettingDataTypeEnum = "commerce-productCategories"
-	SyncSettingDataTypeEnumCommerceProducts             SyncSettingDataTypeEnum = "commerce-products"
-	SyncSettingDataTypeEnumCommerceTaxComponents        SyncSettingDataTypeEnum = "commerce-taxComponents"
-	SyncSettingDataTypeEnumCommerceTransactions         SyncSettingDataTypeEnum = "commerce-transactions"
+	SyncSettingDataTypeAccountTransactions          SyncSettingDataType = "accountTransactions"
+	SyncSettingDataTypeBalanceSheet                 SyncSettingDataType = "balanceSheet"
+	SyncSettingDataTypeBankAccounts                 SyncSettingDataType = "bankAccounts"
+	SyncSettingDataTypeBankTransactions             SyncSettingDataType = "bankTransactions"
+	SyncSettingDataTypeBillCreditNotes              SyncSettingDataType = "billCreditNotes"
+	SyncSettingDataTypeBillPayments                 SyncSettingDataType = "billPayments"
+	SyncSettingDataTypeBills                        SyncSettingDataType = "bills"
+	SyncSettingDataTypeCashFlowStatement            SyncSettingDataType = "cashFlowStatement"
+	SyncSettingDataTypeChartOfAccounts              SyncSettingDataType = "chartOfAccounts"
+	SyncSettingDataTypeCompany                      SyncSettingDataType = "company"
+	SyncSettingDataTypeCreditNotes                  SyncSettingDataType = "creditNotes"
+	SyncSettingDataTypeCustomers                    SyncSettingDataType = "customers"
+	SyncSettingDataTypeDirectCosts                  SyncSettingDataType = "directCosts"
+	SyncSettingDataTypeDirectIncomes                SyncSettingDataType = "directIncomes"
+	SyncSettingDataTypeInvoices                     SyncSettingDataType = "invoices"
+	SyncSettingDataTypeItems                        SyncSettingDataType = "items"
+	SyncSettingDataTypeJournalEntries               SyncSettingDataType = "journalEntries"
+	SyncSettingDataTypeJournals                     SyncSettingDataType = "journals"
+	SyncSettingDataTypePaymentMethods               SyncSettingDataType = "paymentMethods"
+	SyncSettingDataTypePayments                     SyncSettingDataType = "payments"
+	SyncSettingDataTypeProfitAndLoss                SyncSettingDataType = "profitAndLoss"
+	SyncSettingDataTypePurchaseOrders               SyncSettingDataType = "purchaseOrders"
+	SyncSettingDataTypeSalesOrders                  SyncSettingDataType = "salesOrders"
+	SyncSettingDataTypeSuppliers                    SyncSettingDataType = "suppliers"
+	SyncSettingDataTypeTaxRates                     SyncSettingDataType = "taxRates"
+	SyncSettingDataTypeTrackingCategories           SyncSettingDataType = "trackingCategories"
+	SyncSettingDataTypeTransfers                    SyncSettingDataType = "transfers"
+	SyncSettingDataTypeBankingAccountBalances       SyncSettingDataType = "banking-accountBalances"
+	SyncSettingDataTypeBankingAccounts              SyncSettingDataType = "banking-accounts"
+	SyncSettingDataTypeBankingTransactionCategories SyncSettingDataType = "banking-transactionCategories"
+	SyncSettingDataTypeBankingTransactions          SyncSettingDataType = "banking-transactions"
+	SyncSettingDataTypeCommerceCompanyInfo          SyncSettingDataType = "commerce-companyInfo"
+	SyncSettingDataTypeCommerceCustomers            SyncSettingDataType = "commerce-customers"
+	SyncSettingDataTypeCommerceDisputes             SyncSettingDataType = "commerce-disputes"
+	SyncSettingDataTypeCommerceLocations            SyncSettingDataType = "commerce-locations"
+	SyncSettingDataTypeCommerceOrders               SyncSettingDataType = "commerce-orders"
+	SyncSettingDataTypeCommercePaymentMethods       SyncSettingDataType = "commerce-paymentMethods"
+	SyncSettingDataTypeCommercePayments             SyncSettingDataType = "commerce-payments"
+	SyncSettingDataTypeCommerceProductCategories    SyncSettingDataType = "commerce-productCategories"
+	SyncSettingDataTypeCommerceProducts             SyncSettingDataType = "commerce-products"
+	SyncSettingDataTypeCommerceTaxComponents        SyncSettingDataType = "commerce-taxComponents"
+	SyncSettingDataTypeCommerceTransactions         SyncSettingDataType = "commerce-transactions"
 )
 
-func (e SyncSettingDataTypeEnum) ToPointer() *SyncSettingDataTypeEnum {
+func (e SyncSettingDataType) ToPointer() *SyncSettingDataType {
 	return &e
 }
 
-func (e *SyncSettingDataTypeEnum) UnmarshalJSON(data []byte) error {
+func (e *SyncSettingDataType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -148,17 +148,17 @@ func (e *SyncSettingDataTypeEnum) UnmarshalJSON(data []byte) error {
 	case "commerce-taxComponents":
 		fallthrough
 	case "commerce-transactions":
-		*e = SyncSettingDataTypeEnum(v)
+		*e = SyncSettingDataType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for SyncSettingDataTypeEnum: %v", v)
+		return fmt.Errorf("invalid value for SyncSettingDataType: %v", v)
 	}
 }
 
 // SyncSetting - Describes how often, and how much history, should be fetched for the given data type when a pull operation is queued.
 type SyncSetting struct {
 	// Available Data types
-	DataType SyncSettingDataTypeEnum `json:"dataType"`
+	DataType SyncSettingDataType `json:"dataType"`
 	// Whether this data type should be queued after a company has authorized a connection.
 	FetchOnFirstLink bool  `json:"fetchOnFirstLink"`
 	IsLocked         *bool `json:"isLocked,omitempty"`

@@ -7,39 +7,39 @@ import (
 	"fmt"
 )
 
-type PullOperationStatusEnum string
+type PullOperationStatus string
 
 const (
-	PullOperationStatusEnumInitial            PullOperationStatusEnum = "Initial"
-	PullOperationStatusEnumQueued             PullOperationStatusEnum = "Queued"
-	PullOperationStatusEnumFetching           PullOperationStatusEnum = "Fetching"
-	PullOperationStatusEnumMapQueued          PullOperationStatusEnum = "MapQueued"
-	PullOperationStatusEnumMapping            PullOperationStatusEnum = "Mapping"
-	PullOperationStatusEnumComplete           PullOperationStatusEnum = "Complete"
-	PullOperationStatusEnumFetchError         PullOperationStatusEnum = "FetchError"
-	PullOperationStatusEnumMapError           PullOperationStatusEnum = "MapError"
-	PullOperationStatusEnumInternalError      PullOperationStatusEnum = "InternalError"
-	PullOperationStatusEnumProcessingQueued   PullOperationStatusEnum = "ProcessingQueued"
-	PullOperationStatusEnumProcessing         PullOperationStatusEnum = "Processing"
-	PullOperationStatusEnumProcessingError    PullOperationStatusEnum = "ProcessingError"
-	PullOperationStatusEnumValidationQueued   PullOperationStatusEnum = "ValidationQueued"
-	PullOperationStatusEnumValidating         PullOperationStatusEnum = "Validating"
-	PullOperationStatusEnumValidationError    PullOperationStatusEnum = "ValidationError"
-	PullOperationStatusEnumAuthError          PullOperationStatusEnum = "AuthError"
-	PullOperationStatusEnumCancelled          PullOperationStatusEnum = "Cancelled"
-	PullOperationStatusEnumRouting            PullOperationStatusEnum = "Routing"
-	PullOperationStatusEnumRoutingError       PullOperationStatusEnum = "RoutingError"
-	PullOperationStatusEnumNotSupported       PullOperationStatusEnum = "NotSupported"
-	PullOperationStatusEnumRateLimitError     PullOperationStatusEnum = "RateLimitError"
-	PullOperationStatusEnumPermissionsError   PullOperationStatusEnum = "PermissionsError"
-	PullOperationStatusEnumPrerequisiteNotMet PullOperationStatusEnum = "PrerequisiteNotMet"
+	PullOperationStatusInitial            PullOperationStatus = "Initial"
+	PullOperationStatusQueued             PullOperationStatus = "Queued"
+	PullOperationStatusFetching           PullOperationStatus = "Fetching"
+	PullOperationStatusMapQueued          PullOperationStatus = "MapQueued"
+	PullOperationStatusMapping            PullOperationStatus = "Mapping"
+	PullOperationStatusComplete           PullOperationStatus = "Complete"
+	PullOperationStatusFetchError         PullOperationStatus = "FetchError"
+	PullOperationStatusMapError           PullOperationStatus = "MapError"
+	PullOperationStatusInternalError      PullOperationStatus = "InternalError"
+	PullOperationStatusProcessingQueued   PullOperationStatus = "ProcessingQueued"
+	PullOperationStatusProcessing         PullOperationStatus = "Processing"
+	PullOperationStatusProcessingError    PullOperationStatus = "ProcessingError"
+	PullOperationStatusValidationQueued   PullOperationStatus = "ValidationQueued"
+	PullOperationStatusValidating         PullOperationStatus = "Validating"
+	PullOperationStatusValidationError    PullOperationStatus = "ValidationError"
+	PullOperationStatusAuthError          PullOperationStatus = "AuthError"
+	PullOperationStatusCancelled          PullOperationStatus = "Cancelled"
+	PullOperationStatusRouting            PullOperationStatus = "Routing"
+	PullOperationStatusRoutingError       PullOperationStatus = "RoutingError"
+	PullOperationStatusNotSupported       PullOperationStatus = "NotSupported"
+	PullOperationStatusRateLimitError     PullOperationStatus = "RateLimitError"
+	PullOperationStatusPermissionsError   PullOperationStatus = "PermissionsError"
+	PullOperationStatusPrerequisiteNotMet PullOperationStatus = "PrerequisiteNotMet"
 )
 
-func (e PullOperationStatusEnum) ToPointer() *PullOperationStatusEnum {
+func (e PullOperationStatus) ToPointer() *PullOperationStatus {
 	return &e
 }
 
-func (e *PullOperationStatusEnum) UnmarshalJSON(data []byte) error {
+func (e *PullOperationStatus) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -90,10 +90,10 @@ func (e *PullOperationStatusEnum) UnmarshalJSON(data []byte) error {
 	case "PermissionsError":
 		fallthrough
 	case "PrerequisiteNotMet":
-		*e = PullOperationStatusEnum(v)
+		*e = PullOperationStatus(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for PullOperationStatusEnum: %v", v)
+		return fmt.Errorf("invalid value for PullOperationStatus: %v", v)
 	}
 }
 
@@ -126,6 +126,6 @@ type PullOperation struct {
 	// >
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	Requested string                  `json:"requested"`
-	Status    PullOperationStatusEnum `json:"status"`
+	Requested string              `json:"requested"`
+	Status    PullOperationStatus `json:"status"`
 }

@@ -21,7 +21,7 @@ Codat tries not to limit users to pushing to a very limited number of standard c
 
 > **Supported Integrations**
 > 
-> Check out our [Knowledge UI](https://knowledge.codat.io/) for integrations that support push (POST/PUT methods).
+> Check out our [coverage explorer](https://knowledge.codat.io/) for integrations that support push (POST/PUT methods).
 
 ### Example Usage
 
@@ -47,7 +47,7 @@ func main() {
     res, err := s.PushData.GetModelOptions(ctx, operations.GetCreateUpdateModelOptionsByDataTypeRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        DataType: shared.DataTypeEnumInvoices,
+        DataType: shared.DataTypeInvoices,
     })
     if err != nil {
         log.Fatal(err)

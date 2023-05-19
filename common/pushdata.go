@@ -41,7 +41,7 @@ func newPushData(defaultClient, securityClient HTTPClient, serverURL, language, 
 //
 // > **Supported Integrations**
 // >
-// > Check out our [Knowledge UI](https://knowledge.codat.io/) for integrations that support push (POST/PUT methods).
+// > Check out our [coverage explorer](https://knowledge.codat.io/) for integrations that support push (POST/PUT methods).
 func (s *pushData) GetModelOptions(ctx context.Context, request operations.GetCreateUpdateModelOptionsByDataTypeRequest, opts ...operations.Option) (*operations.GetCreateUpdateModelOptionsByDataTypeResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -63,6 +63,8 @@ func (s *pushData) GetModelOptions(ctx context.Context, request operations.GetCr
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	client := s.securityClient
 
@@ -144,6 +146,8 @@ func (s *pushData) GetOperation(ctx context.Context, request operations.GetPushO
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	client := s.securityClient
 
@@ -225,6 +229,8 @@ func (s *pushData) ListOperations(ctx context.Context, request operations.GetCom
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)

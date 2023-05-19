@@ -76,7 +76,7 @@ func main() {
         OverridesDefaults: false,
         Settings: []shared.SyncSetting{
             shared.SyncSetting{
-                DataType: shared.SyncSettingDataTypeEnumInvoices,
+                DataType: shared.SyncSettingDataTypeInvoices,
                 FetchOnFirstLink: false,
                 IsLocked: codatcommon.Bool(false),
                 MonthsToSync: codatcommon.Int64(24),
@@ -86,7 +86,7 @@ func main() {
                 SyncSchedule: 24,
             },
             shared.SyncSetting{
-                DataType: shared.SyncSettingDataTypeEnumInvoices,
+                DataType: shared.SyncSettingDataTypeInvoices,
                 FetchOnFirstLink: false,
                 IsLocked: codatcommon.Bool(false),
                 MonthsToSync: codatcommon.Int64(24),
@@ -96,7 +96,7 @@ func main() {
                 SyncSchedule: 24,
             },
             shared.SyncSetting{
-                DataType: shared.SyncSettingDataTypeEnumInvoices,
+                DataType: shared.SyncSettingDataTypeInvoices,
                 FetchOnFirstLink: false,
                 IsLocked: codatcommon.Bool(false),
                 MonthsToSync: codatcommon.Int64(24),
@@ -106,7 +106,7 @@ func main() {
                 SyncSchedule: 24,
             },
             shared.SyncSetting{
-                DataType: shared.SyncSettingDataTypeEnumInvoices,
+                DataType: shared.SyncSettingDataTypeInvoices,
                 FetchOnFirstLink: false,
                 IsLocked: codatcommon.Bool(false),
                 MonthsToSync: codatcommon.Int64(24),

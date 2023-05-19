@@ -76,7 +76,7 @@ func main() {
     res, err := s.RefreshData.ByDataType(ctx, operations.CreatePullOperationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: codatcommon.String("8ca1ba92-8fc8-4167-82cb-739205929396"),
-        DataType: shared.DataTypeEnumInvoices,
+        DataType: shared.DataTypeInvoices,
     })
     if err != nil {
         log.Fatal(err)

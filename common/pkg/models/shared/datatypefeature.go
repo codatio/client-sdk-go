@@ -5,6 +5,6 @@ package shared
 // DataTypeFeature - Describes support for a given datatype and associated operations
 type DataTypeFeature struct {
 	// Available Data types
-	DataType          *DataTypeEnum      `json:"dataType,omitempty"`
+	DataType          *DataType          `json:"dataType,omitempty"`
 	SupportedFeatures []SupportedFeature `json:"supportedFeatures"`
 }

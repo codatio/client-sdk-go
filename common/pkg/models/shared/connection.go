@@ -58,7 +58,7 @@ type Connection struct {
 	// A source-specific ID used to distinguish between different sources originating from the same data connection. In general, a data connection is a single data source. However, for TrueLayer, `sourceId` is associated with a specific bank and has a many-to-one relationship with the `integrationId`.
 	SourceID string `json:"sourceId"`
 	// The type of platform of the connection.
-	SourceType SourceTypeEnum `json:"sourceType"`
+	SourceType SourceType `json:"sourceType"`
 	// The current authorization status of the data connection.
-	Status DataConnectionStatusEnum `json:"status"`
+	Status DataConnectionStatus `json:"status"`
 }
