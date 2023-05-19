@@ -37,7 +37,7 @@ pkg/models/operations/updateconfigtextsyncflow.go
 pkg/models/operations/updatevisibleaccountssyncflow.go
 pkg/models/shared/company.go
 pkg/models/shared/connection.go
-pkg/models/shared/dataconnectionstatusenum.go
+pkg/models/shared/dataconnectionstatus.go
 pkg/models/shared/dataconnectionerror.go
 pkg/models/shared/createcompany.go
 pkg/models/shared/companies.go
@@ -71,11 +71,11 @@ pkg/models/shared/imagereference.go
 pkg/models/shared/brandingbutton.go
 pkg/models/shared/integrations.go
 pkg/models/shared/integration.go
-pkg/models/shared/sourcetypeenum.go
+pkg/models/shared/sourcetype.go
 pkg/models/shared/datatypefeature.go
 pkg/models/shared/supportedfeature.go
-pkg/models/shared/featuretypeenum.go
-pkg/models/shared/featurestateenum.go
+pkg/models/shared/featuretype.go
+pkg/models/shared/featurestate.go
 pkg/models/shared/syncsummary.go
 pkg/models/shared/daterange.go
 pkg/models/shared/synctolatestargs.go
