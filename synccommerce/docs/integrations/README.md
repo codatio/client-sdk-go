@@ -72,7 +72,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Integrations.ListIntegrations(ctx, operations.ListIntegrationsRequest{
         OrderBy: codatsynccommerce.String("-modifiedDate"),
-        Page: 1,
+        Page: codatsynccommerce.Int(1),
         PageSize: codatsynccommerce.Int(100),
         Query: codatsynccommerce.String("unde"),
     })
