@@ -99,7 +99,7 @@ func WithSecurity(security shared.Security) SDKOption {
 func New(opts ...SDKOption) *CodatBankFeeds {
 	sdk := &CodatBankFeeds{
 		_language:   "go",
-		_sdkVersion: "0.15.0",
+		_sdkVersion: "0.15.1",
 		_genVersion: "2.31.0",
 	}
 	for _, opt := range opts {
