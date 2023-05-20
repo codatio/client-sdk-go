@@ -393,7 +393,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Reports.GetEnhancedCashFlowTransactions(ctx, operations.GetEnhancedCashFlowTransactionsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        Page: 1,
+        Page: codatassess.Int(1),
         PageSize: codatassess.Int(100),
         Query: codatassess.String("rem"),
     })
@@ -477,7 +477,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Reports.GetEnhancedInvoicesReport(ctx, operations.GetEnhancedInvoicesReportRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        Page: 1,
+        Page: codatassess.Int(1),
         PageSize: codatassess.Int(100),
         Query: codatassess.String("repudiandae"),
     })
