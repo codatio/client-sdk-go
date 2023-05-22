@@ -4,6 +4,6 @@ package shared
 
 type TransactionSourceRef struct {
 	// The unique identitifer of the record being referenced
-	ID   string                    `json:"id"`
-	Type TransactionSourceTypeEnum `json:"type"`
+	ID   string                `json:"id"`
+	Type TransactionSourceType `json:"type"`
 }

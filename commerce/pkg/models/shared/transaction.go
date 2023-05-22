@@ -80,5 +80,5 @@ type Transaction struct {
 	// - `Payout` — Transfer of funds from the seller's merchant account to their bank account.
 	// - `Refund` — Refunds to a customer's credit or debit card.
 	// - `Transfer` — Secure transfer of funds to the seller's bank account.
-	Type *TransactionTypeEnum `json:"type,omitempty"`
+	Type *TransactionType `json:"type,omitempty"`
 }

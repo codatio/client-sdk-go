@@ -7,7 +7,7 @@ import (
 	"fmt"
 )
 
-// TransactionTypeEnum - The type of the platform transaction:
+// TransactionType - The type of the platform transaction:
 // - `Unknown`
 // - `FailedPayout` — Failed transfer of funds from the seller's merchant account to their bank account.
 // - `Payment` — Credit and debit card payments.
@@ -16,24 +16,24 @@ import (
 // - `Payout` — Transfer of funds from the seller's merchant account to their bank account.
 // - `Refund` — Refunds to a customer's credit or debit card.
 // - `Transfer` — Secure transfer of funds to the seller's bank account.
-type TransactionTypeEnum string
+type TransactionType string
 
 const (
-	TransactionTypeEnumPayment          TransactionTypeEnum = "Payment"
-	TransactionTypeEnumRefund           TransactionTypeEnum = "Refund"
-	TransactionTypeEnumPayout           TransactionTypeEnum = "Payout"
-	TransactionTypeEnumFailedPayout     TransactionTypeEnum = "FailedPayout"
-	TransactionTypeEnumTransfer         TransactionTypeEnum = "Transfer"
-	TransactionTypeEnumPaymentFee       TransactionTypeEnum = "PaymentFee"
-	TransactionTypeEnumPaymentFeeRefund TransactionTypeEnum = "PaymentFeeRefund"
-	TransactionTypeEnumUnknown          TransactionTypeEnum = "Unknown"
+	TransactionTypePayment          TransactionType = "Payment"
+	TransactionTypeRefund           TransactionType = "Refund"
+	TransactionTypePayout           TransactionType = "Payout"
+	TransactionTypeFailedPayout     TransactionType = "FailedPayout"
+	TransactionTypeTransfer         TransactionType = "Transfer"
+	TransactionTypePaymentFee       TransactionType = "PaymentFee"
+	TransactionTypePaymentFeeRefund TransactionType = "PaymentFeeRefund"
+	TransactionTypeUnknown          TransactionType = "Unknown"
 )
 
-func (e TransactionTypeEnum) ToPointer() *TransactionTypeEnum {
+func (e TransactionType) ToPointer() *TransactionType {
 	return &e
 }
 
-func (e *TransactionTypeEnum) UnmarshalJSON(data []byte) error {
+func (e *TransactionType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -54,9 +54,9 @@ func (e *TransactionTypeEnum) UnmarshalJSON(data []byte) error {
 	case "PaymentFeeRefund":
 		fallthrough
 	case "Unknown":
-		*e = TransactionTypeEnum(v)
+		*e = TransactionType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for TransactionTypeEnum: %v", v)
+		return fmt.Errorf("invalid value for TransactionType: %v", v)
 	}
 }

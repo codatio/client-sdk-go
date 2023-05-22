@@ -37,7 +37,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         OrderBy: codatcommerce.String("-modifiedDate"),
-        Page: 1,
+        Page: codatcommerce.Int(1),
         PageSize: codatcommerce.Int(100),
         Query: codatcommerce.String("nulla"),
     })
@@ -79,7 +79,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         OrderBy: codatcommerce.String("-modifiedDate"),
-        Page: 1,
+        Page: codatcommerce.Int(1),
         PageSize: codatcommerce.Int(100),
         Query: codatcommerce.String("corrupti"),
     })

@@ -60,7 +60,7 @@ type PaymentRef struct {
 	PaymentProvider    *string `json:"paymentProvider,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Status of the payment
-	Status *PaymentStatusEnum `json:"status,omitempty"`
+	Status *PaymentStatus `json:"status,omitempty"`
 	// Status of the payment
-	Type *PaymentTypeEnum `json:"type,omitempty"`
+	Type *PaymentType `json:"type,omitempty"`
 }

@@ -40,9 +40,9 @@ type ProductVariant struct {
 	// Indicates whether or not the product requires physical delivery.
 	ShippingRequired *bool `json:"shippingRequired,omitempty"`
 	// SKU (stock keeping unit) of the variant, as defined by the merchant.
-	Sku                *string                   `json:"sku,omitempty"`
-	SourceModifiedDate *string                   `json:"sourceModifiedDate,omitempty"`
-	Status             *ProductVariantStatusEnum `json:"status,omitempty"`
+	Sku                *string               `json:"sku,omitempty"`
+	SourceModifiedDate *string               `json:"sourceModifiedDate,omitempty"`
+	Status             *ProductVariantStatus `json:"status,omitempty"`
 	// Unit of measure for the variant, such as `kg` or `meters`.
 	UnitOfMeasure *string `json:"unitOfMeasure,omitempty"`
 	// VAT rate for the product variant if sales taxes are enabled.

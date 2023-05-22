@@ -7,20 +7,20 @@ import (
 	"fmt"
 )
 
-// CompanyInfoWeblinkTypeEnum - The type of the weblink.
-type CompanyInfoWeblinkTypeEnum string
+// CompanyInfoWeblinkType - The type of the weblink.
+type CompanyInfoWeblinkType string
 
 const (
-	CompanyInfoWeblinkTypeEnumWebsite CompanyInfoWeblinkTypeEnum = "Website"
-	CompanyInfoWeblinkTypeEnumSocial  CompanyInfoWeblinkTypeEnum = "Social"
-	CompanyInfoWeblinkTypeEnumUnknown CompanyInfoWeblinkTypeEnum = "Unknown"
+	CompanyInfoWeblinkTypeWebsite CompanyInfoWeblinkType = "Website"
+	CompanyInfoWeblinkTypeSocial  CompanyInfoWeblinkType = "Social"
+	CompanyInfoWeblinkTypeUnknown CompanyInfoWeblinkType = "Unknown"
 )
 
-func (e CompanyInfoWeblinkTypeEnum) ToPointer() *CompanyInfoWeblinkTypeEnum {
+func (e CompanyInfoWeblinkType) ToPointer() *CompanyInfoWeblinkType {
 	return &e
 }
 
-func (e *CompanyInfoWeblinkTypeEnum) UnmarshalJSON(data []byte) error {
+func (e *CompanyInfoWeblinkType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -31,17 +31,17 @@ func (e *CompanyInfoWeblinkTypeEnum) UnmarshalJSON(data []byte) error {
 	case "Social":
 		fallthrough
 	case "Unknown":
-		*e = CompanyInfoWeblinkTypeEnum(v)
+		*e = CompanyInfoWeblinkType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for CompanyInfoWeblinkTypeEnum: %v", v)
+		return fmt.Errorf("invalid value for CompanyInfoWeblinkType: %v", v)
 	}
 }
 
 // CompanyInfoWeblink - Weblink associated with the company.
 type CompanyInfoWeblink struct {
 	// The type of the weblink.
-	Type *CompanyInfoWeblinkTypeEnum `json:"type,omitempty"`
+	Type *CompanyInfoWeblinkType `json:"type,omitempty"`
 	// The full URL for the weblink.
 	URL *string `json:"url,omitempty"`
 }

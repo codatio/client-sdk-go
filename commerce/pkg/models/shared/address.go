@@ -16,5 +16,5 @@ type Address struct {
 	// The fourth line of the address, or region
 	Region *string `json:"region,omitempty"`
 	// The type of the address
-	Type *AddressTypeEnum `json:"type,omitempty"`
+	Type *AddressType `json:"type,omitempty"`
 }
