@@ -33,7 +33,7 @@ func main() {
                     Reconciled: false,
                     Reference: codatbankfeeds.String("at"),
                     SourceModifiedDate: codatbankfeeds.String("maiores"),
-                    TransactionType: shared.BankTransactionTypeEnumAtm,
+                    TransactionType: shared.BankTransactionTypeAtm,
                 },
                 shared.BankTransactionLine{
                     Amount: 7991.59,
@@ -46,7 +46,7 @@ func main() {
                     Reconciled: false,
                     Reference: codatbankfeeds.String("in"),
                     SourceModifiedDate: codatbankfeeds.String("corporis"),
-                    TransactionType: shared.BankTransactionTypeEnumCheck,
+                    TransactionType: shared.BankTransactionTypeCheck,
                 },
                 shared.BankTransactionLine{
                     Amount: 4370.32,
@@ -59,7 +59,7 @@ func main() {
                     Reconciled: false,
                     Reference: codatbankfeeds.String("error"),
                     SourceModifiedDate: codatbankfeeds.String("quia"),
-                    TransactionType: shared.BankTransactionTypeEnumSerChg,
+                    TransactionType: shared.BankTransactionTypeSerChg,
                 },
             },
         },

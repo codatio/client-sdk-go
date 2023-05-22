@@ -37,7 +37,7 @@ func newBankAccountTransactions(defaultClient, securityClient HTTPClient, server
 //
 // > **Supported Integrations**
 // >
-// > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankTransactions) for integrations that support POST methods.
+// > Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankTransactions) for integrations that support POST methods.
 func (s *bankAccountTransactions) CreateBankTransactions(ctx context.Context, request operations.CreateBankTransactionsRequest, opts ...operations.Option) (*operations.CreateBankTransactionsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -64,6 +64,7 @@ func (s *bankAccountTransactions) CreateBankTransactions(ctx context.Context, re
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
@@ -152,6 +153,7 @@ func (s *bankAccountTransactions) GetCreateBankAccountModel(ctx context.Context,
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	client := s.securityClient
@@ -234,6 +236,7 @@ func (s *bankAccountTransactions) ListBankAccountTransactions(ctx context.Contex
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {

@@ -33,5 +33,5 @@ type BankTransactionLine struct {
 	Reference          *string `json:"reference,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Type of transaction for the bank statement line
-	TransactionType BankTransactionTypeEnum `json:"transactionType"`
+	TransactionType BankTransactionType `json:"transactionType"`
 }
