@@ -11,7 +11,7 @@ type GetCreateUpdateModelOptionsByDataTypeRequest struct {
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 	// The key of a Codat data type
-	DataType shared.DataTypeEnum `pathParam:"style=simple,explode=false,name=dataType"`
+	DataType shared.DataType `pathParam:"style=simple,explode=false,name=dataType"`
 }
 
 type GetCreateUpdateModelOptionsByDataTypeResponse struct {

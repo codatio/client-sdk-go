@@ -151,7 +151,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Companies.List(ctx, operations.ListCompaniesRequest{
         OrderBy: codatcommon.String("-modifiedDate"),
-        Page: 1,
+        Page: codatcommon.Int(1),
         PageSize: codatcommon.Int(100),
         Query: codatcommon.String("corrupti"),
     })

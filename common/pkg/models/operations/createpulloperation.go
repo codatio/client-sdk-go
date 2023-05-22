@@ -12,7 +12,7 @@ type CreatePullOperationRequest struct {
 	// Optionally, provide a data connection id to only queue pull operations on that connection.
 	ConnectionID *string `queryParam:"style=form,explode=true,name=connectionId"`
 	// The key of a Codat data type
-	DataType shared.DataTypeEnum `pathParam:"style=simple,explode=false,name=dataType"`
+	DataType shared.DataType `pathParam:"style=simple,explode=false,name=dataType"`
 }
 
 type CreatePullOperationResponse struct {

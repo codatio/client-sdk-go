@@ -112,7 +112,7 @@ func main() {
     res, err := s.DataStatus.ListPullOperations(ctx, operations.ListPullOperationsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         OrderBy: codatcommon.String("-modifiedDate"),
-        Page: 1,
+        Page: codatcommon.Int(1),
         PageSize: codatcommon.Int(100),
         Query: codatcommon.String("suscipit"),
     })

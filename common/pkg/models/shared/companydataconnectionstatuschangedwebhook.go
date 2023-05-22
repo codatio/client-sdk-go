@@ -6,9 +6,9 @@ type CompanyDataConnectionStatusChangedWebhookData struct {
 	// Unique identifier for a company's data connection.
 	DataConnectionID *string `json:"dataConnectionId,omitempty"`
 	// The current authorization status of the data connection.
-	NewStatus *ConnectionStatusEnum `json:"newStatus,omitempty"`
+	NewStatus *ConnectionStatus `json:"newStatus,omitempty"`
 	// The current authorization status of the data connection.
-	OldStatus *ConnectionStatusEnum `json:"oldStatus,omitempty"`
+	OldStatus *ConnectionStatus `json:"oldStatus,omitempty"`
 	// A unique 4-letter key to represent a platform in each integration. View [accounting](https://docs.codat.io/integrations/accounting/accounting-platform-keys), [banking](https://docs.codat.io/integrations/banking/banking-platform-keys), and [commerce](https://docs.codat.io/integrations/commerce/commerce-platform-keys) platform keys.
 	PlatformKey *string `json:"platformKey,omitempty"`
 }
