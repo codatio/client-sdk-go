@@ -7,21 +7,21 @@ import (
 	"fmt"
 )
 
-// AccountTransactionStatusEnum - The status of the account transaction.
-type AccountTransactionStatusEnum string
+// AccountTransactionStatus - The status of the account transaction.
+type AccountTransactionStatus string
 
 const (
-	AccountTransactionStatusEnumUnknown      AccountTransactionStatusEnum = "Unknown"
-	AccountTransactionStatusEnumUnreconciled AccountTransactionStatusEnum = "Unreconciled"
-	AccountTransactionStatusEnumReconciled   AccountTransactionStatusEnum = "Reconciled"
-	AccountTransactionStatusEnumVoid         AccountTransactionStatusEnum = "Void"
+	AccountTransactionStatusUnknown      AccountTransactionStatus = "Unknown"
+	AccountTransactionStatusUnreconciled AccountTransactionStatus = "Unreconciled"
+	AccountTransactionStatusReconciled   AccountTransactionStatus = "Reconciled"
+	AccountTransactionStatusVoid         AccountTransactionStatus = "Void"
 )
 
-func (e AccountTransactionStatusEnum) ToPointer() *AccountTransactionStatusEnum {
+func (e AccountTransactionStatus) ToPointer() *AccountTransactionStatus {
 	return &e
 }
 
-func (e *AccountTransactionStatusEnum) UnmarshalJSON(data []byte) error {
+func (e *AccountTransactionStatus) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -34,10 +34,10 @@ func (e *AccountTransactionStatusEnum) UnmarshalJSON(data []byte) error {
 	case "Reconciled":
 		fallthrough
 	case "Void":
-		*e = AccountTransactionStatusEnum(v)
+		*e = AccountTransactionStatus(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for AccountTransactionStatusEnum: %v", v)
+		return fmt.Errorf("invalid value for AccountTransactionStatus: %v", v)
 	}
 }
 
@@ -123,7 +123,7 @@ type AccountTransaction struct {
 	Note               *string `json:"note,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// The status of the account transaction.
-	Status *AccountTransactionStatusEnum `json:"status,omitempty"`
+	Status *AccountTransactionStatus `json:"status,omitempty"`
 	// Total amount of the account transactions, inclusive of tax.
 	TotalAmount *float64 `json:"totalAmount,omitempty"`
 	// Identifier of the transaction (unique to the company).

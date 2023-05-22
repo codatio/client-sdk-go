@@ -65,9 +65,9 @@ type CashFlowStatement1 struct {
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	MostRecentAvailableMonth *string `json:"mostRecentAvailableMonth,omitempty"`
 	// Accounting method used when aggregating the report data. In this case, `Cash`.
-	ReportBasis ReportBasisEnum `json:"reportBasis"`
+	ReportBasis ReportBasis `json:"reportBasis"`
 	// Accounting method used to prepare the cash flow statement.
-	ReportInput ReportInputEnum `json:"reportInput"`
+	ReportInput ReportInput `json:"reportInput"`
 	// Array of cash flow statements.
 	Reports []CashFlowStatement `json:"reports"`
 }

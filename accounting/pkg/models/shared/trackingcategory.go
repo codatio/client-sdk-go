@@ -40,5 +40,5 @@ type TrackingCategory struct {
 	ParentID           *string `json:"parentId,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Current state of the tracking category.
-	Status *StatusEnum `json:"status,omitempty"`
+	Status *Status `json:"status,omitempty"`
 }

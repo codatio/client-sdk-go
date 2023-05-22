@@ -67,7 +67,7 @@ type ProfitAndLossReport1 struct {
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	MostRecentAvailableMonth *string `json:"mostRecentAvailableMonth,omitempty"`
 	// The basis of a report.
-	ReportBasis ReportBasisEnum `json:"reportBasis"`
+	ReportBasis ReportBasis `json:"reportBasis"`
 	// An array of profit and loss reports.
 	Reports []ProfitAndLossReport `json:"reports"`
 }

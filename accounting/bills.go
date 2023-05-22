@@ -3,6 +3,7 @@
 package codataccounting
 
 import (
+	"bytes"
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
@@ -40,8 +41,7 @@ func newBills(defaultClient, securityClient HTTPClient, serverURL, language, sdk
 //
 // > **Supported Integrations**
 // >
-// > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bills) for integrations that support creating a bill.
-
+// > Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bills) for integrations that support creating a bill.
 func (s *bills) Create(ctx context.Context, request operations.CreateBillRequest, opts ...operations.Option) (*operations.CreateBillResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -68,6 +68,8 @@ func (s *bills) Create(ctx context.Context, request operations.CreateBillRequest
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
@@ -107,7 +109,13 @@ func (s *bills) Create(ctx context.Context, request operations.CreateBillRequest
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -121,7 +129,7 @@ func (s *bills) Create(ctx context.Context, request operations.CreateBillRequest
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.CreateBillResponse
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -133,12 +141,35 @@ func (s *bills) Create(ctx context.Context, request operations.CreateBillRequest
 }
 
 // Delete - Delete bill
-// Deletes a bill from the accounting package for a given company.
+// The _Delete Bills_ endpoint allows you to delete a specified Bill from an accounting platform.
+//
+// ### Process
+// 1. Pass the `{billId}` to the _Delete Bills_ endpoint and store the `pushOperationKey` returned.
+// 2. Check the status of the delete operation by checking the status of push operation either via
+//
+//  1. [Push operation webhook](/introduction/webhooks/core-rules-types#push-operation-status-has-changed) (advised),
+//
+//  2. [Push operation status endpoint](https://docs.codat.io/codat-api#/operations/get-push-operation).
+//
+//     A `Success` status indicates that the Bill object was deleted from the accounting platform.
+//
+// 3. (Optional) Check that the Bill was deleted from the accounting platform.
+//
+// ### Effect on related objects
+//
+// Be aware that deleting a Bill from an accounting platform might cause related objects to be modified. For example, if you delete a paid Bill in QuickBooks Online, the bill is deleted but the bill payment against that bill is not. The bill payment is converted to a payment on account.
+//
+// ## Integration specifics
+// Integrations that support soft delete do not permanently delete the object in the accounting platform.
+//
+// | Integration | Soft Delete | Details                                                                                                      |
+// |-------------|-------------|--------------------------------------------------------------------------------------------------------------|
+// | QuickBooks Online | No          | -                                                                                                            |
+// | Oracle NetSuite   | No          | When deleting a Bill that's already linked to a Bill payment, you must delete the linked Bill payment first. |
 //
 // > **Supported Integrations**
 // >
-// > This functionality is currently only supported for our Oracle NetSuite and QuickBooks Online integrations. Check out our [public roadmap](https://portal.productboard.com/codat/7-public-product-roadmap/tabs/46-accounting-api) to see what we're building next, and to submit ideas for new features.
-
+// > This functionality is currently only supported for our QuickBooks Online abd Oracle NetSuite integrations. Check out our [public roadmap](https://portal.productboard.com/codat/7-public-product-roadmap/tabs/46-accounting-api) to see what we're building next, and to submit ideas for new features.
 func (s *bills) Delete(ctx context.Context, request operations.DeleteBillRequest, opts ...operations.Option) (*operations.DeleteBillResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -160,6 +191,8 @@ func (s *bills) Delete(ctx context.Context, request operations.DeleteBillRequest
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	client := s.securityClient
 
@@ -193,7 +226,13 @@ func (s *bills) Delete(ctx context.Context, request operations.DeleteBillRequest
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -207,7 +246,7 @@ func (s *bills) Delete(ctx context.Context, request operations.DeleteBillRequest
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.PushOperationSummary
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -219,8 +258,7 @@ func (s *bills) Delete(ctx context.Context, request operations.DeleteBillRequest
 }
 
 // DownloadAttachment - Download bill attachment
-// Download bill attachment
-
+// Download bill attachment.
 func (s *bills) DownloadAttachment(ctx context.Context, request operations.DownloadBillAttachmentRequest, opts ...operations.Option) (*operations.DownloadBillAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -242,6 +280,8 @@ func (s *bills) DownloadAttachment(ctx context.Context, request operations.Downl
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/octet-stream")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	client := s.securityClient
 
@@ -275,7 +315,13 @@ func (s *bills) DownloadAttachment(ctx context.Context, request operations.Downl
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -288,12 +334,7 @@ func (s *bills) DownloadAttachment(ctx context.Context, request operations.Downl
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/octet-stream`):
-			out, err := io.ReadAll(httpRes.Body)
-			if err != nil {
-				return nil, fmt.Errorf("error reading response body: %w", err)
-			}
-
-			res.Data = out
+			res.Data = rawBody
 		}
 	}
 
@@ -301,8 +342,7 @@ func (s *bills) DownloadAttachment(ctx context.Context, request operations.Downl
 }
 
 // Get - Get bill
-// Get bill
-
+// Get a bill.
 func (s *bills) Get(ctx context.Context, request operations.GetBillRequest, opts ...operations.Option) (*operations.GetBillResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -324,6 +364,8 @@ func (s *bills) Get(ctx context.Context, request operations.GetBillRequest, opts
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	client := s.securityClient
 
@@ -357,7 +399,13 @@ func (s *bills) Get(ctx context.Context, request operations.GetBillRequest, opts
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -371,7 +419,7 @@ func (s *bills) Get(ctx context.Context, request operations.GetBillRequest, opts
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Bill
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -383,8 +431,7 @@ func (s *bills) Get(ctx context.Context, request operations.GetBillRequest, opts
 }
 
 // GetAttachment - Get bill attachment
-// Get bill attachment
-
+// Get bill attachment.
 func (s *bills) GetAttachment(ctx context.Context, request operations.GetBillAttachmentRequest, opts ...operations.Option) (*operations.GetBillAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -406,6 +453,8 @@ func (s *bills) GetAttachment(ctx context.Context, request operations.GetBillAtt
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	client := s.securityClient
 
@@ -439,7 +488,13 @@ func (s *bills) GetAttachment(ctx context.Context, request operations.GetBillAtt
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -453,7 +508,7 @@ func (s *bills) GetAttachment(ctx context.Context, request operations.GetBillAtt
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Attachment
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -467,10 +522,9 @@ func (s *bills) GetAttachment(ctx context.Context, request operations.GetBillAtt
 // GetCreateUpdateModel - Get create/update bill model
 // Get create/update bill model.
 //
-//  > **Supported Integrations**
+// > **Supported Integrations**
 // >
-// > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bills) for integrations that support creating and updating a bill.
-
+// > Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bills) for integrations that support creating and updating a bill.
 func (s *bills) GetCreateUpdateModel(ctx context.Context, request operations.GetCreateUpdateBillsModelRequest, opts ...operations.Option) (*operations.GetCreateUpdateBillsModelResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -492,6 +546,8 @@ func (s *bills) GetCreateUpdateModel(ctx context.Context, request operations.Get
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	client := s.securityClient
 
@@ -525,7 +581,13 @@ func (s *bills) GetCreateUpdateModel(ctx context.Context, request operations.Get
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -539,7 +601,7 @@ func (s *bills) GetCreateUpdateModel(ctx context.Context, request operations.Get
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.PushOption
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -551,8 +613,7 @@ func (s *bills) GetCreateUpdateModel(ctx context.Context, request operations.Get
 }
 
 // List - List bills
-// Gets the latest bills for a company, with pagination
-
+// Gets the latest bills for a company, with pagination.
 func (s *bills) List(ctx context.Context, request operations.ListBillsRequest, opts ...operations.Option) (*operations.ListBillsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -574,6 +635,8 @@ func (s *bills) List(ctx context.Context, request operations.ListBillsRequest, o
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -611,7 +674,13 @@ func (s *bills) List(ctx context.Context, request operations.ListBillsRequest, o
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -625,7 +694,7 @@ func (s *bills) List(ctx context.Context, request operations.ListBillsRequest, o
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Bills
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -637,8 +706,7 @@ func (s *bills) List(ctx context.Context, request operations.ListBillsRequest, o
 }
 
 // ListAttachments - List bill attachments
-// List bill attachments
-
+// List bill attachments.
 func (s *bills) ListAttachments(ctx context.Context, request operations.ListBillAttachmentsRequest, opts ...operations.Option) (*operations.ListBillAttachmentsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -660,6 +728,8 @@ func (s *bills) ListAttachments(ctx context.Context, request operations.ListBill
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	client := s.securityClient
 
@@ -693,7 +763,13 @@ func (s *bills) ListAttachments(ctx context.Context, request operations.ListBill
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -707,7 +783,7 @@ func (s *bills) ListAttachments(ctx context.Context, request operations.ListBill
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.AttachmentsDataset
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -725,8 +801,7 @@ func (s *bills) ListAttachments(ctx context.Context, request operations.ListBill
 //
 // > **Supported Integrations**
 // >
-// > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bills) for integrations that support updating a bill.
-
+// > Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bills) for integrations that support updating a bill.
 func (s *bills) Update(ctx context.Context, request operations.UpdateBillRequest, opts ...operations.Option) (*operations.UpdateBillResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -753,6 +828,8 @@ func (s *bills) Update(ctx context.Context, request operations.UpdateBillRequest
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
@@ -792,7 +869,13 @@ func (s *bills) Update(ctx context.Context, request operations.UpdateBillRequest
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -806,7 +889,7 @@ func (s *bills) Update(ctx context.Context, request operations.UpdateBillRequest
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.UpdateBillResponse
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -818,8 +901,7 @@ func (s *bills) Update(ctx context.Context, request operations.UpdateBillRequest
 }
 
 // UploadAttachment - Upload bill attachment
-// Upload bill attachment
-
+// Upload bill attachment.
 func (s *bills) UploadAttachment(ctx context.Context, request operations.UploadBillAttachmentRequest, opts ...operations.Option) (*operations.UploadBillAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -846,6 +928,8 @@ func (s *bills) UploadAttachment(ctx context.Context, request operations.UploadB
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "*/*")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
@@ -881,7 +965,13 @@ func (s *bills) UploadAttachment(ctx context.Context, request operations.UploadB
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 

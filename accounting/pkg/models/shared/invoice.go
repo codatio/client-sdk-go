@@ -144,8 +144,8 @@ type Invoice struct {
 	// An array of payment allocations.
 	PaymentAllocations []Items `json:"paymentAllocations,omitempty"`
 	// List of references to related Sales orders.
-	SalesOrderRefs     []string `json:"salesOrderRefs,omitempty"`
-	SourceModifiedDate *string  `json:"sourceModifiedDate,omitempty"`
+	SalesOrderRefs     []SalesOrderRef `json:"salesOrderRefs,omitempty"`
+	SourceModifiedDate *string         `json:"sourceModifiedDate,omitempty"`
 	// Current state of the invoice:
 	//
 	// - `Draft` - Invoice hasn't been submitted to the supplier. It may be in a pending state or is scheduled for future submission, for example by email.
@@ -153,7 +153,7 @@ type Invoice struct {
 	// - `PartiallyPaid` - The balance paid against the invoice is positive, but less than the total invoice amount (0 < amountDue < totalAmount).
 	// - `Paid` - Invoice is paid in full. This includes if the invoice has been credited or overpaid (amountDue == 0).
 	// - `Void` - An invoice can become Void when it's deleted, refunded, written off, or cancelled. A voided invoice may still be PartiallyPaid, and so all outstanding amounts on voided invoices are removed from the accounts receivable account.
-	Status InvoiceStatusEnum `json:"status"`
+	Status InvoiceStatus `json:"status"`
 	// Total amount of the invoice excluding any taxes.
 	SubTotal *float64 `json:"subTotal,omitempty"`
 	// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.

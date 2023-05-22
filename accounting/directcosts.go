@@ -3,6 +3,7 @@
 package codataccounting
 
 import (
+	"bytes"
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
@@ -40,8 +41,7 @@ func newDirectCosts(defaultClient, securityClient HTTPClient, serverURL, languag
 //
 // > **Supported Integrations**
 // >
-// > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=directCosts) for integrations that support creating direct costs.
-
+// > Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=directCosts) for integrations that support creating direct costs.
 func (s *directCosts) Create(ctx context.Context, request operations.CreateDirectCostRequest, opts ...operations.Option) (*operations.CreateDirectCostResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -68,6 +68,8 @@ func (s *directCosts) Create(ctx context.Context, request operations.CreateDirec
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
@@ -107,7 +109,13 @@ func (s *directCosts) Create(ctx context.Context, request operations.CreateDirec
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -121,7 +129,7 @@ func (s *directCosts) Create(ctx context.Context, request operations.CreateDirec
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.CreateDirectCostResponse
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -134,7 +142,6 @@ func (s *directCosts) Create(ctx context.Context, request operations.CreateDirec
 
 // DownloadAttachment - Download direct cost attachment
 // Downloads an attachment for the specified direct cost for a given company.
-
 func (s *directCosts) DownloadAttachment(ctx context.Context, request operations.DownloadDirectCostAttachmentRequest, opts ...operations.Option) (*operations.DownloadDirectCostAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -156,6 +163,8 @@ func (s *directCosts) DownloadAttachment(ctx context.Context, request operations
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/octet-stream")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	client := s.securityClient
 
@@ -189,7 +198,13 @@ func (s *directCosts) DownloadAttachment(ctx context.Context, request operations
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -202,12 +217,7 @@ func (s *directCosts) DownloadAttachment(ctx context.Context, request operations
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/octet-stream`):
-			out, err := io.ReadAll(httpRes.Body)
-			if err != nil {
-				return nil, fmt.Errorf("error reading response body: %w", err)
-			}
-
-			res.Data = out
+			res.Data = rawBody
 		}
 	}
 
@@ -216,7 +226,6 @@ func (s *directCosts) DownloadAttachment(ctx context.Context, request operations
 
 // Get - Get direct cost
 // Gets the specified direct cost for a given company.
-
 func (s *directCosts) Get(ctx context.Context, request operations.GetDirectCostRequest, opts ...operations.Option) (*operations.GetDirectCostResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -238,6 +247,8 @@ func (s *directCosts) Get(ctx context.Context, request operations.GetDirectCostR
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	client := s.securityClient
 
@@ -271,7 +282,13 @@ func (s *directCosts) Get(ctx context.Context, request operations.GetDirectCostR
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -285,7 +302,7 @@ func (s *directCosts) Get(ctx context.Context, request operations.GetDirectCostR
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.DirectCost
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -298,7 +315,6 @@ func (s *directCosts) Get(ctx context.Context, request operations.GetDirectCostR
 
 // GetAttachment - Get direct cost attachment
 // Gets the specified direct cost attachment for a given company.
-
 func (s *directCosts) GetAttachment(ctx context.Context, request operations.GetDirectCostAttachmentRequest, opts ...operations.Option) (*operations.GetDirectCostAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -320,6 +336,8 @@ func (s *directCosts) GetAttachment(ctx context.Context, request operations.GetD
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	client := s.securityClient
 
@@ -353,7 +371,13 @@ func (s *directCosts) GetAttachment(ctx context.Context, request operations.GetD
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -367,7 +391,7 @@ func (s *directCosts) GetAttachment(ctx context.Context, request operations.GetD
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Attachment
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -385,8 +409,7 @@ func (s *directCosts) GetAttachment(ctx context.Context, request operations.GetD
 //
 // > **Supported Integrations**
 // >
-// > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=directCosts) for integrations that support creating direct costs.
-
+// > Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=directCosts) for integrations that support creating direct costs.
 func (s *directCosts) GetCreateModel(ctx context.Context, request operations.GetCreateDirectCostsModelRequest, opts ...operations.Option) (*operations.GetCreateDirectCostsModelResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -408,6 +431,8 @@ func (s *directCosts) GetCreateModel(ctx context.Context, request operations.Get
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	client := s.securityClient
 
@@ -441,7 +466,13 @@ func (s *directCosts) GetCreateModel(ctx context.Context, request operations.Get
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -455,7 +486,7 @@ func (s *directCosts) GetCreateModel(ctx context.Context, request operations.Get
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.PushOption
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -468,7 +499,6 @@ func (s *directCosts) GetCreateModel(ctx context.Context, request operations.Get
 
 // List - List direct costs
 // Gets the direct costs for the company.
-
 func (s *directCosts) List(ctx context.Context, request operations.ListDirectCostsRequest, opts ...operations.Option) (*operations.ListDirectCostsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -490,6 +520,8 @@ func (s *directCosts) List(ctx context.Context, request operations.ListDirectCos
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -527,7 +559,13 @@ func (s *directCosts) List(ctx context.Context, request operations.ListDirectCos
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -541,7 +579,7 @@ func (s *directCosts) List(ctx context.Context, request operations.ListDirectCos
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.DirectCosts
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -554,7 +592,6 @@ func (s *directCosts) List(ctx context.Context, request operations.ListDirectCos
 
 // ListAttachments - List direct cost attachments
 // Gets all attachments for the specified direct cost for a given company.
-
 func (s *directCosts) ListAttachments(ctx context.Context, request operations.ListDirectCostAttachmentsRequest, opts ...operations.Option) (*operations.ListDirectCostAttachmentsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -576,6 +613,8 @@ func (s *directCosts) ListAttachments(ctx context.Context, request operations.Li
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	client := s.securityClient
 
@@ -609,7 +648,13 @@ func (s *directCosts) ListAttachments(ctx context.Context, request operations.Li
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -623,7 +668,7 @@ func (s *directCosts) ListAttachments(ctx context.Context, request operations.Li
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.AttachmentsDataset
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -636,7 +681,6 @@ func (s *directCosts) ListAttachments(ctx context.Context, request operations.Li
 
 // UploadAttachment - Upload direct cost attachment
 // Posts a new direct cost attachment for a given company.
-
 func (s *directCosts) UploadAttachment(ctx context.Context, request operations.UploadDirectCostAttachmentRequest, opts ...operations.Option) (*operations.UploadDirectCostAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -663,6 +707,8 @@ func (s *directCosts) UploadAttachment(ctx context.Context, request operations.U
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "*/*")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
@@ -698,7 +744,13 @@ func (s *directCosts) UploadAttachment(ctx context.Context, request operations.U
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 

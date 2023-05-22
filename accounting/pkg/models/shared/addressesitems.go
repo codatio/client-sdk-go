@@ -16,5 +16,5 @@ type Addressesitems struct {
 	// Region of the customer address.
 	Region *string `json:"region,omitempty"`
 	// The type of the address
-	Type AddressTypeEnum `json:"type"`
+	Type AddressType `json:"type"`
 }

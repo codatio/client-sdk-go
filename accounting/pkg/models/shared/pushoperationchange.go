@@ -3,7 +3,7 @@
 package shared
 
 type PushOperationChange struct {
-	AttachmentID *string             `json:"attachmentId,omitempty"`
-	RecordRef    *PushOperationRef   `json:"recordRef,omitempty"`
-	Type         *PushChangeTypeEnum `json:"type,omitempty"`
+	AttachmentID *string           `json:"attachmentId,omitempty"`
+	RecordRef    *PushOperationRef `json:"recordRef,omitempty"`
+	Type         *PushChangeType   `json:"type,omitempty"`
 }

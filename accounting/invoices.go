@@ -3,6 +3,7 @@
 package codataccounting
 
 import (
+	"bytes"
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
@@ -41,7 +42,6 @@ func newInvoices(defaultClient, securityClient HTTPClient, serverURL, language, 
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=invoices) for integrations that support creating invoices.
-
 func (s *invoices) Create(ctx context.Context, request operations.CreateInvoiceRequest, opts ...operations.Option) (*operations.CreateInvoiceResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -68,6 +68,8 @@ func (s *invoices) Create(ctx context.Context, request operations.CreateInvoiceR
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
@@ -107,7 +109,13 @@ func (s *invoices) Create(ctx context.Context, request operations.CreateInvoiceR
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -121,7 +129,7 @@ func (s *invoices) Create(ctx context.Context, request operations.CreateInvoiceR
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.CreateInvoiceResponse
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -133,12 +141,35 @@ func (s *invoices) Create(ctx context.Context, request operations.CreateInvoiceR
 }
 
 // Delete - Delete invoice
-// Deletes an invoice from the accounting package for a given company.
+// The _Delete Invoices_ endpoint allows you to delete a specified Invoice from an accounting platform.
+//
+// ### Process
+// 1. Pass the `{invoiceId}` to the _Delete Invoices_ endpoint and store the `pushOperationKey` returned.
+// 2. Check the status of the delete operation by checking the status of push operation either via
+//
+//  1. [Push operation webhook](/introduction/webhooks/core-rules-types#push-operation-status-has-changed) (advised),
+//
+//  2. [Push operation status endpoint](https://docs.codat.io/codat-api#/operations/get-push-operation).
+//
+//     A `Success` status indicates that the Invoice object was deleted from the accounting platform.
+//
+// 3. (Optional) Check that the Invoice was deleted from the accounting platform.
+//
+// ### Effect on related objects
+//
+// Be aware that deleting an Invoice from an accounting platform might cause related objects to be modified. For example, if you delete a paid invoice from QuickBooks Online, the invoice is deleted but the payment against that invoice is not. The payment is converted to a payment on account.
+//
+// ## Integration specifics
+// Integrations that support soft delete do not permanently delete the object in the accounting platform.
+//
+// | Integration | Soft Deleted |
+// |-------------|--------------|
+// | QuickBooks Online | Yes    |
 //
 // > **Supported Integrations**
 // >
 // > This functionality is currently only supported for our QuickBooks Online integration. Check out our [public roadmap](https://portal.productboard.com/codat/7-public-product-roadmap/tabs/46-accounting-api) to see what we're building next, and to submit ideas for new features.
-
+// > We're increasing support for object deletion across various accounting platforms and data types. You can check our [Accounting API Public Product Roadmap](https://portal.productboard.com/codat/7-public-product-roadmap/tabs/46-accounting-api) for the latest status.
 func (s *invoices) Delete(ctx context.Context, request operations.DeleteInvoiceRequest, opts ...operations.Option) (*operations.DeleteInvoiceResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -160,6 +191,8 @@ func (s *invoices) Delete(ctx context.Context, request operations.DeleteInvoiceR
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	client := s.securityClient
 
@@ -193,7 +226,13 @@ func (s *invoices) Delete(ctx context.Context, request operations.DeleteInvoiceR
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -207,7 +246,7 @@ func (s *invoices) Delete(ctx context.Context, request operations.DeleteInvoiceR
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.PushOperationSummary
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -219,9 +258,8 @@ func (s *invoices) Delete(ctx context.Context, request operations.DeleteInvoiceR
 }
 
 // DownloadAttachment - Download invoice attachment
-// Download invoice attachments
-
-func (s *invoices) DownloadAttachment(ctx context.Context, request operations.DownloadInvoiceAttachmentRequest, opts ...operations.Option) (*operations.DownloadInvoiceAttachmentResponse, error) {
+// Download invoice attachment.
+func (s *invoices) DownloadAttachment(ctx context.Context, request operations.DownloadInvoicesAttachmentRequest, opts ...operations.Option) (*operations.DownloadInvoicesAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -242,6 +280,8 @@ func (s *invoices) DownloadAttachment(ctx context.Context, request operations.Do
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/octet-stream")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	client := s.securityClient
 
@@ -275,11 +315,17 @@ func (s *invoices) DownloadAttachment(ctx context.Context, request operations.Do
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.DownloadInvoiceAttachmentResponse{
+	res := &operations.DownloadInvoicesAttachmentResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -288,12 +334,7 @@ func (s *invoices) DownloadAttachment(ctx context.Context, request operations.Do
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/octet-stream`):
-			out, err := io.ReadAll(httpRes.Body)
-			if err != nil {
-				return nil, fmt.Errorf("error reading response body: %w", err)
-			}
-
-			res.Data = out
+			res.Data = rawBody
 		}
 	}
 
@@ -301,8 +342,7 @@ func (s *invoices) DownloadAttachment(ctx context.Context, request operations.Do
 }
 
 // DownloadPdf - Get invoice as PDF
-// Get invoice as PDF
-
+// Download invoice as a pdf.
 func (s *invoices) DownloadPdf(ctx context.Context, request operations.DownloadInvoicePdfRequest, opts ...operations.Option) (*operations.DownloadInvoicePdfResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -324,6 +364,8 @@ func (s *invoices) DownloadPdf(ctx context.Context, request operations.DownloadI
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/octet-stream")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	client := s.securityClient
 
@@ -357,7 +399,13 @@ func (s *invoices) DownloadPdf(ctx context.Context, request operations.DownloadI
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -370,12 +418,7 @@ func (s *invoices) DownloadPdf(ctx context.Context, request operations.DownloadI
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/octet-stream`):
-			out, err := io.ReadAll(httpRes.Body)
-			if err != nil {
-				return nil, fmt.Errorf("error reading response body: %w", err)
-			}
-
-			res.Data = out
+			res.Data = rawBody
 		}
 	}
 
@@ -383,8 +426,7 @@ func (s *invoices) DownloadPdf(ctx context.Context, request operations.DownloadI
 }
 
 // Get - Get invoice
-// Get invoice
-
+// Get an invoice.
 func (s *invoices) Get(ctx context.Context, request operations.GetInvoiceRequest, opts ...operations.Option) (*operations.GetInvoiceResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -406,6 +448,8 @@ func (s *invoices) Get(ctx context.Context, request operations.GetInvoiceRequest
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	client := s.securityClient
 
@@ -439,7 +483,13 @@ func (s *invoices) Get(ctx context.Context, request operations.GetInvoiceRequest
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -453,7 +503,7 @@ func (s *invoices) Get(ctx context.Context, request operations.GetInvoiceRequest
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Invoice
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -465,8 +515,7 @@ func (s *invoices) Get(ctx context.Context, request operations.GetInvoiceRequest
 }
 
 // GetAttachment - Get invoice attachment
-// Get invoice attachment
-
+// Get invoice attachment.
 func (s *invoices) GetAttachment(ctx context.Context, request operations.GetInvoiceAttachmentRequest, opts ...operations.Option) (*operations.GetInvoiceAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -488,6 +537,8 @@ func (s *invoices) GetAttachment(ctx context.Context, request operations.GetInvo
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	client := s.securityClient
 
@@ -521,7 +572,13 @@ func (s *invoices) GetAttachment(ctx context.Context, request operations.GetInvo
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -535,7 +592,7 @@ func (s *invoices) GetAttachment(ctx context.Context, request operations.GetInvo
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Attachment
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -554,7 +611,6 @@ func (s *invoices) GetAttachment(ctx context.Context, request operations.GetInvo
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=invoices) for integrations that support creating and updating invoices.
-
 func (s *invoices) GetCreateUpdateModel(ctx context.Context, request operations.GetCreateUpdateInvoicesModelRequest, opts ...operations.Option) (*operations.GetCreateUpdateInvoicesModelResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -576,6 +632,8 @@ func (s *invoices) GetCreateUpdateModel(ctx context.Context, request operations.
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	client := s.securityClient
 
@@ -609,7 +667,13 @@ func (s *invoices) GetCreateUpdateModel(ctx context.Context, request operations.
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -623,7 +687,7 @@ func (s *invoices) GetCreateUpdateModel(ctx context.Context, request operations.
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.PushOption
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -635,8 +699,7 @@ func (s *invoices) GetCreateUpdateModel(ctx context.Context, request operations.
 }
 
 // List - List invoices
-// Gets the latest invoices for a company, with pagination
-
+// Gets the latest invoices for a company, with pagination.
 func (s *invoices) List(ctx context.Context, request operations.ListInvoicesRequest, opts ...operations.Option) (*operations.ListInvoicesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -658,6 +721,8 @@ func (s *invoices) List(ctx context.Context, request operations.ListInvoicesRequ
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -695,7 +760,13 @@ func (s *invoices) List(ctx context.Context, request operations.ListInvoicesRequ
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -709,7 +780,7 @@ func (s *invoices) List(ctx context.Context, request operations.ListInvoicesRequ
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Invoices
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -722,7 +793,6 @@ func (s *invoices) List(ctx context.Context, request operations.ListInvoicesRequ
 
 // ListAttachments - List invoice attachments
 // List invoice attachments
-
 func (s *invoices) ListAttachments(ctx context.Context, request operations.ListInvoiceAttachmentsRequest, opts ...operations.Option) (*operations.ListInvoiceAttachmentsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -744,6 +814,8 @@ func (s *invoices) ListAttachments(ctx context.Context, request operations.ListI
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	client := s.securityClient
 
@@ -777,7 +849,13 @@ func (s *invoices) ListAttachments(ctx context.Context, request operations.ListI
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -791,7 +869,7 @@ func (s *invoices) ListAttachments(ctx context.Context, request operations.ListI
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.AttachmentsDataset
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -810,7 +888,7 @@ func (s *invoices) ListAttachments(ctx context.Context, request operations.ListI
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=invoices) for integrations that support updating invoices.
-
+// operationId: update-invoice
 func (s *invoices) Update(ctx context.Context, request operations.UpdateInvoiceRequest, opts ...operations.Option) (*operations.UpdateInvoiceResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -837,6 +915,8 @@ func (s *invoices) Update(ctx context.Context, request operations.UpdateInvoiceR
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
@@ -876,7 +956,13 @@ func (s *invoices) Update(ctx context.Context, request operations.UpdateInvoiceR
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -890,7 +976,7 @@ func (s *invoices) Update(ctx context.Context, request operations.UpdateInvoiceR
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.UpdateInvoiceResponse
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -902,8 +988,7 @@ func (s *invoices) Update(ctx context.Context, request operations.UpdateInvoiceR
 }
 
 // UploadAttachment - Push invoice attachment
-// Push invoice attachment
-
+// Upload invoice attachment.
 func (s *invoices) UploadAttachment(ctx context.Context, request operations.UploadInvoiceAttachmentRequest, opts ...operations.Option) (*operations.UploadInvoiceAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -930,6 +1015,8 @@ func (s *invoices) UploadAttachment(ctx context.Context, request operations.Uplo
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "*/*")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
@@ -965,7 +1052,13 @@ func (s *invoices) UploadAttachment(ctx context.Context, request operations.Uplo
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 

@@ -6,5 +6,5 @@ type PhoneNumbersitems struct {
 	// A phone number.
 	Number string `json:"number"`
 	// The type of phone number
-	Type PhoneNumberTypeEnum `json:"type"`
+	Type PhoneNumberType `json:"type"`
 }

@@ -14,13 +14,14 @@ Journal entries
 
 ## Create
 
-Posts a new journalEntry to the accounting package for a given company.
+﻿Posts a new journalEntry to the accounting package for a given company.
 
 Required data may vary by integration. To see what data to post, first call [Get create journal entry model](https://docs.codat.io/accounting-api#/operations/get-create-journalEntries-model).
 
 > **Supported Integrations**
 > 
 > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journalEntries) for integrations that support creating journal entries.
+ 
 
 ### Example Usage
 
@@ -45,137 +46,87 @@ func main() {
     ctx := context.Background()
     res, err := s.JournalEntries.Create(ctx, operations.CreateJournalEntryRequest{
         JournalEntry: &shared.JournalEntry{
-            CreatedOn: codataccounting.String("delectus"),
-            Description: codataccounting.String("id"),
-            ID: codataccounting.String("1011a091-b3ec-48b5-b862-de1a9d14fe72"),
+            CreatedOn: codataccounting.String("quibusdam"),
+            Description: codataccounting.String("natus"),
+            ID: codataccounting.String("8ccf89d3-8611-486e-976c-002facb13ac2"),
             JournalLines: []shared.JournalLine{
                 shared.JournalLine{
                     AccountRef: &shared.AccountRef{
-                        ID: codataccounting.String("521f9030-3dfc-4338-b97f-ffa6d1d32090"),
-                        Name: codataccounting.String("Salvatore Boyer"),
+                        ID: codataccounting.String("c8143b86-6c57-45a1-a266-8730be37b0e8"),
+                        Name: codataccounting.String("Alton Schmitt"),
                     },
-                    Currency: codataccounting.String("mollitia"),
-                    Description: codataccounting.String("cumque"),
-                    NetAmount: 5632.6,
+                    Currency: codataccounting.String("facere"),
+                    Description: codataccounting.String("temporibus"),
+                    NetAmount: 7790.58,
                     Tracking: &shared.Propertiestracking2{
                         RecordRefs: []shared.InvoiceTo{
-                            shared.InvoiceTo{
-                                DataType: codataccounting.String("accusamus"),
-                                ID: codataccounting.String("1961ce9b-e41c-4869-9d7d-9719d07b200a"),
-                            },
-                            shared.InvoiceTo{
-                                DataType: codataccounting.String("corporis"),
-                                ID: codataccounting.String("8ffd2967-df8f-4d88-aa8e-60be620cd9c5"),
-                            },
-                            shared.InvoiceTo{
-                                DataType: codataccounting.String("officia"),
-                                ID: codataccounting.String("fdd04c37-5251-42be-ae1d-87ecc5fdcea8"),
-                            },
-                            shared.InvoiceTo{
-                                DataType: codataccounting.String("eveniet"),
-                                ID: codataccounting.String("7a883116-62cd-4a6d-b7c1-d86066237d42"),
-                            },
-                        },
-                    },
-                },
-                shared.JournalLine{
-                    AccountRef: &shared.AccountRef{
-                        ID: codataccounting.String("27866db8-a749-4e39-8451-1cc75e4f0c00"),
-                        Name: codataccounting.String("Patty Harber"),
-                    },
-                    Currency: codataccounting.String("molestiae"),
-                    Description: codataccounting.String("ipsam"),
-                    NetAmount: 5541.62,
-                    Tracking: &shared.Propertiestracking2{
-                        RecordRefs: []shared.InvoiceTo{
-                            shared.InvoiceTo{
-                                DataType: codataccounting.String("nobis"),
-                                ID: codataccounting.String("94562f00-6968-45fc-91a1-73d84bbe24f2"),
-                            },
-                            shared.InvoiceTo{
-                                DataType: codataccounting.String("error"),
-                                ID: codataccounting.String("834afb07-35cb-4628-9d4a-29aaa1e16915"),
-                            },
-                            shared.InvoiceTo{
-                                DataType: codataccounting.String("nisi"),
-                                ID: codataccounting.String("f7d2ee20-9505-4bf0-ba93-e94480ca37fb"),
-                            },
-                            shared.InvoiceTo{
-                                DataType: codataccounting.String("ab"),
-                                ID: codataccounting.String("0789032a-c333-4172-a2dd-79ec74ba7e88"),
-                            },
-                        },
-                    },
-                },
-                shared.JournalLine{
-                    AccountRef: &shared.AccountRef{
-                        ID: codataccounting.String("ddb36fd1-ccc3-441c-8657-3474f0a740fb"),
-                        Name: codataccounting.String("Sandy Reichel"),
-                    },
-                    Currency: codataccounting.String("illo"),
-                    Description: codataccounting.String("impedit"),
-                    NetAmount: 2164.48,
-                    Tracking: &shared.Propertiestracking2{
-                        RecordRefs: []shared.InvoiceTo{
-                            shared.InvoiceTo{
-                                DataType: codataccounting.String("doloremque"),
-                                ID: codataccounting.String("9e763995-d808-4bbe-b944-55ebc550a1c4"),
-                            },
-                            shared.InvoiceTo{
-                                DataType: codataccounting.String("qui"),
-                                ID: codataccounting.String("6b59c836-6fdc-4c13-9582-c1b855e889d9"),
-                            },
                             shared.InvoiceTo{
                                 DataType: codataccounting.String("officiis"),
-                                ID: codataccounting.String("f932e900-0a13-4ad8-9242-08efd2341189"),
+                                ID: codataccounting.String("69b53510-5050-414d-8a10-5882484c36e9"),
+                            },
+                            shared.InvoiceTo{
+                                DataType: codataccounting.String("ut"),
+                                ID: codataccounting.String("8892782d-34e0-4b8f-80d5-9f57b9f9820b"),
                             },
                         },
                     },
                 },
                 shared.JournalLine{
                     AccountRef: &shared.AccountRef{
-                        ID: codataccounting.String("8e73879e-fbe8-4bae-babb-794536e90351"),
-                        Name: codataccounting.String("Rickey Miller"),
+                        ID: codataccounting.String("e07808c3-6c9e-42f7-8344-e00f478eb539"),
+                        Name: codataccounting.String("Maxine Dietrich"),
                     },
-                    Currency: codataccounting.String("adipisci"),
-                    Description: codataccounting.String("architecto"),
-                    NetAmount: 4393.34,
+                    Currency: codataccounting.String("dolore"),
+                    Description: codataccounting.String("blanditiis"),
+                    NetAmount: 9119.94,
                     Tracking: &shared.Propertiestracking2{
                         RecordRefs: []shared.InvoiceTo{
                             shared.InvoiceTo{
-                                DataType: codataccounting.String("voluptatem"),
-                                ID: codataccounting.String("b77a5a53-65a7-49f1-9271-f01c0d361fed"),
+                                DataType: codataccounting.String("delectus"),
+                                ID: codataccounting.String("ccb69d54-1b4b-4393-b356-6625bea32201"),
+                            },
+                            shared.InvoiceTo{
+                                DataType: codataccounting.String("temporibus"),
+                                ID: codataccounting.String("ec379c59-8ea1-4d48-85c2-f9e21d90fd53"),
+                            },
+                            shared.InvoiceTo{
+                                DataType: codataccounting.String("esse"),
+                                ID: codataccounting.String("76bfc767-7f0f-4504-a6e4-828fb6daee19"),
+                            },
+                            shared.InvoiceTo{
+                                DataType: codataccounting.String("cumque"),
+                                ID: codataccounting.String("26c0cb61-8c63-431c-abda-b767a444dd0d"),
                             },
                         },
                     },
                 },
             },
             JournalRef: &shared.JournalRef{
-                ID: "8dc5effb-453e-4908-9e87-1fdb4d697bdd",
-                Name: codataccounting.String("Sylvester Maggio"),
+                ID: "a0abe58e-b3d5-44ba-9cb3-ad49b8e5c18b",
+                Name: codataccounting.String("Holly Trantow"),
             },
             Metadata: &shared.Metadata{
                 IsDeleted: codataccounting.Bool(false),
             },
-            ModifiedDate: codataccounting.String("repudiandae"),
-            PostedOn: codataccounting.String("incidunt"),
+            ModifiedDate: codataccounting.String("maiores"),
+            PostedOn: codataccounting.String("ea"),
             RecordRef: &shared.InvoiceTo{
-                DataType: codataccounting.String("neque"),
-                ID: codataccounting.String("734a5d72-d9ed-4d78-9be5-e7afe55297ba"),
+                DataType: codataccounting.String("incidunt"),
+                ID: codataccounting.String("823255be-95c0-4cbc-b2ca-87908d73809a"),
             },
-            SourceModifiedDate: codataccounting.String("laboriosam"),
+            SourceModifiedDate: codataccounting.String("aut"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "laudantium": map[string]interface{}{
-                        "repellat": "aliquam",
+                    "doloribus": map[string]interface{}{
+                        "eum": "itaque",
                     },
                 },
             },
-            UpdatedOn: codataccounting.String("modi"),
+            UpdatedOn: codataccounting.String("unde"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codataccounting.Int(907650),
+        TimeoutInMinutes: codataccounting.Int(148478),
     })
     if err != nil {
         log.Fatal(err)
@@ -189,7 +140,33 @@ func main() {
 
 ## Delete
 
-Deletes a journal entry from the accounting package for a given company.
+﻿> **Use with caution**
+>
+>Because Journal Entries underpin every transaction in an accounting platform, deleting a Journal Entry can affect every transaction for a given company.
+> 
+> **Before you proceed, make sure you understand the implications of deleting Journal Entries from an accounting perspective.**
+
+The _Delete Journal entries_ endpoint allows you to delete a specified Journal entry from an accounting platform.
+
+### Process
+1. Pass the `{journalEntryId}` to the _Delete Journal Entries_ endpoint and store the `pushOperationKey` returned.
+2. Check the status of the delete by checking the status of push operation either via
+   1. [Push operation webhook](/introduction/webhooks/core-rules-types#push-operation-status-has-changed) (advised),
+   2. [Push operation status endpoint](https://docs.codat.io/codat-api#/operations/get-push-operation). 
+   
+   A `Success` status indicates that the Journal Entry object was deleted from the accounting platform.
+3. (Optional) Check that the Journal Entry was deleted from the accounting platform.
+
+### Effect on related objects
+
+Be aware that deleting a Journal Entry from an accounting platform might cause related objects to be modified. For example, if you delete the Journal Entry for a paid invoice in QuickBooks Online, the invoice is deleted but the payment against that invoice is not. The payment is converted to a payment on account.
+
+## Integration specifics
+Integrations that support soft delete do not permanently delete the object in the accounting platform.
+
+| Integration | Soft Deleted | 
+|-------------|--------------|
+| QuickBooks Online | Yes    |       
 
 > **Supported Integrations**
 > 
@@ -256,7 +233,7 @@ func main() {
     ctx := context.Background()
     res, err := s.JournalEntries.Get(ctx, operations.GetJournalEntryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        JournalEntryID: "dolorem",
+        JournalEntryID: "qui",
     })
     if err != nil {
         log.Fatal(err)
@@ -270,7 +247,7 @@ func main() {
 
 ## GetCreateModel
 
-Get create journal entry model. Returns the expected data for the request payload.
+﻿Get create journal entry model. Returns the expected data for the request payload.
 
 See the examples for integration-specific indicative models.
 
@@ -314,7 +291,7 @@ func main() {
 
 ## List
 
-Gets the latest journal entries for a company, with pagination
+﻿Gets the latest journal entries for a company, with pagination.
 
 ### Example Usage
 
@@ -339,9 +316,9 @@ func main() {
     res, err := s.JournalEntries.List(ctx, operations.ListJournalEntriesRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         OrderBy: codataccounting.String("-modifiedDate"),
-        Page: 1,
+        Page: codataccounting.Int(1),
         PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("laborum"),
+        Query: codataccounting.String("totam"),
     })
     if err != nil {
         log.Fatal(err)

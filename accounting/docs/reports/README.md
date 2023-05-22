@@ -8,6 +8,9 @@ Reports
 
 * [GetAgedCreditorsReport](#getagedcreditorsreport) - Aged creditors report
 * [GetAgedDebtorsReport](#getageddebtorsreport) - Aged debtors report
+* [GetBalanceSheet](#getbalancesheet) - Get balance sheet
+* [GetCashFlowStatement](#getcashflowstatement) - Get cash flow statement
+* [GetProfitAndLoss](#getprofitandloss) - Get profit and loss
 * [IsAgedCreditorsReportAvailable](#isagedcreditorsreportavailable) - Aged creditors report available
 * [IsAgedDebtorReportAvailable](#isageddebtorreportavailable) - Aged debtors report available
 
@@ -88,6 +91,126 @@ func main() {
     }
 
     if res.AgedDebtorReport != nil {
+        // handle response
+    }
+}
+```
+
+## GetBalanceSheet
+
+Gets the latest balance sheet for a company.
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"log"
+	"github.com/codatio/client-sdk-go/accounting"
+	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
+)
+
+func main() {
+    s := codataccounting.New(
+        codataccounting.WithSecurity(shared.Security{
+            AuthHeader: "YOUR_API_KEY_HERE",
+        }),
+    )
+
+    ctx := context.Background()
+    res, err := s.Reports.GetBalanceSheet(ctx, operations.GetBalanceSheetRequest{
+        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+        PeriodLength: 4,
+        PeriodsToCompare: 20,
+        StartMonth: codataccounting.String("ducimus"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.BalanceSheet != nil {
+        // handle response
+    }
+}
+```
+
+## GetCashFlowStatement
+
+Gets the latest cash flow statement for a company.
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"log"
+	"github.com/codatio/client-sdk-go/accounting"
+	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
+)
+
+func main() {
+    s := codataccounting.New(
+        codataccounting.WithSecurity(shared.Security{
+            AuthHeader: "YOUR_API_KEY_HERE",
+        }),
+    )
+
+    ctx := context.Background()
+    res, err := s.Reports.GetCashFlowStatement(ctx, operations.GetCashFlowStatementRequest{
+        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+        PeriodLength: 4,
+        PeriodsToCompare: 20,
+        StartMonth: codataccounting.String("nemo"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.CashFlowStatement != nil {
+        // handle response
+    }
+}
+```
+
+## GetProfitAndLoss
+
+Gets the latest profit and loss for a company.
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"log"
+	"github.com/codatio/client-sdk-go/accounting"
+	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
+)
+
+func main() {
+    s := codataccounting.New(
+        codataccounting.WithSecurity(shared.Security{
+            AuthHeader: "YOUR_API_KEY_HERE",
+        }),
+    )
+
+    ctx := context.Background()
+    res, err := s.Reports.GetProfitAndLoss(ctx, operations.GetProfitAndLossRequest{
+        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+        PeriodLength: 4,
+        PeriodsToCompare: 20,
+        StartMonth: codataccounting.String("illo"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.ProfitAndLossReport != nil {
         // handle response
     }
 }

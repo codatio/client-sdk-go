@@ -38,7 +38,7 @@ type Customer struct {
 	RegistrationNumber *string `json:"registrationNumber,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Status of customer.
-	Status CustomerStatusEnum `json:"status"`
+	Status CustomerStatus `json:"status"`
 	// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 	SupplementalData *SupplementalData `json:"supplementalData,omitempty"`
 	// Company tax number.

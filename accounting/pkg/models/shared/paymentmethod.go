@@ -16,7 +16,7 @@ type PaymentMethod struct {
 	Name               *string `json:"name,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Status of the Payment Method.
-	Status *PaymentMethodStatusEnum `json:"status,omitempty"`
+	Status *PaymentMethodStatus `json:"status,omitempty"`
 	// Method of payment.
-	Type *PaymentMethodTypeEnum `json:"type,omitempty"`
+	Type *PaymentMethodType `json:"type,omitempty"`
 }

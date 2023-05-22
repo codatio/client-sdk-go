@@ -19,7 +19,7 @@ Required data may vary by integration. To see what data to post, first call [Get
 
 > **Supported Integrations**
 > 
-> Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journals) for integrations that support creating journals.
+> Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journals) for integrations that support creating journals.
 
 ### Example Usage
 
@@ -44,23 +44,23 @@ func main() {
     ctx := context.Background()
     res, err := s.Journals.Create(ctx, operations.CreateJournalRequest{
         Journal: &shared.Journal{
-            CreatedOn: codataccounting.String("eos"),
+            CreatedOn: codataccounting.String("cum"),
             HasChildren: codataccounting.Bool(false),
-            ID: codataccounting.String("3394a68c-c80d-430f-b721-64d0a91fe9d9"),
-            JournalCode: codataccounting.String("autem"),
+            ID: codataccounting.String("56065a50-74be-4fb8-af68-49d2b9940436"),
+            JournalCode: codataccounting.String("adipisci"),
             Metadata: &shared.Metadata{
                 IsDeleted: codataccounting.Bool(false),
             },
-            ModifiedDate: codataccounting.String("minima"),
-            Name: codataccounting.String("Sherry Reynolds"),
-            ParentID: codataccounting.String("necessitatibus"),
-            SourceModifiedDate: codataccounting.String("perferendis"),
-            Status: shared.JournalStatusEnumUnknown.ToPointer(),
-            Type: codataccounting.String("doloremque"),
+            ModifiedDate: codataccounting.String("mollitia"),
+            Name: codataccounting.String("Faye Huels"),
+            ParentID: codataccounting.String("voluptatem"),
+            SourceModifiedDate: codataccounting.String("ipsam"),
+            Status: shared.JournalStatusUnknown.ToPointer(),
+            Type: codataccounting.String("praesentium"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codataccounting.Int(569651),
+        TimeoutInMinutes: codataccounting.Int(452831),
     })
     if err != nil {
         log.Fatal(err)
@@ -98,7 +98,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Journals.Get(ctx, operations.GetJournalRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        JournalID: "quod",
+        JournalID: "ea",
     })
     if err != nil {
         log.Fatal(err)
@@ -118,7 +118,7 @@ See the examples for integration-specific indicative models.
 
 > **Supported Integrations**
 > 
-> Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journals) for integrations that support creating journals.
+> Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journals) for integrations that support creating journals.
 
 ### Example Usage
 
@@ -181,9 +181,9 @@ func main() {
     res, err := s.Journals.List(ctx, operations.ListJournalsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         OrderBy: codataccounting.String("-modifiedDate"),
-        Page: 1,
+        Page: codataccounting.Int(1),
         PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("vel"),
+        Query: codataccounting.String("eveniet"),
     })
     if err != nil {
         log.Fatal(err)

@@ -2,7 +2,7 @@
 
 package shared
 
-// TrackingInvoiceTo - Links to the underlying record or data type.
+// TrackingRecordReference - Links to the underlying record or data type.
 //
 // Found on:
 //
@@ -10,7 +10,7 @@ package shared
 // - Account transactions
 // - Invoices
 // - Transfers
-type TrackingInvoiceTo struct {
+type TrackingRecordReference struct {
 	// Name of the 'dataType'.
 	DataType *string `json:"dataType,omitempty"`
 	// 'id' of the underlying record or data type.
@@ -26,6 +26,6 @@ type Tracking struct {
 	// - Account transactions
 	// - Invoices
 	// - Transfers
-	InvoiceTo  *TrackingInvoiceTo `json:"invoiceTo,omitempty"`
-	RecordRefs []InvoiceTo        `json:"recordRefs"`
+	InvoiceTo  *TrackingRecordReference `json:"invoiceTo,omitempty"`
+	RecordRefs []InvoiceTo              `json:"recordRefs"`
 }

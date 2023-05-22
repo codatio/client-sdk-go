@@ -35,5 +35,5 @@ type BillPaymentLineLink struct {
 	// Unique identifier of the transaction represented by the link.
 	ID *string `json:"id,omitempty"`
 	// Types of links to bill payment lines.
-	Type BillPaymentLineLinkTypeEnum `json:"type"`
+	Type BillPaymentLineLinkType `json:"type"`
 }

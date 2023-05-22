@@ -4,6 +4,6 @@ package shared
 
 type PushOperationRef struct {
 	// Available Data types
-	DataType *DataTypeEnum `json:"dataType,omitempty"`
-	ID       *string       `json:"id,omitempty"`
+	DataType *DataType `json:"dataType,omitempty"`
+	ID       *string   `json:"id,omitempty"`
 }
