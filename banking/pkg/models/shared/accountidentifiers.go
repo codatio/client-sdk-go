@@ -22,5 +22,5 @@ type AccountIdentifiers struct {
 	// Detailed account category
 	Subtype *string `json:"subtype,omitempty"`
 	// Type of account
-	Type AccountIdentifierTypeEnum `json:"type"`
+	Type AccountIdentifierType `json:"type"`
 }

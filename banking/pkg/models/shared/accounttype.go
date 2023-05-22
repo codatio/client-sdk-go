@@ -7,22 +7,22 @@ import (
 	"fmt"
 )
 
-// AccountTypeEnum - The type of transactions and balances on the account.
+// AccountType - The type of transactions and balances on the account.
 // For Credit accounts, positive balances are liabilities, and positive transactions **reduce** liabilities.
 // For Debit accounts, positive balances are assets, and positive transactions **increase** assets.
-type AccountTypeEnum string
+type AccountType string
 
 const (
-	AccountTypeEnumUnknown AccountTypeEnum = "Unknown"
-	AccountTypeEnumCredit  AccountTypeEnum = "Credit"
-	AccountTypeEnumDebit   AccountTypeEnum = "Debit"
+	AccountTypeUnknown AccountType = "Unknown"
+	AccountTypeCredit  AccountType = "Credit"
+	AccountTypeDebit   AccountType = "Debit"
 )
 
-func (e AccountTypeEnum) ToPointer() *AccountTypeEnum {
+func (e AccountType) ToPointer() *AccountType {
 	return &e
 }
 
-func (e *AccountTypeEnum) UnmarshalJSON(data []byte) error {
+func (e *AccountType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -33,9 +33,9 @@ func (e *AccountTypeEnum) UnmarshalJSON(data []byte) error {
 	case "Credit":
 		fallthrough
 	case "Debit":
-		*e = AccountTypeEnum(v)
+		*e = AccountType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for AccountTypeEnum: %v", v)
+		return fmt.Errorf("invalid value for AccountType: %v", v)
 	}
 }

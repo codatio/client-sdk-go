@@ -7,9 +7,8 @@ import (
 	"net/http"
 )
 
-type ListTransactionsRequest struct {
-	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
+type ListBankTransactionsRequest struct {
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	// Field to order results by. [Read more](https://docs.codat.io/using-the-api/ordering-results).
 	OrderBy *string `queryParam:"style=form,explode=true,name=orderBy"`
 	// Page number. [Read more](https://docs.codat.io/using-the-api/paging).
@@ -20,7 +19,7 @@ type ListTransactionsRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-type ListTransactionsResponse struct {
+type ListBankTransactionsResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
