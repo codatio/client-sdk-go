@@ -33,7 +33,7 @@ type Transaction struct {
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	AuthorizedDate *string `json:"authorizedDate,omitempty"`
 	// Code to identify the underlying transaction.
-	Code *TransactionCodeEnum `json:"code,omitempty"`
+	Code *TransactionCode `json:"code,omitempty"`
 	// The currency of the bank transaction.
 	Currency string `json:"currency"`
 	// The description of the bank transaction.

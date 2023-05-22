@@ -3,11 +3,13 @@
 package codatbanking
 
 import (
+	"bytes"
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/banking/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/banking/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/banking/pkg/utils"
+	"io"
 	"net/http"
 )
 
@@ -34,7 +36,6 @@ func newAccountBalances(defaultClient, securityClient HTTPClient, serverURL, lan
 
 // List - List account balances
 // Gets a list of balances for a bank account including end-of-day batch balance or running balances per transaction.
-
 func (s *accountBalances) List(ctx context.Context, request operations.ListAccountBalancesRequest, opts ...operations.Option) (*operations.ListAccountBalancesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -56,6 +57,8 @@ func (s *accountBalances) List(ctx context.Context, request operations.ListAccou
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -93,7 +96,13 @@ func (s *accountBalances) List(ctx context.Context, request operations.ListAccou
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -107,7 +116,7 @@ func (s *accountBalances) List(ctx context.Context, request operations.ListAccou
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.AccountBalances
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 

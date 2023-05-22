@@ -3,11 +3,13 @@
 package codatbanking
 
 import (
+	"bytes"
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/banking/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/banking/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/banking/pkg/utils"
+	"io"
 	"net/http"
 )
 
@@ -34,7 +36,6 @@ func newTransactionCategories(defaultClient, securityClient HTTPClient, serverUR
 
 // Get - Get transaction category
 // Gets a specified bank transaction category for a given company
-
 func (s *transactionCategories) Get(ctx context.Context, request operations.GetTransactionCategoryRequest, opts ...operations.Option) (*operations.GetTransactionCategoryResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -56,6 +57,8 @@ func (s *transactionCategories) Get(ctx context.Context, request operations.GetT
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	client := s.securityClient
 
@@ -89,7 +92,13 @@ func (s *transactionCategories) Get(ctx context.Context, request operations.GetT
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -103,7 +112,7 @@ func (s *transactionCategories) Get(ctx context.Context, request operations.GetT
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.TransactionCategory
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -116,7 +125,6 @@ func (s *transactionCategories) Get(ctx context.Context, request operations.GetT
 
 // List - List all transaction categories
 // Gets a list of hierarchical categories associated with a transaction for greater contextual meaning to transactionactivity.
-
 func (s *transactionCategories) List(ctx context.Context, request operations.ListTransactionCategoriesRequest, opts ...operations.Option) (*operations.ListTransactionCategoriesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -138,6 +146,8 @@ func (s *transactionCategories) List(ctx context.Context, request operations.Lis
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -175,7 +185,13 @@ func (s *transactionCategories) List(ctx context.Context, request operations.Lis
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -189,7 +205,7 @@ func (s *transactionCategories) List(ctx context.Context, request operations.Lis
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.TransactionCategories
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 

@@ -3,11 +3,13 @@
 package codatbanking
 
 import (
+	"bytes"
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/banking/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/banking/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/banking/pkg/utils"
+	"io"
 	"net/http"
 )
 
@@ -34,7 +36,6 @@ func newAccounts(defaultClient, securityClient HTTPClient, serverURL, language, 
 
 // Get - Get account
 // Gets a specified bank account for a given company
-
 func (s *accounts) Get(ctx context.Context, request operations.GetAccountRequest, opts ...operations.Option) (*operations.GetAccountResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -56,6 +57,8 @@ func (s *accounts) Get(ctx context.Context, request operations.GetAccountRequest
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	client := s.securityClient
 
@@ -89,7 +92,13 @@ func (s *accounts) Get(ctx context.Context, request operations.GetAccountRequest
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -103,7 +112,7 @@ func (s *accounts) Get(ctx context.Context, request operations.GetAccountRequest
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Account
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -116,7 +125,6 @@ func (s *accounts) Get(ctx context.Context, request operations.GetAccountRequest
 
 // List - List accounts
 // Gets a list of all bank accounts of the SMB, with rich data like balances, account numbers and institutions holdingthe accounts.
-
 func (s *accounts) List(ctx context.Context, request operations.ListAccountsRequest, opts ...operations.Option) (*operations.ListAccountsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -138,6 +146,8 @@ func (s *accounts) List(ctx context.Context, request operations.ListAccountsRequ
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -175,7 +185,13 @@ func (s *accounts) List(ctx context.Context, request operations.ListAccountsRequ
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -189,7 +205,7 @@ func (s *accounts) List(ctx context.Context, request operations.ListAccountsRequ
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Accounts
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
