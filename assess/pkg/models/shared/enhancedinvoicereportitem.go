@@ -86,6 +86,6 @@ type EnhancedInvoiceReportItem struct {
 	// - `PartiallyPaid` - The balance paid against the invoice is positive, but less than the total invoice amount (0 < amountDue < totalAmount).
 	// - `Paid` - Invoice is paid in full. This includes if the invoice has been credited or overpaid (amountDue == 0).
 	// - `Void` - An invoice can become Void when it's deleted, refunded, written off, or cancelled. A voided invoice may still be PartiallyPaid, and so all outstanding amounts on voided invoices are removed from the accounts receivable account.
-	Status      *InvoiceStatusEnum `json:"status,omitempty"`
-	TotalAmount *float64           `json:"totalAmount,omitempty"`
+	Status      *InvoiceStatus `json:"status,omitempty"`
+	TotalAmount *float64       `json:"totalAmount,omitempty"`
 }

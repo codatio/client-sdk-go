@@ -37,9 +37,9 @@ func main() {
     ctx := context.Background()
     res, err := s.DataIntegrity.GetDataIntegrityDetails(ctx, operations.GetDataIntegrityDetailsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        DataType: shared.DataIntegrityDataTypeEnumBankingAccounts,
+        DataType: shared.DataIntegrityDataTypeBankingAccounts,
         OrderBy: codatassess.String("-modifiedDate"),
-        Page: 1,
+        Page: codatassess.Int(1),
         PageSize: codatassess.Int(100),
         Query: codatassess.String("voluptatibus"),
     })
@@ -80,7 +80,7 @@ func main() {
     ctx := context.Background()
     res, err := s.DataIntegrity.GetDataIntegrityStatus(ctx, operations.GetDataIntegrityStatusRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        DataType: shared.DataIntegrityDataTypeEnumBankingAccounts,
+        DataType: shared.DataIntegrityDataTypeBankingAccounts,
     })
     if err != nil {
         log.Fatal(err)
@@ -119,7 +119,7 @@ func main() {
     ctx := context.Background()
     res, err := s.DataIntegrity.GetDataIntegritySummaries(ctx, operations.GetDataIntegritySummariesRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        DataType: shared.DataIntegrityDataTypeEnumBankingAccounts,
+        DataType: shared.DataIntegrityDataTypeBankingAccounts,
         Query: codatassess.String("ipsa"),
     })
     if err != nil {

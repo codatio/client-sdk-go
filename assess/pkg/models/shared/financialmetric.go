@@ -8,20 +8,20 @@ import (
 	"github.com/codatio/client-sdk-go/assess/pkg/types"
 )
 
-// FinancialMetricErrorsTypeEnum - Metric level error.
-type FinancialMetricErrorsTypeEnum string
+// FinancialMetricErrorsType - Metric level error.
+type FinancialMetricErrorsType string
 
 const (
-	FinancialMetricErrorsTypeEnumUncategorizedAccounts FinancialMetricErrorsTypeEnum = "UncategorizedAccounts"
-	FinancialMetricErrorsTypeEnumMissingInputData      FinancialMetricErrorsTypeEnum = "MissingInputData"
-	FinancialMetricErrorsTypeEnumInputDataError        FinancialMetricErrorsTypeEnum = "InputDataError"
+	FinancialMetricErrorsTypeUncategorizedAccounts FinancialMetricErrorsType = "UncategorizedAccounts"
+	FinancialMetricErrorsTypeMissingInputData      FinancialMetricErrorsType = "MissingInputData"
+	FinancialMetricErrorsTypeInputDataError        FinancialMetricErrorsType = "InputDataError"
 )
 
-func (e FinancialMetricErrorsTypeEnum) ToPointer() *FinancialMetricErrorsTypeEnum {
+func (e FinancialMetricErrorsType) ToPointer() *FinancialMetricErrorsType {
 	return &e
 }
 
-func (e *FinancialMetricErrorsTypeEnum) UnmarshalJSON(data []byte) error {
+func (e *FinancialMetricErrorsType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -32,10 +32,10 @@ func (e *FinancialMetricErrorsTypeEnum) UnmarshalJSON(data []byte) error {
 	case "MissingInputData":
 		fallthrough
 	case "InputDataError":
-		*e = FinancialMetricErrorsTypeEnum(v)
+		*e = FinancialMetricErrorsType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for FinancialMetricErrorsTypeEnum: %v", v)
+		return fmt.Errorf("invalid value for FinancialMetricErrorsType: %v", v)
 	}
 }
 
@@ -45,40 +45,40 @@ type FinancialMetricErrors struct {
 	// Description of the error.
 	Message *string `json:"message,omitempty"`
 	// Metric level error.
-	Type *FinancialMetricErrorsTypeEnum `json:"type,omitempty"`
+	Type *FinancialMetricErrorsType `json:"type,omitempty"`
 }
 
-type FinancialMetricKeyEnum string
+type FinancialMetricKey string
 
 const (
-	FinancialMetricKeyEnumUnknown                     FinancialMetricKeyEnum = "Unknown"
-	FinancialMetricKeyEnumEbitda                      FinancialMetricKeyEnum = "EBITDA"
-	FinancialMetricKeyEnumDebtServiceCoverageRatio    FinancialMetricKeyEnum = "DebtServiceCoverageRatio"
-	FinancialMetricKeyEnumCurrentRatioQuickRatio      FinancialMetricKeyEnum = "CurrentRatio QuickRatio"
-	FinancialMetricKeyEnumGrossProfitMargin           FinancialMetricKeyEnum = "GrossProfitMargin"
-	FinancialMetricKeyEnumFixedChargeCoverageRatio    FinancialMetricKeyEnum = "FixedChargeCoverageRatio"
-	FinancialMetricKeyEnumWorkingCapital              FinancialMetricKeyEnum = "WorkingCapital"
-	FinancialMetricKeyEnumFreeCashFlow                FinancialMetricKeyEnum = "FreeCashFlow"
-	FinancialMetricKeyEnumNetProfitMargin             FinancialMetricKeyEnum = "NetProfitMargin"
-	FinancialMetricKeyEnumReturnOnAssetsRatio         FinancialMetricKeyEnum = "ReturnOnAssetsRatio"
-	FinancialMetricKeyEnumReturnOnEquityRatio         FinancialMetricKeyEnum = "ReturnOnEquityRatio"
-	FinancialMetricKeyEnumOperatingProfitMargin       FinancialMetricKeyEnum = "OperatingProfitMargin"
-	FinancialMetricKeyEnumDeptToEquity                FinancialMetricKeyEnum = "DeptToEquity"
-	FinancialMetricKeyEnumDebtToAssets                FinancialMetricKeyEnum = "DebtToAssets"
-	FinancialMetricKeyEnumInterestCoverageRatio       FinancialMetricKeyEnum = "InterestCoverageRatio"
-	FinancialMetricKeyEnumCashRatio                   FinancialMetricKeyEnum = "CashRatio"
-	FinancialMetricKeyEnumInventoryTurnoverRatio      FinancialMetricKeyEnum = "InventoryTurnoverRatio"
-	FinancialMetricKeyEnumAssetTurnoverRatio          FinancialMetricKeyEnum = "AssetTurnoverRatio"
-	FinancialMetricKeyEnumWorkingCapitalTurnoverRatio FinancialMetricKeyEnum = "WorkingCapitalTurnoverRatio"
-	FinancialMetricKeyEnumDaysSalesOutstanding        FinancialMetricKeyEnum = "DaysSalesOutstanding"
-	FinancialMetricKeyEnumDaysPayablesOutstanding     FinancialMetricKeyEnum = "DaysPayablesOutstanding"
+	FinancialMetricKeyUnknown                     FinancialMetricKey = "Unknown"
+	FinancialMetricKeyEbitda                      FinancialMetricKey = "EBITDA"
+	FinancialMetricKeyDebtServiceCoverageRatio    FinancialMetricKey = "DebtServiceCoverageRatio"
+	FinancialMetricKeyCurrentRatioQuickRatio      FinancialMetricKey = "CurrentRatio QuickRatio"
+	FinancialMetricKeyGrossProfitMargin           FinancialMetricKey = "GrossProfitMargin"
+	FinancialMetricKeyFixedChargeCoverageRatio    FinancialMetricKey = "FixedChargeCoverageRatio"
+	FinancialMetricKeyWorkingCapital              FinancialMetricKey = "WorkingCapital"
+	FinancialMetricKeyFreeCashFlow                FinancialMetricKey = "FreeCashFlow"
+	FinancialMetricKeyNetProfitMargin             FinancialMetricKey = "NetProfitMargin"
+	FinancialMetricKeyReturnOnAssetsRatio         FinancialMetricKey = "ReturnOnAssetsRatio"
+	FinancialMetricKeyReturnOnEquityRatio         FinancialMetricKey = "ReturnOnEquityRatio"
+	FinancialMetricKeyOperatingProfitMargin       FinancialMetricKey = "OperatingProfitMargin"
+	FinancialMetricKeyDeptToEquity                FinancialMetricKey = "DeptToEquity"
+	FinancialMetricKeyDebtToAssets                FinancialMetricKey = "DebtToAssets"
+	FinancialMetricKeyInterestCoverageRatio       FinancialMetricKey = "InterestCoverageRatio"
+	FinancialMetricKeyCashRatio                   FinancialMetricKey = "CashRatio"
+	FinancialMetricKeyInventoryTurnoverRatio      FinancialMetricKey = "InventoryTurnoverRatio"
+	FinancialMetricKeyAssetTurnoverRatio          FinancialMetricKey = "AssetTurnoverRatio"
+	FinancialMetricKeyWorkingCapitalTurnoverRatio FinancialMetricKey = "WorkingCapitalTurnoverRatio"
+	FinancialMetricKeyDaysSalesOutstanding        FinancialMetricKey = "DaysSalesOutstanding"
+	FinancialMetricKeyDaysPayablesOutstanding     FinancialMetricKey = "DaysPayablesOutstanding"
 )
 
-func (e FinancialMetricKeyEnum) ToPointer() *FinancialMetricKeyEnum {
+func (e FinancialMetricKey) ToPointer() *FinancialMetricKey {
 	return &e
 }
 
-func (e *FinancialMetricKeyEnum) UnmarshalJSON(data []byte) error {
+func (e *FinancialMetricKey) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -125,25 +125,25 @@ func (e *FinancialMetricKeyEnum) UnmarshalJSON(data []byte) error {
 	case "DaysSalesOutstanding":
 		fallthrough
 	case "DaysPayablesOutstanding":
-		*e = FinancialMetricKeyEnum(v)
+		*e = FinancialMetricKey(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for FinancialMetricKeyEnum: %v", v)
+		return fmt.Errorf("invalid value for FinancialMetricKey: %v", v)
 	}
 }
 
-type FinancialMetricMetricUnitEnum string
+type FinancialMetricMetricUnit string
 
 const (
-	FinancialMetricMetricUnitEnumRatio FinancialMetricMetricUnitEnum = "Ratio"
-	FinancialMetricMetricUnitEnumMoney FinancialMetricMetricUnitEnum = "Money"
+	FinancialMetricMetricUnitRatio FinancialMetricMetricUnit = "Ratio"
+	FinancialMetricMetricUnitMoney FinancialMetricMetricUnit = "Money"
 )
 
-func (e FinancialMetricMetricUnitEnum) ToPointer() *FinancialMetricMetricUnitEnum {
+func (e FinancialMetricMetricUnit) ToPointer() *FinancialMetricMetricUnit {
 	return &e
 }
 
-func (e *FinancialMetricMetricUnitEnum) UnmarshalJSON(data []byte) error {
+func (e *FinancialMetricMetricUnit) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -152,26 +152,26 @@ func (e *FinancialMetricMetricUnitEnum) UnmarshalJSON(data []byte) error {
 	case "Ratio":
 		fallthrough
 	case "Money":
-		*e = FinancialMetricMetricUnitEnum(v)
+		*e = FinancialMetricMetricUnit(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for FinancialMetricMetricUnitEnum: %v", v)
+		return fmt.Errorf("invalid value for FinancialMetricMetricUnit: %v", v)
 	}
 }
 
-// FinancialMetricPeriodsErrorsTypeEnum - Period error type.
-type FinancialMetricPeriodsErrorsTypeEnum string
+// FinancialMetricPeriodsErrorsType - Period error type.
+type FinancialMetricPeriodsErrorsType string
 
 const (
-	FinancialMetricPeriodsErrorsTypeEnumMissingAccountData FinancialMetricPeriodsErrorsTypeEnum = "MissingAccountData"
-	FinancialMetricPeriodsErrorsTypeEnumDatesOutOfRange    FinancialMetricPeriodsErrorsTypeEnum = "DatesOutOfRange"
+	FinancialMetricPeriodsErrorsTypeMissingAccountData FinancialMetricPeriodsErrorsType = "MissingAccountData"
+	FinancialMetricPeriodsErrorsTypeDatesOutOfRange    FinancialMetricPeriodsErrorsType = "DatesOutOfRange"
 )
 
-func (e FinancialMetricPeriodsErrorsTypeEnum) ToPointer() *FinancialMetricPeriodsErrorsTypeEnum {
+func (e FinancialMetricPeriodsErrorsType) ToPointer() *FinancialMetricPeriodsErrorsType {
 	return &e
 }
 
-func (e *FinancialMetricPeriodsErrorsTypeEnum) UnmarshalJSON(data []byte) error {
+func (e *FinancialMetricPeriodsErrorsType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -180,10 +180,10 @@ func (e *FinancialMetricPeriodsErrorsTypeEnum) UnmarshalJSON(data []byte) error 
 	case "MissingAccountData":
 		fallthrough
 	case "DatesOutOfRange":
-		*e = FinancialMetricPeriodsErrorsTypeEnum(v)
+		*e = FinancialMetricPeriodsErrorsType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for FinancialMetricPeriodsErrorsTypeEnum: %v", v)
+		return fmt.Errorf("invalid value for FinancialMetricPeriodsErrorsType: %v", v)
 	}
 }
 
@@ -193,7 +193,7 @@ type FinancialMetricPeriodsErrors struct {
 	// Description of the error.
 	Massage *string `json:"massage,omitempty"`
 	// Period error type.
-	Type *FinancialMetricPeriodsErrorsTypeEnum `json:"type,omitempty"`
+	Type *FinancialMetricPeriodsErrorsType `json:"type,omitempty"`
 }
 
 type FinancialMetricPeriodsInputs struct {
@@ -217,9 +217,9 @@ type FinancialMetricPeriods struct {
 }
 
 type FinancialMetric struct {
-	Errors     []FinancialMetricErrors        `json:"errors,omitempty"`
-	Key        *FinancialMetricKeyEnum        `json:"key,omitempty"`
-	MetricUnit *FinancialMetricMetricUnitEnum `json:"metricUnit,omitempty"`
+	Errors     []FinancialMetricErrors    `json:"errors,omitempty"`
+	Key        *FinancialMetricKey        `json:"key,omitempty"`
+	MetricUnit *FinancialMetricMetricUnit `json:"metricUnit,omitempty"`
 	// Metric name.
 	Name    *string                  `json:"name,omitempty"`
 	Periods []FinancialMetricPeriods `json:"periods,omitempty"`

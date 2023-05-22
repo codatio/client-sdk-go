@@ -134,7 +134,7 @@ func main() {
         IncludeDisplayNames: codatassess.Bool(false),
         NumberOfPeriods: 359444,
         PeriodLength: 296140,
-        PeriodUnit: shared.PeriodUnitEnumWeek,
+        PeriodUnit: shared.PeriodUnitWeek,
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -178,7 +178,7 @@ func main() {
         IncludeDisplayNames: codatassess.Bool(false),
         NumberOfPeriods: 118727,
         PeriodLength: 688661,
-        PeriodUnit: shared.PeriodUnitEnumWeek,
+        PeriodUnit: shared.PeriodUnitWeek,
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -222,7 +222,7 @@ func main() {
         IncludeDisplayNames: codatassess.Bool(false),
         NumberOfPeriods: 880476,
         PeriodLength: 414263,
-        PeriodUnit: shared.PeriodUnitEnumYear,
+        PeriodUnit: shared.PeriodUnitYear,
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -266,7 +266,7 @@ func main() {
         IncludeDisplayNames: codatassess.Bool(false),
         NumberOfPeriods: 64147,
         PeriodLength: 216822,
-        PeriodUnit: shared.PeriodUnitEnumMonth,
+        PeriodUnit: shared.PeriodUnitMonth,
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -310,7 +310,7 @@ func main() {
         IncludeDisplayNames: codatassess.Bool(false),
         NumberOfPeriods: 565189,
         PeriodLength: 566602,
-        PeriodUnit: shared.PeriodUnitEnumYear,
+        PeriodUnit: shared.PeriodUnitYear,
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -393,7 +393,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Reports.GetEnhancedCashFlowTransactions(ctx, operations.GetEnhancedCashFlowTransactionsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        Page: 1,
+        Page: codatassess.Int(1),
         PageSize: codatassess.Int(100),
         Query: codatassess.String("rem"),
     })
@@ -477,7 +477,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Reports.GetEnhancedInvoicesReport(ctx, operations.GetEnhancedInvoicesReportRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        Page: 1,
+        Page: codatassess.Int(1),
         PageSize: codatassess.Int(100),
         Query: codatassess.String("repudiandae"),
     })

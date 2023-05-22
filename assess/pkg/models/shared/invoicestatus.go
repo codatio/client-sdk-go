@@ -7,29 +7,29 @@ import (
 	"fmt"
 )
 
-// InvoiceStatusEnum - Current state of the invoice:
+// InvoiceStatus - Current state of the invoice:
 //
 // - `Draft` - Invoice hasn't been submitted to the supplier. It may be in a pending state or is scheduled for future submission, for example by email.
 // - `Submitted` - Invoice is no longer a draft. It has been processed and, or, sent to the customer. In this state, it will impact the ledger. It also has no payments made against it (amountDue == totalAmount).
 // - `PartiallyPaid` - The balance paid against the invoice is positive, but less than the total invoice amount (0 < amountDue < totalAmount).
 // - `Paid` - Invoice is paid in full. This includes if the invoice has been credited or overpaid (amountDue == 0).
 // - `Void` - An invoice can become Void when it's deleted, refunded, written off, or cancelled. A voided invoice may still be PartiallyPaid, and so all outstanding amounts on voided invoices are removed from the accounts receivable account.
-type InvoiceStatusEnum string
+type InvoiceStatus string
 
 const (
-	InvoiceStatusEnumUnknown       InvoiceStatusEnum = "Unknown"
-	InvoiceStatusEnumDraft         InvoiceStatusEnum = "Draft"
-	InvoiceStatusEnumSubmitted     InvoiceStatusEnum = "Submitted"
-	InvoiceStatusEnumPartiallyPaid InvoiceStatusEnum = "PartiallyPaid"
-	InvoiceStatusEnumPaid          InvoiceStatusEnum = "Paid"
-	InvoiceStatusEnumVoid          InvoiceStatusEnum = "Void"
+	InvoiceStatusUnknown       InvoiceStatus = "Unknown"
+	InvoiceStatusDraft         InvoiceStatus = "Draft"
+	InvoiceStatusSubmitted     InvoiceStatus = "Submitted"
+	InvoiceStatusPartiallyPaid InvoiceStatus = "PartiallyPaid"
+	InvoiceStatusPaid          InvoiceStatus = "Paid"
+	InvoiceStatusVoid          InvoiceStatus = "Void"
 )
 
-func (e InvoiceStatusEnum) ToPointer() *InvoiceStatusEnum {
+func (e InvoiceStatus) ToPointer() *InvoiceStatus {
 	return &e
 }
 
-func (e *InvoiceStatusEnum) UnmarshalJSON(data []byte) error {
+func (e *InvoiceStatus) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -46,9 +46,9 @@ func (e *InvoiceStatusEnum) UnmarshalJSON(data []byte) error {
 	case "Paid":
 		fallthrough
 	case "Void":
-		*e = InvoiceStatusEnum(v)
+		*e = InvoiceStatus(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for InvoiceStatusEnum: %v", v)
+		return fmt.Errorf("invalid value for InvoiceStatus: %v", v)
 	}
 }

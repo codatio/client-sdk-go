@@ -10,11 +10,11 @@ import (
 type GetDataIntegrityDetailsRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	// A key for a Codat data type.
-	DataType shared.DataIntegrityDataTypeEnum `pathParam:"style=simple,explode=false,name=dataType"`
+	DataType shared.DataIntegrityDataType `pathParam:"style=simple,explode=false,name=dataType"`
 	// Field to order results by. [Read more](https://docs.codat.io/using-the-api/ordering-results).
 	OrderBy *string `queryParam:"style=form,explode=true,name=orderBy"`
 	// Page number. [Read more](https://docs.codat.io/using-the-api/paging).
-	Page int `queryParam:"style=form,explode=true,name=page"`
+	Page *int `queryParam:"style=form,explode=true,name=page"`
 	// Number of records to return in a page. [Read more](https://docs.codat.io/using-the-api/paging).
 	PageSize *int `queryParam:"style=form,explode=true,name=pageSize"`
 	// Codat query string. [Read more](https://docs.codat.io/using-the-api/querying).

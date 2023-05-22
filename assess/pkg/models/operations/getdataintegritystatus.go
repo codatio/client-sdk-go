@@ -10,7 +10,7 @@ import (
 type GetDataIntegrityStatusRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	// A key for a Codat data type.
-	DataType shared.DataIntegrityDataTypeEnum `pathParam:"style=simple,explode=false,name=dataType"`
+	DataType shared.DataIntegrityDataType `pathParam:"style=simple,explode=false,name=dataType"`
 }
 
 type GetDataIntegrityStatusResponse struct {

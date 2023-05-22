@@ -41,7 +41,7 @@ func main() {
     ctx := context.Background()
     res, err := s.ExcelReports.DownloadExcelReport(ctx, operations.DownloadExcelReportRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ReportType: shared.ExcelReportTypeEnumEnhancedInvoices,
+        ReportType: shared.ExcelReportTypeEnhancedInvoices,
     })
     if err != nil {
         log.Fatal(err)
@@ -80,7 +80,7 @@ func main() {
     ctx := context.Background()
     res, err := s.ExcelReports.GenerateExcelReport(ctx, operations.GenerateExcelReportRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ReportType: shared.ExcelReportTypeEnumEnhancedFinancials,
+        ReportType: shared.ExcelReportTypeEnhancedFinancials,
     })
     if err != nil {
         log.Fatal(err)
@@ -123,7 +123,7 @@ func main() {
         IncludeDisplayNames: codatassess.Bool(false),
         NumberOfPeriods: 739264,
         PeriodLength: 19987,
-        PeriodUnit: shared.PeriodUnitEnumDay,
+        PeriodUnit: shared.PeriodUnitDay,
         ReportDate: "29-09-2020",
         ShowInputValues: codatassess.Bool(false),
     })
@@ -164,7 +164,7 @@ func main() {
     ctx := context.Background()
     res, err := s.ExcelReports.GetExcelReport(ctx, operations.GetExcelReportRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ReportType: shared.ExcelReportTypeEnumEnhancedFinancials,
+        ReportType: shared.ExcelReportTypeEnhancedFinancials,
     })
     if err != nil {
         log.Fatal(err)
@@ -203,7 +203,7 @@ func main() {
     ctx := context.Background()
     res, err := s.ExcelReports.GetExcelReportGenerationStatus(ctx, operations.GetExcelReportGenerationStatusRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ReportType: shared.ExcelReportTypeEnumAudit,
+        ReportType: shared.ExcelReportTypeAudit,
     })
     if err != nil {
         log.Fatal(err)

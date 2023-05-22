@@ -7,20 +7,20 @@ import (
 	"fmt"
 )
 
-type FinancialMetricErrorTypeEnum string
+type FinancialMetricErrorType string
 
 const (
-	FinancialMetricErrorTypeEnumDataNotSynced      FinancialMetricErrorTypeEnum = "DataNotSynced"
-	FinancialMetricErrorTypeEnumDataNotSupported   FinancialMetricErrorTypeEnum = "DataNotSupported"
-	FinancialMetricErrorTypeEnumDataSyncFailed     FinancialMetricErrorTypeEnum = "DataSyncFailed"
-	FinancialMetricErrorTypeEnumDataTypeNotEnabled FinancialMetricErrorTypeEnum = "DataTypeNotEnabled"
+	FinancialMetricErrorTypeDataNotSynced      FinancialMetricErrorType = "DataNotSynced"
+	FinancialMetricErrorTypeDataNotSupported   FinancialMetricErrorType = "DataNotSupported"
+	FinancialMetricErrorTypeDataSyncFailed     FinancialMetricErrorType = "DataSyncFailed"
+	FinancialMetricErrorTypeDataTypeNotEnabled FinancialMetricErrorType = "DataTypeNotEnabled"
 )
 
-func (e FinancialMetricErrorTypeEnum) ToPointer() *FinancialMetricErrorTypeEnum {
+func (e FinancialMetricErrorType) ToPointer() *FinancialMetricErrorType {
 	return &e
 }
 
-func (e *FinancialMetricErrorTypeEnum) UnmarshalJSON(data []byte) error {
+func (e *FinancialMetricErrorType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -33,14 +33,14 @@ func (e *FinancialMetricErrorTypeEnum) UnmarshalJSON(data []byte) error {
 	case "DataSyncFailed":
 		fallthrough
 	case "DataTypeNotEnabled":
-		*e = FinancialMetricErrorTypeEnum(v)
+		*e = FinancialMetricErrorType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for FinancialMetricErrorTypeEnum: %v", v)
+		return fmt.Errorf("invalid value for FinancialMetricErrorType: %v", v)
 	}
 }
 
 type FinancialMetricError struct {
-	Message *string                       `json:"message,omitempty"`
-	Type    *FinancialMetricErrorTypeEnum `json:"type,omitempty"`
+	Message *string                   `json:"message,omitempty"`
+	Type    *FinancialMetricErrorType `json:"type,omitempty"`
 }

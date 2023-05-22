@@ -57,11 +57,11 @@ pkg/models/shared/confirmcategories.go
 pkg/models/shared/details.go
 pkg/models/shared/dataintegritydetails.go
 pkg/models/shared/dataintegritymatch.go
-pkg/models/shared/dataintegritydatatypeenum.go
+pkg/models/shared/dataintegritydatatype.go
 pkg/models/shared/status.go
 pkg/models/shared/dataintegritystatus.go
 pkg/models/shared/dataintegritystatusinfo.go
-pkg/models/shared/integritystatusenum.go
+pkg/models/shared/integritystatus.go
 pkg/models/shared/dataintegritydates.go
 pkg/models/shared/dataintegrityconnectionid.go
 pkg/models/shared/dataintegrityamounts.go
@@ -69,7 +69,7 @@ pkg/models/shared/summaries.go
 pkg/models/shared/dataintegritysummary.go
 pkg/models/shared/dataintegritybycount.go
 pkg/models/shared/dataintegritybyamount.go
-pkg/models/shared/excelreporttypeenum.go
+pkg/models/shared/excelreporttype.go
 pkg/models/shared/excelstatus.go
 pkg/models/shared/report.go
 pkg/models/shared/reportcomponent.go
@@ -77,7 +77,7 @@ pkg/models/shared/reportcomponentmeasure.go
 pkg/models/shared/reportmeasure.go
 pkg/models/shared/reporterror.go
 pkg/models/shared/reportdimension.go
-pkg/models/shared/periodunitenum.go
+pkg/models/shared/periodunit.go
 pkg/models/shared/enhancedreport.go
 pkg/models/shared/enhancedreportaccountcategory.go
 pkg/models/shared/accountcategorylevel.go
@@ -95,7 +95,7 @@ pkg/models/shared/financialmetric.go
 pkg/models/shared/financialmetricerror.go
 pkg/models/shared/enhancedinvoicesreport.go
 pkg/models/shared/enhancedinvoicereportitem.go
-pkg/models/shared/invoicestatusenum.go
+pkg/models/shared/invoicestatus.go
 pkg/models/shared/payment.go
 pkg/models/shared/bankingtransactionref.go
 pkg/models/shared/customerref.go
