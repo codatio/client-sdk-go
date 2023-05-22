@@ -7,24 +7,24 @@ import (
 	"fmt"
 )
 
-type TaxRateMappingInfoValidTransactionTypesEnum string
+type TaxRateMappingInfoValidTransactionTypes string
 
 const (
-	TaxRateMappingInfoValidTransactionTypesEnumPayment       TaxRateMappingInfoValidTransactionTypesEnum = "Payment"
-	TaxRateMappingInfoValidTransactionTypesEnumRefund        TaxRateMappingInfoValidTransactionTypesEnum = "Refund"
-	TaxRateMappingInfoValidTransactionTypesEnumReward        TaxRateMappingInfoValidTransactionTypesEnum = "Reward"
-	TaxRateMappingInfoValidTransactionTypesEnumChargeback    TaxRateMappingInfoValidTransactionTypesEnum = "Chargeback"
-	TaxRateMappingInfoValidTransactionTypesEnumTransferIn    TaxRateMappingInfoValidTransactionTypesEnum = "TransferIn"
-	TaxRateMappingInfoValidTransactionTypesEnumTransferOut   TaxRateMappingInfoValidTransactionTypesEnum = "TransferOut"
-	TaxRateMappingInfoValidTransactionTypesEnumAdjustmentIn  TaxRateMappingInfoValidTransactionTypesEnum = "AdjustmentIn"
-	TaxRateMappingInfoValidTransactionTypesEnumAdjustmentOut TaxRateMappingInfoValidTransactionTypesEnum = "AdjustmentOut"
+	TaxRateMappingInfoValidTransactionTypesPayment       TaxRateMappingInfoValidTransactionTypes = "Payment"
+	TaxRateMappingInfoValidTransactionTypesRefund        TaxRateMappingInfoValidTransactionTypes = "Refund"
+	TaxRateMappingInfoValidTransactionTypesReward        TaxRateMappingInfoValidTransactionTypes = "Reward"
+	TaxRateMappingInfoValidTransactionTypesChargeback    TaxRateMappingInfoValidTransactionTypes = "Chargeback"
+	TaxRateMappingInfoValidTransactionTypesTransferIn    TaxRateMappingInfoValidTransactionTypes = "TransferIn"
+	TaxRateMappingInfoValidTransactionTypesTransferOut   TaxRateMappingInfoValidTransactionTypes = "TransferOut"
+	TaxRateMappingInfoValidTransactionTypesAdjustmentIn  TaxRateMappingInfoValidTransactionTypes = "AdjustmentIn"
+	TaxRateMappingInfoValidTransactionTypesAdjustmentOut TaxRateMappingInfoValidTransactionTypes = "AdjustmentOut"
 )
 
-func (e TaxRateMappingInfoValidTransactionTypesEnum) ToPointer() *TaxRateMappingInfoValidTransactionTypesEnum {
+func (e TaxRateMappingInfoValidTransactionTypes) ToPointer() *TaxRateMappingInfoValidTransactionTypes {
 	return &e
 }
 
-func (e *TaxRateMappingInfoValidTransactionTypesEnum) UnmarshalJSON(data []byte) error {
+func (e *TaxRateMappingInfoValidTransactionTypes) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -45,10 +45,10 @@ func (e *TaxRateMappingInfoValidTransactionTypesEnum) UnmarshalJSON(data []byte)
 	case "AdjustmentIn":
 		fallthrough
 	case "AdjustmentOut":
-		*e = TaxRateMappingInfoValidTransactionTypesEnum(v)
+		*e = TaxRateMappingInfoValidTransactionTypes(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for TaxRateMappingInfoValidTransactionTypesEnum: %v", v)
+		return fmt.Errorf("invalid value for TaxRateMappingInfoValidTransactionTypes: %v", v)
 	}
 }
 
@@ -64,5 +64,5 @@ type TaxRateMappingInfo struct {
 	// Total (not compounded) sum of the components of a tax rate.
 	TotalTaxRate *float64 `json:"totalTaxRate,omitempty"`
 	// Supported transaction types for the account.
-	ValidTransactionTypes []TaxRateMappingInfoValidTransactionTypesEnum `json:"validTransactionTypes,omitempty"`
+	ValidTransactionTypes []TaxRateMappingInfoValidTransactionTypes `json:"validTransactionTypes,omitempty"`
 }

@@ -74,7 +74,7 @@ func main() {
     ctx := context.Background()
     res, err := s.TransactionStatus.ListSyncTransactions(ctx, operations.ListSyncTransactionsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        Page: 1,
+        Page: codatsyncexpenses.Int(1),
         PageSize: codatsyncexpenses.Int(100),
         SyncID: "6fb40d5e-b13e-11ed-afa1-0242ac120002",
     })
