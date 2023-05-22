@@ -113,7 +113,7 @@ func main() {
     ctx := context.Background()
     res, err := s.CompanyManagement.ListCompanies(ctx, operations.ListCompaniesRequest{
         OrderBy: codatsynccommerce.String("-modifiedDate"),
-        Page: 1,
+        Page: codatsynccommerce.Int(1),
         PageSize: codatsynccommerce.Int(100),
         Query: codatsynccommerce.String("provident"),
     })
@@ -154,7 +154,7 @@ func main() {
     res, err := s.CompanyManagement.ListConnections(ctx, operations.ListConnectionsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         OrderBy: codatsynccommerce.String("-modifiedDate"),
-        Page: 1,
+        Page: codatsynccommerce.Int(1),
         PageSize: codatsynccommerce.Int(100),
         Query: codatsynccommerce.String("distinctio"),
     })

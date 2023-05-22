@@ -7,59 +7,59 @@ import (
 	"fmt"
 )
 
-// DataTypeFeatureDataTypeEnum - Available Data types
-type DataTypeFeatureDataTypeEnum string
+// DataTypeFeatureDataType - Available Data types
+type DataTypeFeatureDataType string
 
 const (
-	DataTypeFeatureDataTypeEnumAccountTransactions          DataTypeFeatureDataTypeEnum = "accountTransactions"
-	DataTypeFeatureDataTypeEnumBalanceSheet                 DataTypeFeatureDataTypeEnum = "balanceSheet"
-	DataTypeFeatureDataTypeEnumBankAccounts                 DataTypeFeatureDataTypeEnum = "bankAccounts"
-	DataTypeFeatureDataTypeEnumBankTransactions             DataTypeFeatureDataTypeEnum = "bankTransactions"
-	DataTypeFeatureDataTypeEnumBillCreditNotes              DataTypeFeatureDataTypeEnum = "billCreditNotes"
-	DataTypeFeatureDataTypeEnumBillPayments                 DataTypeFeatureDataTypeEnum = "billPayments"
-	DataTypeFeatureDataTypeEnumBills                        DataTypeFeatureDataTypeEnum = "bills"
-	DataTypeFeatureDataTypeEnumCashFlowStatement            DataTypeFeatureDataTypeEnum = "cashFlowStatement"
-	DataTypeFeatureDataTypeEnumChartOfAccounts              DataTypeFeatureDataTypeEnum = "chartOfAccounts"
-	DataTypeFeatureDataTypeEnumCompany                      DataTypeFeatureDataTypeEnum = "company"
-	DataTypeFeatureDataTypeEnumCreditNotes                  DataTypeFeatureDataTypeEnum = "creditNotes"
-	DataTypeFeatureDataTypeEnumCustomers                    DataTypeFeatureDataTypeEnum = "customers"
-	DataTypeFeatureDataTypeEnumDirectCosts                  DataTypeFeatureDataTypeEnum = "directCosts"
-	DataTypeFeatureDataTypeEnumDirectIncomes                DataTypeFeatureDataTypeEnum = "directIncomes"
-	DataTypeFeatureDataTypeEnumInvoices                     DataTypeFeatureDataTypeEnum = "invoices"
-	DataTypeFeatureDataTypeEnumItems                        DataTypeFeatureDataTypeEnum = "items"
-	DataTypeFeatureDataTypeEnumJournalEntries               DataTypeFeatureDataTypeEnum = "journalEntries"
-	DataTypeFeatureDataTypeEnumJournals                     DataTypeFeatureDataTypeEnum = "journals"
-	DataTypeFeatureDataTypeEnumPaymentMethods               DataTypeFeatureDataTypeEnum = "paymentMethods"
-	DataTypeFeatureDataTypeEnumPayments                     DataTypeFeatureDataTypeEnum = "payments"
-	DataTypeFeatureDataTypeEnumProfitAndLoss                DataTypeFeatureDataTypeEnum = "profitAndLoss"
-	DataTypeFeatureDataTypeEnumPurchaseOrders               DataTypeFeatureDataTypeEnum = "purchaseOrders"
-	DataTypeFeatureDataTypeEnumSalesOrders                  DataTypeFeatureDataTypeEnum = "salesOrders"
-	DataTypeFeatureDataTypeEnumSuppliers                    DataTypeFeatureDataTypeEnum = "suppliers"
-	DataTypeFeatureDataTypeEnumTaxRates                     DataTypeFeatureDataTypeEnum = "taxRates"
-	DataTypeFeatureDataTypeEnumTrackingCategories           DataTypeFeatureDataTypeEnum = "trackingCategories"
-	DataTypeFeatureDataTypeEnumTransfers                    DataTypeFeatureDataTypeEnum = "transfers"
-	DataTypeFeatureDataTypeEnumBankingAccountBalances       DataTypeFeatureDataTypeEnum = "banking-accountBalances"
-	DataTypeFeatureDataTypeEnumBankingAccounts              DataTypeFeatureDataTypeEnum = "banking-accounts"
-	DataTypeFeatureDataTypeEnumBankingTransactionCategories DataTypeFeatureDataTypeEnum = "banking-transactionCategories"
-	DataTypeFeatureDataTypeEnumBankingTransactions          DataTypeFeatureDataTypeEnum = "banking-transactions"
-	DataTypeFeatureDataTypeEnumCommerceCompanyInfo          DataTypeFeatureDataTypeEnum = "commerce-companyInfo"
-	DataTypeFeatureDataTypeEnumCommerceCustomers            DataTypeFeatureDataTypeEnum = "commerce-customers"
-	DataTypeFeatureDataTypeEnumCommerceDisputes             DataTypeFeatureDataTypeEnum = "commerce-disputes"
-	DataTypeFeatureDataTypeEnumCommerceLocations            DataTypeFeatureDataTypeEnum = "commerce-locations"
-	DataTypeFeatureDataTypeEnumCommerceOrders               DataTypeFeatureDataTypeEnum = "commerce-orders"
-	DataTypeFeatureDataTypeEnumCommercePaymentMethods       DataTypeFeatureDataTypeEnum = "commerce-paymentMethods"
-	DataTypeFeatureDataTypeEnumCommercePayments             DataTypeFeatureDataTypeEnum = "commerce-payments"
-	DataTypeFeatureDataTypeEnumCommerceProductCategories    DataTypeFeatureDataTypeEnum = "commerce-productCategories"
-	DataTypeFeatureDataTypeEnumCommerceProducts             DataTypeFeatureDataTypeEnum = "commerce-products"
-	DataTypeFeatureDataTypeEnumCommerceTaxComponents        DataTypeFeatureDataTypeEnum = "commerce-taxComponents"
-	DataTypeFeatureDataTypeEnumCommerceTransactions         DataTypeFeatureDataTypeEnum = "commerce-transactions"
+	DataTypeFeatureDataTypeAccountTransactions          DataTypeFeatureDataType = "accountTransactions"
+	DataTypeFeatureDataTypeBalanceSheet                 DataTypeFeatureDataType = "balanceSheet"
+	DataTypeFeatureDataTypeBankAccounts                 DataTypeFeatureDataType = "bankAccounts"
+	DataTypeFeatureDataTypeBankTransactions             DataTypeFeatureDataType = "bankTransactions"
+	DataTypeFeatureDataTypeBillCreditNotes              DataTypeFeatureDataType = "billCreditNotes"
+	DataTypeFeatureDataTypeBillPayments                 DataTypeFeatureDataType = "billPayments"
+	DataTypeFeatureDataTypeBills                        DataTypeFeatureDataType = "bills"
+	DataTypeFeatureDataTypeCashFlowStatement            DataTypeFeatureDataType = "cashFlowStatement"
+	DataTypeFeatureDataTypeChartOfAccounts              DataTypeFeatureDataType = "chartOfAccounts"
+	DataTypeFeatureDataTypeCompany                      DataTypeFeatureDataType = "company"
+	DataTypeFeatureDataTypeCreditNotes                  DataTypeFeatureDataType = "creditNotes"
+	DataTypeFeatureDataTypeCustomers                    DataTypeFeatureDataType = "customers"
+	DataTypeFeatureDataTypeDirectCosts                  DataTypeFeatureDataType = "directCosts"
+	DataTypeFeatureDataTypeDirectIncomes                DataTypeFeatureDataType = "directIncomes"
+	DataTypeFeatureDataTypeInvoices                     DataTypeFeatureDataType = "invoices"
+	DataTypeFeatureDataTypeItems                        DataTypeFeatureDataType = "items"
+	DataTypeFeatureDataTypeJournalEntries               DataTypeFeatureDataType = "journalEntries"
+	DataTypeFeatureDataTypeJournals                     DataTypeFeatureDataType = "journals"
+	DataTypeFeatureDataTypePaymentMethods               DataTypeFeatureDataType = "paymentMethods"
+	DataTypeFeatureDataTypePayments                     DataTypeFeatureDataType = "payments"
+	DataTypeFeatureDataTypeProfitAndLoss                DataTypeFeatureDataType = "profitAndLoss"
+	DataTypeFeatureDataTypePurchaseOrders               DataTypeFeatureDataType = "purchaseOrders"
+	DataTypeFeatureDataTypeSalesOrders                  DataTypeFeatureDataType = "salesOrders"
+	DataTypeFeatureDataTypeSuppliers                    DataTypeFeatureDataType = "suppliers"
+	DataTypeFeatureDataTypeTaxRates                     DataTypeFeatureDataType = "taxRates"
+	DataTypeFeatureDataTypeTrackingCategories           DataTypeFeatureDataType = "trackingCategories"
+	DataTypeFeatureDataTypeTransfers                    DataTypeFeatureDataType = "transfers"
+	DataTypeFeatureDataTypeBankingAccountBalances       DataTypeFeatureDataType = "banking-accountBalances"
+	DataTypeFeatureDataTypeBankingAccounts              DataTypeFeatureDataType = "banking-accounts"
+	DataTypeFeatureDataTypeBankingTransactionCategories DataTypeFeatureDataType = "banking-transactionCategories"
+	DataTypeFeatureDataTypeBankingTransactions          DataTypeFeatureDataType = "banking-transactions"
+	DataTypeFeatureDataTypeCommerceCompanyInfo          DataTypeFeatureDataType = "commerce-companyInfo"
+	DataTypeFeatureDataTypeCommerceCustomers            DataTypeFeatureDataType = "commerce-customers"
+	DataTypeFeatureDataTypeCommerceDisputes             DataTypeFeatureDataType = "commerce-disputes"
+	DataTypeFeatureDataTypeCommerceLocations            DataTypeFeatureDataType = "commerce-locations"
+	DataTypeFeatureDataTypeCommerceOrders               DataTypeFeatureDataType = "commerce-orders"
+	DataTypeFeatureDataTypeCommercePaymentMethods       DataTypeFeatureDataType = "commerce-paymentMethods"
+	DataTypeFeatureDataTypeCommercePayments             DataTypeFeatureDataType = "commerce-payments"
+	DataTypeFeatureDataTypeCommerceProductCategories    DataTypeFeatureDataType = "commerce-productCategories"
+	DataTypeFeatureDataTypeCommerceProducts             DataTypeFeatureDataType = "commerce-products"
+	DataTypeFeatureDataTypeCommerceTaxComponents        DataTypeFeatureDataType = "commerce-taxComponents"
+	DataTypeFeatureDataTypeCommerceTransactions         DataTypeFeatureDataType = "commerce-transactions"
 )
 
-func (e DataTypeFeatureDataTypeEnum) ToPointer() *DataTypeFeatureDataTypeEnum {
+func (e DataTypeFeatureDataType) ToPointer() *DataTypeFeatureDataType {
 	return &e
 }
 
-func (e *DataTypeFeatureDataTypeEnum) UnmarshalJSON(data []byte) error {
+func (e *DataTypeFeatureDataType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -148,16 +148,16 @@ func (e *DataTypeFeatureDataTypeEnum) UnmarshalJSON(data []byte) error {
 	case "commerce-taxComponents":
 		fallthrough
 	case "commerce-transactions":
-		*e = DataTypeFeatureDataTypeEnum(v)
+		*e = DataTypeFeatureDataType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for DataTypeFeatureDataTypeEnum: %v", v)
+		return fmt.Errorf("invalid value for DataTypeFeatureDataType: %v", v)
 	}
 }
 
 // DataTypeFeature - Describes support for a given datatype and associated operations
 type DataTypeFeature struct {
 	// Available Data types
-	DataType          *DataTypeFeatureDataTypeEnum `json:"dataType,omitempty"`
-	SupportedFeatures []SupportedFeature           `json:"supportedFeatures"`
+	DataType          *DataTypeFeatureDataType `json:"dataType,omitempty"`
+	SupportedFeatures []SupportedFeature       `json:"supportedFeatures"`
 }

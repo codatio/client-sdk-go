@@ -3,6 +3,6 @@
 package shared
 
 type SupportedFeature struct {
-	FeatureState FeatureStateEnum `json:"featureState"`
-	FeatureType  FeatureTypeEnum  `json:"featureType"`
+	FeatureState FeatureState `json:"featureState"`
+	FeatureType  FeatureType  `json:"featureType"`
 }
