@@ -3,6 +3,7 @@
 package codataccounting
 
 import (
+	"bytes"
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
@@ -41,7 +42,6 @@ func newSuppliers(defaultClient, securityClient HTTPClient, serverURL, language,
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=suppliers) for integrations that support creating suppliers.
-
 func (s *suppliers) Create(ctx context.Context, request operations.CreateSupplierRequest, opts ...operations.Option) (*operations.CreateSupplierResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -68,6 +68,8 @@ func (s *suppliers) Create(ctx context.Context, request operations.CreateSupplie
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
@@ -107,7 +109,13 @@ func (s *suppliers) Create(ctx context.Context, request operations.CreateSupplie
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -121,7 +129,7 @@ func (s *suppliers) Create(ctx context.Context, request operations.CreateSupplie
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.CreateSupplierResponse
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -134,7 +142,6 @@ func (s *suppliers) Create(ctx context.Context, request operations.CreateSupplie
 
 // DownloadAttachment - Download supplier attachment
 // Download supplier attachment
-
 func (s *suppliers) DownloadAttachment(ctx context.Context, request operations.DownloadSupplierAttachmentRequest, opts ...operations.Option) (*operations.DownloadSupplierAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -156,6 +163,8 @@ func (s *suppliers) DownloadAttachment(ctx context.Context, request operations.D
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/octet-stream")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	client := s.securityClient
 
@@ -189,7 +198,13 @@ func (s *suppliers) DownloadAttachment(ctx context.Context, request operations.D
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -202,12 +217,7 @@ func (s *suppliers) DownloadAttachment(ctx context.Context, request operations.D
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/octet-stream`):
-			out, err := io.ReadAll(httpRes.Body)
-			if err != nil {
-				return nil, fmt.Errorf("error reading response body: %w", err)
-			}
-
-			res.Data = out
+			res.Data = rawBody
 		}
 	}
 
@@ -216,7 +226,6 @@ func (s *suppliers) DownloadAttachment(ctx context.Context, request operations.D
 
 // Get - Get supplier
 // Gets a single supplier corresponding to the given ID.
-
 func (s *suppliers) Get(ctx context.Context, request operations.GetSupplierRequest, opts ...operations.Option) (*operations.GetSupplierResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -238,6 +247,8 @@ func (s *suppliers) Get(ctx context.Context, request operations.GetSupplierReque
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	client := s.securityClient
 
@@ -271,7 +282,13 @@ func (s *suppliers) Get(ctx context.Context, request operations.GetSupplierReque
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -285,7 +302,7 @@ func (s *suppliers) Get(ctx context.Context, request operations.GetSupplierReque
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Supplier
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -297,8 +314,7 @@ func (s *suppliers) Get(ctx context.Context, request operations.GetSupplierReque
 }
 
 // GetAttachment - Get supplier attachment
-// Get supplier attachment
-
+// Get supplier attachment.
 func (s *suppliers) GetAttachment(ctx context.Context, request operations.GetSupplierAttachmentRequest, opts ...operations.Option) (*operations.GetSupplierAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -320,6 +336,8 @@ func (s *suppliers) GetAttachment(ctx context.Context, request operations.GetSup
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	client := s.securityClient
 
@@ -353,7 +371,13 @@ func (s *suppliers) GetAttachment(ctx context.Context, request operations.GetSup
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -367,7 +391,7 @@ func (s *suppliers) GetAttachment(ctx context.Context, request operations.GetSup
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Attachment
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -386,7 +410,6 @@ func (s *suppliers) GetAttachment(ctx context.Context, request operations.GetSup
 // > **Supported Integrations**
 // >
 // > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=suppliers) for integrations that support creating and updating suppliers.
-
 func (s *suppliers) GetCreateUpdateModel(ctx context.Context, request operations.GetCreateUpdateSuppliersModelRequest, opts ...operations.Option) (*operations.GetCreateUpdateSuppliersModelResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -408,6 +431,8 @@ func (s *suppliers) GetCreateUpdateModel(ctx context.Context, request operations
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	client := s.securityClient
 
@@ -441,7 +466,13 @@ func (s *suppliers) GetCreateUpdateModel(ctx context.Context, request operations
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -455,7 +486,7 @@ func (s *suppliers) GetCreateUpdateModel(ctx context.Context, request operations
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.PushOption
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -468,7 +499,6 @@ func (s *suppliers) GetCreateUpdateModel(ctx context.Context, request operations
 
 // List - List suppliers
 // Gets the latest suppliers for a company, with pagination
-
 func (s *suppliers) List(ctx context.Context, request operations.ListSuppliersRequest, opts ...operations.Option) (*operations.ListSuppliersResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -490,6 +520,8 @@ func (s *suppliers) List(ctx context.Context, request operations.ListSuppliersRe
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -527,7 +559,13 @@ func (s *suppliers) List(ctx context.Context, request operations.ListSuppliersRe
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -541,7 +579,7 @@ func (s *suppliers) List(ctx context.Context, request operations.ListSuppliersRe
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Suppliers
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -554,7 +592,6 @@ func (s *suppliers) List(ctx context.Context, request operations.ListSuppliersRe
 
 // ListAttachments - List supplier attachments
 // Get supplier attachments
-
 func (s *suppliers) ListAttachments(ctx context.Context, request operations.ListSupplierAttachmentsRequest, opts ...operations.Option) (*operations.ListSupplierAttachmentsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -576,6 +613,8 @@ func (s *suppliers) ListAttachments(ctx context.Context, request operations.List
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	client := s.securityClient
 
@@ -609,7 +648,13 @@ func (s *suppliers) ListAttachments(ctx context.Context, request operations.List
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -623,7 +668,7 @@ func (s *suppliers) ListAttachments(ctx context.Context, request operations.List
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.AttachmentsDataset
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -641,8 +686,7 @@ func (s *suppliers) ListAttachments(ctx context.Context, request operations.List
 //
 // > **Supported Integrations**
 // >
-// > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=suppliers) for integrations that support updating suppliers.
-
+// > Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=suppliers) for integrations that support updating suppliers.
 func (s *suppliers) Update(ctx context.Context, request operations.UpdateSupplierRequest, opts ...operations.Option) (*operations.UpdateSupplierResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -669,6 +713,8 @@ func (s *suppliers) Update(ctx context.Context, request operations.UpdateSupplie
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
@@ -708,7 +754,13 @@ func (s *suppliers) Update(ctx context.Context, request operations.UpdateSupplie
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -722,7 +774,7 @@ func (s *suppliers) Update(ctx context.Context, request operations.UpdateSupplie
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.UpdateSupplierResponse
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 

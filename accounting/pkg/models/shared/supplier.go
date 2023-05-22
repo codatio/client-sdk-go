@@ -26,7 +26,7 @@ type Supplier struct {
 	RegistrationNumber *string `json:"registrationNumber,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Status of the supplier.
-	Status SupplierStatusEnum `json:"status"`
+	Status SupplierStatus `json:"status"`
 	// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
 	SupplementalData *SupplementalData `json:"supplementalData,omitempty"`
 	// Name of the supplier as recorded in the accounting system, typically the company name.

@@ -136,7 +136,7 @@ type PurchaseOrder struct {
 	ShipTo             *ShipTo `json:"shipTo,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Current state of the purchase order
-	Status *PurchaseOrderStatusEnum `json:"status,omitempty"`
+	Status *PurchaseOrderStatus `json:"status,omitempty"`
 	// Total amount of the purchase order, including discounts but excluding tax.
 	SubTotal *float64 `json:"subTotal,omitempty"`
 	// Reference to the supplier the record relates to.

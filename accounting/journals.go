@@ -3,11 +3,13 @@
 package codataccounting
 
 import (
+	"bytes"
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/accounting/pkg/utils"
+	"io"
 	"net/http"
 )
 
@@ -39,8 +41,7 @@ func newJournals(defaultClient, securityClient HTTPClient, serverURL, language, 
 //
 // > **Supported Integrations**
 // >
-// > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journals) for integrations that support creating journals.
-
+// > Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journals) for integrations that support creating journals.
 func (s *journals) Create(ctx context.Context, request operations.CreateJournalRequest, opts ...operations.Option) (*operations.CreateJournalResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -67,6 +68,8 @@ func (s *journals) Create(ctx context.Context, request operations.CreateJournalR
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
@@ -106,7 +109,13 @@ func (s *journals) Create(ctx context.Context, request operations.CreateJournalR
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -120,7 +129,7 @@ func (s *journals) Create(ctx context.Context, request operations.CreateJournalR
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.CreateJournalResponse
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -133,7 +142,6 @@ func (s *journals) Create(ctx context.Context, request operations.CreateJournalR
 
 // Get - Get journal
 // Gets a single journal corresponding to the given ID.
-
 func (s *journals) Get(ctx context.Context, request operations.GetJournalRequest, opts ...operations.Option) (*operations.GetJournalResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -155,6 +163,8 @@ func (s *journals) Get(ctx context.Context, request operations.GetJournalRequest
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	client := s.securityClient
 
@@ -188,7 +198,13 @@ func (s *journals) Get(ctx context.Context, request operations.GetJournalRequest
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -202,7 +218,7 @@ func (s *journals) Get(ctx context.Context, request operations.GetJournalRequest
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Journal
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -220,8 +236,7 @@ func (s *journals) Get(ctx context.Context, request operations.GetJournalRequest
 //
 // > **Supported Integrations**
 // >
-// > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journals) for integrations that support creating journals.
-
+// > Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journals) for integrations that support creating journals.
 func (s *journals) GetCreateModel(ctx context.Context, request operations.GetCreateJournalsModelRequest, opts ...operations.Option) (*operations.GetCreateJournalsModelResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -243,6 +258,8 @@ func (s *journals) GetCreateModel(ctx context.Context, request operations.GetCre
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	client := s.securityClient
 
@@ -276,7 +293,13 @@ func (s *journals) GetCreateModel(ctx context.Context, request operations.GetCre
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -290,7 +313,7 @@ func (s *journals) GetCreateModel(ctx context.Context, request operations.GetCre
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.PushOption
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -303,7 +326,6 @@ func (s *journals) GetCreateModel(ctx context.Context, request operations.GetCre
 
 // List - List journals
 // Gets the latest journals for a company, with pagination
-
 func (s *journals) List(ctx context.Context, request operations.ListJournalsRequest, opts ...operations.Option) (*operations.ListJournalsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -325,6 +347,8 @@ func (s *journals) List(ctx context.Context, request operations.ListJournalsRequ
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -362,7 +386,13 @@ func (s *journals) List(ctx context.Context, request operations.ListJournalsRequ
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -376,7 +406,7 @@ func (s *journals) List(ctx context.Context, request operations.ListJournalsRequ
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Journals
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 

@@ -11,7 +11,7 @@ Account transactions
 
 ## Get
 
-Returns a specific [account transaction](https://docs.codat.io/accounting-api#/schemas/AccountTransaction).
+﻿Returns a specific [account transaction](https://docs.codat.io/accounting-api#/schemas/AccountTransaction).
 
 ### Example Usage
 
@@ -50,7 +50,8 @@ func main() {
 
 ## List
 
-Returns a list of [account transactions](https://docs.codat.io/accounting-api#/schemas/AccountTransaction) for a given company's connection.
+﻿The *List account transactions* endpoint returns a list of [account transactions](https://docs.codat.io/accounting-api#/schemas/AccountTransaction) for a given company's connection.
+
 
 ### Example Usage
 
@@ -76,7 +77,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         OrderBy: codataccounting.String("-modifiedDate"),
-        Page: 1,
+        Page: codataccounting.Int(1),
         PageSize: codataccounting.Int(100),
         Query: codataccounting.String("distinctio"),
     })

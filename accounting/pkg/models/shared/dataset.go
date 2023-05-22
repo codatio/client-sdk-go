@@ -7,37 +7,37 @@ import (
 	"fmt"
 )
 
-type DatasetStatusEnum string
+type DatasetStatus string
 
 const (
-	DatasetStatusEnumInitial            DatasetStatusEnum = "Initial"
-	DatasetStatusEnumQueued             DatasetStatusEnum = "Queued"
-	DatasetStatusEnumFetching           DatasetStatusEnum = "Fetching"
-	DatasetStatusEnumMapQueued          DatasetStatusEnum = "MapQueued"
-	DatasetStatusEnumMapping            DatasetStatusEnum = "Mapping"
-	DatasetStatusEnumComplete           DatasetStatusEnum = "Complete"
-	DatasetStatusEnumFetchError         DatasetStatusEnum = "FetchError"
-	DatasetStatusEnumMapError           DatasetStatusEnum = "MapError"
-	DatasetStatusEnumInternalError      DatasetStatusEnum = "InternalError"
-	DatasetStatusEnumProcessingQueued   DatasetStatusEnum = "ProcessingQueued"
-	DatasetStatusEnumProcessing         DatasetStatusEnum = "Processing"
-	DatasetStatusEnumProcessingError    DatasetStatusEnum = "ProcessingError"
-	DatasetStatusEnumValidationQueued   DatasetStatusEnum = "ValidationQueued"
-	DatasetStatusEnumValidating         DatasetStatusEnum = "Validating"
-	DatasetStatusEnumValidationError    DatasetStatusEnum = "ValidationError"
-	DatasetStatusEnumAuthError          DatasetStatusEnum = "AuthError"
-	DatasetStatusEnumCancelled          DatasetStatusEnum = "Cancelled"
-	DatasetStatusEnumNotSupported       DatasetStatusEnum = "NotSupported"
-	DatasetStatusEnumRateLimitError     DatasetStatusEnum = "RateLimitError"
-	DatasetStatusEnumPermissionsError   DatasetStatusEnum = "PermissionsError"
-	DatasetStatusEnumPrerequisiteNotMet DatasetStatusEnum = "PrerequisiteNotMet"
+	DatasetStatusInitial            DatasetStatus = "Initial"
+	DatasetStatusQueued             DatasetStatus = "Queued"
+	DatasetStatusFetching           DatasetStatus = "Fetching"
+	DatasetStatusMapQueued          DatasetStatus = "MapQueued"
+	DatasetStatusMapping            DatasetStatus = "Mapping"
+	DatasetStatusComplete           DatasetStatus = "Complete"
+	DatasetStatusFetchError         DatasetStatus = "FetchError"
+	DatasetStatusMapError           DatasetStatus = "MapError"
+	DatasetStatusInternalError      DatasetStatus = "InternalError"
+	DatasetStatusProcessingQueued   DatasetStatus = "ProcessingQueued"
+	DatasetStatusProcessing         DatasetStatus = "Processing"
+	DatasetStatusProcessingError    DatasetStatus = "ProcessingError"
+	DatasetStatusValidationQueued   DatasetStatus = "ValidationQueued"
+	DatasetStatusValidating         DatasetStatus = "Validating"
+	DatasetStatusValidationError    DatasetStatus = "ValidationError"
+	DatasetStatusAuthError          DatasetStatus = "AuthError"
+	DatasetStatusCancelled          DatasetStatus = "Cancelled"
+	DatasetStatusNotSupported       DatasetStatus = "NotSupported"
+	DatasetStatusRateLimitError     DatasetStatus = "RateLimitError"
+	DatasetStatusPermissionsError   DatasetStatus = "PermissionsError"
+	DatasetStatusPrerequisiteNotMet DatasetStatus = "PrerequisiteNotMet"
 )
 
-func (e DatasetStatusEnum) ToPointer() *DatasetStatusEnum {
+func (e DatasetStatus) ToPointer() *DatasetStatus {
 	return &e
 }
 
-func (e *DatasetStatusEnum) UnmarshalJSON(data []byte) error {
+func (e *DatasetStatus) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -84,10 +84,10 @@ func (e *DatasetStatusEnum) UnmarshalJSON(data []byte) error {
 	case "PermissionsError":
 		fallthrough
 	case "PrerequisiteNotMet":
-		*e = DatasetStatusEnum(v)
+		*e = DatasetStatus(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for DatasetStatusEnum: %v", v)
+		return fmt.Errorf("invalid value for DatasetStatus: %v", v)
 	}
 }
 
@@ -141,7 +141,7 @@ type Dataset struct {
 	// >
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	Requested                string            `json:"requested"`
-	Status                   DatasetStatusEnum `json:"status"`
-	ValidationInformationURL *string           `json:"validationInformationUrl,omitempty"`
+	Requested                string        `json:"requested"`
+	Status                   DatasetStatus `json:"status"`
+	ValidationInformationURL *string       `json:"validationInformationUrl,omitempty"`
 }

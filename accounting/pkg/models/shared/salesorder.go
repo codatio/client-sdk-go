@@ -85,7 +85,7 @@ type SalesOrder struct {
 	// Identifier for the sales order, unique for the company in the accounting platform.
 	ID *string `json:"id,omitempty"`
 	// If the sales order is converted to an invoice, or will be in future, the invoicingStatus field indicates the current stage of the invoicing process.
-	InvoicingStatus *SalesOrderInvoiceStatusEnum `json:"invoicingStatus,omitempty"`
+	InvoicingStatus *SalesOrderInvoiceStatus `json:"invoicingStatus,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -118,7 +118,7 @@ type SalesOrder struct {
 	ShipTo             *SalesOrderShipTo `json:"shipTo,omitempty"`
 	SourceModifiedDate *string           `json:"sourceModifiedDate,omitempty"`
 	// Current state of the sales order.
-	Status *SalesOrderStatusEnum `json:"status,omitempty"`
+	Status *SalesOrderStatus `json:"status,omitempty"`
 	// Total amount of the sales order, including discounts but excluding tax.
 	SubTotal *float64 `json:"subTotal,omitempty"`
 	// Total amount of the sales order, including discounts and tax.

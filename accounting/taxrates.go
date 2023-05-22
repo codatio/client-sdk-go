@@ -3,11 +3,13 @@
 package codataccounting
 
 import (
+	"bytes"
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/accounting/pkg/utils"
+	"io"
 	"net/http"
 )
 
@@ -34,7 +36,6 @@ func newTaxRates(defaultClient, securityClient HTTPClient, serverURL, language, 
 
 // Get - Get tax rate
 // Gets the specified tax rate for a given company.
-
 func (s *taxRates) Get(ctx context.Context, request operations.GetTaxRateRequest, opts ...operations.Option) (*operations.GetTaxRateResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -56,6 +57,8 @@ func (s *taxRates) Get(ctx context.Context, request operations.GetTaxRateRequest
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	client := s.securityClient
 
@@ -89,7 +92,13 @@ func (s *taxRates) Get(ctx context.Context, request operations.GetTaxRateRequest
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -103,7 +112,7 @@ func (s *taxRates) Get(ctx context.Context, request operations.GetTaxRateRequest
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.TaxRate
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -116,7 +125,6 @@ func (s *taxRates) Get(ctx context.Context, request operations.GetTaxRateRequest
 
 // List - List all tax rates
 // Gets the latest tax rates for a given company.
-
 func (s *taxRates) List(ctx context.Context, request operations.ListTaxRatesRequest, opts ...operations.Option) (*operations.ListTaxRatesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -138,6 +146,8 @@ func (s *taxRates) List(ctx context.Context, request operations.ListTaxRatesRequ
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -175,7 +185,13 @@ func (s *taxRates) List(ctx context.Context, request operations.ListTaxRatesRequ
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -189,7 +205,7 @@ func (s *taxRates) List(ctx context.Context, request operations.ListTaxRatesRequ
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.TaxRates
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 

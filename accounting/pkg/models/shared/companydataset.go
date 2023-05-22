@@ -21,30 +21,30 @@ type CompanyDatasetAddresses struct {
 	// Region of the customer address.
 	Region *string `json:"region,omitempty"`
 	// The type of the address
-	Type AddressTypeEnum `json:"type"`
+	Type AddressType `json:"type"`
 }
 
 type CompanyDatasetPhone struct {
 	// A phone number.
 	Number string `json:"number"`
 	// The type of phone number
-	Type PhoneNumberTypeEnum `json:"type"`
+	Type PhoneNumberType `json:"type"`
 }
 
-// CompanyDatasetWeblinkTypeEnum - The type of the weblink.
-type CompanyDatasetWeblinkTypeEnum string
+// CompanyDatasetWeblinkType - The type of the weblink.
+type CompanyDatasetWeblinkType string
 
 const (
-	CompanyDatasetWeblinkTypeEnumWebsite CompanyDatasetWeblinkTypeEnum = "Website"
-	CompanyDatasetWeblinkTypeEnumSocial  CompanyDatasetWeblinkTypeEnum = "Social"
-	CompanyDatasetWeblinkTypeEnumUnknown CompanyDatasetWeblinkTypeEnum = "Unknown"
+	CompanyDatasetWeblinkTypeWebsite CompanyDatasetWeblinkType = "Website"
+	CompanyDatasetWeblinkTypeSocial  CompanyDatasetWeblinkType = "Social"
+	CompanyDatasetWeblinkTypeUnknown CompanyDatasetWeblinkType = "Unknown"
 )
 
-func (e CompanyDatasetWeblinkTypeEnum) ToPointer() *CompanyDatasetWeblinkTypeEnum {
+func (e CompanyDatasetWeblinkType) ToPointer() *CompanyDatasetWeblinkType {
 	return &e
 }
 
-func (e *CompanyDatasetWeblinkTypeEnum) UnmarshalJSON(data []byte) error {
+func (e *CompanyDatasetWeblinkType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -55,17 +55,17 @@ func (e *CompanyDatasetWeblinkTypeEnum) UnmarshalJSON(data []byte) error {
 	case "Social":
 		fallthrough
 	case "Unknown":
-		*e = CompanyDatasetWeblinkTypeEnum(v)
+		*e = CompanyDatasetWeblinkType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for CompanyDatasetWeblinkTypeEnum: %v", v)
+		return fmt.Errorf("invalid value for CompanyDatasetWeblinkType: %v", v)
 	}
 }
 
 // CompanyDatasetWeblink - Weblink associated with the company.
 type CompanyDatasetWeblink struct {
 	// The type of the weblink.
-	Type *CompanyDatasetWeblinkTypeEnum `json:"type,omitempty"`
+	Type *CompanyDatasetWeblinkType `json:"type,omitempty"`
 	// The full URL for the weblink.
 	URL *string `json:"url,omitempty"`
 }

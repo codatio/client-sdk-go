@@ -8,6 +8,6 @@ type PushOptionProperty struct {
 	Options     []PushOptionChoice            `json:"options,omitempty"`
 	Properties  map[string]PushOptionProperty `json:"properties,omitempty"`
 	Required    bool                          `json:"required"`
-	Type        PushOptionTypeEnum            `json:"type"`
+	Type        PushOptionType                `json:"type"`
 	Validation  *PushValidationInfo           `json:"validation,omitempty"`
 }

@@ -44,5 +44,5 @@ type PaymentLineLink struct {
 	// `Other` - ID refers to the customer
 	// `Manual Journal`
 	// `Discount` - ID refers to the payment
-	Type PaymentLinkTypeEnum `json:"type"`
+	Type PaymentLinkType `json:"type"`
 }

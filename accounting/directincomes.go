@@ -3,6 +3,7 @@
 package codataccounting
 
 import (
+	"bytes"
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
@@ -40,8 +41,7 @@ func newDirectIncomes(defaultClient, securityClient HTTPClient, serverURL, langu
 //
 // > **Supported Integrations**
 // >
-// > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=directIncomes) for integrations that support creating direct incomes.
-
+// > Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=directIncomes) for integrations that support creating direct incomes.
 func (s *directIncomes) Create(ctx context.Context, request operations.CreateDirectIncomeRequest, opts ...operations.Option) (*operations.CreateDirectIncomeResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -68,6 +68,8 @@ func (s *directIncomes) Create(ctx context.Context, request operations.CreateDir
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
@@ -107,7 +109,13 @@ func (s *directIncomes) Create(ctx context.Context, request operations.CreateDir
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -121,7 +129,7 @@ func (s *directIncomes) Create(ctx context.Context, request operations.CreateDir
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.CreateDirectIncomeResponse
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -134,7 +142,6 @@ func (s *directIncomes) Create(ctx context.Context, request operations.CreateDir
 
 // DownloadAttachment - Download direct income attachment
 // Downloads an attachment for the specified direct income for a given company.
-
 func (s *directIncomes) DownloadAttachment(ctx context.Context, request operations.DownloadDirectIncomeAttachmentRequest, opts ...operations.Option) (*operations.DownloadDirectIncomeAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -156,6 +163,8 @@ func (s *directIncomes) DownloadAttachment(ctx context.Context, request operatio
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/octet-stream")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	client := s.securityClient
 
@@ -189,7 +198,13 @@ func (s *directIncomes) DownloadAttachment(ctx context.Context, request operatio
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -202,12 +217,7 @@ func (s *directIncomes) DownloadAttachment(ctx context.Context, request operatio
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/octet-stream`):
-			out, err := io.ReadAll(httpRes.Body)
-			if err != nil {
-				return nil, fmt.Errorf("error reading response body: %w", err)
-			}
-
-			res.Data = out
+			res.Data = rawBody
 		}
 	}
 
@@ -216,7 +226,6 @@ func (s *directIncomes) DownloadAttachment(ctx context.Context, request operatio
 
 // Get - Get direct income
 // Gets the specified direct income for a given company and connection.
-
 func (s *directIncomes) Get(ctx context.Context, request operations.GetDirectIncomeRequest, opts ...operations.Option) (*operations.GetDirectIncomeResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -238,6 +247,8 @@ func (s *directIncomes) Get(ctx context.Context, request operations.GetDirectInc
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	client := s.securityClient
 
@@ -271,7 +282,13 @@ func (s *directIncomes) Get(ctx context.Context, request operations.GetDirectInc
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -285,7 +302,7 @@ func (s *directIncomes) Get(ctx context.Context, request operations.GetDirectInc
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.DirectIncome
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -298,7 +315,6 @@ func (s *directIncomes) Get(ctx context.Context, request operations.GetDirectInc
 
 // GetAttachment - Get direct income attachment
 // Gets the specified direct income attachment for a given company.
-
 func (s *directIncomes) GetAttachment(ctx context.Context, request operations.GetDirectIncomeAttachmentRequest, opts ...operations.Option) (*operations.GetDirectIncomeAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -320,6 +336,8 @@ func (s *directIncomes) GetAttachment(ctx context.Context, request operations.Ge
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -357,7 +375,13 @@ func (s *directIncomes) GetAttachment(ctx context.Context, request operations.Ge
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -371,7 +395,7 @@ func (s *directIncomes) GetAttachment(ctx context.Context, request operations.Ge
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Attachment
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -389,8 +413,7 @@ func (s *directIncomes) GetAttachment(ctx context.Context, request operations.Ge
 //
 // > **Supported Integrations**
 // >
-// > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=directIncomes) for integrations that support creating direct incomes.
-
+// > Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=directIncomes) for integrations that support creating direct incomes.
 func (s *directIncomes) GetCreateModel(ctx context.Context, request operations.GetCreateDirectIncomesModelRequest, opts ...operations.Option) (*operations.GetCreateDirectIncomesModelResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -412,6 +435,8 @@ func (s *directIncomes) GetCreateModel(ctx context.Context, request operations.G
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	client := s.securityClient
 
@@ -445,7 +470,13 @@ func (s *directIncomes) GetCreateModel(ctx context.Context, request operations.G
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -459,7 +490,7 @@ func (s *directIncomes) GetCreateModel(ctx context.Context, request operations.G
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.PushOption
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -472,7 +503,6 @@ func (s *directIncomes) GetCreateModel(ctx context.Context, request operations.G
 
 // List - List direct incomes
 // Lists the direct incomes for a given company.
-
 func (s *directIncomes) List(ctx context.Context, request operations.ListDirectIncomesRequest, opts ...operations.Option) (*operations.ListDirectIncomesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -494,6 +524,8 @@ func (s *directIncomes) List(ctx context.Context, request operations.ListDirectI
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -531,7 +563,13 @@ func (s *directIncomes) List(ctx context.Context, request operations.ListDirectI
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -545,7 +583,7 @@ func (s *directIncomes) List(ctx context.Context, request operations.ListDirectI
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.DirectIncomes
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -558,7 +596,6 @@ func (s *directIncomes) List(ctx context.Context, request operations.ListDirectI
 
 // ListAttachments - List direct income attachments
 // Gets all attachments for the specified direct income for a given company.
-
 func (s *directIncomes) ListAttachments(ctx context.Context, request operations.ListDirectIncomeAttachmentsRequest, opts ...operations.Option) (*operations.ListDirectIncomeAttachmentsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -580,6 +617,8 @@ func (s *directIncomes) ListAttachments(ctx context.Context, request operations.
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	client := s.securityClient
 
@@ -613,7 +652,13 @@ func (s *directIncomes) ListAttachments(ctx context.Context, request operations.
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -627,7 +672,7 @@ func (s *directIncomes) ListAttachments(ctx context.Context, request operations.
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.AttachmentsDataset
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -640,7 +685,6 @@ func (s *directIncomes) ListAttachments(ctx context.Context, request operations.
 
 // UploadAttachment - Create direct income attachment
 // Posts a new direct income attachment for a given company.
-
 func (s *directIncomes) UploadAttachment(ctx context.Context, request operations.UploadDirectIncomeAttachmentRequest, opts ...operations.Option) (*operations.UploadDirectIncomeAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -667,6 +711,8 @@ func (s *directIncomes) UploadAttachment(ctx context.Context, request operations
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "*/*")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
@@ -702,7 +748,13 @@ func (s *directIncomes) UploadAttachment(ctx context.Context, request operations
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 

@@ -54,9 +54,9 @@ type Account struct {
 	NominalCode        *string `json:"nominalCode,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Status of the account
-	Status AccountStatusEnum `json:"status"`
+	Status AccountStatus `json:"status"`
 	// Type of account
-	Type AccountTypeEnum `json:"type"`
+	Type AccountType `json:"type"`
 	// The validDatatypeLinks can be used to determine whether an account can be correctly mapped to another object; for example, accounts with a `type` of `income` might only support being used on an Invoice and Direct Income. For more information, see [Valid Data Type Links](/accounting-api#/schemas/ValidDataTypeLinks).
 	ValidDatatypeLinks []ValidDataTypeLinks `json:"validDatatypeLinks,omitempty"`
 }

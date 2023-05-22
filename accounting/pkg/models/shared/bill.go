@@ -145,7 +145,7 @@ type Bill struct {
 	Reference          *string `json:"reference,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Current state of the bill.
-	Status BillStatusEnum `json:"status"`
+	Status BillStatus `json:"status"`
 	// Total amount of the bill, excluding any taxes.
 	SubTotal float64 `json:"subTotal"`
 	// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.

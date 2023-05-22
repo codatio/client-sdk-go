@@ -3,11 +3,13 @@
 package codataccounting
 
 import (
+	"bytes"
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/accounting/pkg/utils"
+	"io"
 	"net/http"
 )
 
@@ -39,8 +41,7 @@ func newItems(defaultClient, securityClient HTTPClient, serverURL, language, sdk
 //
 // > **Supported Integrations**
 // >
-// > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=items) for integrations that support creating items.
-
+// > Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=items) for integrations that support creating items.
 func (s *items) Create(ctx context.Context, request operations.CreateItemRequest, opts ...operations.Option) (*operations.CreateItemResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -67,6 +68,8 @@ func (s *items) Create(ctx context.Context, request operations.CreateItemRequest
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
@@ -106,7 +109,13 @@ func (s *items) Create(ctx context.Context, request operations.CreateItemRequest
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -120,7 +129,7 @@ func (s *items) Create(ctx context.Context, request operations.CreateItemRequest
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.CreateItemResponse
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -133,7 +142,6 @@ func (s *items) Create(ctx context.Context, request operations.CreateItemRequest
 
 // Get - Get item
 // Gets the specified item for a given company.
-
 func (s *items) Get(ctx context.Context, request operations.GetItemRequest, opts ...operations.Option) (*operations.GetItemResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -155,6 +163,8 @@ func (s *items) Get(ctx context.Context, request operations.GetItemRequest, opts
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	client := s.securityClient
 
@@ -188,7 +198,13 @@ func (s *items) Get(ctx context.Context, request operations.GetItemRequest, opts
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -202,7 +218,7 @@ func (s *items) Get(ctx context.Context, request operations.GetItemRequest, opts
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Item
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -220,8 +236,7 @@ func (s *items) Get(ctx context.Context, request operations.GetItemRequest, opts
 //
 // > **Supported Integrations**
 // >
-// > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=items) for integrations that support creating items.
-
+// > Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=items) for integrations that support creating items.
 func (s *items) GetCreateModel(ctx context.Context, request operations.GetCreateItemsModelRequest, opts ...operations.Option) (*operations.GetCreateItemsModelResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -243,6 +258,8 @@ func (s *items) GetCreateModel(ctx context.Context, request operations.GetCreate
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	client := s.securityClient
 
@@ -276,7 +293,13 @@ func (s *items) GetCreateModel(ctx context.Context, request operations.GetCreate
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -290,7 +313,7 @@ func (s *items) GetCreateModel(ctx context.Context, request operations.GetCreate
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.PushOption
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -303,7 +326,6 @@ func (s *items) GetCreateModel(ctx context.Context, request operations.GetCreate
 
 // List - List items
 // Gets the items for a given company.
-
 func (s *items) List(ctx context.Context, request operations.ListItemsRequest, opts ...operations.Option) (*operations.ListItemsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -325,6 +347,8 @@ func (s *items) List(ctx context.Context, request operations.ListItemsRequest, o
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -362,7 +386,13 @@ func (s *items) List(ctx context.Context, request operations.ListItemsRequest, o
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -376,7 +406,7 @@ func (s *items) List(ctx context.Context, request operations.ListItemsRequest, o
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Items1
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 

@@ -70,8 +70,6 @@ type CodatAccounting struct {
 	DirectCosts *directCosts
 	// DirectIncomes - Direct incomes
 	DirectIncomes *directIncomes
-	// Financials - Financials
-	Financials *financials
 	// Invoices - Invoices
 	Invoices *invoices
 	// Items - Items
@@ -147,8 +145,8 @@ func WithSecurity(security shared.Security) SDKOption {
 func New(opts ...SDKOption) *CodatAccounting {
 	sdk := &CodatAccounting{
 		_language:   "go",
-		_sdkVersion: "0.13.0",
-		_genVersion: "2.24.0",
+		_sdkVersion: "0.14.0",
+		_genVersion: "2.32.0",
 	}
 	for _, opt := range opts {
 		opt(sdk)
@@ -270,15 +268,6 @@ func New(opts ...SDKOption) *CodatAccounting {
 	)
 
 	sdk.DirectIncomes = newDirectIncomes(
-		sdk._defaultClient,
-		sdk._securityClient,
-		sdk._serverURL,
-		sdk._language,
-		sdk._sdkVersion,
-		sdk._genVersion,
-	)
-
-	sdk.Financials = newFinancials(
 		sdk._defaultClient,
 		sdk._securityClient,
 		sdk._serverURL,

@@ -3,11 +3,13 @@
 package codataccounting
 
 import (
+	"bytes"
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/accounting/pkg/utils"
+	"io"
 	"net/http"
 )
 
@@ -34,7 +36,6 @@ func newTrackingCategories(defaultClient, securityClient HTTPClient, serverURL, 
 
 // Get - Get tracking categories
 // Gets the specified tracking categories for a given company.
-
 func (s *trackingCategories) Get(ctx context.Context, request operations.GetTrackingCategoryRequest, opts ...operations.Option) (*operations.GetTrackingCategoryResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -56,6 +57,8 @@ func (s *trackingCategories) Get(ctx context.Context, request operations.GetTrac
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	client := s.securityClient
 
@@ -89,7 +92,13 @@ func (s *trackingCategories) Get(ctx context.Context, request operations.GetTrac
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -103,7 +112,7 @@ func (s *trackingCategories) Get(ctx context.Context, request operations.GetTrac
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.TrackingCategoryTree
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -116,7 +125,6 @@ func (s *trackingCategories) Get(ctx context.Context, request operations.GetTrac
 
 // List - List tracking categories
 // Gets the latest tracking categories for a given company.
-
 func (s *trackingCategories) List(ctx context.Context, request operations.ListTrackingCategoriesRequest, opts ...operations.Option) (*operations.ListTrackingCategoriesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -138,6 +146,8 @@ func (s *trackingCategories) List(ctx context.Context, request operations.ListTr
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -175,7 +185,13 @@ func (s *trackingCategories) List(ctx context.Context, request operations.ListTr
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -189,7 +205,7 @@ func (s *trackingCategories) List(ctx context.Context, request operations.ListTr
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.TrackingCategories
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 

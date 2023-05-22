@@ -35,7 +35,7 @@ func main() {
     ctx := context.Background()
     res, err := s.TrackingCategories.Get(ctx, operations.GetTrackingCategoryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        TrackingCategoryID: "animi",
+        TrackingCategoryID: "quas",
     })
     if err != nil {
         log.Fatal(err)
@@ -74,9 +74,9 @@ func main() {
     res, err := s.TrackingCategories.List(ctx, operations.ListTrackingCategoriesRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         OrderBy: codataccounting.String("-modifiedDate"),
-        Page: 1,
+        Page: codataccounting.Int(1),
         PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("autem"),
+        Query: codataccounting.String("expedita"),
     })
     if err != nil {
         log.Fatal(err)

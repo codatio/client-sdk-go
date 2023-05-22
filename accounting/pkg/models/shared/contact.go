@@ -31,5 +31,5 @@ type Contact struct {
 	// An array of Phone numbers.
 	Phone []PhoneNumbersitems `json:"phone,omitempty"`
 	// Status of customer.
-	Status CustomerStatusEnum `json:"status"`
+	Status CustomerStatus `json:"status"`
 }

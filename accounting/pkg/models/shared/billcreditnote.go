@@ -106,10 +106,10 @@ type BillCreditNote struct {
 	// An array of payment allocations.
 	PaymentAllocations []Items `json:"paymentAllocations,omitempty"`
 	// Amount of the bill credit note that is still outstanding.
-	RemainingCredit    float64 `json:"remainingCredit"`
-	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
+	RemainingCredit    *float64 `json:"remainingCredit,omitempty"`
+	SourceModifiedDate *string  `json:"sourceModifiedDate,omitempty"`
 	// Current state of the bill credit note
-	Status BillCreditNoteStatusEnum `json:"status"`
+	Status BillCreditNoteStatus `json:"status"`
 	// Total amount of the bill credit note, including discounts but excluding tax.
 	SubTotal float64 `json:"subTotal"`
 	// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.

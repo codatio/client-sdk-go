@@ -7,22 +7,22 @@ import (
 	"fmt"
 )
 
-// BankAccountBankAccountTypeEnum - The type of transactions and balances on the account.
+// BankAccountBankAccountType - The type of transactions and balances on the account.
 // For Credit accounts, positive balances are liabilities, and positive transactions **reduce** liabilities.
 // For Debit accounts, positive balances are assets, and positive transactions **increase** assets.
-type BankAccountBankAccountTypeEnum string
+type BankAccountBankAccountType string
 
 const (
-	BankAccountBankAccountTypeEnumUnknown BankAccountBankAccountTypeEnum = "Unknown"
-	BankAccountBankAccountTypeEnumCredit  BankAccountBankAccountTypeEnum = "Credit"
-	BankAccountBankAccountTypeEnumDebit   BankAccountBankAccountTypeEnum = "Debit"
+	BankAccountBankAccountTypeUnknown BankAccountBankAccountType = "Unknown"
+	BankAccountBankAccountTypeCredit  BankAccountBankAccountType = "Credit"
+	BankAccountBankAccountTypeDebit   BankAccountBankAccountType = "Debit"
 )
 
-func (e BankAccountBankAccountTypeEnum) ToPointer() *BankAccountBankAccountTypeEnum {
+func (e BankAccountBankAccountType) ToPointer() *BankAccountBankAccountType {
 	return &e
 }
 
-func (e *BankAccountBankAccountTypeEnum) UnmarshalJSON(data []byte) error {
+func (e *BankAccountBankAccountType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -33,10 +33,10 @@ func (e *BankAccountBankAccountTypeEnum) UnmarshalJSON(data []byte) error {
 	case "Credit":
 		fallthrough
 	case "Debit":
-		*e = BankAccountBankAccountTypeEnum(v)
+		*e = BankAccountBankAccountType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for BankAccountBankAccountTypeEnum: %v", v)
+		return fmt.Errorf("invalid value for BankAccountBankAccountType: %v", v)
 	}
 }
 
@@ -70,7 +70,7 @@ type BankAccount struct {
 	// The type of transactions and balances on the account.
 	// For Credit accounts, positive balances are liabilities, and positive transactions **reduce** liabilities.
 	// For Debit accounts, positive balances are assets, and positive transactions **increase** assets.
-	AccountType *BankAccountBankAccountTypeEnum `json:"accountType,omitempty"`
+	AccountType *BankAccountBankAccountType `json:"accountType,omitempty"`
 	// Total available balance of the bank account as reported by the underlying data source. This may take into account overdrafts or pending transactions for example.
 	AvailableBalance *float64 `json:"availableBalance,omitempty"`
 	// Balance of the bank account.

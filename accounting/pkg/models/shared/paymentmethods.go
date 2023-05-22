@@ -4,9 +4,9 @@ package shared
 
 // PaymentMethods - Success
 type PaymentMethods struct {
-	Links        Links  `json:"_links"`
-	PageNumber   int64  `json:"pageNumber"`
-	PageSize     int64  `json:"pageSize"`
-	Results      []Bill `json:"results,omitempty"`
-	TotalResults int64  `json:"totalResults"`
+	Links        Links           `json:"_links"`
+	PageNumber   int64           `json:"pageNumber"`
+	PageSize     int64           `json:"pageSize"`
+	Results      []PaymentMethod `json:"results,omitempty"`
+	TotalResults int64           `json:"totalResults"`
 }

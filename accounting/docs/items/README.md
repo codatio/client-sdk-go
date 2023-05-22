@@ -19,7 +19,7 @@ Required data may vary by integration. To see what data to post, first call [Get
 
 > **Supported Integrations**
 > 
-> Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=items) for integrations that support creating items.
+> Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=items) for integrations that support creating items.
 
 ### Example Usage
 
@@ -46,46 +46,46 @@ func main() {
         Item: &shared.Item{
             BillItem: &shared.BillItem{
                 AccountRef: &shared.AccountRef{
-                    ID: codataccounting.String("5472cdd1-4fc4-43b7-8bca-88fa70c43351"),
-                    Name: codataccounting.String("Luis Swaniawski PhD"),
+                    ID: codataccounting.String("d9ca6075-656f-4c0e-be67-155e2d06a307"),
+                    Name: codataccounting.String("Janis Kautzer"),
                 },
-                Description: codataccounting.String("harum"),
+                Description: codataccounting.String("natus"),
                 TaxRateRef: &shared.TaxRateRef{
-                    EffectiveTaxRate: codataccounting.Float64(5331.06),
-                    ID: codataccounting.String("f7f75f4f-23f1-4c0a-986c-3ae7d7b67fee"),
-                    Name: codataccounting.String("Mrs. Floyd Torphy"),
+                    EffectiveTaxRate: codataccounting.Float64(4461.28),
+                    ID: codataccounting.String("f581faba-aa7d-4801-8880-76ff5f6ed298"),
+                    Name: codataccounting.String("Carrie Beer"),
                 },
-                UnitPrice: codataccounting.Float64(8642.28),
+                UnitPrice: codataccounting.Float64(1272.71),
             },
-            Code: codataccounting.String("perspiciatis"),
-            ID: codataccounting.String("5b1dbece-ff7c-44b1-96e9-278275eea768"),
+            Code: codataccounting.String("aliquid"),
+            ID: codataccounting.String("9b6a70b0-dd82-4f94-bffb-d1e1e21ddc69"),
             InvoiceItem: &shared.InvoiceItem{
                 AccountRef: &shared.AccountRef{
-                    ID: codataccounting.String("17468063-f799-4b79-96c0-b0fa0bb20a40"),
-                    Name: codataccounting.String("Roland Ryan"),
+                    ID: codataccounting.String("038b1d18-7b51-4eb5-bd30-bfe03490cf20"),
+                    Name: codataccounting.String("Annette Hackett"),
                 },
-                Description: codataccounting.String("accusamus"),
+                Description: codataccounting.String("ad"),
                 TaxRateRef: &shared.TaxRateRef{
-                    EffectiveTaxRate: codataccounting.Float64(3996.96),
-                    ID: codataccounting.String("40642726-57b0-41a0-bc08-fd3921c25793"),
-                    Name: codataccounting.String("Mercedes Kemmer V"),
+                    EffectiveTaxRate: codataccounting.Float64(6012.27),
+                    ID: codataccounting.String("043cb462-d6bc-4991-bf98-e4792b979a41"),
+                    Name: codataccounting.String("Eula Hudson"),
                 },
-                UnitPrice: codataccounting.Float64(2095.62),
+                UnitPrice: codataccounting.Float64(7729.87),
             },
             IsBillItem: false,
             IsInvoiceItem: false,
-            ItemStatus: shared.ItemStatusEnumActive,
+            ItemStatus: shared.ItemStatusActive,
             Metadata: &shared.Metadata{
                 IsDeleted: codataccounting.Bool(false),
             },
-            ModifiedDate: codataccounting.String("sequi"),
-            Name: codataccounting.String("Dominick Pagac"),
-            SourceModifiedDate: codataccounting.String("temporibus"),
-            Type: "adipisci",
+            ModifiedDate: codataccounting.String("vitae"),
+            Name: codataccounting.String("Christy Douglas"),
+            SourceModifiedDate: codataccounting.String("rem"),
+            Type: shared.ItemTypeInventory,
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codataccounting.Int(420757),
+        TimeoutInMinutes: codataccounting.Int(99209),
     })
     if err != nil {
         log.Fatal(err)
@@ -123,7 +123,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Items.Get(ctx, operations.GetItemRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ItemID: "ea",
+        ItemID: "illum",
     })
     if err != nil {
         log.Fatal(err)
@@ -143,7 +143,7 @@ See the examples for integration-specific indicative models.
 
 > **Supported Integrations**
 > 
-> Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=items) for integrations that support creating items.
+> Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=items) for integrations that support creating items.
 
 ### Example Usage
 
@@ -206,9 +206,9 @@ func main() {
     res, err := s.Items.List(ctx, operations.ListItemsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         OrderBy: codataccounting.String("-modifiedDate"),
-        Page: 1,
+        Page: codataccounting.Int(1),
         PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("nulla"),
+        Query: codataccounting.String("quae"),
     })
     if err != nil {
         log.Fatal(err)

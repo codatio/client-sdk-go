@@ -8,8 +8,10 @@ import (
 )
 
 type GetProfitAndLossRequest struct {
-	CompanyID        string  `pathParam:"style=simple,explode=false,name=companyId"`
-	PeriodLength     int     `queryParam:"style=form,explode=true,name=periodLength"`
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Number of months defining the period of interest.
+	PeriodLength int `queryParam:"style=form,explode=true,name=periodLength"`
+	// Number of periods with `periodLength` to compare.
 	PeriodsToCompare int     `queryParam:"style=form,explode=true,name=periodsToCompare"`
 	StartMonth       *string `queryParam:"style=form,explode=true,name=startMonth"`
 }

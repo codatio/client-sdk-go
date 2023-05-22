@@ -68,12 +68,11 @@ func main() {
 * [Create](docs/bankaccounttransactions/README.md#create) - Create bank transactions
 * [GetCreateModel](docs/bankaccounttransactions/README.md#getcreatemodel) - List push options for bank account bank transactions
 * [List](docs/bankaccounttransactions/README.md#list) - List bank transactions for bank account
-* [ListTransactions](docs/bankaccounttransactions/README.md#listtransactions) - List all bank transactions
 
 ### [BankAccounts](docs/bankaccounts/README.md)
 
 * [Create](docs/bankaccounts/README.md#create) - Create bank account
-* [Get](docs/bankaccounts/README.md#get) - Get bank account
+* [~~Get~~](docs/bankaccounts/README.md#get) - Get bank account :warning: **Deprecated**
 * [GetCreateUpdateModel](docs/bankaccounts/README.md#getcreateupdatemodel) - Get create/update bank account model
 * [List](docs/bankaccounts/README.md#list) - List bank accounts
 * [Update](docs/bankaccounts/README.md#update) - Update bank account
@@ -153,12 +152,6 @@ func main() {
 * [ListAttachments](docs/directincomes/README.md#listattachments) - List direct income attachments
 * [UploadAttachment](docs/directincomes/README.md#uploadattachment) - Create direct income attachment
 
-### [Financials](docs/financials/README.md)
-
-* [GetBalanceSheet](docs/financials/README.md#getbalancesheet) - Get balance sheet
-* [GetCashFlowStatement](docs/financials/README.md#getcashflowstatement) - Get cash flow statement
-* [GetProfitAndLoss](docs/financials/README.md#getprofitandloss) - Get profit and loss
-
 ### [Invoices](docs/invoices/README.md)
 
 * [Create](docs/invoices/README.md#create) - Create invoice
@@ -219,6 +212,9 @@ func main() {
 
 * [GetAgedCreditorsReport](docs/reports/README.md#getagedcreditorsreport) - Aged creditors report
 * [GetAgedDebtorsReport](docs/reports/README.md#getageddebtorsreport) - Aged debtors report
+* [GetBalanceSheet](docs/reports/README.md#getbalancesheet) - Get balance sheet
+* [GetCashFlowStatement](docs/reports/README.md#getcashflowstatement) - Get cash flow statement
+* [GetProfitAndLoss](docs/reports/README.md#getprofitandloss) - Get profit and loss
 * [IsAgedCreditorsReportAvailable](docs/reports/README.md#isagedcreditorsreportavailable) - Aged creditors report available
 * [IsAgedDebtorReportAvailable](docs/reports/README.md#isageddebtorreportavailable) - Aged debtors report available
 

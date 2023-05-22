@@ -9,7 +9,6 @@ Bank transactions for bank accounts
 * [Create](#create) - Create bank transactions
 * [GetCreateModel](#getcreatemodel) - List push options for bank account bank transactions
 * [List](#list) - List bank transactions for bank account
-* [ListTransactions](#listtransactions) - List all bank transactions
 
 ## Create
 
@@ -17,7 +16,7 @@ Posts bank transactions to the accounting package for a given company.
 
 > **Supported Integrations**
 > 
-> Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankTransactions) for integrations that support POST methods.
+> Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankTransactions) for integrations that support POST methods.
 
 ### Example Usage
 
@@ -55,7 +54,7 @@ func main() {
                     Reconciled: false,
                     Reference: codataccounting.String("perferendis"),
                     SourceModifiedDate: codataccounting.String("ad"),
-                    TransactionType: shared.BankTransactionTypeEnumCheck,
+                    TransactionType: shared.BankTransactionTypeCheck,
                 },
             },
         },
@@ -143,7 +142,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         OrderBy: codataccounting.String("-modifiedDate"),
-        Page: 1,
+        Page: codataccounting.Int(1),
         PageSize: codataccounting.Int(100),
         Query: codataccounting.String("iste"),
     })
@@ -152,48 +151,6 @@ func main() {
     }
 
     if res.BankTransactionsResponse != nil {
-        // handle response
-    }
-}
-```
-
-## ListTransactions
-
-Gets the latest bank transactions for given account ID and company. Doesn't require connection ID.
-
-### Example Usage
-
-```go
-package main
-
-import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/accounting"
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
-)
-
-func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
-        }),
-    )
-
-    ctx := context.Background()
-    res, err := s.BankAccountTransactions.ListTransactions(ctx, operations.ListBankTransactionsRequest{
-        AccountID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        OrderBy: codataccounting.String("-modifiedDate"),
-        Page: 1,
-        PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("dolor"),
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-
-    if res.BankAccountTransactions != nil {
         // handle response
     }
 }

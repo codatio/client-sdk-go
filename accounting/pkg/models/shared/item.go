@@ -27,11 +27,12 @@ type Item struct {
 	// - `Unknown`
 	//
 	// Due to a [limitation in Xero's API](https://docs.codat.io/integrations/accounting/xero/xero-faq#why-do-all-of-my-items-from-xero-have-their-status-as-unknown), all items from Xero are mapped as `Unknown`.
-	ItemStatus   ItemStatusEnum `json:"itemStatus"`
-	Metadata     *Metadata      `json:"metadata,omitempty"`
-	ModifiedDate *string        `json:"modifiedDate,omitempty"`
+	ItemStatus   ItemStatus `json:"itemStatus"`
+	Metadata     *Metadata  `json:"metadata,omitempty"`
+	ModifiedDate *string    `json:"modifiedDate,omitempty"`
 	// Name of the item in the accounting platform.
-	Name               *string     `json:"name,omitempty"`
-	SourceModifiedDate *string     `json:"sourceModifiedDate,omitempty"`
-	Type               interface{} `json:"type"`
+	Name               *string `json:"name,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
+	// Type of the item.
+	Type ItemType `json:"type"`
 }

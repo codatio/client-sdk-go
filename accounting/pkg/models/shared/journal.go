@@ -61,7 +61,7 @@ type Journal struct {
 	ParentID           *string `json:"parentId,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Current journal status.
-	Status *JournalStatusEnum `json:"status,omitempty"`
+	Status *JournalStatus `json:"status,omitempty"`
 	// The type of the journal.
 	Type *string `json:"type,omitempty"`
 }

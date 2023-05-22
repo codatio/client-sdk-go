@@ -6,7 +6,7 @@ package shared
 type Propertiestracking1 struct {
 	CategoryRefs []TrackingCategoryRef `json:"categoryRefs"`
 	CustomerRef  *CustomerRef          `json:"customerRef,omitempty"`
-	IsBilledTo   BilledToTypeEnum1     `json:"isBilledTo"`
-	IsRebilledTo BilledToTypeEnum1     `json:"isRebilledTo"`
+	IsBilledTo   BilledToType1         `json:"isBilledTo"`
+	IsRebilledTo BilledToType1         `json:"isRebilledTo"`
 	ProjectRef   *ProjectRef           `json:"projectRef,omitempty"`
 }

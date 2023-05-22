@@ -35,7 +35,7 @@ func main() {
     ctx := context.Background()
     res, err := s.PaymentMethods.Get(ctx, operations.GetPaymentMethodRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        PaymentMethodID: "ea",
+        PaymentMethodID: "ratione",
     })
     if err != nil {
         log.Fatal(err)
@@ -74,9 +74,9 @@ func main() {
     res, err := s.PaymentMethods.List(ctx, operations.ListPaymentMethodsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         OrderBy: codataccounting.String("-modifiedDate"),
-        Page: 1,
+        Page: codataccounting.Int(1),
         PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("error"),
+        Query: codataccounting.String("iste"),
     })
     if err != nil {
         log.Fatal(err)
