@@ -25,7 +25,6 @@ pkg/models/operations/updateaccountscategories.go
 pkg/models/operations/getdataintegritydetails.go
 pkg/models/operations/getdataintegritystatus.go
 pkg/models/operations/getdataintegritysummaries.go
-pkg/models/operations/downloadexcelreport.go
 pkg/models/operations/generateexcelreport.go
 pkg/models/operations/getaccountingmarketingmetrics.go
 pkg/models/operations/getexcelreport.go
@@ -69,8 +68,8 @@ pkg/models/shared/summaries.go
 pkg/models/shared/dataintegritysummary.go
 pkg/models/shared/dataintegritybycount.go
 pkg/models/shared/dataintegritybyamount.go
-pkg/models/shared/excelreporttype.go
 pkg/models/shared/excelstatus.go
+pkg/models/shared/excelreporttype.go
 pkg/models/shared/report.go
 pkg/models/shared/reportcomponent.go
 pkg/models/shared/reportcomponentmeasure.go
