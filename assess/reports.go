@@ -596,7 +596,7 @@ func (s *reports) GetCommerceRefundsMetrics(ctx context.Context, request operati
 	return res, nil
 }
 
-// GetCommerceRevenueMetrics - Commerce revenue metrics
+// GetCommerceRevenueMetrics - Get commerce revenue metrics
 // Get the revenue and revenue growth for a specific company connection, over one or more periods of time.
 func (s *reports) GetCommerceRevenueMetrics(ctx context.Context, request operations.GetCommerceRevenueMetricsRequest, opts ...operations.Option) (*operations.GetCommerceRevenueMetricsResponse, error) {
 	o := operations.Options{}

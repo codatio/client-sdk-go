@@ -61,9 +61,9 @@ func main() {
 
 ### [DataIntegrity](docs/dataintegrity/README.md)
 
-* [GetDataIntegrityDetails](docs/dataintegrity/README.md#getdataintegritydetails) - Lists data integrity details for date type
 * [GetDataIntegrityStatus](docs/dataintegrity/README.md#getdataintegritystatus) - Get data integrity status
 * [GetDataIntegritySummaries](docs/dataintegrity/README.md#getdataintegritysummaries) - Get data integrity summary
+* [ListDataTypeDataIntegrityDetails](docs/dataintegrity/README.md#listdatatypedataintegritydetails) - List data type data integrity
 
 ### [ExcelReports](docs/excelreports/README.md)
 
@@ -80,7 +80,7 @@ func main() {
 * [GetCommerceLifetimeValueMetrics](docs/reports/README.md#getcommercelifetimevaluemetrics) - Get lifetime value metric
 * [GetCommerceOrdersMetrics](docs/reports/README.md#getcommerceordersmetrics) - Get orders report
 * [GetCommerceRefundsMetrics](docs/reports/README.md#getcommercerefundsmetrics) - Get refunds report
-* [GetCommerceRevenueMetrics](docs/reports/README.md#getcommercerevenuemetrics) - Commerce revenue metrics
+* [GetCommerceRevenueMetrics](docs/reports/README.md#getcommercerevenuemetrics) - Get commerce revenue metrics
 * [~~GetEnhancedBalanceSheet~~](docs/reports/README.md#getenhancedbalancesheet) - Get enhanced balance sheet report :warning: **Deprecated**
 * [GetEnhancedCashFlowTransactions](docs/reports/README.md#getenhancedcashflowtransactions) - Get enhanced cash flow report
 * [~~GetEnhancedFinancialMetrics~~](docs/reports/README.md#getenhancedfinancialmetrics) - List financial metrics :warning: **Deprecated**
