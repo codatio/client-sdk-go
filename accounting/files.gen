@@ -168,6 +168,7 @@ pkg/models/shared/metadata.go
 pkg/models/shared/accounttransactionline.go
 pkg/models/shared/invoiceto.go
 pkg/models/shared/bankaccountref.go
+pkg/models/shared/schema.go
 pkg/models/shared/accounttransactions.go
 pkg/models/shared/links.go
 pkg/models/shared/halref.go
