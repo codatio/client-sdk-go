@@ -20,10 +20,24 @@ type ListCustomersRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
+// ListCustomers409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
+type ListCustomers409ApplicationJSON struct {
+	CanBeRetried      *string `json:"canBeRetried,omitempty"`
+	CorrelationID     *string `json:"correlationId,omitempty"`
+	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
+	Error             *string `json:"error,omitempty"`
+	Service           *string `json:"service,omitempty"`
+	StatusCode        *int64  `json:"statusCode,omitempty"`
+}
+
 type ListCustomersResponse struct {
 	ContentType string
 	// OK
 	Customers   *shared.Customers
 	StatusCode  int
 	RawResponse *http.Response
+	// The data type's dataset has not been requested or is still syncing.
+	ListCustomers409ApplicationJSONObject *ListCustomers409ApplicationJSON
+	// Your `query` parameter was not correctly formed
+	Schema *shared.Schema
 }

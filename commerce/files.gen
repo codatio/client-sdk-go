@@ -39,6 +39,7 @@ pkg/models/shared/phonenumbertype.go
 pkg/models/shared/address.go
 pkg/models/shared/addresstype.go
 pkg/models/shared/accountbalance.go
+pkg/models/shared/schema.go
 pkg/models/shared/customers.go
 pkg/models/shared/customer.go
 pkg/models/shared/links.go
