@@ -53,6 +53,7 @@ pkg/models/shared/categories.go
 pkg/models/shared/confirmcategory.go
 pkg/models/shared/accountcategory.go
 pkg/models/shared/confirmcategories.go
+pkg/models/shared/schema.go
 pkg/models/shared/status.go
 pkg/models/shared/dataintegritystatus.go
 pkg/models/shared/dataintegritystatusinfo.go

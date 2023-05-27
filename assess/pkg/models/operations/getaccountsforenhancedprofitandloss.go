@@ -21,4 +21,6 @@ type GetAccountsForEnhancedProfitAndLossResponse struct {
 	EnhancedReport *shared.EnhancedReport
 	StatusCode     int
 	RawResponse    *http.Response
+	// Your API request was not properly authorized.
+	Schema *shared.Schema
 }

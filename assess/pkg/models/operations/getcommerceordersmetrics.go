@@ -28,4 +28,6 @@ type GetCommerceOrdersMetricsResponse struct {
 	Report      *shared.Report
 	StatusCode  int
 	RawResponse *http.Response
+	// Your API request was not properly authorized.
+	Schema *shared.Schema
 }
