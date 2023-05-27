@@ -23,4 +23,6 @@ type ListSyncTransactionsResponse struct {
 	RawResponse *http.Response
 	// Success
 	TransactionMetadataList *shared.TransactionMetadataList
+	// Your API request was not properly authorized.
+	Schema *shared.Schema
 }

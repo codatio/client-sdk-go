@@ -17,4 +17,6 @@ type ListSyncsResponse struct {
 	ContentType         string
 	StatusCode          int
 	RawResponse         *http.Response
+	// Your API request was not properly authorized.
+	Schema *shared.Schema
 }

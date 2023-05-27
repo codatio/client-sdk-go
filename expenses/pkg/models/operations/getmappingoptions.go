@@ -17,4 +17,6 @@ type GetMappingOptionsResponse struct {
 	MappingOptions *shared.MappingOptions
 	StatusCode     int
 	RawResponse    *http.Response
+	// Your API request was not properly authorized.
+	Schema *shared.Schema
 }

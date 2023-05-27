@@ -33,11 +33,11 @@ pkg/models/operations/getsyncbyid.go
 pkg/models/operations/listsyncs.go
 pkg/models/operations/getsynctransaction.go
 pkg/models/operations/listsynctransactions.go
+pkg/models/shared/schema.go
 pkg/models/shared/companyconfiguration.go
 pkg/models/shared/supplier.go
 pkg/models/shared/customer.go
 pkg/models/shared/bankaccount.go
-pkg/models/shared/codaterrormessage.go
 pkg/models/shared/dataconnection.go
 pkg/models/shared/dataconnectionstatus.go
 pkg/models/shared/dataconnectionerror.go
@@ -52,6 +52,7 @@ pkg/models/shared/trackingcategorymappinginfo.go
 pkg/models/shared/taxratemappinginfo.go
 pkg/models/shared/accountmappinginfo.go
 pkg/models/shared/syncinitiated.go
+pkg/models/shared/codaterrormessage.go
 pkg/models/shared/postsync.go
 pkg/models/shared/companysyncstatus.go
 pkg/models/shared/transactionmetadata.go
