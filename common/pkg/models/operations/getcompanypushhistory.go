@@ -21,6 +21,8 @@ type GetCompanyPushHistoryRequest struct {
 
 type GetCompanyPushHistoryResponse struct {
 	ContentType string
+	// Your `query` parameter was not correctly formed
+	ErrorMessage *shared.ErrorMessage
 	// OK
 	PushHistoryResponse *shared.PushHistoryResponse
 	StatusCode          int

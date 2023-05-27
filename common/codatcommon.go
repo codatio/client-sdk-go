@@ -51,13 +51,11 @@ type CodatCommon struct {
 	Companies *companies
 	// Connections - Manage your companies' data connections.
 	Connections *connections
-	// DataStatus - Understand the state of data within Codat.
-	DataStatus *dataStatus
 	// Integrations - View and manage your available integrations in Codat.
 	Integrations *integrations
 	// PushData - View push options and get push statuses.
 	PushData *pushData
-	// RefreshData - Queue pull operations to refresh data in Codat.
+	// RefreshData - Asynchronously retrieve data from an integration to refresh data in Codat.
 	RefreshData *refreshData
 	// Settings - Manage your Codat instance.
 	Settings *settings
@@ -112,8 +110,8 @@ func WithSecurity(security shared.Security) SDKOption {
 func New(opts ...SDKOption) *CodatCommon {
 	sdk := &CodatCommon{
 		_language:   "go",
-		_sdkVersion: "0.16.1",
-		_genVersion: "2.31.0",
+		_sdkVersion: "0.17.0",
+		_genVersion: "2.32.7",
 	}
 	for _, opt := range opts {
 		opt(sdk)
@@ -145,15 +143,6 @@ func New(opts ...SDKOption) *CodatCommon {
 	)
 
 	sdk.Connections = newConnections(
-		sdk._defaultClient,
-		sdk._securityClient,
-		sdk._serverURL,
-		sdk._language,
-		sdk._sdkVersion,
-		sdk._genVersion,
-	)
-
-	sdk.DataStatus = newDataStatus(
 		sdk._defaultClient,
 		sdk._securityClient,
 		sdk._serverURL,

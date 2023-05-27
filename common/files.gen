@@ -1,6 +1,5 @@
 companies.go
 connections.go
-datastatus.go
 integrations.go
 pushdata.go
 refreshdata.go
@@ -32,9 +31,6 @@ pkg/models/operations/getcompanyconnection.go
 pkg/models/operations/listcompanyconnections.go
 pkg/models/operations/unlinkconnection.go
 pkg/models/operations/updateconnectionauthorization.go
-pkg/models/operations/getcompanydatastatus.go
-pkg/models/operations/getpulloperation.go
-pkg/models/operations/listpulloperations.go
 pkg/models/operations/getintegration.go
 pkg/models/operations/getintegrationsbranding.go
 pkg/models/operations/listintegrations.go
@@ -42,7 +38,10 @@ pkg/models/operations/getcreateupdatemodeloptionsbydatatype.go
 pkg/models/operations/getpushoperation.go
 pkg/models/operations/getcompanypushhistory.go
 pkg/models/operations/refreshcompanydata.go
-pkg/models/operations/createpulloperation.go
+pkg/models/operations/refreshdatatype.go
+pkg/models/operations/getcompanydatastatus.go
+pkg/models/operations/getpulloperation.go
+pkg/models/operations/listpulloperations.go
 pkg/models/operations/getprofile.go
 pkg/models/operations/updatesyncsettings.go
 pkg/models/operations/updateprofile.go
@@ -60,9 +59,6 @@ pkg/models/shared/companies.go
 pkg/models/shared/links.go
 pkg/models/shared/href.go
 pkg/models/shared/connections.go
-pkg/models/shared/datastatus.go
-pkg/models/shared/pulloperation.go
-pkg/models/shared/dataconnectionhistory.go
 pkg/models/shared/integration.go
 pkg/models/shared/datatypefeature.go
 pkg/models/shared/supportedfeature.go
@@ -90,6 +86,9 @@ pkg/models/shared/pushchangetype.go
 pkg/models/shared/pushoperationref.go
 pkg/models/shared/pushhistoryresponse.go
 pkg/models/shared/pushoperationsummary.go
+pkg/models/shared/pulloperation.go
+pkg/models/shared/datastatus.go
+pkg/models/shared/dataconnectionhistory.go
 pkg/models/shared/profile.go
 pkg/models/shared/syncsetting.go
 pkg/models/shared/rule.go
@@ -113,7 +112,6 @@ pkg/models/webhooks/pushoperationstatushaschanged.go
 docs/codatcommon/README.md
 docs/companies/README.md
 docs/connections/README.md
-docs/datastatus/README.md
 docs/integrations/README.md
 docs/pushdata/README.md
 docs/refreshdata/README.md

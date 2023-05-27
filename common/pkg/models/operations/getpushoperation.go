@@ -15,6 +15,8 @@ type GetPushOperationRequest struct {
 
 type GetPushOperationResponse struct {
 	ContentType string
+	// Your API request was not properly authorized.
+	ErrorMessage *shared.ErrorMessage
 	// OK
 	PushOperation *shared.PushOperation
 	StatusCode    int
