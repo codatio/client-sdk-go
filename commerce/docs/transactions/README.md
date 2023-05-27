@@ -38,7 +38,7 @@ func main() {
         OrderBy: codatcommerce.String("-modifiedDate"),
         Page: codatcommerce.Int(1),
         PageSize: codatcommerce.Int(100),
-        Query: codatcommerce.String("illum"),
+        Query: codatcommerce.String("vel"),
     })
     if err != nil {
         log.Fatal(err)

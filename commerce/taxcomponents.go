@@ -34,9 +34,9 @@ func newTaxComponents(defaultClient, securityClient HTTPClient, serverURL, langu
 	}
 }
 
-// Get - List tax components
+// List - List tax components
 // This endpoint returns a lists of tax rates from the commerce platform, including tax rate names and values. This supports the mapping of tax rates from the commerce platform to the accounting platform.
-func (s *taxComponents) Get(ctx context.Context, request operations.GetTaxComponentsRequest, opts ...operations.Option) (*operations.GetTaxComponentsResponse, error) {
+func (s *taxComponents) List(ctx context.Context, request operations.ListTaxComponentsRequest, opts ...operations.Option) (*operations.ListTaxComponentsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -57,8 +57,12 @@ func (s *taxComponents) Get(ctx context.Context, request operations.GetTaxCompon
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json")
+	req.Header.Set("Accept", "application/json;q=1, application/json;q=0.7, application/json;q=0")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
 
 	client := s.securityClient
 
@@ -102,7 +106,7 @@ func (s *taxComponents) Get(ctx context.Context, request operations.GetTaxCompon
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetTaxComponentsResponse{
+	res := &operations.ListTaxComponentsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -117,6 +121,30 @@ func (s *taxComponents) Get(ctx context.Context, request operations.GetTaxCompon
 			}
 
 			res.TaxComponents = out
+		}
+	case httpRes.StatusCode == 400:
+		fallthrough
+	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode == 404:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.Schema
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
+				return nil, err
+			}
+
+			res.Schema = out
+		}
+	case httpRes.StatusCode == 409:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *operations.ListTaxComponents409ApplicationJSON
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
+				return nil, err
+			}
+
+			res.ListTaxComponents409ApplicationJSONObject = out
 		}
 	}
 

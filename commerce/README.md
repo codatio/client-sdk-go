@@ -82,7 +82,7 @@ func main() {
 
 ### [TaxComponents](docs/taxcomponents/README.md)
 
-* [Get](docs/taxcomponents/README.md#get) - List tax components
+* [List](docs/taxcomponents/README.md#list) - List tax components
 
 ### [Transactions](docs/transactions/README.md)
 

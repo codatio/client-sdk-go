@@ -31,7 +31,7 @@ pkg/models/operations/listpayments.go
 pkg/models/operations/listpaymentmethods.go
 pkg/models/operations/listproducts.go
 pkg/models/operations/listproductcategories.go
-pkg/models/operations/gettaxcomponents.go
+pkg/models/operations/listtaxcomponents.go
 pkg/models/operations/listtransactions.go
 pkg/models/shared/companyinfo.go
 pkg/models/shared/phonenumber.go
