@@ -11,10 +11,26 @@ type ListFilesRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
+// ListFiles404ApplicationJSON - One or more of the resources you referenced could not be found.
+// This might be because your company or data connection id is wrong, or was already deleted.
+type ListFiles404ApplicationJSON struct {
+	CanBeRetried      *string `json:"canBeRetried,omitempty"`
+	CorrelationID     *string `json:"correlationId,omitempty"`
+	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
+	Error             *string `json:"error,omitempty"`
+	Service           *string `json:"service,omitempty"`
+	StatusCode        *int64  `json:"statusCode,omitempty"`
+}
+
 type ListFilesResponse struct {
 	ContentType string
 	// Success
 	Files       []shared.File
 	StatusCode  int
 	RawResponse *http.Response
+	// One or more of the resources you referenced could not be found.
+	// This might be because your company or data connection id is wrong, or was already deleted.
+	ListFiles404ApplicationJSONObject *ListFiles404ApplicationJSON
+	// Your API request was not properly authorized.
+	Schema *shared.Schema
 }

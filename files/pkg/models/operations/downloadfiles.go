@@ -3,6 +3,7 @@
 package operations
 
 import (
+	"github.com/codatio/client-sdk-go/files/pkg/models/shared"
 	"net/http"
 )
 
@@ -12,10 +13,26 @@ type DownloadFilesRequest struct {
 	Date *string `queryParam:"style=form,explode=true,name=date"`
 }
 
+// DownloadFiles404ApplicationJSON - One or more of the resources you referenced could not be found.
+// This might be because your company or data connection id is wrong, or was already deleted.
+type DownloadFiles404ApplicationJSON struct {
+	CanBeRetried      *string `json:"canBeRetried,omitempty"`
+	CorrelationID     *string `json:"correlationId,omitempty"`
+	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
+	Error             *string `json:"error,omitempty"`
+	Service           *string `json:"service,omitempty"`
+	StatusCode        *int64  `json:"statusCode,omitempty"`
+}
+
 type DownloadFilesResponse struct {
 	ContentType string
 	// Success
 	Data        []byte
 	StatusCode  int
 	RawResponse *http.Response
+	// One or more of the resources you referenced could not be found.
+	// This might be because your company or data connection id is wrong, or was already deleted.
+	DownloadFiles404ApplicationJSONObject *DownloadFiles404ApplicationJSON
+	// The request made is not valid.
+	Schema *shared.Schema
 }

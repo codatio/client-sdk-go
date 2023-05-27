@@ -17,6 +17,7 @@ pkg/utils/utils.go
 pkg/models/operations/downloadfiles.go
 pkg/models/operations/listfiles.go
 pkg/models/operations/uploadfiles.go
+pkg/models/shared/schema.go
 pkg/models/shared/file.go
 pkg/models/shared/security.go
 docs/codatfiles/README.md
