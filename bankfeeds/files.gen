@@ -21,6 +21,7 @@ pkg/models/operations/listbankaccounttransactions.go
 pkg/models/operations/createbankfeed.go
 pkg/models/operations/getbankfeeds.go
 pkg/models/operations/updatebankfeed.go
+pkg/models/shared/schema.go
 pkg/models/shared/createbanktransactionsresponse.go
 pkg/models/shared/validation.go
 pkg/models/shared/validationitem.go

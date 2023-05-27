@@ -3,11 +3,13 @@
 package codatbankfeeds
 
 import (
+	"bytes"
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/bankfeeds/pkg/utils"
+	"io"
 	"net/http"
 )
 
@@ -60,7 +62,7 @@ func (s *bankFeedAccounts) CreateBankFeed(ctx context.Context, request operation
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json")
+	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
@@ -97,7 +99,13 @@ func (s *bankFeedAccounts) CreateBankFeed(ctx context.Context, request operation
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -111,11 +119,25 @@ func (s *bankFeedAccounts) CreateBankFeed(ctx context.Context, request operation
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out []shared.BankFeedAccount
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
 			res.BankFeedAccounts = out
+		}
+	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.Schema
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
+				return nil, err
+			}
+
+			res.Schema = out
 		}
 	}
 
@@ -145,7 +167,7 @@ func (s *bankFeedAccounts) GetBankFeeds(ctx context.Context, request operations.
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json")
+	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	client := s.securityClient
@@ -180,7 +202,13 @@ func (s *bankFeedAccounts) GetBankFeeds(ctx context.Context, request operations.
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -194,11 +222,25 @@ func (s *bankFeedAccounts) GetBankFeeds(ctx context.Context, request operations.
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out []shared.BankFeedAccount
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
 			res.BankFeedAccounts = out
+		}
+	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.Schema
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
+				return nil, err
+			}
+
+			res.Schema = out
 		}
 	}
 
@@ -233,7 +275,7 @@ func (s *bankFeedAccounts) UpdateBankFeed(ctx context.Context, request operation
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json")
+	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
@@ -270,7 +312,13 @@ func (s *bankFeedAccounts) UpdateBankFeed(ctx context.Context, request operation
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -284,11 +332,25 @@ func (s *bankFeedAccounts) UpdateBankFeed(ctx context.Context, request operation
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.BankFeedAccount
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
 			res.BankFeedAccount = out
+		}
+	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.Schema
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
+				return nil, err
+			}
+
+			res.Schema = out
 		}
 	}
 
