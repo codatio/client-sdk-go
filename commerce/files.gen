@@ -33,13 +33,13 @@ pkg/models/operations/listproducts.go
 pkg/models/operations/listproductcategories.go
 pkg/models/operations/listtaxcomponents.go
 pkg/models/operations/listtransactions.go
+pkg/models/shared/schema.go
 pkg/models/shared/companyinfo.go
 pkg/models/shared/phonenumber.go
 pkg/models/shared/phonenumbertype.go
 pkg/models/shared/address.go
 pkg/models/shared/addresstype.go
 pkg/models/shared/accountbalance.go
-pkg/models/shared/schema.go
 pkg/models/shared/customers.go
 pkg/models/shared/customer.go
 pkg/models/shared/links.go

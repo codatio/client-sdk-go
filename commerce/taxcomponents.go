@@ -127,6 +127,8 @@ func (s *taxComponents) List(ctx context.Context, request operations.ListTaxComp
 	case httpRes.StatusCode == 401:
 		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Schema
