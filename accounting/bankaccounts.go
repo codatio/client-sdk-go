@@ -37,11 +37,9 @@ func newBankAccounts(defaultClient, securityClient HTTPClient, serverURL, langua
 // Create - Create bank account
 // Posts a new bank account to the accounting package for a given company.
 //
-// Required data may vary by integration. To see what data to post, first call []().
+// Required data may vary by integration. To see what data to post, first call [Get create/update bank account model](https://docs.codat.io/accounting-api#/operations/get-create-update-bankAccounts-model).
 //
-// > **Supported Integrations**
-// >
-// > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankAccounts) for integrations that support creating bank accounts.
+// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankAccounts) to see which integrations support this endpoint.
 func (s *bankAccounts) Create(ctx context.Context, request operations.CreateBankAccountRequest, opts ...operations.Option) (*operations.CreateBankAccountResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -165,7 +163,7 @@ func (s *bankAccounts) Get(ctx context.Context, request operations.GetBankAccoun
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json")
+	req.Header.Set("Accept", "application/json;q=1, application/json;q=0.7, application/json;q=0")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	client := s.securityClient
@@ -225,6 +223,30 @@ func (s *bankAccounts) Get(ctx context.Context, request operations.GetBankAccoun
 			}
 
 			res.BankAccount = out
+		}
+	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.Schema
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
+				return nil, err
+			}
+
+			res.Schema = out
+		}
+	case httpRes.StatusCode == 409:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *operations.GetBankAccount409ApplicationJSON
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
+				return nil, err
+			}
+
+			res.GetBankAccount409ApplicationJSONObject = out
 		}
 	}
 

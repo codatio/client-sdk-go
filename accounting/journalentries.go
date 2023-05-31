@@ -39,9 +39,7 @@ func newJournalEntries(defaultClient, securityClient HTTPClient, serverURL, lang
 //
 // Required data may vary by integration. To see what data to post, first call [Get create journal entry model](https://docs.codat.io/accounting-api#/operations/get-create-journalEntries-model).
 //
-// > **Supported Integrations**
-// >
-// > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journalEntries) for integrations that support creating journal entries.
+// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journalEntries) to see which integrations support this endpoint.
 func (s *journalEntries) Create(ctx context.Context, request operations.CreateJournalEntryRequest, opts ...operations.Option) (*operations.CreateJournalEntryResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -285,7 +283,7 @@ func (s *journalEntries) Get(ctx context.Context, request operations.GetJournalE
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json")
+	req.Header.Set("Accept", "application/json;q=1, application/json;q=0.7, application/json;q=0")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	client := s.securityClient
@@ -345,6 +343,30 @@ func (s *journalEntries) Get(ctx context.Context, request operations.GetJournalE
 			}
 
 			res.JournalEntry = out
+		}
+	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.Schema
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
+				return nil, err
+			}
+
+			res.Schema = out
+		}
+	case httpRes.StatusCode == 409:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *operations.GetJournalEntry409ApplicationJSON
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
+				return nil, err
+			}
+
+			res.GetJournalEntry409ApplicationJSONObject = out
 		}
 	}
 

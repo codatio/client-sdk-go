@@ -12,10 +12,24 @@ type GetJournalRequest struct {
 	JournalID string `pathParam:"style=simple,explode=false,name=journalId"`
 }
 
+// GetJournal409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
+type GetJournal409ApplicationJSON struct {
+	CanBeRetried      *string `json:"canBeRetried,omitempty"`
+	CorrelationID     *string `json:"correlationId,omitempty"`
+	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
+	Error             *string `json:"error,omitempty"`
+	Service           *string `json:"service,omitempty"`
+	StatusCode        *int64  `json:"statusCode,omitempty"`
+}
+
 type GetJournalResponse struct {
 	ContentType string
 	// Success
 	Journal     *shared.Journal
 	StatusCode  int
 	RawResponse *http.Response
+	// The data type's dataset has not been requested or is still syncing.
+	GetJournal409ApplicationJSONObject *GetJournal409ApplicationJSON
+	// Your API request was not properly authorized.
+	Schema *shared.Schema
 }

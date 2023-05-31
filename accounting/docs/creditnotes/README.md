@@ -14,14 +14,13 @@ Credit notes
 
 ## Create
 
-﻿Push credit note
+Push credit note
 
 
 Required data may vary by integration. To see what data to post, first call [Get create/update credit note model](https://docs.codat.io/accounting-api#/operations/get-create-update-creditNotes-model).
 
-> **Supported Integrations**
-> 
-> Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=creditNotes) for integrations that support creating a credit note.
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=creditNotes) to see which integrations support this endpoint.
+
 
 ### Example Usage
 
@@ -39,7 +38,7 @@ import(
 func main() {
     s := codataccounting.New(
         codataccounting.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
@@ -328,7 +327,7 @@ import(
 func main() {
     s := codataccounting.New(
         codataccounting.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
@@ -372,7 +371,7 @@ import(
 func main() {
     s := codataccounting.New(
         codataccounting.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
@@ -410,7 +409,7 @@ import(
 func main() {
     s := codataccounting.New(
         codataccounting.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
@@ -458,7 +457,7 @@ import(
 func main() {
     s := codataccounting.New(
         codataccounting.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 

@@ -14,10 +14,24 @@ type GetDirectCostRequest struct {
 	DirectCostID string `pathParam:"style=simple,explode=false,name=directCostId"`
 }
 
+// GetDirectCost409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
+type GetDirectCost409ApplicationJSON struct {
+	CanBeRetried      *string `json:"canBeRetried,omitempty"`
+	CorrelationID     *string `json:"correlationId,omitempty"`
+	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
+	Error             *string `json:"error,omitempty"`
+	Service           *string `json:"service,omitempty"`
+	StatusCode        *int64  `json:"statusCode,omitempty"`
+}
+
 type GetDirectCostResponse struct {
 	ContentType string
 	// Success
 	DirectCost  *shared.DirectCost
 	StatusCode  int
 	RawResponse *http.Response
+	// The data type's dataset has not been requested or is still syncing.
+	GetDirectCost409ApplicationJSONObject *GetDirectCost409ApplicationJSON
+	// Your API request was not properly authorized.
+	Schema *shared.Schema
 }

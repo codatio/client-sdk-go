@@ -14,9 +14,7 @@ Bank transactions for bank accounts
 
 Posts bank transactions to the accounting package for a given company.
 
-> **Supported Integrations**
-> 
-> Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankTransactions) for integrations that support POST methods.
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankTransactions) to see which integrations support this endpoint.
 
 ### Example Usage
 
@@ -34,7 +32,7 @@ import(
 func main() {
     s := codataccounting.New(
         codataccounting.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
@@ -93,7 +91,7 @@ import(
 func main() {
     s := codataccounting.New(
         codataccounting.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
@@ -132,7 +130,7 @@ import(
 func main() {
     s := codataccounting.New(
         codataccounting.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 

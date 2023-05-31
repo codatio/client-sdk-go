@@ -39,9 +39,7 @@ func newCreditNotes(defaultClient, securityClient HTTPClient, serverURL, languag
 //
 // Required data may vary by integration. To see what data to post, first call [Get create/update credit note model](https://docs.codat.io/accounting-api#/operations/get-create-update-creditNotes-model).
 //
-// > **Supported Integrations**
-// >
-// > Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=creditNotes) for integrations that support creating a credit note.
+// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=creditNotes) to see which integrations support this endpoint.
 func (s *creditNotes) Create(ctx context.Context, request operations.CreateCreditNoteRequest, opts ...operations.Option) (*operations.CreateCreditNoteResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -163,7 +161,7 @@ func (s *creditNotes) Get(ctx context.Context, request operations.GetCreditNoteR
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json")
+	req.Header.Set("Accept", "application/json;q=1, application/json;q=0.7, application/json;q=0")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	client := s.securityClient
@@ -223,6 +221,30 @@ func (s *creditNotes) Get(ctx context.Context, request operations.GetCreditNoteR
 			}
 
 			res.CreditNote = out
+		}
+	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.Schema
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
+				return nil, err
+			}
+
+			res.Schema = out
+		}
+	case httpRes.StatusCode == 409:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *operations.GetCreditNote409ApplicationJSON
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
+				return nil, err
+			}
+
+			res.GetCreditNote409ApplicationJSONObject = out
 		}
 	}
 

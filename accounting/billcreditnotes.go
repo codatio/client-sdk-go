@@ -39,9 +39,7 @@ func newBillCreditNotes(defaultClient, securityClient HTTPClient, serverURL, lan
 //
 // Required data may vary by integration. To see what data to post, first call [Get create/update bill credit note model](https://docs.codat.io/accounting-api#/operations/get-create-update-billCreditNotes-model).
 //
-// > **Supported Integrations**
-// >
-// > Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=billCreditNotes) for integrations that support creating bill credit notes.
+// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=billCreditNotes) to see which integrations support this endpoint.
 func (s *billCreditNotes) Create(ctx context.Context, request operations.CreateBillCreditNoteRequest, opts ...operations.Option) (*operations.CreateBillCreditNoteResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -163,7 +161,7 @@ func (s *billCreditNotes) Get(ctx context.Context, request operations.GetBillCre
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json")
+	req.Header.Set("Accept", "application/json;q=1, application/json;q=0.7, application/json;q=0")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	client := s.securityClient
@@ -223,6 +221,30 @@ func (s *billCreditNotes) Get(ctx context.Context, request operations.GetBillCre
 			}
 
 			res.BillCreditNote = out
+		}
+	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.Schema
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
+				return nil, err
+			}
+
+			res.Schema = out
+		}
+	case httpRes.StatusCode == 409:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *operations.GetBillCreditNote409ApplicationJSON
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
+				return nil, err
+			}
+
+			res.GetBillCreditNote409ApplicationJSONObject = out
 		}
 	}
 
@@ -413,6 +435,8 @@ func (s *billCreditNotes) List(ctx context.Context, request operations.ListBillC
 	case httpRes.StatusCode == 400:
 		fallthrough
 	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Schema

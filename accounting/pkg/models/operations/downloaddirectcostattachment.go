@@ -3,6 +3,7 @@
 package operations
 
 import (
+	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
 	"net/http"
 )
 
@@ -21,4 +22,6 @@ type DownloadDirectCostAttachmentResponse struct {
 	Data        []byte
 	StatusCode  int
 	RawResponse *http.Response
+	// Your API request was not properly authorized.
+	Schema *shared.Schema
 }

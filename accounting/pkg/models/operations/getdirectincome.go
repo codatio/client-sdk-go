@@ -13,10 +13,24 @@ type GetDirectIncomeRequest struct {
 	DirectIncomeID string `pathParam:"style=simple,explode=false,name=directIncomeId"`
 }
 
+// GetDirectIncome409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
+type GetDirectIncome409ApplicationJSON struct {
+	CanBeRetried      *string `json:"canBeRetried,omitempty"`
+	CorrelationID     *string `json:"correlationId,omitempty"`
+	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
+	Error             *string `json:"error,omitempty"`
+	Service           *string `json:"service,omitempty"`
+	StatusCode        *int64  `json:"statusCode,omitempty"`
+}
+
 type GetDirectIncomeResponse struct {
 	ContentType string
 	// Success
 	DirectIncome *shared.DirectIncome
 	StatusCode   int
 	RawResponse  *http.Response
+	// The data type's dataset has not been requested or is still syncing.
+	GetDirectIncome409ApplicationJSONObject *GetDirectIncome409ApplicationJSON
+	// Your API request was not properly authorized.
+	Schema *shared.Schema
 }

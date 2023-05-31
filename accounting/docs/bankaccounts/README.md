@@ -16,11 +16,9 @@ Bank accounts
 
 Posts a new bank account to the accounting package for a given company.
 
-Required data may vary by integration. To see what data to post, first call []().
+Required data may vary by integration. To see what data to post, first call [Get create/update bank account model](https://docs.codat.io/accounting-api#/operations/get-create-update-bankAccounts-model).
 
-> **Supported Integrations**
-> 
-> Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankAccounts) for integrations that support creating bank accounts.
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankAccounts) to see which integrations support this endpoint.
 
 
 ### Example Usage
@@ -39,7 +37,7 @@ import(
 func main() {
     s := codataccounting.New(
         codataccounting.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
@@ -100,7 +98,7 @@ import(
 func main() {
     s := codataccounting.New(
         codataccounting.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
@@ -146,7 +144,7 @@ import(
 func main() {
     s := codataccounting.New(
         codataccounting.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
@@ -184,7 +182,7 @@ import(
 func main() {
     s := codataccounting.New(
         codataccounting.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
@@ -233,7 +231,7 @@ import(
 func main() {
     s := codataccounting.New(
         codataccounting.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 

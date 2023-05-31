@@ -163,12 +163,12 @@ pkg/models/operations/createtransfer.go
 pkg/models/operations/gettransfer.go
 pkg/models/operations/getcreatetransfersmodel.go
 pkg/models/operations/listtransfers.go
+pkg/models/shared/schema.go
 pkg/models/shared/accounttransaction.go
 pkg/models/shared/metadata.go
 pkg/models/shared/accounttransactionline.go
 pkg/models/shared/invoiceto.go
 pkg/models/shared/bankaccountref.go
-pkg/models/shared/schema.go
 pkg/models/shared/accounttransactions.go
 pkg/models/shared/links.go
 pkg/models/shared/halref.go
