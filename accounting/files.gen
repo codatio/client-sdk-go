@@ -194,7 +194,6 @@ pkg/models/shared/pushoptionchoice.go
 pkg/models/shared/accounts.go
 pkg/models/shared/createbanktransactionsresponse.go
 pkg/models/shared/banktransactions.go
-pkg/models/shared/banktransactionline.go
 pkg/models/shared/banktransactiontype.go
 pkg/models/shared/banktransactionsresponse.go
 pkg/models/shared/createbankaccountresponse.go

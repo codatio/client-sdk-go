@@ -124,7 +124,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         PeriodLength: 4,
         PeriodsToCompare: 20,
-        StartMonth: codataccounting.String("tempora"),
+        StartMonth: codataccounting.String("quas"),
     })
     if err != nil {
         log.Fatal(err)
@@ -164,7 +164,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         PeriodLength: 4,
         PeriodsToCompare: 20,
-        StartMonth: codataccounting.String("aut"),
+        StartMonth: codataccounting.String("placeat"),
     })
     if err != nil {
         log.Fatal(err)
@@ -204,7 +204,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         PeriodLength: 4,
         PeriodsToCompare: 20,
-        StartMonth: codataccounting.String("possimus"),
+        StartMonth: codataccounting.String("beatae"),
     })
     if err != nil {
         log.Fatal(err)

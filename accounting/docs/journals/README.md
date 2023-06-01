@@ -42,23 +42,23 @@ func main() {
     ctx := context.Background()
     res, err := s.Journals.Create(ctx, operations.CreateJournalRequest{
         Journal: &shared.Journal{
-            CreatedOn: codataccounting.String("nesciunt"),
+            CreatedOn: codataccounting.String("nostrum"),
             HasChildren: codataccounting.Bool(false),
-            ID: codataccounting.String("d522b828-a903-4066-8f02-4c79b4cc64c2"),
-            JournalCode: codataccounting.String("libero"),
+            ID: codataccounting.String("040d6c8b-2a5f-4002-a07e-4048f90009ed"),
+            JournalCode: codataccounting.String("consequuntur"),
             Metadata: &shared.Metadata{
                 IsDeleted: codataccounting.Bool(false),
             },
-            ModifiedDate: codataccounting.String("sequi"),
-            Name: codataccounting.String("Philip Connelly"),
-            ParentID: codataccounting.String("voluptatum"),
-            SourceModifiedDate: codataccounting.String("deleniti"),
-            Status: shared.JournalStatusActive.ToPointer(),
-            Type: codataccounting.String("facere"),
+            ModifiedDate: codataccounting.String("occaecati"),
+            Name: codataccounting.String("Phyllis Koch"),
+            ParentID: codataccounting.String("quidem"),
+            SourceModifiedDate: codataccounting.String("aliquam"),
+            Status: shared.JournalStatusArchived.ToPointer(),
+            Type: codataccounting.String("itaque"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codataccounting.Int(894322),
+        TimeoutInMinutes: codataccounting.Int(612118),
     })
     if err != nil {
         log.Fatal(err)
@@ -96,7 +96,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Journals.Get(ctx, operations.GetJournalRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        JournalID: "ex",
+        JournalID: "pariatur",
     })
     if err != nil {
         log.Fatal(err)
@@ -181,7 +181,7 @@ func main() {
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: codataccounting.Int(1),
         PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("magni"),
+        Query: codataccounting.String("suscipit"),
     })
     if err != nil {
         log.Fatal(err)
