@@ -7,17 +7,15 @@ import (
 	"net/http"
 )
 
-type GetBankFeedsRequest struct {
+type DeleteCompanyConnectionRequest struct {
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
-type GetBankFeedsResponse struct {
-	// Success
-	BankFeedAccounts []shared.BankFeedAccount
-	ContentType      string
-	StatusCode       int
-	RawResponse      *http.Response
+type DeleteCompanyConnectionResponse struct {
+	ContentType string
+	StatusCode  int
+	RawResponse *http.Response
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
 }

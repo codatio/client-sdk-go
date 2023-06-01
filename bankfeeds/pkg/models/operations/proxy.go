@@ -7,17 +7,19 @@ import (
 	"net/http"
 )
 
-type GetBankFeedsRequest struct {
+type ProxyRequest struct {
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
+	// The endpoint and query parameters made to the underlying integration.
+	Endpoint string `queryParam:"style=form,explode=true,name=endpoint"`
 }
 
-type GetBankFeedsResponse struct {
+type ProxyResponse struct {
+	ContentType string
 	// Success
-	BankFeedAccounts []shared.BankFeedAccount
-	ContentType      string
-	StatusCode       int
-	RawResponse      *http.Response
+	ProxyResponse map[string]interface{}
+	StatusCode    int
+	RawResponse   *http.Response
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
 }

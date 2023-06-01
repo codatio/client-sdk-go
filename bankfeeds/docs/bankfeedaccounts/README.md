@@ -6,11 +6,11 @@ Bank feed bank accounts
 
 ### Available Operations
 
-* [CreateBankFeed](#createbankfeed) - Create bank feed bank accounts
-* [GetBankFeeds](#getbankfeeds) - List bank feed bank accounts
-* [UpdateBankFeed](#updatebankfeed) - Update bank feed bank account
+* [Create](#create) - Create bank feed bank accounts
+* [Get](#get) - List bank feed bank accounts
+* [Update](#update) - Update bank feed bank account
 
-## CreateBankFeed
+## Create
 
 Put BankFeed BankAccounts for a single data source connected to a single company.
 
@@ -30,36 +30,24 @@ import(
 func main() {
     s := codatbankfeeds.New(
         codatbankfeeds.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
     ctx := context.Background()
-    res, err := s.BankFeedAccounts.CreateBankFeed(ctx, operations.CreateBankFeedRequest{
+    res, err := s.BankFeedAccounts.Create(ctx, operations.CreateBankFeedRequest{
         RequestBody: []shared.BankFeedAccount{
             shared.BankFeedAccount{
-                AccountName: codatbankfeeds.String("vel"),
-                AccountNumber: codatbankfeeds.String("natus"),
-                AccountType: codatbankfeeds.String("omnis"),
-                Balance: codatbankfeeds.Float64(4748.67),
-                Currency: codatbankfeeds.String("perferendis"),
-                FeedStartDate: codatbankfeeds.String("nihil"),
-                ID: "4ba4469b-6e21-4419-9989-0afa563e2516",
-                ModifiedDate: codatbankfeeds.String("doloribus"),
-                SortCode: codatbankfeeds.String("debitis"),
-                Status: codatbankfeeds.String("eius"),
-            },
-            shared.BankFeedAccount{
-                AccountName: codatbankfeeds.String("maxime"),
-                AccountNumber: codatbankfeeds.String("deleniti"),
-                AccountType: codatbankfeeds.String("facilis"),
-                Balance: codatbankfeeds.Float64(4479.26),
-                Currency: codatbankfeeds.String("architecto"),
-                FeedStartDate: codatbankfeeds.String("architecto"),
-                ID: "e5b7fd2e-d028-4921-8ddc-692601fb576b",
-                ModifiedDate: codatbankfeeds.String("eaque"),
-                SortCode: codatbankfeeds.String("pariatur"),
-                Status: codatbankfeeds.String("nemo"),
+                AccountName: codatbankfeeds.String("ipsa"),
+                AccountNumber: codatbankfeeds.String("reiciendis"),
+                AccountType: codatbankfeeds.String("est"),
+                Balance: codatbankfeeds.Float64(6531.4),
+                Currency: codatbankfeeds.String("laborum"),
+                FeedStartDate: codatbankfeeds.String("dolores"),
+                ID: "352c5955-907a-4ff1-a3a2-fa9467739251",
+                ModifiedDate: codatbankfeeds.String("laborum"),
+                SortCode: codatbankfeeds.String("animi"),
+                Status: codatbankfeeds.String("enim"),
             },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
@@ -75,7 +63,7 @@ func main() {
 }
 ```
 
-## GetBankFeeds
+## Get
 
 Get BankFeed BankAccounts for a single data source connected to a single company.
 
@@ -94,12 +82,12 @@ import(
 func main() {
     s := codatbankfeeds.New(
         codatbankfeeds.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
     ctx := context.Background()
-    res, err := s.BankFeedAccounts.GetBankFeeds(ctx, operations.GetBankFeedsRequest{
+    res, err := s.BankFeedAccounts.Get(ctx, operations.GetBankFeedsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -113,7 +101,7 @@ func main() {
 }
 ```
 
-## UpdateBankFeed
+## Update
 
 Update a single BankFeed BankAccount for a single data source connected to a single company.
 
@@ -133,25 +121,25 @@ import(
 func main() {
     s := codatbankfeeds.New(
         codatbankfeeds.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
     ctx := context.Background()
-    res, err := s.BankFeedAccounts.UpdateBankFeed(ctx, operations.UpdateBankFeedRequest{
+    res, err := s.BankFeedAccounts.Update(ctx, operations.UpdateBankFeedRequest{
         BankFeedAccount: &shared.BankFeedAccount{
-            AccountName: codatbankfeeds.String("voluptatibus"),
-            AccountNumber: codatbankfeeds.String("perferendis"),
-            AccountType: codatbankfeeds.String("fugiat"),
-            Balance: codatbankfeeds.Float64(2307.42),
-            Currency: codatbankfeeds.String("aut"),
-            FeedStartDate: codatbankfeeds.String("cumque"),
-            ID: "5fbb2587-0532-402c-b3d5-fe9b90c28909",
-            ModifiedDate: codatbankfeeds.String("rerum"),
-            SortCode: codatbankfeeds.String("adipisci"),
-            Status: codatbankfeeds.String("asperiores"),
+            AccountName: codatbankfeeds.String("odit"),
+            AccountNumber: codatbankfeeds.String("quo"),
+            AccountType: codatbankfeeds.String("sequi"),
+            Balance: codatbankfeeds.Float64(9495.72),
+            Currency: codatbankfeeds.String("ipsam"),
+            FeedStartDate: codatbankfeeds.String("id"),
+            ID: "d019da1f-fe78-4f09-bb00-74f15471b5e6",
+            ModifiedDate: codatbankfeeds.String("repudiandae"),
+            SortCode: codatbankfeeds.String("quae"),
+            Status: codatbankfeeds.String("ipsum"),
         },
-        AccountID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+        AccountID: "quidem",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })

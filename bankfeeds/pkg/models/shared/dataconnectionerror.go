@@ -2,9 +2,8 @@
 
 package shared
 
-type BankTransactionLine struct {
-	Amount  float64 `json:"amount"`
-	Balance float64 `json:"balance"`
+type DataConnectionError struct {
+	ErrorMessage *string `json:"errorMessage,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -24,14 +23,7 @@ type BankTransactionLine struct {
 	// >
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	ClearedOnDate      *string `json:"clearedOnDate,omitempty"`
-	Counterparty       *string `json:"counterparty,omitempty"`
-	Description        *string `json:"description,omitempty"`
-	ID                 *string `json:"id,omitempty"`
-	ModifiedDate       *string `json:"modifiedDate,omitempty"`
-	Reconciled         bool    `json:"reconciled"`
-	Reference          *string `json:"reference,omitempty"`
-	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
-	// Type of transaction for the bank statement line
-	TransactionType BankTransactionType `json:"transactionType"`
+	ErroredOnUtc *string `json:"erroredOnUtc,omitempty"`
+	StatusCode   *string `json:"statusCode,omitempty"`
+	StatusText   *string `json:"statusText,omitempty"`
 }
