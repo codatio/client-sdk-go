@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-type CreatePullOperationRequest struct {
+type RefreshDataTypeRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	// Optionally, provide a data connection id to only queue pull operations on that connection.
 	ConnectionID *string `queryParam:"style=form,explode=true,name=connectionId"`
@@ -15,7 +15,7 @@ type CreatePullOperationRequest struct {
 	DataType shared.DataType `pathParam:"style=simple,explode=false,name=dataType"`
 }
 
-type CreatePullOperationResponse struct {
+type RefreshDataTypeResponse struct {
 	ContentType string
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage

@@ -85,7 +85,7 @@ func main() {
     ctx := context.Background()
     res, err := s.PushData.GetOperation(ctx, operations.GetPushOperationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        PushOperationKey: "4e0f467c-c879-46ed-951a-05dfc2ddf7cc",
+        PushOperationKey: "74e0f467-cc87-496e-9151-a05dfc2ddf7c",
     })
     if err != nil {
         log.Fatal(err)
@@ -126,7 +126,7 @@ func main() {
         OrderBy: codatcommon.String("-modifiedDate"),
         Page: codatcommon.Int(1),
         PageSize: codatcommon.Int(100),
-        Query: codatcommon.String("esse"),
+        Query: codatcommon.String("quod"),
     })
     if err != nil {
         log.Fatal(err)

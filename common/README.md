@@ -64,12 +64,6 @@ func main() {
 * [UnlinkConnection](docs/connections/README.md#unlinkconnection) - Unlink connection
 * [UpdateAuthorization](docs/connections/README.md#updateauthorization) - Update authorization
 
-### [DataStatus](docs/datastatus/README.md)
-
-* [Get](docs/datastatus/README.md#get) - Get data status
-* [GetPullOperation](docs/datastatus/README.md#getpulloperation) - Get pull operation
-* [ListPullOperations](docs/datastatus/README.md#listpulloperations) - Get pull operations
-
 ### [Integrations](docs/integrations/README.md)
 
 * [Get](docs/integrations/README.md#get) - Get integration
@@ -84,8 +78,11 @@ func main() {
 
 ### [RefreshData](docs/refreshdata/README.md)
 
-* [All](docs/refreshdata/README.md#all) - Queue pull operations
-* [ByDataType](docs/refreshdata/README.md#bydatatype) - Queue pull operation
+* [All](docs/refreshdata/README.md#all) - Refresh all data
+* [ByDataType](docs/refreshdata/README.md#bydatatype) - Refresh data type
+* [Get](docs/refreshdata/README.md#get) - Get data status
+* [GetPullOperation](docs/refreshdata/README.md#getpulloperation) - Get pull operation
+* [ListPullOperations](docs/refreshdata/README.md#listpulloperations) - List pull operations
 
 ### [Settings](docs/settings/README.md)
 

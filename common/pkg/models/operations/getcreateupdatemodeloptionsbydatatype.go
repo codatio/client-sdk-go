@@ -16,6 +16,8 @@ type GetCreateUpdateModelOptionsByDataTypeRequest struct {
 
 type GetCreateUpdateModelOptionsByDataTypeResponse struct {
 	ContentType string
+	// Your API request was not properly authorized.
+	ErrorMessage *shared.ErrorMessage
 	// OK
 	PushOption  *shared.PushOption
 	StatusCode  int
