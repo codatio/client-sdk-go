@@ -26,7 +26,7 @@ import(
 func main() {
     s := codatcommerce.New(
         codatcommerce.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
@@ -56,36 +56,46 @@ func main() {
 
 ### [Customers](docs/customers/README.md)
 
+* [Get](docs/customers/README.md#get) - Get customer
 * [List](docs/customers/README.md#list) - List customers
 
 ### [Disputes](docs/disputes/README.md)
 
+* [Get](docs/disputes/README.md#get) - Get dispute
 * [List](docs/disputes/README.md#list) - List disputes
 
 ### [Locations](docs/locations/README.md)
 
+* [Get](docs/locations/README.md#get) - Get location
 * [List](docs/locations/README.md#list) - List locations
 
 ### [Orders](docs/orders/README.md)
 
+* [Get](docs/orders/README.md#get) - Get order
 * [List](docs/orders/README.md#list) - List orders
 
 ### [Payments](docs/payments/README.md)
 
+* [Get](docs/payments/README.md#get) - Get payment
+* [GetMethod](docs/payments/README.md#getmethod) - Get payment method
 * [List](docs/payments/README.md#list) - List payments
 * [ListMethods](docs/payments/README.md#listmethods) - List payment methods
 
 ### [Products](docs/products/README.md)
 
+* [Get](docs/products/README.md#get) - Get product
+* [GetCategory](docs/products/README.md#getcategory) - Get product category
 * [List](docs/products/README.md#list) - List products
 * [ListCategories](docs/products/README.md#listcategories) - List product categories
 
 ### [TaxComponents](docs/taxcomponents/README.md)
 
-* [Get](docs/taxcomponents/README.md#get) - List tax components
+* [Get](docs/taxcomponents/README.md#get) - Get tax component
+* [List](docs/taxcomponents/README.md#list) - List tax components
 
 ### [Transactions](docs/transactions/README.md)
 
+* [Get](docs/transactions/README.md#get) - Get transaction
 * [List](docs/transactions/README.md#list) - List transactions
 <!-- End SDK Available Operations -->
 

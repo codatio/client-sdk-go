@@ -7,13 +7,15 @@ import (
 	"net/http"
 )
 
-type GetCompanyInfoRequest struct {
+type GetCustomerRequest struct {
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
+	// Unique identifier for a customer.
+	CustomerID string `pathParam:"style=simple,explode=false,name=customerId"`
 }
 
-// GetCompanyInfo409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
-type GetCompanyInfo409ApplicationJSON struct {
+// GetCustomer409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
+type GetCustomer409ApplicationJSON struct {
 	CanBeRetried      *string `json:"canBeRetried,omitempty"`
 	CorrelationID     *string `json:"correlationId,omitempty"`
 	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
@@ -22,14 +24,14 @@ type GetCompanyInfo409ApplicationJSON struct {
 	StatusCode        *int64  `json:"statusCode,omitempty"`
 }
 
-type GetCompanyInfoResponse struct {
-	// OK
-	CompanyInfo *shared.CompanyInfo
+type GetCustomerResponse struct {
 	ContentType string
+	// OK
+	Customer    *shared.Customer
 	StatusCode  int
 	RawResponse *http.Response
 	// The data type's dataset has not been requested or is still syncing.
-	GetCompanyInfo409ApplicationJSONObject *GetCompanyInfo409ApplicationJSON
+	GetCustomer409ApplicationJSONObject *GetCustomer409ApplicationJSON
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
 }

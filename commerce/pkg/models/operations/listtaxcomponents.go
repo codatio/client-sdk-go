@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-type ListPaymentsRequest struct {
+type ListTaxComponentsRequest struct {
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 	// Field to order results by. [Read more](https://docs.codat.io/using-the-api/ordering-results).
@@ -20,8 +20,8 @@ type ListPaymentsRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-// ListPayments409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
-type ListPayments409ApplicationJSON struct {
+// ListTaxComponents409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
+type ListTaxComponents409ApplicationJSON struct {
 	CanBeRetried      *string `json:"canBeRetried,omitempty"`
 	CorrelationID     *string `json:"correlationId,omitempty"`
 	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
@@ -30,14 +30,14 @@ type ListPayments409ApplicationJSON struct {
 	StatusCode        *int64  `json:"statusCode,omitempty"`
 }
 
-type ListPaymentsResponse struct {
+type ListTaxComponentsResponse struct {
 	ContentType string
-	// OK
-	Payments    *shared.Payments
 	StatusCode  int
 	RawResponse *http.Response
+	// OK
+	TaxComponents *shared.TaxComponents
 	// The data type's dataset has not been requested or is still syncing.
-	ListPayments409ApplicationJSONObject *ListPayments409ApplicationJSON
+	ListTaxComponents409ApplicationJSONObject *ListTaxComponents409ApplicationJSON
 	// Your `query` parameter was not correctly formed
 	Schema *shared.Schema
 }

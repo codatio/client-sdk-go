@@ -7,13 +7,15 @@ import (
 	"net/http"
 )
 
-type GetCompanyInfoRequest struct {
+type GetTaxComponentRequest struct {
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
+	// Unique identifier for a tax component.
+	TaxID string `pathParam:"style=simple,explode=false,name=taxId"`
 }
 
-// GetCompanyInfo409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
-type GetCompanyInfo409ApplicationJSON struct {
+// GetTaxComponent409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
+type GetTaxComponent409ApplicationJSON struct {
 	CanBeRetried      *string `json:"canBeRetried,omitempty"`
 	CorrelationID     *string `json:"correlationId,omitempty"`
 	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
@@ -22,14 +24,14 @@ type GetCompanyInfo409ApplicationJSON struct {
 	StatusCode        *int64  `json:"statusCode,omitempty"`
 }
 
-type GetCompanyInfoResponse struct {
-	// OK
-	CompanyInfo *shared.CompanyInfo
+type GetTaxComponentResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
+	// OK
+	TaxComponent *shared.TaxComponent
 	// The data type's dataset has not been requested or is still syncing.
-	GetCompanyInfo409ApplicationJSONObject *GetCompanyInfo409ApplicationJSON
+	GetTaxComponent409ApplicationJSONObject *GetTaxComponent409ApplicationJSON
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
 }

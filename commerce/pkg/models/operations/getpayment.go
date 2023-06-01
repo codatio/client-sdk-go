@@ -7,13 +7,15 @@ import (
 	"net/http"
 )
 
-type GetCompanyInfoRequest struct {
+type GetPaymentRequest struct {
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
+	// Unique identifier for a payment.
+	PaymentID string `pathParam:"style=simple,explode=false,name=paymentId"`
 }
 
-// GetCompanyInfo409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
-type GetCompanyInfo409ApplicationJSON struct {
+// GetPayment409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
+type GetPayment409ApplicationJSON struct {
 	CanBeRetried      *string `json:"canBeRetried,omitempty"`
 	CorrelationID     *string `json:"correlationId,omitempty"`
 	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
@@ -22,14 +24,14 @@ type GetCompanyInfo409ApplicationJSON struct {
 	StatusCode        *int64  `json:"statusCode,omitempty"`
 }
 
-type GetCompanyInfoResponse struct {
-	// OK
-	CompanyInfo *shared.CompanyInfo
+type GetPaymentResponse struct {
 	ContentType string
+	// OK
+	Payment     *shared.Payment
 	StatusCode  int
 	RawResponse *http.Response
 	// The data type's dataset has not been requested or is still syncing.
-	GetCompanyInfo409ApplicationJSONObject *GetCompanyInfo409ApplicationJSON
+	GetPayment409ApplicationJSONObject *GetPayment409ApplicationJSON
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
 }
