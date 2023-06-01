@@ -24,4 +24,6 @@ type UpdateBankAccountResponse struct {
 	RawResponse *http.Response
 	// Success
 	UpdateBankAccountResponse *shared.UpdateBankAccountResponse
+	// The request made is not valid.
+	Schema *shared.Schema
 }

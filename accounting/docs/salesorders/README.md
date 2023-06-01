@@ -35,7 +35,7 @@ func main() {
     ctx := context.Background()
     res, err := s.SalesOrders.Get(ctx, operations.GetSalesOrderRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        SalesOrderID: "distinctio",
+        SalesOrderID: "aut",
     })
     if err != nil {
         log.Fatal(err)
@@ -76,7 +76,7 @@ func main() {
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: codataccounting.Int(1),
         PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("fugit"),
+        Query: codataccounting.String("assumenda"),
     })
     if err != nil {
         log.Fatal(err)

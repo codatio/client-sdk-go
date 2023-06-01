@@ -24,4 +24,6 @@ type UpdateSupplierResponse struct {
 	RawResponse *http.Response
 	// Success
 	UpdateSupplierResponse *shared.UpdateSupplierResponse
+	// The request made is not valid.
+	Schema *shared.Schema
 }

@@ -20,4 +20,6 @@ type CreateDirectIncomeResponse struct {
 	CreateDirectIncomeResponse *shared.CreateDirectIncomeResponse
 	StatusCode                 int
 	RawResponse                *http.Response
+	// The request made is not valid.
+	Schema *shared.Schema
 }

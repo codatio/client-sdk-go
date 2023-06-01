@@ -23,4 +23,6 @@ type UpdateBillCreditNoteResponse struct {
 	RawResponse *http.Response
 	// Success
 	UpdateBillCreditNoteResponse *shared.UpdateBillCreditNoteResponse
+	// The request made is not valid.
+	Schema *shared.Schema
 }

@@ -20,4 +20,6 @@ type CreateBillCreditNoteResponse struct {
 	CreateBillCreditNoteResponse *shared.CreateBillCreditNoteResponse
 	StatusCode                   int
 	RawResponse                  *http.Response
+	// The request made is not valid.
+	Schema *shared.Schema
 }

@@ -44,87 +44,88 @@ func main() {
     ctx := context.Background()
     res, err := s.JournalEntries.Create(ctx, operations.CreateJournalEntryRequest{
         JournalEntry: &shared.JournalEntry{
-            CreatedOn: codataccounting.String("quibusdam"),
-            Description: codataccounting.String("natus"),
-            ID: codataccounting.String("8ccf89d3-8611-486e-976c-002facb13ac2"),
+            CreatedOn: codataccounting.String("quas"),
+            Description: codataccounting.String("soluta"),
+            ID: codataccounting.String("d380c29a-a8dd-471b-9daa-30b7b91449ae"),
             JournalLines: []shared.JournalLine{
                 shared.JournalLine{
                     AccountRef: &shared.AccountRef{
-                        ID: codataccounting.String("c8143b86-6c57-45a1-a266-8730be37b0e8"),
-                        Name: codataccounting.String("Alton Schmitt"),
+                        ID: codataccounting.String("9c088d41-8bb7-4180-8f42-3d543935f377"),
+                        Name: codataccounting.String("Devin Hintz"),
                     },
-                    Currency: codataccounting.String("facere"),
-                    Description: codataccounting.String("temporibus"),
-                    NetAmount: 7790.58,
+                    Currency: codataccounting.String("nam"),
+                    Description: codataccounting.String("ducimus"),
+                    NetAmount: 8873.03,
                     Tracking: &shared.Propertiestracking2{
                         RecordRefs: []shared.InvoiceTo{
                             shared.InvoiceTo{
-                                DataType: codataccounting.String("officiis"),
-                                ID: codataccounting.String("69b53510-5050-414d-8a10-5882484c36e9"),
+                                DataType: codataccounting.String("velit"),
+                                ID: codataccounting.String("b6a3c523-105e-47c3-8cab-0ecb812a6614"),
                             },
                             shared.InvoiceTo{
-                                DataType: codataccounting.String("ut"),
-                                ID: codataccounting.String("8892782d-34e0-4b8f-80d5-9f57b9f9820b"),
+                                DataType: codataccounting.String("atque"),
+                                ID: codataccounting.String("944a8e90-8507-45bc-a538-253343fb0a4e"),
+                            },
+                            shared.InvoiceTo{
+                                DataType: codataccounting.String("autem"),
+                                ID: codataccounting.String("6ea47578-d171-4e29-8181-8fc679b6b2f2"),
                             },
                         },
                     },
                 },
                 shared.JournalLine{
                     AccountRef: &shared.AccountRef{
-                        ID: codataccounting.String("e07808c3-6c9e-42f7-8344-e00f478eb539"),
-                        Name: codataccounting.String("Maxine Dietrich"),
+                        ID: codataccounting.String("5359b855-d015-4b62-88b8-3a38a8a88c14"),
+                        Name: codataccounting.String("Miss Andrea Bartell"),
                     },
-                    Currency: codataccounting.String("dolore"),
-                    Description: codataccounting.String("blanditiis"),
-                    NetAmount: 9119.94,
+                    Currency: codataccounting.String("maxime"),
+                    Description: codataccounting.String("deserunt"),
+                    NetAmount: 9204.81,
                     Tracking: &shared.Propertiestracking2{
                         RecordRefs: []shared.InvoiceTo{
                             shared.InvoiceTo{
-                                DataType: codataccounting.String("delectus"),
-                                ID: codataccounting.String("ccb69d54-1b4b-4393-b356-6625bea32201"),
+                                DataType: codataccounting.String("et"),
+                                ID: codataccounting.String("ae1ecf8c-3494-46bb-a7a0-5a8b4a9ec5b3"),
                             },
                             shared.InvoiceTo{
-                                DataType: codataccounting.String("temporibus"),
-                                ID: codataccounting.String("ec379c59-8ea1-4d48-85c2-f9e21d90fd53"),
+                                DataType: codataccounting.String("eum"),
+                                ID: codataccounting.String("88cca363-2727-460e-966e-97e054103347"),
                             },
                             shared.InvoiceTo{
-                                DataType: codataccounting.String("esse"),
-                                ID: codataccounting.String("76bfc767-7f0f-4504-a6e4-828fb6daee19"),
-                            },
-                            shared.InvoiceTo{
-                                DataType: codataccounting.String("cumque"),
-                                ID: codataccounting.String("26c0cb61-8c63-431c-abda-b767a444dd0d"),
+                                DataType: codataccounting.String("pariatur"),
+                                ID: codataccounting.String("78ff2491-145f-4ab9-a59a-4af336664eaa"),
                             },
                         },
                     },
                 },
             },
             JournalRef: &shared.JournalRef{
-                ID: "a0abe58e-b3d5-44ba-9cb3-ad49b8e5c18b",
-                Name: codataccounting.String("Holly Trantow"),
+                ID: "6bf2ff14-e8c1-4b35-aacc-edacc5227814",
+                Name: codataccounting.String("Mr. Sherman Pfannerstill"),
             },
             Metadata: &shared.Metadata{
                 IsDeleted: codataccounting.Bool(false),
             },
-            ModifiedDate: codataccounting.String("maiores"),
-            PostedOn: codataccounting.String("ea"),
+            ModifiedDate: codataccounting.String("cum"),
+            PostedOn: codataccounting.String("quo"),
             RecordRef: &shared.InvoiceTo{
-                DataType: codataccounting.String("incidunt"),
-                ID: codataccounting.String("823255be-95c0-4cbc-b2ca-87908d73809a"),
+                DataType: codataccounting.String("aliquam"),
+                ID: codataccounting.String("1ea1342d-4104-4a25-af71-de57a11d614a"),
             },
-            SourceModifiedDate: codataccounting.String("aut"),
+            SourceModifiedDate: codataccounting.String("tempora"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "doloribus": map[string]interface{}{
-                        "eum": "itaque",
+                    "dicta": map[string]interface{}{
+                        "laboriosam": "sint",
+                        "dolores": "repudiandae",
                     },
                 },
             },
-            UpdatedOn: codataccounting.String("unde"),
+            UpdatedOn: codataccounting.String("fuga"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codataccounting.Int(148478),
+        TimeoutInMinutes: codataccounting.Int(284514),
     })
     if err != nil {
         log.Fatal(err)
@@ -193,7 +194,7 @@ func main() {
     res, err := s.JournalEntries.Delete(ctx, operations.DeleteJournalEntryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        JournalEntryID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+        JournalEntryID: "totam",
     })
     if err != nil {
         log.Fatal(err)
@@ -231,7 +232,7 @@ func main() {
     ctx := context.Background()
     res, err := s.JournalEntries.Get(ctx, operations.GetJournalEntryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        JournalEntryID: "qui",
+        JournalEntryID: "laboriosam",
     })
     if err != nil {
         log.Fatal(err)
@@ -316,7 +317,7 @@ func main() {
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: codataccounting.Int(1),
         PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("totam"),
+        Query: codataccounting.String("esse"),
     })
     if err != nil {
         log.Fatal(err)

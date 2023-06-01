@@ -23,4 +23,6 @@ type UpdateCustomerResponse struct {
 	RawResponse *http.Response
 	// Success
 	UpdateCustomerResponse *shared.UpdateCustomerResponse
+	// The request made is not valid.
+	Schema *shared.Schema
 }

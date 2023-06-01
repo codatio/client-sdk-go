@@ -139,7 +139,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Accounts.Get(ctx, operations.GetAccountRequest{
-        AccountID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+        AccountID: "ab",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -231,7 +231,7 @@ func main() {
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: codataccounting.Int(1),
         PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("ab"),
+        Query: codataccounting.String("quis"),
     })
     if err != nil {
         log.Fatal(err)

@@ -24,4 +24,6 @@ type UpdateBillResponse struct {
 	RawResponse *http.Response
 	// Success
 	UpdateBillResponse *shared.UpdateBillResponse
+	// The request made is not valid.
+	Schema *shared.Schema
 }

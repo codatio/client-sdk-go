@@ -18,4 +18,6 @@ type GetCreateChartOfAccountsModelResponse struct {
 	PushOption  *shared.PushOption
 	StatusCode  int
 	RawResponse *http.Response
+	// Your API request was not properly authorized.
+	Schema *shared.Schema
 }

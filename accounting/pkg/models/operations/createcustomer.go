@@ -20,4 +20,6 @@ type CreateCustomerResponse struct {
 	CreateCustomerResponse *shared.CreateCustomerResponse
 	StatusCode             int
 	RawResponse            *http.Response
+	// The request made is not valid.
+	Schema *shared.Schema
 }
