@@ -3,6 +3,7 @@ dataintegrity.go
 excelreports.go
 reports.go
 codatassess.go
+.gitignore
 go.mod
 go.sum
 pkg/types/bigint.go
