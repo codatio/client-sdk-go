@@ -4,6 +4,7 @@ integrations.go
 sync.go
 syncflowpreferences.go
 codatsynccommerce.go
+.gitignore
 go.mod
 go.sum
 pkg/types/bigint.go

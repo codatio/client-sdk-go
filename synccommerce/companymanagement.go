@@ -3,11 +3,13 @@
 package codatsynccommerce
 
 import (
+	"bytes"
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/synccommerce/pkg/utils"
+	"io"
 	"net/http"
 	"strings"
 )
@@ -95,7 +97,13 @@ func (s *companyManagement) CreateCompany(ctx context.Context, request shared.Cr
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -109,7 +117,7 @@ func (s *companyManagement) CreateCompany(ctx context.Context, request shared.Cr
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Company
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -185,7 +193,13 @@ func (s *companyManagement) CreateConnection(ctx context.Context, request operat
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -199,7 +213,7 @@ func (s *companyManagement) CreateConnection(ctx context.Context, request operat
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Connection
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -269,7 +283,13 @@ func (s *companyManagement) ListCompanies(ctx context.Context, request operation
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -283,7 +303,7 @@ func (s *companyManagement) ListCompanies(ctx context.Context, request operation
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Companies
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -356,7 +376,13 @@ func (s *companyManagement) ListConnections(ctx context.Context, request operati
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -370,7 +396,7 @@ func (s *companyManagement) ListConnections(ctx context.Context, request operati
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Connections
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -446,7 +472,13 @@ func (s *companyManagement) UpdateConnection(ctx context.Context, request operat
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -460,7 +492,7 @@ func (s *companyManagement) UpdateConnection(ctx context.Context, request operat
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Connection
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
