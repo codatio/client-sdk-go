@@ -13,5 +13,5 @@ type NewCompanySynchronizedWebhook struct {
 	// Unique identifier for the rule.
 	RuleID *string `json:"ruleId,omitempty"`
 	// The type of rule.
-	RuleType *string `json:"ruleType,omitempty"`
+	Type *string `json:"type,omitempty"`
 }

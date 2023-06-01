@@ -6,6 +6,7 @@ refreshdata.go
 settings.go
 webhooks.go
 codatcommon.go
+.gitignore
 go.mod
 go.sum
 pkg/types/bigint.go

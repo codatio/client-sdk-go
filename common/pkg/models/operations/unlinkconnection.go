@@ -21,7 +21,7 @@ type UnlinkConnectionResponse struct {
 	// OK
 	Connection  *shared.Connection
 	ContentType string
-	// The request made is not valid.
+	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
 	StatusCode   int
 	RawResponse  *http.Response

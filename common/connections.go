@@ -542,8 +542,6 @@ func (s *connections) UnlinkConnection(ctx context.Context, request operations.U
 
 			res.Connection = out
 		}
-	case httpRes.StatusCode == 400:
-		fallthrough
 	case httpRes.StatusCode == 401:
 		fallthrough
 	case httpRes.StatusCode == 404:
