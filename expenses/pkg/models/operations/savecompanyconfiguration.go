@@ -13,11 +13,11 @@ type SaveCompanyConfigurationRequest struct {
 }
 
 type SaveCompanyConfigurationResponse struct {
-	// Bad Request
-	CodatErrorMessage *shared.CodatErrorMessage
 	// Success
 	CompanyConfiguration *shared.CompanyConfiguration
 	ContentType          string
 	StatusCode           int
 	RawResponse          *http.Response
+	// The request made is not valid.
+	Schema *shared.Schema
 }

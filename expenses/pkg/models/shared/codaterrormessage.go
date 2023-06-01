@@ -32,7 +32,7 @@ type CodatErrorMessageValidation struct {
 	Warnings     []CodatErrorMessageValidationWarnings  `json:"warnings,omitempty"`
 }
 
-// CodatErrorMessage - Bad Request
+// CodatErrorMessage - If model is incorrect
 type CodatErrorMessage struct {
 	CanBeRetried      *string                      `json:"canBeRetried,omitempty"`
 	CorrelationID     *string                      `json:"correlationId,omitempty"`
