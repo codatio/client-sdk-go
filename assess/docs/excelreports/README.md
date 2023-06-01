@@ -6,52 +6,10 @@ Downloadable reports
 
 ### Available Operations
 
-* [~~DownloadExcelReport~~](#downloadexcelreport) - Download generated excel report :warning: **Deprecated**
-* [GenerateExcelReport](#generateexcelreport) - Generate an Excel report
-* [GetAccountingMarketingMetrics](#getaccountingmarketingmetrics) - Get the marketing metrics from an accounting source for a given company.
-* [GetExcelReport](#getexcelreport) - Download generated excel report
-* [GetExcelReportGenerationStatus](#getexcelreportgenerationstatus) - Get status of Excel report
-
-## ~~DownloadExcelReport~~
-
-Download the previously generated Excel report to a local drive.
-
-> :warning: **DEPRECATED**: this method will be removed in a future release, please migrate away from it as soon as possible.
-
-### Example Usage
-
-```go
-package main
-
-import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/assess"
-	"github.com/codatio/client-sdk-go/assess/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/assess/pkg/models/shared"
-)
-
-func main() {
-    s := codatassess.New(
-        codatassess.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
-        }),
-    )
-
-    ctx := context.Background()
-    res, err := s.ExcelReports.DownloadExcelReport(ctx, operations.DownloadExcelReportRequest{
-        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ReportType: shared.ExcelReportTypeEnhancedInvoices,
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-
-    if res.Body != nil {
-        // handle response
-    }
-}
-```
+* [GenerateExcelReport](#generateexcelreport) - Generate Excel report
+* [GetAccountingMarketingMetrics](#getaccountingmarketingmetrics) - Get marketing metrics report
+* [GetExcelReport](#getexcelreport) - Download Excel report
+* [GetExcelReportGenerationStatus](#getexcelreportgenerationstatus) - Get Excel report status
 
 ## GenerateExcelReport
 
@@ -73,14 +31,14 @@ import(
 func main() {
     s := codatassess.New(
         codatassess.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
     ctx := context.Background()
     res, err := s.ExcelReports.GenerateExcelReport(ctx, operations.GenerateExcelReportRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ReportType: shared.ExcelReportTypeEnhancedFinancials,
+        ReportType: shared.ExcelReportTypeEnhancedInvoices,
     })
     if err != nil {
         log.Fatal(err)
@@ -93,6 +51,8 @@ func main() {
 ```
 
 ## GetAccountingMarketingMetrics
+
+Get the marketing metrics from an accounting source for a given company.
 
 Request an Excel report for download.
 
@@ -112,7 +72,7 @@ import(
 func main() {
     s := codatassess.New(
         codatassess.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
@@ -121,8 +81,8 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         IncludeDisplayNames: codatassess.Bool(false),
-        NumberOfPeriods: 739264,
-        PeriodLength: 19987,
+        NumberOfPeriods: 451159,
+        PeriodLength: 739264,
         PeriodUnit: shared.PeriodUnitDay,
         ReportDate: "29-09-2020",
         ShowInputValues: codatassess.Bool(false),
@@ -157,14 +117,14 @@ import(
 func main() {
     s := codatassess.New(
         codatassess.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
     ctx := context.Background()
     res, err := s.ExcelReports.GetExcelReport(ctx, operations.GetExcelReportRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ReportType: shared.ExcelReportTypeEnhancedFinancials,
+        ReportType: shared.ExcelReportTypeAssess,
     })
     if err != nil {
         log.Fatal(err)
@@ -196,14 +156,14 @@ import(
 func main() {
     s := codatassess.New(
         codatassess.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
     ctx := context.Background()
     res, err := s.ExcelReports.GetExcelReportGenerationStatus(ctx, operations.GetExcelReportGenerationStatusRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ReportType: shared.ExcelReportTypeAudit,
+        ReportType: shared.ExcelReportTypeEnhancedFinancials,
     })
     if err != nil {
         log.Fatal(err)

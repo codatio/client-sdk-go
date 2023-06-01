@@ -3,11 +3,13 @@
 package codatassess
 
 import (
+	"bytes"
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/assess/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/assess/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/assess/pkg/utils"
+	"io"
 	"net/http"
 	"strings"
 )
@@ -93,7 +95,13 @@ func (s *categories) GetAccountCategory(ctx context.Context, request operations.
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -107,7 +115,7 @@ func (s *categories) GetAccountCategory(ctx context.Context, request operations.
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.CategorisedAccount
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -182,7 +190,13 @@ func (s *categories) ListAccountsCategories(ctx context.Context, request operati
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -196,7 +210,7 @@ func (s *categories) ListAccountsCategories(ctx context.Context, request operati
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.CategorisedAccounts
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -264,7 +278,13 @@ func (s *categories) ListAvailableAccountCategories(ctx context.Context, opts ..
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -278,7 +298,7 @@ func (s *categories) ListAvailableAccountCategories(ctx context.Context, opts ..
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out []shared.Categories
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -289,7 +309,7 @@ func (s *categories) ListAvailableAccountCategories(ctx context.Context, opts ..
 	return res, nil
 }
 
-// UpdateAccountCategory - Patch account categories
+// UpdateAccountCategory - Update account categories
 // Update category for a specific nominal account
 //
 // Deprecated: this method will be removed in a future release, please migrate away from it as soon as possible.
@@ -356,7 +376,13 @@ func (s *categories) UpdateAccountCategory(ctx context.Context, request operatio
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -370,7 +396,7 @@ func (s *categories) UpdateAccountCategory(ctx context.Context, request operatio
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.CategorisedAccount
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -448,7 +474,13 @@ func (s *categories) UpdateAccountsCategories(ctx context.Context, request opera
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -462,7 +494,7 @@ func (s *categories) UpdateAccountsCategories(ctx context.Context, request opera
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out []shared.CategorisedAccount
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 

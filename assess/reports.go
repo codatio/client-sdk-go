@@ -3,11 +3,13 @@
 package codatassess
 
 import (
+	"bytes"
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/assess/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/assess/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/assess/pkg/utils"
+	"io"
 	"net/http"
 )
 
@@ -32,7 +34,7 @@ func newReports(defaultClient, securityClient HTTPClient, serverURL, language, s
 	}
 }
 
-// GetAccountsForEnhancedBalanceSheet - Enhanced Balance Sheet Accounts
+// GetAccountsForEnhancedBalanceSheet - Get enhanced balance sheet accounts
 // The Enhanced Balance Sheet Accounts endpoint returns a list of categorized accounts that appear on a company’s Balance Sheet along with a balance per financial statement date.
 //
 // Codat suggests a category for each account automatically, but you can [change it](/docs/assess-categorizing-accounts-ecommerce-lending) to a more suitable one.
@@ -57,7 +59,7 @@ func (s *reports) GetAccountsForEnhancedBalanceSheet(ctx context.Context, reques
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json")
+	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
@@ -96,7 +98,13 @@ func (s *reports) GetAccountsForEnhancedBalanceSheet(ctx context.Context, reques
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -110,18 +118,30 @@ func (s *reports) GetAccountsForEnhancedBalanceSheet(ctx context.Context, reques
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.EnhancedReport
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
 			res.EnhancedReport = out
+		}
+	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode == 404:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.Schema
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
+				return nil, err
+			}
+
+			res.Schema = out
 		}
 	}
 
 	return res, nil
 }
 
-// GetAccountsForEnhancedProfitAndLoss - Enhanced Profit and Loss Accounts
+// GetAccountsForEnhancedProfitAndLoss - Get enhanced profit and loss accounts
 // The Enhanced Profit and Loss Accounts endpoint returns a list of categorized accounts that appear on a company’s Profit and Loss. It also includes a balance per the financial statement date.
 //
 // Codat suggests a category for each account automatically, but you can [change it](/docs/assess-categorizing-accounts-ecommerce-lending) to a more suitable one.
@@ -146,7 +166,7 @@ func (s *reports) GetAccountsForEnhancedProfitAndLoss(ctx context.Context, reque
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json")
+	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
@@ -185,7 +205,13 @@ func (s *reports) GetAccountsForEnhancedProfitAndLoss(ctx context.Context, reque
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -199,18 +225,30 @@ func (s *reports) GetAccountsForEnhancedProfitAndLoss(ctx context.Context, reque
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.EnhancedReport
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
 			res.EnhancedReport = out
+		}
+	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode == 404:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.Schema
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
+				return nil, err
+			}
+
+			res.Schema = out
 		}
 	}
 
 	return res, nil
 }
 
-// GetCommerceCustomerRetentionMetrics - Get the customer retention metrics for a specific company.
+// GetCommerceCustomerRetentionMetrics - Get customer retention metrics
 // Gets the customer retention metrics for a specific company connection, over one or more periods of time.
 func (s *reports) GetCommerceCustomerRetentionMetrics(ctx context.Context, request operations.GetCommerceCustomerRetentionMetricsRequest, opts ...operations.Option) (*operations.GetCommerceCustomerRetentionMetricsResponse, error) {
 	o := operations.Options{}
@@ -233,7 +271,7 @@ func (s *reports) GetCommerceCustomerRetentionMetrics(ctx context.Context, reque
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json")
+	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
@@ -272,7 +310,13 @@ func (s *reports) GetCommerceCustomerRetentionMetrics(ctx context.Context, reque
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -286,18 +330,30 @@ func (s *reports) GetCommerceCustomerRetentionMetrics(ctx context.Context, reque
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Report
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
 			res.Report = out
+		}
+	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode == 404:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.Schema
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
+				return nil, err
+			}
+
+			res.Schema = out
 		}
 	}
 
 	return res, nil
 }
 
-// GetCommerceLifetimeValueMetrics - Get the lifetime value metric for a specific company.
+// GetCommerceLifetimeValueMetrics - Get lifetime value metric
 // Gets the lifetime value metric for a specific company connection, over one or more periods of time.
 func (s *reports) GetCommerceLifetimeValueMetrics(ctx context.Context, request operations.GetCommerceLifetimeValueMetricsRequest, opts ...operations.Option) (*operations.GetCommerceLifetimeValueMetricsResponse, error) {
 	o := operations.Options{}
@@ -320,7 +376,7 @@ func (s *reports) GetCommerceLifetimeValueMetrics(ctx context.Context, request o
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json")
+	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
@@ -359,7 +415,13 @@ func (s *reports) GetCommerceLifetimeValueMetrics(ctx context.Context, request o
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -373,18 +435,30 @@ func (s *reports) GetCommerceLifetimeValueMetrics(ctx context.Context, request o
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Report
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
 			res.Report = out
+		}
+	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode == 404:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.Schema
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
+				return nil, err
+			}
+
+			res.Schema = out
 		}
 	}
 
 	return res, nil
 }
 
-// GetCommerceOrdersMetrics - Get order information for a specific company
+// GetCommerceOrdersMetrics - Get orders report
 // Gets the order information for a specific company connection, over one or more periods of time.
 func (s *reports) GetCommerceOrdersMetrics(ctx context.Context, request operations.GetCommerceOrdersMetricsRequest, opts ...operations.Option) (*operations.GetCommerceOrdersMetricsResponse, error) {
 	o := operations.Options{}
@@ -407,7 +481,7 @@ func (s *reports) GetCommerceOrdersMetrics(ctx context.Context, request operatio
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json")
+	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
@@ -446,7 +520,13 @@ func (s *reports) GetCommerceOrdersMetrics(ctx context.Context, request operatio
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -460,18 +540,30 @@ func (s *reports) GetCommerceOrdersMetrics(ctx context.Context, request operatio
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Report
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
 			res.Report = out
+		}
+	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode == 404:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.Schema
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
+				return nil, err
+			}
+
+			res.Schema = out
 		}
 	}
 
 	return res, nil
 }
 
-// GetCommerceRefundsMetrics - Get the refunds information for a specific company
+// GetCommerceRefundsMetrics - Get refunds report
 // Gets the refunds information for a specific company connection, over one or more periods of time.
 func (s *reports) GetCommerceRefundsMetrics(ctx context.Context, request operations.GetCommerceRefundsMetricsRequest, opts ...operations.Option) (*operations.GetCommerceRefundsMetricsResponse, error) {
 	o := operations.Options{}
@@ -494,7 +586,7 @@ func (s *reports) GetCommerceRefundsMetrics(ctx context.Context, request operati
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json")
+	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
@@ -533,7 +625,13 @@ func (s *reports) GetCommerceRefundsMetrics(ctx context.Context, request operati
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -547,18 +645,30 @@ func (s *reports) GetCommerceRefundsMetrics(ctx context.Context, request operati
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Report
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
 			res.Report = out
+		}
+	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode == 404:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.Schema
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
+				return nil, err
+			}
+
+			res.Schema = out
 		}
 	}
 
 	return res, nil
 }
 
-// GetCommerceRevenueMetrics - Commerce Revenue Metrics
+// GetCommerceRevenueMetrics - Get commerce revenue metrics
 // Get the revenue and revenue growth for a specific company connection, over one or more periods of time.
 func (s *reports) GetCommerceRevenueMetrics(ctx context.Context, request operations.GetCommerceRevenueMetricsRequest, opts ...operations.Option) (*operations.GetCommerceRevenueMetricsResponse, error) {
 	o := operations.Options{}
@@ -581,7 +691,7 @@ func (s *reports) GetCommerceRevenueMetrics(ctx context.Context, request operati
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json")
+	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
@@ -620,7 +730,13 @@ func (s *reports) GetCommerceRevenueMetrics(ctx context.Context, request operati
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -634,18 +750,30 @@ func (s *reports) GetCommerceRevenueMetrics(ctx context.Context, request operati
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Report
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
 			res.Report = out
+		}
+	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode == 404:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.Schema
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
+				return nil, err
+			}
+
+			res.Schema = out
 		}
 	}
 
 	return res, nil
 }
 
-// GetEnhancedBalanceSheet - Enhanced Balance Sheet
+// GetEnhancedBalanceSheet - Get enhanced balance sheet report
 // Gets a fully categorized balance sheet statement for a given company, over one or more period(s).
 //
 // Deprecated: this method will be removed in a future release, please migrate away from it as soon as possible.
@@ -670,7 +798,7 @@ func (s *reports) GetEnhancedBalanceSheet(ctx context.Context, request operation
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json")
+	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
@@ -709,7 +837,13 @@ func (s *reports) GetEnhancedBalanceSheet(ctx context.Context, request operation
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -723,11 +857,23 @@ func (s *reports) GetEnhancedBalanceSheet(ctx context.Context, request operation
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Report
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
 			res.Report = out
+		}
+	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode == 404:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.Schema
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
+				return nil, err
+			}
+
+			res.Schema = out
 		}
 	}
 
@@ -735,6 +881,10 @@ func (s *reports) GetEnhancedBalanceSheet(ctx context.Context, request operation
 }
 
 // GetEnhancedCashFlowTransactions - Get enhanced cash flow report
+// > **Categorization engine**
+// >
+// > The categorization engine uses machine learning and has been fully trained against Plaid and TrueLayer banking data sources. It is not fully trained against the Basiq banking data source.
+//
 // The Enhanced Cash Flow Transactions endpoint provides a fully categorized list of banking transactions for a company. Accounts and transaction data are obtained from the company's banking data sources.
 func (s *reports) GetEnhancedCashFlowTransactions(ctx context.Context, request operations.GetEnhancedCashFlowTransactionsRequest, opts ...operations.Option) (*operations.GetEnhancedCashFlowTransactionsResponse, error) {
 	o := operations.Options{}
@@ -757,7 +907,7 @@ func (s *reports) GetEnhancedCashFlowTransactions(ctx context.Context, request o
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json")
+	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
@@ -796,7 +946,13 @@ func (s *reports) GetEnhancedCashFlowTransactions(ctx context.Context, request o
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -810,11 +966,23 @@ func (s *reports) GetEnhancedCashFlowTransactions(ctx context.Context, request o
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.EnhancedCashFlowTransactions
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
 			res.EnhancedCashFlowTransactions = out
+		}
+	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode == 404:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.Schema
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
+				return nil, err
+			}
+
+			res.Schema = out
 		}
 	}
 
@@ -885,7 +1053,13 @@ func (s *reports) GetEnhancedFinancialMetrics(ctx context.Context, request opera
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -899,7 +1073,7 @@ func (s *reports) GetEnhancedFinancialMetrics(ctx context.Context, request opera
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.FinancialMetrics
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -910,7 +1084,7 @@ func (s *reports) GetEnhancedFinancialMetrics(ctx context.Context, request opera
 	return res, nil
 }
 
-// GetEnhancedInvoicesReport - Enhanced Invoices Report
+// GetEnhancedInvoicesReport - Get enhanced invoices report
 // Gets a list of invoices linked to the corresponding banking transaction
 func (s *reports) GetEnhancedInvoicesReport(ctx context.Context, request operations.GetEnhancedInvoicesReportRequest, opts ...operations.Option) (*operations.GetEnhancedInvoicesReportResponse, error) {
 	o := operations.Options{}
@@ -933,7 +1107,7 @@ func (s *reports) GetEnhancedInvoicesReport(ctx context.Context, request operati
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json")
+	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
@@ -972,7 +1146,13 @@ func (s *reports) GetEnhancedInvoicesReport(ctx context.Context, request operati
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -986,18 +1166,30 @@ func (s *reports) GetEnhancedInvoicesReport(ctx context.Context, request operati
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.EnhancedInvoicesReport
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
 			res.EnhancedInvoicesReport = out
+		}
+	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode == 404:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.Schema
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
+				return nil, err
+			}
+
+			res.Schema = out
 		}
 	}
 
 	return res, nil
 }
 
-// GetEnhancedProfitAndLoss - Enhanced Profit and Loss
+// GetEnhancedProfitAndLoss - Get enhanced profit and loss report
 // Gets a fully categorized profit and loss statement for a given company, over one or more period(s).
 //
 // Deprecated: this method will be removed in a future release, please migrate away from it as soon as possible.
@@ -1022,7 +1214,7 @@ func (s *reports) GetEnhancedProfitAndLoss(ctx context.Context, request operatio
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json")
+	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
@@ -1061,7 +1253,13 @@ func (s *reports) GetEnhancedProfitAndLoss(ctx context.Context, request operatio
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -1075,18 +1273,30 @@ func (s *reports) GetEnhancedProfitAndLoss(ctx context.Context, request operatio
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Report
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
 			res.Report = out
+		}
+	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode == 404:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.Schema
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
+				return nil, err
+			}
+
+			res.Schema = out
 		}
 	}
 
 	return res, nil
 }
 
-// GetRecurringRevenueMetrics - Get key metrics for subscription revenue
+// GetRecurringRevenueMetrics - Get key subscription revenue metrics
 // Gets key metrics for subscription revenue.
 func (s *reports) GetRecurringRevenueMetrics(ctx context.Context, request operations.GetRecurringRevenueMetricsRequest, opts ...operations.Option) (*operations.GetRecurringRevenueMetricsResponse, error) {
 	o := operations.Options{}
@@ -1109,7 +1319,7 @@ func (s *reports) GetRecurringRevenueMetrics(ctx context.Context, request operat
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json")
+	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	client := s.securityClient
@@ -1144,7 +1354,13 @@ func (s *reports) GetRecurringRevenueMetrics(ctx context.Context, request operat
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -1158,19 +1374,31 @@ func (s *reports) GetRecurringRevenueMetrics(ctx context.Context, request operat
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Report
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
 			res.Report = out
+		}
+	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode == 404:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.Schema
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
+				return nil, err
+			}
+
+			res.Schema = out
 		}
 	}
 
 	return res, nil
 }
 
-// RequestRecurringRevenueMetrics - Request production of key subscription revenue metrics
-// Request production of key subscription revenue metrics.
+// RequestRecurringRevenueMetrics - Generate key subscription revenue metrics
+// Requests production of key subscription revenue metrics.
 func (s *reports) RequestRecurringRevenueMetrics(ctx context.Context, request operations.RequestRecurringRevenueMetricsRequest, opts ...operations.Option) (*operations.RequestRecurringRevenueMetricsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -1192,7 +1420,7 @@ func (s *reports) RequestRecurringRevenueMetrics(ctx context.Context, request op
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json")
+	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	client := s.securityClient
@@ -1227,7 +1455,13 @@ func (s *reports) RequestRecurringRevenueMetrics(ctx context.Context, request op
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -1241,11 +1475,23 @@ func (s *reports) RequestRecurringRevenueMetrics(ctx context.Context, request op
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Report
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
 			res.Report = out
+		}
+	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode == 404:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.Schema
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
+				return nil, err
+			}
+
+			res.Schema = out
 		}
 	}
 

@@ -3,6 +3,7 @@
 package codatassess
 
 import (
+	"bytes"
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/assess/pkg/models/operations"
@@ -33,96 +34,7 @@ func newExcelReports(defaultClient, securityClient HTTPClient, serverURL, langua
 	}
 }
 
-// DownloadExcelReport - Download generated excel report
-// Download the previously generated Excel report to a local drive.
-//
-// Deprecated: this method will be removed in a future release, please migrate away from it as soon as possible.
-func (s *excelReports) DownloadExcelReport(ctx context.Context, request operations.DownloadExcelReportRequest, opts ...operations.Option) (*operations.DownloadExcelReportResponse, error) {
-	o := operations.Options{}
-	supportedOptions := []string{
-		operations.SupportedOptionRetries,
-	}
-
-	for _, opt := range opts {
-		if err := opt(&o, supportedOptions...); err != nil {
-			return nil, fmt.Errorf("error applying option: %w", err)
-		}
-	}
-	baseURL := s.serverURL
-	url, err := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/assess/excel/download", request, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error generating URL: %w", err)
-	}
-
-	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error creating request: %w", err)
-	}
-	req.Header.Set("Accept", "application/octet-stream")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
-
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
-		return nil, fmt.Errorf("error populating query params: %w", err)
-	}
-
-	client := s.securityClient
-
-	retryConfig := o.Retries
-	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
-		}
-	}
-
-	httpRes, err := utils.Retry(ctx, utils.Retries{
-		Config: retryConfig,
-		StatusCodes: []string{
-			"408",
-			"429",
-			"5XX",
-		},
-	}, func() (*http.Response, error) {
-		return client.Do(req)
-	})
-	if err != nil {
-		return nil, fmt.Errorf("error sending request: %w", err)
-	}
-	if httpRes == nil {
-		return nil, fmt.Errorf("error sending request: no response")
-	}
-	defer httpRes.Body.Close()
-
-	contentType := httpRes.Header.Get("Content-Type")
-
-	res := &operations.DownloadExcelReportResponse{
-		StatusCode:  httpRes.StatusCode,
-		ContentType: contentType,
-		RawResponse: httpRes,
-	}
-	switch {
-	case httpRes.StatusCode == 200:
-		switch {
-		case utils.MatchContentType(contentType, `application/octet-stream`):
-			out, err := io.ReadAll(httpRes.Body)
-			if err != nil {
-				return nil, fmt.Errorf("error reading response body: %w", err)
-			}
-
-			res.Body = out
-		}
-	}
-
-	return res, nil
-}
-
-// GenerateExcelReport - Generate an Excel report
+// GenerateExcelReport - Generate Excel report
 // Generate an Excel report which can subsequently be downloaded.
 func (s *excelReports) GenerateExcelReport(ctx context.Context, request operations.GenerateExcelReportRequest, opts ...operations.Option) (*operations.GenerateExcelReportResponse, error) {
 	o := operations.Options{}
@@ -145,7 +57,7 @@ func (s *excelReports) GenerateExcelReport(ctx context.Context, request operatio
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json")
+	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
@@ -184,7 +96,13 @@ func (s *excelReports) GenerateExcelReport(ctx context.Context, request operatio
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -198,18 +116,32 @@ func (s *excelReports) GenerateExcelReport(ctx context.Context, request operatio
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.ExcelStatus
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
 			res.ExcelStatus = out
+		}
+	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode == 404:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.Schema
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
+				return nil, err
+			}
+
+			res.Schema = out
 		}
 	}
 
 	return res, nil
 }
 
-// GetAccountingMarketingMetrics - Get the marketing metrics from an accounting source for a given company.
+// GetAccountingMarketingMetrics - Get marketing metrics report
+// Get the marketing metrics from an accounting source for a given company.
+//
 // Request an Excel report for download.
 func (s *excelReports) GetAccountingMarketingMetrics(ctx context.Context, request operations.GetAccountingMarketingMetricsRequest, opts ...operations.Option) (*operations.GetAccountingMarketingMetricsResponse, error) {
 	o := operations.Options{}
@@ -232,7 +164,7 @@ func (s *excelReports) GetAccountingMarketingMetrics(ctx context.Context, reques
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json")
+	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
@@ -271,7 +203,13 @@ func (s *excelReports) GetAccountingMarketingMetrics(ctx context.Context, reques
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -285,18 +223,30 @@ func (s *excelReports) GetAccountingMarketingMetrics(ctx context.Context, reques
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Report
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
 			res.Report = out
+		}
+	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode == 404:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.Schema
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
+				return nil, err
+			}
+
+			res.Schema = out
 		}
 	}
 
 	return res, nil
 }
 
-// GetExcelReport - Download generated excel report
+// GetExcelReport - Download Excel report
 // Download the previously generated Excel report to a local drive.
 func (s *excelReports) GetExcelReport(ctx context.Context, request operations.GetExcelReportRequest, opts ...operations.Option) (*operations.GetExcelReportResponse, error) {
 	o := operations.Options{}
@@ -319,7 +269,7 @@ func (s *excelReports) GetExcelReport(ctx context.Context, request operations.Ge
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/octet-stream")
+	req.Header.Set("Accept", "application/json;q=1, application/octet-stream;q=0")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
@@ -358,7 +308,13 @@ func (s *excelReports) GetExcelReport(ctx context.Context, request operations.Ge
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -371,19 +327,26 @@ func (s *excelReports) GetExcelReport(ctx context.Context, request operations.Ge
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/octet-stream`):
-			out, err := io.ReadAll(httpRes.Body)
-			if err != nil {
-				return nil, fmt.Errorf("error reading response body: %w", err)
+			res.Body = rawBody
+		}
+	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode == 404:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.Schema
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
+				return nil, err
 			}
 
-			res.Body = out
+			res.Schema = out
 		}
 	}
 
 	return res, nil
 }
 
-// GetExcelReportGenerationStatus - Get status of Excel report
+// GetExcelReportGenerationStatus - Get Excel report status
 // Returns the status of the latest report requested.
 func (s *excelReports) GetExcelReportGenerationStatus(ctx context.Context, request operations.GetExcelReportGenerationStatusRequest, opts ...operations.Option) (*operations.GetExcelReportGenerationStatusResponse, error) {
 	o := operations.Options{}
@@ -406,7 +369,7 @@ func (s *excelReports) GetExcelReportGenerationStatus(ctx context.Context, reque
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json")
+	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
@@ -445,7 +408,13 @@ func (s *excelReports) GetExcelReportGenerationStatus(ctx context.Context, reque
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -459,11 +428,23 @@ func (s *excelReports) GetExcelReportGenerationStatus(ctx context.Context, reque
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.ExcelStatus
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
 			res.ExcelStatus = out
+		}
+	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode == 404:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.Schema
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
+				return nil, err
+			}
+
+			res.Schema = out
 		}
 	}
 

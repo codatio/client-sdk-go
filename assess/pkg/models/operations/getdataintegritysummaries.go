@@ -21,4 +21,6 @@ type GetDataIntegritySummariesResponse struct {
 	RawResponse *http.Response
 	// OK
 	Summaries *shared.Summaries
+	// Your API request was not properly authorized.
+	Schema *shared.Schema
 }

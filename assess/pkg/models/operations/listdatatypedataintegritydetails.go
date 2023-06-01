@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-type GetDataIntegrityDetailsRequest struct {
+type ListDataTypeDataIntegrityDetailsRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	// A key for a Codat data type.
 	DataType shared.DataIntegrityDataType `pathParam:"style=simple,explode=false,name=dataType"`
@@ -21,10 +21,12 @@ type GetDataIntegrityDetailsRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-type GetDataIntegrityDetailsResponse struct {
+type ListDataTypeDataIntegrityDetailsResponse struct {
 	ContentType string
 	// OK
 	Details     *shared.Details
 	StatusCode  int
 	RawResponse *http.Response
+	// Your API request was not properly authorized.
+	Schema *shared.Schema
 }
