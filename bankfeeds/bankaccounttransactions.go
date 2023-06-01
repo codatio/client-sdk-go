@@ -34,11 +34,11 @@ func newBankAccountTransactions(defaultClient, securityClient HTTPClient, server
 	}
 }
 
-// CreateBankTransactions - Create bank transactions
+// Create - Create bank transactions
 // Posts bank transactions to the accounting package for a given company.
 //
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankTransactions) to see which integrations support this endpoint.
-func (s *bankAccountTransactions) CreateBankTransactions(ctx context.Context, request operations.CreateBankTransactionsRequest, opts ...operations.Option) (*operations.CreateBankTransactionsResponse, error) {
+func (s *bankAccountTransactions) Create(ctx context.Context, request operations.CreateBankTransactionsRequest, opts ...operations.Option) (*operations.CreateBankTransactionsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -150,9 +150,9 @@ func (s *bankAccountTransactions) CreateBankTransactions(ctx context.Context, re
 	return res, nil
 }
 
-// GetCreateBankAccountModel - List push options for bank account bank transactions
+// Get - List push options for bank account bank transactions
 // Gets the options of pushing bank account transactions.
-func (s *bankAccountTransactions) GetCreateBankAccountModel(ctx context.Context, request operations.GetCreateBankAccountModelRequest, opts ...operations.Option) (*operations.GetCreateBankAccountModelResponse, error) {
+func (s *bankAccountTransactions) Get(ctx context.Context, request operations.GetCreateBankAccountModelRequest, opts ...operations.Option) (*operations.GetCreateBankAccountModelResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -253,9 +253,9 @@ func (s *bankAccountTransactions) GetCreateBankAccountModel(ctx context.Context,
 	return res, nil
 }
 
-// ListBankAccountTransactions - List bank transactions for bank account
+// List - List bank transactions for bank account
 // Gets bank transactions for a given bank account ID
-func (s *bankAccountTransactions) ListBankAccountTransactions(ctx context.Context, request operations.ListBankAccountTransactionsRequest, opts ...operations.Option) (*operations.ListBankAccountTransactionsResponse, error) {
+func (s *bankAccountTransactions) List(ctx context.Context, request operations.ListBankAccountTransactionsRequest, opts ...operations.Option) (*operations.ListBankAccountTransactionsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,

@@ -50,6 +50,10 @@ type CodatBankFeeds struct {
 	BankAccountTransactions *bankAccountTransactions
 	// BankFeedAccounts - Bank feed bank accounts
 	BankFeedAccounts *bankFeedAccounts
+	// Companies - Create and manage your Codat companies.
+	Companies *companies
+	// Connections - Manage your companies' data connections.
+	Connections *connections
 
 	// Non-idiomatic field names below are to namespace fields from the fields names above to avoid name conflicts
 	_defaultClient  HTTPClient
@@ -99,8 +103,8 @@ func WithSecurity(security shared.Security) SDKOption {
 func New(opts ...SDKOption) *CodatBankFeeds {
 	sdk := &CodatBankFeeds{
 		_language:   "go",
-		_sdkVersion: "0.16.1",
-		_genVersion: "2.32.7",
+		_sdkVersion: "0.17.0",
+		_genVersion: "2.34.2",
 	}
 	for _, opt := range opts {
 		opt(sdk)
@@ -132,6 +136,24 @@ func New(opts ...SDKOption) *CodatBankFeeds {
 	)
 
 	sdk.BankFeedAccounts = newBankFeedAccounts(
+		sdk._defaultClient,
+		sdk._securityClient,
+		sdk._serverURL,
+		sdk._language,
+		sdk._sdkVersion,
+		sdk._genVersion,
+	)
+
+	sdk.Companies = newCompanies(
+		sdk._defaultClient,
+		sdk._securityClient,
+		sdk._serverURL,
+		sdk._language,
+		sdk._sdkVersion,
+		sdk._genVersion,
+	)
+
+	sdk.Connections = newConnections(
 		sdk._defaultClient,
 		sdk._securityClient,
 		sdk._serverURL,

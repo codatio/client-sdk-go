@@ -2,7 +2,7 @@
 
 package shared
 
-// Schema - Your API request was not properly authorized.
+// Schema - Your `query` parameter was not correctly formed
 type Schema struct {
 	CanBeRetried      *string `json:"canBeRetried,omitempty"`
 	CorrelationID     *string `json:"correlationId,omitempty"`
