@@ -14,10 +14,24 @@ type GetBankAccountRequest struct {
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
+// GetBankAccount409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
+type GetBankAccount409ApplicationJSON struct {
+	CanBeRetried      *string `json:"canBeRetried,omitempty"`
+	CorrelationID     *string `json:"correlationId,omitempty"`
+	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
+	Error             *string `json:"error,omitempty"`
+	Service           *string `json:"service,omitempty"`
+	StatusCode        *int64  `json:"statusCode,omitempty"`
+}
+
 type GetBankAccountResponse struct {
 	// Success
 	BankAccount *shared.BankAccount
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
+	// The data type's dataset has not been requested or is still syncing.
+	GetBankAccount409ApplicationJSONObject *GetBankAccount409ApplicationJSON
+	// Your API request was not properly authorized.
+	Schema *shared.Schema
 }

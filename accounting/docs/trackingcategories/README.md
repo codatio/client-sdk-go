@@ -28,14 +28,14 @@ import(
 func main() {
     s := codataccounting.New(
         codataccounting.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
     ctx := context.Background()
     res, err := s.TrackingCategories.Get(ctx, operations.GetTrackingCategoryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        TrackingCategoryID: "quas",
+        TrackingCategoryID: "consectetur",
     })
     if err != nil {
         log.Fatal(err)
@@ -66,7 +66,7 @@ import(
 func main() {
     s := codataccounting.New(
         codataccounting.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
@@ -76,7 +76,7 @@ func main() {
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: codataccounting.Int(1),
         PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("expedita"),
+        Query: codataccounting.String("aliquam"),
     })
     if err != nil {
         log.Fatal(err)

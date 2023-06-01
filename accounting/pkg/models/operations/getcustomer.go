@@ -12,10 +12,24 @@ type GetCustomerRequest struct {
 	CustomerID string `pathParam:"style=simple,explode=false,name=customerId"`
 }
 
+// GetCustomer409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
+type GetCustomer409ApplicationJSON struct {
+	CanBeRetried      *string `json:"canBeRetried,omitempty"`
+	CorrelationID     *string `json:"correlationId,omitempty"`
+	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
+	Error             *string `json:"error,omitempty"`
+	Service           *string `json:"service,omitempty"`
+	StatusCode        *int64  `json:"statusCode,omitempty"`
+}
+
 type GetCustomerResponse struct {
 	ContentType string
 	// Success
 	Customer    *shared.Customer
 	StatusCode  int
 	RawResponse *http.Response
+	// The data type's dataset has not been requested or is still syncing.
+	GetCustomer409ApplicationJSONObject *GetCustomer409ApplicationJSON
+	// Your API request was not properly authorized.
+	Schema *shared.Schema
 }

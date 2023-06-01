@@ -19,10 +19,24 @@ type ListBillPaymentsRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
+// ListBillPayments409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
+type ListBillPayments409ApplicationJSON struct {
+	CanBeRetried      *string `json:"canBeRetried,omitempty"`
+	CorrelationID     *string `json:"correlationId,omitempty"`
+	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
+	Error             *string `json:"error,omitempty"`
+	Service           *string `json:"service,omitempty"`
+	StatusCode        *int64  `json:"statusCode,omitempty"`
+}
+
 type ListBillPaymentsResponse struct {
 	// Success
 	BillPayments *shared.BillPayments
 	ContentType  string
 	StatusCode   int
 	RawResponse  *http.Response
+	// The data type's dataset has not been requested or is still syncing.
+	ListBillPayments409ApplicationJSONObject *ListBillPayments409ApplicationJSON
+	// Your `query` parameter was not correctly formed
+	Schema *shared.Schema
 }

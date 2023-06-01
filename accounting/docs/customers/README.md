@@ -17,13 +17,12 @@ Customers
 
 ## Create
 
-﻿Posts an individual customer for a given company.
+Posts an individual customer for a given company.
 
 Required data may vary by integration. To see what data to post, first call [Get create/update customer model](https://docs.codat.io/accounting-api#/operations/get-create-update-customers-model).
 
-> **Supported Integrations**
-> 
-> Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=customers) for integrations that support creating customers.
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=customers) to see which integrations support this endpoint.
+
 
 ### Example Usage
 
@@ -41,7 +40,7 @@ import(
 func main() {
     s := codataccounting.New(
         codataccounting.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
@@ -50,117 +49,142 @@ func main() {
         Customer: &shared.Customer{
             Addresses: []shared.Addressesitems{
                 shared.Addressesitems{
-                    City: codataccounting.String("Port Clevelandtown"),
-                    Country: codataccounting.String("Turkmenistan"),
-                    Line1: codataccounting.String("culpa"),
-                    Line2: codataccounting.String("at"),
-                    PostalCode: codataccounting.String("10296"),
-                    Region: codataccounting.String("dolore"),
+                    City: codataccounting.String("Kassandrafield"),
+                    Country: codataccounting.String("Ireland"),
+                    Line1: codataccounting.String("aut"),
+                    Line2: codataccounting.String("nisi"),
+                    PostalCode: codataccounting.String("53357"),
+                    Region: codataccounting.String("debitis"),
                     Type: shared.AddressTypeUnknown,
                 },
                 shared.Addressesitems{
-                    City: codataccounting.String("Abbyport"),
-                    Country: codataccounting.String("Philippines"),
-                    Line1: codataccounting.String("voluptatibus"),
-                    Line2: codataccounting.String("sequi"),
-                    PostalCode: codataccounting.String("37221"),
-                    Region: codataccounting.String("quas"),
-                    Type: shared.AddressTypeUnknown,
+                    City: codataccounting.String("West Rorystad"),
+                    Country: codataccounting.String("Martinique"),
+                    Line1: codataccounting.String("magnam"),
+                    Line2: codataccounting.String("cupiditate"),
+                    PostalCode: codataccounting.String("95102-7224"),
+                    Region: codataccounting.String("hic"),
+                    Type: shared.AddressTypeBilling,
                 },
                 shared.Addressesitems{
-                    City: codataccounting.String("Burdetteland"),
-                    Country: codataccounting.String("Vietnam"),
-                    Line1: codataccounting.String("nulla"),
-                    Line2: codataccounting.String("libero"),
-                    PostalCode: codataccounting.String("94593"),
-                    Region: codataccounting.String("unde"),
-                    Type: shared.AddressTypeUnknown,
+                    City: codataccounting.String("Monroefort"),
+                    Country: codataccounting.String("Australia"),
+                    Line1: codataccounting.String("porro"),
+                    Line2: codataccounting.String("vel"),
+                    PostalCode: codataccounting.String("92418-7122"),
+                    Region: codataccounting.String("incidunt"),
+                    Type: shared.AddressTypeDelivery,
                 },
                 shared.Addressesitems{
-                    City: codataccounting.String("South Paul"),
-                    Country: codataccounting.String("Lesotho"),
-                    Line1: codataccounting.String("ab"),
-                    Line2: codataccounting.String("quo"),
-                    PostalCode: codataccounting.String("58178-2135"),
-                    Region: codataccounting.String("temporibus"),
-                    Type: shared.AddressTypeUnknown,
+                    City: codataccounting.String("Mrazworth"),
+                    Country: codataccounting.String("Jersey"),
+                    Line1: codataccounting.String("rem"),
+                    Line2: codataccounting.String("est"),
+                    PostalCode: codataccounting.String("70884"),
+                    Region: codataccounting.String("laborum"),
+                    Type: shared.AddressTypeBilling,
                 },
             },
-            ContactName: codataccounting.String("amet"),
+            ContactName: codataccounting.String("soluta"),
             Contacts: []shared.Contact{
                 shared.Contact{
                     Address: &shared.Addressesitems{
-                        City: codataccounting.String("Margaretestad"),
-                        Country: codataccounting.String("Burkina Faso"),
-                        Line1: codataccounting.String("placeat"),
-                        Line2: codataccounting.String("rem"),
-                        PostalCode: codataccounting.String("59914"),
-                        Region: codataccounting.String("ullam"),
+                        City: codataccounting.String("Fort Leifmouth"),
+                        Country: codataccounting.String("Bulgaria"),
+                        Line1: codataccounting.String("ea"),
+                        Line2: codataccounting.String("architecto"),
+                        PostalCode: codataccounting.String("70835-8147"),
+                        Region: codataccounting.String("exercitationem"),
                         Type: shared.AddressTypeUnknown,
                     },
-                    Email: codataccounting.String("Buster49@hotmail.com"),
-                    ModifiedDate: codataccounting.String("quod"),
-                    Name: codataccounting.String("Marjorie Funk"),
+                    Email: codataccounting.String("Krystel.Jakubowski71@yahoo.com"),
+                    ModifiedDate: codataccounting.String("modi"),
+                    Name: codataccounting.String("Jon Bashirian"),
                     Phone: []shared.PhoneNumbersitems{
                         shared.PhoneNumbersitems{
-                            Number: "quaerat",
-                            Type: shared.PhoneNumberTypeLandline,
+                            Number: "iusto",
+                            Type: shared.PhoneNumberTypePrimary,
+                        },
+                        shared.PhoneNumbersitems{
+                            Number: "odit",
+                            Type: shared.PhoneNumberTypeFax,
+                        },
+                        shared.PhoneNumbersitems{
+                            Number: "ducimus",
+                            Type: shared.PhoneNumberTypeFax,
+                        },
+                        shared.PhoneNumbersitems{
+                            Number: "ducimus",
+                            Type: shared.PhoneNumberTypeFax,
                         },
                     },
                     Status: shared.CustomerStatusArchived,
                 },
                 shared.Contact{
                     Address: &shared.Addressesitems{
-                        City: codataccounting.String("Howellland"),
-                        Country: codataccounting.String("Mayotte"),
-                        Line1: codataccounting.String("distinctio"),
-                        Line2: codataccounting.String("cum"),
-                        PostalCode: codataccounting.String("82083"),
-                        Region: codataccounting.String("laborum"),
-                        Type: shared.AddressTypeUnknown,
+                        City: codataccounting.String("East Dorcasboro"),
+                        Country: codataccounting.String("Saint Helena"),
+                        Line1: codataccounting.String("inventore"),
+                        Line2: codataccounting.String("ducimus"),
+                        PostalCode: codataccounting.String("04558"),
+                        Region: codataccounting.String("necessitatibus"),
+                        Type: shared.AddressTypeDelivery,
                     },
-                    Email: codataccounting.String("Warren19@gmail.com"),
-                    ModifiedDate: codataccounting.String("autem"),
-                    Name: codataccounting.String("Edgar Cremin"),
+                    Email: codataccounting.String("Stanley_Zboncak@hotmail.com"),
+                    ModifiedDate: codataccounting.String("quam"),
+                    Name: codataccounting.String("Lee Steuber DDS"),
                     Phone: []shared.PhoneNumbersitems{
                         shared.PhoneNumbersitems{
-                            Number: "velit",
+                            Number: "pariatur",
+                            Type: shared.PhoneNumberTypeLandline,
+                        },
+                        shared.PhoneNumbersitems{
+                            Number: "amet",
+                            Type: shared.PhoneNumberTypeUnknown,
+                        },
+                        shared.PhoneNumbersitems{
+                            Number: "quasi",
+                            Type: shared.PhoneNumberTypePrimary,
+                        },
+                        shared.PhoneNumbersitems{
+                            Number: "rerum",
                             Type: shared.PhoneNumberTypeLandline,
                         },
                     },
                     Status: shared.CustomerStatusArchived,
                 },
             },
-            CustomerName: codataccounting.String("natus"),
-            DefaultCurrency: codataccounting.String("minima"),
-            EmailAddress: codataccounting.String("minus"),
-            ID: codataccounting.String("9d237397-c785-4b5d-b4f5-00183febdf67"),
+            CustomerName: codataccounting.String("aliquam"),
+            DefaultCurrency: codataccounting.String("voluptates"),
+            EmailAddress: codataccounting.String("alias"),
+            ID: codataccounting.String("80aa1041-86ec-4759-a02f-3702c5c8e2d3"),
             Metadata: &shared.Metadata{
                 IsDeleted: codataccounting.Bool(false),
             },
-            ModifiedDate: codataccounting.String("aliquid"),
-            Phone: codataccounting.String("510.586.7430 x0316"),
-            RegistrationNumber: codataccounting.String("ad"),
-            SourceModifiedDate: codataccounting.String("nisi"),
+            ModifiedDate: codataccounting.String("consequatur"),
+            Phone: codataccounting.String("1-782-202-9622 x40479"),
+            RegistrationNumber: codataccounting.String("sequi"),
+            SourceModifiedDate: codataccounting.String("ducimus"),
             Status: shared.CustomerStatusUnknown,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "officiis": map[string]interface{}{
-                        "minus": "tempora",
-                        "sequi": "natus",
-                        "saepe": "quibusdam",
-                        "corrupti": "maxime",
+                    "ut": map[string]interface{}{
+                        "sed": "quas",
+                        "aspernatur": "laudantium",
                     },
-                    "aliquam": map[string]interface{}{
-                        "explicabo": "eaque",
+                    "fugit": map[string]interface{}{
+                        "reiciendis": "nulla",
+                    },
+                    "libero": map[string]interface{}{
+                        "hic": "eum",
                     },
                 },
             },
-            TaxNumber: codataccounting.String("hic"),
+            TaxNumber: codataccounting.String("sint"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codataccounting.Int(276828),
+        TimeoutInMinutes: codataccounting.Int(909351),
     })
     if err != nil {
         log.Fatal(err)
@@ -191,7 +215,7 @@ import(
 func main() {
     s := codataccounting.New(
         codataccounting.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
@@ -200,7 +224,7 @@ func main() {
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        CustomerID: "quae",
+        CustomerID: "veniam",
     })
     if err != nil {
         log.Fatal(err)
@@ -231,14 +255,14 @@ import(
 func main() {
     s := codataccounting.New(
         codataccounting.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
     ctx := context.Background()
     res, err := s.Customers.Get(ctx, operations.GetCustomerRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        CustomerID: "eos",
+        CustomerID: "unde",
     })
     if err != nil {
         log.Fatal(err)
@@ -269,7 +293,7 @@ import(
 func main() {
     s := codataccounting.New(
         codataccounting.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
@@ -278,7 +302,7 @@ func main() {
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        CustomerID: "eius",
+        CustomerID: "consequuntur",
     })
     if err != nil {
         log.Fatal(err)
@@ -315,7 +339,7 @@ import(
 func main() {
     s := codataccounting.New(
         codataccounting.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
@@ -353,7 +377,7 @@ import(
 func main() {
     s := codataccounting.New(
         codataccounting.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
@@ -363,7 +387,7 @@ func main() {
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: codataccounting.Int(1),
         PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("voluptatem"),
+        Query: codataccounting.String("laboriosam"),
     })
     if err != nil {
         log.Fatal(err)
@@ -394,7 +418,7 @@ import(
 func main() {
     s := codataccounting.New(
         codataccounting.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
@@ -402,7 +426,7 @@ func main() {
     res, err := s.Customers.ListAttachments(ctx, operations.ListCustomerAttachmentsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        CustomerID: "temporibus",
+        CustomerID: "iusto",
     })
     if err != nil {
         log.Fatal(err)
@@ -440,7 +464,7 @@ import(
 func main() {
     s := codataccounting.New(
         codataccounting.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
@@ -449,115 +473,116 @@ func main() {
         Customer: &shared.Customer{
             Addresses: []shared.Addressesitems{
                 shared.Addressesitems{
-                    City: codataccounting.String("New Jayde"),
-                    Country: codataccounting.String("Nigeria"),
-                    Line1: codataccounting.String("porro"),
-                    Line2: codataccounting.String("voluptas"),
-                    PostalCode: codataccounting.String("27537-1668"),
-                    Region: codataccounting.String("magni"),
+                    City: codataccounting.String("Annabelfort"),
+                    Country: codataccounting.String("Saint Martin"),
+                    Line1: codataccounting.String("voluptatum"),
+                    Line2: codataccounting.String("pariatur"),
+                    PostalCode: codataccounting.String("78213"),
+                    Region: codataccounting.String("voluptatum"),
+                    Type: shared.AddressTypeDelivery,
+                },
+                shared.Addressesitems{
+                    City: codataccounting.String("East Fridastad"),
+                    Country: codataccounting.String("Oman"),
+                    Line1: codataccounting.String("quas"),
+                    Line2: codataccounting.String("odit"),
+                    PostalCode: codataccounting.String("50599-1430"),
+                    Region: codataccounting.String("laborum"),
                     Type: shared.AddressTypeUnknown,
                 },
                 shared.Addressesitems{
-                    City: codataccounting.String("Joanhaven"),
-                    Country: codataccounting.String("Lebanon"),
-                    Line1: codataccounting.String("unde"),
-                    Line2: codataccounting.String("ad"),
-                    PostalCode: codataccounting.String("62198-2033"),
-                    Region: codataccounting.String("laboriosam"),
+                    City: codataccounting.String("West Jeromefield"),
+                    Country: codataccounting.String("American Samoa"),
+                    Line1: codataccounting.String("numquam"),
+                    Line2: codataccounting.String("numquam"),
+                    PostalCode: codataccounting.String("90329-6305"),
+                    Region: codataccounting.String("distinctio"),
+                    Type: shared.AddressTypeDelivery,
+                },
+                shared.Addressesitems{
+                    City: codataccounting.String("Robbboro"),
+                    Country: codataccounting.String("Aruba"),
+                    Line1: codataccounting.String("vero"),
+                    Line2: codataccounting.String("corporis"),
+                    PostalCode: codataccounting.String("00962-1494"),
+                    Region: codataccounting.String("sed"),
                     Type: shared.AddressTypeBilling,
                 },
             },
-            ContactName: codataccounting.String("tenetur"),
+            ContactName: codataccounting.String("natus"),
             Contacts: []shared.Contact{
                 shared.Contact{
                     Address: &shared.Addressesitems{
-                        City: codataccounting.String("O'Konton"),
-                        Country: codataccounting.String("Argentina"),
-                        Line1: codataccounting.String("voluptas"),
-                        Line2: codataccounting.String("pariatur"),
-                        PostalCode: codataccounting.String("01252"),
-                        Region: codataccounting.String("ullam"),
-                        Type: shared.AddressTypeUnknown,
+                        City: codataccounting.String("East Trystan"),
+                        Country: codataccounting.String("Nauru"),
+                        Line1: codataccounting.String("minima"),
+                        Line2: codataccounting.String("minus"),
+                        PostalCode: codataccounting.String("81241-6474"),
+                        Region: codataccounting.String("quas"),
+                        Type: shared.AddressTypeBilling,
                     },
-                    Email: codataccounting.String("Aurelia.Mraz77@yahoo.com"),
-                    ModifiedDate: codataccounting.String("ipsum"),
-                    Name: codataccounting.String("Carl Pollich IV"),
+                    Email: codataccounting.String("Fay.Stokes97@hotmail.com"),
+                    ModifiedDate: codataccounting.String("quis"),
+                    Name: codataccounting.String("Helen Brown"),
                     Phone: []shared.PhoneNumbersitems{
                         shared.PhoneNumbersitems{
-                            Number: "incidunt",
-                            Type: shared.PhoneNumberTypePrimary,
+                            Number: "accusamus",
+                            Type: shared.PhoneNumberTypeFax,
                         },
                         shared.PhoneNumbersitems{
-                            Number: "nisi",
-                            Type: shared.PhoneNumberTypePrimary,
-                        },
-                    },
-                    Status: shared.CustomerStatusArchived,
-                },
-                shared.Contact{
-                    Address: &shared.Addressesitems{
-                        City: codataccounting.String("North Cloydton"),
-                        Country: codataccounting.String("Austria"),
-                        Line1: codataccounting.String("possimus"),
-                        Line2: codataccounting.String("perferendis"),
-                        PostalCode: codataccounting.String("28760"),
-                        Region: codataccounting.String("beatae"),
-                        Type: shared.AddressTypeDelivery,
-                    },
-                    Email: codataccounting.String("Mae.Willms66@yahoo.com"),
-                    ModifiedDate: codataccounting.String("commodi"),
-                    Name: codataccounting.String("Tom Gutkowski"),
-                    Phone: []shared.PhoneNumbersitems{
-                        shared.PhoneNumbersitems{
-                            Number: "id",
+                            Number: "vero",
                             Type: shared.PhoneNumberTypeUnknown,
                         },
                         shared.PhoneNumbersitems{
-                            Number: "molestias",
-                            Type: shared.PhoneNumberTypeUnknown,
+                            Number: "ea",
+                            Type: shared.PhoneNumberTypeMobile,
+                        },
+                        shared.PhoneNumbersitems{
+                            Number: "aliquid",
+                            Type: shared.PhoneNumberTypeFax,
                         },
                     },
                     Status: shared.CustomerStatusActive,
                 },
             },
-            CustomerName: codataccounting.String("occaecati"),
-            DefaultCurrency: codataccounting.String("eos"),
-            EmailAddress: codataccounting.String("veniam"),
-            ID: codataccounting.String("3c8962f4-896b-4f51-a465-2d3c343d6177"),
+            CustomerName: codataccounting.String("consequuntur"),
+            DefaultCurrency: codataccounting.String("accusantium"),
+            EmailAddress: codataccounting.String("autem"),
+            ID: codataccounting.String("dab75005-2a56-447e-9c43-9ed8c4320f41"),
             Metadata: &shared.Metadata{
                 IsDeleted: codataccounting.Bool(false),
             },
-            ModifiedDate: codataccounting.String("atque"),
-            Phone: codataccounting.String("1-935-212-4413 x9410"),
-            RegistrationNumber: codataccounting.String("iste"),
-            SourceModifiedDate: codataccounting.String("aut"),
-            Status: shared.CustomerStatusActive,
+            ModifiedDate: codataccounting.String("eos"),
+            Phone: codataccounting.String("283-454-6735 x275"),
+            RegistrationNumber: codataccounting.String("quaerat"),
+            SourceModifiedDate: codataccounting.String("nobis"),
+            Status: shared.CustomerStatusUnknown,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "error": map[string]interface{}{
-                        "ipsa": "dolore",
+                    "unde": map[string]interface{}{
+                        "magni": "modi",
+                        "atque": "blanditiis",
+                        "quibusdam": "odio",
+                        "unde": "ad",
                     },
-                    "labore": map[string]interface{}{
-                        "ullam": "quibusdam",
-                        "recusandae": "ad",
-                        "omnis": "mollitia",
+                    "officia": map[string]interface{}{
+                        "incidunt": "aspernatur",
+                        "asperiores": "maxime",
+                        "dolore": "accusantium",
                     },
-                    "placeat": map[string]interface{}{
-                        "ducimus": "eaque",
-                        "aliquid": "ea",
-                    },
-                    "odio": map[string]interface{}{
-                        "quisquam": "delectus",
+                    "corporis": map[string]interface{}{
+                        "laboriosam": "omnis",
+                        "tenetur": "vel",
                     },
                 },
             },
-            TaxNumber: codataccounting.String("et"),
+            TaxNumber: codataccounting.String("iste"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        CustomerID: "optio",
+        CustomerID: "animi",
         ForceUpdate: codataccounting.Bool(false),
-        TimeoutInMinutes: codataccounting.Int(953679),
+        TimeoutInMinutes: codataccounting.Int(60491),
     })
     if err != nil {
         log.Fatal(err)

@@ -17,9 +17,7 @@ Posts a new transfer to the accounting package for a given company.
 
 Required data may vary by integration. To see what data to post, first call [Get create transfer model](https://docs.codat.io/accounting-api#/operations/get-create-transfers-model).
 
-> **Supported Integrations**
-> 
-> Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=transfers) for integrations that support creating transfers.
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=transfers) to see which integrations support this endpoint.
 
 ### Example Usage
 
@@ -37,7 +35,7 @@ import(
 func main() {
     s := codataccounting.New(
         codataccounting.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
@@ -45,77 +43,63 @@ func main() {
     res, err := s.Transfers.Create(ctx, operations.CreateTransferRequest{
         Transfer: &shared.Transfer{
             ContactRef: &shared.TransferContactRef{
-                DataType: codataccounting.String("explicabo"),
-                ID: "1f06d4d1-7852-4d28-be1d-b01d6919f831",
+                DataType: codataccounting.String("magni"),
+                ID: "73caa911-8b38-4f1b-a1a3-31a54dc10294",
             },
-            Date: codataccounting.String("nemo"),
+            Date: codataccounting.String("reiciendis"),
             DepositedRecordRefs: []shared.InvoiceTo{
                 shared.InvoiceTo{
-                    DataType: codataccounting.String("dolorem"),
-                    ID: codataccounting.String("a84ea7db-15c4-4c15-be6c-d097a675597e"),
+                    DataType: codataccounting.String("eos"),
+                    ID: codataccounting.String("fed939ba-8f71-4e29-92c2-0ee1228ac3ad"),
                 },
                 shared.InvoiceTo{
-                    DataType: codataccounting.String("cumque"),
-                    ID: codataccounting.String("beb7982b-af9a-47da-ac29-b938e51a7e6e"),
+                    DataType: codataccounting.String("optio"),
+                    ID: codataccounting.String("647d240b-c11e-4a48-a824-ccc6a2f0f5b9"),
                 },
                 shared.InvoiceTo{
-                    DataType: codataccounting.String("nulla"),
-                    ID: codataccounting.String("6f7ff04f-da04-4669-aae8-182403655aa9"),
+                    DataType: codataccounting.String("quibusdam"),
+                    ID: codataccounting.String("3cb11a76-87d3-4100-a8e2-b9b0d746d2a7"),
                 },
             },
-            Description: codataccounting.String("consequuntur"),
+            Description: codataccounting.String("quisquam"),
             From: &shared.TransferAccount{
                 AccountRef: &shared.AccountRef{
-                    ID: codataccounting.String("3c49919e-bd1c-4f77-9538-cbbfcdf4ece9"),
-                    Name: codataccounting.String("Jodi Schamberger"),
+                    ID: codataccounting.String("7d1ea0e7-9fa9-4bbe-9f17-9f650b1e707e"),
+                    Name: codataccounting.String("Rochelle Grimes"),
                 },
-                Amount: codataccounting.Float64(7140.11),
-                Currency: codataccounting.String("modi"),
+                Amount: codataccounting.Float64(4097.14),
+                Currency: codataccounting.String("odio"),
             },
-            ID: codataccounting.String("2c330496-17cb-471d-9c25-0b60c751d2ae"),
+            ID: codataccounting.String("13bacce0-72ab-4d61-918d-279c10c18516"),
             Metadata: &shared.Metadata{
                 IsDeleted: codataccounting.Bool(false),
             },
-            ModifiedDate: codataccounting.String("expedita"),
-            SourceModifiedDate: codataccounting.String("necessitatibus"),
+            ModifiedDate: codataccounting.String("doloribus"),
+            SourceModifiedDate: codataccounting.String("repellendus"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "tempore": map[string]interface{}{
-                        "rem": "consequuntur",
-                        "molestias": "officiis",
-                        "qui": "vel",
+                    "praesentium": map[string]interface{}{
+                        "repudiandae": "fugit",
+                        "vel": "fugit",
+                        "ab": "quia",
                     },
-                    "aliquam": map[string]interface{}{
-                        "ab": "dolorum",
-                        "veniam": "officiis",
-                    },
-                    "minus": map[string]interface{}{
-                        "corrupti": "reprehenderit",
-                        "a": "quam",
-                        "cupiditate": "incidunt",
+                    "esse": map[string]interface{}{
+                        "ea": "odit",
                     },
                 },
             },
             To: &shared.TransferAccount{
                 AccountRef: &shared.AccountRef{
-                    ID: codataccounting.String("f04f4144-6f79-43d3-b100-20147cd1b831"),
-                    Name: codataccounting.String("Amy Price"),
+                    ID: codataccounting.String("8fa50396-2867-4e72-b3a6-5024b157f9bb"),
+                    Name: codataccounting.String("Delia Zulauf"),
                 },
-                Amount: codataccounting.Float64(2218.09),
-                Currency: codataccounting.String("voluptates"),
+                Amount: codataccounting.Float64(6278.1),
+                Currency: codataccounting.String("ad"),
             },
             TrackingCategoryRefs: []shared.TrackingCategoryRef{
                 shared.TrackingCategoryRef{
-                    ID: "8960a0aa-fc7a-4867-8ba5-00a8f4cb72ed",
-                    Name: codataccounting.String("Kara Wilderman"),
-                },
-                shared.TrackingCategoryRef{
-                    ID: "25d55615-8803-4212-b7b5-9b7154642b9e",
-                    Name: codataccounting.String("Stella Schroeder"),
-                },
-                shared.TrackingCategoryRef{
-                    ID: "c3d3ca49-1837-4978-88d1-56f01ae36bb8",
-                    Name: codataccounting.String("Jose Adams"),
+                    ID: "871d99b6-61a7-4def-968b-6ccb2822b4a9",
+                    Name: codataccounting.String("Roberto Abshire"),
                 },
             },
         },
@@ -151,7 +135,7 @@ import(
 func main() {
     s := codataccounting.New(
         codataccounting.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
@@ -159,7 +143,7 @@ func main() {
     res, err := s.Transfers.Get(ctx, operations.GetTransferRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TransferID: "eveniet",
+        TransferID: "magni",
     })
     if err != nil {
         log.Fatal(err)
@@ -196,7 +180,7 @@ import(
 func main() {
     s := codataccounting.New(
         codataccounting.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
@@ -234,7 +218,7 @@ import(
 func main() {
     s := codataccounting.New(
         codataccounting.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
@@ -245,7 +229,7 @@ func main() {
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: codataccounting.Int(1),
         PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("ratione"),
+        Query: codataccounting.String("doloribus"),
     })
     if err != nil {
         log.Fatal(err)

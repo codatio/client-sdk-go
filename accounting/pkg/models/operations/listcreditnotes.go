@@ -19,10 +19,24 @@ type ListCreditNotesRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
+// ListCreditNotes409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
+type ListCreditNotes409ApplicationJSON struct {
+	CanBeRetried      *string `json:"canBeRetried,omitempty"`
+	CorrelationID     *string `json:"correlationId,omitempty"`
+	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
+	Error             *string `json:"error,omitempty"`
+	Service           *string `json:"service,omitempty"`
+	StatusCode        *int64  `json:"statusCode,omitempty"`
+}
+
 type ListCreditNotesResponse struct {
 	ContentType string
 	// Success
 	CreditNotes *shared.CreditNotes
 	StatusCode  int
 	RawResponse *http.Response
+	// The data type's dataset has not been requested or is still syncing.
+	ListCreditNotes409ApplicationJSONObject *ListCreditNotes409ApplicationJSON
+	// Your `query` parameter was not correctly formed
+	Schema *shared.Schema
 }

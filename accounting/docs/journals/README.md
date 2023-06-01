@@ -17,9 +17,7 @@ Posts a new journal to the accounting package for a given company.
 
 Required data may vary by integration. To see what data to post, first call [Get create journal model](https://docs.codat.io/accounting-api#/operations/get-create-journals-model).
 
-> **Supported Integrations**
-> 
-> Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journals) for integrations that support creating journals.
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journals) to see which integrations support this endpoint.
 
 ### Example Usage
 
@@ -37,30 +35,30 @@ import(
 func main() {
     s := codataccounting.New(
         codataccounting.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
     ctx := context.Background()
     res, err := s.Journals.Create(ctx, operations.CreateJournalRequest{
         Journal: &shared.Journal{
-            CreatedOn: codataccounting.String("cum"),
+            CreatedOn: codataccounting.String("nostrum"),
             HasChildren: codataccounting.Bool(false),
-            ID: codataccounting.String("56065a50-74be-4fb8-af68-49d2b9940436"),
-            JournalCode: codataccounting.String("adipisci"),
+            ID: codataccounting.String("040d6c8b-2a5f-4002-a07e-4048f90009ed"),
+            JournalCode: codataccounting.String("consequuntur"),
             Metadata: &shared.Metadata{
                 IsDeleted: codataccounting.Bool(false),
             },
-            ModifiedDate: codataccounting.String("mollitia"),
-            Name: codataccounting.String("Faye Huels"),
-            ParentID: codataccounting.String("voluptatem"),
-            SourceModifiedDate: codataccounting.String("ipsam"),
-            Status: shared.JournalStatusUnknown.ToPointer(),
-            Type: codataccounting.String("praesentium"),
+            ModifiedDate: codataccounting.String("occaecati"),
+            Name: codataccounting.String("Phyllis Koch"),
+            ParentID: codataccounting.String("quidem"),
+            SourceModifiedDate: codataccounting.String("aliquam"),
+            Status: shared.JournalStatusArchived.ToPointer(),
+            Type: codataccounting.String("itaque"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codataccounting.Int(452831),
+        TimeoutInMinutes: codataccounting.Int(612118),
     })
     if err != nil {
         log.Fatal(err)
@@ -91,14 +89,14 @@ import(
 func main() {
     s := codataccounting.New(
         codataccounting.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
     ctx := context.Background()
     res, err := s.Journals.Get(ctx, operations.GetJournalRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        JournalID: "ea",
+        JournalID: "pariatur",
     })
     if err != nil {
         log.Fatal(err)
@@ -135,7 +133,7 @@ import(
 func main() {
     s := codataccounting.New(
         codataccounting.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
@@ -173,7 +171,7 @@ import(
 func main() {
     s := codataccounting.New(
         codataccounting.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
@@ -183,7 +181,7 @@ func main() {
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: codataccounting.Int(1),
         PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("eveniet"),
+        Query: codataccounting.String("suscipit"),
     })
     if err != nil {
         log.Fatal(err)

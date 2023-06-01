@@ -14,9 +14,7 @@ Bank transactions for bank accounts
 
 Posts bank transactions to the accounting package for a given company.
 
-> **Supported Integrations**
-> 
-> Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankTransactions) for integrations that support POST methods.
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankTransactions) to see which integrations support this endpoint.
 
 ### Example Usage
 
@@ -34,35 +32,29 @@ import(
 func main() {
     s := codataccounting.New(
         codataccounting.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
     ctx := context.Background()
     res, err := s.BankAccountTransactions.Create(ctx, operations.CreateBankTransactionsRequest{
         BankTransactions: &shared.BankTransactions{
-            AccountID: codataccounting.String("quis"),
-            Transactions: []shared.BankTransactionLine{
-                shared.BankTransactionLine{
-                    Amount: 6481.72,
-                    Balance: 202.18,
-                    ClearedOnDate: codataccounting.String("ipsam"),
-                    Counterparty: codataccounting.String("repellendus"),
-                    Description: codataccounting.String("sapiente"),
-                    ID: codataccounting.String("c2ddf7cc-78ca-41ba-928f-c816742cb739"),
-                    ModifiedDate: codataccounting.String("aspernatur"),
-                    Reconciled: false,
-                    Reference: codataccounting.String("perferendis"),
-                    SourceModifiedDate: codataccounting.String("ad"),
-                    TransactionType: shared.BankTransactionTypeCheck,
-                },
-            },
+            AccountID: codataccounting.String("veritatis"),
+            Amount: codataccounting.Float64(6481.72),
+            Balance: codataccounting.Float64(202.18),
+            ClearedOnDate: codataccounting.String("ipsam"),
+            Description: codataccounting.String("repellendus"),
+            ID: codataccounting.String("fc2ddf7c-c78c-4a1b-a928-fc816742cb73"),
+            ModifiedDate: codataccounting.String("excepturi"),
+            Reconciled: codataccounting.Bool(false),
+            SourceModifiedDate: codataccounting.String("aspernatur"),
+            TransactionType: shared.BankTransactionTypeUnknown.ToPointer(),
         },
-        AccountID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+        AccountID: "ad",
         AllowSyncOnPushComplete: codataccounting.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codataccounting.Int(149675),
+        TimeoutInMinutes: codataccounting.Int(617636),
     })
     if err != nil {
         log.Fatal(err)
@@ -93,13 +85,13 @@ import(
 func main() {
     s := codataccounting.New(
         codataccounting.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
     ctx := context.Background()
     res, err := s.BankAccountTransactions.GetCreateModel(ctx, operations.GetCreateBankAccountModelRequest{
-        AccountID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+        AccountID: "sed",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -132,19 +124,19 @@ import(
 func main() {
     s := codataccounting.New(
         codataccounting.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
     ctx := context.Background()
     res, err := s.BankAccountTransactions.List(ctx, operations.ListBankAccountTransactionsRequest{
-        AccountID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+        AccountID: "iste",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: codataccounting.Int(1),
         PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("iste"),
+        Query: codataccounting.String("dolor"),
     })
     if err != nil {
         log.Fatal(err)

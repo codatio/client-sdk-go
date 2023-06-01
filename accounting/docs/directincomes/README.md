@@ -21,9 +21,7 @@ Posts a new direct income to the accounting package for a given company.
 
 Required data may vary by integration. To see what data to post, first call [Get create direct income model](https://docs.codat.io/accounting-api#/operations/get-create-directIncomes-model).
 
-> **Supported Integrations**
-> 
-> Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=directIncomes) for integrations that support creating direct incomes.
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=directIncomes) to see which integrations support this endpoint.
 
 ### Example Usage
 
@@ -41,7 +39,7 @@ import(
 func main() {
     s := codataccounting.New(
         codataccounting.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
@@ -49,216 +47,244 @@ func main() {
     res, err := s.DirectIncomes.Create(ctx, operations.CreateDirectIncomeRequest{
         DirectIncome: &shared.DirectIncome{
             ContactRef: &shared.ContactRef{
-                DataType: codataccounting.String("magni"),
-                ID: "cdd14fc4-3b70-4bca-88fa-70c43351c3dd",
+                DataType: codataccounting.String("veniam"),
+                ID: "118c2cc5-7fbd-460b-9a78-ed29a9d4eea8",
             },
-            Currency: "beatae",
-            CurrencyRate: codataccounting.Float64(8962.8),
-            ID: codataccounting.String("b8f7f75f-4f23-4f1c-8a58-6c3ae7d7b67f"),
-            IssueDate: "officiis",
+            Currency: "ullam",
+            CurrencyRate: codataccounting.Float64(3917.15),
+            ID: codataccounting.String("58c2d4f4-c88b-4e4f-a78f-d9667e46c51d"),
+            IssueDate: "dolores",
             LineItems: []shared.DirectIncomeLineItem{
                 shared.DirectIncomeLineItem{
                     AccountRef: &shared.AccountRef{
-                        ID: codataccounting.String("f5e142d9-5b1d-4bec-aff7-c4b156e92782"),
-                        Name: codataccounting.String("Holly Toy"),
+                        ID: codataccounting.String("faa58dce-f234-4c95-9b9b-df2190abd9bb"),
+                        Name: codataccounting.String("Delbert Cummerata"),
                     },
-                    Description: codataccounting.String("esse"),
-                    DiscountAmount: codataccounting.Float64(3851.06),
-                    DiscountPercentage: codataccounting.Float64(5122.23),
+                    Description: codataccounting.String("ullam"),
+                    DiscountAmount: codataccounting.Float64(9045.07),
+                    DiscountPercentage: codataccounting.Float64(7703.76),
                     ItemRef: &shared.ItemRef{
-                        ID: "17468063-f799-4b79-96c0-b0fa0bb20a40",
-                        Name: codataccounting.String("Roland Ryan"),
+                        ID: "2659ce02-8084-40c6-9ef6-8e45c8addfac",
+                        Name: codataccounting.String("Bernice Gottlieb Jr."),
                     },
-                    Quantity: 8828.41,
-                    SubTotal: codataccounting.Float64(3996.96),
-                    TaxAmount: codataccounting.Float64(3081.27),
+                    Quantity: 3079.36,
+                    SubTotal: codataccounting.Float64(2029.21),
+                    TaxAmount: codataccounting.Float64(462.58),
                     TaxRateRef: &shared.TaxRateRef{
-                        EffectiveTaxRate: codataccounting.Float64(498.27),
-                        ID: codataccounting.String("64272657-b01a-407c-88fd-3921c257930d"),
-                        Name: codataccounting.String("Elisa Bailey"),
+                        EffectiveTaxRate: codataccounting.Float64(7597.31),
+                        ID: codataccounting.String("6632b439-1fdf-401c-be91-e8f7bc69d460"),
+                        Name: codataccounting.String("Tyrone Kuhn"),
                     },
-                    TotalAmount: codataccounting.Float64(6488.15),
+                    TotalAmount: codataccounting.Float64(9053.64),
                     TrackingCategoryRefs: []shared.TrackingCategoryRef{
                         shared.TrackingCategoryRef{
-                            ID: "efa46d36-6dfa-4101-9a09-1b3ec8b53862",
-                            Name: codataccounting.String("Alonzo Bins"),
+                            ID: "26d10f1e-f263-41c7-80f0-f873f9d5c25f",
+                            Name: codataccounting.String("Miss Alfred VonRueden"),
+                        },
+                        shared.TrackingCategoryRef{
+                            ID: "a4a4253c-3025-4711-b42c-7e7dc548be09",
+                            Name: codataccounting.String("Bradley Boyle"),
+                        },
+                        shared.TrackingCategoryRef{
+                            ID: "a215ca12-a4ba-49d5-9988-192cfd0c77c5",
+                            Name: codataccounting.String("Meghan Koelpin"),
                         },
                     },
-                    UnitAmount: 8706.71,
+                    UnitAmount: 8136.42,
                 },
                 shared.DirectIncomeLineItem{
                     AccountRef: &shared.AccountRef{
-                        ID: codataccounting.String("14fe72e5-21f9-4030-bdfc-338397fffa6d"),
-                        Name: codataccounting.String("Meredith Dickinson V"),
+                        ID: codataccounting.String("4ee6e8b9-0bac-4384-a239-6703fec31c50"),
+                        Name: codataccounting.String("Shawn Gulgowski IV"),
                     },
-                    Description: codataccounting.String("alias"),
-                    DiscountAmount: codataccounting.Float64(9869.41),
-                    DiscountPercentage: codataccounting.Float64(7770.83),
+                    Description: codataccounting.String("perspiciatis"),
+                    DiscountAmount: codataccounting.Float64(6461.08),
+                    DiscountPercentage: codataccounting.Float64(2236.36),
                     ItemRef: &shared.ItemRef{
-                        ID: "157ac9fe-1961-4ce9-be41-c869dd7d9719",
-                        Name: codataccounting.String("Michael Kulas"),
+                        ID: "6a6b2d27-eb70-47aa-a0c8-fe46e6177db9",
+                        Name: codataccounting.String("Dominic Ernser"),
                     },
-                    Quantity: 154.46,
-                    SubTotal: codataccounting.Float64(498.92),
-                    TaxAmount: codataccounting.Float64(6470.89),
+                    Quantity: 508.59,
+                    SubTotal: codataccounting.Float64(9759.09),
+                    TaxAmount: codataccounting.Float64(9767),
                     TaxRateRef: &shared.TaxRateRef{
-                        EffectiveTaxRate: codataccounting.Float64(3619.89),
-                        ID: codataccounting.String("8ffd2967-df8f-4d88-aa8e-60be620cd9c5"),
-                        Name: codataccounting.String("Darrin Schuppe II"),
+                        EffectiveTaxRate: codataccounting.Float64(7372.75),
+                        ID: codataccounting.String("b6970ee7-70e3-4609-bef7-c206e61b0d30"),
+                        Name: codataccounting.String("Kelly Blick"),
                     },
-                    TotalAmount: codataccounting.Float64(7561.02),
+                    TotalAmount: codataccounting.Float64(1644.32),
                     TrackingCategoryRefs: []shared.TrackingCategoryRef{
                         shared.TrackingCategoryRef{
-                            ID: "752512be-ae1d-487e-8c5f-dcea8e7a8831",
-                            Name: codataccounting.String("Lucy Howell"),
+                            ID: "a3d98637-ca85-4c3f-a655-74dbaf94a7c9",
+                            Name: codataccounting.String("Randal Blanda"),
                         },
                     },
-                    UnitAmount: 8726.91,
+                    UnitAmount: 9616.33,
                 },
                 shared.DirectIncomeLineItem{
                     AccountRef: &shared.AccountRef{
-                        ID: codataccounting.String("a6d77c1d-8606-4623-bd42-27866db8a749"),
-                        Name: codataccounting.String("Glenn McLaughlin"),
+                        ID: codataccounting.String("28db2cf2-bf4f-43de-9356-d7e14b21cd98"),
+                        Name: codataccounting.String("Faye Jacobi"),
                     },
-                    Description: codataccounting.String("exercitationem"),
-                    DiscountAmount: codataccounting.Float64(988.25),
-                    DiscountPercentage: codataccounting.Float64(1089.18),
+                    Description: codataccounting.String("quis"),
+                    DiscountAmount: codataccounting.Float64(6606.91),
+                    DiscountPercentage: codataccounting.Float64(9651.45),
                     ItemRef: &shared.ItemRef{
-                        ID: "cc75e4f0-c004-4b5b-b758-cc94562f0069",
-                        Name: codataccounting.String("Gwendolyn Hickle"),
+                        ID: "69a1c4b7-9ae3-4368-9c23-c39a7c0e17cb",
+                        Name: codataccounting.String("Jacqueline Russel"),
                     },
-                    Quantity: 8194.9,
-                    SubTotal: codataccounting.Float64(955.55),
-                    TaxAmount: codataccounting.Float64(6650.46),
+                    Quantity: 6321.21,
+                    SubTotal: codataccounting.Float64(5137.34),
+                    TaxAmount: codataccounting.Float64(1478.83),
                     TaxRateRef: &shared.TaxRateRef{
-                        EffectiveTaxRate: codataccounting.Float64(1149.02),
-                        ID: codataccounting.String("73d84bbe-24f2-4983-8afb-0735cb6285d4"),
-                        Name: codataccounting.String("Fred Mitchell"),
+                        EffectiveTaxRate: codataccounting.Float64(3588.82),
+                        ID: codataccounting.String("fe22cd5c-ba6f-4bfe-8932-af6813d65bfe"),
+                        Name: codataccounting.String("Elbert Schmidt"),
                     },
-                    TotalAmount: codataccounting.Float64(6662.15),
+                    TotalAmount: codataccounting.Float64(8717.9),
                     TrackingCategoryRefs: []shared.TrackingCategoryRef{
                         shared.TrackingCategoryRef{
-                            ID: "e169156f-7d2e-4e20-9505-bf03a93e9448",
-                            Name: codataccounting.String("Myra Pfannerstill"),
+                            ID: "916f7fc7-dda7-40ec-a0e6-075894d61c14",
+                            Name: codataccounting.String("Mr. Irving Mann"),
+                        },
+                        shared.TrackingCategoryRef{
+                            ID: "7e37c0d9-77f1-4a54-91ab-e9751b106d23",
+                            Name: codataccounting.String("Kenneth Effertz"),
                         },
                     },
-                    UnitAmount: 9771.81,
+                    UnitAmount: 6179.29,
                 },
                 shared.DirectIncomeLineItem{
                     AccountRef: &shared.AccountRef{
-                        ID: codataccounting.String("b1078903-2ac3-4331-b2e2-dd79ec74ba7e"),
-                        Name: codataccounting.String("Jaime Schuster"),
+                        ID: codataccounting.String("815aae99-fcde-49e7-a9c9-d4f2d8a44640"),
+                        Name: codataccounting.String("Dr. Wilbur Jerde"),
                     },
-                    Description: codataccounting.String("ipsum"),
-                    DiscountAmount: codataccounting.Float64(4175.44),
-                    DiscountPercentage: codataccounting.Float64(9669.27),
+                    Description: codataccounting.String("nihil"),
+                    DiscountAmount: codataccounting.Float64(2079.6),
+                    DiscountPercentage: codataccounting.Float64(6657.15),
                     ItemRef: &shared.ItemRef{
-                        ID: "d1ccc341-c865-4734-b4f0-a740fb4ab441",
-                        Name: codataccounting.String("Ms. Dale Nolan"),
+                        ID: "2f93f467-dc0d-48da-9612-2026ab8f2774",
+                        Name: codataccounting.String("Ms. Greg Sanford"),
                     },
-                    Quantity: 4588.95,
-                    SubTotal: codataccounting.Float64(4145.21),
-                    TaxAmount: codataccounting.Float64(2428.43),
+                    Quantity: 3771.77,
+                    SubTotal: codataccounting.Float64(6271.29),
+                    TaxAmount: codataccounting.Float64(9494),
                     TaxRateRef: &shared.TaxRateRef{
-                        EffectiveTaxRate: codataccounting.Float64(5966.4),
-                        ID: codataccounting.String("95d808bb-e794-4455-abc5-50a1c426b59c"),
-                        Name: codataccounting.String("Rodney Jerde"),
+                        EffectiveTaxRate: codataccounting.Float64(6235.78),
+                        ID: codataccounting.String("80da7a08-9fc4-44db-a745-30e5cc7c6d0c"),
+                        Name: codataccounting.String("Spencer Wintheiser"),
                     },
-                    TotalAmount: codataccounting.Float64(8142.27),
+                    TotalAmount: codataccounting.Float64(8196.32),
                     TrackingCategoryRefs: []shared.TrackingCategoryRef{
                         shared.TrackingCategoryRef{
-                            ID: "c135582c-1b85-45e8-89d9-ef932e9000a1",
-                            Name: codataccounting.String("Sandy Stokes Sr."),
-                        },
-                        shared.TrackingCategoryRef{
-                            ID: "4208efd2-3411-4898-a738-79efbe8baeba",
-                            Name: codataccounting.String("Geoffrey Kuhic"),
-                        },
-                        shared.TrackingCategoryRef{
-                            ID: "536e9035-1bb9-4763-9720-b77a5a5365a7",
-                            Name: codataccounting.String("Timmy Bernier"),
-                        },
-                        shared.TrackingCategoryRef{
-                            ID: "71f01c0d-361f-4ed8-9c5e-ffb453e9089e",
-                            Name: codataccounting.String("Roland Bode"),
+                            ID: "34b6f623-bcec-4ab5-8aee-5e0da8b9af6a",
+                            Name: codataccounting.String("Christopher Hermiston"),
                         },
                     },
-                    UnitAmount: 7471.07,
+                    UnitAmount: 3905.07,
                 },
             },
             Metadata: &shared.Metadata{
                 IsDeleted: codataccounting.Bool(false),
             },
-            ModifiedDate: codataccounting.String("ut"),
-            Note: codataccounting.String("at"),
+            ModifiedDate: codataccounting.String("repudiandae"),
+            Note: codataccounting.String("odio"),
             PaymentAllocations: []shared.Items{
                 shared.Items{
                     Allocation: shared.ItemsAllocation{
-                        AllocatedOnDate: codataccounting.String("perspiciatis"),
-                        Currency: codataccounting.String("molestiae"),
-                        CurrencyRate: codataccounting.Float64(7361.58),
-                        TotalAmount: codataccounting.Float64(8169.35),
+                        AllocatedOnDate: codataccounting.String("aliquam"),
+                        Currency: codataccounting.String("quasi"),
+                        CurrencyRate: codataccounting.Float64(2144.25),
+                        TotalAmount: codataccounting.Float64(7771.39),
                     },
                     Payment: shared.PaymentAllocationPayment{
                         AccountRef: &shared.AccountRef{
-                            ID: codataccounting.String("d9c985e4-3734-4a5d-b2d9-edd785be5e7a"),
-                            Name: codataccounting.String("Sheldon Hermann"),
+                            ID: codataccounting.String("be2d176d-c1c4-43d4-8f61-d171157cbe5e"),
+                            Name: codataccounting.String("Francis Weimann"),
                         },
-                        Currency: codataccounting.String("occaecati"),
-                        CurrencyRate: codataccounting.Float64(4720.94),
-                        ID: codataccounting.String("ba6281f4-4e3a-4233-94a6-8cc80d30ff72"),
-                        Note: codataccounting.String("illo"),
-                        PaidOnDate: codataccounting.String("aliquid"),
-                        Reference: codataccounting.String("quaerat"),
-                        TotalAmount: codataccounting.Float64(8368.03),
+                        Currency: codataccounting.String("quasi"),
+                        CurrencyRate: codataccounting.Float64(933.86),
+                        ID: codataccounting.String("840772f3-2e3b-449d-be0f-23b7b6d9948d"),
+                        Note: codataccounting.String("aliquid"),
+                        PaidOnDate: codataccounting.String("saepe"),
+                        Reference: codataccounting.String("facere"),
+                        TotalAmount: codataccounting.Float64(8999.7),
                     },
                 },
                 shared.Items{
                     Allocation: shared.ItemsAllocation{
-                        AllocatedOnDate: codataccounting.String("alias"),
-                        Currency: codataccounting.String("deserunt"),
-                        CurrencyRate: codataccounting.Float64(5794.14),
-                        TotalAmount: codataccounting.Float64(1167.29),
+                        AllocatedOnDate: codataccounting.String("fugiat"),
+                        Currency: codataccounting.String("eius"),
+                        CurrencyRate: codataccounting.Float64(4515.93),
+                        TotalAmount: codataccounting.Float64(4844.89),
                     },
                     Payment: shared.PaymentAllocationPayment{
                         AccountRef: &shared.AccountRef{
-                            ID: codataccounting.String("fe9d9655-3b89-4e00-89c6-692de7b35622"),
-                            Name: codataccounting.String("Christine Nikolaus"),
+                            ID: codataccounting.String("680fc7a1-7a82-4e5e-82fd-28d1040a7e91"),
+                            Name: codataccounting.String("Belinda Denesik"),
                         },
-                        Currency: codataccounting.String("error"),
-                        CurrencyRate: codataccounting.Float64(7417.47),
-                        ID: codataccounting.String("4ae7b1a5-b908-4d4e-b049-1aa35d4a839f"),
-                        Note: codataccounting.String("consequatur"),
-                        PaidOnDate: codataccounting.String("ipsum"),
-                        Reference: codataccounting.String("quidem"),
-                        TotalAmount: codataccounting.Float64(6785.88),
+                        Currency: codataccounting.String("incidunt"),
+                        CurrencyRate: codataccounting.Float64(3084.29),
+                        ID: codataccounting.String("cb183500-8f46-41ce-93e9-14498a9ba460"),
+                        Note: codataccounting.String("similique"),
+                        PaidOnDate: codataccounting.String("nulla"),
+                        Reference: codataccounting.String("pariatur"),
+                        TotalAmount: codataccounting.Float64(9692.94),
+                    },
+                },
+                shared.Items{
+                    Allocation: shared.ItemsAllocation{
+                        AllocatedOnDate: codataccounting.String("temporibus"),
+                        Currency: codataccounting.String("officiis"),
+                        CurrencyRate: codataccounting.Float64(2522.9),
+                        TotalAmount: codataccounting.Float64(826.1),
+                    },
+                    Payment: shared.PaymentAllocationPayment{
+                        AccountRef: &shared.AccountRef{
+                            ID: codataccounting.String("0c37daa9-182a-449d-9625-d3caffc198ee"),
+                            Name: codataccounting.String("Edwin Hagenes"),
+                        },
+                        Currency: codataccounting.String("dignissimos"),
+                        CurrencyRate: codataccounting.Float64(6043.08),
+                        ID: codataccounting.String("2bcd440e-a98b-4ecc-a048-6de0d56d73b0"),
+                        Note: codataccounting.String("quae"),
+                        PaidOnDate: codataccounting.String("quis"),
+                        Reference: codataccounting.String("nemo"),
+                        TotalAmount: codataccounting.Float64(345.89),
                     },
                 },
             },
-            Reference: codataccounting.String("quidem"),
-            SourceModifiedDate: codataccounting.String("molestiae"),
-            SubTotal: 4410.01,
+            Reference: codataccounting.String("neque"),
+            SourceModifiedDate: codataccounting.String("voluptates"),
+            SubTotal: 5187.95,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "occaecati": map[string]interface{}{
-                        "blanditiis": "a",
+                    "impedit": map[string]interface{}{
+                        "explicabo": "ea",
+                        "doloribus": "maiores",
                     },
-                    "aut": map[string]interface{}{
-                        "dicta": "dolor",
+                    "nihil": map[string]interface{}{
+                        "impedit": "iure",
+                        "ullam": "aliquid",
                     },
-                    "iste": map[string]interface{}{
-                        "ut": "exercitationem",
-                        "sit": "reprehenderit",
-                        "officiis": "accusantium",
+                    "odio": map[string]interface{}{
+                        "delectus": "nostrum",
+                        "harum": "reprehenderit",
+                    },
+                    "sit": map[string]interface{}{
+                        "consectetur": "vero",
+                        "eius": "optio",
+                        "sapiente": "porro",
+                        "impedit": "vel",
                     },
                 },
             },
-            TaxAmount: 9159.68,
-            TotalAmount: 2348.84,
+            TaxAmount: 6786.31,
+            TotalAmount: 5828.22,
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codataccounting.Int(577369),
+        TimeoutInMinutes: codataccounting.Int(69650),
     })
     if err != nil {
         log.Fatal(err)
@@ -289,7 +315,7 @@ import(
 func main() {
     s := codataccounting.New(
         codataccounting.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
@@ -298,7 +324,7 @@ func main() {
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        DirectIncomeID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+        DirectIncomeID: "necessitatibus",
     })
     if err != nil {
         log.Fatal(err)
@@ -329,7 +355,7 @@ import(
 func main() {
     s := codataccounting.New(
         codataccounting.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
@@ -337,7 +363,7 @@ func main() {
     res, err := s.DirectIncomes.Get(ctx, operations.GetDirectIncomeRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        DirectIncomeID: "impedit",
+        DirectIncomeID: "maxime",
     })
     if err != nil {
         log.Fatal(err)
@@ -368,7 +394,7 @@ import(
 func main() {
     s := codataccounting.New(
         codataccounting.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
@@ -377,8 +403,8 @@ func main() {
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        DirectIncomeID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        TimeoutInMinutes: codataccounting.Int(461855),
+        DirectIncomeID: "veniam",
+        TimeoutInMinutes: codataccounting.Int(181673),
     })
     if err != nil {
         log.Fatal(err)
@@ -415,7 +441,7 @@ import(
 func main() {
     s := codataccounting.New(
         codataccounting.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
@@ -453,7 +479,7 @@ import(
 func main() {
     s := codataccounting.New(
         codataccounting.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
@@ -464,7 +490,7 @@ func main() {
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: codataccounting.Int(1),
         PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("saepe"),
+        Query: codataccounting.String("aliquid"),
     })
     if err != nil {
         log.Fatal(err)
@@ -495,7 +521,7 @@ import(
 func main() {
     s := codataccounting.New(
         codataccounting.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
@@ -503,7 +529,7 @@ func main() {
     res, err := s.DirectIncomes.ListAttachments(ctx, operations.ListDirectIncomeAttachmentsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        DirectIncomeID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+        DirectIncomeID: "sed",
     })
     if err != nil {
         log.Fatal(err)
@@ -534,19 +560,19 @@ import(
 func main() {
     s := codataccounting.New(
         codataccounting.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
     ctx := context.Background()
     res, err := s.DirectIncomes.UploadAttachment(ctx, operations.UploadDirectIncomeAttachmentRequest{
         RequestBody: &operations.UploadDirectIncomeAttachmentRequestBody{
-            Content: []byte("odit"),
-            RequestBody: "consectetur",
+            Content: []byte("modi"),
+            RequestBody: "at",
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        DirectIncomeID: "itaque",
+        DirectIncomeID: "aperiam",
     })
     if err != nil {
         log.Fatal(err)

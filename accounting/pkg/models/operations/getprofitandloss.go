@@ -16,10 +16,24 @@ type GetProfitAndLossRequest struct {
 	StartMonth       *string `queryParam:"style=form,explode=true,name=startMonth"`
 }
 
+// GetProfitAndLoss409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
+type GetProfitAndLoss409ApplicationJSON struct {
+	CanBeRetried      *string `json:"canBeRetried,omitempty"`
+	CorrelationID     *string `json:"correlationId,omitempty"`
+	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
+	Error             *string `json:"error,omitempty"`
+	Service           *string `json:"service,omitempty"`
+	StatusCode        *int64  `json:"statusCode,omitempty"`
+}
+
 type GetProfitAndLossResponse struct {
 	ContentType string
 	// Success
 	ProfitAndLossReport *shared.ProfitAndLossReport1
 	StatusCode          int
 	RawResponse         *http.Response
+	// The data type's dataset has not been requested or is still syncing.
+	GetProfitAndLoss409ApplicationJSONObject *GetProfitAndLoss409ApplicationJSON
+	// Your API request was not properly authorized.
+	Schema *shared.Schema
 }

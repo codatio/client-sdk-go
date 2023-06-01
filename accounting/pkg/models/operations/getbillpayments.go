@@ -12,10 +12,24 @@ type GetBillPaymentsRequest struct {
 	CompanyID     string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
+// GetBillPayments409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
+type GetBillPayments409ApplicationJSON struct {
+	CanBeRetried      *string `json:"canBeRetried,omitempty"`
+	CorrelationID     *string `json:"correlationId,omitempty"`
+	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
+	Error             *string `json:"error,omitempty"`
+	Service           *string `json:"service,omitempty"`
+	StatusCode        *int64  `json:"statusCode,omitempty"`
+}
+
 type GetBillPaymentsResponse struct {
 	// Success
 	BillPayment *shared.BillPayment
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
+	// The data type's dataset has not been requested or is still syncing.
+	GetBillPayments409ApplicationJSONObject *GetBillPayments409ApplicationJSON
+	// Your API request was not properly authorized.
+	Schema *shared.Schema
 }

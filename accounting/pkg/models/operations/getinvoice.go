@@ -13,10 +13,24 @@ type GetInvoiceRequest struct {
 	InvoiceID string `pathParam:"style=simple,explode=false,name=invoiceId"`
 }
 
+// GetInvoice409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
+type GetInvoice409ApplicationJSON struct {
+	CanBeRetried      *string `json:"canBeRetried,omitempty"`
+	CorrelationID     *string `json:"correlationId,omitempty"`
+	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
+	Error             *string `json:"error,omitempty"`
+	Service           *string `json:"service,omitempty"`
+	StatusCode        *int64  `json:"statusCode,omitempty"`
+}
+
 type GetInvoiceResponse struct {
 	ContentType string
 	// Success
 	Invoice     *shared.Invoice
 	StatusCode  int
 	RawResponse *http.Response
+	// The data type's dataset has not been requested or is still syncing.
+	GetInvoice409ApplicationJSONObject *GetInvoice409ApplicationJSON
+	// Your API request was not properly authorized.
+	Schema *shared.Schema
 }

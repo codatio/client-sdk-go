@@ -12,10 +12,24 @@ type GetBillCreditNoteRequest struct {
 	CompanyID        string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
+// GetBillCreditNote409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
+type GetBillCreditNote409ApplicationJSON struct {
+	CanBeRetried      *string `json:"canBeRetried,omitempty"`
+	CorrelationID     *string `json:"correlationId,omitempty"`
+	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
+	Error             *string `json:"error,omitempty"`
+	Service           *string `json:"service,omitempty"`
+	StatusCode        *int64  `json:"statusCode,omitempty"`
+}
+
 type GetBillCreditNoteResponse struct {
 	// Success
 	BillCreditNote *shared.BillCreditNote
 	ContentType    string
 	StatusCode     int
 	RawResponse    *http.Response
+	// The data type's dataset has not been requested or is still syncing.
+	GetBillCreditNote409ApplicationJSONObject *GetBillCreditNote409ApplicationJSON
+	// Your API request was not properly authorized.
+	Schema *shared.Schema
 }
