@@ -29,7 +29,7 @@ import(
 func main() {
     s := codatbanking.New(
         codatbanking.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
@@ -37,7 +37,7 @@ func main() {
     res, err := s.Transactions.Get(ctx, operations.GetTransactionRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TransactionID: "nulla",
+        TransactionID: "corrupti",
     })
     if err != nil {
         log.Fatal(err)
@@ -68,7 +68,7 @@ import(
 func main() {
     s := codatbanking.New(
         codatbanking.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
@@ -79,7 +79,7 @@ func main() {
         OrderBy: codatbanking.String("-modifiedDate"),
         Page: codatbanking.Int(1),
         PageSize: codatbanking.Int(100),
-        Query: codatbanking.String("corrupti"),
+        Query: codatbanking.String("illum"),
     })
     if err != nil {
         log.Fatal(err)
@@ -112,7 +112,7 @@ import(
 func main() {
     s := codatbanking.New(
         codatbanking.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
@@ -122,7 +122,7 @@ func main() {
         OrderBy: codatbanking.String("-modifiedDate"),
         Page: codatbanking.Int(1),
         PageSize: codatbanking.Int(100),
-        Query: codatbanking.String("illum"),
+        Query: codatbanking.String("vel"),
     })
     if err != nil {
         log.Fatal(err)
