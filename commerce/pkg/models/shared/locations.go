@@ -2,17 +2,11 @@
 
 package shared
 
-// Locations - The Locations datatype holds information on geographic locations at which stocks of products may be held, as referenced in the Products data type.
-//
-// Locations also holds information on geographic locations where orders were placed, as referenced in the Orders data type.
-//
-// Explore our [data coverage](https://knowledge.codat.io/supported-features/commerce?view=tab-by-data-type&dataType=commerce-locations) for this data type.
+// Locations - OK
 type Locations struct {
-	Address *Address `json:"address,omitempty"`
-	// A unique, persistent identifier for this record
-	ID           string  `json:"id"`
-	ModifiedDate *string `json:"modifiedDate,omitempty"`
-	// Name of this location
-	Name               *string `json:"name,omitempty"`
-	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
+	Links        Links      `json:"_links"`
+	PageNumber   int64      `json:"pageNumber"`
+	PageSize     int64      `json:"pageSize"`
+	Results      []Location `json:"results,omitempty"`
+	TotalResults int64      `json:"totalResults"`
 }

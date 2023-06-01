@@ -7,13 +7,15 @@ import (
 	"net/http"
 )
 
-type ListLocationsRequest struct {
+type GetOrderRequest struct {
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
+	// Unique identifier for an order.
+	OrderID string `pathParam:"style=simple,explode=false,name=orderId"`
 }
 
-// ListLocations409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
-type ListLocations409ApplicationJSON struct {
+// GetOrder409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
+type GetOrder409ApplicationJSON struct {
 	CanBeRetried      *string `json:"canBeRetried,omitempty"`
 	CorrelationID     *string `json:"correlationId,omitempty"`
 	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
@@ -22,14 +24,14 @@ type ListLocations409ApplicationJSON struct {
 	StatusCode        *int64  `json:"statusCode,omitempty"`
 }
 
-type ListLocationsResponse struct {
+type GetOrderResponse struct {
 	ContentType string
 	// OK
-	Locations   *shared.Locations
+	Order       *shared.Order
 	StatusCode  int
 	RawResponse *http.Response
 	// The data type's dataset has not been requested or is still syncing.
-	ListLocations409ApplicationJSONObject *ListLocations409ApplicationJSON
-	// Your `query` parameter was not correctly formed
+	GetOrder409ApplicationJSONObject *GetOrder409ApplicationJSON
+	// Your API request was not properly authorized.
 	Schema *shared.Schema
 }
