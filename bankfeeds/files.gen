@@ -42,7 +42,6 @@ pkg/models/shared/validationitem.go
 pkg/models/shared/pushoperationstatus.go
 pkg/models/shared/datatype.go
 pkg/models/shared/banktransactions.go
-pkg/models/shared/banktransactionline.go
 pkg/models/shared/banktransactiontype.go
 pkg/models/shared/pushoperationchange.go
 pkg/models/shared/pushchangetype.go

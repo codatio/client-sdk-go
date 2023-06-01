@@ -39,41 +39,22 @@ func main() {
     ctx := context.Background()
     res, err := s.BankAccountTransactions.Create(ctx, operations.CreateBankTransactionsRequest{
         BankTransactions: &shared.BankTransactions{
-            AccountID: codatbankfeeds.String("animi"),
-            Transactions: []shared.BankTransactionLine{
-                shared.BankTransactionLine{
-                    Amount: 1381.83,
-                    Balance: 7783.46,
-                    ClearedOnDate: codatbankfeeds.String("sequi"),
-                    Counterparty: codatbankfeeds.String("tenetur"),
-                    Description: codatbankfeeds.String("ipsam"),
-                    ID: codatbankfeeds.String("ad019da1-ffe7-48f0-97b0-074f15471b5e"),
-                    ModifiedDate: codatbankfeeds.String("commodi"),
-                    Reconciled: false,
-                    Reference: codatbankfeeds.String("repudiandae"),
-                    SourceModifiedDate: codatbankfeeds.String("quae"),
-                    TransactionType: shared.BankTransactionTypeInt,
-                },
-                shared.BankTransactionLine{
-                    Amount: 6924.72,
-                    Balance: 5651.89,
-                    ClearedOnDate: codatbankfeeds.String("excepturi"),
-                    Counterparty: codatbankfeeds.String("pariatur"),
-                    Description: codatbankfeeds.String("modi"),
-                    ID: codatbankfeeds.String("88e1e91e-450a-4d2a-bd44-269802d502a9"),
-                    ModifiedDate: codatbankfeeds.String("tempora"),
-                    Reconciled: false,
-                    Reference: codatbankfeeds.String("facilis"),
-                    SourceModifiedDate: codatbankfeeds.String("tempore"),
-                    TransactionType: shared.BankTransactionTypeFee,
-                },
-            },
+            AccountID: codatbankfeeds.String("molestiae"),
+            Amount: codatbankfeeds.Float64(7991.59),
+            Balance: codatbankfeeds.Float64(8009.11),
+            ClearedOnDate: codatbankfeeds.String("esse"),
+            Description: codatbankfeeds.String("totam"),
+            ID: codatbankfeeds.String("ca1ba928-fc81-4674-acb7-39205929396f"),
+            ModifiedDate: codatbankfeeds.String("saepe"),
+            Reconciled: codatbankfeeds.Bool(false),
+            SourceModifiedDate: codatbankfeeds.String("fuga"),
+            TransactionType: shared.BankTransactionTypeAtm.ToPointer(),
         },
-        AccountID: "delectus",
+        AccountID: "corporis",
         AllowSyncOnPushComplete: codatbankfeeds.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codatbankfeeds.Int(433288),
+        TimeoutInMinutes: codatbankfeeds.Int(613064),
     })
     if err != nil {
         log.Fatal(err)
@@ -110,7 +91,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.BankAccountTransactions.Get(ctx, operations.GetCreateBankAccountModelRequest{
-        AccountID: "non",
+        AccountID: "iure",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -149,13 +130,13 @@ func main() {
 
     ctx := context.Background()
     res, err := s.BankAccountTransactions.List(ctx, operations.ListBankAccountTransactionsRequest{
-        AccountID: "eligendi",
+        AccountID: "saepe",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         OrderBy: codatbankfeeds.String("-modifiedDate"),
         Page: codatbankfeeds.Int(1),
         PageSize: codatbankfeeds.Int(100),
-        Query: codatbankfeeds.String("sint"),
+        Query: codatbankfeeds.String("quidem"),
     })
     if err != nil {
         log.Fatal(err)

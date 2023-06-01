@@ -451,7 +451,8 @@ func (s *connections) List(ctx context.Context, request operations.ListCompanyCo
 	return res, nil
 }
 
-// Proxy - A proxy or passthrough endpoint used to query unsupported third party endpoints.
+// Proxy - Proxy
+// A proxy or passthrough endpoint used to query unsupported third party endpoints.
 func (s *connections) Proxy(ctx context.Context, request operations.ProxyRequest, opts ...operations.Option) (*operations.ProxyResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

@@ -10,7 +10,7 @@ Manage your companies' data connections.
 * [Delete](#delete) - Delete connection
 * [Get](#get) - Get connection
 * [List](#list) - List connections
-* [Proxy](#proxy) - A proxy or passthrough endpoint used to query unsupported third party endpoints.
+* [Proxy](#proxy) - Proxy
 * [UnlinkConnection](#unlinkconnection) - Unlink connection
 
 ## Create
@@ -39,7 +39,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Connections.Create(ctx, operations.CreateDataConnectionRequest{
         RequestBody: &operations.CreateDataConnectionRequestBody{
-            PlatformKey: codatbankfeeds.String("corporis"),
+            PlatformKey: codatbankfeeds.String("excepturi"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
@@ -159,7 +159,7 @@ func main() {
         OrderBy: codatbankfeeds.String("-modifiedDate"),
         Page: codatbankfeeds.Int(1),
         PageSize: codatbankfeeds.Int(100),
-        Query: codatbankfeeds.String("hic"),
+        Query: codatbankfeeds.String("pariatur"),
     })
     if err != nil {
         log.Fatal(err)
@@ -236,7 +236,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Connections.UnlinkConnection(ctx, operations.UnlinkConnectionRequest{
         RequestBody: &operations.UnlinkConnectionRequestBody{
-            Status: codatbankfeeds.String("libero"),
+            Status: codatbankfeeds.String("modi"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
