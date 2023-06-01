@@ -6,6 +6,7 @@ sync.go
 syncstatus.go
 transactionstatus.go
 codatsyncexpenses.go
+.gitignore
 go.mod
 go.sum
 pkg/types/bigint.go
