@@ -10,9 +10,9 @@
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge" /></a>
 </div>
 
-> **Alpha Release**
+> **Beta Release**
 > 
-> We are currently finalizing our design for the Go client library. Beta release coming very soon!
+> Exciting news! Our first TypeScript library beta release is here, simplifying your development workflow with an effortless build process.
 
 ## Authentication
 
