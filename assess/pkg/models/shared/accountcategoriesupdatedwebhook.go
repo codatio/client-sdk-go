@@ -9,7 +9,7 @@ type AccountCategoriesUpdatedWebhookData struct {
 
 // AccountCategoriesUpdatedWebhook - Webhook request body for account categories updated.
 type AccountCategoriesUpdatedWebhook struct {
-	// Unique identifier of the alert.
+	// Unique identifier of the webhook event.
 	AlertID *string `json:"alertId,omitempty"`
 	// Unique identifier for your client in Codat.
 	ClientID *string `json:"clientId,omitempty"`
