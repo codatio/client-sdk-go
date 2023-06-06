@@ -2,7 +2,7 @@
 
 ## Overview
 
-An API for uploading and downloading files from 'File Upload' Integrations.
+Files API: An API for uploading and downloading files from 'File Upload' Integrations.
 
 The Accounting file upload, Banking file upload, and Business documents file upload integrations provide simple file upload functionality.
 
