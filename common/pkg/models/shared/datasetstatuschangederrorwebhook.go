@@ -13,7 +13,7 @@ type DatasetStatusChangedErrorWebhookData struct {
 
 // DatasetStatusChangedErrorWebhook - Webhook request body to notify that a data synchronization has completed.
 type DatasetStatusChangedErrorWebhook struct {
-	// Unique identifier of the alert.
+	// Unique identifier of the webhook event.
 	AlertID *string `json:"alertId,omitempty"`
 	// Unique identifier for your SMB in Codat.
 	CompanyID *string                               `json:"companyId,omitempty"`
