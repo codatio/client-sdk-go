@@ -16,22 +16,12 @@ import (
 
 // settings - Manage your Codat instance.
 type settings struct {
-	defaultClient  HTTPClient
-	securityClient HTTPClient
-	serverURL      string
-	language       string
-	sdkVersion     string
-	genVersion     string
+	sdkConfiguration sdkConfiguration
 }
 
-func newSettings(defaultClient, securityClient HTTPClient, serverURL, language, sdkVersion, genVersion string) *settings {
+func newSettings(sdkConfig sdkConfiguration) *settings {
 	return &settings{
-		defaultClient:  defaultClient,
-		securityClient: securityClient,
-		serverURL:      serverURL,
-		language:       language,
-		sdkVersion:     sdkVersion,
-		genVersion:     genVersion,
+		sdkConfiguration: sdkConfig,
 	}
 }
 
@@ -50,7 +40,7 @@ func (s *settings) GetProfile(ctx context.Context, opts ...operations.Option) (*
 			return nil, fmt.Errorf("error applying option: %w", err)
 		}
 	}
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/profile"
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
@@ -58,9 +48,9 @@ func (s *settings) GetProfile(ctx context.Context, opts ...operations.Option) (*
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion))
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	retryConfig := o.Retries
 	if retryConfig == nil {
@@ -148,7 +138,7 @@ func (s *settings) GetSyncSettings(ctx context.Context, request operations.Updat
 			return nil, fmt.Errorf("error applying option: %w", err)
 		}
 	}
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/profile/syncSettings"
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
@@ -161,11 +151,11 @@ func (s *settings) GetSyncSettings(ctx context.Context, request operations.Updat
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	retryConfig := o.Retries
 	if retryConfig == nil {
@@ -244,7 +234,7 @@ func (s *settings) UpdateProfile(ctx context.Context, request shared.Profile, op
 			return nil, fmt.Errorf("error applying option: %w", err)
 		}
 	}
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/profile"
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
@@ -257,11 +247,11 @@ func (s *settings) UpdateProfile(ctx context.Context, request shared.Profile, op
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	retryConfig := o.Retries
 	if retryConfig == nil {

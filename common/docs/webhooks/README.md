@@ -2,7 +2,7 @@
 
 ## Overview
 
-Manage webhooks, rules and alerts.
+Manage webhooks, rules, and events.
 
 ### Available Operations
 

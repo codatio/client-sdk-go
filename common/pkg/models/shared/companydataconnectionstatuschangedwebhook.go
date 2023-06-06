@@ -15,7 +15,7 @@ type CompanyDataConnectionStatusChangedWebhookData struct {
 
 // CompanyDataConnectionStatusChangedWebhook - Webhook request body for a company's data connection status changed.
 type CompanyDataConnectionStatusChangedWebhook struct {
-	// Unique identifier of the alert.
+	// Unique identifier of the webhook event.
 	AlertID *string `json:"alertId,omitempty"`
 	// Unique identifier for your SMB in Codat.
 	CompanyID *string                                        `json:"companyId,omitempty"`

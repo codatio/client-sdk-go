@@ -4,7 +4,7 @@ package shared
 
 // NewCompanySynchronizedWebhook - Webhook request body to notify that a new company has successfully synchronized at least one dataType for the first time.
 type NewCompanySynchronizedWebhook struct {
-	// Unique identifier of the alert.
+	// Unique identifier of the webhook event.
 	AlertID *string `json:"alertId,omitempty"`
 	// Unique identifier for your SMB in Codat.
 	CompanyID *string `json:"companyId,omitempty"`

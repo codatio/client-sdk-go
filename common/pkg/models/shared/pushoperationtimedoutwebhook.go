@@ -11,7 +11,7 @@ type PushOperationTimedOutWebhookData struct {
 
 // PushOperationTimedOutWebhook - Webhook request body notifying that a push push operation has timed out.
 type PushOperationTimedOutWebhook struct {
-	// Unique identifier of the alert.
+	// Unique identifier of the webhook event.
 	AlertID *string `json:"alertId,omitempty"`
 	// Unique identifier for your SMB in Codat.
 	CompanyID *string                           `json:"companyId,omitempty"`

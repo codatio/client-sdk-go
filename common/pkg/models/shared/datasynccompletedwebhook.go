@@ -11,7 +11,7 @@ type DataSyncCompletedWebhookData struct {
 
 // DataSyncCompletedWebhook - Webhook request body to notify the completion of a data sync.
 type DataSyncCompletedWebhook struct {
-	// Unique identifier of the alert.
+	// Unique identifier of the webhook event.
 	AlertID *string `json:"alertId,omitempty"`
 	// Unique identifier for your client in Codat.
 	ClientID *string `json:"clientId,omitempty"`
