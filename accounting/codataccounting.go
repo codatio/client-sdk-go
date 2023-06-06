@@ -3,6 +3,7 @@
 package codataccounting
 
 import (
+	"fmt"
 	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/accounting/pkg/utils"
 	"net/http"
@@ -38,7 +39,26 @@ func Float32(f float32) *float32 { return &f }
 // Float64 provides a helper function to return a pointer to a float64
 func Float64(f float64) *float64 { return &f }
 
-// CodatAccounting - A flexible API for pulling accounting data, normalized and aggregated from 20 accounting integrations.
+type sdkConfiguration struct {
+	DefaultClient  HTTPClient
+	SecurityClient HTTPClient
+	Security       *shared.Security
+	ServerURL      string
+	ServerIndex    int
+	Language       string
+	SDKVersion     string
+	GenVersion     string
+}
+
+func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
+	if c.ServerURL != "" {
+		return c.ServerURL, nil
+	}
+
+	return ServerList[c.ServerIndex], nil
+}
+
+// CodatAccounting - Accounting API: A flexible API for pulling accounting data, normalized and aggregated from 20 accounting integrations.
 //
 // Standardize how you connect to your customers’ accounting software. View, create, update, and delete data in the same way for all the leading accounting platforms.
 //
@@ -97,14 +117,7 @@ type CodatAccounting struct {
 	// Transfers - Transfers
 	Transfers *transfers
 
-	// Non-idiomatic field names below are to namespace fields from the fields names above to avoid name conflicts
-	_defaultClient  HTTPClient
-	_securityClient HTTPClient
-	_security       *shared.Security
-	_serverURL      string
-	_language       string
-	_sdkVersion     string
-	_genVersion     string
+	sdkConfiguration sdkConfiguration
 }
 
 type SDKOption func(*CodatAccounting)
@@ -112,7 +125,7 @@ type SDKOption func(*CodatAccounting)
 // WithServerURL allows the overriding of the default server URL
 func WithServerURL(serverURL string) SDKOption {
 	return func(sdk *CodatAccounting) {
-		sdk._serverURL = serverURL
+		sdk.sdkConfiguration.ServerURL = serverURL
 	}
 }
 
@@ -123,275 +136,109 @@ func WithTemplatedServerURL(serverURL string, params map[string]string) SDKOptio
 			serverURL = utils.ReplaceParameters(serverURL, params)
 		}
 
-		sdk._serverURL = serverURL
+		sdk.sdkConfiguration.ServerURL = serverURL
+	}
+}
+
+// WithServerIndex allows the overriding of the default server by index
+func WithServerIndex(serverIndex int) SDKOption {
+	return func(sdk *CodatAccounting) {
+		if serverIndex < 0 || serverIndex >= len(ServerList) {
+			panic(fmt.Errorf("server index %d out of range", serverIndex))
+		}
+
+		sdk.sdkConfiguration.ServerIndex = serverIndex
 	}
 }
 
 // WithClient allows the overriding of the default HTTP client used by the SDK
 func WithClient(client HTTPClient) SDKOption {
 	return func(sdk *CodatAccounting) {
-		sdk._defaultClient = client
+		sdk.sdkConfiguration.DefaultClient = client
 	}
 }
 
 // WithSecurity configures the SDK to use the provided security details
 func WithSecurity(security shared.Security) SDKOption {
 	return func(sdk *CodatAccounting) {
-		sdk._security = &security
+		sdk.sdkConfiguration.Security = &security
 	}
 }
 
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *CodatAccounting {
 	sdk := &CodatAccounting{
-		_language:   "go",
-		_sdkVersion: "0.15.1",
-		_genVersion: "2.34.7",
+		sdkConfiguration: sdkConfiguration{
+			Language:   "go",
+			SDKVersion: "0.16.0",
+			GenVersion: "2.35.9",
+		},
 	}
 	for _, opt := range opts {
 		opt(sdk)
 	}
 
 	// Use WithClient to override the default client if you would like to customize the timeout
-	if sdk._defaultClient == nil {
-		sdk._defaultClient = &http.Client{Timeout: 60 * time.Second}
+	if sdk.sdkConfiguration.DefaultClient == nil {
+		sdk.sdkConfiguration.DefaultClient = &http.Client{Timeout: 60 * time.Second}
 	}
-	if sdk._securityClient == nil {
-		if sdk._security != nil {
-			sdk._securityClient = utils.ConfigureSecurityClient(sdk._defaultClient, sdk._security)
+	if sdk.sdkConfiguration.SecurityClient == nil {
+		if sdk.sdkConfiguration.Security != nil {
+			sdk.sdkConfiguration.SecurityClient = utils.ConfigureSecurityClient(sdk.sdkConfiguration.DefaultClient, sdk.sdkConfiguration.Security)
 		} else {
-			sdk._securityClient = sdk._defaultClient
+			sdk.sdkConfiguration.SecurityClient = sdk.sdkConfiguration.DefaultClient
 		}
 	}
 
-	if sdk._serverURL == "" {
-		sdk._serverURL = ServerList[0]
-	}
+	sdk.AccountTransactions = newAccountTransactions(sdk.sdkConfiguration)
 
-	sdk.AccountTransactions = newAccountTransactions(
-		sdk._defaultClient,
-		sdk._securityClient,
-		sdk._serverURL,
-		sdk._language,
-		sdk._sdkVersion,
-		sdk._genVersion,
-	)
+	sdk.Accounts = newAccounts(sdk.sdkConfiguration)
 
-	sdk.Accounts = newAccounts(
-		sdk._defaultClient,
-		sdk._securityClient,
-		sdk._serverURL,
-		sdk._language,
-		sdk._sdkVersion,
-		sdk._genVersion,
-	)
+	sdk.BankAccountTransactions = newBankAccountTransactions(sdk.sdkConfiguration)
 
-	sdk.BankAccountTransactions = newBankAccountTransactions(
-		sdk._defaultClient,
-		sdk._securityClient,
-		sdk._serverURL,
-		sdk._language,
-		sdk._sdkVersion,
-		sdk._genVersion,
-	)
+	sdk.BankAccounts = newBankAccounts(sdk.sdkConfiguration)
 
-	sdk.BankAccounts = newBankAccounts(
-		sdk._defaultClient,
-		sdk._securityClient,
-		sdk._serverURL,
-		sdk._language,
-		sdk._sdkVersion,
-		sdk._genVersion,
-	)
+	sdk.BillCreditNotes = newBillCreditNotes(sdk.sdkConfiguration)
 
-	sdk.BillCreditNotes = newBillCreditNotes(
-		sdk._defaultClient,
-		sdk._securityClient,
-		sdk._serverURL,
-		sdk._language,
-		sdk._sdkVersion,
-		sdk._genVersion,
-	)
+	sdk.BillPayments = newBillPayments(sdk.sdkConfiguration)
 
-	sdk.BillPayments = newBillPayments(
-		sdk._defaultClient,
-		sdk._securityClient,
-		sdk._serverURL,
-		sdk._language,
-		sdk._sdkVersion,
-		sdk._genVersion,
-	)
+	sdk.Bills = newBills(sdk.sdkConfiguration)
 
-	sdk.Bills = newBills(
-		sdk._defaultClient,
-		sdk._securityClient,
-		sdk._serverURL,
-		sdk._language,
-		sdk._sdkVersion,
-		sdk._genVersion,
-	)
+	sdk.CompanyInfo = newCompanyInfo(sdk.sdkConfiguration)
 
-	sdk.CompanyInfo = newCompanyInfo(
-		sdk._defaultClient,
-		sdk._securityClient,
-		sdk._serverURL,
-		sdk._language,
-		sdk._sdkVersion,
-		sdk._genVersion,
-	)
+	sdk.CreditNotes = newCreditNotes(sdk.sdkConfiguration)
 
-	sdk.CreditNotes = newCreditNotes(
-		sdk._defaultClient,
-		sdk._securityClient,
-		sdk._serverURL,
-		sdk._language,
-		sdk._sdkVersion,
-		sdk._genVersion,
-	)
+	sdk.Customers = newCustomers(sdk.sdkConfiguration)
 
-	sdk.Customers = newCustomers(
-		sdk._defaultClient,
-		sdk._securityClient,
-		sdk._serverURL,
-		sdk._language,
-		sdk._sdkVersion,
-		sdk._genVersion,
-	)
+	sdk.DirectCosts = newDirectCosts(sdk.sdkConfiguration)
 
-	sdk.DirectCosts = newDirectCosts(
-		sdk._defaultClient,
-		sdk._securityClient,
-		sdk._serverURL,
-		sdk._language,
-		sdk._sdkVersion,
-		sdk._genVersion,
-	)
+	sdk.DirectIncomes = newDirectIncomes(sdk.sdkConfiguration)
 
-	sdk.DirectIncomes = newDirectIncomes(
-		sdk._defaultClient,
-		sdk._securityClient,
-		sdk._serverURL,
-		sdk._language,
-		sdk._sdkVersion,
-		sdk._genVersion,
-	)
+	sdk.Invoices = newInvoices(sdk.sdkConfiguration)
 
-	sdk.Invoices = newInvoices(
-		sdk._defaultClient,
-		sdk._securityClient,
-		sdk._serverURL,
-		sdk._language,
-		sdk._sdkVersion,
-		sdk._genVersion,
-	)
+	sdk.Items = newItems(sdk.sdkConfiguration)
 
-	sdk.Items = newItems(
-		sdk._defaultClient,
-		sdk._securityClient,
-		sdk._serverURL,
-		sdk._language,
-		sdk._sdkVersion,
-		sdk._genVersion,
-	)
+	sdk.JournalEntries = newJournalEntries(sdk.sdkConfiguration)
 
-	sdk.JournalEntries = newJournalEntries(
-		sdk._defaultClient,
-		sdk._securityClient,
-		sdk._serverURL,
-		sdk._language,
-		sdk._sdkVersion,
-		sdk._genVersion,
-	)
+	sdk.Journals = newJournals(sdk.sdkConfiguration)
 
-	sdk.Journals = newJournals(
-		sdk._defaultClient,
-		sdk._securityClient,
-		sdk._serverURL,
-		sdk._language,
-		sdk._sdkVersion,
-		sdk._genVersion,
-	)
+	sdk.PaymentMethods = newPaymentMethods(sdk.sdkConfiguration)
 
-	sdk.PaymentMethods = newPaymentMethods(
-		sdk._defaultClient,
-		sdk._securityClient,
-		sdk._serverURL,
-		sdk._language,
-		sdk._sdkVersion,
-		sdk._genVersion,
-	)
+	sdk.Payments = newPayments(sdk.sdkConfiguration)
 
-	sdk.Payments = newPayments(
-		sdk._defaultClient,
-		sdk._securityClient,
-		sdk._serverURL,
-		sdk._language,
-		sdk._sdkVersion,
-		sdk._genVersion,
-	)
+	sdk.PurchaseOrders = newPurchaseOrders(sdk.sdkConfiguration)
 
-	sdk.PurchaseOrders = newPurchaseOrders(
-		sdk._defaultClient,
-		sdk._securityClient,
-		sdk._serverURL,
-		sdk._language,
-		sdk._sdkVersion,
-		sdk._genVersion,
-	)
+	sdk.Reports = newReports(sdk.sdkConfiguration)
 
-	sdk.Reports = newReports(
-		sdk._defaultClient,
-		sdk._securityClient,
-		sdk._serverURL,
-		sdk._language,
-		sdk._sdkVersion,
-		sdk._genVersion,
-	)
+	sdk.SalesOrders = newSalesOrders(sdk.sdkConfiguration)
 
-	sdk.SalesOrders = newSalesOrders(
-		sdk._defaultClient,
-		sdk._securityClient,
-		sdk._serverURL,
-		sdk._language,
-		sdk._sdkVersion,
-		sdk._genVersion,
-	)
+	sdk.Suppliers = newSuppliers(sdk.sdkConfiguration)
 
-	sdk.Suppliers = newSuppliers(
-		sdk._defaultClient,
-		sdk._securityClient,
-		sdk._serverURL,
-		sdk._language,
-		sdk._sdkVersion,
-		sdk._genVersion,
-	)
+	sdk.TaxRates = newTaxRates(sdk.sdkConfiguration)
 
-	sdk.TaxRates = newTaxRates(
-		sdk._defaultClient,
-		sdk._securityClient,
-		sdk._serverURL,
-		sdk._language,
-		sdk._sdkVersion,
-		sdk._genVersion,
-	)
+	sdk.TrackingCategories = newTrackingCategories(sdk.sdkConfiguration)
 
-	sdk.TrackingCategories = newTrackingCategories(
-		sdk._defaultClient,
-		sdk._securityClient,
-		sdk._serverURL,
-		sdk._language,
-		sdk._sdkVersion,
-		sdk._genVersion,
-	)
-
-	sdk.Transfers = newTransfers(
-		sdk._defaultClient,
-		sdk._securityClient,
-		sdk._serverURL,
-		sdk._language,
-		sdk._sdkVersion,
-		sdk._genVersion,
-	)
+	sdk.Transfers = newTransfers(sdk.sdkConfiguration)
 
 	return sdk
 }

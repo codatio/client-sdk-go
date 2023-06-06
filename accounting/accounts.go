@@ -15,22 +15,12 @@ import (
 
 // accounts - Accounts
 type accounts struct {
-	defaultClient  HTTPClient
-	securityClient HTTPClient
-	serverURL      string
-	language       string
-	sdkVersion     string
-	genVersion     string
+	sdkConfiguration sdkConfiguration
 }
 
-func newAccounts(defaultClient, securityClient HTTPClient, serverURL, language, sdkVersion, genVersion string) *accounts {
+func newAccounts(sdkConfig sdkConfiguration) *accounts {
 	return &accounts{
-		defaultClient:  defaultClient,
-		securityClient: securityClient,
-		serverURL:      serverURL,
-		language:       language,
-		sdkVersion:     sdkVersion,
-		genVersion:     genVersion,
+		sdkConfiguration: sdkConfig,
 	}
 }
 
@@ -55,7 +45,7 @@ func (s *accounts) Create(ctx context.Context, request operations.CreateAccountR
 			return nil, fmt.Errorf("error applying option: %w", err)
 		}
 	}
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/accounts", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -71,7 +61,7 @@ func (s *accounts) Create(ctx context.Context, request operations.CreateAccountR
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
@@ -79,7 +69,7 @@ func (s *accounts) Create(ctx context.Context, request operations.CreateAccountR
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	retryConfig := o.Retries
 	if retryConfig == nil {
@@ -175,7 +165,7 @@ func (s *accounts) Get(ctx context.Context, request operations.GetAccountRequest
 			return nil, fmt.Errorf("error applying option: %w", err)
 		}
 	}
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/accounts/{accountId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -186,9 +176,9 @@ func (s *accounts) Get(ctx context.Context, request operations.GetAccountRequest
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json;q=1, application/json;q=0.7, application/json;q=0")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion))
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	retryConfig := o.Retries
 	if retryConfig == nil {
@@ -296,7 +286,7 @@ func (s *accounts) GetCreateModel(ctx context.Context, request operations.GetCre
 			return nil, fmt.Errorf("error applying option: %w", err)
 		}
 	}
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/chartOfAccounts", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -307,9 +297,9 @@ func (s *accounts) GetCreateModel(ctx context.Context, request operations.GetCre
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion))
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	retryConfig := o.Retries
 	if retryConfig == nil {
@@ -403,7 +393,7 @@ func (s *accounts) List(ctx context.Context, request operations.ListAccountsRequ
 			return nil, fmt.Errorf("error applying option: %w", err)
 		}
 	}
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/accounts", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -414,13 +404,13 @@ func (s *accounts) List(ctx context.Context, request operations.ListAccountsRequ
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json;q=1, application/json;q=0.7, application/json;q=0")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion))
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	retryConfig := o.Retries
 	if retryConfig == nil {

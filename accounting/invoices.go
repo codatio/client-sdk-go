@@ -15,22 +15,12 @@ import (
 
 // invoices - Invoices
 type invoices struct {
-	defaultClient  HTTPClient
-	securityClient HTTPClient
-	serverURL      string
-	language       string
-	sdkVersion     string
-	genVersion     string
+	sdkConfiguration sdkConfiguration
 }
 
-func newInvoices(defaultClient, securityClient HTTPClient, serverURL, language, sdkVersion, genVersion string) *invoices {
+func newInvoices(sdkConfig sdkConfiguration) *invoices {
 	return &invoices{
-		defaultClient:  defaultClient,
-		securityClient: securityClient,
-		serverURL:      serverURL,
-		language:       language,
-		sdkVersion:     sdkVersion,
-		genVersion:     genVersion,
+		sdkConfiguration: sdkConfig,
 	}
 }
 
@@ -51,7 +41,7 @@ func (s *invoices) Create(ctx context.Context, request operations.CreateInvoiceR
 			return nil, fmt.Errorf("error applying option: %w", err)
 		}
 	}
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/invoices", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -67,7 +57,7 @@ func (s *invoices) Create(ctx context.Context, request operations.CreateInvoiceR
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
@@ -75,7 +65,7 @@ func (s *invoices) Create(ctx context.Context, request operations.CreateInvoiceR
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	retryConfig := o.Retries
 	if retryConfig == nil {
@@ -195,7 +185,7 @@ func (s *invoices) Delete(ctx context.Context, request operations.DeleteInvoiceR
 			return nil, fmt.Errorf("error applying option: %w", err)
 		}
 	}
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/invoices/{invoiceId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -206,9 +196,9 @@ func (s *invoices) Delete(ctx context.Context, request operations.DeleteInvoiceR
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion))
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	retryConfig := o.Retries
 	if retryConfig == nil {
@@ -298,7 +288,7 @@ func (s *invoices) DownloadAttachment(ctx context.Context, request operations.Do
 			return nil, fmt.Errorf("error applying option: %w", err)
 		}
 	}
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/invoices/{invoiceId}/attachments/{attachmentId}/download", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -309,9 +299,9 @@ func (s *invoices) DownloadAttachment(ctx context.Context, request operations.Do
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json;q=1, application/octet-stream;q=0")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion))
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	retryConfig := o.Retries
 	if retryConfig == nil {
@@ -396,7 +386,7 @@ func (s *invoices) DownloadPdf(ctx context.Context, request operations.DownloadI
 			return nil, fmt.Errorf("error applying option: %w", err)
 		}
 	}
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/invoices/{invoiceId}/pdf", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -407,9 +397,9 @@ func (s *invoices) DownloadPdf(ctx context.Context, request operations.DownloadI
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/octet-stream")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion))
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	retryConfig := o.Retries
 	if retryConfig == nil {
@@ -480,7 +470,7 @@ func (s *invoices) Get(ctx context.Context, request operations.GetInvoiceRequest
 			return nil, fmt.Errorf("error applying option: %w", err)
 		}
 	}
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/invoices/{invoiceId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -491,9 +481,9 @@ func (s *invoices) Get(ctx context.Context, request operations.GetInvoiceRequest
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json;q=1, application/json;q=0.7, application/json;q=0")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion))
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	retryConfig := o.Retries
 	if retryConfig == nil {
@@ -593,7 +583,7 @@ func (s *invoices) GetAttachment(ctx context.Context, request operations.GetInvo
 			return nil, fmt.Errorf("error applying option: %w", err)
 		}
 	}
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/invoices/{invoiceId}/attachments/{attachmentId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -604,9 +594,9 @@ func (s *invoices) GetAttachment(ctx context.Context, request operations.GetInvo
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion))
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	retryConfig := o.Retries
 	if retryConfig == nil {
@@ -702,7 +692,7 @@ func (s *invoices) GetCreateUpdateModel(ctx context.Context, request operations.
 			return nil, fmt.Errorf("error applying option: %w", err)
 		}
 	}
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/invoices", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -713,9 +703,9 @@ func (s *invoices) GetCreateUpdateModel(ctx context.Context, request operations.
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion))
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	retryConfig := o.Retries
 	if retryConfig == nil {
@@ -805,7 +795,7 @@ func (s *invoices) List(ctx context.Context, request operations.ListInvoicesRequ
 			return nil, fmt.Errorf("error applying option: %w", err)
 		}
 	}
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/invoices", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -816,13 +806,13 @@ func (s *invoices) List(ctx context.Context, request operations.ListInvoicesRequ
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json;q=1, application/json;q=0.7, application/json;q=0")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion))
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	retryConfig := o.Retries
 	if retryConfig == nil {
@@ -922,7 +912,7 @@ func (s *invoices) ListAttachments(ctx context.Context, request operations.ListI
 			return nil, fmt.Errorf("error applying option: %w", err)
 		}
 	}
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/invoices/{invoiceId}/attachments", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -933,9 +923,9 @@ func (s *invoices) ListAttachments(ctx context.Context, request operations.ListI
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion))
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	retryConfig := o.Retries
 	if retryConfig == nil {
@@ -1032,7 +1022,7 @@ func (s *invoices) Update(ctx context.Context, request operations.UpdateInvoiceR
 			return nil, fmt.Errorf("error applying option: %w", err)
 		}
 	}
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/invoices/{invoiceId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -1048,7 +1038,7 @@ func (s *invoices) Update(ctx context.Context, request operations.UpdateInvoiceR
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
@@ -1056,7 +1046,7 @@ func (s *invoices) Update(ctx context.Context, request operations.UpdateInvoiceR
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	retryConfig := o.Retries
 	if retryConfig == nil {
@@ -1148,7 +1138,7 @@ func (s *invoices) UploadAttachment(ctx context.Context, request operations.Uplo
 			return nil, fmt.Errorf("error applying option: %w", err)
 		}
 	}
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/invoices/{invoiceId}/attachment", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -1164,11 +1154,11 @@ func (s *invoices) UploadAttachment(ctx context.Context, request operations.Uplo
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	retryConfig := o.Retries
 	if retryConfig == nil {
