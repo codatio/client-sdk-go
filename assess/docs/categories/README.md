@@ -214,42 +214,42 @@ func main() {
             Categories: []shared.ConfirmCategoriesCategories{
                 shared.ConfirmCategoriesCategories{
                     AccountRef: &shared.ConfirmCategoriesCategoriesAccountRef{
-                        ID: "69a674e0-f467-4cc8-b96e-d151a05dfc2d",
+                        ID: "9wg4lep4ush5cxs79pl8sozmsndbaukll3ind4g7buqbm1h2",
                     },
                     Confirmed: &shared.AccountCategory{
-                        DetailType: codatassess.String("at"),
-                        Subtype: codatassess.String("maiores"),
+                        DetailType: codatassess.String("error"),
+                        Subtype: codatassess.String("deserunt"),
+                        Type: codatassess.String("suscipit"),
+                    },
+                },
+                shared.ConfirmCategoriesCategories{
+                    AccountRef: &shared.ConfirmCategoriesCategoriesAccountRef{
+                        ID: "9wg4lep4ush5cxs79pl8sozmsndbaukll3ind4g7buqbm1h2",
+                    },
+                    Confirmed: &shared.AccountCategory{
+                        DetailType: codatassess.String("magnam"),
+                        Subtype: codatassess.String("debitis"),
+                        Type: codatassess.String("ipsa"),
+                    },
+                },
+                shared.ConfirmCategoriesCategories{
+                    AccountRef: &shared.ConfirmCategoriesCategoriesAccountRef{
+                        ID: "EILBDVJVNUAGVKRQ",
+                    },
+                    Confirmed: &shared.AccountCategory{
+                        DetailType: codatassess.String("tempora"),
+                        Subtype: codatassess.String("suscipit"),
                         Type: codatassess.String("molestiae"),
                     },
                 },
                 shared.ConfirmCategoriesCategories{
                     AccountRef: &shared.ConfirmCategoriesCategoriesAccountRef{
-                        ID: "cc78ca1b-a928-4fc8-9674-2cb739205929",
+                        ID: "EILBDVJVNUAGVKRQ",
                     },
                     Confirmed: &shared.AccountCategory{
-                        DetailType: codatassess.String("dolor"),
-                        Subtype: codatassess.String("natus"),
-                        Type: codatassess.String("laboriosam"),
-                    },
-                },
-                shared.ConfirmCategoriesCategories{
-                    AccountRef: &shared.ConfirmCategoriesCategoriesAccountRef{
-                        ID: "fea7596e-b10f-4aaa-a352-c5955907aff1",
-                    },
-                    Confirmed: &shared.AccountCategory{
-                        DetailType: codatassess.String("mollitia"),
-                        Subtype: codatassess.String("dolorem"),
-                        Type: codatassess.String("culpa"),
-                    },
-                },
-                shared.ConfirmCategoriesCategories{
-                    AccountRef: &shared.ConfirmCategoriesCategoriesAccountRef{
-                        ID: "2fa94677-3925-41aa-92c3-f5ad019da1ff",
-                    },
-                    Confirmed: &shared.AccountCategory{
-                        DetailType: codatassess.String("vero"),
-                        Subtype: codatassess.String("nihil"),
-                        Type: codatassess.String("praesentium"),
+                        DetailType: codatassess.String("placeat"),
+                        Subtype: codatassess.String("voluptatum"),
+                        Type: codatassess.String("iusto"),
                     },
                 },
             },

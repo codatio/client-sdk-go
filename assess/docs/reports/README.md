@@ -49,7 +49,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Reports.GetAccountsForEnhancedBalanceSheet(ctx, operations.GetAccountsForEnhancedBalanceSheetRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        NumberOfPeriods: 282807,
+        NumberOfPeriods: 20218,
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -90,7 +90,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Reports.GetAccountsForEnhancedProfitAndLoss(ctx, operations.GetAccountsForEnhancedProfitAndLossRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        NumberOfPeriods: 979587,
+        NumberOfPeriods: 368241,
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -132,9 +132,9 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         IncludeDisplayNames: codatassess.Bool(false),
-        NumberOfPeriods: 120196,
-        PeriodLength: 359444,
-        PeriodUnit: shared.PeriodUnitWeek,
+        NumberOfPeriods: 832620,
+        PeriodLength: 957156,
+        PeriodUnit: shared.PeriodUnitYear,
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -176,9 +176,9 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         IncludeDisplayNames: codatassess.Bool(false),
-        NumberOfPeriods: 480894,
-        PeriodLength: 118727,
-        PeriodUnit: shared.PeriodUnitMonth,
+        NumberOfPeriods: 140350,
+        PeriodLength: 870013,
+        PeriodUnit: shared.PeriodUnitYear,
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -220,9 +220,9 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         IncludeDisplayNames: codatassess.Bool(false),
-        NumberOfPeriods: 317983,
-        PeriodLength: 880476,
-        PeriodUnit: shared.PeriodUnitWeek,
+        NumberOfPeriods: 978619,
+        PeriodLength: 473608,
+        PeriodUnit: shared.PeriodUnitYear,
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -264,9 +264,9 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         IncludeDisplayNames: codatassess.Bool(false),
-        NumberOfPeriods: 918236,
-        PeriodLength: 64147,
-        PeriodUnit: shared.PeriodUnitDay,
+        NumberOfPeriods: 800911,
+        PeriodLength: 461479,
+        PeriodUnit: shared.PeriodUnitMonth,
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -308,9 +308,9 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         IncludeDisplayNames: codatassess.Bool(false),
-        NumberOfPeriods: 692472,
-        PeriodLength: 565189,
-        PeriodUnit: shared.PeriodUnitMonth,
+        NumberOfPeriods: 780529,
+        PeriodLength: 678880,
+        PeriodUnit: shared.PeriodUnitDay,
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -353,8 +353,8 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         IncludeDisplayNames: codatassess.Bool(false),
-        NumberOfPeriods: 865103,
-        PeriodLength: 265389,
+        NumberOfPeriods: 720633,
+        PeriodLength: 639921,
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -399,7 +399,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         Page: codatassess.Int(1),
         PageSize: codatassess.Int(100),
-        Query: codatassess.String("praesentium"),
+        Query: codatassess.String("occaecati"),
     })
     if err != nil {
         log.Fatal(err)
@@ -440,8 +440,8 @@ func main() {
     res, err := s.Reports.GetEnhancedFinancialMetrics(ctx, operations.GetEnhancedFinancialMetricsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        NumberOfPeriods: 523248,
-        PeriodLength: 916723,
+        NumberOfPeriods: 143353,
+        PeriodLength: 537373,
         ReportDate: "29-09-2020",
         ShowMetricInputs: codatassess.Bool(false),
     })
@@ -483,7 +483,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         Page: codatassess.Int(1),
         PageSize: codatassess.Int(100),
-        Query: codatassess.String("quasi"),
+        Query: codatassess.String("hic"),
     })
     if err != nil {
         log.Fatal(err)
@@ -525,8 +525,8 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         IncludeDisplayNames: codatassess.Bool(false),
-        NumberOfPeriods: 921158,
-        PeriodLength: 575947,
+        NumberOfPeriods: 758616,
+        PeriodLength: 521848,
         ReportDate: "29-09-2020",
     })
     if err != nil {
