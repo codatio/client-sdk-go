@@ -41,8 +41,8 @@ pkg/models/shared/validation.go
 pkg/models/shared/validationitem.go
 pkg/models/shared/pushoperationstatus.go
 pkg/models/shared/datatype.go
-pkg/models/shared/banktransactions.go
-pkg/models/shared/banktransactiontype.go
+pkg/models/shared/createbanktransactions.go
+pkg/models/shared/createbankaccounttransaction.go
 pkg/models/shared/pushoperationchange.go
 pkg/models/shared/pushchangetype.go
 pkg/models/shared/pushoperationref.go
@@ -53,6 +53,8 @@ pkg/models/shared/pushoptiontype.go
 pkg/models/shared/pushoptionproperty.go
 pkg/models/shared/pushoptionchoice.go
 pkg/models/shared/banktransactionsresponse.go
+pkg/models/shared/banktransactions.go
+pkg/models/shared/banktransactiontype.go
 pkg/models/shared/links.go
 pkg/models/shared/href.go
 pkg/models/shared/bankfeedaccount.go
