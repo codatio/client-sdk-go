@@ -41,7 +41,7 @@ func main() {
                     Currency: "GBP",
                     CurrencyRate: codatsyncexpenses.Float64(5928.45),
                     ID: "4d7c6929-7770-412b-91bb-44d3bc71d111",
-                    IssueDate: "distinctio",
+                    IssueDate: "2022-10-23T00:00:00.000Z",
                     Lines: []shared.ExpenseTransactionLine{
                         shared.ExpenseTransactionLine{
                             AccountRef: shared.RecordRef{
@@ -142,7 +142,7 @@ func main() {
                     Currency: "GBP",
                     CurrencyRate: codatsyncexpenses.Float64(4236.55),
                     ID: "4d7c6929-7770-412b-91bb-44d3bc71d111",
-                    IssueDate: "error",
+                    IssueDate: "2022-10-23T00:00:00.000Z",
                     Lines: []shared.ExpenseTransactionLine{
                         shared.ExpenseTransactionLine{
                             AccountRef: shared.RecordRef{
@@ -207,7 +207,7 @@ func main() {
                     Currency: "GBP",
                     CurrencyRate: codatsyncexpenses.Float64(8917.73),
                     ID: "4d7c6929-7770-412b-91bb-44d3bc71d111",
-                    IssueDate: "ipsa",
+                    IssueDate: "2022-10-23T00:00:00.000Z",
                     Lines: []shared.ExpenseTransactionLine{
                         shared.ExpenseTransactionLine{
                             AccountRef: shared.RecordRef{
