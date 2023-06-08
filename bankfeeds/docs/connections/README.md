@@ -39,7 +39,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Connections.Create(ctx, operations.CreateDataConnectionRequest{
         RequestBody: &operations.CreateDataConnectionRequestBody{
-            PlatformKey: codatbankfeeds.String("excepturi"),
+            PlatformKey: codatbankfeeds.String("quaerat"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
@@ -159,7 +159,7 @@ func main() {
         OrderBy: codatbankfeeds.String("-modifiedDate"),
         Page: codatbankfeeds.Int(1),
         PageSize: codatbankfeeds.Int(100),
-        Query: codatbankfeeds.String("pariatur"),
+        Query: codatbankfeeds.String("quos"),
     })
     if err != nil {
         log.Fatal(err)
@@ -236,7 +236,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Connections.UnlinkConnection(ctx, operations.UnlinkConnectionRequest{
         RequestBody: &operations.UnlinkConnectionRequestBody{
-            Status: codatbankfeeds.String("modi"),
+            Status: codatbankfeeds.String("aliquid"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",

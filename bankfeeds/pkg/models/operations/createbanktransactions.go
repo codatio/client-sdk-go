@@ -8,7 +8,7 @@ import (
 )
 
 type CreateBankTransactionsRequest struct {
-	BankTransactions *shared.BankTransactions `request:"mediaType=application/json"`
+	CreateBankTransactions *shared.CreateBankTransactions `request:"mediaType=application/json"`
 	// Unique identifier for an account
 	AccountID               string `pathParam:"style=simple,explode=false,name=accountId"`
 	AllowSyncOnPushComplete *bool  `queryParam:"style=form,explode=true,name=allowSyncOnPushComplete"`
