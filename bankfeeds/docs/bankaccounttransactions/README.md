@@ -42,15 +42,15 @@ func main() {
             AccountID: codatbankfeeds.String("molestiae"),
             Amount: codatbankfeeds.Float64(7991.59),
             Balance: codatbankfeeds.Float64(8009.11),
-            ClearedOnDate: codatbankfeeds.String("esse"),
+            ClearedOnDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
             Description: codatbankfeeds.String("totam"),
             ID: codatbankfeeds.String("ca1ba928-fc81-4674-acb7-39205929396f"),
-            ModifiedDate: codatbankfeeds.String("saepe"),
+            ModifiedDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
             Reconciled: codatbankfeeds.Bool(false),
-            SourceModifiedDate: codatbankfeeds.String("fuga"),
+            SourceModifiedDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
             TransactionType: shared.BankTransactionTypeAtm.ToPointer(),
         },
-        AccountID: "corporis",
+        AccountID: "9wg4lep4ush5cxs79pl8sozmsndbaukll3ind4g7buqbm1h2",
         AllowSyncOnPushComplete: codatbankfeeds.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -91,7 +91,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.BankAccountTransactions.Get(ctx, operations.GetCreateBankAccountModelRequest{
-        AccountID: "iure",
+        AccountID: "9wg4lep4ush5cxs79pl8sozmsndbaukll3ind4g7buqbm1h2",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -130,7 +130,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.BankAccountTransactions.List(ctx, operations.ListBankAccountTransactionsRequest{
-        AccountID: "saepe",
+        AccountID: "EILBDVJVNUAGVKRQ",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         OrderBy: codatbankfeeds.String("-modifiedDate"),
