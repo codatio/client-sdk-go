@@ -44,21 +44,21 @@ func main() {
         Journal: &shared.Journal{
             CreatedOn: codataccounting.String("2022-10-23T00:00:00.000Z"),
             HasChildren: codataccounting.Bool(false),
-            ID: codataccounting.String("987a472b-709a-4153-a223-01068539ce09"),
-            JournalCode: codataccounting.String("consectetur"),
+            ID: codataccounting.String("d72a2d4a-f415-48ac-ad0f-0f58c3b87b47"),
+            JournalCode: codataccounting.String("eaque"),
             Metadata: &shared.Metadata{
                 IsDeleted: codataccounting.Bool(false),
             },
             ModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
-            Name: codataccounting.String("Justin Bayer"),
-            ParentID: codataccounting.String("possimus"),
+            Name: codataccounting.String("Elena Anderson"),
+            ParentID: codataccounting.String("quos"),
             SourceModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
-            Status: shared.JournalStatusUnknown.ToPointer(),
-            Type: codataccounting.String("quibusdam"),
+            Status: shared.JournalStatusActive.ToPointer(),
+            Type: codataccounting.String("fugiat"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codataccounting.Int(510442),
+        TimeoutInMinutes: codataccounting.Int(513534),
     })
     if err != nil {
         log.Fatal(err)
@@ -96,7 +96,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Journals.Get(ctx, operations.GetJournalRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        JournalID: "porro",
+        JournalID: "eos",
     })
     if err != nil {
         log.Fatal(err)
@@ -181,7 +181,7 @@ func main() {
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: codataccounting.Int(1),
         PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("quisquam"),
+        Query: codataccounting.String("porro"),
     })
     if err != nil {
         log.Fatal(err)

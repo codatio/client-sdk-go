@@ -43,39 +43,39 @@ func main() {
     res, err := s.Payments.Create(ctx, operations.CreatePaymentRequest{
         Payment: &shared.Payment{
             AccountRef: &shared.AccountRef{
-                ID: codataccounting.String("6b786b3d-37bd-4204-a1f3-40bb36f677a4"),
-                Name: codataccounting.String("Zachary Bode"),
+                ID: codataccounting.String("306f5576-f5cd-4eb0-a86d-0bc43b18ab37"),
+                Name: codataccounting.String("Darrin Crooks"),
             },
-            Currency: codataccounting.String("GBP"),
-            CurrencyRate: codataccounting.Float64(2424.79),
+            Currency: codataccounting.String("EUR"),
+            CurrencyRate: codataccounting.Float64(9819.74),
             CustomerRef: &shared.CustomerRef{
-                CompanyName: codataccounting.String("quam"),
-                ID: "49028488-26bb-403c-bfd2-25e47871a88e",
+                CompanyName: codataccounting.String("laudantium"),
+                ID: "1ddf7e08-8f74-4ef5-8c92-16e8926313bb",
             },
             Date: "2022-10-23T00:00:00.000Z",
-            ID: codataccounting.String("72a2d4af-4158-4ac2-90f0-f58c3b87b470"),
+            ID: codataccounting.String("fc2c8d27-0109-46b6-aad6-e3e1d9d3b660"),
             Lines: []shared.PaymentLine{
                 shared.PaymentLine{
                     AllocatedOnDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
-                    Amount: 8220.93,
+                    Amount: 3089.27,
                     Links: []shared.PaymentLineLink{
                         shared.PaymentLineLink{
-                            Amount: codataccounting.Float64(8291.15),
-                            CurrencyRate: codataccounting.Float64(5697.11),
-                            ID: codataccounting.String("8e9d82c5-e306-4f55-b6f5-cdeb0286d0bc"),
-                            Type: shared.PaymentLinkTypeCreditNote,
+                            Amount: codataccounting.Float64(1192.28),
+                            CurrencyRate: codataccounting.Float64(1231.37),
+                            ID: codataccounting.String("aa1d5d22-47de-49b3-9461-70e768a96bb3"),
+                            Type: shared.PaymentLinkTypePayment,
                         },
-                    },
-                },
-                shared.PaymentLine{
-                    AllocatedOnDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
-                    Amount: 6889.3,
-                    Links: []shared.PaymentLineLink{
                         shared.PaymentLineLink{
-                            Amount: codataccounting.Float64(5572.63),
-                            CurrencyRate: codataccounting.Float64(6607.69),
-                            ID: codataccounting.String("b378f2fc-ff81-4ddf-be08-8f74ef54c921"),
-                            Type: shared.PaymentLinkTypeCreditNote,
+                            Amount: codataccounting.Float64(5218.9),
+                            CurrencyRate: codataccounting.Float64(4416.03),
+                            ID: codataccounting.String("88398eba-1bbf-4714-b356-f6349a164249"),
+                            Type: shared.PaymentLinkTypePaymentOnAccount,
+                        },
+                        shared.PaymentLineLink{
+                            Amount: codataccounting.Float64(1747.15),
+                            CurrencyRate: codataccounting.Float64(1088.29),
+                            ID: codataccounting.String("1ce46b95-1652-4b15-8ca9-142f052632b3"),
+                            Type: shared.PaymentLinkTypeUnknown,
                         },
                     },
                 },
@@ -84,28 +84,33 @@ func main() {
                 IsDeleted: codataccounting.Bool(false),
             },
             ModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
-            Note: codataccounting.String("atque"),
+            Note: codataccounting.String("harum"),
             PaymentMethodRef: &shared.PaymentMethodRef{
-                ID: codataccounting.String("926313bb-6fc2-4c8d-a701-096b66ad6e3e"),
-                Name: codataccounting.String("Freda Marquardt"),
+                ID: codataccounting.String("d692ffc8-7450-405e-9d3d-934e036f5c38"),
+                Name: codataccounting.String("Brett Hudson"),
             },
-            Reference: codataccounting.String("libero"),
+            Reference: codataccounting.String("ea"),
             SourceModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "perferendis": map[string]interface{}{
-                        "non": "quaerat",
+                    "corporis": map[string]interface{}{
+                        "ipsum": "perferendis",
+                        "est": "fugit",
                     },
-                    "mollitia": map[string]interface{}{
-                        "sunt": "id",
+                    "repudiandae": map[string]interface{}{
+                        "similique": "repudiandae",
+                    },
+                    "assumenda": map[string]interface{}{
+                        "fuga": "est",
+                        "tenetur": "atque",
                     },
                 },
             },
-            TotalAmount: codataccounting.Float64(6613.56),
+            TotalAmount: codataccounting.Float64(4072.09),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codataccounting.Int(67786),
+        TimeoutInMinutes: codataccounting.Int(199180),
     })
     if err != nil {
         log.Fatal(err)
@@ -143,7 +148,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Payments.Get(ctx, operations.GetPaymentRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        PaymentID: "nulla",
+        PaymentID: "impedit",
     })
     if err != nil {
         log.Fatal(err)
@@ -228,7 +233,7 @@ func main() {
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: codataccounting.Int(1),
         PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("ipsam"),
+        Query: codataccounting.String("eos"),
     })
     if err != nil {
         log.Fatal(err)

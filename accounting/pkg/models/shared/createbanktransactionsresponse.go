@@ -26,24 +26,8 @@ type CreateBankTransactionsResponse struct {
 	// >
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	CompletedOnUtc *string `json:"completedOnUtc,omitempty"`
-	// > **Accessing Bank Accounts through Banking API**
-	// >
-	// > This datatype was originally used for accessing bank account data both in accounting integrations and open banking aggregators.
-	// >
-	// > To view bank account data through the Banking API, please refer to the new datatype [here](https://docs.codat.io/banking-api#/operations/list-all-banking-transactions)
-	//
-	// > View the coverage for bank transactions in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankTransactions" target="_blank">Data coverage explorer</a>.
-	//
-	// ## Overview
-	//
-	// Transactional banking data for a specific company and account.
-	//
-	// Bank transactions include the:
-	// * Amount of the transaction.
-	// * Current account balance.
-	// * Transaction type, for example, credit, debit, or transfer.
-	Data *BankTransactions `json:"data,omitempty"`
+	CompletedOnUtc *string                 `json:"completedOnUtc,omitempty"`
+	Data           *CreateBankTransactions `json:"data,omitempty"`
 	// Unique identifier for a company's data connection.
 	DataConnectionKey string `json:"dataConnectionKey"`
 	// Available Data types

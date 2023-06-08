@@ -45,38 +45,42 @@ func main() {
     res, err := s.JournalEntries.Create(ctx, operations.CreateJournalEntryRequest{
         JournalEntry: &shared.JournalEntry{
             CreatedOn: codataccounting.String("2022-10-23T00:00:00.000Z"),
-            Description: codataccounting.String("fugiat"),
-            ID: codataccounting.String("48e78e3c-f8e1-4143-9a93-08b27a08af22"),
+            Description: codataccounting.String("culpa"),
+            ID: codataccounting.String("4b9a5bf9-35df-4e97-8fa4-b1e9c097eda6"),
             JournalLines: []shared.JournalLine{
                 shared.JournalLine{
                     AccountRef: &shared.AccountRef{
-                        ID: codataccounting.String("84439b3d-e875-46cc-8e47-0cd2147b6e61"),
-                        Name: codataccounting.String("Nicole Schowalter Sr."),
+                        ID: codataccounting.String("3442e1a9-237e-4998-8c80-b479e891923c"),
+                        Name: codataccounting.String("Nina Runolfsson"),
                     },
-                    Currency: codataccounting.String("quibusdam"),
-                    Description: codataccounting.String("doloremque"),
-                    NetAmount: 8739.82,
+                    Currency: codataccounting.String("facere"),
+                    Description: codataccounting.String("vel"),
+                    NetAmount: 5838.27,
                     Tracking: &shared.Propertiestracking2{
                         RecordRefs: []shared.InvoiceTo{
                             shared.InvoiceTo{
-                                DataType: codataccounting.String("eligendi"),
-                                ID: codataccounting.String("3a4b9a5b-f935-4dfe-974f-a4b1e9c097ed"),
+                                DataType: codataccounting.String("enim"),
+                                ID: codataccounting.String("689214fa-2020-47e4-bae0-38cd7f1bc2ca"),
                             },
                             shared.InvoiceTo{
-                                DataType: codataccounting.String("animi"),
-                                ID: codataccounting.String("623442e1-a923-47e9-984c-80b479e89192"),
+                                DataType: codataccounting.String("nam"),
+                                ID: codataccounting.String("af7fc2cc-ba4b-4ef0-9f68-eaedb2ee70be"),
                             },
                             shared.InvoiceTo{
-                                DataType: codataccounting.String("dolorem"),
-                                ID: codataccounting.String("c18ca8d6-9c56-4892-94fa-20207e4fae03"),
+                                DataType: codataccounting.String("alias"),
+                                ID: codataccounting.String("69fb36ad-d704-4080-a0a3-fc73a5a034b1"),
+                            },
+                            shared.InvoiceTo{
+                                DataType: codataccounting.String("ab"),
+                                ID: codataccounting.String("499243af-a698-47a4-b2b7-09a153e22301"),
                             },
                         },
                     },
                 },
             },
             JournalRef: &shared.JournalRef{
-                ID: "8cd7f1bc-2cab-4af7-bc2c-cba4bef0df68",
-                Name: codataccounting.String("Shaun Swift"),
+                ID: "068539ce-0932-4d10-acd1-5d8cc306b786",
+                Name: codataccounting.String("Stanley Swaniawski"),
             },
             Metadata: &shared.Metadata{
                 IsDeleted: codataccounting.Bool(false),
@@ -84,16 +88,23 @@ func main() {
             ModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
             PostedOn: codataccounting.String("2022-10-23T00:00:00.000Z"),
             RecordRef: &shared.InvoiceTo{
-                DataType: codataccounting.String("necessitatibus"),
-                ID: codataccounting.String("70be069f-b36a-4dd7-8408-0e0a3fc73a5a"),
+                DataType: codataccounting.String("sed"),
+                ID: codataccounting.String("04a1f340-bb36-4f67-ba48-519c33749028"),
             },
             SourceModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "aliquam": map[string]interface{}{
-                        "inventore": "ab",
-                        "ut": "sint",
-                        "sint": "eos",
+                    "quos": map[string]interface{}{
+                        "ex": "nam",
+                    },
+                    "distinctio": map[string]interface{}{
+                        "consectetur": "porro",
+                    },
+                    "nihil": map[string]interface{}{
+                        "possimus": "consequuntur",
+                        "odit": "enim",
+                        "debitis": "dolore",
+                        "in": "corrupti",
                     },
                 },
             },
@@ -101,7 +112,7 @@ func main() {
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codataccounting.Int(188343),
+        TimeoutInMinutes: codataccounting.Int(100075),
     })
     if err != nil {
         log.Fatal(err)
@@ -170,7 +181,7 @@ func main() {
     res, err := s.JournalEntries.Delete(ctx, operations.DeleteJournalEntryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        JournalEntryID: "error",
+        JournalEntryID: "culpa",
     })
     if err != nil {
         log.Fatal(err)
@@ -208,7 +219,7 @@ func main() {
     ctx := context.Background()
     res, err := s.JournalEntries.Get(ctx, operations.GetJournalEntryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        JournalEntryID: "maiores",
+        JournalEntryID: "blanditiis",
     })
     if err != nil {
         log.Fatal(err)
@@ -293,7 +304,7 @@ func main() {
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: codataccounting.Int(1),
         PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("mollitia"),
+        Query: codataccounting.String("atque"),
     })
     if err != nil {
         log.Fatal(err)

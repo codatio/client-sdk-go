@@ -44,28 +44,28 @@ func main() {
     ctx := context.Background()
     res, err := s.BankAccounts.Create(ctx, operations.CreateBankAccountRequest{
         BankAccount: &shared.BankAccount{
-            AccountName: codataccounting.String("perferendis"),
-            AccountNumber: codataccounting.String("ad"),
-            AccountType: shared.BankAccountBankAccountTypeCredit.ToPointer(),
-            AvailableBalance: codataccounting.Float64(1496.75),
-            Balance: codataccounting.Float64(6120.96),
-            Currency: codataccounting.String("GBP"),
-            IBan: codataccounting.String("natus"),
-            ID: codataccounting.String("6fea7596-eb10-4faa-a235-2c5955907aff"),
-            Institution: codataccounting.String("architecto"),
+            AccountName: codataccounting.String("minima"),
+            AccountNumber: codataccounting.String("excepturi"),
+            AccountType: shared.BankAccountBankAccountTypeUnknown.ToPointer(),
+            AvailableBalance: codataccounting.Float64(4386.01),
+            Balance: codataccounting.Float64(6342.74),
+            Currency: codataccounting.String("EUR"),
+            IBan: codataccounting.String("sapiente"),
+            ID: codataccounting.String("1a3a2fa9-4677-4392-91aa-52c3f5ad019d"),
+            Institution: codataccounting.String("laborum"),
             Metadata: &shared.Metadata{
                 IsDeleted: codataccounting.Bool(false),
             },
             ModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
-            NominalCode: codataccounting.String("dolorem"),
-            OverdraftLimit: codataccounting.Float64(6350.59),
-            SortCode: codataccounting.String("consequuntur"),
+            NominalCode: codataccounting.String("reiciendis"),
+            OverdraftLimit: codataccounting.Float64(9764.6),
+            SortCode: codataccounting.String("vero"),
             SourceModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
         },
         AllowSyncOnPushComplete: codataccounting.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codataccounting.Int(653108),
+        TimeoutInMinutes: codataccounting.Int(509624),
     })
     if err != nil {
         log.Fatal(err)
@@ -104,7 +104,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.BankAccounts.Get(ctx, operations.GetBankAccountRequest{
-        AccountID: "occaecati",
+        AccountID: "voluptatibus",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -193,7 +193,7 @@ func main() {
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: codataccounting.Int(1),
         PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("numquam"),
+        Query: codataccounting.String("ipsa"),
     })
     if err != nil {
         log.Fatal(err)
@@ -238,29 +238,29 @@ func main() {
     ctx := context.Background()
     res, err := s.BankAccounts.Update(ctx, operations.UpdateBankAccountRequest{
         BankAccount: &shared.BankAccount{
-            AccountName: codataccounting.String("commodi"),
-            AccountNumber: codataccounting.String("quam"),
-            AccountType: shared.BankAccountBankAccountTypeCredit.ToPointer(),
-            AvailableBalance: codataccounting.Float64(2444.25),
-            Balance: codataccounting.Float64(6235.1),
-            Currency: codataccounting.String("GBP"),
-            IBan: codataccounting.String("quis"),
-            ID: codataccounting.String("1aa52c3f-5ad0-419d-a1ff-e78f097b0074"),
-            Institution: codataccounting.String("maiores"),
+            AccountName: codataccounting.String("omnis"),
+            AccountNumber: codataccounting.String("voluptate"),
+            AccountType: shared.BankAccountBankAccountTypeDebit.ToPointer(),
+            AvailableBalance: codataccounting.Float64(199.87),
+            Balance: codataccounting.Float64(391.87),
+            Currency: codataccounting.String("USD"),
+            IBan: codataccounting.String("ut"),
+            ID: codataccounting.String("f15471b5-e6e1-43b9-9d48-8e1e91e450ad"),
+            Institution: codataccounting.String("explicabo"),
             Metadata: &shared.Metadata{
                 IsDeleted: codataccounting.Bool(false),
             },
             ModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
-            NominalCode: codataccounting.String("corporis"),
-            OverdraftLimit: codataccounting.Float64(2961.4),
-            SortCode: codataccounting.String("iusto"),
+            NominalCode: codataccounting.String("distinctio"),
+            OverdraftLimit: codataccounting.Float64(8413.86),
+            SortCode: codataccounting.String("labore"),
             SourceModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
         },
-        BankAccountID: "harum",
+        BankAccountID: "qui",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         ForceUpdate: codataccounting.Bool(false),
-        TimeoutInMinutes: codataccounting.Int(317983),
+        TimeoutInMinutes: codataccounting.Int(397821),
     })
     if err != nil {
         log.Fatal(err)

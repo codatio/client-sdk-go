@@ -193,9 +193,11 @@ pkg/models/shared/pushoptionproperty.go
 pkg/models/shared/pushoptionchoice.go
 pkg/models/shared/accounts.go
 pkg/models/shared/createbanktransactionsresponse.go
+pkg/models/shared/createbanktransactions.go
+pkg/models/shared/createbankaccounttransaction.go
+pkg/models/shared/banktransactionsresponse.go
 pkg/models/shared/banktransactions.go
 pkg/models/shared/banktransactiontype.go
-pkg/models/shared/banktransactionsresponse.go
 pkg/models/shared/createbankaccountresponse.go
 pkg/models/shared/bankaccount.go
 pkg/models/shared/bankaccounts.go

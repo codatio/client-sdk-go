@@ -172,7 +172,7 @@ func New(opts ...SDKOption) *CodatAccounting {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "2.1.0",
-			SDKVersion:        "0.17.0",
+			SDKVersion:        "0.17.1",
 			GenVersion:        "2.37.0",
 		},
 	}
