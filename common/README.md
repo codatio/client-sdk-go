@@ -23,7 +23,7 @@ import(
 func main() {
     s := codatcommon.New(
         codatcommon.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "",
         }),
     )
 
@@ -87,8 +87,9 @@ func main() {
 ### [Settings](docs/settings/README.md)
 
 * [~~GetProfile~~](docs/settings/README.md#getprofile) - Get profile :warning: **Deprecated**
-* [GetSyncSettings](docs/settings/README.md#getsyncsettings) - Update all sync settings
+* [GetSyncSettings](docs/settings/README.md#getsyncsettings) - Get sync settings
 * [UpdateProfile](docs/settings/README.md#updateprofile) - Update profile
+* [UpdateSyncSettings](docs/settings/README.md#updatesyncsettings) - Update all sync settings
 
 ### [Webhooks](docs/webhooks/README.md)
 

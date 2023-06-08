@@ -7,8 +7,9 @@ Manage your Codat instance.
 ### Available Operations
 
 * [~~GetProfile~~](#getprofile) - Get profile :warning: **Deprecated**
-* [GetSyncSettings](#getsyncsettings) - Update all sync settings
+* [GetSyncSettings](#getsyncsettings) - Get sync settings
 * [UpdateProfile](#updateprofile) - Update profile
+* [UpdateSyncSettings](#updatesyncsettings) - Update all sync settings
 
 ## ~~GetProfile~~
 
@@ -30,7 +31,7 @@ import(
 func main() {
     s := codatcommon.New(
         codatcommon.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "",
         }),
     )
 
@@ -48,7 +49,7 @@ func main() {
 
 ## GetSyncSettings
 
-Update sync settings for all data types.
+Retrieve the sync settings for your client. This includes how often data types should be queued to be updated, and how much history should be fetched.
 
 ### Example Usage
 
@@ -59,69 +60,22 @@ import(
 	"context"
 	"log"
 	"github.com/codatio/client-sdk-go/common"
-	"github.com/codatio/client-sdk-go/common/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
 )
 
 func main() {
     s := codatcommon.New(
         codatcommon.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "",
         }),
     )
 
     ctx := context.Background()
-    res, err := s.Settings.GetSyncSettings(ctx, operations.UpdateSyncSettingsRequestBody{
-        ClientID: "367f7975-267b-439b-90c6-a6040ee680f3",
-        OverridesDefaults: false,
-        Settings: []shared.SyncSetting{
-            shared.SyncSetting{
-                DataType: shared.SyncSettingDataTypeInvoices,
-                FetchOnFirstLink: false,
-                IsLocked: codatcommon.Bool(false),
-                MonthsToSync: codatcommon.Int64(24),
-                SyncFromUtc: codatcommon.String("saepe"),
-                SyncFromWindow: codatcommon.Int64(24),
-                SyncOrder: 681820,
-                SyncSchedule: 24,
-            },
-            shared.SyncSetting{
-                DataType: shared.SyncSettingDataTypeInvoices,
-                FetchOnFirstLink: false,
-                IsLocked: codatcommon.Bool(false),
-                MonthsToSync: codatcommon.Int64(24),
-                SyncFromUtc: codatcommon.String("in"),
-                SyncFromWindow: codatcommon.Int64(24),
-                SyncOrder: 359508,
-                SyncSchedule: 24,
-            },
-            shared.SyncSetting{
-                DataType: shared.SyncSettingDataTypeInvoices,
-                FetchOnFirstLink: false,
-                IsLocked: codatcommon.Bool(false),
-                MonthsToSync: codatcommon.Int64(24),
-                SyncFromUtc: codatcommon.String("iste"),
-                SyncFromWindow: codatcommon.Int64(24),
-                SyncOrder: 437032,
-                SyncSchedule: 24,
-            },
-            shared.SyncSetting{
-                DataType: shared.SyncSettingDataTypeInvoices,
-                FetchOnFirstLink: false,
-                IsLocked: codatcommon.Bool(false),
-                MonthsToSync: codatcommon.Int64(24),
-                SyncFromUtc: codatcommon.String("saepe"),
-                SyncFromWindow: codatcommon.Int64(24),
-                SyncOrder: 697631,
-                SyncSchedule: 24,
-            },
-        },
-    })
+    res, err := s.Settings.GetSyncSettings(ctx)
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.StatusCode == http.StatusOK {
+    if res.SyncSettings != nil {
         // handle response
     }
 }
@@ -146,7 +100,7 @@ import(
 func main() {
     s := codatcommon.New(
         codatcommon.WithSecurity(shared.Security{
-            AuthHeader: "YOUR_API_KEY_HERE",
+            AuthHeader: "",
         }),
     )
 
@@ -161,6 +115,9 @@ func main() {
         RedirectURL: "https://bobs-burgers.{countrySuffix}/{companyId}",
         WhiteListUrls: []string{
             "https://bobs-burgers.com",
+            "https://bobs-burgers.com",
+            "https://bobs-burgers.com",
+            "https://bobs-burgers.com",
         },
     })
     if err != nil {
@@ -168,6 +125,87 @@ func main() {
     }
 
     if res.Profile != nil {
+        // handle response
+    }
+}
+```
+
+## UpdateSyncSettings
+
+Update sync settings for all data types.
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"log"
+	"github.com/codatio/client-sdk-go/common"
+	"github.com/codatio/client-sdk-go/common/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
+)
+
+func main() {
+    s := codatcommon.New(
+        codatcommon.WithSecurity(shared.Security{
+            AuthHeader: "",
+        }),
+    )
+
+    ctx := context.Background()
+    res, err := s.Settings.UpdateSyncSettings(ctx, operations.UpdateProfileSyncSettingsRequestBody{
+        ClientID: "367f7975-267b-439b-90c6-a6040ee680f3",
+        OverridesDefaults: false,
+        Settings: []shared.SyncSetting{
+            shared.SyncSetting{
+                DataType: shared.SyncSettingDataTypeInvoices,
+                FetchOnFirstLink: false,
+                IsLocked: codatcommon.Bool(false),
+                MonthsToSync: codatcommon.Int64(24),
+                SyncFromUtc: codatcommon.String("2022-10-23T00:00:00.000Z"),
+                SyncFromWindow: codatcommon.Int64(24),
+                SyncOrder: 449950,
+                SyncSchedule: 24,
+            },
+            shared.SyncSetting{
+                DataType: shared.SyncSettingDataTypeInvoices,
+                FetchOnFirstLink: false,
+                IsLocked: codatcommon.Bool(false),
+                MonthsToSync: codatcommon.Int64(24),
+                SyncFromUtc: codatcommon.String("2022-10-23T00:00:00.000Z"),
+                SyncFromWindow: codatcommon.Int64(24),
+                SyncOrder: 613064,
+                SyncSchedule: 24,
+            },
+            shared.SyncSetting{
+                DataType: shared.SyncSettingDataTypeInvoices,
+                FetchOnFirstLink: false,
+                IsLocked: codatcommon.Bool(false),
+                MonthsToSync: codatcommon.Int64(24),
+                SyncFromUtc: codatcommon.String("2022-10-23T00:00:00.000Z"),
+                SyncFromWindow: codatcommon.Int64(24),
+                SyncOrder: 902349,
+                SyncSchedule: 24,
+            },
+            shared.SyncSetting{
+                DataType: shared.SyncSettingDataTypeInvoices,
+                FetchOnFirstLink: false,
+                IsLocked: codatcommon.Bool(false),
+                MonthsToSync: codatcommon.Int64(24),
+                SyncFromUtc: codatcommon.String("2022-10-23T00:00:00.000Z"),
+                SyncFromWindow: codatcommon.Int64(24),
+                SyncOrder: 99280,
+                SyncSchedule: 24,
+            },
+        },
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.StatusCode == http.StatusOK {
         // handle response
     }
 }

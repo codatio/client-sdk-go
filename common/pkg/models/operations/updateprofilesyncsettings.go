@@ -7,15 +7,15 @@ import (
 	"net/http"
 )
 
-// UpdateSyncSettingsRequestBody - Include a `syncSetting` object for each data type.
+// UpdateProfileSyncSettingsRequestBody - Include a `syncSetting` object for each data type.
 // `syncFromWindow`, `syncFromUTC` & `monthsToSync` only need to be included if you wish to set a value for them.
-type UpdateSyncSettingsRequestBody struct {
+type UpdateProfileSyncSettingsRequestBody struct {
 	ClientID          string               `json:"clientId"`
 	OverridesDefaults bool                 `json:"overridesDefaults"`
 	Settings          []shared.SyncSetting `json:"settings"`
 }
 
-type UpdateSyncSettingsResponse struct {
+type UpdateProfileSyncSettingsResponse struct {
 	ContentType string
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage

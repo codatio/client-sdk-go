@@ -44,8 +44,9 @@ pkg/models/operations/getcompanydatastatus.go
 pkg/models/operations/getpulloperation.go
 pkg/models/operations/listpulloperations.go
 pkg/models/operations/getprofile.go
-pkg/models/operations/updatesyncsettings.go
+pkg/models/operations/getprofilesyncsettings.go
 pkg/models/operations/updateprofile.go
+pkg/models/operations/updateprofilesyncsettings.go
 pkg/models/operations/createrule.go
 pkg/models/operations/getwebhook.go
 pkg/models/operations/listrules.go
@@ -91,6 +92,7 @@ pkg/models/shared/pulloperation.go
 pkg/models/shared/datastatus.go
 pkg/models/shared/dataconnectionhistory.go
 pkg/models/shared/profile.go
+pkg/models/shared/syncsettings.go
 pkg/models/shared/syncsetting.go
 pkg/models/shared/rule.go
 pkg/models/shared/rules.go
