@@ -37,7 +37,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Sync.RequestSync(ctx, operations.RequestSyncRequest{
         SyncToLatestArgs: &shared.SyncToLatestArgs{
-            SyncTo: codatsynccommerce.String("nulla"),
+            SyncTo: codatsynccommerce.String("2022-10-23T00:00:00.000Z"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
@@ -78,8 +78,8 @@ func main() {
     ctx := context.Background()
     res, err := s.Sync.RequestSyncForDateRange(ctx, operations.RequestSyncForDateRangeRequest{
         DateRange: &shared.DateRange{
-            Finish: codatsynccommerce.String("corrupti"),
-            Start: codatsynccommerce.String("illum"),
+            Finish: codatsynccommerce.String("2022-10-23T00:00:00.000Z"),
+            Start: codatsynccommerce.String("2022-10-23T00:00:00.000Z"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
