@@ -46,8 +46,8 @@ func main() {
     ctx := context.Background()
     res, err := s.Accounts.Create(ctx, operations.CreateAccountRequest{
         Account: &shared.Account{
-            Currency: codataccounting.String("quibusdam"),
-            CurrentBalance: codataccounting.Float64(6027.63),
+            Currency: codataccounting.String("EUR"),
+            CurrentBalance: codataccounting.Float64(0),
             Description: codataccounting.String("Invoices the business has issued but has not yet collected payment on."),
             FullyQualifiedCategory: codataccounting.String("Asset.Current"),
             FullyQualifiedName: codataccounting.String("Asset.Current.Accounts Receivable"),
@@ -56,49 +56,41 @@ func main() {
             Metadata: &shared.Metadata{
                 IsDeleted: codataccounting.Bool(false),
             },
-            ModifiedDate: codataccounting.String("nulla"),
+            ModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
             Name: codataccounting.String("Accounts Receivable"),
             NominalCode: codataccounting.String("610"),
-            SourceModifiedDate: codataccounting.String("corrupti"),
+            SourceModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
             Status: shared.AccountStatusActive,
             Type: shared.AccountTypeAsset,
             ValidDatatypeLinks: []shared.ValidDataTypeLinks{
                 shared.ValidDataTypeLinks{
                     Links: []string{
+                        "vel",
                         "error",
                         "deserunt",
+                        "suscipit",
                     },
-                    Property: codataccounting.String("suscipit"),
+                    Property: codataccounting.String("iure"),
                 },
                 shared.ValidDataTypeLinks{
                     Links: []string{
-                        "magnam",
                         "debitis",
+                        "ipsa",
                     },
-                    Property: codataccounting.String("ipsa"),
+                    Property: codataccounting.String("delectus"),
                 },
                 shared.ValidDataTypeLinks{
                     Links: []string{
-                        "tempora",
                         "suscipit",
                         "molestiae",
-                        "minus",
                     },
-                    Property: codataccounting.String("placeat"),
-                },
-                shared.ValidDataTypeLinks{
-                    Links: []string{
-                        "iusto",
-                        "excepturi",
-                        "nisi",
-                    },
-                    Property: codataccounting.String("recusandae"),
+                    Property: codataccounting.String("minus"),
                 },
             },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codataccounting.Int(836079),
+        TimeoutInMinutes: codataccounting.Int(812169),
     })
     if err != nil {
         log.Fatal(err)
@@ -139,7 +131,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Accounts.Get(ctx, operations.GetAccountRequest{
-        AccountID: "ab",
+        AccountID: "voluptatum",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -231,7 +223,7 @@ func main() {
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: codataccounting.Int(1),
         PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("quis"),
+        Query: codataccounting.String("iusto"),
     })
     if err != nil {
         log.Fatal(err)

@@ -45,53 +45,71 @@ func main() {
     res, err := s.BillPayments.Create(ctx, operations.CreateBillPaymentRequest{
         BillPayment: &shared.BillPayment{
             AccountRef: &shared.AccountRef{
-                ID: codataccounting.String("ebf60c32-1f02-43b7-9d23-67fe1a0cc8df"),
-                Name: codataccounting.String("Miss Daisy Willms"),
+                ID: codataccounting.String("99171b51-c1bd-4b1c-b4b8-88ebdfc4ccca"),
+                Name: codataccounting.String("Tracy Reinger"),
             },
-            Currency: codataccounting.String("provident"),
-            CurrencyRate: codataccounting.Float64(4047.74),
-            Date: "repellendus",
+            Currency: codataccounting.String("EUR"),
+            CurrencyRate: codataccounting.Float64(8022.16),
+            Date: "2022-10-23T00:00:00.000Z",
             ID: codataccounting.String("3d5a8e00-d108-4045-8823-7f342676cffa"),
             Lines: []shared.BillPaymentLine{
                 shared.BillPaymentLine{
-                    AllocatedOnDate: codataccounting.String("alias"),
-                    Amount: 7719.31,
+                    AllocatedOnDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
+                    Amount: 8662.92,
                     Links: []shared.BillPaymentLineLink{
                         shared.BillPaymentLineLink{
-                            Amount: codataccounting.Float64(4130.86),
-                            CurrencyRate: codataccounting.Float64(2871.41),
-                            ID: codataccounting.String("b7c15dfb-ace1-488b-9c4e-e2c8c6ce611f"),
-                            Type: shared.BillPaymentLineLinkTypeDiscount,
+                            Amount: codataccounting.Float64(9274.9),
+                            CurrencyRate: codataccounting.Float64(837.91),
+                            ID: codataccounting.String("0873e42b-006d-4678-878b-a8581a58208c"),
+                            Type: shared.BillPaymentLineLinkTypeOther,
+                        },
+                        shared.BillPaymentLineLink{
+                            Amount: codataccounting.Float64(2864.53),
+                            CurrencyRate: codataccounting.Float64(9580.68),
+                            ID: codataccounting.String("efa9c95f-2eac-4556-9d30-7cfee81206e2"),
+                            Type: shared.BillPaymentLineLinkTypeBillPayment,
+                        },
+                        shared.BillPaymentLineLink{
+                            Amount: codataccounting.Float64(1227.44),
+                            CurrencyRate: codataccounting.Float64(2001.9),
+                            ID: codataccounting.String("fa4a41c4-80d3-4f21-b2af-03102d514f4c"),
+                            Type: shared.BillPaymentLineLinkTypeRefund,
+                        },
+                        shared.BillPaymentLineLink{
+                            Amount: codataccounting.Float64(4044.22),
+                            CurrencyRate: codataccounting.Float64(9980.23),
+                            ID: codataccounting.String("18bf9621-a6a4-4f77-a87e-e3e4be752c65"),
+                            Type: shared.BillPaymentLineLinkTypeRefund,
                         },
                     },
                 },
                 shared.BillPaymentLine{
-                    AllocatedOnDate: codataccounting.String("vero"),
-                    Amount: 6943.94,
+                    AllocatedOnDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
+                    Amount: 2848.85,
                     Links: []shared.BillPaymentLineLink{
                         shared.BillPaymentLineLink{
-                            Amount: codataccounting.Float64(7782.42),
-                            CurrencyRate: codataccounting.Float64(4909.66),
-                            ID: codataccounting.String("cbdb6eec-7437-48ba-a531-7747dc915ad2"),
-                            Type: shared.BillPaymentLineLinkTypeManualJournal,
-                        },
-                    },
-                },
-                shared.BillPaymentLine{
-                    AllocatedOnDate: codataccounting.String("dolorum"),
-                    Amount: 9983.55,
-                    Links: []shared.BillPaymentLineLink{
-                        shared.BillPaymentLineLink{
-                            Amount: codataccounting.Float64(8473.08),
-                            CurrencyRate: codataccounting.Float64(8450.86),
-                            ID: codataccounting.String("6723dc0f-5ae2-4f3a-ab70-0878756143f5"),
-                            Type: shared.BillPaymentLineLinkTypePaymentOnAccount,
-                        },
-                        shared.BillPaymentLineLink{
-                            Amount: codataccounting.Float64(4351.42),
-                            CurrencyRate: codataccounting.Float64(7876.29),
-                            ID: codataccounting.String("98b55554-080d-440b-8acc-6cbd6b5f3ec9"),
+                            Amount: codataccounting.Float64(1039.88),
+                            CurrencyRate: codataccounting.Float64(5069.66),
+                            ID: codataccounting.String("e3bb91c8-d975-4e0e-8419-d8f84f144f3e"),
                             Type: shared.BillPaymentLineLinkTypeUnknown,
+                        },
+                        shared.BillPaymentLineLink{
+                            Amount: codataccounting.Float64(4587.23),
+                            CurrencyRate: codataccounting.Float64(8913.02),
+                            ID: codataccounting.String("dcc4aa5f-3cab-4d90-9a97-2e056728227b"),
+                            Type: shared.BillPaymentLineLinkTypeUnlinked,
+                        },
+                    },
+                },
+                shared.BillPaymentLine{
+                    AllocatedOnDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
+                    Amount: 1998.79,
+                    Links: []shared.BillPaymentLineLink{
+                        shared.BillPaymentLineLink{
+                            Amount: codataccounting.Float64(5751.39),
+                            CurrencyRate: codataccounting.Float64(2913.89),
+                            ID: codataccounting.String("70bf7a4f-a87c-4f53-9a6f-ae54ebf60c32"),
+                            Type: shared.BillPaymentLineLinkTypeUnlinked,
                         },
                     },
                 },
@@ -99,41 +117,44 @@ func main() {
             Metadata: &shared.Metadata{
                 IsDeleted: codataccounting.Bool(false),
             },
-            ModifiedDate: codataccounting.String("provident"),
+            ModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
             Note: codataccounting.String("Bill Payment against bill c13e37b6-dfaa-4894-b3be-9fe97bda9f44"),
             PaymentMethodRef: &shared.PaymentMethodRef{
-                ID: codataccounting.String("304f926b-ad25-4538-99b4-74b0ed20e562"),
-                Name: codataccounting.String("Vickie Welch"),
+                ID: codataccounting.String("023b75d2-367f-4e1a-8cc8-df79f0a396d9"),
+                Name: codataccounting.String("Leticia Donnelly"),
             },
-            Reference: codataccounting.String("autem"),
-            SourceModifiedDate: codataccounting.String("nesciunt"),
+            Reference: codataccounting.String("expedita"),
+            SourceModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "animi": map[string]interface{}{
-                        "beatae": "ipsa",
-                        "mollitia": "nam",
-                        "assumenda": "quo",
+                    "sunt": map[string]interface{}{
+                        "nulla": "maiores",
+                        "distinctio": "mollitia",
                     },
-                    "fuga": map[string]interface{}{
-                        "commodi": "fugit",
-                        "suscipit": "voluptate",
-                        "nisi": "aliquid",
+                    "impedit": map[string]interface{}{
+                        "et": "quas",
+                        "blanditiis": "cum",
+                        "dicta": "impedit",
+                        "tempora": "eveniet",
                     },
-                    "provident": map[string]interface{}{
-                        "accusamus": "ab",
-                        "itaque": "quisquam",
+                    "repudiandae": map[string]interface{}{
+                        "impedit": "quas",
+                    },
+                    "impedit": map[string]interface{}{
+                        "eligendi": "recusandae",
+                        "ex": "beatae",
                     },
                 },
             },
             SupplierRef: &shared.SupplierRef{
-                ID: "00221b33-5d89-4acb-becf-da8d0c549ef0",
-                SupplierName: codataccounting.String("ipsum"),
+                ID: "1feeb1c7-cbdb-46ee-8743-78ba25317747",
+                SupplierName: codataccounting.String("nulla"),
             },
             TotalAmount: codataccounting.Float64(1329.54),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codataccounting.Int(367),
+        TimeoutInMinutes: codataccounting.Int(771406),
     })
     if err != nil {
         log.Fatal(err)
@@ -193,7 +214,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.BillPayments.Delete(ctx, operations.DeleteBillPaymentRequest{
-        BillPaymentID: "doloremque",
+        BillPaymentID: "cupiditate",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -232,7 +253,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.BillPayments.Get(ctx, operations.GetBillPaymentsRequest{
-        BillPaymentID: "tempora",
+        BillPaymentID: "illo",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -316,7 +337,7 @@ func main() {
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: codataccounting.Int(1),
         PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("perspiciatis"),
+        Query: codataccounting.String("exercitationem"),
     })
     if err != nil {
         log.Fatal(err)
