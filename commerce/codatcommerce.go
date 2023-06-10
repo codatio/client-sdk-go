@@ -40,14 +40,15 @@ func Float32(f float32) *float32 { return &f }
 func Float64(f float64) *float64 { return &f }
 
 type sdkConfiguration struct {
-	DefaultClient  HTTPClient
-	SecurityClient HTTPClient
-	Security       *shared.Security
-	ServerURL      string
-	ServerIndex    int
-	Language       string
-	SDKVersion     string
-	GenVersion     string
+	DefaultClient     HTTPClient
+	SecurityClient    HTTPClient
+	Security          *shared.Security
+	ServerURL         string
+	ServerIndex       int
+	Language          string
+	OpenAPIDocVersion string
+	SDKVersion        string
+	GenVersion        string
 }
 
 func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
@@ -138,9 +139,10 @@ func WithSecurity(security shared.Security) SDKOption {
 func New(opts ...SDKOption) *CodatCommerce {
 	sdk := &CodatCommerce{
 		sdkConfiguration: sdkConfiguration{
-			Language:   "go",
-			SDKVersion: "0.18.0",
-			GenVersion: "2.35.9",
+			Language:          "go",
+			OpenAPIDocVersion: "2.1.0",
+			SDKVersion:        "0.19.0",
+			GenVersion:        "2.39.0",
 		},
 	}
 	for _, opt := range opts {
