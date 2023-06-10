@@ -51,205 +51,205 @@ func main() {
 ## Available Resources and Operations
 
 
-### [AccountTransactions](docs/accounttransactions/README.md)
+### [AccountTransactions](docs/sdks/accounttransactions/README.md)
 
-* [Get](docs/accounttransactions/README.md#get) - Get account transaction
-* [List](docs/accounttransactions/README.md#list) - List account transactions
+* [Get](docs/sdks/accounttransactions/README.md#get) - Get account transaction
+* [List](docs/sdks/accounttransactions/README.md#list) - List account transactions
 
-### [Accounts](docs/accounts/README.md)
+### [Accounts](docs/sdks/accounts/README.md)
 
-* [Create](docs/accounts/README.md#create) - Create account
-* [Get](docs/accounts/README.md#get) - Get account
-* [GetCreateModel](docs/accounts/README.md#getcreatemodel) - Get create account model
-* [List](docs/accounts/README.md#list) - List accounts
+* [Create](docs/sdks/accounts/README.md#create) - Create account
+* [Get](docs/sdks/accounts/README.md#get) - Get account
+* [GetCreateModel](docs/sdks/accounts/README.md#getcreatemodel) - Get create account model
+* [List](docs/sdks/accounts/README.md#list) - List accounts
 
-### [BankAccountTransactions](docs/bankaccounttransactions/README.md)
+### [BankAccountTransactions](docs/sdks/bankaccounttransactions/README.md)
 
-* [Create](docs/bankaccounttransactions/README.md#create) - Create bank transactions
-* [GetCreateModel](docs/bankaccounttransactions/README.md#getcreatemodel) - List push options for bank account bank transactions
-* [List](docs/bankaccounttransactions/README.md#list) - List bank transactions for bank account
+* [Create](docs/sdks/bankaccounttransactions/README.md#create) - Create bank transactions
+* [GetCreateModel](docs/sdks/bankaccounttransactions/README.md#getcreatemodel) - List push options for bank account bank transactions
+* [List](docs/sdks/bankaccounttransactions/README.md#list) - List bank transactions for bank account
 
-### [BankAccounts](docs/bankaccounts/README.md)
+### [BankAccounts](docs/sdks/bankaccounts/README.md)
 
-* [Create](docs/bankaccounts/README.md#create) - Create bank account
-* [~~Get~~](docs/bankaccounts/README.md#get) - Get bank account :warning: **Deprecated**
-* [GetCreateUpdateModel](docs/bankaccounts/README.md#getcreateupdatemodel) - Get create/update bank account model
-* [List](docs/bankaccounts/README.md#list) - List bank accounts
-* [Update](docs/bankaccounts/README.md#update) - Update bank account
+* [Create](docs/sdks/bankaccounts/README.md#create) - Create bank account
+* [~~Get~~](docs/sdks/bankaccounts/README.md#get) - Get bank account :warning: **Deprecated**
+* [GetCreateUpdateModel](docs/sdks/bankaccounts/README.md#getcreateupdatemodel) - Get create/update bank account model
+* [List](docs/sdks/bankaccounts/README.md#list) - List bank accounts
+* [Update](docs/sdks/bankaccounts/README.md#update) - Update bank account
 
-### [BillCreditNotes](docs/billcreditnotes/README.md)
+### [BillCreditNotes](docs/sdks/billcreditnotes/README.md)
 
-* [Create](docs/billcreditnotes/README.md#create) - Create bill credit note
-* [Get](docs/billcreditnotes/README.md#get) - Get bill credit note
-* [GetCreateUpdateModel](docs/billcreditnotes/README.md#getcreateupdatemodel) - Get create/update bill credit note model
-* [List](docs/billcreditnotes/README.md#list) - List bill credit notes
-* [Update](docs/billcreditnotes/README.md#update) - Update bill credit note
+* [Create](docs/sdks/billcreditnotes/README.md#create) - Create bill credit note
+* [Get](docs/sdks/billcreditnotes/README.md#get) - Get bill credit note
+* [GetCreateUpdateModel](docs/sdks/billcreditnotes/README.md#getcreateupdatemodel) - Get create/update bill credit note model
+* [List](docs/sdks/billcreditnotes/README.md#list) - List bill credit notes
+* [Update](docs/sdks/billcreditnotes/README.md#update) - Update bill credit note
 
-### [BillPayments](docs/billpayments/README.md)
+### [BillPayments](docs/sdks/billpayments/README.md)
 
-* [Create](docs/billpayments/README.md#create) - Create bill payments
-* [Delete](docs/billpayments/README.md#delete) - Delete bill payment
-* [Get](docs/billpayments/README.md#get) - Get bill payment
-* [GetCreateModel](docs/billpayments/README.md#getcreatemodel) - Get create bill payment model
-* [List](docs/billpayments/README.md#list) - List bill payments
+* [Create](docs/sdks/billpayments/README.md#create) - Create bill payments
+* [Delete](docs/sdks/billpayments/README.md#delete) - Delete bill payment
+* [Get](docs/sdks/billpayments/README.md#get) - Get bill payment
+* [GetCreateModel](docs/sdks/billpayments/README.md#getcreatemodel) - Get create bill payment model
+* [List](docs/sdks/billpayments/README.md#list) - List bill payments
 
-### [Bills](docs/bills/README.md)
+### [Bills](docs/sdks/bills/README.md)
 
-* [Create](docs/bills/README.md#create) - Create bill
-* [Delete](docs/bills/README.md#delete) - Delete bill
-* [DownloadAttachment](docs/bills/README.md#downloadattachment) - Download bill attachment
-* [Get](docs/bills/README.md#get) - Get bill
-* [GetAttachment](docs/bills/README.md#getattachment) - Get bill attachment
-* [GetCreateUpdateModel](docs/bills/README.md#getcreateupdatemodel) - Get create/update bill model
-* [List](docs/bills/README.md#list) - List bills
-* [ListAttachments](docs/bills/README.md#listattachments) - List bill attachments
-* [Update](docs/bills/README.md#update) - Update bill
-* [UploadAttachment](docs/bills/README.md#uploadattachment) - Upload bill attachment
+* [Create](docs/sdks/bills/README.md#create) - Create bill
+* [Delete](docs/sdks/bills/README.md#delete) - Delete bill
+* [DownloadAttachment](docs/sdks/bills/README.md#downloadattachment) - Download bill attachment
+* [Get](docs/sdks/bills/README.md#get) - Get bill
+* [GetAttachment](docs/sdks/bills/README.md#getattachment) - Get bill attachment
+* [GetCreateUpdateModel](docs/sdks/bills/README.md#getcreateupdatemodel) - Get create/update bill model
+* [List](docs/sdks/bills/README.md#list) - List bills
+* [ListAttachments](docs/sdks/bills/README.md#listattachments) - List bill attachments
+* [Update](docs/sdks/bills/README.md#update) - Update bill
+* [UploadAttachment](docs/sdks/bills/README.md#uploadattachment) - Upload bill attachment
 
-### [CompanyInfo](docs/companyinfo/README.md)
+### [CompanyInfo](docs/sdks/companyinfo/README.md)
 
-* [Get](docs/companyinfo/README.md#get) - Get company info
-* [Refresh](docs/companyinfo/README.md#refresh) - Refresh company info
+* [Get](docs/sdks/companyinfo/README.md#get) - Get company info
+* [Refresh](docs/sdks/companyinfo/README.md#refresh) - Refresh company info
 
-### [CreditNotes](docs/creditnotes/README.md)
+### [CreditNotes](docs/sdks/creditnotes/README.md)
 
-* [Create](docs/creditnotes/README.md#create) - Create credit note
-* [Get](docs/creditnotes/README.md#get) - Get credit note
-* [GetCreateUpdateModel](docs/creditnotes/README.md#getcreateupdatemodel) - Get create/update credit note model
-* [List](docs/creditnotes/README.md#list) - List credit notes
-* [Update](docs/creditnotes/README.md#update) - Update creditNote
+* [Create](docs/sdks/creditnotes/README.md#create) - Create credit note
+* [Get](docs/sdks/creditnotes/README.md#get) - Get credit note
+* [GetCreateUpdateModel](docs/sdks/creditnotes/README.md#getcreateupdatemodel) - Get create/update credit note model
+* [List](docs/sdks/creditnotes/README.md#list) - List credit notes
+* [Update](docs/sdks/creditnotes/README.md#update) - Update creditNote
 
-### [Customers](docs/customers/README.md)
+### [Customers](docs/sdks/customers/README.md)
 
-* [Create](docs/customers/README.md#create) - Create customer
-* [DownloadAttachment](docs/customers/README.md#downloadattachment) - Download customer attachment
-* [Get](docs/customers/README.md#get) - Get customer
-* [GetAttachment](docs/customers/README.md#getattachment) - Get customer attachment
-* [GetCreateUpdateModel](docs/customers/README.md#getcreateupdatemodel) - Get create/update customer model
-* [List](docs/customers/README.md#list) - List customers
-* [ListAttachments](docs/customers/README.md#listattachments) - List customer attachments
-* [Update](docs/customers/README.md#update) - Update customer
+* [Create](docs/sdks/customers/README.md#create) - Create customer
+* [DownloadAttachment](docs/sdks/customers/README.md#downloadattachment) - Download customer attachment
+* [Get](docs/sdks/customers/README.md#get) - Get customer
+* [GetAttachment](docs/sdks/customers/README.md#getattachment) - Get customer attachment
+* [GetCreateUpdateModel](docs/sdks/customers/README.md#getcreateupdatemodel) - Get create/update customer model
+* [List](docs/sdks/customers/README.md#list) - List customers
+* [ListAttachments](docs/sdks/customers/README.md#listattachments) - List customer attachments
+* [Update](docs/sdks/customers/README.md#update) - Update customer
 
-### [DirectCosts](docs/directcosts/README.md)
+### [DirectCosts](docs/sdks/directcosts/README.md)
 
-* [Create](docs/directcosts/README.md#create) - Create direct cost
-* [DownloadAttachment](docs/directcosts/README.md#downloadattachment) - Download direct cost attachment
-* [Get](docs/directcosts/README.md#get) - Get direct cost
-* [GetAttachment](docs/directcosts/README.md#getattachment) - Get direct cost attachment
-* [GetCreateModel](docs/directcosts/README.md#getcreatemodel) - Get create direct cost model
-* [List](docs/directcosts/README.md#list) - List direct costs
-* [ListAttachments](docs/directcosts/README.md#listattachments) - List direct cost attachments
-* [UploadAttachment](docs/directcosts/README.md#uploadattachment) - Upload direct cost attachment
+* [Create](docs/sdks/directcosts/README.md#create) - Create direct cost
+* [DownloadAttachment](docs/sdks/directcosts/README.md#downloadattachment) - Download direct cost attachment
+* [Get](docs/sdks/directcosts/README.md#get) - Get direct cost
+* [GetAttachment](docs/sdks/directcosts/README.md#getattachment) - Get direct cost attachment
+* [GetCreateModel](docs/sdks/directcosts/README.md#getcreatemodel) - Get create direct cost model
+* [List](docs/sdks/directcosts/README.md#list) - List direct costs
+* [ListAttachments](docs/sdks/directcosts/README.md#listattachments) - List direct cost attachments
+* [UploadAttachment](docs/sdks/directcosts/README.md#uploadattachment) - Upload direct cost attachment
 
-### [DirectIncomes](docs/directincomes/README.md)
+### [DirectIncomes](docs/sdks/directincomes/README.md)
 
-* [Create](docs/directincomes/README.md#create) - Create direct income
-* [DownloadAttachment](docs/directincomes/README.md#downloadattachment) - Download direct income attachment
-* [Get](docs/directincomes/README.md#get) - Get direct income
-* [GetAttachment](docs/directincomes/README.md#getattachment) - Get direct income attachment
-* [GetCreateModel](docs/directincomes/README.md#getcreatemodel) - Get create direct income model
-* [List](docs/directincomes/README.md#list) - List direct incomes
-* [ListAttachments](docs/directincomes/README.md#listattachments) - List direct income attachments
-* [UploadAttachment](docs/directincomes/README.md#uploadattachment) - Create direct income attachment
+* [Create](docs/sdks/directincomes/README.md#create) - Create direct income
+* [DownloadAttachment](docs/sdks/directincomes/README.md#downloadattachment) - Download direct income attachment
+* [Get](docs/sdks/directincomes/README.md#get) - Get direct income
+* [GetAttachment](docs/sdks/directincomes/README.md#getattachment) - Get direct income attachment
+* [GetCreateModel](docs/sdks/directincomes/README.md#getcreatemodel) - Get create direct income model
+* [List](docs/sdks/directincomes/README.md#list) - List direct incomes
+* [ListAttachments](docs/sdks/directincomes/README.md#listattachments) - List direct income attachments
+* [UploadAttachment](docs/sdks/directincomes/README.md#uploadattachment) - Create direct income attachment
 
-### [Invoices](docs/invoices/README.md)
+### [Invoices](docs/sdks/invoices/README.md)
 
-* [Create](docs/invoices/README.md#create) - Create invoice
-* [Delete](docs/invoices/README.md#delete) - Delete invoice
-* [DownloadAttachment](docs/invoices/README.md#downloadattachment) - Download invoice attachment
-* [DownloadPdf](docs/invoices/README.md#downloadpdf) - Get invoice as PDF
-* [Get](docs/invoices/README.md#get) - Get invoice
-* [GetAttachment](docs/invoices/README.md#getattachment) - Get invoice attachment
-* [GetCreateUpdateModel](docs/invoices/README.md#getcreateupdatemodel) - Get create/update invoice model
-* [List](docs/invoices/README.md#list) - List invoices
-* [ListAttachments](docs/invoices/README.md#listattachments) - List invoice attachments
-* [Update](docs/invoices/README.md#update) - Update invoice
-* [UploadAttachment](docs/invoices/README.md#uploadattachment) - Push invoice attachment
+* [Create](docs/sdks/invoices/README.md#create) - Create invoice
+* [Delete](docs/sdks/invoices/README.md#delete) - Delete invoice
+* [DownloadAttachment](docs/sdks/invoices/README.md#downloadattachment) - Download invoice attachment
+* [DownloadPdf](docs/sdks/invoices/README.md#downloadpdf) - Get invoice as PDF
+* [Get](docs/sdks/invoices/README.md#get) - Get invoice
+* [GetAttachment](docs/sdks/invoices/README.md#getattachment) - Get invoice attachment
+* [GetCreateUpdateModel](docs/sdks/invoices/README.md#getcreateupdatemodel) - Get create/update invoice model
+* [List](docs/sdks/invoices/README.md#list) - List invoices
+* [ListAttachments](docs/sdks/invoices/README.md#listattachments) - List invoice attachments
+* [Update](docs/sdks/invoices/README.md#update) - Update invoice
+* [UploadAttachment](docs/sdks/invoices/README.md#uploadattachment) - Push invoice attachment
 
-### [Items](docs/items/README.md)
+### [Items](docs/sdks/items/README.md)
 
-* [Create](docs/items/README.md#create) - Create item
-* [Get](docs/items/README.md#get) - Get item
-* [GetCreateModel](docs/items/README.md#getcreatemodel) - Get create item model
-* [List](docs/items/README.md#list) - List items
+* [Create](docs/sdks/items/README.md#create) - Create item
+* [Get](docs/sdks/items/README.md#get) - Get item
+* [GetCreateModel](docs/sdks/items/README.md#getcreatemodel) - Get create item model
+* [List](docs/sdks/items/README.md#list) - List items
 
-### [JournalEntries](docs/journalentries/README.md)
+### [JournalEntries](docs/sdks/journalentries/README.md)
 
-* [Create](docs/journalentries/README.md#create) - Create journal entry
-* [Delete](docs/journalentries/README.md#delete) - Delete journal entry
-* [Get](docs/journalentries/README.md#get) - Get journal entry
-* [GetCreateModel](docs/journalentries/README.md#getcreatemodel) - Get create journal entry model
-* [List](docs/journalentries/README.md#list) - List journal entries
+* [Create](docs/sdks/journalentries/README.md#create) - Create journal entry
+* [Delete](docs/sdks/journalentries/README.md#delete) - Delete journal entry
+* [Get](docs/sdks/journalentries/README.md#get) - Get journal entry
+* [GetCreateModel](docs/sdks/journalentries/README.md#getcreatemodel) - Get create journal entry model
+* [List](docs/sdks/journalentries/README.md#list) - List journal entries
 
-### [Journals](docs/journals/README.md)
+### [Journals](docs/sdks/journals/README.md)
 
-* [Create](docs/journals/README.md#create) - Create journal
-* [Get](docs/journals/README.md#get) - Get journal
-* [GetCreateModel](docs/journals/README.md#getcreatemodel) - Get create journal model
-* [List](docs/journals/README.md#list) - List journals
+* [Create](docs/sdks/journals/README.md#create) - Create journal
+* [Get](docs/sdks/journals/README.md#get) - Get journal
+* [GetCreateModel](docs/sdks/journals/README.md#getcreatemodel) - Get create journal model
+* [List](docs/sdks/journals/README.md#list) - List journals
 
-### [PaymentMethods](docs/paymentmethods/README.md)
+### [PaymentMethods](docs/sdks/paymentmethods/README.md)
 
-* [Get](docs/paymentmethods/README.md#get) - Get payment method
-* [List](docs/paymentmethods/README.md#list) - List all payment methods
+* [Get](docs/sdks/paymentmethods/README.md#get) - Get payment method
+* [List](docs/sdks/paymentmethods/README.md#list) - List all payment methods
 
-### [Payments](docs/payments/README.md)
+### [Payments](docs/sdks/payments/README.md)
 
-* [Create](docs/payments/README.md#create) - Create payment
-* [Get](docs/payments/README.md#get) - Get payment
-* [GetCreateModel](docs/payments/README.md#getcreatemodel) - Get create payment model
-* [List](docs/payments/README.md#list) - List payments
+* [Create](docs/sdks/payments/README.md#create) - Create payment
+* [Get](docs/sdks/payments/README.md#get) - Get payment
+* [GetCreateModel](docs/sdks/payments/README.md#getcreatemodel) - Get create payment model
+* [List](docs/sdks/payments/README.md#list) - List payments
 
-### [PurchaseOrders](docs/purchaseorders/README.md)
+### [PurchaseOrders](docs/sdks/purchaseorders/README.md)
 
-* [Create](docs/purchaseorders/README.md#create) - Create purchase order
-* [Get](docs/purchaseorders/README.md#get) - Get purchase order
-* [GetCreateUpdateModel](docs/purchaseorders/README.md#getcreateupdatemodel) - Get create/update purchase order model
-* [List](docs/purchaseorders/README.md#list) - List purchase orders
-* [Update](docs/purchaseorders/README.md#update) - Update purchase order
+* [Create](docs/sdks/purchaseorders/README.md#create) - Create purchase order
+* [Get](docs/sdks/purchaseorders/README.md#get) - Get purchase order
+* [GetCreateUpdateModel](docs/sdks/purchaseorders/README.md#getcreateupdatemodel) - Get create/update purchase order model
+* [List](docs/sdks/purchaseorders/README.md#list) - List purchase orders
+* [Update](docs/sdks/purchaseorders/README.md#update) - Update purchase order
 
-### [Reports](docs/reports/README.md)
+### [Reports](docs/sdks/reports/README.md)
 
-* [GetAgedCreditorsReport](docs/reports/README.md#getagedcreditorsreport) - Aged creditors report
-* [GetAgedDebtorsReport](docs/reports/README.md#getageddebtorsreport) - Aged debtors report
-* [GetBalanceSheet](docs/reports/README.md#getbalancesheet) - Get balance sheet
-* [GetCashFlowStatement](docs/reports/README.md#getcashflowstatement) - Get cash flow statement
-* [GetProfitAndLoss](docs/reports/README.md#getprofitandloss) - Get profit and loss
-* [IsAgedCreditorsReportAvailable](docs/reports/README.md#isagedcreditorsreportavailable) - Aged creditors report available
-* [IsAgedDebtorReportAvailable](docs/reports/README.md#isageddebtorreportavailable) - Aged debtors report available
+* [GetAgedCreditorsReport](docs/sdks/reports/README.md#getagedcreditorsreport) - Aged creditors report
+* [GetAgedDebtorsReport](docs/sdks/reports/README.md#getageddebtorsreport) - Aged debtors report
+* [GetBalanceSheet](docs/sdks/reports/README.md#getbalancesheet) - Get balance sheet
+* [GetCashFlowStatement](docs/sdks/reports/README.md#getcashflowstatement) - Get cash flow statement
+* [GetProfitAndLoss](docs/sdks/reports/README.md#getprofitandloss) - Get profit and loss
+* [IsAgedCreditorsReportAvailable](docs/sdks/reports/README.md#isagedcreditorsreportavailable) - Aged creditors report available
+* [IsAgedDebtorReportAvailable](docs/sdks/reports/README.md#isageddebtorreportavailable) - Aged debtors report available
 
-### [SalesOrders](docs/salesorders/README.md)
+### [SalesOrders](docs/sdks/salesorders/README.md)
 
-* [Get](docs/salesorders/README.md#get) - Get sales order
-* [List](docs/salesorders/README.md#list) - List sales orders
+* [Get](docs/sdks/salesorders/README.md#get) - Get sales order
+* [List](docs/sdks/salesorders/README.md#list) - List sales orders
 
-### [Suppliers](docs/suppliers/README.md)
+### [Suppliers](docs/sdks/suppliers/README.md)
 
-* [Create](docs/suppliers/README.md#create) - Create supplier
-* [DownloadAttachment](docs/suppliers/README.md#downloadattachment) - Download supplier attachment
-* [Get](docs/suppliers/README.md#get) - Get supplier
-* [GetAttachment](docs/suppliers/README.md#getattachment) - Get supplier attachment
-* [GetCreateUpdateModel](docs/suppliers/README.md#getcreateupdatemodel) - Get create/update supplier model
-* [List](docs/suppliers/README.md#list) - List suppliers
-* [ListAttachments](docs/suppliers/README.md#listattachments) - List supplier attachments
-* [Update](docs/suppliers/README.md#update) - Update supplier
+* [Create](docs/sdks/suppliers/README.md#create) - Create supplier
+* [DownloadAttachment](docs/sdks/suppliers/README.md#downloadattachment) - Download supplier attachment
+* [Get](docs/sdks/suppliers/README.md#get) - Get supplier
+* [GetAttachment](docs/sdks/suppliers/README.md#getattachment) - Get supplier attachment
+* [GetCreateUpdateModel](docs/sdks/suppliers/README.md#getcreateupdatemodel) - Get create/update supplier model
+* [List](docs/sdks/suppliers/README.md#list) - List suppliers
+* [ListAttachments](docs/sdks/suppliers/README.md#listattachments) - List supplier attachments
+* [Update](docs/sdks/suppliers/README.md#update) - Update supplier
 
-### [TaxRates](docs/taxrates/README.md)
+### [TaxRates](docs/sdks/taxrates/README.md)
 
-* [Get](docs/taxrates/README.md#get) - Get tax rate
-* [List](docs/taxrates/README.md#list) - List all tax rates
+* [Get](docs/sdks/taxrates/README.md#get) - Get tax rate
+* [List](docs/sdks/taxrates/README.md#list) - List all tax rates
 
-### [TrackingCategories](docs/trackingcategories/README.md)
+### [TrackingCategories](docs/sdks/trackingcategories/README.md)
 
-* [Get](docs/trackingcategories/README.md#get) - Get tracking categories
-* [List](docs/trackingcategories/README.md#list) - List tracking categories
+* [Get](docs/sdks/trackingcategories/README.md#get) - Get tracking categories
+* [List](docs/sdks/trackingcategories/README.md#list) - List tracking categories
 
-### [Transfers](docs/transfers/README.md)
+### [Transfers](docs/sdks/transfers/README.md)
 
-* [Create](docs/transfers/README.md#create) - Create transfer
-* [Get](docs/transfers/README.md#get) - Get transfer
-* [GetCreateModel](docs/transfers/README.md#getcreatemodel) - Get create transfer model
-* [List](docs/transfers/README.md#list) - List transfers
+* [Create](docs/sdks/transfers/README.md#create) - Create transfer
+* [Get](docs/sdks/transfers/README.md#get) - Get transfer
+* [GetCreateModel](docs/sdks/transfers/README.md#getcreatemodel) - Get create transfer model
+* [List](docs/sdks/transfers/README.md#list) - List transfers
 <!-- End SDK Available Operations -->
 
 ### SDK Generated by [Speakeasy](https://docs.speakeasyapi.dev/docs/using-speakeasy/client-sdks)
