@@ -21,6 +21,7 @@ type Options struct {
 
 type Option func(*Options, ...string) error
 
+// WithServerURL allows providing an alternative server URL.
 func WithServerURL(serverURL string) Option {
 	return func(opts *Options, supportedOptions ...string) error {
 		if !utils.Contains(supportedOptions, SupportedOptionServerURL) {
@@ -32,6 +33,7 @@ func WithServerURL(serverURL string) Option {
 	}
 }
 
+// WithTemplatedServerURL allows providing an alternative server URL with templated parameters.
 func WithTemplatedServerURL(serverURL string, params map[string]string) Option {
 	return func(opts *Options, supportedOptions ...string) error {
 		if !utils.Contains(supportedOptions, SupportedOptionServerURL) {
@@ -47,6 +49,7 @@ func WithTemplatedServerURL(serverURL string, params map[string]string) Option {
 	}
 }
 
+// WithRetries allows customizing the default retry configuration.
 func WithRetries(config utils.RetryConfig) Option {
 	return func(opts *Options, supportedOptions ...string) error {
 		if !utils.Contains(supportedOptions, SupportedOptionRetries) {
