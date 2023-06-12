@@ -52,7 +52,7 @@ func (s *refreshData) All(ctx context.Context, request operations.RefreshCompany
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	client := s.sdkConfiguration.SecurityClient
 
@@ -148,7 +148,7 @@ func (s *refreshData) ByDataType(ctx context.Context, request operations.Refresh
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -255,7 +255,7 @@ func (s *refreshData) Get(ctx context.Context, request operations.GetCompanyData
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	client := s.sdkConfiguration.SecurityClient
 
@@ -358,7 +358,7 @@ func (s *refreshData) GetPullOperation(ctx context.Context, request operations.G
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	client := s.sdkConfiguration.SecurityClient
 
@@ -461,7 +461,7 @@ func (s *refreshData) ListPullOperations(ctx context.Context, request operations
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
