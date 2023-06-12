@@ -1,14 +1,14 @@
 configVersion: 1.0.0
 management:
-  docChecksum: 62baa454a3169ec8dbb628f8351c4ef9
+  docChecksum: 2f93c20248853477bc19f95dbe3ca437
   docVersion: 2.1.0
-  speakeasyVersion: 1.45.0
-  generationVersion: 2.37.0
+  speakeasyVersion: 1.47.1
+  generationVersion: 2.39.2
 generation:
   sdkClassName: CodatAccounting
   singleTagPerOp: false
   telemetryEnabled: true
 go:
-  version: 0.17.1
+  version: 0.18.1
   maxMethodParams: 0
   packageName: github.com/codatio/client-sdk-go/accounting
