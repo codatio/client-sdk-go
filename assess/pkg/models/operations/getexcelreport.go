@@ -13,6 +13,10 @@ type GetExcelReportRequest struct {
 	ReportType shared.ExcelReportType `queryParam:"style=form,explode=true,name=reportType"`
 }
 
+// GetExcelReport200ApplicationOctetStream - OK
+type GetExcelReport200ApplicationOctetStream struct {
+}
+
 type GetExcelReportResponse struct {
 	Body        []byte
 	ContentType string
