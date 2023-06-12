@@ -2,13 +2,13 @@ configVersion: 1.0.0
 management:
   docChecksum: e40ac79ae86cdc31629ff09a87e8995c
   docVersion: 2.1.0
-  speakeasyVersion: 1.47.0
-  generationVersion: 2.39.0
+  speakeasyVersion: 1.47.1
+  generationVersion: 2.39.2
 generation:
   sdkClassName: CodatCommon
   singleTagPerOp: false
   telemetryEnabled: false
 go:
-  version: 0.21.0
+  version: 0.21.1
   maxMethodParams: 0
   packageName: github.com/codatio/client-sdk-go/common
