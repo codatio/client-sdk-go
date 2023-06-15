@@ -35,6 +35,8 @@ type DirectCostLineItem struct {
 	TotalAmount *float64  `json:"totalAmount,omitempty"`
 	Tracking    *Tracking `json:"tracking,omitempty"`
 	// Collection of categories against which this direct cost is tracked.
+	//
+	// Deprecated: this field will be removed in a future release, please migrate away from it as soon as possible.
 	TrackingCategoryRefs []TrackingCategoryRef `json:"trackingCategoryRefs,omitempty"`
 	// Price of each unit of goods or services.
 	// Note: If the platform does not provide this information, the unit amount will be mapped to the total amount.

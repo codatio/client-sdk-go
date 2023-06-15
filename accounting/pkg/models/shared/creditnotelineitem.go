@@ -44,6 +44,8 @@ type CreditNoteLineItem struct {
 	// Categories, and a project and customer, against which the item is tracked.
 	Tracking *CreditNoteLineItemTracking `json:"tracking,omitempty"`
 	// Reference to the tracking categories to which the line item is linked.
+	//
+	// Deprecated: this field will be removed in a future release, please migrate away from it as soon as possible.
 	TrackingCategoryRefs []TrackingCategoryRef `json:"trackingCategoryRefs,omitempty"`
 	// Unit price of the goods or service.
 	UnitAmount float64 `json:"unitAmount"`

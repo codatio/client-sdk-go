@@ -4,9 +4,9 @@ package shared
 
 // Payments - Success
 type Payments struct {
-	Links        Links      `json:"_links"`
-	PageNumber   int64      `json:"pageNumber"`
-	PageSize     int64      `json:"pageSize"`
-	Results      []Payments `json:"results,omitempty"`
-	TotalResults int64      `json:"totalResults"`
+	Links        Links     `json:"_links"`
+	PageNumber   int64     `json:"pageNumber"`
+	PageSize     int64     `json:"pageSize"`
+	Results      []Payment `json:"results,omitempty"`
+	TotalResults int64     `json:"totalResults"`
 }
