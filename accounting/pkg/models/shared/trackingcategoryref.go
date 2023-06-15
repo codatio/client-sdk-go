@@ -3,6 +3,8 @@
 package shared
 
 // TrackingCategoryRef - References a category against which the item is tracked.
+//
+// Deprecated: this type will be removed in a future release, please migrate away from it as soon as possible.
 type TrackingCategoryRef struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
