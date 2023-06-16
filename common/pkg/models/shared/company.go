@@ -51,7 +51,8 @@ type Company struct {
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	LastSync *string `json:"lastSync,omitempty"`
 	// The name of the company
-	Name     string  `json:"name"`
+	Name string `json:"name"`
+	// Deprecated: this field will be removed in a future release, please migrate away from it as soon as possible.
 	Platform *string `json:"platform,omitempty"`
 	// The `redirect` [Link URL](https://docs.codat.io/auth-flow/authorize-hosted-link) enabling the customer to start their auth flow journey for the company.
 	Redirect string `json:"redirect"`
