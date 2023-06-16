@@ -8,7 +8,6 @@ products.go
 taxcomponents.go
 transactions.go
 codatcommerce.go
-.gitignore
 go.mod
 go.sum
 pkg/types/bigint.go
