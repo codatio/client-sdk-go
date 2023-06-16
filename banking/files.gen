@@ -3,7 +3,6 @@ accounts.go
 transactioncategories.go
 transactions.go
 codatbanking.go
-.gitignore
 go.mod
 go.sum
 pkg/types/bigint.go
