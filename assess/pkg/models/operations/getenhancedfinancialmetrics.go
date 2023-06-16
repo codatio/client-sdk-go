@@ -10,7 +10,7 @@ import (
 type GetEnhancedFinancialMetricsRequest struct {
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
-	// The number of periods to return.  There will be no pagination as a query parameter, however Codat will limit the number of periods to request to 12 periods.
+	// The number of periods to return. There will be no pagination as a query parameter.
 	NumberOfPeriods int64 `queryParam:"style=form,explode=true,name=numberOfPeriods"`
 	// The number of months per period. E.g. 2 = 2 months per period.
 	PeriodLength int64 `queryParam:"style=form,explode=true,name=periodLength"`

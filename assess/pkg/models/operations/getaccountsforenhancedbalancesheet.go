@@ -9,8 +9,8 @@ import (
 
 type GetAccountsForEnhancedBalanceSheetRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
-	// The number of periods to return.  There will be no pagination as a query parameter, however Codat will limit the number of periods to request to 12 periods.
-	NumberOfPeriods int64 `queryParam:"style=form,explode=true,name=numberOfPeriods"`
+	// The number of periods to return. If not provided, 12 periods will be used as the default value.
+	NumberOfPeriods *int64 `queryParam:"style=form,explode=true,name=numberOfPeriods"`
 	// The date in which the report is created up to. Users must specify a specific date, however the response will be provided for the full month.
 	ReportDate string `queryParam:"style=form,explode=true,name=reportDate"`
 }
