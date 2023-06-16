@@ -24,7 +24,6 @@ taxrates.go
 trackingcategories.go
 transfers.go
 codataccounting.go
-.gitignore
 go.mod
 go.sum
 pkg/types/bigint.go
