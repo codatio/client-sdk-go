@@ -49,7 +49,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Reports.GetAccountsForEnhancedBalanceSheet(ctx, operations.GetAccountsForEnhancedBalanceSheetRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        NumberOfPeriods: 20218,
+        NumberOfPeriods: codatassess.Int64(20218),
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -104,7 +104,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Reports.GetAccountsForEnhancedProfitAndLoss(ctx, operations.GetAccountsForEnhancedProfitAndLossRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        NumberOfPeriods: 368241,
+        NumberOfPeriods: codatassess.Int64(368241),
         ReportDate: "29-09-2020",
     })
     if err != nil {
