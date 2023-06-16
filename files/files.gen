@@ -1,6 +1,5 @@
 files.go
 codatfiles.go
-.gitignore
 go.mod
 go.sum
 pkg/types/bigint.go
