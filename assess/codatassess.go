@@ -129,7 +129,7 @@ func New(opts ...SDKOption) *CodatAssess {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0",
-			SDKVersion:        "0.22.0",
+			SDKVersion:        "0.22.1",
 			GenVersion:        "2.41.1",
 		},
 	}
