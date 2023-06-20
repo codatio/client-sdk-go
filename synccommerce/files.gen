@@ -79,6 +79,7 @@ pkg/models/shared/featurestate.go
 pkg/models/shared/syncsummary.go
 pkg/models/shared/daterange.go
 pkg/models/shared/synctolatestargs.go
+pkg/models/shared/syncrange.go
 pkg/models/shared/localization.go
 pkg/models/shared/syncflowurl.go
 pkg/models/shared/visibleaccounts.go
@@ -168,6 +169,8 @@ docs/models/shared/featurestate.md
 docs/models/shared/syncsummary.md
 docs/models/shared/daterange.md
 docs/models/shared/synctolatestargs.md
+docs/models/shared/syncrangedaterange.md
+docs/models/shared/syncrange.md
 docs/models/shared/localization.md
 docs/models/shared/syncflowurl.md
 docs/models/shared/visibleaccounts.md

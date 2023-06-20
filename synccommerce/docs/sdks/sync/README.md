@@ -6,8 +6,8 @@ Initiate a sync of Sync for Commerce company data into their respective accounti
 
 ### Available Operations
 
-* [RequestSync](#requestsync) - Run a Commerce sync from the last successful sync
-* [RequestSyncForDateRange](#requestsyncfordaterange) - Run a Commerce sync from a given date range
+* [RequestSync](#requestsync) - Sync new
+* [RequestSyncForDateRange](#requestsyncfordaterange) - Sync range
 
 ## RequestSync
 
@@ -91,9 +91,11 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Sync.RequestSyncForDateRange(ctx, operations.RequestSyncForDateRangeRequest{
-        DateRange: &shared.DateRange{
-            Finish: codatsynccommerce.String("2022-10-23T00:00:00.000Z"),
-            Start: codatsynccommerce.String("2022-10-23T00:00:00.000Z"),
+        SyncRange: &shared.SyncRange{
+            DateRange: shared.SyncRangeDateRange{
+                Finish: "2022-10-23T00:00:00.000Z",
+                Start: "2022-10-23T00:00:00.000Z",
+            },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })

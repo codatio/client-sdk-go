@@ -24,7 +24,7 @@ func newSync(sdkConfig sdkConfiguration) *sync {
 	}
 }
 
-// RequestSync - Run a Commerce sync from the last successful sync
+// RequestSync - Sync new
 // Run a Commerce sync from the last successful sync up to the date provided (optional), otherwise UtcNow is used.
 // If there was no previously successful sync, the start date in the config is used.
 func (s *sync) RequestSync(ctx context.Context, request operations.RequestSyncRequest, opts ...operations.Option) (*operations.RequestSyncResponse, error) {
@@ -121,7 +121,7 @@ func (s *sync) RequestSync(ctx context.Context, request operations.RequestSyncRe
 	return res, nil
 }
 
-// RequestSyncForDateRange - Run a Commerce sync from a given date range
+// RequestSyncForDateRange - Sync range
 // Run a Commerce sync from the specified start date to the specified finish date in the request payload.
 func (s *sync) RequestSyncForDateRange(ctx context.Context, request operations.RequestSyncForDateRangeRequest, opts ...operations.Option) (*operations.RequestSyncForDateRangeResponse, error) {
 	o := operations.Options{}
@@ -140,7 +140,7 @@ func (s *sync) RequestSyncForDateRange(ctx context.Context, request operations.R
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "DateRange", "json")
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "SyncRange", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}

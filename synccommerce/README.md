@@ -69,8 +69,8 @@ func main() {
 
 ### [Sync](docs/sdks/sync/README.md)
 
-* [RequestSync](docs/sdks/sync/README.md#requestsync) - Run a Commerce sync from the last successful sync
-* [RequestSyncForDateRange](docs/sdks/sync/README.md#requestsyncfordaterange) - Run a Commerce sync from a given date range
+* [RequestSync](docs/sdks/sync/README.md#requestsync) - Sync new
+* [RequestSyncForDateRange](docs/sdks/sync/README.md#requestsyncfordaterange) - Sync range
 
 ### [SyncFlowPreferences](docs/sdks/syncflowpreferences/README.md)
 
