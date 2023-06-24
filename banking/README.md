@@ -65,7 +65,7 @@ func main() {
 ### [TransactionCategories](docs/sdks/transactioncategories/README.md)
 
 * [Get](docs/sdks/transactioncategories/README.md#get) - Get transaction category
-* [List](docs/sdks/transactioncategories/README.md#list) - List all transaction categories
+* [List](docs/sdks/transactioncategories/README.md#list) - List transaction categories
 
 ### [Transactions](docs/sdks/transactions/README.md)
 

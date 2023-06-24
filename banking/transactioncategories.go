@@ -113,8 +113,12 @@ func (s *transactionCategories) Get(ctx context.Context, request operations.GetT
 	return res, nil
 }
 
-// List - List all transaction categories
-// Gets a list of hierarchical categories associated with a transaction for greater contextual meaning to transactionactivity.
+// List - List transaction categories
+// The *List transaction categories* endpoint returns a list of [transaction categories](https://docs.codat.io/banking-api#/schemas/TransactionCategory) for a given company's connection.
+//
+// [Transaction categories](https://docs.codat.io/banking-api#/schemas/TransactionCategory) are associated with a transaction to provide greater contextual meaning to transaction activity.
+//
+// Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
 func (s *transactionCategories) List(ctx context.Context, request operations.ListTransactionCategoriesRequest, opts ...operations.Option) (*operations.ListTransactionCategoriesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
