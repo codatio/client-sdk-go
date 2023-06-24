@@ -572,7 +572,11 @@ func (s *directIncomes) GetCreateModel(ctx context.Context, request operations.G
 }
 
 // List - List direct incomes
-// Lists the direct incomes for a given company.
+// The *List direct incomes* endpoint returns a list of [direct incomes](https://docs.codat.io/accounting-api#/schemas/DirectIncome) for a given company's connection.
+//
+// [Direct incomes](https://docs.codat.io/accounting-api#/schemas/DirectIncome) are sales of items directly to a customer where payment is received at the point of the sale.
+//
+// Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
 func (s *directIncomes) List(ctx context.Context, request operations.ListDirectIncomesRequest, opts ...operations.Option) (*operations.ListDirectIncomesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

@@ -494,7 +494,11 @@ func (s *billPayments) GetCreateModel(ctx context.Context, request operations.Ge
 }
 
 // List - List bill payments
-// Gets the latest billPayments for a company, with pagination.
+// The *List bill payments* endpoint returns a list of [bill payments](https://docs.codat.io/accounting-api#/schemas/BillPayment) for a given company's connection.
+//
+// [Bill payments](https://docs.codat.io/accounting-api#/schemas/BillPayment) are an allocation of money within any customer accounts payable account.
+//
+// Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
 func (s *billPayments) List(ctx context.Context, request operations.ListBillPaymentsRequest, opts ...operations.Option) (*operations.ListBillPaymentsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

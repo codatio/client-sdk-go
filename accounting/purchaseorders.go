@@ -367,7 +367,11 @@ func (s *purchaseOrders) GetCreateUpdateModel(ctx context.Context, request opera
 }
 
 // List - List purchase orders
-// Get purchase orders
+// The *List purchase orders* endpoint returns a list of [purchase orders](https://docs.codat.io/accounting-api#/schemas/PurchaseOrder) for a given company's connection.
+//
+// [Purchase orders](https://docs.codat.io/accounting-api#/schemas/PurchaseOrder) represent a business's intent to purchase goods or services from a supplier.
+//
+// Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
 func (s *purchaseOrders) List(ctx context.Context, request operations.ListPurchaseOrdersRequest, opts ...operations.Option) (*operations.ListPurchaseOrdersResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

@@ -365,7 +365,11 @@ func (s *billCreditNotes) GetCreateUpdateModel(ctx context.Context, request oper
 }
 
 // List - List bill credit notes
-// Gets a list of all bill credit notes for a company, with pagination.
+// The *List bill credit notes* endpoint returns a list of [bill credit notes](https://docs.codat.io/accounting-api#/schemas/BillCreditNote) for a given company's connection.
+//
+// [Bill credit notes](https://docs.codat.io/accounting-api#/schemas/BillCreditNote) are issued by a supplier for the purpose of recording credit.
+//
+// Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
 func (s *billCreditNotes) List(ctx context.Context, request operations.ListBillCreditNotesRequest, opts ...operations.Option) (*operations.ListBillCreditNotesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

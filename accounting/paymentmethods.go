@@ -137,8 +137,12 @@ func (s *paymentMethods) Get(ctx context.Context, request operations.GetPaymentM
 	return res, nil
 }
 
-// List - List all payment methods
-// Gets the payment methods for a given company.
+// List - List payment methods
+// The *List payment methods* endpoint returns a list of [payment methods](https://docs.codat.io/accounting-api#/schemas/PaymentMethod) for a given company's connection.
+//
+// [Payment methods](https://docs.codat.io/accounting-api#/schemas/PaymentMethod) are used to pay a Bill. Payment Methods are referenced on [Bill Payments](https://docs.codat.io/accounting-api#/schemas/BillPayment) and [Payments](https://docs.codat.io/accounting-api#/schemas/Payment).
+//
+// Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
 func (s *paymentMethods) List(ctx context.Context, request operations.ListPaymentMethodsRequest, opts ...operations.Option) (*operations.ListPaymentMethodsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

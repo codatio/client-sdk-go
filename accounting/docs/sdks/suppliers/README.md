@@ -348,7 +348,12 @@ func main() {
 
 ## List
 
-Gets the latest suppliers for a company, with pagination
+The *List suppliers* endpoint returns a list of [suppliers](https://docs.codat.io/accounting-api#/schemas/Supplier) for a given company's connection.
+
+[Suppliers](https://docs.codat.io/accounting-api#/schemas/Supplier) are people or organizations that provide something, such as a product or service.
+
+Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
+    
 
 ### Example Usage
 

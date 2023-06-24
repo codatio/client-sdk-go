@@ -568,7 +568,11 @@ func (s *suppliers) GetCreateUpdateModel(ctx context.Context, request operations
 }
 
 // List - List suppliers
-// Gets the latest suppliers for a company, with pagination
+// The *List suppliers* endpoint returns a list of [suppliers](https://docs.codat.io/accounting-api#/schemas/Supplier) for a given company's connection.
+//
+// [Suppliers](https://docs.codat.io/accounting-api#/schemas/Supplier) are people or organizations that provide something, such as a product or service.
+//
+// Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
 func (s *suppliers) List(ctx context.Context, request operations.ListSuppliersRequest, opts ...operations.Option) (*operations.ListSuppliersResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

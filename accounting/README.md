@@ -191,7 +191,7 @@ func main() {
 ### [PaymentMethods](docs/sdks/paymentmethods/README.md)
 
 * [Get](docs/sdks/paymentmethods/README.md#get) - Get payment method
-* [List](docs/sdks/paymentmethods/README.md#list) - List all payment methods
+* [List](docs/sdks/paymentmethods/README.md#list) - List payment methods
 
 ### [Payments](docs/sdks/payments/README.md)
 

@@ -641,7 +641,12 @@ func main() {
 
 ## List
 
-﻿Gets the latest invoices for a company, with pagination.
+The *List invoices* endpoint returns a list of [invoices](https://docs.codat.io/accounting-api#/schemas/Invoice) for a given company's connection.
+
+[Invoices](https://docs.codat.io/accounting-api#/schemas/Invoice) are itemized records of goods sold or services provided to a customer.
+
+Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
+    
 
 ### Example Usage
 

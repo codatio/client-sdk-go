@@ -139,6 +139,10 @@ func (s *accountTransactions) Get(ctx context.Context, request operations.GetAcc
 
 // List - List account transactions
 // The *List account transactions* endpoint returns a list of [account transactions](https://docs.codat.io/accounting-api#/schemas/AccountTransaction) for a given company's connection.
+//
+// [Account transactions](https://docs.codat.io/accounting-api#/schemas/AccountTransaction) represent bank activity within an accounting platform. All transactions that go through a bank account are recorded as account transactions.
+//
+// Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
 func (s *accountTransactions) List(ctx context.Context, request operations.ListAccountTransactionsRequest, opts ...operations.Option) (*operations.ListAccountTransactionsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

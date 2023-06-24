@@ -138,7 +138,11 @@ func (s *taxRates) Get(ctx context.Context, request operations.GetTaxRateRequest
 }
 
 // List - List all tax rates
-// Gets the latest tax rates for a given company.
+// The *List tax rates* endpoint returns a list of [tax rates](https://docs.codat.io/accounting-api#/schemas/TaxRate) for a given company's connection.
+//
+// [Tax rates](https://docs.codat.io/accounting-api#/schemas/TaxRate) are a set of taxes and associated rates within the SMB's accounting package.
+//
+// Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
 func (s *taxRates) List(ctx context.Context, request operations.ListTaxRatesRequest, opts ...operations.Option) (*operations.ListTaxRatesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

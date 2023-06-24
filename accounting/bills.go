@@ -697,7 +697,11 @@ func (s *bills) GetCreateUpdateModel(ctx context.Context, request operations.Get
 }
 
 // List - List bills
-// Gets the latest bills for a company, with pagination.
+// The *List bills* endpoint returns a list of [bills](https://docs.codat.io/accounting-api#/schemas/Bill) for a given company's connection.
+//
+// [Bills](https://docs.codat.io/accounting-api#/schemas/Bill) are itemized records of goods received or services provided to the SMB.
+//
+// Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
 func (s *bills) List(ctx context.Context, request operations.ListBillsRequest, opts ...operations.Option) (*operations.ListBillsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

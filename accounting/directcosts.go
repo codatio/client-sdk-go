@@ -568,7 +568,11 @@ func (s *directCosts) GetCreateModel(ctx context.Context, request operations.Get
 }
 
 // List - List direct costs
-// Gets the direct costs for the company.
+// The *List direct costs* endpoint returns a list of [direct costs](https://docs.codat.io/accounting-api#/schemas/DirectCost) for a given company's connection.
+//
+// [Direct costs](https://docs.codat.io/accounting-api#/schemas/DirectCost) are purchases of items that are paid off at the point of the purchase.
+//
+// Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
 func (s *directCosts) List(ctx context.Context, request operations.ListDirectCostsRequest, opts ...operations.Option) (*operations.ListDirectCostsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

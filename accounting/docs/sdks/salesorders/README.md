@@ -63,7 +63,12 @@ func main() {
 
 ## List
 
-Get sales orders
+The *List sales orders* endpoint returns a list of [sales orders](https://docs.codat.io/accounting-api#/schemas/SalesOrder) for a given company's connection.
+
+[Sales orders](https://docs.codat.io/accounting-api#/schemas/SalesOrder) represent a customer's intention to purchase goods or services from the SMB.
+
+Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
+    
 
 ### Example Usage
 
