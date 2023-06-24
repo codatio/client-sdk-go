@@ -1,3 +1,4 @@
+bankaccountmapping.go
 bankaccounttransactions.go
 bankfeedaccounts.go
 companies.go
@@ -17,6 +18,8 @@ pkg/utils/requestbody.go
 pkg/utils/retries.go
 pkg/utils/security.go
 pkg/utils/utils.go
+pkg/models/operations/createbankaccountmapping.go
+pkg/models/operations/getbankaccountmapping.go
 pkg/models/operations/createbanktransactions.go
 pkg/models/operations/getcreatebankaccountmodel.go
 pkg/models/operations/listbankaccounttransactions.go
@@ -35,6 +38,10 @@ pkg/models/operations/listcompanyconnections.go
 pkg/models/operations/proxy.go
 pkg/models/operations/unlinkconnection.go
 pkg/models/shared/schema.go
+pkg/models/shared/accountmappingresult.go
+pkg/models/shared/bankfeedaccountmapping.go
+pkg/models/shared/bankfeedmappings.go
+pkg/models/shared/targetaccountoption.go
 pkg/models/shared/createbanktransactionsresponse.go
 pkg/models/shared/validation.go
 pkg/models/shared/validationitem.go
@@ -67,11 +74,16 @@ pkg/models/shared/connections.go
 pkg/models/shared/security.go
 docs/sdks/codatbankfeeds/README.md
 docs/models/operations/option.md
+docs/sdks/bankaccountmapping/README.md
 docs/sdks/bankaccounttransactions/README.md
 docs/sdks/bankfeedaccounts/README.md
 docs/sdks/companies/README.md
 docs/sdks/connections/README.md
 USAGE.md
+docs/models/operations/createbankaccountmappingrequest.md
+docs/models/operations/createbankaccountmappingresponse.md
+docs/models/operations/getbankaccountmappingrequest.md
+docs/models/operations/getbankaccountmappingresponse.md
 docs/models/operations/createbanktransactionsrequest.md
 docs/models/operations/createbanktransactionsresponse.md
 docs/models/operations/getcreatebankaccountmodelrequest.md
@@ -109,6 +121,11 @@ docs/models/operations/unlinkconnectionrequestbody.md
 docs/models/operations/unlinkconnectionrequest.md
 docs/models/operations/unlinkconnectionresponse.md
 docs/models/shared/schema.md
+docs/models/shared/accountmappingresult.md
+docs/models/shared/bankfeedaccountmapping.md
+docs/models/shared/bankfeedmappingsbankfeedmapping.md
+docs/models/shared/bankfeedmappings.md
+docs/models/shared/targetaccountoption.md
 docs/models/shared/createbanktransactionsresponse.md
 docs/models/shared/validation.md
 docs/models/shared/validationitem.md
