@@ -25,11 +25,15 @@ func newJournalEntries(sdkConfig sdkConfiguration) *journalEntries {
 }
 
 // Create - Create journal entry
-// Posts a new journalEntry to the accounting package for a given company.
+// The *Create journal entry* endpoint creates a new [journal entry](https://docs.codat.io/accounting-api#/schemas/JournalEntry) for a given company's connection.
+//
+// [Journal entries](https://docs.codat.io/accounting-api#/schemas/JournalEntry) are  made in a company's general ledger, or accounts, when transactions are approved.
+//
+// **Integration-specific behaviour**
 //
 // Required data may vary by integration. To see what data to post, first call [Get create journal entry model](https://docs.codat.io/accounting-api#/operations/get-create-journalEntries-model).
 //
-// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journalEntries) to see which integrations support this endpoint.
+// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journalEntries) for integrations that support creating an account.
 func (s *journalEntries) Create(ctx context.Context, request operations.CreateJournalEntryRequest, opts ...operations.Option) (*operations.CreateJournalEntryResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -281,7 +285,13 @@ func (s *journalEntries) Delete(ctx context.Context, request operations.DeleteJo
 }
 
 // Get - Get journal entry
-// Gets a single JournalEntry corresponding to the given ID.
+// The *Get journal entry* endpoint returns a single journal entry for a given journalEntryId.
+//
+// [Journal entries](https://docs.codat.io/accounting-api#/schemas/JournalEntry) are  made in a company's general ledger, or accounts, when transactions are approved.
+//
+// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journalEntries) for integrations that support getting a specific journal entry.
+//
+// Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
 func (s *journalEntries) Get(ctx context.Context, request operations.GetJournalEntryRequest, opts ...operations.Option) (*operations.GetJournalEntryResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -394,13 +404,15 @@ func (s *journalEntries) Get(ctx context.Context, request operations.GetJournalE
 }
 
 // GetCreateModel - Get create journal entry model
-// Get create journal entry model. Returns the expected data for the request payload.
+// The *Get create journal entry model* endpoint returns the expected data for the request payload when creating a [journal entry](https://docs.codat.io/accounting-api#/schemas/JournalEntry) for a given company and integration.
 //
-// See the examples for integration-specific indicative models.
+// [Journal entries](https://docs.codat.io/accounting-api#/schemas/JournalEntry) are  made in a company's general ledger, or accounts, when transactions are approved.
 //
-// > **Supported Integrations**
-// >
-// > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journalEntries) for integrations that support creating journal entries.
+// **Integration-specific behaviour**
+//
+// See the *response examples* for integration-specific indicative models.
+//
+// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journalEntries) for integrations that support creating a journal entry.
 func (s *journalEntries) GetCreateModel(ctx context.Context, request operations.GetCreateJournalEntriesModelRequest, opts ...operations.Option) (*operations.GetCreateJournalEntriesModelResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

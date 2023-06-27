@@ -1,4 +1,4 @@
-# DownloadInvoicesAttachmentResponse
+# DownloadInvoiceAttachmentResponse
 
 
 ## Fields

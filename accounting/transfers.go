@@ -25,11 +25,15 @@ func newTransfers(sdkConfig sdkConfiguration) *transfers {
 }
 
 // Create - Create transfer
-// Posts a new transfer to the accounting package for a given company.
+// The *Create transfer* endpoint creates a new [transfer](https://docs.codat.io/accounting-api#/schemas/Transfer) for a given company's connection.
+//
+// [Transfers](https://docs.codat.io/accounting-api#/schemas/Transfer) record the movement of money between two bank accounts, or between a bank account and a nominal account.
+//
+// **Integration-specific behaviour**
 //
 // Required data may vary by integration. To see what data to post, first call [Get create transfer model](https://docs.codat.io/accounting-api#/operations/get-create-transfers-model).
 //
-// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=transfers) to see which integrations support this endpoint.
+// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=transfers) for integrations that support creating an account.
 func (s *transfers) Create(ctx context.Context, request operations.CreateTransferRequest, opts ...operations.Option) (*operations.CreateTransferResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -141,7 +145,13 @@ func (s *transfers) Create(ctx context.Context, request operations.CreateTransfe
 }
 
 // Get - Get transfer
-// Gets the specified transfer for a given company.
+// The *Get transfer* endpoint returns a single transfer for a given transferId.
+//
+// [Transfers](https://docs.codat.io/accounting-api#/schemas/Transfer) record the movement of money between two bank accounts, or between a bank account and a nominal account.
+//
+// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=transfers) for integrations that support getting a specific transfer.
+//
+// Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
 func (s *transfers) Get(ctx context.Context, request operations.GetTransferRequest, opts ...operations.Option) (*operations.GetTransferResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -254,13 +264,15 @@ func (s *transfers) Get(ctx context.Context, request operations.GetTransferReque
 }
 
 // GetCreateModel - Get create transfer model
-// Get create transfer model. Returns the expected data for the request payload.
+// The *Get create transfer model* endpoint returns the expected data for the request payload when creating a [transfer](https://docs.codat.io/accounting-api#/schemas/Transfer) for a given company and integration.
 //
-// See the examples for integration-specific indicative models.
+// [Transfers](https://docs.codat.io/accounting-api#/schemas/Transfer) record the movement of money between two bank accounts, or between a bank account and a nominal account.
 //
-// > **Supported Integrations**
-// >
-// > Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=transfers) for integrations that support creating transfers.
+// **Integration-specific behaviour**
+//
+// See the *response examples* for integration-specific indicative models.
+//
+// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=transfers) for integrations that support creating a transfer.
 func (s *transfers) GetCreateModel(ctx context.Context, request operations.GetCreateTransfersModelRequest, opts ...operations.Option) (*operations.GetCreateTransfersModelResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

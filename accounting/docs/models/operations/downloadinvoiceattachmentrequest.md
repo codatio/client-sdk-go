@@ -1,4 +1,4 @@
-# DownloadInvoicesAttachmentRequest
+# DownloadInvoiceAttachmentRequest
 
 
 ## Fields

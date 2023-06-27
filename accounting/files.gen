@@ -105,7 +105,7 @@ pkg/models/operations/listdirectincomeattachments.go
 pkg/models/operations/uploaddirectincomeattachment.go
 pkg/models/operations/createinvoice.go
 pkg/models/operations/deleteinvoice.go
-pkg/models/operations/downloadinvoicesattachment.go
+pkg/models/operations/downloadinvoiceattachment.go
 pkg/models/operations/downloadinvoicepdf.go
 pkg/models/operations/getinvoice.go
 pkg/models/operations/getinvoiceattachment.go
@@ -532,8 +532,8 @@ docs/models/operations/createinvoicerequest.md
 docs/models/operations/createinvoiceresponse.md
 docs/models/operations/deleteinvoicerequest.md
 docs/models/operations/deleteinvoiceresponse.md
-docs/models/operations/downloadinvoicesattachmentrequest.md
-docs/models/operations/downloadinvoicesattachmentresponse.md
+docs/models/operations/downloadinvoiceattachmentrequest.md
+docs/models/operations/downloadinvoiceattachmentresponse.md
 docs/models/operations/downloadinvoicepdfrequest.md
 docs/models/operations/downloadinvoicepdfresponse.md
 docs/models/operations/getinvoicerequest.md

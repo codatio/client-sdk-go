@@ -72,7 +72,7 @@ func main() {
 ### [BankAccounts](docs/sdks/bankaccounts/README.md)
 
 * [Create](docs/sdks/bankaccounts/README.md#create) - Create bank account
-* [~~Get~~](docs/sdks/bankaccounts/README.md#get) - Get bank account :warning: **Deprecated**
+* [Get](docs/sdks/bankaccounts/README.md#get) - Get bank account
 * [GetCreateUpdateModel](docs/sdks/bankaccounts/README.md#getcreateupdatemodel) - Get create/update bank account model
 * [List](docs/sdks/bankaccounts/README.md#list) - List bank accounts
 * [Update](docs/sdks/bankaccounts/README.md#update) - Update bank account

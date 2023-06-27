@@ -17,11 +17,15 @@ Customers
 
 ## Create
 
-Posts an individual customer for a given company.
+The *Create customer* endpoint creates a new [customer](https://docs.codat.io/accounting-api#/schemas/Customers) for a given company's connection.
+
+[Customers](https://docs.codat.io/accounting-api#/schemas/Customers) are people or organizations that buy goods or services from the SMB.
+
+**Integration-specific behaviour**
 
 Required data may vary by integration. To see what data to post, first call [Get create/update customer model](https://docs.codat.io/accounting-api#/operations/get-create-update-customers-model).
 
-Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=customers) to see which integrations support this endpoint.
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=customers) for integrations that support creating an account.
 
 
 ### Example Usage
@@ -160,7 +164,12 @@ func main() {
 
 ## DownloadAttachment
 
-﻿Download customer attachment.
+The *Download customer attachment* endpoint downloads a specific attachment for a given `customerId` and `attachmentId`.
+
+[Customers](https://docs.codat.io/accounting-api#/schemas/Customers) are people or organizations that buy goods or services from the SMB.
+
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=customers) for integrations that support downloading a customer attachment.
+
 
 ### Example Usage
 
@@ -214,7 +223,14 @@ func main() {
 
 ## Get
 
-﻿Gets a single customer corresponding to the given ID.
+The *Get customer* endpoint returns a single customer for a given customerId.
+
+[Customers](https://docs.codat.io/accounting-api#/schemas/Customers) are people or organizations that buy goods or services from the SMB.
+
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=customers) for integrations that support getting a specific customer.
+
+Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
+
 
 ### Example Usage
 
@@ -266,7 +282,12 @@ func main() {
 
 ## GetAttachment
 
-﻿Get  customer attachment.
+The *Get customer attachment* endpoint returns a specific attachment for a given `customerId` and `attachmentId`.
+
+[Customers](https://docs.codat.io/accounting-api#/schemas/Customers) are people or organizations that buy goods or services from the SMB.
+
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=customers) for integrations that support getting a customer attachment.
+
 
 ### Example Usage
 
@@ -320,13 +341,16 @@ func main() {
 
 ## GetCreateUpdateModel
 
-﻿Get create/update customer model. Returns the expected data for the request payload.
+﻿The *Get create/update customer model* endpoint returns the expected data for the request payload when creating and updating a [customer](https://docs.codat.io/accounting-api#/schemas/Customers) for a given company and integration.
 
-See the examples for integration-specific indicative models.
+[Customers](https://docs.codat.io/accounting-api#/schemas/Customers) are people or organizations that buy goods or services from the SMB.
 
-> **Supported Integrations**
-> 
-> Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=customers) for integrations that support creating and updating customers.
+**Integration-specific behaviour**
+
+See the *response examples* for integration-specific indicative models.
+
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=customers) for integrations that support creating and updating a customer.
+
 
 ### Example Usage
 
@@ -438,7 +462,12 @@ func main() {
 
 ## ListAttachments
 
-﻿List customer attachments
+The *List customer attachments* endpoint returns a list of attachments avialable to download for given `customerId`.
+
+[Customers](https://docs.codat.io/accounting-api#/schemas/Customers) are people or organizations that buy goods or services from the SMB.
+
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=customers) for integrations that support listing customer attachments.
+
 
 ### Example Usage
 
@@ -491,13 +520,16 @@ func main() {
 
 ## Update
 
-﻿Posts an updated customer for a given company.
+The *Update customer* endpoint updates an existing [customer](https://docs.codat.io/accounting-api#/schemas/Customers) for a given company's connection.
+
+[Customers](https://docs.codat.io/accounting-api#/schemas/Customers) are people or organizations that buy goods or services from the SMB.
+
+**Integration-specific behaviour**
 
 Required data may vary by integration. To see what data to post, first call [Get create/update customer model](https://docs.codat.io/accounting-api#/operations/get-create-update-customers-model).
 
-> **Supported Integrations**
-> 
-> Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=customers) for integrations that support updating customers.
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=customers) for integrations that support creating an account.
+
 
 ### Example Usage
 

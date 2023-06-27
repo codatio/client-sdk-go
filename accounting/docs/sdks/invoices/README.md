@@ -20,11 +20,15 @@ Invoices
 
 ## Create
 
-Posts a new invoice to the accounting package for a given company.
+The *Create invoice* endpoint creates a new [invoice](https://docs.codat.io/accounting-api#/schemas/Invoice) for a given company's connection.
+
+[Invoices](https://docs.codat.io/accounting-api#/schemas/Invoice) are itemized records of goods sold or services provided to a customer.
+
+**Integration-specific behaviour**
 
 Required data may vary by integration. To see what data to post, first call [Get create/update invoice model](https://docs.codat.io/accounting-api#/operations/get-create-update-invoices-model).
 
-Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=invoices) to see which integrations support this endpoint.
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=invoices) for integrations that support creating an account.
 
 
 ### Example Usage
@@ -371,7 +375,12 @@ func main() {
 
 ## DownloadAttachment
 
-﻿Download invoice attachment.
+The *Download invoice attachment* endpoint downloads a specific attachment for a given `invoiceId` and `attachmentId`.
+
+[Invoices](https://docs.codat.io/accounting-api#/schemas/Invoice) are itemized records of goods sold or services provided to a customer.
+
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=invoices) for integrations that support downloading an invoice attachment.
+
 
 ### Example Usage
 
@@ -393,7 +402,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Invoices.DownloadAttachment(ctx, operations.DownloadInvoicesAttachmentRequest{
+    res, err := s.Invoices.DownloadAttachment(ctx, operations.DownloadInvoiceAttachmentRequest{
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -411,16 +420,16 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                    | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
-| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                                        | :heavy_check_mark:                                                                                           | The context to use for the request.                                                                          |
-| `request`                                                                                                    | [operations.DownloadInvoicesAttachmentRequest](../../models/operations/downloadinvoicesattachmentrequest.md) | :heavy_check_mark:                                                                                           | The request object to use for the request.                                                                   |
-| `opts`                                                                                                       | [][operations.Option](../../models/operations/option.md)                                                     | :heavy_minus_sign:                                                                                           | The options for this request.                                                                                |
+| Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                                      | :heavy_check_mark:                                                                                         | The context to use for the request.                                                                        |
+| `request`                                                                                                  | [operations.DownloadInvoiceAttachmentRequest](../../models/operations/downloadinvoiceattachmentrequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
+| `opts`                                                                                                     | [][operations.Option](../../models/operations/option.md)                                                   | :heavy_minus_sign:                                                                                         | The options for this request.                                                                              |
 
 
 ### Response
 
-**[*operations.DownloadInvoicesAttachmentResponse](../../models/operations/downloadinvoicesattachmentresponse.md), error**
+**[*operations.DownloadInvoiceAttachmentResponse](../../models/operations/downloadinvoiceattachmentresponse.md), error**
 
 
 ## DownloadPdf
@@ -477,7 +486,14 @@ func main() {
 
 ## Get
 
-﻿Get an invoice.
+The *Get invoice* endpoint returns a single invoice for a given invoiceId.
+
+[Invoices](https://docs.codat.io/accounting-api#/schemas/Invoice) are itemized records of goods sold or services provided to a customer.
+
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=invoices) for integrations that support getting a specific invoice.
+
+Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
+
 
 ### Example Usage
 
@@ -529,7 +545,12 @@ func main() {
 
 ## GetAttachment
 
-﻿Get invoice attachment.
+The *Get invoice attachment* endpoint returns a specific attachment for a given `invoiceId` and `attachmentId`.
+
+[Invoices](https://docs.codat.io/accounting-api#/schemas/Invoice) are itemized records of goods sold or services provided to a customer.
+
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=invoices) for integrations that support getting an invoice attachment.
+
 
 ### Example Usage
 
@@ -583,13 +604,16 @@ func main() {
 
 ## GetCreateUpdateModel
 
-﻿Get create/update invoice model. Returns the expected data for the request payload.
+The *Get create/update invoice model* endpoint returns the expected data for the request payload when creating and updating an [invoice](https://docs.codat.io/accounting-api#/schemas/Invoice) for a given company and integration.
 
-See the examples for integration-specific indicative models.
+[Invoices](https://docs.codat.io/accounting-api#/schemas/Invoice) are itemized records of goods sold or services provided to a customer.
 
-> **Supported Integrations**
-> 
-> Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=invoices) for integrations that support creating and updating invoices.
+**Integration-specific behaviour**
+
+See the *response examples* for integration-specific indicative models.
+
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=invoices) for integrations that support creating and updating an invoice.
+
 
 ### Example Usage
 
@@ -701,7 +725,12 @@ func main() {
 
 ## ListAttachments
 
-﻿List invoice attachments
+The *List invoice attachments* endpoint returns a list of attachments avialable to download for given `invoiceId`.
+
+[Invoices](https://docs.codat.io/accounting-api#/schemas/Invoice) are itemized records of goods sold or services provided to a customer.
+
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=invoices) for integrations that support listing invoice attachments.
+
 
 ### Example Usage
 
@@ -754,14 +783,16 @@ func main() {
 
 ## Update
 
-﻿Posts an updated invoice to the accounting package for a given company.
+The *Update invoice* endpoint updates an existing [invoice](https://docs.codat.io/accounting-api#/schemas/Invoice) for a given company's connection.
+
+[Invoices](https://docs.codat.io/accounting-api#/schemas/Invoice) are itemized records of goods sold or services provided to a customer.
+
+**Integration-specific behaviour**
 
 Required data may vary by integration. To see what data to post, first call [Get create/update invoice model](https://docs.codat.io/accounting-api#/operations/get-create-update-invoices-model).
 
-> **Supported Integrations**
-> 
-> Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=invoices) for integrations that support updating invoices.
-operationId: update-invoice
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=invoices) for integrations that support creating an account.
+
 
 ### Example Usage
 
@@ -1180,7 +1211,16 @@ func main() {
 
 ## UploadAttachment
 
-﻿Upload invoice attachment.
+The *Upload invoice attachment* endpoint uploads an attachment and assigns it against a specific `invoiceId`.
+
+[Invoices](https://docs.codat.io/accounting-api#/schemas/Invoice) are itemized records of goods sold or services provided to a customer.
+
+**Integration-specific behaviour**
+
+For more details on supported file types by integration see [Attachments](https://docs.codat.io/accounting-api#/schemas/Attachment).
+
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=invoices) for integrations that support uploading an invoice attachment.
+
 
 ### Example Usage
 

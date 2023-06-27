@@ -11,7 +11,14 @@ Sales orders
 
 ## Get
 
-Get sales order
+The *Get sales order* endpoint returns a single sales order for a given salesOrderId.
+
+[Sales orders](https://docs.codat.io/accounting-api#/schemas/SalesOrder) represent a customer's intention to purchase goods or services from the SMB.
+
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=salesOrders) for integrations that support getting a specific sales order.
+
+Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
+
 
 ### Example Usage
 

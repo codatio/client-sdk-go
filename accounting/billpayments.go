@@ -25,11 +25,15 @@ func newBillPayments(sdkConfig sdkConfiguration) *billPayments {
 }
 
 // Create - Create bill payments
-// Posts a new bill payment to the accounting package for a given company.
+// The *Create bill payment* endpoint creates a new [bill payment](https://docs.codat.io/accounting-api#/schemas/BillPayment) for a given company's connection.
+//
+// [Bill payments](https://docs.codat.io/accounting-api#/schemas/BillPayment) are an allocation of money within any customer accounts payable account.
+//
+// **Integration-specific behaviour**
 //
 // Required data may vary by integration. To see what data to post, first call [Get create bill payment model](https://docs.codat.io/accounting-api#/operations/get-create-billPayments-model).
 //
-// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=billPayments) to see which integrations support this endpoint.
+// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=billPayments) for integrations that support creating an account.
 func (s *billPayments) Create(ctx context.Context, request operations.CreateBillPaymentRequest, opts ...operations.Option) (*operations.CreateBillPaymentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -274,7 +278,13 @@ func (s *billPayments) Delete(ctx context.Context, request operations.DeleteBill
 }
 
 // Get - Get bill payment
-// Get a bill payment.
+// The *Get bill payment* endpoint returns a single bill payment for a given billPaymentId.
+//
+// [Bill payments](https://docs.codat.io/accounting-api#/schemas/BillPayment) are an allocation of money within any customer accounts payable account.
+//
+// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=billPayments) for integrations that support getting a specific bill payment.
+//
+// Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
 func (s *billPayments) Get(ctx context.Context, request operations.GetBillPaymentsRequest, opts ...operations.Option) (*operations.GetBillPaymentsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -387,11 +397,15 @@ func (s *billPayments) Get(ctx context.Context, request operations.GetBillPaymen
 }
 
 // GetCreateModel - Get create bill payment model
-// Get create bill payment model.
+// The *Get create bill payment model* endpoint returns the expected data for the request payload when creating a [bill payment](https://docs.codat.io/accounting-api#/schemas/BillPayment) for a given company and integration.
 //
-// > **Supported Integrations**
-// >
-// > Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=billPayments) for integrations that support creating and deleting bill payments.
+// [Bill payments](https://docs.codat.io/accounting-api#/schemas/BillPayment) are an allocation of money within any customer accounts payable account.
+//
+// **Integration-specific behaviour**
+//
+// See the *response examples* for integration-specific indicative models.
+//
+// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=billPayments) for integrations that support creating a bill payment.
 func (s *billPayments) GetCreateModel(ctx context.Context, request operations.GetCreateBillPaymentsModelRequest, opts ...operations.Option) (*operations.GetCreateBillPaymentsModelResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

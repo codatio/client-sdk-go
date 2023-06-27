@@ -17,11 +17,15 @@ Suppliers
 
 ## Create
 
-Push suppliers
+The *Create supplier* endpoint creates a new [supplier](https://docs.codat.io/accounting-api#/schemas/Supplier) for a given company's connection.
+
+[Suppliers](https://docs.codat.io/accounting-api#/schemas/Supplier) are people or organizations that provide something, such as a product or service.
+
+**Integration-specific behaviour**
 
 Required data may vary by integration. To see what data to post, first call [Get create/update supplier model](https://docs.codat.io/accounting-api#/operations/get-create-update-suppliers-model).
 
-Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=suppliers) to see which integrations support this endpoint.
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=suppliers) for integrations that support creating an account.
 
 
 ### Example Usage
@@ -130,7 +134,12 @@ func main() {
 
 ## DownloadAttachment
 
-Download supplier attachment
+The *Download supplier attachment* endpoint downloads a specific attachment for a given `supplierId` and `attachmentId`.
+
+[Suppliers](https://docs.codat.io/accounting-api#/schemas/Supplier) are people or organizations that provide something, such as a product or service.
+
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=suppliers) for integrations that support downloading a supplier attachment.
+
 
 ### Example Usage
 
@@ -184,7 +193,14 @@ func main() {
 
 ## Get
 
-Gets a single supplier corresponding to the given ID.
+The *Get supplier* endpoint returns a single supplier for a given supplierId.
+
+[Suppliers](https://docs.codat.io/accounting-api#/schemas/Supplier) are people or organizations that provide something, such as a product or service.
+
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=suppliers) for integrations that support getting a specific supplier.
+
+Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
+
 
 ### Example Usage
 
@@ -236,7 +252,12 @@ func main() {
 
 ## GetAttachment
 
-﻿Get supplier attachment.
+The *Get supplier attachment* endpoint returns a specific attachment for a given `supplierId` and `attachmentId`.
+
+[Suppliers](https://docs.codat.io/accounting-api#/schemas/Supplier) are people or organizations that provide something, such as a product or service.
+
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=suppliers) for integrations that support getting a supplier attachment.
+
 
 ### Example Usage
 
@@ -290,13 +311,16 @@ func main() {
 
 ## GetCreateUpdateModel
 
-Get create/update supplier model. Returns the expected data for the request payload.
+The *Get create/update supplier model* endpoint returns the expected data for the request payload when creating and updating a [supplier](https://docs.codat.io/accounting-api#/schemas/Supplier) for a given company and integration.
 
-See the examples for integration-specific indicative models.
+[Suppliers](https://docs.codat.io/accounting-api#/schemas/Supplier) are people or organizations that provide something, such as a product or service.
 
-> **Supported Integrations**
-> 
-> Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=suppliers) for integrations that support creating and updating suppliers.
+**Integration-specific behaviour**
+
+See the *response examples* for integration-specific indicative models.
+
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=suppliers) for integrations that support creating and updating a supplier.
+
 
 ### Example Usage
 
@@ -408,7 +432,12 @@ func main() {
 
 ## ListAttachments
 
-Get supplier attachments
+The *List supplier attachments* endpoint returns a list of attachments avialable to download for given `supplierId`.
+
+[Suppliers](https://docs.codat.io/accounting-api#/schemas/Supplier) are people or organizations that provide something, such as a product or service.
+
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=suppliers) for integrations that support listing supplier attachments.
+
 
 ### Example Usage
 
@@ -461,13 +490,16 @@ func main() {
 
 ## Update
 
-Update supplier
+The *Update supplier* endpoint updates an existing [supplier](https://docs.codat.io/accounting-api#/schemas/Supplier) for a given company's connection.
+
+[Suppliers](https://docs.codat.io/accounting-api#/schemas/Supplier) are people or organizations that provide something, such as a product or service.
+
+**Integration-specific behaviour**
 
 Required data may vary by integration. To see what data to post, first call [Get create/update supplier model](https://docs.codat.io/accounting-api#/operations/get-create-update-suppliers-model).
 
-> **Supported Integrations**
-> 
-> Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=suppliers) for integrations that support updating suppliers.
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=suppliers) for integrations that support creating an account.
+
 
 ### Example Usage
 

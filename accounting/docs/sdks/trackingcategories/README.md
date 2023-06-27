@@ -11,7 +11,14 @@ Tracking categories
 
 ## Get
 
-Gets the specified tracking categories for a given company.
+The *Get tracking category* endpoint returns a single tracking category for a given trackingCategoryId.
+
+[Tracking categories](https://docs.codat.io/accounting-api#/schemas/TrackingCategory) are used to monitor cost centres and control budgets that sit outside the standard set of accounts.
+
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=trackingCategories) for integrations that support getting a specific tracking category.
+
+Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
+
 
 ### Example Usage
 

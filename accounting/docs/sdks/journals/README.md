@@ -13,11 +13,16 @@ Journals
 
 ## Create
 
-Posts a new journal to the accounting package for a given company.
+The *Create journal* endpoint creates a new [journal](https://docs.codat.io/accounting-api#/schemas/Journal) for a given company's connection.
+
+[Journals](https://docs.codat.io/accounting-api#/schemas/Journal) are used to record all the financial transactions of a company.
+
+**Integration-specific behaviour**
 
 Required data may vary by integration. To see what data to post, first call [Get create journal model](https://docs.codat.io/accounting-api#/operations/get-create-journals-model).
 
-Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journals) to see which integrations support this endpoint.
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journals) for integrations that support creating an account.
+
 
 ### Example Usage
 
@@ -86,7 +91,14 @@ func main() {
 
 ## Get
 
-Gets a single journal corresponding to the given ID.
+The *Get journal* endpoint returns a single journal for a given journalId.
+
+[Journals](https://docs.codat.io/accounting-api#/schemas/Journal) are used to record all the financial transactions of a company.
+
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journals) for integrations that support getting a specific journal.
+
+Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
+
 
 ### Example Usage
 
@@ -138,13 +150,16 @@ func main() {
 
 ## GetCreateModel
 
-Get create journal model. Returns the expected data for the request payload.
+The *Get create journal model* endpoint returns the expected data for the request payload when creating a [journal](https://docs.codat.io/accounting-api#/schemas/Journal) for a given company and integration.
 
-See the examples for integration-specific indicative models.
+[Journals](https://docs.codat.io/accounting-api#/schemas/Journal) are used to record all the financial transactions of a company.
 
-> **Supported Integrations**
-> 
-> Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journals) for integrations that support creating journals.
+**Integration-specific behaviour**
+
+See the *response examples* for integration-specific indicative models.
+
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journals) for integrations that support creating a journal.
+
 
 ### Example Usage
 
