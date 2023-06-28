@@ -146,24 +146,26 @@ func main() {
 
 ﻿> **Use with caution**
 >
->Because Journal Entries underpin every transaction in an accounting platform, deleting a Journal Entry can affect every transaction for a given company.
+>Because journal entries underpin every transaction in an accounting platform, deleting a journal entry can affect every transaction for a given company.
 > 
-> **Before you proceed, make sure you understand the implications of deleting Journal Entries from an accounting perspective.**
+> **Before you proceed, make sure you understand the implications of deleting journal entries from an accounting perspective.**
 
-The _Delete Journal entries_ endpoint allows you to delete a specified Journal entry from an accounting platform.
+The *Delete journal entry* endpoint allows you to delete a specified journal entry from an accounting platform.
+
+[Journal entries](https://docs.codat.io/accounting-api#/schemas/JournalEntry) are  made in a company's general ledger, or accounts, when transactions are approved.
 
 ### Process
-1. Pass the `{journalEntryId}` to the _Delete Journal Entries_ endpoint and store the `pushOperationKey` returned.
+1. Pass the `{journalEntryId}` to the *Delete journal entry* endpoint and store the `pushOperationKey` returned.
 2. Check the status of the delete by checking the status of push operation either via
-   1. [Push operation webhook](/introduction/webhooks/core-rules-types#push-operation-status-has-changed) (advised),
+   1. [Push operation webhook](https://docs.codat.io/introduction/webhooks/core-rules-types#push-operation-status-has-changed) (advised),
    2. [Push operation status endpoint](https://docs.codat.io/codat-api#/operations/get-push-operation). 
    
-   A `Success` status indicates that the Journal Entry object was deleted from the accounting platform.
-3. (Optional) Check that the Journal Entry was deleted from the accounting platform.
+   A `Success` status indicates that the journal entry object was deleted from the accounting platform.
+3. (Optional) Check that the journal entry was deleted from the accounting platform.
 
 ### Effect on related objects
 
-Be aware that deleting a Journal Entry from an accounting platform might cause related objects to be modified. For example, if you delete the Journal Entry for a paid invoice in QuickBooks Online, the invoice is deleted but the payment against that invoice is not. The payment is converted to a payment on account.
+Be aware that deleting a journal entry from an accounting platform might cause related objects to be modified. For example, if you delete the journal entry for a paid invoice in QuickBooks Online, the invoice is deleted but the payment against that invoice is not. The payment is converted to a payment on account.
 
 ## Integration specifics
 Integrations that support soft delete do not permanently delete the object in the accounting platform.

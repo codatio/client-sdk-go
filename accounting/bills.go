@@ -27,7 +27,7 @@ func newBills(sdkConfig sdkConfiguration) *bills {
 // Create - Create bill
 // The *Create bill* endpoint creates a new [bill](https://docs.codat.io/accounting-api#/schemas/Bill) for a given company's connection.
 //
-// [Bills](https://docs.codat.io/accounting-api#/schemas/Bill) are itemized records of goods received or services provided to the SMB.
+// [Bills](https://docs.codat.io/accounting-api#/schemas/Bill) are invoices that represent the SMB's financial obligations to their supplier for a purchase of goods or services.
 //
 // **Integration-specific behaviour**
 //
@@ -149,23 +149,25 @@ func (s *bills) Create(ctx context.Context, request operations.CreateBillRequest
 }
 
 // Delete - Delete bill
-// The _Delete Bills_ endpoint allows you to delete a specified Bill from an accounting platform.
+// The *Delete bill* endpoint allows you to delete a specified bill from an accounting platform.
+//
+// [Bills](https://docs.codat.io/accounting-api#/schemas/Bill) are itemized records of goods received or services provided to the SMB.
 //
 // ### Process
-// 1. Pass the `{billId}` to the _Delete Bills_ endpoint and store the `pushOperationKey` returned.
+// 1. Pass the `{billId}` to the *Delete bill* endpoint and store the `pushOperationKey` returned.
 // 2. Check the status of the delete operation by checking the status of push operation either via
 //
-//  1. [Push operation webhook](/introduction/webhooks/core-rules-types#push-operation-status-has-changed) (advised),
+//  1. [Push operation webhook](https://docs.codat.io/introduction/webhooks/core-rules-types#push-operation-status-has-changed) (advised),
 //
 //  2. [Push operation status endpoint](https://docs.codat.io/codat-api#/operations/get-push-operation).
 //
-//     A `Success` status indicates that the Bill object was deleted from the accounting platform.
+//     A `Success` status indicates that the bill object was deleted from the accounting platform.
 //
-// 3. (Optional) Check that the Bill was deleted from the accounting platform.
+// 3. (Optional) Check that the bill was deleted from the accounting platform.
 //
 // ### Effect on related objects
 //
-// Be aware that deleting a Bill from an accounting platform might cause related objects to be modified. For example, if you delete a paid Bill in QuickBooks Online, the bill is deleted but the bill payment against that bill is not. The bill payment is converted to a payment on account.
+// Be aware that deleting a bill from an accounting platform might cause related objects to be modified. For example, if you delete a paid bill in QuickBooks Online, the bill is deleted but the bill payment against that bill is not. The bill payment is converted to a payment on account.
 //
 // ## Integration specifics
 // Integrations that support soft delete do not permanently delete the object in the accounting platform.
@@ -173,7 +175,7 @@ func (s *bills) Create(ctx context.Context, request operations.CreateBillRequest
 // | Integration | Soft Delete | Details                                                                                                      |
 // |-------------|-------------|--------------------------------------------------------------------------------------------------------------|
 // | QuickBooks Online | No          | -                                                                                                            |
-// | Oracle NetSuite   | No          | When deleting a Bill that's already linked to a Bill payment, you must delete the linked Bill payment first. |
+// | Oracle NetSuite   | No          | When deleting a bill that's already linked to a bill payment, you must delete the linked bill payment first. |
 //
 // > **Supported Integrations**
 // >
@@ -282,7 +284,7 @@ func (s *bills) Delete(ctx context.Context, request operations.DeleteBillRequest
 // DownloadAttachment - Download bill attachment
 // The *Download bill attachment* endpoint downloads a specific attachment for a given `billId` and `attachmentId`.
 //
-// [Bills](https://docs.codat.io/accounting-api#/schemas/Bill) are itemized records of goods received or services provided to the SMB.
+// [Bills](https://docs.codat.io/accounting-api#/schemas/Bill) are invoices that represent the SMB's financial obligations to their supplier for a purchase of goods or services.
 //
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bills) for integrations that support downloading a bill attachment.
 func (s *bills) DownloadAttachment(ctx context.Context, request operations.DownloadBillAttachmentRequest, opts ...operations.Option) (*operations.DownloadBillAttachmentResponse, error) {
@@ -384,7 +386,7 @@ func (s *bills) DownloadAttachment(ctx context.Context, request operations.Downl
 // Get - Get bill
 // The *Get bill* endpoint returns a single bill for a given billId.
 //
-// [Bills](https://docs.codat.io/accounting-api#/schemas/Bill) are itemized records of goods received or services provided to the SMB.
+// [Bills](https://docs.codat.io/accounting-api#/schemas/Bill) are invoices that represent the SMB's financial obligations to their supplier for a purchase of goods or services.
 //
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bills) for integrations that support getting a specific bill.
 //
@@ -503,7 +505,7 @@ func (s *bills) Get(ctx context.Context, request operations.GetBillRequest, opts
 // GetAttachment - Get bill attachment
 // The *Get bill attachment* endpoint returns a specific attachment for a given `billId` and `attachmentId`.
 //
-// [Bills](https://docs.codat.io/accounting-api#/schemas/Bill) are itemized records of goods received or services provided to the SMB.
+// [Bills](https://docs.codat.io/accounting-api#/schemas/Bill) are invoices that represent the SMB's financial obligations to their supplier for a purchase of goods or services.
 //
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bills) for integrations that support getting a bill attachment.
 func (s *bills) GetAttachment(ctx context.Context, request operations.GetBillAttachmentRequest, opts ...operations.Option) (*operations.GetBillAttachmentResponse, error) {
@@ -610,7 +612,7 @@ func (s *bills) GetAttachment(ctx context.Context, request operations.GetBillAtt
 // GetCreateUpdateModel - Get create/update bill model
 // The *Get create/update bill model* endpoint returns the expected data for the request payload when creating and updating a [bill](https://docs.codat.io/accounting-api#/schemas/Bill) for a given company and integration.
 //
-// [Bills](https://docs.codat.io/accounting-api#/schemas/Bill) are itemized records of goods received or services provided to the SMB.
+// [Bills](https://docs.codat.io/accounting-api#/schemas/Bill) are invoices that represent the SMB's financial obligations to their supplier for a purchase of goods or services.
 //
 // **Integration-specific behaviour**
 //
@@ -721,7 +723,7 @@ func (s *bills) GetCreateUpdateModel(ctx context.Context, request operations.Get
 // List - List bills
 // The *List bills* endpoint returns a list of [bills](https://docs.codat.io/accounting-api#/schemas/Bill) for a given company's connection.
 //
-// [Bills](https://docs.codat.io/accounting-api#/schemas/Bill) are itemized records of goods received or services provided to the SMB.
+// [Bills](https://docs.codat.io/accounting-api#/schemas/Bill) are invoices that represent the SMB's financial obligations to their supplier for a purchase of goods or services.
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
 func (s *bills) List(ctx context.Context, request operations.ListBillsRequest, opts ...operations.Option) (*operations.ListBillsResponse, error) {
@@ -840,9 +842,9 @@ func (s *bills) List(ctx context.Context, request operations.ListBillsRequest, o
 }
 
 // ListAttachments - List bill attachments
-// The *List bill attachments* endpoint returns a list of attachments avialable to download for given `billId`.
+// The *List bill attachments* endpoint returns a list of attachments available to download for a given `billId`.
 //
-// [Bills](https://docs.codat.io/accounting-api#/schemas/Bill) are itemized records of goods received or services provided to the SMB.
+// [Bills](https://docs.codat.io/accounting-api#/schemas/Bill) are invoices that represent the SMB's financial obligations to their supplier for a purchase of goods or services.
 //
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bills) for integrations that support listing bill attachments.
 func (s *bills) ListAttachments(ctx context.Context, request operations.ListBillAttachmentsRequest, opts ...operations.Option) (*operations.ListBillAttachmentsResponse, error) {
@@ -949,7 +951,7 @@ func (s *bills) ListAttachments(ctx context.Context, request operations.ListBill
 // Update - Update bill
 // The *Update bill* endpoint updates an existing [bill](https://docs.codat.io/accounting-api#/schemas/Bill) for a given company's connection.
 //
-// [Bills](https://docs.codat.io/accounting-api#/schemas/Bill) are itemized records of goods received or services provided to the SMB.
+// [Bills](https://docs.codat.io/accounting-api#/schemas/Bill) are invoices that represent the SMB's financial obligations to their supplier for a purchase of goods or services.
 //
 // **Integration-specific behaviour**
 //
@@ -1073,7 +1075,7 @@ func (s *bills) Update(ctx context.Context, request operations.UpdateBillRequest
 // UploadAttachment - Upload bill attachment
 // The *Upload bill attachment* endpoint uploads an attachment and assigns it against a specific `billId`.
 //
-// [Bills](https://docs.codat.io/accounting-api#/schemas/Bill) are itemized records of goods received or services provided to the SMB.
+// [Bills](https://docs.codat.io/accounting-api#/schemas/Bill) are invoices that represent the SMB's financial obligations to their supplier for a purchase of goods or services.
 //
 // **Integration-specific behaviour**
 //

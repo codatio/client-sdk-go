@@ -149,23 +149,25 @@ func (s *invoices) Create(ctx context.Context, request operations.CreateInvoiceR
 }
 
 // Delete - Delete invoice
-// The _Delete Invoices_ endpoint allows you to delete a specified Invoice from an accounting platform.
+// The *Delete invoice* endpoint allows you to delete a specified invoice from an accounting platform.
+//
+// [Invoices](https://docs.codat.io/accounting-api#/schemas/Invoice) are itemized records of goods sold or services provided to a customer.
 //
 // ### Process
-// 1. Pass the `{invoiceId}` to the _Delete Invoices_ endpoint and store the `pushOperationKey` returned.
+// 1. Pass the `{invoiceId}` to the *Delete invoice* endpoint and store the `pushOperationKey` returned.
 // 2. Check the status of the delete operation by checking the status of push operation either via
 //
-//  1. [Push operation webhook](/introduction/webhooks/core-rules-types#push-operation-status-has-changed) (advised),
+//  1. [Push operation webhook](https://docs.codat.io/introduction/webhooks/core-rules-types#push-operation-status-has-changed) (advised),
 //
 //  2. [Push operation status endpoint](https://docs.codat.io/codat-api#/operations/get-push-operation).
 //
-//     A `Success` status indicates that the Invoice object was deleted from the accounting platform.
+//     A `Success` status indicates that the invoice object was deleted from the accounting platform.
 //
-// 3. (Optional) Check that the Invoice was deleted from the accounting platform.
+// 3. (Optional) Check that the invoice was deleted from the accounting platform.
 //
 // ### Effect on related objects
 //
-// Be aware that deleting an Invoice from an accounting platform might cause related objects to be modified. For example, if you delete a paid invoice from QuickBooks Online, the invoice is deleted but the payment against that invoice is not. The payment is converted to a payment on account.
+// Be aware that deleting an invoice from an accounting platform might cause related objects to be modified. For example, if you delete a paid invoice from QuickBooks Online, the invoice is deleted but the payment against that invoice is not. The payment is converted to a payment on account.
 //
 // ## Integration specifics
 // Integrations that support soft delete do not permanently delete the object in the accounting platform.
@@ -924,7 +926,7 @@ func (s *invoices) List(ctx context.Context, request operations.ListInvoicesRequ
 }
 
 // ListAttachments - List invoice attachments
-// The *List invoice attachments* endpoint returns a list of attachments avialable to download for given `invoiceId`.
+// The *List invoice attachments* endpoint returns a list of attachments available to download for given `invoiceId`.
 //
 // [Invoices](https://docs.codat.io/accounting-api#/schemas/Invoice) are itemized records of goods sold or services provided to a customer.
 //

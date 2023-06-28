@@ -713,7 +713,7 @@ func (s *directIncomes) List(ctx context.Context, request operations.ListDirectI
 }
 
 // ListAttachments - List direct income attachments
-// The *List direct income attachments* endpoint returns a list of attachments avialable to download for given `directIncomeId`.
+// The *List direct income attachments* endpoint returns a list of attachments available to download for given `directIncomeId`.
 //
 // [Direct incomes](https://docs.codat.io/accounting-api#/schemas/DirectIncome) are sales of items directly to a customer where payment is received at the point of the sale.
 //

@@ -432,7 +432,7 @@ func main() {
 
 ## ListAttachments
 
-The *List supplier attachments* endpoint returns a list of attachments avialable to download for given `supplierId`.
+The *List supplier attachments* endpoint returns a list of attachments available to download for given `supplierId`.
 
 [Suppliers](https://docs.codat.io/accounting-api#/schemas/Supplier) are people or organizations that provide something, such as a product or service.
 

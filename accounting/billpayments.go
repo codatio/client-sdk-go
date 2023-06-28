@@ -149,22 +149,24 @@ func (s *billPayments) Create(ctx context.Context, request operations.CreateBill
 }
 
 // Delete - Delete bill payment
-// The _Delete Bill Payments_ endpoint allows you to delete a specified Bill Payment from an accounting platform.
+// The *Delete bill payment* endpoint allows you to delete a specified bill payment from an accounting platform.
+//
+// [Bill payments](https://docs.codat.io/accounting-api#/schemas/BillPayment) are an allocation of money within any customer accounts payable account.
 //
 // ### Process
-// 1. Pass the `{billPaymentId}` to the _Delete Bill Payments_ endpoint and store the `pushOperationKey` returned.
+// 1. Pass the `{billPaymentId}` to the *Delete bill payment* endpoint and store the `pushOperationKey` returned.
 // 2. Check the status of the delete operation by checking the status of push operation either via
 //
-//  1. [Push operation webhook](/introduction/webhooks/core-rules-types#push-operation-status-has-changed) (advised),
+//  1. [Push operation webhook](https://docs.codat.io/introduction/webhooks/core-rules-types#push-operation-status-has-changed) (advised),
 //
 //  2. [Push operation status endpoint](https://docs.codat.io/codat-api#/operations/get-push-operation).
 //
-//     A `Success` status indicates that the Bill Payment object was deleted from the accounting platform.
+//     A `Success` status indicates that the bill payment object was deleted from the accounting platform.
 //
-// 3. (Optional) Check that the Bill Payment was deleted from the accounting platform.
+// 3. (Optional) Check that the bill payment was deleted from the accounting platform.
 //
 // ### Effect on related objects
-// Be aware that deleting a Bill Payment from an accounting platform might cause related objects to be modified.
+// Be aware that deleting a bill payment from an accounting platform might cause related objects to be modified.
 //
 // ## Integration specifics
 // Integrations that support soft delete do not permanently delete the object in the accounting platform.
