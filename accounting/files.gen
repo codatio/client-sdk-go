@@ -45,7 +45,7 @@ pkg/models/operations/getaccount.go
 pkg/models/operations/getcreatechartofaccountsmodel.go
 pkg/models/operations/listaccounts.go
 pkg/models/operations/createbanktransactions.go
-pkg/models/operations/getcreatebankaccountmodel.go
+pkg/models/operations/getcreatebanktransactionsmodel.go
 pkg/models/operations/listbankaccounttransactions.go
 pkg/models/operations/createbankaccount.go
 pkg/models/operations/getbankaccount.go
@@ -391,8 +391,8 @@ docs/models/operations/listaccounts409applicationjson.md
 docs/models/operations/listaccountsresponse.md
 docs/models/operations/createbanktransactionsrequest.md
 docs/models/operations/createbanktransactionsresponse.md
-docs/models/operations/getcreatebankaccountmodelrequest.md
-docs/models/operations/getcreatebankaccountmodelresponse.md
+docs/models/operations/getcreatebanktransactionsmodelrequest.md
+docs/models/operations/getcreatebanktransactionsmodelresponse.md
 docs/models/operations/listbankaccounttransactionsrequest.md
 docs/models/operations/listbankaccounttransactions409applicationjson.md
 docs/models/operations/listbankaccounttransactionsresponse.md

@@ -7,14 +7,14 @@ import (
 	"net/http"
 )
 
-type GetCreateBankAccountModelRequest struct {
+type GetCreateBankTransactionsModelRequest struct {
 	// Unique identifier for an account
 	AccountID    string `pathParam:"style=simple,explode=false,name=accountId"`
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
-type GetCreateBankAccountModelResponse struct {
+type GetCreateBankTransactionsModelResponse struct {
 	ContentType string
 	// Success
 	PushOption  *shared.PushOption
