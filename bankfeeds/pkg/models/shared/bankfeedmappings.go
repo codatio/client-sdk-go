@@ -4,14 +4,6 @@ package shared
 
 // BankFeedMappingsBankFeedMapping - A bank feed connection between a source account and a target account, including potential target accounts.
 type BankFeedMappingsBankFeedMapping struct {
-	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code, e.g. _GBP_.
-	//
-	// ## Unknown currencies
-	//
-	// In line with the ISO 4217 specification, the code _XXX_ is used when the data source does not return a currency for a transaction.
-	//
-	// There are only a very small number of edge cases where this currency code is returned by the Codat system.
-	Currency *string `json:"currency,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -32,12 +24,28 @@ type BankFeedMappingsBankFeedMapping struct {
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	FeedStartDate *string `json:"feedStartDate,omitempty"`
-	// Unique ID for the source account
+	// Unique ID for the source account.
 	SourceAccountID *string `json:"sourceAccountId,omitempty"`
-	Status          *string `json:"status,omitempty"`
-	// Unique ID for the target account
+	// Name for the source account.
+	SourceAccountName *string `json:"sourceAccountName,omitempty"`
+	// Account number for the source account.
+	SourceAccountNumber *string `json:"sourceAccountNumber,omitempty"`
+	// Balance for the source account.
+	SourceBalance *string `json:"sourceBalance,omitempty"`
+	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code, e.g. _GBP_.
+	//
+	// ## Unknown currencies
+	//
+	// In line with the ISO 4217 specification, the code _XXX_ is used when the data source does not return a currency for a transaction.
+	//
+	// There are only a very small number of edge cases where this currency code is returned by the Codat system.
+	SourceCurrency *string `json:"sourceCurrency,omitempty"`
+	Status         *string `json:"status,omitempty"`
+	// Unique ID for the target account in the accounting platform.
 	TargetAccountID *string `json:"targetAccountId,omitempty"`
-	// An array of potential target accounts
+	// Name for the target account in the accounting platform.
+	TargetAccountName *string `json:"targetAccountName,omitempty"`
+	// An array of potential target accounts.
 	TargetAccountOptions []TargetAccountOption `json:"targetAccountOptions,omitempty"`
 }
 

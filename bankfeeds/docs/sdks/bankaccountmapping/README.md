@@ -11,11 +11,11 @@ Bank feed bank account mapping
 
 ## Create
 
-﻿The Create bank feed bank account mapping endpoint creates a new mapping between a source bank account and a potential target mapping account.
+﻿The *Create bank account mapping* endpoint creates a new mapping between a source bank account and a potential account in the accounting platform (target account).
 
 A bank feed account mapping is a specified link between the source account (provided by the Codat user) and the target account (the end users account in the underlying platform).
 
-To find valid target account options, first call List bank feed account mappings.
+To find valid target account options, first call list bank feed account mappings.
 
 This endpoint is only needed if building an account management UI.
 
@@ -75,7 +75,7 @@ func main() {
 
 ## Get
 
-﻿The List bank feed account mappings endpoint returns information about a source bank account and any current or potential target mapping accounts.
+﻿The *List bank account mappings* endpoint returns information about a source bank account and any current or potential target mapping accounts.
 
 A bank feed account mapping is a specified link between the source account (provided by the Codat user) and the target account (the end users account in the underlying platform).
 
