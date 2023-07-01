@@ -132,8 +132,8 @@ func New(opts ...SDKOption) *CodatBankFeeds {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "2.1.0",
-			SDKVersion:        "0.23.0",
-			GenVersion:        "2.50.2",
+			SDKVersion:        "0.24.0",
+			GenVersion:        "2.55.0",
 		},
 	}
 	for _, opt := range opts {

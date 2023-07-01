@@ -6,13 +6,13 @@ Bank feed bank accounts
 
 ### Available Operations
 
-* [Create](#create) - Create bank feed bank accounts
+* [Create](#create) - Create a bank feed bank account
 * [Get](#get) - List bank feed bank accounts
 * [Update](#update) - Update bank feed bank account
 
 ## Create
 
-Put BankFeed BankAccounts for a single data source connected to a single company.
+Post a BankFeed BankAccount for a single data source connected to a single company.
 
 ### Example Usage
 
@@ -36,19 +36,17 @@ func main() {
 
     ctx := context.Background()
     res, err := s.BankFeedAccounts.Create(ctx, operations.CreateBankFeedRequest{
-        RequestBody: []shared.BankFeedAccount{
-            shared.BankFeedAccount{
-                AccountName: codatbankfeeds.String("doloremque"),
-                AccountNumber: codatbankfeeds.String("reprehenderit"),
-                AccountType: codatbankfeeds.String("ut"),
-                Balance: codatbankfeeds.Float64(9795.87),
-                Currency: codatbankfeeds.String("GBP"),
-                FeedStartDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
-                ID: "471b5e6e-13b9-49d4-88e1-e91e450ad2ab",
-                ModifiedDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
-                SortCode: codatbankfeeds.String("labore"),
-                Status: codatbankfeeds.String("modi"),
-            },
+        BankFeedAccount: &shared.BankFeedAccount{
+            AccountName: codatbankfeeds.String("maiores"),
+            AccountNumber: codatbankfeeds.String("dicta"),
+            AccountType: codatbankfeeds.String("corporis"),
+            Balance: codatbankfeeds.Float64(2961.4),
+            Currency: codatbankfeeds.String("USD"),
+            FeedStartDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
+            ID: "b5e6e13b-99d4-488e-9e91-e450ad2abd44",
+            ModifiedDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
+            SortCode: codatbankfeeds.String("aliquid"),
+            Status: codatbankfeeds.String("cupiditate"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -57,7 +55,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.BankFeedAccounts != nil {
+    if res.BankFeedAccount != nil {
         // handle response
     }
 }
@@ -156,18 +154,18 @@ func main() {
     ctx := context.Background()
     res, err := s.BankFeedAccounts.Update(ctx, operations.UpdateBankFeedRequest{
         BankFeedAccount: &shared.BankFeedAccount{
-            AccountName: codatbankfeeds.String("qui"),
-            AccountNumber: codatbankfeeds.String("aliquid"),
-            AccountType: codatbankfeeds.String("cupiditate"),
-            Balance: codatbankfeeds.Float64(5528.22),
-            Currency: codatbankfeeds.String("GBP"),
+            AccountName: codatbankfeeds.String("quos"),
+            AccountNumber: codatbankfeeds.String("perferendis"),
+            AccountType: codatbankfeeds.String("magni"),
+            Balance: codatbankfeeds.Float64(8289.4),
+            Currency: codatbankfeeds.String("USD"),
             FeedStartDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
-            ID: "d502a94b-b4f6-43c9-a9e9-a3efa77dfb14",
+            ID: "2a94bb4f-63c9-469e-9a3e-fa77dfb14cd6",
             ModifiedDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
-            SortCode: codatbankfeeds.String("facere"),
-            Status: codatbankfeeds.String("ea"),
+            SortCode: codatbankfeeds.String("laborum"),
+            Status: codatbankfeeds.String("accusamus"),
         },
-        AccountID: "9wg4lep4ush5cxs79pl8sozmsndbaukll3ind4g7buqbm1h2",
+        AccountID: "13d946f0-c5d5-42bc-b092-97ece17923ab",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })

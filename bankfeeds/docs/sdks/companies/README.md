@@ -199,7 +199,7 @@ func main() {
         OrderBy: codatbankfeeds.String("-modifiedDate"),
         Page: codatbankfeeds.Int(1),
         PageSize: codatbankfeeds.Int(100),
-        Query: codatbankfeeds.String("laborum"),
+        Query: codatbankfeeds.String("occaecati"),
     })
     if err != nil {
         log.Fatal(err)

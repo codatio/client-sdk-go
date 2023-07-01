@@ -50,35 +50,39 @@ func main() {
             Transactions: []shared.CreateBankAccountTransaction{
                 shared.CreateBankAccountTransaction{
                     Amount: codatbankfeeds.Float64(4236.55),
+                    Balance: codatbankfeeds.Float64(6235.64),
                     Date: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
-                    Description: codatbankfeeds.String("deserunt"),
-                    ID: codatbankfeeds.String("674e0f46-7cc8-4796-ad15-1a05dfc2ddf7"),
+                    Description: codatbankfeeds.String("suscipit"),
+                    ID: codatbankfeeds.String("74e0f467-cc87-496e-9151-a05dfc2ddf7c"),
                 },
                 shared.CreateBankAccountTransaction{
-                    Amount: codatbankfeeds.Float64(7991.59),
+                    Amount: codatbankfeeds.Float64(8009.11),
+                    Balance: codatbankfeeds.Float64(4614.79),
                     Date: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
-                    Description: codatbankfeeds.String("esse"),
-                    ID: codatbankfeeds.String("8ca1ba92-8fc8-4167-82cb-739205929396"),
+                    Description: codatbankfeeds.String("porro"),
+                    ID: codatbankfeeds.String("a1ba928f-c816-4742-8b73-9205929396fe"),
                 },
                 shared.CreateBankAccountTransaction{
-                    Amount: codatbankfeeds.Float64(9437.49),
+                    Amount: codatbankfeeds.Float64(6818.2),
+                    Balance: codatbankfeeds.Float64(4499.5),
                     Date: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
-                    Description: codatbankfeeds.String("fuga"),
-                    ID: codatbankfeeds.String("7596eb10-faaa-4235-ac59-55907aff1a3a"),
+                    Description: codatbankfeeds.String("iste"),
+                    ID: codatbankfeeds.String("6eb10faa-a235-42c5-9559-07aff1a3a2fa"),
                 },
                 shared.CreateBankAccountTransaction{
-                    Amount: codatbankfeeds.Float64(1613.09),
+                    Amount: codatbankfeeds.Float64(5818.5),
+                    Balance: codatbankfeeds.Float64(2532.91),
                     Date: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
-                    Description: codatbankfeeds.String("mollitia"),
-                    ID: codatbankfeeds.String("94677392-51aa-452c-bf5a-d019da1ffe78"),
+                    Description: codatbankfeeds.String("quam"),
+                    ID: codatbankfeeds.String("739251aa-52c3-4f5a-9019-da1ffe78f097"),
                 },
             },
         },
-        AccountID: "EILBDVJVNUAGVKRQ",
+        AccountID: "7110701885",
         AllowSyncOnPushComplete: codatbankfeeds.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codatbankfeeds.Int(55714),
+        TimeoutInMinutes: codatbankfeeds.Int(19987),
     })
     if err != nil {
         log.Fatal(err)
@@ -138,7 +142,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.BankAccountTransactions.Get(ctx, operations.GetCreateBankTransactionsModelRequest{
-        AccountID: "7110701885",
+        AccountID: "13d946f0-c5d5-42bc-b092-97ece17923ab",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -204,7 +208,7 @@ func main() {
         OrderBy: codatbankfeeds.String("-modifiedDate"),
         Page: codatbankfeeds.Int(1),
         PageSize: codatbankfeeds.Int(100),
-        Query: codatbankfeeds.String("cum"),
+        Query: codatbankfeeds.String("ut"),
     })
     if err != nil {
         log.Fatal(err)

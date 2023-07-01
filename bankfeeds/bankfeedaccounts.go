@@ -24,8 +24,8 @@ func newBankFeedAccounts(sdkConfig sdkConfiguration) *bankFeedAccounts {
 	}
 }
 
-// Create - Create bank feed bank accounts
-// Put BankFeed BankAccounts for a single data source connected to a single company.
+// Create - Create a bank feed bank account
+// Post a BankFeed BankAccount for a single data source connected to a single company.
 func (s *bankFeedAccounts) Create(ctx context.Context, request operations.CreateBankFeedRequest, opts ...operations.Option) (*operations.CreateBankFeedResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -43,12 +43,12 @@ func (s *bankFeedAccounts) Create(ctx context.Context, request operations.Create
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "BankFeedAccount", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "PUT", url, bodyReader)
+	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -108,13 +108,15 @@ func (s *bankFeedAccounts) Create(ctx context.Context, request operations.Create
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out []shared.BankFeedAccount
+			var out *shared.BankFeedAccount
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.BankFeedAccounts = out
+			res.BankFeedAccount = out
 		}
+	case httpRes.StatusCode == 400:
+		fallthrough
 	case httpRes.StatusCode == 401:
 		fallthrough
 	case httpRes.StatusCode == 404:
