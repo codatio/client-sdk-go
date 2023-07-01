@@ -50,23 +50,25 @@ func main() {
             Transactions: []shared.CreateBankAccountTransaction{
                 shared.CreateBankAccountTransaction{
                     Amount: codataccounting.Float64(9255.97),
+                    Balance: codataccounting.Float64(8360.79),
                     Date: codataccounting.String("2022-10-23T00:00:00.000Z"),
-                    Description: codataccounting.String("ab"),
-                    ID: codataccounting.String("51a05dfc-2ddf-47cc-b8ca-1ba928fc8167"),
+                    Description: codataccounting.String("quis"),
+                    ID: codataccounting.String("1a05dfc2-ddf7-4cc7-8ca1-ba928fc81674"),
                 },
                 shared.CreateBankAccountTransaction{
-                    Amount: codataccounting.Float64(2645.55),
+                    Amount: codataccounting.Float64(1863.32),
+                    Balance: codataccounting.Float64(7742.34),
                     Date: codataccounting.String("2022-10-23T00:00:00.000Z"),
-                    Description: codataccounting.String("impedit"),
-                    ID: codataccounting.String("b7392059-2939-46fe-a759-6eb10faaa235"),
+                    Description: codataccounting.String("esse"),
+                    ID: codataccounting.String("39205929-396f-4ea7-996e-b10faaa2352c"),
                 },
             },
         },
-        AccountID: "explicabo",
+        AccountID: "enim",
         AllowSyncOnPushComplete: codataccounting.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codataccounting.Int(750686),
+        TimeoutInMinutes: codataccounting.Int(607831),
     })
     if err != nil {
         log.Fatal(err)
@@ -126,7 +128,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.BankAccountTransactions.GetCreateModel(ctx, operations.GetCreateBankTransactionsModelRequest{
-        AccountID: "enim",
+        AccountID: "nemo",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -186,13 +188,13 @@ func main() {
 
     ctx := context.Background()
     res, err := s.BankAccountTransactions.List(ctx, operations.ListBankAccountTransactionsRequest{
-        AccountID: "omnis",
+        AccountID: "minima",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: codataccounting.Int(1),
         PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("nemo"),
+        Query: codataccounting.String("excepturi"),
     })
     if err != nil {
         log.Fatal(err)

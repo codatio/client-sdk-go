@@ -49,21 +49,21 @@ func main() {
         Journal: &shared.Journal{
             CreatedOn: codataccounting.String("2022-10-23T00:00:00.000Z"),
             HasChildren: codataccounting.Bool(false),
-            ID: codataccounting.String("d72a2d4a-f415-48ac-ad0f-0f58c3b87b47"),
-            JournalCode: codataccounting.String("eaque"),
+            ID: codataccounting.String("9d3a1d32-329e-4458-b7e8-f2ad6bb10e25"),
+            JournalCode: codataccounting.String("ipsam"),
             Metadata: &shared.Metadata{
                 IsDeleted: codataccounting.Bool(false),
             },
             ModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
-            Name: codataccounting.String("Elena Anderson"),
-            ParentID: codataccounting.String("quos"),
+            Name: codataccounting.String("Noel Gutmann PhD"),
+            ParentID: codataccounting.String("voluptas"),
             SourceModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
-            Status: shared.JournalStatusActive.ToPointer(),
-            Type: codataccounting.String("fugiat"),
+            Status: shared.JournalStatusUnknown.ToPointer(),
+            Type: codataccounting.String("ipsum"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codataccounting.Int(513534),
+        TimeoutInMinutes: codataccounting.Int(56059),
     })
     if err != nil {
         log.Fatal(err)
@@ -122,7 +122,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Journals.Get(ctx, operations.GetJournalRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        JournalID: "eos",
+        JournalID: "totam",
     })
     if err != nil {
         log.Fatal(err)
@@ -243,7 +243,7 @@ func main() {
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: codataccounting.Int(1),
         PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("porro"),
+        Query: codataccounting.String("aliquid"),
     })
     if err != nil {
         log.Fatal(err)
