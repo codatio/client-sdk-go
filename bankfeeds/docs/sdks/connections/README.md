@@ -41,7 +41,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Connections.Create(ctx, operations.CreateDataConnectionRequest{
         RequestBody: &operations.CreateDataConnectionRequestBody{
-            PlatformKey: codatbankfeeds.String("enim"),
+            PlatformKey: codatbankfeeds.String("facilis"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
@@ -203,7 +203,7 @@ func main() {
         OrderBy: codatbankfeeds.String("-modifiedDate"),
         Page: codatbankfeeds.Int(1),
         PageSize: codatbankfeeds.Int(100),
-        Query: codatbankfeeds.String("accusamus"),
+        Query: codatbankfeeds.String("perspiciatis"),
     })
     if err != nil {
         log.Fatal(err)
@@ -231,7 +231,9 @@ func main() {
 
 ## Proxy
 
-A proxy or passthrough endpoint used to query unsupported third party endpoints.
+﻿The *Proxy* endpoint can be used to generate credentials from QuickBooks Online for authentication of the Bank Feed in their portal.
+
+See the example provided for the `endpoint` query parameter when generating credentials for QuickBooks Online.
 
 ### Example Usage
 
@@ -308,7 +310,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Connections.UnlinkConnection(ctx, operations.UnlinkConnectionRequest{
         RequestBody: &operations.UnlinkConnectionRequestBody{
-            Status: codatbankfeeds.String("delectus"),
+            Status: codatbankfeeds.String("voluptatem"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",

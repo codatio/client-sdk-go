@@ -69,8 +69,9 @@ func main() {
 ### [BankFeedAccounts](docs/sdks/bankfeedaccounts/README.md)
 
 * [Create](docs/sdks/bankfeedaccounts/README.md#create) - Create a bank feed bank account
-* [Get](docs/sdks/bankfeedaccounts/README.md#get) - List bank feed bank accounts
-* [Update](docs/sdks/bankfeedaccounts/README.md#update) - Update bank feed bank account
+* [List](docs/sdks/bankfeedaccounts/README.md#list) - List bank feed bank accounts
+* [~~PutBankFeed~~](docs/sdks/bankfeedaccounts/README.md#putbankfeed) - Create bank feed bank accounts :warning: **Deprecated**
+* [~~Update~~](docs/sdks/bankfeedaccounts/README.md#update) - Update bank feed bank account :warning: **Deprecated**
 
 ### [Companies](docs/sdks/companies/README.md)
 

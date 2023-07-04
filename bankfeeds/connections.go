@@ -444,7 +444,9 @@ func (s *connections) List(ctx context.Context, request operations.ListCompanyCo
 }
 
 // Proxy - Proxy
-// A proxy or passthrough endpoint used to query unsupported third party endpoints.
+// The *Proxy* endpoint can be used to generate credentials from QuickBooks Online for authentication of the Bank Feed in their portal.
+//
+// See the example provided for the `endpoint` query parameter when generating credentials for QuickBooks Online.
 func (s *connections) Proxy(ctx context.Context, request operations.ProxyRequest, opts ...operations.Option) (*operations.ProxyResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -462,7 +464,7 @@ func (s *connections) Proxy(ctx context.Context, request operations.ProxyRequest
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
+	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}

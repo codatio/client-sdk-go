@@ -24,7 +24,8 @@ pkg/models/operations/createbanktransactions.go
 pkg/models/operations/getcreatebanktransactionsmodel.go
 pkg/models/operations/listbankaccounttransactions.go
 pkg/models/operations/createbankfeed.go
-pkg/models/operations/getbankfeeds.go
+pkg/models/operations/listbankfeeds.go
+pkg/models/operations/putbankfeed.go
 pkg/models/operations/updatebankfeed.go
 pkg/models/operations/createcompany.go
 pkg/models/operations/deletecompany.go
@@ -93,8 +94,10 @@ docs/models/operations/listbankaccounttransactions409applicationjson.md
 docs/models/operations/listbankaccounttransactionsresponse.md
 docs/models/operations/createbankfeedrequest.md
 docs/models/operations/createbankfeedresponse.md
-docs/models/operations/getbankfeedsrequest.md
-docs/models/operations/getbankfeedsresponse.md
+docs/models/operations/listbankfeedsrequest.md
+docs/models/operations/listbankfeedsresponse.md
+docs/models/operations/putbankfeedrequest.md
+docs/models/operations/putbankfeedresponse.md
 docs/models/operations/updatebankfeedrequest.md
 docs/models/operations/updatebankfeedresponse.md
 docs/models/operations/createcompanyresponse.md

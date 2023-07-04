@@ -7,12 +7,12 @@ import (
 	"net/http"
 )
 
-type GetBankFeedsRequest struct {
+type ListBankFeedsRequest struct {
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
-type GetBankFeedsResponse struct {
+type ListBankFeedsResponse struct {
 	// Success
 	BankFeedAccounts []shared.BankFeedAccount
 	ContentType      string
