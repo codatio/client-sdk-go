@@ -24,6 +24,7 @@ pkg/models/operations/getcompanyconfiguration.go
 pkg/models/operations/savecompanyconfiguration.go
 pkg/models/operations/createpartnerexpenseconnection.go
 pkg/models/operations/createexpensedataset.go
+pkg/models/operations/updateexpensedataset.go
 pkg/models/operations/uploadattachment.go
 pkg/models/operations/getmappingoptions.go
 pkg/models/operations/intiatesync.go
@@ -46,6 +47,7 @@ pkg/models/shared/createexpenserequest.go
 pkg/models/shared/expensetransaction.go
 pkg/models/shared/expensetransactionline.go
 pkg/models/shared/recordref.go
+pkg/models/shared/updateexpenserequest.go
 pkg/models/shared/attachment.go
 pkg/models/shared/mappingoptions.go
 pkg/models/shared/trackingcategorymappinginfo.go
@@ -79,6 +81,9 @@ docs/models/operations/createpartnerexpenseconnectionrequest.md
 docs/models/operations/createpartnerexpenseconnectionresponse.md
 docs/models/operations/createexpensedatasetrequest.md
 docs/models/operations/createexpensedatasetresponse.md
+docs/models/operations/updateexpensedatasetrequest.md
+docs/models/operations/updateexpensedataset202applicationjson.md
+docs/models/operations/updateexpensedatasetresponse.md
 docs/models/operations/uploadattachmentrequestbody.md
 docs/models/operations/uploadattachmentrequest.md
 docs/models/operations/uploadattachmentresponse.md
@@ -113,6 +118,7 @@ docs/models/shared/expensetransactiontype.md
 docs/models/shared/expensetransaction.md
 docs/models/shared/expensetransactionline.md
 docs/models/shared/recordref.md
+docs/models/shared/updateexpenserequest.md
 docs/models/shared/attachment.md
 docs/models/shared/mappingoptions.md
 docs/models/shared/trackingcategorymappinginfo.md

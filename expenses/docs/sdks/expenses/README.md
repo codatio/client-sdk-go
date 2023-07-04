@@ -7,6 +7,7 @@ Create expense datasets and upload receipts.
 ### Available Operations
 
 * [CreateExpenseDataset](#createexpensedataset) - Create expense-transactions
+* [UpdateExpenseDataset](#updateexpensedataset) - Update expense-transactions
 * [UploadAttachment](#uploadattachment) - Upload attachment
 
 ## CreateExpenseDataset
@@ -320,6 +321,146 @@ func main() {
 **[*operations.CreateExpenseDatasetResponse](../../models/operations/createexpensedatasetresponse.md), error**
 
 
+## UpdateExpenseDataset
+
+Update an expense transaction
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"log"
+	"github.com/codatio/client-sdk-go/expenses"
+	"github.com/codatio/client-sdk-go/expenses/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/expenses/pkg/models/shared"
+)
+
+func main() {
+    s := codatsyncexpenses.New(
+        codatsyncexpenses.WithSecurity(shared.Security{
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
+        }),
+    )
+
+    ctx := context.Background()
+    res, err := s.Expenses.UpdateExpenseDataset(ctx, operations.UpdateExpenseDatasetRequest{
+        UpdateExpenseRequest: &shared.UpdateExpenseRequest{
+            Currency: codatsyncexpenses.String("GBP"),
+            IssueDate: "2022-06-28T00:00:00.000Z",
+            Lines: []shared.ExpenseTransactionLine{
+                shared.ExpenseTransactionLine{
+                    AccountRef: shared.RecordRef{
+                        ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
+                    },
+                    NetAmount: 110.42,
+                    TaxAmount: 14.43,
+                    TaxRateRef: &shared.RecordRef{
+                        ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
+                    },
+                    TrackingRefs: []shared.RecordRef{
+                        shared.RecordRef{
+                            ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
+                        },
+                        shared.RecordRef{
+                            ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
+                        },
+                        shared.RecordRef{
+                            ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
+                        },
+                    },
+                },
+                shared.ExpenseTransactionLine{
+                    AccountRef: shared.RecordRef{
+                        ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
+                    },
+                    NetAmount: 110.42,
+                    TaxAmount: 14.43,
+                    TaxRateRef: &shared.RecordRef{
+                        ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
+                    },
+                    TrackingRefs: []shared.RecordRef{
+                        shared.RecordRef{
+                            ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
+                        },
+                        shared.RecordRef{
+                            ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
+                        },
+                    },
+                },
+                shared.ExpenseTransactionLine{
+                    AccountRef: shared.RecordRef{
+                        ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
+                    },
+                    NetAmount: 110.42,
+                    TaxAmount: 14.43,
+                    TaxRateRef: &shared.RecordRef{
+                        ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
+                    },
+                    TrackingRefs: []shared.RecordRef{
+                        shared.RecordRef{
+                            ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
+                        },
+                        shared.RecordRef{
+                            ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
+                        },
+                        shared.RecordRef{
+                            ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
+                        },
+                    },
+                },
+                shared.ExpenseTransactionLine{
+                    AccountRef: shared.RecordRef{
+                        ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
+                    },
+                    NetAmount: 110.42,
+                    TaxAmount: 14.43,
+                    TaxRateRef: &shared.RecordRef{
+                        ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
+                    },
+                    TrackingRefs: []shared.RecordRef{
+                        shared.RecordRef{
+                            ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
+                        },
+                        shared.RecordRef{
+                            ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
+                        },
+                    },
+                },
+            },
+            MerchantName: codatsyncexpenses.String("Amazon UK"),
+            Notes: codatsyncexpenses.String("APPLE.COM/BILL - 09001077498 - Card Ending: 4590"),
+            Type: "recusandae",
+        },
+        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+        TransactionID: "336694d8-2dca-4cb5-a28d-3ccb83e55eee",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.UpdateExpenseDataset202ApplicationJSONObject != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
+| `request`                                                                                        | [operations.UpdateExpenseDatasetRequest](../../models/operations/updateexpensedatasetrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
+| `opts`                                                                                           | [][operations.Option](../../models/operations/option.md)                                         | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
+
+
+### Response
+
+**[*operations.UpdateExpenseDatasetResponse](../../models/operations/updateexpensedatasetresponse.md), error**
+
+
 ## UploadAttachment
 
 Creates an attachment in the accounting software against the given transactionId
@@ -346,8 +487,8 @@ func main() {
     ctx := context.Background()
     res, err := s.Expenses.UploadAttachment(ctx, operations.UploadAttachmentRequest{
         RequestBody: &operations.UploadAttachmentRequestBody{
-            Content: []byte("placeat"),
-            RequestBody: "voluptatum",
+            Content: []byte("temporibus"),
+            RequestBody: "ab",
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         SyncID: "6fb40d5e-b13e-11ed-afa1-0242ac120002",
