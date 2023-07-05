@@ -91,6 +91,11 @@ func main() {
 * [UpdateProfile](docs/sdks/settings/README.md#updateprofile) - Update profile
 * [UpdateSyncSettings](docs/sdks/settings/README.md#updatesyncsettings) - Update all sync settings
 
+### [SupplementalData](docs/sdks/supplementaldata/README.md)
+
+* [Configure](docs/sdks/supplementaldata/README.md#configure) - Configure
+* [GetConfiguration](docs/sdks/supplementaldata/README.md#getconfiguration) - Get configuration
+
 ### [Webhooks](docs/sdks/webhooks/README.md)
 
 * [Create](docs/sdks/webhooks/README.md#create) - Create webhook

@@ -4,6 +4,7 @@ integrations.go
 pushdata.go
 refreshdata.go
 settings.go
+supplementaldata.go
 webhooks.go
 codatcommon.go
 go.mod
@@ -46,6 +47,8 @@ pkg/models/operations/getprofile.go
 pkg/models/operations/getprofilesyncsettings.go
 pkg/models/operations/updateprofile.go
 pkg/models/operations/updateprofilesyncsettings.go
+pkg/models/operations/configuresupplementaldata.go
+pkg/models/operations/getsupplementaldataconfiguration.go
 pkg/models/operations/createrule.go
 pkg/models/operations/getwebhook.go
 pkg/models/operations/listrules.go
@@ -93,6 +96,7 @@ pkg/models/shared/dataconnectionhistory.go
 pkg/models/shared/profile.go
 pkg/models/shared/syncsettings.go
 pkg/models/shared/syncsetting.go
+pkg/models/shared/supplementaldataconfiguration.go
 pkg/models/shared/rule.go
 pkg/models/shared/rules.go
 pkg/models/shared/security.go
@@ -119,6 +123,7 @@ docs/sdks/integrations/README.md
 docs/sdks/pushdata/README.md
 docs/sdks/refreshdata/README.md
 docs/sdks/settings/README.md
+docs/sdks/supplementaldata/README.md
 docs/sdks/webhooks/README.md
 USAGE.md
 docs/models/operations/createcompanyresponse.md
@@ -171,6 +176,12 @@ docs/models/operations/getprofilesyncsettingsresponse.md
 docs/models/operations/updateprofileresponse.md
 docs/models/operations/updateprofilesyncsettingsrequestbody.md
 docs/models/operations/updateprofilesyncsettingsresponse.md
+docs/models/operations/configuresupplementaldatadatatype.md
+docs/models/operations/configuresupplementaldatarequest.md
+docs/models/operations/configuresupplementaldataresponse.md
+docs/models/operations/getsupplementaldataconfigurationdatatype.md
+docs/models/operations/getsupplementaldataconfigurationrequest.md
+docs/models/operations/getsupplementaldataconfigurationresponse.md
 docs/models/operations/createruleresponse.md
 docs/models/operations/getwebhookrequest.md
 docs/models/operations/getwebhookresponse.md
@@ -222,6 +233,7 @@ docs/models/shared/profile.md
 docs/models/shared/syncsettings.md
 docs/models/shared/syncsettingdatatype.md
 docs/models/shared/syncsetting.md
+docs/models/shared/supplementaldataconfiguration.md
 docs/models/shared/rulenotifiers.md
 docs/models/shared/rule.md
 docs/models/shared/rules.md

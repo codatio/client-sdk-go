@@ -15,7 +15,9 @@ Manage your companies' data connections.
 
 ## Create
 
-Create a data connection for a company
+﻿Creates a connection for the company by providing a valid `platformKey`. 
+
+Use the [List Integrations](https://docs.codat.io/codat-api#/operations/list-integrations) endpoint to access valid platform keys. 
 
 ### Example Usage
 
@@ -69,8 +71,8 @@ func main() {
 
 ## Delete
 
-Revoke and remove a connection from a company.
-This operation is not reversible - the end user would need to reauthorize a new data connection if you wish to view new data for this company.
+﻿Revoke and remove a connection from a company.
+This operation is not reversible. The end user would need to reauthorize a new data connection if you wish to view new data for this company.
 
 ### Example Usage
 
@@ -122,7 +124,7 @@ func main() {
 
 ## Get
 
-Get a single connection for a company
+﻿Returns a specific connection for a company when valid identifiers are provided. If the identifiers are for a deleted company and/or connection, a not found response is returned.
 
 ### Example Usage
 
@@ -174,7 +176,7 @@ func main() {
 
 ## List
 
-List the connections for a company
+﻿List the connections for a company.
 
 ### Example Usage
 
@@ -229,7 +231,7 @@ func main() {
 
 ## UnlinkConnection
 
-This allows you to deauthorize a connection, without deleting it from Codat. This means you can still view any data that has previously been pulled into Codat, and also lets you re-authorize in future if your customer wishes to resume sharing their data.
+﻿This allows you to deauthorize a connection, without deleting it from Codat. This means you can still view any data that has previously been pulled into Codat, and also lets you re-authorize in future if your customer wishes to resume sharing their data.
 
 ### Example Usage
 

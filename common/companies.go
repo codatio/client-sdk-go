@@ -26,7 +26,9 @@ func newCompanies(sdkConfig sdkConfiguration) *companies {
 }
 
 // Create - Create company
-// Create a new company
+// Creates a new company that can be used to assign connections to.
+//
+// If forbidden characters (see `name` pattern) are present in the request, a company will be created with the forbidden characters removed. For example, `Company (Codat[1])` with be created as `Company Codat1`.
 func (s *companies) Create(ctx context.Context, request shared.CompanyRequestBody, opts ...operations.Option) (*operations.CreateCompanyResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -113,6 +115,8 @@ func (s *companies) Create(ctx context.Context, request shared.CompanyRequestBod
 
 			res.Company = out
 		}
+	case httpRes.StatusCode == 400:
+		fallthrough
 	case httpRes.StatusCode == 401:
 		fallthrough
 	case httpRes.StatusCode == 429:
@@ -131,8 +135,8 @@ func (s *companies) Create(ctx context.Context, request shared.CompanyRequestBod
 }
 
 // Delete - Delete a company
-// Delete the given company from Codat.
-// This operation is not reversible.
+//
+// Permanently deletes a company, its connections and any cached data. This operation is irreversible. If the company ID does not exist an error is returned.
 func (s *companies) Delete(ctx context.Context, request operations.DeleteCompanyRequest, opts ...operations.Option) (*operations.DeleteCompanyResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -226,7 +230,7 @@ func (s *companies) Delete(ctx context.Context, request operations.DeleteCompany
 }
 
 // Get - Get company
-// Get metadata for a single company
+// Returns the company for a valid identifier. If the identifier is for a deleted company, a not found response is returned.
 func (s *companies) Get(ctx context.Context, request operations.GetCompanyRequest, opts ...operations.Option) (*operations.GetCompanyResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -329,7 +333,7 @@ func (s *companies) Get(ctx context.Context, request operations.GetCompanyReques
 }
 
 // List - List companies
-// List all companies that you have created in Codat.
+// Returns a list of your companies. The company schema contains a list of [connections](https://docs.codat.io/codat-api#/schemas/Connection) related to the company.
 func (s *companies) List(ctx context.Context, request operations.ListCompaniesRequest, opts ...operations.Option) (*operations.ListCompaniesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -433,7 +437,7 @@ func (s *companies) List(ctx context.Context, request operations.ListCompaniesRe
 }
 
 // Update - Update company
-// Updates the given company with a new name and description
+// Updates both the name and description of the company.
 func (s *companies) Update(ctx context.Context, request operations.UpdateCompanyRequest, opts ...operations.Option) (*operations.UpdateCompanyResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

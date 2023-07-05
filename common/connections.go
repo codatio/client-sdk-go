@@ -25,7 +25,9 @@ func newConnections(sdkConfig sdkConfiguration) *connections {
 }
 
 // Create - Create connection
-// Create a data connection for a company
+// Creates a connection for the company by providing a valid `platformKey`.
+//
+// Use the [List Integrations](https://docs.codat.io/codat-api#/operations/list-integrations) endpoint to access valid platform keys.
 func (s *connections) Create(ctx context.Context, request operations.CreateDataConnectionRequest, opts ...operations.Option) (*operations.CreateDataConnectionResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -136,7 +138,7 @@ func (s *connections) Create(ctx context.Context, request operations.CreateDataC
 
 // Delete - Delete connection
 // Revoke and remove a connection from a company.
-// This operation is not reversible - the end user would need to reauthorize a new data connection if you wish to view new data for this company.
+// This operation is not reversible. The end user would need to reauthorize a new data connection if you wish to view new data for this company.
 func (s *connections) Delete(ctx context.Context, request operations.DeleteCompanyConnectionRequest, opts ...operations.Option) (*operations.DeleteCompanyConnectionResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -230,7 +232,7 @@ func (s *connections) Delete(ctx context.Context, request operations.DeleteCompa
 }
 
 // Get - Get connection
-// Get a single connection for a company
+// Returns a specific connection for a company when valid identifiers are provided. If the identifiers are for a deleted company and/or connection, a not found response is returned.
 func (s *connections) Get(ctx context.Context, request operations.GetCompanyConnectionRequest, opts ...operations.Option) (*operations.GetCompanyConnectionResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -333,7 +335,7 @@ func (s *connections) Get(ctx context.Context, request operations.GetCompanyConn
 }
 
 // List - List connections
-// List the connections for a company
+// List the connections for a company.
 func (s *connections) List(ctx context.Context, request operations.ListCompanyConnectionsRequest, opts ...operations.Option) (*operations.ListCompanyConnectionsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

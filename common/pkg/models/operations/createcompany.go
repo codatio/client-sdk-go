@@ -11,7 +11,7 @@ type CreateCompanyResponse struct {
 	// OK
 	Company     *shared.Company
 	ContentType string
-	// Your API request was not properly authorized.
+	// The request made is not valid.
 	ErrorMessage *shared.ErrorMessage
 	StatusCode   int
 	RawResponse  *http.Response
