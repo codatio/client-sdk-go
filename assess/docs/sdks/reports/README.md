@@ -18,7 +18,9 @@ Data integrity is important
 * [~~GetEnhancedFinancialMetrics~~](#getenhancedfinancialmetrics) - List financial metrics :warning: **Deprecated**
 * [GetEnhancedInvoicesReport](#getenhancedinvoicesreport) - Get enhanced invoices report
 * [~~GetEnhancedProfitAndLoss~~](#getenhancedprofitandloss) - Get enhanced profit and loss report :warning: **Deprecated**
+* [GetLoanSummary](#getloansummary) - Get enhanced loan summaries
 * [GetRecurringRevenueMetrics](#getrecurringrevenuemetrics) - Get key subscription revenue metrics
+* [ListLoanTransactions](#listloantransactions) - List enhanced loan transactions
 * [RequestRecurringRevenueMetrics](#requestrecurringrevenuemetrics) - Generate key subscription revenue metrics
 
 ## GetAccountsForEnhancedBalanceSheet
@@ -707,6 +709,57 @@ func main() {
 **[*operations.GetEnhancedProfitAndLossResponse](../../models/operations/getenhancedprofitandlossresponse.md), error**
 
 
+## GetLoanSummary
+
+Get enhanced loan summaries
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"log"
+	"github.com/codatio/client-sdk-go/assess"
+	"github.com/codatio/client-sdk-go/assess/pkg/models/operations"
+)
+
+func main() {
+    s := codatassess.New(
+        codatassess.WithSecurity(shared.Security{
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
+        }),
+    )
+
+    ctx := context.Background()
+    res, err := s.Reports.GetLoanSummary(ctx, operations.GetLoanSummaryRequest{
+        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.LoanSummary != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
+| `request`                                                                            | [operations.GetLoanSummaryRequest](../../models/operations/getloansummaryrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| `opts`                                                                               | [][operations.Option](../../models/operations/option.md)                             | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
+
+
+### Response
+
+**[*operations.GetLoanSummaryResponse](../../models/operations/getloansummaryresponse.md), error**
+
+
 ## GetRecurringRevenueMetrics
 
 Gets key metrics for subscription revenue.
@@ -757,6 +810,58 @@ func main() {
 ### Response
 
 **[*operations.GetRecurringRevenueMetricsResponse](../../models/operations/getrecurringrevenuemetricsresponse.md), error**
+
+
+## ListLoanTransactions
+
+List enhanced loan transactions
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"log"
+	"github.com/codatio/client-sdk-go/assess"
+	"github.com/codatio/client-sdk-go/assess/pkg/models/operations"
+)
+
+func main() {
+    s := codatassess.New(
+        codatassess.WithSecurity(shared.Security{
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
+        }),
+    )
+
+    ctx := context.Background()
+    res, err := s.Reports.ListLoanTransactions(ctx, operations.ListLoanTransactionsRequest{
+        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+        SourceType: operations.ListLoanTransactionsSourceTypeBanking,
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.LoanTransactions != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
+| `request`                                                                                        | [operations.ListLoanTransactionsRequest](../../models/operations/listloantransactionsrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
+| `opts`                                                                                           | [][operations.Option](../../models/operations/option.md)                                         | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
+
+
+### Response
+
+**[*operations.ListLoanTransactionsResponse](../../models/operations/listloantransactionsresponse.md), error**
 
 
 ## RequestRecurringRevenueMetrics
