@@ -25,7 +25,13 @@ func newCustomers(sdkConfig sdkConfiguration) *customers {
 }
 
 // Get - Get customer
-// Get a specific commerce customer for the given company and data connection.
+// The *Get customer* endpoint returns a single customer for a given customerId.
+//
+// [Customers](https://docs.codat.io/commerce-api#/schemas/Customer) are people or organizations that place orders, make payments and receive goods and/or services from the SMB.
+//
+// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/commerce?view=tab-by-data-type&dataType=commerce-customers) for integrations that support getting a specific customer.
+//
+// Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
 func (s *customers) Get(ctx context.Context, request operations.GetCustomerRequest, opts ...operations.Option) (*operations.GetCustomerResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

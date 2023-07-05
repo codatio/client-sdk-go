@@ -25,7 +25,13 @@ func newTransactions(sdkConfig sdkConfiguration) *transactions {
 }
 
 // Get - Get transaction
-// Details of single financial transaction recorded in the commerce or point of sale system. For example, payments, service charges, and fees.
+// The *Get transaction* endpoint returns a single transaction for a given transactionId.
+//
+// [Transactions](https://docs.codat.io/commerce-api#/schemas/Transaction) detail all financial affairs recorded in the commerce or point of sale system.
+//
+// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/commerce?view=tab-by-data-type&dataType=commerce-transactions) for integrations that support getting a specific transaction.
+//
+// Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
 func (s *transactions) Get(ctx context.Context, request operations.GetTransactionRequest, opts ...operations.Option) (*operations.GetTransactionResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

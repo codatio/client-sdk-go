@@ -69,6 +69,10 @@ type Dispute struct {
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Current status of the dispute
 	Status *DisputeStatus `json:"status,omitempty"`
+	// Supplemental data is additional data you can include in our standard data types.
+	//
+	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/additional-data) about supplemental data.
+	SupplementalData *SupplementalData `json:"supplementalData,omitempty"`
 	// Total transaction amount that is under dispute.
 	TotalAmount *float64 `json:"totalAmount,omitempty"`
 }

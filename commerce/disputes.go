@@ -25,7 +25,13 @@ func newDisputes(sdkConfig sdkConfiguration) *disputes {
 }
 
 // Get - Get dispute
-// Get a specific commerce dispute.
+// The *Get dispute* endpoint returns a single dispute for a given disputeId.
+//
+// [Disputes](https://docs.codat.io/commerce-api#/schemas/Dispute) are created when a customer is unsatisfied with their purchase or believe they have been charged incorrectly.
+//
+// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/commerce?view=tab-by-data-type&dataType=commerce-disputes) for integrations that support getting a specific dispute.
+//
+// Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
 func (s *disputes) Get(ctx context.Context, request operations.GetDisputeRequest, opts ...operations.Option) (*operations.GetDisputeResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

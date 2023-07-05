@@ -17,6 +17,10 @@ type Product struct {
 	//
 	IsGiftCard *bool `json:"isGiftCard,omitempty"`
 	// Name of the product in the commerce or POS system
-	Name     *string          `json:"name,omitempty"`
-	Variants []ProductVariant `json:"variants,omitempty"`
+	Name *string `json:"name,omitempty"`
+	// Supplemental data is additional data you can include in our standard data types.
+	//
+	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/additional-data) about supplemental data.
+	SupplementalData *SupplementalData `json:"supplementalData,omitempty"`
+	Variants         []ProductVariant  `json:"variants,omitempty"`
 }

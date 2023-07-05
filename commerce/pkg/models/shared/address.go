@@ -2,6 +2,13 @@
 
 package shared
 
+// AddressSupplementalData - Supplemental data is additional data you can include in our standard data types.
+//
+// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/additional-data) about supplemental data.
+type AddressSupplementalData struct {
+	Content map[string]map[string]interface{} `json:"content,omitempty"`
+}
+
 type Address struct {
 	// The third line of the address, or city
 	City *string `json:"city,omitempty"`
@@ -15,6 +22,10 @@ type Address struct {
 	PostalCode *string `json:"postalCode,omitempty"`
 	// The fourth line of the address, or region
 	Region *string `json:"region,omitempty"`
+	// Supplemental data is additional data you can include in our standard data types.
+	//
+	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/additional-data) about supplemental data.
+	SupplementalData *AddressSupplementalData `json:"supplementalData,omitempty"`
 	// The type of the address
 	Type *AddressType `json:"type,omitempty"`
 }
