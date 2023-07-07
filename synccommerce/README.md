@@ -59,7 +59,6 @@ func main() {
 ### [Configuration](docs/sdks/configuration/README.md)
 
 * [GetConfiguration](docs/sdks/configuration/README.md#getconfiguration) - Retrieve config preferences set for a company.
-* [GetSyncStatus](docs/sdks/configuration/README.md#getsyncstatus) - Get status for a company's syncs
 * [SetConfiguration](docs/sdks/configuration/README.md#setconfiguration) - Create or update configuration.
 
 ### [Integrations](docs/sdks/integrations/README.md)
@@ -69,6 +68,7 @@ func main() {
 
 ### [Sync](docs/sdks/sync/README.md)
 
+* [GetSyncStatus](docs/sdks/sync/README.md#getsyncstatus) - Get status for a company's syncs
 * [RequestSync](docs/sdks/sync/README.md#requestsync) - Sync new
 * [RequestSyncForDateRange](docs/sdks/sync/README.md#requestsyncfordaterange) - Sync range
 

@@ -239,3 +239,11 @@ Based on:
 - Speakeasy CLI 1.49.0 (2.41.4) https://github.com/speakeasy-api/speakeasy
 ### Releases
 - [Go v0.18.1] https://github.com/codatio/client-sdk-go/releases/tag/synccommerce/v0.18.1 - synccommerce
+
+## 2023-07-07 09:24:57
+### Changes
+Based on:
+- OpenAPI Doc 1.1 https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Sync-Commerce.yaml
+- Speakeasy CLI 1.53.0 (2.58.0) https://github.com/speakeasy-api/speakeasy
+### Releases
+- [Go v0.19.0] https://github.com/codatio/client-sdk-go/releases/tag/synccommerce/v0.19.0 - synccommerce
