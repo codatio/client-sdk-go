@@ -25,7 +25,13 @@ func newTransactions(sdkConfig sdkConfiguration) *transactions {
 }
 
 // Get - Get bank transaction
-// Gets a specified bank transaction for a given company
+// The *Get transaction* endpoint returns a single transaction for a given transactionId.
+//
+// [Transactions](https://docs.codat.io/banking-api#/schemas/Transaction) provide an immutable source of up-to-date information on income and expenditure.
+//
+// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/banking?view=tab-by-data-type&dataType=banking-transactions) for integrations that support getting a specific transaction.
+//
+// Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
 func (s *transactions) Get(ctx context.Context, request operations.GetTransactionRequest, opts ...operations.Option) (*operations.GetTransactionResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -114,7 +120,11 @@ func (s *transactions) Get(ctx context.Context, request operations.GetTransactio
 }
 
 // List - List transactions
-// Gets a list of transactions incurred by a bank account.
+// The *List transactions* endpoint returns a list of [transactions](https://docs.codat.io/banking-api#/schemas/Transaction) for a given company's connection.
+//
+// [Transactions](https://docs.codat.io/banking-api#/schemas/Transaction) provide an immutable source of up-to-date information on income and expenditure.
+//
+// Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
 func (s *transactions) List(ctx context.Context, request operations.ListTransactionsRequest, opts ...operations.Option) (*operations.ListTransactionsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -231,7 +241,11 @@ func (s *transactions) List(ctx context.Context, request operations.ListTransact
 }
 
 // ListBankTransactions - List banking transactions
-// Gets a list of transactions incurred by a company across all bank accounts.
+// The *List transactions* endpoint returns a list of [transactions](https://docs.codat.io/banking-api#/schemas/Transaction) for a given company's connection.
+//
+// [Transactions](https://docs.codat.io/banking-api#/schemas/Transaction) provide an immutable source of up-to-date information on income and expenditure.
+//
+// Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
 //
 // Deprecated: this method will be removed in a future release, please migrate away from it as soon as possible. Use List instead.
 func (s *transactions) ListBankTransactions(ctx context.Context, request operations.ListBankTransactionsRequest, opts ...operations.Option) (*operations.ListBankTransactionsResponse, error) {
