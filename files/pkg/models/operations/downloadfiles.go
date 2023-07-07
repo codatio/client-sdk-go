@@ -9,7 +9,7 @@ import (
 
 type DownloadFilesRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
-	// Only download files uploaded on this date
+	// Only download files uploaded on this date.
 	Date *string `queryParam:"style=form,explode=true,name=date"`
 }
 

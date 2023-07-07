@@ -12,7 +12,7 @@ Endpoints to manage uploaded files.
 
 ## DownloadFiles
 
-You can specify a date to download specific files for.
+The *Download files* endpoint downloads all files that have  been uploaded by to SMB to Codat. A `date` may be specified to download any files uploaded on the date provided.
 
 ### Example Usage
 
@@ -64,7 +64,7 @@ func main() {
 
 ## ListFiles
 
-Returns an array of files that have been uploaded for a given company.
+﻿The *List files* endpoint returns a list of all files uploaded to Codat by the SMB. 
 
 ### Example Usage
 
@@ -115,7 +115,13 @@ func main() {
 
 ## UploadFiles
 
-Upload files
+The *Upload files* endpoint uploads multiple files provided by the SMB to Codat. This may include personal identity documents, pitch decks, contracts, or files with accounting and banking data.
+
+Uploaded files must meet the following requirements:
+
+- Up to 20 files can be uploaded at a time.
+- PDF, XLS, XLSX, XLSB, CSV, DOC, DOCX, PPT, PPTX, JPEG, JPG, and PNG files can be uploaded.
+- Each file can be up to 10MB in size.
 
 ### Example Usage
 
