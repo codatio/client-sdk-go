@@ -63,7 +63,7 @@ func main() {
 ### [BankAccountTransactions](docs/sdks/bankaccounttransactions/README.md)
 
 * [Create](docs/sdks/bankaccounttransactions/README.md#create) - Create bank account transactions
-* [Get](docs/sdks/bankaccounttransactions/README.md#get) - Get create bank account transactions model
+* [GetCreateModel](docs/sdks/bankaccounttransactions/README.md#getcreatemodel) - Get create bank account transactions model
 * [List](docs/sdks/bankaccounttransactions/README.md#list) - List bank account transactions
 
 ### [BankFeedAccounts](docs/sdks/bankfeedaccounts/README.md)

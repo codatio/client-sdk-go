@@ -146,7 +146,7 @@ func (s *bankAccountTransactions) Create(ctx context.Context, request operations
 	return res, nil
 }
 
-// Get - Get create bank account transactions model
+// GetCreateModel - Get create bank account transactions model
 // The *Get create bank account transactions model* endpoint returns the expected data for the request payload when creating [bank account transactions](https://docs.codat.io/bank-feeds-api#/schemas/BankTransactions) for a given company and integration.
 //
 // [Bank account transactions](https://docs.codat.io/bank-feeds-api#/schemas/BankTransactions) are records of monetary amounts that have moved in and out of an SMB's bank account.
@@ -156,7 +156,7 @@ func (s *bankAccountTransactions) Create(ctx context.Context, request operations
 // See the *response examples* for integration-specific indicative models.
 //
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankTransactions) for integrations that support creating an bank transaction.
-func (s *bankAccountTransactions) Get(ctx context.Context, request operations.GetCreateBankTransactionsModelRequest, opts ...operations.Option) (*operations.GetCreateBankTransactionsModelResponse, error) {
+func (s *bankAccountTransactions) GetCreateModel(ctx context.Context, request operations.GetCreateBankTransactionsModelRequest, opts ...operations.Option) (*operations.GetCreateBankTransactionsModelResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,

@@ -7,7 +7,7 @@ Bank feed bank accounts
 ### Available Operations
 
 * [Create](#create) - Create bank account transactions
-* [Get](#get) - Get create bank account transactions model
+* [GetCreateModel](#getcreatemodel) - Get create bank account transactions model
 * [List](#list) - List bank account transactions
 
 ## Create
@@ -108,7 +108,7 @@ func main() {
 **[*operations.CreateBankTransactionsResponse](../../models/operations/createbanktransactionsresponse.md), error**
 
 
-## Get
+## GetCreateModel
 
 ﻿The *Get create bank account transactions model* endpoint returns the expected data for the request payload when creating [bank account transactions](https://docs.codat.io/bank-feeds-api#/schemas/BankTransactions) for a given company and integration.
 
@@ -141,7 +141,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.BankAccountTransactions.Get(ctx, operations.GetCreateBankTransactionsModelRequest{
+    res, err := s.BankAccountTransactions.GetCreateModel(ctx, operations.GetCreateBankTransactionsModelRequest{
         AccountID: "13d946f0-c5d5-42bc-b092-97ece17923ab",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
