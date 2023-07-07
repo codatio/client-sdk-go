@@ -35,6 +35,8 @@ type BillPaymentAllocationAllocation struct {
 	//
 	// Currency rates in Codat are implemented as the multiple of foreign currency units to each base currency unit.
 	//
+	// It is not possible to perform the currency conversion with two or more non-base currencies participating in the transaction. For example, if a company's base currency is USD, and it has a bill issued in EUR, then the bill payment must happen in USD or EUR.
+	//
 	// Where the currency rate is provided by the underlying accounting platform, it will be available from Codat with the same precision (up to a maximum of 9 decimal places).
 	//
 	// For accounting platforms which do not provide an explicit currency rate, it is calculated as `baseCurrency / foreignCurrency` and will be returned to 9 decimal places.
@@ -64,7 +66,9 @@ type BillPaymentAllocation struct {
 	Payment    PaymentAllocationPayment        `json:"payment"`
 }
 
-// BillSupplementalData - Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
+// BillSupplementalData - Supplemental data is additional data you can include in our standard data types.
+//
+// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/additional-data) about supplemental data.
 type BillSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
@@ -108,6 +112,8 @@ type Bill struct {
 	//
 	// Currency rates in Codat are implemented as the multiple of foreign currency units to each base currency unit.
 	//
+	// It is not possible to perform the currency conversion with two or more non-base currencies participating in the transaction. For example, if a company's base currency is USD, and it has a bill issued in EUR, then the bill payment must happen in USD or EUR.
+	//
 	// Where the currency rate is provided by the underlying accounting platform, it will be available from Codat with the same precision (up to a maximum of 9 decimal places).
 	//
 	// For accounting platforms which do not provide an explicit currency rate, it is calculated as `baseCurrency / foreignCurrency` and will be returned to 9 decimal places.
@@ -148,7 +154,9 @@ type Bill struct {
 	Status BillStatus `json:"status"`
 	// Total amount of the bill, excluding any taxes.
 	SubTotal float64 `json:"subTotal"`
-	// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
+	// Supplemental data is additional data you can include in our standard data types.
+	//
+	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/additional-data) about supplemental data.
 	SupplementalData *BillSupplementalData `json:"supplementalData,omitempty"`
 	// Reference to the supplier the record relates to.
 	SupplierRef *SupplierRef `json:"supplierRef,omitempty"`

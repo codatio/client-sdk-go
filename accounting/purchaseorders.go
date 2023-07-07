@@ -25,11 +25,15 @@ func newPurchaseOrders(sdkConfig sdkConfiguration) *purchaseOrders {
 }
 
 // Create - Create purchase order
-// Posts a new purchase order to the accounting package for a given company.
+// The *Create purchase order* endpoint creates a new [purchase order](https://docs.codat.io/accounting-api#/schemas/PurchaseOrder) for a given company's connection.
+//
+// [Purchase orders](https://docs.codat.io/accounting-api#/schemas/PurchaseOrder) represent a business's intent to purchase goods or services from a supplier.
+//
+// **Integration-specific behaviour**
 //
 // Required data may vary by integration. To see what data to post, first call [Get create/update purchase order model](https://docs.codat.io/accounting-api#/operations/get-create-update-purchaseOrders-model).
 //
-// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=purchaseOrders) to see which integrations support this endpoint.
+// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=purchaseOrders) for integrations that support creating an account.
 func (s *purchaseOrders) Create(ctx context.Context, request operations.CreatePurchaseOrderRequest, opts ...operations.Option) (*operations.CreatePurchaseOrderResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -145,7 +149,13 @@ func (s *purchaseOrders) Create(ctx context.Context, request operations.CreatePu
 }
 
 // Get - Get purchase order
-// Get purchase order
+// The *Get purchase order* endpoint returns a single purchase order for a given purchaseOrderId.
+//
+// [Purchase orders](https://docs.codat.io/accounting-api#/schemas/PurchaseOrder) represent a business's intent to purchase goods or services from a supplier.
+//
+// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=purchaseOrders) for integrations that support getting a specific purchase order.
+//
+// Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
 func (s *purchaseOrders) Get(ctx context.Context, request operations.GetPurchaseOrderRequest, opts ...operations.Option) (*operations.GetPurchaseOrderResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -258,13 +268,15 @@ func (s *purchaseOrders) Get(ctx context.Context, request operations.GetPurchase
 }
 
 // GetCreateUpdateModel - Get create/update purchase order model
-// Get create/update purchase order model. Returns the expected data for the request payload.
+// The *Get create/update purchase order model* endpoint returns the expected data for the request payload when creating and updating a [purchase order](https://docs.codat.io/accounting-api#/schemas/PurchaseOrder) for a given company and integration.
 //
-// See the examples for integration-specific indicative models.
+// [Purchase orders](https://docs.codat.io/accounting-api#/schemas/PurchaseOrder) represent a business's intent to purchase goods or services from a supplier.
 //
-// > **Supported Integrations**
-// >
-// > Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=purchaseOrders) for integrations that support creating and updating purchase orders.
+// **Integration-specific behaviour**
+//
+// See the *response examples* for integration-specific indicative models.
+//
+// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=purchaseOrders) for integrations that support creating and updating a purchase order.
 func (s *purchaseOrders) GetCreateUpdateModel(ctx context.Context, request operations.GetCreateUpdatePurchaseOrdersModelRequest, opts ...operations.Option) (*operations.GetCreateUpdatePurchaseOrdersModelResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -367,7 +379,11 @@ func (s *purchaseOrders) GetCreateUpdateModel(ctx context.Context, request opera
 }
 
 // List - List purchase orders
-// Get purchase orders
+// The *List purchase orders* endpoint returns a list of [purchase orders](https://docs.codat.io/accounting-api#/schemas/PurchaseOrder) for a given company's connection.
+//
+// [Purchase orders](https://docs.codat.io/accounting-api#/schemas/PurchaseOrder) represent a business's intent to purchase goods or services from a supplier.
+//
+// Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
 func (s *purchaseOrders) List(ctx context.Context, request operations.ListPurchaseOrdersRequest, opts ...operations.Option) (*operations.ListPurchaseOrdersResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -484,13 +500,15 @@ func (s *purchaseOrders) List(ctx context.Context, request operations.ListPurcha
 }
 
 // Update - Update purchase order
-// Posts an updated purchase order to the accounting package for a given company.
+// The *Update purchase order* endpoint updates an existing [purchase order](https://docs.codat.io/accounting-api#/schemas/PurchaseOrder) for a given company's connection.
 //
-// Required data may vary by integration. To see what data to post, first call []().
+// [Purchase orders](https://docs.codat.io/accounting-api#/schemas/PurchaseOrder) represent a business's intent to purchase goods or services from a supplier.
 //
-// > **Supported Integrations**
-// >
-// > Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=purchaseOrders) for integrations that support updating purchase orders.
+// **Integration-specific behaviour**
+//
+// Required data may vary by integration. To see what data to post, first call [Get create/update purchase order model](https://docs.codat.io/accounting-api#/operations/get-create-update-purchaseOrders-model).
+//
+// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=purchaseOrders) for integrations that support creating an account.
 func (s *purchaseOrders) Update(ctx context.Context, request operations.UpdatePurchaseOrderRequest, opts ...operations.Option) (*operations.UpdatePurchaseOrderResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

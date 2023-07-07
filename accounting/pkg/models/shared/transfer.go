@@ -44,7 +44,9 @@ type Transfer struct {
 	Metadata           *Metadata `json:"metadata,omitempty"`
 	ModifiedDate       *string   `json:"modifiedDate,omitempty"`
 	SourceModifiedDate *string   `json:"sourceModifiedDate,omitempty"`
-	// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
+	// Supplemental data is additional data you can include in our standard data types.
+	//
+	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/additional-data) about supplemental data.
 	SupplementalData *SupplementalData `json:"supplementalData,omitempty"`
 	To               *TransferAccount  `json:"to,omitempty"`
 	// Reference to the tracking categories this transfer is being tracked against.

@@ -13,11 +13,16 @@ Journals
 
 ## Create
 
-Posts a new journal to the accounting package for a given company.
+The *Create journal* endpoint creates a new [journal](https://docs.codat.io/accounting-api#/schemas/Journal) for a given company's connection.
+
+[Journals](https://docs.codat.io/accounting-api#/schemas/Journal) are used to record all the financial transactions of a company.
+
+**Integration-specific behaviour**
 
 Required data may vary by integration. To see what data to post, first call [Get create journal model](https://docs.codat.io/accounting-api#/operations/get-create-journals-model).
 
-Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journals) to see which integrations support this endpoint.
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journals) for integrations that support creating an account.
+
 
 ### Example Usage
 
@@ -44,21 +49,21 @@ func main() {
         Journal: &shared.Journal{
             CreatedOn: codataccounting.String("2022-10-23T00:00:00.000Z"),
             HasChildren: codataccounting.Bool(false),
-            ID: codataccounting.String("d72a2d4a-f415-48ac-ad0f-0f58c3b87b47"),
-            JournalCode: codataccounting.String("eaque"),
+            ID: codataccounting.String("9d3a1d32-329e-4458-b7e8-f2ad6bb10e25"),
+            JournalCode: codataccounting.String("ipsam"),
             Metadata: &shared.Metadata{
                 IsDeleted: codataccounting.Bool(false),
             },
             ModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
-            Name: codataccounting.String("Elena Anderson"),
-            ParentID: codataccounting.String("quos"),
+            Name: codataccounting.String("Noel Gutmann PhD"),
+            ParentID: codataccounting.String("voluptas"),
             SourceModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
-            Status: shared.JournalStatusActive.ToPointer(),
-            Type: codataccounting.String("fugiat"),
+            Status: shared.JournalStatusUnknown.ToPointer(),
+            Type: codataccounting.String("ipsum"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codataccounting.Int(513534),
+        TimeoutInMinutes: codataccounting.Int(56059),
     })
     if err != nil {
         log.Fatal(err)
@@ -86,7 +91,14 @@ func main() {
 
 ## Get
 
-Gets a single journal corresponding to the given ID.
+The *Get journal* endpoint returns a single journal for a given journalId.
+
+[Journals](https://docs.codat.io/accounting-api#/schemas/Journal) are used to record all the financial transactions of a company.
+
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journals) for integrations that support getting a specific journal.
+
+Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
+
 
 ### Example Usage
 
@@ -110,7 +122,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Journals.Get(ctx, operations.GetJournalRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        JournalID: "eos",
+        JournalID: "totam",
     })
     if err != nil {
         log.Fatal(err)
@@ -138,13 +150,16 @@ func main() {
 
 ## GetCreateModel
 
-Get create journal model. Returns the expected data for the request payload.
+The *Get create journal model* endpoint returns the expected data for the request payload when creating a [journal](https://docs.codat.io/accounting-api#/schemas/Journal) for a given company and integration.
 
-See the examples for integration-specific indicative models.
+[Journals](https://docs.codat.io/accounting-api#/schemas/Journal) are used to record all the financial transactions of a company.
 
-> **Supported Integrations**
-> 
-> Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journals) for integrations that support creating journals.
+**Integration-specific behaviour**
+
+See the *response examples* for integration-specific indicative models.
+
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journals) for integrations that support creating a journal.
+
 
 ### Example Usage
 
@@ -196,7 +211,12 @@ func main() {
 
 ## List
 
-Gets the latest journals for a company, with pagination
+The *List journals* endpoint returns a list of [journals](https://docs.codat.io/accounting-api#/schemas/Journal) for a given company's connection.
+
+[Journals](https://docs.codat.io/accounting-api#/schemas/Journal) are used to record all the financial transactions of a company.
+
+Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
+    
 
 ### Example Usage
 
@@ -223,7 +243,7 @@ func main() {
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: codataccounting.Int(1),
         PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("porro"),
+        Query: codataccounting.String("aliquid"),
     })
     if err != nil {
         log.Fatal(err)

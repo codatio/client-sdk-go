@@ -303,3 +303,51 @@ Based on:
 - Speakeasy CLI 1.48.0 (2.41.1) https://github.com/speakeasy-api/speakeasy
 ### Releases
 - [Go v0.20.0] https://github.com/codatio/client-sdk-go/releases/tag/accounting/v0.20.0 - accounting
+
+## 2023-06-24 00:28:47
+### Changes
+Based on:
+- OpenAPI Doc 2.1.0 https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Accounting.yaml
+- Speakeasy CLI 1.50.1 (2.43.2) https://github.com/speakeasy-api/speakeasy
+### Releases
+- [Go v0.21.0] https://github.com/codatio/client-sdk-go/releases/tag/accounting/v0.21.0 - accounting
+
+## 2023-06-27 00:27:56
+### Changes
+Based on:
+- OpenAPI Doc 2.1.0 https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Accounting.yaml
+- Speakeasy CLI 1.51.1 (2.50.2) https://github.com/speakeasy-api/speakeasy
+### Releases
+- [Go v0.22.0] https://github.com/codatio/client-sdk-go/releases/tag/accounting/v0.22.0 - accounting
+
+## 2023-06-28 00:27:25
+### Changes
+Based on:
+- OpenAPI Doc 2.1.0 https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Accounting.yaml
+- Speakeasy CLI 1.51.1 (2.50.2) https://github.com/speakeasy-api/speakeasy
+### Releases
+- [Go v0.22.1] https://github.com/codatio/client-sdk-go/releases/tag/accounting/v0.22.1 - accounting
+
+## 2023-06-29 00:26:49
+### Changes
+Based on:
+- OpenAPI Doc 2.1.0 https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Accounting.yaml
+- Speakeasy CLI 1.51.3 (2.52.2) https://github.com/speakeasy-api/speakeasy
+### Releases
+- [Go v0.23.0] https://github.com/codatio/client-sdk-go/releases/tag/accounting/v0.23.0 - accounting
+
+## 2023-07-01 00:29:32
+### Changes
+Based on:
+- OpenAPI Doc 2.1.0 https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Accounting.yaml
+- Speakeasy CLI 1.52.0 (2.55.0) https://github.com/speakeasy-api/speakeasy
+### Releases
+- [Go v0.24.0] https://github.com/codatio/client-sdk-go/releases/tag/accounting/v0.24.0 - accounting
+
+## 2023-07-07 09:24:26
+### Changes
+Based on:
+- OpenAPI Doc 2.1.0 https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Accounting.yaml
+- Speakeasy CLI 1.53.0 (2.58.0) https://github.com/speakeasy-api/speakeasy
+### Releases
+- [Go v0.25.0] https://github.com/codatio/client-sdk-go/releases/tag/accounting/v0.25.0 - accounting

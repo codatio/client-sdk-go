@@ -25,11 +25,15 @@ func newItems(sdkConfig sdkConfiguration) *items {
 }
 
 // Create - Create item
-// Posts a new item to the accounting package for a given company.
+// The *Create item* endpoint creates a new [item](https://docs.codat.io/accounting-api#/schemas/Item) for a given company's connection.
+//
+// [Items](https://docs.codat.io/accounting-api#/schemas/Item) allow your customers to save and track details of the products and services that they buy and sell.
+//
+// **Integration-specific behaviour**
 //
 // Required data may vary by integration. To see what data to post, first call [Get create item model](https://docs.codat.io/accounting-api#/operations/get-create-items-model).
 //
-// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=items) to see which integrations support this endpoint.
+// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=items) for integrations that support creating an account.
 func (s *items) Create(ctx context.Context, request operations.CreateItemRequest, opts ...operations.Option) (*operations.CreateItemResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -145,7 +149,13 @@ func (s *items) Create(ctx context.Context, request operations.CreateItemRequest
 }
 
 // Get - Get item
-// Gets the specified item for a given company.
+// The *Get item* endpoint returns a single item for a given itemId.
+//
+// [Items](https://docs.codat.io/accounting-api#/schemas/Item) allow your customers to save and track details of the products and services that they buy and sell.
+//
+// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=items) for integrations that support getting a specific item.
+//
+// Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
 func (s *items) Get(ctx context.Context, request operations.GetItemRequest, opts ...operations.Option) (*operations.GetItemResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -258,13 +268,15 @@ func (s *items) Get(ctx context.Context, request operations.GetItemRequest, opts
 }
 
 // GetCreateModel - Get create item model
-// Get create item model. Returns the expected data for the request payload.
+// The *Get create item model* endpoint returns the expected data for the request payload when creating an [item](https://docs.codat.io/accounting-api#/schemas/Item) for a given company and integration.
 //
-// See the examples for integration-specific indicative models.
+// [Items](https://docs.codat.io/accounting-api#/schemas/Item) allow your customers to save and track details of the products and services that they buy and sell.
 //
-// > **Supported Integrations**
-// >
-// > Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=items) for integrations that support creating items.
+// **Integration-specific behaviour**
+//
+// See the *response examples* for integration-specific indicative models.
+//
+// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=items) for integrations that support creating an item.
 func (s *items) GetCreateModel(ctx context.Context, request operations.GetCreateItemsModelRequest, opts ...operations.Option) (*operations.GetCreateItemsModelResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -367,7 +379,11 @@ func (s *items) GetCreateModel(ctx context.Context, request operations.GetCreate
 }
 
 // List - List items
-// Gets the items for a given company.
+// The *List items* endpoint returns a list of [items](https://docs.codat.io/accounting-api#/schemas/Item) for a given company's connection.
+//
+// [Items](https://docs.codat.io/accounting-api#/schemas/Item) allow your customers to save and track details of the products and services that they buy and sell.
+//
+// Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
 func (s *items) List(ctx context.Context, request operations.ListItemsRequest, opts ...operations.Option) (*operations.ListItemsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

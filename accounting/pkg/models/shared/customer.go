@@ -39,7 +39,9 @@ type Customer struct {
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Status of customer.
 	Status CustomerStatus `json:"status"`
-	// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
+	// Supplemental data is additional data you can include in our standard data types.
+	//
+	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/additional-data) about supplemental data.
 	SupplementalData *SupplementalData `json:"supplementalData,omitempty"`
 	// Company tax number.
 	TaxNumber *string `json:"taxNumber,omitempty"`

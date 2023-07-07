@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-type DownloadInvoicesAttachmentRequest struct {
+type DownloadInvoiceAttachmentRequest struct {
 	// Unique identifier for an attachment
 	AttachmentID string `pathParam:"style=simple,explode=false,name=attachmentId"`
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
@@ -16,7 +16,7 @@ type DownloadInvoicesAttachmentRequest struct {
 	InvoiceID string `pathParam:"style=simple,explode=false,name=invoiceId"`
 }
 
-type DownloadInvoicesAttachmentResponse struct {
+type DownloadInvoiceAttachmentResponse struct {
 	ContentType string
 	// Success
 	Data        []byte

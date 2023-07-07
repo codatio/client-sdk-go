@@ -11,7 +11,14 @@ Sales orders
 
 ## Get
 
-Get sales order
+The *Get sales order* endpoint returns a single sales order for a given salesOrderId.
+
+[Sales orders](https://docs.codat.io/accounting-api#/schemas/SalesOrder) represent a customer's intention to purchase goods or services from the SMB.
+
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=salesOrders) for integrations that support getting a specific sales order.
+
+Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
+
 
 ### Example Usage
 
@@ -35,7 +42,7 @@ func main() {
     ctx := context.Background()
     res, err := s.SalesOrders.Get(ctx, operations.GetSalesOrderRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        SalesOrderID: "officia",
+        SalesOrderID: "sint",
     })
     if err != nil {
         log.Fatal(err)
@@ -63,7 +70,12 @@ func main() {
 
 ## List
 
-Get sales orders
+The *List sales orders* endpoint returns a list of [sales orders](https://docs.codat.io/accounting-api#/schemas/SalesOrder) for a given company's connection.
+
+[Sales orders](https://docs.codat.io/accounting-api#/schemas/SalesOrder) represent a customer's intention to purchase goods or services from the SMB.
+
+Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
+    
 
 ### Example Usage
 
@@ -90,7 +102,7 @@ func main() {
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: codataccounting.Int(1),
         PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("mollitia"),
+        Query: codataccounting.String("sint"),
     })
     if err != nil {
         log.Fatal(err)

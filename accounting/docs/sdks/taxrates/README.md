@@ -11,7 +11,14 @@ Tax rates
 
 ## Get
 
-Gets the specified tax rate for a given company.
+The *Get tax rate* endpoint returns a single tax rate for a given taxRateId.
+
+[Tax rates](https://docs.codat.io/accounting-api#/schemas/TaxRate) are a set of taxes and associated rates within the SMB's accounting package.
+
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=taxRates) for integrations that support getting a specific tax rate.
+
+Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
+
 
 ### Example Usage
 
@@ -35,7 +42,7 @@ func main() {
     ctx := context.Background()
     res, err := s.TaxRates.Get(ctx, operations.GetTaxRateRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        TaxRateID: "iusto",
+        TaxRateID: "asperiores",
     })
     if err != nil {
         log.Fatal(err)
@@ -63,7 +70,12 @@ func main() {
 
 ## List
 
-Gets the latest tax rates for a given company.
+The *List tax rates* endpoint returns a list of [tax rates](https://docs.codat.io/accounting-api#/schemas/TaxRate) for a given company's connection.
+
+[Tax rates](https://docs.codat.io/accounting-api#/schemas/TaxRate) are a set of taxes and associated rates within the SMB's accounting package.
+
+Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
+    
 
 ### Example Usage
 
@@ -90,7 +102,7 @@ func main() {
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: codataccounting.Int(1),
         PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("vel"),
+        Query: codataccounting.String("quisquam"),
     })
     if err != nil {
         log.Fatal(err)

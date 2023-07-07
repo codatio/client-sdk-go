@@ -11,7 +11,14 @@ Tracking categories
 
 ## Get
 
-Gets the specified tracking categories for a given company.
+The *Get tracking category* endpoint returns a single tracking category for a given trackingCategoryId.
+
+[Tracking categories](https://docs.codat.io/accounting-api#/schemas/TrackingCategory) are used to monitor cost centres and control budgets that sit outside the standard set of accounts.
+
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=trackingCategories) for integrations that support getting a specific tracking category.
+
+Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
+
 
 ### Example Usage
 
@@ -35,7 +42,7 @@ func main() {
     ctx := context.Background()
     res, err := s.TrackingCategories.Get(ctx, operations.GetTrackingCategoryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        TrackingCategoryID: "nihil",
+        TrackingCategoryID: "maiores",
     })
     if err != nil {
         log.Fatal(err)
@@ -63,7 +70,12 @@ func main() {
 
 ## List
 
-Gets the latest tracking categories for a given company.
+The *List tracking categories* endpoint returns a list of [tracking categories](https://docs.codat.io/accounting-api#/schemas/TrackingCategory) for a given company's connection.
+
+[Tracking categories](https://docs.codat.io/accounting-api#/schemas/TrackingCategory) are used to monitor cost centres and control budgets that sit outside the standard set of accounts.
+
+Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
+    
 
 ### Example Usage
 
@@ -90,7 +102,7 @@ func main() {
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: codataccounting.Int(1),
         PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("praesentium"),
+        Query: codataccounting.String("maiores"),
     })
     if err != nil {
         log.Fatal(err)

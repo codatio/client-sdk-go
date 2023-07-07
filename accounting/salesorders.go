@@ -25,7 +25,13 @@ func newSalesOrders(sdkConfig sdkConfiguration) *salesOrders {
 }
 
 // Get - Get sales order
-// Get sales order
+// The *Get sales order* endpoint returns a single sales order for a given salesOrderId.
+//
+// [Sales orders](https://docs.codat.io/accounting-api#/schemas/SalesOrder) represent a customer's intention to purchase goods or services from the SMB.
+//
+// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=salesOrders) for integrations that support getting a specific sales order.
+//
+// Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
 func (s *salesOrders) Get(ctx context.Context, request operations.GetSalesOrderRequest, opts ...operations.Option) (*operations.GetSalesOrderResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -138,7 +144,11 @@ func (s *salesOrders) Get(ctx context.Context, request operations.GetSalesOrderR
 }
 
 // List - List sales orders
-// Get sales orders
+// The *List sales orders* endpoint returns a list of [sales orders](https://docs.codat.io/accounting-api#/schemas/SalesOrder) for a given company's connection.
+//
+// [Sales orders](https://docs.codat.io/accounting-api#/schemas/SalesOrder) represent a customer's intention to purchase goods or services from the SMB.
+//
+// Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
 func (s *salesOrders) List(ctx context.Context, request operations.ListSalesOrdersRequest, opts ...operations.Option) (*operations.ListSalesOrdersResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

@@ -1,4 +1,4 @@
-# GetCreateBankAccountModelResponse
+# GetCreateBankTransactionsModelResponse
 
 
 ## Fields

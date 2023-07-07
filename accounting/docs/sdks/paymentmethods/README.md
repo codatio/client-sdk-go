@@ -7,11 +7,18 @@ Payment methods
 ### Available Operations
 
 * [Get](#get) - Get payment method
-* [List](#list) - List all payment methods
+* [List](#list) - List payment methods
 
 ## Get
 
-Gets the specified payment method for a given company.
+The *Get payment method* endpoint returns a single payment method for a given paymentMethodId.
+
+[Payment methods](https://docs.codat.io/accounting-api#/schemas/PaymentMethod) are used to pay a Bill. Payment Methods are referenced on [Bill Payments](https://docs.codat.io/accounting-api#/schemas/BillPayment) and [Payments](https://docs.codat.io/accounting-api#/schemas/Payment).
+
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=paymentMethods) for integrations that support getting a specific payment method.
+
+Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
+
 
 ### Example Usage
 
@@ -35,7 +42,7 @@ func main() {
     ctx := context.Background()
     res, err := s.PaymentMethods.Get(ctx, operations.GetPaymentMethodRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        PaymentMethodID: "nostrum",
+        PaymentMethodID: "dignissimos",
     })
     if err != nil {
         log.Fatal(err)
@@ -63,7 +70,12 @@ func main() {
 
 ## List
 
-Gets the payment methods for a given company.
+The *List payment methods* endpoint returns a list of [payment methods](https://docs.codat.io/accounting-api#/schemas/PaymentMethod) for a given company's connection.
+
+[Payment methods](https://docs.codat.io/accounting-api#/schemas/PaymentMethod) are used to pay a Bill. Payment Methods are referenced on [Bill Payments](https://docs.codat.io/accounting-api#/schemas/BillPayment) and [Payments](https://docs.codat.io/accounting-api#/schemas/Payment).
+
+Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
+    
 
 ### Example Usage
 
@@ -90,7 +102,7 @@ func main() {
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: codataccounting.Int(1),
         PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("officiis"),
+        Query: codataccounting.String("exercitationem"),
     })
     if err != nil {
         log.Fatal(err)

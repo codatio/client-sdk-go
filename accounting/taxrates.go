@@ -25,7 +25,13 @@ func newTaxRates(sdkConfig sdkConfiguration) *taxRates {
 }
 
 // Get - Get tax rate
-// Gets the specified tax rate for a given company.
+// The *Get tax rate* endpoint returns a single tax rate for a given taxRateId.
+//
+// [Tax rates](https://docs.codat.io/accounting-api#/schemas/TaxRate) are a set of taxes and associated rates within the SMB's accounting package.
+//
+// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=taxRates) for integrations that support getting a specific tax rate.
+//
+// Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
 func (s *taxRates) Get(ctx context.Context, request operations.GetTaxRateRequest, opts ...operations.Option) (*operations.GetTaxRateResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -138,7 +144,11 @@ func (s *taxRates) Get(ctx context.Context, request operations.GetTaxRateRequest
 }
 
 // List - List all tax rates
-// Gets the latest tax rates for a given company.
+// The *List tax rates* endpoint returns a list of [tax rates](https://docs.codat.io/accounting-api#/schemas/TaxRate) for a given company's connection.
+//
+// [Tax rates](https://docs.codat.io/accounting-api#/schemas/TaxRate) are a set of taxes and associated rates within the SMB's accounting package.
+//
+// Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
 func (s *taxRates) List(ctx context.Context, request operations.ListTaxRatesRequest, opts ...operations.Option) (*operations.ListTaxRatesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

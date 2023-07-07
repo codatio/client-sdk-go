@@ -160,6 +160,8 @@ type BillPayment struct {
 	//
 	// Currency rates in Codat are implemented as the multiple of foreign currency units to each base currency unit.
 	//
+	// It is not possible to perform the currency conversion with two or more non-base currencies participating in the transaction. For example, if a company's base currency is USD, and it has a bill issued in EUR, then the bill payment must happen in USD or EUR.
+	//
 	// Where the currency rate is provided by the underlying accounting platform, it will be available from Codat with the same precision (up to a maximum of 9 decimal places).
 	//
 	// For accounting platforms which do not provide an explicit currency rate, it is calculated as `baseCurrency / foreignCurrency` and will be returned to 9 decimal places.
@@ -193,7 +195,9 @@ type BillPayment struct {
 	// Additional information associated with the payment.
 	Reference          *string `json:"reference,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
-	// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
+	// Supplemental data is additional data you can include in our standard data types.
+	//
+	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/additional-data) about supplemental data.
 	SupplementalData *SupplementalData `json:"supplementalData,omitempty"`
 	SupplierRef      *SupplierRef      `json:"supplierRef,omitempty"`
 	// Amount of the payment in the payment currency. This value never changes and represents the amount of money that is paid into the supplier's account.

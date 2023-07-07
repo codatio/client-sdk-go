@@ -65,14 +65,14 @@ func main() {
 
 ### [BankAccountTransactions](docs/sdks/bankaccounttransactions/README.md)
 
-* [Create](docs/sdks/bankaccounttransactions/README.md#create) - Create bank transactions
-* [GetCreateModel](docs/sdks/bankaccounttransactions/README.md#getcreatemodel) - List push options for bank account bank transactions
-* [List](docs/sdks/bankaccounttransactions/README.md#list) - List bank transactions for bank account
+* [Create](docs/sdks/bankaccounttransactions/README.md#create) - Create bank account transactions
+* [GetCreateModel](docs/sdks/bankaccounttransactions/README.md#getcreatemodel) - Get create bank account transactions model
+* [List](docs/sdks/bankaccounttransactions/README.md#list) - List bank account transactions
 
 ### [BankAccounts](docs/sdks/bankaccounts/README.md)
 
 * [Create](docs/sdks/bankaccounts/README.md#create) - Create bank account
-* [~~Get~~](docs/sdks/bankaccounts/README.md#get) - Get bank account :warning: **Deprecated**
+* [Get](docs/sdks/bankaccounts/README.md#get) - Get bank account
 * [GetCreateUpdateModel](docs/sdks/bankaccounts/README.md#getcreateupdatemodel) - Get create/update bank account model
 * [List](docs/sdks/bankaccounts/README.md#list) - List bank accounts
 * [Update](docs/sdks/bankaccounts/README.md#update) - Update bank account
@@ -191,7 +191,7 @@ func main() {
 ### [PaymentMethods](docs/sdks/paymentmethods/README.md)
 
 * [Get](docs/sdks/paymentmethods/README.md#get) - Get payment method
-* [List](docs/sdks/paymentmethods/README.md#list) - List all payment methods
+* [List](docs/sdks/paymentmethods/README.md#list) - List payment methods
 
 ### [Payments](docs/sdks/payments/README.md)
 

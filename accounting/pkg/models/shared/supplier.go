@@ -27,7 +27,9 @@ type Supplier struct {
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Status of the supplier.
 	Status SupplierStatus `json:"status"`
-	// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
+	// Supplemental data is additional data you can include in our standard data types.
+	//
+	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/additional-data) about supplemental data.
 	SupplementalData *SupplementalData `json:"supplementalData,omitempty"`
 	// Name of the supplier as recorded in the accounting system, typically the company name.
 	SupplierName *string `json:"supplierName,omitempty"`

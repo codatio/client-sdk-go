@@ -25,11 +25,15 @@ func newCustomers(sdkConfig sdkConfiguration) *customers {
 }
 
 // Create - Create customer
-// Posts an individual customer for a given company.
+// The *Create customer* endpoint creates a new [customer](https://docs.codat.io/accounting-api#/schemas/Customer) for a given company's connection.
+//
+// [Customers](https://docs.codat.io/accounting-api#/schemas/Customer) are people or organizations that buy goods or services from the SMB.
+//
+// **Integration-specific behaviour**
 //
 // Required data may vary by integration. To see what data to post, first call [Get create/update customer model](https://docs.codat.io/accounting-api#/operations/get-create-update-customers-model).
 //
-// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=customers) to see which integrations support this endpoint.
+// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=customers) for integrations that support creating an account.
 func (s *customers) Create(ctx context.Context, request operations.CreateCustomerRequest, opts ...operations.Option) (*operations.CreateCustomerResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -145,7 +149,11 @@ func (s *customers) Create(ctx context.Context, request operations.CreateCustome
 }
 
 // DownloadAttachment - Download customer attachment
-// Download customer attachment.
+// The *Download customer attachment* endpoint downloads a specific attachment for a given `customerId` and `attachmentId`.
+//
+// [Customers](https://docs.codat.io/accounting-api#/schemas/Customer) are people or organizations that buy goods or services from the SMB.
+//
+// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=customers) for integrations that support downloading a customer attachment.
 func (s *customers) DownloadAttachment(ctx context.Context, request operations.DownloadCustomerAttachmentRequest, opts ...operations.Option) (*operations.DownloadCustomerAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -243,7 +251,13 @@ func (s *customers) DownloadAttachment(ctx context.Context, request operations.D
 }
 
 // Get - Get customer
-// Gets a single customer corresponding to the given ID.
+// The *Get customer* endpoint returns a single customer for a given customerId.
+//
+// [Customers](https://docs.codat.io/accounting-api#/schemas/Customer) are people or organizations that buy goods or services from the SMB.
+//
+// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=customers) for integrations that support getting a specific customer.
+//
+// Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
 func (s *customers) Get(ctx context.Context, request operations.GetCustomerRequest, opts ...operations.Option) (*operations.GetCustomerResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -356,7 +370,11 @@ func (s *customers) Get(ctx context.Context, request operations.GetCustomerReque
 }
 
 // GetAttachment - Get customer attachment
-// Get  customer attachment.
+// The *Get customer attachment* endpoint returns a specific attachment for a given `customerId` and `attachmentId`.
+//
+// [Customers](https://docs.codat.io/accounting-api#/schemas/Customer) are people or organizations that buy goods or services from the SMB.
+//
+// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=customers) for integrations that support getting a customer attachment.
 func (s *customers) GetAttachment(ctx context.Context, request operations.GetCustomerAttachmentRequest, opts ...operations.Option) (*operations.GetCustomerAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -459,13 +477,15 @@ func (s *customers) GetAttachment(ctx context.Context, request operations.GetCus
 }
 
 // GetCreateUpdateModel - Get create/update customer model
-// Get create/update customer model. Returns the expected data for the request payload.
+// The *Get create/update customer model* endpoint returns the expected data for the request payload when creating and updating a [customer](https://docs.codat.io/accounting-api#/schemas/Customer) for a given company and integration.
 //
-// See the examples for integration-specific indicative models.
+// [Customers](https://docs.codat.io/accounting-api#/schemas/Customer) are people or organizations that buy goods or services from the SMB.
 //
-// > **Supported Integrations**
-// >
-// > Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=customers) for integrations that support creating and updating customers.
+// **Integration-specific behaviour**
+//
+// See the *response examples* for integration-specific indicative models.
+//
+// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=customers) for integrations that support creating and updating a customer.
 func (s *customers) GetCreateUpdateModel(ctx context.Context, request operations.GetCreateUpdateCustomersModelRequest, opts ...operations.Option) (*operations.GetCreateUpdateCustomersModelResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -568,7 +588,11 @@ func (s *customers) GetCreateUpdateModel(ctx context.Context, request operations
 }
 
 // List - List customers
-// Gets the latest customers for a company, with pagination.
+// The *List customers* endpoint returns a list of [customers](https://docs.codat.io/accounting-api#/schemas/Customer) for a given company's connection.
+//
+// [Customers](https://docs.codat.io/accounting-api#/schemas/Customer) are people or organizations that buy goods or services from the SMB.
+//
+// Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
 func (s *customers) List(ctx context.Context, request operations.ListCustomersRequest, opts ...operations.Option) (*operations.ListCustomersResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -685,7 +709,11 @@ func (s *customers) List(ctx context.Context, request operations.ListCustomersRe
 }
 
 // ListAttachments - List customer attachments
-// List customer attachments
+// The *List customer attachments* endpoint returns a list of attachments avialable to download for given `customerId`.
+//
+// [Customers](https://docs.codat.io/accounting-api#/schemas/Customer) are people or organizations that buy goods or services from the SMB.
+//
+// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=customers) for integrations that support listing customer attachments.
 func (s *customers) ListAttachments(ctx context.Context, request operations.ListCustomerAttachmentsRequest, opts ...operations.Option) (*operations.ListCustomerAttachmentsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -788,13 +816,15 @@ func (s *customers) ListAttachments(ctx context.Context, request operations.List
 }
 
 // Update - Update customer
-// Posts an updated customer for a given company.
+// The *Update customer* endpoint updates an existing [customer](https://docs.codat.io/accounting-api#/schemas/Customer) for a given company's connection.
+//
+// [Customers](https://docs.codat.io/accounting-api#/schemas/Customer) are people or organizations that buy goods or services from the SMB.
+//
+// **Integration-specific behaviour**
 //
 // Required data may vary by integration. To see what data to post, first call [Get create/update customer model](https://docs.codat.io/accounting-api#/operations/get-create-update-customers-model).
 //
-// > **Supported Integrations**
-// >
-// > Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=customers) for integrations that support updating customers.
+// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=customers) for integrations that support creating an account.
 func (s *customers) Update(ctx context.Context, request operations.UpdateCustomerRequest, opts ...operations.Option) (*operations.UpdateCustomerResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

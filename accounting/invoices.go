@@ -25,11 +25,15 @@ func newInvoices(sdkConfig sdkConfiguration) *invoices {
 }
 
 // Create - Create invoice
-// Posts a new invoice to the accounting package for a given company.
+// The *Create invoice* endpoint creates a new [invoice](https://docs.codat.io/accounting-api#/schemas/Invoice) for a given company's connection.
+//
+// [Invoices](https://docs.codat.io/accounting-api#/schemas/Invoice) are itemized records of goods sold or services provided to a customer.
+//
+// **Integration-specific behaviour**
 //
 // Required data may vary by integration. To see what data to post, first call [Get create/update invoice model](https://docs.codat.io/accounting-api#/operations/get-create-update-invoices-model).
 //
-// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=invoices) to see which integrations support this endpoint.
+// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=invoices) for integrations that support creating an account.
 func (s *invoices) Create(ctx context.Context, request operations.CreateInvoiceRequest, opts ...operations.Option) (*operations.CreateInvoiceResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -145,23 +149,25 @@ func (s *invoices) Create(ctx context.Context, request operations.CreateInvoiceR
 }
 
 // Delete - Delete invoice
-// The _Delete Invoices_ endpoint allows you to delete a specified Invoice from an accounting platform.
+// The *Delete invoice* endpoint allows you to delete a specified invoice from an accounting platform.
+//
+// [Invoices](https://docs.codat.io/accounting-api#/schemas/Invoice) are itemized records of goods sold or services provided to a customer.
 //
 // ### Process
-// 1. Pass the `{invoiceId}` to the _Delete Invoices_ endpoint and store the `pushOperationKey` returned.
+// 1. Pass the `{invoiceId}` to the *Delete invoice* endpoint and store the `pushOperationKey` returned.
 // 2. Check the status of the delete operation by checking the status of push operation either via
 //
-//  1. [Push operation webhook](/introduction/webhooks/core-rules-types#push-operation-status-has-changed) (advised),
+//  1. [Push operation webhook](https://docs.codat.io/introduction/webhooks/core-rules-types#push-operation-status-has-changed) (advised),
 //
 //  2. [Push operation status endpoint](https://docs.codat.io/codat-api#/operations/get-push-operation).
 //
-//     A `Success` status indicates that the Invoice object was deleted from the accounting platform.
+//     A `Success` status indicates that the invoice object was deleted from the accounting platform.
 //
-// 3. (Optional) Check that the Invoice was deleted from the accounting platform.
+// 3. (Optional) Check that the invoice was deleted from the accounting platform.
 //
 // ### Effect on related objects
 //
-// Be aware that deleting an Invoice from an accounting platform might cause related objects to be modified. For example, if you delete a paid invoice from QuickBooks Online, the invoice is deleted but the payment against that invoice is not. The payment is converted to a payment on account.
+// Be aware that deleting an invoice from an accounting platform might cause related objects to be modified. For example, if you delete a paid invoice from QuickBooks Online, the invoice is deleted but the payment against that invoice is not. The payment is converted to a payment on account.
 //
 // ## Integration specifics
 // Integrations that support soft delete do not permanently delete the object in the accounting platform.
@@ -276,8 +282,12 @@ func (s *invoices) Delete(ctx context.Context, request operations.DeleteInvoiceR
 }
 
 // DownloadAttachment - Download invoice attachment
-// Download invoice attachment.
-func (s *invoices) DownloadAttachment(ctx context.Context, request operations.DownloadInvoicesAttachmentRequest, opts ...operations.Option) (*operations.DownloadInvoicesAttachmentResponse, error) {
+// The *Download invoice attachment* endpoint downloads a specific attachment for a given `invoiceId` and `attachmentId`.
+//
+// [Invoices](https://docs.codat.io/accounting-api#/schemas/Invoice) are itemized records of goods sold or services provided to a customer.
+//
+// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=invoices) for integrations that support downloading an invoice attachment.
+func (s *invoices) DownloadAttachment(ctx context.Context, request operations.DownloadInvoiceAttachmentRequest, opts ...operations.Option) (*operations.DownloadInvoiceAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -343,7 +353,7 @@ func (s *invoices) DownloadAttachment(ctx context.Context, request operations.Do
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.DownloadInvoicesAttachmentResponse{
+	res := &operations.DownloadInvoiceAttachmentResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -458,7 +468,13 @@ func (s *invoices) DownloadPdf(ctx context.Context, request operations.DownloadI
 }
 
 // Get - Get invoice
-// Get an invoice.
+// The *Get invoice* endpoint returns a single invoice for a given invoiceId.
+//
+// [Invoices](https://docs.codat.io/accounting-api#/schemas/Invoice) are itemized records of goods sold or services provided to a customer.
+//
+// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=invoices) for integrations that support getting a specific invoice.
+//
+// Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
 func (s *invoices) Get(ctx context.Context, request operations.GetInvoiceRequest, opts ...operations.Option) (*operations.GetInvoiceResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -571,7 +587,11 @@ func (s *invoices) Get(ctx context.Context, request operations.GetInvoiceRequest
 }
 
 // GetAttachment - Get invoice attachment
-// Get invoice attachment.
+// The *Get invoice attachment* endpoint returns a specific attachment for a given `invoiceId` and `attachmentId`.
+//
+// [Invoices](https://docs.codat.io/accounting-api#/schemas/Invoice) are itemized records of goods sold or services provided to a customer.
+//
+// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=invoices) for integrations that support getting an invoice attachment.
 func (s *invoices) GetAttachment(ctx context.Context, request operations.GetInvoiceAttachmentRequest, opts ...operations.Option) (*operations.GetInvoiceAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -674,13 +694,15 @@ func (s *invoices) GetAttachment(ctx context.Context, request operations.GetInvo
 }
 
 // GetCreateUpdateModel - Get create/update invoice model
-// Get create/update invoice model. Returns the expected data for the request payload.
+// The *Get create/update invoice model* endpoint returns the expected data for the request payload when creating and updating an [invoice](https://docs.codat.io/accounting-api#/schemas/Invoice) for a given company and integration.
 //
-// See the examples for integration-specific indicative models.
+// [Invoices](https://docs.codat.io/accounting-api#/schemas/Invoice) are itemized records of goods sold or services provided to a customer.
 //
-// > **Supported Integrations**
-// >
-// > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=invoices) for integrations that support creating and updating invoices.
+// **Integration-specific behaviour**
+//
+// See the *response examples* for integration-specific indicative models.
+//
+// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=invoices) for integrations that support creating and updating an invoice.
 func (s *invoices) GetCreateUpdateModel(ctx context.Context, request operations.GetCreateUpdateInvoicesModelRequest, opts ...operations.Option) (*operations.GetCreateUpdateInvoicesModelResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -783,7 +805,11 @@ func (s *invoices) GetCreateUpdateModel(ctx context.Context, request operations.
 }
 
 // List - List invoices
-// Gets the latest invoices for a company, with pagination.
+// The *List invoices* endpoint returns a list of [invoices](https://docs.codat.io/accounting-api#/schemas/Invoice) for a given company's connection.
+//
+// [Invoices](https://docs.codat.io/accounting-api#/schemas/Invoice) are itemized records of goods sold or services provided to a customer.
+//
+// Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
 func (s *invoices) List(ctx context.Context, request operations.ListInvoicesRequest, opts ...operations.Option) (*operations.ListInvoicesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -900,7 +926,11 @@ func (s *invoices) List(ctx context.Context, request operations.ListInvoicesRequ
 }
 
 // ListAttachments - List invoice attachments
-// List invoice attachments
+// The *List invoice attachments* endpoint returns a list of attachments available to download for given `invoiceId`.
+//
+// [Invoices](https://docs.codat.io/accounting-api#/schemas/Invoice) are itemized records of goods sold or services provided to a customer.
+//
+// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=invoices) for integrations that support listing invoice attachments.
 func (s *invoices) ListAttachments(ctx context.Context, request operations.ListInvoiceAttachmentsRequest, opts ...operations.Option) (*operations.ListInvoiceAttachmentsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -1003,14 +1033,15 @@ func (s *invoices) ListAttachments(ctx context.Context, request operations.ListI
 }
 
 // Update - Update invoice
-// Posts an updated invoice to the accounting package for a given company.
+// The *Update invoice* endpoint updates an existing [invoice](https://docs.codat.io/accounting-api#/schemas/Invoice) for a given company's connection.
+//
+// [Invoices](https://docs.codat.io/accounting-api#/schemas/Invoice) are itemized records of goods sold or services provided to a customer.
+//
+// **Integration-specific behaviour**
 //
 // Required data may vary by integration. To see what data to post, first call [Get create/update invoice model](https://docs.codat.io/accounting-api#/operations/get-create-update-invoices-model).
 //
-// > **Supported Integrations**
-// >
-// > Check out our [Knowledge UI](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=invoices) for integrations that support updating invoices.
-// operationId: update-invoice
+// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=invoices) for integrations that support creating an account.
 func (s *invoices) Update(ctx context.Context, request operations.UpdateInvoiceRequest, opts ...operations.Option) (*operations.UpdateInvoiceResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -1126,7 +1157,15 @@ func (s *invoices) Update(ctx context.Context, request operations.UpdateInvoiceR
 }
 
 // UploadAttachment - Push invoice attachment
-// Upload invoice attachment.
+// The *Upload invoice attachment* endpoint uploads an attachment and assigns it against a specific `invoiceId`.
+//
+// [Invoices](https://docs.codat.io/accounting-api#/schemas/Invoice) are itemized records of goods sold or services provided to a customer.
+//
+// **Integration-specific behaviour**
+//
+// For more details on supported file types by integration see [Attachments](https://docs.codat.io/accounting-api#/schemas/Attachment).
+//
+// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=invoices) for integrations that support uploading an invoice attachment.
 func (s *invoices) UploadAttachment(ctx context.Context, request operations.UploadInvoiceAttachmentRequest, opts ...operations.Option) (*operations.UploadInvoiceAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
