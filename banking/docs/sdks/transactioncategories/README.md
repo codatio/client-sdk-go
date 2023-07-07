@@ -11,7 +11,14 @@ Hierarchical categories associated with a transaction for greater contextual mea
 
 ## Get
 
-Gets a specified bank transaction category for a given company
+The *Get transaction category* endpoint returns a single transaction category for a given transactionCategoryId.
+
+[Transaction categories](https://docs.codat.io/banking-api#/schemas/TransactionCategory) are associated with a transaction to provide greater contextual meaning to transaction activity.
+
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/banking?view=tab-by-data-type&dataType=banking-transactionCategories) for integrations that support getting a specific transaction category.
+
+Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
+
 
 ### Example Usage
 
