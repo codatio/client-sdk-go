@@ -40,17 +40,19 @@ func main() {
 
     ctx := context.Background()
     res, err := s.SupplementalData.Configure(ctx, operations.ConfigureSupplementalDataRequest{
-        RequestBody: map[string]shared.SupplementalDataConfiguration{
-            "reiciendis": shared.SupplementalDataConfiguration{
-                DataSource: codatcommon.String("est"),
-                PullData: map[string]string{
-                    "laborum": "dolores",
-                    "dolorem": "corporis",
-                    "explicabo": "nobis",
-                },
-                PushData: map[string]string{
-                    "omnis": "nemo",
-                    "minima": "excepturi",
+        SupplementalDataConfiguration: &shared.SupplementalDataConfiguration{
+            SupplementalDataConfig: map[string]shared.SupplementalDataConfigurationSupplementalDataSourceConfiguration{
+                "reiciendis": shared.SupplementalDataConfigurationSupplementalDataSourceConfiguration{
+                    DataSource: codatcommon.String("est"),
+                    PullData: map[string]string{
+                        "laborum": "dolores",
+                        "dolorem": "corporis",
+                        "explicabo": "nobis",
+                    },
+                    PushData: map[string]string{
+                        "omnis": "nemo",
+                        "minima": "excepturi",
+                    },
                 },
             },
         },

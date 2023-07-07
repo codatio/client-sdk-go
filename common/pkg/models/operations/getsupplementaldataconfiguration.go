@@ -107,5 +107,5 @@ type GetSupplementalDataConfigurationResponse struct {
 	StatusCode   int
 	RawResponse  *http.Response
 	// OK
-	SupplementalDataConfiguration map[string]shared.SupplementalDataConfiguration
+	SupplementalDataConfiguration *shared.SupplementalDataConfiguration
 }

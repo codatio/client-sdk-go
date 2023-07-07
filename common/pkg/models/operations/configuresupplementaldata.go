@@ -96,7 +96,7 @@ func (e *ConfigureSupplementalDataDataType) UnmarshalJSON(data []byte) error {
 
 type ConfigureSupplementalDataRequest struct {
 	// The configuration for the specified platform and data type.
-	RequestBody map[string]shared.SupplementalDataConfiguration `request:"mediaType=application/json"`
+	SupplementalDataConfiguration *shared.SupplementalDataConfiguration `request:"mediaType=application/json"`
 	// Data types that support supplemental data
 	DataType    ConfigureSupplementalDataDataType `pathParam:"style=simple,explode=false,name=dataType"`
 	PlatformKey string                            `pathParam:"style=simple,explode=false,name=platformKey"`
