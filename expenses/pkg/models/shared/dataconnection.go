@@ -44,7 +44,16 @@ func (e *DataConnectionSourceType) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// DataConnection - A connection represents the link between a `company` and a source of data.
+// DataConnection - A connection represents a [company's](https://docs.codat.io/codat-api#/schemas/Company) connection to a data source and allows you to synchronize data (pull and/or push) with that source.
+//
+// A company can have multiple data connections depending on the type of data source it is connecting to. For example, a single company can link to:
+//
+// - [Accounting data](https://docs.codat.io/accounting-api/overview) - 1 active connection.
+// - [Banking data](https://docs.codat.io/banking-api/overview) - Multiple active connections.
+// - [Commerce data](https://docs.codat.io/commerce-api/overview) - Multiple active connections.
+// Any combination of accounting, banking, and commerce data connections is allowed.
+//
+// Before you can use a data connection to pull or push data, the company must grant you access to their business data by [linking the connection](https://docs.codat.io/auth-flow/overview).
 type DataConnection struct {
 	AdditionalProperties interface{}       `json:"additionalProperties,omitempty"`
 	ConnectionInfo       map[string]string `json:"connectionInfo,omitempty"`

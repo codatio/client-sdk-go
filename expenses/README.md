@@ -60,6 +60,7 @@ func main() {
 ### [Expenses](docs/sdks/expenses/README.md)
 
 * [CreateExpenseDataset](docs/sdks/expenses/README.md#createexpensedataset) - Create expense-transactions
+* [UpdateExpenseDataset](docs/sdks/expenses/README.md#updateexpensedataset) - Update expense-transactions
 * [UploadAttachment](docs/sdks/expenses/README.md#uploadattachment) - Upload attachment
 
 ### [MappingOptions](docs/sdks/mappingoptions/README.md)
