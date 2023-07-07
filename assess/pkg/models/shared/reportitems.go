@@ -3,7 +3,7 @@
 package shared
 
 type ReportItems struct {
-	// The total loan investments minus the total loan repayments for that company.
+	// The loan outstanding balance.  This may not equal totalDrawdowns - totalRepayments due to interest which has been accrued.
 	Balance *float64 `json:"balance,omitempty"`
 	// The description of the object being referred to. E.g. the account.
 	Description *string    `json:"description,omitempty"`
@@ -28,8 +28,8 @@ type ReportItems struct {
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	StartDate *string `json:"startDate,omitempty"`
-	// The total loan investments for that company.
-	TotalInvestments *float64 `json:"totalInvestments,omitempty"`
-	// The total loan repayments for that company.
+	// The total loan drawdowns.
+	TotalDrawdowns *float64 `json:"totalDrawdowns,omitempty"`
+	// The total loan repayments which includes capital plus any interest.
 	TotalRepayments *float64 `json:"totalRepayments,omitempty"`
 }

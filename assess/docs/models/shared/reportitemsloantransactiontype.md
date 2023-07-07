@@ -3,8 +3,9 @@
 
 ## Values
 
-| Name                                       | Value                                      |
-| ------------------------------------------ | ------------------------------------------ |
-| `ReportItemsLoanTransactionTypeInvestment` | Investment                                 |
-| `ReportItemsLoanTransactionTypeRepayment`  | Repayment                                  |
-| `ReportItemsLoanTransactionTypeInterest`   | Interest                                   |
+| Name                                            | Value                                           |
+| ----------------------------------------------- | ----------------------------------------------- |
+| `ReportItemsLoanTransactionTypeInvestment`      | Investment                                      |
+| `ReportItemsLoanTransactionTypeRepayment`       | Repayment                                       |
+| `ReportItemsLoanTransactionTypeInterest`        | Interest                                        |
+| `ReportItemsLoanTransactionTypeAccuredInterest` | AccuredInterest                                 |

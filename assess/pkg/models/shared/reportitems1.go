@@ -10,9 +10,10 @@ import (
 type ReportItemsLoanTransactionType string
 
 const (
-	ReportItemsLoanTransactionTypeInvestment ReportItemsLoanTransactionType = "Investment"
-	ReportItemsLoanTransactionTypeRepayment  ReportItemsLoanTransactionType = "Repayment"
-	ReportItemsLoanTransactionTypeInterest   ReportItemsLoanTransactionType = "Interest"
+	ReportItemsLoanTransactionTypeInvestment      ReportItemsLoanTransactionType = "Investment"
+	ReportItemsLoanTransactionTypeRepayment       ReportItemsLoanTransactionType = "Repayment"
+	ReportItemsLoanTransactionTypeInterest        ReportItemsLoanTransactionType = "Interest"
+	ReportItemsLoanTransactionTypeAccuredInterest ReportItemsLoanTransactionType = "AccuredInterest"
 )
 
 func (e ReportItemsLoanTransactionType) ToPointer() *ReportItemsLoanTransactionType {
@@ -30,6 +31,8 @@ func (e *ReportItemsLoanTransactionType) UnmarshalJSON(data []byte) error {
 	case "Repayment":
 		fallthrough
 	case "Interest":
+		fallthrough
+	case "AccuredInterest":
 		*e = ReportItemsLoanTransactionType(v)
 		return nil
 	default:
