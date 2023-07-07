@@ -6,13 +6,14 @@ Bank feed bank accounts
 
 ### Available Operations
 
-* [Create](#create) - Create bank feed bank accounts
-* [Get](#get) - List bank feed bank accounts
-* [Update](#update) - Update bank feed bank account
+* [Create](#create) - Create a bank feed bank account
+* [List](#list) - List bank feed bank accounts
+* [~~PutBankFeed~~](#putbankfeed) - Create bank feed bank accounts :warning: **Deprecated**
+* [~~Update~~](#update) - Update bank feed bank account :warning: **Deprecated**
 
 ## Create
 
-Put BankFeed BankAccounts for a single data source connected to a single company.
+Post a BankFeed BankAccount for a single data source connected to a single company.
 
 ### Example Usage
 
@@ -36,43 +37,17 @@ func main() {
 
     ctx := context.Background()
     res, err := s.BankFeedAccounts.Create(ctx, operations.CreateBankFeedRequest{
-        RequestBody: []shared.BankFeedAccount{
-            shared.BankFeedAccount{
-                AccountName: codatbankfeeds.String("dolor"),
-                AccountNumber: codatbankfeeds.String("debitis"),
-                AccountType: codatbankfeeds.String("a"),
-                Balance: codatbankfeeds.Float64(6800.56),
-                Currency: codatbankfeeds.String("in"),
-                FeedStartDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
-                ID: "dfb14cd6-6ae3-495e-bb9b-a88f3a669970",
-                ModifiedDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
-                SortCode: codatbankfeeds.String("magnam"),
-                Status: codatbankfeeds.String("distinctio"),
-            },
-            shared.BankFeedAccount{
-                AccountName: codatbankfeeds.String("id"),
-                AccountNumber: codatbankfeeds.String("labore"),
-                AccountType: codatbankfeeds.String("labore"),
-                Balance: codatbankfeeds.Float64(3834.62),
-                Currency: codatbankfeeds.String("natus"),
-                FeedStartDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
-                ID: "6e214195-9890-4afa-963e-2516fe4c8b71",
-                ModifiedDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
-                SortCode: codatbankfeeds.String("repudiandae"),
-                Status: codatbankfeeds.String("ullam"),
-            },
-            shared.BankFeedAccount{
-                AccountName: codatbankfeeds.String("expedita"),
-                AccountNumber: codatbankfeeds.String("nihil"),
-                AccountType: codatbankfeeds.String("repellat"),
-                Balance: codatbankfeeds.Float64(8411.4),
-                Currency: codatbankfeeds.String("sed"),
-                FeedStartDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
-                ID: "d028921c-ddc6-4926-81fb-576b0d5f0d30",
-                ModifiedDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
-                SortCode: codatbankfeeds.String("corporis"),
-                Status: codatbankfeeds.String("hic"),
-            },
+        BankFeedAccount: &shared.BankFeedAccount{
+            AccountName: codatbankfeeds.String("maiores"),
+            AccountNumber: codatbankfeeds.String("dicta"),
+            AccountType: codatbankfeeds.String("corporis"),
+            Balance: codatbankfeeds.Float64(2961.4),
+            Currency: codatbankfeeds.String("USD"),
+            FeedStartDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
+            ID: "b5e6e13b-99d4-488e-9e91-e450ad2abd44",
+            ModifiedDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
+            SortCode: codatbankfeeds.String("aliquid"),
+            Status: codatbankfeeds.String("cupiditate"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -81,7 +56,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.BankFeedAccounts != nil {
+    if res.BankFeedAccount != nil {
         // handle response
     }
 }
@@ -101,9 +76,13 @@ func main() {
 **[*operations.CreateBankFeedResponse](../../models/operations/createbankfeedresponse.md), error**
 
 
-## Get
+## List
 
-Get BankFeed BankAccounts for a single data source connected to a single company.
+﻿The *List bank feed bank accounts* endpoint returns a list of [bank feed accounts](https://docs.codat.io/bank-feeds-api#/schemas/BankFeedAccount) for a given company's connection.
+
+[Bank feed accounts](https://docs.codat.io/bank-feeds-api#/schemas/BankFeedAccount) are the bank's bank account from which transactions are synced into the accounting platform.
+
+
 
 ### Example Usage
 
@@ -125,7 +104,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.BankFeedAccounts.Get(ctx, operations.GetBankFeedsRequest{
+    res, err := s.BankFeedAccounts.List(ctx, operations.ListBankFeedsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -141,21 +120,116 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
-| `request`                                                                        | [operations.GetBankFeedsRequest](../../models/operations/getbankfeedsrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
-| `opts`                                                                           | [][operations.Option](../../models/operations/option.md)                         | :heavy_minus_sign:                                                               | The options for this request.                                                    |
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
+| `request`                                                                          | [operations.ListBankFeedsRequest](../../models/operations/listbankfeedsrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `opts`                                                                             | [][operations.Option](../../models/operations/option.md)                           | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
 
 
 ### Response
 
-**[*operations.GetBankFeedsResponse](../../models/operations/getbankfeedsresponse.md), error**
+**[*operations.ListBankFeedsResponse](../../models/operations/listbankfeedsresponse.md), error**
 
 
-## Update
+## ~~PutBankFeed~~
 
-Update a single BankFeed BankAccount for a single data source connected to a single company.
+Put BankFeed BankAccounts for a single data source connected to a single company.
+
+> :warning: **DEPRECATED**: this method will be removed in a future release, please migrate away from it as soon as possible.
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"log"
+	"github.com/codatio/client-sdk-go/bankfeeds"
+	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/shared"
+)
+
+func main() {
+    s := codatbankfeeds.New(
+        codatbankfeeds.WithSecurity(shared.Security{
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
+        }),
+    )
+
+    ctx := context.Background()
+    res, err := s.BankFeedAccounts.PutBankFeed(ctx, operations.PutBankFeedRequest{
+        RequestBody: []shared.BankFeedAccount{
+            shared.BankFeedAccount{
+                AccountName: codatbankfeeds.String("perferendis"),
+                AccountNumber: codatbankfeeds.String("magni"),
+                AccountType: codatbankfeeds.String("assumenda"),
+                Balance: codatbankfeeds.Float64(3698.08),
+                Currency: codatbankfeeds.String("GBP"),
+                FeedStartDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
+                ID: "a94bb4f6-3c96-49e9-a3ef-a77dfb14cd66",
+                ModifiedDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
+                SortCode: codatbankfeeds.String("accusamus"),
+                Status: codatbankfeeds.String("non"),
+            },
+            shared.BankFeedAccount{
+                AccountName: codatbankfeeds.String("occaecati"),
+                AccountNumber: codatbankfeeds.String("enim"),
+                AccountType: codatbankfeeds.String("accusamus"),
+                Balance: codatbankfeeds.Float64(9654.17),
+                Currency: codatbankfeeds.String("EUR"),
+                FeedStartDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
+                ID: "ba88f3a6-6997-4074-ba44-69b6e2141959",
+                ModifiedDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
+                SortCode: codatbankfeeds.String("sint"),
+                Status: codatbankfeeds.String("accusantium"),
+            },
+            shared.BankFeedAccount{
+                AccountName: codatbankfeeds.String("mollitia"),
+                AccountNumber: codatbankfeeds.String("reiciendis"),
+                AccountType: codatbankfeeds.String("mollitia"),
+                Balance: codatbankfeeds.Float64(3209.97),
+                Currency: codatbankfeeds.String("USD"),
+                FeedStartDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
+                ID: "e2516fe4-c8b7-411e-9b7f-d2ed028921cd",
+                ModifiedDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
+                SortCode: codatbankfeeds.String("maxime"),
+                Status: codatbankfeeds.String("ea"),
+            },
+        },
+        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+        ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.BankFeedAccounts != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
+| `request`                                                                      | [operations.PutBankFeedRequest](../../models/operations/putbankfeedrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| `opts`                                                                         | [][operations.Option](../../models/operations/option.md)                       | :heavy_minus_sign:                                                             | The options for this request.                                                  |
+
+
+### Response
+
+**[*operations.PutBankFeedResponse](../../models/operations/putbankfeedresponse.md), error**
+
+
+## ~~Update~~
+
+﻿The *Update bank feed bank account* endpoint updates a single bank feed bank account for a single data source connected to a single company.
+
+> :warning: **DEPRECATED**: this method will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
@@ -180,18 +254,18 @@ func main() {
     ctx := context.Background()
     res, err := s.BankFeedAccounts.Update(ctx, operations.UpdateBankFeedRequest{
         BankFeedAccount: &shared.BankFeedAccount{
-            AccountName: codatbankfeeds.String("libero"),
-            AccountNumber: codatbankfeeds.String("nobis"),
-            AccountType: codatbankfeeds.String("dolores"),
-            Balance: codatbankfeeds.Float64(3394.04),
-            Currency: codatbankfeeds.String("totam"),
+            AccountName: codatbankfeeds.String("excepturi"),
+            AccountNumber: codatbankfeeds.String("odit"),
+            AccountType: codatbankfeeds.String("ea"),
+            Balance: codatbankfeeds.Float64(332.22),
+            Currency: codatbankfeeds.String("GBP"),
             FeedStartDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
-            ID: "053202c7-3d5f-4e9b-90c2-8909b3fe49a8",
+            ID: "b576b0d5-f0d3-40c5-bbb2-587053202c73",
             ModifiedDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
-            SortCode: codatbankfeeds.String("provident"),
-            Status: codatbankfeeds.String("nobis"),
+            SortCode: codatbankfeeds.String("nostrum"),
+            Status: codatbankfeeds.String("hic"),
         },
-        AccountID: "7110701885",
+        AccountID: "EILBDVJVNUAGVKRQ",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })

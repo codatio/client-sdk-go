@@ -67,6 +67,8 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 //
 // [See our OpenAPI spec](https://github.com/codatio/oas)
 type CodatBankFeeds struct {
+	// BankAccountMapping - Bank feed bank account mapping
+	BankAccountMapping *bankAccountMapping
 	// BankAccountTransactions - Bank feed bank accounts
 	BankAccountTransactions *bankAccountTransactions
 	// BankFeedAccounts - Bank feed bank accounts
@@ -130,8 +132,8 @@ func New(opts ...SDKOption) *CodatBankFeeds {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "2.1.0",
-			SDKVersion:        "0.21.0",
-			GenVersion:        "2.41.1",
+			SDKVersion:        "0.25.1",
+			GenVersion:        "2.58.0",
 		},
 	}
 	for _, opt := range opts {
@@ -149,6 +151,8 @@ func New(opts ...SDKOption) *CodatBankFeeds {
 			sdk.sdkConfiguration.SecurityClient = sdk.sdkConfiguration.DefaultClient
 		}
 	}
+
+	sdk.BankAccountMapping = newBankAccountMapping(sdk.sdkConfiguration)
 
 	sdk.BankAccountTransactions = newBankAccountTransactions(sdk.sdkConfiguration)
 

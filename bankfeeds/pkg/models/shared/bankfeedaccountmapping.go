@@ -2,9 +2,8 @@
 
 package shared
 
-type CreateBankAccountTransaction struct {
-	Amount  *float64 `json:"amount,omitempty"`
-	Balance *float64 `json:"balance,omitempty"`
+// BankFeedAccountMapping - A bank feed connection between a source account and a target account.
+type BankFeedAccountMapping struct {
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -24,7 +23,9 @@ type CreateBankAccountTransaction struct {
 	// >
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	Date        *string `json:"date,omitempty"`
-	Description *string `json:"description,omitempty"`
-	ID          *string `json:"id,omitempty"`
+	FeedStartDate *string `json:"feedStartDate,omitempty"`
+	// Unique ID for the source account
+	SourceAccountID *string `json:"sourceAccountId,omitempty"`
+	// Unique ID for the target account
+	TargetAccountID *string `json:"targetAccountId,omitempty"`
 }

@@ -7,19 +7,17 @@ import (
 	"net/http"
 )
 
-type GetCreateBankAccountModelRequest struct {
-	// Unique identifier for an account
-	AccountID    string `pathParam:"style=simple,explode=false,name=accountId"`
+type ListBankFeedsRequest struct {
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
-type GetCreateBankAccountModelResponse struct {
-	ContentType string
+type ListBankFeedsResponse struct {
 	// Success
-	PushOption  *shared.PushOption
-	StatusCode  int
-	RawResponse *http.Response
+	BankFeedAccounts []shared.BankFeedAccount
+	ContentType      string
+	StatusCode       int
+	RawResponse      *http.Response
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
 }

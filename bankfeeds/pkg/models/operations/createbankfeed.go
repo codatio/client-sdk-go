@@ -8,17 +8,17 @@ import (
 )
 
 type CreateBankFeedRequest struct {
-	RequestBody  []shared.BankFeedAccount `request:"mediaType=application/json"`
-	CompanyID    string                   `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID string                   `pathParam:"style=simple,explode=false,name=connectionId"`
+	BankFeedAccount *shared.BankFeedAccount `request:"mediaType=application/json"`
+	CompanyID       string                  `pathParam:"style=simple,explode=false,name=companyId"`
+	ConnectionID    string                  `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
 type CreateBankFeedResponse struct {
 	// Success
-	BankFeedAccounts []shared.BankFeedAccount
-	ContentType      string
-	StatusCode       int
-	RawResponse      *http.Response
-	// Your API request was not properly authorized.
+	BankFeedAccount *shared.BankFeedAccount
+	ContentType     string
+	StatusCode      int
+	RawResponse     *http.Response
+	// The request made is not valid.
 	Schema *shared.Schema
 }

@@ -15,7 +15,9 @@ Manage your companies' data connections.
 
 ## Create
 
-Create a data connection for a company
+﻿Creates a connection for the company by providing a valid `platformKey`. 
+
+Use the [List Integrations](https://docs.codat.io/codat-api#/operations/list-integrations) endpoint to access valid platform keys. 
 
 ### Example Usage
 
@@ -39,7 +41,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Connections.Create(ctx, operations.CreateDataConnectionRequest{
         RequestBody: &operations.CreateDataConnectionRequestBody{
-            PlatformKey: codatbankfeeds.String("quaerat"),
+            PlatformKey: codatbankfeeds.String("facilis"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
@@ -69,8 +71,8 @@ func main() {
 
 ## Delete
 
-Revoke and remove a connection from a company.
-This operation is not reversible - the end user would need to reauthorize a new data connection if you wish to view new data for this company.
+﻿Revoke and remove a connection from a company.
+This operation is not reversible. The end user would need to reauthorize a new data connection if you wish to view new data for this company.
 
 ### Example Usage
 
@@ -122,7 +124,7 @@ func main() {
 
 ## Get
 
-Get a single connection for a company
+﻿Returns a specific connection for a company when valid identifiers are provided. If the identifiers are for a deleted company and/or connection, a not found response is returned.
 
 ### Example Usage
 
@@ -174,7 +176,7 @@ func main() {
 
 ## List
 
-List the connections for a company
+﻿List the connections for a company.
 
 ### Example Usage
 
@@ -201,7 +203,7 @@ func main() {
         OrderBy: codatbankfeeds.String("-modifiedDate"),
         Page: codatbankfeeds.Int(1),
         PageSize: codatbankfeeds.Int(100),
-        Query: codatbankfeeds.String("quos"),
+        Query: codatbankfeeds.String("perspiciatis"),
     })
     if err != nil {
         log.Fatal(err)
@@ -229,7 +231,9 @@ func main() {
 
 ## Proxy
 
-A proxy or passthrough endpoint used to query unsupported third party endpoints.
+﻿The *Proxy* endpoint can be used to generate credentials from QuickBooks Online for authentication of the Bank Feed in their portal.
+
+See the example provided for the `endpoint` query parameter when generating credentials for QuickBooks Online.
 
 ### Example Usage
 
@@ -282,7 +286,7 @@ func main() {
 
 ## UnlinkConnection
 
-This allows you to deauthorize a connection, without deleting it from Codat. This means you can still view any data that has previously been pulled into Codat, and also lets you re-authorize in future if your customer wishes to resume sharing their data.
+﻿This allows you to deauthorize a connection, without deleting it from Codat. This means you can still view any data that has previously been pulled into Codat, and also lets you re-authorize in future if your customer wishes to resume sharing their data.
 
 ### Example Usage
 
@@ -306,7 +310,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Connections.UnlinkConnection(ctx, operations.UnlinkConnectionRequest{
         RequestBody: &operations.UnlinkConnectionRequestBody{
-            Status: codatbankfeeds.String("aliquid"),
+            Status: codatbankfeeds.String("voluptatem"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",

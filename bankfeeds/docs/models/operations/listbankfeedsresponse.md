@@ -1,4 +1,4 @@
-# GetBankFeedsResponse
+# ListBankFeedsResponse
 
 
 ## Fields

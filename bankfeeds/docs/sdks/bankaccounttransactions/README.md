@@ -6,15 +6,22 @@ Bank feed bank accounts
 
 ### Available Operations
 
-* [Create](#create) - Create bank transactions
-* [Get](#get) - List push options for bank account bank transactions
-* [List](#list) - List bank transactions for bank account
+* [Create](#create) - Create bank account transactions
+* [GetCreateModel](#getcreatemodel) - Get create bank account transactions model
+* [List](#list) - List bank account transactions
 
 ## Create
 
-Posts bank transactions to the accounting package for a given company.
+﻿The *Create bank account transactions* endpoint creates new [bank account transactions](https://docs.codat.io/bank-feeds-api#/schemas/BankTransactions) for a given company's connection.
 
-Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankTransactions) to see which integrations support this endpoint.
+[Bank account transactions](https://docs.codat.io/bank-feeds-api#/schemas/BankTransactions) are records of monetary amounts that have moved in and out of an SMB's bank account.
+
+**Integration-specific behaviour**
+
+Required data may vary by integration. To see what data to post, first call [Get create bank transaction model](https://docs.codat.io/bank-feeds-api#/operations/get-create-bankTransactions-model).
+
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankTransactions) for integrations that support creating a bank account transactions.
+
 
 ### Example Usage
 
@@ -39,25 +46,35 @@ func main() {
     ctx := context.Background()
     res, err := s.BankAccountTransactions.Create(ctx, operations.CreateBankTransactionsRequest{
         CreateBankTransactions: &shared.CreateBankTransactions{
-            AccountID: codatbankfeeds.String("architecto"),
+            AccountID: codatbankfeeds.String("corrupti"),
             Transactions: []shared.CreateBankAccountTransaction{
                 shared.CreateBankAccountTransaction{
-                    Amount: codatbankfeeds.Float64(2088.76),
+                    Amount: codatbankfeeds.Float64(4236.55),
+                    Balance: codatbankfeeds.Float64(6235.64),
                     Date: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
-                    Description: codatbankfeeds.String("consequuntur"),
-                    ID: codatbankfeeds.String("fa946773-9251-4aa5-ac3f-5ad019da1ffe"),
+                    Description: codatbankfeeds.String("suscipit"),
+                    ID: codatbankfeeds.String("74e0f467-cc87-496e-9151-a05dfc2ddf7c"),
                 },
                 shared.CreateBankAccountTransaction{
-                    Amount: codatbankfeeds.Float64(4686.51),
+                    Amount: codatbankfeeds.Float64(8009.11),
+                    Balance: codatbankfeeds.Float64(4614.79),
                     Date: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
-                    Description: codatbankfeeds.String("voluptatibus"),
-                    ID: codatbankfeeds.String("097b0074-f154-471b-9e6e-13b99d488e1e"),
+                    Description: codatbankfeeds.String("porro"),
+                    ID: codatbankfeeds.String("a1ba928f-c816-4742-8b73-9205929396fe"),
                 },
                 shared.CreateBankAccountTransaction{
-                    Amount: codatbankfeeds.Float64(5759.47),
+                    Amount: codatbankfeeds.Float64(6818.2),
+                    Balance: codatbankfeeds.Float64(4499.5),
                     Date: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
-                    Description: codatbankfeeds.String("itaque"),
-                    ID: codatbankfeeds.String("450ad2ab-d442-4698-82d5-02a94bb4f63c"),
+                    Description: codatbankfeeds.String("iste"),
+                    ID: codatbankfeeds.String("6eb10faa-a235-42c5-9559-07aff1a3a2fa"),
+                },
+                shared.CreateBankAccountTransaction{
+                    Amount: codatbankfeeds.Float64(5818.5),
+                    Balance: codatbankfeeds.Float64(2532.91),
+                    Date: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
+                    Description: codatbankfeeds.String("quam"),
+                    ID: codatbankfeeds.String("739251aa-52c3-4f5a-9019-da1ffe78f097"),
                 },
             },
         },
@@ -65,7 +82,7 @@ func main() {
         AllowSyncOnPushComplete: codatbankfeeds.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codatbankfeeds.Int(396098),
+        TimeoutInMinutes: codatbankfeeds.Int(19987),
     })
     if err != nil {
         log.Fatal(err)
@@ -91,9 +108,18 @@ func main() {
 **[*operations.CreateBankTransactionsResponse](../../models/operations/createbanktransactionsresponse.md), error**
 
 
-## Get
+## GetCreateModel
 
-Gets the options of pushing bank account transactions.
+﻿The *Get create bank account transactions model* endpoint returns the expected data for the request payload when creating [bank account transactions](https://docs.codat.io/bank-feeds-api#/schemas/BankTransactions) for a given company and integration.
+
+[Bank account transactions](https://docs.codat.io/bank-feeds-api#/schemas/BankTransactions) are records of monetary amounts that have moved in and out of an SMB's bank account.
+
+**Integration-specific behaviour**
+
+See the *response examples* for integration-specific indicative models.
+
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankTransactions) for integrations that support creating an bank transaction.
+
 
 ### Example Usage
 
@@ -115,8 +141,8 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.BankAccountTransactions.Get(ctx, operations.GetCreateBankAccountModelRequest{
-        AccountID: "7110701885",
+    res, err := s.BankAccountTransactions.GetCreateModel(ctx, operations.GetCreateBankTransactionsModelRequest{
+        AccountID: "13d946f0-c5d5-42bc-b092-97ece17923ab",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -132,21 +158,28 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
-| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                                      | :heavy_check_mark:                                                                                         | The context to use for the request.                                                                        |
-| `request`                                                                                                  | [operations.GetCreateBankAccountModelRequest](../../models/operations/getcreatebankaccountmodelrequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
-| `opts`                                                                                                     | [][operations.Option](../../models/operations/option.md)                                                   | :heavy_minus_sign:                                                                                         | The options for this request.                                                                              |
+| Parameter                                                                                                            | Type                                                                                                                 | Required                                                                                                             | Description                                                                                                          |
+| -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                                                | :heavy_check_mark:                                                                                                   | The context to use for the request.                                                                                  |
+| `request`                                                                                                            | [operations.GetCreateBankTransactionsModelRequest](../../models/operations/getcreatebanktransactionsmodelrequest.md) | :heavy_check_mark:                                                                                                   | The request object to use for the request.                                                                           |
+| `opts`                                                                                                               | [][operations.Option](../../models/operations/option.md)                                                             | :heavy_minus_sign:                                                                                                   | The options for this request.                                                                                        |
 
 
 ### Response
 
-**[*operations.GetCreateBankAccountModelResponse](../../models/operations/getcreatebankaccountmodelresponse.md), error**
+**[*operations.GetCreateBankTransactionsModelResponse](../../models/operations/getcreatebanktransactionsmodelresponse.md), error**
 
 
 ## List
 
-Gets bank transactions for a given bank account ID
+﻿The *List account bank transactions* endpoint returns a list of [bank account transactions](https://docs.codat.io/bank-feeds-api#/schemas/BankTransactions) for a given company's connection.
+
+[Bank account transactions](https://docs.codat.io/bank-feeds-api#/schemas/BankTransactions) are records of monetary amounts that have moved in and out of an SMB's bank account.
+
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankTransactions) for integrations that support listing bank transactions.
+
+Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
+
 
 ### Example Usage
 
@@ -169,13 +202,13 @@ func main() {
 
     ctx := context.Background()
     res, err := s.BankAccountTransactions.List(ctx, operations.ListBankAccountTransactionsRequest{
-        AccountID: "EILBDVJVNUAGVKRQ",
+        AccountID: "9wg4lep4ush5cxs79pl8sozmsndbaukll3ind4g7buqbm1h2",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         OrderBy: codatbankfeeds.String("-modifiedDate"),
         Page: codatbankfeeds.Int(1),
         PageSize: codatbankfeeds.Int(100),
-        Query: codatbankfeeds.String("sint"),
+        Query: codatbankfeeds.String("ut"),
     })
     if err != nil {
         log.Fatal(err)
