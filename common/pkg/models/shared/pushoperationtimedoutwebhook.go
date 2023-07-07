@@ -12,14 +12,14 @@ type PushOperationTimedOutWebhookData struct {
 // PushOperationTimedOutWebhook - Webhook request body notifying that a push push operation has timed out.
 type PushOperationTimedOutWebhook struct {
 	// Unique identifier of the webhook event.
-	AlertID *string `json:"alertId,omitempty"`
+	AlertID *string `json:"AlertId,omitempty"`
 	// Unique identifier for your SMB in Codat.
-	CompanyID *string                           `json:"companyId,omitempty"`
-	Data      *PushOperationTimedOutWebhookData `json:"data,omitempty"`
+	CompanyID *string                           `json:"CompanyId,omitempty"`
+	Data      *PushOperationTimedOutWebhookData `json:"Data,omitempty"`
 	// A human readable message about the webhook.
-	Message *string `json:"message,omitempty"`
+	Message *string `json:"Message,omitempty"`
 	// Unique identifier for the rule.
-	RuleID *string `json:"ruleId,omitempty"`
+	RuleID *string `json:"RuleId,omitempty"`
 	// The type of rule.
-	Type *string `json:"type,omitempty"`
+	Type *string `json:"Type,omitempty"`
 }
