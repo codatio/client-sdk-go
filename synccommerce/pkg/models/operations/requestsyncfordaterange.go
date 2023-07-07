@@ -8,7 +8,7 @@ import (
 )
 
 type RequestSyncForDateRangeRequest struct {
-	DateRange *shared.DateRange `request:"mediaType=application/json"`
+	SyncRange *shared.SyncRange `request:"mediaType=application/json"`
 	CompanyID string            `pathParam:"style=simple,explode=false,name=companyId"`
 }
 

@@ -2,12 +2,7 @@
 
 package shared
 
-// Company - In Codat, a company represents a business sharing access to their data. Each company can have multiple [connections](https://docs.codat.io/codat-api#/schemas/Connection) to different data sources such as one connection to [Xero](https://docs.codat.io/integrations/accounting/xero/accounting-xero) for accounting data, two connections to [Plaid](https://docs.codat.io/integrations/banking/plaid/banking-plaid) for two bank accounts and a connection to [Zettle](https://docs.codat.io/integrations/commerce/zettle/commerce-zettle) for POS data.
-//
-// Typically each company is one of your customers.
-//
-// When you create a company, you can specify a `name` and we will automatically generate a unique `id` for the company. You can also add a `description` to store any additional information about the company.
-type Company struct {
+type SyncRangeDateRange struct {
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -27,13 +22,7 @@ type Company struct {
 	// >
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	Created           *string      `json:"created,omitempty"`
-	CreatedByUserName *string      `json:"createdByUserName,omitempty"`
-	DataConnections   []Connection `json:"dataConnections,omitempty"`
-	// Additional information about the company. This can be used to store foreign IDs, references, etc.
-	Description *string `json:"description,omitempty"`
-	// Unique identifier for your SMB in Codat.
-	ID string `json:"id"`
+	Finish string `json:"finish"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -53,11 +42,9 @@ type Company struct {
 	// >
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	LastSync *string `json:"lastSync,omitempty"`
-	// The name of the company
-	Name string `json:"name"`
-	// Deprecated: this field will be removed in a future release, please migrate away from it as soon as possible.
-	Platform *string `json:"platform,omitempty"`
-	// The `redirect` [Link URL](https://docs.codat.io/auth-flow/authorize-hosted-link) enabling the customer to start their auth flow journey for the company.
-	Redirect string `json:"redirect"`
+	Start string `json:"start"`
+}
+
+type SyncRange struct {
+	DateRange SyncRangeDateRange `json:"dateRange"`
 }

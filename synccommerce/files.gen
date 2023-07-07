@@ -24,10 +24,10 @@ pkg/models/operations/listcompanies.go
 pkg/models/operations/listconnections.go
 pkg/models/operations/updateconnection.go
 pkg/models/operations/getconfiguration.go
-pkg/models/operations/getsyncstatus.go
 pkg/models/operations/setconfiguration.go
 pkg/models/operations/getintegrationbranding.go
 pkg/models/operations/listintegrations.go
+pkg/models/operations/getsyncstatus.go
 pkg/models/operations/requestsync.go
 pkg/models/operations/requestsyncfordaterange.go
 pkg/models/operations/getconfigtextsyncflow.go
@@ -79,6 +79,7 @@ pkg/models/shared/featurestate.go
 pkg/models/shared/syncsummary.go
 pkg/models/shared/daterange.go
 pkg/models/shared/synctolatestargs.go
+pkg/models/shared/syncrange.go
 pkg/models/shared/localization.go
 pkg/models/shared/syncflowurl.go
 pkg/models/shared/visibleaccounts.go
@@ -102,14 +103,14 @@ docs/models/operations/updateconnectionrequest.md
 docs/models/operations/updateconnectionresponse.md
 docs/models/operations/getconfigurationrequest.md
 docs/models/operations/getconfigurationresponse.md
-docs/models/operations/getsyncstatusrequest.md
-docs/models/operations/getsyncstatusresponse.md
 docs/models/operations/setconfigurationrequest.md
 docs/models/operations/setconfigurationresponse.md
 docs/models/operations/getintegrationbrandingrequest.md
 docs/models/operations/getintegrationbrandingresponse.md
 docs/models/operations/listintegrationsrequest.md
 docs/models/operations/listintegrationsresponse.md
+docs/models/operations/getsyncstatusrequest.md
+docs/models/operations/getsyncstatusresponse.md
 docs/models/operations/requestsyncrequest.md
 docs/models/operations/requestsyncresponse.md
 docs/models/operations/requestsyncfordaterangerequest.md
@@ -168,6 +169,8 @@ docs/models/shared/featurestate.md
 docs/models/shared/syncsummary.md
 docs/models/shared/daterange.md
 docs/models/shared/synctolatestargs.md
+docs/models/shared/syncrangedaterange.md
+docs/models/shared/syncrange.md
 docs/models/shared/localization.md
 docs/models/shared/syncflowurl.md
 docs/models/shared/visibleaccounts.md
