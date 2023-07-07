@@ -114,7 +114,9 @@ type BillCreditNote struct {
 	Status BillCreditNoteStatus `json:"status"`
 	// Total amount of the bill credit note, including discounts but excluding tax.
 	SubTotal float64 `json:"subTotal"`
-	// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
+	// Supplemental data is additional data you can include in our standard data types.
+	//
+	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/additional-data) about supplemental data.
 	SupplementalData *SupplementalData `json:"supplementalData,omitempty"`
 	// Reference to the supplier the record relates to.
 	SupplierRef *SupplierRef `json:"supplierRef,omitempty"`

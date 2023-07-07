@@ -85,7 +85,9 @@ type JournalEntry struct {
 	// - Transfers
 	RecordRef          *InvoiceTo `json:"recordRef,omitempty"`
 	SourceModifiedDate *string    `json:"sourceModifiedDate,omitempty"`
-	// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
+	// Supplemental data is additional data you can include in our standard data types.
+	//
+	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/additional-data) about supplemental data.
 	SupplementalData *SupplementalData `json:"supplementalData,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//

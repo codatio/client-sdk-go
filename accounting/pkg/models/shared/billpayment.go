@@ -195,7 +195,9 @@ type BillPayment struct {
 	// Additional information associated with the payment.
 	Reference          *string `json:"reference,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
-	// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
+	// Supplemental data is additional data you can include in our standard data types.
+	//
+	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/additional-data) about supplemental data.
 	SupplementalData *SupplementalData `json:"supplementalData,omitempty"`
 	SupplierRef      *SupplierRef      `json:"supplierRef,omitempty"`
 	// Amount of the payment in the payment currency. This value never changes and represents the amount of money that is paid into the supplier's account.

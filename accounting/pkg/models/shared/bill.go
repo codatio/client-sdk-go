@@ -66,7 +66,9 @@ type BillPaymentAllocation struct {
 	Payment    PaymentAllocationPayment        `json:"payment"`
 }
 
-// BillSupplementalData - Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
+// BillSupplementalData - Supplemental data is additional data you can include in our standard data types.
+//
+// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/additional-data) about supplemental data.
 type BillSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
@@ -152,7 +154,9 @@ type Bill struct {
 	Status BillStatus `json:"status"`
 	// Total amount of the bill, excluding any taxes.
 	SubTotal float64 `json:"subTotal"`
-	// Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
+	// Supplemental data is additional data you can include in our standard data types.
+	//
+	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/additional-data) about supplemental data.
 	SupplementalData *BillSupplementalData `json:"supplementalData,omitempty"`
 	// Reference to the supplier the record relates to.
 	SupplierRef *SupplierRef `json:"supplierRef,omitempty"`
