@@ -16,8 +16,4 @@ type TaxComponent struct {
 	// Rate of taxation represented as a fraction of the net price (typically in the range 0.00 - 1.00).
 	Rate               *float32 `json:"rate,omitempty"`
 	SourceModifiedDate *string  `json:"sourceModifiedDate,omitempty"`
-	// Supplemental data is additional data you can include in our standard data types.
-	//
-	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/additional-data) about supplemental data.
-	SupplementalData *SupplementalData `json:"supplementalData,omitempty"`
 }

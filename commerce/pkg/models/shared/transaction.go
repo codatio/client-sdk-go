@@ -67,10 +67,6 @@ type Transaction struct {
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Non-standardised transaction type data from the commerce platform
 	SubType *string `json:"subType,omitempty"`
-	// Supplemental data is additional data you can include in our standard data types.
-	//
-	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/additional-data) about supplemental data.
-	SupplementalData *SupplementalData `json:"supplementalData,omitempty"`
 	// The total transaction amount
 	TotalAmount *float64 `json:"totalAmount,omitempty"`
 	// Link to the source event which triggered this transaction

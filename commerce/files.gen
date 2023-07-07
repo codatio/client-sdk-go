@@ -45,7 +45,6 @@ pkg/models/operations/gettransaction.go
 pkg/models/operations/listtransactions.go
 pkg/models/shared/schema.go
 pkg/models/shared/companyinfo.go
-pkg/models/shared/supplementaldata.go
 pkg/models/shared/phonenumber.go
 pkg/models/shared/phonenumbertype.go
 pkg/models/shared/address.go
@@ -178,10 +177,8 @@ docs/models/shared/schema.md
 docs/models/shared/companyinfoweblinktype.md
 docs/models/shared/companyinfoweblink.md
 docs/models/shared/companyinfo.md
-docs/models/shared/supplementaldata.md
 docs/models/shared/phonenumber.md
 docs/models/shared/phonenumbertype.md
-docs/models/shared/addresssupplementaldata.md
 docs/models/shared/address.md
 docs/models/shared/addresstype.md
 docs/models/shared/accountbalance.md
@@ -196,6 +193,7 @@ docs/models/shared/transactionsourcetype.md
 docs/models/shared/disputes.md
 docs/models/shared/location.md
 docs/models/shared/locations.md
+docs/models/shared/ordersupplementaldata.md
 docs/models/shared/order.md
 docs/models/shared/servicecharge.md
 docs/models/shared/servicechargetype.md

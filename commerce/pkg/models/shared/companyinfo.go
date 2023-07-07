@@ -97,10 +97,6 @@ type CompanyInfo struct {
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// URL addresses for the originating system. For example, potential use cases include 'deeplinking' to the originating system
 	SourceUrls map[string]string `json:"sourceUrls,omitempty"`
-	// Supplemental data is additional data you can include in our standard data types.
-	//
-	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/additional-data) about supplemental data.
-	SupplementalData *SupplementalData `json:"supplementalData,omitempty"`
 	// Weblinks associated with the company
 	WebLinks []CompanyInfoWeblink `json:"webLinks,omitempty"`
 }
