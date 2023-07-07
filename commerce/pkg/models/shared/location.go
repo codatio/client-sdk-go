@@ -2,10 +2,13 @@
 
 package shared
 
-// Location - Reference to a configured dynamic key value pair that is unique to the accounting platform. This feature is in private beta, contact us if you would like to learn more.
+// Location - The Location datatype holds information on the geographic location at which stocks of products may be held, as referenced in the Products data type.
+//
+// A Location also holds information on geographic locations where orders were placed, as referenced in the Orders data type.
+//
+// Explore our [data coverage](https://knowledge.codat.io/supported-features/commerce?view=tab-by-data-type&dataType=commerce-locations) for this data type.
 type Location struct {
-	Address *Address                          `json:"address,omitempty"`
-	Content map[string]map[string]interface{} `json:"content,omitempty"`
+	Address *Address `json:"address,omitempty"`
 	// A unique, persistent identifier for this record
 	ID           string  `json:"id"`
 	ModifiedDate *string `json:"modifiedDate,omitempty"`

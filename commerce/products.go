@@ -25,7 +25,13 @@ func newProducts(sdkConfig sdkConfiguration) *products {
 }
 
 // Get - Get product
-// The Products data type provides the company's product inventory, and includes the price and quantity of all products, and product variants, available for sale.
+// The *Get product* endpoint returns a single product for a given productId.
+//
+// [Products](https://docs.codat.io/commerce-api#/schemas/Product) are items in the company's inventory that are available for sale.
+//
+// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/commerce?view=tab-by-data-type&dataType=commerce-products) for integrations that support getting a specific product.
+//
+// Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
 func (s *products) Get(ctx context.Context, request operations.GetProductRequest, opts ...operations.Option) (*operations.GetProductResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -138,7 +144,13 @@ func (s *products) Get(ctx context.Context, request operations.GetProductRequest
 }
 
 // GetCategory - Get product category
-// Product categories are used to classify a group of products together, either by type (e.g. "Furniture") or sometimes by tax profile.
+// The *Get product* endpoint returns a single product for a given productId.
+//
+// [Product categories](https://docs.codat.io/commerce-api#/schemas/ProductCategory) are used to classify a group of products together, either by type (e.g. "Furniture"), or sometimes by tax profile.
+//
+// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/commerce?view=tab-by-data-type&dataType=commerce-productCategories) for integrations that support getting a specific product.
+//
+// Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
 func (s *products) GetCategory(ctx context.Context, request operations.GetProductCategoryRequest, opts ...operations.Option) (*operations.GetProductCategoryResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -251,7 +263,11 @@ func (s *products) GetCategory(ctx context.Context, request operations.GetProduc
 }
 
 // List - List products
-// The Products data type provides the company's product inventory, and includes the price and quantity of all products, and product variants, available for sale.
+// The *List products* endpoint returns a list of [products](https://docs.codat.io/commerce-api#/schemas/Product) for a given company's connection.
+//
+// [Products](https://docs.codat.io/commerce-api#/schemas/Product) are items in the company's inventory that are available for sale.
+//
+// Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
 func (s *products) List(ctx context.Context, request operations.ListProductsRequest, opts ...operations.Option) (*operations.ListProductsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -370,7 +386,11 @@ func (s *products) List(ctx context.Context, request operations.ListProductsRequ
 }
 
 // ListCategories - List product categories
-// Product categories are used to classify a group of products together, either by type (eg "Furniture"), or sometimes by tax profile.
+// The *List product categories* endpoint returns a list of [product categories](https://docs.codat.io/commerce-api#/schemas/ProductCategory) for a given company's connection.
+//
+// [Product categories](https://docs.codat.io/commerce-api#/schemas/ProductCategory) are used to classify a group of products together, either by type (e.g. "Furniture"), or sometimes by tax profile.
+//
+// Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
 func (s *products) ListCategories(ctx context.Context, request operations.ListProductCategoriesRequest, opts ...operations.Option) (*operations.ListProductCategoriesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

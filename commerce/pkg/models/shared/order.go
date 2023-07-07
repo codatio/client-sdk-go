@@ -2,6 +2,13 @@
 
 package shared
 
+// OrderSupplementalData - Supplemental data is additional data you can include in our standard data types.
+//
+// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/additional-data) about supplemental data.
+type OrderSupplementalData struct {
+	Content map[string]map[string]interface{} `json:"content,omitempty"`
+}
+
 // Order - Orders contain the transaction details for all products sold by the company, and include details of any payments, service charges, or refunds related to each order. You can use data from the Orders endpoints to calculate key metrics, such as gross sales values and monthly recurring revenue (MRR).
 //
 // Explore our [data coverage](https://knowledge.codat.io/supported-features/commerce?view=tab-by-data-type&dataType=commerce-orders) for this data type.
@@ -66,6 +73,10 @@ type Order struct {
 	Payments           []PaymentRef    `json:"payments,omitempty"`
 	ServiceCharges     []ServiceCharge `json:"serviceCharges,omitempty"`
 	SourceModifiedDate *string         `json:"sourceModifiedDate,omitempty"`
+	// Supplemental data is additional data you can include in our standard data types.
+	//
+	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/additional-data) about supplemental data.
+	SupplementalData *OrderSupplementalData `json:"supplementalData,omitempty"`
 	// Total amount of the order, including tax, net of any discounts and refunds.
 	TotalAmount *float64 `json:"totalAmount,omitempty"`
 	// Total amount of discount applied to the order.

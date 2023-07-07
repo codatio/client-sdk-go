@@ -11,7 +11,14 @@ Retrieve standardized data from linked commerce platforms.
 
 ## Get
 
-Get a specific order placed or held on the linked commerce platform.
+The *Get order* endpoint returns a single order for a given orderId.
+
+[Orders](https://docs.codat.io/commerce-api#/schemas/Order) contain the transaction details for all products sold by the company.
+
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/commerce?view=tab-by-data-type&dataType=commerce-orders) for integrations that support getting a specific order.
+
+Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
+
 
 ### Example Usage
 
@@ -64,7 +71,12 @@ func main() {
 
 ## List
 
-Get a list of orders placed or held on the linked commerce platform
+The *List orders* endpoint returns a list of [orders](https://docs.codat.io/commerce-api#/schemas/Order) for a given company's connection.
+
+[Orders](https://docs.codat.io/commerce-api#/schemas/Order) contain the transaction details for all products sold by the company.
+
+Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
+    
 
 ### Example Usage
 

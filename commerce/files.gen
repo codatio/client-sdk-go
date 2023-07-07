@@ -193,6 +193,7 @@ docs/models/shared/transactionsourcetype.md
 docs/models/shared/disputes.md
 docs/models/shared/location.md
 docs/models/shared/locations.md
+docs/models/shared/ordersupplementaldata.md
 docs/models/shared/order.md
 docs/models/shared/servicecharge.md
 docs/models/shared/servicechargetype.md
