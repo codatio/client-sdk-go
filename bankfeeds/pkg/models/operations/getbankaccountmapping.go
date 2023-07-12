@@ -14,10 +14,10 @@ type GetBankAccountMappingRequest struct {
 
 type GetBankAccountMappingResponse struct {
 	// Success
-	BankFeedMappings *shared.BankFeedMappings
-	ContentType      string
-	StatusCode       int
-	RawResponse      *http.Response
+	BankFeedMapping *shared.BankFeedMapping
+	ContentType     string
+	StatusCode      int
+	RawResponse     *http.Response
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
 }

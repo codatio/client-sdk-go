@@ -215,12 +215,12 @@ func (s *bankFeedAccounts) List(ctx context.Context, request operations.ListBank
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out []shared.BankFeedAccount
+			var out *shared.BankFeedAccount
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.BankFeedAccounts = out
+			res.BankFeedAccount = out
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -355,8 +355,6 @@ func (s *bankFeedAccounts) PutBankFeed(ctx context.Context, request operations.P
 
 // Update - Update bank feed bank account
 // The *Update bank feed bank account* endpoint updates a single bank feed bank account for a single data source connected to a single company.
-//
-// Deprecated: this method will be removed in a future release, please migrate away from it as soon as possible.
 func (s *bankFeedAccounts) Update(ctx context.Context, request operations.UpdateBankFeedRequest, opts ...operations.Option) (*operations.UpdateBankFeedResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

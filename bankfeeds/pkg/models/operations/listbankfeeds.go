@@ -14,10 +14,10 @@ type ListBankFeedsRequest struct {
 
 type ListBankFeedsResponse struct {
 	// Success
-	BankFeedAccounts []shared.BankFeedAccount
-	ContentType      string
-	StatusCode       int
-	RawResponse      *http.Response
+	BankFeedAccount *shared.BankFeedAccount
+	ContentType     string
+	StatusCode      int
+	RawResponse     *http.Response
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
 }

@@ -109,7 +109,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.BankFeedMappings != nil {
+    if res.BankFeedMapping != nil {
         // handle response
     }
 }

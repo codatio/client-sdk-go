@@ -41,7 +41,7 @@ pkg/models/operations/unlinkconnection.go
 pkg/models/shared/schema.go
 pkg/models/shared/accountmappingresult.go
 pkg/models/shared/bankfeedaccountmapping.go
-pkg/models/shared/bankfeedmappings.go
+pkg/models/shared/bankfeedmapping.go
 pkg/models/shared/targetaccountoption.go
 pkg/models/shared/createbanktransactionsresponse.go
 pkg/models/shared/validation.go
@@ -126,8 +126,7 @@ docs/models/operations/unlinkconnectionresponse.md
 docs/models/shared/schema.md
 docs/models/shared/accountmappingresult.md
 docs/models/shared/bankfeedaccountmapping.md
-docs/models/shared/bankfeedmappingsbankfeedmapping.md
-docs/models/shared/bankfeedmappings.md
+docs/models/shared/bankfeedmapping.md
 docs/models/shared/targetaccountoption.md
 docs/models/shared/createbanktransactionsresponse.md
 docs/models/shared/validation.md

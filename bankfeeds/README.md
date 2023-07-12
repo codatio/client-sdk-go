@@ -71,7 +71,7 @@ func main() {
 * [Create](docs/sdks/bankfeedaccounts/README.md#create) - Create a bank feed bank account
 * [List](docs/sdks/bankfeedaccounts/README.md#list) - List bank feed bank accounts
 * [~~PutBankFeed~~](docs/sdks/bankfeedaccounts/README.md#putbankfeed) - Create bank feed bank accounts :warning: **Deprecated**
-* [~~Update~~](docs/sdks/bankfeedaccounts/README.md#update) - Update bank feed bank account :warning: **Deprecated**
+* [Update](docs/sdks/bankfeedaccounts/README.md#update) - Update bank feed bank account
 
 ### [Companies](docs/sdks/companies/README.md)
 

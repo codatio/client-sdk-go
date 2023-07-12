@@ -1,4 +1,4 @@
-# BankFeedMappingsBankFeedMapping
+# BankFeedMapping
 
 A bank feed connection between a source account and a target account, including potential target accounts.
 

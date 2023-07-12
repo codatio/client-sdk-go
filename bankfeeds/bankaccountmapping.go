@@ -223,12 +223,12 @@ func (s *bankAccountMapping) Get(ctx context.Context, request operations.GetBank
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.BankFeedMappings
+			var out *shared.BankFeedMapping
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.BankFeedMappings = out
+			res.BankFeedMapping = out
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough

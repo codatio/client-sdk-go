@@ -9,7 +9,7 @@ Bank feed bank accounts
 * [Create](#create) - Create a bank feed bank account
 * [List](#list) - List bank feed bank accounts
 * [~~PutBankFeed~~](#putbankfeed) - Create bank feed bank accounts :warning: **Deprecated**
-* [~~Update~~](#update) - Update bank feed bank account :warning: **Deprecated**
+* [Update](#update) - Update bank feed bank account
 
 ## Create
 
@@ -112,7 +112,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.BankFeedAccounts != nil {
+    if res.BankFeedAccount != nil {
         // handle response
     }
 }
@@ -225,11 +225,9 @@ func main() {
 **[*operations.PutBankFeedResponse](../../models/operations/putbankfeedresponse.md), error**
 
 
-## ~~Update~~
+## Update
 
 ﻿The *Update bank feed bank account* endpoint updates a single bank feed bank account for a single data source connected to a single company.
-
-> :warning: **DEPRECATED**: this method will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
