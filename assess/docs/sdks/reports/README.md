@@ -13,11 +13,8 @@ Data integrity is important
 * [GetCommerceOrdersMetrics](#getcommerceordersmetrics) - Get orders report
 * [GetCommerceRefundsMetrics](#getcommercerefundsmetrics) - Get refunds report
 * [GetCommerceRevenueMetrics](#getcommercerevenuemetrics) - Get commerce revenue metrics
-* [~~GetEnhancedBalanceSheet~~](#getenhancedbalancesheet) - Get enhanced balance sheet report :warning: **Deprecated**
 * [GetEnhancedCashFlowTransactions](#getenhancedcashflowtransactions) - Get enhanced cash flow report
-* [~~GetEnhancedFinancialMetrics~~](#getenhancedfinancialmetrics) - List financial metrics :warning: **Deprecated**
 * [GetEnhancedInvoicesReport](#getenhancedinvoicesreport) - Get enhanced invoices report
-* [~~GetEnhancedProfitAndLoss~~](#getenhancedprofitandloss) - Get enhanced profit and loss report :warning: **Deprecated**
 * [GetLoanSummary](#getloansummary) - Get enhanced loan summaries
 * [GetRecurringRevenueMetrics](#getrecurringrevenuemetrics) - Get key subscription revenue metrics
 * [ListLoanTransactions](#listloantransactions) - List enhanced loan transactions
@@ -51,7 +48,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Reports.GetAccountsForEnhancedBalanceSheet(ctx, operations.GetAccountsForEnhancedBalanceSheetRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        NumberOfPeriods: codatassess.Int64(20218),
+        NumberOfPeriods: codatassess.Int64(423655),
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -106,7 +103,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Reports.GetAccountsForEnhancedProfitAndLoss(ctx, operations.GetAccountsForEnhancedProfitAndLossRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        NumberOfPeriods: codatassess.Int64(368241),
+        NumberOfPeriods: codatassess.Int64(623564),
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -162,9 +159,9 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         IncludeDisplayNames: codatassess.Bool(false),
-        NumberOfPeriods: 832620,
-        PeriodLength: 957156,
-        PeriodUnit: shared.PeriodUnitYear,
+        NumberOfPeriods: 645894,
+        PeriodLength: 384382,
+        PeriodUnit: shared.PeriodUnitWeek,
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -220,9 +217,9 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         IncludeDisplayNames: codatassess.Bool(false),
-        NumberOfPeriods: 140350,
-        PeriodLength: 870013,
-        PeriodUnit: shared.PeriodUnitYear,
+        NumberOfPeriods: 297534,
+        PeriodLength: 891773,
+        PeriodUnit: shared.PeriodUnitDay,
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -278,9 +275,9 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         IncludeDisplayNames: codatassess.Bool(false),
-        NumberOfPeriods: 978619,
-        PeriodLength: 473608,
-        PeriodUnit: shared.PeriodUnitYear,
+        NumberOfPeriods: 963663,
+        PeriodLength: 272656,
+        PeriodUnit: shared.PeriodUnitWeek,
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -336,9 +333,9 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         IncludeDisplayNames: codatassess.Bool(false),
-        NumberOfPeriods: 800911,
-        PeriodLength: 461479,
-        PeriodUnit: shared.PeriodUnitMonth,
+        NumberOfPeriods: 477665,
+        PeriodLength: 791725,
+        PeriodUnit: shared.PeriodUnitYear,
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -394,9 +391,9 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         IncludeDisplayNames: codatassess.Bool(false),
-        NumberOfPeriods: 780529,
-        PeriodLength: 678880,
-        PeriodUnit: shared.PeriodUnitDay,
+        NumberOfPeriods: 528895,
+        PeriodLength: 479977,
+        PeriodUnit: shared.PeriodUnitMonth,
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -421,64 +418,6 @@ func main() {
 ### Response
 
 **[*operations.GetCommerceRevenueMetricsResponse](../../models/operations/getcommercerevenuemetricsresponse.md), error**
-
-
-## ~~GetEnhancedBalanceSheet~~
-
-Gets a fully categorized balance sheet statement for a given company, over one or more period(s).
-
-> :warning: **DEPRECATED**: this method will be removed in a future release, please migrate away from it as soon as possible.
-
-### Example Usage
-
-```go
-package main
-
-import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/assess"
-	"github.com/codatio/client-sdk-go/assess/pkg/models/operations"
-)
-
-func main() {
-    s := codatassess.New(
-        codatassess.WithSecurity(shared.Security{
-            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
-        }),
-    )
-
-    ctx := context.Background()
-    res, err := s.Reports.GetEnhancedBalanceSheet(ctx, operations.GetEnhancedBalanceSheetRequest{
-        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        IncludeDisplayNames: codatassess.Bool(false),
-        NumberOfPeriods: 720633,
-        PeriodLength: 639921,
-        ReportDate: "29-09-2020",
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-
-    if res.Report != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
-| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                  | :heavy_check_mark:                                                                                     | The context to use for the request.                                                                    |
-| `request`                                                                                              | [operations.GetEnhancedBalanceSheetRequest](../../models/operations/getenhancedbalancesheetrequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
-| `opts`                                                                                                 | [][operations.Option](../../models/operations/option.md)                                               | :heavy_minus_sign:                                                                                     | The options for this request.                                                                          |
-
-
-### Response
-
-**[*operations.GetEnhancedBalanceSheetResponse](../../models/operations/getenhancedbalancesheetresponse.md), error**
 
 
 ## GetEnhancedCashFlowTransactions
@@ -513,7 +452,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         Page: codatassess.Int(1),
         PageSize: codatassess.Int(100),
-        Query: codatassess.String("occaecati"),
+        Query: codatassess.String("nisi"),
     })
     if err != nil {
         log.Fatal(err)
@@ -537,64 +476,6 @@ func main() {
 ### Response
 
 **[*operations.GetEnhancedCashFlowTransactionsResponse](../../models/operations/getenhancedcashflowtransactionsresponse.md), error**
-
-
-## ~~GetEnhancedFinancialMetrics~~
-
-Gets all the available financial metrics for a given company, over one or more periods.
-
-> :warning: **DEPRECATED**: this method will be removed in a future release, please migrate away from it as soon as possible.
-
-### Example Usage
-
-```go
-package main
-
-import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/assess"
-	"github.com/codatio/client-sdk-go/assess/pkg/models/operations"
-)
-
-func main() {
-    s := codatassess.New(
-        codatassess.WithSecurity(shared.Security{
-            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
-        }),
-    )
-
-    ctx := context.Background()
-    res, err := s.Reports.GetEnhancedFinancialMetrics(ctx, operations.GetEnhancedFinancialMetricsRequest{
-        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        NumberOfPeriods: 143353,
-        PeriodLength: 537373,
-        ReportDate: "29-09-2020",
-        ShowMetricInputs: codatassess.Bool(false),
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-
-    if res.FinancialMetrics != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                                      | Type                                                                                                           | Required                                                                                                       | Description                                                                                                    |
-| -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                                          | :heavy_check_mark:                                                                                             | The context to use for the request.                                                                            |
-| `request`                                                                                                      | [operations.GetEnhancedFinancialMetricsRequest](../../models/operations/getenhancedfinancialmetricsrequest.md) | :heavy_check_mark:                                                                                             | The request object to use for the request.                                                                     |
-| `opts`                                                                                                         | [][operations.Option](../../models/operations/option.md)                                                       | :heavy_minus_sign:                                                                                             | The options for this request.                                                                                  |
-
-
-### Response
-
-**[*operations.GetEnhancedFinancialMetricsResponse](../../models/operations/getenhancedfinancialmetricsresponse.md), error**
 
 
 ## GetEnhancedInvoicesReport
@@ -625,7 +506,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         Page: codatassess.Int(1),
         PageSize: codatassess.Int(100),
-        Query: codatassess.String("hic"),
+        Query: codatassess.String("recusandae"),
     })
     if err != nil {
         log.Fatal(err)
@@ -649,64 +530,6 @@ func main() {
 ### Response
 
 **[*operations.GetEnhancedInvoicesReportResponse](../../models/operations/getenhancedinvoicesreportresponse.md), error**
-
-
-## ~~GetEnhancedProfitAndLoss~~
-
-Gets a fully categorized profit and loss statement for a given company, over one or more period(s).
-
-> :warning: **DEPRECATED**: this method will be removed in a future release, please migrate away from it as soon as possible.
-
-### Example Usage
-
-```go
-package main
-
-import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/assess"
-	"github.com/codatio/client-sdk-go/assess/pkg/models/operations"
-)
-
-func main() {
-    s := codatassess.New(
-        codatassess.WithSecurity(shared.Security{
-            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
-        }),
-    )
-
-    ctx := context.Background()
-    res, err := s.Reports.GetEnhancedProfitAndLoss(ctx, operations.GetEnhancedProfitAndLossRequest{
-        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        IncludeDisplayNames: codatassess.Bool(false),
-        NumberOfPeriods: 758616,
-        PeriodLength: 521848,
-        ReportDate: "29-09-2020",
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-
-    if res.Report != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                                | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
-| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                                    | :heavy_check_mark:                                                                                       | The context to use for the request.                                                                      |
-| `request`                                                                                                | [operations.GetEnhancedProfitAndLossRequest](../../models/operations/getenhancedprofitandlossrequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
-| `opts`                                                                                                   | [][operations.Option](../../models/operations/option.md)                                                 | :heavy_minus_sign:                                                                                       | The options for this request.                                                                            |
-
-
-### Response
-
-**[*operations.GetEnhancedProfitAndLossResponse](../../models/operations/getenhancedprofitandlossresponse.md), error**
 
 
 ## GetLoanSummary
@@ -838,7 +661,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Reports.ListLoanTransactions(ctx, operations.ListLoanTransactionsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        SourceType: operations.ListLoanTransactionsSourceTypeBanking,
+        SourceType: operations.ListLoanTransactionsSourceTypeAccounting,
     })
     if err != nil {
         log.Fatal(err)

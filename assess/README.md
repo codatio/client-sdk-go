@@ -21,6 +21,7 @@ import(
 	"log"
 	"github.com/codatio/client-sdk-go/assess"
 	"github.com/codatio/client-sdk-go/assess/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/assess/pkg/models/shared"
 )
 
 func main() {
@@ -31,16 +32,15 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Categories.GetAccountCategory(ctx, operations.GetAccountCategoryRequest{
-        AccountID: "corrupti",
+    res, err := s.DataIntegrity.GetDataIntegrityStatus(ctx, operations.GetDataIntegrityStatusRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
+        DataType: shared.DataIntegrityDataTypeBankingAccounts,
     })
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.CategorisedAccount != nil {
+    if res.Status != nil {
         // handle response
     }
 }
@@ -50,14 +50,6 @@ func main() {
 <!-- Start SDK Available Operations -->
 ## Available Resources and Operations
 
-
-### [Categories](docs/sdks/categories/README.md)
-
-* [~~GetAccountCategory~~](docs/sdks/categories/README.md#getaccountcategory) - Get suggested and/or confirmed category for a specific account :warning: **Deprecated**
-* [~~ListAccountsCategories~~](docs/sdks/categories/README.md#listaccountscategories) - List suggested and confirmed account categories :warning: **Deprecated**
-* [~~ListAvailableAccountCategories~~](docs/sdks/categories/README.md#listavailableaccountcategories) - List account categories :warning: **Deprecated**
-* [~~UpdateAccountCategory~~](docs/sdks/categories/README.md#updateaccountcategory) - Update account categories :warning: **Deprecated**
-* [~~UpdateAccountsCategories~~](docs/sdks/categories/README.md#updateaccountscategories) - Confirm categories for accounts :warning: **Deprecated**
 
 ### [DataIntegrity](docs/sdks/dataintegrity/README.md)
 
@@ -81,11 +73,8 @@ func main() {
 * [GetCommerceOrdersMetrics](docs/sdks/reports/README.md#getcommerceordersmetrics) - Get orders report
 * [GetCommerceRefundsMetrics](docs/sdks/reports/README.md#getcommercerefundsmetrics) - Get refunds report
 * [GetCommerceRevenueMetrics](docs/sdks/reports/README.md#getcommercerevenuemetrics) - Get commerce revenue metrics
-* [~~GetEnhancedBalanceSheet~~](docs/sdks/reports/README.md#getenhancedbalancesheet) - Get enhanced balance sheet report :warning: **Deprecated**
 * [GetEnhancedCashFlowTransactions](docs/sdks/reports/README.md#getenhancedcashflowtransactions) - Get enhanced cash flow report
-* [~~GetEnhancedFinancialMetrics~~](docs/sdks/reports/README.md#getenhancedfinancialmetrics) - List financial metrics :warning: **Deprecated**
 * [GetEnhancedInvoicesReport](docs/sdks/reports/README.md#getenhancedinvoicesreport) - Get enhanced invoices report
-* [~~GetEnhancedProfitAndLoss~~](docs/sdks/reports/README.md#getenhancedprofitandloss) - Get enhanced profit and loss report :warning: **Deprecated**
 * [GetLoanSummary](docs/sdks/reports/README.md#getloansummary) - Get enhanced loan summaries
 * [GetRecurringRevenueMetrics](docs/sdks/reports/README.md#getrecurringrevenuemetrics) - Get key subscription revenue metrics
 * [ListLoanTransactions](docs/sdks/reports/README.md#listloantransactions) - List enhanced loan transactions

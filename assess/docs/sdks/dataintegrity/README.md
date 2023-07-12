@@ -91,7 +91,7 @@ func main() {
     res, err := s.DataIntegrity.GetDataIntegritySummaries(ctx, operations.GetDataIntegritySummariesRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         DataType: shared.DataIntegrityDataTypeBankingAccounts,
-        Query: codatassess.String("excepturi"),
+        Query: codatassess.String("corrupti"),
     })
     if err != nil {
         log.Fatal(err)
@@ -148,7 +148,7 @@ func main() {
         OrderBy: codatassess.String("-modifiedDate"),
         Page: codatassess.Int(1),
         PageSize: codatassess.Int(100),
-        Query: codatassess.String("nisi"),
+        Query: codatassess.String("provident"),
     })
     if err != nil {
         log.Fatal(err)
