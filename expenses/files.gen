@@ -63,6 +63,12 @@ pkg/models/shared/integrationtype.go
 pkg/models/shared/transactionmetadatalist.go
 pkg/models/shared/hallink.go
 pkg/models/shared/security.go
+pkg/models/shared/synccompletewebhook.go
+pkg/models/shared/syncfailedwebhook.go
+pkg/models/shared/syncstartedwebhook.go
+pkg/models/webhooks/synccomplete.go
+pkg/models/webhooks/syncfailed.go
+pkg/models/webhooks/syncstarted.go
 docs/sdks/codatsyncexpenses/README.md
 docs/models/operations/option.md
 docs/sdks/configuration/README.md
@@ -142,4 +148,13 @@ docs/models/shared/transactionmetadatalistlinks.md
 docs/models/shared/transactionmetadatalist.md
 docs/models/shared/hallink.md
 docs/models/shared/security.md
+docs/models/shared/synccompletewebhookdata.md
+docs/models/shared/synccompletewebhook.md
+docs/models/shared/syncfailedwebhookdata.md
+docs/models/shared/syncfailedwebhook.md
+docs/models/shared/syncstartedwebhookdata.md
+docs/models/shared/syncstartedwebhook.md
+docs/models/webhooks/synccompleteresponse.md
+docs/models/webhooks/syncfailedresponse.md
+docs/models/webhooks/syncstartedresponse.md
 pkg/models/operations/options.go
