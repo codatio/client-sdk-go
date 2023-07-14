@@ -32,8 +32,8 @@ import(
 	"context"
 	"log"
 	"github.com/codatio/client-sdk-go/common"
-	"github.com/codatio/client-sdk-go/common/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/common/pkg/models/operations"
 )
 
 func main() {
@@ -86,6 +86,7 @@ import(
 	"context"
 	"log"
 	"github.com/codatio/client-sdk-go/common"
+	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/common/pkg/models/operations"
 )
 
@@ -138,6 +139,7 @@ import(
 	"context"
 	"log"
 	"github.com/codatio/client-sdk-go/common"
+	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/common/pkg/models/operations"
 )
 

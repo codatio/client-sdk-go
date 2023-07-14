@@ -10,6 +10,8 @@ go get github.com/codatio/client-sdk-go/common
 
 ## SDK Example Usage
 <!-- Start SDK Example Usage -->
+
+
 ```go
 package main
 

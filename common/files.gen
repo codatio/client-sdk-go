@@ -98,6 +98,7 @@ pkg/models/shared/syncsettings.go
 pkg/models/shared/syncsetting.go
 pkg/models/shared/supplementaldataconfiguration.go
 pkg/models/shared/rule.go
+pkg/models/shared/createrule.go
 pkg/models/shared/rules.go
 pkg/models/shared/security.go
 pkg/models/shared/companydataconnectionstatuschangedwebhook.go
@@ -237,6 +238,8 @@ docs/models/shared/supplementaldataconfigurationsupplementaldatasourceconfigurat
 docs/models/shared/supplementaldataconfiguration.md
 docs/models/shared/rulenotifiers.md
 docs/models/shared/rule.md
+docs/models/shared/createrulenotifiers.md
+docs/models/shared/createrule.md
 docs/models/shared/rules.md
 docs/models/shared/security.md
 docs/models/shared/companydataconnectionstatuschangedwebhookdata.md
