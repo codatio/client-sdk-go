@@ -7,10 +7,10 @@ type RuleNotifiers struct {
 	Webhook *string  `json:"webhook,omitempty"`
 }
 
-// Rule - Configuration to provide an event notification to a URL or list of email addresses based on the given type or condition.
+// Rule - Create an event notification to a URL or list of email addresses based on the given type or condition.
 type Rule struct {
 	CompanyID *string       `json:"companyId,omitempty"`
-	ID        string        `json:"id"`
+	ID        *string       `json:"id,omitempty"`
 	Notifiers RuleNotifiers `json:"notifiers"`
 	Type      string        `json:"type"`
 }

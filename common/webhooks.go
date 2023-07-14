@@ -27,7 +27,7 @@ func newWebhooks(sdkConfig sdkConfiguration) *webhooks {
 
 // Create - Create webhook
 // Create a new webhook configuration
-func (s *webhooks) Create(ctx context.Context, request shared.Rule, opts ...operations.Option) (*operations.CreateRuleResponse, error) {
+func (s *webhooks) Create(ctx context.Context, request shared.CreateRule, opts ...operations.Option) (*operations.CreateRuleResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,

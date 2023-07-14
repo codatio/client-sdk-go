@@ -34,10 +34,9 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Webhooks.Create(ctx, shared.Rule{
+    res, err := s.Webhooks.Create(ctx, shared.CreateRule{
         CompanyID: codatcommon.String("39b73b17-cc2e-429e-915d-71654e9dcd1e"),
-        ID: "ff89c50e-a719-4ef5-a182-9917e53927b6",
-        Notifiers: shared.RuleNotifiers{
+        Notifiers: shared.CreateRuleNotifiers{
             Emails: []string{
                 "info@client.com",
                 "info@client.com",
@@ -62,7 +61,7 @@ func main() {
 | Parameter                                                | Type                                                     | Required                                                 | Description                                              |
 | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
 | `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
-| `request`                                                | [shared.Rule](../../models/shared/rule.md)               | :heavy_check_mark:                                       | The request object to use for the request.               |
+| `request`                                                | [shared.CreateRule](../../models/shared/createrule.md)   | :heavy_check_mark:                                       | The request object to use for the request.               |
 | `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
 
 
@@ -84,6 +83,7 @@ import(
 	"context"
 	"log"
 	"github.com/codatio/client-sdk-go/common"
+	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/common/pkg/models/operations"
 )
 
@@ -135,6 +135,7 @@ import(
 	"context"
 	"log"
 	"github.com/codatio/client-sdk-go/common"
+	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/common/pkg/models/operations"
 )
 
