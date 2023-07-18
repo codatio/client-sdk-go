@@ -7,6 +7,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/sdkerrors"
 	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/synccommerce/pkg/utils"
 	"io"
@@ -105,6 +106,8 @@ func (s *syncFlowPreferences) GetConfigTextSyncFlow(ctx context.Context, opts ..
 			}
 
 			res.LocalizationInfo = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -198,6 +201,8 @@ func (s *syncFlowPreferences) GetSyncFlowURL(ctx context.Context, request operat
 			}
 
 			res.SyncFlowURL = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -287,6 +292,8 @@ func (s *syncFlowPreferences) GetVisibleAccounts(ctx context.Context, request op
 			}
 
 			res.VisibleAccounts = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -380,6 +387,8 @@ func (s *syncFlowPreferences) UpdateConfigTextSyncFlow(ctx context.Context, requ
 			}
 
 			res.LocalizationInfo = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -476,6 +485,8 @@ func (s *syncFlowPreferences) UpdateVisibleAccountsSyncFlow(ctx context.Context,
 			}
 
 			res.VisibleAccounts = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 

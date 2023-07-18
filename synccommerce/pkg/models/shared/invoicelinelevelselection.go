@@ -8,3 +8,17 @@ type InvoiceLineLevelSelection struct {
 	// Invoice line level selection.
 	SelectedGroupByOptions []string `json:"selectedGroupByOptions,omitempty"`
 }
+
+func (o *InvoiceLineLevelSelection) GetGroupByOptions() []string {
+	if o == nil {
+		return nil
+	}
+	return o.GroupByOptions
+}
+
+func (o *InvoiceLineLevelSelection) GetSelectedGroupByOptions() []string {
+	if o == nil {
+		return nil
+	}
+	return o.SelectedGroupByOptions
+}

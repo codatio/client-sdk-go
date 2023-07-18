@@ -8,3 +8,17 @@ type Customer struct {
 	// Selected customer id from the list of customer records on the accounting software.
 	SelectedCustomerID *string `json:"selectedCustomerId,omitempty"`
 }
+
+func (o *Customer) GetCustomerOptions() []Option {
+	if o == nil {
+		return nil
+	}
+	return o.CustomerOptions
+}
+
+func (o *Customer) GetSelectedCustomerID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SelectedCustomerID
+}

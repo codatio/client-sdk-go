@@ -7,6 +7,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/sdkerrors"
 	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/synccommerce/pkg/utils"
 	"io"
@@ -112,6 +113,8 @@ func (s *companyManagement) CreateCompany(ctx context.Context, request shared.Cr
 			}
 
 			res.Company = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -208,6 +211,8 @@ func (s *companyManagement) CreateConnection(ctx context.Context, request operat
 			}
 
 			res.Connection = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -298,6 +303,8 @@ func (s *companyManagement) ListCompanies(ctx context.Context, request operation
 			}
 
 			res.Companies = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -391,6 +398,8 @@ func (s *companyManagement) ListConnections(ctx context.Context, request operati
 			}
 
 			res.Connections = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -487,6 +496,8 @@ func (s *companyManagement) UpdateConnection(ctx context.Context, request operat
 			}
 
 			res.Connection = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 

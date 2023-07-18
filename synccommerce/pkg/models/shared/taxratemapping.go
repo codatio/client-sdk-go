@@ -8,3 +8,17 @@ type TaxRateMapping struct {
 	// Selected tax component id from the list of tax components on the commerce software.
 	SelectedCommerceTaxRateIds []string `json:"selectedCommerceTaxRateIds,omitempty"`
 }
+
+func (o *TaxRateMapping) GetSelectedAccountingTaxRateID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SelectedAccountingTaxRateID
+}
+
+func (o *TaxRateMapping) GetSelectedCommerceTaxRateIds() []string {
+	if o == nil {
+		return nil
+	}
+	return o.SelectedCommerceTaxRateIds
+}

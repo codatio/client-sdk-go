@@ -14,3 +14,31 @@ type GetConfigTextSyncFlowResponse struct {
 	StatusCode       int
 	RawResponse      *http.Response
 }
+
+func (o *GetConfigTextSyncFlowResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetConfigTextSyncFlowResponse) GetLocalizationInfo() map[string]shared.Localization {
+	if o == nil {
+		return nil
+	}
+	return o.LocalizationInfo
+}
+
+func (o *GetConfigTextSyncFlowResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetConfigTextSyncFlowResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}

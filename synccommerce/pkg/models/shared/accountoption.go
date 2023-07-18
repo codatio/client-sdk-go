@@ -12,3 +12,31 @@ type AccountOption struct {
 	// Reference given to each nominal account for a business. It ensures money is allocated to the correct account. This code isn't a unique identifier in the Codat system.
 	NominalCode *string `json:"nominalCode,omitempty"`
 }
+
+func (o *AccountOption) GetClassification() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Classification
+}
+
+func (o *AccountOption) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *AccountOption) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
+func (o *AccountOption) GetNominalCode() *string {
+	if o == nil {
+		return nil
+	}
+	return o.NominalCode
+}

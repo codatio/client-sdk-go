@@ -12,10 +12,52 @@ type UpdateVisibleAccountsSyncFlowRequest struct {
 	CommerceKey     string                  `pathParam:"style=simple,explode=false,name=commerceKey"`
 }
 
+func (o *UpdateVisibleAccountsSyncFlowRequest) GetVisibleAccounts() *shared.VisibleAccounts {
+	if o == nil {
+		return nil
+	}
+	return o.VisibleAccounts
+}
+
+func (o *UpdateVisibleAccountsSyncFlowRequest) GetCommerceKey() string {
+	if o == nil {
+		return ""
+	}
+	return o.CommerceKey
+}
+
 type UpdateVisibleAccountsSyncFlowResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// Success
 	VisibleAccounts *shared.VisibleAccounts
+}
+
+func (o *UpdateVisibleAccountsSyncFlowResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *UpdateVisibleAccountsSyncFlowResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *UpdateVisibleAccountsSyncFlowResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *UpdateVisibleAccountsSyncFlowResponse) GetVisibleAccounts() *shared.VisibleAccounts {
+	if o == nil {
+		return nil
+	}
+	return o.VisibleAccounts
 }

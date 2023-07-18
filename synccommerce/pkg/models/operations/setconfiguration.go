@@ -11,10 +11,45 @@ type SetConfigurationRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
+func (o *SetConfigurationRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
 type SetConfigurationResponse struct {
 	// Success
 	Configuration *shared.Configuration
 	ContentType   string
 	StatusCode    int
 	RawResponse   *http.Response
+}
+
+func (o *SetConfigurationResponse) GetConfiguration() *shared.Configuration {
+	if o == nil {
+		return nil
+	}
+	return o.Configuration
+}
+
+func (o *SetConfigurationResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *SetConfigurationResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *SetConfigurationResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

@@ -45,6 +45,27 @@ type SyncRangeDateRange struct {
 	Start string `json:"start"`
 }
 
+func (o *SyncRangeDateRange) GetFinish() string {
+	if o == nil {
+		return ""
+	}
+	return o.Finish
+}
+
+func (o *SyncRangeDateRange) GetStart() string {
+	if o == nil {
+		return ""
+	}
+	return o.Start
+}
+
 type SyncRange struct {
 	DateRange SyncRangeDateRange `json:"dateRange"`
+}
+
+func (o *SyncRange) GetDateRange() SyncRangeDateRange {
+	if o == nil {
+		return SyncRangeDateRange{}
+	}
+	return o.DateRange
 }

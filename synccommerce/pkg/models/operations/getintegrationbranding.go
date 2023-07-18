@@ -12,10 +12,45 @@ type GetIntegrationBrandingRequest struct {
 	PlatformKey string `pathParam:"style=simple,explode=false,name=platformKey"`
 }
 
+func (o *GetIntegrationBrandingRequest) GetPlatformKey() string {
+	if o == nil {
+		return ""
+	}
+	return o.PlatformKey
+}
+
 type GetIntegrationBrandingResponse struct {
 	// Success
 	Branding    *shared.Branding
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
+}
+
+func (o *GetIntegrationBrandingResponse) GetBranding() *shared.Branding {
+	if o == nil {
+		return nil
+	}
+	return o.Branding
+}
+
+func (o *GetIntegrationBrandingResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetIntegrationBrandingResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetIntegrationBrandingResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

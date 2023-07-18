@@ -22,6 +22,7 @@ import(
 	"context"
 	"log"
 	"github.com/codatio/client-sdk-go/synccommerce"
+	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/operations"
 )
 
@@ -73,6 +74,7 @@ import(
 	"context"
 	"log"
 	"github.com/codatio/client-sdk-go/synccommerce"
+	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/operations"
 )
 

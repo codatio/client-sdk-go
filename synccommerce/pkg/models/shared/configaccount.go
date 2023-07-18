@@ -15,3 +15,38 @@ type ConfigAccount struct {
 	// Selected account id from the list of available accounts.
 	SelectedAccountID *string `json:"selectedAccountId,omitempty"`
 }
+
+func (o *ConfigAccount) GetAccountOptions() []AccountOption {
+	if o == nil {
+		return nil
+	}
+	return o.AccountOptions
+}
+
+func (o *ConfigAccount) GetDescriptionText() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DescriptionText
+}
+
+func (o *ConfigAccount) GetLabelText() *string {
+	if o == nil {
+		return nil
+	}
+	return o.LabelText
+}
+
+func (o *ConfigAccount) GetRequired() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Required
+}
+
+func (o *ConfigAccount) GetSelectedAccountID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SelectedAccountID
+}

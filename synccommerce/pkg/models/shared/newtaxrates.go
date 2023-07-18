@@ -14,3 +14,38 @@ type NewTaxRates struct {
 	// Array of tax component to rate mapppings.
 	TaxRateMappings []TaxRateMapping `json:"taxRateMappings,omitempty"`
 }
+
+func (o *NewTaxRates) GetAccountingTaxRateOptions() []Option {
+	if o == nil {
+		return nil
+	}
+	return o.AccountingTaxRateOptions
+}
+
+func (o *NewTaxRates) GetCommerceTaxRateOptions() []Option {
+	if o == nil {
+		return nil
+	}
+	return o.CommerceTaxRateOptions
+}
+
+func (o *NewTaxRates) GetDefaultZeroTaxRateOptions() []Option {
+	if o == nil {
+		return nil
+	}
+	return o.DefaultZeroTaxRateOptions
+}
+
+func (o *NewTaxRates) GetSelectedDefaultZeroTaxRateID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SelectedDefaultZeroTaxRateID
+}
+
+func (o *NewTaxRates) GetTaxRateMappings() []TaxRateMapping {
+	if o == nil {
+		return nil
+	}
+	return o.TaxRateMappings
+}

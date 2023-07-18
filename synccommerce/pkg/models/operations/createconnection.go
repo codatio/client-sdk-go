@@ -12,10 +12,52 @@ type CreateConnectionRequest struct {
 	CompanyID   string  `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
+func (o *CreateConnectionRequest) GetRequestBody() *string {
+	if o == nil {
+		return nil
+	}
+	return o.RequestBody
+}
+
+func (o *CreateConnectionRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
 type CreateConnectionResponse struct {
 	// Success
 	Connection  *shared.Connection
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
+}
+
+func (o *CreateConnectionResponse) GetConnection() *shared.Connection {
+	if o == nil {
+		return nil
+	}
+	return o.Connection
+}
+
+func (o *CreateConnectionResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *CreateConnectionResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *CreateConnectionResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

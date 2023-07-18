@@ -8,3 +8,17 @@ type TaxRateAmount struct {
 	// Array of tax rate options object.
 	TaxRateOptions []Option `json:"taxRateOptions,omitempty"`
 }
+
+func (o *TaxRateAmount) GetSelectedTaxRateID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SelectedTaxRateID
+}
+
+func (o *TaxRateAmount) GetTaxRateOptions() []Option {
+	if o == nil {
+		return nil
+	}
+	return o.TaxRateOptions
+}
