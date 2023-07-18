@@ -22,3 +22,31 @@ type BillItem struct {
 	// Unit price of the product or service.
 	UnitPrice *float64 `json:"unitPrice,omitempty"`
 }
+
+func (o *BillItem) GetAccountRef() *AccountRef {
+	if o == nil {
+		return nil
+	}
+	return o.AccountRef
+}
+
+func (o *BillItem) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *BillItem) GetTaxRateRef() *TaxRateRef {
+	if o == nil {
+		return nil
+	}
+	return o.TaxRateRef
+}
+
+func (o *BillItem) GetUnitPrice() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.UnitPrice
+}

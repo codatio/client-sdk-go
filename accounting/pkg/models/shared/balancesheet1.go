@@ -72,3 +72,31 @@ type BalanceSheet1 struct {
 	// An array of balance sheet reports.
 	Reports []BalanceSheet `json:"reports"`
 }
+
+func (o *BalanceSheet1) GetCurrency() string {
+	if o == nil {
+		return ""
+	}
+	return o.Currency
+}
+
+func (o *BalanceSheet1) GetEarliestAvailableMonth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.EarliestAvailableMonth
+}
+
+func (o *BalanceSheet1) GetMostRecentAvailableMonth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.MostRecentAvailableMonth
+}
+
+func (o *BalanceSheet1) GetReports() []BalanceSheet {
+	if o == nil {
+		return []BalanceSheet{}
+	}
+	return o.Reports
+}

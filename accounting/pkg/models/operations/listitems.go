@@ -19,6 +19,41 @@ type ListItemsRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
+func (o *ListItemsRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *ListItemsRequest) GetOrderBy() *string {
+	if o == nil {
+		return nil
+	}
+	return o.OrderBy
+}
+
+func (o *ListItemsRequest) GetPage() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Page
+}
+
+func (o *ListItemsRequest) GetPageSize() *int {
+	if o == nil {
+		return nil
+	}
+	return o.PageSize
+}
+
+func (o *ListItemsRequest) GetQuery() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Query
+}
+
 // ListItems409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
 type ListItems409ApplicationJSON struct {
 	CanBeRetried      *string `json:"canBeRetried,omitempty"`
@@ -27,6 +62,48 @@ type ListItems409ApplicationJSON struct {
 	Error             *string `json:"error,omitempty"`
 	Service           *string `json:"service,omitempty"`
 	StatusCode        *int64  `json:"statusCode,omitempty"`
+}
+
+func (o *ListItems409ApplicationJSON) GetCanBeRetried() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CanBeRetried
+}
+
+func (o *ListItems409ApplicationJSON) GetCorrelationID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CorrelationID
+}
+
+func (o *ListItems409ApplicationJSON) GetDetailedErrorCode() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.DetailedErrorCode
+}
+
+func (o *ListItems409ApplicationJSON) GetError() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Error
+}
+
+func (o *ListItems409ApplicationJSON) GetService() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Service
+}
+
+func (o *ListItems409ApplicationJSON) GetStatusCode() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.StatusCode
 }
 
 type ListItemsResponse struct {
@@ -39,4 +116,46 @@ type ListItemsResponse struct {
 	ListItems409ApplicationJSONObject *ListItems409ApplicationJSON
 	// Your `query` parameter was not correctly formed
 	Schema *shared.Schema
+}
+
+func (o *ListItemsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *ListItemsResponse) GetItems() *shared.Items1 {
+	if o == nil {
+		return nil
+	}
+	return o.Items
+}
+
+func (o *ListItemsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *ListItemsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *ListItemsResponse) GetListItems409ApplicationJSONObject() *ListItems409ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ListItems409ApplicationJSONObject
+}
+
+func (o *ListItemsResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

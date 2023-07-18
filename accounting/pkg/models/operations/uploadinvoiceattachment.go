@@ -12,6 +12,20 @@ type UploadInvoiceAttachmentRequestBody struct {
 	RequestBody string `multipartForm:"name=requestBody"`
 }
 
+func (o *UploadInvoiceAttachmentRequestBody) GetContent() []byte {
+	if o == nil {
+		return []byte{}
+	}
+	return o.Content
+}
+
+func (o *UploadInvoiceAttachmentRequestBody) GetRequestBody() string {
+	if o == nil {
+		return ""
+	}
+	return o.RequestBody
+}
+
 type UploadInvoiceAttachmentRequest struct {
 	RequestBody  *UploadInvoiceAttachmentRequestBody `multipartForm:"file" request:"mediaType=multipart/form-data"`
 	CompanyID    string                              `pathParam:"style=simple,explode=false,name=companyId"`
@@ -20,10 +34,66 @@ type UploadInvoiceAttachmentRequest struct {
 	InvoiceID string `pathParam:"style=simple,explode=false,name=invoiceId"`
 }
 
+func (o *UploadInvoiceAttachmentRequest) GetRequestBody() *UploadInvoiceAttachmentRequestBody {
+	if o == nil {
+		return nil
+	}
+	return o.RequestBody
+}
+
+func (o *UploadInvoiceAttachmentRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *UploadInvoiceAttachmentRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *UploadInvoiceAttachmentRequest) GetInvoiceID() string {
+	if o == nil {
+		return ""
+	}
+	return o.InvoiceID
+}
+
 type UploadInvoiceAttachmentResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
+}
+
+func (o *UploadInvoiceAttachmentResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *UploadInvoiceAttachmentResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *UploadInvoiceAttachmentResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *UploadInvoiceAttachmentResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

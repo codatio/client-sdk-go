@@ -19,6 +19,41 @@ type ListTaxRatesRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
+func (o *ListTaxRatesRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *ListTaxRatesRequest) GetOrderBy() *string {
+	if o == nil {
+		return nil
+	}
+	return o.OrderBy
+}
+
+func (o *ListTaxRatesRequest) GetPage() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Page
+}
+
+func (o *ListTaxRatesRequest) GetPageSize() *int {
+	if o == nil {
+		return nil
+	}
+	return o.PageSize
+}
+
+func (o *ListTaxRatesRequest) GetQuery() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Query
+}
+
 // ListTaxRates409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
 type ListTaxRates409ApplicationJSON struct {
 	CanBeRetried      *string `json:"canBeRetried,omitempty"`
@@ -27,6 +62,48 @@ type ListTaxRates409ApplicationJSON struct {
 	Error             *string `json:"error,omitempty"`
 	Service           *string `json:"service,omitempty"`
 	StatusCode        *int64  `json:"statusCode,omitempty"`
+}
+
+func (o *ListTaxRates409ApplicationJSON) GetCanBeRetried() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CanBeRetried
+}
+
+func (o *ListTaxRates409ApplicationJSON) GetCorrelationID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CorrelationID
+}
+
+func (o *ListTaxRates409ApplicationJSON) GetDetailedErrorCode() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.DetailedErrorCode
+}
+
+func (o *ListTaxRates409ApplicationJSON) GetError() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Error
+}
+
+func (o *ListTaxRates409ApplicationJSON) GetService() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Service
+}
+
+func (o *ListTaxRates409ApplicationJSON) GetStatusCode() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.StatusCode
 }
 
 type ListTaxRatesResponse struct {
@@ -39,4 +116,46 @@ type ListTaxRatesResponse struct {
 	ListTaxRates409ApplicationJSONObject *ListTaxRates409ApplicationJSON
 	// Your `query` parameter was not correctly formed
 	Schema *shared.Schema
+}
+
+func (o *ListTaxRatesResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *ListTaxRatesResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *ListTaxRatesResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *ListTaxRatesResponse) GetTaxRates() *shared.TaxRates {
+	if o == nil {
+		return nil
+	}
+	return o.TaxRates
+}
+
+func (o *ListTaxRatesResponse) GetListTaxRates409ApplicationJSONObject() *ListTaxRates409ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ListTaxRates409ApplicationJSONObject
+}
+
+func (o *ListTaxRatesResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

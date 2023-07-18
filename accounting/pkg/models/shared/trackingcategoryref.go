@@ -9,3 +9,17 @@ type TrackingCategoryRef struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
 }
+
+func (o *TrackingCategoryRef) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *TrackingCategoryRef) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}

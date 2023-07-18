@@ -14,6 +14,34 @@ type CreateSupplierRequest struct {
 	TimeoutInMinutes *int             `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
 }
 
+func (o *CreateSupplierRequest) GetSupplier() *shared.Supplier {
+	if o == nil {
+		return nil
+	}
+	return o.Supplier
+}
+
+func (o *CreateSupplierRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *CreateSupplierRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *CreateSupplierRequest) GetTimeoutInMinutes() *int {
+	if o == nil {
+		return nil
+	}
+	return o.TimeoutInMinutes
+}
+
 type CreateSupplierResponse struct {
 	ContentType string
 	// Success
@@ -22,4 +50,39 @@ type CreateSupplierResponse struct {
 	RawResponse            *http.Response
 	// The request made is not valid.
 	Schema *shared.Schema
+}
+
+func (o *CreateSupplierResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *CreateSupplierResponse) GetCreateSupplierResponse() *shared.CreateSupplierResponse {
+	if o == nil {
+		return nil
+	}
+	return o.CreateSupplierResponse
+}
+
+func (o *CreateSupplierResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *CreateSupplierResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *CreateSupplierResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

@@ -12,6 +12,20 @@ type GetCreateTransfersModelRequest struct {
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
+func (o *GetCreateTransfersModelRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *GetCreateTransfersModelRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
 type GetCreateTransfersModelResponse struct {
 	ContentType string
 	// OK
@@ -20,4 +34,39 @@ type GetCreateTransfersModelResponse struct {
 	RawResponse *http.Response
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
+}
+
+func (o *GetCreateTransfersModelResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetCreateTransfersModelResponse) GetPushOption() *shared.PushOption {
+	if o == nil {
+		return nil
+	}
+	return o.PushOption
+}
+
+func (o *GetCreateTransfersModelResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetCreateTransfersModelResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetCreateTransfersModelResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

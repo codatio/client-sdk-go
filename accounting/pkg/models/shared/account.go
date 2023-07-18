@@ -60,3 +60,108 @@ type Account struct {
 	// The validDatatypeLinks can be used to determine whether an account can be correctly mapped to another object; for example, accounts with a `type` of `income` might only support being used on an Invoice and Direct Income. For more information, see [Valid Data Type Links](/accounting-api#/schemas/ValidDataTypeLinks).
 	ValidDatatypeLinks []ValidDataTypeLinks `json:"validDatatypeLinks,omitempty"`
 }
+
+func (o *Account) GetCurrency() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Currency
+}
+
+func (o *Account) GetCurrentBalance() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.CurrentBalance
+}
+
+func (o *Account) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *Account) GetFullyQualifiedCategory() *string {
+	if o == nil {
+		return nil
+	}
+	return o.FullyQualifiedCategory
+}
+
+func (o *Account) GetFullyQualifiedName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.FullyQualifiedName
+}
+
+func (o *Account) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *Account) GetIsBankAccount() bool {
+	if o == nil {
+		return false
+	}
+	return o.IsBankAccount
+}
+
+func (o *Account) GetMetadata() *Metadata {
+	if o == nil {
+		return nil
+	}
+	return o.Metadata
+}
+
+func (o *Account) GetModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ModifiedDate
+}
+
+func (o *Account) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
+func (o *Account) GetNominalCode() *string {
+	if o == nil {
+		return nil
+	}
+	return o.NominalCode
+}
+
+func (o *Account) GetSourceModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceModifiedDate
+}
+
+func (o *Account) GetStatus() AccountStatus {
+	if o == nil {
+		return AccountStatus("")
+	}
+	return o.Status
+}
+
+func (o *Account) GetType() AccountType {
+	if o == nil {
+		return AccountType("")
+	}
+	return o.Type
+}
+
+func (o *Account) GetValidDatatypeLinks() []ValidDataTypeLinks {
+	if o == nil {
+		return nil
+	}
+	return o.ValidDatatypeLinks
+}

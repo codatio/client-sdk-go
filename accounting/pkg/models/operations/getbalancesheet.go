@@ -16,6 +16,34 @@ type GetBalanceSheetRequest struct {
 	StartMonth       *string `queryParam:"style=form,explode=true,name=startMonth"`
 }
 
+func (o *GetBalanceSheetRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *GetBalanceSheetRequest) GetPeriodLength() int {
+	if o == nil {
+		return 0
+	}
+	return o.PeriodLength
+}
+
+func (o *GetBalanceSheetRequest) GetPeriodsToCompare() int {
+	if o == nil {
+		return 0
+	}
+	return o.PeriodsToCompare
+}
+
+func (o *GetBalanceSheetRequest) GetStartMonth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.StartMonth
+}
+
 // GetBalanceSheet409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
 type GetBalanceSheet409ApplicationJSON struct {
 	CanBeRetried      *string `json:"canBeRetried,omitempty"`
@@ -24,6 +52,48 @@ type GetBalanceSheet409ApplicationJSON struct {
 	Error             *string `json:"error,omitempty"`
 	Service           *string `json:"service,omitempty"`
 	StatusCode        *int64  `json:"statusCode,omitempty"`
+}
+
+func (o *GetBalanceSheet409ApplicationJSON) GetCanBeRetried() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CanBeRetried
+}
+
+func (o *GetBalanceSheet409ApplicationJSON) GetCorrelationID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CorrelationID
+}
+
+func (o *GetBalanceSheet409ApplicationJSON) GetDetailedErrorCode() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.DetailedErrorCode
+}
+
+func (o *GetBalanceSheet409ApplicationJSON) GetError() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Error
+}
+
+func (o *GetBalanceSheet409ApplicationJSON) GetService() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Service
+}
+
+func (o *GetBalanceSheet409ApplicationJSON) GetStatusCode() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.StatusCode
 }
 
 type GetBalanceSheetResponse struct {
@@ -36,4 +106,46 @@ type GetBalanceSheetResponse struct {
 	GetBalanceSheet409ApplicationJSONObject *GetBalanceSheet409ApplicationJSON
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
+}
+
+func (o *GetBalanceSheetResponse) GetBalanceSheet() *shared.BalanceSheet1 {
+	if o == nil {
+		return nil
+	}
+	return o.BalanceSheet
+}
+
+func (o *GetBalanceSheetResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetBalanceSheetResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetBalanceSheetResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetBalanceSheetResponse) GetGetBalanceSheet409ApplicationJSONObject() *GetBalanceSheet409ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetBalanceSheet409ApplicationJSONObject
+}
+
+func (o *GetBalanceSheetResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

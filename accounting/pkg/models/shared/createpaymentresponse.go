@@ -742,3 +742,101 @@ type CreatePaymentResponse struct {
 	// A human-readable object describing validation decisions Codat has made when pushing data into the platform. If a push has failed because of validation errors, they will be detailed here.
 	Validation *Validation `json:"validation,omitempty"`
 }
+
+func (o *CreatePaymentResponse) GetChanges() []PushOperationChange {
+	if o == nil {
+		return nil
+	}
+	return o.Changes
+}
+
+func (o *CreatePaymentResponse) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *CreatePaymentResponse) GetCompletedOnUtc() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CompletedOnUtc
+}
+
+func (o *CreatePaymentResponse) GetData() *Payment {
+	if o == nil {
+		return nil
+	}
+	return o.Data
+}
+
+func (o *CreatePaymentResponse) GetDataConnectionKey() string {
+	if o == nil {
+		return ""
+	}
+	return o.DataConnectionKey
+}
+
+func (o *CreatePaymentResponse) GetDataType() *DataType {
+	if o == nil {
+		return nil
+	}
+	return o.DataType
+}
+
+func (o *CreatePaymentResponse) GetErrorMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *CreatePaymentResponse) GetPushOperationKey() string {
+	if o == nil {
+		return ""
+	}
+	return o.PushOperationKey
+}
+
+func (o *CreatePaymentResponse) GetRequestedOnUtc() string {
+	if o == nil {
+		return ""
+	}
+	return o.RequestedOnUtc
+}
+
+func (o *CreatePaymentResponse) GetStatus() PushOperationStatus {
+	if o == nil {
+		return PushOperationStatus("")
+	}
+	return o.Status
+}
+
+func (o *CreatePaymentResponse) GetStatusCode() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *CreatePaymentResponse) GetTimeoutInMinutes() *int {
+	if o == nil {
+		return nil
+	}
+	return o.TimeoutInMinutes
+}
+
+func (o *CreatePaymentResponse) GetTimeoutInSeconds() *int {
+	if o == nil {
+		return nil
+	}
+	return o.TimeoutInSeconds
+}
+
+func (o *CreatePaymentResponse) GetValidation() *Validation {
+	if o == nil {
+		return nil
+	}
+	return o.Validation
+}

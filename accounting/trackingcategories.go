@@ -7,6 +7,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/accounting/pkg/models/sdkerrors"
 	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/accounting/pkg/utils"
 	"io"
@@ -113,6 +114,8 @@ func (s *trackingCategories) Get(ctx context.Context, request operations.GetTrac
 			}
 
 			res.TrackingCategoryTree = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -127,6 +130,8 @@ func (s *trackingCategories) Get(ctx context.Context, request operations.GetTrac
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 409:
 		switch {
@@ -137,6 +142,8 @@ func (s *trackingCategories) Get(ctx context.Context, request operations.GetTrac
 			}
 
 			res.GetTrackingCategory409ApplicationJSONObject = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -234,6 +241,8 @@ func (s *trackingCategories) List(ctx context.Context, request operations.ListTr
 			}
 
 			res.TrackingCategories = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
 		fallthrough
@@ -248,6 +257,8 @@ func (s *trackingCategories) List(ctx context.Context, request operations.ListTr
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 409:
 		switch {
@@ -258,6 +269,8 @@ func (s *trackingCategories) List(ctx context.Context, request operations.ListTr
 			}
 
 			res.ListTrackingCategories409ApplicationJSONObject = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 

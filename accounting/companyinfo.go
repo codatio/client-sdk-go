@@ -7,6 +7,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/accounting/pkg/models/sdkerrors"
 	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/accounting/pkg/utils"
 	"io"
@@ -107,6 +108,8 @@ func (s *companyInfo) Get(ctx context.Context, request operations.GetCompanyInfo
 			}
 
 			res.CompanyDataset = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -121,6 +124,8 @@ func (s *companyInfo) Get(ctx context.Context, request operations.GetCompanyInfo
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 409:
 		switch {
@@ -131,6 +136,8 @@ func (s *companyInfo) Get(ctx context.Context, request operations.GetCompanyInfo
 			}
 
 			res.GetCompanyInfo409ApplicationJSONObject = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -220,6 +227,8 @@ func (s *companyInfo) Refresh(ctx context.Context, request operations.RefreshCom
 			}
 
 			res.Dataset = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -234,6 +243,8 @@ func (s *companyInfo) Refresh(ctx context.Context, request operations.RefreshCom
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 

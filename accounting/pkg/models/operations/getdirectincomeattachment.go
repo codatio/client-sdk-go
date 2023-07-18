@@ -17,6 +17,41 @@ type GetDirectIncomeAttachmentRequest struct {
 	TimeoutInMinutes *int   `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
 }
 
+func (o *GetDirectIncomeAttachmentRequest) GetAttachmentID() string {
+	if o == nil {
+		return ""
+	}
+	return o.AttachmentID
+}
+
+func (o *GetDirectIncomeAttachmentRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *GetDirectIncomeAttachmentRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *GetDirectIncomeAttachmentRequest) GetDirectIncomeID() string {
+	if o == nil {
+		return ""
+	}
+	return o.DirectIncomeID
+}
+
+func (o *GetDirectIncomeAttachmentRequest) GetTimeoutInMinutes() *int {
+	if o == nil {
+		return nil
+	}
+	return o.TimeoutInMinutes
+}
+
 type GetDirectIncomeAttachmentResponse struct {
 	// Success
 	Attachment  *shared.Attachment
@@ -25,4 +60,39 @@ type GetDirectIncomeAttachmentResponse struct {
 	RawResponse *http.Response
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
+}
+
+func (o *GetDirectIncomeAttachmentResponse) GetAttachment() *shared.Attachment {
+	if o == nil {
+		return nil
+	}
+	return o.Attachment
+}
+
+func (o *GetDirectIncomeAttachmentResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetDirectIncomeAttachmentResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetDirectIncomeAttachmentResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetDirectIncomeAttachmentResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

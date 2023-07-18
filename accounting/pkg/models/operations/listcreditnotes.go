@@ -19,6 +19,41 @@ type ListCreditNotesRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
+func (o *ListCreditNotesRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *ListCreditNotesRequest) GetOrderBy() *string {
+	if o == nil {
+		return nil
+	}
+	return o.OrderBy
+}
+
+func (o *ListCreditNotesRequest) GetPage() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Page
+}
+
+func (o *ListCreditNotesRequest) GetPageSize() *int {
+	if o == nil {
+		return nil
+	}
+	return o.PageSize
+}
+
+func (o *ListCreditNotesRequest) GetQuery() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Query
+}
+
 // ListCreditNotes409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
 type ListCreditNotes409ApplicationJSON struct {
 	CanBeRetried      *string `json:"canBeRetried,omitempty"`
@@ -27,6 +62,48 @@ type ListCreditNotes409ApplicationJSON struct {
 	Error             *string `json:"error,omitempty"`
 	Service           *string `json:"service,omitempty"`
 	StatusCode        *int64  `json:"statusCode,omitempty"`
+}
+
+func (o *ListCreditNotes409ApplicationJSON) GetCanBeRetried() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CanBeRetried
+}
+
+func (o *ListCreditNotes409ApplicationJSON) GetCorrelationID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CorrelationID
+}
+
+func (o *ListCreditNotes409ApplicationJSON) GetDetailedErrorCode() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.DetailedErrorCode
+}
+
+func (o *ListCreditNotes409ApplicationJSON) GetError() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Error
+}
+
+func (o *ListCreditNotes409ApplicationJSON) GetService() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Service
+}
+
+func (o *ListCreditNotes409ApplicationJSON) GetStatusCode() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.StatusCode
 }
 
 type ListCreditNotesResponse struct {
@@ -39,4 +116,46 @@ type ListCreditNotesResponse struct {
 	ListCreditNotes409ApplicationJSONObject *ListCreditNotes409ApplicationJSON
 	// Your `query` parameter was not correctly formed
 	Schema *shared.Schema
+}
+
+func (o *ListCreditNotesResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *ListCreditNotesResponse) GetCreditNotes() *shared.CreditNotes {
+	if o == nil {
+		return nil
+	}
+	return o.CreditNotes
+}
+
+func (o *ListCreditNotesResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *ListCreditNotesResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *ListCreditNotesResponse) GetListCreditNotes409ApplicationJSONObject() *ListCreditNotes409ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ListCreditNotes409ApplicationJSONObject
+}
+
+func (o *ListCreditNotesResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

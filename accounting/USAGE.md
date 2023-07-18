@@ -1,4 +1,6 @@
 <!-- Start SDK Example Usage -->
+
+
 ```go
 package main
 
@@ -6,6 +8,7 @@ import(
 	"context"
 	"log"
 	"github.com/codatio/client-sdk-go/accounting"
+	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
 )
 

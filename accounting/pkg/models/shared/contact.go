@@ -33,3 +33,45 @@ type Contact struct {
 	// Status of customer.
 	Status CustomerStatus `json:"status"`
 }
+
+func (o *Contact) GetAddress() *Addressesitems {
+	if o == nil {
+		return nil
+	}
+	return o.Address
+}
+
+func (o *Contact) GetEmail() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Email
+}
+
+func (o *Contact) GetModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ModifiedDate
+}
+
+func (o *Contact) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
+func (o *Contact) GetPhone() []PhoneNumbersitems {
+	if o == nil {
+		return nil
+	}
+	return o.Phone
+}
+
+func (o *Contact) GetStatus() CustomerStatus {
+	if o == nil {
+		return CustomerStatus("")
+	}
+	return o.Status
+}

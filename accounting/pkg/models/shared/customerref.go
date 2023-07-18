@@ -8,3 +8,17 @@ type CustomerRef struct {
 	// `id` from the Customers data type
 	ID string `json:"id"`
 }
+
+func (o *CustomerRef) GetCompanyName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CompanyName
+}
+
+func (o *CustomerRef) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}

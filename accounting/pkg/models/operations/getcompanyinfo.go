@@ -11,6 +11,13 @@ type GetCompanyInfoRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
+func (o *GetCompanyInfoRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
 // GetCompanyInfo409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
 type GetCompanyInfo409ApplicationJSON struct {
 	CanBeRetried      *string `json:"canBeRetried,omitempty"`
@@ -19,6 +26,48 @@ type GetCompanyInfo409ApplicationJSON struct {
 	Error             *string `json:"error,omitempty"`
 	Service           *string `json:"service,omitempty"`
 	StatusCode        *int64  `json:"statusCode,omitempty"`
+}
+
+func (o *GetCompanyInfo409ApplicationJSON) GetCanBeRetried() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CanBeRetried
+}
+
+func (o *GetCompanyInfo409ApplicationJSON) GetCorrelationID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CorrelationID
+}
+
+func (o *GetCompanyInfo409ApplicationJSON) GetDetailedErrorCode() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.DetailedErrorCode
+}
+
+func (o *GetCompanyInfo409ApplicationJSON) GetError() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Error
+}
+
+func (o *GetCompanyInfo409ApplicationJSON) GetService() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Service
+}
+
+func (o *GetCompanyInfo409ApplicationJSON) GetStatusCode() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.StatusCode
 }
 
 type GetCompanyInfoResponse struct {
@@ -31,4 +80,46 @@ type GetCompanyInfoResponse struct {
 	GetCompanyInfo409ApplicationJSONObject *GetCompanyInfo409ApplicationJSON
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
+}
+
+func (o *GetCompanyInfoResponse) GetCompanyDataset() *shared.CompanyDataset {
+	if o == nil {
+		return nil
+	}
+	return o.CompanyDataset
+}
+
+func (o *GetCompanyInfoResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetCompanyInfoResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetCompanyInfoResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetCompanyInfoResponse) GetGetCompanyInfo409ApplicationJSONObject() *GetCompanyInfo409ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetCompanyInfo409ApplicationJSONObject
+}
+
+func (o *GetCompanyInfoResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

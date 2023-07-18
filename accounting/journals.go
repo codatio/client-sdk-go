@@ -7,6 +7,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/accounting/pkg/models/sdkerrors"
 	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/accounting/pkg/utils"
 	"io"
@@ -126,6 +127,8 @@ func (s *journals) Create(ctx context.Context, request operations.CreateJournalR
 			}
 
 			res.CreateJournalResponse = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
 		fallthrough
@@ -142,6 +145,8 @@ func (s *journals) Create(ctx context.Context, request operations.CreateJournalR
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -237,6 +242,8 @@ func (s *journals) Get(ctx context.Context, request operations.GetJournalRequest
 			}
 
 			res.Journal = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -251,6 +258,8 @@ func (s *journals) Get(ctx context.Context, request operations.GetJournalRequest
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 409:
 		switch {
@@ -261,6 +270,8 @@ func (s *journals) Get(ctx context.Context, request operations.GetJournalRequest
 			}
 
 			res.GetJournal409ApplicationJSONObject = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -358,6 +369,8 @@ func (s *journals) GetCreateModel(ctx context.Context, request operations.GetCre
 			}
 
 			res.PushOption = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -372,6 +385,8 @@ func (s *journals) GetCreateModel(ctx context.Context, request operations.GetCre
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -469,6 +484,8 @@ func (s *journals) List(ctx context.Context, request operations.ListJournalsRequ
 			}
 
 			res.Journals = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
 		fallthrough
@@ -483,6 +500,8 @@ func (s *journals) List(ctx context.Context, request operations.ListJournalsRequ
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 409:
 		switch {
@@ -493,6 +512,8 @@ func (s *journals) List(ctx context.Context, request operations.ListJournalsRequ
 			}
 
 			res.ListJournals409ApplicationJSONObject = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 

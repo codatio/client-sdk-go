@@ -46,3 +46,31 @@ type CashFlowStatement struct {
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	ToDate *string `json:"toDate,omitempty"`
 }
+
+func (o *CashFlowStatement) GetCashPayments() *ReportLine {
+	if o == nil {
+		return nil
+	}
+	return o.CashPayments
+}
+
+func (o *CashFlowStatement) GetCashReceipts() *ReportLine {
+	if o == nil {
+		return nil
+	}
+	return o.CashReceipts
+}
+
+func (o *CashFlowStatement) GetFromDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.FromDate
+}
+
+func (o *CashFlowStatement) GetToDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ToDate
+}

@@ -57,3 +57,80 @@ type ProfitAndLossReport struct {
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	ToDate *string `json:"toDate,omitempty"`
 }
+
+func (o *ProfitAndLossReport) GetCostOfSales() *ReportLine {
+	if o == nil {
+		return nil
+	}
+	return o.CostOfSales
+}
+
+func (o *ProfitAndLossReport) GetExpenses() *ReportLine {
+	if o == nil {
+		return nil
+	}
+	return o.Expenses
+}
+
+func (o *ProfitAndLossReport) GetFromDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.FromDate
+}
+
+func (o *ProfitAndLossReport) GetGrossProfit() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.GrossProfit
+}
+
+func (o *ProfitAndLossReport) GetIncome() *ReportLine {
+	if o == nil {
+		return nil
+	}
+	return o.Income
+}
+
+func (o *ProfitAndLossReport) GetNetOperatingProfit() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.NetOperatingProfit
+}
+
+func (o *ProfitAndLossReport) GetNetOtherIncome() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.NetOtherIncome
+}
+
+func (o *ProfitAndLossReport) GetNetProfit() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.NetProfit
+}
+
+func (o *ProfitAndLossReport) GetOtherExpenses() *ReportLine {
+	if o == nil {
+		return nil
+	}
+	return o.OtherExpenses
+}
+
+func (o *ProfitAndLossReport) GetOtherIncome() *ReportLine {
+	if o == nil {
+		return nil
+	}
+	return o.OtherIncome
+}
+
+func (o *ProfitAndLossReport) GetToDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ToDate
+}

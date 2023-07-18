@@ -7,6 +7,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/accounting/pkg/models/sdkerrors"
 	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/accounting/pkg/utils"
 	"io"
@@ -126,6 +127,8 @@ func (s *bills) Create(ctx context.Context, request operations.CreateBillRequest
 			}
 
 			res.CreateBillResponse = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
 		fallthrough
@@ -142,6 +145,8 @@ func (s *bills) Create(ctx context.Context, request operations.CreateBillRequest
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -261,6 +266,8 @@ func (s *bills) Delete(ctx context.Context, request operations.DeleteBillRequest
 			}
 
 			res.PushOperationSummary = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -275,6 +282,8 @@ func (s *bills) Delete(ctx context.Context, request operations.DeleteBillRequest
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -363,6 +372,8 @@ func (s *bills) DownloadAttachment(ctx context.Context, request operations.Downl
 		switch {
 		case utils.MatchContentType(contentType, `application/octet-stream`):
 			res.Data = rawBody
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -377,6 +388,8 @@ func (s *bills) DownloadAttachment(ctx context.Context, request operations.Downl
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -472,6 +485,8 @@ func (s *bills) Get(ctx context.Context, request operations.GetBillRequest, opts
 			}
 
 			res.Bill = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -486,6 +501,8 @@ func (s *bills) Get(ctx context.Context, request operations.GetBillRequest, opts
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 409:
 		switch {
@@ -496,6 +513,8 @@ func (s *bills) Get(ctx context.Context, request operations.GetBillRequest, opts
 			}
 
 			res.GetBill409ApplicationJSONObject = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -589,6 +608,8 @@ func (s *bills) GetAttachment(ctx context.Context, request operations.GetBillAtt
 			}
 
 			res.Attachment = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -603,6 +624,8 @@ func (s *bills) GetAttachment(ctx context.Context, request operations.GetBillAtt
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -700,6 +723,8 @@ func (s *bills) GetCreateUpdateModel(ctx context.Context, request operations.Get
 			}
 
 			res.PushOption = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -714,6 +739,8 @@ func (s *bills) GetCreateUpdateModel(ctx context.Context, request operations.Get
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -811,6 +838,8 @@ func (s *bills) List(ctx context.Context, request operations.ListBillsRequest, o
 			}
 
 			res.Bills = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
 		fallthrough
@@ -825,6 +854,8 @@ func (s *bills) List(ctx context.Context, request operations.ListBillsRequest, o
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 409:
 		switch {
@@ -835,6 +866,8 @@ func (s *bills) List(ctx context.Context, request operations.ListBillsRequest, o
 			}
 
 			res.ListBills409ApplicationJSONObject = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -928,6 +961,8 @@ func (s *bills) ListAttachments(ctx context.Context, request operations.ListBill
 			}
 
 			res.AttachmentsDataset = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -942,6 +977,8 @@ func (s *bills) ListAttachments(ctx context.Context, request operations.ListBill
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -1050,6 +1087,8 @@ func (s *bills) Update(ctx context.Context, request operations.UpdateBillRequest
 			}
 
 			res.UpdateBillResponse = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
 		fallthrough
@@ -1066,6 +1105,8 @@ func (s *bills) Update(ctx context.Context, request operations.UpdateBillRequest
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -1175,6 +1216,8 @@ func (s *bills) UploadAttachment(ctx context.Context, request operations.UploadB
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 

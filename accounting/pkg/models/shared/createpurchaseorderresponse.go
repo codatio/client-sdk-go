@@ -71,3 +71,101 @@ type CreatePurchaseOrderResponse struct {
 	// A human-readable object describing validation decisions Codat has made when pushing data into the platform. If a push has failed because of validation errors, they will be detailed here.
 	Validation *Validation `json:"validation,omitempty"`
 }
+
+func (o *CreatePurchaseOrderResponse) GetChanges() []PushOperationChange {
+	if o == nil {
+		return nil
+	}
+	return o.Changes
+}
+
+func (o *CreatePurchaseOrderResponse) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *CreatePurchaseOrderResponse) GetCompletedOnUtc() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CompletedOnUtc
+}
+
+func (o *CreatePurchaseOrderResponse) GetData() *PurchaseOrder {
+	if o == nil {
+		return nil
+	}
+	return o.Data
+}
+
+func (o *CreatePurchaseOrderResponse) GetDataConnectionKey() string {
+	if o == nil {
+		return ""
+	}
+	return o.DataConnectionKey
+}
+
+func (o *CreatePurchaseOrderResponse) GetDataType() *DataType {
+	if o == nil {
+		return nil
+	}
+	return o.DataType
+}
+
+func (o *CreatePurchaseOrderResponse) GetErrorMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *CreatePurchaseOrderResponse) GetPushOperationKey() string {
+	if o == nil {
+		return ""
+	}
+	return o.PushOperationKey
+}
+
+func (o *CreatePurchaseOrderResponse) GetRequestedOnUtc() string {
+	if o == nil {
+		return ""
+	}
+	return o.RequestedOnUtc
+}
+
+func (o *CreatePurchaseOrderResponse) GetStatus() PushOperationStatus {
+	if o == nil {
+		return PushOperationStatus("")
+	}
+	return o.Status
+}
+
+func (o *CreatePurchaseOrderResponse) GetStatusCode() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *CreatePurchaseOrderResponse) GetTimeoutInMinutes() *int {
+	if o == nil {
+		return nil
+	}
+	return o.TimeoutInMinutes
+}
+
+func (o *CreatePurchaseOrderResponse) GetTimeoutInSeconds() *int {
+	if o == nil {
+		return nil
+	}
+	return o.TimeoutInSeconds
+}
+
+func (o *CreatePurchaseOrderResponse) GetValidation() *Validation {
+	if o == nil {
+		return nil
+	}
+	return o.Validation
+}

@@ -10,3 +10,38 @@ type BankAccounts struct {
 	Results      []BankAccount `json:"results,omitempty"`
 	TotalResults int64         `json:"totalResults"`
 }
+
+func (o *BankAccounts) GetLinks() Links {
+	if o == nil {
+		return Links{}
+	}
+	return o.Links
+}
+
+func (o *BankAccounts) GetPageNumber() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.PageNumber
+}
+
+func (o *BankAccounts) GetPageSize() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.PageSize
+}
+
+func (o *BankAccounts) GetResults() []BankAccount {
+	if o == nil {
+		return nil
+	}
+	return o.Results
+}
+
+func (o *BankAccounts) GetTotalResults() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.TotalResults
+}

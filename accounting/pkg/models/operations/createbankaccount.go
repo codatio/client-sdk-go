@@ -15,6 +15,41 @@ type CreateBankAccountRequest struct {
 	TimeoutInMinutes        *int                `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
 }
 
+func (o *CreateBankAccountRequest) GetBankAccount() *shared.BankAccount {
+	if o == nil {
+		return nil
+	}
+	return o.BankAccount
+}
+
+func (o *CreateBankAccountRequest) GetAllowSyncOnPushComplete() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.AllowSyncOnPushComplete
+}
+
+func (o *CreateBankAccountRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *CreateBankAccountRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *CreateBankAccountRequest) GetTimeoutInMinutes() *int {
+	if o == nil {
+		return nil
+	}
+	return o.TimeoutInMinutes
+}
+
 type CreateBankAccountResponse struct {
 	ContentType string
 	// Success
@@ -23,4 +58,39 @@ type CreateBankAccountResponse struct {
 	RawResponse               *http.Response
 	// The request made is not valid.
 	Schema *shared.Schema
+}
+
+func (o *CreateBankAccountResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *CreateBankAccountResponse) GetCreateBankAccountResponse() *shared.CreateBankAccountResponse {
+	if o == nil {
+		return nil
+	}
+	return o.CreateBankAccountResponse
+}
+
+func (o *CreateBankAccountResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *CreateBankAccountResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *CreateBankAccountResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

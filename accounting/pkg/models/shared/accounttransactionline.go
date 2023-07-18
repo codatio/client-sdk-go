@@ -17,3 +17,24 @@ type AccountTransactionLine struct {
 	// - Transfers
 	RecordRef *InvoiceTo `json:"recordRef,omitempty"`
 }
+
+func (o *AccountTransactionLine) GetAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Amount
+}
+
+func (o *AccountTransactionLine) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *AccountTransactionLine) GetRecordRef() *InvoiceTo {
+	if o == nil {
+		return nil
+	}
+	return o.RecordRef
+}

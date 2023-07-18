@@ -17,6 +17,48 @@ type UpdatePurchaseOrderRequest struct {
 	TimeoutInMinutes *int   `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
 }
 
+func (o *UpdatePurchaseOrderRequest) GetPurchaseOrder() *shared.PurchaseOrder {
+	if o == nil {
+		return nil
+	}
+	return o.PurchaseOrder
+}
+
+func (o *UpdatePurchaseOrderRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *UpdatePurchaseOrderRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *UpdatePurchaseOrderRequest) GetForceUpdate() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.ForceUpdate
+}
+
+func (o *UpdatePurchaseOrderRequest) GetPurchaseOrderID() string {
+	if o == nil {
+		return ""
+	}
+	return o.PurchaseOrderID
+}
+
+func (o *UpdatePurchaseOrderRequest) GetTimeoutInMinutes() *int {
+	if o == nil {
+		return nil
+	}
+	return o.TimeoutInMinutes
+}
+
 type UpdatePurchaseOrderResponse struct {
 	ContentType string
 	StatusCode  int
@@ -25,4 +67,39 @@ type UpdatePurchaseOrderResponse struct {
 	UpdatePurchaseOrderResponse *shared.UpdatePurchaseOrderResponse
 	// The request made is not valid.
 	Schema *shared.Schema
+}
+
+func (o *UpdatePurchaseOrderResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *UpdatePurchaseOrderResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *UpdatePurchaseOrderResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *UpdatePurchaseOrderResponse) GetUpdatePurchaseOrderResponse() *shared.UpdatePurchaseOrderResponse {
+	if o == nil {
+		return nil
+	}
+	return o.UpdatePurchaseOrderResponse
+}
+
+func (o *UpdatePurchaseOrderResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

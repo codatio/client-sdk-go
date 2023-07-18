@@ -16,3 +16,17 @@ type InvoiceTo struct {
 	// 'id' of the underlying record or data type.
 	ID *string `json:"id,omitempty"`
 }
+
+func (o *InvoiceTo) GetDataType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DataType
+}
+
+func (o *InvoiceTo) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}

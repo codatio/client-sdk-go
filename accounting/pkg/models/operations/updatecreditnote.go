@@ -17,6 +17,48 @@ type UpdateCreditNoteRequest struct {
 	TimeoutInMinutes *int  `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
 }
 
+func (o *UpdateCreditNoteRequest) GetCreditNote() *shared.CreditNote {
+	if o == nil {
+		return nil
+	}
+	return o.CreditNote
+}
+
+func (o *UpdateCreditNoteRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *UpdateCreditNoteRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *UpdateCreditNoteRequest) GetCreditNoteID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CreditNoteID
+}
+
+func (o *UpdateCreditNoteRequest) GetForceUpdate() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.ForceUpdate
+}
+
+func (o *UpdateCreditNoteRequest) GetTimeoutInMinutes() *int {
+	if o == nil {
+		return nil
+	}
+	return o.TimeoutInMinutes
+}
+
 type UpdateCreditNoteResponse struct {
 	ContentType string
 	StatusCode  int
@@ -25,4 +67,39 @@ type UpdateCreditNoteResponse struct {
 	UpdateCreditNoteResponse *shared.UpdateCreditNoteResponse
 	// The request made is not valid.
 	Schema *shared.Schema
+}
+
+func (o *UpdateCreditNoteResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *UpdateCreditNoteResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *UpdateCreditNoteResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *UpdateCreditNoteResponse) GetUpdateCreditNoteResponse() *shared.UpdateCreditNoteResponse {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateCreditNoteResponse
+}
+
+func (o *UpdateCreditNoteResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

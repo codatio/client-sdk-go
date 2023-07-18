@@ -80,3 +80,101 @@ type UpdateBankAccountResponse struct {
 	// A human-readable object describing validation decisions Codat has made when pushing data into the platform. If a push has failed because of validation errors, they will be detailed here.
 	Validation *Validation `json:"validation,omitempty"`
 }
+
+func (o *UpdateBankAccountResponse) GetChanges() []PushOperationChange {
+	if o == nil {
+		return nil
+	}
+	return o.Changes
+}
+
+func (o *UpdateBankAccountResponse) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *UpdateBankAccountResponse) GetCompletedOnUtc() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CompletedOnUtc
+}
+
+func (o *UpdateBankAccountResponse) GetData() *BankAccount {
+	if o == nil {
+		return nil
+	}
+	return o.Data
+}
+
+func (o *UpdateBankAccountResponse) GetDataConnectionKey() string {
+	if o == nil {
+		return ""
+	}
+	return o.DataConnectionKey
+}
+
+func (o *UpdateBankAccountResponse) GetDataType() *DataType {
+	if o == nil {
+		return nil
+	}
+	return o.DataType
+}
+
+func (o *UpdateBankAccountResponse) GetErrorMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *UpdateBankAccountResponse) GetPushOperationKey() string {
+	if o == nil {
+		return ""
+	}
+	return o.PushOperationKey
+}
+
+func (o *UpdateBankAccountResponse) GetRequestedOnUtc() string {
+	if o == nil {
+		return ""
+	}
+	return o.RequestedOnUtc
+}
+
+func (o *UpdateBankAccountResponse) GetStatus() PushOperationStatus {
+	if o == nil {
+		return PushOperationStatus("")
+	}
+	return o.Status
+}
+
+func (o *UpdateBankAccountResponse) GetStatusCode() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *UpdateBankAccountResponse) GetTimeoutInMinutes() *int {
+	if o == nil {
+		return nil
+	}
+	return o.TimeoutInMinutes
+}
+
+func (o *UpdateBankAccountResponse) GetTimeoutInSeconds() *int {
+	if o == nil {
+		return nil
+	}
+	return o.TimeoutInSeconds
+}
+
+func (o *UpdateBankAccountResponse) GetValidation() *Validation {
+	if o == nil {
+		return nil
+	}
+	return o.Validation
+}

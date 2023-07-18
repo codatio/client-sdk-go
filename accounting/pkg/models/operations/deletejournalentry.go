@@ -14,6 +14,27 @@ type DeleteJournalEntryRequest struct {
 	JournalEntryID string `pathParam:"style=simple,explode=false,name=journalEntryId"`
 }
 
+func (o *DeleteJournalEntryRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *DeleteJournalEntryRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *DeleteJournalEntryRequest) GetJournalEntryID() string {
+	if o == nil {
+		return ""
+	}
+	return o.JournalEntryID
+}
+
 type DeleteJournalEntryResponse struct {
 	ContentType string
 	// OK
@@ -22,4 +43,39 @@ type DeleteJournalEntryResponse struct {
 	RawResponse          *http.Response
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
+}
+
+func (o *DeleteJournalEntryResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *DeleteJournalEntryResponse) GetPushOperationSummary() *shared.PushOperationSummary {
+	if o == nil {
+		return nil
+	}
+	return o.PushOperationSummary
+}
+
+func (o *DeleteJournalEntryResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *DeleteJournalEntryResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *DeleteJournalEntryResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

@@ -9,6 +9,20 @@ type ItemsAgedOutstandingAmountAmountsOutstandingByDataType struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *ItemsAgedOutstandingAmountAmountsOutstandingByDataType) GetAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Amount
+}
+
+func (o *ItemsAgedOutstandingAmountAmountsOutstandingByDataType) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 type ItemsAgedOutstandingAmount struct {
 	// The amount outstanding.
 	Amount *float64 `json:"amount,omitempty"`
@@ -56,6 +70,34 @@ type ItemsAgedOutstandingAmount struct {
 	ToDate *string `json:"toDate,omitempty"`
 }
 
+func (o *ItemsAgedOutstandingAmount) GetAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Amount
+}
+
+func (o *ItemsAgedOutstandingAmount) GetDetails() []ItemsAgedOutstandingAmountAmountsOutstandingByDataType {
+	if o == nil {
+		return nil
+	}
+	return o.Details
+}
+
+func (o *ItemsAgedOutstandingAmount) GetFromDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.FromDate
+}
+
+func (o *ItemsAgedOutstandingAmount) GetToDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ToDate
+}
+
 type AgedCurrencyOutstandingitems struct {
 	// Array of outstanding amounts by period.
 	AgedOutstandingAmounts []ItemsAgedOutstandingAmount `json:"agedOutstandingAmounts,omitempty"`
@@ -67,4 +109,18 @@ type AgedCurrencyOutstandingitems struct {
 	//
 	// There are only a very small number of edge cases where this currency code is returned by the Codat system.
 	Currency *string `json:"currency,omitempty"`
+}
+
+func (o *AgedCurrencyOutstandingitems) GetAgedOutstandingAmounts() []ItemsAgedOutstandingAmount {
+	if o == nil {
+		return nil
+	}
+	return o.AgedOutstandingAmounts
+}
+
+func (o *AgedCurrencyOutstandingitems) GetCurrency() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Currency
 }

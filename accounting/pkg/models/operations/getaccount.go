@@ -13,6 +13,20 @@ type GetAccountRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
+func (o *GetAccountRequest) GetAccountID() string {
+	if o == nil {
+		return ""
+	}
+	return o.AccountID
+}
+
+func (o *GetAccountRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
 // GetAccount409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
 type GetAccount409ApplicationJSON struct {
 	CanBeRetried      *string `json:"canBeRetried,omitempty"`
@@ -21,6 +35,48 @@ type GetAccount409ApplicationJSON struct {
 	Error             *string `json:"error,omitempty"`
 	Service           *string `json:"service,omitempty"`
 	StatusCode        *int64  `json:"statusCode,omitempty"`
+}
+
+func (o *GetAccount409ApplicationJSON) GetCanBeRetried() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CanBeRetried
+}
+
+func (o *GetAccount409ApplicationJSON) GetCorrelationID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CorrelationID
+}
+
+func (o *GetAccount409ApplicationJSON) GetDetailedErrorCode() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.DetailedErrorCode
+}
+
+func (o *GetAccount409ApplicationJSON) GetError() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Error
+}
+
+func (o *GetAccount409ApplicationJSON) GetService() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Service
+}
+
+func (o *GetAccount409ApplicationJSON) GetStatusCode() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.StatusCode
 }
 
 type GetAccountResponse struct {
@@ -33,4 +89,46 @@ type GetAccountResponse struct {
 	GetAccount409ApplicationJSONObject *GetAccount409ApplicationJSON
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
+}
+
+func (o *GetAccountResponse) GetAccount() *shared.Account {
+	if o == nil {
+		return nil
+	}
+	return o.Account
+}
+
+func (o *GetAccountResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetAccountResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetAccountResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetAccountResponse) GetGetAccount409ApplicationJSONObject() *GetAccount409ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetAccount409ApplicationJSONObject
+}
+
+func (o *GetAccountResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

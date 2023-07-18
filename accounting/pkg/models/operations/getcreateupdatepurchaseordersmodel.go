@@ -12,6 +12,20 @@ type GetCreateUpdatePurchaseOrdersModelRequest struct {
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
+func (o *GetCreateUpdatePurchaseOrdersModelRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *GetCreateUpdatePurchaseOrdersModelRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
 type GetCreateUpdatePurchaseOrdersModelResponse struct {
 	ContentType string
 	// OK
@@ -20,4 +34,39 @@ type GetCreateUpdatePurchaseOrdersModelResponse struct {
 	RawResponse *http.Response
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
+}
+
+func (o *GetCreateUpdatePurchaseOrdersModelResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetCreateUpdatePurchaseOrdersModelResponse) GetPushOption() *shared.PushOption {
+	if o == nil {
+		return nil
+	}
+	return o.PushOption
+}
+
+func (o *GetCreateUpdatePurchaseOrdersModelResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetCreateUpdatePurchaseOrdersModelResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetCreateUpdatePurchaseOrdersModelResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

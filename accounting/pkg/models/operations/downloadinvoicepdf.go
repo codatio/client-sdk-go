@@ -12,10 +12,52 @@ type DownloadInvoicePdfRequest struct {
 	InvoiceID string `pathParam:"style=simple,explode=false,name=invoiceId"`
 }
 
+func (o *DownloadInvoicePdfRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *DownloadInvoicePdfRequest) GetInvoiceID() string {
+	if o == nil {
+		return ""
+	}
+	return o.InvoiceID
+}
+
 type DownloadInvoicePdfResponse struct {
 	ContentType string
 	// Success
 	Data        []byte
 	StatusCode  int
 	RawResponse *http.Response
+}
+
+func (o *DownloadInvoicePdfResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *DownloadInvoicePdfResponse) GetData() []byte {
+	if o == nil {
+		return nil
+	}
+	return o.Data
+}
+
+func (o *DownloadInvoicePdfResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *DownloadInvoicePdfResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

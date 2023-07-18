@@ -61,9 +61,51 @@ type BillPaymentAllocationAllocation struct {
 	TotalAmount *float64 `json:"totalAmount,omitempty"`
 }
 
+func (o *BillPaymentAllocationAllocation) GetAllocatedOnDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AllocatedOnDate
+}
+
+func (o *BillPaymentAllocationAllocation) GetCurrency() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Currency
+}
+
+func (o *BillPaymentAllocationAllocation) GetCurrencyRate() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.CurrencyRate
+}
+
+func (o *BillPaymentAllocationAllocation) GetTotalAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.TotalAmount
+}
+
 type BillPaymentAllocation struct {
 	Allocation BillPaymentAllocationAllocation `json:"allocation"`
 	Payment    PaymentAllocationPayment        `json:"payment"`
+}
+
+func (o *BillPaymentAllocation) GetAllocation() BillPaymentAllocationAllocation {
+	if o == nil {
+		return BillPaymentAllocationAllocation{}
+	}
+	return o.Allocation
+}
+
+func (o *BillPaymentAllocation) GetPayment() PaymentAllocationPayment {
+	if o == nil {
+		return PaymentAllocationPayment{}
+	}
+	return o.Payment
 }
 
 // BillSupplementalData - Supplemental data is additional data you can include in our standard data types.
@@ -73,9 +115,30 @@ type BillSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
 
+func (o *BillSupplementalData) GetContent() map[string]map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.Content
+}
+
 type BillWithholdingTax struct {
 	Amount float64 `json:"amount"`
 	Name   string  `json:"name"`
+}
+
+func (o *BillWithholdingTax) GetAmount() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.Amount
+}
+
+func (o *BillWithholdingTax) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
 }
 
 // Bill - > **Invoices or bills?**
@@ -165,4 +228,151 @@ type Bill struct {
 	// Amount of the bill, including tax.
 	TotalAmount    float64              `json:"totalAmount"`
 	WithholdingTax []BillWithholdingTax `json:"withholdingTax,omitempty"`
+}
+
+func (o *Bill) GetAmountDue() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.AmountDue
+}
+
+func (o *Bill) GetCurrency() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Currency
+}
+
+func (o *Bill) GetCurrencyRate() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.CurrencyRate
+}
+
+func (o *Bill) GetDueDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DueDate
+}
+
+func (o *Bill) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *Bill) GetIssueDate() string {
+	if o == nil {
+		return ""
+	}
+	return o.IssueDate
+}
+
+func (o *Bill) GetLineItems() []BillLineItem {
+	if o == nil {
+		return nil
+	}
+	return o.LineItems
+}
+
+func (o *Bill) GetMetadata() *Metadata {
+	if o == nil {
+		return nil
+	}
+	return o.Metadata
+}
+
+func (o *Bill) GetModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ModifiedDate
+}
+
+func (o *Bill) GetNote() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Note
+}
+
+func (o *Bill) GetPaymentAllocations() []BillPaymentAllocation {
+	if o == nil {
+		return nil
+	}
+	return o.PaymentAllocations
+}
+
+func (o *Bill) GetPurchaseOrderRefs() []PurchaseOrderRef {
+	if o == nil {
+		return nil
+	}
+	return o.PurchaseOrderRefs
+}
+
+func (o *Bill) GetReference() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Reference
+}
+
+func (o *Bill) GetSourceModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceModifiedDate
+}
+
+func (o *Bill) GetStatus() BillStatus {
+	if o == nil {
+		return BillStatus("")
+	}
+	return o.Status
+}
+
+func (o *Bill) GetSubTotal() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.SubTotal
+}
+
+func (o *Bill) GetSupplementalData() *BillSupplementalData {
+	if o == nil {
+		return nil
+	}
+	return o.SupplementalData
+}
+
+func (o *Bill) GetSupplierRef() *SupplierRef {
+	if o == nil {
+		return nil
+	}
+	return o.SupplierRef
+}
+
+func (o *Bill) GetTaxAmount() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.TaxAmount
+}
+
+func (o *Bill) GetTotalAmount() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.TotalAmount
+}
+
+func (o *Bill) GetWithholdingTax() []BillWithholdingTax {
+	if o == nil {
+		return nil
+	}
+	return o.WithholdingTax
 }

@@ -14,6 +14,27 @@ type GetBankAccountRequest struct {
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
+func (o *GetBankAccountRequest) GetAccountID() string {
+	if o == nil {
+		return ""
+	}
+	return o.AccountID
+}
+
+func (o *GetBankAccountRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *GetBankAccountRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
 // GetBankAccount409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
 type GetBankAccount409ApplicationJSON struct {
 	CanBeRetried      *string `json:"canBeRetried,omitempty"`
@@ -22,6 +43,48 @@ type GetBankAccount409ApplicationJSON struct {
 	Error             *string `json:"error,omitempty"`
 	Service           *string `json:"service,omitempty"`
 	StatusCode        *int64  `json:"statusCode,omitempty"`
+}
+
+func (o *GetBankAccount409ApplicationJSON) GetCanBeRetried() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CanBeRetried
+}
+
+func (o *GetBankAccount409ApplicationJSON) GetCorrelationID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CorrelationID
+}
+
+func (o *GetBankAccount409ApplicationJSON) GetDetailedErrorCode() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.DetailedErrorCode
+}
+
+func (o *GetBankAccount409ApplicationJSON) GetError() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Error
+}
+
+func (o *GetBankAccount409ApplicationJSON) GetService() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Service
+}
+
+func (o *GetBankAccount409ApplicationJSON) GetStatusCode() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.StatusCode
 }
 
 type GetBankAccountResponse struct {
@@ -34,4 +97,46 @@ type GetBankAccountResponse struct {
 	GetBankAccount409ApplicationJSONObject *GetBankAccount409ApplicationJSON
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
+}
+
+func (o *GetBankAccountResponse) GetBankAccount() *shared.BankAccount {
+	if o == nil {
+		return nil
+	}
+	return o.BankAccount
+}
+
+func (o *GetBankAccountResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetBankAccountResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetBankAccountResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetBankAccountResponse) GetGetBankAccount409ApplicationJSONObject() *GetBankAccount409ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetBankAccount409ApplicationJSONObject
+}
+
+func (o *GetBankAccountResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

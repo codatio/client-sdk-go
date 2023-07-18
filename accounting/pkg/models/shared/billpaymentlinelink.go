@@ -39,3 +39,31 @@ type BillPaymentLineLink struct {
 	// Types of links to bill payment lines.
 	Type BillPaymentLineLinkType `json:"type"`
 }
+
+func (o *BillPaymentLineLink) GetAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Amount
+}
+
+func (o *BillPaymentLineLink) GetCurrencyRate() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.CurrencyRate
+}
+
+func (o *BillPaymentLineLink) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *BillPaymentLineLink) GetType() BillPaymentLineLinkType {
+	if o == nil {
+		return BillPaymentLineLinkType("")
+	}
+	return o.Type
+}

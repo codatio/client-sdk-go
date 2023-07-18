@@ -9,3 +9,17 @@ type JournalRef struct {
 	// Name of journal
 	Name *string `json:"name,omitempty"`
 }
+
+func (o *JournalRef) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *JournalRef) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}

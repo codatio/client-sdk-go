@@ -12,6 +12,20 @@ type GetCreateItemsModelRequest struct {
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
+func (o *GetCreateItemsModelRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *GetCreateItemsModelRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
 type GetCreateItemsModelResponse struct {
 	ContentType string
 	// OK
@@ -20,4 +34,39 @@ type GetCreateItemsModelResponse struct {
 	RawResponse *http.Response
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
+}
+
+func (o *GetCreateItemsModelResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetCreateItemsModelResponse) GetPushOption() *shared.PushOption {
+	if o == nil {
+		return nil
+	}
+	return o.PushOption
+}
+
+func (o *GetCreateItemsModelResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetCreateItemsModelResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetCreateItemsModelResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

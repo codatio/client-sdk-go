@@ -96,3 +96,115 @@ type DirectCost struct {
 	// The amount of the direct costs, inclusive of tax.
 	TotalAmount float64 `json:"totalAmount"`
 }
+
+func (o *DirectCost) GetContactRef() *ContactRef {
+	if o == nil {
+		return nil
+	}
+	return o.ContactRef
+}
+
+func (o *DirectCost) GetCurrency() string {
+	if o == nil {
+		return ""
+	}
+	return o.Currency
+}
+
+func (o *DirectCost) GetCurrencyRate() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.CurrencyRate
+}
+
+func (o *DirectCost) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *DirectCost) GetIssueDate() string {
+	if o == nil {
+		return ""
+	}
+	return o.IssueDate
+}
+
+func (o *DirectCost) GetLineItems() []DirectCostLineItem {
+	if o == nil {
+		return []DirectCostLineItem{}
+	}
+	return o.LineItems
+}
+
+func (o *DirectCost) GetMetadata() *Metadata {
+	if o == nil {
+		return nil
+	}
+	return o.Metadata
+}
+
+func (o *DirectCost) GetModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ModifiedDate
+}
+
+func (o *DirectCost) GetNote() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Note
+}
+
+func (o *DirectCost) GetPaymentAllocations() []Items {
+	if o == nil {
+		return []Items{}
+	}
+	return o.PaymentAllocations
+}
+
+func (o *DirectCost) GetReference() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Reference
+}
+
+func (o *DirectCost) GetSourceModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceModifiedDate
+}
+
+func (o *DirectCost) GetSubTotal() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.SubTotal
+}
+
+func (o *DirectCost) GetSupplementalData() *SupplementalData {
+	if o == nil {
+		return nil
+	}
+	return o.SupplementalData
+}
+
+func (o *DirectCost) GetTaxAmount() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.TaxAmount
+}
+
+func (o *DirectCost) GetTotalAmount() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.TotalAmount
+}

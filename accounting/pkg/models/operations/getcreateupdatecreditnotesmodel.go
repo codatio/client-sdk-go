@@ -12,6 +12,20 @@ type GetCreateUpdateCreditNotesModelRequest struct {
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
+func (o *GetCreateUpdateCreditNotesModelRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *GetCreateUpdateCreditNotesModelRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
 type GetCreateUpdateCreditNotesModelResponse struct {
 	ContentType string
 	// OK
@@ -20,4 +34,39 @@ type GetCreateUpdateCreditNotesModelResponse struct {
 	RawResponse *http.Response
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
+}
+
+func (o *GetCreateUpdateCreditNotesModelResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetCreateUpdateCreditNotesModelResponse) GetPushOption() *shared.PushOption {
+	if o == nil {
+		return nil
+	}
+	return o.PushOption
+}
+
+func (o *GetCreateUpdateCreditNotesModelResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetCreateUpdateCreditNotesModelResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetCreateUpdateCreditNotesModelResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

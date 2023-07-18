@@ -8,3 +8,17 @@ type PaymentMethodRef struct {
 	// `name` from the Payment Methods data type
 	Name *string `json:"name,omitempty"`
 }
+
+func (o *PaymentMethodRef) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *PaymentMethodRef) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}

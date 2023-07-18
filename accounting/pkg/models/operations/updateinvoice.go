@@ -18,6 +18,48 @@ type UpdateInvoiceRequest struct {
 	TimeoutInMinutes *int   `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
 }
 
+func (o *UpdateInvoiceRequest) GetInvoice() *shared.Invoice {
+	if o == nil {
+		return nil
+	}
+	return o.Invoice
+}
+
+func (o *UpdateInvoiceRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *UpdateInvoiceRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *UpdateInvoiceRequest) GetForceUpdate() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.ForceUpdate
+}
+
+func (o *UpdateInvoiceRequest) GetInvoiceID() string {
+	if o == nil {
+		return ""
+	}
+	return o.InvoiceID
+}
+
+func (o *UpdateInvoiceRequest) GetTimeoutInMinutes() *int {
+	if o == nil {
+		return nil
+	}
+	return o.TimeoutInMinutes
+}
+
 type UpdateInvoiceResponse struct {
 	ContentType string
 	StatusCode  int
@@ -26,4 +68,39 @@ type UpdateInvoiceResponse struct {
 	UpdateInvoiceResponse *shared.UpdateInvoiceResponse
 	// The request made is not valid.
 	Schema *shared.Schema
+}
+
+func (o *UpdateInvoiceResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *UpdateInvoiceResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *UpdateInvoiceResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *UpdateInvoiceResponse) GetUpdateInvoiceResponse() *shared.UpdateInvoiceResponse {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateInvoiceResponse
+}
+
+func (o *UpdateInvoiceResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

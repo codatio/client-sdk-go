@@ -215,3 +215,101 @@ type CreateBillPaymentResponse struct {
 	// A human-readable object describing validation decisions Codat has made when pushing data into the platform. If a push has failed because of validation errors, they will be detailed here.
 	Validation *Validation `json:"validation,omitempty"`
 }
+
+func (o *CreateBillPaymentResponse) GetChanges() []PushOperationChange {
+	if o == nil {
+		return nil
+	}
+	return o.Changes
+}
+
+func (o *CreateBillPaymentResponse) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *CreateBillPaymentResponse) GetCompletedOnUtc() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CompletedOnUtc
+}
+
+func (o *CreateBillPaymentResponse) GetData() *BillPayment {
+	if o == nil {
+		return nil
+	}
+	return o.Data
+}
+
+func (o *CreateBillPaymentResponse) GetDataConnectionKey() string {
+	if o == nil {
+		return ""
+	}
+	return o.DataConnectionKey
+}
+
+func (o *CreateBillPaymentResponse) GetDataType() *DataType {
+	if o == nil {
+		return nil
+	}
+	return o.DataType
+}
+
+func (o *CreateBillPaymentResponse) GetErrorMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *CreateBillPaymentResponse) GetPushOperationKey() string {
+	if o == nil {
+		return ""
+	}
+	return o.PushOperationKey
+}
+
+func (o *CreateBillPaymentResponse) GetRequestedOnUtc() string {
+	if o == nil {
+		return ""
+	}
+	return o.RequestedOnUtc
+}
+
+func (o *CreateBillPaymentResponse) GetStatus() PushOperationStatus {
+	if o == nil {
+		return PushOperationStatus("")
+	}
+	return o.Status
+}
+
+func (o *CreateBillPaymentResponse) GetStatusCode() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *CreateBillPaymentResponse) GetTimeoutInMinutes() *int {
+	if o == nil {
+		return nil
+	}
+	return o.TimeoutInMinutes
+}
+
+func (o *CreateBillPaymentResponse) GetTimeoutInSeconds() *int {
+	if o == nil {
+		return nil
+	}
+	return o.TimeoutInSeconds
+}
+
+func (o *CreateBillPaymentResponse) GetValidation() *Validation {
+	if o == nil {
+		return nil
+	}
+	return o.Validation
+}

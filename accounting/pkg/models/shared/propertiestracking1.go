@@ -10,3 +10,38 @@ type Propertiestracking1 struct {
 	IsRebilledTo BilledToType1         `json:"isRebilledTo"`
 	ProjectRef   *ProjectRef           `json:"projectRef,omitempty"`
 }
+
+func (o *Propertiestracking1) GetCategoryRefs() []TrackingCategoryRef {
+	if o == nil {
+		return []TrackingCategoryRef{}
+	}
+	return o.CategoryRefs
+}
+
+func (o *Propertiestracking1) GetCustomerRef() *CustomerRef {
+	if o == nil {
+		return nil
+	}
+	return o.CustomerRef
+}
+
+func (o *Propertiestracking1) GetIsBilledTo() BilledToType1 {
+	if o == nil {
+		return BilledToType1("")
+	}
+	return o.IsBilledTo
+}
+
+func (o *Propertiestracking1) GetIsRebilledTo() BilledToType1 {
+	if o == nil {
+		return BilledToType1("")
+	}
+	return o.IsRebilledTo
+}
+
+func (o *Propertiestracking1) GetProjectRef() *ProjectRef {
+	if o == nil {
+		return nil
+	}
+	return o.ProjectRef
+}

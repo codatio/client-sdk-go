@@ -14,6 +14,27 @@ type DeleteInvoiceRequest struct {
 	InvoiceID string `pathParam:"style=simple,explode=false,name=invoiceId"`
 }
 
+func (o *DeleteInvoiceRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *DeleteInvoiceRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *DeleteInvoiceRequest) GetInvoiceID() string {
+	if o == nil {
+		return ""
+	}
+	return o.InvoiceID
+}
+
 type DeleteInvoiceResponse struct {
 	ContentType string
 	// OK
@@ -22,4 +43,39 @@ type DeleteInvoiceResponse struct {
 	RawResponse          *http.Response
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
+}
+
+func (o *DeleteInvoiceResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *DeleteInvoiceResponse) GetPushOperationSummary() *shared.PushOperationSummary {
+	if o == nil {
+		return nil
+	}
+	return o.PushOperationSummary
+}
+
+func (o *DeleteInvoiceResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *DeleteInvoiceResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *DeleteInvoiceResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

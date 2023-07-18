@@ -19,6 +19,41 @@ type ListSalesOrdersRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
+func (o *ListSalesOrdersRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *ListSalesOrdersRequest) GetOrderBy() *string {
+	if o == nil {
+		return nil
+	}
+	return o.OrderBy
+}
+
+func (o *ListSalesOrdersRequest) GetPage() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Page
+}
+
+func (o *ListSalesOrdersRequest) GetPageSize() *int {
+	if o == nil {
+		return nil
+	}
+	return o.PageSize
+}
+
+func (o *ListSalesOrdersRequest) GetQuery() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Query
+}
+
 // ListSalesOrders409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
 type ListSalesOrders409ApplicationJSON struct {
 	CanBeRetried      *string `json:"canBeRetried,omitempty"`
@@ -27,6 +62,48 @@ type ListSalesOrders409ApplicationJSON struct {
 	Error             *string `json:"error,omitempty"`
 	Service           *string `json:"service,omitempty"`
 	StatusCode        *int64  `json:"statusCode,omitempty"`
+}
+
+func (o *ListSalesOrders409ApplicationJSON) GetCanBeRetried() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CanBeRetried
+}
+
+func (o *ListSalesOrders409ApplicationJSON) GetCorrelationID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CorrelationID
+}
+
+func (o *ListSalesOrders409ApplicationJSON) GetDetailedErrorCode() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.DetailedErrorCode
+}
+
+func (o *ListSalesOrders409ApplicationJSON) GetError() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Error
+}
+
+func (o *ListSalesOrders409ApplicationJSON) GetService() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Service
+}
+
+func (o *ListSalesOrders409ApplicationJSON) GetStatusCode() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.StatusCode
 }
 
 type ListSalesOrdersResponse struct {
@@ -39,4 +116,46 @@ type ListSalesOrdersResponse struct {
 	ListSalesOrders409ApplicationJSONObject *ListSalesOrders409ApplicationJSON
 	// Your `query` parameter was not correctly formed
 	Schema *shared.Schema
+}
+
+func (o *ListSalesOrdersResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *ListSalesOrdersResponse) GetSalesOrders() *shared.SalesOrders {
+	if o == nil {
+		return nil
+	}
+	return o.SalesOrders
+}
+
+func (o *ListSalesOrdersResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *ListSalesOrdersResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *ListSalesOrdersResponse) GetListSalesOrders409ApplicationJSONObject() *ListSalesOrders409ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ListSalesOrders409ApplicationJSONObject
+}
+
+func (o *ListSalesOrdersResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

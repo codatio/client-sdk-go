@@ -14,6 +14,27 @@ type ListInvoiceAttachmentsRequest struct {
 	InvoiceID string `pathParam:"style=simple,explode=false,name=invoiceId"`
 }
 
+func (o *ListInvoiceAttachmentsRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *ListInvoiceAttachmentsRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *ListInvoiceAttachmentsRequest) GetInvoiceID() string {
+	if o == nil {
+		return ""
+	}
+	return o.InvoiceID
+}
+
 type ListInvoiceAttachmentsResponse struct {
 	// Success
 	AttachmentsDataset *shared.AttachmentsDataset
@@ -22,4 +43,39 @@ type ListInvoiceAttachmentsResponse struct {
 	RawResponse        *http.Response
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
+}
+
+func (o *ListInvoiceAttachmentsResponse) GetAttachmentsDataset() *shared.AttachmentsDataset {
+	if o == nil {
+		return nil
+	}
+	return o.AttachmentsDataset
+}
+
+func (o *ListInvoiceAttachmentsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *ListInvoiceAttachmentsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *ListInvoiceAttachmentsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *ListInvoiceAttachmentsResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

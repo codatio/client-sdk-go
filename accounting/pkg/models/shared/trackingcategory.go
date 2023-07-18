@@ -42,3 +42,52 @@ type TrackingCategory struct {
 	// Current state of the tracking category.
 	Status *Status `json:"status,omitempty"`
 }
+
+func (o *TrackingCategory) GetHasChildren() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasChildren
+}
+
+func (o *TrackingCategory) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *TrackingCategory) GetModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ModifiedDate
+}
+
+func (o *TrackingCategory) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
+func (o *TrackingCategory) GetParentID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ParentID
+}
+
+func (o *TrackingCategory) GetSourceModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceModifiedDate
+}
+
+func (o *TrackingCategory) GetStatus() *Status {
+	if o == nil {
+		return nil
+	}
+	return o.Status
+}

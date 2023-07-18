@@ -104,3 +104,108 @@ type BankAccount struct {
 	SortCode           *string `json:"sortCode,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 }
+
+func (o *BankAccount) GetAccountName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AccountName
+}
+
+func (o *BankAccount) GetAccountNumber() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AccountNumber
+}
+
+func (o *BankAccount) GetAccountType() *BankAccountBankAccountType {
+	if o == nil {
+		return nil
+	}
+	return o.AccountType
+}
+
+func (o *BankAccount) GetAvailableBalance() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.AvailableBalance
+}
+
+func (o *BankAccount) GetBalance() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Balance
+}
+
+func (o *BankAccount) GetCurrency() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Currency
+}
+
+func (o *BankAccount) GetIBan() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IBan
+}
+
+func (o *BankAccount) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *BankAccount) GetInstitution() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Institution
+}
+
+func (o *BankAccount) GetMetadata() *Metadata {
+	if o == nil {
+		return nil
+	}
+	return o.Metadata
+}
+
+func (o *BankAccount) GetModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ModifiedDate
+}
+
+func (o *BankAccount) GetNominalCode() *string {
+	if o == nil {
+		return nil
+	}
+	return o.NominalCode
+}
+
+func (o *BankAccount) GetOverdraftLimit() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.OverdraftLimit
+}
+
+func (o *BankAccount) GetSortCode() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SortCode
+}
+
+func (o *BankAccount) GetSourceModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceModifiedDate
+}

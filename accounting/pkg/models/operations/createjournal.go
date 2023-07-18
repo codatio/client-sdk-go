@@ -14,6 +14,34 @@ type CreateJournalRequest struct {
 	TimeoutInMinutes *int            `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
 }
 
+func (o *CreateJournalRequest) GetJournal() *shared.Journal {
+	if o == nil {
+		return nil
+	}
+	return o.Journal
+}
+
+func (o *CreateJournalRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *CreateJournalRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *CreateJournalRequest) GetTimeoutInMinutes() *int {
+	if o == nil {
+		return nil
+	}
+	return o.TimeoutInMinutes
+}
+
 type CreateJournalResponse struct {
 	ContentType string
 	// Success
@@ -22,4 +50,39 @@ type CreateJournalResponse struct {
 	RawResponse           *http.Response
 	// The request made is not valid.
 	Schema *shared.Schema
+}
+
+func (o *CreateJournalResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *CreateJournalResponse) GetCreateJournalResponse() *shared.CreateJournalResponse {
+	if o == nil {
+		return nil
+	}
+	return o.CreateJournalResponse
+}
+
+func (o *CreateJournalResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *CreateJournalResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *CreateJournalResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

@@ -12,6 +12,20 @@ type GetCreateChartOfAccountsModelRequest struct {
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
+func (o *GetCreateChartOfAccountsModelRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *GetCreateChartOfAccountsModelRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
 type GetCreateChartOfAccountsModelResponse struct {
 	ContentType string
 	// OK
@@ -20,4 +34,39 @@ type GetCreateChartOfAccountsModelResponse struct {
 	RawResponse *http.Response
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
+}
+
+func (o *GetCreateChartOfAccountsModelResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetCreateChartOfAccountsModelResponse) GetPushOption() *shared.PushOption {
+	if o == nil {
+		return nil
+	}
+	return o.PushOption
+}
+
+func (o *GetCreateChartOfAccountsModelResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetCreateChartOfAccountsModelResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetCreateChartOfAccountsModelResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

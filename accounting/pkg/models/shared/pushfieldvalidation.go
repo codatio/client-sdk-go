@@ -7,3 +7,24 @@ type PushFieldValidation struct {
 	Field   *string `json:"field,omitempty"`
 	Ref     *string `json:"ref,omitempty"`
 }
+
+func (o *PushFieldValidation) GetDetails() string {
+	if o == nil {
+		return ""
+	}
+	return o.Details
+}
+
+func (o *PushFieldValidation) GetField() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Field
+}
+
+func (o *PushFieldValidation) GetRef() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Ref
+}

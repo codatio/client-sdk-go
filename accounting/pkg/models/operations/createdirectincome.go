@@ -14,6 +14,34 @@ type CreateDirectIncomeRequest struct {
 	TimeoutInMinutes *int                 `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
 }
 
+func (o *CreateDirectIncomeRequest) GetDirectIncome() *shared.DirectIncome {
+	if o == nil {
+		return nil
+	}
+	return o.DirectIncome
+}
+
+func (o *CreateDirectIncomeRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *CreateDirectIncomeRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *CreateDirectIncomeRequest) GetTimeoutInMinutes() *int {
+	if o == nil {
+		return nil
+	}
+	return o.TimeoutInMinutes
+}
+
 type CreateDirectIncomeResponse struct {
 	ContentType string
 	// Success
@@ -22,4 +50,39 @@ type CreateDirectIncomeResponse struct {
 	RawResponse                *http.Response
 	// The request made is not valid.
 	Schema *shared.Schema
+}
+
+func (o *CreateDirectIncomeResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *CreateDirectIncomeResponse) GetCreateDirectIncomeResponse() *shared.CreateDirectIncomeResponse {
+	if o == nil {
+		return nil
+	}
+	return o.CreateDirectIncomeResponse
+}
+
+func (o *CreateDirectIncomeResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *CreateDirectIncomeResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *CreateDirectIncomeResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

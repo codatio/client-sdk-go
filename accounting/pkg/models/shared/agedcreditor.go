@@ -9,6 +9,20 @@ type AgedCreditorAgedCurrencyOutstandingAgedOutstandingAmountAmountsOutstandingB
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *AgedCreditorAgedCurrencyOutstandingAgedOutstandingAmountAmountsOutstandingByDataType) GetAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Amount
+}
+
+func (o *AgedCreditorAgedCurrencyOutstandingAgedOutstandingAmountAmountsOutstandingByDataType) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 type AgedCreditorAgedCurrencyOutstandingAgedOutstandingAmount struct {
 	// The amount outstanding.
 	Amount *float64 `json:"amount,omitempty"`
@@ -56,6 +70,34 @@ type AgedCreditorAgedCurrencyOutstandingAgedOutstandingAmount struct {
 	ToDate *string `json:"toDate,omitempty"`
 }
 
+func (o *AgedCreditorAgedCurrencyOutstandingAgedOutstandingAmount) GetAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Amount
+}
+
+func (o *AgedCreditorAgedCurrencyOutstandingAgedOutstandingAmount) GetDetails() []AgedCreditorAgedCurrencyOutstandingAgedOutstandingAmountAmountsOutstandingByDataType {
+	if o == nil {
+		return nil
+	}
+	return o.Details
+}
+
+func (o *AgedCreditorAgedCurrencyOutstandingAgedOutstandingAmount) GetFromDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.FromDate
+}
+
+func (o *AgedCreditorAgedCurrencyOutstandingAgedOutstandingAmount) GetToDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ToDate
+}
+
 type AgedCreditorAgedCurrencyOutstanding struct {
 	// Array of outstanding amounts by period.
 	AgedOutstandingAmounts []AgedCreditorAgedCurrencyOutstandingAgedOutstandingAmount `json:"agedOutstandingAmounts,omitempty"`
@@ -69,6 +111,20 @@ type AgedCreditorAgedCurrencyOutstanding struct {
 	Currency *string `json:"currency,omitempty"`
 }
 
+func (o *AgedCreditorAgedCurrencyOutstanding) GetAgedOutstandingAmounts() []AgedCreditorAgedCurrencyOutstandingAgedOutstandingAmount {
+	if o == nil {
+		return nil
+	}
+	return o.AgedOutstandingAmounts
+}
+
+func (o *AgedCreditorAgedCurrencyOutstanding) GetCurrency() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Currency
+}
+
 type AgedCreditor struct {
 	// Array of aged creditors by currency.
 	AgedCurrencyOutstanding []AgedCreditorAgedCurrencyOutstanding `json:"agedCurrencyOutstanding,omitempty"`
@@ -76,4 +132,25 @@ type AgedCreditor struct {
 	SupplierID *string `json:"supplierId,omitempty"`
 	// Supplier name of the aged creditor.
 	SupplierName *string `json:"supplierName,omitempty"`
+}
+
+func (o *AgedCreditor) GetAgedCurrencyOutstanding() []AgedCreditorAgedCurrencyOutstanding {
+	if o == nil {
+		return nil
+	}
+	return o.AgedCurrencyOutstanding
+}
+
+func (o *AgedCreditor) GetSupplierID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SupplierID
+}
+
+func (o *AgedCreditor) GetSupplierName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SupplierName
 }

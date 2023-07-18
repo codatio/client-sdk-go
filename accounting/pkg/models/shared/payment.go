@@ -761,3 +761,108 @@ type Payment struct {
 	// Amount of the payment in the payment currency. This value should never change and represents the amount of money paid into the customer's account.
 	TotalAmount *float64 `json:"totalAmount,omitempty"`
 }
+
+func (o *Payment) GetAccountRef() *AccountRef {
+	if o == nil {
+		return nil
+	}
+	return o.AccountRef
+}
+
+func (o *Payment) GetCurrency() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Currency
+}
+
+func (o *Payment) GetCurrencyRate() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.CurrencyRate
+}
+
+func (o *Payment) GetCustomerRef() *CustomerRef {
+	if o == nil {
+		return nil
+	}
+	return o.CustomerRef
+}
+
+func (o *Payment) GetDate() string {
+	if o == nil {
+		return ""
+	}
+	return o.Date
+}
+
+func (o *Payment) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *Payment) GetLines() []PaymentLine {
+	if o == nil {
+		return nil
+	}
+	return o.Lines
+}
+
+func (o *Payment) GetMetadata() *Metadata {
+	if o == nil {
+		return nil
+	}
+	return o.Metadata
+}
+
+func (o *Payment) GetModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ModifiedDate
+}
+
+func (o *Payment) GetNote() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Note
+}
+
+func (o *Payment) GetPaymentMethodRef() *PaymentMethodRef {
+	if o == nil {
+		return nil
+	}
+	return o.PaymentMethodRef
+}
+
+func (o *Payment) GetReference() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Reference
+}
+
+func (o *Payment) GetSourceModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceModifiedDate
+}
+
+func (o *Payment) GetSupplementalData() *SupplementalData {
+	if o == nil {
+		return nil
+	}
+	return o.SupplementalData
+}
+
+func (o *Payment) GetTotalAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.TotalAmount
+}

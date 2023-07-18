@@ -14,6 +14,27 @@ type GetDirectCostRequest struct {
 	DirectCostID string `pathParam:"style=simple,explode=false,name=directCostId"`
 }
 
+func (o *GetDirectCostRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *GetDirectCostRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *GetDirectCostRequest) GetDirectCostID() string {
+	if o == nil {
+		return ""
+	}
+	return o.DirectCostID
+}
+
 // GetDirectCost409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
 type GetDirectCost409ApplicationJSON struct {
 	CanBeRetried      *string `json:"canBeRetried,omitempty"`
@@ -22,6 +43,48 @@ type GetDirectCost409ApplicationJSON struct {
 	Error             *string `json:"error,omitempty"`
 	Service           *string `json:"service,omitempty"`
 	StatusCode        *int64  `json:"statusCode,omitempty"`
+}
+
+func (o *GetDirectCost409ApplicationJSON) GetCanBeRetried() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CanBeRetried
+}
+
+func (o *GetDirectCost409ApplicationJSON) GetCorrelationID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CorrelationID
+}
+
+func (o *GetDirectCost409ApplicationJSON) GetDetailedErrorCode() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.DetailedErrorCode
+}
+
+func (o *GetDirectCost409ApplicationJSON) GetError() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Error
+}
+
+func (o *GetDirectCost409ApplicationJSON) GetService() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Service
+}
+
+func (o *GetDirectCost409ApplicationJSON) GetStatusCode() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.StatusCode
 }
 
 type GetDirectCostResponse struct {
@@ -34,4 +97,46 @@ type GetDirectCostResponse struct {
 	GetDirectCost409ApplicationJSONObject *GetDirectCost409ApplicationJSON
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
+}
+
+func (o *GetDirectCostResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetDirectCostResponse) GetDirectCost() *shared.DirectCost {
+	if o == nil {
+		return nil
+	}
+	return o.DirectCost
+}
+
+func (o *GetDirectCostResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetDirectCostResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetDirectCostResponse) GetGetDirectCost409ApplicationJSONObject() *GetDirectCost409ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetDirectCost409ApplicationJSONObject
+}
+
+func (o *GetDirectCostResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

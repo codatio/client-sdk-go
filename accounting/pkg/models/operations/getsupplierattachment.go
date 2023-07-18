@@ -16,6 +16,34 @@ type GetSupplierAttachmentRequest struct {
 	SupplierID string `pathParam:"style=simple,explode=false,name=supplierId"`
 }
 
+func (o *GetSupplierAttachmentRequest) GetAttachmentID() string {
+	if o == nil {
+		return ""
+	}
+	return o.AttachmentID
+}
+
+func (o *GetSupplierAttachmentRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *GetSupplierAttachmentRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *GetSupplierAttachmentRequest) GetSupplierID() string {
+	if o == nil {
+		return ""
+	}
+	return o.SupplierID
+}
+
 type GetSupplierAttachmentResponse struct {
 	// Success
 	Attachment  *shared.Attachment
@@ -24,4 +52,39 @@ type GetSupplierAttachmentResponse struct {
 	RawResponse *http.Response
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
+}
+
+func (o *GetSupplierAttachmentResponse) GetAttachment() *shared.Attachment {
+	if o == nil {
+		return nil
+	}
+	return o.Attachment
+}
+
+func (o *GetSupplierAttachmentResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetSupplierAttachmentResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetSupplierAttachmentResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetSupplierAttachmentResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

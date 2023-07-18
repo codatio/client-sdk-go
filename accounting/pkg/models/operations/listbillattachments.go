@@ -14,6 +14,27 @@ type ListBillAttachmentsRequest struct {
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
+func (o *ListBillAttachmentsRequest) GetBillID() string {
+	if o == nil {
+		return ""
+	}
+	return o.BillID
+}
+
+func (o *ListBillAttachmentsRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *ListBillAttachmentsRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
 type ListBillAttachmentsResponse struct {
 	// Success
 	AttachmentsDataset *shared.AttachmentsDataset
@@ -22,4 +43,39 @@ type ListBillAttachmentsResponse struct {
 	RawResponse        *http.Response
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
+}
+
+func (o *ListBillAttachmentsResponse) GetAttachmentsDataset() *shared.AttachmentsDataset {
+	if o == nil {
+		return nil
+	}
+	return o.AttachmentsDataset
+}
+
+func (o *ListBillAttachmentsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *ListBillAttachmentsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *ListBillAttachmentsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *ListBillAttachmentsResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

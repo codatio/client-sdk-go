@@ -13,6 +13,27 @@ type GetAccountTransactionRequest struct {
 	ConnectionID         string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
+func (o *GetAccountTransactionRequest) GetAccountTransactionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.AccountTransactionID
+}
+
+func (o *GetAccountTransactionRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *GetAccountTransactionRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
 // GetAccountTransaction409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
 type GetAccountTransaction409ApplicationJSON struct {
 	CanBeRetried      *string `json:"canBeRetried,omitempty"`
@@ -21,6 +42,48 @@ type GetAccountTransaction409ApplicationJSON struct {
 	Error             *string `json:"error,omitempty"`
 	Service           *string `json:"service,omitempty"`
 	StatusCode        *int64  `json:"statusCode,omitempty"`
+}
+
+func (o *GetAccountTransaction409ApplicationJSON) GetCanBeRetried() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CanBeRetried
+}
+
+func (o *GetAccountTransaction409ApplicationJSON) GetCorrelationID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CorrelationID
+}
+
+func (o *GetAccountTransaction409ApplicationJSON) GetDetailedErrorCode() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.DetailedErrorCode
+}
+
+func (o *GetAccountTransaction409ApplicationJSON) GetError() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Error
+}
+
+func (o *GetAccountTransaction409ApplicationJSON) GetService() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Service
+}
+
+func (o *GetAccountTransaction409ApplicationJSON) GetStatusCode() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.StatusCode
 }
 
 type GetAccountTransactionResponse struct {
@@ -33,4 +96,46 @@ type GetAccountTransactionResponse struct {
 	GetAccountTransaction409ApplicationJSONObject *GetAccountTransaction409ApplicationJSON
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
+}
+
+func (o *GetAccountTransactionResponse) GetAccountTransaction() *shared.AccountTransaction {
+	if o == nil {
+		return nil
+	}
+	return o.AccountTransaction
+}
+
+func (o *GetAccountTransactionResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetAccountTransactionResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetAccountTransactionResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetAccountTransactionResponse) GetGetAccountTransaction409ApplicationJSONObject() *GetAccountTransaction409ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetAccountTransaction409ApplicationJSONObject
+}
+
+func (o *GetAccountTransactionResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

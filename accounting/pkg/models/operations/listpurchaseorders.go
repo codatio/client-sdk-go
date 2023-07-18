@@ -19,6 +19,41 @@ type ListPurchaseOrdersRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
+func (o *ListPurchaseOrdersRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *ListPurchaseOrdersRequest) GetOrderBy() *string {
+	if o == nil {
+		return nil
+	}
+	return o.OrderBy
+}
+
+func (o *ListPurchaseOrdersRequest) GetPage() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Page
+}
+
+func (o *ListPurchaseOrdersRequest) GetPageSize() *int {
+	if o == nil {
+		return nil
+	}
+	return o.PageSize
+}
+
+func (o *ListPurchaseOrdersRequest) GetQuery() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Query
+}
+
 // ListPurchaseOrders409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
 type ListPurchaseOrders409ApplicationJSON struct {
 	CanBeRetried      *string `json:"canBeRetried,omitempty"`
@@ -27,6 +62,48 @@ type ListPurchaseOrders409ApplicationJSON struct {
 	Error             *string `json:"error,omitempty"`
 	Service           *string `json:"service,omitempty"`
 	StatusCode        *int64  `json:"statusCode,omitempty"`
+}
+
+func (o *ListPurchaseOrders409ApplicationJSON) GetCanBeRetried() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CanBeRetried
+}
+
+func (o *ListPurchaseOrders409ApplicationJSON) GetCorrelationID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CorrelationID
+}
+
+func (o *ListPurchaseOrders409ApplicationJSON) GetDetailedErrorCode() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.DetailedErrorCode
+}
+
+func (o *ListPurchaseOrders409ApplicationJSON) GetError() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Error
+}
+
+func (o *ListPurchaseOrders409ApplicationJSON) GetService() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Service
+}
+
+func (o *ListPurchaseOrders409ApplicationJSON) GetStatusCode() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.StatusCode
 }
 
 type ListPurchaseOrdersResponse struct {
@@ -39,4 +116,46 @@ type ListPurchaseOrdersResponse struct {
 	ListPurchaseOrders409ApplicationJSONObject *ListPurchaseOrders409ApplicationJSON
 	// Your `query` parameter was not correctly formed
 	Schema *shared.Schema
+}
+
+func (o *ListPurchaseOrdersResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *ListPurchaseOrdersResponse) GetPurchaseOrders() *shared.PurchaseOrders {
+	if o == nil {
+		return nil
+	}
+	return o.PurchaseOrders
+}
+
+func (o *ListPurchaseOrdersResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *ListPurchaseOrdersResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *ListPurchaseOrdersResponse) GetListPurchaseOrders409ApplicationJSONObject() *ListPurchaseOrders409ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ListPurchaseOrders409ApplicationJSONObject
+}
+
+func (o *ListPurchaseOrdersResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

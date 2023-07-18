@@ -78,3 +78,24 @@ type AgedDebtorReport struct {
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	ReportDate *string `json:"reportDate,omitempty"`
 }
+
+func (o *AgedDebtorReport) GetData() []AgedDebtor {
+	if o == nil {
+		return nil
+	}
+	return o.Data
+}
+
+func (o *AgedDebtorReport) GetGenerated() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Generated
+}
+
+func (o *AgedDebtorReport) GetReportDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ReportDate
+}

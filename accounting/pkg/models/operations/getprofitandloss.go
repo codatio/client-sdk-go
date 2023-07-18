@@ -16,6 +16,34 @@ type GetProfitAndLossRequest struct {
 	StartMonth       *string `queryParam:"style=form,explode=true,name=startMonth"`
 }
 
+func (o *GetProfitAndLossRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *GetProfitAndLossRequest) GetPeriodLength() int {
+	if o == nil {
+		return 0
+	}
+	return o.PeriodLength
+}
+
+func (o *GetProfitAndLossRequest) GetPeriodsToCompare() int {
+	if o == nil {
+		return 0
+	}
+	return o.PeriodsToCompare
+}
+
+func (o *GetProfitAndLossRequest) GetStartMonth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.StartMonth
+}
+
 // GetProfitAndLoss409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
 type GetProfitAndLoss409ApplicationJSON struct {
 	CanBeRetried      *string `json:"canBeRetried,omitempty"`
@@ -24,6 +52,48 @@ type GetProfitAndLoss409ApplicationJSON struct {
 	Error             *string `json:"error,omitempty"`
 	Service           *string `json:"service,omitempty"`
 	StatusCode        *int64  `json:"statusCode,omitempty"`
+}
+
+func (o *GetProfitAndLoss409ApplicationJSON) GetCanBeRetried() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CanBeRetried
+}
+
+func (o *GetProfitAndLoss409ApplicationJSON) GetCorrelationID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CorrelationID
+}
+
+func (o *GetProfitAndLoss409ApplicationJSON) GetDetailedErrorCode() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.DetailedErrorCode
+}
+
+func (o *GetProfitAndLoss409ApplicationJSON) GetError() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Error
+}
+
+func (o *GetProfitAndLoss409ApplicationJSON) GetService() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Service
+}
+
+func (o *GetProfitAndLoss409ApplicationJSON) GetStatusCode() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.StatusCode
 }
 
 type GetProfitAndLossResponse struct {
@@ -36,4 +106,46 @@ type GetProfitAndLossResponse struct {
 	GetProfitAndLoss409ApplicationJSONObject *GetProfitAndLoss409ApplicationJSON
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
+}
+
+func (o *GetProfitAndLossResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetProfitAndLossResponse) GetProfitAndLossReport() *shared.ProfitAndLossReport1 {
+	if o == nil {
+		return nil
+	}
+	return o.ProfitAndLossReport
+}
+
+func (o *GetProfitAndLossResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetProfitAndLossResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetProfitAndLossResponse) GetGetProfitAndLoss409ApplicationJSONObject() *GetProfitAndLoss409ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetProfitAndLoss409ApplicationJSONObject
+}
+
+func (o *GetProfitAndLossResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

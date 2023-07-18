@@ -14,6 +14,27 @@ type ListDirectIncomeAttachmentsRequest struct {
 	DirectIncomeID string `pathParam:"style=simple,explode=false,name=directIncomeId"`
 }
 
+func (o *ListDirectIncomeAttachmentsRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *ListDirectIncomeAttachmentsRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *ListDirectIncomeAttachmentsRequest) GetDirectIncomeID() string {
+	if o == nil {
+		return ""
+	}
+	return o.DirectIncomeID
+}
+
 type ListDirectIncomeAttachmentsResponse struct {
 	// Success
 	AttachmentsDataset *shared.AttachmentsDataset
@@ -22,4 +43,39 @@ type ListDirectIncomeAttachmentsResponse struct {
 	RawResponse        *http.Response
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
+}
+
+func (o *ListDirectIncomeAttachmentsResponse) GetAttachmentsDataset() *shared.AttachmentsDataset {
+	if o == nil {
+		return nil
+	}
+	return o.AttachmentsDataset
+}
+
+func (o *ListDirectIncomeAttachmentsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *ListDirectIncomeAttachmentsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *ListDirectIncomeAttachmentsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *ListDirectIncomeAttachmentsResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

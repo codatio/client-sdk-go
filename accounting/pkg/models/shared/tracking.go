@@ -17,6 +17,20 @@ type TrackingRecordReference struct {
 	ID *string `json:"id,omitempty"`
 }
 
+func (o *TrackingRecordReference) GetDataType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DataType
+}
+
+func (o *TrackingRecordReference) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
 type Tracking struct {
 	// Links to the underlying record or data type.
 	//
@@ -28,4 +42,18 @@ type Tracking struct {
 	// - Transfers
 	InvoiceTo  *TrackingRecordReference `json:"invoiceTo,omitempty"`
 	RecordRefs []InvoiceTo              `json:"recordRefs"`
+}
+
+func (o *Tracking) GetInvoiceTo() *TrackingRecordReference {
+	if o == nil {
+		return nil
+	}
+	return o.InvoiceTo
+}
+
+func (o *Tracking) GetRecordRefs() []InvoiceTo {
+	if o == nil {
+		return []InvoiceTo{}
+	}
+	return o.RecordRefs
 }

@@ -110,3 +110,87 @@ type JournalEntry struct {
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	UpdatedOn *string `json:"updatedOn,omitempty"`
 }
+
+func (o *JournalEntry) GetCreatedOn() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CreatedOn
+}
+
+func (o *JournalEntry) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *JournalEntry) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *JournalEntry) GetJournalLines() []JournalLine {
+	if o == nil {
+		return nil
+	}
+	return o.JournalLines
+}
+
+func (o *JournalEntry) GetJournalRef() *JournalRef {
+	if o == nil {
+		return nil
+	}
+	return o.JournalRef
+}
+
+func (o *JournalEntry) GetMetadata() *Metadata {
+	if o == nil {
+		return nil
+	}
+	return o.Metadata
+}
+
+func (o *JournalEntry) GetModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ModifiedDate
+}
+
+func (o *JournalEntry) GetPostedOn() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PostedOn
+}
+
+func (o *JournalEntry) GetRecordRef() *InvoiceTo {
+	if o == nil {
+		return nil
+	}
+	return o.RecordRef
+}
+
+func (o *JournalEntry) GetSourceModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceModifiedDate
+}
+
+func (o *JournalEntry) GetSupplementalData() *SupplementalData {
+	if o == nil {
+		return nil
+	}
+	return o.SupplementalData
+}
+
+func (o *JournalEntry) GetUpdatedOn() *string {
+	if o == nil {
+		return nil
+	}
+	return o.UpdatedOn
+}

@@ -13,6 +13,27 @@ type GetDirectIncomeRequest struct {
 	DirectIncomeID string `pathParam:"style=simple,explode=false,name=directIncomeId"`
 }
 
+func (o *GetDirectIncomeRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *GetDirectIncomeRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *GetDirectIncomeRequest) GetDirectIncomeID() string {
+	if o == nil {
+		return ""
+	}
+	return o.DirectIncomeID
+}
+
 // GetDirectIncome409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
 type GetDirectIncome409ApplicationJSON struct {
 	CanBeRetried      *string `json:"canBeRetried,omitempty"`
@@ -21,6 +42,48 @@ type GetDirectIncome409ApplicationJSON struct {
 	Error             *string `json:"error,omitempty"`
 	Service           *string `json:"service,omitempty"`
 	StatusCode        *int64  `json:"statusCode,omitempty"`
+}
+
+func (o *GetDirectIncome409ApplicationJSON) GetCanBeRetried() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CanBeRetried
+}
+
+func (o *GetDirectIncome409ApplicationJSON) GetCorrelationID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CorrelationID
+}
+
+func (o *GetDirectIncome409ApplicationJSON) GetDetailedErrorCode() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.DetailedErrorCode
+}
+
+func (o *GetDirectIncome409ApplicationJSON) GetError() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Error
+}
+
+func (o *GetDirectIncome409ApplicationJSON) GetService() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Service
+}
+
+func (o *GetDirectIncome409ApplicationJSON) GetStatusCode() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.StatusCode
 }
 
 type GetDirectIncomeResponse struct {
@@ -33,4 +96,46 @@ type GetDirectIncomeResponse struct {
 	GetDirectIncome409ApplicationJSONObject *GetDirectIncome409ApplicationJSON
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
+}
+
+func (o *GetDirectIncomeResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetDirectIncomeResponse) GetDirectIncome() *shared.DirectIncome {
+	if o == nil {
+		return nil
+	}
+	return o.DirectIncome
+}
+
+func (o *GetDirectIncomeResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetDirectIncomeResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetDirectIncomeResponse) GetGetDirectIncome409ApplicationJSONObject() *GetDirectIncome409ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetDirectIncome409ApplicationJSONObject
+}
+
+func (o *GetDirectIncomeResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

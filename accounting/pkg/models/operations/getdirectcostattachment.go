@@ -16,6 +16,34 @@ type GetDirectCostAttachmentRequest struct {
 	DirectCostID string `pathParam:"style=simple,explode=false,name=directCostId"`
 }
 
+func (o *GetDirectCostAttachmentRequest) GetAttachmentID() string {
+	if o == nil {
+		return ""
+	}
+	return o.AttachmentID
+}
+
+func (o *GetDirectCostAttachmentRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *GetDirectCostAttachmentRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *GetDirectCostAttachmentRequest) GetDirectCostID() string {
+	if o == nil {
+		return ""
+	}
+	return o.DirectCostID
+}
+
 type GetDirectCostAttachmentResponse struct {
 	// Success
 	Attachment  *shared.Attachment
@@ -24,4 +52,39 @@ type GetDirectCostAttachmentResponse struct {
 	RawResponse *http.Response
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
+}
+
+func (o *GetDirectCostAttachmentResponse) GetAttachment() *shared.Attachment {
+	if o == nil {
+		return nil
+	}
+	return o.Attachment
+}
+
+func (o *GetDirectCostAttachmentResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetDirectCostAttachmentResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetDirectCostAttachmentResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetDirectCostAttachmentResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

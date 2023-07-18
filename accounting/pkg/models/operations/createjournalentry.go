@@ -14,6 +14,34 @@ type CreateJournalEntryRequest struct {
 	TimeoutInMinutes *int                 `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
 }
 
+func (o *CreateJournalEntryRequest) GetJournalEntry() *shared.JournalEntry {
+	if o == nil {
+		return nil
+	}
+	return o.JournalEntry
+}
+
+func (o *CreateJournalEntryRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *CreateJournalEntryRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *CreateJournalEntryRequest) GetTimeoutInMinutes() *int {
+	if o == nil {
+		return nil
+	}
+	return o.TimeoutInMinutes
+}
+
 type CreateJournalEntryResponse struct {
 	ContentType string
 	// Success
@@ -22,4 +50,39 @@ type CreateJournalEntryResponse struct {
 	RawResponse                *http.Response
 	// The request made is not valid.
 	Schema *shared.Schema
+}
+
+func (o *CreateJournalEntryResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *CreateJournalEntryResponse) GetCreateJournalEntryResponse() *shared.CreateJournalEntryResponse {
+	if o == nil {
+		return nil
+	}
+	return o.CreateJournalEntryResponse
+}
+
+func (o *CreateJournalEntryResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *CreateJournalEntryResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *CreateJournalEntryResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

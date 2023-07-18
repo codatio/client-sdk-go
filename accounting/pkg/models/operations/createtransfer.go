@@ -13,6 +13,27 @@ type CreateTransferRequest struct {
 	ConnectionID string           `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
+func (o *CreateTransferRequest) GetTransfer() *shared.Transfer {
+	if o == nil {
+		return nil
+	}
+	return o.Transfer
+}
+
+func (o *CreateTransferRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *CreateTransferRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
 type CreateTransferResponse struct {
 	ContentType string
 	// Success
@@ -21,4 +42,39 @@ type CreateTransferResponse struct {
 	RawResponse            *http.Response
 	// The request made is not valid.
 	Schema *shared.Schema
+}
+
+func (o *CreateTransferResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *CreateTransferResponse) GetCreateTransferResponse() *shared.CreateTransferResponse {
+	if o == nil {
+		return nil
+	}
+	return o.CreateTransferResponse
+}
+
+func (o *CreateTransferResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *CreateTransferResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *CreateTransferResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

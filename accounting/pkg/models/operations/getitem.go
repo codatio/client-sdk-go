@@ -12,6 +12,20 @@ type GetItemRequest struct {
 	ItemID    string `pathParam:"style=simple,explode=false,name=itemId"`
 }
 
+func (o *GetItemRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *GetItemRequest) GetItemID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ItemID
+}
+
 // GetItem409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
 type GetItem409ApplicationJSON struct {
 	CanBeRetried      *string `json:"canBeRetried,omitempty"`
@@ -20,6 +34,48 @@ type GetItem409ApplicationJSON struct {
 	Error             *string `json:"error,omitempty"`
 	Service           *string `json:"service,omitempty"`
 	StatusCode        *int64  `json:"statusCode,omitempty"`
+}
+
+func (o *GetItem409ApplicationJSON) GetCanBeRetried() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CanBeRetried
+}
+
+func (o *GetItem409ApplicationJSON) GetCorrelationID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CorrelationID
+}
+
+func (o *GetItem409ApplicationJSON) GetDetailedErrorCode() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.DetailedErrorCode
+}
+
+func (o *GetItem409ApplicationJSON) GetError() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Error
+}
+
+func (o *GetItem409ApplicationJSON) GetService() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Service
+}
+
+func (o *GetItem409ApplicationJSON) GetStatusCode() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.StatusCode
 }
 
 type GetItemResponse struct {
@@ -32,4 +88,46 @@ type GetItemResponse struct {
 	GetItem409ApplicationJSONObject *GetItem409ApplicationJSON
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
+}
+
+func (o *GetItemResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetItemResponse) GetItem() *shared.Item {
+	if o == nil {
+		return nil
+	}
+	return o.Item
+}
+
+func (o *GetItemResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetItemResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetItemResponse) GetGetItem409ApplicationJSONObject() *GetItem409ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetItem409ApplicationJSONObject
+}
+
+func (o *GetItemResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

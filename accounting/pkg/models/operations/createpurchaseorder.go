@@ -14,6 +14,34 @@ type CreatePurchaseOrderRequest struct {
 	TimeoutInMinutes *int                  `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
 }
 
+func (o *CreatePurchaseOrderRequest) GetPurchaseOrder() *shared.PurchaseOrder {
+	if o == nil {
+		return nil
+	}
+	return o.PurchaseOrder
+}
+
+func (o *CreatePurchaseOrderRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *CreatePurchaseOrderRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *CreatePurchaseOrderRequest) GetTimeoutInMinutes() *int {
+	if o == nil {
+		return nil
+	}
+	return o.TimeoutInMinutes
+}
+
 type CreatePurchaseOrderResponse struct {
 	ContentType string
 	// Success
@@ -22,4 +50,39 @@ type CreatePurchaseOrderResponse struct {
 	RawResponse                 *http.Response
 	// The request made is not valid.
 	Schema *shared.Schema
+}
+
+func (o *CreatePurchaseOrderResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *CreatePurchaseOrderResponse) GetCreatePurchaseOrderResponse() *shared.CreatePurchaseOrderResponse {
+	if o == nil {
+		return nil
+	}
+	return o.CreatePurchaseOrderResponse
+}
+
+func (o *CreatePurchaseOrderResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *CreatePurchaseOrderResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *CreatePurchaseOrderResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

@@ -11,6 +11,41 @@ type BillCreditNoteLineItemTracking struct {
 	ProjectRef   *ProjectRef           `json:"projectRef,omitempty"`
 }
 
+func (o *BillCreditNoteLineItemTracking) GetCategoryRefs() []TrackingCategoryRef {
+	if o == nil {
+		return []TrackingCategoryRef{}
+	}
+	return o.CategoryRefs
+}
+
+func (o *BillCreditNoteLineItemTracking) GetCustomerRef() *CustomerRef {
+	if o == nil {
+		return nil
+	}
+	return o.CustomerRef
+}
+
+func (o *BillCreditNoteLineItemTracking) GetIsBilledTo() BilledToType {
+	if o == nil {
+		return BilledToType("")
+	}
+	return o.IsBilledTo
+}
+
+func (o *BillCreditNoteLineItemTracking) GetIsRebilledTo() BilledToType {
+	if o == nil {
+		return BilledToType("")
+	}
+	return o.IsRebilledTo
+}
+
+func (o *BillCreditNoteLineItemTracking) GetProjectRef() *ProjectRef {
+	if o == nil {
+		return nil
+	}
+	return o.ProjectRef
+}
+
 type BillCreditNoteLineItem struct {
 	// Data types that reference an account, for example bill and invoice line items, use an accountRef that includes the ID and name of the linked account.
 	AccountRef *AccountRef `json:"accountRef,omitempty"`
@@ -48,4 +83,95 @@ type BillCreditNoteLineItem struct {
 	TrackingCategoryRefs []TrackingCategoryRef `json:"trackingCategoryRefs,omitempty"`
 	// Unit price of the goods or service.
 	UnitAmount float64 `json:"unitAmount"`
+}
+
+func (o *BillCreditNoteLineItem) GetAccountRef() *AccountRef {
+	if o == nil {
+		return nil
+	}
+	return o.AccountRef
+}
+
+func (o *BillCreditNoteLineItem) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *BillCreditNoteLineItem) GetDiscountAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.DiscountAmount
+}
+
+func (o *BillCreditNoteLineItem) GetDiscountPercentage() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.DiscountPercentage
+}
+
+func (o *BillCreditNoteLineItem) GetItemRef() *ItemRef {
+	if o == nil {
+		return nil
+	}
+	return o.ItemRef
+}
+
+func (o *BillCreditNoteLineItem) GetQuantity() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.Quantity
+}
+
+func (o *BillCreditNoteLineItem) GetSubTotal() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.SubTotal
+}
+
+func (o *BillCreditNoteLineItem) GetTaxAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.TaxAmount
+}
+
+func (o *BillCreditNoteLineItem) GetTaxRateRef() *TaxRateRef {
+	if o == nil {
+		return nil
+	}
+	return o.TaxRateRef
+}
+
+func (o *BillCreditNoteLineItem) GetTotalAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.TotalAmount
+}
+
+func (o *BillCreditNoteLineItem) GetTracking() *BillCreditNoteLineItemTracking {
+	if o == nil {
+		return nil
+	}
+	return o.Tracking
+}
+
+func (o *BillCreditNoteLineItem) GetTrackingCategoryRefs() []TrackingCategoryRef {
+	if o == nil {
+		return nil
+	}
+	return o.TrackingCategoryRefs
+}
+
+func (o *BillCreditNoteLineItem) GetUnitAmount() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.UnitAmount
 }

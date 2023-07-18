@@ -42,3 +42,94 @@ type DirectCostLineItem struct {
 	// Note: If the platform does not provide this information, the unit amount will be mapped to the total amount.
 	UnitAmount float64 `json:"unitAmount"`
 }
+
+func (o *DirectCostLineItem) GetAccountRef() *AccountRef {
+	if o == nil {
+		return nil
+	}
+	return o.AccountRef
+}
+
+func (o *DirectCostLineItem) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *DirectCostLineItem) GetDiscountAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.DiscountAmount
+}
+
+func (o *DirectCostLineItem) GetDiscountPercentage() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.DiscountPercentage
+}
+
+func (o *DirectCostLineItem) GetItemRef() *ItemRef {
+	if o == nil {
+		return nil
+	}
+	return o.ItemRef
+}
+
+func (o *DirectCostLineItem) GetQuantity() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.Quantity
+}
+
+func (o *DirectCostLineItem) GetSubTotal() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.SubTotal
+}
+
+func (o *DirectCostLineItem) GetTaxAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.TaxAmount
+}
+
+func (o *DirectCostLineItem) GetTaxRateRef() *TaxRateRef {
+	if o == nil {
+		return nil
+	}
+	return o.TaxRateRef
+}
+
+func (o *DirectCostLineItem) GetTotalAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.TotalAmount
+}
+
+func (o *DirectCostLineItem) GetTracking() *Tracking {
+	if o == nil {
+		return nil
+	}
+	return o.Tracking
+}
+
+func (o *DirectCostLineItem) GetTrackingCategoryRefs() []TrackingCategoryRef {
+	if o == nil {
+		return nil
+	}
+	return o.TrackingCategoryRefs
+}
+
+func (o *DirectCostLineItem) GetUnitAmount() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.UnitAmount
+}

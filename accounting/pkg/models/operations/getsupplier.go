@@ -13,6 +13,20 @@ type GetSupplierRequest struct {
 	SupplierID string `pathParam:"style=simple,explode=false,name=supplierId"`
 }
 
+func (o *GetSupplierRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *GetSupplierRequest) GetSupplierID() string {
+	if o == nil {
+		return ""
+	}
+	return o.SupplierID
+}
+
 // GetSupplier409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
 type GetSupplier409ApplicationJSON struct {
 	CanBeRetried      *string `json:"canBeRetried,omitempty"`
@@ -21,6 +35,48 @@ type GetSupplier409ApplicationJSON struct {
 	Error             *string `json:"error,omitempty"`
 	Service           *string `json:"service,omitempty"`
 	StatusCode        *int64  `json:"statusCode,omitempty"`
+}
+
+func (o *GetSupplier409ApplicationJSON) GetCanBeRetried() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CanBeRetried
+}
+
+func (o *GetSupplier409ApplicationJSON) GetCorrelationID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CorrelationID
+}
+
+func (o *GetSupplier409ApplicationJSON) GetDetailedErrorCode() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.DetailedErrorCode
+}
+
+func (o *GetSupplier409ApplicationJSON) GetError() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Error
+}
+
+func (o *GetSupplier409ApplicationJSON) GetService() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Service
+}
+
+func (o *GetSupplier409ApplicationJSON) GetStatusCode() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.StatusCode
 }
 
 type GetSupplierResponse struct {
@@ -33,4 +89,46 @@ type GetSupplierResponse struct {
 	GetSupplier409ApplicationJSONObject *GetSupplier409ApplicationJSON
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
+}
+
+func (o *GetSupplierResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetSupplierResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetSupplierResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetSupplierResponse) GetSupplier() *shared.Supplier {
+	if o == nil {
+		return nil
+	}
+	return o.Supplier
+}
+
+func (o *GetSupplierResponse) GetGetSupplier409ApplicationJSONObject() *GetSupplier409ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetSupplier409ApplicationJSONObject
+}
+
+func (o *GetSupplierResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

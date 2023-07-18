@@ -12,6 +12,20 @@ type UploadBillAttachmentRequestBody struct {
 	RequestBody string `multipartForm:"name=requestBody"`
 }
 
+func (o *UploadBillAttachmentRequestBody) GetContent() []byte {
+	if o == nil {
+		return []byte{}
+	}
+	return o.Content
+}
+
+func (o *UploadBillAttachmentRequestBody) GetRequestBody() string {
+	if o == nil {
+		return ""
+	}
+	return o.RequestBody
+}
+
 type UploadBillAttachmentRequest struct {
 	RequestBody *UploadBillAttachmentRequestBody `multipartForm:"file" request:"mediaType=multipart/form-data"`
 	// Unique identifier for a bill
@@ -20,10 +34,66 @@ type UploadBillAttachmentRequest struct {
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
+func (o *UploadBillAttachmentRequest) GetRequestBody() *UploadBillAttachmentRequestBody {
+	if o == nil {
+		return nil
+	}
+	return o.RequestBody
+}
+
+func (o *UploadBillAttachmentRequest) GetBillID() string {
+	if o == nil {
+		return ""
+	}
+	return o.BillID
+}
+
+func (o *UploadBillAttachmentRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *UploadBillAttachmentRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
 type UploadBillAttachmentResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
+}
+
+func (o *UploadBillAttachmentResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *UploadBillAttachmentResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *UploadBillAttachmentResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *UploadBillAttachmentResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

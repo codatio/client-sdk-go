@@ -10,3 +10,38 @@ type DirectCosts struct {
 	Results      []DirectCost `json:"results,omitempty"`
 	TotalResults int64        `json:"totalResults"`
 }
+
+func (o *DirectCosts) GetLinks() Links {
+	if o == nil {
+		return Links{}
+	}
+	return o.Links
+}
+
+func (o *DirectCosts) GetPageNumber() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.PageNumber
+}
+
+func (o *DirectCosts) GetPageSize() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.PageSize
+}
+
+func (o *DirectCosts) GetResults() []DirectCost {
+	if o == nil {
+		return nil
+	}
+	return o.Results
+}
+
+func (o *DirectCosts) GetTotalResults() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.TotalResults
+}

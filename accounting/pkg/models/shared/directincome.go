@@ -94,3 +94,115 @@ type DirectIncome struct {
 	// The amount of the direct incomes, inclusive of tax.
 	TotalAmount float64 `json:"totalAmount"`
 }
+
+func (o *DirectIncome) GetContactRef() *ContactRef {
+	if o == nil {
+		return nil
+	}
+	return o.ContactRef
+}
+
+func (o *DirectIncome) GetCurrency() string {
+	if o == nil {
+		return ""
+	}
+	return o.Currency
+}
+
+func (o *DirectIncome) GetCurrencyRate() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.CurrencyRate
+}
+
+func (o *DirectIncome) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *DirectIncome) GetIssueDate() string {
+	if o == nil {
+		return ""
+	}
+	return o.IssueDate
+}
+
+func (o *DirectIncome) GetLineItems() []DirectIncomeLineItem {
+	if o == nil {
+		return []DirectIncomeLineItem{}
+	}
+	return o.LineItems
+}
+
+func (o *DirectIncome) GetMetadata() *Metadata {
+	if o == nil {
+		return nil
+	}
+	return o.Metadata
+}
+
+func (o *DirectIncome) GetModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ModifiedDate
+}
+
+func (o *DirectIncome) GetNote() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Note
+}
+
+func (o *DirectIncome) GetPaymentAllocations() []Items {
+	if o == nil {
+		return []Items{}
+	}
+	return o.PaymentAllocations
+}
+
+func (o *DirectIncome) GetReference() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Reference
+}
+
+func (o *DirectIncome) GetSourceModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceModifiedDate
+}
+
+func (o *DirectIncome) GetSubTotal() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.SubTotal
+}
+
+func (o *DirectIncome) GetSupplementalData() *SupplementalData {
+	if o == nil {
+		return nil
+	}
+	return o.SupplementalData
+}
+
+func (o *DirectIncome) GetTaxAmount() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.TaxAmount
+}
+
+func (o *DirectIncome) GetTotalAmount() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.TotalAmount
+}

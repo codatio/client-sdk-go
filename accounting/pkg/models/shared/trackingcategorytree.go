@@ -19,3 +19,59 @@ type TrackingCategoryTree struct {
 	// A collection of subcategories that are nested beneath this category.
 	SubCategories []TrackingCategoryTree `json:"subCategories,omitempty"`
 }
+
+func (o *TrackingCategoryTree) GetHasChildren() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasChildren
+}
+
+func (o *TrackingCategoryTree) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *TrackingCategoryTree) GetModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ModifiedDate
+}
+
+func (o *TrackingCategoryTree) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
+func (o *TrackingCategoryTree) GetParentID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ParentID
+}
+
+func (o *TrackingCategoryTree) GetSourceModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceModifiedDate
+}
+
+func (o *TrackingCategoryTree) GetStatus() *Status {
+	if o == nil {
+		return nil
+	}
+	return o.Status
+}
+
+func (o *TrackingCategoryTree) GetSubCategories() []TrackingCategoryTree {
+	if o == nil {
+		return nil
+	}
+	return o.SubCategories
+}

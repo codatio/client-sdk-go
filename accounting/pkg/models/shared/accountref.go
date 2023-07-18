@@ -9,3 +9,17 @@ type AccountRef struct {
 	// 'name' from the Accounts data type.
 	Name *string `json:"name,omitempty"`
 }
+
+func (o *AccountRef) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *AccountRef) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}

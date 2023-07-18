@@ -6,3 +6,17 @@ type SalesOrderRef struct {
 	DataType *string `json:"dataType,omitempty"`
 	ID       *string `json:"id,omitempty"`
 }
+
+func (o *SalesOrderRef) GetDataType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DataType
+}
+
+func (o *SalesOrderRef) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}

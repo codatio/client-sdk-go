@@ -46,3 +46,108 @@ type Customer struct {
 	// Company tax number.
 	TaxNumber *string `json:"taxNumber,omitempty"`
 }
+
+func (o *Customer) GetAddresses() []Addressesitems {
+	if o == nil {
+		return nil
+	}
+	return o.Addresses
+}
+
+func (o *Customer) GetContactName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ContactName
+}
+
+func (o *Customer) GetContacts() []Contact {
+	if o == nil {
+		return nil
+	}
+	return o.Contacts
+}
+
+func (o *Customer) GetCustomerName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CustomerName
+}
+
+func (o *Customer) GetDefaultCurrency() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DefaultCurrency
+}
+
+func (o *Customer) GetEmailAddress() *string {
+	if o == nil {
+		return nil
+	}
+	return o.EmailAddress
+}
+
+func (o *Customer) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *Customer) GetMetadata() *Metadata {
+	if o == nil {
+		return nil
+	}
+	return o.Metadata
+}
+
+func (o *Customer) GetModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ModifiedDate
+}
+
+func (o *Customer) GetPhone() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Phone
+}
+
+func (o *Customer) GetRegistrationNumber() *string {
+	if o == nil {
+		return nil
+	}
+	return o.RegistrationNumber
+}
+
+func (o *Customer) GetSourceModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceModifiedDate
+}
+
+func (o *Customer) GetStatus() CustomerStatus {
+	if o == nil {
+		return CustomerStatus("")
+	}
+	return o.Status
+}
+
+func (o *Customer) GetSupplementalData() *SupplementalData {
+	if o == nil {
+		return nil
+	}
+	return o.SupplementalData
+}
+
+func (o *Customer) GetTaxNumber() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TaxNumber
+}

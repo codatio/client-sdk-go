@@ -10,3 +10,38 @@ type TaxRates struct {
 	Results      []TaxRate `json:"results,omitempty"`
 	TotalResults int64     `json:"totalResults"`
 }
+
+func (o *TaxRates) GetLinks() Links {
+	if o == nil {
+		return Links{}
+	}
+	return o.Links
+}
+
+func (o *TaxRates) GetPageNumber() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.PageNumber
+}
+
+func (o *TaxRates) GetPageSize() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.PageSize
+}
+
+func (o *TaxRates) GetResults() []TaxRate {
+	if o == nil {
+		return nil
+	}
+	return o.Results
+}
+
+func (o *TaxRates) GetTotalResults() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.TotalResults
+}
