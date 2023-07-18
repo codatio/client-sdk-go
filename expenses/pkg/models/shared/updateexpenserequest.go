@@ -15,3 +15,45 @@ type UpdateExpenseRequest struct {
 	Notes *string     `json:"notes,omitempty"`
 	Type  interface{} `json:"type"`
 }
+
+func (o *UpdateExpenseRequest) GetCurrency() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Currency
+}
+
+func (o *UpdateExpenseRequest) GetIssueDate() string {
+	if o == nil {
+		return ""
+	}
+	return o.IssueDate
+}
+
+func (o *UpdateExpenseRequest) GetLines() []ExpenseTransactionLine {
+	if o == nil {
+		return nil
+	}
+	return o.Lines
+}
+
+func (o *UpdateExpenseRequest) GetMerchantName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.MerchantName
+}
+
+func (o *UpdateExpenseRequest) GetNotes() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Notes
+}
+
+func (o *UpdateExpenseRequest) GetType() interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}

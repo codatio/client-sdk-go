@@ -21,8 +21,8 @@ import(
 	"context"
 	"log"
 	"github.com/codatio/client-sdk-go/expenses"
-	"github.com/codatio/client-sdk-go/expenses/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/expenses/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/expenses/pkg/models/operations"
 )
 
 func main() {

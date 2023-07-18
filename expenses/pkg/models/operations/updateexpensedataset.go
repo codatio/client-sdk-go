@@ -14,9 +14,37 @@ type UpdateExpenseDatasetRequest struct {
 	TransactionID string `pathParam:"style=simple,explode=false,name=transactionId"`
 }
 
+func (o *UpdateExpenseDatasetRequest) GetUpdateExpenseRequest() *shared.UpdateExpenseRequest {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateExpenseRequest
+}
+
+func (o *UpdateExpenseDatasetRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *UpdateExpenseDatasetRequest) GetTransactionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.TransactionID
+}
+
 // UpdateExpenseDataset202ApplicationJSON - Accepted
 type UpdateExpenseDataset202ApplicationJSON struct {
 	SyncID *string `json:"syncId,omitempty"`
+}
+
+func (o *UpdateExpenseDataset202ApplicationJSON) GetSyncID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SyncID
 }
 
 type UpdateExpenseDatasetResponse struct {
@@ -27,4 +55,39 @@ type UpdateExpenseDatasetResponse struct {
 	Schema *shared.Schema
 	// Accepted
 	UpdateExpenseDataset202ApplicationJSONObject *UpdateExpenseDataset202ApplicationJSON
+}
+
+func (o *UpdateExpenseDatasetResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *UpdateExpenseDatasetResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *UpdateExpenseDatasetResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *UpdateExpenseDatasetResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
+func (o *UpdateExpenseDatasetResponse) GetUpdateExpenseDataset202ApplicationJSONObject() *UpdateExpenseDataset202ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateExpenseDataset202ApplicationJSONObject
 }

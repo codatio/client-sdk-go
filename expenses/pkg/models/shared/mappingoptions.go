@@ -13,3 +13,31 @@ type MappingOptions struct {
 	// Array of available tracking categories for mapping.
 	TrackingCategories []TrackingCategoryMappingInfo `json:"trackingCategories,omitempty"`
 }
+
+func (o *MappingOptions) GetAccounts() []AccountMappingInfo {
+	if o == nil {
+		return nil
+	}
+	return o.Accounts
+}
+
+func (o *MappingOptions) GetExpenseProvider() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ExpenseProvider
+}
+
+func (o *MappingOptions) GetTaxRates() []TaxRateMappingInfo {
+	if o == nil {
+		return nil
+	}
+	return o.TaxRates
+}
+
+func (o *MappingOptions) GetTrackingCategories() []TrackingCategoryMappingInfo {
+	if o == nil {
+		return nil
+	}
+	return o.TrackingCategories
+}

@@ -8,3 +8,24 @@ type CompanyConfiguration struct {
 	Customer    Customer    `json:"customer"`
 	Supplier    Supplier    `json:"supplier"`
 }
+
+func (o *CompanyConfiguration) GetBankAccount() BankAccount {
+	if o == nil {
+		return BankAccount{}
+	}
+	return o.BankAccount
+}
+
+func (o *CompanyConfiguration) GetCustomer() Customer {
+	if o == nil {
+		return Customer{}
+	}
+	return o.Customer
+}
+
+func (o *CompanyConfiguration) GetSupplier() Supplier {
+	if o == nil {
+		return Supplier{}
+	}
+	return o.Supplier
+}

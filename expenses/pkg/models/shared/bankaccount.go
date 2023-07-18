@@ -6,3 +6,10 @@ type BankAccount struct {
 	// The id of the account from which purchases are made
 	ID *string `json:"id,omitempty"`
 }
+
+func (o *BankAccount) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}

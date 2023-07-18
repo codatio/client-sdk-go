@@ -113,3 +113,59 @@ type ExpenseTransaction struct {
 	// The type of transaction.
 	Type ExpenseTransactionType `json:"type"`
 }
+
+func (o *ExpenseTransaction) GetCurrency() string {
+	if o == nil {
+		return ""
+	}
+	return o.Currency
+}
+
+func (o *ExpenseTransaction) GetCurrencyRate() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.CurrencyRate
+}
+
+func (o *ExpenseTransaction) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *ExpenseTransaction) GetIssueDate() string {
+	if o == nil {
+		return ""
+	}
+	return o.IssueDate
+}
+
+func (o *ExpenseTransaction) GetLines() []ExpenseTransactionLine {
+	if o == nil {
+		return nil
+	}
+	return o.Lines
+}
+
+func (o *ExpenseTransaction) GetMerchantName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.MerchantName
+}
+
+func (o *ExpenseTransaction) GetNotes() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Notes
+}
+
+func (o *ExpenseTransaction) GetType() ExpenseTransactionType {
+	if o == nil {
+		return ExpenseTransactionType("")
+	}
+	return o.Type
+}

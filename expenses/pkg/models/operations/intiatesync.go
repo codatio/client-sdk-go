@@ -12,6 +12,20 @@ type IntiateSyncRequest struct {
 	CompanyID string           `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
+func (o *IntiateSyncRequest) GetPostSync() *shared.PostSync {
+	if o == nil {
+		return nil
+	}
+	return o.PostSync
+}
+
+func (o *IntiateSyncRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
 type IntiateSyncResponse struct {
 	// If model is incorrect
 	CodatErrorMessage *shared.CodatErrorMessage
@@ -20,4 +34,39 @@ type IntiateSyncResponse struct {
 	RawResponse       *http.Response
 	// Returns the newly created SyncId
 	SyncInitiated *shared.SyncInitiated
+}
+
+func (o *IntiateSyncResponse) GetCodatErrorMessage() *shared.CodatErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.CodatErrorMessage
+}
+
+func (o *IntiateSyncResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *IntiateSyncResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *IntiateSyncResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *IntiateSyncResponse) GetSyncInitiated() *shared.SyncInitiated {
+	if o == nil {
+		return nil
+	}
+	return o.SyncInitiated
 }

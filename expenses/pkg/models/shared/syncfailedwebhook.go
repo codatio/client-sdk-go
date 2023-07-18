@@ -50,6 +50,41 @@ type SyncFailedWebhookData struct {
 	SyncType *string `json:"syncType,omitempty"`
 }
 
+func (o *SyncFailedWebhookData) GetFailureStage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.FailureStage
+}
+
+func (o *SyncFailedWebhookData) GetSyncDateRangeFinishUtc() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SyncDateRangeFinishUtc
+}
+
+func (o *SyncFailedWebhookData) GetSyncDateRangeStartUtc() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SyncDateRangeStartUtc
+}
+
+func (o *SyncFailedWebhookData) GetSyncID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SyncID
+}
+
+func (o *SyncFailedWebhookData) GetSyncType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SyncType
+}
+
 // SyncFailedWebhook - Webhook request body used to notify that a sync has failed.
 type SyncFailedWebhook struct {
 	// Unique identifier of the webhook event.
@@ -67,4 +102,60 @@ type SyncFailedWebhook struct {
 	RuleID *string `json:"RuleId,omitempty"`
 	// The type of rule.
 	RuleType *string `json:"RuleType,omitempty"`
+}
+
+func (o *SyncFailedWebhook) GetAlertID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AlertID
+}
+
+func (o *SyncFailedWebhook) GetClientID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ClientID
+}
+
+func (o *SyncFailedWebhook) GetClientName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ClientName
+}
+
+func (o *SyncFailedWebhook) GetCompanyID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CompanyID
+}
+
+func (o *SyncFailedWebhook) GetData() *SyncFailedWebhookData {
+	if o == nil {
+		return nil
+	}
+	return o.Data
+}
+
+func (o *SyncFailedWebhook) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *SyncFailedWebhook) GetRuleID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.RuleID
+}
+
+func (o *SyncFailedWebhook) GetRuleType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.RuleType
 }

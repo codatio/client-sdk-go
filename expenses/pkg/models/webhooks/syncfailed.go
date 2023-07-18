@@ -11,3 +11,24 @@ type SyncFailedResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 }
+
+func (o *SyncFailedResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *SyncFailedResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *SyncFailedResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}

@@ -9,11 +9,67 @@ type CodatErrorMessageValidationErrors struct {
 	ValidatorName *string `json:"validatorName,omitempty"`
 }
 
+func (o *CodatErrorMessageValidationErrors) GetItemID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ItemID
+}
+
+func (o *CodatErrorMessageValidationErrors) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *CodatErrorMessageValidationErrors) GetRuleID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.RuleID
+}
+
+func (o *CodatErrorMessageValidationErrors) GetValidatorName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ValidatorName
+}
+
 type CodatErrorMessageValidationInternals struct {
 	ItemID        *string `json:"itemId,omitempty"`
 	Message       *string `json:"message,omitempty"`
 	RuleID        *string `json:"ruleId,omitempty"`
 	ValidatorName *string `json:"validatorName,omitempty"`
+}
+
+func (o *CodatErrorMessageValidationInternals) GetItemID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ItemID
+}
+
+func (o *CodatErrorMessageValidationInternals) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *CodatErrorMessageValidationInternals) GetRuleID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.RuleID
+}
+
+func (o *CodatErrorMessageValidationInternals) GetValidatorName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ValidatorName
 }
 
 type CodatErrorMessageValidationWarnings struct {
@@ -23,6 +79,34 @@ type CodatErrorMessageValidationWarnings struct {
 	ValidatorName *string `json:"validatorName,omitempty"`
 }
 
+func (o *CodatErrorMessageValidationWarnings) GetItemID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ItemID
+}
+
+func (o *CodatErrorMessageValidationWarnings) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *CodatErrorMessageValidationWarnings) GetRuleID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.RuleID
+}
+
+func (o *CodatErrorMessageValidationWarnings) GetValidatorName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ValidatorName
+}
+
 type CodatErrorMessageValidation struct {
 	Errors       []CodatErrorMessageValidationErrors    `json:"errors,omitempty"`
 	HasErrors    *bool                                  `json:"hasErrors,omitempty"`
@@ -30,6 +114,48 @@ type CodatErrorMessageValidation struct {
 	HasWarnings  *bool                                  `json:"hasWarnings,omitempty"`
 	Internals    []CodatErrorMessageValidationInternals `json:"internals,omitempty"`
 	Warnings     []CodatErrorMessageValidationWarnings  `json:"warnings,omitempty"`
+}
+
+func (o *CodatErrorMessageValidation) GetErrors() []CodatErrorMessageValidationErrors {
+	if o == nil {
+		return nil
+	}
+	return o.Errors
+}
+
+func (o *CodatErrorMessageValidation) GetHasErrors() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasErrors
+}
+
+func (o *CodatErrorMessageValidation) GetHasInternals() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasInternals
+}
+
+func (o *CodatErrorMessageValidation) GetHasWarnings() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasWarnings
+}
+
+func (o *CodatErrorMessageValidation) GetInternals() []CodatErrorMessageValidationInternals {
+	if o == nil {
+		return nil
+	}
+	return o.Internals
+}
+
+func (o *CodatErrorMessageValidation) GetWarnings() []CodatErrorMessageValidationWarnings {
+	if o == nil {
+		return nil
+	}
+	return o.Warnings
 }
 
 // CodatErrorMessage - If model is incorrect
@@ -42,4 +168,60 @@ type CodatErrorMessage struct {
 	Service           *string                      `json:"service,omitempty"`
 	StatusCode        *int64                       `json:"statusCode,omitempty"`
 	Validation        *CodatErrorMessageValidation `json:"validation,omitempty"`
+}
+
+func (o *CodatErrorMessage) GetCanBeRetried() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CanBeRetried
+}
+
+func (o *CodatErrorMessage) GetCorrelationID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CorrelationID
+}
+
+func (o *CodatErrorMessage) GetDetailedErrorCode() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.DetailedErrorCode
+}
+
+func (o *CodatErrorMessage) GetError() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Error
+}
+
+func (o *CodatErrorMessage) GetInner() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Inner
+}
+
+func (o *CodatErrorMessage) GetService() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Service
+}
+
+func (o *CodatErrorMessage) GetStatusCode() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.StatusCode
+}
+
+func (o *CodatErrorMessage) GetValidation() *CodatErrorMessageValidation {
+	if o == nil {
+		return nil
+	}
+	return o.Validation
 }

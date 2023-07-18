@@ -11,6 +11,13 @@ type CreatePartnerExpenseConnectionRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
+func (o *CreatePartnerExpenseConnectionRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
 type CreatePartnerExpenseConnectionResponse struct {
 	ContentType string
 	// Success
@@ -19,4 +26,39 @@ type CreatePartnerExpenseConnectionResponse struct {
 	RawResponse    *http.Response
 	// The request made is not valid.
 	Schema *shared.Schema
+}
+
+func (o *CreatePartnerExpenseConnectionResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *CreatePartnerExpenseConnectionResponse) GetDataConnection() *shared.DataConnection {
+	if o == nil {
+		return nil
+	}
+	return o.DataConnection
+}
+
+func (o *CreatePartnerExpenseConnectionResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *CreatePartnerExpenseConnectionResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *CreatePartnerExpenseConnectionResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

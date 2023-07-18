@@ -11,6 +11,13 @@ type GetMappingOptionsRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
+func (o *GetMappingOptionsRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
 type GetMappingOptionsResponse struct {
 	ContentType string
 	// Success
@@ -19,4 +26,39 @@ type GetMappingOptionsResponse struct {
 	RawResponse    *http.Response
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
+}
+
+func (o *GetMappingOptionsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetMappingOptionsResponse) GetMappingOptions() *shared.MappingOptions {
+	if o == nil {
+		return nil
+	}
+	return o.MappingOptions
+}
+
+func (o *GetMappingOptionsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetMappingOptionsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetMappingOptionsResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

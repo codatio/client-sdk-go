@@ -15,6 +15,27 @@ type GetSyncTransactionRequest struct {
 	TransactionID string `pathParam:"style=simple,explode=false,name=transactionId"`
 }
 
+func (o *GetSyncTransactionRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *GetSyncTransactionRequest) GetSyncID() string {
+	if o == nil {
+		return ""
+	}
+	return o.SyncID
+}
+
+func (o *GetSyncTransactionRequest) GetTransactionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.TransactionID
+}
+
 type GetSyncTransactionResponse struct {
 	ContentType string
 	StatusCode  int
@@ -23,4 +44,39 @@ type GetSyncTransactionResponse struct {
 	TransactionMetadata []shared.TransactionMetadata
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
+}
+
+func (o *GetSyncTransactionResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetSyncTransactionResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetSyncTransactionResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetSyncTransactionResponse) GetTransactionMetadata() []shared.TransactionMetadata {
+	if o == nil {
+		return nil
+	}
+	return o.TransactionMetadata
+}
+
+func (o *GetSyncTransactionResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

@@ -12,6 +12,20 @@ type CreateExpenseDatasetRequest struct {
 	CompanyID            string                       `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
+func (o *CreateExpenseDatasetRequest) GetCreateExpenseRequest() *shared.CreateExpenseRequest {
+	if o == nil {
+		return nil
+	}
+	return o.CreateExpenseRequest
+}
+
+func (o *CreateExpenseDatasetRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
 type CreateExpenseDatasetResponse struct {
 	ContentType string
 	// OK
@@ -20,4 +34,39 @@ type CreateExpenseDatasetResponse struct {
 	RawResponse           *http.Response
 	// The request made is not valid.
 	Schema *shared.Schema
+}
+
+func (o *CreateExpenseDatasetResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *CreateExpenseDatasetResponse) GetCreateExpenseResponse() *shared.CreateExpenseResponse {
+	if o == nil {
+		return nil
+	}
+	return o.CreateExpenseResponse
+}
+
+func (o *CreateExpenseDatasetResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *CreateExpenseDatasetResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *CreateExpenseDatasetResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

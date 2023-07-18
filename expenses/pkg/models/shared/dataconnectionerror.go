@@ -27,3 +27,31 @@ type DataConnectionError struct {
 	StatusCode   *string `json:"statusCode,omitempty"`
 	StatusText   *string `json:"statusText,omitempty"`
 }
+
+func (o *DataConnectionError) GetErrorMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *DataConnectionError) GetErroredOnUtc() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ErroredOnUtc
+}
+
+func (o *DataConnectionError) GetStatusCode() *string {
+	if o == nil {
+		return nil
+	}
+	return o.StatusCode
+}
+
+func (o *DataConnectionError) GetStatusText() *string {
+	if o == nil {
+		return nil
+	}
+	return o.StatusText
+}

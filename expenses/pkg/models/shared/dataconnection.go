@@ -113,3 +113,94 @@ type DataConnection struct {
 	// The current authorization status of the data connection.
 	Status DataConnectionStatus `json:"status"`
 }
+
+func (o *DataConnection) GetAdditionalProperties() interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
+func (o *DataConnection) GetConnectionInfo() map[string]string {
+	if o == nil {
+		return nil
+	}
+	return o.ConnectionInfo
+}
+
+func (o *DataConnection) GetCreated() string {
+	if o == nil {
+		return ""
+	}
+	return o.Created
+}
+
+func (o *DataConnection) GetDataConnectionErrors() []DataConnectionError {
+	if o == nil {
+		return nil
+	}
+	return o.DataConnectionErrors
+}
+
+func (o *DataConnection) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *DataConnection) GetIntegrationID() string {
+	if o == nil {
+		return ""
+	}
+	return o.IntegrationID
+}
+
+func (o *DataConnection) GetIntegrationKey() string {
+	if o == nil {
+		return ""
+	}
+	return o.IntegrationKey
+}
+
+func (o *DataConnection) GetLastSync() *string {
+	if o == nil {
+		return nil
+	}
+	return o.LastSync
+}
+
+func (o *DataConnection) GetLinkURL() string {
+	if o == nil {
+		return ""
+	}
+	return o.LinkURL
+}
+
+func (o *DataConnection) GetPlatformName() string {
+	if o == nil {
+		return ""
+	}
+	return o.PlatformName
+}
+
+func (o *DataConnection) GetSourceID() string {
+	if o == nil {
+		return ""
+	}
+	return o.SourceID
+}
+
+func (o *DataConnection) GetSourceType() DataConnectionSourceType {
+	if o == nil {
+		return DataConnectionSourceType("")
+	}
+	return o.SourceType
+}
+
+func (o *DataConnection) GetStatus() DataConnectionStatus {
+	if o == nil {
+		return DataConnectionStatus("")
+	}
+	return o.Status
+}

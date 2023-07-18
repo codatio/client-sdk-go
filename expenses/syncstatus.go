@@ -7,6 +7,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/expenses/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/expenses/pkg/models/sdkerrors"
 	"github.com/codatio/client-sdk-go/expenses/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/expenses/pkg/utils"
 	"io"
@@ -107,6 +108,8 @@ func (s *syncStatus) GetLastSuccessfulSync(ctx context.Context, request operatio
 			}
 
 			res.CompanySyncStatus = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -121,6 +124,8 @@ func (s *syncStatus) GetLastSuccessfulSync(ctx context.Context, request operatio
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -210,6 +215,8 @@ func (s *syncStatus) GetLatestSync(ctx context.Context, request operations.GetLa
 			}
 
 			res.CompanySyncStatus = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -224,6 +231,8 @@ func (s *syncStatus) GetLatestSync(ctx context.Context, request operations.GetLa
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -313,6 +322,8 @@ func (s *syncStatus) GetSyncByID(ctx context.Context, request operations.GetSync
 			}
 
 			res.CompanySyncStatus = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -327,6 +338,8 @@ func (s *syncStatus) GetSyncByID(ctx context.Context, request operations.GetSync
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -416,6 +429,8 @@ func (s *syncStatus) ListSyncs(ctx context.Context, request operations.ListSyncs
 			}
 
 			res.CompanySyncStatuses = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -430,6 +445,8 @@ func (s *syncStatus) ListSyncs(ctx context.Context, request operations.ListSyncs
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 

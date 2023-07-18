@@ -48,6 +48,34 @@ type SyncStartedWebhookData struct {
 	SyncType *string `json:"syncType,omitempty"`
 }
 
+func (o *SyncStartedWebhookData) GetSyncDateRangeFinishUtc() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SyncDateRangeFinishUtc
+}
+
+func (o *SyncStartedWebhookData) GetSyncDateRangeStartUtc() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SyncDateRangeStartUtc
+}
+
+func (o *SyncStartedWebhookData) GetSyncID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SyncID
+}
+
+func (o *SyncStartedWebhookData) GetSyncType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SyncType
+}
+
 // SyncStartedWebhook - Webhook request body used to notify that a sync has started.
 type SyncStartedWebhook struct {
 	// Unique identifier of the webhook event.
@@ -65,4 +93,60 @@ type SyncStartedWebhook struct {
 	RuleID *string `json:"RuleId,omitempty"`
 	// The type of rule.
 	RuleType *string `json:"RuleType,omitempty"`
+}
+
+func (o *SyncStartedWebhook) GetAlertID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AlertID
+}
+
+func (o *SyncStartedWebhook) GetClientID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ClientID
+}
+
+func (o *SyncStartedWebhook) GetClientName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ClientName
+}
+
+func (o *SyncStartedWebhook) GetCompanyID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CompanyID
+}
+
+func (o *SyncStartedWebhook) GetData() *SyncStartedWebhookData {
+	if o == nil {
+		return nil
+	}
+	return o.Data
+}
+
+func (o *SyncStartedWebhook) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *SyncStartedWebhook) GetRuleID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.RuleID
+}
+
+func (o *SyncStartedWebhook) GetRuleType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.RuleType
 }

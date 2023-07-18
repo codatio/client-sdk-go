@@ -12,3 +12,31 @@ type TransactionMetadata struct {
 	// Your unique idenfier of the transaction.
 	TransactionID *string `json:"transactionId,omitempty"`
 }
+
+func (o *TransactionMetadata) GetIntegrationType() *IntegrationType {
+	if o == nil {
+		return nil
+	}
+	return o.IntegrationType
+}
+
+func (o *TransactionMetadata) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *TransactionMetadata) GetStatus() *TransactionStatus {
+	if o == nil {
+		return nil
+	}
+	return o.Status
+}
+
+func (o *TransactionMetadata) GetTransactionID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TransactionID
+}

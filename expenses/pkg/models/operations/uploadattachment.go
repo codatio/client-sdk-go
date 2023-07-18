@@ -12,6 +12,20 @@ type UploadAttachmentRequestBody struct {
 	RequestBody string `multipartForm:"name=requestBody"`
 }
 
+func (o *UploadAttachmentRequestBody) GetContent() []byte {
+	if o == nil {
+		return []byte{}
+	}
+	return o.Content
+}
+
+func (o *UploadAttachmentRequestBody) GetRequestBody() string {
+	if o == nil {
+		return ""
+	}
+	return o.RequestBody
+}
+
 type UploadAttachmentRequest struct {
 	RequestBody *UploadAttachmentRequestBody `multipartForm:"file" request:"mediaType=multipart/form-data"`
 	CompanyID   string                       `pathParam:"style=simple,explode=false,name=companyId"`
@@ -19,6 +33,34 @@ type UploadAttachmentRequest struct {
 	SyncID string `pathParam:"style=simple,explode=false,name=syncId"`
 	// The unique identifier for your SMB's transaction.
 	TransactionID string `pathParam:"style=simple,explode=false,name=transactionId"`
+}
+
+func (o *UploadAttachmentRequest) GetRequestBody() *UploadAttachmentRequestBody {
+	if o == nil {
+		return nil
+	}
+	return o.RequestBody
+}
+
+func (o *UploadAttachmentRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *UploadAttachmentRequest) GetSyncID() string {
+	if o == nil {
+		return ""
+	}
+	return o.SyncID
+}
+
+func (o *UploadAttachmentRequest) GetTransactionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.TransactionID
 }
 
 type UploadAttachmentResponse struct {
@@ -29,4 +71,39 @@ type UploadAttachmentResponse struct {
 	RawResponse *http.Response
 	// The request made is not valid.
 	Schema *shared.Schema
+}
+
+func (o *UploadAttachmentResponse) GetAttachment() *shared.Attachment {
+	if o == nil {
+		return nil
+	}
+	return o.Attachment
+}
+
+func (o *UploadAttachmentResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *UploadAttachmentResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *UploadAttachmentResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *UploadAttachmentResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

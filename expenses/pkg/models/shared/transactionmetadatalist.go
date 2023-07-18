@@ -9,6 +9,34 @@ type TransactionMetadataListLinks struct {
 	Self     HalLink  `json:"self"`
 }
 
+func (o *TransactionMetadataListLinks) GetCurrent() HalLink {
+	if o == nil {
+		return HalLink{}
+	}
+	return o.Current
+}
+
+func (o *TransactionMetadataListLinks) GetNext() *HalLink {
+	if o == nil {
+		return nil
+	}
+	return o.Next
+}
+
+func (o *TransactionMetadataListLinks) GetPrevious() *HalLink {
+	if o == nil {
+		return nil
+	}
+	return o.Previous
+}
+
+func (o *TransactionMetadataListLinks) GetSelf() HalLink {
+	if o == nil {
+		return HalLink{}
+	}
+	return o.Self
+}
+
 // TransactionMetadataList - Success
 type TransactionMetadataList struct {
 	Links        TransactionMetadataListLinks `json:"_links"`
@@ -16,4 +44,39 @@ type TransactionMetadataList struct {
 	PageSize     int64                        `json:"pageSize"`
 	Results      []TransactionMetadata        `json:"results,omitempty"`
 	TotalResults int64                        `json:"totalResults"`
+}
+
+func (o *TransactionMetadataList) GetLinks() TransactionMetadataListLinks {
+	if o == nil {
+		return TransactionMetadataListLinks{}
+	}
+	return o.Links
+}
+
+func (o *TransactionMetadataList) GetPageNumber() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.PageNumber
+}
+
+func (o *TransactionMetadataList) GetPageSize() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.PageSize
+}
+
+func (o *TransactionMetadataList) GetResults() []TransactionMetadata {
+	if o == nil {
+		return nil
+	}
+	return o.Results
+}
+
+func (o *TransactionMetadataList) GetTotalResults() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.TotalResults
 }

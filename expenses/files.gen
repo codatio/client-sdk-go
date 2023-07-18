@@ -8,6 +8,7 @@ transactionstatus.go
 codatsyncexpenses.go
 go.mod
 go.sum
+pkg/models/sdkerrors/sdkerror.go
 pkg/types/bigint.go
 pkg/types/date.go
 pkg/types/datetime.go

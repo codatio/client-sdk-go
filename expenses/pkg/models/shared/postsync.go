@@ -5,3 +5,10 @@ package shared
 type PostSync struct {
 	DatasetIds []string `json:"datasetIds,omitempty"`
 }
+
+func (o *PostSync) GetDatasetIds() []string {
+	if o == nil {
+		return nil
+	}
+	return o.DatasetIds
+}

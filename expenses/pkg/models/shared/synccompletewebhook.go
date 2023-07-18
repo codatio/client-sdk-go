@@ -48,6 +48,34 @@ type SyncCompleteWebhookData struct {
 	SyncType *string `json:"syncType,omitempty"`
 }
 
+func (o *SyncCompleteWebhookData) GetSyncDateRangeFinishUtc() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SyncDateRangeFinishUtc
+}
+
+func (o *SyncCompleteWebhookData) GetSyncDateRangeStartUtc() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SyncDateRangeStartUtc
+}
+
+func (o *SyncCompleteWebhookData) GetSyncID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SyncID
+}
+
+func (o *SyncCompleteWebhookData) GetSyncType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SyncType
+}
+
 // SyncCompleteWebhook - Webhook request body used to notify that a sync has completed.
 type SyncCompleteWebhook struct {
 	// Unique identifier of the webhook event.
@@ -65,4 +93,60 @@ type SyncCompleteWebhook struct {
 	RuleID *string `json:"RuleId,omitempty"`
 	// The type of rule.
 	RuleType *string `json:"RuleType,omitempty"`
+}
+
+func (o *SyncCompleteWebhook) GetAlertID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AlertID
+}
+
+func (o *SyncCompleteWebhook) GetClientID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ClientID
+}
+
+func (o *SyncCompleteWebhook) GetClientName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ClientName
+}
+
+func (o *SyncCompleteWebhook) GetCompanyID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CompanyID
+}
+
+func (o *SyncCompleteWebhook) GetData() *SyncCompleteWebhookData {
+	if o == nil {
+		return nil
+	}
+	return o.Data
+}
+
+func (o *SyncCompleteWebhook) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *SyncCompleteWebhook) GetRuleID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.RuleID
+}
+
+func (o *SyncCompleteWebhook) GetRuleType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.RuleType
 }

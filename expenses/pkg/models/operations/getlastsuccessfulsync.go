@@ -11,6 +11,13 @@ type GetLastSuccessfulSyncRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
+func (o *GetLastSuccessfulSyncRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
 type GetLastSuccessfulSyncResponse struct {
 	// Success
 	CompanySyncStatus *shared.CompanySyncStatus
@@ -19,4 +26,39 @@ type GetLastSuccessfulSyncResponse struct {
 	RawResponse       *http.Response
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
+}
+
+func (o *GetLastSuccessfulSyncResponse) GetCompanySyncStatus() *shared.CompanySyncStatus {
+	if o == nil {
+		return nil
+	}
+	return o.CompanySyncStatus
+}
+
+func (o *GetLastSuccessfulSyncResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetLastSuccessfulSyncResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetLastSuccessfulSyncResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetLastSuccessfulSyncResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

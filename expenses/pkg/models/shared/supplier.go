@@ -6,3 +6,10 @@ type Supplier struct {
 	// id of the supplier for all purchases to be associated to
 	ID *string `json:"id,omitempty"`
 }
+
+func (o *Supplier) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}

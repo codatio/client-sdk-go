@@ -13,6 +13,20 @@ type GetSyncByIDRequest struct {
 	SyncID string `pathParam:"style=simple,explode=false,name=syncId"`
 }
 
+func (o *GetSyncByIDRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *GetSyncByIDRequest) GetSyncID() string {
+	if o == nil {
+		return ""
+	}
+	return o.SyncID
+}
+
 type GetSyncByIDResponse struct {
 	// Success
 	CompanySyncStatus *shared.CompanySyncStatus
@@ -21,4 +35,39 @@ type GetSyncByIDResponse struct {
 	RawResponse       *http.Response
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
+}
+
+func (o *GetSyncByIDResponse) GetCompanySyncStatus() *shared.CompanySyncStatus {
+	if o == nil {
+		return nil
+	}
+	return o.CompanySyncStatus
+}
+
+func (o *GetSyncByIDResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetSyncByIDResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetSyncByIDResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetSyncByIDResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

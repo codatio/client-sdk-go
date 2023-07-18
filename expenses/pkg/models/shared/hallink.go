@@ -5,3 +5,10 @@ package shared
 type HalLink struct {
 	Href *string `json:"href,omitempty"`
 }
+
+func (o *HalLink) GetHref() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Href
+}
