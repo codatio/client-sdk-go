@@ -10,6 +10,8 @@ go get github.com/codatio/client-sdk-go/files
 
 ## SDK Example Usage
 <!-- Start SDK Example Usage -->
+
+
 ```go
 package main
 
@@ -17,6 +19,7 @@ import(
 	"context"
 	"log"
 	"github.com/codatio/client-sdk-go/files"
+	"github.com/codatio/client-sdk-go/files/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/files/pkg/models/operations"
 )
 

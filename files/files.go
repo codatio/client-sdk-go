@@ -7,6 +7,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/files/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/files/pkg/models/sdkerrors"
 	"github.com/codatio/client-sdk-go/files/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/files/pkg/utils"
 	"io"
@@ -106,6 +107,8 @@ func (s *files) DownloadFiles(ctx context.Context, request operations.DownloadFi
 		switch {
 		case utils.MatchContentType(contentType, `application/octet-stream`):
 			res.Data = rawBody
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
 		fallthrough
@@ -120,6 +123,8 @@ func (s *files) DownloadFiles(ctx context.Context, request operations.DownloadFi
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
@@ -130,6 +135,8 @@ func (s *files) DownloadFiles(ctx context.Context, request operations.DownloadFi
 			}
 
 			res.DownloadFiles404ApplicationJSONObject = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -219,6 +226,8 @@ func (s *files) ListFiles(ctx context.Context, request operations.ListFilesReque
 			}
 
 			res.Files = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -231,6 +240,8 @@ func (s *files) ListFiles(ctx context.Context, request operations.ListFilesReque
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
@@ -241,6 +252,8 @@ func (s *files) ListFiles(ctx context.Context, request operations.ListFilesReque
 			}
 
 			res.ListFiles404ApplicationJSONObject = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -348,6 +361,8 @@ func (s *files) UploadFiles(ctx context.Context, request operations.UploadFilesR
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
@@ -358,6 +373,8 @@ func (s *files) UploadFiles(ctx context.Context, request operations.UploadFilesR
 			}
 
 			res.UploadFiles404ApplicationJSONObject = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 

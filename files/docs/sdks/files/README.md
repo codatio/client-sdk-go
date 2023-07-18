@@ -23,6 +23,7 @@ import(
 	"context"
 	"log"
 	"github.com/codatio/client-sdk-go/files"
+	"github.com/codatio/client-sdk-go/files/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/files/pkg/models/operations"
 )
 
@@ -75,6 +76,7 @@ import(
 	"context"
 	"log"
 	"github.com/codatio/client-sdk-go/files"
+	"github.com/codatio/client-sdk-go/files/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/files/pkg/models/operations"
 )
 
@@ -132,6 +134,7 @@ import(
 	"context"
 	"log"
 	"github.com/codatio/client-sdk-go/files"
+	"github.com/codatio/client-sdk-go/files/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/files/pkg/models/operations"
 )
 

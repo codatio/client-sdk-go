@@ -11,6 +11,13 @@ type ListFilesRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
+func (o *ListFilesRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
 // ListFiles404ApplicationJSON - One or more of the resources you referenced could not be found.
 // This might be because your company or data connection id is wrong, or was already deleted.
 type ListFiles404ApplicationJSON struct {
@@ -20,6 +27,48 @@ type ListFiles404ApplicationJSON struct {
 	Error             *string `json:"error,omitempty"`
 	Service           *string `json:"service,omitempty"`
 	StatusCode        *int64  `json:"statusCode,omitempty"`
+}
+
+func (o *ListFiles404ApplicationJSON) GetCanBeRetried() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CanBeRetried
+}
+
+func (o *ListFiles404ApplicationJSON) GetCorrelationID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CorrelationID
+}
+
+func (o *ListFiles404ApplicationJSON) GetDetailedErrorCode() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.DetailedErrorCode
+}
+
+func (o *ListFiles404ApplicationJSON) GetError() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Error
+}
+
+func (o *ListFiles404ApplicationJSON) GetService() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Service
+}
+
+func (o *ListFiles404ApplicationJSON) GetStatusCode() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.StatusCode
 }
 
 type ListFilesResponse struct {
@@ -33,4 +82,46 @@ type ListFilesResponse struct {
 	ListFiles404ApplicationJSONObject *ListFiles404ApplicationJSON
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
+}
+
+func (o *ListFilesResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *ListFilesResponse) GetFiles() []shared.File {
+	if o == nil {
+		return nil
+	}
+	return o.Files
+}
+
+func (o *ListFilesResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *ListFilesResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *ListFilesResponse) GetListFiles404ApplicationJSONObject() *ListFiles404ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ListFiles404ApplicationJSONObject
+}
+
+func (o *ListFilesResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }
