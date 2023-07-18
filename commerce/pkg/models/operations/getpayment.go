@@ -14,6 +14,27 @@ type GetPaymentRequest struct {
 	PaymentID string `pathParam:"style=simple,explode=false,name=paymentId"`
 }
 
+func (o *GetPaymentRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *GetPaymentRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *GetPaymentRequest) GetPaymentID() string {
+	if o == nil {
+		return ""
+	}
+	return o.PaymentID
+}
+
 // GetPayment409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
 type GetPayment409ApplicationJSON struct {
 	CanBeRetried      *string `json:"canBeRetried,omitempty"`
@@ -22,6 +43,48 @@ type GetPayment409ApplicationJSON struct {
 	Error             *string `json:"error,omitempty"`
 	Service           *string `json:"service,omitempty"`
 	StatusCode        *int64  `json:"statusCode,omitempty"`
+}
+
+func (o *GetPayment409ApplicationJSON) GetCanBeRetried() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CanBeRetried
+}
+
+func (o *GetPayment409ApplicationJSON) GetCorrelationID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CorrelationID
+}
+
+func (o *GetPayment409ApplicationJSON) GetDetailedErrorCode() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.DetailedErrorCode
+}
+
+func (o *GetPayment409ApplicationJSON) GetError() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Error
+}
+
+func (o *GetPayment409ApplicationJSON) GetService() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Service
+}
+
+func (o *GetPayment409ApplicationJSON) GetStatusCode() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.StatusCode
 }
 
 type GetPaymentResponse struct {
@@ -34,4 +97,46 @@ type GetPaymentResponse struct {
 	GetPayment409ApplicationJSONObject *GetPayment409ApplicationJSON
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
+}
+
+func (o *GetPaymentResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetPaymentResponse) GetPayment() *shared.Payment {
+	if o == nil {
+		return nil
+	}
+	return o.Payment
+}
+
+func (o *GetPaymentResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetPaymentResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetPaymentResponse) GetGetPayment409ApplicationJSONObject() *GetPayment409ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetPayment409ApplicationJSONObject
+}
+
+func (o *GetPaymentResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

@@ -8,3 +8,17 @@ type OrderDiscountAllocation struct {
 	// Total amount of discount applied.
 	TotalAmount *float64 `json:"totalAmount,omitempty"`
 }
+
+func (o *OrderDiscountAllocation) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
+func (o *OrderDiscountAllocation) GetTotalAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.TotalAmount
+}

@@ -13,6 +13,8 @@ go get github.com/codatio/client-sdk-go/commerce
 
 ## SDK Example Usage
 <!-- Start SDK Example Usage -->
+
+
 ```go
 package main
 
@@ -20,6 +22,7 @@ import(
 	"context"
 	"log"
 	"github.com/codatio/client-sdk-go/commerce"
+	"github.com/codatio/client-sdk-go/commerce/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/commerce/pkg/models/operations"
 )
 

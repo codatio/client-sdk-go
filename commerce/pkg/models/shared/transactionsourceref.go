@@ -7,3 +7,17 @@ type TransactionSourceRef struct {
 	ID   string                `json:"id"`
 	Type TransactionSourceType `json:"type"`
 }
+
+func (o *TransactionSourceRef) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *TransactionSourceRef) GetType() TransactionSourceType {
+	if o == nil {
+		return TransactionSourceType("")
+	}
+	return o.Type
+}

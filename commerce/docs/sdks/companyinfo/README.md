@@ -23,6 +23,7 @@ import(
 	"context"
 	"log"
 	"github.com/codatio/client-sdk-go/commerce"
+	"github.com/codatio/client-sdk-go/commerce/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/commerce/pkg/models/operations"
 )
 

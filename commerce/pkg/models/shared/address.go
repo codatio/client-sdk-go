@@ -18,3 +18,52 @@ type Address struct {
 	// The type of the address
 	Type *AddressType `json:"type,omitempty"`
 }
+
+func (o *Address) GetCity() *string {
+	if o == nil {
+		return nil
+	}
+	return o.City
+}
+
+func (o *Address) GetCountry() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Country
+}
+
+func (o *Address) GetLine1() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Line1
+}
+
+func (o *Address) GetLine2() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Line2
+}
+
+func (o *Address) GetPostalCode() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PostalCode
+}
+
+func (o *Address) GetRegion() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Region
+}
+
+func (o *Address) GetType() *AddressType {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}

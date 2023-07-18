@@ -1,6 +1,6 @@
 # PaymentType
 
-Status of the payment
+Type of payment.
 
 
 ## Values

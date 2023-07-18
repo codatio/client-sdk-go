@@ -9,3 +9,17 @@ type PaymentMethodRef struct {
 	// Name of the location being referenced.
 	Name *string `json:"name,omitempty"`
 }
+
+func (o *PaymentMethodRef) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *PaymentMethodRef) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}

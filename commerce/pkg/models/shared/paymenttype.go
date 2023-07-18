@@ -7,7 +7,7 @@ import (
 	"fmt"
 )
 
-// PaymentType - Status of the payment
+// PaymentType - Type of payment.
 type PaymentType string
 
 const (

@@ -46,6 +46,20 @@ type CompanyInfoWeblink struct {
 	URL *string `json:"url,omitempty"`
 }
 
+func (o *CompanyInfoWeblink) GetType() *CompanyInfoWeblinkType {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}
+
+func (o *CompanyInfoWeblink) GetURL() *string {
+	if o == nil {
+		return nil
+	}
+	return o.URL
+}
+
 // CompanyInfo - In the Codat system, company information includes standard commercial details about
 // a linked company, such as their address, phone number, and company registration.
 //
@@ -99,4 +113,95 @@ type CompanyInfo struct {
 	SourceUrls map[string]string `json:"sourceUrls,omitempty"`
 	// Weblinks associated with the company
 	WebLinks []CompanyInfoWeblink `json:"webLinks,omitempty"`
+}
+
+func (o *CompanyInfo) GetAccountBalances() []AccountBalance {
+	if o == nil {
+		return nil
+	}
+	return o.AccountBalances
+}
+
+func (o *CompanyInfo) GetAddresses() []Address {
+	if o == nil {
+		return nil
+	}
+	return o.Addresses
+}
+
+func (o *CompanyInfo) GetBaseCurrency() *string {
+	if o == nil {
+		return nil
+	}
+	return o.BaseCurrency
+}
+
+func (o *CompanyInfo) GetCommercePlatformRef() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CommercePlatformRef
+}
+
+func (o *CompanyInfo) GetCompanyLegalName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CompanyLegalName
+}
+
+func (o *CompanyInfo) GetCompanyName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CompanyName
+}
+
+func (o *CompanyInfo) GetCreatedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CreatedDate
+}
+
+func (o *CompanyInfo) GetModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ModifiedDate
+}
+
+func (o *CompanyInfo) GetPhoneNumbers() []PhoneNumber {
+	if o == nil {
+		return nil
+	}
+	return o.PhoneNumbers
+}
+
+func (o *CompanyInfo) GetRegistrationNumber() *string {
+	if o == nil {
+		return nil
+	}
+	return o.RegistrationNumber
+}
+
+func (o *CompanyInfo) GetSourceModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceModifiedDate
+}
+
+func (o *CompanyInfo) GetSourceUrls() map[string]string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceUrls
+}
+
+func (o *CompanyInfo) GetWebLinks() []CompanyInfoWeblink {
+	if o == nil {
+		return nil
+	}
+	return o.WebLinks
 }

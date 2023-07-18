@@ -1,6 +1,6 @@
 # PaymentStatus
 
-Status of the payment
+Status of the payment.
 
 
 ## Values

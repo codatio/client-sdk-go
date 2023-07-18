@@ -8,3 +8,17 @@ type TaxComponentAllocation struct {
 	// Taxes rates reference object depending on the rates being available on source commerce package.
 	TaxComponentRef *TaxComponentRef `json:"taxComponentRef,omitempty"`
 }
+
+func (o *TaxComponentAllocation) GetRate() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Rate
+}
+
+func (o *TaxComponentAllocation) GetTaxComponentRef() *TaxComponentRef {
+	if o == nil {
+		return nil
+	}
+	return o.TaxComponentRef
+}

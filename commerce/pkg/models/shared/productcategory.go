@@ -17,3 +17,45 @@ type ProductCategory struct {
 	Name               *string `json:"name,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 }
+
+func (o *ProductCategory) GetAncestorRefs() []RecordRef {
+	if o == nil {
+		return nil
+	}
+	return o.AncestorRefs
+}
+
+func (o *ProductCategory) GetHasChildren() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasChildren
+}
+
+func (o *ProductCategory) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *ProductCategory) GetModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ModifiedDate
+}
+
+func (o *ProductCategory) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
+func (o *ProductCategory) GetSourceModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceModifiedDate
+}

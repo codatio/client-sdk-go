@@ -10,3 +10,38 @@ type Locations struct {
 	Results      []Location `json:"results,omitempty"`
 	TotalResults int64      `json:"totalResults"`
 }
+
+func (o *Locations) GetLinks() Links {
+	if o == nil {
+		return Links{}
+	}
+	return o.Links
+}
+
+func (o *Locations) GetPageNumber() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.PageNumber
+}
+
+func (o *Locations) GetPageSize() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.PageSize
+}
+
+func (o *Locations) GetResults() []Location {
+	if o == nil {
+		return nil
+	}
+	return o.Results
+}
+
+func (o *Locations) GetTotalResults() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.TotalResults
+}

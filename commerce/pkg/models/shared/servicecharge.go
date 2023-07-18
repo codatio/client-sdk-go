@@ -18,3 +18,52 @@ type ServiceCharge struct {
 	// The type of the service charge.
 	Type *ServiceChargeType `json:"type,omitempty"`
 }
+
+func (o *ServiceCharge) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *ServiceCharge) GetQuantity() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Quantity
+}
+
+func (o *ServiceCharge) GetTaxAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.TaxAmount
+}
+
+func (o *ServiceCharge) GetTaxPercentage() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.TaxPercentage
+}
+
+func (o *ServiceCharge) GetTaxes() []TaxComponentAllocation {
+	if o == nil {
+		return nil
+	}
+	return o.Taxes
+}
+
+func (o *ServiceCharge) GetTotalAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.TotalAmount
+}
+
+func (o *ServiceCharge) GetType() *ServiceChargeType {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}

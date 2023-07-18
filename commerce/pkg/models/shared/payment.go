@@ -68,6 +68,76 @@ type Payment struct {
 	// Service provider of the payment, if applicable.
 	PaymentProvider    *string `json:"paymentProvider,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
-	// Status of the payment
+	// Status of the payment.
 	Status *PaymentStatus `json:"status,omitempty"`
+}
+
+func (o *Payment) GetAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Amount
+}
+
+func (o *Payment) GetCreatedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CreatedDate
+}
+
+func (o *Payment) GetCurrency() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Currency
+}
+
+func (o *Payment) GetDueDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DueDate
+}
+
+func (o *Payment) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *Payment) GetModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ModifiedDate
+}
+
+func (o *Payment) GetPaymentMethodRef() *PaymentMethodRef {
+	if o == nil {
+		return nil
+	}
+	return o.PaymentMethodRef
+}
+
+func (o *Payment) GetPaymentProvider() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PaymentProvider
+}
+
+func (o *Payment) GetSourceModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceModifiedDate
+}
+
+func (o *Payment) GetStatus() *PaymentStatus {
+	if o == nil {
+		return nil
+	}
+	return o.Status
 }

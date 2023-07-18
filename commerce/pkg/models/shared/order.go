@@ -9,6 +9,13 @@ type OrderSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
 
+func (o *OrderSupplementalData) GetContent() map[string]map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.Content
+}
+
 // Order - Orders contain the transaction details for all products sold by the company, and include details of any payments, service charges, or refunds related to each order. You can use data from the Orders endpoints to calculate key metrics, such as gross sales values and monthly recurring revenue (MRR).
 //
 // Explore our [data coverage](https://knowledge.codat.io/supported-features/commerce?view=tab-by-data-type&dataType=commerce-orders) for this data type.
@@ -87,4 +94,137 @@ type Order struct {
 	TotalRefund *float64 `json:"totalRefund,omitempty"`
 	// Total amount of tax applied to the order.
 	TotalTaxAmount *float64 `json:"totalTaxAmount,omitempty"`
+}
+
+func (o *Order) GetClosedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ClosedDate
+}
+
+func (o *Order) GetCountry() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Country
+}
+
+func (o *Order) GetCreatedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CreatedDate
+}
+
+func (o *Order) GetCurrency() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Currency
+}
+
+func (o *Order) GetCustomerRef() *CustomerRef {
+	if o == nil {
+		return nil
+	}
+	return o.CustomerRef
+}
+
+func (o *Order) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *Order) GetLocationRef() *LocationRef {
+	if o == nil {
+		return nil
+	}
+	return o.LocationRef
+}
+
+func (o *Order) GetModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ModifiedDate
+}
+
+func (o *Order) GetOrderLineItems() []OrderLineItem {
+	if o == nil {
+		return nil
+	}
+	return o.OrderLineItems
+}
+
+func (o *Order) GetOrderNumber() *string {
+	if o == nil {
+		return nil
+	}
+	return o.OrderNumber
+}
+
+func (o *Order) GetPayments() []PaymentRef {
+	if o == nil {
+		return nil
+	}
+	return o.Payments
+}
+
+func (o *Order) GetServiceCharges() []ServiceCharge {
+	if o == nil {
+		return nil
+	}
+	return o.ServiceCharges
+}
+
+func (o *Order) GetSourceModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceModifiedDate
+}
+
+func (o *Order) GetSupplementalData() *OrderSupplementalData {
+	if o == nil {
+		return nil
+	}
+	return o.SupplementalData
+}
+
+func (o *Order) GetTotalAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.TotalAmount
+}
+
+func (o *Order) GetTotalDiscount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.TotalDiscount
+}
+
+func (o *Order) GetTotalGratuity() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.TotalGratuity
+}
+
+func (o *Order) GetTotalRefund() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.TotalRefund
+}
+
+func (o *Order) GetTotalTaxAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.TotalTaxAmount
 }
