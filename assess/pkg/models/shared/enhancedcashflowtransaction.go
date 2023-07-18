@@ -34,3 +34,52 @@ type EnhancedCashFlowTransaction struct {
 	SourceRef           *SourceRef           `json:"sourceRef,omitempty"`
 	TransactionCategory *TransactionCategory `json:"transactionCategory,omitempty"`
 }
+
+func (o *EnhancedCashFlowTransaction) GetAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Amount
+}
+
+func (o *EnhancedCashFlowTransaction) GetCurrency() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Currency
+}
+
+func (o *EnhancedCashFlowTransaction) GetDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Date
+}
+
+func (o *EnhancedCashFlowTransaction) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *EnhancedCashFlowTransaction) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *EnhancedCashFlowTransaction) GetSourceRef() *SourceRef {
+	if o == nil {
+		return nil
+	}
+	return o.SourceRef
+}
+
+func (o *EnhancedCashFlowTransaction) GetTransactionCategory() *TransactionCategory {
+	if o == nil {
+		return nil
+	}
+	return o.TransactionCategory
+}

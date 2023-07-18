@@ -33,3 +33,45 @@ type ReportItems struct {
 	// The total loan repayments which includes capital plus any interest.
 	TotalRepayments *float64 `json:"totalRepayments,omitempty"`
 }
+
+func (o *ReportItems) GetBalance() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Balance
+}
+
+func (o *ReportItems) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *ReportItems) GetRecordRef() *RecordRef {
+	if o == nil {
+		return nil
+	}
+	return o.RecordRef
+}
+
+func (o *ReportItems) GetStartDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.StartDate
+}
+
+func (o *ReportItems) GetTotalDrawdowns() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.TotalDrawdowns
+}
+
+func (o *ReportItems) GetTotalRepayments() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.TotalRepayments
+}

@@ -7,6 +7,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/assess/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/assess/pkg/models/sdkerrors"
 	"github.com/codatio/client-sdk-go/assess/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/assess/pkg/utils"
 	"io"
@@ -113,6 +114,8 @@ func (s *reports) GetAccountsForEnhancedBalanceSheet(ctx context.Context, reques
 			}
 
 			res.EnhancedReport = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -125,6 +128,8 @@ func (s *reports) GetAccountsForEnhancedBalanceSheet(ctx context.Context, reques
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -220,6 +225,8 @@ func (s *reports) GetAccountsForEnhancedProfitAndLoss(ctx context.Context, reque
 			}
 
 			res.EnhancedReport = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -232,6 +239,8 @@ func (s *reports) GetAccountsForEnhancedProfitAndLoss(ctx context.Context, reque
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -325,6 +334,8 @@ func (s *reports) GetCommerceCustomerRetentionMetrics(ctx context.Context, reque
 			}
 
 			res.Report = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -337,6 +348,8 @@ func (s *reports) GetCommerceCustomerRetentionMetrics(ctx context.Context, reque
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -430,6 +443,8 @@ func (s *reports) GetCommerceLifetimeValueMetrics(ctx context.Context, request o
 			}
 
 			res.Report = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -442,6 +457,8 @@ func (s *reports) GetCommerceLifetimeValueMetrics(ctx context.Context, request o
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -535,6 +552,8 @@ func (s *reports) GetCommerceOrdersMetrics(ctx context.Context, request operatio
 			}
 
 			res.Report = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -547,6 +566,8 @@ func (s *reports) GetCommerceOrdersMetrics(ctx context.Context, request operatio
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -640,6 +661,8 @@ func (s *reports) GetCommerceRefundsMetrics(ctx context.Context, request operati
 			}
 
 			res.Report = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -652,6 +675,8 @@ func (s *reports) GetCommerceRefundsMetrics(ctx context.Context, request operati
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -745,6 +770,8 @@ func (s *reports) GetCommerceRevenueMetrics(ctx context.Context, request operati
 			}
 
 			res.Report = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -757,6 +784,8 @@ func (s *reports) GetCommerceRevenueMetrics(ctx context.Context, request operati
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -854,6 +883,8 @@ func (s *reports) GetEnhancedCashFlowTransactions(ctx context.Context, request o
 			}
 
 			res.EnhancedCashFlowTransactions = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -866,6 +897,8 @@ func (s *reports) GetEnhancedCashFlowTransactions(ctx context.Context, request o
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -959,6 +992,8 @@ func (s *reports) GetEnhancedInvoicesReport(ctx context.Context, request operati
 			}
 
 			res.EnhancedInvoicesReport = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -971,6 +1006,8 @@ func (s *reports) GetEnhancedInvoicesReport(ctx context.Context, request operati
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -1059,6 +1096,8 @@ func (s *reports) GetLoanSummary(ctx context.Context, request operations.GetLoan
 			}
 
 			res.LoanSummary = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -1071,6 +1110,8 @@ func (s *reports) GetLoanSummary(ctx context.Context, request operations.GetLoan
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -1160,6 +1201,8 @@ func (s *reports) GetRecurringRevenueMetrics(ctx context.Context, request operat
 			}
 
 			res.Report = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -1172,6 +1215,8 @@ func (s *reports) GetRecurringRevenueMetrics(ctx context.Context, request operat
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -1264,6 +1309,8 @@ func (s *reports) ListLoanTransactions(ctx context.Context, request operations.L
 			}
 
 			res.LoanTransactions = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -1276,6 +1323,8 @@ func (s *reports) ListLoanTransactions(ctx context.Context, request operations.L
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -1365,6 +1414,8 @@ func (s *reports) RequestRecurringRevenueMetrics(ctx context.Context, request op
 			}
 
 			res.Report = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -1377,6 +1428,8 @@ func (s *reports) RequestRecurringRevenueMetrics(ctx context.Context, request op
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 

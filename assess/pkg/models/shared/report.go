@@ -31,3 +31,38 @@ type Report struct {
 	ReportData []ReportComponent `json:"reportData,omitempty"`
 	ReportInfo map[string]string `json:"reportInfo,omitempty"`
 }
+
+func (o *Report) GetDimensions() []ReportDimension {
+	if o == nil {
+		return nil
+	}
+	return o.Dimensions
+}
+
+func (o *Report) GetErrors() []ReportError {
+	if o == nil {
+		return nil
+	}
+	return o.Errors
+}
+
+func (o *Report) GetMeasures() []ReportMeasure {
+	if o == nil {
+		return nil
+	}
+	return o.Measures
+}
+
+func (o *Report) GetReportData() []ReportComponent {
+	if o == nil {
+		return nil
+	}
+	return o.ReportData
+}
+
+func (o *Report) GetReportInfo() map[string]string {
+	if o == nil {
+		return nil
+	}
+	return o.ReportInfo
+}

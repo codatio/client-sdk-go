@@ -79,3 +79,31 @@ type RecordRef struct {
 	// The datatype being referred to.
 	RecordRefType *RecordRefRecordRefType `json:"recordRefType,omitempty"`
 }
+
+func (o *RecordRef) GetDataConnectionID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DataConnectionID
+}
+
+func (o *RecordRef) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *RecordRef) GetIntegrationType() *RecordRefIntegrationType {
+	if o == nil {
+		return nil
+	}
+	return o.IntegrationType
+}
+
+func (o *RecordRef) GetRecordRefType() *RecordRefRecordRefType {
+	if o == nil {
+		return nil
+	}
+	return o.RecordRefType
+}

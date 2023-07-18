@@ -6,9 +6,30 @@ type EnhancedInvoicesReportReportItems struct {
 	Invoices []EnhancedInvoiceReportItem `json:"invoices,omitempty"`
 }
 
+func (o *EnhancedInvoicesReportReportItems) GetInvoices() []EnhancedInvoiceReportItem {
+	if o == nil {
+		return nil
+	}
+	return o.Invoices
+}
+
 // EnhancedInvoicesReport - The enhanced invoices report takes the key elements of the Invoices report verifying those marked as paid in the accounting platform have actually been paid by matching with the bank statement.
 type EnhancedInvoicesReport struct {
 	// Report additional information, which is specific to Assess reports
 	ReportInfo  *ReportInfo                         `json:"reportInfo,omitempty"`
 	ReportItems []EnhancedInvoicesReportReportItems `json:"reportItems,omitempty"`
+}
+
+func (o *EnhancedInvoicesReport) GetReportInfo() *ReportInfo {
+	if o == nil {
+		return nil
+	}
+	return o.ReportInfo
+}
+
+func (o *EnhancedInvoicesReport) GetReportItems() []EnhancedInvoicesReportReportItems {
+	if o == nil {
+		return nil
+	}
+	return o.ReportItems
 }

@@ -67,3 +67,38 @@ type ReportItems1 struct {
 	LoanRef             *LoanRef                        `json:"loanRef,omitempty"`
 	LoanTransactionType *ReportItemsLoanTransactionType `json:"loanTransactionType,omitempty"`
 }
+
+func (o *ReportItems1) GetAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Amount
+}
+
+func (o *ReportItems1) GetDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Date
+}
+
+func (o *ReportItems1) GetItemRef() *ItemRef {
+	if o == nil {
+		return nil
+	}
+	return o.ItemRef
+}
+
+func (o *ReportItems1) GetLoanRef() *LoanRef {
+	if o == nil {
+		return nil
+	}
+	return o.LoanRef
+}
+
+func (o *ReportItems1) GetLoanTransactionType() *ReportItemsLoanTransactionType {
+	if o == nil {
+		return nil
+	}
+	return o.LoanTransactionType
+}

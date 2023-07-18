@@ -12,6 +12,20 @@ type GetRecurringRevenueMetricsRequest struct {
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
+func (o *GetRecurringRevenueMetricsRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *GetRecurringRevenueMetricsRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
 type GetRecurringRevenueMetricsResponse struct {
 	ContentType string
 	// OK
@@ -20,4 +34,39 @@ type GetRecurringRevenueMetricsResponse struct {
 	RawResponse *http.Response
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
+}
+
+func (o *GetRecurringRevenueMetricsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetRecurringRevenueMetricsResponse) GetReport() *shared.Report {
+	if o == nil {
+		return nil
+	}
+	return o.Report
+}
+
+func (o *GetRecurringRevenueMetricsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetRecurringRevenueMetricsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetRecurringRevenueMetricsResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

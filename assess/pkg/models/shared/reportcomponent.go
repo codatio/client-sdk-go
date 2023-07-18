@@ -10,3 +10,45 @@ type ReportComponent struct {
 	ItemDisplayName      *string                  `json:"itemDisplayName,omitempty"`
 	Measures             []ReportComponentMeasure `json:"measures,omitempty"`
 }
+
+func (o *ReportComponent) GetComponents() []ReportComponent {
+	if o == nil {
+		return nil
+	}
+	return o.Components
+}
+
+func (o *ReportComponent) GetDimension() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Dimension
+}
+
+func (o *ReportComponent) GetDimensionDisplayName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DimensionDisplayName
+}
+
+func (o *ReportComponent) GetItem() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Item
+}
+
+func (o *ReportComponent) GetItemDisplayName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ItemDisplayName
+}
+
+func (o *ReportComponent) GetMeasures() []ReportComponentMeasure {
+	if o == nil {
+		return nil
+	}
+	return o.Measures
+}

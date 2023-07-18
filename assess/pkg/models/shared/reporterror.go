@@ -7,3 +7,24 @@ type ReportError struct {
 	Message *string             `json:"message,omitempty"`
 	Type    *string             `json:"type,omitempty"`
 }
+
+func (o *ReportError) GetDetails() map[string][]string {
+	if o == nil {
+		return nil
+	}
+	return o.Details
+}
+
+func (o *ReportError) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *ReportError) GetType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}

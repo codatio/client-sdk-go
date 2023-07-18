@@ -36,3 +36,31 @@ type EnhancedReportInfo struct {
 	// The name of the report.
 	ReportName *string `json:"reportName,omitempty"`
 }
+
+func (o *EnhancedReportInfo) GetCompanyName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CompanyName
+}
+
+func (o *EnhancedReportInfo) GetCurrency() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Currency
+}
+
+func (o *EnhancedReportInfo) GetGeneratedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.GeneratedDate
+}
+
+func (o *EnhancedReportInfo) GetReportName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ReportName
+}

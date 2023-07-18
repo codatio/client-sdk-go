@@ -17,6 +17,34 @@ type GetEnhancedCashFlowTransactionsRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
+func (o *GetEnhancedCashFlowTransactionsRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *GetEnhancedCashFlowTransactionsRequest) GetPage() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Page
+}
+
+func (o *GetEnhancedCashFlowTransactionsRequest) GetPageSize() *int {
+	if o == nil {
+		return nil
+	}
+	return o.PageSize
+}
+
+func (o *GetEnhancedCashFlowTransactionsRequest) GetQuery() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Query
+}
+
 type GetEnhancedCashFlowTransactionsResponse struct {
 	ContentType string
 	// OK
@@ -25,4 +53,39 @@ type GetEnhancedCashFlowTransactionsResponse struct {
 	RawResponse                  *http.Response
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
+}
+
+func (o *GetEnhancedCashFlowTransactionsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetEnhancedCashFlowTransactionsResponse) GetEnhancedCashFlowTransactions() *shared.EnhancedCashFlowTransactions {
+	if o == nil {
+		return nil
+	}
+	return o.EnhancedCashFlowTransactions
+}
+
+func (o *GetEnhancedCashFlowTransactionsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetEnhancedCashFlowTransactionsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetEnhancedCashFlowTransactionsResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

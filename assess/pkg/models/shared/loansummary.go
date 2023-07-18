@@ -8,3 +8,17 @@ type LoanSummary struct {
 	// Returns a summary of all loan activity for that integration type
 	ReportItems []ReportItems `json:"reportItems,omitempty"`
 }
+
+func (o *LoanSummary) GetReportInfo() *LoanSummaryReportInfo {
+	if o == nil {
+		return nil
+	}
+	return o.ReportInfo
+}
+
+func (o *LoanSummary) GetReportItems() []ReportItems {
+	if o == nil {
+		return nil
+	}
+	return o.ReportItems
+}

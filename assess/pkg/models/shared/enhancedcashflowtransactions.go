@@ -9,3 +9,24 @@ type EnhancedCashFlowTransactions struct {
 	ReportInfo  *ReportInfo            `json:"reportInfo,omitempty"`
 	ReportItems []EnhancedCashFlowItem `json:"reportItems,omitempty"`
 }
+
+func (o *EnhancedCashFlowTransactions) GetDataSources() []DataSource {
+	if o == nil {
+		return nil
+	}
+	return o.DataSources
+}
+
+func (o *EnhancedCashFlowTransactions) GetReportInfo() *ReportInfo {
+	if o == nil {
+		return nil
+	}
+	return o.ReportInfo
+}
+
+func (o *EnhancedCashFlowTransactions) GetReportItems() []EnhancedCashFlowItem {
+	if o == nil {
+		return nil
+	}
+	return o.ReportItems
+}

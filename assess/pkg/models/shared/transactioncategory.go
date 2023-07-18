@@ -8,3 +8,17 @@ type TransactionCategory struct {
 	// An array of category levels against an individual transaction.
 	Levels []string `json:"levels,omitempty"`
 }
+
+func (o *TransactionCategory) GetConfidence() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Confidence
+}
+
+func (o *TransactionCategory) GetLevels() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Levels
+}

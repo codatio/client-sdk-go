@@ -22,6 +22,55 @@ type GetCommerceCustomerRetentionMetricsRequest struct {
 	ReportDate string `queryParam:"style=form,explode=true,name=reportDate"`
 }
 
+func (o *GetCommerceCustomerRetentionMetricsRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *GetCommerceCustomerRetentionMetricsRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *GetCommerceCustomerRetentionMetricsRequest) GetIncludeDisplayNames() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.IncludeDisplayNames
+}
+
+func (o *GetCommerceCustomerRetentionMetricsRequest) GetNumberOfPeriods() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.NumberOfPeriods
+}
+
+func (o *GetCommerceCustomerRetentionMetricsRequest) GetPeriodLength() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.PeriodLength
+}
+
+func (o *GetCommerceCustomerRetentionMetricsRequest) GetPeriodUnit() shared.PeriodUnit {
+	if o == nil {
+		return PeriodUnit("")
+	}
+	return o.PeriodUnit
+}
+
+func (o *GetCommerceCustomerRetentionMetricsRequest) GetReportDate() string {
+	if o == nil {
+		return ""
+	}
+	return o.ReportDate
+}
+
 type GetCommerceCustomerRetentionMetricsResponse struct {
 	ContentType string
 	// OK
@@ -30,4 +79,39 @@ type GetCommerceCustomerRetentionMetricsResponse struct {
 	RawResponse *http.Response
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
+}
+
+func (o *GetCommerceCustomerRetentionMetricsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetCommerceCustomerRetentionMetricsResponse) GetReport() *shared.Report {
+	if o == nil {
+		return nil
+	}
+	return o.Report
+}
+
+func (o *GetCommerceCustomerRetentionMetricsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetCommerceCustomerRetentionMetricsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetCommerceCustomerRetentionMetricsResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

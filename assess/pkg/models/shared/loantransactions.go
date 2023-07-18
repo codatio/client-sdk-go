@@ -10,3 +10,24 @@ type LoanTransactions struct {
 	// Contains object of reporting properties. The loan ref will reference a different object depending on the integration type.
 	ReportItems []ReportItems1 `json:"reportItems,omitempty"`
 }
+
+func (o *LoanTransactions) GetErrors() []interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.Errors
+}
+
+func (o *LoanTransactions) GetReportInfo() *LoanTransactionsReportInfo {
+	if o == nil {
+		return nil
+	}
+	return o.ReportInfo
+}
+
+func (o *LoanTransactions) GetReportItems() []ReportItems1 {
+	if o == nil {
+		return nil
+	}
+	return o.ReportItems
+}

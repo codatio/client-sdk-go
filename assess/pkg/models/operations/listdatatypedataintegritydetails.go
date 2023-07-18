@@ -21,6 +21,48 @@ type ListDataTypeDataIntegrityDetailsRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
+func (o *ListDataTypeDataIntegrityDetailsRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *ListDataTypeDataIntegrityDetailsRequest) GetDataType() shared.DataIntegrityDataType {
+	if o == nil {
+		return DataIntegrityDataType("")
+	}
+	return o.DataType
+}
+
+func (o *ListDataTypeDataIntegrityDetailsRequest) GetOrderBy() *string {
+	if o == nil {
+		return nil
+	}
+	return o.OrderBy
+}
+
+func (o *ListDataTypeDataIntegrityDetailsRequest) GetPage() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Page
+}
+
+func (o *ListDataTypeDataIntegrityDetailsRequest) GetPageSize() *int {
+	if o == nil {
+		return nil
+	}
+	return o.PageSize
+}
+
+func (o *ListDataTypeDataIntegrityDetailsRequest) GetQuery() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Query
+}
+
 type ListDataTypeDataIntegrityDetailsResponse struct {
 	ContentType string
 	// OK
@@ -29,4 +71,39 @@ type ListDataTypeDataIntegrityDetailsResponse struct {
 	RawResponse *http.Response
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
+}
+
+func (o *ListDataTypeDataIntegrityDetailsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *ListDataTypeDataIntegrityDetailsResponse) GetDetails() *shared.Details {
+	if o == nil {
+		return nil
+	}
+	return o.Details
+}
+
+func (o *ListDataTypeDataIntegrityDetailsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *ListDataTypeDataIntegrityDetailsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *ListDataTypeDataIntegrityDetailsResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

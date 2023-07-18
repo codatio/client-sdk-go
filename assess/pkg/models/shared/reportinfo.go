@@ -17,3 +17,45 @@ type ReportInfo struct {
 	// The total number of transactions available for a company for the period specified in the query string.
 	TotalResults *int64 `json:"totalResults,omitempty"`
 }
+
+func (o *ReportInfo) GetCompanyName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CompanyName
+}
+
+func (o *ReportInfo) GetGeneratedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.GeneratedDate
+}
+
+func (o *ReportInfo) GetPageNumber() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.PageNumber
+}
+
+func (o *ReportInfo) GetPageSize() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.PageSize
+}
+
+func (o *ReportInfo) GetReportName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ReportName
+}
+
+func (o *ReportInfo) GetTotalResults() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.TotalResults
+}

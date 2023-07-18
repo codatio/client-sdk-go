@@ -6,9 +6,44 @@ type ReportDimensionItems struct {
 	Index *int64 `json:"index,omitempty"`
 }
 
+func (o *ReportDimensionItems) GetIndex() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Index
+}
+
 type ReportDimension struct {
 	DisplayName *string                `json:"displayName,omitempty"`
 	Index       *int64                 `json:"index,omitempty"`
 	Items       []ReportDimensionItems `json:"items,omitempty"`
 	Type        *string                `json:"type,omitempty"`
+}
+
+func (o *ReportDimension) GetDisplayName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DisplayName
+}
+
+func (o *ReportDimension) GetIndex() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Index
+}
+
+func (o *ReportDimension) GetItems() []ReportDimensionItems {
+	if o == nil {
+		return nil
+	}
+	return o.Items
+}
+
+func (o *ReportDimension) GetType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Type
 }

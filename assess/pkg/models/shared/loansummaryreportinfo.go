@@ -28,3 +28,24 @@ type LoanSummaryReportInfo struct {
 	// The name of the report.
 	ReportName *string `json:"reportName,omitempty"`
 }
+
+func (o *LoanSummaryReportInfo) GetCompanyName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CompanyName
+}
+
+func (o *LoanSummaryReportInfo) GetGeneratedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.GeneratedDate
+}
+
+func (o *LoanSummaryReportInfo) GetReportName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ReportName
+}

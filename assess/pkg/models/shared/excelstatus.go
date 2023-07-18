@@ -32,3 +32,59 @@ type ExcelStatus struct {
 	ReportType       *string `json:"reportType,omitempty"`
 	Success          *bool   `json:"success,omitempty"`
 }
+
+func (o *ExcelStatus) GetErrorMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *ExcelStatus) GetFileSize() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.FileSize
+}
+
+func (o *ExcelStatus) GetInProgress() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.InProgress
+}
+
+func (o *ExcelStatus) GetLastGenerated() *string {
+	if o == nil {
+		return nil
+	}
+	return o.LastGenerated
+}
+
+func (o *ExcelStatus) GetLastInvocationID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.LastInvocationID
+}
+
+func (o *ExcelStatus) GetQueued() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Queued
+}
+
+func (o *ExcelStatus) GetReportType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ReportType
+}
+
+func (o *ExcelStatus) GetSuccess() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Success
+}

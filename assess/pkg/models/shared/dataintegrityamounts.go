@@ -17,3 +17,24 @@ type DataIntegrityAmounts struct {
 	// Lowest value of transaction set.
 	Min *float64 `json:"min,omitempty"`
 }
+
+func (o *DataIntegrityAmounts) GetCurrency() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Currency
+}
+
+func (o *DataIntegrityAmounts) GetMax() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Max
+}
+
+func (o *DataIntegrityAmounts) GetMin() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Min
+}

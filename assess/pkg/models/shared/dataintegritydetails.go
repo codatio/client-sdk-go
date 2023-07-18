@@ -43,3 +43,59 @@ type DataIntegrityDetails struct {
 	// The data type of the record.
 	Type *string `json:"type,omitempty"`
 }
+
+func (o *DataIntegrityDetails) GetAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Amount
+}
+
+func (o *DataIntegrityDetails) GetConnectionID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ConnectionID
+}
+
+func (o *DataIntegrityDetails) GetCurrency() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Currency
+}
+
+func (o *DataIntegrityDetails) GetDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Date
+}
+
+func (o *DataIntegrityDetails) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *DataIntegrityDetails) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *DataIntegrityDetails) GetMatches() []DataIntegrityMatch {
+	if o == nil {
+		return nil
+	}
+	return o.Matches
+}
+
+func (o *DataIntegrityDetails) GetType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}

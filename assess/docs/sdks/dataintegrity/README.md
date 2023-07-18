@@ -23,8 +23,8 @@ import(
 	"context"
 	"log"
 	"github.com/codatio/client-sdk-go/assess"
-	"github.com/codatio/client-sdk-go/assess/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/assess/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/assess/pkg/models/operations"
 )
 
 func main() {
@@ -76,8 +76,8 @@ import(
 	"context"
 	"log"
 	"github.com/codatio/client-sdk-go/assess"
-	"github.com/codatio/client-sdk-go/assess/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/assess/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/assess/pkg/models/operations"
 )
 
 func main() {
@@ -130,8 +130,8 @@ import(
 	"context"
 	"log"
 	"github.com/codatio/client-sdk-go/assess"
-	"github.com/codatio/client-sdk-go/assess/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/assess/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/assess/pkg/models/operations"
 )
 
 func main() {

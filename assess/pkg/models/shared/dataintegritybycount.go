@@ -12,3 +12,31 @@ type DataIntegrityByCount struct {
 	// The number of records of the type specified in the route which don't have a match.
 	Unmatched *float64 `json:"unmatched,omitempty"`
 }
+
+func (o *DataIntegrityByCount) GetMatchPercentage() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.MatchPercentage
+}
+
+func (o *DataIntegrityByCount) GetMatched() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Matched
+}
+
+func (o *DataIntegrityByCount) GetTotal() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Total
+}
+
+func (o *DataIntegrityByCount) GetUnmatched() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Unmatched
+}

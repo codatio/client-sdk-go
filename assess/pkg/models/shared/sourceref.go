@@ -6,3 +6,10 @@ package shared
 type SourceRef struct {
 	SourceType *string `json:"sourceType,omitempty"`
 }
+
+func (o *SourceRef) GetSourceType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceType
+}

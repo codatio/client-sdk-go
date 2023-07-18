@@ -46,6 +46,20 @@ type ListLoanTransactionsRequest struct {
 	SourceType ListLoanTransactionsSourceType `queryParam:"style=form,explode=true,name=sourceType"`
 }
 
+func (o *ListLoanTransactionsRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *ListLoanTransactionsRequest) GetSourceType() ListLoanTransactionsSourceType {
+	if o == nil {
+		return ListLoanTransactionsSourceType("")
+	}
+	return o.SourceType
+}
+
 type ListLoanTransactionsResponse struct {
 	ContentType string
 	// OK
@@ -54,4 +68,39 @@ type ListLoanTransactionsResponse struct {
 	RawResponse      *http.Response
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
+}
+
+func (o *ListLoanTransactionsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *ListLoanTransactionsResponse) GetLoanTransactions() *shared.LoanTransactions {
+	if o == nil {
+		return nil
+	}
+	return o.LoanTransactions
+}
+
+func (o *ListLoanTransactionsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *ListLoanTransactionsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *ListLoanTransactionsResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

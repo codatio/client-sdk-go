@@ -22,6 +22,55 @@ type GetCommerceLifetimeValueMetricsRequest struct {
 	ReportDate string `queryParam:"style=form,explode=true,name=reportDate"`
 }
 
+func (o *GetCommerceLifetimeValueMetricsRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *GetCommerceLifetimeValueMetricsRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *GetCommerceLifetimeValueMetricsRequest) GetIncludeDisplayNames() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.IncludeDisplayNames
+}
+
+func (o *GetCommerceLifetimeValueMetricsRequest) GetNumberOfPeriods() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.NumberOfPeriods
+}
+
+func (o *GetCommerceLifetimeValueMetricsRequest) GetPeriodLength() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.PeriodLength
+}
+
+func (o *GetCommerceLifetimeValueMetricsRequest) GetPeriodUnit() shared.PeriodUnit {
+	if o == nil {
+		return PeriodUnit("")
+	}
+	return o.PeriodUnit
+}
+
+func (o *GetCommerceLifetimeValueMetricsRequest) GetReportDate() string {
+	if o == nil {
+		return ""
+	}
+	return o.ReportDate
+}
+
 type GetCommerceLifetimeValueMetricsResponse struct {
 	ContentType string
 	// OK
@@ -30,4 +79,39 @@ type GetCommerceLifetimeValueMetricsResponse struct {
 	RawResponse *http.Response
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
+}
+
+func (o *GetCommerceLifetimeValueMetricsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetCommerceLifetimeValueMetricsResponse) GetReport() *shared.Report {
+	if o == nil {
+		return nil
+	}
+	return o.Report
+}
+
+func (o *GetCommerceLifetimeValueMetricsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetCommerceLifetimeValueMetricsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetCommerceLifetimeValueMetricsResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

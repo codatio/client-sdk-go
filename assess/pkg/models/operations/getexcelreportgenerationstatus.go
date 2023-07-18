@@ -13,6 +13,20 @@ type GetExcelReportGenerationStatusRequest struct {
 	ReportType shared.ExcelReportType `queryParam:"style=form,explode=true,name=reportType"`
 }
 
+func (o *GetExcelReportGenerationStatusRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *GetExcelReportGenerationStatusRequest) GetReportType() shared.ExcelReportType {
+	if o == nil {
+		return ExcelReportType("")
+	}
+	return o.ReportType
+}
+
 type GetExcelReportGenerationStatusResponse struct {
 	ContentType string
 	// OK
@@ -21,4 +35,39 @@ type GetExcelReportGenerationStatusResponse struct {
 	RawResponse *http.Response
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
+}
+
+func (o *GetExcelReportGenerationStatusResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetExcelReportGenerationStatusResponse) GetExcelStatus() *shared.ExcelStatus {
+	if o == nil {
+		return nil
+	}
+	return o.ExcelStatus
+}
+
+func (o *GetExcelReportGenerationStatusResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetExcelReportGenerationStatusResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetExcelReportGenerationStatusResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

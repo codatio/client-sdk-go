@@ -11,6 +11,13 @@ type GetLoanSummaryRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
+func (o *GetLoanSummaryRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
 type GetLoanSummaryResponse struct {
 	ContentType string
 	// OK
@@ -19,4 +26,39 @@ type GetLoanSummaryResponse struct {
 	RawResponse *http.Response
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
+}
+
+func (o *GetLoanSummaryResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetLoanSummaryResponse) GetLoanSummary() *shared.LoanSummary {
+	if o == nil {
+		return nil
+	}
+	return o.LoanSummary
+}
+
+func (o *GetLoanSummaryResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetLoanSummaryResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetLoanSummaryResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

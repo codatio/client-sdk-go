@@ -22,6 +22,55 @@ type GetCommerceOrdersMetricsRequest struct {
 	ReportDate string `queryParam:"style=form,explode=true,name=reportDate"`
 }
 
+func (o *GetCommerceOrdersMetricsRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *GetCommerceOrdersMetricsRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *GetCommerceOrdersMetricsRequest) GetIncludeDisplayNames() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.IncludeDisplayNames
+}
+
+func (o *GetCommerceOrdersMetricsRequest) GetNumberOfPeriods() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.NumberOfPeriods
+}
+
+func (o *GetCommerceOrdersMetricsRequest) GetPeriodLength() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.PeriodLength
+}
+
+func (o *GetCommerceOrdersMetricsRequest) GetPeriodUnit() shared.PeriodUnit {
+	if o == nil {
+		return PeriodUnit("")
+	}
+	return o.PeriodUnit
+}
+
+func (o *GetCommerceOrdersMetricsRequest) GetReportDate() string {
+	if o == nil {
+		return ""
+	}
+	return o.ReportDate
+}
+
 type GetCommerceOrdersMetricsResponse struct {
 	ContentType string
 	// OK
@@ -30,4 +79,39 @@ type GetCommerceOrdersMetricsResponse struct {
 	RawResponse *http.Response
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
+}
+
+func (o *GetCommerceOrdersMetricsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetCommerceOrdersMetricsResponse) GetReport() *shared.Report {
+	if o == nil {
+		return nil
+	}
+	return o.Report
+}
+
+func (o *GetCommerceOrdersMetricsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetCommerceOrdersMetricsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetCommerceOrdersMetricsResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

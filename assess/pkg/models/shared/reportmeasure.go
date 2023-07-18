@@ -8,3 +8,31 @@ type ReportMeasure struct {
 	Type        *string `json:"type,omitempty"`
 	Units       *string `json:"units,omitempty"`
 }
+
+func (o *ReportMeasure) GetDisplayName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DisplayName
+}
+
+func (o *ReportMeasure) GetIndex() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Index
+}
+
+func (o *ReportMeasure) GetType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}
+
+func (o *ReportMeasure) GetUnits() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Units
+}

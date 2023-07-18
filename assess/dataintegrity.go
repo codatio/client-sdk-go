@@ -7,6 +7,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/assess/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/assess/pkg/models/sdkerrors"
 	"github.com/codatio/client-sdk-go/assess/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/assess/pkg/utils"
 	"io"
@@ -107,6 +108,8 @@ func (s *dataIntegrity) GetDataIntegrityStatus(ctx context.Context, request oper
 			}
 
 			res.Status = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -119,6 +122,8 @@ func (s *dataIntegrity) GetDataIntegrityStatus(ctx context.Context, request oper
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -212,6 +217,8 @@ func (s *dataIntegrity) GetDataIntegritySummaries(ctx context.Context, request o
 			}
 
 			res.Summaries = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -224,6 +231,8 @@ func (s *dataIntegrity) GetDataIntegritySummaries(ctx context.Context, request o
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -317,6 +326,8 @@ func (s *dataIntegrity) ListDataTypeDataIntegrityDetails(ctx context.Context, re
 			}
 
 			res.Details = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -329,6 +340,8 @@ func (s *dataIntegrity) ListDataTypeDataIntegrityDetails(ctx context.Context, re
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 

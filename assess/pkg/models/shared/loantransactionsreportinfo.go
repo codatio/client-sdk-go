@@ -34,3 +34,45 @@ type LoanTransactionsReportInfo struct {
 	// The total number of transactions returned.
 	TotalResults *int64 `json:"totalResults,omitempty"`
 }
+
+func (o *LoanTransactionsReportInfo) GetCompanyName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CompanyName
+}
+
+func (o *LoanTransactionsReportInfo) GetGeneratedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.GeneratedDate
+}
+
+func (o *LoanTransactionsReportInfo) GetPageNumber() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.PageNumber
+}
+
+func (o *LoanTransactionsReportInfo) GetPageSize() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.PageSize
+}
+
+func (o *LoanTransactionsReportInfo) GetReportName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ReportName
+}
+
+func (o *LoanTransactionsReportInfo) GetTotalResults() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.TotalResults
+}
