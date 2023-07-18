@@ -7,3 +7,24 @@ type PushOperationChange struct {
 	RecordRef    *PushOperationRef `json:"recordRef,omitempty"`
 	Type         *PushChangeType   `json:"type,omitempty"`
 }
+
+func (o *PushOperationChange) GetAttachmentID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AttachmentID
+}
+
+func (o *PushOperationChange) GetRecordRef() *PushOperationRef {
+	if o == nil {
+		return nil
+	}
+	return o.RecordRef
+}
+
+func (o *PushOperationChange) GetType() *PushChangeType {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}

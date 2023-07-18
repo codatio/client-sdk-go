@@ -11,10 +11,38 @@ type UnlinkConnectionRequestBody struct {
 	Status *string `json:"status,omitempty"`
 }
 
+func (o *UnlinkConnectionRequestBody) GetStatus() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Status
+}
+
 type UnlinkConnectionRequest struct {
 	RequestBody  *UnlinkConnectionRequestBody `request:"mediaType=application/json"`
 	CompanyID    string                       `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string                       `pathParam:"style=simple,explode=false,name=connectionId"`
+}
+
+func (o *UnlinkConnectionRequest) GetRequestBody() *UnlinkConnectionRequestBody {
+	if o == nil {
+		return nil
+	}
+	return o.RequestBody
+}
+
+func (o *UnlinkConnectionRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *UnlinkConnectionRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
 }
 
 type UnlinkConnectionResponse struct {
@@ -25,4 +53,39 @@ type UnlinkConnectionResponse struct {
 	RawResponse *http.Response
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
+}
+
+func (o *UnlinkConnectionResponse) GetConnection() *shared.Connection {
+	if o == nil {
+		return nil
+	}
+	return o.Connection
+}
+
+func (o *UnlinkConnectionResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *UnlinkConnectionResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *UnlinkConnectionResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *UnlinkConnectionResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

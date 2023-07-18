@@ -66,3 +66,73 @@ type BankFeedAccount struct {
 	SortCode *string `json:"sortCode,omitempty"`
 	Status   *string `json:"status,omitempty"`
 }
+
+func (o *BankFeedAccount) GetAccountName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AccountName
+}
+
+func (o *BankFeedAccount) GetAccountNumber() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AccountNumber
+}
+
+func (o *BankFeedAccount) GetAccountType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AccountType
+}
+
+func (o *BankFeedAccount) GetBalance() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Balance
+}
+
+func (o *BankFeedAccount) GetCurrency() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Currency
+}
+
+func (o *BankFeedAccount) GetFeedStartDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.FeedStartDate
+}
+
+func (o *BankFeedAccount) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *BankFeedAccount) GetModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ModifiedDate
+}
+
+func (o *BankFeedAccount) GetSortCode() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SortCode
+}
+
+func (o *BankFeedAccount) GetStatus() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Status
+}

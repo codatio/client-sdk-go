@@ -12,6 +12,20 @@ type GetBankAccountMappingRequest struct {
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
+func (o *GetBankAccountMappingRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *GetBankAccountMappingRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
 type GetBankAccountMappingResponse struct {
 	// Success
 	BankFeedMapping *shared.BankFeedMapping
@@ -20,4 +34,39 @@ type GetBankAccountMappingResponse struct {
 	RawResponse     *http.Response
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
+}
+
+func (o *GetBankAccountMappingResponse) GetBankFeedMapping() *shared.BankFeedMapping {
+	if o == nil {
+		return nil
+	}
+	return o.BankFeedMapping
+}
+
+func (o *GetBankAccountMappingResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetBankAccountMappingResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetBankAccountMappingResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetBankAccountMappingResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

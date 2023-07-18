@@ -11,10 +11,45 @@ type DeleteCompanyRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
+func (o *DeleteCompanyRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
 type DeleteCompanyResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
+}
+
+func (o *DeleteCompanyResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *DeleteCompanyResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *DeleteCompanyResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *DeleteCompanyResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

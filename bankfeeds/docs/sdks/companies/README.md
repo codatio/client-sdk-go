@@ -82,6 +82,7 @@ import(
 	"context"
 	"log"
 	"github.com/codatio/client-sdk-go/bankfeeds"
+	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/operations"
 )
 
@@ -133,6 +134,7 @@ import(
 	"context"
 	"log"
 	"github.com/codatio/client-sdk-go/bankfeeds"
+	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/operations"
 )
 
@@ -184,6 +186,7 @@ import(
 	"context"
 	"log"
 	"github.com/codatio/client-sdk-go/bankfeeds"
+	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/operations"
 )
 
@@ -238,8 +241,8 @@ import(
 	"context"
 	"log"
 	"github.com/codatio/client-sdk-go/bankfeeds"
-	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/operations"
 )
 
 func main() {

@@ -13,6 +13,27 @@ type CreateBankFeedRequest struct {
 	ConnectionID    string                  `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
+func (o *CreateBankFeedRequest) GetBankFeedAccount() *shared.BankFeedAccount {
+	if o == nil {
+		return nil
+	}
+	return o.BankFeedAccount
+}
+
+func (o *CreateBankFeedRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *CreateBankFeedRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
 type CreateBankFeedResponse struct {
 	// Success
 	BankFeedAccount *shared.BankFeedAccount
@@ -21,4 +42,39 @@ type CreateBankFeedResponse struct {
 	RawResponse     *http.Response
 	// The request made is not valid.
 	Schema *shared.Schema
+}
+
+func (o *CreateBankFeedResponse) GetBankFeedAccount() *shared.BankFeedAccount {
+	if o == nil {
+		return nil
+	}
+	return o.BankFeedAccount
+}
+
+func (o *CreateBankFeedResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *CreateBankFeedResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *CreateBankFeedResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *CreateBankFeedResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

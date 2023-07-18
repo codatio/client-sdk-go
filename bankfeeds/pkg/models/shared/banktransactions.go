@@ -46,3 +46,73 @@ type BankTransactions struct {
 	// Type of transaction for the bank statement line
 	TransactionType *BankTransactionType `json:"transactionType,omitempty"`
 }
+
+func (o *BankTransactions) GetAccountID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AccountID
+}
+
+func (o *BankTransactions) GetAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Amount
+}
+
+func (o *BankTransactions) GetBalance() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Balance
+}
+
+func (o *BankTransactions) GetClearedOnDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ClearedOnDate
+}
+
+func (o *BankTransactions) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *BankTransactions) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *BankTransactions) GetModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ModifiedDate
+}
+
+func (o *BankTransactions) GetReconciled() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Reconciled
+}
+
+func (o *BankTransactions) GetSourceModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceModifiedDate
+}
+
+func (o *BankTransactions) GetTransactionType() *BankTransactionType {
+	if o == nil {
+		return nil
+	}
+	return o.TransactionType
+}

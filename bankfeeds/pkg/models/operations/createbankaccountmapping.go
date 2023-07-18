@@ -13,6 +13,27 @@ type CreateBankAccountMappingRequest struct {
 	ConnectionID           string                         `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
+func (o *CreateBankAccountMappingRequest) GetBankFeedAccountMapping() *shared.BankFeedAccountMapping {
+	if o == nil {
+		return nil
+	}
+	return o.BankFeedAccountMapping
+}
+
+func (o *CreateBankAccountMappingRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *CreateBankAccountMappingRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
 type CreateBankAccountMappingResponse struct {
 	// Success
 	AccountMappingResult *shared.AccountMappingResult
@@ -21,4 +42,39 @@ type CreateBankAccountMappingResponse struct {
 	RawResponse          *http.Response
 	// The request made is not valid.
 	Schema *shared.Schema
+}
+
+func (o *CreateBankAccountMappingResponse) GetAccountMappingResult() *shared.AccountMappingResult {
+	if o == nil {
+		return nil
+	}
+	return o.AccountMappingResult
+}
+
+func (o *CreateBankAccountMappingResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *CreateBankAccountMappingResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *CreateBankAccountMappingResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *CreateBankAccountMappingResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

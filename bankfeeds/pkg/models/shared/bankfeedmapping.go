@@ -48,3 +48,73 @@ type BankFeedMapping struct {
 	// An array of potential target accounts.
 	TargetAccountOptions []TargetAccountOption `json:"targetAccountOptions,omitempty"`
 }
+
+func (o *BankFeedMapping) GetFeedStartDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.FeedStartDate
+}
+
+func (o *BankFeedMapping) GetSourceAccountID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceAccountID
+}
+
+func (o *BankFeedMapping) GetSourceAccountName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceAccountName
+}
+
+func (o *BankFeedMapping) GetSourceAccountNumber() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceAccountNumber
+}
+
+func (o *BankFeedMapping) GetSourceBalance() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceBalance
+}
+
+func (o *BankFeedMapping) GetSourceCurrency() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceCurrency
+}
+
+func (o *BankFeedMapping) GetStatus() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Status
+}
+
+func (o *BankFeedMapping) GetTargetAccountID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TargetAccountID
+}
+
+func (o *BankFeedMapping) GetTargetAccountName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TargetAccountName
+}
+
+func (o *BankFeedMapping) GetTargetAccountOptions() []TargetAccountOption {
+	if o == nil {
+		return nil
+	}
+	return o.TargetAccountOptions
+}

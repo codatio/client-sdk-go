@@ -7,6 +7,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/sdkerrors"
 	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/bankfeeds/pkg/utils"
 	"io"
@@ -120,6 +121,8 @@ func (s *bankAccountMapping) Create(ctx context.Context, request operations.Crea
 			}
 
 			res.AccountMappingResult = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
 		fallthrough
@@ -136,6 +139,8 @@ func (s *bankAccountMapping) Create(ctx context.Context, request operations.Crea
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -229,6 +234,8 @@ func (s *bankAccountMapping) Get(ctx context.Context, request operations.GetBank
 			}
 
 			res.BankFeedMapping = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -241,6 +248,8 @@ func (s *bankAccountMapping) Get(ctx context.Context, request operations.GetBank
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 

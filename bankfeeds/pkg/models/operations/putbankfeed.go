@@ -13,6 +13,27 @@ type PutBankFeedRequest struct {
 	ConnectionID string                   `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
+func (o *PutBankFeedRequest) GetRequestBody() []shared.BankFeedAccount {
+	if o == nil {
+		return nil
+	}
+	return o.RequestBody
+}
+
+func (o *PutBankFeedRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *PutBankFeedRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
 type PutBankFeedResponse struct {
 	// Success
 	BankFeedAccounts []shared.BankFeedAccount
@@ -21,4 +42,39 @@ type PutBankFeedResponse struct {
 	RawResponse      *http.Response
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
+}
+
+func (o *PutBankFeedResponse) GetBankFeedAccounts() []shared.BankFeedAccount {
+	if o == nil {
+		return nil
+	}
+	return o.BankFeedAccounts
+}
+
+func (o *PutBankFeedResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *PutBankFeedResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *PutBankFeedResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *PutBankFeedResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

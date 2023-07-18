@@ -7,6 +7,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/sdkerrors"
 	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/bankfeeds/pkg/utils"
 	"io"
@@ -116,6 +117,8 @@ func (s *connections) Create(ctx context.Context, request operations.CreateDataC
 			}
 
 			res.Connection = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -130,6 +133,8 @@ func (s *connections) Create(ctx context.Context, request operations.CreateDataC
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -225,6 +230,8 @@ func (s *connections) Delete(ctx context.Context, request operations.DeleteCompa
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -314,6 +321,8 @@ func (s *connections) Get(ctx context.Context, request operations.GetCompanyConn
 			}
 
 			res.Connection = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -328,6 +337,8 @@ func (s *connections) Get(ctx context.Context, request operations.GetCompanyConn
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -421,6 +432,8 @@ func (s *connections) List(ctx context.Context, request operations.ListCompanyCo
 			}
 
 			res.Connections = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
 		fallthrough
@@ -437,6 +450,8 @@ func (s *connections) List(ctx context.Context, request operations.ListCompanyCo
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -532,6 +547,8 @@ func (s *connections) Proxy(ctx context.Context, request operations.ProxyRequest
 			}
 
 			res.ProxyResponse = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -546,6 +563,8 @@ func (s *connections) Proxy(ctx context.Context, request operations.ProxyRequest
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -642,6 +661,8 @@ func (s *connections) UnlinkConnection(ctx context.Context, request operations.U
 			}
 
 			res.Connection = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -656,6 +677,8 @@ func (s *connections) UnlinkConnection(ctx context.Context, request operations.U
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 

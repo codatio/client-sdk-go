@@ -12,6 +12,20 @@ type GetCompanyConnectionRequest struct {
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
+func (o *GetCompanyConnectionRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *GetCompanyConnectionRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
 type GetCompanyConnectionResponse struct {
 	// OK
 	Connection  *shared.Connection
@@ -20,4 +34,39 @@ type GetCompanyConnectionResponse struct {
 	RawResponse *http.Response
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
+}
+
+func (o *GetCompanyConnectionResponse) GetConnection() *shared.Connection {
+	if o == nil {
+		return nil
+	}
+	return o.Connection
+}
+
+func (o *GetCompanyConnectionResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetCompanyConnectionResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetCompanyConnectionResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetCompanyConnectionResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

@@ -16,3 +16,38 @@ type CreateCompanyResponse struct {
 	// The request made is not valid.
 	Schema *shared.Schema
 }
+
+func (o *CreateCompanyResponse) GetCompany() *shared.Company {
+	if o == nil {
+		return nil
+	}
+	return o.Company
+}
+
+func (o *CreateCompanyResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *CreateCompanyResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *CreateCompanyResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *CreateCompanyResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}

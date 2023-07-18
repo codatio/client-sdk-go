@@ -12,6 +12,20 @@ type UpdateCompanyRequest struct {
 	CompanyID          string                     `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
+func (o *UpdateCompanyRequest) GetCompanyRequestBody() *shared.CompanyRequestBody {
+	if o == nil {
+		return nil
+	}
+	return o.CompanyRequestBody
+}
+
+func (o *UpdateCompanyRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
 type UpdateCompanyResponse struct {
 	// OK
 	Company     *shared.Company
@@ -20,4 +34,39 @@ type UpdateCompanyResponse struct {
 	RawResponse *http.Response
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
+}
+
+func (o *UpdateCompanyResponse) GetCompany() *shared.Company {
+	if o == nil {
+		return nil
+	}
+	return o.Company
+}
+
+func (o *UpdateCompanyResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *UpdateCompanyResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *UpdateCompanyResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *UpdateCompanyResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

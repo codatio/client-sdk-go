@@ -8,3 +8,31 @@ type Links struct {
 	Previous *HRef `json:"previous,omitempty"`
 	Self     HRef  `json:"self"`
 }
+
+func (o *Links) GetCurrent() HRef {
+	if o == nil {
+		return HRef{}
+	}
+	return o.Current
+}
+
+func (o *Links) GetNext() *HRef {
+	if o == nil {
+		return nil
+	}
+	return o.Next
+}
+
+func (o *Links) GetPrevious() *HRef {
+	if o == nil {
+		return nil
+	}
+	return o.Previous
+}
+
+func (o *Links) GetSelf() HRef {
+	if o == nil {
+		return HRef{}
+	}
+	return o.Self
+}

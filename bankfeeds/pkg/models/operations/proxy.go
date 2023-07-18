@@ -14,6 +14,27 @@ type ProxyRequest struct {
 	Endpoint string `queryParam:"style=form,explode=true,name=endpoint"`
 }
 
+func (o *ProxyRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *ProxyRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *ProxyRequest) GetEndpoint() string {
+	if o == nil {
+		return ""
+	}
+	return o.Endpoint
+}
+
 type ProxyResponse struct {
 	ContentType string
 	// Success
@@ -22,4 +43,39 @@ type ProxyResponse struct {
 	RawResponse   *http.Response
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
+}
+
+func (o *ProxyResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *ProxyResponse) GetProxyResponse() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.ProxyResponse
+}
+
+func (o *ProxyResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *ProxyResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *ProxyResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

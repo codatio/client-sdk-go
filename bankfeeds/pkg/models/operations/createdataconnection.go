@@ -11,9 +11,30 @@ type CreateDataConnectionRequestBody struct {
 	PlatformKey *string `json:"platformKey,omitempty"`
 }
 
+func (o *CreateDataConnectionRequestBody) GetPlatformKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PlatformKey
+}
+
 type CreateDataConnectionRequest struct {
 	RequestBody *CreateDataConnectionRequestBody `request:"mediaType=application/json"`
 	CompanyID   string                           `pathParam:"style=simple,explode=false,name=companyId"`
+}
+
+func (o *CreateDataConnectionRequest) GetRequestBody() *CreateDataConnectionRequestBody {
+	if o == nil {
+		return nil
+	}
+	return o.RequestBody
+}
+
+func (o *CreateDataConnectionRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
 }
 
 type CreateDataConnectionResponse struct {
@@ -24,4 +45,39 @@ type CreateDataConnectionResponse struct {
 	RawResponse *http.Response
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
+}
+
+func (o *CreateDataConnectionResponse) GetConnection() *shared.Connection {
+	if o == nil {
+		return nil
+	}
+	return o.Connection
+}
+
+func (o *CreateDataConnectionResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *CreateDataConnectionResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *CreateDataConnectionResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *CreateDataConnectionResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

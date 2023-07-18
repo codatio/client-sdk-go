@@ -64,3 +64,101 @@ type CreateBankTransactionsResponse struct {
 	// A human-readable object describing validation decisions Codat has made when pushing data into the platform. If a push has failed because of validation errors, they will be detailed here.
 	Validation *Validation `json:"validation,omitempty"`
 }
+
+func (o *CreateBankTransactionsResponse) GetChanges() []PushOperationChange {
+	if o == nil {
+		return nil
+	}
+	return o.Changes
+}
+
+func (o *CreateBankTransactionsResponse) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *CreateBankTransactionsResponse) GetCompletedOnUtc() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CompletedOnUtc
+}
+
+func (o *CreateBankTransactionsResponse) GetData() *CreateBankTransactions {
+	if o == nil {
+		return nil
+	}
+	return o.Data
+}
+
+func (o *CreateBankTransactionsResponse) GetDataConnectionKey() string {
+	if o == nil {
+		return ""
+	}
+	return o.DataConnectionKey
+}
+
+func (o *CreateBankTransactionsResponse) GetDataType() *DataType {
+	if o == nil {
+		return nil
+	}
+	return o.DataType
+}
+
+func (o *CreateBankTransactionsResponse) GetErrorMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *CreateBankTransactionsResponse) GetPushOperationKey() string {
+	if o == nil {
+		return ""
+	}
+	return o.PushOperationKey
+}
+
+func (o *CreateBankTransactionsResponse) GetRequestedOnUtc() string {
+	if o == nil {
+		return ""
+	}
+	return o.RequestedOnUtc
+}
+
+func (o *CreateBankTransactionsResponse) GetStatus() PushOperationStatus {
+	if o == nil {
+		return PushOperationStatus("")
+	}
+	return o.Status
+}
+
+func (o *CreateBankTransactionsResponse) GetStatusCode() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *CreateBankTransactionsResponse) GetTimeoutInMinutes() *int {
+	if o == nil {
+		return nil
+	}
+	return o.TimeoutInMinutes
+}
+
+func (o *CreateBankTransactionsResponse) GetTimeoutInSeconds() *int {
+	if o == nil {
+		return nil
+	}
+	return o.TimeoutInSeconds
+}
+
+func (o *CreateBankTransactionsResponse) GetValidation() *Validation {
+	if o == nil {
+		return nil
+	}
+	return o.Validation
+}

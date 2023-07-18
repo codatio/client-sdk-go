@@ -29,3 +29,24 @@ type BankFeedAccountMapping struct {
 	// Unique ID for the target account
 	TargetAccountID *string `json:"targetAccountId,omitempty"`
 }
+
+func (o *BankFeedAccountMapping) GetFeedStartDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.FeedStartDate
+}
+
+func (o *BankFeedAccountMapping) GetSourceAccountID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceAccountID
+}
+
+func (o *BankFeedAccountMapping) GetTargetAccountID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TargetAccountID
+}

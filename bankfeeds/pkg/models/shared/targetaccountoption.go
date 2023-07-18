@@ -8,3 +8,17 @@ type TargetAccountOption struct {
 	// Name of the target account.
 	Name *string `json:"name,omitempty"`
 }
+
+func (o *TargetAccountOption) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *TargetAccountOption) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}

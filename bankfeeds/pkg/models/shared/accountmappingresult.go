@@ -13,3 +13,31 @@ type AccountMappingResult struct {
 	// Unique ID for the target account
 	TargetAccountID *string `json:"targetAccountId,omitempty"`
 }
+
+func (o *AccountMappingResult) GetError() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Error
+}
+
+func (o *AccountMappingResult) GetStatus() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Status
+}
+
+func (o *AccountMappingResult) GetSourceAccountID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceAccountID
+}
+
+func (o *AccountMappingResult) GetTargetAccountID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TargetAccountID
+}
