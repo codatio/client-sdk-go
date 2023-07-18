@@ -7,6 +7,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/banking/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/banking/pkg/models/sdkerrors"
 	"github.com/codatio/client-sdk-go/banking/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/banking/pkg/utils"
 	"io"
@@ -113,6 +114,8 @@ func (s *transactions) Get(ctx context.Context, request operations.GetTransactio
 			}
 
 			res.Transaction = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -210,6 +213,8 @@ func (s *transactions) List(ctx context.Context, request operations.ListTransact
 			}
 
 			res.Transactions = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
 		fallthrough
@@ -224,6 +229,8 @@ func (s *transactions) List(ctx context.Context, request operations.ListTransact
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 409:
 		switch {
@@ -234,6 +241,8 @@ func (s *transactions) List(ctx context.Context, request operations.ListTransact
 			}
 
 			res.ListTransactions409ApplicationJSONObject = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -333,6 +342,8 @@ func (s *transactions) ListBankTransactions(ctx context.Context, request operati
 			}
 
 			res.Transactions = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 

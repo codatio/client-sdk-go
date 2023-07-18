@@ -14,10 +14,59 @@ type GetTransactionRequest struct {
 	TransactionID string `pathParam:"style=simple,explode=false,name=transactionId"`
 }
 
+func (o *GetTransactionRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *GetTransactionRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *GetTransactionRequest) GetTransactionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.TransactionID
+}
+
 type GetTransactionResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// Success
 	Transaction *shared.Transaction
+}
+
+func (o *GetTransactionResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetTransactionResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetTransactionResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetTransactionResponse) GetTransaction() *shared.Transaction {
+	if o == nil {
+		return nil
+	}
+	return o.Transaction
 }

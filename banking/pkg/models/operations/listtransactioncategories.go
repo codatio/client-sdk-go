@@ -20,6 +20,48 @@ type ListTransactionCategoriesRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
+func (o *ListTransactionCategoriesRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *ListTransactionCategoriesRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *ListTransactionCategoriesRequest) GetOrderBy() *string {
+	if o == nil {
+		return nil
+	}
+	return o.OrderBy
+}
+
+func (o *ListTransactionCategoriesRequest) GetPage() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Page
+}
+
+func (o *ListTransactionCategoriesRequest) GetPageSize() *int {
+	if o == nil {
+		return nil
+	}
+	return o.PageSize
+}
+
+func (o *ListTransactionCategoriesRequest) GetQuery() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Query
+}
+
 // ListTransactionCategories409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
 type ListTransactionCategories409ApplicationJSON struct {
 	CanBeRetried      *string `json:"canBeRetried,omitempty"`
@@ -28,6 +70,48 @@ type ListTransactionCategories409ApplicationJSON struct {
 	Error             *string `json:"error,omitempty"`
 	Service           *string `json:"service,omitempty"`
 	StatusCode        *int64  `json:"statusCode,omitempty"`
+}
+
+func (o *ListTransactionCategories409ApplicationJSON) GetCanBeRetried() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CanBeRetried
+}
+
+func (o *ListTransactionCategories409ApplicationJSON) GetCorrelationID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CorrelationID
+}
+
+func (o *ListTransactionCategories409ApplicationJSON) GetDetailedErrorCode() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.DetailedErrorCode
+}
+
+func (o *ListTransactionCategories409ApplicationJSON) GetError() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Error
+}
+
+func (o *ListTransactionCategories409ApplicationJSON) GetService() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Service
+}
+
+func (o *ListTransactionCategories409ApplicationJSON) GetStatusCode() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.StatusCode
 }
 
 type ListTransactionCategoriesResponse struct {
@@ -40,4 +124,46 @@ type ListTransactionCategoriesResponse struct {
 	ListTransactionCategories409ApplicationJSONObject *ListTransactionCategories409ApplicationJSON
 	// Your `query` parameter was not correctly formed
 	Schema *shared.Schema
+}
+
+func (o *ListTransactionCategoriesResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *ListTransactionCategoriesResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *ListTransactionCategoriesResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *ListTransactionCategoriesResponse) GetTransactionCategories() *shared.TransactionCategories {
+	if o == nil {
+		return nil
+	}
+	return o.TransactionCategories
+}
+
+func (o *ListTransactionCategoriesResponse) GetListTransactionCategories409ApplicationJSONObject() *ListTransactionCategories409ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ListTransactionCategories409ApplicationJSONObject
+}
+
+func (o *ListTransactionCategoriesResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

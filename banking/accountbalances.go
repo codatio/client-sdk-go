@@ -7,6 +7,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/codatio/client-sdk-go/banking/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/banking/pkg/models/sdkerrors"
 	"github.com/codatio/client-sdk-go/banking/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/banking/pkg/utils"
 	"io"
@@ -115,6 +116,8 @@ func (s *accountBalances) List(ctx context.Context, request operations.ListAccou
 			}
 
 			res.AccountBalances = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
 		fallthrough
@@ -129,6 +132,8 @@ func (s *accountBalances) List(ctx context.Context, request operations.ListAccou
 			}
 
 			res.Schema = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 409:
 		switch {
@@ -139,6 +144,8 @@ func (s *accountBalances) List(ctx context.Context, request operations.ListAccou
 			}
 
 			res.ListAccountBalances409ApplicationJSONObject = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 

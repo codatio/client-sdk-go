@@ -9,3 +9,17 @@ type AccountInstitution struct {
 	// The institution's name, according to the underlying provider.
 	Name *string `json:"name,omitempty"`
 }
+
+func (o *AccountInstitution) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *AccountInstitution) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}

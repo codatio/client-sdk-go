@@ -9,3 +9,17 @@ type TransactionCategoryRef struct {
 	// The category name reference for the bank transaction.
 	Name *string `json:"name,omitempty"`
 }
+
+func (o *TransactionCategoryRef) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *TransactionCategoryRef) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}

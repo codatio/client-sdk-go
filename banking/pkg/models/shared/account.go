@@ -31,3 +31,80 @@ type Account struct {
 	// For Debit accounts, positive balances are assets, and positive transactions **increase** assets.
 	Type AccountType `json:"type"`
 }
+
+func (o *Account) GetBalance() AccountBalanceAmounts {
+	if o == nil {
+		return AccountBalanceAmounts{}
+	}
+	return o.Balance
+}
+
+func (o *Account) GetCurrency() string {
+	if o == nil {
+		return ""
+	}
+	return o.Currency
+}
+
+func (o *Account) GetHolder() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Holder
+}
+
+func (o *Account) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *Account) GetIdentifiers() AccountIdentifiers {
+	if o == nil {
+		return AccountIdentifiers{}
+	}
+	return o.Identifiers
+}
+
+func (o *Account) GetInformalName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.InformalName
+}
+
+func (o *Account) GetInstitution() AccountInstitution {
+	if o == nil {
+		return AccountInstitution{}
+	}
+	return o.Institution
+}
+
+func (o *Account) GetModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ModifiedDate
+}
+
+func (o *Account) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *Account) GetSourceModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceModifiedDate
+}
+
+func (o *Account) GetType() AccountType {
+	if o == nil {
+		return AccountType("")
+	}
+	return o.Type
+}
