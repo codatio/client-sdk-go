@@ -12,6 +12,13 @@ type GetWebhookRequest struct {
 	RuleID string `pathParam:"style=simple,explode=false,name=ruleId"`
 }
 
+func (o *GetWebhookRequest) GetRuleID() string {
+	if o == nil {
+		return ""
+	}
+	return o.RuleID
+}
+
 type GetWebhookResponse struct {
 	ContentType string
 	// Your API request was not properly authorized.
@@ -20,4 +27,39 @@ type GetWebhookResponse struct {
 	Rule        *shared.Rule
 	StatusCode  int
 	RawResponse *http.Response
+}
+
+func (o *GetWebhookResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetWebhookResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *GetWebhookResponse) GetRule() *shared.Rule {
+	if o == nil {
+		return nil
+	}
+	return o.Rule
+}
+
+func (o *GetWebhookResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetWebhookResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

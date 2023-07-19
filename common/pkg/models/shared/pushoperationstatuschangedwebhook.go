@@ -11,6 +11,27 @@ type PushOperationStatusChangedWebhookData struct {
 	Status *string `json:"status,omitempty"`
 }
 
+func (o *PushOperationStatusChangedWebhookData) GetDataType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DataType
+}
+
+func (o *PushOperationStatusChangedWebhookData) GetPushOperationKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PushOperationKey
+}
+
+func (o *PushOperationStatusChangedWebhookData) GetStatus() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Status
+}
+
 // PushOperationStatusChangedWebhook - Webhook request body for a push operation status change.
 type PushOperationStatusChangedWebhook struct {
 	// Unique identifier of the webhook event.
@@ -24,4 +45,46 @@ type PushOperationStatusChangedWebhook struct {
 	RuleID *string `json:"RuleId,omitempty"`
 	// The type of rule.
 	Type *string `json:"Type,omitempty"`
+}
+
+func (o *PushOperationStatusChangedWebhook) GetAlertID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AlertID
+}
+
+func (o *PushOperationStatusChangedWebhook) GetCompanyID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CompanyID
+}
+
+func (o *PushOperationStatusChangedWebhook) GetData() *PushOperationStatusChangedWebhookData {
+	if o == nil {
+		return nil
+	}
+	return o.Data
+}
+
+func (o *PushOperationStatusChangedWebhook) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *PushOperationStatusChangedWebhook) GetRuleID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.RuleID
+}
+
+func (o *PushOperationStatusChangedWebhook) GetType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Type
 }

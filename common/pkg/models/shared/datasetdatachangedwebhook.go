@@ -9,6 +9,20 @@ type DatasetDataChangedWebhookData struct {
 	DatasetID *string `json:"datasetId,omitempty"`
 }
 
+func (o *DatasetDataChangedWebhookData) GetDataType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DataType
+}
+
+func (o *DatasetDataChangedWebhookData) GetDatasetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DatasetID
+}
+
 // DatasetDataChangedWebhook - Webhook request body to notify that a data synchronization has completed.
 type DatasetDataChangedWebhook struct {
 	// Unique identifier of the webhook event.
@@ -22,4 +36,46 @@ type DatasetDataChangedWebhook struct {
 	RuleID *string `json:"RuleId,omitempty"`
 	// The type of rule.
 	Type *string `json:"Type,omitempty"`
+}
+
+func (o *DatasetDataChangedWebhook) GetAlertID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AlertID
+}
+
+func (o *DatasetDataChangedWebhook) GetCompanyID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CompanyID
+}
+
+func (o *DatasetDataChangedWebhook) GetData() *DatasetDataChangedWebhookData {
+	if o == nil {
+		return nil
+	}
+	return o.Data
+}
+
+func (o *DatasetDataChangedWebhook) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *DatasetDataChangedWebhook) GetRuleID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.RuleID
+}
+
+func (o *DatasetDataChangedWebhook) GetType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Type
 }

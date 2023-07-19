@@ -15,3 +15,59 @@ type Profile struct {
 	RedirectURL        string   `json:"redirectUrl"`
 	WhiteListUrls      []string `json:"whiteListUrls,omitempty"`
 }
+
+func (o *Profile) GetAlertAuthHeader() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AlertAuthHeader
+}
+
+func (o *Profile) GetAPIKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.APIKey
+}
+
+func (o *Profile) GetConfirmCompanyName() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.ConfirmCompanyName
+}
+
+func (o *Profile) GetIconURL() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IconURL
+}
+
+func (o *Profile) GetLogoURL() *string {
+	if o == nil {
+		return nil
+	}
+	return o.LogoURL
+}
+
+func (o *Profile) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *Profile) GetRedirectURL() string {
+	if o == nil {
+		return ""
+	}
+	return o.RedirectURL
+}
+
+func (o *Profile) GetWhiteListUrls() []string {
+	if o == nil {
+		return nil
+	}
+	return o.WhiteListUrls
+}

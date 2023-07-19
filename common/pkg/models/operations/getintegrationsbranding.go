@@ -11,6 +11,13 @@ type GetIntegrationsBrandingRequest struct {
 	PlatformKey string `pathParam:"style=simple,explode=false,name=platformKey"`
 }
 
+func (o *GetIntegrationsBrandingRequest) GetPlatformKey() string {
+	if o == nil {
+		return ""
+	}
+	return o.PlatformKey
+}
+
 type GetIntegrationsBrandingResponse struct {
 	// OK
 	Branding    *shared.Branding
@@ -19,4 +26,39 @@ type GetIntegrationsBrandingResponse struct {
 	ErrorMessage *shared.ErrorMessage
 	StatusCode   int
 	RawResponse  *http.Response
+}
+
+func (o *GetIntegrationsBrandingResponse) GetBranding() *shared.Branding {
+	if o == nil {
+		return nil
+	}
+	return o.Branding
+}
+
+func (o *GetIntegrationsBrandingResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetIntegrationsBrandingResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *GetIntegrationsBrandingResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetIntegrationsBrandingResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

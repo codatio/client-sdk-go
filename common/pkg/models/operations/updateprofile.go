@@ -16,3 +16,38 @@ type UpdateProfileResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 }
+
+func (o *UpdateProfileResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *UpdateProfileResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *UpdateProfileResponse) GetProfile() *shared.Profile {
+	if o == nil {
+		return nil
+	}
+	return o.Profile
+}
+
+func (o *UpdateProfileResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *UpdateProfileResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}

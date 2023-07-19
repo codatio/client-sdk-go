@@ -100,6 +100,20 @@ type GetSupplementalDataConfigurationRequest struct {
 	PlatformKey string                                   `pathParam:"style=simple,explode=false,name=platformKey"`
 }
 
+func (o *GetSupplementalDataConfigurationRequest) GetDataType() GetSupplementalDataConfigurationDataType {
+	if o == nil {
+		return GetSupplementalDataConfigurationDataType("")
+	}
+	return o.DataType
+}
+
+func (o *GetSupplementalDataConfigurationRequest) GetPlatformKey() string {
+	if o == nil {
+		return ""
+	}
+	return o.PlatformKey
+}
+
 type GetSupplementalDataConfigurationResponse struct {
 	ContentType string
 	// Your API request was not properly authorized.
@@ -108,4 +122,39 @@ type GetSupplementalDataConfigurationResponse struct {
 	RawResponse  *http.Response
 	// OK
 	SupplementalDataConfiguration *shared.SupplementalDataConfiguration
+}
+
+func (o *GetSupplementalDataConfigurationResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetSupplementalDataConfigurationResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *GetSupplementalDataConfigurationResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetSupplementalDataConfigurationResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetSupplementalDataConfigurationResponse) GetSupplementalDataConfiguration() *shared.SupplementalDataConfiguration {
+	if o == nil {
+		return nil
+	}
+	return o.SupplementalDataConfiguration
 }

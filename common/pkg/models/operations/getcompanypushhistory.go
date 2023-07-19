@@ -19,6 +19,41 @@ type GetCompanyPushHistoryRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
+func (o *GetCompanyPushHistoryRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *GetCompanyPushHistoryRequest) GetOrderBy() *string {
+	if o == nil {
+		return nil
+	}
+	return o.OrderBy
+}
+
+func (o *GetCompanyPushHistoryRequest) GetPage() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Page
+}
+
+func (o *GetCompanyPushHistoryRequest) GetPageSize() *int {
+	if o == nil {
+		return nil
+	}
+	return o.PageSize
+}
+
+func (o *GetCompanyPushHistoryRequest) GetQuery() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Query
+}
+
 type GetCompanyPushHistoryResponse struct {
 	ContentType string
 	// Your `query` parameter was not correctly formed
@@ -27,4 +62,39 @@ type GetCompanyPushHistoryResponse struct {
 	PushHistoryResponse *shared.PushHistoryResponse
 	StatusCode          int
 	RawResponse         *http.Response
+}
+
+func (o *GetCompanyPushHistoryResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetCompanyPushHistoryResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *GetCompanyPushHistoryResponse) GetPushHistoryResponse() *shared.PushHistoryResponse {
+	if o == nil {
+		return nil
+	}
+	return o.PushHistoryResponse
+}
+
+func (o *GetCompanyPushHistoryResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetCompanyPushHistoryResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }
