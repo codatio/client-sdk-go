@@ -6,11 +6,11 @@ package shared
 type AccountMappingResult struct {
 	// Error returned during the post request
 	Error *string `json:"Error,omitempty"`
-	// Status of the POST request
+	// Status of the POST request.
 	Status *string `json:"Status,omitempty"`
-	// Unique ID for the source account
+	// Unique ID for the source account.
 	SourceAccountID *string `json:"sourceAccountId,omitempty"`
-	// Unique ID for the target account
+	// Unique ID for the target account.
 	TargetAccountID *string `json:"targetAccountId,omitempty"`
 }
 

@@ -7,6 +7,7 @@ Bank feed bank accounts
 ### Available Operations
 
 * [Create](#create) - Create a bank feed bank account
+* [Delete](#delete) - delete bank feed bank account
 * [List](#list) - List bank feed bank accounts
 * [~~PutBankFeed~~](#putbankfeed) - Create bank feed bank accounts :warning: **Deprecated**
 * [Update](#update) - Update bank feed bank account
@@ -74,6 +75,74 @@ func main() {
 ### Response
 
 **[*operations.CreateBankFeedResponse](../../models/operations/createbankfeedresponse.md), error**
+
+
+## Delete
+
+The *delete bank feed bank account* endpoint enables you to remove a source account.
+
+Removing a source account will also remove any mapping between the source bank feed bank accounts and the target bankfeed bank account.
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"log"
+	"github.com/codatio/client-sdk-go/bankfeeds"
+	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/operations"
+)
+
+func main() {
+    s := codatbankfeeds.New(
+        codatbankfeeds.WithSecurity(shared.Security{
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
+        }),
+    )
+
+    ctx := context.Background()
+    res, err := s.BankFeedAccounts.Delete(ctx, operations.DeleteBankFeedBankAccountRequest{
+        BankFeedAccount: &shared.BankFeedAccount{
+            AccountName: codatbankfeeds.String("quos"),
+            AccountNumber: codatbankfeeds.String("perferendis"),
+            AccountType: codatbankfeeds.String("magni"),
+            Balance: codatbankfeeds.Float64(8289.4),
+            Currency: codatbankfeeds.String("USD"),
+            FeedStartDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
+            ID: "2a94bb4f-63c9-469e-9a3e-fa77dfb14cd6",
+            ModifiedDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
+            SortCode: codatbankfeeds.String("laborum"),
+            Status: codatbankfeeds.String("accusamus"),
+        },
+        AccountID: "13d946f0-c5d5-42bc-b092-97ece17923ab",
+        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+        ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.PushOperation != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                                      | :heavy_check_mark:                                                                                         | The context to use for the request.                                                                        |
+| `request`                                                                                                  | [operations.DeleteBankFeedBankAccountRequest](../../models/operations/deletebankfeedbankaccountrequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
+| `opts`                                                                                                     | [][operations.Option](../../models/operations/option.md)                                                   | :heavy_minus_sign:                                                                                         | The options for this request.                                                                              |
+
+
+### Response
+
+**[*operations.DeleteBankFeedBankAccountResponse](../../models/operations/deletebankfeedbankaccountresponse.md), error**
 
 
 ## List
@@ -163,40 +232,40 @@ func main() {
     res, err := s.BankFeedAccounts.PutBankFeed(ctx, operations.PutBankFeedRequest{
         RequestBody: []shared.BankFeedAccount{
             shared.BankFeedAccount{
-                AccountName: codatbankfeeds.String("perferendis"),
-                AccountNumber: codatbankfeeds.String("magni"),
-                AccountType: codatbankfeeds.String("assumenda"),
-                Balance: codatbankfeeds.Float64(3698.08),
-                Currency: codatbankfeeds.String("GBP"),
-                FeedStartDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
-                ID: "a94bb4f6-3c96-49e9-a3ef-a77dfb14cd66",
-                ModifiedDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
-                SortCode: codatbankfeeds.String("accusamus"),
-                Status: codatbankfeeds.String("non"),
-            },
-            shared.BankFeedAccount{
-                AccountName: codatbankfeeds.String("occaecati"),
-                AccountNumber: codatbankfeeds.String("enim"),
-                AccountType: codatbankfeeds.String("accusamus"),
-                Balance: codatbankfeeds.Float64(9654.17),
-                Currency: codatbankfeeds.String("EUR"),
-                FeedStartDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
-                ID: "ba88f3a6-6997-4074-ba44-69b6e2141959",
-                ModifiedDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
-                SortCode: codatbankfeeds.String("sint"),
-                Status: codatbankfeeds.String("accusantium"),
-            },
-            shared.BankFeedAccount{
-                AccountName: codatbankfeeds.String("mollitia"),
-                AccountNumber: codatbankfeeds.String("reiciendis"),
-                AccountType: codatbankfeeds.String("mollitia"),
-                Balance: codatbankfeeds.Float64(3209.97),
+                AccountName: codatbankfeeds.String("enim"),
+                AccountNumber: codatbankfeeds.String("accusamus"),
+                AccountType: codatbankfeeds.String("delectus"),
+                Balance: codatbankfeeds.Float64(6925.32),
                 Currency: codatbankfeeds.String("USD"),
                 FeedStartDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
-                ID: "e2516fe4-c8b7-411e-9b7f-d2ed028921cd",
+                ID: "a88f3a66-9970-474b-a446-9b6e21419598",
                 ModifiedDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
-                SortCode: codatbankfeeds.String("maxime"),
-                Status: codatbankfeeds.String("ea"),
+                SortCode: codatbankfeeds.String("accusantium"),
+                Status: codatbankfeeds.String("mollitia"),
+            },
+            shared.BankFeedAccount{
+                AccountName: codatbankfeeds.String("reiciendis"),
+                AccountNumber: codatbankfeeds.String("mollitia"),
+                AccountType: codatbankfeeds.String("ad"),
+                Balance: codatbankfeeds.Float64(4314.18),
+                Currency: codatbankfeeds.String("GBP"),
+                FeedStartDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
+                ID: "2516fe4c-8b71-41e5-b7fd-2ed028921cdd",
+                ModifiedDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
+                SortCode: codatbankfeeds.String("ea"),
+                Status: codatbankfeeds.String("excepturi"),
+            },
+            shared.BankFeedAccount{
+                AccountName: codatbankfeeds.String("odit"),
+                AccountNumber: codatbankfeeds.String("ea"),
+                AccountType: codatbankfeeds.String("accusantium"),
+                Balance: codatbankfeeds.Float64(691.67),
+                Currency: codatbankfeeds.String("EUR"),
+                FeedStartDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
+                ID: "576b0d5f-0d30-4c5f-bb25-87053202c73d",
+                ModifiedDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
+                SortCode: codatbankfeeds.String("hic"),
+                Status: codatbankfeeds.String("recusandae"),
             },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
@@ -253,18 +322,18 @@ func main() {
     ctx := context.Background()
     res, err := s.BankFeedAccounts.Update(ctx, operations.UpdateBankFeedRequest{
         BankFeedAccount: &shared.BankFeedAccount{
-            AccountName: codatbankfeeds.String("excepturi"),
-            AccountNumber: codatbankfeeds.String("odit"),
-            AccountType: codatbankfeeds.String("ea"),
-            Balance: codatbankfeeds.Float64(332.22),
-            Currency: codatbankfeeds.String("GBP"),
+            AccountName: codatbankfeeds.String("omnis"),
+            AccountNumber: codatbankfeeds.String("facilis"),
+            AccountType: codatbankfeeds.String("perspiciatis"),
+            Balance: codatbankfeeds.Float64(318.38),
+            Currency: codatbankfeeds.String("EUR"),
             FeedStartDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
-            ID: "b576b0d5-f0d3-40c5-bbb2-587053202c73",
+            ID: "8909b3fe-49a8-4d9c-bf48-633323f9b77f",
             ModifiedDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
-            SortCode: codatbankfeeds.String("nostrum"),
-            Status: codatbankfeeds.String("hic"),
+            SortCode: codatbankfeeds.String("dolorum"),
+            Status: codatbankfeeds.String("numquam"),
         },
-        AccountID: "EILBDVJVNUAGVKRQ",
+        AccountID: "13d946f0-c5d5-42bc-b092-97ece17923ab",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
