@@ -54,6 +54,7 @@ func (e *ExpenseTransactionType) UnmarshalJSON(data []byte) error {
 }
 
 type ExpenseTransaction struct {
+	ContactRef *ContactRef `json:"contactRef,omitempty"`
 	// Currency the transaction was recorded in.
 	Currency string `json:"currency"`
 	// Rate to convert the total amount of the payment into the base currency for the company at the time of the payment.
@@ -112,6 +113,13 @@ type ExpenseTransaction struct {
 	Notes *string `json:"notes,omitempty"`
 	// The type of transaction.
 	Type ExpenseTransactionType `json:"type"`
+}
+
+func (o *ExpenseTransaction) GetContactRef() *ContactRef {
+	if o == nil {
+		return nil
+	}
+	return o.ContactRef
 }
 
 func (o *ExpenseTransaction) GetCurrency() string {

@@ -13,7 +13,7 @@ Check the status of ongoing or previous expense syncs.
 
 ## GetLastSuccessfulSync
 
-Gets the status of the last successfull sync
+Gets the status of the last successful sync
 
 ### Example Usage
 

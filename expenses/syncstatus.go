@@ -26,7 +26,7 @@ func newSyncStatus(sdkConfig sdkConfiguration) *syncStatus {
 }
 
 // GetLastSuccessfulSync - Last successful sync
-// Gets the status of the last successfull sync
+// Gets the status of the last successful sync
 func (s *syncStatus) GetLastSuccessfulSync(ctx context.Context, request operations.GetLastSuccessfulSyncRequest, opts ...operations.Option) (*operations.GetLastSuccessfulSyncResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

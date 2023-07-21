@@ -39,6 +39,10 @@ func main() {
         CreateExpenseRequest: &shared.CreateExpenseRequest{
             Items: []shared.ExpenseTransaction{
                 shared.ExpenseTransaction{
+                    ContactRef: &shared.ContactRef{
+                        ContactType: shared.ContactRefContactTypeSupplier.ToPointer(),
+                        ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
+                    },
                     Currency: "GBP",
                     CurrencyRate: codatsyncexpenses.Float64(5928.45),
                     ID: "4d7c6929-7770-412b-91bb-44d3bc71d111",
@@ -140,6 +144,10 @@ func main() {
                     Type: shared.ExpenseTransactionTypePayment,
                 },
                 shared.ExpenseTransaction{
+                    ContactRef: &shared.ContactRef{
+                        ContactType: shared.ContactRefContactTypeSupplier.ToPointer(),
+                        ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
+                    },
                     Currency: "GBP",
                     CurrencyRate: codatsyncexpenses.Float64(4236.55),
                     ID: "4d7c6929-7770-412b-91bb-44d3bc71d111",
@@ -205,6 +213,10 @@ func main() {
                     Type: shared.ExpenseTransactionTypePayment,
                 },
                 shared.ExpenseTransaction{
+                    ContactRef: &shared.ContactRef{
+                        ContactType: shared.ContactRefContactTypeSupplier.ToPointer(),
+                        ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
+                    },
                     Currency: "GBP",
                     CurrencyRate: codatsyncexpenses.Float64(8917.73),
                     ID: "4d7c6929-7770-412b-91bb-44d3bc71d111",
@@ -348,30 +360,14 @@ func main() {
     ctx := context.Background()
     res, err := s.Expenses.UpdateExpenseDataset(ctx, operations.UpdateExpenseDatasetRequest{
         UpdateExpenseRequest: &shared.UpdateExpenseRequest{
+            ContactRef: &shared.ContactRef{
+                ContactType: shared.ContactRefContactTypeSupplier.ToPointer(),
+                ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
+            },
             Currency: codatsyncexpenses.String("GBP"),
+            CurrencyRate: codatsyncexpenses.Float64(8121.69),
             IssueDate: "2022-06-28T00:00:00.000Z",
             Lines: []shared.ExpenseTransactionLine{
-                shared.ExpenseTransactionLine{
-                    AccountRef: shared.RecordRef{
-                        ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                    },
-                    NetAmount: 110.42,
-                    TaxAmount: 14.43,
-                    TaxRateRef: &shared.RecordRef{
-                        ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                    },
-                    TrackingRefs: []shared.RecordRef{
-                        shared.RecordRef{
-                            ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                        },
-                        shared.RecordRef{
-                            ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                        },
-                        shared.RecordRef{
-                            ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                        },
-                    },
-                },
                 shared.ExpenseTransactionLine{
                     AccountRef: shared.RecordRef{
                         ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),

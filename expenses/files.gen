@@ -48,6 +48,7 @@ pkg/models/shared/createexpenserequest.go
 pkg/models/shared/expensetransaction.go
 pkg/models/shared/expensetransactionline.go
 pkg/models/shared/recordref.go
+pkg/models/shared/contactref.go
 pkg/models/shared/updateexpenserequest.go
 pkg/models/shared/attachment.go
 pkg/models/shared/mappingoptions.go
@@ -125,6 +126,8 @@ docs/models/shared/expensetransactiontype.md
 docs/models/shared/expensetransaction.md
 docs/models/shared/expensetransactionline.md
 docs/models/shared/recordref.md
+docs/models/shared/contactrefcontacttype.md
+docs/models/shared/contactref.md
 docs/models/shared/updateexpenserequest.md
 docs/models/shared/attachment.md
 docs/models/shared/mappingoptions.md
