@@ -87,6 +87,7 @@ func main() {
 * [GetCreateUpdateModel](docs/sdks/billcreditnotes/README.md#getcreateupdatemodel) - Get create/update bill credit note model
 * [List](docs/sdks/billcreditnotes/README.md#list) - List bill credit notes
 * [Update](docs/sdks/billcreditnotes/README.md#update) - Update bill credit note
+* [UploadAttachment](docs/sdks/billcreditnotes/README.md#uploadattachment) - Push invoice attachment
 
 ### [BillPayments](docs/sdks/billpayments/README.md)
 

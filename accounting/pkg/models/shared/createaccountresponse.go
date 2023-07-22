@@ -42,6 +42,14 @@ type CreateAccountResponse struct {
 	//   * Liability
 	//   * Equity.
 	//
+	// The same account may have a different category based on the integration it is used in. For example, a current account (known as checking in the US) should be categorized as `Asset.Current` for Xero, and `Asset.Bank.Checking` for QuickBooks Online.
+	//
+	// At the same time, each integration may have its own requirements to the categories. For example, a Paypal account in Xero is of the `Asset.Bank` category and therefore requires additional properties to be provided.
+	//
+	// To determine the list of allowed categories for a specific integration, you can:
+	// - Follow our [Create, update, delete data](https://docs.codat.io/using-the-api/push) guide and use the [Get create account model](https://docs.codat.io/accounting-api#/operations/get-create-chartOfAccounts-model).
+	// - Refer to the integration's own documentation.
+	//
 	// > **Accounts with no category**
 	// >
 	// > If an account is pulled from the chart of accounts and its nominal code does not lie within the category layout for the company's accounts, then the **type** is `Unknown`. The **fullyQualifiedCategory** and **fullyQualifiedName** fields return `null`.

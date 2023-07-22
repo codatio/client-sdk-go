@@ -7,14 +7,9 @@ type AccountTransactionLine struct {
 	Amount *float64 `json:"amount,omitempty"`
 	// Description of the account transaction.
 	Description *string `json:"description,omitempty"`
-	// Links to the underlying record or data type.
+	// Links the current record to the underlying record or data type that created it.
 	//
-	// Found on:
-	//
-	// - Journal entries
-	// - Account transactions
-	// - Invoices
-	// - Transfers
+	// For example, if a journal entry is generated based on an invoice, this property allows you to connect the journal entry to the underlying invoice in our data model.
 	RecordRef *InvoiceTo `json:"recordRef,omitempty"`
 }
 

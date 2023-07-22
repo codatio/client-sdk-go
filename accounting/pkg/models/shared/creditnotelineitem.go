@@ -9,6 +9,10 @@ type CreditNoteLineItemTracking struct {
 	IsBilledTo   BilledToType1         `json:"isBilledTo"`
 	IsRebilledTo BilledToType1         `json:"isRebilledTo"`
 	ProjectRef   *ProjectRef           `json:"projectRef,omitempty"`
+	// Links the current record to the underlying record or data type that created it.
+	//
+	// For example, if a journal entry is generated based on an invoice, this property allows you to connect the journal entry to the underlying invoice in our data model.
+	RecordRef *InvoiceTo `json:"recordRef,omitempty"`
 }
 
 func (o *CreditNoteLineItemTracking) GetCategoryRefs() []TrackingCategoryRef {
@@ -44,6 +48,13 @@ func (o *CreditNoteLineItemTracking) GetProjectRef() *ProjectRef {
 		return nil
 	}
 	return o.ProjectRef
+}
+
+func (o *CreditNoteLineItemTracking) GetRecordRef() *InvoiceTo {
+	if o == nil {
+		return nil
+	}
+	return o.RecordRef
 }
 
 type CreditNoteLineItem struct {

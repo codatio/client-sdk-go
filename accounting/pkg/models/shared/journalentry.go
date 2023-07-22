@@ -75,14 +75,9 @@ type JournalEntry struct {
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	PostedOn *string `json:"postedOn,omitempty"`
-	// Links to the underlying record or data type.
+	// Links the current record to the underlying record or data type that created it.
 	//
-	// Found on:
-	//
-	// - Journal entries
-	// - Account transactions
-	// - Invoices
-	// - Transfers
+	// For example, if a journal entry is generated based on an invoice, this property allows you to connect the journal entry to the underlying invoice in our data model.
 	RecordRef          *InvoiceTo `json:"recordRef,omitempty"`
 	SourceModifiedDate *string    `json:"sourceModifiedDate,omitempty"`
 	// Supplemental data is additional data you can include in our standard data types.

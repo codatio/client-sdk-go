@@ -33,6 +33,8 @@ type CreateDirectCostResponse struct {
 	//
 	// ## Overview
 	//
+	// Direct costs are the expenses associated with a business' operations. For example, purchases of raw materials and service fees are considered direct costs.
+	//
 	// Direct costs include:
 	//   * Purchasing an item and paying it off at the point of the purchase
 	//   * Receiving cash from a refunded item if the refund is made by the supplier

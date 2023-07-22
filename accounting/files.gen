@@ -58,6 +58,7 @@ pkg/models/operations/getbillcreditnote.go
 pkg/models/operations/getcreateupdatebillcreditnotesmodel.go
 pkg/models/operations/listbillcreditnotes.go
 pkg/models/operations/updatebillcreditnote.go
+pkg/models/operations/uploadbillcreditnoteattachment.go
 pkg/models/operations/createbillpayment.go
 pkg/models/operations/deletebillpayment.go
 pkg/models/operations/getbillpayments.go
@@ -421,6 +422,9 @@ docs/models/operations/listbillcreditnotes409applicationjson.md
 docs/models/operations/listbillcreditnotesresponse.md
 docs/models/operations/updatebillcreditnoterequest.md
 docs/models/operations/updatebillcreditnoteresponse.md
+docs/models/operations/uploadbillcreditnoteattachmentrequestbody.md
+docs/models/operations/uploadbillcreditnoteattachmentrequest.md
+docs/models/operations/uploadbillcreditnoteattachmentresponse.md
 docs/models/operations/createbillpaymentrequest.md
 docs/models/operations/createbillpaymentresponse.md
 docs/models/operations/deletebillpaymentrequest.md

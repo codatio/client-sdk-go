@@ -49,31 +49,31 @@ func main() {
         Item: &shared.Item{
             BillItem: &shared.BillItem{
                 AccountRef: &shared.AccountRef{
-                    ID: codataccounting.String("9834afb0-735c-4b62-85d4-a29aaa1e1691"),
-                    Name: codataccounting.String("Alma Ziemann"),
+                    ID: codataccounting.String("4b1e9c09-7eda-4623-842e-1a9237e9984c"),
+                    Name: codataccounting.String("Michael Quigley"),
                 },
-                Description: codataccounting.String("aspernatur"),
+                Description: codataccounting.String("sint"),
                 TaxRateRef: &shared.TaxRateRef{
-                    EffectiveTaxRate: codataccounting.Float64(9264.79),
-                    ID: codataccounting.String("e209505b-f03a-493e-9448-0ca37fb10789"),
-                    Name: codataccounting.String("Emily Considine"),
+                    EffectiveTaxRate: codataccounting.Float64(9051.54),
+                    ID: codataccounting.String("891923c1-8ca8-4d69-8568-9214fa20207e"),
+                    Name: codataccounting.String("Marta Murphy I"),
                 },
-                UnitPrice: codataccounting.Float64(2261.31),
+                UnitPrice: codataccounting.Float64(5291.71),
             },
-            Code: codataccounting.String("amet"),
-            ID: codataccounting.String("3172e2dd-79ec-474b-a7e8-8ddb36fd1ccc"),
+            Code: codataccounting.String("eligendi"),
+            ID: codataccounting.String("d7f1bc2c-abaf-47fc-accb-a4bef0df68ea"),
             InvoiceItem: &shared.InvoiceItem{
                 AccountRef: &shared.AccountRef{
-                    ID: codataccounting.String("341c8657-3474-4f0a-b40f-b4ab441c3a09"),
-                    Name: codataccounting.String("Claude Johns"),
+                    ID: codataccounting.String("edb2ee70-be06-49fb-b6ad-d704080e0a3f"),
+                    Name: codataccounting.String("Arnold Ernser"),
                 },
-                Description: codataccounting.String("omnis"),
+                Description: codataccounting.String("similique"),
                 TaxRateRef: &shared.TaxRateRef{
-                    EffectiveTaxRate: codataccounting.Float64(3289.22),
-                    ID: codataccounting.String("d808bbe7-9445-45eb-8550-a1c426b59c83"),
-                    Name: codataccounting.String("Terri Zemlak"),
+                    EffectiveTaxRate: codataccounting.Float64(465.74),
+                    ID: codataccounting.String("34b11499-243a-4fa6-987a-472b709a153e"),
+                    Name: codataccounting.String("Mr. Theresa Fay III"),
                 },
-                UnitPrice: codataccounting.Float64(7934.38),
+                UnitPrice: codataccounting.Float64(5221.85),
             },
             IsBillItem: false,
             IsInvoiceItem: false,
@@ -82,13 +82,13 @@ func main() {
                 IsDeleted: codataccounting.Bool(false),
             },
             ModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
-            Name: codataccounting.String("Ida Lemke"),
+            Name: codataccounting.String("Ms. Delbert Turner"),
             SourceModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
-            Type: shared.ItemTypeNonInventory,
+            Type: shared.ItemTypeService,
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codataccounting.Int(554193),
+        TimeoutInMinutes: codataccounting.Int(111385),
     })
     if err != nil {
         log.Fatal(err)
@@ -148,7 +148,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Items.Get(ctx, operations.GetItemRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ItemID: "veniam",
+        ItemID: "aperiam",
     })
     if err != nil {
         log.Fatal(err)
@@ -271,7 +271,7 @@ func main() {
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: codataccounting.Int(1),
         PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("ad"),
+        Query: codataccounting.String("animi"),
     })
     if err != nil {
         log.Fatal(err)

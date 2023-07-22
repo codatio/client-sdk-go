@@ -28,7 +28,7 @@ func newDirectIncomes(sdkConfig sdkConfiguration) *directIncomes {
 // Create - Create direct income
 // The *Create direct income* endpoint creates a new [direct income](https://docs.codat.io/accounting-api#/schemas/DirectIncome) for a given company's connection.
 //
-// [Direct incomes](https://docs.codat.io/accounting-api#/schemas/DirectIncome) are sales of items directly to a customer where payment is received at the point of the sale.
+// [Direct incomes](https://docs.codat.io/accounting-api#/schemas/DirectIncome) are sales of items directly to a customer where payment is received at the point of the sale. For example, cash sales of items to a customer, referral commissions, and service fee refunds are considered direct incomes.
 //
 // **Integration-specific behaviour**
 //

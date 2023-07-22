@@ -2,16 +2,11 @@
 
 package shared
 
-// TrackingRecordReference - Links to the underlying record or data type.
+// TrackingRecordReference - Links the current record to the underlying record or data type that created it.
 //
-// Found on:
-//
-// - Journal entries
-// - Account transactions
-// - Invoices
-// - Transfers
+// For example, if a journal entry is generated based on an invoice, this property allows you to connect the journal entry to the underlying invoice in our data model.
 type TrackingRecordReference struct {
-	// Name of the 'dataType'.
+	// Allowed name of the 'dataType'.
 	DataType *string `json:"dataType,omitempty"`
 	// 'id' of the underlying record or data type.
 	ID *string `json:"id,omitempty"`
@@ -32,14 +27,9 @@ func (o *TrackingRecordReference) GetID() *string {
 }
 
 type Tracking struct {
-	// Links to the underlying record or data type.
+	// Links the current record to the underlying record or data type that created it.
 	//
-	// Found on:
-	//
-	// - Journal entries
-	// - Account transactions
-	// - Invoices
-	// - Transfers
+	// For example, if a journal entry is generated based on an invoice, this property allows you to connect the journal entry to the underlying invoice in our data model.
 	InvoiceTo  *TrackingRecordReference `json:"invoiceTo,omitempty"`
 	RecordRefs []InvoiceTo              `json:"recordRefs"`
 }
