@@ -1,4 +1,4 @@
-name: Generate Common library
+name: Generate Sync for Expenses library
 'on':
   workflow_dispatch:
     inputs:
@@ -13,9 +13,9 @@ jobs:
     uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-generation.yaml@v14
     with:
       speakeasy_version: latest
-      openapi_doc_location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Common.yaml
+      openapi_doc_location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Expenses.yaml
       languages:
-      - go: ./common
+      - go: ./sync-for-expenses
       create_release: true
       mode: pr
       force: ${{ github.event.inputs.force }}

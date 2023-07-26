@@ -7,8 +7,8 @@ management:
 generation:
   sdkClassName: CodatFiles
   singleTagPerOp: false
-  telemetryEnabled: false
+  telemetryEnabled: true
 go:
-  version: 0.22.0
+  version: 0.0.0
   maxMethodParams: 0
   packageName: github.com/codatio/client-sdk-go/files
