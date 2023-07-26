@@ -162,19 +162,12 @@ func (s *bankFeedAccounts) Delete(ctx context.Context, request operations.Delete
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "BankFeedAccount", "json")
-	if err != nil {
-		return nil, fmt.Errorf("error serializing request body: %w", err)
-	}
-
-	req, err := http.NewRequestWithContext(ctx, "DELETE", url, bodyReader)
+	req, err := http.NewRequestWithContext(ctx, "DELETE", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
+	req.Header.Set("Accept", "application/json")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
-
-	req.Header.Set("Content-Type", reqContentType)
 
 	client := s.sdkConfiguration.SecurityClient
 
@@ -224,21 +217,8 @@ func (s *bankFeedAccounts) Delete(ctx context.Context, request operations.Delete
 		RawResponse: httpRes,
 	}
 	switch {
-	case httpRes.StatusCode == 200:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.PushOperation
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
-			}
-
-			res.PushOperation = out
-		default:
-			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
-		}
+	case httpRes.StatusCode == 204:
 	case httpRes.StatusCode == 401:
-		fallthrough
-	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 429:
 		switch {

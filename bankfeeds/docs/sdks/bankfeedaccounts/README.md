@@ -105,19 +105,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.BankFeedAccounts.Delete(ctx, operations.DeleteBankFeedBankAccountRequest{
-        BankFeedAccount: &shared.BankFeedAccount{
-            AccountName: codatbankfeeds.String("quos"),
-            AccountNumber: codatbankfeeds.String("perferendis"),
-            AccountType: codatbankfeeds.String("magni"),
-            Balance: codatbankfeeds.Float64(8289.4),
-            Currency: codatbankfeeds.String("USD"),
-            FeedStartDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
-            ID: "2a94bb4f-63c9-469e-9a3e-fa77dfb14cd6",
-            ModifiedDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
-            SortCode: codatbankfeeds.String("laborum"),
-            Status: codatbankfeeds.String("accusamus"),
-        },
-        AccountID: "13d946f0-c5d5-42bc-b092-97ece17923ab",
+        AccountID: "7110701885",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -125,7 +113,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.PushOperation != nil {
+    if res.StatusCode == http.StatusOK {
         // handle response
     }
 }
@@ -232,40 +220,16 @@ func main() {
     res, err := s.BankFeedAccounts.PutBankFeed(ctx, operations.PutBankFeedRequest{
         RequestBody: []shared.BankFeedAccount{
             shared.BankFeedAccount{
-                AccountName: codatbankfeeds.String("enim"),
-                AccountNumber: codatbankfeeds.String("accusamus"),
-                AccountType: codatbankfeeds.String("delectus"),
-                Balance: codatbankfeeds.Float64(6925.32),
-                Currency: codatbankfeeds.String("USD"),
-                FeedStartDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
-                ID: "a88f3a66-9970-474b-a446-9b6e21419598",
-                ModifiedDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
-                SortCode: codatbankfeeds.String("accusantium"),
-                Status: codatbankfeeds.String("mollitia"),
-            },
-            shared.BankFeedAccount{
-                AccountName: codatbankfeeds.String("reiciendis"),
-                AccountNumber: codatbankfeeds.String("mollitia"),
-                AccountType: codatbankfeeds.String("ad"),
-                Balance: codatbankfeeds.Float64(4314.18),
+                AccountName: codatbankfeeds.String("magni"),
+                AccountNumber: codatbankfeeds.String("assumenda"),
+                AccountType: codatbankfeeds.String("ipsam"),
+                Balance: codatbankfeeds.Float64(46.95),
                 Currency: codatbankfeeds.String("GBP"),
                 FeedStartDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
-                ID: "2516fe4c-8b71-41e5-b7fd-2ed028921cdd",
+                ID: "94bb4f63-c969-4e9a-befa-77dfb14cd66a",
                 ModifiedDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
-                SortCode: codatbankfeeds.String("ea"),
-                Status: codatbankfeeds.String("excepturi"),
-            },
-            shared.BankFeedAccount{
-                AccountName: codatbankfeeds.String("odit"),
-                AccountNumber: codatbankfeeds.String("ea"),
-                AccountType: codatbankfeeds.String("accusantium"),
-                Balance: codatbankfeeds.Float64(691.67),
-                Currency: codatbankfeeds.String("EUR"),
-                FeedStartDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
-                ID: "576b0d5f-0d30-4c5f-bb25-87053202c73d",
-                ModifiedDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
-                SortCode: codatbankfeeds.String("hic"),
-                Status: codatbankfeeds.String("recusandae"),
+                SortCode: codatbankfeeds.String("non"),
+                Status: codatbankfeeds.String("occaecati"),
             },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
@@ -322,18 +286,18 @@ func main() {
     ctx := context.Background()
     res, err := s.BankFeedAccounts.Update(ctx, operations.UpdateBankFeedRequest{
         BankFeedAccount: &shared.BankFeedAccount{
-            AccountName: codatbankfeeds.String("omnis"),
-            AccountNumber: codatbankfeeds.String("facilis"),
-            AccountType: codatbankfeeds.String("perspiciatis"),
-            Balance: codatbankfeeds.Float64(318.38),
-            Currency: codatbankfeeds.String("EUR"),
+            AccountName: codatbankfeeds.String("enim"),
+            AccountNumber: codatbankfeeds.String("accusamus"),
+            AccountType: codatbankfeeds.String("delectus"),
+            Balance: codatbankfeeds.Float64(6925.32),
+            Currency: codatbankfeeds.String("USD"),
             FeedStartDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
-            ID: "8909b3fe-49a8-4d9c-bf48-633323f9b77f",
+            ID: "a88f3a66-9970-474b-a446-9b6e21419598",
             ModifiedDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
-            SortCode: codatbankfeeds.String("dolorum"),
-            Status: codatbankfeeds.String("numquam"),
+            SortCode: codatbankfeeds.String("accusantium"),
+            Status: codatbankfeeds.String("mollitia"),
         },
-        AccountID: "13d946f0-c5d5-42bc-b092-97ece17923ab",
+        AccountID: "EILBDVJVNUAGVKRQ",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })

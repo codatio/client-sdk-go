@@ -67,7 +67,6 @@ pkg/models/shared/banktransactiontype.go
 pkg/models/shared/links.go
 pkg/models/shared/href.go
 pkg/models/shared/bankfeedaccount.go
-pkg/models/shared/pushoperation.go
 pkg/models/shared/company.go
 pkg/models/shared/connection.go
 pkg/models/shared/dataconnectionstatus.go
@@ -155,7 +154,6 @@ docs/models/shared/banktransactiontype.md
 docs/models/shared/links.md
 docs/models/shared/href.md
 docs/models/shared/bankfeedaccount.md
-docs/models/shared/pushoperation.md
 docs/models/shared/company.md
 docs/models/shared/connectionsourcetype.md
 docs/models/shared/connection.md

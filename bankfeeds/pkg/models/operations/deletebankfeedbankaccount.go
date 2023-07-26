@@ -8,18 +8,10 @@ import (
 )
 
 type DeleteBankFeedBankAccountRequest struct {
-	BankFeedAccount *shared.BankFeedAccount `request:"mediaType=application/json"`
 	// Unique identifier for an account
 	AccountID    string `pathParam:"style=simple,explode=false,name=accountId"`
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
-}
-
-func (o *DeleteBankFeedBankAccountRequest) GetBankFeedAccount() *shared.BankFeedAccount {
-	if o == nil {
-		return nil
-	}
-	return o.BankFeedAccount
 }
 
 func (o *DeleteBankFeedBankAccountRequest) GetAccountID() string {
@@ -45,10 +37,8 @@ func (o *DeleteBankFeedBankAccountRequest) GetConnectionID() string {
 
 type DeleteBankFeedBankAccountResponse struct {
 	ContentType string
-	// OK
-	PushOperation *shared.PushOperation
-	StatusCode    int
-	RawResponse   *http.Response
+	StatusCode  int
+	RawResponse *http.Response
 	// Your API request was not properly authorized.
 	Schema *shared.Schema
 }
@@ -58,13 +48,6 @@ func (o *DeleteBankFeedBankAccountResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *DeleteBankFeedBankAccountResponse) GetPushOperation() *shared.PushOperation {
-	if o == nil {
-		return nil
-	}
-	return o.PushOperation
 }
 
 func (o *DeleteBankFeedBankAccountResponse) GetStatusCode() int {
