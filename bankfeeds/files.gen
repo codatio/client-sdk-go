@@ -40,7 +40,7 @@ pkg/models/operations/getcompanyconnection.go
 pkg/models/operations/listcompanyconnections.go
 pkg/models/operations/proxy.go
 pkg/models/operations/unlinkconnection.go
-pkg/models/shared/schema.go
+pkg/models/shared/errormessage.go
 pkg/models/shared/accountmappingresult.go
 pkg/models/shared/bankfeedaccountmapping.go
 pkg/models/shared/bankfeedmapping.go
@@ -92,7 +92,6 @@ docs/models/operations/createbanktransactionsresponse.md
 docs/models/operations/getcreatebanktransactionsmodelrequest.md
 docs/models/operations/getcreatebanktransactionsmodelresponse.md
 docs/models/operations/listbankaccounttransactionsrequest.md
-docs/models/operations/listbankaccounttransactions409applicationjson.md
 docs/models/operations/listbankaccounttransactionsresponse.md
 docs/models/operations/createbankfeedrequest.md
 docs/models/operations/createbankfeedresponse.md
@@ -127,7 +126,7 @@ docs/models/operations/proxyresponse.md
 docs/models/operations/unlinkconnectionrequestbody.md
 docs/models/operations/unlinkconnectionrequest.md
 docs/models/operations/unlinkconnectionresponse.md
-docs/models/shared/schema.md
+docs/models/shared/errormessage.md
 docs/models/shared/accountmappingresult.md
 docs/models/shared/bankfeedaccountmapping.md
 docs/models/shared/bankfeedmapping.md

@@ -37,12 +37,12 @@ func (o *ProxyRequest) GetEndpoint() string {
 
 type ProxyResponse struct {
 	ContentType string
+	// Your API request was not properly authorized.
+	ErrorMessage *shared.ErrorMessage
 	// Success
 	ProxyResponse map[string]interface{}
 	StatusCode    int
 	RawResponse   *http.Response
-	// Your API request was not properly authorized.
-	Schema *shared.Schema
 }
 
 func (o *ProxyResponse) GetContentType() string {
@@ -50,6 +50,13 @@ func (o *ProxyResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *ProxyResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *ProxyResponse) GetProxyResponse() map[string]interface{} {
@@ -71,11 +78,4 @@ func (o *ProxyResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *ProxyResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

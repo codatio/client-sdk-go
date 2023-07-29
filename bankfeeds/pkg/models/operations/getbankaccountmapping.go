@@ -30,10 +30,10 @@ type GetBankAccountMappingResponse struct {
 	// Success
 	BankFeedMapping *shared.BankFeedMapping
 	ContentType     string
-	StatusCode      int
-	RawResponse     *http.Response
 	// Your API request was not properly authorized.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 }
 
 func (o *GetBankAccountMappingResponse) GetBankFeedMapping() *shared.BankFeedMapping {
@@ -50,6 +50,13 @@ func (o *GetBankAccountMappingResponse) GetContentType() string {
 	return o.ContentType
 }
 
+func (o *GetBankAccountMappingResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
 func (o *GetBankAccountMappingResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
@@ -62,11 +69,4 @@ func (o *GetBankAccountMappingResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *GetBankAccountMappingResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

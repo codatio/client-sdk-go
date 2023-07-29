@@ -41,10 +41,10 @@ type CreateDataConnectionResponse struct {
 	// OK
 	Connection  *shared.Connection
 	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
 	// Your API request was not properly authorized.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 }
 
 func (o *CreateDataConnectionResponse) GetConnection() *shared.Connection {
@@ -61,6 +61,13 @@ func (o *CreateDataConnectionResponse) GetContentType() string {
 	return o.ContentType
 }
 
+func (o *CreateDataConnectionResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
 func (o *CreateDataConnectionResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
@@ -73,11 +80,4 @@ func (o *CreateDataConnectionResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *CreateDataConnectionResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

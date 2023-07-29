@@ -30,10 +30,10 @@ type UpdateCompanyResponse struct {
 	// OK
 	Company     *shared.Company
 	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
 	// Your API request was not properly authorized.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 }
 
 func (o *UpdateCompanyResponse) GetCompany() *shared.Company {
@@ -50,6 +50,13 @@ func (o *UpdateCompanyResponse) GetContentType() string {
 	return o.ContentType
 }
 
+func (o *UpdateCompanyResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
 func (o *UpdateCompanyResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
@@ -62,11 +69,4 @@ func (o *UpdateCompanyResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *UpdateCompanyResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

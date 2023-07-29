@@ -55,7 +55,7 @@ func (s *connections) Create(ctx context.Context, request operations.CreateDataC
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
+	req.Header.Set("Accept", "application/json")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
@@ -127,12 +127,12 @@ func (s *connections) Create(ctx context.Context, request operations.CreateDataC
 	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Schema
+			var out *shared.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.Schema = out
+			res.ErrorMessage = out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -224,12 +224,12 @@ func (s *connections) Delete(ctx context.Context, request operations.DeleteCompa
 	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Schema
+			var out *shared.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.Schema = out
+			res.ErrorMessage = out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -261,7 +261,7 @@ func (s *connections) Get(ctx context.Context, request operations.GetCompanyConn
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
+	req.Header.Set("Accept", "application/json")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	client := s.sdkConfiguration.SecurityClient
@@ -331,12 +331,12 @@ func (s *connections) Get(ctx context.Context, request operations.GetCompanyConn
 	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Schema
+			var out *shared.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.Schema = out
+			res.ErrorMessage = out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -368,7 +368,7 @@ func (s *connections) List(ctx context.Context, request operations.ListCompanyCo
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
+	req.Header.Set("Accept", "application/json")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
@@ -444,12 +444,12 @@ func (s *connections) List(ctx context.Context, request operations.ListCompanyCo
 	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Schema
+			var out *shared.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.Schema = out
+			res.ErrorMessage = out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -483,7 +483,7 @@ func (s *connections) Proxy(ctx context.Context, request operations.ProxyRequest
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
+	req.Header.Set("Accept", "application/json")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
@@ -557,12 +557,12 @@ func (s *connections) Proxy(ctx context.Context, request operations.ProxyRequest
 	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Schema
+			var out *shared.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.Schema = out
+			res.ErrorMessage = out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -599,7 +599,7 @@ func (s *connections) UnlinkConnection(ctx context.Context, request operations.U
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
+	req.Header.Set("Accept", "application/json")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
@@ -671,12 +671,12 @@ func (s *connections) UnlinkConnection(ctx context.Context, request operations.U
 	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Schema
+			var out *shared.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.Schema = out
+			res.ErrorMessage = out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

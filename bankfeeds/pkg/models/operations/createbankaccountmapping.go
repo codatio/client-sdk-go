@@ -38,10 +38,10 @@ type CreateBankAccountMappingResponse struct {
 	// Success
 	AccountMappingResult *shared.AccountMappingResult
 	ContentType          string
-	StatusCode           int
-	RawResponse          *http.Response
 	// The request made is not valid.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 }
 
 func (o *CreateBankAccountMappingResponse) GetAccountMappingResult() *shared.AccountMappingResult {
@@ -58,6 +58,13 @@ func (o *CreateBankAccountMappingResponse) GetContentType() string {
 	return o.ContentType
 }
 
+func (o *CreateBankAccountMappingResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
 func (o *CreateBankAccountMappingResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
@@ -70,11 +77,4 @@ func (o *CreateBankAccountMappingResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *CreateBankAccountMappingResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

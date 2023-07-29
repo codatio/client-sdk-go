@@ -58,10 +58,10 @@ type ListCompanyConnectionsResponse struct {
 	// OK
 	Connections *shared.Connections
 	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
 	// Your `query` parameter was not correctly formed
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 }
 
 func (o *ListCompanyConnectionsResponse) GetConnections() *shared.Connections {
@@ -78,6 +78,13 @@ func (o *ListCompanyConnectionsResponse) GetContentType() string {
 	return o.ContentType
 }
 
+func (o *ListCompanyConnectionsResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
 func (o *ListCompanyConnectionsResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
@@ -90,11 +97,4 @@ func (o *ListCompanyConnectionsResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *ListCompanyConnectionsResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

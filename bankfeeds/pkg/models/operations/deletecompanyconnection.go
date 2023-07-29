@@ -28,10 +28,10 @@ func (o *DeleteCompanyConnectionRequest) GetConnectionID() string {
 
 type DeleteCompanyConnectionResponse struct {
 	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
 	// Your API request was not properly authorized.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 }
 
 func (o *DeleteCompanyConnectionResponse) GetContentType() string {
@@ -39,6 +39,13 @@ func (o *DeleteCompanyConnectionResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *DeleteCompanyConnectionResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *DeleteCompanyConnectionResponse) GetStatusCode() int {
@@ -53,11 +60,4 @@ func (o *DeleteCompanyConnectionResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *DeleteCompanyConnectionResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

@@ -20,10 +20,10 @@ func (o *DeleteCompanyRequest) GetCompanyID() string {
 
 type DeleteCompanyResponse struct {
 	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
 	// Your API request was not properly authorized.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 }
 
 func (o *DeleteCompanyResponse) GetContentType() string {
@@ -31,6 +31,13 @@ func (o *DeleteCompanyResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *DeleteCompanyResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *DeleteCompanyResponse) GetStatusCode() int {
@@ -45,11 +52,4 @@ func (o *DeleteCompanyResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *DeleteCompanyResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

@@ -37,10 +37,10 @@ func (o *DeleteBankFeedBankAccountRequest) GetConnectionID() string {
 
 type DeleteBankFeedBankAccountResponse struct {
 	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
 	// Your API request was not properly authorized.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 }
 
 func (o *DeleteBankFeedBankAccountResponse) GetContentType() string {
@@ -48,6 +48,13 @@ func (o *DeleteBankFeedBankAccountResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *DeleteBankFeedBankAccountResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *DeleteBankFeedBankAccountResponse) GetStatusCode() int {
@@ -62,11 +69,4 @@ func (o *DeleteBankFeedBankAccountResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *DeleteBankFeedBankAccountResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

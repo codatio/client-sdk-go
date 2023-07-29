@@ -47,10 +47,10 @@ type UpdateBankFeedResponse struct {
 	// Success
 	BankFeedAccount *shared.BankFeedAccount
 	ContentType     string
-	StatusCode      int
-	RawResponse     *http.Response
 	// Your API request was not properly authorized.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 }
 
 func (o *UpdateBankFeedResponse) GetBankFeedAccount() *shared.BankFeedAccount {
@@ -67,6 +67,13 @@ func (o *UpdateBankFeedResponse) GetContentType() string {
 	return o.ContentType
 }
 
+func (o *UpdateBankFeedResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
 func (o *UpdateBankFeedResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
@@ -79,11 +86,4 @@ func (o *UpdateBankFeedResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *UpdateBankFeedResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

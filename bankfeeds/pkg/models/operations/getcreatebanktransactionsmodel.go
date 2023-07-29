@@ -37,12 +37,12 @@ func (o *GetCreateBankTransactionsModelRequest) GetConnectionID() string {
 
 type GetCreateBankTransactionsModelResponse struct {
 	ContentType string
+	// Your API request was not properly authorized.
+	ErrorMessage *shared.ErrorMessage
 	// Success
 	PushOption  *shared.PushOption
 	StatusCode  int
 	RawResponse *http.Response
-	// Your API request was not properly authorized.
-	Schema *shared.Schema
 }
 
 func (o *GetCreateBankTransactionsModelResponse) GetContentType() string {
@@ -50,6 +50,13 @@ func (o *GetCreateBankTransactionsModelResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *GetCreateBankTransactionsModelResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *GetCreateBankTransactionsModelResponse) GetPushOption() *shared.PushOption {
@@ -71,11 +78,4 @@ func (o *GetCreateBankTransactionsModelResponse) GetRawResponse() *http.Response
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *GetCreateBankTransactionsModelResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }
