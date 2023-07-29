@@ -62,68 +62,14 @@ func (o *ListTransactionCategoriesRequest) GetQuery() *string {
 	return o.Query
 }
 
-// ListTransactionCategories409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
-type ListTransactionCategories409ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
-}
-
-func (o *ListTransactionCategories409ApplicationJSON) GetCanBeRetried() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CanBeRetried
-}
-
-func (o *ListTransactionCategories409ApplicationJSON) GetCorrelationID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CorrelationID
-}
-
-func (o *ListTransactionCategories409ApplicationJSON) GetDetailedErrorCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.DetailedErrorCode
-}
-
-func (o *ListTransactionCategories409ApplicationJSON) GetError() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Error
-}
-
-func (o *ListTransactionCategories409ApplicationJSON) GetService() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Service
-}
-
-func (o *ListTransactionCategories409ApplicationJSON) GetStatusCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.StatusCode
-}
-
 type ListTransactionCategoriesResponse struct {
 	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
+	// Your `query` parameter was not correctly formed
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 	// Success
 	TransactionCategories *shared.TransactionCategories
-	// The data type's dataset has not been requested or is still syncing.
-	ListTransactionCategories409ApplicationJSONObject *ListTransactionCategories409ApplicationJSON
-	// Your `query` parameter was not correctly formed
-	Schema *shared.Schema
 }
 
 func (o *ListTransactionCategoriesResponse) GetContentType() string {
@@ -131,6 +77,13 @@ func (o *ListTransactionCategoriesResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *ListTransactionCategoriesResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *ListTransactionCategoriesResponse) GetStatusCode() int {
@@ -152,18 +105,4 @@ func (o *ListTransactionCategoriesResponse) GetTransactionCategories() *shared.T
 		return nil
 	}
 	return o.TransactionCategories
-}
-
-func (o *ListTransactionCategoriesResponse) GetListTransactionCategories409ApplicationJSONObject() *ListTransactionCategories409ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ListTransactionCategories409ApplicationJSONObject
-}
-
-func (o *ListTransactionCategoriesResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }
