@@ -35,68 +35,14 @@ func (o *GetDisputeRequest) GetDisputeID() string {
 	return o.DisputeID
 }
 
-// GetDispute409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
-type GetDispute409ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
-}
-
-func (o *GetDispute409ApplicationJSON) GetCanBeRetried() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CanBeRetried
-}
-
-func (o *GetDispute409ApplicationJSON) GetCorrelationID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CorrelationID
-}
-
-func (o *GetDispute409ApplicationJSON) GetDetailedErrorCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.DetailedErrorCode
-}
-
-func (o *GetDispute409ApplicationJSON) GetError() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Error
-}
-
-func (o *GetDispute409ApplicationJSON) GetService() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Service
-}
-
-func (o *GetDispute409ApplicationJSON) GetStatusCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.StatusCode
-}
-
 type GetDisputeResponse struct {
 	ContentType string
 	// OK
-	Dispute     *shared.Dispute
-	StatusCode  int
-	RawResponse *http.Response
-	// The data type's dataset has not been requested or is still syncing.
-	GetDispute409ApplicationJSONObject *GetDispute409ApplicationJSON
+	Dispute *shared.Dispute
 	// Your API request was not properly authorized.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 }
 
 func (o *GetDisputeResponse) GetContentType() string {
@@ -113,6 +59,13 @@ func (o *GetDisputeResponse) GetDispute() *shared.Dispute {
 	return o.Dispute
 }
 
+func (o *GetDisputeResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
 func (o *GetDisputeResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
@@ -125,18 +78,4 @@ func (o *GetDisputeResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *GetDisputeResponse) GetGetDispute409ApplicationJSONObject() *GetDispute409ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetDispute409ApplicationJSONObject
-}
-
-func (o *GetDisputeResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

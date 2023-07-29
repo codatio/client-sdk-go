@@ -35,68 +35,14 @@ func (o *GetTaxComponentRequest) GetTaxID() string {
 	return o.TaxID
 }
 
-// GetTaxComponent409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
-type GetTaxComponent409ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
-}
-
-func (o *GetTaxComponent409ApplicationJSON) GetCanBeRetried() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CanBeRetried
-}
-
-func (o *GetTaxComponent409ApplicationJSON) GetCorrelationID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CorrelationID
-}
-
-func (o *GetTaxComponent409ApplicationJSON) GetDetailedErrorCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.DetailedErrorCode
-}
-
-func (o *GetTaxComponent409ApplicationJSON) GetError() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Error
-}
-
-func (o *GetTaxComponent409ApplicationJSON) GetService() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Service
-}
-
-func (o *GetTaxComponent409ApplicationJSON) GetStatusCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.StatusCode
-}
-
 type GetTaxComponentResponse struct {
 	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
+	// Your API request was not properly authorized.
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 	// OK
 	TaxComponent *shared.TaxComponent
-	// The data type's dataset has not been requested or is still syncing.
-	GetTaxComponent409ApplicationJSONObject *GetTaxComponent409ApplicationJSON
-	// Your API request was not properly authorized.
-	Schema *shared.Schema
 }
 
 func (o *GetTaxComponentResponse) GetContentType() string {
@@ -104,6 +50,13 @@ func (o *GetTaxComponentResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *GetTaxComponentResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *GetTaxComponentResponse) GetStatusCode() int {
@@ -125,18 +78,4 @@ func (o *GetTaxComponentResponse) GetTaxComponent() *shared.TaxComponent {
 		return nil
 	}
 	return o.TaxComponent
-}
-
-func (o *GetTaxComponentResponse) GetGetTaxComponent409ApplicationJSONObject() *GetTaxComponent409ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetTaxComponent409ApplicationJSONObject
-}
-
-func (o *GetTaxComponentResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

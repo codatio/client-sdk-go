@@ -62,68 +62,14 @@ func (o *ListProductCategoriesRequest) GetQuery() *string {
 	return o.Query
 }
 
-// ListProductCategories409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
-type ListProductCategories409ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
-}
-
-func (o *ListProductCategories409ApplicationJSON) GetCanBeRetried() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CanBeRetried
-}
-
-func (o *ListProductCategories409ApplicationJSON) GetCorrelationID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CorrelationID
-}
-
-func (o *ListProductCategories409ApplicationJSON) GetDetailedErrorCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.DetailedErrorCode
-}
-
-func (o *ListProductCategories409ApplicationJSON) GetError() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Error
-}
-
-func (o *ListProductCategories409ApplicationJSON) GetService() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Service
-}
-
-func (o *ListProductCategories409ApplicationJSON) GetStatusCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.StatusCode
-}
-
 type ListProductCategoriesResponse struct {
 	ContentType string
+	// Your `query` parameter was not correctly formed
+	ErrorMessage *shared.ErrorMessage
 	// OK
 	ProductCategories *shared.ProductCategories
 	StatusCode        int
 	RawResponse       *http.Response
-	// The data type's dataset has not been requested or is still syncing.
-	ListProductCategories409ApplicationJSONObject *ListProductCategories409ApplicationJSON
-	// Your `query` parameter was not correctly formed
-	Schema *shared.Schema
 }
 
 func (o *ListProductCategoriesResponse) GetContentType() string {
@@ -131,6 +77,13 @@ func (o *ListProductCategoriesResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *ListProductCategoriesResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *ListProductCategoriesResponse) GetProductCategories() *shared.ProductCategories {
@@ -152,18 +105,4 @@ func (o *ListProductCategoriesResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *ListProductCategoriesResponse) GetListProductCategories409ApplicationJSONObject() *ListProductCategories409ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ListProductCategories409ApplicationJSONObject
-}
-
-func (o *ListProductCategoriesResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

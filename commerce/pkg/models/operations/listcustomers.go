@@ -62,68 +62,14 @@ func (o *ListCustomersRequest) GetQuery() *string {
 	return o.Query
 }
 
-// ListCustomers409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
-type ListCustomers409ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
-}
-
-func (o *ListCustomers409ApplicationJSON) GetCanBeRetried() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CanBeRetried
-}
-
-func (o *ListCustomers409ApplicationJSON) GetCorrelationID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CorrelationID
-}
-
-func (o *ListCustomers409ApplicationJSON) GetDetailedErrorCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.DetailedErrorCode
-}
-
-func (o *ListCustomers409ApplicationJSON) GetError() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Error
-}
-
-func (o *ListCustomers409ApplicationJSON) GetService() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Service
-}
-
-func (o *ListCustomers409ApplicationJSON) GetStatusCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.StatusCode
-}
-
 type ListCustomersResponse struct {
 	ContentType string
 	// OK
-	Customers   *shared.Customers
-	StatusCode  int
-	RawResponse *http.Response
-	// The data type's dataset has not been requested or is still syncing.
-	ListCustomers409ApplicationJSONObject *ListCustomers409ApplicationJSON
+	Customers *shared.Customers
 	// Your `query` parameter was not correctly formed
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 }
 
 func (o *ListCustomersResponse) GetContentType() string {
@@ -140,6 +86,13 @@ func (o *ListCustomersResponse) GetCustomers() *shared.Customers {
 	return o.Customers
 }
 
+func (o *ListCustomersResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
 func (o *ListCustomersResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
@@ -152,18 +105,4 @@ func (o *ListCustomersResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *ListCustomersResponse) GetListCustomers409ApplicationJSONObject() *ListCustomers409ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ListCustomers409ApplicationJSONObject
-}
-
-func (o *ListCustomersResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

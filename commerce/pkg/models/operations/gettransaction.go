@@ -35,68 +35,14 @@ func (o *GetTransactionRequest) GetTransactionID() string {
 	return o.TransactionID
 }
 
-// GetTransaction409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
-type GetTransaction409ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
-}
-
-func (o *GetTransaction409ApplicationJSON) GetCanBeRetried() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CanBeRetried
-}
-
-func (o *GetTransaction409ApplicationJSON) GetCorrelationID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CorrelationID
-}
-
-func (o *GetTransaction409ApplicationJSON) GetDetailedErrorCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.DetailedErrorCode
-}
-
-func (o *GetTransaction409ApplicationJSON) GetError() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Error
-}
-
-func (o *GetTransaction409ApplicationJSON) GetService() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Service
-}
-
-func (o *GetTransaction409ApplicationJSON) GetStatusCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.StatusCode
-}
-
 type GetTransactionResponse struct {
 	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
+	// Your API request was not properly authorized.
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 	// OK
 	Transaction *shared.Transaction
-	// The data type's dataset has not been requested or is still syncing.
-	GetTransaction409ApplicationJSONObject *GetTransaction409ApplicationJSON
-	// Your API request was not properly authorized.
-	Schema *shared.Schema
 }
 
 func (o *GetTransactionResponse) GetContentType() string {
@@ -104,6 +50,13 @@ func (o *GetTransactionResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *GetTransactionResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *GetTransactionResponse) GetStatusCode() int {
@@ -125,18 +78,4 @@ func (o *GetTransactionResponse) GetTransaction() *shared.Transaction {
 		return nil
 	}
 	return o.Transaction
-}
-
-func (o *GetTransactionResponse) GetGetTransaction409ApplicationJSONObject() *GetTransaction409ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetTransaction409ApplicationJSONObject
-}
-
-func (o *GetTransactionResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

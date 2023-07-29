@@ -35,68 +35,14 @@ func (o *GetProductCategoryRequest) GetProductID() string {
 	return o.ProductID
 }
 
-// GetProductCategory409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
-type GetProductCategory409ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
-}
-
-func (o *GetProductCategory409ApplicationJSON) GetCanBeRetried() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CanBeRetried
-}
-
-func (o *GetProductCategory409ApplicationJSON) GetCorrelationID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CorrelationID
-}
-
-func (o *GetProductCategory409ApplicationJSON) GetDetailedErrorCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.DetailedErrorCode
-}
-
-func (o *GetProductCategory409ApplicationJSON) GetError() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Error
-}
-
-func (o *GetProductCategory409ApplicationJSON) GetService() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Service
-}
-
-func (o *GetProductCategory409ApplicationJSON) GetStatusCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.StatusCode
-}
-
 type GetProductCategoryResponse struct {
 	ContentType string
+	// Your API request was not properly authorized.
+	ErrorMessage *shared.ErrorMessage
 	// OK
 	ProductCategory *shared.ProductCategory
 	StatusCode      int
 	RawResponse     *http.Response
-	// The data type's dataset has not been requested or is still syncing.
-	GetProductCategory409ApplicationJSONObject *GetProductCategory409ApplicationJSON
-	// Your API request was not properly authorized.
-	Schema *shared.Schema
 }
 
 func (o *GetProductCategoryResponse) GetContentType() string {
@@ -104,6 +50,13 @@ func (o *GetProductCategoryResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *GetProductCategoryResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *GetProductCategoryResponse) GetProductCategory() *shared.ProductCategory {
@@ -125,18 +78,4 @@ func (o *GetProductCategoryResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *GetProductCategoryResponse) GetGetProductCategory409ApplicationJSONObject() *GetProductCategory409ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetProductCategory409ApplicationJSONObject
-}
-
-func (o *GetProductCategoryResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

@@ -62,68 +62,14 @@ func (o *ListTaxComponentsRequest) GetQuery() *string {
 	return o.Query
 }
 
-// ListTaxComponents409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
-type ListTaxComponents409ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
-}
-
-func (o *ListTaxComponents409ApplicationJSON) GetCanBeRetried() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CanBeRetried
-}
-
-func (o *ListTaxComponents409ApplicationJSON) GetCorrelationID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CorrelationID
-}
-
-func (o *ListTaxComponents409ApplicationJSON) GetDetailedErrorCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.DetailedErrorCode
-}
-
-func (o *ListTaxComponents409ApplicationJSON) GetError() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Error
-}
-
-func (o *ListTaxComponents409ApplicationJSON) GetService() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Service
-}
-
-func (o *ListTaxComponents409ApplicationJSON) GetStatusCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.StatusCode
-}
-
 type ListTaxComponentsResponse struct {
 	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
+	// Your `query` parameter was not correctly formed
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 	// OK
 	TaxComponents *shared.TaxComponents
-	// The data type's dataset has not been requested or is still syncing.
-	ListTaxComponents409ApplicationJSONObject *ListTaxComponents409ApplicationJSON
-	// Your `query` parameter was not correctly formed
-	Schema *shared.Schema
 }
 
 func (o *ListTaxComponentsResponse) GetContentType() string {
@@ -131,6 +77,13 @@ func (o *ListTaxComponentsResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *ListTaxComponentsResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *ListTaxComponentsResponse) GetStatusCode() int {
@@ -152,18 +105,4 @@ func (o *ListTaxComponentsResponse) GetTaxComponents() *shared.TaxComponents {
 		return nil
 	}
 	return o.TaxComponents
-}
-
-func (o *ListTaxComponentsResponse) GetListTaxComponents409ApplicationJSONObject() *ListTaxComponents409ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ListTaxComponents409ApplicationJSONObject
-}
-
-func (o *ListTaxComponentsResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }
