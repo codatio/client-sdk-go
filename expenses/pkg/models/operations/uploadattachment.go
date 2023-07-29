@@ -67,10 +67,10 @@ type UploadAttachmentResponse struct {
 	// OK
 	Attachment  *shared.Attachment
 	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
 	// The request made is not valid.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 }
 
 func (o *UploadAttachmentResponse) GetAttachment() *shared.Attachment {
@@ -87,6 +87,13 @@ func (o *UploadAttachmentResponse) GetContentType() string {
 	return o.ContentType
 }
 
+func (o *UploadAttachmentResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
 func (o *UploadAttachmentResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
@@ -99,11 +106,4 @@ func (o *UploadAttachmentResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *UploadAttachmentResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

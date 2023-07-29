@@ -47,12 +47,12 @@ func (o *ListSyncTransactionsRequest) GetSyncID() string {
 
 type ListSyncTransactionsResponse struct {
 	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
+	// Your API request was not properly authorized.
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 	// Success
 	TransactionMetadataList *shared.TransactionMetadataList
-	// Your API request was not properly authorized.
-	Schema *shared.Schema
 }
 
 func (o *ListSyncTransactionsResponse) GetContentType() string {
@@ -60,6 +60,13 @@ func (o *ListSyncTransactionsResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *ListSyncTransactionsResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *ListSyncTransactionsResponse) GetStatusCode() int {
@@ -81,11 +88,4 @@ func (o *ListSyncTransactionsResponse) GetTransactionMetadataList() *shared.Tran
 		return nil
 	}
 	return o.TransactionMetadataList
-}
-
-func (o *ListSyncTransactionsResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

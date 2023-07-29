@@ -20,12 +20,12 @@ func (o *GetMappingOptionsRequest) GetCompanyID() string {
 
 type GetMappingOptionsResponse struct {
 	ContentType string
+	// Your API request was not properly authorized.
+	ErrorMessage *shared.ErrorMessage
 	// Success
 	MappingOptions *shared.MappingOptions
 	StatusCode     int
 	RawResponse    *http.Response
-	// Your API request was not properly authorized.
-	Schema *shared.Schema
 }
 
 func (o *GetMappingOptionsResponse) GetContentType() string {
@@ -33,6 +33,13 @@ func (o *GetMappingOptionsResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *GetMappingOptionsResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *GetMappingOptionsResponse) GetMappingOptions() *shared.MappingOptions {
@@ -54,11 +61,4 @@ func (o *GetMappingOptionsResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *GetMappingOptionsResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

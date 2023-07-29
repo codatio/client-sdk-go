@@ -22,10 +22,10 @@ type CreatePartnerExpenseConnectionResponse struct {
 	ContentType string
 	// Success
 	DataConnection *shared.DataConnection
-	StatusCode     int
-	RawResponse    *http.Response
 	// The request made is not valid.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 }
 
 func (o *CreatePartnerExpenseConnectionResponse) GetContentType() string {
@@ -42,6 +42,13 @@ func (o *CreatePartnerExpenseConnectionResponse) GetDataConnection() *shared.Dat
 	return o.DataConnection
 }
 
+func (o *CreatePartnerExpenseConnectionResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
 func (o *CreatePartnerExpenseConnectionResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
@@ -54,11 +61,4 @@ func (o *CreatePartnerExpenseConnectionResponse) GetRawResponse() *http.Response
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *CreatePartnerExpenseConnectionResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

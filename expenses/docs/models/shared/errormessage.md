@@ -1,4 +1,4 @@
-# Schema
+# ErrorMessage
 
 Your API request was not properly authorized.
 

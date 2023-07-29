@@ -30,10 +30,10 @@ type SaveCompanyConfigurationResponse struct {
 	// Success
 	CompanyConfiguration *shared.CompanyConfiguration
 	ContentType          string
-	StatusCode           int
-	RawResponse          *http.Response
 	// The request made is not valid.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 }
 
 func (o *SaveCompanyConfigurationResponse) GetCompanyConfiguration() *shared.CompanyConfiguration {
@@ -50,6 +50,13 @@ func (o *SaveCompanyConfigurationResponse) GetContentType() string {
 	return o.ContentType
 }
 
+func (o *SaveCompanyConfigurationResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
 func (o *SaveCompanyConfigurationResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
@@ -62,11 +69,4 @@ func (o *SaveCompanyConfigurationResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *SaveCompanyConfigurationResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

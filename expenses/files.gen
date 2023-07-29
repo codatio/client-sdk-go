@@ -35,7 +35,7 @@ pkg/models/operations/getsyncbyid.go
 pkg/models/operations/listsyncs.go
 pkg/models/operations/getsynctransaction.go
 pkg/models/operations/listsynctransactions.go
-pkg/models/shared/schema.go
+pkg/models/shared/errormessage.go
 pkg/models/shared/companyconfiguration.go
 pkg/models/shared/supplier.go
 pkg/models/shared/customer.go
@@ -50,6 +50,7 @@ pkg/models/shared/expensetransactionline.go
 pkg/models/shared/recordref.go
 pkg/models/shared/contactref.go
 pkg/models/shared/updateexpenserequest.go
+pkg/models/shared/expensetype.go
 pkg/models/shared/attachment.go
 pkg/models/shared/mappingoptions.go
 pkg/models/shared/trackingcategorymappinginfo.go
@@ -111,7 +112,7 @@ docs/models/operations/getsynctransactionrequest.md
 docs/models/operations/getsynctransactionresponse.md
 docs/models/operations/listsynctransactionsrequest.md
 docs/models/operations/listsynctransactionsresponse.md
-docs/models/shared/schema.md
+docs/models/shared/errormessage.md
 docs/models/shared/companyconfiguration.md
 docs/models/shared/supplier.md
 docs/models/shared/customer.md
@@ -129,6 +130,7 @@ docs/models/shared/recordref.md
 docs/models/shared/contactrefcontacttype.md
 docs/models/shared/contactref.md
 docs/models/shared/updateexpenserequest.md
+docs/models/shared/expensetype.md
 docs/models/shared/attachment.md
 docs/models/shared/mappingoptions.md
 docs/models/shared/trackingcategorymappinginfo.md

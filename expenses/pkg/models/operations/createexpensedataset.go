@@ -30,10 +30,10 @@ type CreateExpenseDatasetResponse struct {
 	ContentType string
 	// OK
 	CreateExpenseResponse *shared.CreateExpenseResponse
-	StatusCode            int
-	RawResponse           *http.Response
 	// The request made is not valid.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 }
 
 func (o *CreateExpenseDatasetResponse) GetContentType() string {
@@ -50,6 +50,13 @@ func (o *CreateExpenseDatasetResponse) GetCreateExpenseResponse() *shared.Create
 	return o.CreateExpenseResponse
 }
 
+func (o *CreateExpenseDatasetResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
 func (o *CreateExpenseDatasetResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
@@ -62,11 +69,4 @@ func (o *CreateExpenseDatasetResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *CreateExpenseDatasetResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

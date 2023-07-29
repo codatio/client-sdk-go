@@ -428,7 +428,7 @@ func main() {
             },
             MerchantName: codatsyncexpenses.String("Amazon UK"),
             Notes: codatsyncexpenses.String("APPLE.COM/BILL - 09001077498 - Card Ending: 4590"),
-            Type: "recusandae",
+            Type: shared.ExpenseTypePayment,
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         TransactionID: "336694d8-2dca-4cb5-a28d-3ccb83e55eee",
@@ -484,8 +484,8 @@ func main() {
     ctx := context.Background()
     res, err := s.Expenses.UploadAttachment(ctx, operations.UploadAttachmentRequest{
         RequestBody: &operations.UploadAttachmentRequestBody{
-            Content: []byte("temporibus"),
-            RequestBody: "ab",
+            Content: []byte("recusandae"),
+            RequestBody: "temporibus",
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         SyncID: "6fb40d5e-b13e-11ed-afa1-0242ac120002",

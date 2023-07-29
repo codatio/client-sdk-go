@@ -39,8 +39,9 @@ type UpdateExpenseRequest struct {
 	// Name of the merchant where the purchase took place
 	MerchantName *string `json:"merchantName,omitempty"`
 	// Any private, company notes about the transaction.
-	Notes *string     `json:"notes,omitempty"`
-	Type  interface{} `json:"type"`
+	Notes *string `json:"notes,omitempty"`
+	// The type of transaction.
+	Type ExpenseType `json:"type"`
 }
 
 func (o *UpdateExpenseRequest) GetContactRef() *ContactRef {
@@ -92,9 +93,9 @@ func (o *UpdateExpenseRequest) GetNotes() *string {
 	return o.Notes
 }
 
-func (o *UpdateExpenseRequest) GetType() interface{} {
+func (o *UpdateExpenseRequest) GetType() ExpenseType {
 	if o == nil {
-		return nil
+		return ExpenseType("")
 	}
 	return o.Type
 }

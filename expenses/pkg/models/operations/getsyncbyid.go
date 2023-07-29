@@ -31,10 +31,10 @@ type GetSyncByIDResponse struct {
 	// Success
 	CompanySyncStatus *shared.CompanySyncStatus
 	ContentType       string
-	StatusCode        int
-	RawResponse       *http.Response
 	// Your API request was not properly authorized.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 }
 
 func (o *GetSyncByIDResponse) GetCompanySyncStatus() *shared.CompanySyncStatus {
@@ -51,6 +51,13 @@ func (o *GetSyncByIDResponse) GetContentType() string {
 	return o.ContentType
 }
 
+func (o *GetSyncByIDResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
 func (o *GetSyncByIDResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
@@ -63,11 +70,4 @@ func (o *GetSyncByIDResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *GetSyncByIDResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

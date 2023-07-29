@@ -49,10 +49,10 @@ func (o *UpdateExpenseDataset202ApplicationJSON) GetSyncID() *string {
 
 type UpdateExpenseDatasetResponse struct {
 	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
 	// The request made is not valid.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 	// Accepted
 	UpdateExpenseDataset202ApplicationJSONObject *UpdateExpenseDataset202ApplicationJSON
 }
@@ -62,6 +62,13 @@ func (o *UpdateExpenseDatasetResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *UpdateExpenseDatasetResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *UpdateExpenseDatasetResponse) GetStatusCode() int {
@@ -76,13 +83,6 @@ func (o *UpdateExpenseDatasetResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *UpdateExpenseDatasetResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }
 
 func (o *UpdateExpenseDatasetResponse) GetUpdateExpenseDataset202ApplicationJSONObject() *UpdateExpenseDataset202ApplicationJSON {
