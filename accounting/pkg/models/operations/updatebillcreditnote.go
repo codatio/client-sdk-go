@@ -61,12 +61,12 @@ func (o *UpdateBillCreditNoteRequest) GetTimeoutInMinutes() *int {
 
 type UpdateBillCreditNoteResponse struct {
 	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
+	// The request made is not valid.
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 	// Success
 	UpdateBillCreditNoteResponse *shared.UpdateBillCreditNoteResponse
-	// The request made is not valid.
-	Schema *shared.Schema
 }
 
 func (o *UpdateBillCreditNoteResponse) GetContentType() string {
@@ -74,6 +74,13 @@ func (o *UpdateBillCreditNoteResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *UpdateBillCreditNoteResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *UpdateBillCreditNoteResponse) GetStatusCode() int {
@@ -95,11 +102,4 @@ func (o *UpdateBillCreditNoteResponse) GetUpdateBillCreditNoteResponse() *shared
 		return nil
 	}
 	return o.UpdateBillCreditNoteResponse
-}
-
-func (o *UpdateBillCreditNoteResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

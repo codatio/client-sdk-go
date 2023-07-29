@@ -54,68 +54,14 @@ func (o *ListSuppliersRequest) GetQuery() *string {
 	return o.Query
 }
 
-// ListSuppliers409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
-type ListSuppliers409ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
-}
-
-func (o *ListSuppliers409ApplicationJSON) GetCanBeRetried() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CanBeRetried
-}
-
-func (o *ListSuppliers409ApplicationJSON) GetCorrelationID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CorrelationID
-}
-
-func (o *ListSuppliers409ApplicationJSON) GetDetailedErrorCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.DetailedErrorCode
-}
-
-func (o *ListSuppliers409ApplicationJSON) GetError() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Error
-}
-
-func (o *ListSuppliers409ApplicationJSON) GetService() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Service
-}
-
-func (o *ListSuppliers409ApplicationJSON) GetStatusCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.StatusCode
-}
-
 type ListSuppliersResponse struct {
 	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
+	// Your `query` parameter was not correctly formed
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 	// Success
 	Suppliers *shared.Suppliers
-	// The data type's dataset has not been requested or is still syncing.
-	ListSuppliers409ApplicationJSONObject *ListSuppliers409ApplicationJSON
-	// Your `query` parameter was not correctly formed
-	Schema *shared.Schema
 }
 
 func (o *ListSuppliersResponse) GetContentType() string {
@@ -123,6 +69,13 @@ func (o *ListSuppliersResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *ListSuppliersResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *ListSuppliersResponse) GetStatusCode() int {
@@ -144,18 +97,4 @@ func (o *ListSuppliersResponse) GetSuppliers() *shared.Suppliers {
 		return nil
 	}
 	return o.Suppliers
-}
-
-func (o *ListSuppliersResponse) GetListSuppliers409ApplicationJSONObject() *ListSuppliers409ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ListSuppliers409ApplicationJSONObject
-}
-
-func (o *ListSuppliersResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

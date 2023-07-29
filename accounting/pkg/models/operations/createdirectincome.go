@@ -46,10 +46,10 @@ type CreateDirectIncomeResponse struct {
 	ContentType string
 	// Success
 	CreateDirectIncomeResponse *shared.CreateDirectIncomeResponse
-	StatusCode                 int
-	RawResponse                *http.Response
 	// The request made is not valid.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 }
 
 func (o *CreateDirectIncomeResponse) GetContentType() string {
@@ -66,6 +66,13 @@ func (o *CreateDirectIncomeResponse) GetCreateDirectIncomeResponse() *shared.Cre
 	return o.CreateDirectIncomeResponse
 }
 
+func (o *CreateDirectIncomeResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
 func (o *CreateDirectIncomeResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
@@ -78,11 +85,4 @@ func (o *CreateDirectIncomeResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *CreateDirectIncomeResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

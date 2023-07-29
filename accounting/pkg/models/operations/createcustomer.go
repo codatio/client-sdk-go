@@ -46,10 +46,10 @@ type CreateCustomerResponse struct {
 	ContentType string
 	// Success
 	CreateCustomerResponse *shared.CreateCustomerResponse
-	StatusCode             int
-	RawResponse            *http.Response
 	// The request made is not valid.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 }
 
 func (o *CreateCustomerResponse) GetContentType() string {
@@ -66,6 +66,13 @@ func (o *CreateCustomerResponse) GetCreateCustomerResponse() *shared.CreateCusto
 	return o.CreateCustomerResponse
 }
 
+func (o *CreateCustomerResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
 func (o *CreateCustomerResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
@@ -78,11 +85,4 @@ func (o *CreateCustomerResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *CreateCustomerResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

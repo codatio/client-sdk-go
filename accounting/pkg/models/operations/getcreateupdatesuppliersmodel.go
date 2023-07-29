@@ -28,12 +28,12 @@ func (o *GetCreateUpdateSuppliersModelRequest) GetConnectionID() string {
 
 type GetCreateUpdateSuppliersModelResponse struct {
 	ContentType string
+	// Your API request was not properly authorized.
+	ErrorMessage *shared.ErrorMessage
 	// OK
 	PushOption  *shared.PushOption
 	StatusCode  int
 	RawResponse *http.Response
-	// Your API request was not properly authorized.
-	Schema *shared.Schema
 }
 
 func (o *GetCreateUpdateSuppliersModelResponse) GetContentType() string {
@@ -41,6 +41,13 @@ func (o *GetCreateUpdateSuppliersModelResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *GetCreateUpdateSuppliersModelResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *GetCreateUpdateSuppliersModelResponse) GetPushOption() *shared.PushOption {
@@ -62,11 +69,4 @@ func (o *GetCreateUpdateSuppliersModelResponse) GetRawResponse() *http.Response 
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *GetCreateUpdateSuppliersModelResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

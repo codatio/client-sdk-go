@@ -28,12 +28,12 @@ func (o *GetCreateJournalEntriesModelRequest) GetConnectionID() string {
 
 type GetCreateJournalEntriesModelResponse struct {
 	ContentType string
+	// Your API request was not properly authorized.
+	ErrorMessage *shared.ErrorMessage
 	// OK
 	PushOption  *shared.PushOption
 	StatusCode  int
 	RawResponse *http.Response
-	// Your API request was not properly authorized.
-	Schema *shared.Schema
 }
 
 func (o *GetCreateJournalEntriesModelResponse) GetContentType() string {
@@ -41,6 +41,13 @@ func (o *GetCreateJournalEntriesModelResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *GetCreateJournalEntriesModelResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *GetCreateJournalEntriesModelResponse) GetPushOption() *shared.PushOption {
@@ -62,11 +69,4 @@ func (o *GetCreateJournalEntriesModelResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *GetCreateJournalEntriesModelResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

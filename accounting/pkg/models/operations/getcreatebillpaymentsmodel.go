@@ -28,12 +28,12 @@ func (o *GetCreateBillPaymentsModelRequest) GetConnectionID() string {
 
 type GetCreateBillPaymentsModelResponse struct {
 	ContentType string
+	// Your API request was not properly authorized.
+	ErrorMessage *shared.ErrorMessage
 	// OK
 	PushOption  *shared.PushOption
 	StatusCode  int
 	RawResponse *http.Response
-	// Your API request was not properly authorized.
-	Schema *shared.Schema
 }
 
 func (o *GetCreateBillPaymentsModelResponse) GetContentType() string {
@@ -41,6 +41,13 @@ func (o *GetCreateBillPaymentsModelResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *GetCreateBillPaymentsModelResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *GetCreateBillPaymentsModelResponse) GetPushOption() *shared.PushOption {
@@ -62,11 +69,4 @@ func (o *GetCreateBillPaymentsModelResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *GetCreateBillPaymentsModelResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

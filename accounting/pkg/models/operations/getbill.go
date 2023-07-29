@@ -27,68 +27,14 @@ func (o *GetBillRequest) GetCompanyID() string {
 	return o.CompanyID
 }
 
-// GetBill409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
-type GetBill409ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
-}
-
-func (o *GetBill409ApplicationJSON) GetCanBeRetried() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CanBeRetried
-}
-
-func (o *GetBill409ApplicationJSON) GetCorrelationID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CorrelationID
-}
-
-func (o *GetBill409ApplicationJSON) GetDetailedErrorCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.DetailedErrorCode
-}
-
-func (o *GetBill409ApplicationJSON) GetError() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Error
-}
-
-func (o *GetBill409ApplicationJSON) GetService() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Service
-}
-
-func (o *GetBill409ApplicationJSON) GetStatusCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.StatusCode
-}
-
 type GetBillResponse struct {
 	// Success
 	Bill        *shared.Bill
 	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
-	// The data type's dataset has not been requested or is still syncing.
-	GetBill409ApplicationJSONObject *GetBill409ApplicationJSON
 	// Your API request was not properly authorized.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 }
 
 func (o *GetBillResponse) GetBill() *shared.Bill {
@@ -105,6 +51,13 @@ func (o *GetBillResponse) GetContentType() string {
 	return o.ContentType
 }
 
+func (o *GetBillResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
 func (o *GetBillResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
@@ -117,18 +70,4 @@ func (o *GetBillResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *GetBillResponse) GetGetBill409ApplicationJSONObject() *GetBill409ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetBill409ApplicationJSONObject
-}
-
-func (o *GetBillResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

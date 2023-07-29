@@ -47,11 +47,11 @@ func (o *DownloadDirectIncomeAttachmentRequest) GetDirectIncomeID() string {
 type DownloadDirectIncomeAttachmentResponse struct {
 	ContentType string
 	// Success
-	Data        []byte
-	StatusCode  int
-	RawResponse *http.Response
+	Data []byte
 	// Your API request was not properly authorized.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 }
 
 func (o *DownloadDirectIncomeAttachmentResponse) GetContentType() string {
@@ -68,6 +68,13 @@ func (o *DownloadDirectIncomeAttachmentResponse) GetData() []byte {
 	return o.Data
 }
 
+func (o *DownloadDirectIncomeAttachmentResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
 func (o *DownloadDirectIncomeAttachmentResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
@@ -80,11 +87,4 @@ func (o *DownloadDirectIncomeAttachmentResponse) GetRawResponse() *http.Response
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *DownloadDirectIncomeAttachmentResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

@@ -44,68 +44,14 @@ func (o *GetProfitAndLossRequest) GetStartMonth() *string {
 	return o.StartMonth
 }
 
-// GetProfitAndLoss409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
-type GetProfitAndLoss409ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
-}
-
-func (o *GetProfitAndLoss409ApplicationJSON) GetCanBeRetried() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CanBeRetried
-}
-
-func (o *GetProfitAndLoss409ApplicationJSON) GetCorrelationID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CorrelationID
-}
-
-func (o *GetProfitAndLoss409ApplicationJSON) GetDetailedErrorCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.DetailedErrorCode
-}
-
-func (o *GetProfitAndLoss409ApplicationJSON) GetError() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Error
-}
-
-func (o *GetProfitAndLoss409ApplicationJSON) GetService() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Service
-}
-
-func (o *GetProfitAndLoss409ApplicationJSON) GetStatusCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.StatusCode
-}
-
 type GetProfitAndLossResponse struct {
 	ContentType string
+	// Your API request was not properly authorized.
+	ErrorMessage *shared.ErrorMessage
 	// Success
 	ProfitAndLossReport *shared.ProfitAndLossReport1
 	StatusCode          int
 	RawResponse         *http.Response
-	// The data type's dataset has not been requested or is still syncing.
-	GetProfitAndLoss409ApplicationJSONObject *GetProfitAndLoss409ApplicationJSON
-	// Your API request was not properly authorized.
-	Schema *shared.Schema
 }
 
 func (o *GetProfitAndLossResponse) GetContentType() string {
@@ -113,6 +59,13 @@ func (o *GetProfitAndLossResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *GetProfitAndLossResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *GetProfitAndLossResponse) GetProfitAndLossReport() *shared.ProfitAndLossReport1 {
@@ -134,18 +87,4 @@ func (o *GetProfitAndLossResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *GetProfitAndLossResponse) GetGetProfitAndLoss409ApplicationJSONObject() *GetProfitAndLoss409ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetProfitAndLoss409ApplicationJSONObject
-}
-
-func (o *GetProfitAndLossResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

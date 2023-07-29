@@ -46,10 +46,10 @@ type CreateDirectCostResponse struct {
 	ContentType string
 	// Success
 	CreateDirectCostResponse *shared.CreateDirectCostResponse
-	StatusCode               int
-	RawResponse              *http.Response
 	// The request made is not valid.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 }
 
 func (o *CreateDirectCostResponse) GetContentType() string {
@@ -66,6 +66,13 @@ func (o *CreateDirectCostResponse) GetCreateDirectCostResponse() *shared.CreateD
 	return o.CreateDirectCostResponse
 }
 
+func (o *CreateDirectCostResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
 func (o *CreateDirectCostResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
@@ -78,11 +85,4 @@ func (o *CreateDirectCostResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *CreateDirectCostResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

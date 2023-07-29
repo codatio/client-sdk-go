@@ -39,10 +39,10 @@ type ListDirectIncomeAttachmentsResponse struct {
 	// Success
 	AttachmentsDataset *shared.AttachmentsDataset
 	ContentType        string
-	StatusCode         int
-	RawResponse        *http.Response
 	// Your API request was not properly authorized.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 }
 
 func (o *ListDirectIncomeAttachmentsResponse) GetAttachmentsDataset() *shared.AttachmentsDataset {
@@ -59,6 +59,13 @@ func (o *ListDirectIncomeAttachmentsResponse) GetContentType() string {
 	return o.ContentType
 }
 
+func (o *ListDirectIncomeAttachmentsResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
 func (o *ListDirectIncomeAttachmentsResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
@@ -71,11 +78,4 @@ func (o *ListDirectIncomeAttachmentsResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *ListDirectIncomeAttachmentsResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

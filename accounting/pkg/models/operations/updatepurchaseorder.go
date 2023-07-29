@@ -61,12 +61,12 @@ func (o *UpdatePurchaseOrderRequest) GetTimeoutInMinutes() *int {
 
 type UpdatePurchaseOrderResponse struct {
 	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
+	// The request made is not valid.
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 	// Success
 	UpdatePurchaseOrderResponse *shared.UpdatePurchaseOrderResponse
-	// The request made is not valid.
-	Schema *shared.Schema
 }
 
 func (o *UpdatePurchaseOrderResponse) GetContentType() string {
@@ -74,6 +74,13 @@ func (o *UpdatePurchaseOrderResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *UpdatePurchaseOrderResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *UpdatePurchaseOrderResponse) GetStatusCode() int {
@@ -95,11 +102,4 @@ func (o *UpdatePurchaseOrderResponse) GetUpdatePurchaseOrderResponse() *shared.U
 		return nil
 	}
 	return o.UpdatePurchaseOrderResponse
-}
-
-func (o *UpdatePurchaseOrderResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

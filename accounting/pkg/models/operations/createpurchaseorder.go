@@ -46,10 +46,10 @@ type CreatePurchaseOrderResponse struct {
 	ContentType string
 	// Success
 	CreatePurchaseOrderResponse *shared.CreatePurchaseOrderResponse
-	StatusCode                  int
-	RawResponse                 *http.Response
 	// The request made is not valid.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 }
 
 func (o *CreatePurchaseOrderResponse) GetContentType() string {
@@ -66,6 +66,13 @@ func (o *CreatePurchaseOrderResponse) GetCreatePurchaseOrderResponse() *shared.C
 	return o.CreatePurchaseOrderResponse
 }
 
+func (o *CreatePurchaseOrderResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
 func (o *CreatePurchaseOrderResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
@@ -78,11 +85,4 @@ func (o *CreatePurchaseOrderResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *CreatePurchaseOrderResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

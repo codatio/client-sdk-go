@@ -62,68 +62,14 @@ func (o *ListBankAccountsRequest) GetQuery() *string {
 	return o.Query
 }
 
-// ListBankAccounts409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
-type ListBankAccounts409ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
-}
-
-func (o *ListBankAccounts409ApplicationJSON) GetCanBeRetried() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CanBeRetried
-}
-
-func (o *ListBankAccounts409ApplicationJSON) GetCorrelationID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CorrelationID
-}
-
-func (o *ListBankAccounts409ApplicationJSON) GetDetailedErrorCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.DetailedErrorCode
-}
-
-func (o *ListBankAccounts409ApplicationJSON) GetError() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Error
-}
-
-func (o *ListBankAccounts409ApplicationJSON) GetService() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Service
-}
-
-func (o *ListBankAccounts409ApplicationJSON) GetStatusCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.StatusCode
-}
-
 type ListBankAccountsResponse struct {
 	// Success
 	BankAccounts *shared.BankAccounts
 	ContentType  string
+	// Your `query` parameter was not correctly formed
+	ErrorMessage *shared.ErrorMessage
 	StatusCode   int
 	RawResponse  *http.Response
-	// The data type's dataset has not been requested or is still syncing.
-	ListBankAccounts409ApplicationJSONObject *ListBankAccounts409ApplicationJSON
-	// Your `query` parameter was not correctly formed
-	Schema *shared.Schema
 }
 
 func (o *ListBankAccountsResponse) GetBankAccounts() *shared.BankAccounts {
@@ -140,6 +86,13 @@ func (o *ListBankAccountsResponse) GetContentType() string {
 	return o.ContentType
 }
 
+func (o *ListBankAccountsResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
 func (o *ListBankAccountsResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
@@ -152,18 +105,4 @@ func (o *ListBankAccountsResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *ListBankAccountsResponse) GetListBankAccounts409ApplicationJSONObject() *ListBankAccounts409ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ListBankAccounts409ApplicationJSONObject
-}
-
-func (o *ListBankAccountsResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

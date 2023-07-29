@@ -27,68 +27,14 @@ func (o *GetAccountRequest) GetCompanyID() string {
 	return o.CompanyID
 }
 
-// GetAccount409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
-type GetAccount409ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
-}
-
-func (o *GetAccount409ApplicationJSON) GetCanBeRetried() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CanBeRetried
-}
-
-func (o *GetAccount409ApplicationJSON) GetCorrelationID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CorrelationID
-}
-
-func (o *GetAccount409ApplicationJSON) GetDetailedErrorCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.DetailedErrorCode
-}
-
-func (o *GetAccount409ApplicationJSON) GetError() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Error
-}
-
-func (o *GetAccount409ApplicationJSON) GetService() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Service
-}
-
-func (o *GetAccount409ApplicationJSON) GetStatusCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.StatusCode
-}
-
 type GetAccountResponse struct {
 	// Success
 	Account     *shared.Account
 	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
-	// The data type's dataset has not been requested or is still syncing.
-	GetAccount409ApplicationJSONObject *GetAccount409ApplicationJSON
 	// Your API request was not properly authorized.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 }
 
 func (o *GetAccountResponse) GetAccount() *shared.Account {
@@ -105,6 +51,13 @@ func (o *GetAccountResponse) GetContentType() string {
 	return o.ContentType
 }
 
+func (o *GetAccountResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
 func (o *GetAccountResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
@@ -117,18 +70,4 @@ func (o *GetAccountResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *GetAccountResponse) GetGetAccount409ApplicationJSONObject() *GetAccount409ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetAccount409ApplicationJSONObject
-}
-
-func (o *GetAccountResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

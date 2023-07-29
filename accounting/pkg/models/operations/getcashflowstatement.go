@@ -44,68 +44,14 @@ func (o *GetCashFlowStatementRequest) GetStartMonth() *string {
 	return o.StartMonth
 }
 
-// GetCashFlowStatement409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
-type GetCashFlowStatement409ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
-}
-
-func (o *GetCashFlowStatement409ApplicationJSON) GetCanBeRetried() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CanBeRetried
-}
-
-func (o *GetCashFlowStatement409ApplicationJSON) GetCorrelationID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CorrelationID
-}
-
-func (o *GetCashFlowStatement409ApplicationJSON) GetDetailedErrorCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.DetailedErrorCode
-}
-
-func (o *GetCashFlowStatement409ApplicationJSON) GetError() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Error
-}
-
-func (o *GetCashFlowStatement409ApplicationJSON) GetService() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Service
-}
-
-func (o *GetCashFlowStatement409ApplicationJSON) GetStatusCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.StatusCode
-}
-
 type GetCashFlowStatementResponse struct {
 	// Success
 	CashFlowStatement *shared.CashFlowStatement1
 	ContentType       string
-	StatusCode        int
-	RawResponse       *http.Response
-	// The data type's dataset has not been requested or is still syncing.
-	GetCashFlowStatement409ApplicationJSONObject *GetCashFlowStatement409ApplicationJSON
 	// Your API request was not properly authorized.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 }
 
 func (o *GetCashFlowStatementResponse) GetCashFlowStatement() *shared.CashFlowStatement1 {
@@ -122,6 +68,13 @@ func (o *GetCashFlowStatementResponse) GetContentType() string {
 	return o.ContentType
 }
 
+func (o *GetCashFlowStatementResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
 func (o *GetCashFlowStatementResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
@@ -134,18 +87,4 @@ func (o *GetCashFlowStatementResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *GetCashFlowStatementResponse) GetGetCashFlowStatement409ApplicationJSONObject() *GetCashFlowStatement409ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetCashFlowStatement409ApplicationJSONObject
-}
-
-func (o *GetCashFlowStatementResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

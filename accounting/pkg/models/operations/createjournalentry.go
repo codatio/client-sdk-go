@@ -46,10 +46,10 @@ type CreateJournalEntryResponse struct {
 	ContentType string
 	// Success
 	CreateJournalEntryResponse *shared.CreateJournalEntryResponse
-	StatusCode                 int
-	RawResponse                *http.Response
 	// The request made is not valid.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 }
 
 func (o *CreateJournalEntryResponse) GetContentType() string {
@@ -66,6 +66,13 @@ func (o *CreateJournalEntryResponse) GetCreateJournalEntryResponse() *shared.Cre
 	return o.CreateJournalEntryResponse
 }
 
+func (o *CreateJournalEntryResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
 func (o *CreateJournalEntryResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
@@ -78,11 +85,4 @@ func (o *CreateJournalEntryResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *CreateJournalEntryResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

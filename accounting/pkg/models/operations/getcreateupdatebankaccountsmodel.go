@@ -28,12 +28,12 @@ func (o *GetCreateUpdateBankAccountsModelRequest) GetConnectionID() string {
 
 type GetCreateUpdateBankAccountsModelResponse struct {
 	ContentType string
+	// Your API request was not properly authorized.
+	ErrorMessage *shared.ErrorMessage
 	// OK
 	PushOption  *shared.PushOption
 	StatusCode  int
 	RawResponse *http.Response
-	// Your API request was not properly authorized.
-	Schema *shared.Schema
 }
 
 func (o *GetCreateUpdateBankAccountsModelResponse) GetContentType() string {
@@ -41,6 +41,13 @@ func (o *GetCreateUpdateBankAccountsModelResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *GetCreateUpdateBankAccountsModelResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *GetCreateUpdateBankAccountsModelResponse) GetPushOption() *shared.PushOption {
@@ -62,11 +69,4 @@ func (o *GetCreateUpdateBankAccountsModelResponse) GetRawResponse() *http.Respon
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *GetCreateUpdateBankAccountsModelResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

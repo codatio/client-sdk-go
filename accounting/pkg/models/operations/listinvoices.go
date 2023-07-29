@@ -54,68 +54,14 @@ func (o *ListInvoicesRequest) GetQuery() *string {
 	return o.Query
 }
 
-// ListInvoices409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
-type ListInvoices409ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
-}
-
-func (o *ListInvoices409ApplicationJSON) GetCanBeRetried() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CanBeRetried
-}
-
-func (o *ListInvoices409ApplicationJSON) GetCorrelationID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CorrelationID
-}
-
-func (o *ListInvoices409ApplicationJSON) GetDetailedErrorCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.DetailedErrorCode
-}
-
-func (o *ListInvoices409ApplicationJSON) GetError() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Error
-}
-
-func (o *ListInvoices409ApplicationJSON) GetService() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Service
-}
-
-func (o *ListInvoices409ApplicationJSON) GetStatusCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.StatusCode
-}
-
 type ListInvoicesResponse struct {
 	ContentType string
+	// Your `query` parameter was not correctly formed
+	ErrorMessage *shared.ErrorMessage
 	// Success
 	Invoices    *shared.Invoices
 	StatusCode  int
 	RawResponse *http.Response
-	// The data type's dataset has not been requested or is still syncing.
-	ListInvoices409ApplicationJSONObject *ListInvoices409ApplicationJSON
-	// Your `query` parameter was not correctly formed
-	Schema *shared.Schema
 }
 
 func (o *ListInvoicesResponse) GetContentType() string {
@@ -123,6 +69,13 @@ func (o *ListInvoicesResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *ListInvoicesResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *ListInvoicesResponse) GetInvoices() *shared.Invoices {
@@ -144,18 +97,4 @@ func (o *ListInvoicesResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *ListInvoicesResponse) GetListInvoices409ApplicationJSONObject() *ListInvoices409ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ListInvoices409ApplicationJSONObject
-}
-
-func (o *ListInvoicesResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

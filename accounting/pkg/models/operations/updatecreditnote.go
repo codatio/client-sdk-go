@@ -61,12 +61,12 @@ func (o *UpdateCreditNoteRequest) GetTimeoutInMinutes() *int {
 
 type UpdateCreditNoteResponse struct {
 	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
+	// The request made is not valid.
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 	// Success
 	UpdateCreditNoteResponse *shared.UpdateCreditNoteResponse
-	// The request made is not valid.
-	Schema *shared.Schema
 }
 
 func (o *UpdateCreditNoteResponse) GetContentType() string {
@@ -74,6 +74,13 @@ func (o *UpdateCreditNoteResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *UpdateCreditNoteResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *UpdateCreditNoteResponse) GetStatusCode() int {
@@ -95,11 +102,4 @@ func (o *UpdateCreditNoteResponse) GetUpdateCreditNoteResponse() *shared.UpdateC
 		return nil
 	}
 	return o.UpdateCreditNoteResponse
-}
-
-func (o *UpdateCreditNoteResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

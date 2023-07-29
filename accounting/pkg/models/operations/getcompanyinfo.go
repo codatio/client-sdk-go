@@ -18,68 +18,14 @@ func (o *GetCompanyInfoRequest) GetCompanyID() string {
 	return o.CompanyID
 }
 
-// GetCompanyInfo409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
-type GetCompanyInfo409ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
-}
-
-func (o *GetCompanyInfo409ApplicationJSON) GetCanBeRetried() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CanBeRetried
-}
-
-func (o *GetCompanyInfo409ApplicationJSON) GetCorrelationID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CorrelationID
-}
-
-func (o *GetCompanyInfo409ApplicationJSON) GetDetailedErrorCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.DetailedErrorCode
-}
-
-func (o *GetCompanyInfo409ApplicationJSON) GetError() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Error
-}
-
-func (o *GetCompanyInfo409ApplicationJSON) GetService() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Service
-}
-
-func (o *GetCompanyInfo409ApplicationJSON) GetStatusCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.StatusCode
-}
-
 type GetCompanyInfoResponse struct {
 	// Success
 	CompanyDataset *shared.CompanyDataset
 	ContentType    string
-	StatusCode     int
-	RawResponse    *http.Response
-	// The data type's dataset has not been requested or is still syncing.
-	GetCompanyInfo409ApplicationJSONObject *GetCompanyInfo409ApplicationJSON
 	// Your API request was not properly authorized.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 }
 
 func (o *GetCompanyInfoResponse) GetCompanyDataset() *shared.CompanyDataset {
@@ -96,6 +42,13 @@ func (o *GetCompanyInfoResponse) GetContentType() string {
 	return o.ContentType
 }
 
+func (o *GetCompanyInfoResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
 func (o *GetCompanyInfoResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
@@ -108,18 +61,4 @@ func (o *GetCompanyInfoResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *GetCompanyInfoResponse) GetGetCompanyInfo409ApplicationJSONObject() *GetCompanyInfo409ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetCompanyInfo409ApplicationJSONObject
-}
-
-func (o *GetCompanyInfoResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

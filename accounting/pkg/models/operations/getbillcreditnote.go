@@ -26,68 +26,14 @@ func (o *GetBillCreditNoteRequest) GetCompanyID() string {
 	return o.CompanyID
 }
 
-// GetBillCreditNote409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
-type GetBillCreditNote409ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
-}
-
-func (o *GetBillCreditNote409ApplicationJSON) GetCanBeRetried() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CanBeRetried
-}
-
-func (o *GetBillCreditNote409ApplicationJSON) GetCorrelationID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CorrelationID
-}
-
-func (o *GetBillCreditNote409ApplicationJSON) GetDetailedErrorCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.DetailedErrorCode
-}
-
-func (o *GetBillCreditNote409ApplicationJSON) GetError() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Error
-}
-
-func (o *GetBillCreditNote409ApplicationJSON) GetService() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Service
-}
-
-func (o *GetBillCreditNote409ApplicationJSON) GetStatusCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.StatusCode
-}
-
 type GetBillCreditNoteResponse struct {
 	// Success
 	BillCreditNote *shared.BillCreditNote
 	ContentType    string
-	StatusCode     int
-	RawResponse    *http.Response
-	// The data type's dataset has not been requested or is still syncing.
-	GetBillCreditNote409ApplicationJSONObject *GetBillCreditNote409ApplicationJSON
 	// Your API request was not properly authorized.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 }
 
 func (o *GetBillCreditNoteResponse) GetBillCreditNote() *shared.BillCreditNote {
@@ -104,6 +50,13 @@ func (o *GetBillCreditNoteResponse) GetContentType() string {
 	return o.ContentType
 }
 
+func (o *GetBillCreditNoteResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
 func (o *GetBillCreditNoteResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
@@ -116,18 +69,4 @@ func (o *GetBillCreditNoteResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *GetBillCreditNoteResponse) GetGetBillCreditNote409ApplicationJSONObject() *GetBillCreditNote409ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetBillCreditNote409ApplicationJSONObject
-}
-
-func (o *GetBillCreditNoteResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

@@ -54,68 +54,14 @@ func (o *ListItemsRequest) GetQuery() *string {
 	return o.Query
 }
 
-// ListItems409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
-type ListItems409ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
-}
-
-func (o *ListItems409ApplicationJSON) GetCanBeRetried() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CanBeRetried
-}
-
-func (o *ListItems409ApplicationJSON) GetCorrelationID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CorrelationID
-}
-
-func (o *ListItems409ApplicationJSON) GetDetailedErrorCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.DetailedErrorCode
-}
-
-func (o *ListItems409ApplicationJSON) GetError() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Error
-}
-
-func (o *ListItems409ApplicationJSON) GetService() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Service
-}
-
-func (o *ListItems409ApplicationJSON) GetStatusCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.StatusCode
-}
-
 type ListItemsResponse struct {
 	ContentType string
+	// Your `query` parameter was not correctly formed
+	ErrorMessage *shared.ErrorMessage
 	// Success
 	Items       *shared.Items1
 	StatusCode  int
 	RawResponse *http.Response
-	// The data type's dataset has not been requested or is still syncing.
-	ListItems409ApplicationJSONObject *ListItems409ApplicationJSON
-	// Your `query` parameter was not correctly formed
-	Schema *shared.Schema
 }
 
 func (o *ListItemsResponse) GetContentType() string {
@@ -123,6 +69,13 @@ func (o *ListItemsResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *ListItemsResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *ListItemsResponse) GetItems() *shared.Items1 {
@@ -144,18 +97,4 @@ func (o *ListItemsResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *ListItemsResponse) GetListItems409ApplicationJSONObject() *ListItems409ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ListItems409ApplicationJSONObject
-}
-
-func (o *ListItemsResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

@@ -54,68 +54,14 @@ func (o *ListTrackingCategoriesRequest) GetQuery() *string {
 	return o.Query
 }
 
-// ListTrackingCategories409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
-type ListTrackingCategories409ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
-}
-
-func (o *ListTrackingCategories409ApplicationJSON) GetCanBeRetried() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CanBeRetried
-}
-
-func (o *ListTrackingCategories409ApplicationJSON) GetCorrelationID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CorrelationID
-}
-
-func (o *ListTrackingCategories409ApplicationJSON) GetDetailedErrorCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.DetailedErrorCode
-}
-
-func (o *ListTrackingCategories409ApplicationJSON) GetError() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Error
-}
-
-func (o *ListTrackingCategories409ApplicationJSON) GetService() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Service
-}
-
-func (o *ListTrackingCategories409ApplicationJSON) GetStatusCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.StatusCode
-}
-
 type ListTrackingCategoriesResponse struct {
 	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
+	// Your `query` parameter was not correctly formed
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 	// Success
 	TrackingCategories *shared.TrackingCategories
-	// The data type's dataset has not been requested or is still syncing.
-	ListTrackingCategories409ApplicationJSONObject *ListTrackingCategories409ApplicationJSON
-	// Your `query` parameter was not correctly formed
-	Schema *shared.Schema
 }
 
 func (o *ListTrackingCategoriesResponse) GetContentType() string {
@@ -123,6 +69,13 @@ func (o *ListTrackingCategoriesResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *ListTrackingCategoriesResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *ListTrackingCategoriesResponse) GetStatusCode() int {
@@ -144,18 +97,4 @@ func (o *ListTrackingCategoriesResponse) GetTrackingCategories() *shared.Trackin
 		return nil
 	}
 	return o.TrackingCategories
-}
-
-func (o *ListTrackingCategoriesResponse) GetListTrackingCategories409ApplicationJSONObject() *ListTrackingCategories409ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ListTrackingCategories409ApplicationJSONObject
-}
-
-func (o *ListTrackingCategoriesResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

@@ -62,68 +62,14 @@ func (o *ListDirectIncomesRequest) GetQuery() *string {
 	return o.Query
 }
 
-// ListDirectIncomes409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
-type ListDirectIncomes409ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
-}
-
-func (o *ListDirectIncomes409ApplicationJSON) GetCanBeRetried() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CanBeRetried
-}
-
-func (o *ListDirectIncomes409ApplicationJSON) GetCorrelationID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CorrelationID
-}
-
-func (o *ListDirectIncomes409ApplicationJSON) GetDetailedErrorCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.DetailedErrorCode
-}
-
-func (o *ListDirectIncomes409ApplicationJSON) GetError() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Error
-}
-
-func (o *ListDirectIncomes409ApplicationJSON) GetService() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Service
-}
-
-func (o *ListDirectIncomes409ApplicationJSON) GetStatusCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.StatusCode
-}
-
 type ListDirectIncomesResponse struct {
 	ContentType string
 	// Success
 	DirectIncomes *shared.DirectIncomes
-	StatusCode    int
-	RawResponse   *http.Response
-	// The data type's dataset has not been requested or is still syncing.
-	ListDirectIncomes409ApplicationJSONObject *ListDirectIncomes409ApplicationJSON
 	// Your `query` parameter was not correctly formed
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 }
 
 func (o *ListDirectIncomesResponse) GetContentType() string {
@@ -140,6 +86,13 @@ func (o *ListDirectIncomesResponse) GetDirectIncomes() *shared.DirectIncomes {
 	return o.DirectIncomes
 }
 
+func (o *ListDirectIncomesResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
 func (o *ListDirectIncomesResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
@@ -152,18 +105,4 @@ func (o *ListDirectIncomesResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *ListDirectIncomesResponse) GetListDirectIncomes409ApplicationJSONObject() *ListDirectIncomes409ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ListDirectIncomes409ApplicationJSONObject
-}
-
-func (o *ListDirectIncomesResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

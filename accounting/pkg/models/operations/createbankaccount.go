@@ -54,10 +54,10 @@ type CreateBankAccountResponse struct {
 	ContentType string
 	// Success
 	CreateBankAccountResponse *shared.CreateBankAccountResponse
-	StatusCode                int
-	RawResponse               *http.Response
 	// The request made is not valid.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 }
 
 func (o *CreateBankAccountResponse) GetContentType() string {
@@ -74,6 +74,13 @@ func (o *CreateBankAccountResponse) GetCreateBankAccountResponse() *shared.Creat
 	return o.CreateBankAccountResponse
 }
 
+func (o *CreateBankAccountResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
 func (o *CreateBankAccountResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
@@ -86,11 +93,4 @@ func (o *CreateBankAccountResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *CreateBankAccountResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

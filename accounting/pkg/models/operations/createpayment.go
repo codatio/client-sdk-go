@@ -46,10 +46,10 @@ type CreatePaymentResponse struct {
 	ContentType string
 	// Success
 	CreatePaymentResponse *shared.CreatePaymentResponse
-	StatusCode            int
-	RawResponse           *http.Response
 	// The request made is not valid.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 }
 
 func (o *CreatePaymentResponse) GetContentType() string {
@@ -66,6 +66,13 @@ func (o *CreatePaymentResponse) GetCreatePaymentResponse() *shared.CreatePayment
 	return o.CreatePaymentResponse
 }
 
+func (o *CreatePaymentResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
 func (o *CreatePaymentResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
@@ -78,11 +85,4 @@ func (o *CreatePaymentResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *CreatePaymentResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

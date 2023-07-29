@@ -63,10 +63,10 @@ type CreateBankTransactionsResponse struct {
 	ContentType string
 	// Success
 	CreateBankTransactionsResponse *shared.CreateBankTransactionsResponse
-	StatusCode                     int
-	RawResponse                    *http.Response
 	// Your API request was not properly authorized.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 }
 
 func (o *CreateBankTransactionsResponse) GetContentType() string {
@@ -83,6 +83,13 @@ func (o *CreateBankTransactionsResponse) GetCreateBankTransactionsResponse() *sh
 	return o.CreateBankTransactionsResponse
 }
 
+func (o *CreateBankTransactionsResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
 func (o *CreateBankTransactionsResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
@@ -95,11 +102,4 @@ func (o *CreateBankTransactionsResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *CreateBankTransactionsResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

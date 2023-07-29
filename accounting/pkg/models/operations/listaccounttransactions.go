@@ -62,68 +62,14 @@ func (o *ListAccountTransactionsRequest) GetQuery() *string {
 	return o.Query
 }
 
-// ListAccountTransactions409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
-type ListAccountTransactions409ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
-}
-
-func (o *ListAccountTransactions409ApplicationJSON) GetCanBeRetried() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CanBeRetried
-}
-
-func (o *ListAccountTransactions409ApplicationJSON) GetCorrelationID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CorrelationID
-}
-
-func (o *ListAccountTransactions409ApplicationJSON) GetDetailedErrorCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.DetailedErrorCode
-}
-
-func (o *ListAccountTransactions409ApplicationJSON) GetError() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Error
-}
-
-func (o *ListAccountTransactions409ApplicationJSON) GetService() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Service
-}
-
-func (o *ListAccountTransactions409ApplicationJSON) GetStatusCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.StatusCode
-}
-
 type ListAccountTransactionsResponse struct {
 	// Success
 	AccountTransactions *shared.AccountTransactions
 	ContentType         string
-	StatusCode          int
-	RawResponse         *http.Response
-	// The data type's dataset has not been requested or is still syncing.
-	ListAccountTransactions409ApplicationJSONObject *ListAccountTransactions409ApplicationJSON
 	// Your `query` parameter was not correctly formed
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 }
 
 func (o *ListAccountTransactionsResponse) GetAccountTransactions() *shared.AccountTransactions {
@@ -140,6 +86,13 @@ func (o *ListAccountTransactionsResponse) GetContentType() string {
 	return o.ContentType
 }
 
+func (o *ListAccountTransactionsResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
 func (o *ListAccountTransactionsResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
@@ -152,18 +105,4 @@ func (o *ListAccountTransactionsResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *ListAccountTransactionsResponse) GetListAccountTransactions409ApplicationJSONObject() *ListAccountTransactions409ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ListAccountTransactions409ApplicationJSONObject
-}
-
-func (o *ListAccountTransactionsResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

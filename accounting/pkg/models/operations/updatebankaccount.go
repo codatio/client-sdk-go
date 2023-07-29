@@ -62,12 +62,12 @@ func (o *UpdateBankAccountRequest) GetTimeoutInMinutes() *int {
 
 type UpdateBankAccountResponse struct {
 	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
+	// The request made is not valid.
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 	// Success
 	UpdateBankAccountResponse *shared.UpdateBankAccountResponse
-	// The request made is not valid.
-	Schema *shared.Schema
 }
 
 func (o *UpdateBankAccountResponse) GetContentType() string {
@@ -75,6 +75,13 @@ func (o *UpdateBankAccountResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *UpdateBankAccountResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *UpdateBankAccountResponse) GetStatusCode() int {
@@ -96,11 +103,4 @@ func (o *UpdateBankAccountResponse) GetUpdateBankAccountResponse() *shared.Updat
 		return nil
 	}
 	return o.UpdateBankAccountResponse
-}
-
-func (o *UpdateBankAccountResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

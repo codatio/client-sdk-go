@@ -46,10 +46,10 @@ type CreateBillResponse struct {
 	ContentType string
 	// Success
 	CreateBillResponse *shared.CreateBillResponse
-	StatusCode         int
-	RawResponse        *http.Response
 	// The request made is not valid.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 }
 
 func (o *CreateBillResponse) GetContentType() string {
@@ -66,6 +66,13 @@ func (o *CreateBillResponse) GetCreateBillResponse() *shared.CreateBillResponse 
 	return o.CreateBillResponse
 }
 
+func (o *CreateBillResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
 func (o *CreateBillResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
@@ -78,11 +85,4 @@ func (o *CreateBillResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *CreateBillResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

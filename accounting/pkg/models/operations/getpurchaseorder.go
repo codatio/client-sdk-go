@@ -26,68 +26,14 @@ func (o *GetPurchaseOrderRequest) GetPurchaseOrderID() string {
 	return o.PurchaseOrderID
 }
 
-// GetPurchaseOrder409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
-type GetPurchaseOrder409ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
-}
-
-func (o *GetPurchaseOrder409ApplicationJSON) GetCanBeRetried() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CanBeRetried
-}
-
-func (o *GetPurchaseOrder409ApplicationJSON) GetCorrelationID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CorrelationID
-}
-
-func (o *GetPurchaseOrder409ApplicationJSON) GetDetailedErrorCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.DetailedErrorCode
-}
-
-func (o *GetPurchaseOrder409ApplicationJSON) GetError() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Error
-}
-
-func (o *GetPurchaseOrder409ApplicationJSON) GetService() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Service
-}
-
-func (o *GetPurchaseOrder409ApplicationJSON) GetStatusCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.StatusCode
-}
-
 type GetPurchaseOrderResponse struct {
 	ContentType string
+	// Your API request was not properly authorized.
+	ErrorMessage *shared.ErrorMessage
 	// Success
 	PurchaseOrder *shared.PurchaseOrder
 	StatusCode    int
 	RawResponse   *http.Response
-	// The data type's dataset has not been requested or is still syncing.
-	GetPurchaseOrder409ApplicationJSONObject *GetPurchaseOrder409ApplicationJSON
-	// Your API request was not properly authorized.
-	Schema *shared.Schema
 }
 
 func (o *GetPurchaseOrderResponse) GetContentType() string {
@@ -95,6 +41,13 @@ func (o *GetPurchaseOrderResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *GetPurchaseOrderResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *GetPurchaseOrderResponse) GetPurchaseOrder() *shared.PurchaseOrder {
@@ -116,18 +69,4 @@ func (o *GetPurchaseOrderResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *GetPurchaseOrderResponse) GetGetPurchaseOrder409ApplicationJSONObject() *GetPurchaseOrder409ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetPurchaseOrder409ApplicationJSONObject
-}
-
-func (o *GetPurchaseOrderResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

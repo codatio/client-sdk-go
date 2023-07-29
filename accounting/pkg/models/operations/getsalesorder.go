@@ -26,68 +26,14 @@ func (o *GetSalesOrderRequest) GetSalesOrderID() string {
 	return o.SalesOrderID
 }
 
-// GetSalesOrder409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
-type GetSalesOrder409ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
-}
-
-func (o *GetSalesOrder409ApplicationJSON) GetCanBeRetried() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CanBeRetried
-}
-
-func (o *GetSalesOrder409ApplicationJSON) GetCorrelationID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CorrelationID
-}
-
-func (o *GetSalesOrder409ApplicationJSON) GetDetailedErrorCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.DetailedErrorCode
-}
-
-func (o *GetSalesOrder409ApplicationJSON) GetError() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Error
-}
-
-func (o *GetSalesOrder409ApplicationJSON) GetService() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Service
-}
-
-func (o *GetSalesOrder409ApplicationJSON) GetStatusCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.StatusCode
-}
-
 type GetSalesOrderResponse struct {
 	ContentType string
+	// Your API request was not properly authorized.
+	ErrorMessage *shared.ErrorMessage
 	// Success
 	SalesOrder  *shared.SalesOrder
 	StatusCode  int
 	RawResponse *http.Response
-	// The data type's dataset has not been requested or is still syncing.
-	GetSalesOrder409ApplicationJSONObject *GetSalesOrder409ApplicationJSON
-	// Your API request was not properly authorized.
-	Schema *shared.Schema
 }
 
 func (o *GetSalesOrderResponse) GetContentType() string {
@@ -95,6 +41,13 @@ func (o *GetSalesOrderResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *GetSalesOrderResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *GetSalesOrderResponse) GetSalesOrder() *shared.SalesOrder {
@@ -116,18 +69,4 @@ func (o *GetSalesOrderResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *GetSalesOrderResponse) GetGetSalesOrder409ApplicationJSONObject() *GetSalesOrder409ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetSalesOrder409ApplicationJSONObject
-}
-
-func (o *GetSalesOrderResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

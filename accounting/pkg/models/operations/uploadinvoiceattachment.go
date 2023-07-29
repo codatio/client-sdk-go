@@ -64,10 +64,10 @@ func (o *UploadInvoiceAttachmentRequest) GetInvoiceID() string {
 
 type UploadInvoiceAttachmentResponse struct {
 	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
 	// Your API request was not properly authorized.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 }
 
 func (o *UploadInvoiceAttachmentResponse) GetContentType() string {
@@ -75,6 +75,13 @@ func (o *UploadInvoiceAttachmentResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *UploadInvoiceAttachmentResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *UploadInvoiceAttachmentResponse) GetStatusCode() int {
@@ -89,11 +96,4 @@ func (o *UploadInvoiceAttachmentResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *UploadInvoiceAttachmentResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

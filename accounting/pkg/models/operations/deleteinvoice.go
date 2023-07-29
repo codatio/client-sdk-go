@@ -37,12 +37,12 @@ func (o *DeleteInvoiceRequest) GetInvoiceID() string {
 
 type DeleteInvoiceResponse struct {
 	ContentType string
+	// Your API request was not properly authorized.
+	ErrorMessage *shared.ErrorMessage
 	// OK
 	PushOperationSummary *shared.PushOperationSummary
 	StatusCode           int
 	RawResponse          *http.Response
-	// Your API request was not properly authorized.
-	Schema *shared.Schema
 }
 
 func (o *DeleteInvoiceResponse) GetContentType() string {
@@ -50,6 +50,13 @@ func (o *DeleteInvoiceResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *DeleteInvoiceResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *DeleteInvoiceResponse) GetPushOperationSummary() *shared.PushOperationSummary {
@@ -71,11 +78,4 @@ func (o *DeleteInvoiceResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *DeleteInvoiceResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

@@ -38,10 +38,10 @@ type CreateTransferResponse struct {
 	ContentType string
 	// Success
 	CreateTransferResponse *shared.CreateTransferResponse
-	StatusCode             int
-	RawResponse            *http.Response
 	// The request made is not valid.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 }
 
 func (o *CreateTransferResponse) GetContentType() string {
@@ -58,6 +58,13 @@ func (o *CreateTransferResponse) GetCreateTransferResponse() *shared.CreateTrans
 	return o.CreateTransferResponse
 }
 
+func (o *CreateTransferResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
 func (o *CreateTransferResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
@@ -70,11 +77,4 @@ func (o *CreateTransferResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *CreateTransferResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

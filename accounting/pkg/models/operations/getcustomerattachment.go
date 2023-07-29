@@ -47,10 +47,10 @@ type GetCustomerAttachmentResponse struct {
 	// Success
 	Attachment  *shared.Attachment
 	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
 	// Your API request was not properly authorized.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 }
 
 func (o *GetCustomerAttachmentResponse) GetAttachment() *shared.Attachment {
@@ -67,6 +67,13 @@ func (o *GetCustomerAttachmentResponse) GetContentType() string {
 	return o.ContentType
 }
 
+func (o *GetCustomerAttachmentResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
 func (o *GetCustomerAttachmentResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
@@ -79,11 +86,4 @@ func (o *GetCustomerAttachmentResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *GetCustomerAttachmentResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

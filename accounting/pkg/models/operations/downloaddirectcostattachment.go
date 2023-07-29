@@ -47,11 +47,11 @@ func (o *DownloadDirectCostAttachmentRequest) GetDirectCostID() string {
 type DownloadDirectCostAttachmentResponse struct {
 	ContentType string
 	// Success
-	Data        []byte
-	StatusCode  int
-	RawResponse *http.Response
+	Data []byte
 	// Your API request was not properly authorized.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 }
 
 func (o *DownloadDirectCostAttachmentResponse) GetContentType() string {
@@ -68,6 +68,13 @@ func (o *DownloadDirectCostAttachmentResponse) GetData() []byte {
 	return o.Data
 }
 
+func (o *DownloadDirectCostAttachmentResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
 func (o *DownloadDirectCostAttachmentResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
@@ -80,11 +87,4 @@ func (o *DownloadDirectCostAttachmentResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *DownloadDirectCostAttachmentResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

@@ -26,68 +26,14 @@ func (o *GetJournalEntryRequest) GetJournalEntryID() string {
 	return o.JournalEntryID
 }
 
-// GetJournalEntry409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
-type GetJournalEntry409ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
-}
-
-func (o *GetJournalEntry409ApplicationJSON) GetCanBeRetried() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CanBeRetried
-}
-
-func (o *GetJournalEntry409ApplicationJSON) GetCorrelationID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CorrelationID
-}
-
-func (o *GetJournalEntry409ApplicationJSON) GetDetailedErrorCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.DetailedErrorCode
-}
-
-func (o *GetJournalEntry409ApplicationJSON) GetError() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Error
-}
-
-func (o *GetJournalEntry409ApplicationJSON) GetService() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Service
-}
-
-func (o *GetJournalEntry409ApplicationJSON) GetStatusCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.StatusCode
-}
-
 type GetJournalEntryResponse struct {
 	ContentType string
+	// Your API request was not properly authorized.
+	ErrorMessage *shared.ErrorMessage
 	// Success
 	JournalEntry *shared.JournalEntry
 	StatusCode   int
 	RawResponse  *http.Response
-	// The data type's dataset has not been requested or is still syncing.
-	GetJournalEntry409ApplicationJSONObject *GetJournalEntry409ApplicationJSON
-	// Your API request was not properly authorized.
-	Schema *shared.Schema
 }
 
 func (o *GetJournalEntryResponse) GetContentType() string {
@@ -95,6 +41,13 @@ func (o *GetJournalEntryResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *GetJournalEntryResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *GetJournalEntryResponse) GetJournalEntry() *shared.JournalEntry {
@@ -116,18 +69,4 @@ func (o *GetJournalEntryResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *GetJournalEntryResponse) GetGetJournalEntry409ApplicationJSONObject() *GetJournalEntry409ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetJournalEntry409ApplicationJSONObject
-}
-
-func (o *GetJournalEntryResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

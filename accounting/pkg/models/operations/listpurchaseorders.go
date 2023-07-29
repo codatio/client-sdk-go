@@ -54,68 +54,14 @@ func (o *ListPurchaseOrdersRequest) GetQuery() *string {
 	return o.Query
 }
 
-// ListPurchaseOrders409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
-type ListPurchaseOrders409ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
-}
-
-func (o *ListPurchaseOrders409ApplicationJSON) GetCanBeRetried() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CanBeRetried
-}
-
-func (o *ListPurchaseOrders409ApplicationJSON) GetCorrelationID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CorrelationID
-}
-
-func (o *ListPurchaseOrders409ApplicationJSON) GetDetailedErrorCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.DetailedErrorCode
-}
-
-func (o *ListPurchaseOrders409ApplicationJSON) GetError() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Error
-}
-
-func (o *ListPurchaseOrders409ApplicationJSON) GetService() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Service
-}
-
-func (o *ListPurchaseOrders409ApplicationJSON) GetStatusCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.StatusCode
-}
-
 type ListPurchaseOrdersResponse struct {
 	ContentType string
+	// Your `query` parameter was not correctly formed
+	ErrorMessage *shared.ErrorMessage
 	// Success
 	PurchaseOrders *shared.PurchaseOrders
 	StatusCode     int
 	RawResponse    *http.Response
-	// The data type's dataset has not been requested or is still syncing.
-	ListPurchaseOrders409ApplicationJSONObject *ListPurchaseOrders409ApplicationJSON
-	// Your `query` parameter was not correctly formed
-	Schema *shared.Schema
 }
 
 func (o *ListPurchaseOrdersResponse) GetContentType() string {
@@ -123,6 +69,13 @@ func (o *ListPurchaseOrdersResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *ListPurchaseOrdersResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *ListPurchaseOrdersResponse) GetPurchaseOrders() *shared.PurchaseOrders {
@@ -144,18 +97,4 @@ func (o *ListPurchaseOrdersResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *ListPurchaseOrdersResponse) GetListPurchaseOrders409ApplicationJSONObject() *ListPurchaseOrders409ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ListPurchaseOrders409ApplicationJSONObject
-}
-
-func (o *ListPurchaseOrdersResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

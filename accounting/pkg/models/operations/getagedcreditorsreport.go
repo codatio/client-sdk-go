@@ -50,10 +50,10 @@ type GetAgedCreditorsReportResponse struct {
 	// OK
 	AgedCreditorReport *shared.AgedCreditorReport
 	ContentType        string
-	StatusCode         int
-	RawResponse        *http.Response
 	// Your API request was not properly authorized.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 }
 
 func (o *GetAgedCreditorsReportResponse) GetAgedCreditorReport() *shared.AgedCreditorReport {
@@ -70,6 +70,13 @@ func (o *GetAgedCreditorsReportResponse) GetContentType() string {
 	return o.ContentType
 }
 
+func (o *GetAgedCreditorsReportResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
 func (o *GetAgedCreditorsReportResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
@@ -82,11 +89,4 @@ func (o *GetAgedCreditorsReportResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *GetAgedCreditorsReportResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

@@ -54,68 +54,14 @@ func (o *ListBillPaymentsRequest) GetQuery() *string {
 	return o.Query
 }
 
-// ListBillPayments409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
-type ListBillPayments409ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
-}
-
-func (o *ListBillPayments409ApplicationJSON) GetCanBeRetried() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CanBeRetried
-}
-
-func (o *ListBillPayments409ApplicationJSON) GetCorrelationID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CorrelationID
-}
-
-func (o *ListBillPayments409ApplicationJSON) GetDetailedErrorCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.DetailedErrorCode
-}
-
-func (o *ListBillPayments409ApplicationJSON) GetError() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Error
-}
-
-func (o *ListBillPayments409ApplicationJSON) GetService() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Service
-}
-
-func (o *ListBillPayments409ApplicationJSON) GetStatusCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.StatusCode
-}
-
 type ListBillPaymentsResponse struct {
 	// Success
 	BillPayments *shared.BillPayments
 	ContentType  string
+	// Your `query` parameter was not correctly formed
+	ErrorMessage *shared.ErrorMessage
 	StatusCode   int
 	RawResponse  *http.Response
-	// The data type's dataset has not been requested or is still syncing.
-	ListBillPayments409ApplicationJSONObject *ListBillPayments409ApplicationJSON
-	// Your `query` parameter was not correctly formed
-	Schema *shared.Schema
 }
 
 func (o *ListBillPaymentsResponse) GetBillPayments() *shared.BillPayments {
@@ -132,6 +78,13 @@ func (o *ListBillPaymentsResponse) GetContentType() string {
 	return o.ContentType
 }
 
+func (o *ListBillPaymentsResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
 func (o *ListBillPaymentsResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
@@ -144,18 +97,4 @@ func (o *ListBillPaymentsResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *ListBillPaymentsResponse) GetListBillPayments409ApplicationJSONObject() *ListBillPayments409ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ListBillPayments409ApplicationJSONObject
-}
-
-func (o *ListBillPaymentsResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

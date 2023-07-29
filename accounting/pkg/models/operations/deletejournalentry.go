@@ -37,12 +37,12 @@ func (o *DeleteJournalEntryRequest) GetJournalEntryID() string {
 
 type DeleteJournalEntryResponse struct {
 	ContentType string
+	// Your API request was not properly authorized.
+	ErrorMessage *shared.ErrorMessage
 	// OK
 	PushOperationSummary *shared.PushOperationSummary
 	StatusCode           int
 	RawResponse          *http.Response
-	// Your API request was not properly authorized.
-	Schema *shared.Schema
 }
 
 func (o *DeleteJournalEntryResponse) GetContentType() string {
@@ -50,6 +50,13 @@ func (o *DeleteJournalEntryResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *DeleteJournalEntryResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *DeleteJournalEntryResponse) GetPushOperationSummary() *shared.PushOperationSummary {
@@ -71,11 +78,4 @@ func (o *DeleteJournalEntryResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *DeleteJournalEntryResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }
