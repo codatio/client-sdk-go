@@ -6,15 +6,14 @@ Configure preferences for any given Sync for Commerce company using sync flow.
 
 ### Available Operations
 
-* [GetConfigTextSyncFlow](#getconfigtextsyncflow) - Retrieve preferences for text fields on Sync Flow
-* [GetSyncFlowURL](#getsyncflowurl) - Retrieve sync flow url
+* [GetConfigTextSyncFlow](#getconfigtextsyncflow) - Get preferences for text fields
 * [GetVisibleAccounts](#getvisibleaccounts) - List visible accounts
-* [UpdateConfigTextSyncFlow](#updateconfigtextsyncflow) - Update preferences for text fields on sync flow
-* [UpdateVisibleAccountsSyncFlow](#updatevisibleaccountssyncflow) - Update the visible accounts on Sync Flow
+* [UpdateConfigTextSyncFlow](#updateconfigtextsyncflow) - Update preferences for text fields
+* [UpdateVisibleAccountsSyncFlow](#updatevisibleaccountssyncflow) - Update visible accounts
 
 ## GetConfigTextSyncFlow
 
-To enable retrieval of preferences set for the text fields on Sync Flow.
+Return preferences set for the text fields on sync flow.
 
 ### Example Usage
 
@@ -60,63 +59,9 @@ func main() {
 **[*operations.GetConfigTextSyncFlowResponse](../../models/operations/getconfigtextsyncflowresponse.md), error**
 
 
-## GetSyncFlowURL
-
-Get a URL for Sync Flow including a one time passcode.
-
-### Example Usage
-
-```go
-package main
-
-import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/synccommerce"
-	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/operations"
-)
-
-func main() {
-    s := codatsynccommerce.New(
-        codatsynccommerce.WithSecurity(shared.Security{
-            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
-        }),
-    )
-
-    ctx := context.Background()
-    res, err := s.SyncFlowPreferences.GetSyncFlowURL(ctx, operations.GetSyncFlowURLRequest{
-        AccountingKey: "vel",
-        CommerceKey: "error",
-        MerchantIdentifier: codatsynccommerce.String("deserunt"),
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-
-    if res.SyncFlowURL != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
-| `request`                                                                            | [operations.GetSyncFlowURLRequest](../../models/operations/getsyncflowurlrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
-| `opts`                                                                               | [][operations.Option](../../models/operations/option.md)                             | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
-
-
-### Response
-
-**[*operations.GetSyncFlowURLResponse](../../models/operations/getsyncflowurlresponse.md), error**
-
-
 ## GetVisibleAccounts
 
-Enable retrieval for accounts which are visible on sync flow.
+Return accounts which are visible on sync flow.
 
 ### Example Usage
 
@@ -169,7 +114,7 @@ func main() {
 
 ## UpdateConfigTextSyncFlow
 
-To enable update of preferences set for the text fields on sync flow.
+Set preferences for the text fields on sync flow.
 
 ### Example Usage
 
@@ -223,7 +168,7 @@ func main() {
 
 ## UpdateVisibleAccountsSyncFlow
 
-To enable update of accounts visible preferences set on Sync Flow.
+Update which accounts are visible on sync flow.
 
 ### Example Usage
 

@@ -12,22 +12,23 @@ import (
 	"github.com/codatio/client-sdk-go/synccommerce/pkg/utils"
 	"io"
 	"net/http"
+	"strings"
 )
 
-// configuration - Expressively configure preferences for any given Sync for Commerce company.
-type configuration struct {
+// connections - Create new and manage existing Sync for Commerce companies using the Sync flow UI.
+type connections struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newConfiguration(sdkConfig sdkConfiguration) *configuration {
-	return &configuration{
+func newConnections(sdkConfig sdkConfiguration) *connections {
+	return &connections{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
-// GetConfiguration - Retrieve config preferences set for a company.
-// Retrieve current config preferences.
-func (s *configuration) GetConfiguration(ctx context.Context, request operations.GetConfigurationRequest, opts ...operations.Option) (*operations.GetConfigurationResponse, error) {
+// GetSyncFlowURL - Retrieve sync flow url
+// Get a URL for Sync Flow including a one time passcode.
+func (s *connections) GetSyncFlowURL(ctx context.Context, request operations.GetSyncFlowURLRequest, opts ...operations.Option) (*operations.GetSyncFlowURLResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -39,7 +40,7 @@ func (s *configuration) GetConfiguration(ctx context.Context, request operations
 		}
 	}
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	url, err := utils.GenerateURL(ctx, baseURL, "/config/companies/{companyId}/sync/commerce", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/config/sync/commerce/{commerceKey}/{accountingKey}/start", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -51,6 +52,10 @@ func (s *configuration) GetConfiguration(ctx context.Context, request operations
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
+
 	client := s.sdkConfiguration.SecurityClient
 
 	retryConfig := o.Retries
@@ -93,7 +98,7 @@ func (s *configuration) GetConfiguration(ctx context.Context, request operations
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetConfigurationResponse{
+	res := &operations.GetSyncFlowURLResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -102,12 +107,12 @@ func (s *configuration) GetConfiguration(ctx context.Context, request operations
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Configuration
+			var out *shared.SyncFlowURL
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.Configuration = out
+			res.SyncFlowURL = out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -116,9 +121,9 @@ func (s *configuration) GetConfiguration(ctx context.Context, request operations
 	return res, nil
 }
 
-// SetConfiguration - Create or update configuration.
-// Make changes to configuration preferences.
-func (s *configuration) SetConfiguration(ctx context.Context, request operations.SetConfigurationRequest, opts ...operations.Option) (*operations.SetConfigurationResponse, error) {
+// ListCompanies - List companies
+// Returns a list of companies.
+func (s *connections) ListCompanies(ctx context.Context, request operations.ListCompaniesRequest, opts ...operations.Option) (*operations.ListCompaniesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -130,17 +135,18 @@ func (s *configuration) SetConfiguration(ctx context.Context, request operations
 		}
 	}
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	url, err := utils.GenerateURL(ctx, baseURL, "/config/companies/{companyId}/sync/commerce", request, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error generating URL: %w", err)
-	}
+	url := strings.TrimSuffix(baseURL, "/") + "/companies"
 
-	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
+	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
+
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
 
 	client := s.sdkConfiguration.SecurityClient
 
@@ -184,7 +190,7 @@ func (s *configuration) SetConfiguration(ctx context.Context, request operations
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.SetConfigurationResponse{
+	res := &operations.ListCompaniesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -193,12 +199,12 @@ func (s *configuration) SetConfiguration(ctx context.Context, request operations
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Configuration
+			var out *shared.Companies
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.Configuration = out
+			res.Companies = out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

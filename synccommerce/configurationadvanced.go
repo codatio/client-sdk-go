@@ -14,20 +14,20 @@ import (
 	"net/http"
 )
 
-// sync - Initiate a sync of Sync for Commerce company data into their respective accounting software.
-type sync struct {
+// configurationAdvanced - Expressively configure preferences for any given Sync for Commerce company.
+type configurationAdvanced struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newSync(sdkConfig sdkConfiguration) *sync {
-	return &sync{
+func newConfigurationAdvanced(sdkConfig sdkConfiguration) *configurationAdvanced {
+	return &configurationAdvanced{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
-// RequestSync - Initiate new sync
-// Run a Commerce sync from the last successful sync up to the date provided (optional), otherwise UtcNow is used.\r\nIf there was no previously successful sync, the start date in the config is used.
-func (s *sync) RequestSync(ctx context.Context, request operations.RequestSyncRequest, opts ...operations.Option) (*operations.RequestSyncResponse, error) {
+// GetConfiguration - Get company configuration
+// Returns a company's commerce sync configuration'.
+func (s *configurationAdvanced) GetConfiguration(ctx context.Context, request operations.GetConfigurationRequest, opts ...operations.Option) (*operations.GetConfigurationResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -39,24 +39,17 @@ func (s *sync) RequestSync(ctx context.Context, request operations.RequestSyncRe
 		}
 	}
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/sync/commerce/latest", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/config/companies/{companyId}/sync/commerce", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "SyncToLatestArgs", "json")
-	if err != nil {
-		return nil, fmt.Errorf("error serializing request body: %w", err)
-	}
-
-	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
+	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
-
-	req.Header.Set("Content-Type", reqContentType)
 
 	client := s.sdkConfiguration.SecurityClient
 
@@ -100,7 +93,7 @@ func (s *sync) RequestSync(ctx context.Context, request operations.RequestSyncRe
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.RequestSyncResponse{
+	res := &operations.GetConfigurationResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -109,12 +102,12 @@ func (s *sync) RequestSync(ctx context.Context, request operations.RequestSyncRe
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.SyncSummary
+			var out *shared.Configuration
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.SyncSummary = out
+			res.Configuration = out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -123,9 +116,9 @@ func (s *sync) RequestSync(ctx context.Context, request operations.RequestSyncRe
 	return res, nil
 }
 
-// RequestSyncForDateRange - Initiate sync for specific range
-// Initiate a sync for the specified start date to the specified finish date in the request payload.
-func (s *sync) RequestSyncForDateRange(ctx context.Context, request operations.RequestSyncForDateRangeRequest, opts ...operations.Option) (*operations.RequestSyncForDateRangeResponse, error) {
+// SetConfiguration - Set configuration.
+// Sets a company's commerce sync configuration'.
+func (s *configurationAdvanced) SetConfiguration(ctx context.Context, request operations.SetConfigurationRequest, opts ...operations.Option) (*operations.SetConfigurationResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -137,24 +130,17 @@ func (s *sync) RequestSyncForDateRange(ctx context.Context, request operations.R
 		}
 	}
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	url, err := utils.GenerateURL(ctx, baseURL, "/meta/companies/{companyId}/sync/commerce/historic", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/config/companies/{companyId}/sync/commerce", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "SyncRange", "json")
-	if err != nil {
-		return nil, fmt.Errorf("error serializing request body: %w", err)
-	}
-
-	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
+	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
-
-	req.Header.Set("Content-Type", reqContentType)
 
 	client := s.sdkConfiguration.SecurityClient
 
@@ -198,7 +184,7 @@ func (s *sync) RequestSyncForDateRange(ctx context.Context, request operations.R
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.RequestSyncForDateRangeResponse{
+	res := &operations.SetConfigurationResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -207,12 +193,12 @@ func (s *sync) RequestSyncForDateRange(ctx context.Context, request operations.R
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.SyncSummary
+			var out *shared.Configuration
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.SyncSummary = out
+			res.Configuration = out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

@@ -1,4 +1,4 @@
-# Configuration
+# ConfigurationAdvanced
 
 ## Overview
 
@@ -6,12 +6,12 @@ Expressively configure preferences for any given Sync for Commerce company.
 
 ### Available Operations
 
-* [GetConfiguration](#getconfiguration) - Retrieve config preferences set for a company.
-* [SetConfiguration](#setconfiguration) - Create or update configuration.
+* [GetConfiguration](#getconfiguration) - Get company configuration
+* [SetConfiguration](#setconfiguration) - Set configuration.
 
 ## GetConfiguration
 
-Retrieve current config preferences.
+Returns a company's commerce sync configuration'.
 
 ### Example Usage
 
@@ -34,7 +34,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Configuration.GetConfiguration(ctx, operations.GetConfigurationRequest{
+    res, err := s.ConfigurationAdvanced.GetConfiguration(ctx, operations.GetConfigurationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -63,7 +63,7 @@ func main() {
 
 ## SetConfiguration
 
-Make changes to configuration preferences.
+Sets a company's commerce sync configuration'.
 
 ### Example Usage
 
@@ -86,7 +86,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Configuration.SetConfiguration(ctx, operations.SetConfigurationRequest{
+    res, err := s.ConfigurationAdvanced.SetConfiguration(ctx, operations.SetConfigurationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {

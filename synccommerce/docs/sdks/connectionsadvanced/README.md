@@ -1,4 +1,4 @@
-# CompanyManagement
+# ConnectionsAdvanced
 
 ## Overview
 
@@ -6,15 +6,14 @@ Create new and manage existing Sync for Commerce companies.
 
 ### Available Operations
 
-* [CreateCompany](#createcompany) - Create Sync for Commerce company
+* [CreateCompany](#createcompany) - Create company
 * [CreateConnection](#createconnection) - Create connection
-* [ListCompanies](#listcompanies) - List companies
-* [ListConnections](#listconnections) - List data connections
-* [UpdateConnection](#updateconnection) - Update data connection
+* [ListConnections](#listconnections) - List connections
+* [UpdateConnection](#updateconnection) - Update connection
 
 ## CreateCompany
 
-Creates a Codat company with a commerce partner data connection.
+Creates a Codat company..
 
 ### Example Usage
 
@@ -36,7 +35,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.CompanyManagement.CreateCompany(ctx, shared.CreateCompany{
+    res, err := s.ConnectionsAdvanced.CreateCompany(ctx, shared.CreateCompany{
         Name: "Bob's Burgers",
     })
     if err != nil {
@@ -65,7 +64,7 @@ func main() {
 
 ## CreateConnection
 
-Create a data connection for company.
+Creates a connection for the company by providing a valid platformKey.
 
 ### Example Usage
 
@@ -88,8 +87,8 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.CompanyManagement.CreateConnection(ctx, operations.CreateConnectionRequest{
-        RequestBody: codatsynccommerce.String("corrupti"),
+    res, err := s.ConnectionsAdvanced.CreateConnection(ctx, operations.CreateConnectionRequest{
+        RequestBody: codatsynccommerce.String("unde"),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -116,64 +115,9 @@ func main() {
 **[*operations.CreateConnectionResponse](../../models/operations/createconnectionresponse.md), error**
 
 
-## ListCompanies
-
-Retrieve a list of all companies the client has created.
-
-### Example Usage
-
-```go
-package main
-
-import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/synccommerce"
-	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/operations"
-)
-
-func main() {
-    s := codatsynccommerce.New(
-        codatsynccommerce.WithSecurity(shared.Security{
-            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
-        }),
-    )
-
-    ctx := context.Background()
-    res, err := s.CompanyManagement.ListCompanies(ctx, operations.ListCompaniesRequest{
-        OrderBy: codatsynccommerce.String("-modifiedDate"),
-        Page: codatsynccommerce.Int(1),
-        PageSize: codatsynccommerce.Int(100),
-        Query: codatsynccommerce.String("provident"),
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-
-    if res.Companies != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
-| `request`                                                                          | [operations.ListCompaniesRequest](../../models/operations/listcompaniesrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
-| `opts`                                                                             | [][operations.Option](../../models/operations/option.md)                           | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
-
-
-### Response
-
-**[*operations.ListCompaniesResponse](../../models/operations/listcompaniesresponse.md), error**
-
-
 ## ListConnections
 
-Retrieve previously created data connections.
+List the connections for a company.
 
 ### Example Usage
 
@@ -196,12 +140,12 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.CompanyManagement.ListConnections(ctx, operations.ListConnectionsRequest{
+    res, err := s.ConnectionsAdvanced.ListConnections(ctx, operations.ListConnectionsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         OrderBy: codatsynccommerce.String("-modifiedDate"),
         Page: codatsynccommerce.Int(1),
         PageSize: codatsynccommerce.Int(100),
-        Query: codatsynccommerce.String("distinctio"),
+        Query: codatsynccommerce.String("nulla"),
     })
     if err != nil {
         log.Fatal(err)
@@ -252,7 +196,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.CompanyManagement.UpdateConnection(ctx, operations.UpdateConnectionRequest{
+    res, err := s.ConnectionsAdvanced.UpdateConnection(ctx, operations.UpdateConnectionRequest{
         UpdateConnection: &shared.UpdateConnection{
             Status: codatsynccommerce.String("Linked"),
         },
