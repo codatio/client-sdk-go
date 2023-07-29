@@ -27,70 +27,14 @@ func (o *DownloadFilesRequest) GetDate() *string {
 	return o.Date
 }
 
-// DownloadFiles404ApplicationJSON - One or more of the resources you referenced could not be found.
-// This might be because your company or data connection id is wrong, or was already deleted.
-type DownloadFiles404ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
-}
-
-func (o *DownloadFiles404ApplicationJSON) GetCanBeRetried() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CanBeRetried
-}
-
-func (o *DownloadFiles404ApplicationJSON) GetCorrelationID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CorrelationID
-}
-
-func (o *DownloadFiles404ApplicationJSON) GetDetailedErrorCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.DetailedErrorCode
-}
-
-func (o *DownloadFiles404ApplicationJSON) GetError() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Error
-}
-
-func (o *DownloadFiles404ApplicationJSON) GetService() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Service
-}
-
-func (o *DownloadFiles404ApplicationJSON) GetStatusCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.StatusCode
-}
-
 type DownloadFilesResponse struct {
 	ContentType string
 	// Success
-	Data        []byte
-	StatusCode  int
-	RawResponse *http.Response
-	// One or more of the resources you referenced could not be found.
-	// This might be because your company or data connection id is wrong, or was already deleted.
-	DownloadFiles404ApplicationJSONObject *DownloadFiles404ApplicationJSON
+	Data []byte
 	// The request made is not valid.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 }
 
 func (o *DownloadFilesResponse) GetContentType() string {
@@ -107,6 +51,13 @@ func (o *DownloadFilesResponse) GetData() []byte {
 	return o.Data
 }
 
+func (o *DownloadFilesResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
 func (o *DownloadFilesResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
@@ -119,18 +70,4 @@ func (o *DownloadFilesResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *DownloadFilesResponse) GetDownloadFiles404ApplicationJSONObject() *DownloadFiles404ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.DownloadFiles404ApplicationJSONObject
-}
-
-func (o *DownloadFilesResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

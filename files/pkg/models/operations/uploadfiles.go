@@ -53,68 +53,12 @@ func (o *UploadFilesRequest) GetConnectionID() string {
 	return o.ConnectionID
 }
 
-// UploadFiles404ApplicationJSON - One or more of the resources you referenced could not be found.
-// This might be because your company or data connection id is wrong, or was already deleted.
-type UploadFiles404ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
-}
-
-func (o *UploadFiles404ApplicationJSON) GetCanBeRetried() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CanBeRetried
-}
-
-func (o *UploadFiles404ApplicationJSON) GetCorrelationID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CorrelationID
-}
-
-func (o *UploadFiles404ApplicationJSON) GetDetailedErrorCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.DetailedErrorCode
-}
-
-func (o *UploadFiles404ApplicationJSON) GetError() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Error
-}
-
-func (o *UploadFiles404ApplicationJSON) GetService() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Service
-}
-
-func (o *UploadFiles404ApplicationJSON) GetStatusCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.StatusCode
-}
-
 type UploadFilesResponse struct {
 	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
 	// The request made is not valid.
-	Schema *shared.Schema
-	// One or more of the resources you referenced could not be found.
-	// This might be because your company or data connection id is wrong, or was already deleted.
-	UploadFiles404ApplicationJSONObject *UploadFiles404ApplicationJSON
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 }
 
 func (o *UploadFilesResponse) GetContentType() string {
@@ -122,6 +66,13 @@ func (o *UploadFilesResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *UploadFilesResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *UploadFilesResponse) GetStatusCode() int {
@@ -136,18 +87,4 @@ func (o *UploadFilesResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *UploadFilesResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
-}
-
-func (o *UploadFilesResponse) GetUploadFiles404ApplicationJSONObject() *UploadFiles404ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.UploadFiles404ApplicationJSONObject
 }

@@ -18,70 +18,14 @@ func (o *ListFilesRequest) GetCompanyID() string {
 	return o.CompanyID
 }
 
-// ListFiles404ApplicationJSON - One or more of the resources you referenced could not be found.
-// This might be because your company or data connection id is wrong, or was already deleted.
-type ListFiles404ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
-}
-
-func (o *ListFiles404ApplicationJSON) GetCanBeRetried() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CanBeRetried
-}
-
-func (o *ListFiles404ApplicationJSON) GetCorrelationID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CorrelationID
-}
-
-func (o *ListFiles404ApplicationJSON) GetDetailedErrorCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.DetailedErrorCode
-}
-
-func (o *ListFiles404ApplicationJSON) GetError() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Error
-}
-
-func (o *ListFiles404ApplicationJSON) GetService() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Service
-}
-
-func (o *ListFiles404ApplicationJSON) GetStatusCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.StatusCode
-}
-
 type ListFilesResponse struct {
 	ContentType string
+	// Your API request was not properly authorized.
+	ErrorMessage *shared.ErrorMessage
 	// Success
 	Files       []shared.File
 	StatusCode  int
 	RawResponse *http.Response
-	// One or more of the resources you referenced could not be found.
-	// This might be because your company or data connection id is wrong, or was already deleted.
-	ListFiles404ApplicationJSONObject *ListFiles404ApplicationJSON
-	// Your API request was not properly authorized.
-	Schema *shared.Schema
 }
 
 func (o *ListFilesResponse) GetContentType() string {
@@ -89,6 +33,13 @@ func (o *ListFilesResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *ListFilesResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *ListFilesResponse) GetFiles() []shared.File {
@@ -110,18 +61,4 @@ func (o *ListFilesResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *ListFilesResponse) GetListFiles404ApplicationJSONObject() *ListFiles404ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ListFiles404ApplicationJSONObject
-}
-
-func (o *ListFilesResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }
