@@ -49,10 +49,10 @@ type GetEnhancedCashFlowTransactionsResponse struct {
 	ContentType string
 	// OK
 	EnhancedCashFlowTransactions *shared.EnhancedCashFlowTransactions
-	StatusCode                   int
-	RawResponse                  *http.Response
 	// Your API request was not properly authorized.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 }
 
 func (o *GetEnhancedCashFlowTransactionsResponse) GetContentType() string {
@@ -69,6 +69,13 @@ func (o *GetEnhancedCashFlowTransactionsResponse) GetEnhancedCashFlowTransaction
 	return o.EnhancedCashFlowTransactions
 }
 
+func (o *GetEnhancedCashFlowTransactionsResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
 func (o *GetEnhancedCashFlowTransactionsResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
@@ -81,11 +88,4 @@ func (o *GetEnhancedCashFlowTransactionsResponse) GetRawResponse() *http.Respons
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *GetEnhancedCashFlowTransactionsResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

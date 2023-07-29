@@ -22,19 +22,19 @@ func (o *GetDataIntegrityStatusRequest) GetCompanyID() string {
 
 func (o *GetDataIntegrityStatusRequest) GetDataType() shared.DataIntegrityDataType {
 	if o == nil {
-		return DataIntegrityDataType("")
+		return shared.DataIntegrityDataType("")
 	}
 	return o.DataType
 }
 
 type GetDataIntegrityStatusResponse struct {
 	ContentType string
+	// Your API request was not properly authorized.
+	ErrorMessage *shared.ErrorMessage
 	// OK
 	Status      *shared.Status
 	StatusCode  int
 	RawResponse *http.Response
-	// Your API request was not properly authorized.
-	Schema *shared.Schema
 }
 
 func (o *GetDataIntegrityStatusResponse) GetContentType() string {
@@ -42,6 +42,13 @@ func (o *GetDataIntegrityStatusResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *GetDataIntegrityStatusResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *GetDataIntegrityStatusResponse) GetStatus() *shared.Status {
@@ -63,11 +70,4 @@ func (o *GetDataIntegrityStatusResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *GetDataIntegrityStatusResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

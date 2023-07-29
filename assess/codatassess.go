@@ -60,9 +60,9 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 }
 
 // CodatAssess - Assess API: Codat's financial insights API
-// Codat's Assess API enable you to make smarter credit decisions on your small business customers. Assess enriches your customer's accounting, commerce and banking data to surface actionable insights you didn't have before.
+// Check that you have enabled the [data types required by Assess](https://docs.codat.io/assess/get-started#prerequisites) for all of its features to work.
 //
-// [Read more...](https://www.codat.io/assess/)
+// [Read more...](https://www.docs.codat.io/assess/)
 //
 // [See our OpenAPI spec](https://github.com/codatio/oas)
 type CodatAssess struct {
@@ -127,8 +127,8 @@ func New(opts ...SDKOption) *CodatAssess {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0",
-			SDKVersion:        "0.26.0",
-			GenVersion:        "2.70.0",
+			SDKVersion:        "0.27.0",
+			GenVersion:        "2.75.1",
 		},
 	}
 	for _, opt := range opts {

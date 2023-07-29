@@ -28,12 +28,12 @@ func (o *GetRecurringRevenueMetricsRequest) GetConnectionID() string {
 
 type GetRecurringRevenueMetricsResponse struct {
 	ContentType string
+	// Your API request was not properly authorized.
+	ErrorMessage *shared.ErrorMessage
 	// OK
 	Report      *shared.Report
 	StatusCode  int
 	RawResponse *http.Response
-	// Your API request was not properly authorized.
-	Schema *shared.Schema
 }
 
 func (o *GetRecurringRevenueMetricsResponse) GetContentType() string {
@@ -41,6 +41,13 @@ func (o *GetRecurringRevenueMetricsResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *GetRecurringRevenueMetricsResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *GetRecurringRevenueMetricsResponse) GetReport() *shared.Report {
@@ -62,11 +69,4 @@ func (o *GetRecurringRevenueMetricsResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *GetRecurringRevenueMetricsResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

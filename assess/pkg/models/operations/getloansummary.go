@@ -20,12 +20,12 @@ func (o *GetLoanSummaryRequest) GetCompanyID() string {
 
 type GetLoanSummaryResponse struct {
 	ContentType string
+	// Your API request was not properly authorized.
+	ErrorMessage *shared.ErrorMessage
 	// OK
 	LoanSummary *shared.LoanSummary
 	StatusCode  int
 	RawResponse *http.Response
-	// Your API request was not properly authorized.
-	Schema *shared.Schema
 }
 
 func (o *GetLoanSummaryResponse) GetContentType() string {
@@ -33,6 +33,13 @@ func (o *GetLoanSummaryResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *GetLoanSummaryResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *GetLoanSummaryResponse) GetLoanSummary() *shared.LoanSummary {
@@ -54,11 +61,4 @@ func (o *GetLoanSummaryResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *GetLoanSummaryResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

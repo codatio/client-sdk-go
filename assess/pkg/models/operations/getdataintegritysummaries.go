@@ -24,7 +24,7 @@ func (o *GetDataIntegritySummariesRequest) GetCompanyID() string {
 
 func (o *GetDataIntegritySummariesRequest) GetDataType() shared.DataIntegrityDataType {
 	if o == nil {
-		return DataIntegrityDataType("")
+		return shared.DataIntegrityDataType("")
 	}
 	return o.DataType
 }
@@ -38,12 +38,12 @@ func (o *GetDataIntegritySummariesRequest) GetQuery() *string {
 
 type GetDataIntegritySummariesResponse struct {
 	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
+	// Your API request was not properly authorized.
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 	// OK
 	Summaries *shared.Summaries
-	// Your API request was not properly authorized.
-	Schema *shared.Schema
 }
 
 func (o *GetDataIntegritySummariesResponse) GetContentType() string {
@@ -51,6 +51,13 @@ func (o *GetDataIntegritySummariesResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *GetDataIntegritySummariesResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *GetDataIntegritySummariesResponse) GetStatusCode() int {
@@ -72,11 +79,4 @@ func (o *GetDataIntegritySummariesResponse) GetSummaries() *shared.Summaries {
 		return nil
 	}
 	return o.Summaries
-}
-
-func (o *GetDataIntegritySummariesResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

@@ -22,19 +22,19 @@ func (o *GetExcelReportGenerationStatusRequest) GetCompanyID() string {
 
 func (o *GetExcelReportGenerationStatusRequest) GetReportType() shared.ExcelReportType {
 	if o == nil {
-		return ExcelReportType("")
+		return shared.ExcelReportType("")
 	}
 	return o.ReportType
 }
 
 type GetExcelReportGenerationStatusResponse struct {
 	ContentType string
+	// Your API request was not properly authorized.
+	ErrorMessage *shared.ErrorMessage
 	// OK
 	ExcelStatus *shared.ExcelStatus
 	StatusCode  int
 	RawResponse *http.Response
-	// Your API request was not properly authorized.
-	Schema *shared.Schema
 }
 
 func (o *GetExcelReportGenerationStatusResponse) GetContentType() string {
@@ -42,6 +42,13 @@ func (o *GetExcelReportGenerationStatusResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *GetExcelReportGenerationStatusResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *GetExcelReportGenerationStatusResponse) GetExcelStatus() *shared.ExcelStatus {
@@ -63,11 +70,4 @@ func (o *GetExcelReportGenerationStatusResponse) GetRawResponse() *http.Response
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *GetExcelReportGenerationStatusResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

@@ -37,7 +37,6 @@ pkg/models/operations/getloansummary.go
 pkg/models/operations/getrecurringrevenuemetrics.go
 pkg/models/operations/listloantransactions.go
 pkg/models/operations/requestrecurringrevenuemetrics.go
-pkg/models/shared/schema.go
 pkg/models/shared/status.go
 pkg/models/shared/dataintegritystatus.go
 pkg/models/shared/dataintegritystatusinfo.go
@@ -45,6 +44,7 @@ pkg/models/shared/integritystatus.go
 pkg/models/shared/dataintegritydates.go
 pkg/models/shared/dataintegrityconnectionid.go
 pkg/models/shared/dataintegrityamounts.go
+pkg/models/shared/errormessage.go
 pkg/models/shared/dataintegritydatatype.go
 pkg/models/shared/summaries.go
 pkg/models/shared/dataintegritysummary.go
@@ -73,6 +73,7 @@ pkg/models/shared/enhancedcashflowitem.go
 pkg/models/shared/enhancedcashflowtransaction.go
 pkg/models/shared/transactioncategory.go
 pkg/models/shared/sourceref.go
+pkg/models/shared/accountref.go
 pkg/models/shared/reportinfo.go
 pkg/models/shared/datasource.go
 pkg/models/shared/accounts.go
@@ -142,7 +143,6 @@ docs/models/operations/listloantransactionsrequest.md
 docs/models/operations/listloantransactionsresponse.md
 docs/models/operations/requestrecurringrevenuemetricsrequest.md
 docs/models/operations/requestrecurringrevenuemetricsresponse.md
-docs/models/shared/schema.md
 docs/models/shared/status.md
 docs/models/shared/dataintegritystatus.md
 docs/models/shared/dataintegritystatusinfo.md
@@ -150,6 +150,7 @@ docs/models/shared/integritystatus.md
 docs/models/shared/dataintegritydates.md
 docs/models/shared/dataintegrityconnectionid.md
 docs/models/shared/dataintegrityamounts.md
+docs/models/shared/errormessage.md
 docs/models/shared/dataintegritydatatype.md
 docs/models/shared/summaries.md
 docs/models/shared/dataintegritysummary.md
@@ -180,6 +181,7 @@ docs/models/shared/enhancedcashflowitem.md
 docs/models/shared/enhancedcashflowtransaction.md
 docs/models/shared/transactioncategory.md
 docs/models/shared/sourceref.md
+docs/models/shared/accountref.md
 docs/models/shared/reportinfo.md
 docs/models/shared/datasource.md
 docs/models/shared/accounts.md

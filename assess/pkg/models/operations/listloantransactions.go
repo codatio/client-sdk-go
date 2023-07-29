@@ -62,12 +62,12 @@ func (o *ListLoanTransactionsRequest) GetSourceType() ListLoanTransactionsSource
 
 type ListLoanTransactionsResponse struct {
 	ContentType string
+	// Your API request was not properly authorized.
+	ErrorMessage *shared.ErrorMessage
 	// OK
 	LoanTransactions *shared.LoanTransactions
 	StatusCode       int
 	RawResponse      *http.Response
-	// Your API request was not properly authorized.
-	Schema *shared.Schema
 }
 
 func (o *ListLoanTransactionsResponse) GetContentType() string {
@@ -75,6 +75,13 @@ func (o *ListLoanTransactionsResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *ListLoanTransactionsResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *ListLoanTransactionsResponse) GetLoanTransactions() *shared.LoanTransactions {
@@ -96,11 +103,4 @@ func (o *ListLoanTransactionsResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *ListLoanTransactionsResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

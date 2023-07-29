@@ -59,7 +59,7 @@ func (o *GetCommerceCustomerRetentionMetricsRequest) GetPeriodLength() int64 {
 
 func (o *GetCommerceCustomerRetentionMetricsRequest) GetPeriodUnit() shared.PeriodUnit {
 	if o == nil {
-		return PeriodUnit("")
+		return shared.PeriodUnit("")
 	}
 	return o.PeriodUnit
 }
@@ -73,12 +73,12 @@ func (o *GetCommerceCustomerRetentionMetricsRequest) GetReportDate() string {
 
 type GetCommerceCustomerRetentionMetricsResponse struct {
 	ContentType string
+	// Your API request was not properly authorized.
+	ErrorMessage *shared.ErrorMessage
 	// OK
 	Report      *shared.Report
 	StatusCode  int
 	RawResponse *http.Response
-	// Your API request was not properly authorized.
-	Schema *shared.Schema
 }
 
 func (o *GetCommerceCustomerRetentionMetricsResponse) GetContentType() string {
@@ -86,6 +86,13 @@ func (o *GetCommerceCustomerRetentionMetricsResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *GetCommerceCustomerRetentionMetricsResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *GetCommerceCustomerRetentionMetricsResponse) GetReport() *shared.Report {
@@ -107,11 +114,4 @@ func (o *GetCommerceCustomerRetentionMetricsResponse) GetRawResponse() *http.Res
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *GetCommerceCustomerRetentionMetricsResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

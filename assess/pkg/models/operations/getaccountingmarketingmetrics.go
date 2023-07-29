@@ -61,7 +61,7 @@ func (o *GetAccountingMarketingMetricsRequest) GetPeriodLength() int64 {
 
 func (o *GetAccountingMarketingMetricsRequest) GetPeriodUnit() shared.PeriodUnit {
 	if o == nil {
-		return PeriodUnit("")
+		return shared.PeriodUnit("")
 	}
 	return o.PeriodUnit
 }
@@ -82,12 +82,12 @@ func (o *GetAccountingMarketingMetricsRequest) GetShowInputValues() *bool {
 
 type GetAccountingMarketingMetricsResponse struct {
 	ContentType string
+	// Your API request was not properly authorized.
+	ErrorMessage *shared.ErrorMessage
 	// OK
 	Report      *shared.Report
 	StatusCode  int
 	RawResponse *http.Response
-	// Your API request was not properly authorized.
-	Schema *shared.Schema
 }
 
 func (o *GetAccountingMarketingMetricsResponse) GetContentType() string {
@@ -95,6 +95,13 @@ func (o *GetAccountingMarketingMetricsResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *GetAccountingMarketingMetricsResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *GetAccountingMarketingMetricsResponse) GetReport() *shared.Report {
@@ -116,11 +123,4 @@ func (o *GetAccountingMarketingMetricsResponse) GetRawResponse() *http.Response 
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *GetAccountingMarketingMetricsResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

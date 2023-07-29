@@ -40,10 +40,10 @@ type GetAccountsForEnhancedProfitAndLossResponse struct {
 	ContentType string
 	// OK
 	EnhancedReport *shared.EnhancedReport
-	StatusCode     int
-	RawResponse    *http.Response
 	// Your API request was not properly authorized.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 }
 
 func (o *GetAccountsForEnhancedProfitAndLossResponse) GetContentType() string {
@@ -60,6 +60,13 @@ func (o *GetAccountsForEnhancedProfitAndLossResponse) GetEnhancedReport() *share
 	return o.EnhancedReport
 }
 
+func (o *GetAccountsForEnhancedProfitAndLossResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
 func (o *GetAccountsForEnhancedProfitAndLossResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
@@ -72,11 +79,4 @@ func (o *GetAccountsForEnhancedProfitAndLossResponse) GetRawResponse() *http.Res
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *GetAccountsForEnhancedProfitAndLossResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }
