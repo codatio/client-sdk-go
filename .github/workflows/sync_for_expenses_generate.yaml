@@ -13,7 +13,7 @@ jobs:
     uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-generation.yaml@v14
     with:
       speakeasy_version: latest
-      openapi_doc_location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Expenses.yaml
+      openapi_doc_location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Sync-Expenses.yaml
       languages:
       - go: ./sync-for-expenses
       create_release: true
