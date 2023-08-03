@@ -210,7 +210,7 @@ type CreateBillPaymentResponse struct {
 	Status           PushOperationStatus `json:"status"`
 	StatusCode       int64               `json:"statusCode"`
 	TimeoutInMinutes *int                `json:"timeoutInMinutes,omitempty"`
-	// Deprecated: this field will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	TimeoutInSeconds *int `json:"timeoutInSeconds,omitempty"`
 	// A human-readable object describing validation decisions Codat has made when pushing data into the platform. If a push has failed because of validation errors, they will be detailed here.
 	Validation *Validation `json:"validation,omitempty"`

@@ -10,6 +10,7 @@ Transfers
 * [Get](#get) - Get transfer
 * [GetCreateModel](#getcreatemodel) - Get create transfer model
 * [List](#list) - List transfers
+* [UploadAttachment](#uploadattachment) - Push invoice attachment
 
 ## Create
 
@@ -335,4 +336,71 @@ func main() {
 ### Response
 
 **[*operations.ListTransfersResponse](../../models/operations/listtransfersresponse.md), error**
+
+
+## UploadAttachment
+
+The *Upload transfer attachment* endpoint uploads an attachment and assigns it against a specific `transferId`.
+
+[Transfers](https://docs.codat.io/accounting-api#/schemas/Transfer) are issued by a supplier for the purpose of recording transfer.
+
+**Integration-specific behaviour**
+
+For more details on supported file types by integration see [Attachments](https://docs.codat.io/accounting-api#/schemas/Attachment).
+
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=transfers) for integrations that support uploading a transfer attachment.
+
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"log"
+	"github.com/codatio/client-sdk-go/accounting"
+	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
+)
+
+func main() {
+    s := codataccounting.New(
+        codataccounting.WithSecurity(shared.Security{
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
+        }),
+    )
+
+    ctx := context.Background()
+    res, err := s.Transfers.UploadAttachment(ctx, operations.UploadTransferAttachmentRequest{
+        RequestBody: &operations.UploadTransferAttachmentRequestBody{
+            Content: []byte("eveniet"),
+            RequestBody: "expedita",
+        },
+        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+        ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
+        TransferID: "consequatur",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.StatusCode == http.StatusOK {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
+| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                                    | :heavy_check_mark:                                                                                       | The context to use for the request.                                                                      |
+| `request`                                                                                                | [operations.UploadTransferAttachmentRequest](../../models/operations/uploadtransferattachmentrequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
+| `opts`                                                                                                   | [][operations.Option](../../models/operations/option.md)                                                 | :heavy_minus_sign:                                                                                       | The options for this request.                                                                            |
+
+
+### Response
+
+**[*operations.UploadTransferAttachmentResponse](../../models/operations/uploadtransferattachmentresponse.md), error**
 

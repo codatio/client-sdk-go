@@ -165,6 +165,7 @@ pkg/models/operations/createtransfer.go
 pkg/models/operations/gettransfer.go
 pkg/models/operations/getcreatetransfersmodel.go
 pkg/models/operations/listtransfers.go
+pkg/models/operations/uploadtransferattachment.go
 pkg/models/shared/errormessage.go
 pkg/models/shared/accounttransaction.go
 pkg/models/shared/metadata.go
@@ -633,6 +634,9 @@ docs/models/operations/getcreatetransfersmodelrequest.md
 docs/models/operations/getcreatetransfersmodelresponse.md
 docs/models/operations/listtransfersrequest.md
 docs/models/operations/listtransfersresponse.md
+docs/models/operations/uploadtransferattachmentrequestbody.md
+docs/models/operations/uploadtransferattachmentrequest.md
+docs/models/operations/uploadtransferattachmentresponse.md
 docs/models/shared/errormessage.md
 docs/models/shared/accounttransactionstatus.md
 docs/models/shared/accounttransaction.md

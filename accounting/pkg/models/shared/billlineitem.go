@@ -37,7 +37,7 @@ type BillLineItem struct {
 	Tracking *Propertiestracking `json:"tracking,omitempty"`
 	// Collection of categories against which this item is tracked.
 	//
-	// Deprecated: this field will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	TrackingCategoryRefs []TrackingCategoryRef `json:"trackingCategoryRefs,omitempty"`
 	// Price of each unit of goods or services.
 	UnitAmount float64 `json:"unitAmount"`
