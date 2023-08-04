@@ -54,7 +54,7 @@ pkg/models/shared/accountbalance.go
 pkg/models/shared/customer.go
 pkg/models/shared/customers.go
 pkg/models/shared/links.go
-pkg/models/shared/href.go
+pkg/models/shared/halref.go
 pkg/models/shared/dispute.go
 pkg/models/shared/disputestatus.go
 pkg/models/shared/transactionsourceref.go
@@ -165,7 +165,7 @@ docs/models/shared/accountbalance.md
 docs/models/shared/customer.md
 docs/models/shared/customers.md
 docs/models/shared/links.md
-docs/models/shared/href.md
+docs/models/shared/halref.md
 docs/models/shared/dispute.md
 docs/models/shared/disputestatus.md
 docs/models/shared/transactionsourceref.md

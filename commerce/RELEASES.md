@@ -327,3 +327,11 @@ Based on:
 - Speakeasy CLI 1.65.2 (2.75.1) https://github.com/speakeasy-api/speakeasy
 ### Releases
 - [Go v0.25.0] https://github.com/codatio/client-sdk-go/releases/tag/commerce/v0.25.0 - commerce
+
+## 2023-08-04 00:19:27
+### Changes
+Based on:
+- OpenAPI Doc 3.0.0 https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Commerce.yaml
+- Speakeasy CLI 1.68.3 (2.81.1) https://github.com/speakeasy-api/speakeasy
+### Releases
+- [Go v1.0.0] https://github.com/codatio/client-sdk-go/releases/tag/commerce/v1.0.0 - commerce
