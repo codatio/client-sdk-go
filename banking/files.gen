@@ -31,7 +31,7 @@ pkg/models/shared/accountbalances.go
 pkg/models/shared/accountbalance.go
 pkg/models/shared/accountbalanceamounts.go
 pkg/models/shared/links.go
-pkg/models/shared/href.go
+pkg/models/shared/halref.go
 pkg/models/shared/account.go
 pkg/models/shared/accounttype.go
 pkg/models/shared/accountinstitution.go
@@ -74,7 +74,7 @@ docs/models/shared/accountbalances.md
 docs/models/shared/accountbalance.md
 docs/models/shared/accountbalanceamounts.md
 docs/models/shared/links.md
-docs/models/shared/href.md
+docs/models/shared/halref.md
 docs/models/shared/account.md
 docs/models/shared/accounttype.md
 docs/models/shared/accountinstitution.md

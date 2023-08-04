@@ -3,36 +3,36 @@
 package shared
 
 type Links struct {
-	Current  HRef  `json:"current"`
-	Next     *HRef `json:"next,omitempty"`
-	Previous *HRef `json:"previous,omitempty"`
-	Self     HRef  `json:"self"`
+	Current  HalRef  `json:"current"`
+	Next     *HalRef `json:"next,omitempty"`
+	Previous *HalRef `json:"previous,omitempty"`
+	Self     HalRef  `json:"self"`
 }
 
-func (o *Links) GetCurrent() HRef {
+func (o *Links) GetCurrent() HalRef {
 	if o == nil {
-		return HRef{}
+		return HalRef{}
 	}
 	return o.Current
 }
 
-func (o *Links) GetNext() *HRef {
+func (o *Links) GetNext() *HalRef {
 	if o == nil {
 		return nil
 	}
 	return o.Next
 }
 
-func (o *Links) GetPrevious() *HRef {
+func (o *Links) GetPrevious() *HalRef {
 	if o == nil {
 		return nil
 	}
 	return o.Previous
 }
 
-func (o *Links) GetSelf() HRef {
+func (o *Links) GetSelf() HalRef {
 	if o == nil {
-		return HRef{}
+		return HalRef{}
 	}
 	return o.Self
 }

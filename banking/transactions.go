@@ -246,7 +246,7 @@ func (s *transactions) List(ctx context.Context, request operations.ListTransact
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
 //
-// Deprecated: this method will be removed in a future release, please migrate away from it as soon as possible. Use List instead.
+// Deprecated method: This will be removed in a future release, please migrate away from it as soon as possible. Use List instead.
 func (s *transactions) ListBankTransactions(ctx context.Context, request operations.ListBankTransactionsRequest, opts ...operations.Option) (*operations.ListBankTransactionsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
