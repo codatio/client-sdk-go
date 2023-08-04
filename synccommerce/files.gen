@@ -4,7 +4,6 @@ connectionsadvanced.go
 integrations.go
 sync.go
 syncflowpreferences.go
-syncstatus.go
 codatsynccommerce.go
 go.mod
 go.sum
@@ -31,13 +30,13 @@ pkg/models/operations/listconnections.go
 pkg/models/operations/updateconnection.go
 pkg/models/operations/getintegrationbranding.go
 pkg/models/operations/listintegrations.go
+pkg/models/operations/getsyncstatus.go
 pkg/models/operations/requestsync.go
 pkg/models/operations/requestsyncfordaterange.go
 pkg/models/operations/getconfigtextsyncflow.go
 pkg/models/operations/getvisibleaccounts.go
 pkg/models/operations/updateconfigtextsyncflow.go
 pkg/models/operations/updatevisibleaccountssyncflow.go
-pkg/models/operations/getsyncstatus.go
 pkg/models/shared/configuration.go
 pkg/models/shared/sales.go
 pkg/models/shared/taxrateamount.go
@@ -95,7 +94,6 @@ docs/sdks/connectionsadvanced/README.md
 docs/sdks/integrations/README.md
 docs/sdks/sync/README.md
 docs/sdks/syncflowpreferences/README.md
-docs/sdks/syncstatus/README.md
 USAGE.md
 docs/models/operations/getconfigurationrequest.md
 docs/models/operations/getconfigurationresponse.md
@@ -116,6 +114,8 @@ docs/models/operations/getintegrationbrandingrequest.md
 docs/models/operations/getintegrationbrandingresponse.md
 docs/models/operations/listintegrationsrequest.md
 docs/models/operations/listintegrationsresponse.md
+docs/models/operations/getsyncstatusrequest.md
+docs/models/operations/getsyncstatusresponse.md
 docs/models/operations/requestsyncrequest.md
 docs/models/operations/requestsyncresponse.md
 docs/models/operations/requestsyncfordaterangerequest.md
@@ -126,8 +126,6 @@ docs/models/operations/getvisibleaccountsresponse.md
 docs/models/operations/updateconfigtextsyncflowresponse.md
 docs/models/operations/updatevisibleaccountssyncflowrequest.md
 docs/models/operations/updatevisibleaccountssyncflowresponse.md
-docs/models/operations/getsyncstatusrequest.md
-docs/models/operations/getsyncstatusresponse.md
 docs/models/shared/configuration.md
 docs/models/shared/sales.md
 docs/models/shared/taxrateamount.md
