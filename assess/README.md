@@ -34,15 +34,19 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.DataIntegrity.GetDataIntegrityStatus(ctx, operations.GetDataIntegrityStatusRequest{
+    res, err := s.DataIntegrity.Details(ctx, operations.ListDataTypeDataIntegrityDetailsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         DataType: shared.DataIntegrityDataTypeBankingAccounts,
+        OrderBy: codatassess.String("-modifiedDate"),
+        Page: codatassess.Int(1),
+        PageSize: codatassess.Int(100),
+        Query: codatassess.String("corrupti"),
     })
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.Status != nil {
+    if res.Details != nil {
         // handle response
     }
 }
@@ -55,9 +59,9 @@ func main() {
 
 ### [DataIntegrity](docs/sdks/dataintegrity/README.md)
 
-* [GetDataIntegrityStatus](docs/sdks/dataintegrity/README.md#getdataintegritystatus) - Get data integrity status
-* [GetDataIntegritySummaries](docs/sdks/dataintegrity/README.md#getdataintegritysummaries) - Get data integrity summary
-* [ListDataTypeDataIntegrityDetails](docs/sdks/dataintegrity/README.md#listdatatypedataintegritydetails) - List data type data integrity
+* [Details](docs/sdks/dataintegrity/README.md#details) - List data type data integrity
+* [Status](docs/sdks/dataintegrity/README.md#status) - Get data integrity status
+* [Summary](docs/sdks/dataintegrity/README.md#summary) - Get data integrity summary
 
 ### [ExcelReports](docs/sdks/excelreports/README.md)
 

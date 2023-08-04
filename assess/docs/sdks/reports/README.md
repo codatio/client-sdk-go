@@ -49,7 +49,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Reports.GetAccountsForEnhancedBalanceSheet(ctx, operations.GetAccountsForEnhancedBalanceSheetRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        NumberOfPeriods: codatassess.Int64(423655),
+        NumberOfPeriods: codatassess.Int64(623564),
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -105,7 +105,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Reports.GetAccountsForEnhancedProfitAndLoss(ctx, operations.GetAccountsForEnhancedProfitAndLossRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        NumberOfPeriods: codatassess.Int64(623564),
+        NumberOfPeriods: codatassess.Int64(645894),
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -161,8 +161,8 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         IncludeDisplayNames: codatassess.Bool(false),
-        NumberOfPeriods: 645894,
-        PeriodLength: 384382,
+        NumberOfPeriods: 384382,
+        PeriodLength: 437587,
         PeriodUnit: shared.PeriodUnitWeek,
         ReportDate: "29-09-2020",
     })
@@ -219,9 +219,9 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         IncludeDisplayNames: codatassess.Bool(false),
-        NumberOfPeriods: 297534,
-        PeriodLength: 891773,
-        PeriodUnit: shared.PeriodUnitDay,
+        NumberOfPeriods: 891773,
+        PeriodLength: 56713,
+        PeriodUnit: shared.PeriodUnitYear,
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -277,8 +277,8 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         IncludeDisplayNames: codatassess.Bool(false),
-        NumberOfPeriods: 963663,
-        PeriodLength: 272656,
+        NumberOfPeriods: 272656,
+        PeriodLength: 383441,
         PeriodUnit: shared.PeriodUnitWeek,
         ReportDate: "29-09-2020",
     })
@@ -335,9 +335,9 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         IncludeDisplayNames: codatassess.Bool(false),
-        NumberOfPeriods: 477665,
-        PeriodLength: 791725,
-        PeriodUnit: shared.PeriodUnitYear,
+        NumberOfPeriods: 791725,
+        PeriodLength: 812169,
+        PeriodUnit: shared.PeriodUnitMonth,
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -393,9 +393,9 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         IncludeDisplayNames: codatassess.Bool(false),
-        NumberOfPeriods: 528895,
-        PeriodLength: 479977,
-        PeriodUnit: shared.PeriodUnitMonth,
+        NumberOfPeriods: 479977,
+        PeriodLength: 568045,
+        PeriodUnit: shared.PeriodUnitWeek,
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -455,7 +455,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         Page: codatassess.Int(1),
         PageSize: codatassess.Int(100),
-        Query: codatassess.String("nisi"),
+        Query: codatassess.String("recusandae"),
     })
     if err != nil {
         log.Fatal(err)
@@ -510,7 +510,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         Page: codatassess.Int(1),
         PageSize: codatassess.Int(100),
-        Query: codatassess.String("recusandae"),
+        Query: codatassess.String("temporibus"),
     })
     if err != nil {
         log.Fatal(err)
@@ -668,7 +668,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Reports.ListLoanTransactions(ctx, operations.ListLoanTransactionsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        SourceType: operations.ListLoanTransactionsSourceTypeAccounting,
+        SourceType: operations.ListLoanTransactionsSourceTypeBanking,
     })
     if err != nil {
         log.Fatal(err)
