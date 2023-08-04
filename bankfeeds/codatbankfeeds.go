@@ -61,7 +61,7 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 
 // CodatBankFeeds - Bank Feeds API: Bank Feeds API enables your SMB users to set up bank feeds from accounts in your application to supported accounting platforms.
 //
-// A bank feed is a connection between a source bank account—in your application—and a target bank account in a supported accounting package.
+// A bank feed is a connection between a source bank account�in your application and a target bank account in a supported accounting package.
 //
 // [Read more...](https://docs.codat.io/bank-feeds-api/overview)
 //
@@ -77,6 +77,10 @@ type CodatBankFeeds struct {
 	Companies *companies
 	// Connections - Manage your companies' data connections.
 	Connections *connections
+	// PushData - View push options and get push statuses.
+	PushData *pushData
+	// RefreshData - Asynchronously retrieve data from an integration to refresh data in Codat.
+	RefreshData *refreshData
 
 	sdkConfiguration sdkConfiguration
 }
@@ -131,9 +135,9 @@ func New(opts ...SDKOption) *CodatBankFeeds {
 	sdk := &CodatBankFeeds{
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
-			OpenAPIDocVersion: "2.1.0",
-			SDKVersion:        "0.29.0",
-			GenVersion:        "2.75.1",
+			OpenAPIDocVersion: "3.0.0",
+			SDKVersion:        "1.0.0",
+			GenVersion:        "2.81.1",
 		},
 	}
 	for _, opt := range opts {
@@ -161,6 +165,10 @@ func New(opts ...SDKOption) *CodatBankFeeds {
 	sdk.Companies = newCompanies(sdk.sdkConfiguration)
 
 	sdk.Connections = newConnections(sdk.sdkConfiguration)
+
+	sdk.PushData = newPushData(sdk.sdkConfiguration)
+
+	sdk.RefreshData = newRefreshData(sdk.sdkConfiguration)
 
 	return sdk
 }

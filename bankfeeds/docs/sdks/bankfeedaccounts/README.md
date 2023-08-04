@@ -194,7 +194,7 @@ func main() {
 
 Put BankFeed BankAccounts for a single data source connected to a single company.
 
-> :warning: **DEPRECATED**: this method will be removed in a future release, please migrate away from it as soon as possible.
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
