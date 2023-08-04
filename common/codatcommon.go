@@ -59,7 +59,7 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 	return ServerList[c.ServerIndex], nil
 }
 
-// CodatCommon - Common API: Common API
+// CodatCommon - Platform API: Platform API
 // An API for the common components of all of Codat's products.
 //
 // These end points cover creating and managing your companies, data connections, and integrations.
@@ -138,9 +138,9 @@ func New(opts ...SDKOption) *CodatCommon {
 	sdk := &CodatCommon{
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
-			OpenAPIDocVersion: "2.1.0",
-			SDKVersion:        "0.26.0",
-			GenVersion:        "2.70.2",
+			OpenAPIDocVersion: "3.0.0",
+			SDKVersion:        "1.0.0",
+			GenVersion:        "2.81.1",
 		},
 	}
 	for _, opt := range opts {

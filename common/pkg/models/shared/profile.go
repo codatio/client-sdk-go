@@ -5,9 +5,9 @@ package shared
 // Profile - Describes your Codat client instance
 type Profile struct {
 	AlertAuthHeader *string `json:"alertAuthHeader,omitempty"`
-	// Deprecated: this field will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	APIKey *string `json:"apiKey,omitempty"`
-	// Deprecated: this field will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	ConfirmCompanyName *bool    `json:"confirmCompanyName,omitempty"`
 	IconURL            *string  `json:"iconUrl,omitempty"`
 	LogoURL            *string  `json:"logoUrl,omitempty"`
