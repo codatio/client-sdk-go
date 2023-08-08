@@ -2,7 +2,7 @@
 
 ## Overview
 
-Data integrity is important
+Enriched reports and analyses of financial data
 
 ### Available Operations
 

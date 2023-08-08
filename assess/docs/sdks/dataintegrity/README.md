@@ -2,7 +2,7 @@
 
 ## Overview
 
-Data integrity is important
+Match mutable accounting data with immutable banking data to increase confidence in financial data
 
 ### Available Operations
 

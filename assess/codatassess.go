@@ -66,11 +66,11 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 //
 // [See our OpenAPI spec](https://github.com/codatio/oas)
 type CodatAssess struct {
-	// DataIntegrity - Data integrity is important
+	// DataIntegrity - Match mutable accounting data with immutable banking data to increase confidence in financial data
 	DataIntegrity *dataIntegrity
 	// ExcelReports - Downloadable reports
 	ExcelReports *excelReports
-	// Reports - Data integrity is important
+	// Reports - Enriched reports and analyses of financial data
 	Reports *reports
 
 	sdkConfiguration sdkConfiguration
@@ -127,8 +127,8 @@ func New(opts ...SDKOption) *CodatAssess {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0",
-			SDKVersion:        "0.28.0",
-			GenVersion:        "2.81.1",
+			SDKVersion:        "0.29.0",
+			GenVersion:        "2.82.0",
 		},
 	}
 	for _, opt := range opts {

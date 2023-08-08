@@ -14,7 +14,7 @@ import (
 	"net/http"
 )
 
-// reports - Data integrity is important
+// reports - Enriched reports and analyses of financial data
 type reports struct {
 	sdkConfiguration sdkConfiguration
 }

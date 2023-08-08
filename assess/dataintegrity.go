@@ -14,7 +14,7 @@ import (
 	"net/http"
 )
 
-// dataIntegrity - Data integrity is important
+// dataIntegrity - Match mutable accounting data with immutable banking data to increase confidence in financial data
 type dataIntegrity struct {
 	sdkConfiguration sdkConfiguration
 }
