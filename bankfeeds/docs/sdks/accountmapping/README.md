@@ -1,8 +1,8 @@
-# BankAccountMapping
+# AccountMapping
 
 ## Overview
 
-Bank feed bank account mapping
+Bank feed bank account mapping.
 
 ### Available Operations
 
@@ -40,7 +40,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.BankAccountMapping.Create(ctx, operations.CreateBankAccountMappingRequest{
+    res, err := s.AccountMapping.Create(ctx, operations.CreateBankAccountMappingRequest{
         BankFeedAccountMapping: &shared.BankFeedAccountMapping{
             FeedStartDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
             SourceAccountID: codatbankfeeds.String("unde"),
@@ -102,7 +102,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.BankAccountMapping.Get(ctx, operations.GetBankAccountMappingRequest{
+    res, err := s.AccountMapping.Get(ctx, operations.GetBankAccountMappingRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })

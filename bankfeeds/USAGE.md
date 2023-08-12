@@ -20,7 +20,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.BankAccountMapping.Create(ctx, operations.CreateBankAccountMappingRequest{
+    res, err := s.AccountMapping.Create(ctx, operations.CreateBankAccountMappingRequest{
         BankFeedAccountMapping: &shared.BankFeedAccountMapping{
             FeedStartDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
             SourceAccountID: codatbankfeeds.String("provident"),

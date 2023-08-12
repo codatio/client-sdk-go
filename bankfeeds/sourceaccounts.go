@@ -14,24 +14,20 @@ import (
 	"net/http"
 )
 
-// refreshData - Asynchronously retrieve data from an integration to refresh data in Codat.
-type refreshData struct {
+// sourceAccounts - Source accounts act as a bridge to bank accounts in accounting software.
+type sourceAccounts struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newRefreshData(sdkConfig sdkConfiguration) *refreshData {
-	return &refreshData{
+func newSourceAccounts(sdkConfig sdkConfiguration) *sourceAccounts {
+	return &sourceAccounts{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
-// All - Refresh all data
-// Refreshes all data types with `fetch on first link` set to `true` for a given company.
-//
-// This is an asynchronous operation, and will bring updated data into Codat from the linked integration for you to view.
-//
-// [Read more](https://docs.codat.io/core-concepts/data-type-settings) about data type settings and `fetch on first link`.
-func (s *refreshData) All(ctx context.Context, request operations.RefreshCompanyDataRequest, opts ...operations.Option) (*operations.RefreshCompanyDataResponse, error) {
+// Create - Create a bank feed bank account
+// Post a BankFeed BankAccount for a single data source connected to a single company.
+func (s *sourceAccounts) Create(ctx context.Context, request operations.CreateBankFeedRequest, opts ...operations.Option) (*operations.CreateBankFeedResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -43,12 +39,130 @@ func (s *refreshData) All(ctx context.Context, request operations.RefreshCompany
 		}
 	}
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/all", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/connectionInfo/bankFeedAccounts", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "BankFeedAccount", "json")
+	if err != nil {
+		return nil, fmt.Errorf("error serializing request body: %w", err)
+	}
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
+
+	req.Header.Set("Content-Type", reqContentType)
+
+	client := s.sdkConfiguration.SecurityClient
+
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
+	if err != nil {
+		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
+	}
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
+
+	contentType := httpRes.Header.Get("Content-Type")
+
+	res := &operations.CreateBankFeedResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: contentType,
+		RawResponse: httpRes,
+	}
+	switch {
+	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.BankFeedAccount
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
+				return nil, err
+			}
+
+			res.BankFeedAccount = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	case httpRes.StatusCode == 400:
+		fallthrough
+	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.ErrorMessage
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
+				return nil, err
+			}
+
+			res.ErrorMessage = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	}
+
+	return res, nil
+}
+
+// Delete - delete bank feed bank account
+// The *delete bank feed bank account* endpoint enables you to remove a source account.
+//
+// Removing a source account will also remove any mapping between the source bank feed bank accounts and the target bankfeed bank account.
+func (s *sourceAccounts) Delete(ctx context.Context, request operations.DeleteBankFeedBankAccountRequest, opts ...operations.Option) (*operations.DeleteBankFeedBankAccountResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/connectionInfo/bankFeedAccounts/{accountId}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	req, err := http.NewRequestWithContext(ctx, "DELETE", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -97,7 +211,7 @@ func (s *refreshData) All(ctx context.Context, request operations.RefreshCompany
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.RefreshCompanyDataResponse{
+	res := &operations.DeleteBankFeedBankAccountResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -106,8 +220,6 @@ func (s *refreshData) All(ctx context.Context, request operations.RefreshCompany
 	case httpRes.StatusCode == 204:
 	case httpRes.StatusCode == 401:
 		fallthrough
-	case httpRes.StatusCode == 404:
-		fallthrough
 	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
@@ -125,11 +237,11 @@ func (s *refreshData) All(ctx context.Context, request operations.RefreshCompany
 	return res, nil
 }
 
-// ByDataType - Refresh data type
-// Refreshes a given data type for a given company.
+// List - List bank feed bank accounts
+// The *List bank feed bank accounts* endpoint returns a list of [bank feed accounts](https://docs.codat.io/bank-feeds-api#/schemas/BankFeedAccount) for a given company's connection.
 //
-// This is an asynchronous operation, and will bring updated data into Codat from the linked integration for you to view.
-func (s *refreshData) ByDataType(ctx context.Context, request operations.RefreshDataTypeRequest, opts ...operations.Option) (*operations.RefreshDataTypeResponse, error) {
+// [Bank feed accounts](https://docs.codat.io/bank-feeds-api#/schemas/BankFeedAccount) are the bank's bank account from which transactions are synced into the accounting platform.
+func (s *sourceAccounts) List(ctx context.Context, request operations.ListBankFeedsRequest, opts ...operations.Option) (*operations.ListBankFeedsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -141,118 +253,7 @@ func (s *refreshData) ByDataType(ctx context.Context, request operations.Refresh
 		}
 	}
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/queue/{dataType}", request, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error generating URL: %w", err)
-	}
-
-	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error creating request: %w", err)
-	}
-	req.Header.Set("Accept", "application/json")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
-
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
-		return nil, fmt.Errorf("error populating query params: %w", err)
-	}
-
-	client := s.sdkConfiguration.SecurityClient
-
-	retryConfig := o.Retries
-	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
-		}
-	}
-
-	httpRes, err := utils.Retry(ctx, utils.Retries{
-		Config: retryConfig,
-		StatusCodes: []string{
-			"408",
-			"429",
-			"5XX",
-		},
-	}, func() (*http.Response, error) {
-		return client.Do(req)
-	})
-	if err != nil {
-		return nil, fmt.Errorf("error sending request: %w", err)
-	}
-	if httpRes == nil {
-		return nil, fmt.Errorf("error sending request: no response")
-	}
-
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
-	contentType := httpRes.Header.Get("Content-Type")
-
-	res := &operations.RefreshDataTypeResponse{
-		StatusCode:  httpRes.StatusCode,
-		ContentType: contentType,
-		RawResponse: httpRes,
-	}
-	switch {
-	case httpRes.StatusCode == 200:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.PullOperation
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
-			}
-
-			res.PullOperation = out
-		default:
-			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
-		}
-	case httpRes.StatusCode == 401:
-		fallthrough
-	case httpRes.StatusCode == 404:
-		fallthrough
-	case httpRes.StatusCode == 429:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ErrorMessage
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
-			}
-
-			res.ErrorMessage = out
-		default:
-			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
-		}
-	}
-
-	return res, nil
-}
-
-// Get - Get data status
-// Get the state of each data type for a company
-func (s *refreshData) Get(ctx context.Context, request operations.GetCompanyDataStatusRequest, opts ...operations.Option) (*operations.GetCompanyDataStatusResponse, error) {
-	o := operations.Options{}
-	supportedOptions := []string{
-		operations.SupportedOptionRetries,
-	}
-
-	for _, opt := range opts {
-		if err := opt(&o, supportedOptions...); err != nil {
-			return nil, fmt.Errorf("error applying option: %w", err)
-		}
-	}
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/dataStatus", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/connectionInfo/bankFeedAccounts", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -306,7 +307,7 @@ func (s *refreshData) Get(ctx context.Context, request operations.GetCompanyData
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetCompanyDataStatusResponse{
+	res := &operations.ListBankFeedsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -315,12 +316,12 @@ func (s *refreshData) Get(ctx context.Context, request operations.GetCompanyData
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out map[string]shared.DataStatus
+			var out *shared.BankFeedAccount
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.DataStatusResponse = out
+			res.BankFeedAccount = out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -345,9 +346,9 @@ func (s *refreshData) Get(ctx context.Context, request operations.GetCompanyData
 	return res, nil
 }
 
-// GetPullOperation - Get pull operation
-// Retrieve information about a single dataset or pull operation.
-func (s *refreshData) GetPullOperation(ctx context.Context, request operations.GetPullOperationRequest, opts ...operations.Option) (*operations.GetPullOperationResponse, error) {
+// Update - Update bank feed bank account
+// The *Update bank feed bank account* endpoint updates a single bank feed bank account for a single data source connected to a single company.
+func (s *sourceAccounts) Update(ctx context.Context, request operations.UpdateBankFeedRequest, opts ...operations.Option) (*operations.UpdateBankFeedResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -359,17 +360,24 @@ func (s *refreshData) GetPullOperation(ctx context.Context, request operations.G
 		}
 	}
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/history/{datasetId}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/connectionInfo/bankFeedAccounts/{accountId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "BankFeedAccount", "json")
+	if err != nil {
+		return nil, fmt.Errorf("error serializing request body: %w", err)
+	}
+
+	req, err := http.NewRequestWithContext(ctx, "PATCH", url, bodyReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
+
+	req.Header.Set("Content-Type", reqContentType)
 
 	client := s.sdkConfiguration.SecurityClient
 
@@ -413,7 +421,7 @@ func (s *refreshData) GetPullOperation(ctx context.Context, request operations.G
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetPullOperationResponse{
+	res := &operations.UpdateBankFeedResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -422,128 +430,15 @@ func (s *refreshData) GetPullOperation(ctx context.Context, request operations.G
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.PullOperation
+			var out *shared.BankFeedAccount
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.PullOperation = out
+			res.BankFeedAccount = out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
-	case httpRes.StatusCode == 401:
-		fallthrough
-	case httpRes.StatusCode == 404:
-		fallthrough
-	case httpRes.StatusCode == 429:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ErrorMessage
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
-			}
-
-			res.ErrorMessage = out
-		default:
-			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
-		}
-	}
-
-	return res, nil
-}
-
-// ListPullOperations - List pull operations
-// Gets the pull operation history (datasets) for a given company.
-func (s *refreshData) ListPullOperations(ctx context.Context, request operations.ListPullOperationsRequest, opts ...operations.Option) (*operations.ListPullOperationsResponse, error) {
-	o := operations.Options{}
-	supportedOptions := []string{
-		operations.SupportedOptionRetries,
-	}
-
-	for _, opt := range opts {
-		if err := opt(&o, supportedOptions...); err != nil {
-			return nil, fmt.Errorf("error applying option: %w", err)
-		}
-	}
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/history", request, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error generating URL: %w", err)
-	}
-
-	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error creating request: %w", err)
-	}
-	req.Header.Set("Accept", "application/json")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
-
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
-		return nil, fmt.Errorf("error populating query params: %w", err)
-	}
-
-	client := s.sdkConfiguration.SecurityClient
-
-	retryConfig := o.Retries
-	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
-		}
-	}
-
-	httpRes, err := utils.Retry(ctx, utils.Retries{
-		Config: retryConfig,
-		StatusCodes: []string{
-			"408",
-			"429",
-			"5XX",
-		},
-	}, func() (*http.Response, error) {
-		return client.Do(req)
-	})
-	if err != nil {
-		return nil, fmt.Errorf("error sending request: %w", err)
-	}
-	if httpRes == nil {
-		return nil, fmt.Errorf("error sending request: no response")
-	}
-
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
-	contentType := httpRes.Header.Get("Content-Type")
-
-	res := &operations.ListPullOperationsResponse{
-		StatusCode:  httpRes.StatusCode,
-		ContentType: contentType,
-		RawResponse: httpRes,
-	}
-	switch {
-	case httpRes.StatusCode == 200:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.DataConnectionHistory
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
-			}
-
-			res.DataConnectionHistory = out
-		default:
-			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
-		}
-	case httpRes.StatusCode == 400:
-		fallthrough
 	case httpRes.StatusCode == 401:
 		fallthrough
 	case httpRes.StatusCode == 404:

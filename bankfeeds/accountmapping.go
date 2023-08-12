@@ -14,13 +14,13 @@ import (
 	"net/http"
 )
 
-// bankAccountMapping - Bank feed bank account mapping
-type bankAccountMapping struct {
+// accountMapping - Bank feed bank account mapping.
+type accountMapping struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newBankAccountMapping(sdkConfig sdkConfiguration) *bankAccountMapping {
-	return &bankAccountMapping{
+func newAccountMapping(sdkConfig sdkConfiguration) *accountMapping {
+	return &accountMapping{
 		sdkConfiguration: sdkConfig,
 	}
 }
@@ -33,7 +33,7 @@ func newBankAccountMapping(sdkConfig sdkConfiguration) *bankAccountMapping {
 // To find valid target account options, first call list bank feed account mappings.
 //
 // This endpoint is only needed if building an account management UI.
-func (s *bankAccountMapping) Create(ctx context.Context, request operations.CreateBankAccountMappingRequest, opts ...operations.Option) (*operations.CreateBankAccountMappingResponse, error) {
+func (s *accountMapping) Create(ctx context.Context, request operations.CreateBankAccountMappingRequest, opts ...operations.Option) (*operations.CreateBankAccountMappingResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -153,7 +153,7 @@ func (s *bankAccountMapping) Create(ctx context.Context, request operations.Crea
 // A bank feed account mapping is a specified link between the source account (provided by the Codat user) and the target account (the end users account in the underlying platform).
 //
 // This endpoint is only needed if building an account management UI.
-func (s *bankAccountMapping) Get(ctx context.Context, request operations.GetBankAccountMappingRequest, opts ...operations.Option) (*operations.GetBankAccountMappingResponse, error) {
+func (s *accountMapping) Get(ctx context.Context, request operations.GetBankAccountMappingRequest, opts ...operations.Option) (*operations.GetBankAccountMappingResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
