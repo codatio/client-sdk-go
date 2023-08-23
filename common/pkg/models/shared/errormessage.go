@@ -2,7 +2,7 @@
 
 package shared
 
-// ErrorMessage - Your `query` parameter was not correctly formed
+// ErrorMessage - Your API request was not properly authorized.
 type ErrorMessage struct {
 	CanBeRetried      *string `json:"canBeRetried,omitempty"`
 	CorrelationID     *string `json:"correlationId,omitempty"`

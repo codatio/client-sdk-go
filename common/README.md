@@ -88,8 +88,11 @@ func main() {
 
 ### [Settings](docs/sdks/settings/README.md)
 
+* [CreateAPIKey](docs/sdks/settings/README.md#createapikey) - Create API key
+* [DeleteAPIKey](docs/sdks/settings/README.md#deleteapikey) - Delete api key
 * [~~GetProfile~~](docs/sdks/settings/README.md#getprofile) - Get profile :warning: **Deprecated**
 * [GetSyncSettings](docs/sdks/settings/README.md#getsyncsettings) - Get sync settings
+* [ListAPIKeys](docs/sdks/settings/README.md#listapikeys) - List API keys
 * [UpdateProfile](docs/sdks/settings/README.md#updateprofile) - Update profile
 * [UpdateSyncSettings](docs/sdks/settings/README.md#updatesyncsettings) - Update all sync settings
 
