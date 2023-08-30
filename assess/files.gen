@@ -56,6 +56,7 @@ pkg/models/shared/dataintegritysummary.go
 pkg/models/shared/dataintegritybycount.go
 pkg/models/shared/dataintegritybyamount.go
 pkg/models/shared/excelstatus.go
+pkg/models/shared/excelreporttypes.go
 pkg/models/shared/excelreporttype.go
 pkg/models/shared/report.go
 pkg/models/shared/reportcomponent.go
@@ -162,6 +163,7 @@ docs/models/shared/dataintegritysummary.md
 docs/models/shared/dataintegritybycount.md
 docs/models/shared/dataintegritybyamount.md
 docs/models/shared/excelstatus.md
+docs/models/shared/excelreporttypes.md
 docs/models/shared/excelreporttype.md
 docs/models/shared/report.md
 docs/models/shared/reportcomponent.md

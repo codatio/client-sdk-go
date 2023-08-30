@@ -1027,7 +1027,7 @@ func (s *reports) GetLoanSummary(ctx context.Context, request operations.GetLoan
 		}
 	}
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	url, err := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/assess/reports/enhancedLiabilities/loan", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/reports/enhancedLiabilities/loan", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1236,7 +1236,7 @@ func (s *reports) ListLoanTransactions(ctx context.Context, request operations.L
 		}
 	}
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	url, err := utils.GenerateURL(ctx, baseURL, "/data/companies/{companyId}/assess/reports/enhancedLiabilities/loan/transactions", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/reports/enhancedLiabilities/loan/transactions", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
