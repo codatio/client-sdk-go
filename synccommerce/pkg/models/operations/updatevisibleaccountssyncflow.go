@@ -9,7 +9,7 @@ import (
 
 type UpdateVisibleAccountsSyncFlowRequest struct {
 	VisibleAccounts *shared.VisibleAccounts `request:"mediaType=application/json"`
-	CommerceKey     string                  `pathParam:"style=simple,explode=false,name=commerceKey"`
+	PlatformKey     string                  `pathParam:"style=simple,explode=false,name=platformKey"`
 }
 
 func (o *UpdateVisibleAccountsSyncFlowRequest) GetVisibleAccounts() *shared.VisibleAccounts {
@@ -19,11 +19,11 @@ func (o *UpdateVisibleAccountsSyncFlowRequest) GetVisibleAccounts() *shared.Visi
 	return o.VisibleAccounts
 }
 
-func (o *UpdateVisibleAccountsSyncFlowRequest) GetCommerceKey() string {
+func (o *UpdateVisibleAccountsSyncFlowRequest) GetPlatformKey() string {
 	if o == nil {
 		return ""
 	}
-	return o.CommerceKey
+	return o.PlatformKey
 }
 
 type UpdateVisibleAccountsSyncFlowResponse struct {

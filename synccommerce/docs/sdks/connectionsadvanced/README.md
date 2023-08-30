@@ -88,7 +88,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.ConnectionsAdvanced.CreateConnection(ctx, operations.CreateConnectionRequest{
-        RequestBody: codatsynccommerce.String("unde"),
+        RequestBody: codatsynccommerce.String("suscipit"),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -145,7 +145,7 @@ func main() {
         OrderBy: codatsynccommerce.String("-modifiedDate"),
         Page: codatsynccommerce.Int(1),
         PageSize: codatsynccommerce.Int(100),
-        Query: codatsynccommerce.String("nulla"),
+        Query: codatsynccommerce.String("iure"),
     })
     if err != nil {
         log.Fatal(err)

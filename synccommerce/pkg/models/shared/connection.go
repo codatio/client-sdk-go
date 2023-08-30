@@ -44,7 +44,7 @@ func (e *ConnectionSourceType) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// Connection - A connection represents a [company's](https://docs.codat.io/codat-api#/schemas/Company) connection to a data source and allows you to synchronize data (pull and/or push) with that source.
+// Connection - A connection represents a [company's](https://docs.codat.io/sync-for-commerce-api#/schemas/Company) connection to a data source and allows you to synchronize data (pull and/or push) with that source.
 //
 // A company can have multiple data connections depending on the type of data source it is connecting to. For example, a single company can link to:
 //

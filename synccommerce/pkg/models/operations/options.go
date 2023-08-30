@@ -10,13 +10,26 @@ import (
 var ErrUnsupportedOption = errors.New("unsupported option")
 
 const (
-	SupportedOptionServerURL = "serverURL"
-	SupportedOptionRetries   = "retries"
+	SupportedOptionServerURL            = "serverURL"
+	SupportedOptionRetries              = "retries"
+	SupportedOptionAcceptHeaderOverride = "acceptHeaderOverride"
 )
 
+type AcceptHeaderEnum string
+
+const (
+	AcceptHeaderEnumApplicationJson  AcceptHeaderEnum = "application/json"
+	AcceptHeaderEnumWildcardWildcard AcceptHeaderEnum = "*/*"
+)
+
+func (e AcceptHeaderEnum) ToPointer() *AcceptHeaderEnum {
+	return &e
+}
+
 type Options struct {
-	ServerURL *string
-	Retries   *utils.RetryConfig
+	ServerURL            *string
+	Retries              *utils.RetryConfig
+	AcceptHeaderOverride *AcceptHeaderEnum
 }
 
 type Option func(*Options, ...string) error
@@ -57,6 +70,17 @@ func WithRetries(config utils.RetryConfig) Option {
 		}
 
 		opts.Retries = &config
+		return nil
+	}
+}
+
+func WithAcceptHeaderOverride(acceptHeaderOverride AcceptHeaderEnum) Option {
+	return func(opts *Options, supportedOptions ...string) error {
+		if !utils.Contains(supportedOptions, SupportedOptionAcceptHeaderOverride) {
+			return ErrUnsupportedOption
+		}
+
+		opts.AcceptHeaderOverride = &acceptHeaderOverride
 		return nil
 	}
 }

@@ -314,7 +314,7 @@ func (s *syncFlowPreferences) UpdateVisibleAccountsSyncFlow(ctx context.Context,
 		}
 	}
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	url, err := utils.GenerateURL(ctx, baseURL, "/sync/commerce/config/ui/accounts/platform/{commerceKey}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/sync/commerce/config/ui/accounts/platform/{platformKey}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -324,7 +324,7 @@ func (s *syncFlowPreferences) UpdateVisibleAccountsSyncFlow(ctx context.Context,
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "PATCH", url, bodyReader)
+	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}

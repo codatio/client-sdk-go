@@ -60,6 +60,7 @@ func main() {
 
 * [GetSyncFlowURL](docs/sdks/connections/README.md#getsyncflowurl) - Retrieve sync flow url
 * [ListCompanies](docs/sdks/connections/README.md#listcompanies) - List companies
+* [UpdateAuthorization](docs/sdks/connections/README.md#updateauthorization) - Update authorization
 
 ### [ConnectionsAdvanced](docs/sdks/connectionsadvanced/README.md)
 

@@ -24,6 +24,7 @@ pkg/models/operations/getconfiguration.go
 pkg/models/operations/setconfiguration.go
 pkg/models/operations/getsyncflowurl.go
 pkg/models/operations/listcompanies.go
+pkg/models/operations/updateconnectionauthorization.go
 pkg/models/operations/createcompany.go
 pkg/models/operations/createconnection.go
 pkg/models/operations/listconnections.go
@@ -103,6 +104,8 @@ docs/models/operations/getsyncflowurlrequest.md
 docs/models/operations/getsyncflowurlresponse.md
 docs/models/operations/listcompaniesrequest.md
 docs/models/operations/listcompaniesresponse.md
+docs/models/operations/updateconnectionauthorizationrequest.md
+docs/models/operations/updateconnectionauthorizationresponse.md
 docs/models/operations/createcompanyresponse.md
 docs/models/operations/createconnectionrequest.md
 docs/models/operations/createconnectionresponse.md
