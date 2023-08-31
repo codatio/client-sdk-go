@@ -845,3 +845,4 @@ docs/models/shared/transferaccount.md
 docs/models/shared/transfers.md
 docs/models/shared/security.md
 pkg/models/operations/options.go
+.gitattributes

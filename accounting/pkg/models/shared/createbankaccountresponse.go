@@ -4,6 +4,7 @@ package shared
 
 // CreateBankAccountResponse - Success
 type CreateBankAccountResponse struct {
+	// Contains a single entry that communicates which record has changed and the manner in which it changed.
 	Changes []PushOperationChange `json:"changes,omitempty"`
 	// Unique identifier for your SMB in Codat.
 	CompanyID string `json:"companyId"`

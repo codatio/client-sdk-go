@@ -171,9 +171,9 @@ func New(opts ...SDKOption) *CodatAccounting {
 	sdk := &CodatAccounting{
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
-			OpenAPIDocVersion: "2.1.0",
-			SDKVersion:        "0.29.0",
-			GenVersion:        "2.77.1",
+			OpenAPIDocVersion: "3.0.0",
+			SDKVersion:        "0.30.0",
+			GenVersion:        "2.89.1",
 		},
 	}
 	for _, opt := range opts {
