@@ -90,3 +90,4 @@ docs/models/shared/transactioncode.md
 docs/models/shared/transactions.md
 docs/models/shared/security.md
 pkg/models/operations/options.go
+.gitattributes

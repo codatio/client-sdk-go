@@ -10,8 +10,9 @@ import (
 var ErrUnsupportedOption = errors.New("unsupported option")
 
 const (
-	SupportedOptionServerURL = "serverURL"
-	SupportedOptionRetries   = "retries"
+	SupportedOptionServerURL            = "serverURL"
+	SupportedOptionRetries              = "retries"
+	SupportedOptionAcceptHeaderOverride = "acceptHeaderOverride"
 )
 
 type Options struct {
