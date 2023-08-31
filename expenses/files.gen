@@ -164,3 +164,4 @@ docs/models/webhooks/synccompleteresponse.md
 docs/models/webhooks/syncfailedresponse.md
 docs/models/webhooks/syncstartedresponse.md
 pkg/models/operations/options.go
+.gitattributes
