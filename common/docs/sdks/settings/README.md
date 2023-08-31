@@ -18,7 +18,7 @@ Manage your Codat instance.
 
 Use the *Create API keys* endpoint to generate a new API key for your client.
 
-[API keys](https://docs.codat.io/accounting-api#/schemas/apiKeys) are tokens used to control access to the API. Include this token in the `Authorization` header parameter when making API calls, following the word "Basic" and a space with your API key.
+[API keys](https://docs.codat.io/codat-api#/schemas/apiKeys) are tokens used to control access to the API. Include this token in the `Authorization` header parameter when making API calls, following the word "Basic" and a space with your API key.
 
 You can [read more](https://docs.codat.io/using-the-api/authentication) about authentication at Codat and managing API keys via the Portal UI or API.
 
