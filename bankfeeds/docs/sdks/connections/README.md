@@ -10,14 +10,13 @@ Manage your companies' data connections.
 * [Delete](#delete) - Delete connection
 * [Get](#get) - Get connection
 * [List](#list) - List connections
-* [Proxy](#proxy) - Proxy
 * [UnlinkConnection](#unlinkconnection) - Unlink connection
 
 ## Create
 
 ﻿Creates a connection for the company by providing a valid `platformKey`. 
 
-Use the [List Integrations](https://docs.codat.io/codat-api#/operations/list-integrations) endpoint to access valid platform keys. 
+Use the [List Integrations](https://docs.codat.io/bank-feeds-api#/operations/list-integrations) endpoint to access valid platform keys. 
 
 ### Example Usage
 
@@ -231,62 +230,6 @@ func main() {
 ### Response
 
 **[*operations.ListCompanyConnectionsResponse](../../models/operations/listcompanyconnectionsresponse.md), error**
-
-
-## Proxy
-
-﻿The *Proxy* endpoint can be used to generate credentials from QuickBooks Online for authentication of the Bank Feed in their portal.
-
-See the example provided for the `endpoint` query parameter when generating credentials for QuickBooks Online.
-
-### Example Usage
-
-```go
-package main
-
-import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/bankfeeds"
-	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/operations"
-)
-
-func main() {
-    s := codatbankfeeds.New(
-        codatbankfeeds.WithSecurity(shared.Security{
-            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
-        }),
-    )
-
-    ctx := context.Background()
-    res, err := s.Connections.Proxy(ctx, operations.ProxyRequest{
-        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        Endpoint: "generatecredentials?dataconnectionid={connectionId}",
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-
-    if res.ProxyResponse != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                          | Type                                                               | Required                                                           | Description                                                        |
-| ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| `ctx`                                                              | [context.Context](https://pkg.go.dev/context#Context)              | :heavy_check_mark:                                                 | The context to use for the request.                                |
-| `request`                                                          | [operations.ProxyRequest](../../models/operations/proxyrequest.md) | :heavy_check_mark:                                                 | The request object to use for the request.                         |
-| `opts`                                                             | [][operations.Option](../../models/operations/option.md)           | :heavy_minus_sign:                                                 | The options for this request.                                      |
-
-
-### Response
-
-**[*operations.ProxyResponse](../../models/operations/proxyresponse.md), error**
 
 
 ## UnlinkConnection

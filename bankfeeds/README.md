@@ -76,13 +76,14 @@ func main() {
 * [Delete](docs/sdks/connections/README.md#delete) - Delete connection
 * [Get](docs/sdks/connections/README.md#get) - Get connection
 * [List](docs/sdks/connections/README.md#list) - List connections
-* [Proxy](docs/sdks/connections/README.md#proxy) - Proxy
 * [UnlinkConnection](docs/sdks/connections/README.md#unlinkconnection) - Unlink connection
 
 ### [SourceAccounts](docs/sdks/sourceaccounts/README.md)
 
 * [Create](docs/sdks/sourceaccounts/README.md#create) - Create a bank feed bank account
-* [Delete](docs/sdks/sourceaccounts/README.md#delete) - delete bank feed bank account
+* [Delete](docs/sdks/sourceaccounts/README.md#delete) - Delete bank feed bank account
+* [DeleteCredentials](docs/sdks/sourceaccounts/README.md#deletecredentials) - Delete all source account credentials
+* [GenerateSourceAccountCredentials](docs/sdks/sourceaccounts/README.md#generatesourceaccountcredentials) - Generate source account credentials
 * [List](docs/sdks/sourceaccounts/README.md#list) - List bank feed bank accounts
 * [Update](docs/sdks/sourceaccounts/README.md#update) - Update bank feed bank account
 

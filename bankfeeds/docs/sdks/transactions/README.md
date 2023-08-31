@@ -46,29 +46,22 @@ func main() {
     ctx := context.Background()
     res, err := s.Transactions.Create(ctx, operations.CreateBankTransactionsRequest{
         CreateBankTransactions: &shared.CreateBankTransactions{
-            AccountID: codatbankfeeds.String("dolorem"),
+            AccountID: codatbankfeeds.String("corporis"),
             Transactions: []shared.CreateBankAccountTransaction{
                 shared.CreateBankAccountTransaction{
-                    Amount: codatbankfeeds.Float64(1289.26),
-                    Balance: codatbankfeeds.Float64(7506.86),
+                    Amount: codatbankfeeds.Float64(7506.86),
+                    Balance: codatbankfeeds.Float64(3154.28),
                     Date: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
-                    Description: codatbankfeeds.String("omnis"),
-                    ID: codatbankfeeds.String("55907aff-1a3a-42fa-9467-739251aa52c3"),
-                },
-                shared.CreateBankAccountTransaction{
-                    Amount: codatbankfeeds.Float64(9495.72),
-                    Balance: codatbankfeeds.Float64(3687.25),
-                    Date: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
-                    Description: codatbankfeeds.String("possimus"),
-                    ID: codatbankfeeds.String("019da1ff-e78f-4097-b007-4f15471b5e6e"),
+                    Description: codatbankfeeds.String("nemo"),
+                    ID: codatbankfeeds.String("5907aff1-a3a2-4fa9-8677-39251aa52c3f"),
                 },
             },
         },
-        AccountID: "13d946f0-c5d5-42bc-b092-97ece17923ab",
+        AccountID: "9wg4lep4ush5cxs79pl8sozmsndbaukll3ind4g7buqbm1h2",
         AllowSyncOnPushComplete: codatbankfeeds.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codatbankfeeds.Int(216822),
+        TimeoutInMinutes: codatbankfeeds.Int(662527),
     })
     if err != nil {
         log.Fatal(err)
@@ -121,7 +114,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Transactions.GetOperation(ctx, operations.GetPushOperationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        PushOperationKey: "b99d488e-1e91-4e45-8ad2-abd44269802d",
+        PushOperationKey: "d019da1f-fe78-4f09-bb00-74f15471b5e6",
     })
     if err != nil {
         log.Fatal(err)
@@ -177,7 +170,7 @@ func main() {
         OrderBy: codatbankfeeds.String("-modifiedDate"),
         Page: codatbankfeeds.Int(1),
         PageSize: codatbankfeeds.Int(100),
-        Query: codatbankfeeds.String("ipsam"),
+        Query: codatbankfeeds.String("repudiandae"),
     })
     if err != nil {
         log.Fatal(err)

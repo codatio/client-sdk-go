@@ -30,10 +30,11 @@ pkg/models/operations/createdataconnection.go
 pkg/models/operations/deletecompanyconnection.go
 pkg/models/operations/getcompanyconnection.go
 pkg/models/operations/listcompanyconnections.go
-pkg/models/operations/proxy.go
 pkg/models/operations/unlinkconnection.go
 pkg/models/operations/createbankfeed.go
 pkg/models/operations/deletebankfeedbankaccount.go
+pkg/models/operations/deletebankfeedcredentials.go
+pkg/models/operations/generatesourceaccountcredentials.go
 pkg/models/operations/listbankfeeds.go
 pkg/models/operations/updatebankfeed.go
 pkg/models/operations/createbanktransactions.go
@@ -54,6 +55,7 @@ pkg/models/shared/links.go
 pkg/models/shared/halref.go
 pkg/models/shared/connections.go
 pkg/models/shared/bankfeedaccount.go
+pkg/models/shared/bankaccountcredentials.go
 pkg/models/shared/createbanktransactionsresponse.go
 pkg/models/shared/validation.go
 pkg/models/shared/validationitem.go
@@ -97,8 +99,6 @@ docs/models/operations/getcompanyconnectionrequest.md
 docs/models/operations/getcompanyconnectionresponse.md
 docs/models/operations/listcompanyconnectionsrequest.md
 docs/models/operations/listcompanyconnectionsresponse.md
-docs/models/operations/proxyrequest.md
-docs/models/operations/proxyresponse.md
 docs/models/operations/unlinkconnectionrequestbody.md
 docs/models/operations/unlinkconnectionrequest.md
 docs/models/operations/unlinkconnectionresponse.md
@@ -106,6 +106,10 @@ docs/models/operations/createbankfeedrequest.md
 docs/models/operations/createbankfeedresponse.md
 docs/models/operations/deletebankfeedbankaccountrequest.md
 docs/models/operations/deletebankfeedbankaccountresponse.md
+docs/models/operations/deletebankfeedcredentialsrequest.md
+docs/models/operations/deletebankfeedcredentialsresponse.md
+docs/models/operations/generatesourceaccountcredentialsrequest.md
+docs/models/operations/generatesourceaccountcredentialsresponse.md
 docs/models/operations/listbankfeedsrequest.md
 docs/models/operations/listbankfeedsresponse.md
 docs/models/operations/updatebankfeedrequest.md
@@ -132,6 +136,7 @@ docs/models/shared/links.md
 docs/models/shared/halref.md
 docs/models/shared/connections.md
 docs/models/shared/bankfeedaccount.md
+docs/models/shared/bankaccountcredentials.md
 docs/models/shared/createbanktransactionsresponse.md
 docs/models/shared/validation.md
 docs/models/shared/validationitem.md
@@ -146,3 +151,4 @@ docs/models/shared/pushoperation.md
 docs/models/shared/pushhistoryresponse.md
 docs/models/shared/security.md
 pkg/models/operations/options.go
+.gitattributes

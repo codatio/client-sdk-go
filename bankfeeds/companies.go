@@ -344,7 +344,7 @@ func (s *companies) Get(ctx context.Context, request operations.GetCompanyReques
 }
 
 // List - List companies
-// Returns a list of your companies. The company schema contains a list of [connections](https://docs.codat.io/codat-api#/schemas/Connection) related to the company.
+// Returns a list of your companies. The company schema contains a list of [connections](https://docs.codat.io/bank-feeds-api#/schemas/Connection) related to the company.
 func (s *companies) List(ctx context.Context, request operations.ListCompaniesRequest, opts ...operations.Option) (*operations.ListCompaniesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
