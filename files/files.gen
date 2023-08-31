@@ -36,3 +36,4 @@ docs/models/shared/errormessage.md
 docs/models/shared/file.md
 docs/models/shared/security.md
 pkg/models/operations/options.go
+.gitattributes
