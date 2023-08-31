@@ -117,8 +117,8 @@ func (s *integrations) GetIntegrationBranding(ctx context.Context, request opera
 	return res, nil
 }
 
-// ListIntegrations - List information on Codat's supported integrations
-// Retrieve a list of available integrations support by datatype and state of release.
+// ListIntegrations - List integrations
+// Retrieve a list of available integrations support by data type and state of release.
 func (s *integrations) ListIntegrations(ctx context.Context, request operations.ListIntegrationsRequest, opts ...operations.Option) (*operations.ListIntegrationsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

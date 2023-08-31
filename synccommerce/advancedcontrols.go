@@ -15,20 +15,20 @@ import (
 	"strings"
 )
 
-// connectionsAdvanced - Create new and manage existing Sync for Commerce companies.
-type connectionsAdvanced struct {
+// advancedControls - Advanced company management and sync preferences.
+type advancedControls struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newConnectionsAdvanced(sdkConfig sdkConfiguration) *connectionsAdvanced {
-	return &connectionsAdvanced{
+func newAdvancedControls(sdkConfig sdkConfiguration) *advancedControls {
+	return &advancedControls{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // CreateCompany - Create company
 // Creates a Codat company..
-func (s *connectionsAdvanced) CreateCompany(ctx context.Context, request shared.CreateCompany, opts ...operations.Option) (*operations.CreateCompanyResponse, error) {
+func (s *advancedControls) CreateCompany(ctx context.Context, request shared.CreateCompany, opts ...operations.Option) (*operations.CreateCompanyResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -123,7 +123,7 @@ func (s *connectionsAdvanced) CreateCompany(ctx context.Context, request shared.
 
 // CreateConnection - Create connection
 // Creates a connection for the company by providing a valid platformKey.
-func (s *connectionsAdvanced) CreateConnection(ctx context.Context, request operations.CreateConnectionRequest, opts ...operations.Option) (*operations.CreateConnectionResponse, error) {
+func (s *advancedControls) CreateConnection(ctx context.Context, request operations.CreateConnectionRequest, opts ...operations.Option) (*operations.CreateConnectionResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -219,9 +219,100 @@ func (s *connectionsAdvanced) CreateConnection(ctx context.Context, request oper
 	return res, nil
 }
 
+// GetConfiguration - Get company configuration
+// Returns a company's commerce sync configuration'.
+func (s *advancedControls) GetConfiguration(ctx context.Context, request operations.GetConfigurationRequest, opts ...operations.Option) (*operations.GetConfigurationResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	url, err := utils.GenerateURL(ctx, baseURL, "/config/companies/{companyId}/sync/commerce", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
+
+	client := s.sdkConfiguration.SecurityClient
+
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
+	if err != nil {
+		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
+	}
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
+
+	contentType := httpRes.Header.Get("Content-Type")
+
+	res := &operations.GetConfigurationResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: contentType,
+		RawResponse: httpRes,
+	}
+	switch {
+	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.Configuration
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
+				return nil, err
+			}
+
+			res.Configuration = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	}
+
+	return res, nil
+}
+
 // ListConnections - List connections
 // List the connections for a company.
-func (s *connectionsAdvanced) ListConnections(ctx context.Context, request operations.ListConnectionsRequest, opts ...operations.Option) (*operations.ListConnectionsResponse, error) {
+func (s *advancedControls) ListConnections(ctx context.Context, request operations.ListConnectionsRequest, opts ...operations.Option) (*operations.ListConnectionsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -314,9 +405,100 @@ func (s *connectionsAdvanced) ListConnections(ctx context.Context, request opera
 	return res, nil
 }
 
+// SetConfiguration - Set configuration
+// Sets a company's commerce sync configuration.
+func (s *advancedControls) SetConfiguration(ctx context.Context, request operations.SetConfigurationRequest, opts ...operations.Option) (*operations.SetConfigurationResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	url, err := utils.GenerateURL(ctx, baseURL, "/config/companies/{companyId}/sync/commerce", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
+
+	client := s.sdkConfiguration.SecurityClient
+
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"408",
+			"429",
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
+	if err != nil {
+		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
+	}
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
+
+	contentType := httpRes.Header.Get("Content-Type")
+
+	res := &operations.SetConfigurationResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: contentType,
+		RawResponse: httpRes,
+	}
+	switch {
+	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.Configuration
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
+				return nil, err
+			}
+
+			res.Configuration = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	}
+
+	return res, nil
+}
+
 // UpdateConnection - Update connection
 // Update a data connection
-func (s *connectionsAdvanced) UpdateConnection(ctx context.Context, request operations.UpdateConnectionRequest, opts ...operations.Option) (*operations.UpdateConnectionResponse, error) {
+func (s *advancedControls) UpdateConnection(ctx context.Context, request operations.UpdateConnectionRequest, opts ...operations.Option) (*operations.UpdateConnectionResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,

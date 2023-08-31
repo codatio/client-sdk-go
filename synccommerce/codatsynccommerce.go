@@ -59,7 +59,7 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 	return ServerList[c.ServerIndex], nil
 }
 
-// CodatSyncCommerce - Sync for Commerce API: The API for Sync for Commerce.
+// CodatSyncCommerce - Sync for Commerce: The API for Sync for Commerce.
 //
 // Sync for Commerce is an API and a set of supporting tools built to enable e-commerce and point of sale platforms to provide high-quality integrations with numerous accounting platform through standardized API, seamlessly transforming business sale's data into accounting artefacts.
 //
@@ -67,12 +67,10 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 //
 // <!-- Not seeing the end points you're expecting? We've reorganized our products, and you may be using a [different version of Sync for Commerce](https://docs.codat.io/sync-for-commerce-v1-api#/). -->
 type CodatSyncCommerce struct {
-	// ConfigurationAdvanced - Expressively configure preferences for any given Sync for Commerce company.
-	ConfigurationAdvanced *configurationAdvanced
+	// AdvancedControls - Advanced company management and sync preferences.
+	AdvancedControls *advancedControls
 	// Connections - Create new and manage existing Sync for Commerce companies using the Sync flow UI.
 	Connections *connections
-	// ConnectionsAdvanced - Create new and manage existing Sync for Commerce companies.
-	ConnectionsAdvanced *connectionsAdvanced
 	// Integrations - View useful information about codat's integrations.
 	Integrations *integrations
 	// Sync - Initiate and monitor the sync of company data into accounting software.
@@ -134,8 +132,8 @@ func New(opts ...SDKOption) *CodatSyncCommerce {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.1",
-			SDKVersion:        "0.23.0",
-			GenVersion:        "2.88.7",
+			SDKVersion:        "0.24.0",
+			GenVersion:        "2.89.1",
 		},
 	}
 	for _, opt := range opts {
@@ -154,11 +152,9 @@ func New(opts ...SDKOption) *CodatSyncCommerce {
 		}
 	}
 
-	sdk.ConfigurationAdvanced = newConfigurationAdvanced(sdk.sdkConfiguration)
+	sdk.AdvancedControls = newAdvancedControls(sdk.sdkConfiguration)
 
 	sdk.Connections = newConnections(sdk.sdkConfiguration)
-
-	sdk.ConnectionsAdvanced = newConnectionsAdvanced(sdk.sdkConfiguration)
 
 	sdk.Integrations = newIntegrations(sdk.sdkConfiguration)
 

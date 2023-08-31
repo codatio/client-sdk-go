@@ -36,9 +36,9 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Connections.GetSyncFlowURL(ctx, operations.GetSyncFlowURLRequest{
-        AccountingKey: "corrupti",
-        CommerceKey: "provident",
-        MerchantIdentifier: codatsynccommerce.String("distinctio"),
+        AccountingKey: "distinctio",
+        CommerceKey: "quibusdam",
+        MerchantIdentifier: codatsynccommerce.String("unde"),
     })
     if err != nil {
         log.Fatal(err)
@@ -93,7 +93,7 @@ func main() {
         OrderBy: codatsynccommerce.String("-modifiedDate"),
         Page: codatsynccommerce.Int(1),
         PageSize: codatsynccommerce.Int(100),
-        Query: codatsynccommerce.String("quibusdam"),
+        Query: codatsynccommerce.String("nulla"),
     })
     if err != nil {
         log.Fatal(err)
@@ -146,9 +146,9 @@ func main() {
     ctx := context.Background()
     res, err := s.Connections.UpdateAuthorization(ctx, operations.UpdateConnectionAuthorizationRequest{
         RequestBody: map[string]string{
-            "nulla": "corrupti",
             "illum": "vel",
             "error": "deserunt",
+            "suscipit": "iure",
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",

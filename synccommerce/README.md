@@ -22,7 +22,6 @@ import(
 	"log"
 	"github.com/codatio/client-sdk-go/synccommerce"
 	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/operations"
 )
 
 func main() {
@@ -33,14 +32,14 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.ConfigurationAdvanced.GetConfiguration(ctx, operations.GetConfigurationRequest{
-        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+    res, err := s.AdvancedControls.CreateCompany(ctx, shared.CreateCompany{
+        Name: "Bob's Burgers",
     })
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.Configuration != nil {
+    if res.Company != nil {
         // handle response
     }
 }
@@ -51,10 +50,14 @@ func main() {
 ## Available Resources and Operations
 
 
-### [ConfigurationAdvanced](docs/sdks/configurationadvanced/README.md)
+### [AdvancedControls](docs/sdks/advancedcontrols/README.md)
 
-* [GetConfiguration](docs/sdks/configurationadvanced/README.md#getconfiguration) - Get company configuration
-* [SetConfiguration](docs/sdks/configurationadvanced/README.md#setconfiguration) - Set configuration.
+* [CreateCompany](docs/sdks/advancedcontrols/README.md#createcompany) - Create company
+* [CreateConnection](docs/sdks/advancedcontrols/README.md#createconnection) - Create connection
+* [GetConfiguration](docs/sdks/advancedcontrols/README.md#getconfiguration) - Get company configuration
+* [ListConnections](docs/sdks/advancedcontrols/README.md#listconnections) - List connections
+* [SetConfiguration](docs/sdks/advancedcontrols/README.md#setconfiguration) - Set configuration
+* [UpdateConnection](docs/sdks/advancedcontrols/README.md#updateconnection) - Update connection
 
 ### [Connections](docs/sdks/connections/README.md)
 
@@ -62,17 +65,10 @@ func main() {
 * [ListCompanies](docs/sdks/connections/README.md#listcompanies) - List companies
 * [UpdateAuthorization](docs/sdks/connections/README.md#updateauthorization) - Update authorization
 
-### [ConnectionsAdvanced](docs/sdks/connectionsadvanced/README.md)
-
-* [CreateCompany](docs/sdks/connectionsadvanced/README.md#createcompany) - Create company
-* [CreateConnection](docs/sdks/connectionsadvanced/README.md#createconnection) - Create connection
-* [ListConnections](docs/sdks/connectionsadvanced/README.md#listconnections) - List connections
-* [UpdateConnection](docs/sdks/connectionsadvanced/README.md#updateconnection) - Update connection
-
 ### [Integrations](docs/sdks/integrations/README.md)
 
 * [GetIntegrationBranding](docs/sdks/integrations/README.md#getintegrationbranding) - Get branding for an integration
-* [ListIntegrations](docs/sdks/integrations/README.md#listintegrations) - List information on Codat's supported integrations
+* [ListIntegrations](docs/sdks/integrations/README.md#listintegrations) - List integrations
 
 ### [Sync](docs/sdks/sync/README.md)
 
