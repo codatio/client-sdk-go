@@ -9,3 +9,31 @@ type Configuration struct {
 	Payments    *Payments    `json:"payments,omitempty"`
 	Sales       *Sales       `json:"sales,omitempty"`
 }
+
+func (o *Configuration) GetFees() *Fees {
+	if o == nil {
+		return nil
+	}
+	return o.Fees
+}
+
+func (o *Configuration) GetNewPayments() *NewPayments {
+	if o == nil {
+		return nil
+	}
+	return o.NewPayments
+}
+
+func (o *Configuration) GetPayments() *Payments {
+	if o == nil {
+		return nil
+	}
+	return o.Payments
+}
+
+func (o *Configuration) GetSales() *Sales {
+	if o == nil {
+		return nil
+	}
+	return o.Sales
+}

@@ -7,3 +7,17 @@ type NewPayments struct {
 	// Boolean indicator for syncing payments.
 	SyncPayments *bool `json:"syncPayments,omitempty"`
 }
+
+func (o *NewPayments) GetAccounts() map[string]ConfigAccount {
+	if o == nil {
+		return nil
+	}
+	return o.Accounts
+}
+
+func (o *NewPayments) GetSyncPayments() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.SyncPayments
+}

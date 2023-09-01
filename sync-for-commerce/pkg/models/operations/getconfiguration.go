@@ -3,12 +3,19 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/models/shared"
 	"net/http"
 )
 
 type GetConfigurationRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
+}
+
+func (o *GetConfigurationRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
 }
 
 type GetConfigurationResponse struct {
@@ -17,4 +24,32 @@ type GetConfigurationResponse struct {
 	ContentType   string
 	StatusCode    int
 	RawResponse   *http.Response
+}
+
+func (o *GetConfigurationResponse) GetConfiguration() *shared.Configuration {
+	if o == nil {
+		return nil
+	}
+	return o.Configuration
+}
+
+func (o *GetConfigurationResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetConfigurationResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetConfigurationResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

@@ -8,3 +8,17 @@ type Option struct {
 	// Name value of the option.
 	Name *string `json:"name,omitempty"`
 }
+
+func (o *Option) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *Option) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}

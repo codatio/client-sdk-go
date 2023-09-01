@@ -8,3 +8,17 @@ type FeesSupplier struct {
 	// List of supplier options from the list of supplier records on the accounting software.
 	SupplierOptions []Option `json:"supplierOptions,omitempty"`
 }
+
+func (o *FeesSupplier) GetSelectedSupplierID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SelectedSupplierID
+}
+
+func (o *FeesSupplier) GetSupplierOptions() []Option {
+	if o == nil {
+		return nil
+	}
+	return o.SupplierOptions
+}

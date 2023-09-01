@@ -44,3 +44,17 @@ type DateRange struct {
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	Start *string `json:"start,omitempty"`
 }
+
+func (o *DateRange) GetFinish() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Finish
+}
+
+func (o *DateRange) GetStart() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Start
+}

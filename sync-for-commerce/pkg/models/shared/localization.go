@@ -7,3 +7,17 @@ type Localization struct {
 	// Value of the property.
 	Text *string `json:"text,omitempty"`
 }
+
+func (o *Localization) GetRequired() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Required
+}
+
+func (o *Localization) GetText() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Text
+}

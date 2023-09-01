@@ -12,3 +12,52 @@ type Sales struct {
 	SyncSales *bool                    `json:"syncSales,omitempty"`
 	TaxRates  map[string]TaxRateAmount `json:"taxRates,omitempty"`
 }
+
+func (o *Sales) GetAccounts() map[string]ConfigAccount {
+	if o == nil {
+		return nil
+	}
+	return o.Accounts
+}
+
+func (o *Sales) GetGrouping() *Grouping {
+	if o == nil {
+		return nil
+	}
+	return o.Grouping
+}
+
+func (o *Sales) GetInvoiceStatus() *InvoiceStatus {
+	if o == nil {
+		return nil
+	}
+	return o.InvoiceStatus
+}
+
+func (o *Sales) GetNewTaxRates() *NewTaxRates {
+	if o == nil {
+		return nil
+	}
+	return o.NewTaxRates
+}
+
+func (o *Sales) GetSalesCustomer() *Customer {
+	if o == nil {
+		return nil
+	}
+	return o.SalesCustomer
+}
+
+func (o *Sales) GetSyncSales() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.SyncSales
+}
+
+func (o *Sales) GetTaxRates() map[string]TaxRateAmount {
+	if o == nil {
+		return nil
+	}
+	return o.TaxRates
+}

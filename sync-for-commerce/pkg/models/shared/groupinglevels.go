@@ -6,3 +6,17 @@ type GroupingLevels struct {
 	InvoiceLevel     *InvoiceLevelSelection     `json:"invoiceLevel,omitempty"`
 	InvoiceLineLevel *InvoiceLineLevelSelection `json:"invoiceLineLevel,omitempty"`
 }
+
+func (o *GroupingLevels) GetInvoiceLevel() *InvoiceLevelSelection {
+	if o == nil {
+		return nil
+	}
+	return o.InvoiceLevel
+}
+
+func (o *GroupingLevels) GetInvoiceLineLevel() *InvoiceLineLevelSelection {
+	if o == nil {
+		return nil
+	}
+	return o.InvoiceLineLevel
+}

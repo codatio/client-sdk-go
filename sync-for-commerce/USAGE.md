@@ -1,12 +1,14 @@
 <!-- Start SDK Example Usage -->
+
+
 ```go
 package main
 
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/synccommerce"
-	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-commerce"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/models/shared"
 )
 
 func main() {
@@ -17,7 +19,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.CompanyManagement.CreateCompany(ctx, shared.CreateCompany{
+    res, err := s.AdvancedControls.CreateCompany(ctx, shared.CreateCompany{
         Name: "Bob's Burgers",
     })
     if err != nil {

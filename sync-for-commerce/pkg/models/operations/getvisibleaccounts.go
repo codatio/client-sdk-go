@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/models/shared"
 	"net/http"
 )
 
@@ -12,10 +12,52 @@ type GetVisibleAccountsRequest struct {
 	PlatformKey string `pathParam:"style=simple,explode=false,name=platformKey"`
 }
 
+func (o *GetVisibleAccountsRequest) GetClientID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ClientID
+}
+
+func (o *GetVisibleAccountsRequest) GetPlatformKey() string {
+	if o == nil {
+		return ""
+	}
+	return o.PlatformKey
+}
+
 type GetVisibleAccountsResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// Success
 	VisibleAccounts *shared.VisibleAccounts
+}
+
+func (o *GetVisibleAccountsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetVisibleAccountsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetVisibleAccountsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetVisibleAccountsResponse) GetVisibleAccounts() *shared.VisibleAccounts {
+	if o == nil {
+		return nil
+	}
+	return o.VisibleAccounts
 }

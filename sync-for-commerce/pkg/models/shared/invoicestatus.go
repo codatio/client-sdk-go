@@ -8,3 +8,17 @@ type InvoiceStatus struct {
 	// Selected option for invoice status for invoice to be synced.
 	SelectedInvoiceStatus *string `json:"selectedInvoiceStatus,omitempty"`
 }
+
+func (o *InvoiceStatus) GetInvoiceStatusOptions() []string {
+	if o == nil {
+		return nil
+	}
+	return o.InvoiceStatusOptions
+}
+
+func (o *InvoiceStatus) GetSelectedInvoiceStatus() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SelectedInvoiceStatus
+}

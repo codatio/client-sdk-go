@@ -8,3 +8,24 @@ type Fees struct {
 	// Boolean indicator to enable syncing fees.
 	SyncFees *bool `json:"syncFees,omitempty"`
 }
+
+func (o *Fees) GetAccounts() map[string]ConfigAccount {
+	if o == nil {
+		return nil
+	}
+	return o.Accounts
+}
+
+func (o *Fees) GetFeesSupplier() *FeesSupplier {
+	if o == nil {
+		return nil
+	}
+	return o.FeesSupplier
+}
+
+func (o *Fees) GetSyncFees() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.SyncFees
+}

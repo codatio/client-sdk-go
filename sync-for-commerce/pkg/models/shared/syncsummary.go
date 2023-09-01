@@ -42,3 +42,73 @@ type SyncSummary struct {
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	SyncUtc *string `json:"syncUtc,omitempty"`
 }
+
+func (o *SyncSummary) GetCommerceSyncID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CommerceSyncID
+}
+
+func (o *SyncSummary) GetCompanyID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CompanyID
+}
+
+func (o *SyncSummary) GetDataConnections() []Connection {
+	if o == nil {
+		return nil
+	}
+	return o.DataConnections
+}
+
+func (o *SyncSummary) GetDataPushed() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.DataPushed
+}
+
+func (o *SyncSummary) GetErrorMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *SyncSummary) GetSyncDateRangeUtc() *DateRange {
+	if o == nil {
+		return nil
+	}
+	return o.SyncDateRangeUtc
+}
+
+func (o *SyncSummary) GetSyncExceptionMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SyncExceptionMessage
+}
+
+func (o *SyncSummary) GetSyncStatus() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SyncStatus
+}
+
+func (o *SyncSummary) GetSyncStatusCode() *int {
+	if o == nil {
+		return nil
+	}
+	return o.SyncStatusCode
+}
+
+func (o *SyncSummary) GetSyncUtc() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SyncUtc
+}

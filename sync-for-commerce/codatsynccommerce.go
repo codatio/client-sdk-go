@@ -4,8 +4,8 @@ package codatsynccommerce
 
 import (
 	"fmt"
-	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/synccommerce/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/utils"
 	"net/http"
 	"time"
 )
@@ -59,16 +59,21 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 	return ServerList[c.ServerIndex], nil
 }
 
-// CodatSyncCommerce - Sync for Commerce API: The API for Sync for Commerce. Sync for Commerce is an API and a set of supporting tools. It has been built to enable e-commerce, point of sale platforms to provide high-quality integrations with numerous accounting platform through standardized API, seamlessly transforming business sale's data into accounting artefacts.
-// [Read More...](https://docs.codat.io/sfc/overview)
+// CodatSyncCommerce - Sync for Commerce: The API for Sync for Commerce.
+//
+// Sync for Commerce is an API and a set of supporting tools built to enable e-commerce and point of sale platforms to provide high-quality integrations with numerous accounting platform through standardized API, seamlessly transforming business sale's data into accounting artefacts.
+//
+// [Read More...](https://docs.codat.io/commerce/overview)
+//
+// <!-- Not seeing the end points you're expecting? We've reorganized our products, and you may be using a [different version of Sync for Commerce](https://docs.codat.io/sync-for-commerce-v1-api#/). -->
 type CodatSyncCommerce struct {
-	// CompanyManagement - Create new and manage existing Sync for Commerce companies.
-	CompanyManagement *companyManagement
-	// Configuration - Expressively configure preferences for any given Sync for Commerce company.
-	Configuration *configuration
+	// AdvancedControls - Advanced company management and sync preferences.
+	AdvancedControls *advancedControls
+	// Connections - Create new and manage existing Sync for Commerce companies using the Sync flow UI.
+	Connections *connections
 	// Integrations - View useful information about codat's integrations.
 	Integrations *integrations
-	// Sync - Initiate a sync of Sync for Commerce company data into their respective accounting software.
+	// Sync - Initiate and monitor the sync of company data into accounting software.
 	Sync *sync
 	// SyncFlowPreferences - Configure preferences for any given Sync for Commerce company using sync flow.
 	SyncFlowPreferences *syncFlowPreferences
@@ -127,8 +132,8 @@ func New(opts ...SDKOption) *CodatSyncCommerce {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.1",
-			SDKVersion:        "0.19.0",
-			GenVersion:        "2.58.0",
+			SDKVersion:        "0.20.0",
+			GenVersion:        "2.91.4",
 		},
 	}
 	for _, opt := range opts {
@@ -147,9 +152,9 @@ func New(opts ...SDKOption) *CodatSyncCommerce {
 		}
 	}
 
-	sdk.CompanyManagement = newCompanyManagement(sdk.sdkConfiguration)
+	sdk.AdvancedControls = newAdvancedControls(sdk.sdkConfiguration)
 
-	sdk.Configuration = newConfiguration(sdk.sdkConfiguration)
+	sdk.Connections = newConnections(sdk.sdkConfiguration)
 
 	sdk.Integrations = newIntegrations(sdk.sdkConfiguration)
 
