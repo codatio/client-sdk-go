@@ -42,5 +42,5 @@ To get your authorization header from the Codat Portal:
 
 | Library | Description | `go get` |
 | :- | :- | :- |
-| **[Accounting](https://github.com/codatio/client-sdk-go/tree/main/legacy/accounting)** | Access standardized accounting data from our accounting integrations.. | `github.com/codatio/client-sdk-go/accounting` |
+| **[Accounting](https://github.com/codatio/client-sdk-go/tree/main/previous-versions/accounting)** | Access standardized accounting data from our accounting integrations.. | `github.com/codatio/client-sdk-go/accounting` |
             
