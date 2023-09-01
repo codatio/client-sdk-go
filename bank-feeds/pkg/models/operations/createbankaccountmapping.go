@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/pkg/models/shared"
 	"net/http"
 )
 
@@ -13,12 +13,68 @@ type CreateBankAccountMappingRequest struct {
 	ConnectionID           string                         `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
+func (o *CreateBankAccountMappingRequest) GetBankFeedAccountMapping() *shared.BankFeedAccountMapping {
+	if o == nil {
+		return nil
+	}
+	return o.BankFeedAccountMapping
+}
+
+func (o *CreateBankAccountMappingRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *CreateBankAccountMappingRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
 type CreateBankAccountMappingResponse struct {
 	// Success
-	AccountMappingResult *shared.AccountMappingResult
-	ContentType          string
-	StatusCode           int
-	RawResponse          *http.Response
+	BankFeedAccountMappingResponse *shared.BankFeedAccountMappingResponse
+	ContentType                    string
 	// The request made is not valid.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
+}
+
+func (o *CreateBankAccountMappingResponse) GetBankFeedAccountMappingResponse() *shared.BankFeedAccountMappingResponse {
+	if o == nil {
+		return nil
+	}
+	return o.BankFeedAccountMappingResponse
+}
+
+func (o *CreateBankAccountMappingResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *CreateBankAccountMappingResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *CreateBankAccountMappingResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *CreateBankAccountMappingResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

@@ -351,3 +351,13 @@ Based on:
 - Speakeasy CLI 1.53.0 (2.58.0) https://github.com/speakeasy-api/speakeasy
 ### Releases
 - [Go v0.25.1] https://github.com/codatio/client-sdk-go/releases/tag/bankfeeds/v0.25.1 - bankfeeds
+
+## 2023-09-01 15:51:33
+### Changes
+Based on:
+- OpenAPI Doc 3.0.0 https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Bank-Feeds.yaml
+- Speakeasy CLI 1.77.1 (2.91.4) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [go v0.26.0] bank-feeds
+### Releases
+- [Go v0.26.0] https://github.com/codatio/client-sdk-go/releases/tag/bank-feeds/v0.26.0 - bank-feeds

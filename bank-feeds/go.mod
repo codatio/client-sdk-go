@@ -1,4 +1,4 @@
-module github.com/codatio/client-sdk-go/bankfeeds
+module github.com/codatio/client-sdk-go/bank-feeds
 
 go 1.14
 

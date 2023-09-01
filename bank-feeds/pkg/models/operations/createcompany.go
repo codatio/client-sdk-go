@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/pkg/models/shared"
 	"net/http"
 )
 
@@ -11,8 +11,43 @@ type CreateCompanyResponse struct {
 	// OK
 	Company     *shared.Company
 	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
 	// The request made is not valid.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
+}
+
+func (o *CreateCompanyResponse) GetCompany() *shared.Company {
+	if o == nil {
+		return nil
+	}
+	return o.Company
+}
+
+func (o *CreateCompanyResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *CreateCompanyResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *CreateCompanyResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *CreateCompanyResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

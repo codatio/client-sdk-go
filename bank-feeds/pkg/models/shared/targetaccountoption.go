@@ -3,8 +3,49 @@
 package shared
 
 type TargetAccountOption struct {
+	// The account number of the account.
+	AccountNumber *string `json:"accountNumber,omitempty"`
+	// The balance of the account.
+	Balance *float64 `json:"balance,omitempty"`
 	// Id of the target account.
 	ID *string `json:"id,omitempty"`
 	// Name of the target account.
 	Name *string `json:"name,omitempty"`
+	// The sort code of the account.
+	SortCode *string `json:"sortCode,omitempty"`
+}
+
+func (o *TargetAccountOption) GetAccountNumber() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AccountNumber
+}
+
+func (o *TargetAccountOption) GetBalance() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Balance
+}
+
+func (o *TargetAccountOption) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *TargetAccountOption) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
+func (o *TargetAccountOption) GetSortCode() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SortCode
 }

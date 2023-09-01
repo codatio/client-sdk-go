@@ -6,9 +6,10 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bankfeeds/pkg/utils"
+	"github.com/codatio/client-sdk-go/bank-feeds/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bank-feeds/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/bank-feeds/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/pkg/utils"
 	"io"
 	"net/http"
 )
@@ -27,8 +28,8 @@ func newConnections(sdkConfig sdkConfiguration) *connections {
 // Create - Create connection
 // Creates a connection for the company by providing a valid `platformKey`.
 //
-// Use the [List Integrations](https://docs.codat.io/codat-api#/operations/list-integrations) endpoint to access valid platform keys.
-func (s *connections) Create(ctx context.Context, request operations.CreateDataConnectionRequest, opts ...operations.Option) (*operations.CreateDataConnectionResponse, error) {
+// Use the [List Integrations](https://docs.codat.io/bank-feeds-api#/operations/list-integrations) endpoint to access valid platform keys.
+func (s *connections) Create(ctx context.Context, request operations.CreateConnectionRequest, opts ...operations.Option) (*operations.CreateConnectionResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -54,7 +55,7 @@ func (s *connections) Create(ctx context.Context, request operations.CreateDataC
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
+	req.Header.Set("Accept", "application/json")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
@@ -101,7 +102,7 @@ func (s *connections) Create(ctx context.Context, request operations.CreateDataC
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.CreateDataConnectionResponse{
+	res := &operations.CreateConnectionResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -116,6 +117,8 @@ func (s *connections) Create(ctx context.Context, request operations.CreateDataC
 			}
 
 			res.Connection = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -124,12 +127,14 @@ func (s *connections) Create(ctx context.Context, request operations.CreateDataC
 	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Schema
+			var out *shared.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.Schema = out
+			res.ErrorMessage = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -139,7 +144,7 @@ func (s *connections) Create(ctx context.Context, request operations.CreateDataC
 // Delete - Delete connection
 // Revoke and remove a connection from a company.
 // This operation is not reversible. The end user would need to reauthorize a new data connection if you wish to view new data for this company.
-func (s *connections) Delete(ctx context.Context, request operations.DeleteCompanyConnectionRequest, opts ...operations.Option) (*operations.DeleteCompanyConnectionResponse, error) {
+func (s *connections) Delete(ctx context.Context, request operations.DeleteConnectionRequest, opts ...operations.Option) (*operations.DeleteConnectionResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -205,7 +210,7 @@ func (s *connections) Delete(ctx context.Context, request operations.DeleteCompa
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.DeleteCompanyConnectionResponse{
+	res := &operations.DeleteConnectionResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -219,12 +224,14 @@ func (s *connections) Delete(ctx context.Context, request operations.DeleteCompa
 	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Schema
+			var out *shared.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.Schema = out
+			res.ErrorMessage = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -233,7 +240,7 @@ func (s *connections) Delete(ctx context.Context, request operations.DeleteCompa
 
 // Get - Get connection
 // Returns a specific connection for a company when valid identifiers are provided. If the identifiers are for a deleted company and/or connection, a not found response is returned.
-func (s *connections) Get(ctx context.Context, request operations.GetCompanyConnectionRequest, opts ...operations.Option) (*operations.GetCompanyConnectionResponse, error) {
+func (s *connections) Get(ctx context.Context, request operations.GetConnectionRequest, opts ...operations.Option) (*operations.GetConnectionResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -254,7 +261,7 @@ func (s *connections) Get(ctx context.Context, request operations.GetCompanyConn
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
+	req.Header.Set("Accept", "application/json")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	client := s.sdkConfiguration.SecurityClient
@@ -299,7 +306,7 @@ func (s *connections) Get(ctx context.Context, request operations.GetCompanyConn
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetCompanyConnectionResponse{
+	res := &operations.GetConnectionResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -314,6 +321,8 @@ func (s *connections) Get(ctx context.Context, request operations.GetCompanyConn
 			}
 
 			res.Connection = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -322,12 +331,14 @@ func (s *connections) Get(ctx context.Context, request operations.GetCompanyConn
 	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Schema
+			var out *shared.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.Schema = out
+			res.ErrorMessage = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -336,7 +347,7 @@ func (s *connections) Get(ctx context.Context, request operations.GetCompanyConn
 
 // List - List connections
 // List the connections for a company.
-func (s *connections) List(ctx context.Context, request operations.ListCompanyConnectionsRequest, opts ...operations.Option) (*operations.ListCompanyConnectionsResponse, error) {
+func (s *connections) List(ctx context.Context, request operations.ListConnectionsRequest, opts ...operations.Option) (*operations.ListConnectionsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -357,7 +368,7 @@ func (s *connections) List(ctx context.Context, request operations.ListCompanyCo
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
+	req.Header.Set("Accept", "application/json")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
@@ -406,7 +417,7 @@ func (s *connections) List(ctx context.Context, request operations.ListCompanyCo
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.ListCompanyConnectionsResponse{
+	res := &operations.ListConnectionsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -421,6 +432,8 @@ func (s *connections) List(ctx context.Context, request operations.ListCompanyCo
 			}
 
 			res.Connections = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
 		fallthrough
@@ -431,130 +444,23 @@ func (s *connections) List(ctx context.Context, request operations.ListCompanyCo
 	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Schema
+			var out *shared.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.Schema = out
+			res.ErrorMessage = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
 	return res, nil
 }
 
-// Proxy - Proxy
-// The *Proxy* endpoint can be used to generate credentials from QuickBooks Online for authentication of the Bank Feed in their portal.
-//
-// See the example provided for the `endpoint` query parameter when generating credentials for QuickBooks Online.
-func (s *connections) Proxy(ctx context.Context, request operations.ProxyRequest, opts ...operations.Option) (*operations.ProxyResponse, error) {
-	o := operations.Options{}
-	supportedOptions := []string{
-		operations.SupportedOptionRetries,
-	}
-
-	for _, opt := range opts {
-		if err := opt(&o, supportedOptions...); err != nil {
-			return nil, fmt.Errorf("error applying option: %w", err)
-		}
-	}
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/data/proxy", request, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error generating URL: %w", err)
-	}
-
-	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error creating request: %w", err)
-	}
-	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
-
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
-		return nil, fmt.Errorf("error populating query params: %w", err)
-	}
-
-	client := s.sdkConfiguration.SecurityClient
-
-	retryConfig := o.Retries
-	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
-		}
-	}
-
-	httpRes, err := utils.Retry(ctx, utils.Retries{
-		Config: retryConfig,
-		StatusCodes: []string{
-			"408",
-			"429",
-			"5XX",
-		},
-	}, func() (*http.Response, error) {
-		return client.Do(req)
-	})
-	if err != nil {
-		return nil, fmt.Errorf("error sending request: %w", err)
-	}
-	if httpRes == nil {
-		return nil, fmt.Errorf("error sending request: no response")
-	}
-
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
-	contentType := httpRes.Header.Get("Content-Type")
-
-	res := &operations.ProxyResponse{
-		StatusCode:  httpRes.StatusCode,
-		ContentType: contentType,
-		RawResponse: httpRes,
-	}
-	switch {
-	case httpRes.StatusCode == 200:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out map[string]interface{}
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
-			}
-
-			res.ProxyResponse = out
-		}
-	case httpRes.StatusCode == 401:
-		fallthrough
-	case httpRes.StatusCode == 404:
-		fallthrough
-	case httpRes.StatusCode == 429:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Schema
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
-			}
-
-			res.Schema = out
-		}
-	}
-
-	return res, nil
-}
-
-// UnlinkConnection - Unlink connection
+// Unlink - Unlink connection
 // This allows you to deauthorize a connection, without deleting it from Codat. This means you can still view any data that has previously been pulled into Codat, and also lets you re-authorize in future if your customer wishes to resume sharing their data.
-func (s *connections) UnlinkConnection(ctx context.Context, request operations.UnlinkConnectionRequest, opts ...operations.Option) (*operations.UnlinkConnectionResponse, error) {
+func (s *connections) Unlink(ctx context.Context, request operations.UnlinkConnectionRequest, opts ...operations.Option) (*operations.UnlinkConnectionResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -580,7 +486,7 @@ func (s *connections) UnlinkConnection(ctx context.Context, request operations.U
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
+	req.Header.Set("Accept", "application/json")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
@@ -642,6 +548,8 @@ func (s *connections) UnlinkConnection(ctx context.Context, request operations.U
 			}
 
 			res.Connection = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -650,12 +558,14 @@ func (s *connections) UnlinkConnection(ctx context.Context, request operations.U
 	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Schema
+			var out *shared.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.Schema = out
+			res.ErrorMessage = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 

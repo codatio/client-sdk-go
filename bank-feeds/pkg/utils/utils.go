@@ -12,7 +12,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/codatio/client-sdk-go/bankfeeds/pkg/types"
+	"github.com/codatio/client-sdk-go/bank-feeds/pkg/types"
 )
 
 const (
