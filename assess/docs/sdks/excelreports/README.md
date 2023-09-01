@@ -24,8 +24,8 @@ import(
 	"context"
 	"log"
 	"github.com/codatio/client-sdk-go/assess"
-	"github.com/codatio/client-sdk-go/assess/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/assess/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/assess/pkg/models/operations"
 )
 
 func main() {
@@ -79,8 +79,8 @@ import(
 	"context"
 	"log"
 	"github.com/codatio/client-sdk-go/assess"
-	"github.com/codatio/client-sdk-go/assess/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/assess/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/assess/pkg/models/operations"
 )
 
 func main() {
@@ -95,9 +95,9 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         IncludeDisplayNames: codatassess.Bool(false),
-        NumberOfPeriods: 836079,
-        PeriodLength: 71036,
-        PeriodUnit: shared.PeriodUnitWeek,
+        NumberOfPeriods: 602763,
+        PeriodLength: 857946,
+        PeriodUnit: shared.PeriodUnitMonth,
         ReportDate: "29-09-2020",
         ShowInputValues: codatassess.Bool(false),
     })
@@ -138,8 +138,8 @@ import(
 	"context"
 	"log"
 	"github.com/codatio/client-sdk-go/assess"
-	"github.com/codatio/client-sdk-go/assess/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/assess/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/assess/pkg/models/operations"
 )
 
 func main() {
@@ -152,7 +152,7 @@ func main() {
     ctx := context.Background()
     res, err := s.ExcelReports.GetExcelReport(ctx, operations.GetExcelReportRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ReportType: shared.ExcelReportTypeAssess,
+        ReportType: shared.ExcelReportTypeEnhancedCashFlow,
     })
     if err != nil {
         log.Fatal(err)
@@ -191,8 +191,8 @@ import(
 	"context"
 	"log"
 	"github.com/codatio/client-sdk-go/assess"
-	"github.com/codatio/client-sdk-go/assess/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/assess/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/assess/pkg/models/operations"
 )
 
 func main() {
@@ -205,7 +205,7 @@ func main() {
     ctx := context.Background()
     res, err := s.ExcelReports.GetExcelReportGenerationStatus(ctx, operations.GetExcelReportGenerationStatusRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ReportType: shared.ExcelReportTypeEnhancedInvoices,
+        ReportType: shared.ExcelReportTypeEnhancedFinancials,
     })
     if err != nil {
         log.Fatal(err)

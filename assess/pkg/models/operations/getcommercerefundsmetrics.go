@@ -22,12 +22,96 @@ type GetCommerceRefundsMetricsRequest struct {
 	ReportDate string `queryParam:"style=form,explode=true,name=reportDate"`
 }
 
+func (o *GetCommerceRefundsMetricsRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *GetCommerceRefundsMetricsRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *GetCommerceRefundsMetricsRequest) GetIncludeDisplayNames() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.IncludeDisplayNames
+}
+
+func (o *GetCommerceRefundsMetricsRequest) GetNumberOfPeriods() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.NumberOfPeriods
+}
+
+func (o *GetCommerceRefundsMetricsRequest) GetPeriodLength() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.PeriodLength
+}
+
+func (o *GetCommerceRefundsMetricsRequest) GetPeriodUnit() shared.PeriodUnit {
+	if o == nil {
+		return shared.PeriodUnit("")
+	}
+	return o.PeriodUnit
+}
+
+func (o *GetCommerceRefundsMetricsRequest) GetReportDate() string {
+	if o == nil {
+		return ""
+	}
+	return o.ReportDate
+}
+
 type GetCommerceRefundsMetricsResponse struct {
 	ContentType string
+	// Your API request was not properly authorized.
+	ErrorMessage *shared.ErrorMessage
 	// OK
 	Report      *shared.Report
 	StatusCode  int
 	RawResponse *http.Response
-	// Your API request was not properly authorized.
-	Schema *shared.Schema
+}
+
+func (o *GetCommerceRefundsMetricsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetCommerceRefundsMetricsResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *GetCommerceRefundsMetricsResponse) GetReport() *shared.Report {
+	if o == nil {
+		return nil
+	}
+	return o.Report
+}
+
+func (o *GetCommerceRefundsMetricsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetCommerceRefundsMetricsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

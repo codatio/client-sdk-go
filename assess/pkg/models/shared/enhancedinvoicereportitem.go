@@ -11,8 +11,8 @@ type EnhancedInvoiceReportItem struct {
 	// In line with the ISO 4217 specification, the code _XXX_ is used when the data source does not return a currency for a transaction.
 	//
 	// There are only a very small number of edge cases where this currency code is returned by the Codat system.
-	Currency    *string      `json:"currency,omitempty"`
-	CustomerRef *CustomerRef `json:"customerRef,omitempty"`
+	Currency    *string             `json:"currency,omitempty"`
+	CustomerRef *LendingCustomerRef `json:"customerRef,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -88,4 +88,95 @@ type EnhancedInvoiceReportItem struct {
 	// - `Void` - An invoice can become Void when it's deleted, refunded, written off, or cancelled. A voided invoice may still be PartiallyPaid, and so all outstanding amounts on voided invoices are removed from the accounts receivable account.
 	Status      *InvoiceStatus `json:"status,omitempty"`
 	TotalAmount *float64       `json:"totalAmount,omitempty"`
+}
+
+func (o *EnhancedInvoiceReportItem) GetAmountDue() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.AmountDue
+}
+
+func (o *EnhancedInvoiceReportItem) GetCurrency() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Currency
+}
+
+func (o *EnhancedInvoiceReportItem) GetCustomerRef() *LendingCustomerRef {
+	if o == nil {
+		return nil
+	}
+	return o.CustomerRef
+}
+
+func (o *EnhancedInvoiceReportItem) GetDueDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DueDate
+}
+
+func (o *EnhancedInvoiceReportItem) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *EnhancedInvoiceReportItem) GetInvoiceNumber() *string {
+	if o == nil {
+		return nil
+	}
+	return o.InvoiceNumber
+}
+
+func (o *EnhancedInvoiceReportItem) GetIssueDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IssueDate
+}
+
+func (o *EnhancedInvoiceReportItem) GetModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ModifiedDate
+}
+
+func (o *EnhancedInvoiceReportItem) GetPaidOnDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PaidOnDate
+}
+
+func (o *EnhancedInvoiceReportItem) GetPayments() []Payment {
+	if o == nil {
+		return nil
+	}
+	return o.Payments
+}
+
+func (o *EnhancedInvoiceReportItem) GetSourceModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceModifiedDate
+}
+
+func (o *EnhancedInvoiceReportItem) GetStatus() *InvoiceStatus {
+	if o == nil {
+		return nil
+	}
+	return o.Status
+}
+
+func (o *EnhancedInvoiceReportItem) GetTotalAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.TotalAmount
 }

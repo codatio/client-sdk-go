@@ -2,15 +2,72 @@
 
 ## Overview
 
-Data integrity is important
+Match mutable accounting data with immutable banking data to increase confidence in financial data
 
 ### Available Operations
 
-* [GetDataIntegrityStatus](#getdataintegritystatus) - Get data integrity status
-* [GetDataIntegritySummaries](#getdataintegritysummaries) - Get data integrity summary
-* [ListDataTypeDataIntegrityDetails](#listdatatypedataintegritydetails) - List data type data integrity
+* [Details](#details) - List data type data integrity
+* [Status](#status) - Get data integrity status
+* [Summary](#summary) - Get data integrity summary
 
-## GetDataIntegrityStatus
+## Details
+
+Gets record-by-record match results for a given company and datatype, optionally restricted by a Codat query string.
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"log"
+	"github.com/codatio/client-sdk-go/assess"
+	"github.com/codatio/client-sdk-go/assess/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/assess/pkg/models/operations"
+)
+
+func main() {
+    s := codatassess.New(
+        codatassess.WithSecurity(shared.Security{
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
+        }),
+    )
+
+    ctx := context.Background()
+    res, err := s.DataIntegrity.Details(ctx, operations.ListDataTypeDataIntegrityDetailsRequest{
+        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+        DataType: shared.DataIntegrityDataTypeBankingAccounts,
+        OrderBy: codatassess.String("-modifiedDate"),
+        Page: codatassess.Int(1),
+        PageSize: codatassess.Int(100),
+        Query: codatassess.String("provident"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.Details != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
+| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                                                    | :heavy_check_mark:                                                                                                       | The context to use for the request.                                                                                      |
+| `request`                                                                                                                | [operations.ListDataTypeDataIntegrityDetailsRequest](../../models/operations/listdatatypedataintegritydetailsrequest.md) | :heavy_check_mark:                                                                                                       | The request object to use for the request.                                                                               |
+| `opts`                                                                                                                   | [][operations.Option](../../models/operations/option.md)                                                                 | :heavy_minus_sign:                                                                                                       | The options for this request.                                                                                            |
+
+
+### Response
+
+**[*operations.ListDataTypeDataIntegrityDetailsResponse](../../models/operations/listdatatypedataintegritydetailsresponse.md), error**
+
+
+## Status
 
 Gets match status for a given company and datatype.
 
@@ -23,8 +80,8 @@ import(
 	"context"
 	"log"
 	"github.com/codatio/client-sdk-go/assess"
-	"github.com/codatio/client-sdk-go/assess/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/assess/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/assess/pkg/models/operations"
 )
 
 func main() {
@@ -35,7 +92,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.DataIntegrity.GetDataIntegrityStatus(ctx, operations.GetDataIntegrityStatusRequest{
+    res, err := s.DataIntegrity.Status(ctx, operations.GetDataIntegrityStatusRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         DataType: shared.DataIntegrityDataTypeBankingAccounts,
     })
@@ -63,7 +120,7 @@ func main() {
 **[*operations.GetDataIntegrityStatusResponse](../../models/operations/getdataintegritystatusresponse.md), error**
 
 
-## GetDataIntegritySummaries
+## Summary
 
 Gets match summary for a given company and datatype, optionally restricted by a Codat query string.
 
@@ -76,8 +133,8 @@ import(
 	"context"
 	"log"
 	"github.com/codatio/client-sdk-go/assess"
-	"github.com/codatio/client-sdk-go/assess/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/assess/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/assess/pkg/models/operations"
 )
 
 func main() {
@@ -88,10 +145,10 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.DataIntegrity.GetDataIntegritySummaries(ctx, operations.GetDataIntegritySummariesRequest{
+    res, err := s.DataIntegrity.Summary(ctx, operations.GetDataIntegritySummariesRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         DataType: shared.DataIntegrityDataTypeBankingAccounts,
-        Query: codatassess.String("excepturi"),
+        Query: codatassess.String("distinctio"),
     })
     if err != nil {
         log.Fatal(err)
@@ -115,61 +172,4 @@ func main() {
 ### Response
 
 **[*operations.GetDataIntegritySummariesResponse](../../models/operations/getdataintegritysummariesresponse.md), error**
-
-
-## ListDataTypeDataIntegrityDetails
-
-Gets record-by-record match results for a given company and datatype, optionally restricted by a Codat query string.
-
-### Example Usage
-
-```go
-package main
-
-import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/assess"
-	"github.com/codatio/client-sdk-go/assess/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/assess/pkg/models/shared"
-)
-
-func main() {
-    s := codatassess.New(
-        codatassess.WithSecurity(shared.Security{
-            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
-        }),
-    )
-
-    ctx := context.Background()
-    res, err := s.DataIntegrity.ListDataTypeDataIntegrityDetails(ctx, operations.ListDataTypeDataIntegrityDetailsRequest{
-        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        DataType: shared.DataIntegrityDataTypeBankingAccounts,
-        OrderBy: codatassess.String("-modifiedDate"),
-        Page: codatassess.Int(1),
-        PageSize: codatassess.Int(100),
-        Query: codatassess.String("nisi"),
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-
-    if res.Details != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                                                    | :heavy_check_mark:                                                                                                       | The context to use for the request.                                                                                      |
-| `request`                                                                                                                | [operations.ListDataTypeDataIntegrityDetailsRequest](../../models/operations/listdatatypedataintegritydetailsrequest.md) | :heavy_check_mark:                                                                                                       | The request object to use for the request.                                                                               |
-| `opts`                                                                                                                   | [][operations.Option](../../models/operations/option.md)                                                                 | :heavy_minus_sign:                                                                                                       | The options for this request.                                                                                            |
-
-
-### Response
-
-**[*operations.ListDataTypeDataIntegrityDetailsResponse](../../models/operations/listdatatypedataintegritydetailsresponse.md), error**
 

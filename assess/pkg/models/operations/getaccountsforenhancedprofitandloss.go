@@ -15,12 +15,68 @@ type GetAccountsForEnhancedProfitAndLossRequest struct {
 	ReportDate string `queryParam:"style=form,explode=true,name=reportDate"`
 }
 
+func (o *GetAccountsForEnhancedProfitAndLossRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *GetAccountsForEnhancedProfitAndLossRequest) GetNumberOfPeriods() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.NumberOfPeriods
+}
+
+func (o *GetAccountsForEnhancedProfitAndLossRequest) GetReportDate() string {
+	if o == nil {
+		return ""
+	}
+	return o.ReportDate
+}
+
 type GetAccountsForEnhancedProfitAndLossResponse struct {
 	ContentType string
 	// OK
 	EnhancedReport *shared.EnhancedReport
-	StatusCode     int
-	RawResponse    *http.Response
 	// Your API request was not properly authorized.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
+}
+
+func (o *GetAccountsForEnhancedProfitAndLossResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetAccountsForEnhancedProfitAndLossResponse) GetEnhancedReport() *shared.EnhancedReport {
+	if o == nil {
+		return nil
+	}
+	return o.EnhancedReport
+}
+
+func (o *GetAccountsForEnhancedProfitAndLossResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *GetAccountsForEnhancedProfitAndLossResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetAccountsForEnhancedProfitAndLossResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

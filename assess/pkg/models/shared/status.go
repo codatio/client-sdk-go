@@ -6,3 +6,10 @@ package shared
 type Status struct {
 	Metadata []DataIntegrityStatus `json:"metadata,omitempty"`
 }
+
+func (o *Status) GetMetadata() []DataIntegrityStatus {
+	if o == nil {
+		return nil
+	}
+	return o.Metadata
+}

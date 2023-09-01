@@ -17,12 +17,75 @@ type GetEnhancedInvoicesReportRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
+func (o *GetEnhancedInvoicesReportRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *GetEnhancedInvoicesReportRequest) GetPage() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Page
+}
+
+func (o *GetEnhancedInvoicesReportRequest) GetPageSize() *int {
+	if o == nil {
+		return nil
+	}
+	return o.PageSize
+}
+
+func (o *GetEnhancedInvoicesReportRequest) GetQuery() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Query
+}
+
 type GetEnhancedInvoicesReportResponse struct {
 	ContentType string
 	// OK
 	EnhancedInvoicesReport *shared.EnhancedInvoicesReport
-	StatusCode             int
-	RawResponse            *http.Response
 	// Your API request was not properly authorized.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
+}
+
+func (o *GetEnhancedInvoicesReportResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetEnhancedInvoicesReportResponse) GetEnhancedInvoicesReport() *shared.EnhancedInvoicesReport {
+	if o == nil {
+		return nil
+	}
+	return o.EnhancedInvoicesReport
+}
+
+func (o *GetEnhancedInvoicesReportResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *GetEnhancedInvoicesReportResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetEnhancedInvoicesReportResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

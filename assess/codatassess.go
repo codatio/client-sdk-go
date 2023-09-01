@@ -60,19 +60,17 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 }
 
 // CodatAssess - Assess API: Codat's financial insights API
-// Codat's Assess API enable you to make smarter credit decisions on your small business customers. Assess enriches your customer's accounting, commerce and banking data to surface actionable insights you didn't have before.
+// Check that you have enabled the [data types required by Assess](https://docs.codat.io/assess/get-started#prerequisites) for all of its features to work.
 //
-// [Read more...](https://www.codat.io/assess/)
+// [Read more...](https://www.docs.codat.io/assess/)
 //
 // [See our OpenAPI spec](https://github.com/codatio/oas)
 type CodatAssess struct {
-	// Categories - Categorisation
-	Categories *categories
-	// DataIntegrity - Data integrity is important
+	// DataIntegrity - Match mutable accounting data with immutable banking data to increase confidence in financial data
 	DataIntegrity *dataIntegrity
 	// ExcelReports - Downloadable reports
 	ExcelReports *excelReports
-	// Reports - Data integrity is important
+	// Reports - Enriched reports and analyses of financial data
 	Reports *reports
 
 	sdkConfiguration sdkConfiguration
@@ -129,8 +127,8 @@ func New(opts ...SDKOption) *CodatAssess {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0",
-			SDKVersion:        "0.24.0",
-			GenVersion:        "2.58.0",
+			SDKVersion:        "0.25.0",
+			GenVersion:        "2.91.4",
 		},
 	}
 	for _, opt := range opts {
@@ -148,8 +146,6 @@ func New(opts ...SDKOption) *CodatAssess {
 			sdk.sdkConfiguration.SecurityClient = sdk.sdkConfiguration.DefaultClient
 		}
 	}
-
-	sdk.Categories = newCategories(sdk.sdkConfiguration)
 
 	sdk.DataIntegrity = newDataIntegrity(sdk.sdkConfiguration)
 

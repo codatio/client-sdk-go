@@ -2,20 +2,38 @@
 
 package shared
 
-// Report - Assess reports follow a consistent structure. Reports contain four sections of information:
+// Report - ## Structure
 //
-//  1. Report definition information such as:
-//     a. The report info (e.g. enhanced_profit_and_loss).
-//     b. The display name of the report (e.g. Enhanced Profit and Loss).
-//  2. Information about the dimension contained in the reports such as:
-//     a. The type of dimension (e.g. datetime, recordRef).
-//     b. The display name of the dimension (e.g. Period, Category type, Category sub type).
-//     c. The details about each item within the dimension (e.g. displayName:"Jan 2022", start:"...", end:"...", id:"...", name:"...").
-//  3. Information about the measures contained in the report such as:
-//     a. The display name of the measure (e.g. value of account, percentage change).
-//     b. The type of the measure (e.g. currency, percentage).
-//     c. The unit of the measure (e.g. %, GBP).
-//  4. The data for the report. When the *includeDisplayName* parameter is set to *true*, it shows the *dimensionDisplayName* and *itemDisplayName* to make the data human-readable. The default setting for *includeDisplayName* is *false*.
+// Assess reports follow a consistent structure. Reports contain four sections of information:
+//
+// ### 1. Report definition
+//
+// Information such as:
+//
+//  1. The report info (e.g. enhanced_profit_and_loss).
+//  2. The display name of the report (e.g. Enhanced Profit and Loss).
+//
+// ### 2. Dimension info
+//
+// Information about the dimension contained in the reports such as:
+//
+//  1. The type of dimension (e.g. datetime, recordRef).
+//  2. The display name of the dimension (e.g. Period, Category type, Category sub type).
+//  3. The details about each item within the dimension (e.g. displayName:"Jan 2022", start:"...", end:"...", id:"...", name:"...").
+//
+// ### 3. Measure info
+//
+// Information about the measures contained in the report such as:
+//
+//  1. The display name of the measure (e.g. value of account, percentage change).
+//  2. The type of the measure (e.g. currency, percentage).
+//  3. The unit of the measure (e.g. %, GBP).
+//
+// ### 4. The data for the report
+//
+// When the *includeDisplayName* parameter is set to *true*, it shows the *dimensionDisplayName* and *itemDisplayName* to make the data human-readable. The default setting for *includeDisplayName* is *false*.
+//
+// ## Displaying the report
 //
 // Reports can be rendered as follows (ordering is implicit rather than explicit):
 //
@@ -25,9 +43,44 @@ package shared
 //
 // ## Dimensions
 type Report struct {
-	Dimensions []ReportDimension `json:"dimensions,omitempty"`
-	Errors     []ReportError     `json:"errors,omitempty"`
-	Measures   []ReportMeasure   `json:"measures,omitempty"`
-	ReportData []ReportComponent `json:"reportData,omitempty"`
-	ReportInfo map[string]string `json:"reportInfo,omitempty"`
+	Dimensions []CommerceReportDimension `json:"dimensions,omitempty"`
+	Errors     []CommerceReportError     `json:"errors,omitempty"`
+	Measures   []CommerceReportMeasure   `json:"measures,omitempty"`
+	ReportData []CommerceReportComponent `json:"reportData,omitempty"`
+	ReportInfo map[string]string         `json:"reportInfo,omitempty"`
+}
+
+func (o *Report) GetDimensions() []CommerceReportDimension {
+	if o == nil {
+		return nil
+	}
+	return o.Dimensions
+}
+
+func (o *Report) GetErrors() []CommerceReportError {
+	if o == nil {
+		return nil
+	}
+	return o.Errors
+}
+
+func (o *Report) GetMeasures() []CommerceReportMeasure {
+	if o == nil {
+		return nil
+	}
+	return o.Measures
+}
+
+func (o *Report) GetReportData() []CommerceReportComponent {
+	if o == nil {
+		return nil
+	}
+	return o.ReportData
+}
+
+func (o *Report) GetReportInfo() map[string]string {
+	if o == nil {
+		return nil
+	}
+	return o.ReportInfo
 }
