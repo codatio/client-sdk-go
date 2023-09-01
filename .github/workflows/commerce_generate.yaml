@@ -1,18 +1,16 @@
-name: Generate Commerce SDK
-
-on:
-  workflow_dispatch: # Allows manual triggering of the workflow to generate SDK
+name: Generate Commerce library
+'on':
+  workflow_dispatch:
     inputs:
       force:
-        description: "Force generation of SDKs"
+        description: Force generation of SDKs
         type: boolean
         default: false
   schedule:
-    - cron: 0 0 * * * # Runs every day at midnight
-
+  - cron: 0 0 * * *
 jobs:
   generate:
-    uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-generation.yaml@v14 # Import the sdk generation workflow which will handle the generation of the SDKs and publishing to the package managers in 'direct' mode.
+    uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-generation.yaml@v14
     with:
       speakeasy_version: latest
       openapi_doc_location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Commerce.yaml
