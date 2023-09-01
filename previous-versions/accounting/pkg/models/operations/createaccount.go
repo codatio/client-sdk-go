@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
 	"net/http"
 )
 
@@ -14,12 +14,75 @@ type CreateAccountRequest struct {
 	TimeoutInMinutes *int            `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
 }
 
+func (o *CreateAccountRequest) GetAccount() *shared.Account {
+	if o == nil {
+		return nil
+	}
+	return o.Account
+}
+
+func (o *CreateAccountRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *CreateAccountRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *CreateAccountRequest) GetTimeoutInMinutes() *int {
+	if o == nil {
+		return nil
+	}
+	return o.TimeoutInMinutes
+}
+
 type CreateAccountResponse struct {
 	ContentType string
 	// Success
 	CreateAccountResponse *shared.CreateAccountResponse
-	StatusCode            int
-	RawResponse           *http.Response
 	// The request made is not valid.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
+}
+
+func (o *CreateAccountResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *CreateAccountResponse) GetCreateAccountResponse() *shared.CreateAccountResponse {
+	if o == nil {
+		return nil
+	}
+	return o.CreateAccountResponse
+}
+
+func (o *CreateAccountResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *CreateAccountResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *CreateAccountResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

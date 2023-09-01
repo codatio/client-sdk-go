@@ -6,6 +6,13 @@ type SalesOrderLineItemTracking struct {
 	RecordRefs []InvoiceTo `json:"recordRefs,omitempty"`
 }
 
+func (o *SalesOrderLineItemTracking) GetRecordRefs() []InvoiceTo {
+	if o == nil {
+		return nil
+	}
+	return o.RecordRefs
+}
+
 type SalesOrderLineItem struct {
 	// Data types that reference an account, for example bill and invoice line items, use an accountRef that includes the ID and name of the linked account.
 	AccountRef *AccountRef `json:"accountRef,omitempty"`
@@ -38,4 +45,88 @@ type SalesOrderLineItem struct {
 	Tracking    *SalesOrderLineItemTracking `json:"tracking,omitempty"`
 	// Price of each unit.
 	UnitAmount *float64 `json:"unitAmount,omitempty"`
+}
+
+func (o *SalesOrderLineItem) GetAccountRef() *AccountRef {
+	if o == nil {
+		return nil
+	}
+	return o.AccountRef
+}
+
+func (o *SalesOrderLineItem) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *SalesOrderLineItem) GetDiscountAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.DiscountAmount
+}
+
+func (o *SalesOrderLineItem) GetDiscountPercentage() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.DiscountPercentage
+}
+
+func (o *SalesOrderLineItem) GetItemRef() *ItemRef {
+	if o == nil {
+		return nil
+	}
+	return o.ItemRef
+}
+
+func (o *SalesOrderLineItem) GetQuantity() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Quantity
+}
+
+func (o *SalesOrderLineItem) GetSubTotal() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.SubTotal
+}
+
+func (o *SalesOrderLineItem) GetTaxAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.TaxAmount
+}
+
+func (o *SalesOrderLineItem) GetTaxRateRef() *TaxRateRef {
+	if o == nil {
+		return nil
+	}
+	return o.TaxRateRef
+}
+
+func (o *SalesOrderLineItem) GetTotalAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.TotalAmount
+}
+
+func (o *SalesOrderLineItem) GetTracking() *SalesOrderLineItemTracking {
+	if o == nil {
+		return nil
+	}
+	return o.Tracking
+}
+
+func (o *SalesOrderLineItem) GetUnitAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.UnitAmount
 }

@@ -33,9 +33,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/accounting"
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
 )
 
 func main() {
@@ -49,59 +49,76 @@ func main() {
     res, err := s.JournalEntries.Create(ctx, operations.CreateJournalEntryRequest{
         JournalEntry: &shared.JournalEntry{
             CreatedOn: codataccounting.String("2022-10-23T00:00:00.000Z"),
-            Description: codataccounting.String("laudantium"),
-            ID: codataccounting.String("89d9ef93-2e90-400a-93ad-8124208efd23"),
+            Description: codataccounting.String("illum"),
+            ID: codataccounting.String("290278eb-4ae9-4d64-961e-91500323b2c0"),
             JournalLines: []shared.JournalLine{
                 shared.JournalLine{
                     AccountRef: &shared.AccountRef{
-                        ID: codataccounting.String("11898e73-879e-4fbe-8bae-babb794536e9"),
-                        Name: codataccounting.String("Miss Shannon Hauck"),
+                        ID: codataccounting.String("b924771f-5669-4e5b-bec7-626649d84eb9"),
+                        Name: codataccounting.String("Jesus Runte"),
                     },
-                    Currency: codataccounting.String("unde"),
-                    Description: codataccounting.String("odio"),
-                    NetAmount: 4332.19,
+                    Currency: codataccounting.String("dolores"),
+                    Description: codataccounting.String("odit"),
+                    NetAmount: 4764.38,
                     Tracking: &shared.Propertiestracking2{
                         RecordRefs: []shared.InvoiceTo{
                             shared.InvoiceTo{
-                                DataType: codataccounting.String("architecto"),
-                                ID: codataccounting.String("720b77a5-a536-45a7-9f15-271f01c0d361"),
+                                DataType: codataccounting.String("transfer"),
+                                ID: codataccounting.String("0b88fb87-d6fa-45b6-a8db-f812f83b1ca6"),
+                            },
+                            shared.InvoiceTo{
+                                DataType: codataccounting.String("accountTransaction"),
+                                ID: codataccounting.String("9ffc5619-29cc-4a95-a0a1-395918da1d48"),
                             },
                         },
                     },
                 },
                 shared.JournalLine{
                     AccountRef: &shared.AccountRef{
-                        ID: codataccounting.String("fed8dc5e-ffb4-453e-9089-e871fdb4d697"),
-                        Name: codataccounting.String("Bryant Strosin"),
+                        ID: codataccounting.String("e78e3cf8-e114-43da-9308-b27a08af2218"),
+                        Name: codataccounting.String("Bertha Fay"),
                     },
-                    Currency: codataccounting.String("molestias"),
-                    Description: codataccounting.String("corrupti"),
-                    NetAmount: 3623.77,
+                    Currency: codataccounting.String("nesciunt"),
+                    Description: codataccounting.String("illum"),
+                    NetAmount: 9253.93,
                     Tracking: &shared.Propertiestracking2{
                         RecordRefs: []shared.InvoiceTo{
                             shared.InvoiceTo{
-                                DataType: codataccounting.String("incidunt"),
-                                ID: codataccounting.String("3734a5d7-2d9e-4dd7-85be-5e7afe55297b"),
+                                DataType: codataccounting.String("invoice"),
+                                ID: codataccounting.String("56ccce47-0cd2-4147-b6e6-152cf01d0d8c"),
                             },
                             shared.InvoiceTo{
-                                DataType: codataccounting.String("mollitia"),
-                                ID: codataccounting.String("6281f44e-3a23-4394-a68c-c80d30ff7216"),
+                                DataType: codataccounting.String("journalEntry"),
+                                ID: codataccounting.String("a4b9a5bf-935d-4fe9-b4fa-4b1e9c097eda"),
                             },
                             shared.InvoiceTo{
-                                DataType: codataccounting.String("quaerat"),
-                                ID: codataccounting.String("d0a91fe9-d965-453b-89e0-009c6692de7b"),
+                                DataType: codataccounting.String("invoice"),
+                                ID: codataccounting.String("23442e1a-9237-4e99-84c8-0b479e891923"),
                             },
+                        },
+                    },
+                },
+                shared.JournalLine{
+                    AccountRef: &shared.AccountRef{
+                        ID: codataccounting.String("c18ca8d6-9c56-4892-94fa-20207e4fae03"),
+                        Name: codataccounting.String("Colin Schultz"),
+                    },
+                    Currency: codataccounting.String("ab"),
+                    Description: codataccounting.String("cum"),
+                    NetAmount: 7949.86,
+                    Tracking: &shared.Propertiestracking2{
+                        RecordRefs: []shared.InvoiceTo{
                             shared.InvoiceTo{
-                                DataType: codataccounting.String("ipsum"),
-                                ID: codataccounting.String("562201a6-aab4-4ae7-b1a5-b908d4e30491"),
+                                DataType: codataccounting.String("transfer"),
+                                ID: codataccounting.String("abaf7fc2-ccba-44be-b0df-68eaedb2ee70"),
                             },
                         },
                     },
                 },
             },
             JournalRef: &shared.JournalRef{
-                ID: "aa35d4a8-39f0-43ba-b77b-918f03139845",
-                Name: codataccounting.String("Dr. Delores Towne"),
+                ID: "be069fb3-6add-4704-880e-0a3fc73a5a03",
+                Name: codataccounting.String("Mrs. Patty Block"),
             },
             Metadata: &shared.Metadata{
                 IsDeleted: codataccounting.Bool(false),
@@ -109,14 +126,29 @@ func main() {
             ModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
             PostedOn: codataccounting.String("2022-10-23T00:00:00.000Z"),
             RecordRef: &shared.InvoiceTo{
-                DataType: codataccounting.String("quam"),
-                ID: codataccounting.String("e23ecb06-0465-42e2-ba3d-6c657e9de8f7"),
+                DataType: codataccounting.String("invoice"),
+                ID: codataccounting.String("3afa6987-a472-4b70-9a15-3e2230106853"),
             },
             SourceModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "consequatur": map[string]interface{}{
-                        "fugiat": "veritatis",
+                    "saepe": map[string]interface{}{
+                        "perspiciatis": "consectetur",
+                    },
+                    "eos": map[string]interface{}{
+                        "vitae": "aperiam",
+                        "animi": "quisquam",
+                        "possimus": "vitae",
+                        "ad": "quibusdam",
+                    },
+                    "praesentium": map[string]interface{}{
+                        "quisquam": "ipsum",
+                        "perferendis": "ex",
+                        "quidem": "esse",
+                        "praesentium": "nisi",
+                    },
+                    "libero": map[string]interface{}{
+                        "at": "amet",
                     },
                 },
             },
@@ -124,7 +156,7 @@ func main() {
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codataccounting.Int(526773),
+        TimeoutInMinutes: codataccounting.Int(690696),
     })
     if err != nil {
         log.Fatal(err)
@@ -194,8 +226,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/accounting"
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
 )
 
 func main() {
@@ -209,7 +242,7 @@ func main() {
     res, err := s.JournalEntries.Delete(ctx, operations.DeleteJournalEntryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        JournalEntryID: "ex",
+        JournalEntryID: "fugiat",
     })
     if err != nil {
         log.Fatal(err)
@@ -254,8 +287,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/accounting"
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
 )
 
 func main() {
@@ -268,7 +302,7 @@ func main() {
     ctx := context.Background()
     res, err := s.JournalEntries.Get(ctx, operations.GetJournalEntryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        JournalEntryID: "dolorum",
+        JournalEntryID: "sed",
     })
     if err != nil {
         log.Fatal(err)
@@ -315,8 +349,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/accounting"
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
 )
 
 func main() {
@@ -372,8 +407,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/accounting"
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
 )
 
 func main() {
@@ -389,7 +425,7 @@ func main() {
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: codataccounting.Int(1),
         PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("officia"),
+        Query: codataccounting.String("aut"),
     })
     if err != nil {
         log.Fatal(err)

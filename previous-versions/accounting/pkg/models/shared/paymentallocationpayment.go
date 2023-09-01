@@ -68,3 +68,59 @@ type PaymentAllocationPayment struct {
 	// Total amount that was paid.
 	TotalAmount *float64 `json:"totalAmount,omitempty"`
 }
+
+func (o *PaymentAllocationPayment) GetAccountRef() *AccountRef {
+	if o == nil {
+		return nil
+	}
+	return o.AccountRef
+}
+
+func (o *PaymentAllocationPayment) GetCurrency() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Currency
+}
+
+func (o *PaymentAllocationPayment) GetCurrencyRate() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.CurrencyRate
+}
+
+func (o *PaymentAllocationPayment) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *PaymentAllocationPayment) GetNote() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Note
+}
+
+func (o *PaymentAllocationPayment) GetPaidOnDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PaidOnDate
+}
+
+func (o *PaymentAllocationPayment) GetReference() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Reference
+}
+
+func (o *PaymentAllocationPayment) GetTotalAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.TotalAmount
+}

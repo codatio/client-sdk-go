@@ -151,3 +151,143 @@ type PurchaseOrder struct {
 	// Total amount of tax included in the purchase order.
 	TotalTaxAmount *float64 `json:"totalTaxAmount,omitempty"`
 }
+
+func (o *PurchaseOrder) GetCurrency() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Currency
+}
+
+func (o *PurchaseOrder) GetCurrencyRate() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.CurrencyRate
+}
+
+func (o *PurchaseOrder) GetDeliveryDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DeliveryDate
+}
+
+func (o *PurchaseOrder) GetExpectedDeliveryDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ExpectedDeliveryDate
+}
+
+func (o *PurchaseOrder) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *PurchaseOrder) GetIssueDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IssueDate
+}
+
+func (o *PurchaseOrder) GetLineItems() []PurchaseOrderLineItem {
+	if o == nil {
+		return nil
+	}
+	return o.LineItems
+}
+
+func (o *PurchaseOrder) GetMetadata() *Metadata {
+	if o == nil {
+		return nil
+	}
+	return o.Metadata
+}
+
+func (o *PurchaseOrder) GetModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ModifiedDate
+}
+
+func (o *PurchaseOrder) GetNote() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Note
+}
+
+func (o *PurchaseOrder) GetPaymentDueDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PaymentDueDate
+}
+
+func (o *PurchaseOrder) GetPurchaseOrderNumber() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PurchaseOrderNumber
+}
+
+func (o *PurchaseOrder) GetShipTo() *ShipTo {
+	if o == nil {
+		return nil
+	}
+	return o.ShipTo
+}
+
+func (o *PurchaseOrder) GetSourceModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceModifiedDate
+}
+
+func (o *PurchaseOrder) GetStatus() *PurchaseOrderStatus {
+	if o == nil {
+		return nil
+	}
+	return o.Status
+}
+
+func (o *PurchaseOrder) GetSubTotal() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.SubTotal
+}
+
+func (o *PurchaseOrder) GetSupplierRef() *SupplierRef {
+	if o == nil {
+		return nil
+	}
+	return o.SupplierRef
+}
+
+func (o *PurchaseOrder) GetTotalAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.TotalAmount
+}
+
+func (o *PurchaseOrder) GetTotalDiscount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.TotalDiscount
+}
+
+func (o *PurchaseOrder) GetTotalTaxAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.TotalTaxAmount
+}

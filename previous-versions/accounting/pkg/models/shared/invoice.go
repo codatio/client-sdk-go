@@ -69,8 +69,8 @@ type Invoice struct {
 	// | **GBP**          | £20            | 1.277         | $25.54                     |
 	// | **EUR**          | €20            | 1.134         | $22.68                     |
 	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
-	CurrencyRate *float64     `json:"currencyRate,omitempty"`
-	CustomerRef  *CustomerRef `json:"customerRef,omitempty"`
+	CurrencyRate *float64               `json:"currencyRate,omitempty"`
+	CustomerRef  *AccountingCustomerRef `json:"customerRef,omitempty"`
 	// Percentage rate (from 0 to 100) of discounts applied to the invoice. For example: A 5% discount will return a value of `5`, not `0.05`.
 	DiscountPercentage *float64 `json:"discountPercentage,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
@@ -169,4 +169,186 @@ type Invoice struct {
 	// Amount of tax on the invoice.
 	TotalTaxAmount float64               `json:"totalTaxAmount"`
 	WithholdingTax []WithholdingTaxitems `json:"withholdingTax,omitempty"`
+}
+
+func (o *Invoice) GetAdditionalTaxAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalTaxAmount
+}
+
+func (o *Invoice) GetAdditionalTaxPercentage() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalTaxPercentage
+}
+
+func (o *Invoice) GetAmountDue() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.AmountDue
+}
+
+func (o *Invoice) GetCurrency() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Currency
+}
+
+func (o *Invoice) GetCurrencyRate() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.CurrencyRate
+}
+
+func (o *Invoice) GetCustomerRef() *AccountingCustomerRef {
+	if o == nil {
+		return nil
+	}
+	return o.CustomerRef
+}
+
+func (o *Invoice) GetDiscountPercentage() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.DiscountPercentage
+}
+
+func (o *Invoice) GetDueDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DueDate
+}
+
+func (o *Invoice) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *Invoice) GetInvoiceNumber() *string {
+	if o == nil {
+		return nil
+	}
+	return o.InvoiceNumber
+}
+
+func (o *Invoice) GetIssueDate() string {
+	if o == nil {
+		return ""
+	}
+	return o.IssueDate
+}
+
+func (o *Invoice) GetLineItems() []InvoiceLineItem {
+	if o == nil {
+		return nil
+	}
+	return o.LineItems
+}
+
+func (o *Invoice) GetMetadata() *Metadata {
+	if o == nil {
+		return nil
+	}
+	return o.Metadata
+}
+
+func (o *Invoice) GetModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ModifiedDate
+}
+
+func (o *Invoice) GetNote() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Note
+}
+
+func (o *Invoice) GetPaidOnDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PaidOnDate
+}
+
+func (o *Invoice) GetPaymentAllocations() []Items {
+	if o == nil {
+		return nil
+	}
+	return o.PaymentAllocations
+}
+
+func (o *Invoice) GetSalesOrderRefs() []SalesOrderRef {
+	if o == nil {
+		return nil
+	}
+	return o.SalesOrderRefs
+}
+
+func (o *Invoice) GetSourceModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceModifiedDate
+}
+
+func (o *Invoice) GetStatus() InvoiceStatus {
+	if o == nil {
+		return InvoiceStatus("")
+	}
+	return o.Status
+}
+
+func (o *Invoice) GetSubTotal() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.SubTotal
+}
+
+func (o *Invoice) GetSupplementalData() *SupplementalData {
+	if o == nil {
+		return nil
+	}
+	return o.SupplementalData
+}
+
+func (o *Invoice) GetTotalAmount() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.TotalAmount
+}
+
+func (o *Invoice) GetTotalDiscount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.TotalDiscount
+}
+
+func (o *Invoice) GetTotalTaxAmount() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.TotalTaxAmount
+}
+
+func (o *Invoice) GetWithholdingTax() []WithholdingTaxitems {
+	if o == nil {
+		return nil
+	}
+	return o.WithholdingTax
 }

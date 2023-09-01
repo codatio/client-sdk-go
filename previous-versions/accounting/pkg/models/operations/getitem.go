@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
 	"net/http"
 )
 
@@ -12,24 +12,61 @@ type GetItemRequest struct {
 	ItemID    string `pathParam:"style=simple,explode=false,name=itemId"`
 }
 
-// GetItem409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
-type GetItem409ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
+func (o *GetItemRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *GetItemRequest) GetItemID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ItemID
 }
 
 type GetItemResponse struct {
 	ContentType string
+	// Your API request was not properly authorized.
+	ErrorMessage *shared.ErrorMessage
 	// Success
 	Item        *shared.Item
 	StatusCode  int
 	RawResponse *http.Response
-	// The data type's dataset has not been requested or is still syncing.
-	GetItem409ApplicationJSONObject *GetItem409ApplicationJSON
-	// Your API request was not properly authorized.
-	Schema *shared.Schema
+}
+
+func (o *GetItemResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetItemResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *GetItemResponse) GetItem() *shared.Item {
+	if o == nil {
+		return nil
+	}
+	return o.Item
+}
+
+func (o *GetItemResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetItemResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

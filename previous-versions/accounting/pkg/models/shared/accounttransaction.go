@@ -131,3 +131,94 @@ type AccountTransaction struct {
 	// Identifier of the transaction (unique to the company).
 	TransactionID *string `json:"transactionId,omitempty"`
 }
+
+func (o *AccountTransaction) GetBankAccountRef() *BankAccountRef {
+	if o == nil {
+		return nil
+	}
+	return o.BankAccountRef
+}
+
+func (o *AccountTransaction) GetCurrency() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Currency
+}
+
+func (o *AccountTransaction) GetCurrencyRate() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.CurrencyRate
+}
+
+func (o *AccountTransaction) GetDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Date
+}
+
+func (o *AccountTransaction) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *AccountTransaction) GetLines() []AccountTransactionLine {
+	if o == nil {
+		return nil
+	}
+	return o.Lines
+}
+
+func (o *AccountTransaction) GetMetadata() *Metadata {
+	if o == nil {
+		return nil
+	}
+	return o.Metadata
+}
+
+func (o *AccountTransaction) GetModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ModifiedDate
+}
+
+func (o *AccountTransaction) GetNote() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Note
+}
+
+func (o *AccountTransaction) GetSourceModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceModifiedDate
+}
+
+func (o *AccountTransaction) GetStatus() *AccountTransactionStatus {
+	if o == nil {
+		return nil
+	}
+	return o.Status
+}
+
+func (o *AccountTransaction) GetTotalAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.TotalAmount
+}
+
+func (o *AccountTransaction) GetTransactionID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TransactionID
+}

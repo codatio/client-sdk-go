@@ -20,3 +20,24 @@ type TaxRateRef struct {
 	// Name of the tax rate in the accounting platform.
 	Name *string `json:"name,omitempty"`
 }
+
+func (o *TaxRateRef) GetEffectiveTaxRate() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.EffectiveTaxRate
+}
+
+func (o *TaxRateRef) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *TaxRateRef) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}

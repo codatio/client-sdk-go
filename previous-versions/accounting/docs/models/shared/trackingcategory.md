@@ -21,6 +21,108 @@ From their accounting system, customers can:
 - View the categories that a transaction belongs to.
 - View all transactions in a tracking category.
 
+### Tracking categories per platform
+
+Review the platform-specific tracking categories that Codat supports, and the level they are assigned to in the source platform. 
+
+<table>
+<thead>
+  <tr>
+    <th>Platform</th>
+    <th>Tracking category</th>
+    <th>Tracking level</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td><b>Dynamics 365</b></td>
+    <td>Dimensions</td>
+    <td>Line item</td>
+  </tr>
+  <tr>
+    <td><b>Freshbooks</b></td>
+    <td>Expense&nbsp;categories</td>
+    <td>Line item</td>
+  </tr>
+  <tr>
+    <td><b>MYOB</b></td>
+    <td>Categories</td>
+    <td>Transaction</td>
+  </tr>
+  <tr>
+    <td rowspan=4><b>Netsuite</b></td>
+    <td>Classes</td>
+    <td>Line item</td>
+  </tr>
+  <tr>
+    <td>Locations</td>
+    <td>Line item</td>
+  </tr>
+  <tr>
+    <td>Departments</td>
+    <td>Line item</td>
+  </tr>
+  <tr>
+    <td>Custom&nbsp;segments</td>
+    <td>Line item</td>
+  </tr>
+  <tr>
+    <td rowspan=2><b>QuickBooks Desktop</b></td>
+    <td>Classes</td>
+    <td>Line item or transaction level</td>
+  </tr>
+  <tr>
+    <td>Locations</td>
+    <td>Transaction</td>
+  </tr>
+  <tr>
+    <td rowspan=2><b>QuickBooks Online</b></td>
+    <td>Classes</td>
+    <td>Line item or transaction level</td>
+  </tr>
+  <tr>
+    <td>Locations</td>
+    <td>Transaction</td>
+  </tr>
+  <tr>
+    <td rowspan=3><b>Sage 200</b></td>
+    <td>Cost&nbsp;centers</td>
+    <td>Line item</td>
+  </tr>
+  <tr>
+      <td>Departments</td>
+    <td>Line item</td>
+  </tr>
+  <tr>
+    <td>Analysis&nbsp;codes</td>
+    <td>Transaction</td>
+  </tr>
+  <tr>
+    <td rowspan=3><b>Sage 50</b></td>
+    <td>Departments</td>
+    <td>Line item</td>
+  </tr>
+  <tr>
+     <td>Costcodes</td>
+    <td>Line item</td>
+  </tr>
+  <tr>
+    <td>Projects</td>
+    <td>Line item</td>
+  </tr>
+  <tr>
+    <td><b>Sage Intacct</b></td>
+    <td>Dimensions</td>
+    <td>Line item</td>
+  </tr>
+  <tr>
+    <td><b>Xero</b></td>
+    <td>Tracking&nbsp;categories</td>
+    <td>Line item</td>
+  </tr>
+</tbody>
+</table>
+
 > **Example use case**
 >
 > Monitor the budget for your annual conference using a tracking category called 'AnnualConference2020' with the **type** set to **Costing**.

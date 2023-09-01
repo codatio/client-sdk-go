@@ -32,9 +32,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/accounting"
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
 )
 
 func main() {
@@ -49,46 +49,46 @@ func main() {
         Item: &shared.Item{
             BillItem: &shared.BillItem{
                 AccountRef: &shared.AccountRef{
-                    ID: codataccounting.String("9834afb0-735c-4b62-85d4-a29aaa1e1691"),
-                    Name: codataccounting.String("Alma Ziemann"),
+                    ID: codataccounting.String("b7a73df4-0ca0-4d76-97c1-641bbf055271"),
+                    Name: codataccounting.String("Mr. Alan Haley"),
                 },
-                Description: codataccounting.String("aspernatur"),
+                Description: codataccounting.String("assumenda"),
                 TaxRateRef: &shared.TaxRateRef{
-                    EffectiveTaxRate: codataccounting.Float64(9264.79),
-                    ID: codataccounting.String("e209505b-f03a-493e-9448-0ca37fb10789"),
-                    Name: codataccounting.String("Emily Considine"),
+                    EffectiveTaxRate: codataccounting.Float64(3834.21),
+                    ID: codataccounting.String("06dd1b28-272b-4c9c-b221-697b1880fcbb"),
+                    Name: codataccounting.String("Verna Marks"),
                 },
-                UnitPrice: codataccounting.Float64(2261.31),
+                UnitPrice: codataccounting.Float64(702.82),
             },
-            Code: codataccounting.String("amet"),
-            ID: codataccounting.String("3172e2dd-79ec-474b-a7e8-8ddb36fd1ccc"),
+            Code: codataccounting.String("nostrum"),
+            ID: codataccounting.String("f670bd17-8483-4165-beeb-3b6e241c3109"),
             InvoiceItem: &shared.InvoiceItem{
                 AccountRef: &shared.AccountRef{
-                    ID: codataccounting.String("341c8657-3474-4f0a-b40f-b4ab441c3a09"),
-                    Name: codataccounting.String("Claude Johns"),
+                    ID: codataccounting.String("983663c6-6dcb-4b7d-b6cb-09c8b408e071"),
+                    Name: codataccounting.String("Minnie Kirlin"),
                 },
-                Description: codataccounting.String("omnis"),
+                Description: codataccounting.String("saepe"),
                 TaxRateRef: &shared.TaxRateRef{
-                    EffectiveTaxRate: codataccounting.Float64(3289.22),
-                    ID: codataccounting.String("d808bbe7-9445-45eb-8550-a1c426b59c83"),
-                    Name: codataccounting.String("Terri Zemlak"),
+                    EffectiveTaxRate: codataccounting.Float64(2505.06),
+                    ID: codataccounting.String("fee101d9-780a-410c-87b9-5040d6c8b2a5"),
+                    Name: codataccounting.String("John Aufderhar"),
                 },
-                UnitPrice: codataccounting.Float64(7934.38),
+                UnitPrice: codataccounting.Float64(249.94),
             },
             IsBillItem: false,
             IsInvoiceItem: false,
-            ItemStatus: shared.ItemStatusUnknown,
+            ItemStatus: shared.ItemStatusActive,
             Metadata: &shared.Metadata{
                 IsDeleted: codataccounting.Bool(false),
             },
             ModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
-            Name: codataccounting.String("Ida Lemke"),
+            Name: codataccounting.String("Brenda Greenholt"),
             SourceModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
-            Type: shared.ItemTypeNonInventory,
+            Type: shared.ItemTypeUnknown,
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codataccounting.Int(554193),
+        TimeoutInMinutes: codataccounting.Int(4409),
     })
     if err != nil {
         log.Fatal(err)
@@ -133,8 +133,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/accounting"
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
 )
 
 func main() {
@@ -147,7 +148,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Items.Get(ctx, operations.GetItemRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ItemID: "veniam",
+        ItemID: "sit",
     })
     if err != nil {
         log.Fatal(err)
@@ -194,8 +195,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/accounting"
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
 )
 
 func main() {
@@ -251,8 +253,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/accounting"
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
 )
 
 func main() {
@@ -268,7 +271,7 @@ func main() {
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: codataccounting.Int(1),
         PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("ad"),
+        Query: codataccounting.String("iste"),
     })
     if err != nil {
         log.Fatal(err)

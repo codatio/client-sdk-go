@@ -21,7 +21,56 @@ type CompanyDatasetAddresses struct {
 	// Region of the customer address.
 	Region *string `json:"region,omitempty"`
 	// The type of the address
-	Type AddressType `json:"type"`
+	Type AccountingAddressType `json:"type"`
+}
+
+func (o *CompanyDatasetAddresses) GetCity() *string {
+	if o == nil {
+		return nil
+	}
+	return o.City
+}
+
+func (o *CompanyDatasetAddresses) GetCountry() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Country
+}
+
+func (o *CompanyDatasetAddresses) GetLine1() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Line1
+}
+
+func (o *CompanyDatasetAddresses) GetLine2() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Line2
+}
+
+func (o *CompanyDatasetAddresses) GetPostalCode() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PostalCode
+}
+
+func (o *CompanyDatasetAddresses) GetRegion() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Region
+}
+
+func (o *CompanyDatasetAddresses) GetType() AccountingAddressType {
+	if o == nil {
+		return AccountingAddressType("")
+	}
+	return o.Type
 }
 
 type CompanyDatasetPhone struct {
@@ -29,6 +78,20 @@ type CompanyDatasetPhone struct {
 	Number string `json:"number"`
 	// The type of phone number
 	Type PhoneNumberType `json:"type"`
+}
+
+func (o *CompanyDatasetPhone) GetNumber() string {
+	if o == nil {
+		return ""
+	}
+	return o.Number
+}
+
+func (o *CompanyDatasetPhone) GetType() PhoneNumberType {
+	if o == nil {
+		return PhoneNumberType("")
+	}
+	return o.Type
 }
 
 // CompanyDatasetWeblinkType - The type of the weblink.
@@ -68,6 +131,20 @@ type CompanyDatasetWeblink struct {
 	Type *CompanyDatasetWeblinkType `json:"type,omitempty"`
 	// The full URL for the weblink.
 	URL *string `json:"url,omitempty"`
+}
+
+func (o *CompanyDatasetWeblink) GetType() *CompanyDatasetWeblinkType {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}
+
+func (o *CompanyDatasetWeblink) GetURL() *string {
+	if o == nil {
+		return nil
+	}
+	return o.URL
 }
 
 // CompanyDataset - > View the coverage for company info in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=cashFlowStatement" target="_blank">Data coverage explorer</a>.
@@ -160,4 +237,95 @@ type CompanyDataset struct {
 	TaxNumber *string `json:"taxNumber,omitempty"`
 	// An array of weblinks.
 	WebLinks []CompanyDatasetWeblink `json:"webLinks,omitempty"`
+}
+
+func (o *CompanyDataset) GetAccountingPlatformRef() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AccountingPlatformRef
+}
+
+func (o *CompanyDataset) GetAddresses() []CompanyDatasetAddresses {
+	if o == nil {
+		return nil
+	}
+	return o.Addresses
+}
+
+func (o *CompanyDataset) GetBaseCurrency() *string {
+	if o == nil {
+		return nil
+	}
+	return o.BaseCurrency
+}
+
+func (o *CompanyDataset) GetCompanyLegalName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CompanyLegalName
+}
+
+func (o *CompanyDataset) GetCompanyName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CompanyName
+}
+
+func (o *CompanyDataset) GetCreatedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CreatedDate
+}
+
+func (o *CompanyDataset) GetFinancialYearStartDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.FinancialYearStartDate
+}
+
+func (o *CompanyDataset) GetLedgerLockDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.LedgerLockDate
+}
+
+func (o *CompanyDataset) GetPhoneNumbers() []CompanyDatasetPhone {
+	if o == nil {
+		return nil
+	}
+	return o.PhoneNumbers
+}
+
+func (o *CompanyDataset) GetRegistrationNumber() *string {
+	if o == nil {
+		return nil
+	}
+	return o.RegistrationNumber
+}
+
+func (o *CompanyDataset) GetSourceUrls() map[string]string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceUrls
+}
+
+func (o *CompanyDataset) GetTaxNumber() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TaxNumber
+}
+
+func (o *CompanyDataset) GetWebLinks() []CompanyDatasetWeblink {
+	if o == nil {
+		return nil
+	}
+	return o.WebLinks
 }

@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
 	"net/http"
 )
 
@@ -12,24 +12,61 @@ type GetPurchaseOrderRequest struct {
 	PurchaseOrderID string `pathParam:"style=simple,explode=false,name=purchaseOrderId"`
 }
 
-// GetPurchaseOrder409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
-type GetPurchaseOrder409ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
+func (o *GetPurchaseOrderRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *GetPurchaseOrderRequest) GetPurchaseOrderID() string {
+	if o == nil {
+		return ""
+	}
+	return o.PurchaseOrderID
 }
 
 type GetPurchaseOrderResponse struct {
 	ContentType string
+	// Your API request was not properly authorized.
+	ErrorMessage *shared.ErrorMessage
 	// Success
 	PurchaseOrder *shared.PurchaseOrder
 	StatusCode    int
 	RawResponse   *http.Response
-	// The data type's dataset has not been requested or is still syncing.
-	GetPurchaseOrder409ApplicationJSONObject *GetPurchaseOrder409ApplicationJSON
-	// Your API request was not properly authorized.
-	Schema *shared.Schema
+}
+
+func (o *GetPurchaseOrderResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetPurchaseOrderResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *GetPurchaseOrderResponse) GetPurchaseOrder() *shared.PurchaseOrder {
+	if o == nil {
+		return nil
+	}
+	return o.PurchaseOrder
+}
+
+func (o *GetPurchaseOrderResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetPurchaseOrderResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

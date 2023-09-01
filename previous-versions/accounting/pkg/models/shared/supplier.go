@@ -36,3 +36,101 @@ type Supplier struct {
 	// Supplier's company tax number.
 	TaxNumber *string `json:"taxNumber,omitempty"`
 }
+
+func (o *Supplier) GetAddresses() []Addressesitems {
+	if o == nil {
+		return nil
+	}
+	return o.Addresses
+}
+
+func (o *Supplier) GetContactName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ContactName
+}
+
+func (o *Supplier) GetDefaultCurrency() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DefaultCurrency
+}
+
+func (o *Supplier) GetEmailAddress() *string {
+	if o == nil {
+		return nil
+	}
+	return o.EmailAddress
+}
+
+func (o *Supplier) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *Supplier) GetMetadata() *Metadata {
+	if o == nil {
+		return nil
+	}
+	return o.Metadata
+}
+
+func (o *Supplier) GetModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ModifiedDate
+}
+
+func (o *Supplier) GetPhone() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Phone
+}
+
+func (o *Supplier) GetRegistrationNumber() *string {
+	if o == nil {
+		return nil
+	}
+	return o.RegistrationNumber
+}
+
+func (o *Supplier) GetSourceModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceModifiedDate
+}
+
+func (o *Supplier) GetStatus() SupplierStatus {
+	if o == nil {
+		return SupplierStatus("")
+	}
+	return o.Status
+}
+
+func (o *Supplier) GetSupplementalData() *SupplementalData {
+	if o == nil {
+		return nil
+	}
+	return o.SupplementalData
+}
+
+func (o *Supplier) GetSupplierName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SupplierName
+}
+
+func (o *Supplier) GetTaxNumber() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TaxNumber
+}

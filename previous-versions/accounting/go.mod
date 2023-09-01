@@ -1,4 +1,4 @@
-module github.com/codatio/client-sdk-go/accounting
+module github.com/codatio/client-sdk-go/previous-versions/accounting
 
 go 1.14
 

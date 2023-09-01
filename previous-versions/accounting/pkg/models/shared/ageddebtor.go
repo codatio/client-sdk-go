@@ -10,3 +10,24 @@ type AgedDebtor struct {
 	// Customer name of the aged debtor.
 	CustomerName *string `json:"customerName,omitempty"`
 }
+
+func (o *AgedDebtor) GetAgedCurrencyOutstanding() []AgedCurrencyOutstandingitems {
+	if o == nil {
+		return nil
+	}
+	return o.AgedCurrencyOutstanding
+}
+
+func (o *AgedDebtor) GetCustomerID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CustomerID
+}
+
+func (o *AgedDebtor) GetCustomerName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CustomerName
+}

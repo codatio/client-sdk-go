@@ -9,3 +9,17 @@ type BankAccountRef struct {
 	// bank account 'name' for the account transaction.
 	Name *string `json:"name,omitempty"`
 }
+
+func (o *BankAccountRef) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *BankAccountRef) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}

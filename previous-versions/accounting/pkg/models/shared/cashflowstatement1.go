@@ -71,3 +71,45 @@ type CashFlowStatement1 struct {
 	// Array of cash flow statements.
 	Reports []CashFlowStatement `json:"reports"`
 }
+
+func (o *CashFlowStatement1) GetCurrency() string {
+	if o == nil {
+		return ""
+	}
+	return o.Currency
+}
+
+func (o *CashFlowStatement1) GetEarliestAvailableMonth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.EarliestAvailableMonth
+}
+
+func (o *CashFlowStatement1) GetMostRecentAvailableMonth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.MostRecentAvailableMonth
+}
+
+func (o *CashFlowStatement1) GetReportBasis() ReportBasis {
+	if o == nil {
+		return ReportBasis("")
+	}
+	return o.ReportBasis
+}
+
+func (o *CashFlowStatement1) GetReportInput() ReportInput {
+	if o == nil {
+		return ReportInput("")
+	}
+	return o.ReportInput
+}
+
+func (o *CashFlowStatement1) GetReports() []CashFlowStatement {
+	if o == nil {
+		return []CashFlowStatement{}
+	}
+	return o.Reports
+}

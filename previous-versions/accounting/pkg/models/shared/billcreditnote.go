@@ -128,3 +128,157 @@ type BillCreditNote struct {
 	TotalTaxAmount float64               `json:"totalTaxAmount"`
 	WithholdingTax []WithholdingTaxitems `json:"withholdingTax,omitempty"`
 }
+
+func (o *BillCreditNote) GetAllocatedOnDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AllocatedOnDate
+}
+
+func (o *BillCreditNote) GetBillCreditNoteNumber() *string {
+	if o == nil {
+		return nil
+	}
+	return o.BillCreditNoteNumber
+}
+
+func (o *BillCreditNote) GetCurrency() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Currency
+}
+
+func (o *BillCreditNote) GetCurrencyRate() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.CurrencyRate
+}
+
+func (o *BillCreditNote) GetDiscountPercentage() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.DiscountPercentage
+}
+
+func (o *BillCreditNote) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *BillCreditNote) GetIssueDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IssueDate
+}
+
+func (o *BillCreditNote) GetLineItems() []BillCreditNoteLineItem {
+	if o == nil {
+		return nil
+	}
+	return o.LineItems
+}
+
+func (o *BillCreditNote) GetMetadata() *Metadata {
+	if o == nil {
+		return nil
+	}
+	return o.Metadata
+}
+
+func (o *BillCreditNote) GetModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ModifiedDate
+}
+
+func (o *BillCreditNote) GetNote() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Note
+}
+
+func (o *BillCreditNote) GetPaymentAllocations() []Items {
+	if o == nil {
+		return nil
+	}
+	return o.PaymentAllocations
+}
+
+func (o *BillCreditNote) GetRemainingCredit() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.RemainingCredit
+}
+
+func (o *BillCreditNote) GetSourceModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceModifiedDate
+}
+
+func (o *BillCreditNote) GetStatus() BillCreditNoteStatus {
+	if o == nil {
+		return BillCreditNoteStatus("")
+	}
+	return o.Status
+}
+
+func (o *BillCreditNote) GetSubTotal() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.SubTotal
+}
+
+func (o *BillCreditNote) GetSupplementalData() *SupplementalData {
+	if o == nil {
+		return nil
+	}
+	return o.SupplementalData
+}
+
+func (o *BillCreditNote) GetSupplierRef() *SupplierRef {
+	if o == nil {
+		return nil
+	}
+	return o.SupplierRef
+}
+
+func (o *BillCreditNote) GetTotalAmount() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.TotalAmount
+}
+
+func (o *BillCreditNote) GetTotalDiscount() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.TotalDiscount
+}
+
+func (o *BillCreditNote) GetTotalTaxAmount() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.TotalTaxAmount
+}
+
+func (o *BillCreditNote) GetWithholdingTax() []WithholdingTaxitems {
+	if o == nil {
+		return nil
+	}
+	return o.WithholdingTax
+}

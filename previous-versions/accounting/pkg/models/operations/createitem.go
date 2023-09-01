@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
 	"net/http"
 )
 
@@ -14,12 +14,75 @@ type CreateItemRequest struct {
 	TimeoutInMinutes *int         `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
 }
 
+func (o *CreateItemRequest) GetItem() *shared.Item {
+	if o == nil {
+		return nil
+	}
+	return o.Item
+}
+
+func (o *CreateItemRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *CreateItemRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *CreateItemRequest) GetTimeoutInMinutes() *int {
+	if o == nil {
+		return nil
+	}
+	return o.TimeoutInMinutes
+}
+
 type CreateItemResponse struct {
 	ContentType string
 	// Success
 	CreateItemResponse *shared.CreateItemResponse
-	StatusCode         int
-	RawResponse        *http.Response
 	// The request made is not valid.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
+}
+
+func (o *CreateItemResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *CreateItemResponse) GetCreateItemResponse() *shared.CreateItemResponse {
+	if o == nil {
+		return nil
+	}
+	return o.CreateItemResponse
+}
+
+func (o *CreateItemResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *CreateItemResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *CreateItemResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

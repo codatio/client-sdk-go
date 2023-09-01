@@ -36,9 +36,105 @@ type BillLineItem struct {
 	// Categories, and a project and customer, against which the item is tracked.
 	Tracking *Propertiestracking `json:"tracking,omitempty"`
 	// Collection of categories against which this item is tracked.
-	//
-	// Deprecated: this field will be removed in a future release, please migrate away from it as soon as possible.
 	TrackingCategoryRefs []TrackingCategoryRef `json:"trackingCategoryRefs,omitempty"`
 	// Price of each unit of goods or services.
 	UnitAmount float64 `json:"unitAmount"`
+}
+
+func (o *BillLineItem) GetAccountRef() *AccountRef {
+	if o == nil {
+		return nil
+	}
+	return o.AccountRef
+}
+
+func (o *BillLineItem) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *BillLineItem) GetDiscountAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.DiscountAmount
+}
+
+func (o *BillLineItem) GetDiscountPercentage() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.DiscountPercentage
+}
+
+func (o *BillLineItem) GetIsDirectCost() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.IsDirectCost
+}
+
+func (o *BillLineItem) GetItemRef() *ItemRef {
+	if o == nil {
+		return nil
+	}
+	return o.ItemRef
+}
+
+func (o *BillLineItem) GetQuantity() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.Quantity
+}
+
+func (o *BillLineItem) GetSubTotal() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.SubTotal
+}
+
+func (o *BillLineItem) GetTaxAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.TaxAmount
+}
+
+func (o *BillLineItem) GetTaxRateRef() *TaxRateRef {
+	if o == nil {
+		return nil
+	}
+	return o.TaxRateRef
+}
+
+func (o *BillLineItem) GetTotalAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.TotalAmount
+}
+
+func (o *BillLineItem) GetTracking() *Propertiestracking {
+	if o == nil {
+		return nil
+	}
+	return o.Tracking
+}
+
+func (o *BillLineItem) GetTrackingCategoryRefs() []TrackingCategoryRef {
+	if o == nil {
+		return nil
+	}
+	return o.TrackingCategoryRefs
+}
+
+func (o *BillLineItem) GetUnitAmount() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.UnitAmount
 }

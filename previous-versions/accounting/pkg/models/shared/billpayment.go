@@ -190,8 +190,8 @@ type BillPayment struct {
 	Metadata     *Metadata         `json:"metadata,omitempty"`
 	ModifiedDate *string           `json:"modifiedDate,omitempty"`
 	// Additional information associated with the payment.
-	Note             *string           `json:"note,omitempty"`
-	PaymentMethodRef *PaymentMethodRef `json:"paymentMethodRef,omitempty"`
+	Note             *string     `json:"note,omitempty"`
+	PaymentMethodRef interface{} `json:"paymentMethodRef,omitempty"`
 	// Additional information associated with the payment.
 	Reference          *string `json:"reference,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
@@ -202,4 +202,109 @@ type BillPayment struct {
 	SupplierRef      *SupplierRef      `json:"supplierRef,omitempty"`
 	// Amount of the payment in the payment currency. This value never changes and represents the amount of money that is paid into the supplier's account.
 	TotalAmount *float64 `json:"totalAmount,omitempty"`
+}
+
+func (o *BillPayment) GetAccountRef() *AccountRef {
+	if o == nil {
+		return nil
+	}
+	return o.AccountRef
+}
+
+func (o *BillPayment) GetCurrency() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Currency
+}
+
+func (o *BillPayment) GetCurrencyRate() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.CurrencyRate
+}
+
+func (o *BillPayment) GetDate() string {
+	if o == nil {
+		return ""
+	}
+	return o.Date
+}
+
+func (o *BillPayment) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *BillPayment) GetLines() []BillPaymentLine {
+	if o == nil {
+		return nil
+	}
+	return o.Lines
+}
+
+func (o *BillPayment) GetMetadata() *Metadata {
+	if o == nil {
+		return nil
+	}
+	return o.Metadata
+}
+
+func (o *BillPayment) GetModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ModifiedDate
+}
+
+func (o *BillPayment) GetNote() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Note
+}
+
+func (o *BillPayment) GetPaymentMethodRef() interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.PaymentMethodRef
+}
+
+func (o *BillPayment) GetReference() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Reference
+}
+
+func (o *BillPayment) GetSourceModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceModifiedDate
+}
+
+func (o *BillPayment) GetSupplementalData() *SupplementalData {
+	if o == nil {
+		return nil
+	}
+	return o.SupplementalData
+}
+
+func (o *BillPayment) GetSupplierRef() *SupplierRef {
+	if o == nil {
+		return nil
+	}
+	return o.SupplierRef
+}
+
+func (o *BillPayment) GetTotalAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.TotalAmount
 }

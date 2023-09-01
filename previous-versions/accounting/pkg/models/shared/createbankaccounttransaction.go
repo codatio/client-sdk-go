@@ -28,3 +28,38 @@ type CreateBankAccountTransaction struct {
 	Description *string `json:"description,omitempty"`
 	ID          *string `json:"id,omitempty"`
 }
+
+func (o *CreateBankAccountTransaction) GetAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Amount
+}
+
+func (o *CreateBankAccountTransaction) GetBalance() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Balance
+}
+
+func (o *CreateBankAccountTransaction) GetDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Date
+}
+
+func (o *CreateBankAccountTransaction) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *CreateBankAccountTransaction) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}

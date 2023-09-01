@@ -65,3 +65,80 @@ type Journal struct {
 	// The type of the journal.
 	Type *string `json:"type,omitempty"`
 }
+
+func (o *Journal) GetCreatedOn() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CreatedOn
+}
+
+func (o *Journal) GetHasChildren() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasChildren
+}
+
+func (o *Journal) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *Journal) GetJournalCode() *string {
+	if o == nil {
+		return nil
+	}
+	return o.JournalCode
+}
+
+func (o *Journal) GetMetadata() *Metadata {
+	if o == nil {
+		return nil
+	}
+	return o.Metadata
+}
+
+func (o *Journal) GetModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ModifiedDate
+}
+
+func (o *Journal) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
+func (o *Journal) GetParentID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ParentID
+}
+
+func (o *Journal) GetSourceModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceModifiedDate
+}
+
+func (o *Journal) GetStatus() *JournalStatus {
+	if o == nil {
+		return nil
+	}
+	return o.Status
+}
+
+func (o *Journal) GetType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}

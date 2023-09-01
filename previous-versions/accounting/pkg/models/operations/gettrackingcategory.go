@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
 	"net/http"
 )
 
@@ -12,24 +12,61 @@ type GetTrackingCategoryRequest struct {
 	TrackingCategoryID string `pathParam:"style=simple,explode=false,name=trackingCategoryId"`
 }
 
-// GetTrackingCategory409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
-type GetTrackingCategory409ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
+func (o *GetTrackingCategoryRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *GetTrackingCategoryRequest) GetTrackingCategoryID() string {
+	if o == nil {
+		return ""
+	}
+	return o.TrackingCategoryID
 }
 
 type GetTrackingCategoryResponse struct {
 	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
+	// Your API request was not properly authorized.
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 	// Success
 	TrackingCategoryTree *shared.TrackingCategoryTree
-	// The data type's dataset has not been requested or is still syncing.
-	GetTrackingCategory409ApplicationJSONObject *GetTrackingCategory409ApplicationJSON
-	// Your API request was not properly authorized.
-	Schema *shared.Schema
+}
+
+func (o *GetTrackingCategoryResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetTrackingCategoryResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *GetTrackingCategoryResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetTrackingCategoryResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetTrackingCategoryResponse) GetTrackingCategoryTree() *shared.TrackingCategoryTree {
+	if o == nil {
+		return nil
+	}
+	return o.TrackingCategoryTree
 }

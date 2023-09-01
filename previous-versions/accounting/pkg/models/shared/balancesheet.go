@@ -29,3 +29,38 @@ type BalanceSheet struct {
 	// Value of net assets for a company in their base currency.
 	NetAssets float64 `json:"netAssets"`
 }
+
+func (o *BalanceSheet) GetAssets() *ReportLine {
+	if o == nil {
+		return nil
+	}
+	return o.Assets
+}
+
+func (o *BalanceSheet) GetDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Date
+}
+
+func (o *BalanceSheet) GetEquity() *ReportLine {
+	if o == nil {
+		return nil
+	}
+	return o.Equity
+}
+
+func (o *BalanceSheet) GetLiabilities() *ReportLine {
+	if o == nil {
+		return nil
+	}
+	return o.Liabilities
+}
+
+func (o *BalanceSheet) GetNetAssets() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.NetAssets
+}

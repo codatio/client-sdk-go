@@ -55,3 +55,59 @@ type Attachment struct {
 	Name               *string `json:"name,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 }
+
+func (o *Attachment) GetContentType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ContentType
+}
+
+func (o *Attachment) GetDateCreated() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DateCreated
+}
+
+func (o *Attachment) GetFileSize() *int {
+	if o == nil {
+		return nil
+	}
+	return o.FileSize
+}
+
+func (o *Attachment) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *Attachment) GetIncludeWhenSent() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.IncludeWhenSent
+}
+
+func (o *Attachment) GetModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ModifiedDate
+}
+
+func (o *Attachment) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
+func (o *Attachment) GetSourceModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceModifiedDate
+}

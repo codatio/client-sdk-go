@@ -6,3 +6,10 @@ package shared
 type AttachmentsDataset struct {
 	Attachments []Attachment `json:"attachments,omitempty"`
 }
+
+func (o *AttachmentsDataset) GetAttachments() []Attachment {
+	if o == nil {
+		return nil
+	}
+	return o.Attachments
+}

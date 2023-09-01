@@ -10,3 +10,38 @@ type Journals struct {
 	Results      []Journal `json:"results,omitempty"`
 	TotalResults int64     `json:"totalResults"`
 }
+
+func (o *Journals) GetLinks() Links {
+	if o == nil {
+		return Links{}
+	}
+	return o.Links
+}
+
+func (o *Journals) GetPageNumber() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.PageNumber
+}
+
+func (o *Journals) GetPageSize() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.PageSize
+}
+
+func (o *Journals) GetResults() []Journal {
+	if o == nil {
+		return nil
+	}
+	return o.Results
+}
+
+func (o *Journals) GetTotalResults() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.TotalResults
+}

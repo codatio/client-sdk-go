@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
 	"net/http"
 )
 
@@ -17,12 +17,89 @@ type CreateBankTransactionsRequest struct {
 	TimeoutInMinutes        *int   `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
 }
 
+func (o *CreateBankTransactionsRequest) GetCreateBankTransactions() *shared.CreateBankTransactions {
+	if o == nil {
+		return nil
+	}
+	return o.CreateBankTransactions
+}
+
+func (o *CreateBankTransactionsRequest) GetAccountID() string {
+	if o == nil {
+		return ""
+	}
+	return o.AccountID
+}
+
+func (o *CreateBankTransactionsRequest) GetAllowSyncOnPushComplete() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.AllowSyncOnPushComplete
+}
+
+func (o *CreateBankTransactionsRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *CreateBankTransactionsRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *CreateBankTransactionsRequest) GetTimeoutInMinutes() *int {
+	if o == nil {
+		return nil
+	}
+	return o.TimeoutInMinutes
+}
+
 type CreateBankTransactionsResponse struct {
 	ContentType string
 	// Success
 	CreateBankTransactionsResponse *shared.CreateBankTransactionsResponse
-	StatusCode                     int
-	RawResponse                    *http.Response
 	// Your API request was not properly authorized.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
+}
+
+func (o *CreateBankTransactionsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *CreateBankTransactionsResponse) GetCreateBankTransactionsResponse() *shared.CreateBankTransactionsResponse {
+	if o == nil {
+		return nil
+	}
+	return o.CreateBankTransactionsResponse
+}
+
+func (o *CreateBankTransactionsResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *CreateBankTransactionsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *CreateBankTransactionsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

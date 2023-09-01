@@ -31,9 +31,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/accounting"
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
 )
 
 func main() {
@@ -46,29 +46,36 @@ func main() {
     ctx := context.Background()
     res, err := s.BankAccountTransactions.Create(ctx, operations.CreateBankTransactionsRequest{
         CreateBankTransactions: &shared.CreateBankTransactions{
-            AccountID: codataccounting.String("excepturi"),
+            AccountID: codataccounting.String("veritatis"),
             Transactions: []shared.CreateBankAccountTransaction{
                 shared.CreateBankAccountTransaction{
-                    Amount: codataccounting.Float64(9255.97),
-                    Balance: codataccounting.Float64(8360.79),
+                    Amount: codataccounting.Float64(202.18),
+                    Balance: codataccounting.Float64(3682.41),
                     Date: codataccounting.String("2022-10-23T00:00:00.000Z"),
-                    Description: codataccounting.String("quis"),
-                    ID: codataccounting.String("1a05dfc2-ddf7-4cc7-8ca1-ba928fc81674"),
+                    Description: codataccounting.String("sapiente"),
+                    ID: codataccounting.String("c2ddf7cc-78ca-41ba-928f-c816742cb739"),
                 },
                 shared.CreateBankAccountTransaction{
-                    Amount: codataccounting.Float64(1863.32),
-                    Balance: codataccounting.Float64(7742.34),
+                    Amount: codataccounting.Float64(1352.18),
+                    Balance: codataccounting.Float64(187.89),
                     Date: codataccounting.String("2022-10-23T00:00:00.000Z"),
-                    Description: codataccounting.String("esse"),
-                    ID: codataccounting.String("39205929-396f-4ea7-996e-b10faaa2352c"),
+                    Description: codataccounting.String("natus"),
+                    ID: codataccounting.String("29396fea-7596-4eb1-8faa-a2352c595590"),
+                },
+                shared.CreateBankAccountTransaction{
+                    Amount: codataccounting.Float64(4386.01),
+                    Balance: codataccounting.Float64(6342.74),
+                    Date: codataccounting.String("2022-10-23T00:00:00.000Z"),
+                    Description: codataccounting.String("sapiente"),
+                    ID: codataccounting.String("1a3a2fa9-4677-4392-91aa-52c3f5ad019d"),
                 },
             },
         },
-        AccountID: "enim",
+        AccountID: "laborum",
         AllowSyncOnPushComplete: codataccounting.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codataccounting.Int(607831),
+        TimeoutInMinutes: codataccounting.Int(96098),
     })
     if err != nil {
         log.Fatal(err)
@@ -115,8 +122,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/accounting"
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
 )
 
 func main() {
@@ -128,7 +136,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.BankAccountTransactions.GetCreateModel(ctx, operations.GetCreateBankTransactionsModelRequest{
-        AccountID: "nemo",
+        AccountID: "reiciendis",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -175,8 +183,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/accounting"
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
 )
 
 func main() {
@@ -188,13 +197,13 @@ func main() {
 
     ctx := context.Background()
     res, err := s.BankAccountTransactions.List(ctx, operations.ListBankAccountTransactionsRequest{
-        AccountID: "minima",
+        AccountID: "voluptatibus",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: codataccounting.Int(1),
         PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("excepturi"),
+        Query: codataccounting.String("vero"),
     })
     if err != nil {
         log.Fatal(err)

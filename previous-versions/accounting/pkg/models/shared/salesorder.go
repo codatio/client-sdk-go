@@ -12,11 +12,46 @@ type SalesOrderShipToContact struct {
 	Phone *string `json:"phone,omitempty"`
 }
 
+func (o *SalesOrderShipToContact) GetEmail() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Email
+}
+
+func (o *SalesOrderShipToContact) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
+func (o *SalesOrderShipToContact) GetPhone() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Phone
+}
+
 // SalesOrderShipTo - Delivery details for any goods that have been ordered.
 type SalesOrderShipTo struct {
 	Address *Addressesitems `json:"address,omitempty"`
 	// Details of the named contact at the delivery address.
 	Contact *SalesOrderShipToContact `json:"contact,omitempty"`
+}
+
+func (o *SalesOrderShipTo) GetAddress() *Addressesitems {
+	if o == nil {
+		return nil
+	}
+	return o.Address
+}
+
+func (o *SalesOrderShipTo) GetContact() *SalesOrderShipToContact {
+	if o == nil {
+		return nil
+	}
+	return o.Contact
 }
 
 // SalesOrder - > View the coverage for sales orders in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=salesOrders" target="_blank">Data coverage explorer</a>.
@@ -62,8 +97,8 @@ type SalesOrder struct {
 	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
 	CurrencyRate *float64 `json:"currencyRate,omitempty"`
 	// A customer-supplied identifier for the purchase order in the customer's system.
-	CustomerPurchaseOrderNumber *string      `json:"customerPurchaseOrderNumber,omitempty"`
-	CustomerRef                 *CustomerRef `json:"customerRef,omitempty"`
+	CustomerPurchaseOrderNumber *string                `json:"customerPurchaseOrderNumber,omitempty"`
+	CustomerRef                 *AccountingCustomerRef `json:"customerRef,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -130,4 +165,144 @@ type SalesOrder struct {
 	TotalDiscount *float64 `json:"totalDiscount,omitempty"`
 	// Total amount of tax included in the sales order.
 	TotalTaxAmount *float64 `json:"totalTaxAmount,omitempty"`
+}
+
+func (o *SalesOrder) GetCurrency() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Currency
+}
+
+func (o *SalesOrder) GetCurrencyRate() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.CurrencyRate
+}
+
+func (o *SalesOrder) GetCustomerPurchaseOrderNumber() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CustomerPurchaseOrderNumber
+}
+
+func (o *SalesOrder) GetCustomerRef() *AccountingCustomerRef {
+	if o == nil {
+		return nil
+	}
+	return o.CustomerRef
+}
+
+func (o *SalesOrder) GetExpectedDeliveryDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ExpectedDeliveryDate
+}
+
+func (o *SalesOrder) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *SalesOrder) GetInvoicingStatus() *SalesOrderInvoiceStatus {
+	if o == nil {
+		return nil
+	}
+	return o.InvoicingStatus
+}
+
+func (o *SalesOrder) GetIssueDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IssueDate
+}
+
+func (o *SalesOrder) GetLineItems() []SalesOrderLineItem {
+	if o == nil {
+		return nil
+	}
+	return o.LineItems
+}
+
+func (o *SalesOrder) GetMetadata() *Metadata {
+	if o == nil {
+		return nil
+	}
+	return o.Metadata
+}
+
+func (o *SalesOrder) GetModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ModifiedDate
+}
+
+func (o *SalesOrder) GetNote() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Note
+}
+
+func (o *SalesOrder) GetSalesOrderNumber() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SalesOrderNumber
+}
+
+func (o *SalesOrder) GetShipTo() *SalesOrderShipTo {
+	if o == nil {
+		return nil
+	}
+	return o.ShipTo
+}
+
+func (o *SalesOrder) GetSourceModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceModifiedDate
+}
+
+func (o *SalesOrder) GetStatus() *SalesOrderStatus {
+	if o == nil {
+		return nil
+	}
+	return o.Status
+}
+
+func (o *SalesOrder) GetSubTotal() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.SubTotal
+}
+
+func (o *SalesOrder) GetTotalAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.TotalAmount
+}
+
+func (o *SalesOrder) GetTotalDiscount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.TotalDiscount
+}
+
+func (o *SalesOrder) GetTotalTaxAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.TotalTaxAmount
 }

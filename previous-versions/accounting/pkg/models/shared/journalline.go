@@ -13,3 +13,38 @@ type JournalLine struct {
 	NetAmount float64              `json:"netAmount"`
 	Tracking  *Propertiestracking2 `json:"tracking,omitempty"`
 }
+
+func (o *JournalLine) GetAccountRef() *AccountRef {
+	if o == nil {
+		return nil
+	}
+	return o.AccountRef
+}
+
+func (o *JournalLine) GetCurrency() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Currency
+}
+
+func (o *JournalLine) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *JournalLine) GetNetAmount() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.NetAmount
+}
+
+func (o *JournalLine) GetTracking() *Propertiestracking2 {
+	if o == nil {
+		return nil
+	}
+	return o.Tracking
+}

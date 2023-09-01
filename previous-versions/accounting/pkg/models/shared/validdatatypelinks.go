@@ -48,3 +48,17 @@ type ValidDataTypeLinks struct {
 	// The property from the account that can be linked.
 	Property *string `json:"property,omitempty"`
 }
+
+func (o *ValidDataTypeLinks) GetLinks() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Links
+}
+
+func (o *ValidDataTypeLinks) GetProperty() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Property
+}

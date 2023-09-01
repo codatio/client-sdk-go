@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
 	"net/http"
 )
 
@@ -14,12 +14,75 @@ type CreatePurchaseOrderRequest struct {
 	TimeoutInMinutes *int                  `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
 }
 
+func (o *CreatePurchaseOrderRequest) GetPurchaseOrder() *shared.PurchaseOrder {
+	if o == nil {
+		return nil
+	}
+	return o.PurchaseOrder
+}
+
+func (o *CreatePurchaseOrderRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *CreatePurchaseOrderRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *CreatePurchaseOrderRequest) GetTimeoutInMinutes() *int {
+	if o == nil {
+		return nil
+	}
+	return o.TimeoutInMinutes
+}
+
 type CreatePurchaseOrderResponse struct {
 	ContentType string
 	// Success
 	CreatePurchaseOrderResponse *shared.CreatePurchaseOrderResponse
-	StatusCode                  int
-	RawResponse                 *http.Response
 	// The request made is not valid.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
+}
+
+func (o *CreatePurchaseOrderResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *CreatePurchaseOrderResponse) GetCreatePurchaseOrderResponse() *shared.CreatePurchaseOrderResponse {
+	if o == nil {
+		return nil
+	}
+	return o.CreatePurchaseOrderResponse
+}
+
+func (o *CreatePurchaseOrderResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *CreatePurchaseOrderResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *CreatePurchaseOrderResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

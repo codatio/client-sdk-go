@@ -27,3 +27,24 @@ type BillPaymentLine struct {
 	Amount float64               `json:"amount"`
 	Links  []BillPaymentLineLink `json:"links,omitempty"`
 }
+
+func (o *BillPaymentLine) GetAllocatedOnDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AllocatedOnDate
+}
+
+func (o *BillPaymentLine) GetAmount() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.Amount
+}
+
+func (o *BillPaymentLine) GetLinks() []BillPaymentLineLink {
+	if o == nil {
+		return nil
+	}
+	return o.Links
+}

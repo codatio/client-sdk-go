@@ -44,3 +44,80 @@ type TaxRate struct {
 	TotalTaxRate       *float64             `json:"totalTaxRate,omitempty"`
 	ValidDatatypeLinks []ValidDataTypeLinks `json:"validDatatypeLinks,omitempty"`
 }
+
+func (o *TaxRate) GetCode() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Code
+}
+
+func (o *TaxRate) GetComponents() []TaxRateComponent {
+	if o == nil {
+		return nil
+	}
+	return o.Components
+}
+
+func (o *TaxRate) GetEffectiveTaxRate() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.EffectiveTaxRate
+}
+
+func (o *TaxRate) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *TaxRate) GetMetadata() *Metadata {
+	if o == nil {
+		return nil
+	}
+	return o.Metadata
+}
+
+func (o *TaxRate) GetModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ModifiedDate
+}
+
+func (o *TaxRate) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
+func (o *TaxRate) GetSourceModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceModifiedDate
+}
+
+func (o *TaxRate) GetStatus() *TaxRateStatus {
+	if o == nil {
+		return nil
+	}
+	return o.Status
+}
+
+func (o *TaxRate) GetTotalTaxRate() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.TotalTaxRate
+}
+
+func (o *TaxRate) GetValidDatatypeLinks() []ValidDataTypeLinks {
+	if o == nil {
+		return nil
+	}
+	return o.ValidDatatypeLinks
+}

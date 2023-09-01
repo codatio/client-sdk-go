@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
 	"net/http"
 )
 
@@ -17,12 +17,89 @@ type UpdateBillCreditNoteRequest struct {
 	TimeoutInMinutes *int  `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
 }
 
+func (o *UpdateBillCreditNoteRequest) GetBillCreditNote() *shared.BillCreditNote {
+	if o == nil {
+		return nil
+	}
+	return o.BillCreditNote
+}
+
+func (o *UpdateBillCreditNoteRequest) GetBillCreditNoteID() string {
+	if o == nil {
+		return ""
+	}
+	return o.BillCreditNoteID
+}
+
+func (o *UpdateBillCreditNoteRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *UpdateBillCreditNoteRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *UpdateBillCreditNoteRequest) GetForceUpdate() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.ForceUpdate
+}
+
+func (o *UpdateBillCreditNoteRequest) GetTimeoutInMinutes() *int {
+	if o == nil {
+		return nil
+	}
+	return o.TimeoutInMinutes
+}
+
 type UpdateBillCreditNoteResponse struct {
 	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
+	// The request made is not valid.
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 	// Success
 	UpdateBillCreditNoteResponse *shared.UpdateBillCreditNoteResponse
-	// The request made is not valid.
-	Schema *shared.Schema
+}
+
+func (o *UpdateBillCreditNoteResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *UpdateBillCreditNoteResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *UpdateBillCreditNoteResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *UpdateBillCreditNoteResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *UpdateBillCreditNoteResponse) GetUpdateBillCreditNoteResponse() *shared.UpdateBillCreditNoteResponse {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateBillCreditNoteResponse
 }
