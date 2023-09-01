@@ -1,22 +1,13 @@
 configVersion: 1.0.0
 management:
-  docChecksum: ac231ce0874ff5d34780886a1dd4e053
-  docVersion: 3.0.0
-  speakeasyVersion: 1.77.1
-  generationVersion: 2.91.4
+  docChecksum: 853aebc76021ec17db9b1abb7a33f340
+  docVersion: 2.1.0
+  speakeasyVersion: 1.53.0
+  generationVersion: 2.58.0
 generation:
   sdkClassName: CodatBankFeeds
   singleTagPerOp: false
   telemetryEnabled: true
-features:
-  go:
-    core: 2.86.2
-    deprecations: 2.81.1
-    examples: 2.81.1
-    globalSecurity: 2.81.1
-    globalServerURLs: 2.82.0
-    nameOverrides: 2.81.1
-    retries: 2.81.1
 go:
   version: 0.26.0
   maxMethodParams: 0

@@ -1,8 +1,8 @@
-name: Release Common library
+name: Release Sync for Commerce version 1 library
 'on':
   push:
     paths:
-    - previous-versions/common/RELEASES.md
+    - previous-versions/sync-for-commerce-version-1/RELEASES.md
     branches:
     - main
 jobs:

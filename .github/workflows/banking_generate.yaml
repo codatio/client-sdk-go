@@ -15,7 +15,7 @@ jobs:
       speakeasy_version: latest
       openapi_doc_location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Banking.yaml
       languages: |-
-        - go: ./banking
+        - go: ./previous-versions/banking
       create_release: true
       mode: pr
       force: ${{ github.event.inputs.force }}

@@ -1,6 +1,6 @@
-# Files
+# Sync for Commerce version 1
     
-﻿Use Codat's Files API to upload your SMB customers' files.
+﻿Embedded accounting integrations for POS and eCommerce platforms.
 
 <!-- Start SDK Installation -->
 <!-- End SDK Installation -->

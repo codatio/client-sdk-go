@@ -1,4 +1,4 @@
-name: Generate Assess library
+name: Generate Platform library
 'on':
   workflow_dispatch:
     inputs:
@@ -13,9 +13,9 @@ jobs:
     uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-generation.yaml@v14
     with:
       speakeasy_version: latest
-      openapi_doc_location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Assess.yaml
+      openapi_doc_location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Common.yaml
       languages: |-
-        - go: ./previous-versions/assess
+        - go: ./platform
       create_release: true
       mode: pr
       force: ${{ github.event.inputs.force }}

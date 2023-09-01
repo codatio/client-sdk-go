@@ -2,7 +2,7 @@ name: Release Accounting library
 'on':
   push:
     paths:
-    - accounting/RELEASES.md
+    - previous-versions/accounting/RELEASES.md
     branches:
     - main
 jobs:

@@ -2,7 +2,7 @@ name: Release Assess library
 'on':
   push:
     paths:
-    - assess/RELEASES.md
+    - previous-versions/assess/RELEASES.md
     branches:
     - main
 jobs:
