@@ -1,4 +1,4 @@
-module github.com/codatio/client-sdk-go/assess
+module github.com/codatio/client-sdk-go/previous-versions/assess
 
 go 1.14
 

@@ -7,3 +7,17 @@ type EnhancedReportAccountCategory struct {
 	// Returns a status of "Suggested" or "Confirmed". If an account has a confirmed category, it will replace any suggested category returned.
 	Status *string `json:"status,omitempty"`
 }
+
+func (o *EnhancedReportAccountCategory) GetLevels() []AccountCategoryLevel {
+	if o == nil {
+		return nil
+	}
+	return o.Levels
+}
+
+func (o *EnhancedReportAccountCategory) GetStatus() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Status
+}

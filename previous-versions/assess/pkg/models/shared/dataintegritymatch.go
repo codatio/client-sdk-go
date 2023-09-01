@@ -24,3 +24,52 @@ type DataIntegrityMatch struct {
 	// The data type which the data type in the URL has been matched against. For example, if you've matched accountTransactions and banking-transactions, and you call this endpoint with accountTransactions in the URL, this property would be banking-transactions.
 	Type *string `json:"type,omitempty"`
 }
+
+func (o *DataIntegrityMatch) GetAmount() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Amount
+}
+
+func (o *DataIntegrityMatch) GetConnectionID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ConnectionID
+}
+
+func (o *DataIntegrityMatch) GetCurrency() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Currency
+}
+
+func (o *DataIntegrityMatch) GetDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Date
+}
+
+func (o *DataIntegrityMatch) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *DataIntegrityMatch) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *DataIntegrityMatch) GetType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}

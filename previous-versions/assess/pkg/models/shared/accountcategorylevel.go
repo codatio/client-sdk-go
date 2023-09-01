@@ -9,3 +9,17 @@ type AccountCategoryLevel struct {
 	// Account category name.
 	LevelName *string `json:"levelName,omitempty"`
 }
+
+func (o *AccountCategoryLevel) GetConfidence() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Confidence
+}
+
+func (o *AccountCategoryLevel) GetLevelName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.LevelName
+}

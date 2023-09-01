@@ -10,3 +10,24 @@ type ItemRef struct {
 	// The data type the loan transaction entry was extracted from.
 	Type *string `json:"type,omitempty"`
 }
+
+func (o *ItemRef) GetDataConnectionID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DataConnectionID
+}
+
+func (o *ItemRef) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *ItemRef) GetType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}

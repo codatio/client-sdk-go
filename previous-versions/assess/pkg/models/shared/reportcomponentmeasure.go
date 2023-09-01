@@ -7,3 +7,24 @@ type ReportComponentMeasure struct {
 	MeasureDisplayName *string  `json:"measureDisplayName,omitempty"`
 	Value              *float64 `json:"value,omitempty"`
 }
+
+func (o *ReportComponentMeasure) GetIndex() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Index
+}
+
+func (o *ReportComponentMeasure) GetMeasureDisplayName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.MeasureDisplayName
+}
+
+func (o *ReportComponentMeasure) GetValue() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Value
+}

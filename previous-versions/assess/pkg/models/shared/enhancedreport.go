@@ -32,9 +32,58 @@ type EnhancedReportReportItem struct {
 	Date *string `json:"date,omitempty"`
 }
 
+func (o *EnhancedReportReportItem) GetAccountCategory() *EnhancedReportAccountCategory {
+	if o == nil {
+		return nil
+	}
+	return o.AccountCategory
+}
+
+func (o *EnhancedReportReportItem) GetAccountID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AccountID
+}
+
+func (o *EnhancedReportReportItem) GetAccountName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AccountName
+}
+
+func (o *EnhancedReportReportItem) GetBalance() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Balance
+}
+
+func (o *EnhancedReportReportItem) GetDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Date
+}
+
 // EnhancedReport - OK
 type EnhancedReport struct {
 	ReportInfo *EnhancedReportInfo `json:"reportInfo,omitempty"`
 	// An array of report items.
 	ReportItems []EnhancedReportReportItem `json:"reportItems,omitempty"`
+}
+
+func (o *EnhancedReport) GetReportInfo() *EnhancedReportInfo {
+	if o == nil {
+		return nil
+	}
+	return o.ReportInfo
+}
+
+func (o *EnhancedReport) GetReportItems() []EnhancedReportReportItem {
+	if o == nil {
+		return nil
+	}
+	return o.ReportItems
 }

@@ -63,3 +63,52 @@ type Payment struct {
 	ID          *string `json:"id,omitempty"`
 	PaymentType *string `json:"paymentType,omitempty"`
 }
+
+func (o *Payment) GetAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Amount
+}
+
+func (o *Payment) GetBankingTransactionRefs() []BankingTransactionRef {
+	if o == nil {
+		return nil
+	}
+	return o.BankingTransactionRefs
+}
+
+func (o *Payment) GetCurrency() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Currency
+}
+
+func (o *Payment) GetCurrencyRate() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.CurrencyRate
+}
+
+func (o *Payment) GetDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Date
+}
+
+func (o *Payment) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *Payment) GetPaymentType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PaymentType
+}

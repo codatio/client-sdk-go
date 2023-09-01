@@ -30,3 +30,52 @@ type BankingTransactionRef struct {
 	Description *string `json:"description,omitempty"`
 	ID          *string `json:"id,omitempty"`
 }
+
+func (o *BankingTransactionRef) GetAccountID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AccountID
+}
+
+func (o *BankingTransactionRef) GetAccountName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AccountName
+}
+
+func (o *BankingTransactionRef) GetAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Amount
+}
+
+func (o *BankingTransactionRef) GetDataConnectionID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DataConnectionID
+}
+
+func (o *BankingTransactionRef) GetDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Date
+}
+
+func (o *BankingTransactionRef) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *BankingTransactionRef) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}

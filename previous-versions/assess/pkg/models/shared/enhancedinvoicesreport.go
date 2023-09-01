@@ -2,13 +2,23 @@
 
 package shared
 
-type EnhancedInvoicesReportReportItems struct {
-	Invoices []EnhancedInvoiceReportItem `json:"invoices,omitempty"`
-}
-
 // EnhancedInvoicesReport - The enhanced invoices report takes the key elements of the Invoices report verifying those marked as paid in the accounting platform have actually been paid by matching with the bank statement.
 type EnhancedInvoicesReport struct {
 	// Report additional information, which is specific to Assess reports
-	ReportInfo  *ReportInfo                         `json:"reportInfo,omitempty"`
-	ReportItems []EnhancedInvoicesReportReportItems `json:"reportItems,omitempty"`
+	ReportInfo  *ReportInfo                 `json:"reportInfo,omitempty"`
+	ReportItems []EnhancedInvoiceReportItem `json:"reportItems,omitempty"`
+}
+
+func (o *EnhancedInvoicesReport) GetReportInfo() *ReportInfo {
+	if o == nil {
+		return nil
+	}
+	return o.ReportInfo
+}
+
+func (o *EnhancedInvoicesReport) GetReportItems() []EnhancedInvoiceReportItem {
+	if o == nil {
+		return nil
+	}
+	return o.ReportItems
 }
