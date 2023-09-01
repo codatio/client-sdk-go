@@ -1,8 +1,8 @@
-name: Release Assess library
+name: Release Bank Feeds library
 'on':
   push:
     paths:
-    - assess/RELEASES.md
+    - bank-feeds/RELEASES.md
     branches:
     - main
 jobs:

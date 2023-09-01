@@ -1,6 +1,6 @@
-# Common
+# Sync for Commerce
     
-
+﻿Embedded accounting integrations for POS and eCommerce platforms.
 
 <!-- Start SDK Installation -->
 <!-- End SDK Installation -->

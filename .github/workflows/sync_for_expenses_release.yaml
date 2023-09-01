@@ -1,8 +1,8 @@
-name: Release Assess library
+name: Release Sync for Expenses library
 'on':
   push:
     paths:
-    - assess/RELEASES.md
+    - sync-for-expenses/RELEASES.md
     branches:
     - main
 jobs:
