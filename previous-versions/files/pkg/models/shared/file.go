@@ -27,3 +27,31 @@ type File struct {
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	Uploaded *string `json:"uploaded,omitempty"`
 }
+
+func (o *File) GetDisplayName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DisplayName
+}
+
+func (o *File) GetFileName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.FileName
+}
+
+func (o *File) GetSourceType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceType
+}
+
+func (o *File) GetUploaded() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Uploaded
+}

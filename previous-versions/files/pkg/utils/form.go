@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/codatio/client-sdk-go/files/pkg/types"
+	"github.com/codatio/client-sdk-go/previous-versions/files/pkg/types"
 )
 
 func populateForm(paramName string, explode bool, objType reflect.Type, objValue reflect.Value, delimiter string, getFieldName func(reflect.StructField) string) url.Values {

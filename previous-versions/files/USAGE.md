@@ -1,12 +1,15 @@
 <!-- Start SDK Example Usage -->
+
+
 ```go
 package main
 
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/files"
-	"github.com/codatio/client-sdk-go/files/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/files"
+	"github.com/codatio/client-sdk-go/previous-versions/files/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/files/pkg/models/operations"
 )
 
 func main() {

@@ -1,4 +1,4 @@
-module github.com/codatio/client-sdk-go/files
+module github.com/codatio/client-sdk-go/previous-versions/files
 
 go 1.14
 

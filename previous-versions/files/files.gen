@@ -2,6 +2,7 @@ files.go
 codatfiles.go
 go.mod
 go.sum
+pkg/models/sdkerrors/sdkerror.go
 pkg/types/bigint.go
 pkg/types/date.go
 pkg/types/datetime.go
@@ -17,7 +18,7 @@ pkg/utils/utils.go
 pkg/models/operations/downloadfiles.go
 pkg/models/operations/listfiles.go
 pkg/models/operations/uploadfiles.go
-pkg/models/shared/schema.go
+pkg/models/shared/errormessage.go
 pkg/models/shared/file.go
 pkg/models/shared/security.go
 docs/sdks/codatfiles/README.md
@@ -25,16 +26,14 @@ docs/models/operations/option.md
 docs/sdks/files/README.md
 USAGE.md
 docs/models/operations/downloadfilesrequest.md
-docs/models/operations/downloadfiles404applicationjson.md
 docs/models/operations/downloadfilesresponse.md
 docs/models/operations/listfilesrequest.md
-docs/models/operations/listfiles404applicationjson.md
 docs/models/operations/listfilesresponse.md
 docs/models/operations/uploadfilesrequestbody.md
 docs/models/operations/uploadfilesrequest.md
-docs/models/operations/uploadfiles404applicationjson.md
 docs/models/operations/uploadfilesresponse.md
-docs/models/shared/schema.md
+docs/models/shared/errormessage.md
 docs/models/shared/file.md
 docs/models/shared/security.md
 pkg/models/operations/options.go
+.gitattributes
