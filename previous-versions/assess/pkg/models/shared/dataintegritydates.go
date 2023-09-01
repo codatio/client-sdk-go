@@ -85,3 +85,31 @@ type DataIntegrityDates struct {
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	MinOverlappingDate *string `json:"minOverlappingDate,omitempty"`
 }
+
+func (o *DataIntegrityDates) GetMaxDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.MaxDate
+}
+
+func (o *DataIntegrityDates) GetMaxOverlappingDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.MaxOverlappingDate
+}
+
+func (o *DataIntegrityDates) GetMinDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.MinDate
+}
+
+func (o *DataIntegrityDates) GetMinOverlappingDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.MinOverlappingDate
+}

@@ -20,3 +20,38 @@ type DataIntegrityByAmount struct {
 	// The sum of the absolute value of transactions of the type specified in the route which don't have a match.
 	Unmatched *float64 `json:"unmatched,omitempty"`
 }
+
+func (o *DataIntegrityByAmount) GetCurrency() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Currency
+}
+
+func (o *DataIntegrityByAmount) GetMatchPercentage() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.MatchPercentage
+}
+
+func (o *DataIntegrityByAmount) GetMatched() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Matched
+}
+
+func (o *DataIntegrityByAmount) GetTotal() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Total
+}
+
+func (o *DataIntegrityByAmount) GetUnmatched() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Unmatched
+}

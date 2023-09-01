@@ -10,3 +10,24 @@ type LoanRef struct {
 	// The object type data is referring to, e.g. Account.
 	Type *string `json:"type,omitempty"`
 }
+
+func (o *LoanRef) GetDataConnectionID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DataConnectionID
+}
+
+func (o *LoanRef) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *LoanRef) GetType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}

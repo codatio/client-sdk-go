@@ -2,12 +2,47 @@
 
 package shared
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
+type ReportItemsLoanTransactionType string
+
+const (
+	ReportItemsLoanTransactionTypeInvestment      ReportItemsLoanTransactionType = "Investment"
+	ReportItemsLoanTransactionTypeRepayment       ReportItemsLoanTransactionType = "Repayment"
+	ReportItemsLoanTransactionTypeInterest        ReportItemsLoanTransactionType = "Interest"
+	ReportItemsLoanTransactionTypeAccuredInterest ReportItemsLoanTransactionType = "AccuredInterest"
+)
+
+func (e ReportItemsLoanTransactionType) ToPointer() *ReportItemsLoanTransactionType {
+	return &e
+}
+
+func (e *ReportItemsLoanTransactionType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Investment":
+		fallthrough
+	case "Repayment":
+		fallthrough
+	case "Interest":
+		fallthrough
+	case "AccuredInterest":
+		*e = ReportItemsLoanTransactionType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ReportItemsLoanTransactionType: %v", v)
+	}
+}
+
 type ReportItems struct {
-	// The loan outstanding balance.  This may not equal totalDrawdowns - totalRepayments due to interest which has been accrued.
-	Balance *float64 `json:"balance,omitempty"`
-	// The description of the object being referred to. E.g. the account.
-	Description *string    `json:"description,omitempty"`
-	RecordRef   *RecordRef `json:"recordRef,omitempty"`
+	// The loan transaction amount.
+	Amount *float64 `json:"amount,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -27,9 +62,43 @@ type ReportItems struct {
 	// >
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	StartDate *string `json:"startDate,omitempty"`
-	// The total loan drawdowns.
-	TotalDrawdowns *float64 `json:"totalDrawdowns,omitempty"`
-	// The total loan repayments which includes capital plus any interest.
-	TotalRepayments *float64 `json:"totalRepayments,omitempty"`
+	Date                *string                         `json:"date,omitempty"`
+	ItemRef             *ItemRef                        `json:"itemRef,omitempty"`
+	LoanRef             *LoanRef                        `json:"loanRef,omitempty"`
+	LoanTransactionType *ReportItemsLoanTransactionType `json:"loanTransactionType,omitempty"`
+}
+
+func (o *ReportItems) GetAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Amount
+}
+
+func (o *ReportItems) GetDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Date
+}
+
+func (o *ReportItems) GetItemRef() *ItemRef {
+	if o == nil {
+		return nil
+	}
+	return o.ItemRef
+}
+
+func (o *ReportItems) GetLoanRef() *LoanRef {
+	if o == nil {
+		return nil
+	}
+	return o.LoanRef
+}
+
+func (o *ReportItems) GetLoanTransactionType() *ReportItemsLoanTransactionType {
+	if o == nil {
+		return nil
+	}
+	return o.LoanTransactionType
 }

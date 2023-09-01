@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/assess/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/shared"
 	"net/http"
 )
 
@@ -22,12 +22,96 @@ type GetCommerceOrdersMetricsRequest struct {
 	ReportDate string `queryParam:"style=form,explode=true,name=reportDate"`
 }
 
+func (o *GetCommerceOrdersMetricsRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *GetCommerceOrdersMetricsRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *GetCommerceOrdersMetricsRequest) GetIncludeDisplayNames() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.IncludeDisplayNames
+}
+
+func (o *GetCommerceOrdersMetricsRequest) GetNumberOfPeriods() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.NumberOfPeriods
+}
+
+func (o *GetCommerceOrdersMetricsRequest) GetPeriodLength() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.PeriodLength
+}
+
+func (o *GetCommerceOrdersMetricsRequest) GetPeriodUnit() shared.PeriodUnit {
+	if o == nil {
+		return shared.PeriodUnit("")
+	}
+	return o.PeriodUnit
+}
+
+func (o *GetCommerceOrdersMetricsRequest) GetReportDate() string {
+	if o == nil {
+		return ""
+	}
+	return o.ReportDate
+}
+
 type GetCommerceOrdersMetricsResponse struct {
 	ContentType string
+	// Your API request was not properly authorized.
+	ErrorMessage *shared.ErrorMessage
 	// OK
 	Report      *shared.Report
 	StatusCode  int
 	RawResponse *http.Response
-	// Your API request was not properly authorized.
-	Schema *shared.Schema
+}
+
+func (o *GetCommerceOrdersMetricsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetCommerceOrdersMetricsResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *GetCommerceOrdersMetricsResponse) GetReport() *shared.Report {
+	if o == nil {
+		return nil
+	}
+	return o.Report
+}
+
+func (o *GetCommerceOrdersMetricsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetCommerceOrdersMetricsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

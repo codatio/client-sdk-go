@@ -3,6 +3,8 @@
 package shared
 
 type EnhancedCashFlowTransaction struct {
+	// An account reference containing the account id and name.
+	AccountRef *AccountRef `json:"accountRef,omitempty"`
 	// The bank transaction amount.
 	Amount   *float64 `json:"amount,omitempty"`
 	Currency *string  `json:"currency,omitempty"`
@@ -30,7 +32,72 @@ type EnhancedCashFlowTransaction struct {
 	Description *string `json:"description,omitempty"`
 	// The unique identifier of the bank transaction.
 	ID *string `json:"id,omitempty"`
+	// Returns the payment processor responsible for the transaction.
+	PlatformName *string `json:"platformName,omitempty"`
 	// A source reference containing the `sourceType` object "Banking".
 	SourceRef           *SourceRef           `json:"sourceRef,omitempty"`
 	TransactionCategory *TransactionCategory `json:"transactionCategory,omitempty"`
+}
+
+func (o *EnhancedCashFlowTransaction) GetAccountRef() *AccountRef {
+	if o == nil {
+		return nil
+	}
+	return o.AccountRef
+}
+
+func (o *EnhancedCashFlowTransaction) GetAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Amount
+}
+
+func (o *EnhancedCashFlowTransaction) GetCurrency() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Currency
+}
+
+func (o *EnhancedCashFlowTransaction) GetDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Date
+}
+
+func (o *EnhancedCashFlowTransaction) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *EnhancedCashFlowTransaction) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *EnhancedCashFlowTransaction) GetPlatformName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PlatformName
+}
+
+func (o *EnhancedCashFlowTransaction) GetSourceRef() *SourceRef {
+	if o == nil {
+		return nil
+	}
+	return o.SourceRef
+}
+
+func (o *EnhancedCashFlowTransaction) GetTransactionCategory() *TransactionCategory {
+	if o == nil {
+		return nil
+	}
+	return o.TransactionCategory
 }

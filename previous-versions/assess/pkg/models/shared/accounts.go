@@ -24,3 +24,52 @@ type Accounts struct {
 	// A source reference containing the `sourceType` object "Banking".
 	SourceRef *SourceRef `json:"sourceRef,omitempty"`
 }
+
+func (o *Accounts) GetAccountName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AccountName
+}
+
+func (o *Accounts) GetAccountProvider() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AccountProvider
+}
+
+func (o *Accounts) GetAccountType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AccountType
+}
+
+func (o *Accounts) GetCurrency() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Currency
+}
+
+func (o *Accounts) GetCurrentBalance() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.CurrentBalance
+}
+
+func (o *Accounts) GetPlatformName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PlatformName
+}
+
+func (o *Accounts) GetSourceRef() *SourceRef {
+	if o == nil {
+		return nil
+	}
+	return o.SourceRef
+}

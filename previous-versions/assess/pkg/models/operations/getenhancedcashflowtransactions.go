@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/assess/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/shared"
 	"net/http"
 )
 
@@ -17,12 +17,75 @@ type GetEnhancedCashFlowTransactionsRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
+func (o *GetEnhancedCashFlowTransactionsRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *GetEnhancedCashFlowTransactionsRequest) GetPage() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Page
+}
+
+func (o *GetEnhancedCashFlowTransactionsRequest) GetPageSize() *int {
+	if o == nil {
+		return nil
+	}
+	return o.PageSize
+}
+
+func (o *GetEnhancedCashFlowTransactionsRequest) GetQuery() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Query
+}
+
 type GetEnhancedCashFlowTransactionsResponse struct {
 	ContentType string
 	// OK
 	EnhancedCashFlowTransactions *shared.EnhancedCashFlowTransactions
-	StatusCode                   int
-	RawResponse                  *http.Response
 	// Your API request was not properly authorized.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
+}
+
+func (o *GetEnhancedCashFlowTransactionsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetEnhancedCashFlowTransactionsResponse) GetEnhancedCashFlowTransactions() *shared.EnhancedCashFlowTransactions {
+	if o == nil {
+		return nil
+	}
+	return o.EnhancedCashFlowTransactions
+}
+
+func (o *GetEnhancedCashFlowTransactionsResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *GetEnhancedCashFlowTransactionsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetEnhancedCashFlowTransactionsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

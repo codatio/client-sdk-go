@@ -7,23 +7,93 @@ type AccountCategoriesUpdatedWebhookData struct {
 	ModifiedDate *string `json:"modifiedDate,omitempty"`
 }
 
+func (o *AccountCategoriesUpdatedWebhookData) GetModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ModifiedDate
+}
+
 // AccountCategoriesUpdatedWebhook - Webhook request body for account categories updated.
 type AccountCategoriesUpdatedWebhook struct {
 	// Unique identifier of the webhook event.
-	AlertID *string `json:"alertId,omitempty"`
+	AlertID *string `json:"AlertId,omitempty"`
 	// Unique identifier for your client in Codat.
-	ClientID *string `json:"clientId,omitempty"`
+	ClientID *string `json:"ClientId,omitempty"`
 	// Name of your client in Codat.
-	ClientName *string `json:"clientName,omitempty"`
+	ClientName *string `json:"ClientName,omitempty"`
 	// Unique identifier for your SMB in Codat.
-	CompanyID *string                              `json:"companyId,omitempty"`
-	Data      *AccountCategoriesUpdatedWebhookData `json:"data,omitempty"`
+	CompanyID *string                              `json:"CompanyId,omitempty"`
+	Data      *AccountCategoriesUpdatedWebhookData `json:"Data,omitempty"`
 	// Unique identifier for a company's data connection.
-	DataConnectionID *string `json:"dataConnectionId,omitempty"`
+	DataConnectionID *string `json:"DataConnectionId,omitempty"`
 	// A human readable message about the webhook.
-	Message *string `json:"message,omitempty"`
+	Message *string `json:"Message,omitempty"`
 	// Unique identifier for the rule.
-	RuleID *string `json:"ruleId,omitempty"`
+	RuleID *string `json:"RuleId,omitempty"`
 	// The type of rule.
-	Type *string `json:"type,omitempty"`
+	Type *string `json:"Type,omitempty"`
+}
+
+func (o *AccountCategoriesUpdatedWebhook) GetAlertID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AlertID
+}
+
+func (o *AccountCategoriesUpdatedWebhook) GetClientID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ClientID
+}
+
+func (o *AccountCategoriesUpdatedWebhook) GetClientName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ClientName
+}
+
+func (o *AccountCategoriesUpdatedWebhook) GetCompanyID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CompanyID
+}
+
+func (o *AccountCategoriesUpdatedWebhook) GetData() *AccountCategoriesUpdatedWebhookData {
+	if o == nil {
+		return nil
+	}
+	return o.Data
+}
+
+func (o *AccountCategoriesUpdatedWebhook) GetDataConnectionID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DataConnectionID
+}
+
+func (o *AccountCategoriesUpdatedWebhook) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *AccountCategoriesUpdatedWebhook) GetRuleID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.RuleID
+}
+
+func (o *AccountCategoriesUpdatedWebhook) GetType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Type
 }

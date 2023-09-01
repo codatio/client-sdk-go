@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/assess/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/shared"
 	"net/http"
 )
 
@@ -15,12 +15,68 @@ type GetAccountsForEnhancedBalanceSheetRequest struct {
 	ReportDate string `queryParam:"style=form,explode=true,name=reportDate"`
 }
 
+func (o *GetAccountsForEnhancedBalanceSheetRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *GetAccountsForEnhancedBalanceSheetRequest) GetNumberOfPeriods() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.NumberOfPeriods
+}
+
+func (o *GetAccountsForEnhancedBalanceSheetRequest) GetReportDate() string {
+	if o == nil {
+		return ""
+	}
+	return o.ReportDate
+}
+
 type GetAccountsForEnhancedBalanceSheetResponse struct {
 	ContentType string
 	// OK
 	EnhancedReport *shared.EnhancedReport
-	StatusCode     int
-	RawResponse    *http.Response
 	// Your API request was not properly authorized.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
+}
+
+func (o *GetAccountsForEnhancedBalanceSheetResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetAccountsForEnhancedBalanceSheetResponse) GetEnhancedReport() *shared.EnhancedReport {
+	if o == nil {
+		return nil
+	}
+	return o.EnhancedReport
+}
+
+func (o *GetAccountsForEnhancedBalanceSheetResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *GetAccountsForEnhancedBalanceSheetResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetAccountsForEnhancedBalanceSheetResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

@@ -28,3 +28,24 @@ type DataIntegrityStatusInfo struct {
 	// Detailed explanation supporting the status value.
 	StatusMessage *string `json:"statusMessage,omitempty"`
 }
+
+func (o *DataIntegrityStatusInfo) GetCurrentStatus() *IntegrityStatus {
+	if o == nil {
+		return nil
+	}
+	return o.CurrentStatus
+}
+
+func (o *DataIntegrityStatusInfo) GetLastMatched() *string {
+	if o == nil {
+		return nil
+	}
+	return o.LastMatched
+}
+
+func (o *DataIntegrityStatusInfo) GetStatusMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.StatusMessage
+}
