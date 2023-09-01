@@ -6,9 +6,10 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/codatio/client-sdk-go/commerce/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/commerce/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/commerce/pkg/utils"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/utils"
 	"io"
 	"net/http"
 )
@@ -53,7 +54,7 @@ func (s *payments) Get(ctx context.Context, request operations.GetPaymentRequest
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json;q=1, application/json;q=0.7, application/json;q=0")
+	req.Header.Set("Accept", "application/json")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	client := s.sdkConfiguration.SecurityClient
@@ -113,30 +114,26 @@ func (s *payments) Get(ctx context.Context, request operations.GetPaymentRequest
 			}
 
 			res.Payment = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
 	case httpRes.StatusCode == 404:
 		fallthrough
+	case httpRes.StatusCode == 409:
+		fallthrough
 	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Schema
+			var out *shared.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.Schema = out
-		}
-	case httpRes.StatusCode == 409:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetPayment409ApplicationJSON
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
-			}
-
-			res.GetPayment409ApplicationJSONObject = out
+			res.ErrorMessage = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -172,7 +169,7 @@ func (s *payments) GetMethod(ctx context.Context, request operations.GetPaymentM
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json;q=1, application/json;q=0.7, application/json;q=0")
+	req.Header.Set("Accept", "application/json")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	client := s.sdkConfiguration.SecurityClient
@@ -232,30 +229,26 @@ func (s *payments) GetMethod(ctx context.Context, request operations.GetPaymentM
 			}
 
 			res.PaymentMethod = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
 	case httpRes.StatusCode == 404:
 		fallthrough
+	case httpRes.StatusCode == 409:
+		fallthrough
 	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Schema
+			var out *shared.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.Schema = out
-		}
-	case httpRes.StatusCode == 409:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetPaymentMethod409ApplicationJSON
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
-			}
-
-			res.GetPaymentMethod409ApplicationJSONObject = out
+			res.ErrorMessage = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -289,7 +282,7 @@ func (s *payments) List(ctx context.Context, request operations.ListPaymentsRequ
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json;q=1, application/json;q=0.7, application/json;q=0")
+	req.Header.Set("Accept", "application/json")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
@@ -353,6 +346,8 @@ func (s *payments) List(ctx context.Context, request operations.ListPaymentsRequ
 			}
 
 			res.Payments = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
 		fallthrough
@@ -360,25 +355,19 @@ func (s *payments) List(ctx context.Context, request operations.ListPaymentsRequ
 		fallthrough
 	case httpRes.StatusCode == 404:
 		fallthrough
+	case httpRes.StatusCode == 409:
+		fallthrough
 	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Schema
+			var out *shared.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.Schema = out
-		}
-	case httpRes.StatusCode == 409:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListPayments409ApplicationJSON
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
-			}
-
-			res.ListPayments409ApplicationJSONObject = out
+			res.ErrorMessage = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -412,7 +401,7 @@ func (s *payments) ListMethods(ctx context.Context, request operations.ListPayme
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json;q=1, application/json;q=0.7, application/json;q=0")
+	req.Header.Set("Accept", "application/json")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
@@ -476,6 +465,8 @@ func (s *payments) ListMethods(ctx context.Context, request operations.ListPayme
 			}
 
 			res.PaymentMethods = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
 		fallthrough
@@ -483,25 +474,19 @@ func (s *payments) ListMethods(ctx context.Context, request operations.ListPayme
 		fallthrough
 	case httpRes.StatusCode == 404:
 		fallthrough
+	case httpRes.StatusCode == 409:
+		fallthrough
 	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Schema
+			var out *shared.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.Schema = out
-		}
-	case httpRes.StatusCode == 409:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListPaymentMethods409ApplicationJSON
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
-			}
-
-			res.ListPaymentMethods409ApplicationJSONObject = out
+			res.ErrorMessage = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 

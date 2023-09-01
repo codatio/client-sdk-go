@@ -20,3 +20,45 @@ type Product struct {
 	Name     *string          `json:"name,omitempty"`
 	Variants []ProductVariant `json:"variants,omitempty"`
 }
+
+func (o *Product) GetCategorization() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Categorization
+}
+
+func (o *Product) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *Product) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *Product) GetIsGiftCard() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.IsGiftCard
+}
+
+func (o *Product) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
+func (o *Product) GetVariants() []ProductVariant {
+	if o == nil {
+		return nil
+	}
+	return o.Variants
+}

@@ -12,3 +12,31 @@ type AccountBalance struct {
 	// Funds reserved as holdings
 	Reserved *float64 `json:"reserved,omitempty"`
 }
+
+func (o *AccountBalance) GetAvailable() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Available
+}
+
+func (o *AccountBalance) GetCurrency() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Currency
+}
+
+func (o *AccountBalance) GetPending() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Pending
+}
+
+func (o *AccountBalance) GetReserved() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Reserved
+}

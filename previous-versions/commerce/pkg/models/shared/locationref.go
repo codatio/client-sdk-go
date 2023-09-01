@@ -9,3 +9,17 @@ type LocationRef struct {
 	// Name of the location being referenced.
 	Name *string `json:"name,omitempty"`
 }
+
+func (o *LocationRef) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *LocationRef) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}

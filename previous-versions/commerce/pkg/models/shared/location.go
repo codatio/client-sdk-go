@@ -16,3 +16,38 @@ type Location struct {
 	Name               *string `json:"name,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 }
+
+func (o *Location) GetAddress() *Address {
+	if o == nil {
+		return nil
+	}
+	return o.Address
+}
+
+func (o *Location) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *Location) GetModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ModifiedDate
+}
+
+func (o *Location) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
+func (o *Location) GetSourceModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceModifiedDate
+}

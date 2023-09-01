@@ -28,8 +28,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/commerce"
-	"github.com/codatio/client-sdk-go/commerce/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/operations"
 )
 
 func main() {
@@ -86,8 +87,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/commerce"
-	"github.com/codatio/client-sdk-go/commerce/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/operations"
 )
 
 func main() {

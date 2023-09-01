@@ -82,3 +82,73 @@ type Transaction struct {
 	// - `Transfer` — Secure transfer of funds to the seller's bank account.
 	Type *TransactionType `json:"type,omitempty"`
 }
+
+func (o *Transaction) GetCreatedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CreatedDate
+}
+
+func (o *Transaction) GetCurrency() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Currency
+}
+
+func (o *Transaction) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *Transaction) GetModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ModifiedDate
+}
+
+func (o *Transaction) GetSourceCreatedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceCreatedDate
+}
+
+func (o *Transaction) GetSourceModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceModifiedDate
+}
+
+func (o *Transaction) GetSubType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SubType
+}
+
+func (o *Transaction) GetTotalAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.TotalAmount
+}
+
+func (o *Transaction) GetTransactionSourceRef() *TransactionSourceRef {
+	if o == nil {
+		return nil
+	}
+	return o.TransactionSourceRef
+}
+
+func (o *Transaction) GetType() *TransactionType {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}

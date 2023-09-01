@@ -8,3 +8,17 @@ type RecordRef struct {
 	// The type of record being referenced.
 	Type string `json:"type"`
 }
+
+func (o *RecordRef) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *RecordRef) GetType() string {
+	if o == nil {
+		return ""
+	}
+	return o.Type
+}

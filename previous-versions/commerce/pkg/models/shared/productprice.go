@@ -13,3 +13,17 @@ type ProductPrice struct {
 	Currency  *string  `json:"currency,omitempty"`
 	UnitPrice *float64 `json:"unitPrice,omitempty"`
 }
+
+func (o *ProductPrice) GetCurrency() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Currency
+}
+
+func (o *ProductPrice) GetUnitPrice() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.UnitPrice
+}
