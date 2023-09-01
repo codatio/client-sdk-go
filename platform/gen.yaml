@@ -1,14 +1,23 @@
 configVersion: 1.0.0
 management:
-  docChecksum: 853aebc76021ec17db9b1abb7a33f340
-  docVersion: 2.1.0
-  speakeasyVersion: 1.53.0
-  generationVersion: 2.58.0
+  docChecksum: fc2d163ad8f3f66e973821bde36fca96
+  docVersion: 3.0.0
+  speakeasyVersion: 1.77.1
+  generationVersion: 2.91.4
 generation:
   sdkClassName: CodatPlatform
   singleTagPerOp: false
   telemetryEnabled: true
+features:
+  go:
+    core: 2.86.2
+    deprecations: 2.81.1
+    examples: 2.81.1
+    globalSecurity: 2.81.1
+    globalServerURLs: 2.82.0
+    nameOverrides: 2.81.1
+    retries: 2.81.1
 go:
-  version: 0.0.0
+  version: 0.1.0
   maxMethodParams: 0
   packageName: github.com/codatio/client-sdk-go/platform
