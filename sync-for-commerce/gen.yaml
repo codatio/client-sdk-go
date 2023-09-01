@@ -5,10 +5,10 @@ management:
   speakeasyVersion: 1.53.0
   generationVersion: 2.58.0
 generation:
-  sdkClassName: CodatCommerce
+  sdkClassName: CodatSyncCommerce
   singleTagPerOp: false
   telemetryEnabled: true
 go:
   version: 0.0.0
   maxMethodParams: 0
-  packageName: github.com/codatio/client-sdk-go/commerce
+  packageName: github.com/codatio/client-sdk-go/sync-for-commerce

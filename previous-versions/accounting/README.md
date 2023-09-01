@@ -1,5 +1,7 @@
-# Common
+# Accounting
     
+﻿Codat's Accounting API is a flexible API for pulling and pushing up-to-date accounting data to your customer's accounting software.
+It gives you a simple way to view, create, update adn delete data without having to worry about each platform's specific complexities.
 
 
 <!-- Start SDK Installation -->

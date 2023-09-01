@@ -1,8 +1,8 @@
-name: Release Accounting library
+name: Release Sync for Commerce library
 'on':
   push:
     paths:
-    - legacy/accounting/RELEASES.md
+    - sync-for-commerce/RELEASES.md
     branches:
     - main
 jobs:
