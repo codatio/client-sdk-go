@@ -1,0 +1,13 @@
+# CommerceReportComponent
+
+
+## Fields
+
+| Field                                                                       | Type                                                                        | Required                                                                    | Description                                                                 |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `Components`                                                                | [][CommerceReportComponent](../../models/shared/commercereportcomponent.md) | :heavy_minus_sign:                                                          | N/A                                                                         |
+| `Dimension`                                                                 | **int64*                                                                    | :heavy_minus_sign:                                                          | N/A                                                                         |
+| `DimensionDisplayName`                                                      | **string*                                                                   | :heavy_minus_sign:                                                          | N/A                                                                         |
+| `Item`                                                                      | **int64*                                                                    | :heavy_minus_sign:                                                          | N/A                                                                         |
+| `ItemDisplayName`                                                           | **string*                                                                   | :heavy_minus_sign:                                                          | N/A                                                                         |
+| `Measures`                                                                  | [][ReportComponentMeasure](../../models/shared/reportcomponentmeasure.md)   | :heavy_minus_sign:                                                          | N/A                                                                         |
