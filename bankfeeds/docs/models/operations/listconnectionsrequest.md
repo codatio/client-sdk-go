@@ -1,4 +1,4 @@
-# GetCompanyPushHistoryRequest
+# ListConnectionsRequest
 
 
 ## Fields

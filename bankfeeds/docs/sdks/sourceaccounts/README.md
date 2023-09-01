@@ -9,7 +9,7 @@ Source accounts act as a bridge to bank accounts in accounting software.
 * [Create](#create) - Create a bank feed bank account
 * [Delete](#delete) - Delete bank feed bank account
 * [DeleteCredentials](#deletecredentials) - Delete all source account credentials
-* [GenerateSourceAccountCredentials](#generatesourceaccountcredentials) - Generate source account credentials
+* [GenerateCredentials](#generatecredentials) - Generate source account credentials
 * [List](#list) - List bank feed bank accounts
 * [Update](#update) - Update bank feed bank account
 
@@ -189,7 +189,7 @@ func main() {
 **[*operations.DeleteBankFeedCredentialsResponse](../../models/operations/deletebankfeedcredentialsresponse.md), error**
 
 
-## GenerateSourceAccountCredentials
+## GenerateCredentials
 
 ﻿The _Generate Bank Account Credentials_ endpoint can be used to generate credentials for QuickBooks Online to use for authentication of the Bank Feed in their portal, each time this is used a new set of credentials will be generated.
 
@@ -217,7 +217,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.SourceAccounts.GenerateSourceAccountCredentials(ctx, operations.GenerateSourceAccountCredentialsRequest{
+    res, err := s.SourceAccounts.GenerateCredentials(ctx, operations.GenerateCredentialsRequest{
         RequestBody: []byte("occaecati"),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -234,16 +234,16 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                                                    | :heavy_check_mark:                                                                                                       | The context to use for the request.                                                                                      |
-| `request`                                                                                                                | [operations.GenerateSourceAccountCredentialsRequest](../../models/operations/generatesourceaccountcredentialsrequest.md) | :heavy_check_mark:                                                                                                       | The request object to use for the request.                                                                               |
-| `opts`                                                                                                                   | [][operations.Option](../../models/operations/option.md)                                                                 | :heavy_minus_sign:                                                                                                       | The options for this request.                                                                                            |
+| Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                          | :heavy_check_mark:                                                                             | The context to use for the request.                                                            |
+| `request`                                                                                      | [operations.GenerateCredentialsRequest](../../models/operations/generatecredentialsrequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
+| `opts`                                                                                         | [][operations.Option](../../models/operations/option.md)                                       | :heavy_minus_sign:                                                                             | The options for this request.                                                                  |
 
 
 ### Response
 
-**[*operations.GenerateSourceAccountCredentialsResponse](../../models/operations/generatesourceaccountcredentialsresponse.md), error**
+**[*operations.GenerateCredentialsResponse](../../models/operations/generatecredentialsresponse.md), error**
 
 
 ## List

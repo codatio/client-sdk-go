@@ -36,19 +36,19 @@ func (o *CreateBankAccountMappingRequest) GetConnectionID() string {
 
 type CreateBankAccountMappingResponse struct {
 	// Success
-	AccountMappingResult *shared.AccountMappingResult
-	ContentType          string
+	BankFeedAccountMappingResponse *shared.BankFeedAccountMappingResponse
+	ContentType                    string
 	// The request made is not valid.
 	ErrorMessage *shared.ErrorMessage
 	StatusCode   int
 	RawResponse  *http.Response
 }
 
-func (o *CreateBankAccountMappingResponse) GetAccountMappingResult() *shared.AccountMappingResult {
+func (o *CreateBankAccountMappingResponse) GetBankFeedAccountMappingResponse() *shared.BankFeedAccountMappingResponse {
 	if o == nil {
 		return nil
 	}
-	return o.AccountMappingResult
+	return o.BankFeedAccountMappingResponse
 }
 
 func (o *CreateBankAccountMappingResponse) GetContentType() string {

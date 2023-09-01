@@ -151,9 +151,9 @@ func (s *transactions) Create(ctx context.Context, request operations.CreateBank
 	return res, nil
 }
 
-// GetOperation - Get push operation
+// GetCreateOperation - Get create operation
 // Retrieve push operation.
-func (s *transactions) GetOperation(ctx context.Context, request operations.GetPushOperationRequest, opts ...operations.Option) (*operations.GetPushOperationResponse, error) {
+func (s *transactions) GetCreateOperation(ctx context.Context, request operations.GetCreateOperationRequest, opts ...operations.Option) (*operations.GetCreateOperationResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -219,7 +219,7 @@ func (s *transactions) GetOperation(ctx context.Context, request operations.GetP
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetPushOperationResponse{
+	res := &operations.GetCreateOperationResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -258,9 +258,9 @@ func (s *transactions) GetOperation(ctx context.Context, request operations.GetP
 	return res, nil
 }
 
-// ListOperations - List push operations
-// List push operation records.
-func (s *transactions) ListOperations(ctx context.Context, request operations.GetCompanyPushHistoryRequest, opts ...operations.Option) (*operations.GetCompanyPushHistoryResponse, error) {
+// ListCreateOperations - List create operations
+// List create operations.
+func (s *transactions) ListCreateOperations(ctx context.Context, request operations.ListCreateOperationsRequest, opts ...operations.Option) (*operations.ListCreateOperationsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -330,7 +330,7 @@ func (s *transactions) ListOperations(ctx context.Context, request operations.Ge
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetCompanyPushHistoryResponse{
+	res := &operations.ListCreateOperationsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -339,12 +339,12 @@ func (s *transactions) ListOperations(ctx context.Context, request operations.Ge
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.PushHistoryResponse
+			var out *shared.ListPushOperations
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.PushHistoryResponse = out
+			res.ListPushOperations = out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

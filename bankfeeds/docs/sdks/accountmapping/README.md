@@ -53,7 +53,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.AccountMappingResult != nil {
+    if res.BankFeedAccountMappingResponse != nil {
         // handle response
     }
 }

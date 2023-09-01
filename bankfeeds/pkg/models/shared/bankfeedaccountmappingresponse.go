@@ -2,8 +2,8 @@
 
 package shared
 
-// AccountMappingResult - The result from POSTing a Bank Account mapping.
-type AccountMappingResult struct {
+// BankFeedAccountMappingResponse - The result from POSTing a Bank Account mapping.
+type BankFeedAccountMappingResponse struct {
 	// Error returned during the post request
 	Error *string `json:"Error,omitempty"`
 	// Status of the POST request.
@@ -14,28 +14,28 @@ type AccountMappingResult struct {
 	TargetAccountID *string `json:"targetAccountId,omitempty"`
 }
 
-func (o *AccountMappingResult) GetError() *string {
+func (o *BankFeedAccountMappingResponse) GetError() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Error
 }
 
-func (o *AccountMappingResult) GetStatus() *string {
+func (o *BankFeedAccountMappingResponse) GetStatus() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *AccountMappingResult) GetSourceAccountID() *string {
+func (o *BankFeedAccountMappingResponse) GetSourceAccountID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.SourceAccountID
 }
 
-func (o *AccountMappingResult) GetTargetAccountID() *string {
+func (o *BankFeedAccountMappingResponse) GetTargetAccountID() *string {
 	if o == nil {
 		return nil
 	}

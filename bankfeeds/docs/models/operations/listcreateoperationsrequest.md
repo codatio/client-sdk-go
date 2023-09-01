@@ -1,4 +1,4 @@
-# ListCompanyConnectionsRequest
+# ListCreateOperationsRequest
 
 
 ## Fields

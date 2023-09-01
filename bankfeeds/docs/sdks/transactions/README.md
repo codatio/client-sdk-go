@@ -7,8 +7,8 @@ Transactions represent debits and credits from a source account.
 ### Available Operations
 
 * [Create](#create) - Create bank account transactions
-* [GetOperation](#getoperation) - Get push operation
-* [ListOperations](#listoperations) - List push operations
+* [GetCreateOperation](#getcreateoperation) - Get create operation
+* [ListCreateOperations](#listcreateoperations) - List create operations
 
 ## Create
 
@@ -87,7 +87,7 @@ func main() {
 **[*operations.CreateBankTransactionsResponse](../../models/operations/createbanktransactionsresponse.md), error**
 
 
-## GetOperation
+## GetCreateOperation
 
 Retrieve push operation.
 
@@ -112,7 +112,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Transactions.GetOperation(ctx, operations.GetPushOperationRequest{
+    res, err := s.Transactions.GetCreateOperation(ctx, operations.GetCreateOperationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         PushOperationKey: "d019da1f-fe78-4f09-bb00-74f15471b5e6",
     })
@@ -128,21 +128,21 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
-| `request`                                                                                | [operations.GetPushOperationRequest](../../models/operations/getpushoperationrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
-| `opts`                                                                                   | [][operations.Option](../../models/operations/option.md)                                 | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
+| `request`                                                                                    | [operations.GetCreateOperationRequest](../../models/operations/getcreateoperationrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `opts`                                                                                       | [][operations.Option](../../models/operations/option.md)                                     | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
 
 
 ### Response
 
-**[*operations.GetPushOperationResponse](../../models/operations/getpushoperationresponse.md), error**
+**[*operations.GetCreateOperationResponse](../../models/operations/getcreateoperationresponse.md), error**
 
 
-## ListOperations
+## ListCreateOperations
 
-List push operation records.
+List create operations.
 
 ### Example Usage
 
@@ -165,7 +165,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Transactions.ListOperations(ctx, operations.GetCompanyPushHistoryRequest{
+    res, err := s.Transactions.ListCreateOperations(ctx, operations.ListCreateOperationsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         OrderBy: codatbankfeeds.String("-modifiedDate"),
         Page: codatbankfeeds.Int(1),
@@ -176,7 +176,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.PushHistoryResponse != nil {
+    if res.ListPushOperations != nil {
         // handle response
     }
 }
@@ -184,14 +184,14 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
-| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                              | :heavy_check_mark:                                                                                 | The context to use for the request.                                                                |
-| `request`                                                                                          | [operations.GetCompanyPushHistoryRequest](../../models/operations/getcompanypushhistoryrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
-| `opts`                                                                                             | [][operations.Option](../../models/operations/option.md)                                           | :heavy_minus_sign:                                                                                 | The options for this request.                                                                      |
+| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
+| `request`                                                                                        | [operations.ListCreateOperationsRequest](../../models/operations/listcreateoperationsrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
+| `opts`                                                                                           | [][operations.Option](../../models/operations/option.md)                                         | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
 
 
 ### Response
 
-**[*operations.GetCompanyPushHistoryResponse](../../models/operations/getcompanypushhistoryresponse.md), error**
+**[*operations.ListCreateOperationsResponse](../../models/operations/listcreateoperationsresponse.md), error**
 

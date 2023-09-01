@@ -1,4 +1,4 @@
-# CreateDataConnectionRequestBody
+# CreateConnectionRequestBody
 
 
 ## Fields

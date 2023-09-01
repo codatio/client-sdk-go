@@ -1,4 +1,4 @@
-# GetPushOperationResponse
+# GetCreateOperationResponse
 
 
 ## Fields

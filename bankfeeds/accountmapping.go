@@ -115,12 +115,12 @@ func (s *accountMapping) Create(ctx context.Context, request operations.CreateBa
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.AccountMappingResult
+			var out *shared.BankFeedAccountMappingResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.AccountMappingResult = out
+			res.BankFeedAccountMappingResponse = out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

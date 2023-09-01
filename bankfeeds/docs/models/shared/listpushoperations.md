@@ -1,4 +1,4 @@
-# PushHistoryResponse
+# ListPushOperations
 
 OK
 

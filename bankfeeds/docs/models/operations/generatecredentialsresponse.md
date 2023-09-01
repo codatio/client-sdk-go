@@ -1,4 +1,4 @@
-# GenerateSourceAccountCredentialsResponse
+# GenerateCredentialsResponse
 
 
 ## Fields

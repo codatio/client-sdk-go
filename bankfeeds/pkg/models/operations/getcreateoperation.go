@@ -7,27 +7,27 @@ import (
 	"net/http"
 )
 
-type GetPushOperationRequest struct {
+type GetCreateOperationRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	// Push operation key.
 	PushOperationKey string `pathParam:"style=simple,explode=false,name=pushOperationKey"`
 }
 
-func (o *GetPushOperationRequest) GetCompanyID() string {
+func (o *GetCreateOperationRequest) GetCompanyID() string {
 	if o == nil {
 		return ""
 	}
 	return o.CompanyID
 }
 
-func (o *GetPushOperationRequest) GetPushOperationKey() string {
+func (o *GetCreateOperationRequest) GetPushOperationKey() string {
 	if o == nil {
 		return ""
 	}
 	return o.PushOperationKey
 }
 
-type GetPushOperationResponse struct {
+type GetCreateOperationResponse struct {
 	ContentType string
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
@@ -37,35 +37,35 @@ type GetPushOperationResponse struct {
 	RawResponse   *http.Response
 }
 
-func (o *GetPushOperationResponse) GetContentType() string {
+func (o *GetCreateOperationResponse) GetContentType() string {
 	if o == nil {
 		return ""
 	}
 	return o.ContentType
 }
 
-func (o *GetPushOperationResponse) GetErrorMessage() *shared.ErrorMessage {
+func (o *GetCreateOperationResponse) GetErrorMessage() *shared.ErrorMessage {
 	if o == nil {
 		return nil
 	}
 	return o.ErrorMessage
 }
 
-func (o *GetPushOperationResponse) GetPushOperation() *shared.PushOperation {
+func (o *GetCreateOperationResponse) GetPushOperation() *shared.PushOperation {
 	if o == nil {
 		return nil
 	}
 	return o.PushOperation
 }
 
-func (o *GetPushOperationResponse) GetStatusCode() int {
+func (o *GetCreateOperationResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
 	}
 	return o.StatusCode
 }
 
-func (o *GetPushOperationResponse) GetRawResponse() *http.Response {
+func (o *GetCreateOperationResponse) GetRawResponse() *http.Response {
 	if o == nil {
 		return nil
 	}

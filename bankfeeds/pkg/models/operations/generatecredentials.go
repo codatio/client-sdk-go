@@ -7,34 +7,34 @@ import (
 	"net/http"
 )
 
-type GenerateSourceAccountCredentialsRequest struct {
+type GenerateCredentialsRequest struct {
 	RequestBody  []byte `request:"mediaType=application/json"`
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
-func (o *GenerateSourceAccountCredentialsRequest) GetRequestBody() []byte {
+func (o *GenerateCredentialsRequest) GetRequestBody() []byte {
 	if o == nil {
 		return []byte{}
 	}
 	return o.RequestBody
 }
 
-func (o *GenerateSourceAccountCredentialsRequest) GetCompanyID() string {
+func (o *GenerateCredentialsRequest) GetCompanyID() string {
 	if o == nil {
 		return ""
 	}
 	return o.CompanyID
 }
 
-func (o *GenerateSourceAccountCredentialsRequest) GetConnectionID() string {
+func (o *GenerateCredentialsRequest) GetConnectionID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ConnectionID
 }
 
-type GenerateSourceAccountCredentialsResponse struct {
+type GenerateCredentialsResponse struct {
 	// Success
 	BankAccountCredentials *shared.BankAccountCredentials
 	ContentType            string
@@ -44,35 +44,35 @@ type GenerateSourceAccountCredentialsResponse struct {
 	RawResponse  *http.Response
 }
 
-func (o *GenerateSourceAccountCredentialsResponse) GetBankAccountCredentials() *shared.BankAccountCredentials {
+func (o *GenerateCredentialsResponse) GetBankAccountCredentials() *shared.BankAccountCredentials {
 	if o == nil {
 		return nil
 	}
 	return o.BankAccountCredentials
 }
 
-func (o *GenerateSourceAccountCredentialsResponse) GetContentType() string {
+func (o *GenerateCredentialsResponse) GetContentType() string {
 	if o == nil {
 		return ""
 	}
 	return o.ContentType
 }
 
-func (o *GenerateSourceAccountCredentialsResponse) GetErrorMessage() *shared.ErrorMessage {
+func (o *GenerateCredentialsResponse) GetErrorMessage() *shared.ErrorMessage {
 	if o == nil {
 		return nil
 	}
 	return o.ErrorMessage
 }
 
-func (o *GenerateSourceAccountCredentialsResponse) GetStatusCode() int {
+func (o *GenerateCredentialsResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
 	}
 	return o.StatusCode
 }
 
-func (o *GenerateSourceAccountCredentialsResponse) GetRawResponse() *http.Response {
+func (o *GenerateCredentialsResponse) GetRawResponse() *http.Response {
 	if o == nil {
 		return nil
 	}

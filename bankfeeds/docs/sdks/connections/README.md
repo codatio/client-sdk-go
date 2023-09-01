@@ -10,7 +10,7 @@ Manage your companies' data connections.
 * [Delete](#delete) - Delete connection
 * [Get](#get) - Get connection
 * [List](#list) - List connections
-* [UnlinkConnection](#unlinkconnection) - Unlink connection
+* [Unlink](#unlink) - Unlink connection
 
 ## Create
 
@@ -39,8 +39,8 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Connections.Create(ctx, operations.CreateDataConnectionRequest{
-        RequestBody: &operations.CreateDataConnectionRequestBody{
+    res, err := s.Connections.Create(ctx, operations.CreateConnectionRequest{
+        RequestBody: &operations.CreateConnectionRequestBody{
             PlatformKey: codatbankfeeds.String("illum"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
@@ -57,16 +57,16 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
-| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
-| `request`                                                                                        | [operations.CreateDataConnectionRequest](../../models/operations/createdataconnectionrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
-| `opts`                                                                                           | [][operations.Option](../../models/operations/option.md)                                         | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
+| `request`                                                                                | [operations.CreateConnectionRequest](../../models/operations/createconnectionrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `opts`                                                                                   | [][operations.Option](../../models/operations/option.md)                                 | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
 
 
 ### Response
 
-**[*operations.CreateDataConnectionResponse](../../models/operations/createdataconnectionresponse.md), error**
+**[*operations.CreateConnectionResponse](../../models/operations/createconnectionresponse.md), error**
 
 
 ## Delete
@@ -95,7 +95,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Connections.Delete(ctx, operations.DeleteCompanyConnectionRequest{
+    res, err := s.Connections.Delete(ctx, operations.DeleteConnectionRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -111,16 +111,16 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
-| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                  | :heavy_check_mark:                                                                                     | The context to use for the request.                                                                    |
-| `request`                                                                                              | [operations.DeleteCompanyConnectionRequest](../../models/operations/deletecompanyconnectionrequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
-| `opts`                                                                                                 | [][operations.Option](../../models/operations/option.md)                                               | :heavy_minus_sign:                                                                                     | The options for this request.                                                                          |
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
+| `request`                                                                                | [operations.DeleteConnectionRequest](../../models/operations/deleteconnectionrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `opts`                                                                                   | [][operations.Option](../../models/operations/option.md)                                 | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
 
 
 ### Response
 
-**[*operations.DeleteCompanyConnectionResponse](../../models/operations/deletecompanyconnectionresponse.md), error**
+**[*operations.DeleteConnectionResponse](../../models/operations/deleteconnectionresponse.md), error**
 
 
 ## Get
@@ -148,7 +148,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Connections.Get(ctx, operations.GetCompanyConnectionRequest{
+    res, err := s.Connections.Get(ctx, operations.GetConnectionRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -164,16 +164,16 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
-| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
-| `request`                                                                                        | [operations.GetCompanyConnectionRequest](../../models/operations/getcompanyconnectionrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
-| `opts`                                                                                           | [][operations.Option](../../models/operations/option.md)                                         | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
+| `request`                                                                          | [operations.GetConnectionRequest](../../models/operations/getconnectionrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `opts`                                                                             | [][operations.Option](../../models/operations/option.md)                           | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
 
 
 ### Response
 
-**[*operations.GetCompanyConnectionResponse](../../models/operations/getcompanyconnectionresponse.md), error**
+**[*operations.GetConnectionResponse](../../models/operations/getconnectionresponse.md), error**
 
 
 ## List
@@ -201,7 +201,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Connections.List(ctx, operations.ListCompanyConnectionsRequest{
+    res, err := s.Connections.List(ctx, operations.ListConnectionsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         OrderBy: codatbankfeeds.String("-modifiedDate"),
         Page: codatbankfeeds.Int(1),
@@ -220,19 +220,19 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
-| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                                | :heavy_check_mark:                                                                                   | The context to use for the request.                                                                  |
-| `request`                                                                                            | [operations.ListCompanyConnectionsRequest](../../models/operations/listcompanyconnectionsrequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
-| `opts`                                                                                               | [][operations.Option](../../models/operations/option.md)                                             | :heavy_minus_sign:                                                                                   | The options for this request.                                                                        |
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
+| `request`                                                                              | [operations.ListConnectionsRequest](../../models/operations/listconnectionsrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `opts`                                                                                 | [][operations.Option](../../models/operations/option.md)                               | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
 
 ### Response
 
-**[*operations.ListCompanyConnectionsResponse](../../models/operations/listcompanyconnectionsresponse.md), error**
+**[*operations.ListConnectionsResponse](../../models/operations/listconnectionsresponse.md), error**
 
 
-## UnlinkConnection
+## Unlink
 
 ﻿This allows you to deauthorize a connection, without deleting it from Codat. This means you can still view any data that has previously been pulled into Codat, and also lets you re-authorize in future if your customer wishes to resume sharing their data.
 
@@ -257,7 +257,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Connections.UnlinkConnection(ctx, operations.UnlinkConnectionRequest{
+    res, err := s.Connections.Unlink(ctx, operations.UnlinkConnectionRequest{
         RequestBody: &operations.UnlinkConnectionRequestBody{
             Status: codatbankfeeds.String("error"),
         },

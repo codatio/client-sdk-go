@@ -333,11 +333,11 @@ func (s *sourceAccounts) DeleteCredentials(ctx context.Context, request operatio
 	return res, nil
 }
 
-// GenerateSourceAccountCredentials - Generate source account credentials
+// GenerateCredentials - Generate source account credentials
 // The _Generate Bank Account Credentials_ endpoint can be used to generate credentials for QuickBooks Online to use for authentication of the Bank Feed in their portal, each time this is used a new set of credentials will be generated.
 //
 // The old credentials will still be valid until the revoke credentials endpoint is used, which will revoke all credentials associated to the data connection.
-func (s *sourceAccounts) GenerateSourceAccountCredentials(ctx context.Context, request operations.GenerateSourceAccountCredentialsRequest, opts ...operations.Option) (*operations.GenerateSourceAccountCredentialsResponse, error) {
+func (s *sourceAccounts) GenerateCredentials(ctx context.Context, request operations.GenerateCredentialsRequest, opts ...operations.Option) (*operations.GenerateCredentialsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -413,7 +413,7 @@ func (s *sourceAccounts) GenerateSourceAccountCredentials(ctx context.Context, r
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GenerateSourceAccountCredentialsResponse{
+	res := &operations.GenerateCredentialsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,

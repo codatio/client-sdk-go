@@ -7,26 +7,26 @@ import (
 	"net/http"
 )
 
-type GetCompanyConnectionRequest struct {
+type GetConnectionRequest struct {
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
-func (o *GetCompanyConnectionRequest) GetCompanyID() string {
+func (o *GetConnectionRequest) GetCompanyID() string {
 	if o == nil {
 		return ""
 	}
 	return o.CompanyID
 }
 
-func (o *GetCompanyConnectionRequest) GetConnectionID() string {
+func (o *GetConnectionRequest) GetConnectionID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ConnectionID
 }
 
-type GetCompanyConnectionResponse struct {
+type GetConnectionResponse struct {
 	// OK
 	Connection  *shared.Connection
 	ContentType string
@@ -36,35 +36,35 @@ type GetCompanyConnectionResponse struct {
 	RawResponse  *http.Response
 }
 
-func (o *GetCompanyConnectionResponse) GetConnection() *shared.Connection {
+func (o *GetConnectionResponse) GetConnection() *shared.Connection {
 	if o == nil {
 		return nil
 	}
 	return o.Connection
 }
 
-func (o *GetCompanyConnectionResponse) GetContentType() string {
+func (o *GetConnectionResponse) GetContentType() string {
 	if o == nil {
 		return ""
 	}
 	return o.ContentType
 }
 
-func (o *GetCompanyConnectionResponse) GetErrorMessage() *shared.ErrorMessage {
+func (o *GetConnectionResponse) GetErrorMessage() *shared.ErrorMessage {
 	if o == nil {
 		return nil
 	}
 	return o.ErrorMessage
 }
 
-func (o *GetCompanyConnectionResponse) GetStatusCode() int {
+func (o *GetConnectionResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
 	}
 	return o.StatusCode
 }
 
-func (o *GetCompanyConnectionResponse) GetRawResponse() *http.Response {
+func (o *GetConnectionResponse) GetRawResponse() *http.Response {
 	if o == nil {
 		return nil
 	}

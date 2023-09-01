@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-type GetCompanyPushHistoryRequest struct {
+type ListConnectionsRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	// Field to order results by. [Read more](https://docs.codat.io/using-the-api/ordering-results).
 	OrderBy *string `queryParam:"style=form,explode=true,name=orderBy"`
@@ -19,80 +19,80 @@ type GetCompanyPushHistoryRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-func (o *GetCompanyPushHistoryRequest) GetCompanyID() string {
+func (o *ListConnectionsRequest) GetCompanyID() string {
 	if o == nil {
 		return ""
 	}
 	return o.CompanyID
 }
 
-func (o *GetCompanyPushHistoryRequest) GetOrderBy() *string {
+func (o *ListConnectionsRequest) GetOrderBy() *string {
 	if o == nil {
 		return nil
 	}
 	return o.OrderBy
 }
 
-func (o *GetCompanyPushHistoryRequest) GetPage() *int {
+func (o *ListConnectionsRequest) GetPage() *int {
 	if o == nil {
 		return nil
 	}
 	return o.Page
 }
 
-func (o *GetCompanyPushHistoryRequest) GetPageSize() *int {
+func (o *ListConnectionsRequest) GetPageSize() *int {
 	if o == nil {
 		return nil
 	}
 	return o.PageSize
 }
 
-func (o *GetCompanyPushHistoryRequest) GetQuery() *string {
+func (o *ListConnectionsRequest) GetQuery() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Query
 }
 
-type GetCompanyPushHistoryResponse struct {
+type ListConnectionsResponse struct {
+	// OK
+	Connections *shared.Connections
 	ContentType string
 	// Your `query` parameter was not correctly formed
 	ErrorMessage *shared.ErrorMessage
-	// OK
-	PushHistoryResponse *shared.PushHistoryResponse
-	StatusCode          int
-	RawResponse         *http.Response
+	StatusCode   int
+	RawResponse  *http.Response
 }
 
-func (o *GetCompanyPushHistoryResponse) GetContentType() string {
+func (o *ListConnectionsResponse) GetConnections() *shared.Connections {
+	if o == nil {
+		return nil
+	}
+	return o.Connections
+}
+
+func (o *ListConnectionsResponse) GetContentType() string {
 	if o == nil {
 		return ""
 	}
 	return o.ContentType
 }
 
-func (o *GetCompanyPushHistoryResponse) GetErrorMessage() *shared.ErrorMessage {
+func (o *ListConnectionsResponse) GetErrorMessage() *shared.ErrorMessage {
 	if o == nil {
 		return nil
 	}
 	return o.ErrorMessage
 }
 
-func (o *GetCompanyPushHistoryResponse) GetPushHistoryResponse() *shared.PushHistoryResponse {
-	if o == nil {
-		return nil
-	}
-	return o.PushHistoryResponse
-}
-
-func (o *GetCompanyPushHistoryResponse) GetStatusCode() int {
+func (o *ListConnectionsResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
 	}
 	return o.StatusCode
 }
 
-func (o *GetCompanyPushHistoryResponse) GetRawResponse() *http.Response {
+func (o *ListConnectionsResponse) GetRawResponse() *http.Response {
 	if o == nil {
 		return nil
 	}
