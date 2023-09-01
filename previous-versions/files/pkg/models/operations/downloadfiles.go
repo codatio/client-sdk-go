@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/files/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/files/pkg/models/shared"
 	"net/http"
 )
 
@@ -13,26 +13,61 @@ type DownloadFilesRequest struct {
 	Date *string `queryParam:"style=form,explode=true,name=date"`
 }
 
-// DownloadFiles404ApplicationJSON - One or more of the resources you referenced could not be found.
-// This might be because your company or data connection id is wrong, or was already deleted.
-type DownloadFiles404ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
+func (o *DownloadFilesRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *DownloadFilesRequest) GetDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Date
 }
 
 type DownloadFilesResponse struct {
 	ContentType string
 	// Success
-	Data        []byte
-	StatusCode  int
-	RawResponse *http.Response
-	// One or more of the resources you referenced could not be found.
-	// This might be because your company or data connection id is wrong, or was already deleted.
-	DownloadFiles404ApplicationJSONObject *DownloadFiles404ApplicationJSON
+	Data []byte
 	// The request made is not valid.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
+}
+
+func (o *DownloadFilesResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *DownloadFilesResponse) GetData() []byte {
+	if o == nil {
+		return nil
+	}
+	return o.Data
+}
+
+func (o *DownloadFilesResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *DownloadFilesResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *DownloadFilesResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

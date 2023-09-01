@@ -2,11 +2,11 @@
 
 ## Overview
 
-Files API: An API for uploading and downloading files from 'File Upload' Integrations.
+Files API: A flexible API for pulling accounting data, normalized and aggregated from 20 accounting integrations.
 
-The Accounting file upload, Banking file upload, and Business documents file upload integrations provide simple file upload functionality.
+Standardize how you connect to your customers’ accounting software. View, create, update, and delete data in the same way for all the leading accounting platforms.
 
-[Read more...](https://docs.codat.io/other/file-upload)
+[Read more...](https://docs.codat.io/accounting-api/overview)
 
 [See our OpenAPI spec](https://github.com/codatio/oas) 
 

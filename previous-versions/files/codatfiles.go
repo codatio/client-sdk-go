@@ -4,8 +4,8 @@ package codatfiles
 
 import (
 	"fmt"
-	"github.com/codatio/client-sdk-go/files/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/files/pkg/utils"
+	"github.com/codatio/client-sdk-go/previous-versions/files/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/files/pkg/utils"
 	"net/http"
 	"time"
 )
@@ -59,11 +59,11 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 	return ServerList[c.ServerIndex], nil
 }
 
-// CodatFiles - Files API: An API for uploading and downloading files from 'File Upload' Integrations.
+// CodatFiles - Files API: A flexible API for pulling accounting data, normalized and aggregated from 20 accounting integrations.
 //
-// The Accounting file upload, Banking file upload, and Business documents file upload integrations provide simple file upload functionality.
+// Standardize how you connect to your customers’ accounting software. View, create, update, and delete data in the same way for all the leading accounting platforms.
 //
-// [Read more...](https://docs.codat.io/other/file-upload)
+// [Read more...](https://docs.codat.io/accounting-api/overview)
 //
 // [See our OpenAPI spec](https://github.com/codatio/oas)
 type CodatFiles struct {
@@ -123,9 +123,9 @@ func New(opts ...SDKOption) *CodatFiles {
 	sdk := &CodatFiles{
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
-			OpenAPIDocVersion: "2.1.0",
-			SDKVersion:        "0.22.0",
-			GenVersion:        "2.58.0",
+			OpenAPIDocVersion: "3.0.0",
+			SDKVersion:        "0.23.0",
+			GenVersion:        "2.91.4",
 		},
 	}
 	for _, opt := range opts {

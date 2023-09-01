@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/files/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/files/pkg/models/shared"
 	"net/http"
 )
 
@@ -12,30 +12,79 @@ type UploadFilesRequestBody struct {
 	RequestBody string `multipartForm:"name=requestBody"`
 }
 
+func (o *UploadFilesRequestBody) GetContent() []byte {
+	if o == nil {
+		return []byte{}
+	}
+	return o.Content
+}
+
+func (o *UploadFilesRequestBody) GetRequestBody() string {
+	if o == nil {
+		return ""
+	}
+	return o.RequestBody
+}
+
 type UploadFilesRequest struct {
 	RequestBody  *UploadFilesRequestBody `multipartForm:"file" request:"mediaType=multipart/form-data"`
 	CompanyID    string                  `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string                  `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
-// UploadFiles404ApplicationJSON - One or more of the resources you referenced could not be found.
-// This might be because your company or data connection id is wrong, or was already deleted.
-type UploadFiles404ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
+func (o *UploadFilesRequest) GetRequestBody() *UploadFilesRequestBody {
+	if o == nil {
+		return nil
+	}
+	return o.RequestBody
+}
+
+func (o *UploadFilesRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *UploadFilesRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
 }
 
 type UploadFilesResponse struct {
 	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
 	// The request made is not valid.
-	Schema *shared.Schema
-	// One or more of the resources you referenced could not be found.
-	// This might be because your company or data connection id is wrong, or was already deleted.
-	UploadFiles404ApplicationJSONObject *UploadFiles404ApplicationJSON
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
+}
+
+func (o *UploadFilesResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *UploadFilesResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *UploadFilesResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *UploadFilesResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

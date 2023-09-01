@@ -1,7 +1,6 @@
-# ListFiles404ApplicationJSON
+# ErrorMessage
 
-One or more of the resources you referenced could not be found.
-This might be because your company or data connection id is wrong, or was already deleted.
+The request made is not valid.
 
 
 ## Fields
