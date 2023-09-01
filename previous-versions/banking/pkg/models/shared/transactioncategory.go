@@ -16,3 +16,52 @@ type TransactionCategory struct {
 	SourceModifiedDate *string                    `json:"sourceModifiedDate,omitempty"`
 	Status             *TransactionCategoryStatus `json:"status,omitempty"`
 }
+
+func (o *TransactionCategory) GetHasChildren() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasChildren
+}
+
+func (o *TransactionCategory) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *TransactionCategory) GetModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ModifiedDate
+}
+
+func (o *TransactionCategory) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *TransactionCategory) GetParentID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ParentID
+}
+
+func (o *TransactionCategory) GetSourceModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceModifiedDate
+}
+
+func (o *TransactionCategory) GetStatus() *TransactionCategoryStatus {
+	if o == nil {
+		return nil
+	}
+	return o.Status
+}

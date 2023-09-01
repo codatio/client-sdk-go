@@ -39,3 +39,38 @@ type AccountBalance struct {
 	ModifiedDate       *string `json:"modifiedDate,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 }
+
+func (o *AccountBalance) GetAccountID() string {
+	if o == nil {
+		return ""
+	}
+	return o.AccountID
+}
+
+func (o *AccountBalance) GetBalance() AccountBalanceAmounts {
+	if o == nil {
+		return AccountBalanceAmounts{}
+	}
+	return o.Balance
+}
+
+func (o *AccountBalance) GetDate() string {
+	if o == nil {
+		return ""
+	}
+	return o.Date
+}
+
+func (o *AccountBalance) GetModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ModifiedDate
+}
+
+func (o *AccountBalance) GetSourceModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceModifiedDate
+}

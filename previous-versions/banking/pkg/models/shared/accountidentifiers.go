@@ -24,3 +24,52 @@ type AccountIdentifiers struct {
 	// Type of account
 	Type AccountIdentifierType `json:"type"`
 }
+
+func (o *AccountIdentifiers) GetBankCode() *string {
+	if o == nil {
+		return nil
+	}
+	return o.BankCode
+}
+
+func (o *AccountIdentifiers) GetBic() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Bic
+}
+
+func (o *AccountIdentifiers) GetIban() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Iban
+}
+
+func (o *AccountIdentifiers) GetMaskedAccountNumber() *string {
+	if o == nil {
+		return nil
+	}
+	return o.MaskedAccountNumber
+}
+
+func (o *AccountIdentifiers) GetNumber() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Number
+}
+
+func (o *AccountIdentifiers) GetSubtype() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Subtype
+}
+
+func (o *AccountIdentifiers) GetType() AccountIdentifierType {
+	if o == nil {
+		return AccountIdentifierType("")
+	}
+	return o.Type
+}

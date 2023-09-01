@@ -10,3 +10,38 @@ type Transactions struct {
 	Results      []Transaction `json:"results,omitempty"`
 	TotalResults int64         `json:"totalResults"`
 }
+
+func (o *Transactions) GetLinks() Links {
+	if o == nil {
+		return Links{}
+	}
+	return o.Links
+}
+
+func (o *Transactions) GetPageNumber() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.PageNumber
+}
+
+func (o *Transactions) GetPageSize() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.PageSize
+}
+
+func (o *Transactions) GetResults() []Transaction {
+	if o == nil {
+		return nil
+	}
+	return o.Results
+}
+
+func (o *Transactions) GetTotalResults() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.TotalResults
+}

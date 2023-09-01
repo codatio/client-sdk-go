@@ -28,8 +28,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/banking"
-	"github.com/codatio/client-sdk-go/banking/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/banking"
+	"github.com/codatio/client-sdk-go/previous-versions/banking/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/banking/pkg/models/operations"
 )
 
 func main() {
@@ -86,8 +87,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/banking"
-	"github.com/codatio/client-sdk-go/banking/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/banking"
+	"github.com/codatio/client-sdk-go/previous-versions/banking/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/banking/pkg/models/operations"
 )
 
 func main() {

@@ -6,9 +6,10 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/codatio/client-sdk-go/banking/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/banking/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/banking/pkg/utils"
+	"github.com/codatio/client-sdk-go/previous-versions/banking/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/banking/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/previous-versions/banking/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/banking/pkg/utils"
 	"io"
 	"net/http"
 )
@@ -113,6 +114,8 @@ func (s *transactions) Get(ctx context.Context, request operations.GetTransactio
 			}
 
 			res.Transaction = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -146,7 +149,7 @@ func (s *transactions) List(ctx context.Context, request operations.ListTransact
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json;q=1, application/json;q=0.7, application/json;q=0")
+	req.Header.Set("Accept", "application/json")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
@@ -210,30 +213,26 @@ func (s *transactions) List(ctx context.Context, request operations.ListTransact
 			}
 
 			res.Transactions = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
 		fallthrough
 	case httpRes.StatusCode == 401:
 		fallthrough
 	case httpRes.StatusCode == 404:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Schema
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
-			}
-
-			res.Schema = out
-		}
+		fallthrough
 	case httpRes.StatusCode == 409:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.ListTransactions409ApplicationJSON
+			var out *shared.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ListTransactions409ApplicationJSONObject = out
+			res.ErrorMessage = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -247,7 +246,7 @@ func (s *transactions) List(ctx context.Context, request operations.ListTransact
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
 //
-// Deprecated: this method will be removed in a future release, please migrate away from it as soon as possible. Use List instead.
+// Deprecated method: This will be removed in a future release, please migrate away from it as soon as possible. Use List instead.
 func (s *transactions) ListBankTransactions(ctx context.Context, request operations.ListBankTransactionsRequest, opts ...operations.Option) (*operations.ListBankTransactionsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -333,6 +332,8 @@ func (s *transactions) ListBankTransactions(ctx context.Context, request operati
 			}
 
 			res.Transactions = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
