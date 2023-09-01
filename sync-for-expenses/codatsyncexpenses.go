@@ -147,7 +147,7 @@ func New(opts ...SDKOption) *CodatSyncExpenses {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "prealpha",
-			SDKVersion:        "0.25.0",
+			SDKVersion:        "0.26.0",
 			GenVersion:        "2.91.4",
 		},
 	}
