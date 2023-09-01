@@ -2,7 +2,7 @@ name: Release Files library
 'on':
   push:
     paths:
-    - files/RELEASES.md
+    - previous-versions/files/RELEASES.md
     branches:
     - main
 jobs:
