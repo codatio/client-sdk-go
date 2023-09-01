@@ -63,7 +63,7 @@ func main() {
 * [Delete](docs/sdks/connections/README.md#delete) - Delete connection
 * [Get](docs/sdks/connections/README.md#get) - Get connection
 * [List](docs/sdks/connections/README.md#list) - List connections
-* [UnlinkConnection](docs/sdks/connections/README.md#unlinkconnection) - Unlink connection
+* [Unlink](docs/sdks/connections/README.md#unlink) - Unlink connection
 * [UpdateAuthorization](docs/sdks/connections/README.md#updateauthorization) - Update authorization
 
 ### [Integrations](docs/sdks/integrations/README.md)

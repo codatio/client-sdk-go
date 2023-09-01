@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-type ListCompanyConnectionsRequest struct {
+type ListConnectionsRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	// Field to order results by. [Read more](https://docs.codat.io/using-the-api/ordering-results).
 	OrderBy *string `queryParam:"style=form,explode=true,name=orderBy"`
@@ -19,42 +19,42 @@ type ListCompanyConnectionsRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-func (o *ListCompanyConnectionsRequest) GetCompanyID() string {
+func (o *ListConnectionsRequest) GetCompanyID() string {
 	if o == nil {
 		return ""
 	}
 	return o.CompanyID
 }
 
-func (o *ListCompanyConnectionsRequest) GetOrderBy() *string {
+func (o *ListConnectionsRequest) GetOrderBy() *string {
 	if o == nil {
 		return nil
 	}
 	return o.OrderBy
 }
 
-func (o *ListCompanyConnectionsRequest) GetPage() *int {
+func (o *ListConnectionsRequest) GetPage() *int {
 	if o == nil {
 		return nil
 	}
 	return o.Page
 }
 
-func (o *ListCompanyConnectionsRequest) GetPageSize() *int {
+func (o *ListConnectionsRequest) GetPageSize() *int {
 	if o == nil {
 		return nil
 	}
 	return o.PageSize
 }
 
-func (o *ListCompanyConnectionsRequest) GetQuery() *string {
+func (o *ListConnectionsRequest) GetQuery() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Query
 }
 
-type ListCompanyConnectionsResponse struct {
+type ListConnectionsResponse struct {
 	// OK
 	Connections *shared.Connections
 	ContentType string
@@ -64,35 +64,35 @@ type ListCompanyConnectionsResponse struct {
 	RawResponse  *http.Response
 }
 
-func (o *ListCompanyConnectionsResponse) GetConnections() *shared.Connections {
+func (o *ListConnectionsResponse) GetConnections() *shared.Connections {
 	if o == nil {
 		return nil
 	}
 	return o.Connections
 }
 
-func (o *ListCompanyConnectionsResponse) GetContentType() string {
+func (o *ListConnectionsResponse) GetContentType() string {
 	if o == nil {
 		return ""
 	}
 	return o.ContentType
 }
 
-func (o *ListCompanyConnectionsResponse) GetErrorMessage() *shared.ErrorMessage {
+func (o *ListConnectionsResponse) GetErrorMessage() *shared.ErrorMessage {
 	if o == nil {
 		return nil
 	}
 	return o.ErrorMessage
 }
 
-func (o *ListCompanyConnectionsResponse) GetStatusCode() int {
+func (o *ListConnectionsResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
 	}
 	return o.StatusCode
 }
 
-func (o *ListCompanyConnectionsResponse) GetRawResponse() *http.Response {
+func (o *ListConnectionsResponse) GetRawResponse() *http.Response {
 	if o == nil {
 		return nil
 	}

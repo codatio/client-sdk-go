@@ -7,26 +7,26 @@ import (
 	"net/http"
 )
 
-type DeleteCompanyConnectionRequest struct {
+type DeleteConnectionRequest struct {
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
-func (o *DeleteCompanyConnectionRequest) GetCompanyID() string {
+func (o *DeleteConnectionRequest) GetCompanyID() string {
 	if o == nil {
 		return ""
 	}
 	return o.CompanyID
 }
 
-func (o *DeleteCompanyConnectionRequest) GetConnectionID() string {
+func (o *DeleteConnectionRequest) GetConnectionID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ConnectionID
 }
 
-type DeleteCompanyConnectionResponse struct {
+type DeleteConnectionResponse struct {
 	ContentType string
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
@@ -34,28 +34,28 @@ type DeleteCompanyConnectionResponse struct {
 	RawResponse  *http.Response
 }
 
-func (o *DeleteCompanyConnectionResponse) GetContentType() string {
+func (o *DeleteConnectionResponse) GetContentType() string {
 	if o == nil {
 		return ""
 	}
 	return o.ContentType
 }
 
-func (o *DeleteCompanyConnectionResponse) GetErrorMessage() *shared.ErrorMessage {
+func (o *DeleteConnectionResponse) GetErrorMessage() *shared.ErrorMessage {
 	if o == nil {
 		return nil
 	}
 	return o.ErrorMessage
 }
 
-func (o *DeleteCompanyConnectionResponse) GetStatusCode() int {
+func (o *DeleteConnectionResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
 	}
 	return o.StatusCode
 }
 
-func (o *DeleteCompanyConnectionResponse) GetRawResponse() *http.Response {
+func (o *DeleteConnectionResponse) GetRawResponse() *http.Response {
 	if o == nil {
 		return nil
 	}

@@ -1,4 +1,4 @@
-# DeleteCompanyConnectionRequest
+# GetConnectionRequest
 
 
 ## Fields

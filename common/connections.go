@@ -29,7 +29,7 @@ func newConnections(sdkConfig sdkConfiguration) *connections {
 // Creates a connection for the company by providing a valid `platformKey`.
 //
 // Use the [List Integrations](https://docs.codat.io/codat-api#/operations/list-integrations) endpoint to access valid platform keys.
-func (s *connections) Create(ctx context.Context, request operations.CreateDataConnectionRequest, opts ...operations.Option) (*operations.CreateDataConnectionResponse, error) {
+func (s *connections) Create(ctx context.Context, request operations.CreateConnectionRequest, opts ...operations.Option) (*operations.CreateConnectionResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -102,7 +102,7 @@ func (s *connections) Create(ctx context.Context, request operations.CreateDataC
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.CreateDataConnectionResponse{
+	res := &operations.CreateConnectionResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -144,7 +144,7 @@ func (s *connections) Create(ctx context.Context, request operations.CreateDataC
 // Delete - Delete connection
 // Revoke and remove a connection from a company.
 // This operation is not reversible. The end user would need to reauthorize a new data connection if you wish to view new data for this company.
-func (s *connections) Delete(ctx context.Context, request operations.DeleteCompanyConnectionRequest, opts ...operations.Option) (*operations.DeleteCompanyConnectionResponse, error) {
+func (s *connections) Delete(ctx context.Context, request operations.DeleteConnectionRequest, opts ...operations.Option) (*operations.DeleteConnectionResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -210,7 +210,7 @@ func (s *connections) Delete(ctx context.Context, request operations.DeleteCompa
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.DeleteCompanyConnectionResponse{
+	res := &operations.DeleteConnectionResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -240,7 +240,7 @@ func (s *connections) Delete(ctx context.Context, request operations.DeleteCompa
 
 // Get - Get connection
 // Returns a specific connection for a company when valid identifiers are provided. If the identifiers are for a deleted company and/or connection, a not found response is returned.
-func (s *connections) Get(ctx context.Context, request operations.GetCompanyConnectionRequest, opts ...operations.Option) (*operations.GetCompanyConnectionResponse, error) {
+func (s *connections) Get(ctx context.Context, request operations.GetConnectionRequest, opts ...operations.Option) (*operations.GetConnectionResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -306,7 +306,7 @@ func (s *connections) Get(ctx context.Context, request operations.GetCompanyConn
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetCompanyConnectionResponse{
+	res := &operations.GetConnectionResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -347,7 +347,7 @@ func (s *connections) Get(ctx context.Context, request operations.GetCompanyConn
 
 // List - List connections
 // List the connections for a company.
-func (s *connections) List(ctx context.Context, request operations.ListCompanyConnectionsRequest, opts ...operations.Option) (*operations.ListCompanyConnectionsResponse, error) {
+func (s *connections) List(ctx context.Context, request operations.ListConnectionsRequest, opts ...operations.Option) (*operations.ListConnectionsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -417,7 +417,7 @@ func (s *connections) List(ctx context.Context, request operations.ListCompanyCo
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.ListCompanyConnectionsResponse{
+	res := &operations.ListConnectionsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -458,9 +458,9 @@ func (s *connections) List(ctx context.Context, request operations.ListCompanyCo
 	return res, nil
 }
 
-// UnlinkConnection - Unlink connection
+// Unlink - Unlink connection
 // This allows you to deauthorize a connection, without deleting it from Codat. This means you can still view any data that has previously been pulled into Codat, and also lets you re-authorize in future if your customer wishes to resume sharing their data.
-func (s *connections) UnlinkConnection(ctx context.Context, request operations.UnlinkConnectionRequest, opts ...operations.Option) (*operations.UnlinkConnectionResponse, error) {
+func (s *connections) Unlink(ctx context.Context, request operations.UnlinkConnectionRequest, opts ...operations.Option) (*operations.UnlinkConnectionResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
