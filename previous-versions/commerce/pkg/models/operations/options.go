@@ -4,14 +4,15 @@ package operations
 
 import (
 	"errors"
-	"github.com/codatio/client-sdk-go/commerce/pkg/utils"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/utils"
 )
 
 var ErrUnsupportedOption = errors.New("unsupported option")
 
 const (
-	SupportedOptionServerURL = "serverURL"
-	SupportedOptionRetries   = "retries"
+	SupportedOptionServerURL            = "serverURL"
+	SupportedOptionRetries              = "retries"
+	SupportedOptionAcceptHeaderOverride = "acceptHeaderOverride"
 )
 
 type Options struct {

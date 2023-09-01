@@ -48,3 +48,101 @@ type ProductVariant struct {
 	// VAT rate for the product variant if sales taxes are enabled.
 	VatPercentage *float64 `json:"vatPercentage,omitempty"`
 }
+
+func (o *ProductVariant) GetBarcode() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Barcode
+}
+
+func (o *ProductVariant) GetCreatedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CreatedDate
+}
+
+func (o *ProductVariant) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *ProductVariant) GetInventory() *ProductInventory {
+	if o == nil {
+		return nil
+	}
+	return o.Inventory
+}
+
+func (o *ProductVariant) GetIsTaxEnabled() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.IsTaxEnabled
+}
+
+func (o *ProductVariant) GetModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ModifiedDate
+}
+
+func (o *ProductVariant) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
+func (o *ProductVariant) GetPrices() []ProductPrice {
+	if o == nil {
+		return nil
+	}
+	return o.Prices
+}
+
+func (o *ProductVariant) GetShippingRequired() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.ShippingRequired
+}
+
+func (o *ProductVariant) GetSku() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Sku
+}
+
+func (o *ProductVariant) GetSourceModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceModifiedDate
+}
+
+func (o *ProductVariant) GetStatus() *ProductVariantStatus {
+	if o == nil {
+		return nil
+	}
+	return o.Status
+}
+
+func (o *ProductVariant) GetUnitOfMeasure() *string {
+	if o == nil {
+		return nil
+	}
+	return o.UnitOfMeasure
+}
+
+func (o *ProductVariant) GetVatPercentage() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.VatPercentage
+}

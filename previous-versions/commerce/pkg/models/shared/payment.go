@@ -61,13 +61,82 @@ type Payment struct {
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	DueDate *string `json:"dueDate,omitempty"`
 	// A unique, persistent identifier for this record
-	ID           string  `json:"id"`
-	ModifiedDate *string `json:"modifiedDate,omitempty"`
-	// The payment method the payment is linked to in the commerce platform.
-	PaymentMethodRef *PaymentMethodRef `json:"paymentMethodRef,omitempty"`
+	ID               string      `json:"id"`
+	ModifiedDate     *string     `json:"modifiedDate,omitempty"`
+	PaymentMethodRef interface{} `json:"paymentMethodRef,omitempty"`
 	// Service provider of the payment, if applicable.
 	PaymentProvider    *string `json:"paymentProvider,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
-	// Status of the payment
+	// Status of the payment.
 	Status *PaymentStatus `json:"status,omitempty"`
+}
+
+func (o *Payment) GetAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Amount
+}
+
+func (o *Payment) GetCreatedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CreatedDate
+}
+
+func (o *Payment) GetCurrency() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Currency
+}
+
+func (o *Payment) GetDueDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DueDate
+}
+
+func (o *Payment) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *Payment) GetModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ModifiedDate
+}
+
+func (o *Payment) GetPaymentMethodRef() interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.PaymentMethodRef
+}
+
+func (o *Payment) GetPaymentProvider() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PaymentProvider
+}
+
+func (o *Payment) GetSourceModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceModifiedDate
+}
+
+func (o *Payment) GetStatus() *PaymentStatus {
+	if o == nil {
+		return nil
+	}
+	return o.Status
 }

@@ -10,3 +10,38 @@ type Products struct {
 	Results      []Product `json:"results,omitempty"`
 	TotalResults int64     `json:"totalResults"`
 }
+
+func (o *Products) GetLinks() Links {
+	if o == nil {
+		return Links{}
+	}
+	return o.Links
+}
+
+func (o *Products) GetPageNumber() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.PageNumber
+}
+
+func (o *Products) GetPageSize() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.PageSize
+}
+
+func (o *Products) GetResults() []Product {
+	if o == nil {
+		return nil
+	}
+	return o.Results
+}
+
+func (o *Products) GetTotalResults() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.TotalResults
+}

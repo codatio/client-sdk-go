@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/commerce/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/shared"
 	"net/http"
 )
 
@@ -14,24 +14,68 @@ type GetDisputeRequest struct {
 	DisputeID string `pathParam:"style=simple,explode=false,name=disputeId"`
 }
 
-// GetDispute409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
-type GetDispute409ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
+func (o *GetDisputeRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *GetDisputeRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *GetDisputeRequest) GetDisputeID() string {
+	if o == nil {
+		return ""
+	}
+	return o.DisputeID
 }
 
 type GetDisputeResponse struct {
 	ContentType string
 	// OK
-	Dispute     *shared.Dispute
-	StatusCode  int
-	RawResponse *http.Response
-	// The data type's dataset has not been requested or is still syncing.
-	GetDispute409ApplicationJSONObject *GetDispute409ApplicationJSON
+	Dispute *shared.Dispute
 	// Your API request was not properly authorized.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
+}
+
+func (o *GetDisputeResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetDisputeResponse) GetDispute() *shared.Dispute {
+	if o == nil {
+		return nil
+	}
+	return o.Dispute
+}
+
+func (o *GetDisputeResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *GetDisputeResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetDisputeResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

@@ -72,3 +72,73 @@ type Dispute struct {
 	// Total transaction amount that is under dispute.
 	TotalAmount *float64 `json:"totalAmount,omitempty"`
 }
+
+func (o *Dispute) GetCreatedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CreatedDate
+}
+
+func (o *Dispute) GetCurrency() string {
+	if o == nil {
+		return ""
+	}
+	return o.Currency
+}
+
+func (o *Dispute) GetDisputedTransactions() []TransactionSourceRef {
+	if o == nil {
+		return nil
+	}
+	return o.DisputedTransactions
+}
+
+func (o *Dispute) GetDueDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DueDate
+}
+
+func (o *Dispute) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *Dispute) GetModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ModifiedDate
+}
+
+func (o *Dispute) GetReason() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Reason
+}
+
+func (o *Dispute) GetSourceModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceModifiedDate
+}
+
+func (o *Dispute) GetStatus() *DisputeStatus {
+	if o == nil {
+		return nil
+	}
+	return o.Status
+}
+
+func (o *Dispute) GetTotalAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.TotalAmount
+}

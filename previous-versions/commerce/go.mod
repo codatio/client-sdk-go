@@ -1,4 +1,4 @@
-module github.com/codatio/client-sdk-go/commerce
+module github.com/codatio/client-sdk-go/previous-versions/commerce
 
 go 1.14
 

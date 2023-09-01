@@ -4,8 +4,8 @@ package codatcommerce
 
 import (
 	"fmt"
-	"github.com/codatio/client-sdk-go/commerce/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/commerce/pkg/utils"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/utils"
 	"net/http"
 	"time"
 )
@@ -140,9 +140,9 @@ func New(opts ...SDKOption) *CodatCommerce {
 	sdk := &CodatCommerce{
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
-			OpenAPIDocVersion: "2.1.0",
-			SDKVersion:        "0.23.1",
-			GenVersion:        "2.58.0",
+			OpenAPIDocVersion: "3.0.0",
+			SDKVersion:        "0.1.0",
+			GenVersion:        "2.91.4",
 		},
 	}
 	for _, opt := range opts {

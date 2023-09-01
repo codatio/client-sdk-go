@@ -10,3 +10,38 @@ type Orders struct {
 	Results      []Order `json:"results,omitempty"`
 	TotalResults int64   `json:"totalResults"`
 }
+
+func (o *Orders) GetLinks() Links {
+	if o == nil {
+		return Links{}
+	}
+	return o.Links
+}
+
+func (o *Orders) GetPageNumber() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.PageNumber
+}
+
+func (o *Orders) GetPageSize() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.PageSize
+}
+
+func (o *Orders) GetResults() []Order {
+	if o == nil {
+		return nil
+	}
+	return o.Results
+}
+
+func (o *Orders) GetTotalResults() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.TotalResults
+}

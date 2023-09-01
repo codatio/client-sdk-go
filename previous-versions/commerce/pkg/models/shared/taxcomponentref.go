@@ -9,3 +9,17 @@ type TaxComponentRef struct {
 	// Name of the tax component being referenced.
 	Name string `json:"name"`
 }
+
+func (o *TaxComponentRef) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *TaxComponentRef) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
