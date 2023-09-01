@@ -1,6 +1,6 @@
 # Connections
 
-Success
+OK
 
 
 ## Fields

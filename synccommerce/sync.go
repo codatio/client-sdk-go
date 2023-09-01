@@ -25,9 +25,9 @@ func newSync(sdkConfig sdkConfiguration) *sync {
 	}
 }
 
-// GetSyncStatus - Get sync status
+// GetStatus - Get sync status
 // Gets a list of sync statuses.
-func (s *sync) GetSyncStatus(ctx context.Context, request operations.GetSyncStatusRequest, opts ...operations.Option) (*operations.GetSyncStatusResponse, error) {
+func (s *sync) GetStatus(ctx context.Context, request operations.GetSyncStatusRequest, opts ...operations.Option) (*operations.GetSyncStatusResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -105,9 +105,9 @@ func (s *sync) GetSyncStatus(ctx context.Context, request operations.GetSyncStat
 	return res, nil
 }
 
-// RequestSync - Initiate new sync
+// Request - Initiate new sync
 // Run a Commerce sync from the last successful sync up to the date provided (optional), otherwise UtcNow is used.\r\nIf there was no previously successful sync, the start date in the config is used.
-func (s *sync) RequestSync(ctx context.Context, request operations.RequestSyncRequest, opts ...operations.Option) (*operations.RequestSyncResponse, error) {
+func (s *sync) Request(ctx context.Context, request operations.RequestSyncRequest, opts ...operations.Option) (*operations.RequestSyncResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -203,9 +203,9 @@ func (s *sync) RequestSync(ctx context.Context, request operations.RequestSyncRe
 	return res, nil
 }
 
-// RequestSyncForDateRange - Initiate sync for specific range
+// RequestForDateRange - Initiate sync for specific range
 // Initiate a sync for the specified start date to the specified finish date in the request payload.
-func (s *sync) RequestSyncForDateRange(ctx context.Context, request operations.RequestSyncForDateRangeRequest, opts ...operations.Option) (*operations.RequestSyncForDateRangeResponse, error) {
+func (s *sync) RequestForDateRange(ctx context.Context, request operations.RequestSyncForDateRangeRequest, opts ...operations.Option) (*operations.RequestSyncForDateRangeResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,

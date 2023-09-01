@@ -6,11 +6,11 @@ Initiate and monitor the sync of company data into accounting software.
 
 ### Available Operations
 
-* [GetSyncStatus](#getsyncstatus) - Get sync status
-* [RequestSync](#requestsync) - Initiate new sync
-* [RequestSyncForDateRange](#requestsyncfordaterange) - Initiate sync for specific range
+* [GetStatus](#getstatus) - Get sync status
+* [Request](#request) - Initiate new sync
+* [RequestForDateRange](#requestfordaterange) - Initiate sync for specific range
 
-## GetSyncStatus
+## GetStatus
 
 Gets a list of sync statuses.
 
@@ -35,7 +35,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Sync.GetSyncStatus(ctx, operations.GetSyncStatusRequest{
+    res, err := s.Sync.GetStatus(ctx, operations.GetSyncStatusRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -62,7 +62,7 @@ func main() {
 **[*operations.GetSyncStatusResponse](../../models/operations/getsyncstatusresponse.md), error**
 
 
-## RequestSync
+## Request
 
 Run a Commerce sync from the last successful sync up to the date provided (optional), otherwise UtcNow is used.\r\nIf there was no previously successful sync, the start date in the config is used.
 
@@ -87,7 +87,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Sync.RequestSync(ctx, operations.RequestSyncRequest{
+    res, err := s.Sync.Request(ctx, operations.RequestSyncRequest{
         SyncToLatestArgs: &shared.SyncToLatestArgs{
             SyncTo: codatsynccommerce.String("2022-10-23T00:00:00.000Z"),
         },
@@ -117,7 +117,7 @@ func main() {
 **[*operations.RequestSyncResponse](../../models/operations/requestsyncresponse.md), error**
 
 
-## RequestSyncForDateRange
+## RequestForDateRange
 
 Initiate a sync for the specified start date to the specified finish date in the request payload.
 
@@ -142,7 +142,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Sync.RequestSyncForDateRange(ctx, operations.RequestSyncForDateRangeRequest{
+    res, err := s.Sync.RequestForDateRange(ctx, operations.RequestSyncForDateRangeRequest{
         SyncRange: &shared.SyncRange{
             DateRange: shared.SyncRangeDateRange{
                 Finish: "2022-10-23T00:00:00.000Z",

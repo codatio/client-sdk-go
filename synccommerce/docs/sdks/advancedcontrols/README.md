@@ -7,11 +7,9 @@ Advanced company management and sync preferences.
 ### Available Operations
 
 * [CreateCompany](#createcompany) - Create company
-* [CreateConnection](#createconnection) - Create connection
 * [GetConfiguration](#getconfiguration) - Get company configuration
-* [ListConnections](#listconnections) - List connections
+* [ListCompanies](#listcompanies) - List companies
 * [SetConfiguration](#setconfiguration) - Set configuration
-* [UpdateConnection](#updateconnection) - Update connection
 
 ## CreateCompany
 
@@ -62,59 +60,6 @@ func main() {
 ### Response
 
 **[*operations.CreateCompanyResponse](../../models/operations/createcompanyresponse.md), error**
-
-
-## CreateConnection
-
-Creates a connection for the company by providing a valid platformKey.
-
-### Example Usage
-
-```go
-package main
-
-import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/synccommerce"
-	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/operations"
-)
-
-func main() {
-    s := codatsynccommerce.New(
-        codatsynccommerce.WithSecurity(shared.Security{
-            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
-        }),
-    )
-
-    ctx := context.Background()
-    res, err := s.AdvancedControls.CreateConnection(ctx, operations.CreateConnectionRequest{
-        RequestBody: codatsynccommerce.String("corrupti"),
-        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-
-    if res.Connection != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
-| `request`                                                                                | [operations.CreateConnectionRequest](../../models/operations/createconnectionrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
-| `opts`                                                                                   | [][operations.Option](../../models/operations/option.md)                                 | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
-
-
-### Response
-
-**[*operations.CreateConnectionResponse](../../models/operations/createconnectionresponse.md), error**
 
 
 ## GetConfiguration
@@ -169,9 +114,9 @@ func main() {
 **[*operations.GetConfigurationResponse](../../models/operations/getconfigurationresponse.md), error**
 
 
-## ListConnections
+## ListCompanies
 
-List the connections for a company.
+Returns a list of companies.
 
 ### Example Usage
 
@@ -194,18 +139,17 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.AdvancedControls.ListConnections(ctx, operations.ListConnectionsRequest{
-        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+    res, err := s.AdvancedControls.ListCompanies(ctx, operations.ListCompaniesRequest{
         OrderBy: codatsynccommerce.String("-modifiedDate"),
         Page: codatsynccommerce.Int(1),
         PageSize: codatsynccommerce.Int(100),
-        Query: codatsynccommerce.String("provident"),
+        Query: codatsynccommerce.String("corrupti"),
     })
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.Connections != nil {
+    if res.Companies != nil {
         // handle response
     }
 }
@@ -213,16 +157,16 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
-| `request`                                                                              | [operations.ListConnectionsRequest](../../models/operations/listconnectionsrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
-| `opts`                                                                                 | [][operations.Option](../../models/operations/option.md)                               | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
+| `request`                                                                          | [operations.ListCompaniesRequest](../../models/operations/listcompaniesrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `opts`                                                                             | [][operations.Option](../../models/operations/option.md)                           | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
 
 
 ### Response
 
-**[*operations.ListConnectionsResponse](../../models/operations/listconnectionsresponse.md), error**
+**[*operations.ListCompaniesResponse](../../models/operations/listcompaniesresponse.md), error**
 
 
 ## SetConfiguration
@@ -275,60 +219,4 @@ func main() {
 ### Response
 
 **[*operations.SetConfigurationResponse](../../models/operations/setconfigurationresponse.md), error**
-
-
-## UpdateConnection
-
-Update a data connection
-
-### Example Usage
-
-```go
-package main
-
-import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/synccommerce"
-	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/operations"
-)
-
-func main() {
-    s := codatsynccommerce.New(
-        codatsynccommerce.WithSecurity(shared.Security{
-            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
-        }),
-    )
-
-    ctx := context.Background()
-    res, err := s.AdvancedControls.UpdateConnection(ctx, operations.UpdateConnectionRequest{
-        UpdateConnection: &shared.UpdateConnection{
-            Status: codatsynccommerce.String("Linked"),
-        },
-        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-
-    if res.Connection != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
-| `request`                                                                                | [operations.UpdateConnectionRequest](../../models/operations/updateconnectionrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
-| `opts`                                                                                   | [][operations.Option](../../models/operations/option.md)                                 | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
-
-
-### Response
-
-**[*operations.UpdateConnectionResponse](../../models/operations/updateconnectionresponse.md), error**
 

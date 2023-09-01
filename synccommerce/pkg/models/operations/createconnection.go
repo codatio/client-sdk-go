@@ -7,12 +7,23 @@ import (
 	"net/http"
 )
 
-type CreateConnectionRequest struct {
-	RequestBody *string `request:"mediaType=application/json"`
-	CompanyID   string  `pathParam:"style=simple,explode=false,name=companyId"`
+type CreateConnectionRequestBody struct {
+	PlatformKey *string `json:"platformKey,omitempty"`
 }
 
-func (o *CreateConnectionRequest) GetRequestBody() *string {
+func (o *CreateConnectionRequestBody) GetPlatformKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PlatformKey
+}
+
+type CreateConnectionRequest struct {
+	RequestBody *CreateConnectionRequestBody `request:"mediaType=application/json"`
+	CompanyID   string                       `pathParam:"style=simple,explode=false,name=companyId"`
+}
+
+func (o *CreateConnectionRequest) GetRequestBody() *CreateConnectionRequestBody {
 	if o == nil {
 		return nil
 	}
@@ -27,11 +38,13 @@ func (o *CreateConnectionRequest) GetCompanyID() string {
 }
 
 type CreateConnectionResponse struct {
-	// Success
+	// OK
 	Connection  *shared.Connection
 	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
+	// Your API request was not properly authorized.
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 }
 
 func (o *CreateConnectionResponse) GetConnection() *shared.Connection {
@@ -46,6 +59,13 @@ func (o *CreateConnectionResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *CreateConnectionResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *CreateConnectionResponse) GetStatusCode() int {

@@ -6,10 +6,10 @@ View useful information about codat's integrations.
 
 ### Available Operations
 
-* [GetIntegrationBranding](#getintegrationbranding) - Get branding for an integration
-* [ListIntegrations](#listintegrations) - List integrations
+* [GetBranding](#getbranding) - Get branding for an integration
+* [List](#list) - List integrations
 
-## GetIntegrationBranding
+## GetBranding
 
 Retrieve Integration branding assets.
 
@@ -34,7 +34,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Integrations.GetIntegrationBranding(ctx, operations.GetIntegrationBrandingRequest{
+    res, err := s.Integrations.GetBranding(ctx, operations.GetIntegrationBrandingRequest{
         PlatformKey: "magnam",
     })
     if err != nil {
@@ -61,7 +61,7 @@ func main() {
 **[*operations.GetIntegrationBrandingResponse](../../models/operations/getintegrationbrandingresponse.md), error**
 
 
-## ListIntegrations
+## List
 
 Retrieve a list of available integrations support by data type and state of release.
 
@@ -86,7 +86,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Integrations.ListIntegrations(ctx, operations.ListIntegrationsRequest{
+    res, err := s.Integrations.List(ctx, operations.ListIntegrationsRequest{
         OrderBy: codatsynccommerce.String("-modifiedDate"),
         Page: codatsynccommerce.Int(1),
         PageSize: codatsynccommerce.Int(100),

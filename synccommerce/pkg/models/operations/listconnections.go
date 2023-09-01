@@ -55,11 +55,13 @@ func (o *ListConnectionsRequest) GetQuery() *string {
 }
 
 type ListConnectionsResponse struct {
-	// Success
+	// OK
 	Connections *shared.Connections
 	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
+	// Your `query` parameter was not correctly formed
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 }
 
 func (o *ListConnectionsResponse) GetConnections() *shared.Connections {
@@ -74,6 +76,13 @@ func (o *ListConnectionsResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *ListConnectionsResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *ListConnectionsResponse) GetStatusCode() int {

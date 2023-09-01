@@ -2,7 +2,7 @@
 
 package shared
 
-// Connections - Success
+// Connections - OK
 type Connections struct {
 	Links        Links        `json:"_links"`
 	PageNumber   int64        `json:"pageNumber"`
