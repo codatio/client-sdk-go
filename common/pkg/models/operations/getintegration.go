@@ -11,6 +11,13 @@ type GetIntegrationRequest struct {
 	PlatformKey string `pathParam:"style=simple,explode=false,name=platformKey"`
 }
 
+func (o *GetIntegrationRequest) GetPlatformKey() string {
+	if o == nil {
+		return ""
+	}
+	return o.PlatformKey
+}
+
 type GetIntegrationResponse struct {
 	ContentType string
 	// Your API request was not properly authorized.
@@ -19,4 +26,39 @@ type GetIntegrationResponse struct {
 	Integration *shared.Integration
 	StatusCode  int
 	RawResponse *http.Response
+}
+
+func (o *GetIntegrationResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetIntegrationResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *GetIntegrationResponse) GetIntegration() *shared.Integration {
+	if o == nil {
+		return nil
+	}
+	return o.Integration
+}
+
+func (o *GetIntegrationResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetIntegrationResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

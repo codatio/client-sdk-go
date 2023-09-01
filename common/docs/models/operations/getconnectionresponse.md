@@ -1,4 +1,4 @@
-# CreateDataConnectionResponse
+# GetConnectionResponse
 
 
 ## Fields

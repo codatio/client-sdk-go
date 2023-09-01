@@ -343,3 +343,13 @@ Based on:
 - Speakeasy CLI 1.59.0 (2.65.0) https://github.com/speakeasy-api/speakeasy
 ### Releases
 - [Go v0.25.0] https://github.com/codatio/client-sdk-go/releases/tag/common/v0.25.0 - common
+
+## 2023-09-01 16:36:50
+### Changes
+Based on:
+- OpenAPI Doc 3.0.0 https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Common.yaml
+- Speakeasy CLI 1.77.1 (2.91.4) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [go v0.26.0] common
+### Releases
+- [Go v0.26.0] https://github.com/codatio/client-sdk-go/releases/tag/common/v0.26.0 - common

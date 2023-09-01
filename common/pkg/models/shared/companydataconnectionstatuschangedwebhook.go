@@ -13,6 +13,34 @@ type CompanyDataConnectionStatusChangedWebhookData struct {
 	PlatformKey *string `json:"platformKey,omitempty"`
 }
 
+func (o *CompanyDataConnectionStatusChangedWebhookData) GetDataConnectionID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DataConnectionID
+}
+
+func (o *CompanyDataConnectionStatusChangedWebhookData) GetNewStatus() *ConnectionStatus {
+	if o == nil {
+		return nil
+	}
+	return o.NewStatus
+}
+
+func (o *CompanyDataConnectionStatusChangedWebhookData) GetOldStatus() *ConnectionStatus {
+	if o == nil {
+		return nil
+	}
+	return o.OldStatus
+}
+
+func (o *CompanyDataConnectionStatusChangedWebhookData) GetPlatformKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PlatformKey
+}
+
 // CompanyDataConnectionStatusChangedWebhook - Webhook request body for a company's data connection status changed.
 type CompanyDataConnectionStatusChangedWebhook struct {
 	// Unique identifier of the webhook event.
@@ -26,4 +54,46 @@ type CompanyDataConnectionStatusChangedWebhook struct {
 	RuleID *string `json:"RuleId,omitempty"`
 	// The type of rule.
 	Type *string `json:"Type,omitempty"`
+}
+
+func (o *CompanyDataConnectionStatusChangedWebhook) GetAlertID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AlertID
+}
+
+func (o *CompanyDataConnectionStatusChangedWebhook) GetCompanyID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CompanyID
+}
+
+func (o *CompanyDataConnectionStatusChangedWebhook) GetData() *CompanyDataConnectionStatusChangedWebhookData {
+	if o == nil {
+		return nil
+	}
+	return o.Data
+}
+
+func (o *CompanyDataConnectionStatusChangedWebhook) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *CompanyDataConnectionStatusChangedWebhook) GetRuleID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.RuleID
+}
+
+func (o *CompanyDataConnectionStatusChangedWebhook) GetType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Type
 }

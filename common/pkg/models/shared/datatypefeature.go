@@ -8,3 +8,17 @@ type DataTypeFeature struct {
 	DataType          *DataType          `json:"dataType,omitempty"`
 	SupportedFeatures []SupportedFeature `json:"supportedFeatures"`
 }
+
+func (o *DataTypeFeature) GetDataType() *DataType {
+	if o == nil {
+		return nil
+	}
+	return o.DataType
+}
+
+func (o *DataTypeFeature) GetSupportedFeatures() []SupportedFeature {
+	if o == nil {
+		return []SupportedFeature{}
+	}
+	return o.SupportedFeatures
+}

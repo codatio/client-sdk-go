@@ -56,8 +56,71 @@ type Company struct {
 	LastSync *string `json:"lastSync,omitempty"`
 	// The name of the company
 	Name string `json:"name"`
-	// Deprecated: this field will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	Platform *string `json:"platform,omitempty"`
 	// The `redirect` [Link URL](https://docs.codat.io/auth-flow/authorize-hosted-link) enabling the customer to start their auth flow journey for the company.
 	Redirect string `json:"redirect"`
+}
+
+func (o *Company) GetCreated() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Created
+}
+
+func (o *Company) GetCreatedByUserName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CreatedByUserName
+}
+
+func (o *Company) GetDataConnections() []Connection {
+	if o == nil {
+		return nil
+	}
+	return o.DataConnections
+}
+
+func (o *Company) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *Company) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *Company) GetLastSync() *string {
+	if o == nil {
+		return nil
+	}
+	return o.LastSync
+}
+
+func (o *Company) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *Company) GetPlatform() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Platform
+}
+
+func (o *Company) GetRedirect() string {
+	if o == nil {
+		return ""
+	}
+	return o.Redirect
 }
