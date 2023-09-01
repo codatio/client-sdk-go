@@ -15,3 +15,38 @@ type PaymentMethod struct {
 	// Status of the Payment Method
 	Status *PaymentMethodStatus `json:"status,omitempty"`
 }
+
+func (o *PaymentMethod) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *PaymentMethod) GetModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ModifiedDate
+}
+
+func (o *PaymentMethod) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
+func (o *PaymentMethod) GetSourceModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceModifiedDate
+}
+
+func (o *PaymentMethod) GetStatus() *PaymentMethodStatus {
+	if o == nil {
+		return nil
+	}
+	return o.Status
+}

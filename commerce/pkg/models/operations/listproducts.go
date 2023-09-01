@@ -20,24 +20,89 @@ type ListProductsRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-// ListProducts409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
-type ListProducts409ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
+func (o *ListProductsRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *ListProductsRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *ListProductsRequest) GetOrderBy() *string {
+	if o == nil {
+		return nil
+	}
+	return o.OrderBy
+}
+
+func (o *ListProductsRequest) GetPage() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Page
+}
+
+func (o *ListProductsRequest) GetPageSize() *int {
+	if o == nil {
+		return nil
+	}
+	return o.PageSize
+}
+
+func (o *ListProductsRequest) GetQuery() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Query
 }
 
 type ListProductsResponse struct {
 	ContentType string
+	// Your `query` parameter was not correctly formed
+	ErrorMessage *shared.ErrorMessage
 	// OK
 	Products    *shared.Products
 	StatusCode  int
 	RawResponse *http.Response
-	// The data type's dataset has not been requested or is still syncing.
-	ListProducts409ApplicationJSONObject *ListProducts409ApplicationJSON
-	// Your `query` parameter was not correctly formed
-	Schema *shared.Schema
+}
+
+func (o *ListProductsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *ListProductsResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *ListProductsResponse) GetProducts() *shared.Products {
+	if o == nil {
+		return nil
+	}
+	return o.Products
+}
+
+func (o *ListProductsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *ListProductsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

@@ -17,3 +17,45 @@ type TaxComponent struct {
 	Rate               *float32 `json:"rate,omitempty"`
 	SourceModifiedDate *string  `json:"sourceModifiedDate,omitempty"`
 }
+
+func (o *TaxComponent) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *TaxComponent) GetIsCompound() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.IsCompound
+}
+
+func (o *TaxComponent) GetModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ModifiedDate
+}
+
+func (o *TaxComponent) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
+func (o *TaxComponent) GetRate() *float32 {
+	if o == nil {
+		return nil
+	}
+	return o.Rate
+}
+
+func (o *TaxComponent) GetSourceModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceModifiedDate
+}

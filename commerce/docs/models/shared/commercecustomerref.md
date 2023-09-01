@@ -1,4 +1,4 @@
-# CustomerRef
+# CommerceCustomerRef
 
 Reference to the customer that placed the order.
 

@@ -9,3 +9,17 @@ type ProductRef struct {
 	// Name of the product being referenced.
 	Name *string `json:"name,omitempty"`
 }
+
+func (o *ProductRef) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *ProductRef) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}

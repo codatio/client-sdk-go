@@ -9,3 +9,17 @@ type ProductVariantRef struct {
 	// Name of the product variant being referenced.
 	Name *string `json:"name,omitempty"`
 }
+
+func (o *ProductVariantRef) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *ProductVariantRef) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}

@@ -20,24 +20,89 @@ type ListTaxComponentsRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-// ListTaxComponents409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
-type ListTaxComponents409ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
+func (o *ListTaxComponentsRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *ListTaxComponentsRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *ListTaxComponentsRequest) GetOrderBy() *string {
+	if o == nil {
+		return nil
+	}
+	return o.OrderBy
+}
+
+func (o *ListTaxComponentsRequest) GetPage() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Page
+}
+
+func (o *ListTaxComponentsRequest) GetPageSize() *int {
+	if o == nil {
+		return nil
+	}
+	return o.PageSize
+}
+
+func (o *ListTaxComponentsRequest) GetQuery() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Query
 }
 
 type ListTaxComponentsResponse struct {
 	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
+	// Your `query` parameter was not correctly formed
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 	// OK
 	TaxComponents *shared.TaxComponents
-	// The data type's dataset has not been requested or is still syncing.
-	ListTaxComponents409ApplicationJSONObject *ListTaxComponents409ApplicationJSON
-	// Your `query` parameter was not correctly formed
-	Schema *shared.Schema
+}
+
+func (o *ListTaxComponentsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *ListTaxComponentsResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *ListTaxComponentsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *ListTaxComponentsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *ListTaxComponentsResponse) GetTaxComponents() *shared.TaxComponents {
+	if o == nil {
+		return nil
+	}
+	return o.TaxComponents
 }

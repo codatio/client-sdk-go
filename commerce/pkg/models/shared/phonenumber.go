@@ -8,3 +8,17 @@ type PhoneNumber struct {
 	// The type of phone number
 	Type PhoneNumberType `json:"type"`
 }
+
+func (o *PhoneNumber) GetNumber() string {
+	if o == nil {
+		return ""
+	}
+	return o.Number
+}
+
+func (o *PhoneNumber) GetType() PhoneNumberType {
+	if o == nil {
+		return PhoneNumberType("")
+	}
+	return o.Type
+}

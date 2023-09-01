@@ -20,24 +20,89 @@ type ListProductCategoriesRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-// ListProductCategories409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
-type ListProductCategories409ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
+func (o *ListProductCategoriesRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *ListProductCategoriesRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *ListProductCategoriesRequest) GetOrderBy() *string {
+	if o == nil {
+		return nil
+	}
+	return o.OrderBy
+}
+
+func (o *ListProductCategoriesRequest) GetPage() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Page
+}
+
+func (o *ListProductCategoriesRequest) GetPageSize() *int {
+	if o == nil {
+		return nil
+	}
+	return o.PageSize
+}
+
+func (o *ListProductCategoriesRequest) GetQuery() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Query
 }
 
 type ListProductCategoriesResponse struct {
 	ContentType string
+	// Your `query` parameter was not correctly formed
+	ErrorMessage *shared.ErrorMessage
 	// OK
 	ProductCategories *shared.ProductCategories
 	StatusCode        int
 	RawResponse       *http.Response
-	// The data type's dataset has not been requested or is still syncing.
-	ListProductCategories409ApplicationJSONObject *ListProductCategories409ApplicationJSON
-	// Your `query` parameter was not correctly formed
-	Schema *shared.Schema
+}
+
+func (o *ListProductCategoriesResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *ListProductCategoriesResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *ListProductCategoriesResponse) GetProductCategories() *shared.ProductCategories {
+	if o == nil {
+		return nil
+	}
+	return o.ProductCategories
+}
+
+func (o *ListProductCategoriesResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *ListProductCategoriesResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

@@ -25,3 +25,73 @@ type OrderLineItem struct {
 	// Price per unit of goods or service.
 	UnitPrice *float64 `json:"unitPrice,omitempty"`
 }
+
+func (o *OrderLineItem) GetDiscountAllocations() []OrderDiscountAllocation {
+	if o == nil {
+		return nil
+	}
+	return o.DiscountAllocations
+}
+
+func (o *OrderLineItem) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *OrderLineItem) GetProductRef() *ProductRef {
+	if o == nil {
+		return nil
+	}
+	return o.ProductRef
+}
+
+func (o *OrderLineItem) GetProductVariantRef() *ProductVariantRef {
+	if o == nil {
+		return nil
+	}
+	return o.ProductVariantRef
+}
+
+func (o *OrderLineItem) GetQuantity() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Quantity
+}
+
+func (o *OrderLineItem) GetTaxPercentage() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.TaxPercentage
+}
+
+func (o *OrderLineItem) GetTaxes() []TaxComponentAllocation {
+	if o == nil {
+		return nil
+	}
+	return o.Taxes
+}
+
+func (o *OrderLineItem) GetTotalAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.TotalAmount
+}
+
+func (o *OrderLineItem) GetTotalTaxAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.TotalTaxAmount
+}
+
+func (o *OrderLineItem) GetUnitPrice() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.UnitPrice
+}

@@ -140,9 +140,9 @@ func New(opts ...SDKOption) *CodatCommerce {
 	sdk := &CodatCommerce{
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
-			OpenAPIDocVersion: "2.1.0",
-			SDKVersion:        "0.23.1",
-			GenVersion:        "2.58.0",
+			OpenAPIDocVersion: "3.0.0",
+			SDKVersion:        "0.24.0",
+			GenVersion:        "2.91.4",
 		},
 	}
 	for _, opt := range opts {

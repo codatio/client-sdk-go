@@ -7,3 +7,17 @@ type ProductInventoryLocation struct {
 	LocationRef *LocationRef `json:"locationRef,omitempty"`
 	Quantity    *float64     `json:"quantity,omitempty"`
 }
+
+func (o *ProductInventoryLocation) GetLocationRef() *LocationRef {
+	if o == nil {
+		return nil
+	}
+	return o.LocationRef
+}
+
+func (o *ProductInventoryLocation) GetQuantity() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Quantity
+}

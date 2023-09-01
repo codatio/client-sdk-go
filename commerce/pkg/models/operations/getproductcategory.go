@@ -14,24 +14,68 @@ type GetProductCategoryRequest struct {
 	ProductID string `pathParam:"style=simple,explode=false,name=productId"`
 }
 
-// GetProductCategory409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
-type GetProductCategory409ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
+func (o *GetProductCategoryRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *GetProductCategoryRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *GetProductCategoryRequest) GetProductID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ProductID
 }
 
 type GetProductCategoryResponse struct {
 	ContentType string
+	// Your API request was not properly authorized.
+	ErrorMessage *shared.ErrorMessage
 	// OK
 	ProductCategory *shared.ProductCategory
 	StatusCode      int
 	RawResponse     *http.Response
-	// The data type's dataset has not been requested or is still syncing.
-	GetProductCategory409ApplicationJSONObject *GetProductCategory409ApplicationJSON
-	// Your API request was not properly authorized.
-	Schema *shared.Schema
+}
+
+func (o *GetProductCategoryResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetProductCategoryResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *GetProductCategoryResponse) GetProductCategory() *shared.ProductCategory {
+	if o == nil {
+		return nil
+	}
+	return o.ProductCategory
+}
+
+func (o *GetProductCategoryResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetProductCategoryResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }
