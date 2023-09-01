@@ -9,3 +9,17 @@ type SupplierRef struct {
 	// The supplier's name
 	SupplierName *string `json:"supplierName,omitempty"`
 }
+
+func (o *SupplierRef) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *SupplierRef) GetSupplierName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SupplierName
+}

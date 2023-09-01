@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
 	"net/http"
 )
 
@@ -14,12 +14,75 @@ type CreateJournalEntryRequest struct {
 	TimeoutInMinutes *int                 `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
 }
 
+func (o *CreateJournalEntryRequest) GetJournalEntry() *shared.JournalEntry {
+	if o == nil {
+		return nil
+	}
+	return o.JournalEntry
+}
+
+func (o *CreateJournalEntryRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *CreateJournalEntryRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *CreateJournalEntryRequest) GetTimeoutInMinutes() *int {
+	if o == nil {
+		return nil
+	}
+	return o.TimeoutInMinutes
+}
+
 type CreateJournalEntryResponse struct {
 	ContentType string
 	// Success
 	CreateJournalEntryResponse *shared.CreateJournalEntryResponse
-	StatusCode                 int
-	RawResponse                *http.Response
 	// The request made is not valid.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
+}
+
+func (o *CreateJournalEntryResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *CreateJournalEntryResponse) GetCreateJournalEntryResponse() *shared.CreateJournalEntryResponse {
+	if o == nil {
+		return nil
+	}
+	return o.CreateJournalEntryResponse
+}
+
+func (o *CreateJournalEntryResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *CreateJournalEntryResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *CreateJournalEntryResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

@@ -7,3 +7,17 @@ type ContactRef struct {
 	DataType *string `json:"dataType,omitempty"`
 	ID       string  `json:"id"`
 }
+
+func (o *ContactRef) GetDataType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DataType
+}
+
+func (o *ContactRef) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}

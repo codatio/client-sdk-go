@@ -36,3 +36,87 @@ type PurchaseOrderLineItem struct {
 	// Price of each unit.
 	UnitAmount *float64 `json:"unitAmount,omitempty"`
 }
+
+func (o *PurchaseOrderLineItem) GetAccountRef() *AccountRef {
+	if o == nil {
+		return nil
+	}
+	return o.AccountRef
+}
+
+func (o *PurchaseOrderLineItem) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *PurchaseOrderLineItem) GetDiscountAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.DiscountAmount
+}
+
+func (o *PurchaseOrderLineItem) GetDiscountPercentage() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.DiscountPercentage
+}
+
+func (o *PurchaseOrderLineItem) GetItemRef() *ItemRef {
+	if o == nil {
+		return nil
+	}
+	return o.ItemRef
+}
+
+func (o *PurchaseOrderLineItem) GetQuantity() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Quantity
+}
+
+func (o *PurchaseOrderLineItem) GetSubTotal() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.SubTotal
+}
+
+func (o *PurchaseOrderLineItem) GetTaxAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.TaxAmount
+}
+
+func (o *PurchaseOrderLineItem) GetTaxRateRef() *TaxRateRef {
+	if o == nil {
+		return nil
+	}
+	return o.TaxRateRef
+}
+
+func (o *PurchaseOrderLineItem) GetTotalAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.TotalAmount
+}
+
+func (o *PurchaseOrderLineItem) GetTrackingCategoryRefs() []TrackingCategoryRef {
+	if o == nil {
+		return nil
+	}
+	return o.TrackingCategoryRefs
+}
+
+func (o *PurchaseOrderLineItem) GetUnitAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.UnitAmount
+}

@@ -16,3 +16,24 @@ type TransferAccount struct {
 	// There are only a very small number of edge cases where this currency code is returned by the Codat system.
 	Currency *string `json:"currency,omitempty"`
 }
+
+func (o *TransferAccount) GetAccountRef() *AccountRef {
+	if o == nil {
+		return nil
+	}
+	return o.AccountRef
+}
+
+func (o *TransferAccount) GetAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Amount
+}
+
+func (o *TransferAccount) GetCurrency() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Currency
+}

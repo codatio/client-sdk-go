@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
 	"net/http"
 )
 
@@ -22,24 +22,96 @@ type ListBankAccountTransactionsRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-// ListBankAccountTransactions409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
-type ListBankAccountTransactions409ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
+func (o *ListBankAccountTransactionsRequest) GetAccountID() string {
+	if o == nil {
+		return ""
+	}
+	return o.AccountID
+}
+
+func (o *ListBankAccountTransactionsRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *ListBankAccountTransactionsRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *ListBankAccountTransactionsRequest) GetOrderBy() *string {
+	if o == nil {
+		return nil
+	}
+	return o.OrderBy
+}
+
+func (o *ListBankAccountTransactionsRequest) GetPage() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Page
+}
+
+func (o *ListBankAccountTransactionsRequest) GetPageSize() *int {
+	if o == nil {
+		return nil
+	}
+	return o.PageSize
+}
+
+func (o *ListBankAccountTransactionsRequest) GetQuery() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Query
 }
 
 type ListBankAccountTransactionsResponse struct {
 	// Success
 	BankTransactionsResponse *shared.BankTransactionsResponse
 	ContentType              string
-	StatusCode               int
-	RawResponse              *http.Response
-	// The data type's dataset has not been requested or is still syncing.
-	ListBankAccountTransactions409ApplicationJSONObject *ListBankAccountTransactions409ApplicationJSON
 	// Your `query` parameter was not correctly formed
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
+}
+
+func (o *ListBankAccountTransactionsResponse) GetBankTransactionsResponse() *shared.BankTransactionsResponse {
+	if o == nil {
+		return nil
+	}
+	return o.BankTransactionsResponse
+}
+
+func (o *ListBankAccountTransactionsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *ListBankAccountTransactionsResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *ListBankAccountTransactionsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *ListBankAccountTransactionsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

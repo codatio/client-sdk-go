@@ -32,9 +32,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/accounting"
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
 )
 
 func main() {
@@ -49,21 +49,21 @@ func main() {
         Journal: &shared.Journal{
             CreatedOn: codataccounting.String("2022-10-23T00:00:00.000Z"),
             HasChildren: codataccounting.Bool(false),
-            ID: codataccounting.String("9d3a1d32-329e-4458-b7e8-f2ad6bb10e25"),
-            JournalCode: codataccounting.String("ipsam"),
+            ID: codataccounting.String("a1f340bb-36f6-477a-8851-9c3374902848"),
+            JournalCode: codataccounting.String("quos"),
             Metadata: &shared.Metadata{
                 IsDeleted: codataccounting.Bool(false),
             },
             ModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
-            Name: codataccounting.String("Noel Gutmann PhD"),
-            ParentID: codataccounting.String("voluptas"),
+            Name: codataccounting.String("Mrs. Candice Rau"),
+            ParentID: codataccounting.String("nihil"),
             SourceModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
-            Status: shared.JournalStatusUnknown.ToPointer(),
-            Type: codataccounting.String("ipsum"),
+            Status: shared.JournalStatusArchived.ToPointer(),
+            Type: codataccounting.String("consequuntur"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codataccounting.Int(56059),
+        TimeoutInMinutes: codataccounting.Int(142769),
     })
     if err != nil {
         log.Fatal(err)
@@ -108,8 +108,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/accounting"
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
 )
 
 func main() {
@@ -122,7 +123,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Journals.Get(ctx, operations.GetJournalRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        JournalID: "totam",
+        JournalID: "enim",
     })
     if err != nil {
         log.Fatal(err)
@@ -169,8 +170,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/accounting"
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
 )
 
 func main() {
@@ -226,8 +228,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/accounting"
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
 )
 
 func main() {
@@ -243,7 +246,7 @@ func main() {
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: codataccounting.Int(1),
         PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("aliquid"),
+        Query: codataccounting.String("debitis"),
     })
     if err != nil {
         log.Fatal(err)

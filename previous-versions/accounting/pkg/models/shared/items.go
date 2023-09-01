@@ -61,7 +61,49 @@ type ItemsAllocation struct {
 	TotalAmount *float64 `json:"totalAmount,omitempty"`
 }
 
+func (o *ItemsAllocation) GetAllocatedOnDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AllocatedOnDate
+}
+
+func (o *ItemsAllocation) GetCurrency() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Currency
+}
+
+func (o *ItemsAllocation) GetCurrencyRate() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.CurrencyRate
+}
+
+func (o *ItemsAllocation) GetTotalAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.TotalAmount
+}
+
 type Items struct {
 	Allocation ItemsAllocation          `json:"allocation"`
 	Payment    PaymentAllocationPayment `json:"payment"`
+}
+
+func (o *Items) GetAllocation() ItemsAllocation {
+	if o == nil {
+		return ItemsAllocation{}
+	}
+	return o.Allocation
+}
+
+func (o *Items) GetPayment() PaymentAllocationPayment {
+	if o == nil {
+		return PaymentAllocationPayment{}
+	}
+	return o.Payment
 }

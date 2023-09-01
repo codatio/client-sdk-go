@@ -8,3 +8,10 @@ package shared
 type SupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
+
+func (o *SupplementalData) GetContent() map[string]map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.Content
+}

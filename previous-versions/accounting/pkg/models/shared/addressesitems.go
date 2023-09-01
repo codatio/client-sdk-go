@@ -16,5 +16,54 @@ type Addressesitems struct {
 	// Region of the customer address.
 	Region *string `json:"region,omitempty"`
 	// The type of the address
-	Type AddressType `json:"type"`
+	Type AccountingAddressType `json:"type"`
+}
+
+func (o *Addressesitems) GetCity() *string {
+	if o == nil {
+		return nil
+	}
+	return o.City
+}
+
+func (o *Addressesitems) GetCountry() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Country
+}
+
+func (o *Addressesitems) GetLine1() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Line1
+}
+
+func (o *Addressesitems) GetLine2() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Line2
+}
+
+func (o *Addressesitems) GetPostalCode() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PostalCode
+}
+
+func (o *Addressesitems) GetRegion() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Region
+}
+
+func (o *Addressesitems) GetType() AccountingAddressType {
+	if o == nil {
+		return AccountingAddressType("")
+	}
+	return o.Type
 }

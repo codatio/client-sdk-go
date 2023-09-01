@@ -10,3 +10,38 @@ type Transfers struct {
 	Results      []Transfer `json:"results,omitempty"`
 	TotalResults int64      `json:"totalResults"`
 }
+
+func (o *Transfers) GetLinks() Links {
+	if o == nil {
+		return Links{}
+	}
+	return o.Links
+}
+
+func (o *Transfers) GetPageNumber() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.PageNumber
+}
+
+func (o *Transfers) GetPageSize() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.PageSize
+}
+
+func (o *Transfers) GetResults() []Transfer {
+	if o == nil {
+		return nil
+	}
+	return o.Results
+}
+
+func (o *Transfers) GetTotalResults() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.TotalResults
+}

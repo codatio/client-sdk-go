@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
 	"net/http"
 )
 
@@ -13,24 +13,68 @@ type GetTransferRequest struct {
 	TransferID   string `pathParam:"style=simple,explode=false,name=transferId"`
 }
 
-// GetTransfer409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
-type GetTransfer409ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
+func (o *GetTransferRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *GetTransferRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *GetTransferRequest) GetTransferID() string {
+	if o == nil {
+		return ""
+	}
+	return o.TransferID
 }
 
 type GetTransferResponse struct {
 	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
+	// Your API request was not properly authorized.
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 	// Success
 	Transfer *shared.Transfer
-	// The data type's dataset has not been requested or is still syncing.
-	GetTransfer409ApplicationJSONObject *GetTransfer409ApplicationJSON
-	// Your API request was not properly authorized.
-	Schema *shared.Schema
+}
+
+func (o *GetTransferResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetTransferResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *GetTransferResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetTransferResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetTransferResponse) GetTransfer() *shared.Transfer {
+	if o == nil {
+		return nil
+	}
+	return o.Transfer
 }

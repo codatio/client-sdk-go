@@ -720,8 +720,8 @@ type Payment struct {
 	// | **GBP**          | £20            | 1.277         | $25.54                     |
 	// | **EUR**          | €20            | 1.134         | $22.68                     |
 	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
-	CurrencyRate *float64     `json:"currencyRate,omitempty"`
-	CustomerRef  *CustomerRef `json:"customerRef,omitempty"`
+	CurrencyRate *float64               `json:"currencyRate,omitempty"`
+	CustomerRef  *AccountingCustomerRef `json:"customerRef,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -749,8 +749,8 @@ type Payment struct {
 	Metadata     *Metadata     `json:"metadata,omitempty"`
 	ModifiedDate *string       `json:"modifiedDate,omitempty"`
 	// Any additional information associated with the payment.
-	Note             *string           `json:"note,omitempty"`
-	PaymentMethodRef *PaymentMethodRef `json:"paymentMethodRef,omitempty"`
+	Note             *string     `json:"note,omitempty"`
+	PaymentMethodRef interface{} `json:"paymentMethodRef,omitempty"`
 	// Friendly reference for the payment.
 	Reference          *string `json:"reference,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
@@ -760,4 +760,109 @@ type Payment struct {
 	SupplementalData *SupplementalData `json:"supplementalData,omitempty"`
 	// Amount of the payment in the payment currency. This value should never change and represents the amount of money paid into the customer's account.
 	TotalAmount *float64 `json:"totalAmount,omitempty"`
+}
+
+func (o *Payment) GetAccountRef() *AccountRef {
+	if o == nil {
+		return nil
+	}
+	return o.AccountRef
+}
+
+func (o *Payment) GetCurrency() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Currency
+}
+
+func (o *Payment) GetCurrencyRate() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.CurrencyRate
+}
+
+func (o *Payment) GetCustomerRef() *AccountingCustomerRef {
+	if o == nil {
+		return nil
+	}
+	return o.CustomerRef
+}
+
+func (o *Payment) GetDate() string {
+	if o == nil {
+		return ""
+	}
+	return o.Date
+}
+
+func (o *Payment) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *Payment) GetLines() []PaymentLine {
+	if o == nil {
+		return nil
+	}
+	return o.Lines
+}
+
+func (o *Payment) GetMetadata() *Metadata {
+	if o == nil {
+		return nil
+	}
+	return o.Metadata
+}
+
+func (o *Payment) GetModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ModifiedDate
+}
+
+func (o *Payment) GetNote() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Note
+}
+
+func (o *Payment) GetPaymentMethodRef() interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.PaymentMethodRef
+}
+
+func (o *Payment) GetReference() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Reference
+}
+
+func (o *Payment) GetSourceModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceModifiedDate
+}
+
+func (o *Payment) GetSupplementalData() *SupplementalData {
+	if o == nil {
+		return nil
+	}
+	return o.SupplementalData
+}
+
+func (o *Payment) GetTotalAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.TotalAmount
 }

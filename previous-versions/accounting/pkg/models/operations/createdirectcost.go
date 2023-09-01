@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
 	"net/http"
 )
 
@@ -14,12 +14,75 @@ type CreateDirectCostRequest struct {
 	TimeoutInMinutes *int               `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
 }
 
+func (o *CreateDirectCostRequest) GetDirectCost() *shared.DirectCost {
+	if o == nil {
+		return nil
+	}
+	return o.DirectCost
+}
+
+func (o *CreateDirectCostRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *CreateDirectCostRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *CreateDirectCostRequest) GetTimeoutInMinutes() *int {
+	if o == nil {
+		return nil
+	}
+	return o.TimeoutInMinutes
+}
+
 type CreateDirectCostResponse struct {
 	ContentType string
 	// Success
 	CreateDirectCostResponse *shared.CreateDirectCostResponse
-	StatusCode               int
-	RawResponse              *http.Response
 	// The request made is not valid.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
+}
+
+func (o *CreateDirectCostResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *CreateDirectCostResponse) GetCreateDirectCostResponse() *shared.CreateDirectCostResponse {
+	if o == nil {
+		return nil
+	}
+	return o.CreateDirectCostResponse
+}
+
+func (o *CreateDirectCostResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *CreateDirectCostResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *CreateDirectCostResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

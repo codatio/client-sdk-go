@@ -72,8 +72,8 @@ type CreditNote struct {
 	// | **GBP**          | £20            | 1.277         | $25.54                     |
 	// | **EUR**          | €20            | 1.134         | $22.68                     |
 	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
-	CurrencyRate *float64     `json:"currencyRate,omitempty"`
-	CustomerRef  *CustomerRef `json:"customerRef,omitempty"`
+	CurrencyRate *float64               `json:"currencyRate,omitempty"`
+	CustomerRef  *AccountingCustomerRef `json:"customerRef,omitempty"`
 	// Percentage rate (from 0 to 100) of discounts applied to the credit note.
 	DiscountPercentage float64 `json:"discountPercentage"`
 	// Identifier for the credit note, unique to the company in the accounting platform.
@@ -122,4 +122,172 @@ type CreditNote struct {
 	// Any tax applied to the credit note amount.
 	TotalTaxAmount float64               `json:"totalTaxAmount"`
 	WithholdingTax []WithholdingTaxitems `json:"withholdingTax,omitempty"`
+}
+
+func (o *CreditNote) GetAdditionalTaxAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalTaxAmount
+}
+
+func (o *CreditNote) GetAdditionalTaxPercentage() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalTaxPercentage
+}
+
+func (o *CreditNote) GetAllocatedOnDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AllocatedOnDate
+}
+
+func (o *CreditNote) GetCreditNoteNumber() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CreditNoteNumber
+}
+
+func (o *CreditNote) GetCurrency() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Currency
+}
+
+func (o *CreditNote) GetCurrencyRate() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.CurrencyRate
+}
+
+func (o *CreditNote) GetCustomerRef() *AccountingCustomerRef {
+	if o == nil {
+		return nil
+	}
+	return o.CustomerRef
+}
+
+func (o *CreditNote) GetDiscountPercentage() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.DiscountPercentage
+}
+
+func (o *CreditNote) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *CreditNote) GetIssueDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IssueDate
+}
+
+func (o *CreditNote) GetLineItems() []CreditNoteLineItem {
+	if o == nil {
+		return nil
+	}
+	return o.LineItems
+}
+
+func (o *CreditNote) GetMetadata() *Metadata {
+	if o == nil {
+		return nil
+	}
+	return o.Metadata
+}
+
+func (o *CreditNote) GetModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ModifiedDate
+}
+
+func (o *CreditNote) GetNote() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Note
+}
+
+func (o *CreditNote) GetPaymentAllocations() []Items {
+	if o == nil {
+		return nil
+	}
+	return o.PaymentAllocations
+}
+
+func (o *CreditNote) GetRemainingCredit() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.RemainingCredit
+}
+
+func (o *CreditNote) GetSourceModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceModifiedDate
+}
+
+func (o *CreditNote) GetStatus() CreditNoteStatus {
+	if o == nil {
+		return CreditNoteStatus("")
+	}
+	return o.Status
+}
+
+func (o *CreditNote) GetSubTotal() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.SubTotal
+}
+
+func (o *CreditNote) GetSupplementalData() *SupplementalData {
+	if o == nil {
+		return nil
+	}
+	return o.SupplementalData
+}
+
+func (o *CreditNote) GetTotalAmount() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.TotalAmount
+}
+
+func (o *CreditNote) GetTotalDiscount() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.TotalDiscount
+}
+
+func (o *CreditNote) GetTotalTaxAmount() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.TotalTaxAmount
+}
+
+func (o *CreditNote) GetWithholdingTax() []WithholdingTaxitems {
+	if o == nil {
+		return nil
+	}
+	return o.WithholdingTax
 }

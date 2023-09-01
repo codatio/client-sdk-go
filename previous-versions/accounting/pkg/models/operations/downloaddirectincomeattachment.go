@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
 	"net/http"
 )
 
@@ -16,12 +16,75 @@ type DownloadDirectIncomeAttachmentRequest struct {
 	DirectIncomeID string `pathParam:"style=simple,explode=false,name=directIncomeId"`
 }
 
+func (o *DownloadDirectIncomeAttachmentRequest) GetAttachmentID() string {
+	if o == nil {
+		return ""
+	}
+	return o.AttachmentID
+}
+
+func (o *DownloadDirectIncomeAttachmentRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *DownloadDirectIncomeAttachmentRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *DownloadDirectIncomeAttachmentRequest) GetDirectIncomeID() string {
+	if o == nil {
+		return ""
+	}
+	return o.DirectIncomeID
+}
+
 type DownloadDirectIncomeAttachmentResponse struct {
 	ContentType string
 	// Success
-	Data        []byte
-	StatusCode  int
-	RawResponse *http.Response
+	Data []byte
 	// Your API request was not properly authorized.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
+}
+
+func (o *DownloadDirectIncomeAttachmentResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *DownloadDirectIncomeAttachmentResponse) GetData() []byte {
+	if o == nil {
+		return nil
+	}
+	return o.Data
+}
+
+func (o *DownloadDirectIncomeAttachmentResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *DownloadDirectIncomeAttachmentResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *DownloadDirectIncomeAttachmentResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

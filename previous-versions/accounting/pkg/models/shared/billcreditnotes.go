@@ -10,3 +10,38 @@ type BillCreditNotes struct {
 	Results      []BillCreditNote `json:"results,omitempty"`
 	TotalResults int64            `json:"totalResults"`
 }
+
+func (o *BillCreditNotes) GetLinks() Links {
+	if o == nil {
+		return Links{}
+	}
+	return o.Links
+}
+
+func (o *BillCreditNotes) GetPageNumber() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.PageNumber
+}
+
+func (o *BillCreditNotes) GetPageSize() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.PageSize
+}
+
+func (o *BillCreditNotes) GetResults() []BillCreditNote {
+	if o == nil {
+		return nil
+	}
+	return o.Results
+}
+
+func (o *BillCreditNotes) GetTotalResults() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.TotalResults
+}

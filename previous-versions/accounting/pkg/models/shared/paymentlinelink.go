@@ -48,3 +48,31 @@ type PaymentLineLink struct {
 	// `Discount` - ID refers to the payment
 	Type PaymentLinkType `json:"type"`
 }
+
+func (o *PaymentLineLink) GetAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Amount
+}
+
+func (o *PaymentLineLink) GetCurrencyRate() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.CurrencyRate
+}
+
+func (o *PaymentLineLink) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *PaymentLineLink) GetType() PaymentLinkType {
+	if o == nil {
+		return PaymentLinkType("")
+	}
+	return o.Type
+}

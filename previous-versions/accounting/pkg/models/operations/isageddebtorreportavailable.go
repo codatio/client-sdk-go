@@ -10,10 +10,45 @@ type IsAgedDebtorReportAvailableRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
+func (o *IsAgedDebtorReportAvailableRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
 type IsAgedDebtorReportAvailableResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
 	IsAgedDebtorReportAvailable200ApplicationJSONBoolean *bool
+}
+
+func (o *IsAgedDebtorReportAvailableResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *IsAgedDebtorReportAvailableResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *IsAgedDebtorReportAvailableResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *IsAgedDebtorReportAvailableResponse) GetIsAgedDebtorReportAvailable200ApplicationJSONBoolean() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.IsAgedDebtorReportAvailable200ApplicationJSONBoolean
 }

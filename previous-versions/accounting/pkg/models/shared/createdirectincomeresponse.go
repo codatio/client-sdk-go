@@ -4,6 +4,7 @@ package shared
 
 // CreateDirectIncomeResponse - Success
 type CreateDirectIncomeResponse struct {
+	// Contains a single entry that communicates which record has changed and the manner in which it changed.
 	Changes []PushOperationChange `json:"changes,omitempty"`
 	// Unique identifier for your SMB in Codat.
 	CompanyID string `json:"companyId"`
@@ -32,6 +33,8 @@ type CreateDirectIncomeResponse struct {
 	// > View the coverage for direct incomes in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=directIncomes" target="_blank">Data coverage explorer</a>.
 	//
 	// ## Overview
+	//
+	// Direct incomes are incomes received directly from the business' operations. For example, cash sales of items to a customer, referral commissions, and service fee refunds are considered direct incomes.
 	//
 	// Direct incomes include:
 	//
@@ -73,8 +76,106 @@ type CreateDirectIncomeResponse struct {
 	Status           PushOperationStatus `json:"status"`
 	StatusCode       int64               `json:"statusCode"`
 	TimeoutInMinutes *int                `json:"timeoutInMinutes,omitempty"`
-	// Deprecated: this field will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	TimeoutInSeconds *int `json:"timeoutInSeconds,omitempty"`
 	// A human-readable object describing validation decisions Codat has made when pushing data into the platform. If a push has failed because of validation errors, they will be detailed here.
 	Validation *Validation `json:"validation,omitempty"`
+}
+
+func (o *CreateDirectIncomeResponse) GetChanges() []PushOperationChange {
+	if o == nil {
+		return nil
+	}
+	return o.Changes
+}
+
+func (o *CreateDirectIncomeResponse) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *CreateDirectIncomeResponse) GetCompletedOnUtc() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CompletedOnUtc
+}
+
+func (o *CreateDirectIncomeResponse) GetData() *DirectIncome {
+	if o == nil {
+		return nil
+	}
+	return o.Data
+}
+
+func (o *CreateDirectIncomeResponse) GetDataConnectionKey() string {
+	if o == nil {
+		return ""
+	}
+	return o.DataConnectionKey
+}
+
+func (o *CreateDirectIncomeResponse) GetDataType() *DataType {
+	if o == nil {
+		return nil
+	}
+	return o.DataType
+}
+
+func (o *CreateDirectIncomeResponse) GetErrorMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *CreateDirectIncomeResponse) GetPushOperationKey() string {
+	if o == nil {
+		return ""
+	}
+	return o.PushOperationKey
+}
+
+func (o *CreateDirectIncomeResponse) GetRequestedOnUtc() string {
+	if o == nil {
+		return ""
+	}
+	return o.RequestedOnUtc
+}
+
+func (o *CreateDirectIncomeResponse) GetStatus() PushOperationStatus {
+	if o == nil {
+		return PushOperationStatus("")
+	}
+	return o.Status
+}
+
+func (o *CreateDirectIncomeResponse) GetStatusCode() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *CreateDirectIncomeResponse) GetTimeoutInMinutes() *int {
+	if o == nil {
+		return nil
+	}
+	return o.TimeoutInMinutes
+}
+
+func (o *CreateDirectIncomeResponse) GetTimeoutInSeconds() *int {
+	if o == nil {
+		return nil
+	}
+	return o.TimeoutInSeconds
+}
+
+func (o *CreateDirectIncomeResponse) GetValidation() *Validation {
+	if o == nil {
+		return nil
+	}
+	return o.Validation
 }

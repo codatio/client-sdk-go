@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
 	"net/http"
 )
 
@@ -18,12 +18,89 @@ type UpdateSupplierRequest struct {
 	TimeoutInMinutes *int   `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
 }
 
+func (o *UpdateSupplierRequest) GetSupplier() *shared.Supplier {
+	if o == nil {
+		return nil
+	}
+	return o.Supplier
+}
+
+func (o *UpdateSupplierRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *UpdateSupplierRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *UpdateSupplierRequest) GetForceUpdate() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.ForceUpdate
+}
+
+func (o *UpdateSupplierRequest) GetSupplierID() string {
+	if o == nil {
+		return ""
+	}
+	return o.SupplierID
+}
+
+func (o *UpdateSupplierRequest) GetTimeoutInMinutes() *int {
+	if o == nil {
+		return nil
+	}
+	return o.TimeoutInMinutes
+}
+
 type UpdateSupplierResponse struct {
 	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
+	// The request made is not valid.
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 	// Success
 	UpdateSupplierResponse *shared.UpdateSupplierResponse
-	// The request made is not valid.
-	Schema *shared.Schema
+}
+
+func (o *UpdateSupplierResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *UpdateSupplierResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *UpdateSupplierResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *UpdateSupplierResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *UpdateSupplierResponse) GetUpdateSupplierResponse() *shared.UpdateSupplierResponse {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateSupplierResponse
 }

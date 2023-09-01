@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
 	"net/http"
 )
 
@@ -16,24 +16,75 @@ type GetCashFlowStatementRequest struct {
 	StartMonth       *string `queryParam:"style=form,explode=true,name=startMonth"`
 }
 
-// GetCashFlowStatement409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
-type GetCashFlowStatement409ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
+func (o *GetCashFlowStatementRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *GetCashFlowStatementRequest) GetPeriodLength() int {
+	if o == nil {
+		return 0
+	}
+	return o.PeriodLength
+}
+
+func (o *GetCashFlowStatementRequest) GetPeriodsToCompare() int {
+	if o == nil {
+		return 0
+	}
+	return o.PeriodsToCompare
+}
+
+func (o *GetCashFlowStatementRequest) GetStartMonth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.StartMonth
 }
 
 type GetCashFlowStatementResponse struct {
 	// Success
 	CashFlowStatement *shared.CashFlowStatement1
 	ContentType       string
-	StatusCode        int
-	RawResponse       *http.Response
-	// The data type's dataset has not been requested or is still syncing.
-	GetCashFlowStatement409ApplicationJSONObject *GetCashFlowStatement409ApplicationJSON
 	// Your API request was not properly authorized.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
+}
+
+func (o *GetCashFlowStatementResponse) GetCashFlowStatement() *shared.CashFlowStatement1 {
+	if o == nil {
+		return nil
+	}
+	return o.CashFlowStatement
+}
+
+func (o *GetCashFlowStatementResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetCashFlowStatementResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *GetCashFlowStatementResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetCashFlowStatementResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

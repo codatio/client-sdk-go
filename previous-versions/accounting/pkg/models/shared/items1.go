@@ -10,3 +10,38 @@ type Items1 struct {
 	Results      []Item `json:"results,omitempty"`
 	TotalResults int64  `json:"totalResults"`
 }
+
+func (o *Items1) GetLinks() Links {
+	if o == nil {
+		return Links{}
+	}
+	return o.Links
+}
+
+func (o *Items1) GetPageNumber() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.PageNumber
+}
+
+func (o *Items1) GetPageSize() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.PageSize
+}
+
+func (o *Items1) GetResults() []Item {
+	if o == nil {
+		return nil
+	}
+	return o.Results
+}
+
+func (o *Items1) GetTotalResults() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.TotalResults
+}

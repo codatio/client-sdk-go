@@ -10,3 +10,38 @@ type Suppliers struct {
 	Results      []Supplier `json:"results,omitempty"`
 	TotalResults int64      `json:"totalResults"`
 }
+
+func (o *Suppliers) GetLinks() Links {
+	if o == nil {
+		return Links{}
+	}
+	return o.Links
+}
+
+func (o *Suppliers) GetPageNumber() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.PageNumber
+}
+
+func (o *Suppliers) GetPageSize() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.PageSize
+}
+
+func (o *Suppliers) GetResults() []Supplier {
+	if o == nil {
+		return nil
+	}
+	return o.Results
+}
+
+func (o *Suppliers) GetTotalResults() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.TotalResults
+}

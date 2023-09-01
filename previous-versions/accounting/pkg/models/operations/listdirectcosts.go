@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
 	"net/http"
 )
 
@@ -20,24 +20,89 @@ type ListDirectCostsRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-// ListDirectCosts409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
-type ListDirectCosts409ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
+func (o *ListDirectCostsRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *ListDirectCostsRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *ListDirectCostsRequest) GetOrderBy() *string {
+	if o == nil {
+		return nil
+	}
+	return o.OrderBy
+}
+
+func (o *ListDirectCostsRequest) GetPage() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Page
+}
+
+func (o *ListDirectCostsRequest) GetPageSize() *int {
+	if o == nil {
+		return nil
+	}
+	return o.PageSize
+}
+
+func (o *ListDirectCostsRequest) GetQuery() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Query
 }
 
 type ListDirectCostsResponse struct {
 	ContentType string
 	// Success
 	DirectCosts *shared.DirectCosts
-	StatusCode  int
-	RawResponse *http.Response
-	// The data type's dataset has not been requested or is still syncing.
-	ListDirectCosts409ApplicationJSONObject *ListDirectCosts409ApplicationJSON
 	// Your `query` parameter was not correctly formed
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
+}
+
+func (o *ListDirectCostsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *ListDirectCostsResponse) GetDirectCosts() *shared.DirectCosts {
+	if o == nil {
+		return nil
+	}
+	return o.DirectCosts
+}
+
+func (o *ListDirectCostsResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *ListDirectCostsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *ListDirectCostsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

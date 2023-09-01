@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
 	"net/http"
 )
 
@@ -14,24 +14,68 @@ type GetDirectCostRequest struct {
 	DirectCostID string `pathParam:"style=simple,explode=false,name=directCostId"`
 }
 
-// GetDirectCost409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
-type GetDirectCost409ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
+func (o *GetDirectCostRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *GetDirectCostRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *GetDirectCostRequest) GetDirectCostID() string {
+	if o == nil {
+		return ""
+	}
+	return o.DirectCostID
 }
 
 type GetDirectCostResponse struct {
 	ContentType string
 	// Success
-	DirectCost  *shared.DirectCost
-	StatusCode  int
-	RawResponse *http.Response
-	// The data type's dataset has not been requested or is still syncing.
-	GetDirectCost409ApplicationJSONObject *GetDirectCost409ApplicationJSON
+	DirectCost *shared.DirectCost
 	// Your API request was not properly authorized.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
+}
+
+func (o *GetDirectCostResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetDirectCostResponse) GetDirectCost() *shared.DirectCost {
+	if o == nil {
+		return nil
+	}
+	return o.DirectCost
+}
+
+func (o *GetDirectCostResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *GetDirectCostResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetDirectCostResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

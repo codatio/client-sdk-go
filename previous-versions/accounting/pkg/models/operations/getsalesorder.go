@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
 	"net/http"
 )
 
@@ -12,24 +12,61 @@ type GetSalesOrderRequest struct {
 	SalesOrderID string `pathParam:"style=simple,explode=false,name=salesOrderId"`
 }
 
-// GetSalesOrder409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
-type GetSalesOrder409ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
+func (o *GetSalesOrderRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *GetSalesOrderRequest) GetSalesOrderID() string {
+	if o == nil {
+		return ""
+	}
+	return o.SalesOrderID
 }
 
 type GetSalesOrderResponse struct {
 	ContentType string
+	// Your API request was not properly authorized.
+	ErrorMessage *shared.ErrorMessage
 	// Success
 	SalesOrder  *shared.SalesOrder
 	StatusCode  int
 	RawResponse *http.Response
-	// The data type's dataset has not been requested or is still syncing.
-	GetSalesOrder409ApplicationJSONObject *GetSalesOrder409ApplicationJSON
-	// Your API request was not properly authorized.
-	Schema *shared.Schema
+}
+
+func (o *GetSalesOrderResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetSalesOrderResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *GetSalesOrderResponse) GetSalesOrder() *shared.SalesOrder {
+	if o == nil {
+		return nil
+	}
+	return o.SalesOrder
+}
+
+func (o *GetSalesOrderResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetSalesOrderResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

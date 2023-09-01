@@ -2,30 +2,48 @@
 
 package shared
 
-// TrackingRecordReference - Links to the underlying record or data type.
+// TrackingRecordReference - Links the current record to the underlying record or data type that created it.
 //
-// Found on:
-//
-// - Journal entries
-// - Account transactions
-// - Invoices
-// - Transfers
+// For example, if a journal entry is generated based on an invoice, this property allows you to connect the journal entry to the underlying invoice in our data model.
 type TrackingRecordReference struct {
-	// Name of the 'dataType'.
+	// Allowed name of the 'dataType'.
 	DataType *string `json:"dataType,omitempty"`
 	// 'id' of the underlying record or data type.
 	ID *string `json:"id,omitempty"`
 }
 
+func (o *TrackingRecordReference) GetDataType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DataType
+}
+
+func (o *TrackingRecordReference) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
 type Tracking struct {
-	// Links to the underlying record or data type.
+	// Links the current record to the underlying record or data type that created it.
 	//
-	// Found on:
-	//
-	// - Journal entries
-	// - Account transactions
-	// - Invoices
-	// - Transfers
+	// For example, if a journal entry is generated based on an invoice, this property allows you to connect the journal entry to the underlying invoice in our data model.
 	InvoiceTo  *TrackingRecordReference `json:"invoiceTo,omitempty"`
 	RecordRefs []InvoiceTo              `json:"recordRefs"`
+}
+
+func (o *Tracking) GetInvoiceTo() *TrackingRecordReference {
+	if o == nil {
+		return nil
+	}
+	return o.InvoiceTo
+}
+
+func (o *Tracking) GetRecordRefs() []InvoiceTo {
+	if o == nil {
+		return []InvoiceTo{}
+	}
+	return o.RecordRefs
 }

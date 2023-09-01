@@ -10,3 +10,38 @@ type BankTransactionsResponse struct {
 	Results      []BankTransactions `json:"results,omitempty"`
 	TotalResults int64              `json:"totalResults"`
 }
+
+func (o *BankTransactionsResponse) GetLinks() Links {
+	if o == nil {
+		return Links{}
+	}
+	return o.Links
+}
+
+func (o *BankTransactionsResponse) GetPageNumber() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.PageNumber
+}
+
+func (o *BankTransactionsResponse) GetPageSize() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.PageSize
+}
+
+func (o *BankTransactionsResponse) GetResults() []BankTransactions {
+	if o == nil {
+		return nil
+	}
+	return o.Results
+}
+
+func (o *BankTransactionsResponse) GetTotalResults() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.TotalResults
+}

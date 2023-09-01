@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
 	"net/http"
 )
 
@@ -19,24 +19,82 @@ type ListCreditNotesRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-// ListCreditNotes409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
-type ListCreditNotes409ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
+func (o *ListCreditNotesRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *ListCreditNotesRequest) GetOrderBy() *string {
+	if o == nil {
+		return nil
+	}
+	return o.OrderBy
+}
+
+func (o *ListCreditNotesRequest) GetPage() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Page
+}
+
+func (o *ListCreditNotesRequest) GetPageSize() *int {
+	if o == nil {
+		return nil
+	}
+	return o.PageSize
+}
+
+func (o *ListCreditNotesRequest) GetQuery() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Query
 }
 
 type ListCreditNotesResponse struct {
 	ContentType string
 	// Success
 	CreditNotes *shared.CreditNotes
-	StatusCode  int
-	RawResponse *http.Response
-	// The data type's dataset has not been requested or is still syncing.
-	ListCreditNotes409ApplicationJSONObject *ListCreditNotes409ApplicationJSON
 	// Your `query` parameter was not correctly formed
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
+}
+
+func (o *ListCreditNotesResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *ListCreditNotesResponse) GetCreditNotes() *shared.CreditNotes {
+	if o == nil {
+		return nil
+	}
+	return o.CreditNotes
+}
+
+func (o *ListCreditNotesResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *ListCreditNotesResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *ListCreditNotesResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

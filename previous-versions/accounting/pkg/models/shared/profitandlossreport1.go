@@ -71,3 +71,38 @@ type ProfitAndLossReport1 struct {
 	// An array of profit and loss reports.
 	Reports []ProfitAndLossReport `json:"reports"`
 }
+
+func (o *ProfitAndLossReport1) GetCurrency() string {
+	if o == nil {
+		return ""
+	}
+	return o.Currency
+}
+
+func (o *ProfitAndLossReport1) GetEarliestAvailableMonth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.EarliestAvailableMonth
+}
+
+func (o *ProfitAndLossReport1) GetMostRecentAvailableMonth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.MostRecentAvailableMonth
+}
+
+func (o *ProfitAndLossReport1) GetReportBasis() ReportBasis {
+	if o == nil {
+		return ReportBasis("")
+	}
+	return o.ReportBasis
+}
+
+func (o *ProfitAndLossReport1) GetReports() []ProfitAndLossReport {
+	if o == nil {
+		return []ProfitAndLossReport{}
+	}
+	return o.Reports
+}

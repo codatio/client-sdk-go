@@ -12,9 +12,44 @@ type ShipToContact struct {
 	Phone *string `json:"phone,omitempty"`
 }
 
+func (o *ShipToContact) GetEmail() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Email
+}
+
+func (o *ShipToContact) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
+func (o *ShipToContact) GetPhone() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Phone
+}
+
 // ShipTo - Delivery details for any goods that have been ordered.
 type ShipTo struct {
 	Address *Addressesitems `json:"address,omitempty"`
 	// Details of the named contact at the delivery address.
 	Contact *ShipToContact `json:"contact,omitempty"`
+}
+
+func (o *ShipTo) GetAddress() *Addressesitems {
+	if o == nil {
+		return nil
+	}
+	return o.Address
+}
+
+func (o *ShipTo) GetContact() *ShipToContact {
+	if o == nil {
+		return nil
+	}
+	return o.Contact
 }

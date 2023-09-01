@@ -145,3 +145,94 @@ type Dataset struct {
 	Status                   DatasetStatus `json:"status"`
 	ValidationInformationURL *string       `json:"validationInformationUrl,omitempty"`
 }
+
+func (o *Dataset) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *Dataset) GetCompleted() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Completed
+}
+
+func (o *Dataset) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *Dataset) GetDataType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DataType
+}
+
+func (o *Dataset) GetDatasetLogsURL() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DatasetLogsURL
+}
+
+func (o *Dataset) GetErrorMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *Dataset) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *Dataset) GetIsCompleted() bool {
+	if o == nil {
+		return false
+	}
+	return o.IsCompleted
+}
+
+func (o *Dataset) GetIsErrored() bool {
+	if o == nil {
+		return false
+	}
+	return o.IsErrored
+}
+
+func (o *Dataset) GetProgress() int {
+	if o == nil {
+		return 0
+	}
+	return o.Progress
+}
+
+func (o *Dataset) GetRequested() string {
+	if o == nil {
+		return ""
+	}
+	return o.Requested
+}
+
+func (o *Dataset) GetStatus() DatasetStatus {
+	if o == nil {
+		return DatasetStatus("")
+	}
+	return o.Status
+}
+
+func (o *Dataset) GetValidationInformationURL() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ValidationInformationURL
+}

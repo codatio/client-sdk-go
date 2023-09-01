@@ -4,6 +4,7 @@ package shared
 
 // CreateInvoiceResponse - Success
 type CreateInvoiceResponse struct {
+	// Contains a single entry that communicates which record has changed and the manner in which it changed.
 	Changes []PushOperationChange `json:"changes,omitempty"`
 	// Unique identifier for your SMB in Codat.
 	CompanyID string `json:"companyId"`
@@ -88,8 +89,106 @@ type CreateInvoiceResponse struct {
 	Status           PushOperationStatus `json:"status"`
 	StatusCode       int64               `json:"statusCode"`
 	TimeoutInMinutes *int                `json:"timeoutInMinutes,omitempty"`
-	// Deprecated: this field will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	TimeoutInSeconds *int `json:"timeoutInSeconds,omitempty"`
 	// A human-readable object describing validation decisions Codat has made when pushing data into the platform. If a push has failed because of validation errors, they will be detailed here.
 	Validation *Validation `json:"validation,omitempty"`
+}
+
+func (o *CreateInvoiceResponse) GetChanges() []PushOperationChange {
+	if o == nil {
+		return nil
+	}
+	return o.Changes
+}
+
+func (o *CreateInvoiceResponse) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *CreateInvoiceResponse) GetCompletedOnUtc() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CompletedOnUtc
+}
+
+func (o *CreateInvoiceResponse) GetData() *Invoice {
+	if o == nil {
+		return nil
+	}
+	return o.Data
+}
+
+func (o *CreateInvoiceResponse) GetDataConnectionKey() string {
+	if o == nil {
+		return ""
+	}
+	return o.DataConnectionKey
+}
+
+func (o *CreateInvoiceResponse) GetDataType() *DataType {
+	if o == nil {
+		return nil
+	}
+	return o.DataType
+}
+
+func (o *CreateInvoiceResponse) GetErrorMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *CreateInvoiceResponse) GetPushOperationKey() string {
+	if o == nil {
+		return ""
+	}
+	return o.PushOperationKey
+}
+
+func (o *CreateInvoiceResponse) GetRequestedOnUtc() string {
+	if o == nil {
+		return ""
+	}
+	return o.RequestedOnUtc
+}
+
+func (o *CreateInvoiceResponse) GetStatus() PushOperationStatus {
+	if o == nil {
+		return PushOperationStatus("")
+	}
+	return o.Status
+}
+
+func (o *CreateInvoiceResponse) GetStatusCode() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *CreateInvoiceResponse) GetTimeoutInMinutes() *int {
+	if o == nil {
+		return nil
+	}
+	return o.TimeoutInMinutes
+}
+
+func (o *CreateInvoiceResponse) GetTimeoutInSeconds() *int {
+	if o == nil {
+		return nil
+	}
+	return o.TimeoutInSeconds
+}
+
+func (o *CreateInvoiceResponse) GetValidation() *Validation {
+	if o == nil {
+		return nil
+	}
+	return o.Validation
 }

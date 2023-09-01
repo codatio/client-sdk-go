@@ -36,3 +36,87 @@ type Item struct {
 	// Type of the item.
 	Type ItemType `json:"type"`
 }
+
+func (o *Item) GetBillItem() *BillItem {
+	if o == nil {
+		return nil
+	}
+	return o.BillItem
+}
+
+func (o *Item) GetCode() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Code
+}
+
+func (o *Item) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *Item) GetInvoiceItem() *InvoiceItem {
+	if o == nil {
+		return nil
+	}
+	return o.InvoiceItem
+}
+
+func (o *Item) GetIsBillItem() bool {
+	if o == nil {
+		return false
+	}
+	return o.IsBillItem
+}
+
+func (o *Item) GetIsInvoiceItem() bool {
+	if o == nil {
+		return false
+	}
+	return o.IsInvoiceItem
+}
+
+func (o *Item) GetItemStatus() ItemStatus {
+	if o == nil {
+		return ItemStatus("")
+	}
+	return o.ItemStatus
+}
+
+func (o *Item) GetMetadata() *Metadata {
+	if o == nil {
+		return nil
+	}
+	return o.Metadata
+}
+
+func (o *Item) GetModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ModifiedDate
+}
+
+func (o *Item) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
+func (o *Item) GetSourceModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceModifiedDate
+}
+
+func (o *Item) GetType() ItemType {
+	if o == nil {
+		return ItemType("")
+	}
+	return o.Type
+}

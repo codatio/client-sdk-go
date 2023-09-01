@@ -20,3 +20,52 @@ type PaymentMethod struct {
 	// Method of payment.
 	Type *PaymentMethodType `json:"type,omitempty"`
 }
+
+func (o *PaymentMethod) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *PaymentMethod) GetMetadata() *Metadata {
+	if o == nil {
+		return nil
+	}
+	return o.Metadata
+}
+
+func (o *PaymentMethod) GetModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ModifiedDate
+}
+
+func (o *PaymentMethod) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
+func (o *PaymentMethod) GetSourceModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceModifiedDate
+}
+
+func (o *PaymentMethod) GetStatus() *PaymentMethodStatus {
+	if o == nil {
+		return nil
+	}
+	return o.Status
+}
+
+func (o *PaymentMethod) GetType() *PaymentMethodType {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}

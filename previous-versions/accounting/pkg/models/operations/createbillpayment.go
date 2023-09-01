@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
 	"net/http"
 )
 
@@ -14,12 +14,75 @@ type CreateBillPaymentRequest struct {
 	TimeoutInMinutes *int                `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
 }
 
+func (o *CreateBillPaymentRequest) GetBillPayment() *shared.BillPayment {
+	if o == nil {
+		return nil
+	}
+	return o.BillPayment
+}
+
+func (o *CreateBillPaymentRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *CreateBillPaymentRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *CreateBillPaymentRequest) GetTimeoutInMinutes() *int {
+	if o == nil {
+		return nil
+	}
+	return o.TimeoutInMinutes
+}
+
 type CreateBillPaymentResponse struct {
 	ContentType string
 	// Success
 	CreateBillPaymentResponse *shared.CreateBillPaymentResponse
-	StatusCode                int
-	RawResponse               *http.Response
 	// The request made is not valid.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
+}
+
+func (o *CreateBillPaymentResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *CreateBillPaymentResponse) GetCreateBillPaymentResponse() *shared.CreateBillPaymentResponse {
+	if o == nil {
+		return nil
+	}
+	return o.CreateBillPaymentResponse
+}
+
+func (o *CreateBillPaymentResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *CreateBillPaymentResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *CreateBillPaymentResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

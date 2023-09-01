@@ -10,6 +10,7 @@ Transfers
 * [Get](#get) - Get transfer
 * [GetCreateModel](#getcreatemodel) - Get create transfer model
 * [List](#list) - List transfers
+* [UploadAttachment](#uploadattachment) - Push invoice attachment
 
 ## Create
 
@@ -32,9 +33,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/accounting"
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
 )
 
 func main() {
@@ -48,38 +49,30 @@ func main() {
     res, err := s.Transfers.Create(ctx, operations.CreateTransferRequest{
         Transfer: &shared.Transfer{
             ContactRef: &shared.TransferContactRef{
-                DataType: codataccounting.String("laudantium"),
-                ID: "1ddf7e08-8f74-4ef5-8c92-16e8926313bb",
+                DataType: codataccounting.String("quos"),
+                ID: "732be509-c508-4713-9f06-f0bce55a8687",
             },
             Date: codataccounting.String("2022-10-23T00:00:00.000Z"),
             DepositedRecordRefs: []shared.InvoiceTo{
                 shared.InvoiceTo{
-                    DataType: codataccounting.String("quo"),
-                    ID: codataccounting.String("2c8d2701-096b-466a-96e3-e1d9d3b66033"),
+                    DataType: codataccounting.String("journalEntry"),
+                    ID: codataccounting.String("c97905ff-797a-45da-a64b-7e778a74baaa"),
                 },
                 shared.InvoiceTo{
-                    DataType: codataccounting.String("quaerat"),
-                    ID: codataccounting.String("a11aa1d5-d224-47de-9b3d-46170e768a96"),
-                },
-                shared.InvoiceTo{
-                    DataType: codataccounting.String("nobis"),
-                    ID: codataccounting.String("b3987883-98eb-4a1b-bf71-43356f6349a1"),
-                },
-                shared.InvoiceTo{
-                    DataType: codataccounting.String("voluptas"),
-                    ID: codataccounting.String("4249b211-ce46-4b95-9652-b158ca9142f0"),
+                    DataType: codataccounting.String("journalEntry"),
+                    ID: codataccounting.String("832bb658-62d2-4a31-b9b1-4aa6bdec7f44"),
                 },
             },
-            Description: codataccounting.String("veniam"),
+            Description: codataccounting.String("dolore"),
             From: &shared.TransferAccount{
                 AccountRef: &shared.AccountRef{
-                    ID: codataccounting.String("2632b31c-ad69-42ff-8874-5005e9d3d934"),
-                    Name: codataccounting.String("Kevin Franecki"),
+                    ID: codataccounting.String("232e9a5d-ee1a-4cd7-aa89-981b58fe682e"),
+                    Name: codataccounting.String("Jasmine Collins"),
                 },
-                Amount: codataccounting.Float64(3566.2),
-                Currency: codataccounting.String("EUR"),
+                Amount: codataccounting.Float64(8972.88),
+                Currency: codataccounting.String("GBP"),
             },
-            ID: codataccounting.String("388664f6-9855-430a-ae2a-ed6aaf863c28"),
+            ID: codataccounting.String("3d58e824-7d12-42c9-b676-78fa27958367"),
             Metadata: &shared.Metadata{
                 IsDeleted: codataccounting.Bool(false),
             },
@@ -87,30 +80,25 @@ func main() {
             SourceModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "aut": map[string]interface{}{
-                        "vel": "perspiciatis",
-                        "id": "amet",
-                        "pariatur": "iste",
-                        "voluptatem": "voluptas",
-                    },
-                    "hic": map[string]interface{}{
-                        "officiis": "soluta",
-                        "at": "nostrum",
+                    "facere": map[string]interface{}{
+                        "aut": "iusto",
+                        "excepturi": "doloremque",
+                        "natus": "ea",
                     },
                 },
             },
             To: &shared.TransferAccount{
                 AccountRef: &shared.AccountRef{
-                    ID: codataccounting.String("ad7ec739-4f25-4f63-8b37-30714e6be8c3"),
-                    Name: codataccounting.String("Michael Mertz"),
+                    ID: codataccounting.String("faeb8648-0730-4d8f-8b89-d9ca6075656f"),
+                    Name: codataccounting.String("James Trantow"),
                 },
-                Amount: codataccounting.Float64(3122.98),
-                Currency: codataccounting.String("EUR"),
+                Amount: codataccounting.Float64(4052.87),
+                Currency: codataccounting.String("USD"),
             },
             TrackingCategoryRefs: []shared.TrackingCategoryRef{
                 shared.TrackingCategoryRef{
-                    ID: "42ac299a-6e5e-47ae-b134-02e945f53743",
-                    Name: codataccounting.String("Moses Schulist Jr."),
+                    ID: "55e2d06a-3070-4d6e-a97f-581fabaaa7d8",
+                    Name: codataccounting.String("Frances Barrows"),
                 },
             },
         },
@@ -160,8 +148,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/accounting"
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
 )
 
 func main() {
@@ -175,7 +164,7 @@ func main() {
     res, err := s.Transfers.Get(ctx, operations.GetTransferRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TransferID: "sint",
+        TransferID: "eaque",
     })
     if err != nil {
         log.Fatal(err)
@@ -222,8 +211,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/accounting"
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
 )
 
 func main() {
@@ -279,8 +269,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/accounting"
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
 )
 
 func main() {
@@ -297,7 +288,7 @@ func main() {
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: codataccounting.Int(1),
         PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("praesentium"),
+        Query: codataccounting.String("quam"),
     })
     if err != nil {
         log.Fatal(err)
@@ -321,4 +312,71 @@ func main() {
 ### Response
 
 **[*operations.ListTransfersResponse](../../models/operations/listtransfersresponse.md), error**
+
+
+## UploadAttachment
+
+The *Upload transfer attachment* endpoint uploads an attachment and assigns it against a specific `transferId`.
+
+[Transfers](https://docs.codat.io/accounting-api#/schemas/Transfer) are issued by a supplier for the purpose of recording transfer.
+
+**Integration-specific behaviour**
+
+For more details on supported file types by integration see [Attachments](https://docs.codat.io/accounting-api#/schemas/Attachment).
+
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=transfers) for integrations that support uploading a transfer attachment.
+
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"log"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
+)
+
+func main() {
+    s := codataccounting.New(
+        codataccounting.WithSecurity(shared.Security{
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
+        }),
+    )
+
+    ctx := context.Background()
+    res, err := s.Transfers.UploadAttachment(ctx, operations.UploadTransferAttachmentRequest{
+        RequestBody: &operations.UploadTransferAttachmentRequestBody{
+            Content: []byte("laboriosam"),
+            RequestBody: "asperiores",
+        },
+        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+        ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
+        TransferID: "delectus",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.StatusCode == http.StatusOK {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
+| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                                    | :heavy_check_mark:                                                                                       | The context to use for the request.                                                                      |
+| `request`                                                                                                | [operations.UploadTransferAttachmentRequest](../../models/operations/uploadtransferattachmentrequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
+| `opts`                                                                                                   | [][operations.Option](../../models/operations/option.md)                                                 | :heavy_minus_sign:                                                                                       | The options for this request.                                                                            |
+
+
+### Response
+
+**[*operations.UploadTransferAttachmentResponse](../../models/operations/uploadtransferattachmentresponse.md), error**
 

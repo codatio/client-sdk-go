@@ -6,3 +6,17 @@ type ProjectRef struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
 }
+
+func (o *ProjectRef) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *ProjectRef) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}

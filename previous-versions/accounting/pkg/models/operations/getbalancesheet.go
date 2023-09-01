@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
 	"net/http"
 )
 
@@ -16,24 +16,75 @@ type GetBalanceSheetRequest struct {
 	StartMonth       *string `queryParam:"style=form,explode=true,name=startMonth"`
 }
 
-// GetBalanceSheet409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
-type GetBalanceSheet409ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
+func (o *GetBalanceSheetRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *GetBalanceSheetRequest) GetPeriodLength() int {
+	if o == nil {
+		return 0
+	}
+	return o.PeriodLength
+}
+
+func (o *GetBalanceSheetRequest) GetPeriodsToCompare() int {
+	if o == nil {
+		return 0
+	}
+	return o.PeriodsToCompare
+}
+
+func (o *GetBalanceSheetRequest) GetStartMonth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.StartMonth
 }
 
 type GetBalanceSheetResponse struct {
 	// Success
 	BalanceSheet *shared.BalanceSheet1
 	ContentType  string
+	// Your API request was not properly authorized.
+	ErrorMessage *shared.ErrorMessage
 	StatusCode   int
 	RawResponse  *http.Response
-	// The data type's dataset has not been requested or is still syncing.
-	GetBalanceSheet409ApplicationJSONObject *GetBalanceSheet409ApplicationJSON
-	// Your API request was not properly authorized.
-	Schema *shared.Schema
+}
+
+func (o *GetBalanceSheetResponse) GetBalanceSheet() *shared.BalanceSheet1 {
+	if o == nil {
+		return nil
+	}
+	return o.BalanceSheet
+}
+
+func (o *GetBalanceSheetResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetBalanceSheetResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *GetBalanceSheetResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetBalanceSheetResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

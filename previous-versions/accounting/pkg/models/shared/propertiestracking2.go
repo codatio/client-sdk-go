@@ -5,3 +5,10 @@ package shared
 type Propertiestracking2 struct {
 	RecordRefs []InvoiceTo `json:"recordRefs,omitempty"`
 }
+
+func (o *Propertiestracking2) GetRecordRefs() []InvoiceTo {
+	if o == nil {
+		return nil
+	}
+	return o.RecordRefs
+}

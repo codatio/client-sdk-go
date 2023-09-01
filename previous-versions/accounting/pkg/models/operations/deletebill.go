@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
 	"net/http"
 )
 
@@ -14,12 +14,68 @@ type DeleteBillRequest struct {
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
+func (o *DeleteBillRequest) GetBillID() string {
+	if o == nil {
+		return ""
+	}
+	return o.BillID
+}
+
+func (o *DeleteBillRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *DeleteBillRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
 type DeleteBillResponse struct {
 	ContentType string
+	// Your API request was not properly authorized.
+	ErrorMessage *shared.ErrorMessage
 	// OK
 	PushOperationSummary *shared.PushOperationSummary
 	StatusCode           int
 	RawResponse          *http.Response
-	// Your API request was not properly authorized.
-	Schema *shared.Schema
+}
+
+func (o *DeleteBillResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *DeleteBillResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *DeleteBillResponse) GetPushOperationSummary() *shared.PushOperationSummary {
+	if o == nil {
+		return nil
+	}
+	return o.PushOperationSummary
+}
+
+func (o *DeleteBillResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *DeleteBillResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

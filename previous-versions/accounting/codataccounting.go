@@ -4,8 +4,8 @@ package codataccounting
 
 import (
 	"fmt"
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/accounting/pkg/utils"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/utils"
 	"net/http"
 	"time"
 )
@@ -171,9 +171,9 @@ func New(opts ...SDKOption) *CodatAccounting {
 	sdk := &CodatAccounting{
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
-			OpenAPIDocVersion: "2.1.0",
-			SDKVersion:        "0.25.0",
-			GenVersion:        "2.58.0",
+			OpenAPIDocVersion: "3.0.0",
+			SDKVersion:        "0.1.0",
+			GenVersion:        "2.91.4",
 		},
 	}
 	for _, opt := range opts {

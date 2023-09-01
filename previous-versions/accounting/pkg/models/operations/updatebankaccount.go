@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
 	"net/http"
 )
 
@@ -18,12 +18,89 @@ type UpdateBankAccountRequest struct {
 	TimeoutInMinutes *int  `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
 }
 
+func (o *UpdateBankAccountRequest) GetBankAccount() *shared.BankAccount {
+	if o == nil {
+		return nil
+	}
+	return o.BankAccount
+}
+
+func (o *UpdateBankAccountRequest) GetBankAccountID() string {
+	if o == nil {
+		return ""
+	}
+	return o.BankAccountID
+}
+
+func (o *UpdateBankAccountRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *UpdateBankAccountRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *UpdateBankAccountRequest) GetForceUpdate() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.ForceUpdate
+}
+
+func (o *UpdateBankAccountRequest) GetTimeoutInMinutes() *int {
+	if o == nil {
+		return nil
+	}
+	return o.TimeoutInMinutes
+}
+
 type UpdateBankAccountResponse struct {
 	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
+	// The request made is not valid.
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 	// Success
 	UpdateBankAccountResponse *shared.UpdateBankAccountResponse
-	// The request made is not valid.
-	Schema *shared.Schema
+}
+
+func (o *UpdateBankAccountResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *UpdateBankAccountResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *UpdateBankAccountResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *UpdateBankAccountResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *UpdateBankAccountResponse) GetUpdateBankAccountResponse() *shared.UpdateBankAccountResponse {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateBankAccountResponse
 }

@@ -10,3 +10,38 @@ type TrackingCategories struct {
 	Results      []TrackingCategory `json:"results,omitempty"`
 	TotalResults int64              `json:"totalResults"`
 }
+
+func (o *TrackingCategories) GetLinks() Links {
+	if o == nil {
+		return Links{}
+	}
+	return o.Links
+}
+
+func (o *TrackingCategories) GetPageNumber() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.PageNumber
+}
+
+func (o *TrackingCategories) GetPageSize() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.PageSize
+}
+
+func (o *TrackingCategories) GetResults() []TrackingCategory {
+	if o == nil {
+		return nil
+	}
+	return o.Results
+}
+
+func (o *TrackingCategories) GetTotalResults() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.TotalResults
+}

@@ -11,3 +11,24 @@ type TaxRateComponent struct {
 	// The rate of the tax rate component, usually a percentage.
 	Rate *float64 `json:"rate,omitempty"`
 }
+
+func (o *TaxRateComponent) GetIsCompound() bool {
+	if o == nil {
+		return false
+	}
+	return o.IsCompound
+}
+
+func (o *TaxRateComponent) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
+func (o *TaxRateComponent) GetRate() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Rate
+}
