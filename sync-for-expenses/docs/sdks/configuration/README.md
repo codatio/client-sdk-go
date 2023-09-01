@@ -2,14 +2,15 @@
 
 ## Overview
 
-Companies sync configuration.
+Manage mapping options and sync configuration.
 
 ### Available Operations
 
-* [GetCompanyConfiguration](#getcompanyconfiguration) - Get company configuration
-* [SaveCompanyConfiguration](#savecompanyconfiguration) - Set company configuration
+* [Get](#get) - Get company configuration
+* [GetMappingOptions](#getmappingoptions) - Mapping options
+* [Set](#set) - Set company configuration
 
-## GetCompanyConfiguration
+## Get
 
 Gets a companies expense sync configuration
 
@@ -21,8 +22,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/expenses"
-	"github.com/codatio/client-sdk-go/expenses/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-expenses"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/operations"
 )
 
 func main() {
@@ -33,7 +35,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Configuration.GetCompanyConfiguration(ctx, operations.GetCompanyConfigurationRequest{
+    res, err := s.Configuration.Get(ctx, operations.GetCompanyConfigurationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -60,7 +62,59 @@ func main() {
 **[*operations.GetCompanyConfigurationResponse](../../models/operations/getcompanyconfigurationresponse.md), error**
 
 
-## SaveCompanyConfiguration
+## GetMappingOptions
+
+Gets the expense mapping options for a companies accounting software
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"log"
+	"github.com/codatio/client-sdk-go/sync-for-expenses"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/operations"
+)
+
+func main() {
+    s := codatsyncexpenses.New(
+        codatsyncexpenses.WithSecurity(shared.Security{
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
+        }),
+    )
+
+    ctx := context.Background()
+    res, err := s.Configuration.GetMappingOptions(ctx, operations.GetMappingOptionsRequest{
+        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.MappingOptions != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
+| `request`                                                                                  | [operations.GetMappingOptionsRequest](../../models/operations/getmappingoptionsrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+| `opts`                                                                                     | [][operations.Option](../../models/operations/option.md)                                   | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
+
+
+### Response
+
+**[*operations.GetMappingOptionsResponse](../../models/operations/getmappingoptionsresponse.md), error**
+
+
+## Set
 
 Sets a companies expense sync configuration
 
@@ -72,9 +126,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/expenses"
-	"github.com/codatio/client-sdk-go/expenses/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/expenses/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/operations"
 )
 
 func main() {
@@ -85,7 +139,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Configuration.SaveCompanyConfiguration(ctx, operations.SaveCompanyConfigurationRequest{
+    res, err := s.Configuration.Set(ctx, operations.SetCompanyConfigurationRequest{
         CompanyConfiguration: &shared.CompanyConfiguration{
             BankAccount: shared.BankAccount{
                 ID: codatsyncexpenses.String("32"),
@@ -111,14 +165,14 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
-| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                                    | :heavy_check_mark:                                                                                       | The context to use for the request.                                                                      |
-| `request`                                                                                                | [operations.SaveCompanyConfigurationRequest](../../models/operations/savecompanyconfigurationrequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
-| `opts`                                                                                                   | [][operations.Option](../../models/operations/option.md)                                                 | :heavy_minus_sign:                                                                                       | The options for this request.                                                                            |
+| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                  | :heavy_check_mark:                                                                                     | The context to use for the request.                                                                    |
+| `request`                                                                                              | [operations.SetCompanyConfigurationRequest](../../models/operations/setcompanyconfigurationrequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
+| `opts`                                                                                                 | [][operations.Option](../../models/operations/option.md)                                               | :heavy_minus_sign:                                                                                     | The options for this request.                                                                          |
 
 
 ### Response
 
-**[*operations.SaveCompanyConfigurationResponse](../../models/operations/savecompanyconfigurationresponse.md), error**
+**[*operations.SetCompanyConfigurationResponse](../../models/operations/setcompanyconfigurationresponse.md), error**
 

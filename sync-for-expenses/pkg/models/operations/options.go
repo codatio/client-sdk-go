@@ -4,14 +4,15 @@ package operations
 
 import (
 	"errors"
-	"github.com/codatio/client-sdk-go/expenses/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/utils"
 )
 
 var ErrUnsupportedOption = errors.New("unsupported option")
 
 const (
-	SupportedOptionServerURL = "serverURL"
-	SupportedOptionRetries   = "retries"
+	SupportedOptionServerURL            = "serverURL"
+	SupportedOptionRetries              = "retries"
+	SupportedOptionAcceptHeaderOverride = "acceptHeaderOverride"
 )
 
 type Options struct {

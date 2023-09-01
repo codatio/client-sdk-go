@@ -32,3 +32,38 @@ type TrackingCategoryMappingInfo struct {
 	// ID of the parent tracking category
 	ParentID *string `json:"parentId,omitempty"`
 }
+
+func (o *TrackingCategoryMappingInfo) GetHasChildren() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasChildren
+}
+
+func (o *TrackingCategoryMappingInfo) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *TrackingCategoryMappingInfo) GetModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ModifiedDate
+}
+
+func (o *TrackingCategoryMappingInfo) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
+func (o *TrackingCategoryMappingInfo) GetParentID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ParentID
+}

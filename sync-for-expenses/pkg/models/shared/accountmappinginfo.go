@@ -101,3 +101,38 @@ type AccountMappingInfo struct {
 	// Supported transaction types for the account.
 	ValidTransactionTypes []AccountMappingInfoValidTransactionTypes `json:"validTransactionTypes,omitempty"`
 }
+
+func (o *AccountMappingInfo) GetAccountType() *AccountMappingInfoAccountType {
+	if o == nil {
+		return nil
+	}
+	return o.AccountType
+}
+
+func (o *AccountMappingInfo) GetCurrency() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Currency
+}
+
+func (o *AccountMappingInfo) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *AccountMappingInfo) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
+func (o *AccountMappingInfo) GetValidTransactionTypes() []AccountMappingInfoValidTransactionTypes {
+	if o == nil {
+		return nil
+	}
+	return o.ValidTransactionTypes
+}

@@ -6,10 +6,10 @@ Retrieve the status of transactions within a sync.
 
 ### Available Operations
 
-* [GetSyncTransaction](#getsynctransaction) - Get Sync Transaction
-* [ListSyncTransactions](#listsynctransactions) - Get Sync transactions
+* [Get](#get) - Get Sync Transaction
+* [List](#list) - List sync transactions
 
-## GetSyncTransaction
+## Get
 
 Gets the status of a transaction for a sync
 
@@ -21,8 +21,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/expenses"
-	"github.com/codatio/client-sdk-go/expenses/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-expenses"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/operations"
 )
 
 func main() {
@@ -33,7 +34,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.TransactionStatus.GetSyncTransaction(ctx, operations.GetSyncTransactionRequest{
+    res, err := s.TransactionStatus.Get(ctx, operations.GetSyncTransactionRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         SyncID: "6fb40d5e-b13e-11ed-afa1-0242ac120002",
         TransactionID: "336694d8-2dca-4cb5-a28d-3ccb83e55eee",
@@ -42,7 +43,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.TransactionMetadata != nil {
+    if res.Transaction != nil {
         // handle response
     }
 }
@@ -62,9 +63,9 @@ func main() {
 **[*operations.GetSyncTransactionResponse](../../models/operations/getsynctransactionresponse.md), error**
 
 
-## ListSyncTransactions
+## List
 
-Get's the transactions and status for a sync
+Gets the transactions and status for a sync
 
 ### Example Usage
 
@@ -74,8 +75,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/expenses"
-	"github.com/codatio/client-sdk-go/expenses/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-expenses"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/operations"
 )
 
 func main() {
@@ -86,7 +88,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.TransactionStatus.ListSyncTransactions(ctx, operations.ListSyncTransactionsRequest{
+    res, err := s.TransactionStatus.List(ctx, operations.ListSyncTransactionsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         Page: codatsyncexpenses.Int(1),
         PageSize: codatsyncexpenses.Int(100),
@@ -96,7 +98,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.TransactionMetadataList != nil {
+    if res.Transactions != nil {
         // handle response
     }
 }

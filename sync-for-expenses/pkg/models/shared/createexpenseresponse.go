@@ -7,3 +7,10 @@ type CreateExpenseResponse struct {
 	// Unique id of dataset created
 	DatasetID *string `json:"datasetId,omitempty"`
 }
+
+func (o *CreateExpenseResponse) GetDatasetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DatasetID
+}

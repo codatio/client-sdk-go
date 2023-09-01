@@ -66,3 +66,45 @@ type TaxRateMappingInfo struct {
 	// Supported transaction types for the account.
 	ValidTransactionTypes []TaxRateMappingInfoValidTransactionTypes `json:"validTransactionTypes,omitempty"`
 }
+
+func (o *TaxRateMappingInfo) GetCode() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Code
+}
+
+func (o *TaxRateMappingInfo) GetEffectiveTaxRate() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.EffectiveTaxRate
+}
+
+func (o *TaxRateMappingInfo) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *TaxRateMappingInfo) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
+func (o *TaxRateMappingInfo) GetTotalTaxRate() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.TotalTaxRate
+}
+
+func (o *TaxRateMappingInfo) GetValidTransactionTypes() []TaxRateMappingInfoValidTransactionTypes {
+	if o == nil {
+		return nil
+	}
+	return o.ValidTransactionTypes
+}

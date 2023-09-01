@@ -5,3 +5,10 @@ package shared
 type CreateExpenseRequest struct {
 	Items []ExpenseTransaction `json:"items,omitempty"`
 }
+
+func (o *CreateExpenseRequest) GetItems() []ExpenseTransaction {
+	if o == nil {
+		return nil
+	}
+	return o.Items
+}

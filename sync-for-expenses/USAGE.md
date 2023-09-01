@@ -1,12 +1,15 @@
 <!-- Start SDK Example Usage -->
+
+
 ```go
 package main
 
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/expenses"
-	"github.com/codatio/client-sdk-go/expenses/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-expenses"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/operations"
 )
 
 func main() {
@@ -17,14 +20,58 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Configuration.GetCompanyConfiguration(ctx, operations.GetCompanyConfigurationRequest{
+    res, err := s.Accounts.Create(ctx, operations.CreateAccountRequest{
+        Account: &shared.Account{
+            Currency: codatsyncexpenses.String("USD"),
+            CurrentBalance: codatsyncexpenses.Float64(0),
+            Description: codatsyncexpenses.String("Invoices the business has issued but has not yet collected payment on."),
+            FullyQualifiedCategory: codatsyncexpenses.String("Asset.Current"),
+            FullyQualifiedName: codatsyncexpenses.String("Fixed Asset"),
+            ID: codatsyncexpenses.String("1b6266d1-1e44-46c5-8eb5-a8f98e03124e"),
+            IsBankAccount: codatsyncexpenses.Bool(false),
+            Metadata: &shared.AccountMetadata{
+                IsDeleted: codatsyncexpenses.Bool(false),
+            },
+            ModifiedDate: codatsyncexpenses.String("2022-10-23T00:00:00.000Z"),
+            Name: codatsyncexpenses.String("Accounts Receivable"),
+            NominalCode: codatsyncexpenses.String("610"),
+            SourceModifiedDate: codatsyncexpenses.String("2022-10-23T00:00:00.000Z"),
+            Status: shared.AccountStatusActive.ToPointer(),
+            Type: shared.AccountTypeAsset.ToPointer(),
+            ValidDatatypeLinks: []shared.AccountValidDataTypeLinks{
+                shared.AccountValidDataTypeLinks{
+                    Links: []string{
+                        "corrupti",
+                        "illum",
+                        "vel",
+                        "error",
+                    },
+                    Property: codatsyncexpenses.String("deserunt"),
+                },
+                shared.AccountValidDataTypeLinks{
+                    Links: []string{
+                        "iure",
+                        "magnam",
+                    },
+                    Property: codatsyncexpenses.String("debitis"),
+                },
+                shared.AccountValidDataTypeLinks{
+                    Links: []string{
+                        "delectus",
+                    },
+                    Property: codatsyncexpenses.String("tempora"),
+                },
+            },
+        },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+        ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
+        TimeoutInMinutes: codatsyncexpenses.Int(383441),
     })
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.CompanyConfiguration != nil {
+    if res.CreateAccountResponse != nil {
         // handle response
     }
 }

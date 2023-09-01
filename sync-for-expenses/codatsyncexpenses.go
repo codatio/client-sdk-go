@@ -4,8 +4,8 @@ package codatsyncexpenses
 
 import (
 	"fmt"
-	"github.com/codatio/client-sdk-go/expenses/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/expenses/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/utils"
 	"net/http"
 	"time"
 )
@@ -58,25 +58,38 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 	return ServerList[c.ServerIndex], nil
 }
 
-// CodatSyncExpenses - Sync for Expenses API: The API for Sync for Expenses.
-// Sync for Expenses is an API and a set of supporting tools. It has been built to enable corporate card and expense management platforms to provide high-quality integrations with multiple accounting platforms through a standardized API.
+// CodatSyncExpenses - Sync for Expenses: The API for Sync for Expenses.
+//
+// Sync for Expenses is an API and a set of supporting tools. It has been built to
+// enable corporate card and expense management platforms to provide high-quality
+// integrations with multiple accounting platforms through a standardized API.
 //
 // [Read more...](https://docs.codat.io/sync-for-expenses/overview)
 //
 // [See our OpenAPI spec](https://github.com/codatio/oas)
+//
+// <!-- Not seeing the end points you're expecting? We've reorganized our products, and you may be using a [different version of Sync for Commerce](https://docs.codat.io/sync-for-expenses-v1-api#/). -->
 type CodatSyncExpenses struct {
-	// Configuration - Companies sync configuration.
+	// Accounts - Accounts
+	Accounts *accounts
+	// Companies - Create and manage your Codat companies.
+	Companies *companies
+	// Configuration - Manage mapping options and sync configuration.
 	Configuration *configuration
 	// Connections - Create and manage partner expense connection.
 	Connections *connections
+	// Customers - Customers
+	Customers *customers
 	// Expenses - Create expense datasets and upload receipts.
 	Expenses *expenses
-	// MappingOptions - Mapping options for a companies expenses.
-	MappingOptions *mappingOptions
-	// Sync - Triggering a new sync of expenses to accounting software.
+	// ManageData - Asynchronously retrieve data from an integration to refresh data in Codat.
+	ManageData *manageData
+	// PushOperations - Access create, update and delete operations made to an SMB's data connection.
+	PushOperations *pushOperations
+	// Suppliers - Suppliers
+	Suppliers *suppliers
+	// Sync - Trigger and monitor expense syncs to accounting software.
 	Sync *sync
-	// SyncStatus - Check the status of ongoing or previous expense syncs.
-	SyncStatus *syncStatus
 	// TransactionStatus - Retrieve the status of transactions within a sync.
 	TransactionStatus *transactionStatus
 
@@ -134,8 +147,8 @@ func New(opts ...SDKOption) *CodatSyncExpenses {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "prealpha",
-			SDKVersion:        "0.23.0",
-			GenVersion:        "2.58.0",
+			SDKVersion:        "0.24.0",
+			GenVersion:        "2.91.4",
 		},
 	}
 	for _, opt := range opts {
@@ -154,17 +167,25 @@ func New(opts ...SDKOption) *CodatSyncExpenses {
 		}
 	}
 
+	sdk.Accounts = newAccounts(sdk.sdkConfiguration)
+
+	sdk.Companies = newCompanies(sdk.sdkConfiguration)
+
 	sdk.Configuration = newConfiguration(sdk.sdkConfiguration)
 
 	sdk.Connections = newConnections(sdk.sdkConfiguration)
 
+	sdk.Customers = newCustomers(sdk.sdkConfiguration)
+
 	sdk.Expenses = newExpenses(sdk.sdkConfiguration)
 
-	sdk.MappingOptions = newMappingOptions(sdk.sdkConfiguration)
+	sdk.ManageData = newManageData(sdk.sdkConfiguration)
+
+	sdk.PushOperations = newPushOperations(sdk.sdkConfiguration)
+
+	sdk.Suppliers = newSuppliers(sdk.sdkConfiguration)
 
 	sdk.Sync = newSync(sdk.sdkConfiguration)
-
-	sdk.SyncStatus = newSyncStatus(sdk.sdkConfiguration)
 
 	sdk.TransactionStatus = newTransactionStatus(sdk.sdkConfiguration)
 

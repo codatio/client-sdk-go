@@ -6,9 +6,10 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/codatio/client-sdk-go/expenses/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/expenses/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/expenses/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/utils"
 	"io"
 	"net/http"
 )
@@ -24,9 +25,9 @@ func newExpenses(sdkConfig sdkConfiguration) *expenses {
 	}
 }
 
-// CreateExpenseDataset - Create expense-transactions
+// Create - Create expense transaction
 // Create an expense transaction
-func (s *expenses) CreateExpenseDataset(ctx context.Context, request operations.CreateExpenseDatasetRequest, opts ...operations.Option) (*operations.CreateExpenseDatasetResponse, error) {
+func (s *expenses) Create(ctx context.Context, request operations.CreateExpenseTransactionRequest, opts ...operations.Option) (*operations.CreateExpenseTransactionResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -52,7 +53,7 @@ func (s *expenses) CreateExpenseDataset(ctx context.Context, request operations.
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
+	req.Header.Set("Accept", "application/json")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
@@ -99,7 +100,7 @@ func (s *expenses) CreateExpenseDataset(ctx context.Context, request operations.
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.CreateExpenseDatasetResponse{
+	res := &operations.CreateExpenseTransactionResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -114,6 +115,8 @@ func (s *expenses) CreateExpenseDataset(ctx context.Context, request operations.
 			}
 
 			res.CreateExpenseResponse = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
 		fallthrough
@@ -124,21 +127,23 @@ func (s *expenses) CreateExpenseDataset(ctx context.Context, request operations.
 	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Schema
+			var out *shared.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.Schema = out
+			res.ErrorMessage = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
 	return res, nil
 }
 
-// UpdateExpenseDataset - Update expense-transactions
+// Update - Update expense-transactions
 // Update an expense transaction
-func (s *expenses) UpdateExpenseDataset(ctx context.Context, request operations.UpdateExpenseDatasetRequest, opts ...operations.Option) (*operations.UpdateExpenseDatasetResponse, error) {
+func (s *expenses) Update(ctx context.Context, request operations.UpdateExpenseTransactionRequest, opts ...operations.Option) (*operations.UpdateExpenseTransactionResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -164,7 +169,7 @@ func (s *expenses) UpdateExpenseDataset(ctx context.Context, request operations.
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
+	req.Header.Set("Accept", "application/json")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
@@ -211,7 +216,7 @@ func (s *expenses) UpdateExpenseDataset(ctx context.Context, request operations.
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.UpdateExpenseDatasetResponse{
+	res := &operations.UpdateExpenseTransactionResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -220,12 +225,14 @@ func (s *expenses) UpdateExpenseDataset(ctx context.Context, request operations.
 	case httpRes.StatusCode == 202:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.UpdateExpenseDataset202ApplicationJSON
+			var out *shared.UpdateExpenseResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.UpdateExpenseDataset202ApplicationJSONObject = out
+			res.UpdateExpenseResponse = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
 		fallthrough
@@ -238,12 +245,14 @@ func (s *expenses) UpdateExpenseDataset(ctx context.Context, request operations.
 	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Schema
+			var out *shared.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.Schema = out
+			res.ErrorMessage = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -252,7 +261,7 @@ func (s *expenses) UpdateExpenseDataset(ctx context.Context, request operations.
 
 // UploadAttachment - Upload attachment
 // Creates an attachment in the accounting software against the given transactionId
-func (s *expenses) UploadAttachment(ctx context.Context, request operations.UploadAttachmentRequest, opts ...operations.Option) (*operations.UploadAttachmentResponse, error) {
+func (s *expenses) UploadAttachment(ctx context.Context, request operations.UploadExpenseAttachmentRequest, opts ...operations.Option) (*operations.UploadExpenseAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -278,7 +287,7 @@ func (s *expenses) UploadAttachment(ctx context.Context, request operations.Uplo
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
+	req.Header.Set("Accept", "application/json")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
@@ -325,7 +334,7 @@ func (s *expenses) UploadAttachment(ctx context.Context, request operations.Uplo
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.UploadAttachmentResponse{
+	res := &operations.UploadExpenseAttachmentResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -340,6 +349,8 @@ func (s *expenses) UploadAttachment(ctx context.Context, request operations.Uplo
 			}
 
 			res.Attachment = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
 		fallthrough
@@ -350,12 +361,14 @@ func (s *expenses) UploadAttachment(ctx context.Context, request operations.Uplo
 	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Schema
+			var out *shared.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.Schema = out
+			res.ErrorMessage = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
