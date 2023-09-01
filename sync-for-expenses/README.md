@@ -1,6 +1,6 @@
-# Common
+# Sync for Expenses
     
-
+﻿Embedded accounting integrations for corporate card providers.
 
 <!-- Start SDK Installation -->
 <!-- End SDK Installation -->
