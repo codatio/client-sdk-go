@@ -10,3 +10,38 @@ type AccountBalances struct {
 	Results      []AccountBalance `json:"results,omitempty"`
 	TotalResults int64            `json:"totalResults"`
 }
+
+func (o *AccountBalances) GetLinks() Links {
+	if o == nil {
+		return Links{}
+	}
+	return o.Links
+}
+
+func (o *AccountBalances) GetPageNumber() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.PageNumber
+}
+
+func (o *AccountBalances) GetPageSize() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.PageSize
+}
+
+func (o *AccountBalances) GetResults() []AccountBalance {
+	if o == nil {
+		return nil
+	}
+	return o.Results
+}
+
+func (o *AccountBalances) GetTotalResults() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.TotalResults
+}

@@ -8,7 +8,7 @@ An immutable source of up-to-date information on income and expenditure.
 
 * [Get](#get) - Get bank transaction
 * [List](#list) - List transactions
-* [~~ListBankTransactions~~](#listbanktransactions) - List banking transactions :warning: **Deprecated** - Use `List` instead.
+* [~~ListBankTransactions~~](#listbanktransactions) - List banking transactions :warning: **Deprecated** Use `List` instead.
 
 ## Get
 
@@ -29,8 +29,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/banking"
-	"github.com/codatio/client-sdk-go/banking/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/banking"
+	"github.com/codatio/client-sdk-go/previous-versions/banking/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/banking/pkg/models/operations"
 )
 
 func main() {
@@ -87,8 +88,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/banking"
-	"github.com/codatio/client-sdk-go/banking/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/banking"
+	"github.com/codatio/client-sdk-go/previous-versions/banking/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/banking/pkg/models/operations"
 )
 
 func main() {
@@ -140,7 +142,7 @@ The *List transactions* endpoint returns a list of [transactions](https://docs.c
 Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
     
 
-> :warning: **DEPRECATED**: this method will be removed in a future release, please migrate away from it as soon as possible. Use `List` instead.
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible. Use `List` instead.
 
 ### Example Usage
 
@@ -150,8 +152,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/banking"
-	"github.com/codatio/client-sdk-go/banking/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/banking"
+	"github.com/codatio/client-sdk-go/previous-versions/banking/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/banking/pkg/models/operations"
 )
 
 func main() {

@@ -1,6 +1,6 @@
-# ListAccountBalances409ApplicationJSON
+# ErrorMessage
 
-The data type's dataset has not been requested or is still syncing.
+Your `query` parameter was not correctly formed
 
 
 ## Fields

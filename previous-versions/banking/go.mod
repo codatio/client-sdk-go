@@ -1,4 +1,4 @@
-module github.com/codatio/client-sdk-go/banking
+module github.com/codatio/client-sdk-go/previous-versions/banking
 
 go 1.14
 

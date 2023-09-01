@@ -4,8 +4,8 @@ package codatbanking
 
 import (
 	"fmt"
-	"github.com/codatio/client-sdk-go/banking/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/banking/pkg/utils"
+	"github.com/codatio/client-sdk-go/previous-versions/banking/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/banking/pkg/utils"
 	"net/http"
 	"time"
 )
@@ -130,9 +130,9 @@ func New(opts ...SDKOption) *CodatBanking {
 	sdk := &CodatBanking{
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
-			OpenAPIDocVersion: "2.1.0",
-			SDKVersion:        "0.21.0",
-			GenVersion:        "2.58.0",
+			OpenAPIDocVersion: "3.0.0",
+			SDKVersion:        "0.1.0",
+			GenVersion:        "2.91.4",
 		},
 	}
 	for _, opt := range opts {

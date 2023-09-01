@@ -11,3 +11,24 @@ type AccountBalanceAmounts struct {
 	// The minimum allowed balance for the account. For example, a $100.00 overdraft would show as a limit of `-100.00`.
 	Limit *float64 `json:"limit,omitempty"`
 }
+
+func (o *AccountBalanceAmounts) GetAvailable() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Available
+}
+
+func (o *AccountBalanceAmounts) GetCurrent() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Current
+}
+
+func (o *AccountBalanceAmounts) GetLimit() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Limit
+}
