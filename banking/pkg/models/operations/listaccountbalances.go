@@ -20,24 +20,89 @@ type ListAccountBalancesRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-// ListAccountBalances409ApplicationJSON - The data type's dataset has not been requested or is still syncing.
-type ListAccountBalances409ApplicationJSON struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
+func (o *ListAccountBalancesRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *ListAccountBalancesRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *ListAccountBalancesRequest) GetOrderBy() *string {
+	if o == nil {
+		return nil
+	}
+	return o.OrderBy
+}
+
+func (o *ListAccountBalancesRequest) GetPage() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Page
+}
+
+func (o *ListAccountBalancesRequest) GetPageSize() *int {
+	if o == nil {
+		return nil
+	}
+	return o.PageSize
+}
+
+func (o *ListAccountBalancesRequest) GetQuery() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Query
 }
 
 type ListAccountBalancesResponse struct {
 	// Success
 	AccountBalances *shared.AccountBalances
 	ContentType     string
-	StatusCode      int
-	RawResponse     *http.Response
-	// The data type's dataset has not been requested or is still syncing.
-	ListAccountBalances409ApplicationJSONObject *ListAccountBalances409ApplicationJSON
 	// Your `query` parameter was not correctly formed
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
+}
+
+func (o *ListAccountBalancesResponse) GetAccountBalances() *shared.AccountBalances {
+	if o == nil {
+		return nil
+	}
+	return o.AccountBalances
+}
+
+func (o *ListAccountBalancesResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *ListAccountBalancesResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *ListAccountBalancesResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *ListAccountBalancesResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

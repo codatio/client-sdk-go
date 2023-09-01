@@ -26,6 +26,7 @@ import(
 	"context"
 	"log"
 	"github.com/codatio/client-sdk-go/banking"
+	"github.com/codatio/client-sdk-go/banking/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/banking/pkg/models/operations"
 )
 

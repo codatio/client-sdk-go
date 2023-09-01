@@ -67,3 +67,87 @@ type Transaction struct {
 	// An object of bank transaction category reference data.
 	TransactionCategoryRef *TransactionCategoryRef `json:"transactionCategoryRef,omitempty"`
 }
+
+func (o *Transaction) GetAccountID() string {
+	if o == nil {
+		return ""
+	}
+	return o.AccountID
+}
+
+func (o *Transaction) GetAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Amount
+}
+
+func (o *Transaction) GetAuthorizedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AuthorizedDate
+}
+
+func (o *Transaction) GetCode() *TransactionCode {
+	if o == nil {
+		return nil
+	}
+	return o.Code
+}
+
+func (o *Transaction) GetCurrency() string {
+	if o == nil {
+		return ""
+	}
+	return o.Currency
+}
+
+func (o *Transaction) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *Transaction) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *Transaction) GetMerchantName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.MerchantName
+}
+
+func (o *Transaction) GetModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ModifiedDate
+}
+
+func (o *Transaction) GetPostedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PostedDate
+}
+
+func (o *Transaction) GetSourceModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceModifiedDate
+}
+
+func (o *Transaction) GetTransactionCategoryRef() *TransactionCategoryRef {
+	if o == nil {
+		return nil
+	}
+	return o.TransactionCategoryRef
+}
