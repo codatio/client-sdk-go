@@ -4,14 +4,15 @@ package operations
 
 import (
 	"errors"
-	"github.com/codatio/client-sdk-go/bankfeeds/pkg/utils"
+	"github.com/codatio/client-sdk-go/bank-feeds/pkg/utils"
 )
 
 var ErrUnsupportedOption = errors.New("unsupported option")
 
 const (
-	SupportedOptionServerURL = "serverURL"
-	SupportedOptionRetries   = "retries"
+	SupportedOptionServerURL            = "serverURL"
+	SupportedOptionRetries              = "retries"
+	SupportedOptionAcceptHeaderOverride = "acceptHeaderOverride"
 )
 
 type Options struct {

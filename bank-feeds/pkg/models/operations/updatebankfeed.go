@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/pkg/models/shared"
 	"net/http"
 )
 
@@ -15,12 +15,75 @@ type UpdateBankFeedRequest struct {
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
+func (o *UpdateBankFeedRequest) GetBankFeedAccount() *shared.BankFeedAccount {
+	if o == nil {
+		return nil
+	}
+	return o.BankFeedAccount
+}
+
+func (o *UpdateBankFeedRequest) GetAccountID() string {
+	if o == nil {
+		return ""
+	}
+	return o.AccountID
+}
+
+func (o *UpdateBankFeedRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *UpdateBankFeedRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
 type UpdateBankFeedResponse struct {
 	// Success
 	BankFeedAccount *shared.BankFeedAccount
 	ContentType     string
-	StatusCode      int
-	RawResponse     *http.Response
 	// Your API request was not properly authorized.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
+}
+
+func (o *UpdateBankFeedResponse) GetBankFeedAccount() *shared.BankFeedAccount {
+	if o == nil {
+		return nil
+	}
+	return o.BankFeedAccount
+}
+
+func (o *UpdateBankFeedResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *UpdateBankFeedResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *UpdateBankFeedResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *UpdateBankFeedResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

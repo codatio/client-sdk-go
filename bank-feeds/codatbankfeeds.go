@@ -4,8 +4,8 @@ package codatbankfeeds
 
 import (
 	"fmt"
-	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bankfeeds/pkg/utils"
+	"github.com/codatio/client-sdk-go/bank-feeds/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/pkg/utils"
 	"net/http"
 	"time"
 )
@@ -61,22 +61,22 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 
 // CodatBankFeeds - Bank Feeds API: Bank Feeds API enables your SMB users to set up bank feeds from accounts in your application to supported accounting platforms.
 //
-// A bank feed is a connection between a source bank account—in your application—and a target bank account in a supported accounting package.
+// A bank feed is a connection between a source bank account in your application and a target bank account in a supported accounting package.
 //
 // [Read more...](https://docs.codat.io/bank-feeds-api/overview)
 //
 // [See our OpenAPI spec](https://github.com/codatio/oas)
 type CodatBankFeeds struct {
-	// BankAccountMapping - Bank feed bank account mapping
-	BankAccountMapping *bankAccountMapping
-	// BankAccountTransactions - Bank feed bank accounts
-	BankAccountTransactions *bankAccountTransactions
-	// BankFeedAccounts - Bank feed bank accounts
-	BankFeedAccounts *bankFeedAccounts
+	// AccountMapping - Bank feed bank account mapping.
+	AccountMapping *accountMapping
 	// Companies - Create and manage your Codat companies.
 	Companies *companies
 	// Connections - Manage your companies' data connections.
 	Connections *connections
+	// SourceAccounts - Source accounts act as a bridge to bank accounts in accounting software.
+	SourceAccounts *sourceAccounts
+	// Transactions - Transactions represent debits and credits from a source account.
+	Transactions *transactions
 
 	sdkConfiguration sdkConfiguration
 }
@@ -131,9 +131,9 @@ func New(opts ...SDKOption) *CodatBankFeeds {
 	sdk := &CodatBankFeeds{
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
-			OpenAPIDocVersion: "2.1.0",
-			SDKVersion:        "0.25.1",
-			GenVersion:        "2.58.0",
+			OpenAPIDocVersion: "3.0.0",
+			SDKVersion:        "0.26.0",
+			GenVersion:        "2.91.4",
 		},
 	}
 	for _, opt := range opts {
@@ -152,15 +152,15 @@ func New(opts ...SDKOption) *CodatBankFeeds {
 		}
 	}
 
-	sdk.BankAccountMapping = newBankAccountMapping(sdk.sdkConfiguration)
-
-	sdk.BankAccountTransactions = newBankAccountTransactions(sdk.sdkConfiguration)
-
-	sdk.BankFeedAccounts = newBankFeedAccounts(sdk.sdkConfiguration)
+	sdk.AccountMapping = newAccountMapping(sdk.sdkConfiguration)
 
 	sdk.Companies = newCompanies(sdk.sdkConfiguration)
 
 	sdk.Connections = newConnections(sdk.sdkConfiguration)
+
+	sdk.SourceAccounts = newSourceAccounts(sdk.sdkConfiguration)
+
+	sdk.Transactions = newTransactions(sdk.sdkConfiguration)
 
 	return sdk
 }

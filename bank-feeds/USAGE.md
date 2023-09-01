@@ -1,13 +1,15 @@
 <!-- Start SDK Example Usage -->
+
+
 ```go
 package main
 
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/bankfeeds"
-	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds"
+	"github.com/codatio/client-sdk-go/bank-feeds/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/pkg/models/operations"
 )
 
 func main() {
@@ -18,7 +20,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.BankAccountMapping.Create(ctx, operations.CreateBankAccountMappingRequest{
+    res, err := s.AccountMapping.Create(ctx, operations.CreateBankAccountMappingRequest{
         BankFeedAccountMapping: &shared.BankFeedAccountMapping{
             FeedStartDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
             SourceAccountID: codatbankfeeds.String("provident"),
@@ -31,7 +33,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.AccountMappingResult != nil {
+    if res.BankFeedAccountMappingResponse != nil {
         // handle response
     }
 }

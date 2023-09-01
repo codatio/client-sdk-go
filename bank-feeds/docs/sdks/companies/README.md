@@ -28,8 +28,8 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/bankfeeds"
-	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds"
+	"github.com/codatio/client-sdk-go/bank-feeds/pkg/models/shared"
 )
 
 func main() {
@@ -81,8 +81,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/bankfeeds"
-	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bank-feeds"
+	"github.com/codatio/client-sdk-go/bank-feeds/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/pkg/models/operations"
 )
 
 func main() {
@@ -132,8 +133,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/bankfeeds"
-	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bank-feeds"
+	"github.com/codatio/client-sdk-go/bank-feeds/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/pkg/models/operations"
 )
 
 func main() {
@@ -173,7 +175,7 @@ func main() {
 
 ## List
 
-﻿Returns a list of your companies. The company schema contains a list of [connections](https://docs.codat.io/codat-api#/schemas/Connection) related to the company.
+﻿Returns a list of your companies. The company schema contains a list of [connections](https://docs.codat.io/bank-feeds-api#/schemas/Connection) related to the company.
 
 ### Example Usage
 
@@ -183,8 +185,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/bankfeeds"
-	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bank-feeds"
+	"github.com/codatio/client-sdk-go/bank-feeds/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/pkg/models/operations"
 )
 
 func main() {
@@ -199,7 +202,7 @@ func main() {
         OrderBy: codatbankfeeds.String("-modifiedDate"),
         Page: codatbankfeeds.Int(1),
         PageSize: codatbankfeeds.Int(100),
-        Query: codatbankfeeds.String("omnis"),
+        Query: codatbankfeeds.String("corrupti"),
     })
     if err != nil {
         log.Fatal(err)
@@ -237,9 +240,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/bankfeeds"
-	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/bankfeeds/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds"
+	"github.com/codatio/client-sdk-go/bank-feeds/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/pkg/models/operations"
 )
 
 func main() {

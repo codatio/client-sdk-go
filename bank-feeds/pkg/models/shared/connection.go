@@ -44,7 +44,7 @@ func (e *ConnectionSourceType) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// Connection - A connection represents a [company's](https://docs.codat.io/codat-api#/schemas/Company) connection to a data source and allows you to synchronize data (pull and/or push) with that source.
+// Connection - A connection represents a [company's](https://docs.codat.io/bank-feeds-api#/schemas/Company) connection to a data source and allows you to synchronize data (pull and/or push) with that source.
 //
 // A company can have multiple data connections depending on the type of data source it is connecting to. For example, a single company can link to:
 //
@@ -112,4 +112,95 @@ type Connection struct {
 	SourceType ConnectionSourceType `json:"sourceType"`
 	// The current authorization status of the data connection.
 	Status DataConnectionStatus `json:"status"`
+}
+
+func (o *Connection) GetAdditionalProperties() interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
+func (o *Connection) GetConnectionInfo() map[string]string {
+	if o == nil {
+		return nil
+	}
+	return o.ConnectionInfo
+}
+
+func (o *Connection) GetCreated() string {
+	if o == nil {
+		return ""
+	}
+	return o.Created
+}
+
+func (o *Connection) GetDataConnectionErrors() []DataConnectionError {
+	if o == nil {
+		return nil
+	}
+	return o.DataConnectionErrors
+}
+
+func (o *Connection) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *Connection) GetIntegrationID() string {
+	if o == nil {
+		return ""
+	}
+	return o.IntegrationID
+}
+
+func (o *Connection) GetIntegrationKey() string {
+	if o == nil {
+		return ""
+	}
+	return o.IntegrationKey
+}
+
+func (o *Connection) GetLastSync() *string {
+	if o == nil {
+		return nil
+	}
+	return o.LastSync
+}
+
+func (o *Connection) GetLinkURL() string {
+	if o == nil {
+		return ""
+	}
+	return o.LinkURL
+}
+
+func (o *Connection) GetPlatformName() string {
+	if o == nil {
+		return ""
+	}
+	return o.PlatformName
+}
+
+func (o *Connection) GetSourceID() string {
+	if o == nil {
+		return ""
+	}
+	return o.SourceID
+}
+
+func (o *Connection) GetSourceType() ConnectionSourceType {
+	if o == nil {
+		return ConnectionSourceType("")
+	}
+	return o.SourceType
+}
+
+func (o *Connection) GetStatus() DataConnectionStatus {
+	if o == nil {
+		return DataConnectionStatus("")
+	}
+	return o.Status
 }
