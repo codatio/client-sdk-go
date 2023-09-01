@@ -7,3 +7,10 @@ type VisibleAccounts struct {
 	// Visible accounts on sync flow.
 	VisibleAccounts []string `json:"visibleAccounts,omitempty"`
 }
+
+func (o *VisibleAccounts) GetVisibleAccounts() []string {
+	if o == nil {
+		return nil
+	}
+	return o.VisibleAccounts
+}

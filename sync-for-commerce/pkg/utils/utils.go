@@ -12,7 +12,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/codatio/client-sdk-go/synccommerce/pkg/types"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/types"
 )
 
 const (

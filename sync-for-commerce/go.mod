@@ -1,4 +1,4 @@
-module github.com/codatio/client-sdk-go/synccommerce
+module github.com/codatio/client-sdk-go/sync-for-commerce
 
 go 1.14
 

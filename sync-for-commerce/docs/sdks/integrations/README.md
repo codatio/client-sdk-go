@@ -6,10 +6,10 @@ View useful information about codat's integrations.
 
 ### Available Operations
 
-* [GetIntegrationBranding](#getintegrationbranding) - Get branding for an integration
-* [ListIntegrations](#listintegrations) - List information on Codat's supported integrations
+* [GetBranding](#getbranding) - Get branding for an integration
+* [List](#list) - List integrations
 
-## GetIntegrationBranding
+## GetBranding
 
 Retrieve Integration branding assets.
 
@@ -21,8 +21,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/synccommerce"
-	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-commerce"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/models/operations"
 )
 
 func main() {
@@ -33,8 +34,8 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Integrations.GetIntegrationBranding(ctx, operations.GetIntegrationBrandingRequest{
-        PlatformKey: "quibusdam",
+    res, err := s.Integrations.GetBranding(ctx, operations.GetIntegrationBrandingRequest{
+        PlatformKey: "magnam",
     })
     if err != nil {
         log.Fatal(err)
@@ -60,9 +61,9 @@ func main() {
 **[*operations.GetIntegrationBrandingResponse](../../models/operations/getintegrationbrandingresponse.md), error**
 
 
-## ListIntegrations
+## List
 
-Retrieve a list of available integrations support by datatype and state of release.
+Retrieve a list of available integrations support by data type and state of release.
 
 ### Example Usage
 
@@ -72,8 +73,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/synccommerce"
-	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-commerce"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/models/operations"
 )
 
 func main() {
@@ -84,11 +86,11 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Integrations.ListIntegrations(ctx, operations.ListIntegrationsRequest{
+    res, err := s.Integrations.List(ctx, operations.ListIntegrationsRequest{
         OrderBy: codatsynccommerce.String("-modifiedDate"),
         Page: codatsynccommerce.Int(1),
         PageSize: codatsynccommerce.Int(100),
-        Query: codatsynccommerce.String("unde"),
+        Query: codatsynccommerce.String("debitis"),
     })
     if err != nil {
         log.Fatal(err)

@@ -6,15 +6,14 @@ Configure preferences for any given Sync for Commerce company using sync flow.
 
 ### Available Operations
 
-* [GetConfigTextSyncFlow](#getconfigtextsyncflow) - Retrieve preferences for text fields on Sync Flow
-* [GetSyncFlowURL](#getsyncflowurl) - Retrieve sync flow url
+* [GetConfigTextSyncFlow](#getconfigtextsyncflow) - Get preferences for text fields
 * [GetVisibleAccounts](#getvisibleaccounts) - List visible accounts
-* [UpdateConfigTextSyncFlow](#updateconfigtextsyncflow) - Update preferences for text fields on sync flow
-* [UpdateVisibleAccountsSyncFlow](#updatevisibleaccountssyncflow) - Update the visible accounts on Sync Flow
+* [UpdateConfigTextSyncFlow](#updateconfigtextsyncflow) - Update preferences for text fields
+* [UpdateVisibleAccountsSyncFlow](#updatevisibleaccountssyncflow) - Update visible accounts
 
 ## GetConfigTextSyncFlow
 
-To enable retrieval of preferences set for the text fields on Sync Flow.
+Return preferences set for the text fields on sync flow.
 
 ### Example Usage
 
@@ -24,7 +23,8 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/synccommerce"
+	"github.com/codatio/client-sdk-go/sync-for-commerce"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/models/shared"
 )
 
 func main() {
@@ -59,62 +59,9 @@ func main() {
 **[*operations.GetConfigTextSyncFlowResponse](../../models/operations/getconfigtextsyncflowresponse.md), error**
 
 
-## GetSyncFlowURL
-
-Get a URL for Sync Flow including a one time passcode.
-
-### Example Usage
-
-```go
-package main
-
-import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/synccommerce"
-	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/operations"
-)
-
-func main() {
-    s := codatsynccommerce.New(
-        codatsynccommerce.WithSecurity(shared.Security{
-            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
-        }),
-    )
-
-    ctx := context.Background()
-    res, err := s.SyncFlowPreferences.GetSyncFlowURL(ctx, operations.GetSyncFlowURLRequest{
-        AccountingKey: "vel",
-        CommerceKey: "error",
-        MerchantIdentifier: codatsynccommerce.String("deserunt"),
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-
-    if res.SyncFlowURL != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
-| `request`                                                                            | [operations.GetSyncFlowURLRequest](../../models/operations/getsyncflowurlrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
-| `opts`                                                                               | [][operations.Option](../../models/operations/option.md)                             | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
-
-
-### Response
-
-**[*operations.GetSyncFlowURLResponse](../../models/operations/getsyncflowurlresponse.md), error**
-
-
 ## GetVisibleAccounts
 
-Enable retrieval for accounts which are visible on sync flow.
+Return accounts which are visible on sync flow.
 
 ### Example Usage
 
@@ -124,8 +71,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/synccommerce"
-	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-commerce"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/models/operations"
 )
 
 func main() {
@@ -137,8 +85,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.SyncFlowPreferences.GetVisibleAccounts(ctx, operations.GetVisibleAccountsRequest{
-        ClientID: "674e0f46-7cc8-4796-ad15-1a05dfc2ddf7",
-        PlatformKey: "cc78ca1b-a928-4fc8-9674-2cb739205929",
+        ClientID: "67cc8796-ed15-41a0-9dfc-2ddf7cc78ca1",
+        PlatformKey: "ba928fc8-1674-42cb-b392-05929396fea7",
     })
     if err != nil {
         log.Fatal(err)
@@ -166,7 +114,7 @@ func main() {
 
 ## UpdateConfigTextSyncFlow
 
-To enable update of preferences set for the text fields on sync flow.
+Set preferences for the text fields on sync flow.
 
 ### Example Usage
 
@@ -176,8 +124,8 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/synccommerce"
-	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-commerce"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/models/shared"
 )
 
 func main() {
@@ -189,9 +137,13 @@ func main() {
 
     ctx := context.Background()
     res, err := s.SyncFlowPreferences.UpdateConfigTextSyncFlow(ctx, map[string]shared.Localization{
-        "natus": shared.Localization{
+        "iste": shared.Localization{
             Required: codatsynccommerce.Bool(false),
-            Text: codatsynccommerce.String("laboriosam"),
+            Text: codatsynccommerce.String("iure"),
+        },
+        "saepe": shared.Localization{
+            Required: codatsynccommerce.Bool(false),
+            Text: codatsynccommerce.String("quidem"),
         },
     })
     if err != nil {
@@ -220,7 +172,7 @@ func main() {
 
 ## UpdateVisibleAccountsSyncFlow
 
-To enable update of accounts visible preferences set on Sync Flow.
+Update which accounts are visible on sync flow.
 
 ### Example Usage
 
@@ -230,9 +182,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/synccommerce"
-	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-commerce"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/models/operations"
 )
 
 func main() {
@@ -246,13 +198,10 @@ func main() {
     res, err := s.SyncFlowPreferences.UpdateVisibleAccountsSyncFlow(ctx, operations.UpdateVisibleAccountsSyncFlowRequest{
         VisibleAccounts: &shared.VisibleAccounts{
             VisibleAccounts: []string{
-                "saepe",
-                "fuga",
-                "in",
-                "corporis",
+                "ipsa",
             },
         },
-        CommerceKey: "96eb10fa-aa23-452c-9955-907aff1a3a2f",
+        PlatformKey: "faaa2352-c595-4590-baff-1a3a2fa94677",
     })
     if err != nil {
         log.Fatal(err)

@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/models/shared"
 	"net/http"
 )
 
@@ -12,10 +12,52 @@ type RequestSyncForDateRangeRequest struct {
 	CompanyID string            `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
+func (o *RequestSyncForDateRangeRequest) GetSyncRange() *shared.SyncRange {
+	if o == nil {
+		return nil
+	}
+	return o.SyncRange
+}
+
+func (o *RequestSyncForDateRangeRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
 type RequestSyncForDateRangeResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// Success
 	SyncSummary *shared.SyncSummary
+}
+
+func (o *RequestSyncForDateRangeResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *RequestSyncForDateRangeResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *RequestSyncForDateRangeResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *RequestSyncForDateRangeResponse) GetSyncSummary() *shared.SyncSummary {
+	if o == nil {
+		return nil
+	}
+	return o.SyncSummary
 }

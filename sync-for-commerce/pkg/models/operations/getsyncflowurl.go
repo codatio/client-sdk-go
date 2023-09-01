@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/models/shared"
 	"net/http"
 )
 
@@ -16,10 +16,59 @@ type GetSyncFlowURLRequest struct {
 	MerchantIdentifier *string `queryParam:"style=form,explode=true,name=merchantIdentifier"`
 }
 
+func (o *GetSyncFlowURLRequest) GetAccountingKey() string {
+	if o == nil {
+		return ""
+	}
+	return o.AccountingKey
+}
+
+func (o *GetSyncFlowURLRequest) GetCommerceKey() string {
+	if o == nil {
+		return ""
+	}
+	return o.CommerceKey
+}
+
+func (o *GetSyncFlowURLRequest) GetMerchantIdentifier() *string {
+	if o == nil {
+		return nil
+	}
+	return o.MerchantIdentifier
+}
+
 type GetSyncFlowURLResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// Success
 	SyncFlowURL *shared.SyncFlowURL
+}
+
+func (o *GetSyncFlowURLResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetSyncFlowURLResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetSyncFlowURLResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetSyncFlowURLResponse) GetSyncFlowURL() *shared.SyncFlowURL {
+	if o == nil {
+		return nil
+	}
+	return o.SyncFlowURL
 }

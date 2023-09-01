@@ -2,17 +2,21 @@
 
 ## Overview
 
-Initiate a sync of Sync for Commerce company data into their respective accounting software.
+Initiate and monitor the sync of company data into accounting software.
 
 ### Available Operations
 
-* [GetSyncStatus](#getsyncstatus) - Get status for a company's syncs
-* [RequestSync](#requestsync) - Sync new
-* [RequestSyncForDateRange](#requestsyncfordaterange) - Sync range
+* [Get](#get) - Get Sync status
+* [GetLastSuccessfulSync](#getlastsuccessfulsync) - Last successful sync
+* [GetLatestSync](#getlatestsync) - Latest sync status
+* [GetStatus](#getstatus) - Get sync status
+* [List](#list) - List sync statuses
+* [Request](#request) - Initiate new sync
+* [RequestForDateRange](#requestfordaterange) - Initiate sync for specific range
 
-## GetSyncStatus
+## Get
 
-Check the sync history and sync status for a company.
+Get the sync status for a specified sync
 
 ### Example Usage
 
@@ -22,8 +26,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/synccommerce"
-	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-commerce"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/models/operations"
 )
 
 func main() {
@@ -34,7 +39,164 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Sync.GetSyncStatus(ctx, operations.GetSyncStatusRequest{
+    res, err := s.Sync.Get(ctx, operations.GetSyncByIDRequest{
+        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+        SyncID: "6fb40d5e-b13e-11ed-afa1-0242ac120002",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.CompanySyncStatus != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
+| `request`                                                                      | [operations.GetSyncByIDRequest](../../models/operations/getsyncbyidrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| `opts`                                                                         | [][operations.Option](../../models/operations/option.md)                       | :heavy_minus_sign:                                                             | The options for this request.                                                  |
+
+
+### Response
+
+**[*operations.GetSyncByIDResponse](../../models/operations/getsyncbyidresponse.md), error**
+
+
+## GetLastSuccessfulSync
+
+Gets the status of the last successful sync
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"log"
+	"github.com/codatio/client-sdk-go/sync-for-commerce"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/models/operations"
+)
+
+func main() {
+    s := codatsynccommerce.New(
+        codatsynccommerce.WithSecurity(shared.Security{
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
+        }),
+    )
+
+    ctx := context.Background()
+    res, err := s.Sync.GetLastSuccessfulSync(ctx, operations.GetLastSuccessfulSyncRequest{
+        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.CompanySyncStatus != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                              | :heavy_check_mark:                                                                                 | The context to use for the request.                                                                |
+| `request`                                                                                          | [operations.GetLastSuccessfulSyncRequest](../../models/operations/getlastsuccessfulsyncrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
+| `opts`                                                                                             | [][operations.Option](../../models/operations/option.md)                                           | :heavy_minus_sign:                                                                                 | The options for this request.                                                                      |
+
+
+### Response
+
+**[*operations.GetLastSuccessfulSyncResponse](../../models/operations/getlastsuccessfulsyncresponse.md), error**
+
+
+## GetLatestSync
+
+Gets the latest sync status
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"log"
+	"github.com/codatio/client-sdk-go/sync-for-commerce"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/models/operations"
+)
+
+func main() {
+    s := codatsynccommerce.New(
+        codatsynccommerce.WithSecurity(shared.Security{
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
+        }),
+    )
+
+    ctx := context.Background()
+    res, err := s.Sync.GetLatestSync(ctx, operations.GetLatestSyncRequest{
+        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.CompanySyncStatus != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
+| `request`                                                                          | [operations.GetLatestSyncRequest](../../models/operations/getlatestsyncrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `opts`                                                                             | [][operations.Option](../../models/operations/option.md)                           | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
+
+
+### Response
+
+**[*operations.GetLatestSyncResponse](../../models/operations/getlatestsyncresponse.md), error**
+
+
+## GetStatus
+
+Gets a list of sync statuses.
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"log"
+	"github.com/codatio/client-sdk-go/sync-for-commerce"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/models/operations"
+)
+
+func main() {
+    s := codatsynccommerce.New(
+        codatsynccommerce.WithSecurity(shared.Security{
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
+        }),
+    )
+
+    ctx := context.Background()
+    res, err := s.Sync.GetStatus(ctx, operations.GetSyncStatusRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -61,10 +223,9 @@ func main() {
 **[*operations.GetSyncStatusResponse](../../models/operations/getsyncstatusresponse.md), error**
 
 
-## RequestSync
+## List
 
-Run a Commerce sync from the last successful sync up to the date provided (optional), otherwise UtcNow is used.
-If there was no previously successful sync, the start date in the config is used.
+Gets a list of sync statuses
 
 ### Example Usage
 
@@ -74,9 +235,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/synccommerce"
-	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-commerce"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/models/operations"
 )
 
 func main() {
@@ -87,7 +248,59 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Sync.RequestSync(ctx, operations.RequestSyncRequest{
+    res, err := s.Sync.List(ctx, operations.ListSyncsRequest{
+        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.CompanySyncStatuses != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `ctx`                                                                      | [context.Context](https://pkg.go.dev/context#Context)                      | :heavy_check_mark:                                                         | The context to use for the request.                                        |
+| `request`                                                                  | [operations.ListSyncsRequest](../../models/operations/listsyncsrequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
+| `opts`                                                                     | [][operations.Option](../../models/operations/option.md)                   | :heavy_minus_sign:                                                         | The options for this request.                                              |
+
+
+### Response
+
+**[*operations.ListSyncsResponse](../../models/operations/listsyncsresponse.md), error**
+
+
+## Request
+
+Run a Commerce sync from the last successful sync up to the date provided (optional), otherwise UtcNow is used.\r\nIf there was no previously successful sync, the start date in the config is used.
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"log"
+	"github.com/codatio/client-sdk-go/sync-for-commerce"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/models/operations"
+)
+
+func main() {
+    s := codatsynccommerce.New(
+        codatsynccommerce.WithSecurity(shared.Security{
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
+        }),
+    )
+
+    ctx := context.Background()
+    res, err := s.Sync.Request(ctx, operations.RequestSyncRequest{
         SyncToLatestArgs: &shared.SyncToLatestArgs{
             SyncTo: codatsynccommerce.String("2022-10-23T00:00:00.000Z"),
         },
@@ -117,9 +330,9 @@ func main() {
 **[*operations.RequestSyncResponse](../../models/operations/requestsyncresponse.md), error**
 
 
-## RequestSyncForDateRange
+## RequestForDateRange
 
-Run a Commerce sync from the specified start date to the specified finish date in the request payload.
+Initiate a sync for the specified start date to the specified finish date in the request payload.
 
 ### Example Usage
 
@@ -129,9 +342,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/synccommerce"
-	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-commerce"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/models/operations"
 )
 
 func main() {
@@ -142,7 +355,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Sync.RequestSyncForDateRange(ctx, operations.RequestSyncForDateRangeRequest{
+    res, err := s.Sync.RequestForDateRange(ctx, operations.RequestSyncForDateRangeRequest{
         SyncRange: &shared.SyncRange{
             DateRange: shared.SyncRangeDateRange{
                 Finish: "2022-10-23T00:00:00.000Z",

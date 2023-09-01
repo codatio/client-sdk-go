@@ -6,9 +6,10 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/synccommerce/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/utils"
 	"io"
 	"net/http"
 	"strings"
@@ -25,9 +26,9 @@ func newIntegrations(sdkConfig sdkConfiguration) *integrations {
 	}
 }
 
-// GetIntegrationBranding - Get branding for an integration
+// GetBranding - Get branding for an integration
 // Retrieve Integration branding assets.
-func (s *integrations) GetIntegrationBranding(ctx context.Context, request operations.GetIntegrationBrandingRequest, opts ...operations.Option) (*operations.GetIntegrationBrandingResponse, error) {
+func (s *integrations) GetBranding(ctx context.Context, request operations.GetIntegrationBrandingRequest, opts ...operations.Option) (*operations.GetIntegrationBrandingResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -108,15 +109,17 @@ func (s *integrations) GetIntegrationBranding(ctx context.Context, request opera
 			}
 
 			res.Branding = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
 	return res, nil
 }
 
-// ListIntegrations - List information on Codat's supported integrations
-// Retrieve a list of available integrations support by datatype and state of release.
-func (s *integrations) ListIntegrations(ctx context.Context, request operations.ListIntegrationsRequest, opts ...operations.Option) (*operations.ListIntegrationsResponse, error) {
+// List - List integrations
+// Retrieve a list of available integrations support by data type and state of release.
+func (s *integrations) List(ctx context.Context, request operations.ListIntegrationsRequest, opts ...operations.Option) (*operations.ListIntegrationsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -198,6 +201,8 @@ func (s *integrations) ListIntegrations(ctx context.Context, request operations.
 			}
 
 			res.Integrations = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 

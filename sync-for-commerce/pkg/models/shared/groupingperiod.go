@@ -8,3 +8,17 @@ type GroupingPeriod struct {
 	// Grouping period i.e. Daily sales.
 	SelectedGroupingPeriod *string `json:"selectedGroupingPeriod,omitempty"`
 }
+
+func (o *GroupingPeriod) GetGroupingPeriodOptions() []string {
+	if o == nil {
+		return nil
+	}
+	return o.GroupingPeriodOptions
+}
+
+func (o *GroupingPeriod) GetSelectedGroupingPeriod() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SelectedGroupingPeriod
+}

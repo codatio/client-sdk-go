@@ -6,3 +6,10 @@ type CreateCompany struct {
 	// Name of the company in Codat with a partner-commerce data connection.
 	Name string `json:"name"`
 }
+
+func (o *CreateCompany) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}

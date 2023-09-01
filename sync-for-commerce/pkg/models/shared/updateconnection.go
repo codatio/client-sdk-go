@@ -6,3 +6,10 @@ type UpdateConnection struct {
 	// The current authorization status of the data connection.
 	Status *string `json:"status,omitempty"`
 }
+
+func (o *UpdateConnection) GetStatus() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Status
+}

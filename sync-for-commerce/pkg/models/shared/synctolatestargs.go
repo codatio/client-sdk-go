@@ -24,3 +24,10 @@ type SyncToLatestArgs struct {
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	SyncTo *string `json:"syncTo,omitempty"`
 }
+
+func (o *SyncToLatestArgs) GetSyncTo() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SyncTo
+}

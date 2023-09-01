@@ -3,13 +3,27 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/synccommerce/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/models/shared"
 	"net/http"
 )
 
 type UpdateVisibleAccountsSyncFlowRequest struct {
 	VisibleAccounts *shared.VisibleAccounts `request:"mediaType=application/json"`
-	CommerceKey     string                  `pathParam:"style=simple,explode=false,name=commerceKey"`
+	PlatformKey     string                  `pathParam:"style=simple,explode=false,name=platformKey"`
+}
+
+func (o *UpdateVisibleAccountsSyncFlowRequest) GetVisibleAccounts() *shared.VisibleAccounts {
+	if o == nil {
+		return nil
+	}
+	return o.VisibleAccounts
+}
+
+func (o *UpdateVisibleAccountsSyncFlowRequest) GetPlatformKey() string {
+	if o == nil {
+		return ""
+	}
+	return o.PlatformKey
 }
 
 type UpdateVisibleAccountsSyncFlowResponse struct {
@@ -18,4 +32,32 @@ type UpdateVisibleAccountsSyncFlowResponse struct {
 	RawResponse *http.Response
 	// Success
 	VisibleAccounts *shared.VisibleAccounts
+}
+
+func (o *UpdateVisibleAccountsSyncFlowResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *UpdateVisibleAccountsSyncFlowResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *UpdateVisibleAccountsSyncFlowResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *UpdateVisibleAccountsSyncFlowResponse) GetVisibleAccounts() *shared.VisibleAccounts {
+	if o == nil {
+		return nil
+	}
+	return o.VisibleAccounts
 }
