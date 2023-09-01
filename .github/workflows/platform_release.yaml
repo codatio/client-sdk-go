@@ -1,8 +1,8 @@
-name: Release Common library
+name: Release Platform library
 'on':
   push:
     paths:
-    - previous-versions/common/RELEASES.md
+    - platform/RELEASES.md
     branches:
     - main
 jobs:

@@ -2,7 +2,7 @@ name: Release Banking library
 'on':
   push:
     paths:
-    - banking/RELEASES.md
+    - previous-versions/banking/RELEASES.md
     branches:
     - main
 jobs:

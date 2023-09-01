@@ -9,6 +9,6 @@ generation:
   singleTagPerOp: false
   telemetryEnabled: true
 go:
-  version: 0.23.1
+  version: 0.0.0
   maxMethodParams: 0
-  packageName: github.com/codatio/client-sdk-go/commerce
+  packageName: github.com/codatio/client-sdk-go/previous-versions/commerce

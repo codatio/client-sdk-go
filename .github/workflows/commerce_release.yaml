@@ -2,7 +2,7 @@ name: Release Commerce library
 'on':
   push:
     paths:
-    - commerce/RELEASES.md
+    - previous-versions/commerce/RELEASES.md
     branches:
     - main
 jobs:

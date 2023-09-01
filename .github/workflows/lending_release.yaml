@@ -1,8 +1,8 @@
-name: Release Common library
+name: Release Lending library
 'on':
   push:
     paths:
-    - previous-versions/common/RELEASES.md
+    - lending/RELEASES.md
     branches:
     - main
 jobs:

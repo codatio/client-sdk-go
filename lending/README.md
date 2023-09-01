@@ -1,6 +1,6 @@
-# Files
+# Lending
     
-﻿Use Codat's Files API to upload your SMB customers' files.
+Lending helps you make smarter credit decisions on small businesses by enabling you to pull your customers' latest data from the operating systems they are already using. You can use that data for automating decisioning and surfacing new insights on the customer, all via one API.
 
 <!-- Start SDK Installation -->
 <!-- End SDK Installation -->
