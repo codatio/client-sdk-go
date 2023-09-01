@@ -132,7 +132,7 @@ func New(opts ...SDKOption) *CodatBankFeeds {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "0.26.0",
+			SDKVersion:        "0.27.0",
 			GenVersion:        "2.91.4",
 		},
 	}

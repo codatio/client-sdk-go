@@ -18,6 +18,6 @@ features:
     nameOverrides: 2.81.1
     retries: 2.81.1
 go:
-  version: 0.26.0
+  version: 0.27.0
   maxMethodParams: 0
   packageName: github.com/codatio/client-sdk-go/bank-feeds
