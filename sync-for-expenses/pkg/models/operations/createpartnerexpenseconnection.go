@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/expenses/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/shared"
 	"net/http"
 )
 
@@ -11,12 +11,54 @@ type CreatePartnerExpenseConnectionRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
+func (o *CreatePartnerExpenseConnectionRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
 type CreatePartnerExpenseConnectionResponse struct {
-	ContentType string
 	// Success
-	DataConnection *shared.DataConnection
-	StatusCode     int
-	RawResponse    *http.Response
+	Connection  *shared.Connection
+	ContentType string
 	// The request made is not valid.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
+}
+
+func (o *CreatePartnerExpenseConnectionResponse) GetConnection() *shared.Connection {
+	if o == nil {
+		return nil
+	}
+	return o.Connection
+}
+
+func (o *CreatePartnerExpenseConnectionResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *CreatePartnerExpenseConnectionResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *CreatePartnerExpenseConnectionResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *CreatePartnerExpenseConnectionResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

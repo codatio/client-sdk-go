@@ -6,11 +6,11 @@ Create expense datasets and upload receipts.
 
 ### Available Operations
 
-* [CreateExpenseDataset](#createexpensedataset) - Create expense-transactions
-* [UpdateExpenseDataset](#updateexpensedataset) - Update expense-transactions
+* [Create](#create) - Create expense transaction
+* [Update](#update) - Update expense-transactions
 * [UploadAttachment](#uploadattachment) - Upload attachment
 
-## CreateExpenseDataset
+## Create
 
 Create an expense transaction
 
@@ -22,9 +22,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/expenses"
-	"github.com/codatio/client-sdk-go/expenses/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/expenses/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/operations"
 )
 
 func main() {
@@ -35,12 +35,19 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Expenses.CreateExpenseDataset(ctx, operations.CreateExpenseDatasetRequest{
+    res, err := s.Expenses.Create(ctx, operations.CreateExpenseTransactionRequest{
         CreateExpenseRequest: &shared.CreateExpenseRequest{
             Items: []shared.ExpenseTransaction{
                 shared.ExpenseTransaction{
+                    BankAccountRef: &shared.ExpenseTransactionBankAccountReference{
+                        ID: codatsyncexpenses.String("787dfb37-5707-4dc0-8a86-8d74e4cc78ea"),
+                    },
+                    ContactRef: &shared.ContactRef{
+                        ContactType: shared.ContactRefContactTypeSupplier.ToPointer(),
+                        ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
+                    },
                     Currency: "GBP",
-                    CurrencyRate: codatsyncexpenses.Float64(5928.45),
+                    CurrencyRate: codatsyncexpenses.Float64(4614.79),
                     ID: "4d7c6929-7770-412b-91bb-44d3bc71d111",
                     IssueDate: "2022-10-23T00:00:00.000Z",
                     Lines: []shared.ExpenseTransactionLine{
@@ -78,15 +85,6 @@ func main() {
                                 shared.RecordRef{
                                     ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
                                 },
-                                shared.RecordRef{
-                                    ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                                },
-                                shared.RecordRef{
-                                    ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                                },
-                                shared.RecordRef{
-                                    ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                                },
                             },
                         },
                         shared.ExpenseTransactionLine{
@@ -120,9 +118,6 @@ func main() {
                                 ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
                             },
                             TrackingRefs: []shared.RecordRef{
-                                shared.RecordRef{
-                                    ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                                },
                                 shared.RecordRef{
                                     ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
                                 },
@@ -140,8 +135,15 @@ func main() {
                     Type: shared.ExpenseTransactionTypePayment,
                 },
                 shared.ExpenseTransaction{
+                    BankAccountRef: &shared.ExpenseTransactionBankAccountReference{
+                        ID: codatsyncexpenses.String("787dfb37-5707-4dc0-8a86-8d74e4cc78ea"),
+                    },
+                    ContactRef: &shared.ContactRef{
+                        ContactType: shared.ContactRefContactTypeSupplier.ToPointer(),
+                        ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
+                    },
                     Currency: "GBP",
-                    CurrencyRate: codatsyncexpenses.Float64(4236.55),
+                    CurrencyRate: codatsyncexpenses.Float64(5820.2),
                     ID: "4d7c6929-7770-412b-91bb-44d3bc71d111",
                     IssueDate: "2022-10-23T00:00:00.000Z",
                     Lines: []shared.ExpenseTransactionLine{
@@ -161,18 +163,6 @@ func main() {
                                 shared.RecordRef{
                                     ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
                                 },
-                            },
-                        },
-                        shared.ExpenseTransactionLine{
-                            AccountRef: shared.RecordRef{
-                                ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                            },
-                            NetAmount: 110.42,
-                            TaxAmount: 14.43,
-                            TaxRateRef: &shared.RecordRef{
-                                ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                            },
-                            TrackingRefs: []shared.RecordRef{
                                 shared.RecordRef{
                                     ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
                                 },
@@ -191,6 +181,33 @@ func main() {
                                 ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
                             },
                             TrackingRefs: []shared.RecordRef{
+                                shared.RecordRef{
+                                    ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
+                                },
+                                shared.RecordRef{
+                                    ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
+                                },
+                                shared.RecordRef{
+                                    ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
+                                },
+                                shared.RecordRef{
+                                    ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
+                                },
+                            },
+                        },
+                        shared.ExpenseTransactionLine{
+                            AccountRef: shared.RecordRef{
+                                ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
+                            },
+                            NetAmount: 110.42,
+                            TaxAmount: 14.43,
+                            TaxRateRef: &shared.RecordRef{
+                                ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
+                            },
+                            TrackingRefs: []shared.RecordRef{
+                                shared.RecordRef{
+                                    ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
+                                },
                                 shared.RecordRef{
                                     ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
                                 },
@@ -205,8 +222,15 @@ func main() {
                     Type: shared.ExpenseTransactionTypePayment,
                 },
                 shared.ExpenseTransaction{
+                    BankAccountRef: &shared.ExpenseTransactionBankAccountReference{
+                        ID: codatsyncexpenses.String("787dfb37-5707-4dc0-8a86-8d74e4cc78ea"),
+                    },
+                    ContactRef: &shared.ContactRef{
+                        ContactType: shared.ContactRefContactTypeSupplier.ToPointer(),
+                        ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
+                    },
                     Currency: "GBP",
-                    CurrencyRate: codatsyncexpenses.Float64(8917.73),
+                    CurrencyRate: codatsyncexpenses.Float64(1059.07),
                     ID: "4d7c6929-7770-412b-91bb-44d3bc71d111",
                     IssueDate: "2022-10-23T00:00:00.000Z",
                     Lines: []shared.ExpenseTransactionLine{
@@ -241,6 +265,36 @@ func main() {
                                 shared.RecordRef{
                                     ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
                                 },
+                            },
+                        },
+                    },
+                    MerchantName: codatsyncexpenses.String("Amazon UK"),
+                    Notes: codatsyncexpenses.String("APPLE.COM/BILL - 09001077498 - Card Ending: 4590"),
+                    Type: shared.ExpenseTransactionTypePayment,
+                },
+                shared.ExpenseTransaction{
+                    BankAccountRef: &shared.ExpenseTransactionBankAccountReference{
+                        ID: codatsyncexpenses.String("787dfb37-5707-4dc0-8a86-8d74e4cc78ea"),
+                    },
+                    ContactRef: &shared.ContactRef{
+                        ContactType: shared.ContactRefContactTypeSupplier.ToPointer(),
+                        ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
+                    },
+                    Currency: "GBP",
+                    CurrencyRate: codatsyncexpenses.Float64(7742.34),
+                    ID: "4d7c6929-7770-412b-91bb-44d3bc71d111",
+                    IssueDate: "2022-10-23T00:00:00.000Z",
+                    Lines: []shared.ExpenseTransactionLine{
+                        shared.ExpenseTransactionLine{
+                            AccountRef: shared.RecordRef{
+                                ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
+                            },
+                            NetAmount: 110.42,
+                            TaxAmount: 14.43,
+                            TaxRateRef: &shared.RecordRef{
+                                ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
+                            },
+                            TrackingRefs: []shared.RecordRef{
                                 shared.RecordRef{
                                     ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
                                 },
@@ -256,27 +310,6 @@ func main() {
                                 ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
                             },
                             TrackingRefs: []shared.RecordRef{
-                                shared.RecordRef{
-                                    ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                                },
-                                shared.RecordRef{
-                                    ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                                },
-                            },
-                        },
-                        shared.ExpenseTransactionLine{
-                            AccountRef: shared.RecordRef{
-                                ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                            },
-                            NetAmount: 110.42,
-                            TaxAmount: 14.43,
-                            TaxRateRef: &shared.RecordRef{
-                                ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                            },
-                            TrackingRefs: []shared.RecordRef{
-                                shared.RecordRef{
-                                    ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                                },
                                 shared.RecordRef{
                                     ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
                                 },
@@ -309,19 +342,19 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
-| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
-| `request`                                                                                        | [operations.CreateExpenseDatasetRequest](../../models/operations/createexpensedatasetrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
-| `opts`                                                                                           | [][operations.Option](../../models/operations/option.md)                                         | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
+| Parameter                                                                                                | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
+| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                                    | :heavy_check_mark:                                                                                       | The context to use for the request.                                                                      |
+| `request`                                                                                                | [operations.CreateExpenseTransactionRequest](../../models/operations/createexpensetransactionrequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
+| `opts`                                                                                                   | [][operations.Option](../../models/operations/option.md)                                                 | :heavy_minus_sign:                                                                                       | The options for this request.                                                                            |
 
 
 ### Response
 
-**[*operations.CreateExpenseDatasetResponse](../../models/operations/createexpensedatasetresponse.md), error**
+**[*operations.CreateExpenseTransactionResponse](../../models/operations/createexpensetransactionresponse.md), error**
 
 
-## UpdateExpenseDataset
+## Update
 
 Update an expense transaction
 
@@ -333,9 +366,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/expenses"
-	"github.com/codatio/client-sdk-go/expenses/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/expenses/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/operations"
 )
 
 func main() {
@@ -346,71 +379,19 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Expenses.UpdateExpenseDataset(ctx, operations.UpdateExpenseDatasetRequest{
+    res, err := s.Expenses.Update(ctx, operations.UpdateExpenseTransactionRequest{
         UpdateExpenseRequest: &shared.UpdateExpenseRequest{
+            BankAccountRef: &shared.UpdateExpenseRequestBankAccountReference{
+                ID: codatsyncexpenses.String("787dfb37-5707-4dc0-8a86-8d74e4cc78ea"),
+            },
+            ContactRef: &shared.ContactRef{
+                ContactType: shared.ContactRefContactTypeSupplier.ToPointer(),
+                ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
+            },
             Currency: codatsyncexpenses.String("GBP"),
+            CurrencyRate: codatsyncexpenses.Float64(1352.18),
             IssueDate: "2022-06-28T00:00:00.000Z",
             Lines: []shared.ExpenseTransactionLine{
-                shared.ExpenseTransactionLine{
-                    AccountRef: shared.RecordRef{
-                        ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                    },
-                    NetAmount: 110.42,
-                    TaxAmount: 14.43,
-                    TaxRateRef: &shared.RecordRef{
-                        ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                    },
-                    TrackingRefs: []shared.RecordRef{
-                        shared.RecordRef{
-                            ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                        },
-                        shared.RecordRef{
-                            ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                        },
-                        shared.RecordRef{
-                            ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                        },
-                    },
-                },
-                shared.ExpenseTransactionLine{
-                    AccountRef: shared.RecordRef{
-                        ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                    },
-                    NetAmount: 110.42,
-                    TaxAmount: 14.43,
-                    TaxRateRef: &shared.RecordRef{
-                        ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                    },
-                    TrackingRefs: []shared.RecordRef{
-                        shared.RecordRef{
-                            ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                        },
-                        shared.RecordRef{
-                            ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                        },
-                    },
-                },
-                shared.ExpenseTransactionLine{
-                    AccountRef: shared.RecordRef{
-                        ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                    },
-                    NetAmount: 110.42,
-                    TaxAmount: 14.43,
-                    TaxRateRef: &shared.RecordRef{
-                        ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                    },
-                    TrackingRefs: []shared.RecordRef{
-                        shared.RecordRef{
-                            ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                        },
-                        shared.RecordRef{
-                            ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                        },
-                        shared.RecordRef{
-                            ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                        },
-                    },
-                },
                 shared.ExpenseTransactionLine{
                     AccountRef: shared.RecordRef{
                         ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
@@ -432,7 +413,7 @@ func main() {
             },
             MerchantName: codatsyncexpenses.String("Amazon UK"),
             Notes: codatsyncexpenses.String("APPLE.COM/BILL - 09001077498 - Card Ending: 4590"),
-            Type: "recusandae",
+            Type: "natus",
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         TransactionID: "336694d8-2dca-4cb5-a28d-3ccb83e55eee",
@@ -441,7 +422,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.UpdateExpenseDataset202ApplicationJSONObject != nil {
+    if res.UpdateExpenseResponse != nil {
         // handle response
     }
 }
@@ -449,16 +430,16 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
-| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
-| `request`                                                                                        | [operations.UpdateExpenseDatasetRequest](../../models/operations/updateexpensedatasetrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
-| `opts`                                                                                           | [][operations.Option](../../models/operations/option.md)                                         | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
+| Parameter                                                                                                | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
+| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                                    | :heavy_check_mark:                                                                                       | The context to use for the request.                                                                      |
+| `request`                                                                                                | [operations.UpdateExpenseTransactionRequest](../../models/operations/updateexpensetransactionrequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
+| `opts`                                                                                                   | [][operations.Option](../../models/operations/option.md)                                                 | :heavy_minus_sign:                                                                                       | The options for this request.                                                                            |
 
 
 ### Response
 
-**[*operations.UpdateExpenseDatasetResponse](../../models/operations/updateexpensedatasetresponse.md), error**
+**[*operations.UpdateExpenseTransactionResponse](../../models/operations/updateexpensetransactionresponse.md), error**
 
 
 ## UploadAttachment
@@ -473,8 +454,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/expenses"
-	"github.com/codatio/client-sdk-go/expenses/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-expenses"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/operations"
 )
 
 func main() {
@@ -485,10 +467,10 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Expenses.UploadAttachment(ctx, operations.UploadAttachmentRequest{
-        RequestBody: &operations.UploadAttachmentRequestBody{
-            Content: []byte("temporibus"),
-            RequestBody: "ab",
+    res, err := s.Expenses.UploadAttachment(ctx, operations.UploadExpenseAttachmentRequest{
+        RequestBody: &operations.UploadExpenseAttachmentRequestBody{
+            Content: []byte("sed"),
+            RequestBody: "iste",
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         SyncID: "6fb40d5e-b13e-11ed-afa1-0242ac120002",
@@ -506,14 +488,14 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
-| `request`                                                                                | [operations.UploadAttachmentRequest](../../models/operations/uploadattachmentrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
-| `opts`                                                                                   | [][operations.Option](../../models/operations/option.md)                                 | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
+| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                  | :heavy_check_mark:                                                                                     | The context to use for the request.                                                                    |
+| `request`                                                                                              | [operations.UploadExpenseAttachmentRequest](../../models/operations/uploadexpenseattachmentrequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
+| `opts`                                                                                                 | [][operations.Option](../../models/operations/option.md)                                               | :heavy_minus_sign:                                                                                     | The options for this request.                                                                          |
 
 
 ### Response
 
-**[*operations.UploadAttachmentResponse](../../models/operations/uploadattachmentresponse.md), error**
+**[*operations.UploadExpenseAttachmentResponse](../../models/operations/uploadexpenseattachmentresponse.md), error**
 

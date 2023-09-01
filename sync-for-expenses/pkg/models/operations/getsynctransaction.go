@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/expenses/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/shared"
 	"net/http"
 )
 
@@ -15,12 +15,68 @@ type GetSyncTransactionRequest struct {
 	TransactionID string `pathParam:"style=simple,explode=false,name=transactionId"`
 }
 
+func (o *GetSyncTransactionRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *GetSyncTransactionRequest) GetSyncID() string {
+	if o == nil {
+		return ""
+	}
+	return o.SyncID
+}
+
+func (o *GetSyncTransactionRequest) GetTransactionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.TransactionID
+}
+
 type GetSyncTransactionResponse struct {
 	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
-	// Success
-	TransactionMetadata []shared.TransactionMetadata
 	// Your API request was not properly authorized.
-	Schema *shared.Schema
+	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
+	// Success
+	Transaction *shared.Transaction
+}
+
+func (o *GetSyncTransactionResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetSyncTransactionResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *GetSyncTransactionResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetSyncTransactionResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetSyncTransactionResponse) GetTransaction() *shared.Transaction {
+	if o == nil {
+		return nil
+	}
+	return o.Transaction
 }

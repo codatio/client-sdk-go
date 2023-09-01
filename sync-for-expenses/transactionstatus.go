@@ -6,9 +6,10 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/codatio/client-sdk-go/expenses/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/expenses/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/expenses/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/utils"
 	"io"
 	"net/http"
 )
@@ -24,9 +25,9 @@ func newTransactionStatus(sdkConfig sdkConfiguration) *transactionStatus {
 	}
 }
 
-// GetSyncTransaction - Get Sync Transaction
+// Get - Get Sync Transaction
 // Gets the status of a transaction for a sync
-func (s *transactionStatus) GetSyncTransaction(ctx context.Context, request operations.GetSyncTransactionRequest, opts ...operations.Option) (*operations.GetSyncTransactionResponse, error) {
+func (s *transactionStatus) Get(ctx context.Context, request operations.GetSyncTransactionRequest, opts ...operations.Option) (*operations.GetSyncTransactionResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -47,7 +48,7 @@ func (s *transactionStatus) GetSyncTransaction(ctx context.Context, request oper
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
+	req.Header.Set("Accept", "application/json")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	client := s.sdkConfiguration.SecurityClient
@@ -101,12 +102,14 @@ func (s *transactionStatus) GetSyncTransaction(ctx context.Context, request oper
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out []shared.TransactionMetadata
+			var out *shared.Transaction
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.TransactionMetadata = out
+			res.Transaction = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -115,21 +118,23 @@ func (s *transactionStatus) GetSyncTransaction(ctx context.Context, request oper
 	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Schema
+			var out *shared.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.Schema = out
+			res.ErrorMessage = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
 	return res, nil
 }
 
-// ListSyncTransactions - Get Sync transactions
-// Get's the transactions and status for a sync
-func (s *transactionStatus) ListSyncTransactions(ctx context.Context, request operations.ListSyncTransactionsRequest, opts ...operations.Option) (*operations.ListSyncTransactionsResponse, error) {
+// List - List sync transactions
+// Gets the transactions and status for a sync
+func (s *transactionStatus) List(ctx context.Context, request operations.ListSyncTransactionsRequest, opts ...operations.Option) (*operations.ListSyncTransactionsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -150,7 +155,7 @@ func (s *transactionStatus) ListSyncTransactions(ctx context.Context, request op
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
+	req.Header.Set("Accept", "application/json")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
@@ -208,12 +213,14 @@ func (s *transactionStatus) ListSyncTransactions(ctx context.Context, request op
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.TransactionMetadataList
+			var out *shared.Transactions
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.TransactionMetadataList = out
+			res.Transactions = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -222,12 +229,14 @@ func (s *transactionStatus) ListSyncTransactions(ctx context.Context, request op
 	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Schema
+			var out *shared.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.Schema = out
+			res.ErrorMessage = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 

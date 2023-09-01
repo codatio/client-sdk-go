@@ -39,3 +39,59 @@ type CompanySyncStatus struct {
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	SyncUtc *string `json:"syncUtc,omitempty"`
 }
+
+func (o *CompanySyncStatus) GetCompanyID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CompanyID
+}
+
+func (o *CompanySyncStatus) GetDataPushed() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.DataPushed
+}
+
+func (o *CompanySyncStatus) GetErrorMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *CompanySyncStatus) GetSyncExceptionMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SyncExceptionMessage
+}
+
+func (o *CompanySyncStatus) GetSyncID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SyncID
+}
+
+func (o *CompanySyncStatus) GetSyncStatus() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SyncStatus
+}
+
+func (o *CompanySyncStatus) GetSyncStatusCode() *int {
+	if o == nil {
+		return nil
+	}
+	return o.SyncStatusCode
+}
+
+func (o *CompanySyncStatus) GetSyncUtc() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SyncUtc
+}

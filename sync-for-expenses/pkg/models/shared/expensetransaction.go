@@ -7,6 +7,18 @@ import (
 	"fmt"
 )
 
+type ExpenseTransactionBankAccountReference struct {
+	// Identifier of the bank account.
+	ID *string `json:"id,omitempty"`
+}
+
+func (o *ExpenseTransactionBankAccountReference) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
 // ExpenseTransactionType - The type of transaction.
 type ExpenseTransactionType string
 
@@ -54,6 +66,8 @@ func (e *ExpenseTransactionType) UnmarshalJSON(data []byte) error {
 }
 
 type ExpenseTransaction struct {
+	BankAccountRef *ExpenseTransactionBankAccountReference `json:"bankAccountRef,omitempty"`
+	ContactRef     *ContactRef                             `json:"contactRef,omitempty"`
 	// Currency the transaction was recorded in.
 	Currency string `json:"currency"`
 	// Rate to convert the total amount of the payment into the base currency for the company at the time of the payment.
@@ -112,4 +126,74 @@ type ExpenseTransaction struct {
 	Notes *string `json:"notes,omitempty"`
 	// The type of transaction.
 	Type ExpenseTransactionType `json:"type"`
+}
+
+func (o *ExpenseTransaction) GetBankAccountRef() *ExpenseTransactionBankAccountReference {
+	if o == nil {
+		return nil
+	}
+	return o.BankAccountRef
+}
+
+func (o *ExpenseTransaction) GetContactRef() *ContactRef {
+	if o == nil {
+		return nil
+	}
+	return o.ContactRef
+}
+
+func (o *ExpenseTransaction) GetCurrency() string {
+	if o == nil {
+		return ""
+	}
+	return o.Currency
+}
+
+func (o *ExpenseTransaction) GetCurrencyRate() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.CurrencyRate
+}
+
+func (o *ExpenseTransaction) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *ExpenseTransaction) GetIssueDate() string {
+	if o == nil {
+		return ""
+	}
+	return o.IssueDate
+}
+
+func (o *ExpenseTransaction) GetLines() []ExpenseTransactionLine {
+	if o == nil {
+		return nil
+	}
+	return o.Lines
+}
+
+func (o *ExpenseTransaction) GetMerchantName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.MerchantName
+}
+
+func (o *ExpenseTransaction) GetNotes() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Notes
+}
+
+func (o *ExpenseTransaction) GetType() ExpenseTransactionType {
+	if o == nil {
+		return ExpenseTransactionType("")
+	}
+	return o.Type
 }
