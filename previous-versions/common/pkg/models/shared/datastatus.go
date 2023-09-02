@@ -29,3 +29,38 @@ type DataStatus struct {
 	LatestSuccessfulSyncID *string `json:"latestSuccessfulSyncId,omitempty"`
 	LatestSyncID           *string `json:"latestSyncId,omitempty"`
 }
+
+func (o *DataStatus) GetCurrentStatus() string {
+	if o == nil {
+		return ""
+	}
+	return o.CurrentStatus
+}
+
+func (o *DataStatus) GetDataType() string {
+	if o == nil {
+		return ""
+	}
+	return o.DataType
+}
+
+func (o *DataStatus) GetLastSuccessfulSync() string {
+	if o == nil {
+		return ""
+	}
+	return o.LastSuccessfulSync
+}
+
+func (o *DataStatus) GetLatestSuccessfulSyncID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.LatestSuccessfulSyncID
+}
+
+func (o *DataStatus) GetLatestSyncID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.LatestSyncID
+}

@@ -8,3 +8,24 @@ type SyncSettings struct {
 	OverridesDefaults *bool         `json:"overridesDefaults,omitempty"`
 	Settings          []SyncSetting `json:"settings,omitempty"`
 }
+
+func (o *SyncSettings) GetClientID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ClientID
+}
+
+func (o *SyncSettings) GetOverridesDefaults() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.OverridesDefaults
+}
+
+func (o *SyncSettings) GetSettings() []SyncSetting {
+	if o == nil {
+		return nil
+	}
+	return o.Settings
+}

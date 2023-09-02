@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
 	"net/http"
 )
 
@@ -18,6 +18,34 @@ type ListRulesRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
+func (o *ListRulesRequest) GetOrderBy() *string {
+	if o == nil {
+		return nil
+	}
+	return o.OrderBy
+}
+
+func (o *ListRulesRequest) GetPage() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Page
+}
+
+func (o *ListRulesRequest) GetPageSize() *int {
+	if o == nil {
+		return nil
+	}
+	return o.PageSize
+}
+
+func (o *ListRulesRequest) GetQuery() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Query
+}
+
 type ListRulesResponse struct {
 	ContentType string
 	// Your `query` parameter was not correctly formed
@@ -26,4 +54,39 @@ type ListRulesResponse struct {
 	Rules       *shared.Rules
 	StatusCode  int
 	RawResponse *http.Response
+}
+
+func (o *ListRulesResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *ListRulesResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *ListRulesResponse) GetRules() *shared.Rules {
+	if o == nil {
+		return nil
+	}
+	return o.Rules
+}
+
+func (o *ListRulesResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *ListRulesResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

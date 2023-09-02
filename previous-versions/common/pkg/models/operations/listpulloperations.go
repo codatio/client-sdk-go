@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
 	"net/http"
 )
 
@@ -19,6 +19,41 @@ type ListPullOperationsRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
+func (o *ListPullOperationsRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *ListPullOperationsRequest) GetOrderBy() *string {
+	if o == nil {
+		return nil
+	}
+	return o.OrderBy
+}
+
+func (o *ListPullOperationsRequest) GetPage() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Page
+}
+
+func (o *ListPullOperationsRequest) GetPageSize() *int {
+	if o == nil {
+		return nil
+	}
+	return o.PageSize
+}
+
+func (o *ListPullOperationsRequest) GetQuery() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Query
+}
+
 type ListPullOperationsResponse struct {
 	ContentType string
 	// OK
@@ -27,4 +62,39 @@ type ListPullOperationsResponse struct {
 	ErrorMessage *shared.ErrorMessage
 	StatusCode   int
 	RawResponse  *http.Response
+}
+
+func (o *ListPullOperationsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *ListPullOperationsResponse) GetDataConnectionHistory() *shared.DataConnectionHistory {
+	if o == nil {
+		return nil
+	}
+	return o.DataConnectionHistory
+}
+
+func (o *ListPullOperationsResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *ListPullOperationsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *ListPullOperationsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

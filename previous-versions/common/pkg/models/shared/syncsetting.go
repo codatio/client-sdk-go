@@ -190,3 +190,59 @@ type SyncSetting struct {
 	// Number of hours after which this data type should be refreshed.
 	SyncSchedule int64 `json:"syncSchedule"`
 }
+
+func (o *SyncSetting) GetDataType() SyncSettingDataType {
+	if o == nil {
+		return SyncSettingDataType("")
+	}
+	return o.DataType
+}
+
+func (o *SyncSetting) GetFetchOnFirstLink() bool {
+	if o == nil {
+		return false
+	}
+	return o.FetchOnFirstLink
+}
+
+func (o *SyncSetting) GetIsLocked() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.IsLocked
+}
+
+func (o *SyncSetting) GetMonthsToSync() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.MonthsToSync
+}
+
+func (o *SyncSetting) GetSyncFromUtc() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SyncFromUtc
+}
+
+func (o *SyncSetting) GetSyncFromWindow() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.SyncFromWindow
+}
+
+func (o *SyncSetting) GetSyncOrder() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.SyncOrder
+}
+
+func (o *SyncSetting) GetSyncSchedule() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.SyncSchedule
+}

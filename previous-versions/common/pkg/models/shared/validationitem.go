@@ -7,3 +7,24 @@ type ValidationItem struct {
 	Message       *string `json:"message,omitempty"`
 	ValidatorName *string `json:"validatorName,omitempty"`
 }
+
+func (o *ValidationItem) GetItemID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ItemID
+}
+
+func (o *ValidationItem) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *ValidationItem) GetValidatorName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ValidatorName
+}

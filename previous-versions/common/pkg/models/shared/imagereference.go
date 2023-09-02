@@ -9,3 +9,17 @@ type ImageReference struct {
 	// Source URL for image.
 	Src *string `json:"src,omitempty"`
 }
+
+func (o *ImageReference) GetAlt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Alt
+}
+
+func (o *ImageReference) GetSrc() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Src
+}

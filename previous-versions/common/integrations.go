@@ -6,9 +6,10 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/codatio/client-sdk-go/common/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/common/pkg/utils"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/utils"
 	"io"
 	"net/http"
 	"strings"
@@ -48,7 +49,7 @@ func (s *integrations) Get(ctx context.Context, request operations.GetIntegratio
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
+	req.Header.Set("Accept", "application/json")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	client := s.sdkConfiguration.SecurityClient
@@ -108,6 +109,8 @@ func (s *integrations) Get(ctx context.Context, request operations.GetIntegratio
 			}
 
 			res.Integration = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -122,6 +125,8 @@ func (s *integrations) Get(ctx context.Context, request operations.GetIntegratio
 			}
 
 			res.ErrorMessage = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -151,7 +156,7 @@ func (s *integrations) GetBranding(ctx context.Context, request operations.GetIn
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
+	req.Header.Set("Accept", "application/json")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	client := s.sdkConfiguration.SecurityClient
@@ -211,6 +216,8 @@ func (s *integrations) GetBranding(ctx context.Context, request operations.GetIn
 			}
 
 			res.Branding = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -225,6 +232,8 @@ func (s *integrations) GetBranding(ctx context.Context, request operations.GetIn
 			}
 
 			res.ErrorMessage = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -251,7 +260,7 @@ func (s *integrations) List(ctx context.Context, request operations.ListIntegrat
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
+	req.Header.Set("Accept", "application/json")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
@@ -315,6 +324,8 @@ func (s *integrations) List(ctx context.Context, request operations.ListIntegrat
 			}
 
 			res.Integrations = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
 		fallthrough
@@ -329,6 +340,8 @@ func (s *integrations) List(ctx context.Context, request operations.ListIntegrat
 			}
 
 			res.ErrorMessage = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 

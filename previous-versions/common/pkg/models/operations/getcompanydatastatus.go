@@ -3,12 +3,19 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
 	"net/http"
 )
 
 type GetCompanyDataStatusRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
+}
+
+func (o *GetCompanyDataStatusRequest) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
 }
 
 type GetCompanyDataStatusResponse struct {
@@ -19,4 +26,39 @@ type GetCompanyDataStatusResponse struct {
 	ErrorMessage *shared.ErrorMessage
 	StatusCode   int
 	RawResponse  *http.Response
+}
+
+func (o *GetCompanyDataStatusResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetCompanyDataStatusResponse) GetDataStatusResponse() map[string]shared.DataStatus {
+	if o == nil {
+		return nil
+	}
+	return o.DataStatusResponse
+}
+
+func (o *GetCompanyDataStatusResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *GetCompanyDataStatusResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetCompanyDataStatusResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

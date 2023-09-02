@@ -9,6 +9,20 @@ type PushOperationTimedOutWebhookData struct {
 	PushOperationKey *string `json:"pushOperationKey,omitempty"`
 }
 
+func (o *PushOperationTimedOutWebhookData) GetDataType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DataType
+}
+
+func (o *PushOperationTimedOutWebhookData) GetPushOperationKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PushOperationKey
+}
+
 // PushOperationTimedOutWebhook - Webhook request body notifying that a push push operation has timed out.
 type PushOperationTimedOutWebhook struct {
 	// Unique identifier of the webhook event.
@@ -22,4 +36,46 @@ type PushOperationTimedOutWebhook struct {
 	RuleID *string `json:"RuleId,omitempty"`
 	// The type of rule.
 	Type *string `json:"Type,omitempty"`
+}
+
+func (o *PushOperationTimedOutWebhook) GetAlertID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AlertID
+}
+
+func (o *PushOperationTimedOutWebhook) GetCompanyID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CompanyID
+}
+
+func (o *PushOperationTimedOutWebhook) GetData() *PushOperationTimedOutWebhookData {
+	if o == nil {
+		return nil
+	}
+	return o.Data
+}
+
+func (o *PushOperationTimedOutWebhook) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *PushOperationTimedOutWebhook) GetRuleID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.RuleID
+}
+
+func (o *PushOperationTimedOutWebhook) GetType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Type
 }

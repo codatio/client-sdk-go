@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
 	"net/http"
 )
 
@@ -15,4 +15,39 @@ type CreateRuleResponse struct {
 	Rule        *shared.Rule
 	StatusCode  int
 	RawResponse *http.Response
+}
+
+func (o *CreateRuleResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *CreateRuleResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *CreateRuleResponse) GetRule() *shared.Rule {
+	if o == nil {
+		return nil
+	}
+	return o.Rule
+}
+
+func (o *CreateRuleResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *CreateRuleResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

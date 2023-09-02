@@ -1,4 +1,4 @@
-module github.com/codatio/client-sdk-go/common
+module github.com/codatio/client-sdk-go/previous-versions/common
 
 go 1.14
 

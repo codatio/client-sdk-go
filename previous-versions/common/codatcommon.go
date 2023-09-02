@@ -4,8 +4,8 @@ package codatcommon
 
 import (
 	"fmt"
-	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/common/pkg/utils"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/utils"
 	"net/http"
 	"time"
 )
@@ -59,7 +59,7 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 	return ServerList[c.ServerIndex], nil
 }
 
-// CodatCommon - Common API: Common API
+// CodatCommon - Platform API: Platform API
 // An API for the common components of all of Codat's products.
 //
 // These end points cover creating and managing your companies, data connections, and integrations.
@@ -138,9 +138,9 @@ func New(opts ...SDKOption) *CodatCommon {
 	sdk := &CodatCommon{
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
-			OpenAPIDocVersion: "2.1.0",
-			SDKVersion:        "0.25.0",
-			GenVersion:        "2.65.0",
+			OpenAPIDocVersion: "3.0.0",
+			SDKVersion:        "0.1.0",
+			GenVersion:        "2.91.4",
 		},
 	}
 	for _, opt := range opts {
