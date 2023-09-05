@@ -50,10 +50,10 @@ type ListRulesResponse struct {
 	ContentType string
 	// Your `query` parameter was not correctly formed
 	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 	// OK
-	Rules       *shared.Rules
-	StatusCode  int
-	RawResponse *http.Response
+	Webhooks *shared.Webhooks
 }
 
 func (o *ListRulesResponse) GetContentType() string {
@@ -70,13 +70,6 @@ func (o *ListRulesResponse) GetErrorMessage() *shared.ErrorMessage {
 	return o.ErrorMessage
 }
 
-func (o *ListRulesResponse) GetRules() *shared.Rules {
-	if o == nil {
-		return nil
-	}
-	return o.Rules
-}
-
 func (o *ListRulesResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
@@ -89,4 +82,11 @@ func (o *ListRulesResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
+}
+
+func (o *ListRulesResponse) GetWebhooks() *shared.Webhooks {
+	if o == nil {
+		return nil
+	}
+	return o.Webhooks
 }

@@ -379,7 +379,7 @@ func main() {
         OverridesDefaults: false,
         Settings: []shared.SyncSetting{
             shared.SyncSetting{
-                DataType: shared.SyncSettingDataTypeInvoices,
+                DataType: shared.SyncSettingDataTypesInvoices,
                 FetchOnFirstLink: false,
                 IsLocked: codatplatform.Bool(false),
                 MonthsToSync: codatplatform.Int64(24),
@@ -389,7 +389,7 @@ func main() {
                 SyncSchedule: 24,
             },
             shared.SyncSetting{
-                DataType: shared.SyncSettingDataTypeInvoices,
+                DataType: shared.SyncSettingDataTypesInvoices,
                 FetchOnFirstLink: false,
                 IsLocked: codatplatform.Bool(false),
                 MonthsToSync: codatplatform.Int64(24),
@@ -399,7 +399,7 @@ func main() {
                 SyncSchedule: 24,
             },
             shared.SyncSetting{
-                DataType: shared.SyncSettingDataTypeInvoices,
+                DataType: shared.SyncSettingDataTypesInvoices,
                 FetchOnFirstLink: false,
                 IsLocked: codatplatform.Bool(false),
                 MonthsToSync: codatplatform.Int64(24),
@@ -409,7 +409,7 @@ func main() {
                 SyncSchedule: 24,
             },
             shared.SyncSetting{
-                DataType: shared.SyncSettingDataTypeInvoices,
+                DataType: shared.SyncSettingDataTypesInvoices,
                 FetchOnFirstLink: false,
                 IsLocked: codatplatform.Bool(false),
                 MonthsToSync: codatplatform.Int64(24),

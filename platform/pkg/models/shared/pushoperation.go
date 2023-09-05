@@ -28,8 +28,6 @@ type PushOperation struct {
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	CompletedOnUtc *string `json:"completedOnUtc,omitempty"`
-	// Object submitted in push operation.
-	Data map[string]interface{} `json:"data,omitempty"`
 	// Unique identifier for a company's data connection.
 	DataConnectionKey string `json:"dataConnectionKey"`
 	// Available Data types
@@ -86,13 +84,6 @@ func (o *PushOperation) GetCompletedOnUtc() *string {
 		return nil
 	}
 	return o.CompletedOnUtc
-}
-
-func (o *PushOperation) GetData() map[string]interface{} {
-	if o == nil {
-		return nil
-	}
-	return o.Data
 }
 
 func (o *PushOperation) GetDataConnectionKey() string {

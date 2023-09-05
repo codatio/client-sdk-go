@@ -50,7 +50,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.Rule != nil {
+    if res.Webhook != nil {
         // handle response
     }
 }
@@ -102,7 +102,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.Rule != nil {
+    if res.Webhook != nil {
         // handle response
     }
 }
@@ -157,7 +157,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.Rules != nil {
+    if res.Webhooks != nil {
         // handle response
     }
 }
