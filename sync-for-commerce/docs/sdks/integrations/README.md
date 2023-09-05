@@ -35,7 +35,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Integrations.GetBranding(ctx, operations.GetIntegrationBrandingRequest{
-        PlatformKey: "magnam",
+        PlatformKey: "debitis",
     })
     if err != nil {
         log.Fatal(err)
@@ -90,7 +90,7 @@ func main() {
         OrderBy: codatsynccommerce.String("-modifiedDate"),
         Page: codatsynccommerce.Int(1),
         PageSize: codatsynccommerce.Int(100),
-        Query: codatsynccommerce.String("debitis"),
+        Query: codatsynccommerce.String("ipsa"),
     })
     if err != nil {
         log.Fatal(err)

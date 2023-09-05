@@ -2,7 +2,7 @@ advancedcontrols.go
 connections.go
 integrations.go
 sync.go
-syncflowpreferences.go
+syncflowsettings.go
 codatsynccommerce.go
 go.mod
 go.sum
@@ -98,7 +98,7 @@ docs/sdks/advancedcontrols/README.md
 docs/sdks/connections/README.md
 docs/sdks/integrations/README.md
 docs/sdks/sync/README.md
-docs/sdks/syncflowpreferences/README.md
+docs/sdks/syncflowsettings/README.md
 USAGE.md
 docs/models/operations/createcompanyresponse.md
 docs/models/operations/getconfigurationrequest.md
@@ -182,7 +182,7 @@ docs/models/shared/brandingbutton.md
 docs/models/shared/integrations.md
 docs/models/shared/integration.md
 docs/models/shared/sourcetype.md
-docs/models/shared/datatypefeaturedatatype.md
+docs/models/shared/datatypefeaturedatatypes.md
 docs/models/shared/datatypefeature.md
 docs/models/shared/supportedfeature.md
 docs/models/shared/featuretype.md

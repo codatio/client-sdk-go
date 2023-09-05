@@ -277,3 +277,13 @@ Based on:
 - [go v0.22.0] sync-for-commerce
 ### Releases
 - [Go v0.22.0] https://github.com/codatio/client-sdk-go/releases/tag/sync-for-commerce/v0.22.0 - sync-for-commerce
+
+## 2023-09-05 00:15:31
+### Changes
+Based on:
+- OpenAPI Doc 1.1 https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Sync-Commerce.yaml
+- Speakeasy CLI 1.78.3 (2.96.3) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [go v0.22.1] sync-for-commerce
+### Releases
+- [Go v0.22.1] https://github.com/codatio/client-sdk-go/releases/tag/sync-for-commerce/v0.22.1 - sync-for-commerce

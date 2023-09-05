@@ -61,22 +61,21 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 
 // CodatSyncCommerce - Sync for Commerce: The API for Sync for Commerce.
 //
-// Sync for Commerce is an API and a set of supporting tools built to enable e-commerce and point of sale platforms to provide high-quality integrations with numerous accounting platform through standardized API, seamlessly transforming business sale's data into accounting artefacts.
+// Sync for Commerce automatically replicates and reconciles sales data from a merchant’s source PoS, Payments, and eCommerce systems into their accounting software. This eliminates manual processing by merchants and transforms their ability to run and grow their business.
 //
 // [Read More...](https://docs.codat.io/commerce/overview)
 //
-// <!-- Not seeing the end points you're expecting? We've reorganized our products, and you may be using a [different version of Sync for Commerce](https://docs.codat.io/sync-for-commerce-v1-api#/). -->
+// Not seeing the endpoints you're expecting? We've [reorganized our products](https://docs.codat.io/updates/230901-new-products), and you may be using a [different version of Sync for Commerce](https://docs.codat.io/sync-for-commerce-v1-api#/).
 type CodatSyncCommerce struct {
 	// AdvancedControls - Advanced company management and sync preferences.
 	AdvancedControls *advancedControls
-	// Connections - Create new and manage existing Sync for Commerce companies using the Sync flow UI.
-	Connections *connections
+	Connections      *connections
 	// Integrations - View useful information about codat's integrations.
 	Integrations *integrations
 	// Sync - Initiate and monitor the sync of company data into accounting software.
 	Sync *sync
-	// SyncFlowPreferences - Configure preferences for any given Sync for Commerce company using sync flow.
-	SyncFlowPreferences *syncFlowPreferences
+	// SyncFlowSettings - Configure preferences for any given Sync for Commerce company using sync flow.
+	SyncFlowSettings *syncFlowSettings
 
 	sdkConfiguration sdkConfiguration
 }
@@ -132,8 +131,8 @@ func New(opts ...SDKOption) *CodatSyncCommerce {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.1",
-			SDKVersion:        "0.22.0",
-			GenVersion:        "2.91.4",
+			SDKVersion:        "0.22.1",
+			GenVersion:        "2.96.3",
 		},
 	}
 	for _, opt := range opts {
@@ -160,7 +159,7 @@ func New(opts ...SDKOption) *CodatSyncCommerce {
 
 	sdk.Sync = newSync(sdk.sdkConfiguration)
 
-	sdk.SyncFlowPreferences = newSyncFlowPreferences(sdk.sdkConfiguration)
+	sdk.SyncFlowSettings = newSyncFlowSettings(sdk.sdkConfiguration)
 
 	return sdk
 }

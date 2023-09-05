@@ -14,7 +14,6 @@ import (
 	"net/http"
 )
 
-// connections - Create new and manage existing Sync for Commerce companies using the Sync flow UI.
 type connections struct {
 	sdkConfiguration sdkConfiguration
 }
@@ -141,8 +140,8 @@ func (s *connections) Create(ctx context.Context, request operations.CreateConne
 	return res, nil
 }
 
-// GetSyncFlowURL - Retrieve sync flow url
-// Get a URL for Sync Flow including a one time passcode.
+// GetSyncFlowURL - Start new sync flow
+// Create a new company and connections. Get a URL for Sync Flow, including a one time passcode.
 func (s *connections) GetSyncFlowURL(ctx context.Context, request operations.GetSyncFlowURLRequest, opts ...operations.Option) (*operations.GetSyncFlowURLResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

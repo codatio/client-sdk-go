@@ -1,4 +1,4 @@
-# SyncFlowPreferences
+# SyncFlowSettings
 
 ## Overview
 
@@ -35,7 +35,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.SyncFlowPreferences.GetConfigTextSyncFlow(ctx)
+    res, err := s.SyncFlowSettings.GetConfigTextSyncFlow(ctx)
     if err != nil {
         log.Fatal(err)
     }
@@ -84,9 +84,9 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.SyncFlowPreferences.GetVisibleAccounts(ctx, operations.GetVisibleAccountsRequest{
-        ClientID: "67cc8796-ed15-41a0-9dfc-2ddf7cc78ca1",
-        PlatformKey: "ba928fc8-1674-42cb-b392-05929396fea7",
+    res, err := s.SyncFlowSettings.GetVisibleAccounts(ctx, operations.GetVisibleAccountsRequest{
+        ClientID: "7cc8796e-d151-4a05-9fc2-ddf7cc78ca1b",
+        PlatformKey: "a928fc81-6742-4cb7-b920-5929396fea75",
     })
     if err != nil {
         log.Fatal(err)
@@ -136,14 +136,18 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.SyncFlowPreferences.UpdateConfigTextSyncFlow(ctx, map[string]shared.Localization{
-        "iste": shared.Localization{
+    res, err := s.SyncFlowSettings.UpdateConfigTextSyncFlow(ctx, map[string]shared.Localization{
+        "iure": shared.Localization{
             Required: codatsynccommerce.Bool(false),
-            Text: codatsynccommerce.String("iure"),
+            Text: codatsynccommerce.String("saepe"),
         },
-        "saepe": shared.Localization{
+        "quidem": shared.Localization{
             Required: codatsynccommerce.Bool(false),
-            Text: codatsynccommerce.String("quidem"),
+            Text: codatsynccommerce.String("architecto"),
+        },
+        "ipsa": shared.Localization{
+            Required: codatsynccommerce.Bool(false),
+            Text: codatsynccommerce.String("reiciendis"),
         },
     })
     if err != nil {
@@ -195,13 +199,15 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.SyncFlowPreferences.UpdateVisibleAccountsSyncFlow(ctx, operations.UpdateVisibleAccountsSyncFlowRequest{
+    res, err := s.SyncFlowSettings.UpdateVisibleAccountsSyncFlow(ctx, operations.UpdateVisibleAccountsSyncFlowRequest{
         VisibleAccounts: &shared.VisibleAccounts{
             VisibleAccounts: []string{
-                "ipsa",
+                "mollitia",
+                "laborum",
+                "dolores",
             },
         },
-        PlatformKey: "faaa2352-c595-4590-baff-1a3a2fa94677",
+        PlatformKey: "352c5955-907a-4ff1-a3a2-fa9467739251",
     })
     if err != nil {
         log.Fatal(err)
