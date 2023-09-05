@@ -25,9 +25,28 @@ func newSourceAccounts(sdkConfig sdkConfiguration) *sourceAccounts {
 	}
 }
 
-// Create - Create a bank feed bank account
-// Post a BankFeed BankAccount for a single data source connected. to a single company.
-func (s *sourceAccounts) Create(ctx context.Context, request operations.CreateBankFeedRequest, opts ...operations.Option) (*operations.CreateBankFeedResponse, error) {
+// Create - Create source account
+// The _Create Source Account_ endpoint allows you to create a representation of a bank account within Codat's domain. This source account can later be mapped to a target account in your accounting software.
+//
+// #### Account Mapping Variability
+//
+// The method of mapping this source account to your target account varies depending on the accounting package you use.
+//
+// #### Mapping Options:
+//
+// 1. **API Mapping**: Integrate the mapping journey directly into your application for a seamless user experience.
+// 2. **Codat UI Mapping**: If you prefer a quicker setup, you can utilize Codat's provided user interface for mapping.
+// 3. **Accounting Platform Mapping**: For some accounting software, the mapping process must be conducted within the software itself.
+//
+// ### Integration specific behaviour
+//
+// | Bank Feed Integration | API Mapping | Codat UI Mapping | Accounting Platform Mapping |
+// | --------------------- | ----------- | ---------------- | --------------------------- |
+// | Xero                  | ✅          | ✅               |                             |
+// | FreeAgent             | ✅          | ✅               |                             |
+// | QuickBooks Online     |             |                  | ✅                          |
+// | Sage                  |             |                  | ✅                          |
+func (s *sourceAccounts) Create(ctx context.Context, request operations.CreateSourceAccountRequest, opts ...operations.Option) (*operations.CreateSourceAccountResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -44,7 +63,7 @@ func (s *sourceAccounts) Create(ctx context.Context, request operations.CreateBa
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "BankFeedAccount", "json")
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "SourceAccount", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -100,7 +119,7 @@ func (s *sourceAccounts) Create(ctx context.Context, request operations.CreateBa
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.CreateBankFeedResponse{
+	res := &operations.CreateSourceAccountResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -109,12 +128,12 @@ func (s *sourceAccounts) Create(ctx context.Context, request operations.CreateBa
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.BankFeedAccount
+			var out *shared.SourceAccount
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.BankFeedAccount = out
+			res.SourceAccount = out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -141,11 +160,11 @@ func (s *sourceAccounts) Create(ctx context.Context, request operations.CreateBa
 	return res, nil
 }
 
-// Delete - Delete bank feed bank account
-// The *delete bank feed bank account* endpoint enables you to remove a source account.
+// Delete - Delete source account
+// The _Delete source account_ endpoint enables you to remove a source account.
 //
 // Removing a source account will also remove any mapping between the source bank feed bank accounts and the target bankfeed bank account.
-func (s *sourceAccounts) Delete(ctx context.Context, request operations.DeleteBankFeedBankAccountRequest, opts ...operations.Option) (*operations.DeleteBankFeedBankAccountResponse, error) {
+func (s *sourceAccounts) Delete(ctx context.Context, request operations.DeleteSourceAccountRequest, opts ...operations.Option) (*operations.DeleteSourceAccountResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -211,7 +230,7 @@ func (s *sourceAccounts) Delete(ctx context.Context, request operations.DeleteBa
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.DeleteBankFeedBankAccountResponse{
+	res := &operations.DeleteSourceAccountResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -450,11 +469,11 @@ func (s *sourceAccounts) GenerateCredentials(ctx context.Context, request operat
 	return res, nil
 }
 
-// List - List bank feed bank accounts
-// The *List bank feed bank accounts* endpoint returns a list of [bank feed accounts](https://docs.codat.io/bank-feeds-api#/schemas/BankFeedAccount) for a given company's connection.
+// List - List source accounts
+// The _List source accounts_ endpoint returns a list of [source accounts](https://docs.codat.io/bank-feeds-api#/schemas/BankFeedAccount) for a given company's connection.
 //
-// [Bank feed accounts](https://docs.codat.io/bank-feeds-api#/schemas/BankFeedAccount) are the bank's bank account from which transactions are synced into the accounting platform.
-func (s *sourceAccounts) List(ctx context.Context, request operations.ListBankFeedsRequest, opts ...operations.Option) (*operations.ListBankFeedsResponse, error) {
+// [source accounts](https://docs.codat.io/bank-feeds-api#/schemas/BankFeedAccount) are the bank's bank account within Codat's domain from which transactions are synced into the accounting platform.
+func (s *sourceAccounts) List(ctx context.Context, request operations.ListSourceAccountsRequest, opts ...operations.Option) (*operations.ListSourceAccountsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -520,7 +539,7 @@ func (s *sourceAccounts) List(ctx context.Context, request operations.ListBankFe
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.ListBankFeedsResponse{
+	res := &operations.ListSourceAccountsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -529,12 +548,12 @@ func (s *sourceAccounts) List(ctx context.Context, request operations.ListBankFe
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.BankFeedAccount
+			var out *shared.SourceAccount
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.BankFeedAccount = out
+			res.SourceAccount = out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -559,9 +578,9 @@ func (s *sourceAccounts) List(ctx context.Context, request operations.ListBankFe
 	return res, nil
 }
 
-// Update - Update bank feed bank account
-// The *Update bank feed bank account* endpoint updates a single bank feed bank account for a single data source connected to a single company.
-func (s *sourceAccounts) Update(ctx context.Context, request operations.UpdateBankFeedRequest, opts ...operations.Option) (*operations.UpdateBankFeedResponse, error) {
+// Update - Update source account
+// The _Update source account_ endpoint updates a single source account for a single data connection connected to a single company.
+func (s *sourceAccounts) Update(ctx context.Context, request operations.UpdateSourceAccountRequest, opts ...operations.Option) (*operations.UpdateSourceAccountResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -578,7 +597,7 @@ func (s *sourceAccounts) Update(ctx context.Context, request operations.UpdateBa
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "BankFeedAccount", "json")
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "SourceAccount", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -634,7 +653,7 @@ func (s *sourceAccounts) Update(ctx context.Context, request operations.UpdateBa
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.UpdateBankFeedResponse{
+	res := &operations.UpdateSourceAccountResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -643,12 +662,12 @@ func (s *sourceAccounts) Update(ctx context.Context, request operations.UpdateBa
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.BankFeedAccount
+			var out *shared.SourceAccount
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.BankFeedAccount = out
+			res.SourceAccount = out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

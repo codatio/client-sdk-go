@@ -6,16 +6,36 @@ Source accounts act as a bridge to bank accounts in accounting software.
 
 ### Available Operations
 
-* [Create](#create) - Create a bank feed bank account
-* [Delete](#delete) - Delete bank feed bank account
+* [Create](#create) - Create source account
+* [Delete](#delete) - Delete source account
 * [DeleteCredentials](#deletecredentials) - Delete all source account credentials
 * [GenerateCredentials](#generatecredentials) - Generate source account credentials
-* [List](#list) - List bank feed bank accounts
-* [Update](#update) - Update bank feed bank account
+* [List](#list) - List source accounts
+* [Update](#update) - Update source account
 
 ## Create
 
-Post a BankFeed BankAccount for a single data source connected. to a single company.
+The _Create Source Account_ endpoint allows you to create a representation of a bank account within Codat's domain. This source account can later be mapped to a target account in your accounting software.
+
+#### Account Mapping Variability
+
+The method of mapping this source account to your target account varies depending on the accounting package you use.
+
+#### Mapping Options:
+
+1. **API Mapping**: Integrate the mapping journey directly into your application for a seamless user experience.
+2. **Codat UI Mapping**: If you prefer a quicker setup, you can utilize Codat's provided user interface for mapping.
+3. **Accounting Platform Mapping**: For some accounting software, the mapping process must be conducted within the software itself.
+
+### Integration specific behaviour
+
+| Bank Feed Integration | API Mapping | Codat UI Mapping | Accounting Platform Mapping |
+| --------------------- | ----------- | ---------------- | --------------------------- |
+| Xero                  | ✅          | ✅               |                             |
+| FreeAgent             | ✅          | ✅               |                             |
+| QuickBooks Online     |             |                  | ✅                          |
+| Sage                  |             |                  | ✅                          |
+
 
 ### Example Usage
 
@@ -38,8 +58,8 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.SourceAccounts.Create(ctx, operations.CreateBankFeedRequest{
-        BankFeedAccount: &shared.BankFeedAccount{
+    res, err := s.SourceAccounts.Create(ctx, operations.CreateSourceAccountRequest{
+        SourceAccount: &shared.SourceAccount{
             AccountName: codatbankfeeds.String("deserunt"),
             AccountNumber: codatbankfeeds.String("suscipit"),
             AccountType: codatbankfeeds.String("iure"),
@@ -58,7 +78,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.BankFeedAccount != nil {
+    if res.SourceAccount != nil {
         // handle response
     }
 }
@@ -66,23 +86,24 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
-| `request`                                                                            | [operations.CreateBankFeedRequest](../../models/operations/createbankfeedrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
-| `opts`                                                                               | [][operations.Option](../../models/operations/option.md)                             | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
+| Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                          | :heavy_check_mark:                                                                             | The context to use for the request.                                                            |
+| `request`                                                                                      | [operations.CreateSourceAccountRequest](../../models/operations/createsourceaccountrequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
+| `opts`                                                                                         | [][operations.Option](../../models/operations/option.md)                                       | :heavy_minus_sign:                                                                             | The options for this request.                                                                  |
 
 
 ### Response
 
-**[*operations.CreateBankFeedResponse](../../models/operations/createbankfeedresponse.md), error**
+**[*operations.CreateSourceAccountResponse](../../models/operations/createsourceaccountresponse.md), error**
 
 
 ## Delete
 
-The *delete bank feed bank account* endpoint enables you to remove a source account.
+The _Delete source account_ endpoint enables you to remove a source account.
 
 Removing a source account will also remove any mapping between the source bank feed bank accounts and the target bankfeed bank account.
+
 
 ### Example Usage
 
@@ -105,7 +126,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.SourceAccounts.Delete(ctx, operations.DeleteBankFeedBankAccountRequest{
+    res, err := s.SourceAccounts.Delete(ctx, operations.DeleteSourceAccountRequest{
         AccountID: "7110701885",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -122,16 +143,16 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
-| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                                      | :heavy_check_mark:                                                                                         | The context to use for the request.                                                                        |
-| `request`                                                                                                  | [operations.DeleteBankFeedBankAccountRequest](../../models/operations/deletebankfeedbankaccountrequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
-| `opts`                                                                                                     | [][operations.Option](../../models/operations/option.md)                                                   | :heavy_minus_sign:                                                                                         | The options for this request.                                                                              |
+| Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                          | :heavy_check_mark:                                                                             | The context to use for the request.                                                            |
+| `request`                                                                                      | [operations.DeleteSourceAccountRequest](../../models/operations/deletesourceaccountrequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
+| `opts`                                                                                         | [][operations.Option](../../models/operations/option.md)                                       | :heavy_minus_sign:                                                                             | The options for this request.                                                                  |
 
 
 ### Response
 
-**[*operations.DeleteBankFeedBankAccountResponse](../../models/operations/deletebankfeedbankaccountresponse.md), error**
+**[*operations.DeleteSourceAccountResponse](../../models/operations/deletesourceaccountresponse.md), error**
 
 
 ## DeleteCredentials
@@ -248,10 +269,9 @@ func main() {
 
 ## List
 
-﻿The *List bank feed bank accounts* endpoint returns a list of [bank feed accounts](https://docs.codat.io/bank-feeds-api#/schemas/BankFeedAccount) for a given company's connection.
+﻿The _List source accounts_ endpoint returns a list of [source accounts](https://docs.codat.io/bank-feeds-api#/schemas/BankFeedAccount) for a given company's connection.
 
-[Bank feed accounts](https://docs.codat.io/bank-feeds-api#/schemas/BankFeedAccount) are the bank's bank account from which transactions are synced into the accounting platform.
-
+[source accounts](https://docs.codat.io/bank-feeds-api#/schemas/BankFeedAccount) are the bank's bank account within Codat's domain from which transactions are synced into the accounting platform.
 
 
 ### Example Usage
@@ -275,7 +295,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.SourceAccounts.List(ctx, operations.ListBankFeedsRequest{
+    res, err := s.SourceAccounts.List(ctx, operations.ListSourceAccountsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -283,7 +303,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.BankFeedAccount != nil {
+    if res.SourceAccount != nil {
         // handle response
     }
 }
@@ -291,21 +311,22 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
-| `request`                                                                          | [operations.ListBankFeedsRequest](../../models/operations/listbankfeedsrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
-| `opts`                                                                             | [][operations.Option](../../models/operations/option.md)                           | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
+| `request`                                                                                    | [operations.ListSourceAccountsRequest](../../models/operations/listsourceaccountsrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `opts`                                                                                       | [][operations.Option](../../models/operations/option.md)                                     | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
 
 
 ### Response
 
-**[*operations.ListBankFeedsResponse](../../models/operations/listbankfeedsresponse.md), error**
+**[*operations.ListSourceAccountsResponse](../../models/operations/listsourceaccountsresponse.md), error**
 
 
 ## Update
 
-﻿The *Update bank feed bank account* endpoint updates a single bank feed bank account for a single data source connected to a single company.
+﻿The _Update source account_ endpoint updates a single source account for a single data connection connected to a single company.
+
 
 ### Example Usage
 
@@ -328,8 +349,8 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.SourceAccounts.Update(ctx, operations.UpdateBankFeedRequest{
-        BankFeedAccount: &shared.BankFeedAccount{
+    res, err := s.SourceAccounts.Update(ctx, operations.UpdateSourceAccountRequest{
+        SourceAccount: &shared.SourceAccount{
             AccountName: codatbankfeeds.String("fugit"),
             AccountNumber: codatbankfeeds.String("deleniti"),
             AccountType: codatbankfeeds.String("hic"),
@@ -349,7 +370,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.BankFeedAccount != nil {
+    if res.SourceAccount != nil {
         // handle response
     }
 }
@@ -357,14 +378,14 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
-| `request`                                                                            | [operations.UpdateBankFeedRequest](../../models/operations/updatebankfeedrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
-| `opts`                                                                               | [][operations.Option](../../models/operations/option.md)                             | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
+| Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                          | :heavy_check_mark:                                                                             | The context to use for the request.                                                            |
+| `request`                                                                                      | [operations.UpdateSourceAccountRequest](../../models/operations/updatesourceaccountrequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
+| `opts`                                                                                         | [][operations.Option](../../models/operations/option.md)                                       | :heavy_minus_sign:                                                                             | The options for this request.                                                                  |
 
 
 ### Response
 
-**[*operations.UpdateBankFeedResponse](../../models/operations/updatebankfeedresponse.md), error**
+**[*operations.UpdateSourceAccountResponse](../../models/operations/updatesourceaccountresponse.md), error**
 

@@ -2,8 +2,8 @@
 
 package shared
 
-// BankFeedAccount - The target bank account in a supported accounting package for ingestion into a bank feed.
-type BankFeedAccount struct {
+// SourceAccount - The target bank account in a supported accounting package for ingestion into a bank feed.
+type SourceAccount struct {
 	// The bank account name
 	AccountName *string `json:"accountName,omitempty"`
 	// The account number
@@ -40,7 +40,7 @@ type BankFeedAccount struct {
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	FeedStartDate *string `json:"feedStartDate,omitempty"`
-	// Unique ID for the bank feed account
+	// Unique ID for the bank account
 	ID string `json:"id"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
@@ -67,70 +67,70 @@ type BankFeedAccount struct {
 	Status   *string `json:"status,omitempty"`
 }
 
-func (o *BankFeedAccount) GetAccountName() *string {
+func (o *SourceAccount) GetAccountName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.AccountName
 }
 
-func (o *BankFeedAccount) GetAccountNumber() *string {
+func (o *SourceAccount) GetAccountNumber() *string {
 	if o == nil {
 		return nil
 	}
 	return o.AccountNumber
 }
 
-func (o *BankFeedAccount) GetAccountType() *string {
+func (o *SourceAccount) GetAccountType() *string {
 	if o == nil {
 		return nil
 	}
 	return o.AccountType
 }
 
-func (o *BankFeedAccount) GetBalance() *float64 {
+func (o *SourceAccount) GetBalance() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.Balance
 }
 
-func (o *BankFeedAccount) GetCurrency() *string {
+func (o *SourceAccount) GetCurrency() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Currency
 }
 
-func (o *BankFeedAccount) GetFeedStartDate() *string {
+func (o *SourceAccount) GetFeedStartDate() *string {
 	if o == nil {
 		return nil
 	}
 	return o.FeedStartDate
 }
 
-func (o *BankFeedAccount) GetID() string {
+func (o *SourceAccount) GetID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ID
 }
 
-func (o *BankFeedAccount) GetModifiedDate() *string {
+func (o *SourceAccount) GetModifiedDate() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ModifiedDate
 }
 
-func (o *BankFeedAccount) GetSortCode() *string {
+func (o *SourceAccount) GetSortCode() *string {
 	if o == nil {
 		return nil
 	}
 	return o.SortCode
 }
 
-func (o *BankFeedAccount) GetStatus() *string {
+func (o *SourceAccount) GetStatus() *string {
 	if o == nil {
 		return nil
 	}

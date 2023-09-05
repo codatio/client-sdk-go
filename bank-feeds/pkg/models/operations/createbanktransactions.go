@@ -7,8 +7,27 @@ import (
 	"net/http"
 )
 
+type CreateBankTransactionsCreateBankAccountTransactions struct {
+	AccountID    *string                                                                                                                                                                                                                                        `json:"accountId,omitempty"`
+	Transactions []shared.Onecompanies1Percent7BcompanyIDPercent7D1connections1Percent7BconnectionIDPercent7D1push1bankAccounts1Percent7BaccountIDPercent7D1bankTransactionsPostRequestBodyContentApplication1jsonSchemaDefinitionsCreateBankAccountTransaction `json:"transactions,omitempty"`
+}
+
+func (o *CreateBankTransactionsCreateBankAccountTransactions) GetAccountID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AccountID
+}
+
+func (o *CreateBankTransactionsCreateBankAccountTransactions) GetTransactions() []shared.Onecompanies1Percent7BcompanyIDPercent7D1connections1Percent7BconnectionIDPercent7D1push1bankAccounts1Percent7BaccountIDPercent7D1bankTransactionsPostRequestBodyContentApplication1jsonSchemaDefinitionsCreateBankAccountTransaction {
+	if o == nil {
+		return nil
+	}
+	return o.Transactions
+}
+
 type CreateBankTransactionsRequest struct {
-	CreateBankTransactions *shared.CreateBankTransactions `request:"mediaType=application/json"`
+	RequestBody *CreateBankTransactionsCreateBankAccountTransactions `request:"mediaType=application/json"`
 	// Unique identifier for an account
 	AccountID               string `pathParam:"style=simple,explode=false,name=accountId"`
 	AllowSyncOnPushComplete *bool  `queryParam:"style=form,explode=true,name=allowSyncOnPushComplete"`
@@ -17,11 +36,11 @@ type CreateBankTransactionsRequest struct {
 	TimeoutInMinutes        *int   `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
 }
 
-func (o *CreateBankTransactionsRequest) GetCreateBankTransactions() *shared.CreateBankTransactions {
+func (o *CreateBankTransactionsRequest) GetRequestBody() *CreateBankTransactionsCreateBankAccountTransactions {
 	if o == nil {
 		return nil
 	}
-	return o.CreateBankTransactions
+	return o.RequestBody
 }
 
 func (o *CreateBankTransactionsRequest) GetAccountID() string {

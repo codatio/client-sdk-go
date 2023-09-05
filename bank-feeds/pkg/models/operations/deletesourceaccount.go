@@ -7,64 +7,64 @@ import (
 	"net/http"
 )
 
-type ListBankFeedsRequest struct {
+type DeleteSourceAccountRequest struct {
+	// Unique identifier for an account
+	AccountID    string `pathParam:"style=simple,explode=false,name=accountId"`
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
-func (o *ListBankFeedsRequest) GetCompanyID() string {
+func (o *DeleteSourceAccountRequest) GetAccountID() string {
+	if o == nil {
+		return ""
+	}
+	return o.AccountID
+}
+
+func (o *DeleteSourceAccountRequest) GetCompanyID() string {
 	if o == nil {
 		return ""
 	}
 	return o.CompanyID
 }
 
-func (o *ListBankFeedsRequest) GetConnectionID() string {
+func (o *DeleteSourceAccountRequest) GetConnectionID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ConnectionID
 }
 
-type ListBankFeedsResponse struct {
-	// Success
-	BankFeedAccount *shared.BankFeedAccount
-	ContentType     string
+type DeleteSourceAccountResponse struct {
+	ContentType string
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
 	StatusCode   int
 	RawResponse  *http.Response
 }
 
-func (o *ListBankFeedsResponse) GetBankFeedAccount() *shared.BankFeedAccount {
-	if o == nil {
-		return nil
-	}
-	return o.BankFeedAccount
-}
-
-func (o *ListBankFeedsResponse) GetContentType() string {
+func (o *DeleteSourceAccountResponse) GetContentType() string {
 	if o == nil {
 		return ""
 	}
 	return o.ContentType
 }
 
-func (o *ListBankFeedsResponse) GetErrorMessage() *shared.ErrorMessage {
+func (o *DeleteSourceAccountResponse) GetErrorMessage() *shared.ErrorMessage {
 	if o == nil {
 		return nil
 	}
 	return o.ErrorMessage
 }
 
-func (o *ListBankFeedsResponse) GetStatusCode() int {
+func (o *DeleteSourceAccountResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
 	}
 	return o.StatusCode
 }
 
-func (o *ListBankFeedsResponse) GetRawResponse() *http.Response {
+func (o *DeleteSourceAccountResponse) GetRawResponse() *http.Response {
 	if o == nil {
 		return nil
 	}

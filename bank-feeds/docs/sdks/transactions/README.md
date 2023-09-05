@@ -6,15 +6,15 @@ Transactions represent debits and credits from a source account.
 
 ### Available Operations
 
-* [Create](#create) - Create bank account transactions
+* [Create](#create) - Create bank transactions
 * [GetCreateOperation](#getcreateoperation) - Get create operation
 * [ListCreateOperations](#listcreateoperations) - List create operations
 
 ## Create
 
-﻿The *Create bank account transactions* endpoint creates new [bank account transactions](https://docs.codat.io/bank-feeds-api#/schemas/BankTransactions) for a given company's connection.
+﻿The *Create bank transactions* endpoint creates new [bank transactions](https://docs.codat.io/bank-feeds-api#/schemas/BankTransactions) for a given company's connection.
 
-[Bank account transactions](https://docs.codat.io/bank-feeds-api#/schemas/BankTransactions) are records of monetary amounts that have moved in and out of an SMB's bank account.
+[Bank transactions](https://docs.codat.io/bank-feeds-api#/schemas/BankTransactions) are records of monetary amounts that have moved in and out of an SMB's bank account.
 
 **Integration-specific behaviour**
 
@@ -45,10 +45,10 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Transactions.Create(ctx, operations.CreateBankTransactionsRequest{
-        CreateBankTransactions: &shared.CreateBankTransactions{
+        RequestBody: &operations.CreateBankTransactionsCreateBankAccountTransactions{
             AccountID: codatbankfeeds.String("corporis"),
-            Transactions: []shared.CreateBankAccountTransaction{
-                shared.CreateBankAccountTransaction{
+            Transactions: []shared.Onecompanies1Percent7BcompanyIDPercent7D1connections1Percent7BconnectionIDPercent7D1push1bankAccounts1Percent7BaccountIDPercent7D1bankTransactionsPostRequestBodyContentApplication1jsonSchemaDefinitionsCreateBankAccountTransaction{
+                shared.Onecompanies1Percent7BcompanyIDPercent7D1connections1Percent7BconnectionIDPercent7D1push1bankAccounts1Percent7BaccountIDPercent7D1bankTransactionsPostRequestBodyContentApplication1jsonSchemaDefinitionsCreateBankAccountTransaction{
                     Amount: codatbankfeeds.Float64(7506.86),
                     Balance: codatbankfeeds.Float64(3154.28),
                     Date: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
@@ -176,7 +176,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.ListPushOperations != nil {
+    if res.PushOperations != nil {
         // handle response
     }
 }

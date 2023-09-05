@@ -2,8 +2,8 @@
 
 package shared
 
-// ListPushOperations - OK
-type ListPushOperations struct {
+// PushOperations - OK
+type PushOperations struct {
 	Links        Links           `json:"_links"`
 	PageNumber   int64           `json:"pageNumber"`
 	PageSize     int64           `json:"pageSize"`
@@ -11,35 +11,35 @@ type ListPushOperations struct {
 	TotalResults int64           `json:"totalResults"`
 }
 
-func (o *ListPushOperations) GetLinks() Links {
+func (o *PushOperations) GetLinks() Links {
 	if o == nil {
 		return Links{}
 	}
 	return o.Links
 }
 
-func (o *ListPushOperations) GetPageNumber() int64 {
+func (o *PushOperations) GetPageNumber() int64 {
 	if o == nil {
 		return 0
 	}
 	return o.PageNumber
 }
 
-func (o *ListPushOperations) GetPageSize() int64 {
+func (o *PushOperations) GetPageSize() int64 {
 	if o == nil {
 		return 0
 	}
 	return o.PageSize
 }
 
-func (o *ListPushOperations) GetResults() []PushOperation {
+func (o *PushOperations) GetResults() []PushOperation {
 	if o == nil {
 		return nil
 	}
 	return o.Results
 }
 
-func (o *ListPushOperations) GetTotalResults() int64 {
+func (o *PushOperations) GetTotalResults() int64 {
 	if o == nil {
 		return 0
 	}
