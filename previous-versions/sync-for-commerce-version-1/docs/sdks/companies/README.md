@@ -141,7 +141,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Companies.UpdateCompany(ctx, operations.UpdateCompanyRequest{
-        CompanyRequestBody: &shared.CompanyRequestBody{
+        CreateCompany: &shared.CreateCompany{
             Description: codatsynccommerce.String("Requested early access to the new financing scheme."),
             Name: "Bank of Dave",
         },

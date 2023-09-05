@@ -86,9 +86,9 @@ func main() {
 
     ctx := context.Background()
     res, err := s.SyncFlowPreferences.GetSyncFlowURL(ctx, operations.GetSyncFlowURLRequest{
-        AccountingKey: "voluptas",
-        CommerceKey: "expedita",
-        MerchantIdentifier: codatsynccommerce.String("voluptas"),
+        AccountingKey: "expedita",
+        CommerceKey: "voluptas",
+        MerchantIdentifier: codatsynccommerce.String("maiores"),
     })
     if err != nil {
         log.Fatal(err)
@@ -140,8 +140,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.SyncFlowPreferences.GetVisibleAccounts(ctx, operations.GetVisibleAccountsRequest{
-        ClientID: "f66fef02-0e9f-4443-b425-7b992c8dbda6",
-        PlatformKey: "a61efa21-9825-48fd-8a9e-ba47f7d3ef04",
+        ClientID: "66fef020-e9f4-443b-8257-b992c8dbda6a",
+        PlatformKey: "61efa219-8258-4fd0-a9eb-a47f7d3ef049",
     })
     if err != nil {
         log.Fatal(err)
@@ -192,17 +192,13 @@ func main() {
 
     ctx := context.Background()
     res, err := s.SyncFlowPreferences.UpdateConfigTextSyncFlow(ctx, map[string]shared.Localization{
-        "aliquid": shared.Localization{
+        "dolore": shared.Localization{
             Required: codatsynccommerce.Bool(false),
-            Text: codatsynccommerce.String("dolore"),
+            Text: codatsynccommerce.String("voluptatem"),
         },
-        "voluptatem": shared.Localization{
+        "illum": shared.Localization{
             Required: codatsynccommerce.Bool(false),
-            Text: codatsynccommerce.String("illum"),
-        },
-        "laboriosam": shared.Localization{
-            Required: codatsynccommerce.Bool(false),
-            Text: codatsynccommerce.String("culpa"),
+            Text: codatsynccommerce.String("laboriosam"),
         },
     })
     if err != nil {
@@ -257,10 +253,12 @@ func main() {
     res, err := s.SyncFlowPreferences.UpdateVisibleAccountsSyncFlow(ctx, operations.UpdateVisibleAccountsSyncFlowRequest{
         VisibleAccounts: &shared.VisibleAccounts{
             VisibleAccounts: []string{
+                "dicta",
                 "atque",
+                "ratione",
             },
         },
-        PlatformKey: "31c87adf-596f-4df1-ad83-7ae80c1c19c9",
+        PlatformKey: "1c87adf5-96fd-4f1a-9837-ae80c1c19c95",
     })
     if err != nil {
         log.Fatal(err)

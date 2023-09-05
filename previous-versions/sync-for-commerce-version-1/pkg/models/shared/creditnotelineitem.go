@@ -2,19 +2,19 @@
 
 package shared
 
-type CreditNoteLineItemTrackingProjectRef struct {
+type CreditNoteLineItemTrackingProjectReference struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreditNoteLineItemTrackingProjectRef) GetID() string {
+func (o *CreditNoteLineItemTrackingProjectReference) GetID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ID
 }
 
-func (o *CreditNoteLineItemTrackingProjectRef) GetName() *string {
+func (o *CreditNoteLineItemTrackingProjectReference) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -23,11 +23,11 @@ func (o *CreditNoteLineItemTrackingProjectRef) GetName() *string {
 
 // CreditNoteLineItemTracking - Categories, and a project and customer, against which the item is tracked.
 type CreditNoteLineItemTracking struct {
-	CategoryRefs []TrackingCategoryRefsitems           `json:"categoryRefs"`
-	CustomerRef  *AccountingCustomerRef                `json:"customerRef,omitempty"`
-	IsBilledTo   BilledToType                          `json:"isBilledTo"`
-	IsRebilledTo BilledToType                          `json:"isRebilledTo"`
-	ProjectRef   *CreditNoteLineItemTrackingProjectRef `json:"projectRef,omitempty"`
+	CategoryRefs []TrackingCategoryRefsitems                 `json:"categoryRefs"`
+	CustomerRef  *AccountingCustomerRef                      `json:"customerRef,omitempty"`
+	IsBilledTo   BilledToType                                `json:"isBilledTo"`
+	IsRebilledTo BilledToType                                `json:"isRebilledTo"`
+	ProjectRef   *CreditNoteLineItemTrackingProjectReference `json:"projectRef,omitempty"`
 	// Links the current record to the underlying record or data type that created it.
 	//
 	// For example, if a journal entry is generated based on an invoice, this property allows you to connect the journal entry to the underlying invoice in our data model.
@@ -62,7 +62,7 @@ func (o *CreditNoteLineItemTracking) GetIsRebilledTo() BilledToType {
 	return o.IsRebilledTo
 }
 
-func (o *CreditNoteLineItemTracking) GetProjectRef() *CreditNoteLineItemTrackingProjectRef {
+func (o *CreditNoteLineItemTracking) GetProjectRef() *CreditNoteLineItemTrackingProjectReference {
 	if o == nil {
 		return nil
 	}

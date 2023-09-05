@@ -105,7 +105,7 @@ func main() {
                         },
                         IsBilledTo: shared.BilledToTypeNotApplicable,
                         IsRebilledTo: shared.BilledToTypeUnknown,
-                        ProjectRef: &shared.CreditNoteLineItemTrackingProjectRef{
+                        ProjectRef: &shared.CreditNoteLineItemTrackingProjectReference{
                             ID: "80d1ba77-a89e-4bf7-b7ae-4203ce5e6a95",
                             Name: codatsynccommerce.String("Dr. Jimmie Murphy"),
                         },
@@ -173,7 +173,7 @@ func main() {
                         },
                         IsBilledTo: shared.BilledToTypeProject,
                         IsRebilledTo: shared.BilledToTypeNotApplicable,
-                        ProjectRef: &shared.CreditNoteLineItemTrackingProjectRef{
+                        ProjectRef: &shared.CreditNoteLineItemTrackingProjectReference{
                             ID: "c7af515c-c413-4aa6-baae-8d67864dbb67",
                             Name: codatsynccommerce.String("Lela Shields"),
                         },
@@ -225,7 +225,7 @@ func main() {
                         },
                         IsBilledTo: shared.BilledToTypeProject,
                         IsRebilledTo: shared.BilledToTypeUnknown,
-                        ProjectRef: &shared.CreditNoteLineItemTrackingProjectRef{
+                        ProjectRef: &shared.CreditNoteLineItemTrackingProjectReference{
                             ID: "012563f9-4e29-4e97-be92-2a57a15be3e0",
                             Name: codatsynccommerce.String("Ms. Melissa Larson"),
                         },

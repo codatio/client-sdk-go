@@ -106,7 +106,7 @@ func main() {
                         },
                         IsBilledTo: shared.BilledToTypeNotApplicable,
                         IsRebilledTo: shared.BilledToTypeProject,
-                        ProjectRef: &shared.TrackingProjectRef{
+                        ProjectRef: &shared.TrackingProjectReference{
                             ID: "6ce611fe-eb1c-47cb-9b6e-ec74378ba253",
                             Name: codatsynccommerce.String("Heidi Koch"),
                         },

@@ -59,11 +59,13 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 	return ServerList[c.ServerIndex], nil
 }
 
-// CodatSyncCommerce - Sync for Commerce (v1): The API for Sync for Commerce.
+// CodatSyncCommerce - Sync for Commerce (v1): The API for Sync for Commerce V1.
 //
-// Sync for Commerce is an API and a set of supporting tools built to enable e-commerce and point of sale platforms to provide high-quality integrations with numerous accounting platform through standardized API, seamlessly transforming business sale's data into accounting artefacts.
+// Sync for Commerce automatically replicates and reconciles sales data from a merchant’s source PoS, Payments, and eCommerce systems into their accounting software. This eliminates manual processing by merchants and transforms their ability to run and grow their business.
 //
 // [Read More...](https://docs.codat.io/commerce/overview)
+//
+// Not seeing what you expect? [See the main Sync for Commerce API](https://docs.codat.io/sync-for-commerce-api).
 type CodatSyncCommerce struct {
 	// AccountingAccounts - Accounts
 	AccountingAccounts *accountingAccounts
@@ -170,8 +172,8 @@ func New(opts ...SDKOption) *CodatSyncCommerce {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.1",
-			SDKVersion:        "0.1.0",
-			GenVersion:        "2.91.4",
+			SDKVersion:        "0.1.1",
+			GenVersion:        "2.96.3",
 		},
 	}
 	for _, opt := range opts {
