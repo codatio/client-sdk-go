@@ -1,4 +1,4 @@
-# GetAccountingCompanyInfoResponse
+# GetAccountingProfileResponse
 
 
 ## Fields

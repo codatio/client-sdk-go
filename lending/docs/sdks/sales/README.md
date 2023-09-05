@@ -65,7 +65,7 @@ func main() {
     res, err := s.Sales.GetCustomer(ctx, operations.GetCommerceCustomerRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        CustomerID: "accusantium",
+        CustomerID: "iure",
     })
     if err != nil {
         log.Fatal(err)
@@ -148,8 +148,8 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         IncludeDisplayNames: codatlending.Bool(false),
-        NumberOfPeriods: 438601,
-        PeriodLength: 634274,
+        NumberOfPeriods: 634274,
+        PeriodLength: 988374,
         PeriodUnit: shared.PeriodUnitYear,
         ReportDate: "29-09-2020",
     })
@@ -212,7 +212,7 @@ func main() {
     res, err := s.Sales.GetDispute(ctx, operations.GetCommerceDisputeRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        DisputeID: "sapiente",
+        DisputeID: "architecto",
     })
     if err != nil {
         log.Fatal(err)
@@ -289,9 +289,9 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         IncludeDisplayNames: codatlending.Bool(false),
-        NumberOfPeriods: 102044,
-        PeriodLength: 652790,
-        PeriodUnit: shared.PeriodUnitDay,
+        NumberOfPeriods: 652790,
+        PeriodLength: 208876,
+        PeriodUnit: shared.PeriodUnitMonth,
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -353,7 +353,7 @@ func main() {
     res, err := s.Sales.GetLocation(ctx, operations.GetCommerceLocationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        LocationID: "culpa",
+        LocationID: "consequuntur",
     })
     if err != nil {
         log.Fatal(err)
@@ -414,7 +414,7 @@ func main() {
     res, err := s.Sales.GetOrder(ctx, operations.GetCommerceOrderRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        OrderID: "consequuntur",
+        OrderID: "repellat",
     })
     if err != nil {
         log.Fatal(err)
@@ -492,9 +492,9 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         IncludeDisplayNames: codatlending.Bool(false),
-        NumberOfPeriods: 995300,
-        PeriodLength: 653108,
-        PeriodUnit: shared.PeriodUnitMonth,
+        NumberOfPeriods: 653108,
+        PeriodLength: 581850,
+        PeriodUnit: shared.PeriodUnitWeek,
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -556,7 +556,7 @@ func main() {
     res, err := s.Sales.GetPayment(ctx, operations.GetCommercePaymentRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        PaymentID: "numquam",
+        PaymentID: "commodi",
     })
     if err != nil {
         log.Fatal(err)
@@ -617,7 +617,7 @@ func main() {
     res, err := s.Sales.GetPaymentMethod(ctx, operations.GetCommercePaymentMethodRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        PaymentMethodID: "commodi",
+        PaymentMethodID: "quam",
     })
     if err != nil {
         log.Fatal(err)
@@ -678,7 +678,7 @@ func main() {
     res, err := s.Sales.GetProduct(ctx, operations.GetCommerceProductRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        ProductID: "quam",
+        ProductID: "molestiae",
     })
     if err != nil {
         log.Fatal(err)
@@ -739,7 +739,7 @@ func main() {
     res, err := s.Sales.GetProductCategory(ctx, operations.GetCommerceProductCategoryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        ProductID: "molestiae",
+        ProductID: "velit",
     })
     if err != nil {
         log.Fatal(err)
@@ -818,9 +818,9 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         IncludeDisplayNames: codatlending.Bool(false),
-        NumberOfPeriods: 244425,
-        PeriodLength: 623510,
-        PeriodUnit: shared.PeriodUnitDay,
+        NumberOfPeriods: 623510,
+        PeriodLength: 158969,
+        PeriodUnit: shared.PeriodUnitWeek,
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -876,8 +876,8 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         IncludeDisplayNames: codatlending.Bool(false),
-        NumberOfPeriods: 338007,
-        PeriodLength: 110375,
+        NumberOfPeriods: 110375,
+        PeriodLength: 674752,
         PeriodUnit: shared.PeriodUnitMonth,
         ReportDate: "29-09-2020",
     })
@@ -940,7 +940,7 @@ func main() {
     res, err := s.Sales.GetTransaction(ctx, operations.GetCommerceTransactionRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TransactionID: "animi",
+        TransactionID: "enim",
     })
     if err != nil {
         log.Fatal(err)
@@ -1002,7 +1002,7 @@ func main() {
         OrderBy: codatlending.String("-modifiedDate"),
         Page: codatlending.Int(1),
         PageSize: codatlending.Int(100),
-        Query: codatlending.String("enim"),
+        Query: codatlending.String("odit"),
     })
     if err != nil {
         log.Fatal(err)
@@ -1064,7 +1064,7 @@ func main() {
         OrderBy: codatlending.String("-modifiedDate"),
         Page: codatlending.Int(1),
         PageSize: codatlending.Int(100),
-        Query: codatlending.String("odit"),
+        Query: codatlending.String("quo"),
     })
     if err != nil {
         log.Fatal(err)
@@ -1184,7 +1184,7 @@ func main() {
         OrderBy: codatlending.String("-modifiedDate"),
         Page: codatlending.Int(1),
         PageSize: codatlending.Int(100),
-        Query: codatlending.String("quo"),
+        Query: codatlending.String("sequi"),
     })
     if err != nil {
         log.Fatal(err)
@@ -1246,7 +1246,7 @@ func main() {
         OrderBy: codatlending.String("-modifiedDate"),
         Page: codatlending.Int(1),
         PageSize: codatlending.Int(100),
-        Query: codatlending.String("sequi"),
+        Query: codatlending.String("tenetur"),
     })
     if err != nil {
         log.Fatal(err)
@@ -1308,7 +1308,7 @@ func main() {
         OrderBy: codatlending.String("-modifiedDate"),
         Page: codatlending.Int(1),
         PageSize: codatlending.Int(100),
-        Query: codatlending.String("tenetur"),
+        Query: codatlending.String("ipsam"),
     })
     if err != nil {
         log.Fatal(err)
@@ -1370,7 +1370,7 @@ func main() {
         OrderBy: codatlending.String("-modifiedDate"),
         Page: codatlending.Int(1),
         PageSize: codatlending.Int(100),
-        Query: codatlending.String("ipsam"),
+        Query: codatlending.String("id"),
     })
     if err != nil {
         log.Fatal(err)
@@ -1432,7 +1432,7 @@ func main() {
         OrderBy: codatlending.String("-modifiedDate"),
         Page: codatlending.Int(1),
         PageSize: codatlending.Int(100),
-        Query: codatlending.String("id"),
+        Query: codatlending.String("possimus"),
     })
     if err != nil {
         log.Fatal(err)
@@ -1494,7 +1494,7 @@ func main() {
         OrderBy: codatlending.String("-modifiedDate"),
         Page: codatlending.Int(1),
         PageSize: codatlending.Int(100),
-        Query: codatlending.String("possimus"),
+        Query: codatlending.String("aut"),
     })
     if err != nil {
         log.Fatal(err)

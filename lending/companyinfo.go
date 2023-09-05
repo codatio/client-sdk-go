@@ -25,9 +25,9 @@ func newCompanyInfo(sdkConfig sdkConfiguration) *companyInfo {
 	}
 }
 
-// FromAccountingPlatform - Get company info
+// GetAccountingProfile - Get company accounting profile
 // Gets the latest basic info for a company.
-func (s *companyInfo) FromAccountingPlatform(ctx context.Context, request operations.GetAccountingCompanyInfoRequest, opts ...operations.Option) (*operations.GetAccountingCompanyInfoResponse, error) {
+func (s *companyInfo) GetAccountingProfile(ctx context.Context, request operations.GetAccountingProfileRequest, opts ...operations.Option) (*operations.GetAccountingProfileResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -93,7 +93,7 @@ func (s *companyInfo) FromAccountingPlatform(ctx context.Context, request operat
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetAccountingCompanyInfoResponse{
+	res := &operations.GetAccountingProfileResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -134,11 +134,11 @@ func (s *companyInfo) FromAccountingPlatform(ctx context.Context, request operat
 	return res, nil
 }
 
-// FromCommercePlatform - Get company info
+// GetCommerceProfile - Get company commerce profile
 // Retrieve information about the company, as seen in the commerce platform.
 //
 // This may include information like addresses, tax registration details and social media or website information.
-func (s *companyInfo) FromCommercePlatform(ctx context.Context, request operations.GetCommerceCompanyInfoRequest, opts ...operations.Option) (*operations.GetCommerceCompanyInfoResponse, error) {
+func (s *companyInfo) GetCommerceProfile(ctx context.Context, request operations.GetCommerceProfileRequest, opts ...operations.Option) (*operations.GetCommerceProfileResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -204,7 +204,7 @@ func (s *companyInfo) FromCommercePlatform(ctx context.Context, request operatio
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetCommerceCompanyInfoResponse{
+	res := &operations.GetCommerceProfileResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,

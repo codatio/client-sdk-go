@@ -25,7 +25,7 @@ func newLiabilities(sdkConfig sdkConfiguration) *liabilities {
 	}
 }
 
-// GetLoanSummary - Get enhanced loan summaries
+// GetLoanSummary - Get loan summaries
 // The *Get enhanced loan summaries* endpoint returns a summary by integration type of all loans identified in each integration.
 //
 // The endpoint returns a list of a company's [loan summaries](https://docs.codat.io/lending-api#/schemas/LoanSummary) for each valid data connection.
@@ -134,7 +134,7 @@ func (s *liabilities) GetLoanSummary(ctx context.Context, request operations.Get
 	return res, nil
 }
 
-// ListLoanTransactions - List enhanced loan transactions
+// ListLoanTransactions - List loan transactions
 // The *List enhanced loan transactions* endpoint returns all [loan transactions](https://docs.codat.io/lending-api#/schemas/LoanTransactions) identified from a company's accounting, banking, and commerce integrations.
 //
 // This detail gives analysts a better idea of the loan obligations a company may have.

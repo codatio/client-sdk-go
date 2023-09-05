@@ -8,7 +8,7 @@ connections.go
 dataintegrity.go
 excelreports.go
 fileupload.go
-financials.go
+financialstatements.go
 liabilities.go
 managedata.go
 sales.go
@@ -30,6 +30,7 @@ pkg/utils/retries.go
 pkg/utils/security.go
 pkg/utils/utils.go
 pkg/models/operations/getaccountingbankaccount.go
+pkg/models/operations/getcreateaccountingbanktransactionsmodel.go
 pkg/models/operations/listaccountingbankaccounts.go
 pkg/models/operations/listaccountingbankaccounttransactions.go
 pkg/models/operations/downloadaccountingbillattachment.go
@@ -84,8 +85,8 @@ pkg/models/operations/deletecompany.go
 pkg/models/operations/getcompany.go
 pkg/models/operations/listcompanies.go
 pkg/models/operations/updatecompany.go
-pkg/models/operations/getaccountingcompanyinfo.go
-pkg/models/operations/getcommercecompanyinfo.go
+pkg/models/operations/getaccountingprofile.go
+pkg/models/operations/getcommerceprofile.go
 pkg/models/operations/createconnection.go
 pkg/models/operations/deleteconnection.go
 pkg/models/operations/getconnection.go
@@ -154,6 +155,11 @@ pkg/models/shared/errormessage.go
 pkg/models/shared/accountingbankaccount.go
 pkg/models/shared/metadata.go
 pkg/models/shared/accountingbankaccounttype.go
+pkg/models/shared/onecompanies1percent7bcompanyidpercent7d1connections1percent7bconnectionidpercent7d1options1bankaccounts1percent7baccountidpercent7d1banktransactionsgetresponses200contentapplication1jsonschemadefinitionspushvalidationinfo.go
+pkg/models/shared/onecompanies1percent7bcompanyidpercent7d1connections1percent7bconnectionidpercent7d1options1bankaccounts1percent7baccountidpercent7d1banktransactionsgetresponses200contentapplication1jsonschemadefinitionspushfieldvalidation.go
+pkg/models/shared/onecompanies1percent7bcompanyidpercent7d1connections1percent7bconnectionidpercent7d1options1bankaccounts1percent7baccountidpercent7d1banktransactionsgetresponses200contentapplication1jsonschemadefinitionspushoptiontype.go
+pkg/models/shared/onecompanies1percent7bcompanyidpercent7d1connections1percent7bconnectionidpercent7d1options1bankaccounts1percent7baccountidpercent7d1banktransactionsgetresponses200contentapplication1jsonschemadefinitionspushoptionproperty.go
+pkg/models/shared/onecompanies1percent7bcompanyidpercent7d1connections1percent7bconnectionidpercent7d1options1bankaccounts1percent7baccountidpercent7d1banktransactionsgetresponses200contentapplication1jsonschemadefinitionspushoptionchoice.go
 pkg/models/shared/accountingbankaccounts.go
 pkg/models/shared/links.go
 pkg/models/shared/halref.go
@@ -191,7 +197,7 @@ pkg/models/shared/billpaymentlinelink.go
 pkg/models/shared/billpaymentlinelinktype.go
 pkg/models/shared/accountingsupplier.go
 pkg/models/shared/supplierstatus.go
-pkg/models/shared/accountingaddress.go
+pkg/models/shared/addressesitems.go
 pkg/models/shared/accountingaddresstype.go
 pkg/models/shared/attachments.go
 pkg/models/shared/accountingbillcreditnotes.go
@@ -397,7 +403,7 @@ docs/sdks/connections/README.md
 docs/sdks/dataintegrity/README.md
 docs/sdks/excelreports/README.md
 docs/sdks/fileupload/README.md
-docs/sdks/financials/README.md
+docs/sdks/financialstatements/README.md
 docs/sdks/liabilities/README.md
 docs/sdks/managedata/README.md
 docs/sdks/sales/README.md
@@ -405,6 +411,9 @@ docs/sdks/transactions/README.md
 USAGE.md
 docs/models/operations/getaccountingbankaccountrequest.md
 docs/models/operations/getaccountingbankaccountresponse.md
+docs/models/operations/getcreateaccountingbanktransactionsmodelrequest.md
+docs/models/operations/getcreateaccountingbanktransactionsmodelpushoption.md
+docs/models/operations/getcreateaccountingbanktransactionsmodelresponse.md
 docs/models/operations/listaccountingbankaccountsrequest.md
 docs/models/operations/listaccountingbankaccountsresponse.md
 docs/models/operations/listaccountingbankaccounttransactionsrequest.md
@@ -513,10 +522,10 @@ docs/models/operations/listcompaniesrequest.md
 docs/models/operations/listcompaniesresponse.md
 docs/models/operations/updatecompanyrequest.md
 docs/models/operations/updatecompanyresponse.md
-docs/models/operations/getaccountingcompanyinforequest.md
-docs/models/operations/getaccountingcompanyinforesponse.md
-docs/models/operations/getcommercecompanyinforequest.md
-docs/models/operations/getcommercecompanyinforesponse.md
+docs/models/operations/getaccountingprofilerequest.md
+docs/models/operations/getaccountingprofileresponse.md
+docs/models/operations/getcommerceprofilerequest.md
+docs/models/operations/getcommerceprofileresponse.md
 docs/models/operations/createconnectionrequestbody.md
 docs/models/operations/createconnectionrequest.md
 docs/models/operations/createconnectionresponse.md
@@ -653,6 +662,11 @@ docs/models/shared/errormessage.md
 docs/models/shared/accountingbankaccount.md
 docs/models/shared/metadata.md
 docs/models/shared/accountingbankaccounttype.md
+docs/models/shared/onecompanies1percent7bcompanyidpercent7d1connections1percent7bconnectionidpercent7d1options1bankaccounts1percent7baccountidpercent7d1banktransactionsgetresponses200contentapplication1jsonschemadefinitionspushvalidationinfo.md
+docs/models/shared/onecompanies1percent7bcompanyidpercent7d1connections1percent7bconnectionidpercent7d1options1bankaccounts1percent7baccountidpercent7d1banktransactionsgetresponses200contentapplication1jsonschemadefinitionspushfieldvalidation.md
+docs/models/shared/onecompanies1percent7bcompanyidpercent7d1connections1percent7bconnectionidpercent7d1options1bankaccounts1percent7baccountidpercent7d1banktransactionsgetresponses200contentapplication1jsonschemadefinitionspushoptiontype.md
+docs/models/shared/onecompanies1percent7bcompanyidpercent7d1connections1percent7bconnectionidpercent7d1options1bankaccounts1percent7baccountidpercent7d1banktransactionsgetresponses200contentapplication1jsonschemadefinitionspushoptionproperty.md
+docs/models/shared/onecompanies1percent7bcompanyidpercent7d1connections1percent7bconnectionidpercent7d1options1bankaccounts1percent7baccountidpercent7d1banktransactionsgetresponses200contentapplication1jsonschemadefinitionspushoptionchoice.md
 docs/models/shared/accountingbankaccounts.md
 docs/models/shared/links.md
 docs/models/shared/halref.md
@@ -695,7 +709,7 @@ docs/models/shared/billpaymentlinelink.md
 docs/models/shared/billpaymentlinelinktype.md
 docs/models/shared/accountingsupplier.md
 docs/models/shared/supplierstatus.md
-docs/models/shared/accountingaddress.md
+docs/models/shared/addressesitems.md
 docs/models/shared/accountingaddresstype.md
 docs/models/shared/attachments.md
 docs/models/shared/accountingbillcreditnotes.md
@@ -766,6 +780,7 @@ docs/models/shared/dataconnectionstatus.md
 docs/models/shared/dataconnectionerror.md
 docs/models/shared/companyrequestbody.md
 docs/models/shared/companies.md
+docs/models/shared/accountingcompanyinfoaccountingaddress.md
 docs/models/shared/accountingcompanyinfophone.md
 docs/models/shared/accountingcompanyinfoweblinktype.md
 docs/models/shared/accountingcompanyinfoweblink.md

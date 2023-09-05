@@ -3,7 +3,7 @@
 package shared
 
 type Contact struct {
-	Address *AccountingAddress `json:"address,omitempty"`
+	Address *Addressesitems `json:"address,omitempty"`
 	// Email of a contact for a customer.
 	Email *string `json:"email,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
@@ -34,7 +34,7 @@ type Contact struct {
 	Status CustomerStatus `json:"status"`
 }
 
-func (o *Contact) GetAddress() *AccountingAddress {
+func (o *Contact) GetAddress() *Addressesitems {
 	if o == nil {
 		return nil
 	}

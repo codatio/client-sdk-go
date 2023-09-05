@@ -1,4 +1,4 @@
-# Financials
+# FinancialStatements
 
 ## Overview
 
@@ -46,8 +46,8 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Financials.GetAccount(ctx, operations.GetAccountingAccountRequest{
-        AccountID: "qui",
+    res, err := s.FinancialStatements.GetAccount(ctx, operations.GetAccountingAccountRequest{
+        AccountID: "impedit",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -99,7 +99,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Financials.GetBalanceSheet(ctx, operations.GetAccountingBalanceSheetRequest{
+    res, err := s.FinancialStatements.GetBalanceSheet(ctx, operations.GetAccountingBalanceSheetRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         PeriodLength: 4,
         PeriodsToCompare: 20,
@@ -154,7 +154,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Financials.GetCashFlowStatement(ctx, operations.GetAccountingCashFlowStatementRequest{
+    res, err := s.FinancialStatements.GetCashFlowStatement(ctx, operations.GetAccountingCashFlowStatementRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         PeriodLength: 4,
         PeriodsToCompare: 20,
@@ -211,9 +211,9 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Financials.GetEnhancedBalanceSheetAccounts(ctx, operations.GetEnhancedBalanceSheetAccountsRequest{
+    res, err := s.FinancialStatements.GetEnhancedBalanceSheetAccounts(ctx, operations.GetEnhancedBalanceSheetAccountsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        NumberOfPeriods: codatlending.Int64(456150),
+        NumberOfPeriods: codatlending.Int64(216550),
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -267,9 +267,9 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Financials.GetEnhancedProfitAndLossAccounts(ctx, operations.GetEnhancedProfitAndLossAccountsRequest{
+    res, err := s.FinancialStatements.GetEnhancedProfitAndLossAccounts(ctx, operations.GetEnhancedProfitAndLossAccountsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        NumberOfPeriods: codatlending.Int64(216550),
+        NumberOfPeriods: codatlending.Int64(568434),
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -321,7 +321,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Financials.GetProfitAndLoss(ctx, operations.GetAccountingProfitAndLossRequest{
+    res, err := s.FinancialStatements.GetProfitAndLoss(ctx, operations.GetAccountingProfitAndLossRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         PeriodLength: 4,
         PeriodsToCompare: 20,
@@ -380,12 +380,12 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Financials.ListAccounts(ctx, operations.ListAccountingAccountsRequest{
+    res, err := s.FinancialStatements.ListAccounts(ctx, operations.ListAccountingAccountsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         OrderBy: codatlending.String("-modifiedDate"),
         Page: codatlending.Int(1),
         PageSize: codatlending.Int(100),
-        Query: codatlending.String("aspernatur"),
+        Query: codatlending.String("perferendis"),
     })
     if err != nil {
         log.Fatal(err)

@@ -59,11 +59,9 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 	return ServerList[c.ServerIndex], nil
 }
 
-// CodatLending - Lending API: An API for uploading and downloading files from 'File Upload' Integrations.
+// CodatLending - Lending API: Our Lending API helps you make smarter credit decisions on small businesses by enabling you to pull your customers' latest data from accounting, banking, and commerce platforms they are already using. It also includes features to help providers verify the accuracy of data and process it more efficiently.
 //
-// The Accounting file upload, Banking file upload, and Business documents file upload integrations provide simple file upload functionality.
-//
-// [Read more...](https://docs.codat.io/other/file-upload)
+// The Lending API is built on top of the latest accounting, commerce, and banking data, providing you with the most important data points you need to get a full picture of SMB creditworthiness and make a comprehensive assessment of your customers.
 //
 // [See our OpenAPI spec](https://github.com/codatio/oas)
 type CodatLending struct {
@@ -87,8 +85,8 @@ type CodatLending struct {
 	ExcelReports *excelReports
 	// FileUpload - Endpoints to manage uploaded files.
 	FileUpload *fileUpload
-	// Financials - Financial data and reports from a linked accounting platform.
-	Financials *financials
+	// FinancialStatements - Financial data and reports from a linked accounting platform.
+	FinancialStatements *financialStatements
 	// Liabilities - Debt and other liabilities.
 	Liabilities *liabilities
 	// ManageData - Control how data is retrieved from an integration.
@@ -152,8 +150,8 @@ func New(opts ...SDKOption) *CodatLending {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "0.1.0",
-			GenVersion:        "2.91.4",
+			SDKVersion:        "0.1.1",
+			GenVersion:        "2.96.3",
 		},
 	}
 	for _, opt := range opts {
@@ -192,7 +190,7 @@ func New(opts ...SDKOption) *CodatLending {
 
 	sdk.FileUpload = newFileUpload(sdk.sdkConfiguration)
 
-	sdk.Financials = newFinancials(sdk.sdkConfiguration)
+	sdk.FinancialStatements = newFinancialStatements(sdk.sdkConfiguration)
 
 	sdk.Liabilities = newLiabilities(sdk.sdkConfiguration)
 

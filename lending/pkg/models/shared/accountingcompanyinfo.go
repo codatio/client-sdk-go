@@ -7,6 +7,72 @@ import (
 	"fmt"
 )
 
+type AccountingCompanyInfoAccountingAddress struct {
+	// City of the customer address.
+	City *string `json:"city,omitempty"`
+	// Country of the customer address.
+	Country *string `json:"country,omitempty"`
+	// Line 1 of the customer address.
+	Line1 *string `json:"line1,omitempty"`
+	// Line 2 of the customer address.
+	Line2 *string `json:"line2,omitempty"`
+	// Postal code or zip code.
+	PostalCode *string `json:"postalCode,omitempty"`
+	// Region of the customer address.
+	Region *string `json:"region,omitempty"`
+	// The type of the address
+	Type AccountingAddressType `json:"type"`
+}
+
+func (o *AccountingCompanyInfoAccountingAddress) GetCity() *string {
+	if o == nil {
+		return nil
+	}
+	return o.City
+}
+
+func (o *AccountingCompanyInfoAccountingAddress) GetCountry() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Country
+}
+
+func (o *AccountingCompanyInfoAccountingAddress) GetLine1() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Line1
+}
+
+func (o *AccountingCompanyInfoAccountingAddress) GetLine2() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Line2
+}
+
+func (o *AccountingCompanyInfoAccountingAddress) GetPostalCode() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PostalCode
+}
+
+func (o *AccountingCompanyInfoAccountingAddress) GetRegion() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Region
+}
+
+func (o *AccountingCompanyInfoAccountingAddress) GetType() AccountingAddressType {
+	if o == nil {
+		return AccountingAddressType("")
+	}
+	return o.Type
+}
+
 type AccountingCompanyInfoPhone struct {
 	// A phone number.
 	Number string `json:"number"`
@@ -92,7 +158,7 @@ type AccountingCompanyInfo struct {
 	// Identifier or reference for the company in the accounting platform.
 	AccountingPlatformRef *string `json:"accountingPlatformRef,omitempty"`
 	// An array of Addresses.
-	Addresses []AccountingAddress `json:"addresses,omitempty"`
+	Addresses []AccountingCompanyInfoAccountingAddress `json:"addresses,omitempty"`
 	// Currency set in the accounting platform of the linked company. Used by the currency rate.
 	BaseCurrency *string `json:"baseCurrency,omitempty"`
 	// Registered legal name of the linked company.
@@ -180,7 +246,7 @@ func (o *AccountingCompanyInfo) GetAccountingPlatformRef() *string {
 	return o.AccountingPlatformRef
 }
 
-func (o *AccountingCompanyInfo) GetAddresses() []AccountingAddress {
+func (o *AccountingCompanyInfo) GetAddresses() []AccountingCompanyInfoAccountingAddress {
 	if o == nil {
 		return nil
 	}

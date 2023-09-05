@@ -14,13 +14,13 @@ import (
 	"net/http"
 )
 
-// financials - Financial data and reports from a linked accounting platform.
-type financials struct {
+// financialStatements - Financial data and reports from a linked accounting platform.
+type financialStatements struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newFinancials(sdkConfig sdkConfiguration) *financials {
-	return &financials{
+func newFinancialStatements(sdkConfig sdkConfiguration) *financialStatements {
+	return &financialStatements{
 		sdkConfiguration: sdkConfig,
 	}
 }
@@ -33,7 +33,7 @@ func newFinancials(sdkConfig sdkConfiguration) *financials {
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=chartOfAccounts) for integrations that support getting a specific account.
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/lending-api#/operations/refresh-company-data).
-func (s *financials) GetAccount(ctx context.Context, request operations.GetAccountingAccountRequest, opts ...operations.Option) (*operations.GetAccountingAccountResponse, error) {
+func (s *financialStatements) GetAccount(ctx context.Context, request operations.GetAccountingAccountRequest, opts ...operations.Option) (*operations.GetAccountingAccountResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -142,7 +142,7 @@ func (s *financials) GetAccount(ctx context.Context, request operations.GetAccou
 
 // GetBalanceSheet - Get balance sheet
 // Gets the latest balance sheet for a company.
-func (s *financials) GetBalanceSheet(ctx context.Context, request operations.GetAccountingBalanceSheetRequest, opts ...operations.Option) (*operations.GetAccountingBalanceSheetResponse, error) {
+func (s *financialStatements) GetBalanceSheet(ctx context.Context, request operations.GetAccountingBalanceSheetRequest, opts ...operations.Option) (*operations.GetAccountingBalanceSheetResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -255,7 +255,7 @@ func (s *financials) GetBalanceSheet(ctx context.Context, request operations.Get
 
 // GetCashFlowStatement - Get cash flow statement
 // Gets the latest cash flow statement for a company.
-func (s *financials) GetCashFlowStatement(ctx context.Context, request operations.GetAccountingCashFlowStatementRequest, opts ...operations.Option) (*operations.GetAccountingCashFlowStatementResponse, error) {
+func (s *financialStatements) GetCashFlowStatement(ctx context.Context, request operations.GetAccountingCashFlowStatementRequest, opts ...operations.Option) (*operations.GetAccountingCashFlowStatementResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -370,7 +370,7 @@ func (s *financials) GetCashFlowStatement(ctx context.Context, request operation
 // The *Get enhanced balance sheet accounts* endpoint returns a list of categorized accounts that appear on a company’s Balance Sheet along with a balance per financial statement date.
 //
 // Codat suggests a category for each account automatically, but you can [change it](https://docs.codat.io/lending/enhanced-financials/overview#categorize-accounts) to a more suitable one.
-func (s *financials) GetEnhancedBalanceSheetAccounts(ctx context.Context, request operations.GetEnhancedBalanceSheetAccountsRequest, opts ...operations.Option) (*operations.GetEnhancedBalanceSheetAccountsResponse, error) {
+func (s *financialStatements) GetEnhancedBalanceSheetAccounts(ctx context.Context, request operations.GetEnhancedBalanceSheetAccountsRequest, opts ...operations.Option) (*operations.GetEnhancedBalanceSheetAccountsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -481,7 +481,7 @@ func (s *financials) GetEnhancedBalanceSheetAccounts(ctx context.Context, reques
 // The *Get enhanced profit and loss accounts* endpoint returns a list of categorized accounts that appear on a company’s Profit and Loss statement. It also includes a balance as of the financial statement date.
 //
 // Codat suggests a category for each account automatically, but you can [change it](https://docs.codat.io/lending/enhanced-financials/overview#categorize-accounts) to a more suitable one.
-func (s *financials) GetEnhancedProfitAndLossAccounts(ctx context.Context, request operations.GetEnhancedProfitAndLossAccountsRequest, opts ...operations.Option) (*operations.GetEnhancedProfitAndLossAccountsResponse, error) {
+func (s *financialStatements) GetEnhancedProfitAndLossAccounts(ctx context.Context, request operations.GetEnhancedProfitAndLossAccountsRequest, opts ...operations.Option) (*operations.GetEnhancedProfitAndLossAccountsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -590,7 +590,7 @@ func (s *financials) GetEnhancedProfitAndLossAccounts(ctx context.Context, reque
 
 // GetProfitAndLoss - Get profit and loss
 // Gets the latest profit and loss for a company.
-func (s *financials) GetProfitAndLoss(ctx context.Context, request operations.GetAccountingProfitAndLossRequest, opts ...operations.Option) (*operations.GetAccountingProfitAndLossResponse, error) {
+func (s *financialStatements) GetProfitAndLoss(ctx context.Context, request operations.GetAccountingProfitAndLossRequest, opts ...operations.Option) (*operations.GetAccountingProfitAndLossResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -707,7 +707,7 @@ func (s *financials) GetProfitAndLoss(ctx context.Context, request operations.Ge
 // [Accounts](https://docs.codat.io/accounting-api#/schemas/Account) are the categories a business uses to record accounting transactions.
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/lending-api#/operations/refresh-company-data).
-func (s *financials) ListAccounts(ctx context.Context, request operations.ListAccountingAccountsRequest, opts ...operations.Option) (*operations.ListAccountingAccountsResponse, error) {
+func (s *financialStatements) ListAccounts(ctx context.Context, request operations.ListAccountingAccountsRequest, opts ...operations.Option) (*operations.ListAccountingAccountsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,

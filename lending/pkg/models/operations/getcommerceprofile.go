@@ -7,26 +7,26 @@ import (
 	"net/http"
 )
 
-type GetCommerceCompanyInfoRequest struct {
+type GetCommerceProfileRequest struct {
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
-func (o *GetCommerceCompanyInfoRequest) GetCompanyID() string {
+func (o *GetCommerceProfileRequest) GetCompanyID() string {
 	if o == nil {
 		return ""
 	}
 	return o.CompanyID
 }
 
-func (o *GetCommerceCompanyInfoRequest) GetConnectionID() string {
+func (o *GetCommerceProfileRequest) GetConnectionID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ConnectionID
 }
 
-type GetCommerceCompanyInfoResponse struct {
+type GetCommerceProfileResponse struct {
 	// OK
 	CommerceCompanyInfo *shared.CommerceCompanyInfo
 	ContentType         string
@@ -36,35 +36,35 @@ type GetCommerceCompanyInfoResponse struct {
 	RawResponse  *http.Response
 }
 
-func (o *GetCommerceCompanyInfoResponse) GetCommerceCompanyInfo() *shared.CommerceCompanyInfo {
+func (o *GetCommerceProfileResponse) GetCommerceCompanyInfo() *shared.CommerceCompanyInfo {
 	if o == nil {
 		return nil
 	}
 	return o.CommerceCompanyInfo
 }
 
-func (o *GetCommerceCompanyInfoResponse) GetContentType() string {
+func (o *GetCommerceProfileResponse) GetContentType() string {
 	if o == nil {
 		return ""
 	}
 	return o.ContentType
 }
 
-func (o *GetCommerceCompanyInfoResponse) GetErrorMessage() *shared.ErrorMessage {
+func (o *GetCommerceProfileResponse) GetErrorMessage() *shared.ErrorMessage {
 	if o == nil {
 		return nil
 	}
 	return o.ErrorMessage
 }
 
-func (o *GetCommerceCompanyInfoResponse) GetStatusCode() int {
+func (o *GetCommerceProfileResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
 	}
 	return o.StatusCode
 }
 
-func (o *GetCommerceCompanyInfoResponse) GetRawResponse() *http.Response {
+func (o *GetCommerceProfileResponse) GetRawResponse() *http.Response {
 	if o == nil {
 		return nil
 	}

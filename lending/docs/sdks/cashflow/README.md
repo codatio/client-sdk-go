@@ -48,7 +48,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.CashFlow.GetBankAccount(ctx, operations.GetBankingAccountRequest{
-        AccountID: "molestiae",
+        AccountID: "quod",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -172,7 +172,7 @@ func main() {
     res, err := s.CashFlow.GetBankTransactionCategory(ctx, operations.GetBankingTransactionCategoryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TransactionCategoryID: "quod",
+        TransactionCategoryID: "esse",
     })
     if err != nil {
         log.Fatal(err)
@@ -231,7 +231,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         Page: codatlending.Int(1),
         PageSize: codatlending.Int(100),
-        Query: codatlending.String("esse"),
+        Query: codatlending.String("totam"),
     })
     if err != nil {
         log.Fatal(err)
@@ -293,7 +293,7 @@ func main() {
         OrderBy: codatlending.String("-modifiedDate"),
         Page: codatlending.Int(1),
         PageSize: codatlending.Int(100),
-        Query: codatlending.String("totam"),
+        Query: codatlending.String("porro"),
     })
     if err != nil {
         log.Fatal(err)
@@ -355,7 +355,7 @@ func main() {
         OrderBy: codatlending.String("-modifiedDate"),
         Page: codatlending.Int(1),
         PageSize: codatlending.Int(100),
-        Query: codatlending.String("porro"),
+        Query: codatlending.String("dolorum"),
     })
     if err != nil {
         log.Fatal(err)
@@ -417,7 +417,7 @@ func main() {
         OrderBy: codatlending.String("-modifiedDate"),
         Page: codatlending.Int(1),
         PageSize: codatlending.Int(100),
-        Query: codatlending.String("dolorum"),
+        Query: codatlending.String("dicta"),
     })
     if err != nil {
         log.Fatal(err)
@@ -479,7 +479,7 @@ func main() {
         OrderBy: codatlending.String("-modifiedDate"),
         Page: codatlending.Int(1),
         PageSize: codatlending.Int(100),
-        Query: codatlending.String("dicta"),
+        Query: codatlending.String("nam"),
     })
     if err != nil {
         log.Fatal(err)
