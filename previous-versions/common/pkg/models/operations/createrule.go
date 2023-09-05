@@ -11,10 +11,10 @@ type CreateRuleResponse struct {
 	ContentType string
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 	// OK
-	Rule        *shared.Rule
-	StatusCode  int
-	RawResponse *http.Response
+	Webhook *shared.Webhook
 }
 
 func (o *CreateRuleResponse) GetContentType() string {
@@ -31,13 +31,6 @@ func (o *CreateRuleResponse) GetErrorMessage() *shared.ErrorMessage {
 	return o.ErrorMessage
 }
 
-func (o *CreateRuleResponse) GetRule() *shared.Rule {
-	if o == nil {
-		return nil
-	}
-	return o.Rule
-}
-
 func (o *CreateRuleResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
@@ -50,4 +43,11 @@ func (o *CreateRuleResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
+}
+
+func (o *CreateRuleResponse) GetWebhook() *shared.Webhook {
+	if o == nil {
+		return nil
+	}
+	return o.Webhook
 }

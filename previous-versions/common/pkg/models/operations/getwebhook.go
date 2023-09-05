@@ -23,10 +23,10 @@ type GetWebhookResponse struct {
 	ContentType string
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
+	StatusCode   int
+	RawResponse  *http.Response
 	// OK
-	Rule        *shared.Rule
-	StatusCode  int
-	RawResponse *http.Response
+	Webhook *shared.Webhook
 }
 
 func (o *GetWebhookResponse) GetContentType() string {
@@ -43,13 +43,6 @@ func (o *GetWebhookResponse) GetErrorMessage() *shared.ErrorMessage {
 	return o.ErrorMessage
 }
 
-func (o *GetWebhookResponse) GetRule() *shared.Rule {
-	if o == nil {
-		return nil
-	}
-	return o.Rule
-}
-
 func (o *GetWebhookResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
@@ -62,4 +55,11 @@ func (o *GetWebhookResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
+}
+
+func (o *GetWebhookResponse) GetWebhook() *shared.Webhook {
+	if o == nil {
+		return nil
+	}
+	return o.Webhook
 }

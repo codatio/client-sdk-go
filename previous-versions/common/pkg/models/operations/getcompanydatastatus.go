@@ -21,7 +21,7 @@ func (o *GetCompanyDataStatusRequest) GetCompanyID() string {
 type GetCompanyDataStatusResponse struct {
 	ContentType string
 	// OK
-	DataStatusResponse map[string]shared.DataStatus
+	DataStatuses map[string]shared.DataStatus
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
 	StatusCode   int
@@ -35,11 +35,11 @@ func (o *GetCompanyDataStatusResponse) GetContentType() string {
 	return o.ContentType
 }
 
-func (o *GetCompanyDataStatusResponse) GetDataStatusResponse() map[string]shared.DataStatus {
+func (o *GetCompanyDataStatusResponse) GetDataStatuses() map[string]shared.DataStatus {
 	if o == nil {
 		return nil
 	}
-	return o.DataStatusResponse
+	return o.DataStatuses
 }
 
 func (o *GetCompanyDataStatusResponse) GetErrorMessage() *shared.ErrorMessage {

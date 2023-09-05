@@ -156,7 +156,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.DataStatusResponse != nil {
+    if res.DataStatuses != nil {
         // handle response
     }
 }
@@ -265,7 +265,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.DataConnectionHistory != nil {
+    if res.PullOperations != nil {
         // handle response
     }
 }

@@ -162,7 +162,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.PushHistoryResponse != nil {
+    if res.PushOperations != nil {
         // handle response
     }
 }
