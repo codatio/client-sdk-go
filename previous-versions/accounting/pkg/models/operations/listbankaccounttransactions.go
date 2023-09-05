@@ -73,19 +73,19 @@ func (o *ListBankAccountTransactionsRequest) GetQuery() *string {
 
 type ListBankAccountTransactionsResponse struct {
 	// Success
-	BankTransactionsResponse *shared.BankTransactionsResponse
-	ContentType              string
+	BankTransactions *shared.BankTransactions
+	ContentType      string
 	// Your `query` parameter was not correctly formed
 	ErrorMessage *shared.ErrorMessage
 	StatusCode   int
 	RawResponse  *http.Response
 }
 
-func (o *ListBankAccountTransactionsResponse) GetBankTransactionsResponse() *shared.BankTransactionsResponse {
+func (o *ListBankAccountTransactionsResponse) GetBankTransactions() *shared.BankTransactions {
 	if o == nil {
 		return nil
 	}
-	return o.BankTransactionsResponse
+	return o.BankTransactions
 }
 
 func (o *ListBankAccountTransactionsResponse) GetContentType() string {

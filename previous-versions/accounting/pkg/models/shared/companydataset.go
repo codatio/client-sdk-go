@@ -7,7 +7,7 @@ import (
 	"fmt"
 )
 
-type CompanyDatasetAddresses struct {
+type CompanyDatasetAccountingAddress struct {
 	// City of the customer address.
 	City *string `json:"city,omitempty"`
 	// Country of the customer address.
@@ -24,49 +24,49 @@ type CompanyDatasetAddresses struct {
 	Type AccountingAddressType `json:"type"`
 }
 
-func (o *CompanyDatasetAddresses) GetCity() *string {
+func (o *CompanyDatasetAccountingAddress) GetCity() *string {
 	if o == nil {
 		return nil
 	}
 	return o.City
 }
 
-func (o *CompanyDatasetAddresses) GetCountry() *string {
+func (o *CompanyDatasetAccountingAddress) GetCountry() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Country
 }
 
-func (o *CompanyDatasetAddresses) GetLine1() *string {
+func (o *CompanyDatasetAccountingAddress) GetLine1() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Line1
 }
 
-func (o *CompanyDatasetAddresses) GetLine2() *string {
+func (o *CompanyDatasetAccountingAddress) GetLine2() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Line2
 }
 
-func (o *CompanyDatasetAddresses) GetPostalCode() *string {
+func (o *CompanyDatasetAccountingAddress) GetPostalCode() *string {
 	if o == nil {
 		return nil
 	}
 	return o.PostalCode
 }
 
-func (o *CompanyDatasetAddresses) GetRegion() *string {
+func (o *CompanyDatasetAccountingAddress) GetRegion() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Region
 }
 
-func (o *CompanyDatasetAddresses) GetType() AccountingAddressType {
+func (o *CompanyDatasetAccountingAddress) GetType() AccountingAddressType {
 	if o == nil {
 		return AccountingAddressType("")
 	}
@@ -158,7 +158,7 @@ type CompanyDataset struct {
 	// Identifier or reference for the company in the accounting platform.
 	AccountingPlatformRef *string `json:"accountingPlatformRef,omitempty"`
 	// An array of Addresses.
-	Addresses []CompanyDatasetAddresses `json:"addresses,omitempty"`
+	Addresses []CompanyDatasetAccountingAddress `json:"addresses,omitempty"`
 	// Currency set in the accounting platform of the linked company. Used by the currency rate.
 	BaseCurrency *string `json:"baseCurrency,omitempty"`
 	// Registered legal name of the linked company.
@@ -246,7 +246,7 @@ func (o *CompanyDataset) GetAccountingPlatformRef() *string {
 	return o.AccountingPlatformRef
 }
 
-func (o *CompanyDataset) GetAddresses() []CompanyDatasetAddresses {
+func (o *CompanyDataset) GetAddresses() []CompanyDatasetAccountingAddress {
 	if o == nil {
 		return nil
 	}

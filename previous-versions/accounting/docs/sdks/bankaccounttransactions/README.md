@@ -209,7 +209,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.BankTransactionsResponse != nil {
+    if res.BankTransactions != nil {
         // handle response
     }
 }
