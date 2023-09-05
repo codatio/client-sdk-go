@@ -49,21 +49,21 @@ func main() {
         Journal: &shared.Journal{
             CreatedOn: codatsyncpayroll.String("2022-10-23T00:00:00.000Z"),
             HasChildren: codatsyncpayroll.Bool(false),
-            ID: codatsyncpayroll.String("711e5b7f-d2ed-4028-921c-ddc692601fb5"),
-            JournalCode: codatsyncpayroll.String("voluptate"),
+            ID: codatsyncpayroll.String("11e5b7fd-2ed0-4289-a1cd-dc692601fb57"),
+            JournalCode: codatsyncpayroll.String("autem"),
             Metadata: &shared.Metadata{
                 IsDeleted: codatsyncpayroll.Bool(false),
             },
             ModifiedDate: codatsyncpayroll.String("2022-10-23T00:00:00.000Z"),
-            Name: codatsyncpayroll.String("Gary Streich"),
-            ParentID: codatsyncpayroll.String("perferendis"),
+            Name: codatsyncpayroll.String("Meredith Hickle PhD"),
+            ParentID: codatsyncpayroll.String("amet"),
             SourceModifiedDate: codatsyncpayroll.String("2022-10-23T00:00:00.000Z"),
-            Status: shared.JournalStatusUnknown.ToPointer(),
-            Type: codatsyncpayroll.String("aut"),
+            Status: shared.JournalStatusArchived.ToPointer(),
+            Type: codatsyncpayroll.String("corporis"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codatsyncpayroll.Int(764912),
+        TimeoutInMinutes: codatsyncpayroll.Int(944124),
     })
     if err != nil {
         log.Fatal(err)
@@ -123,7 +123,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Journals.Get(ctx, operations.GetJournalRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        JournalID: "corporis",
+        JournalID: "libero",
     })
     if err != nil {
         log.Fatal(err)
@@ -246,7 +246,7 @@ func main() {
         OrderBy: codatsyncpayroll.String("-modifiedDate"),
         Page: codatsyncpayroll.Int(1),
         PageSize: codatsyncpayroll.Int(100),
-        Query: codatsyncpayroll.String("hic"),
+        Query: codatsyncpayroll.String("nobis"),
     })
     if err != nil {
         log.Fatal(err)

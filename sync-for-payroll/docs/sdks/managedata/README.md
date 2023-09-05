@@ -6,13 +6,15 @@ Asynchronously retrieve data from an integration to refresh data in Codat.
 
 ### Available Operations
 
-* [Get](#get) - Get data status
+* [GetDataStatus](#getdatastatus) - Get data status
 * [GetPullOperation](#getpulloperation) - Get pull operation
+* [GetPushOperation](#getpushoperation) - Get push operation
+* [List](#list) - List push operations
 * [ListPullOperations](#listpulloperations) - List pull operations
 * [RefreshAllDataTypes](#refreshalldatatypes) - Refresh all data
 * [RefreshDataType](#refreshdatatype) - Refresh data type
 
-## Get
+## GetDataStatus
 
 Get the state of each data type for a company
 
@@ -37,7 +39,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.ManageData.Get(ctx, operations.GetDataStatusRequest{
+    res, err := s.ManageData.GetDataStatus(ctx, operations.GetDataStatusRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -117,6 +119,115 @@ func main() {
 **[*operations.GetPullOperationResponse](../../models/operations/getpulloperationresponse.md), error**
 
 
+## GetPushOperation
+
+Retrieve push operation.
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"log"
+	"github.com/codatio/client-sdk-go/sync-for-payroll"
+	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/operations"
+)
+
+func main() {
+    s := codatsyncpayroll.New(
+        codatsyncpayroll.WithSecurity(shared.Security{
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
+        }),
+    )
+
+    ctx := context.Background()
+    res, err := s.ManageData.GetPushOperation(ctx, operations.GetPushOperationRequest{
+        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+        PushOperationKey: "25870532-02c7-43d5-be9b-90c28909b3fe",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.PushOperation != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
+| `request`                                                                                | [operations.GetPushOperationRequest](../../models/operations/getpushoperationrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `opts`                                                                                   | [][operations.Option](../../models/operations/option.md)                                 | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
+
+
+### Response
+
+**[*operations.GetPushOperationResponse](../../models/operations/getpushoperationresponse.md), error**
+
+
+## List
+
+List push operation records.
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"log"
+	"github.com/codatio/client-sdk-go/sync-for-payroll"
+	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/operations"
+)
+
+func main() {
+    s := codatsyncpayroll.New(
+        codatsyncpayroll.WithSecurity(shared.Security{
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
+        }),
+    )
+
+    ctx := context.Background()
+    res, err := s.ManageData.List(ctx, operations.ListPushOperationsRequest{
+        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+        OrderBy: codatsyncpayroll.String("-modifiedDate"),
+        Page: codatsyncpayroll.Int(1),
+        PageSize: codatsyncpayroll.Int(100),
+        Query: codatsyncpayroll.String("modi"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.PushOperations != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
+| `request`                                                                                    | [operations.ListPushOperationsRequest](../../models/operations/listpushoperationsrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `opts`                                                                                       | [][operations.Option](../../models/operations/option.md)                                     | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
+
+
+### Response
+
+**[*operations.ListPushOperationsResponse](../../models/operations/listpushoperationsresponse.md), error**
+
+
 ## ListPullOperations
 
 Gets the pull operation history (datasets) for a given company.
@@ -147,13 +258,13 @@ func main() {
         OrderBy: codatsyncpayroll.String("-modifiedDate"),
         Page: codatsyncpayroll.Int(1),
         PageSize: codatsyncpayroll.Int(100),
-        Query: codatsyncpayroll.String("libero"),
+        Query: codatsyncpayroll.String("iste"),
     })
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.DataConnectionHistory != nil {
+    if res.PullOperations != nil {
         // handle response
     }
 }
@@ -258,7 +369,7 @@ func main() {
     ctx := context.Background()
     res, err := s.ManageData.RefreshDataType(ctx, operations.RefreshDataTypeRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ConnectionID: codatsyncpayroll.String("b2587053-202c-473d-9fe9-b90c28909b3f"),
+        ConnectionID: codatsyncpayroll.String("a8d9cbf4-8633-4323-b9b7-7f3a4100674e"),
         DataType: shared.DataTypeInvoices,
     })
     if err != nil {

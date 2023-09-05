@@ -77,8 +77,6 @@ type CodatSyncPayroll struct {
 	Journals *journals
 	// ManageData - Asynchronously retrieve data from an integration to refresh data in Codat.
 	ManageData *manageData
-	// PushOperations - Access create, update and delete operations made to an SMB's data connection.
-	PushOperations *pushOperations
 	// TrackingCategories - Tracking categories
 	TrackingCategories *trackingCategories
 
@@ -136,8 +134,8 @@ func New(opts ...SDKOption) *CodatSyncPayroll {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "0.1.0",
-			GenVersion:        "2.91.4",
+			SDKVersion:        "0.1.1",
+			GenVersion:        "2.96.3",
 		},
 	}
 	for _, opt := range opts {
@@ -167,8 +165,6 @@ func New(opts ...SDKOption) *CodatSyncPayroll {
 	sdk.Journals = newJournals(sdk.sdkConfiguration)
 
 	sdk.ManageData = newManageData(sdk.sdkConfiguration)
-
-	sdk.PushOperations = newPushOperations(sdk.sdkConfiguration)
 
 	sdk.TrackingCategories = newTrackingCategories(sdk.sdkConfiguration)
 

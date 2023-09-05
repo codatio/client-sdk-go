@@ -2,44 +2,44 @@
 
 package shared
 
-// DataConnectionHistory - OK
-type DataConnectionHistory struct {
+// PushOperations - OK
+type PushOperations struct {
 	Links        Links           `json:"_links"`
 	PageNumber   int64           `json:"pageNumber"`
 	PageSize     int64           `json:"pageSize"`
-	Results      []PullOperation `json:"results,omitempty"`
+	Results      []PushOperation `json:"results,omitempty"`
 	TotalResults int64           `json:"totalResults"`
 }
 
-func (o *DataConnectionHistory) GetLinks() Links {
+func (o *PushOperations) GetLinks() Links {
 	if o == nil {
 		return Links{}
 	}
 	return o.Links
 }
 
-func (o *DataConnectionHistory) GetPageNumber() int64 {
+func (o *PushOperations) GetPageNumber() int64 {
 	if o == nil {
 		return 0
 	}
 	return o.PageNumber
 }
 
-func (o *DataConnectionHistory) GetPageSize() int64 {
+func (o *PushOperations) GetPageSize() int64 {
 	if o == nil {
 		return 0
 	}
 	return o.PageSize
 }
 
-func (o *DataConnectionHistory) GetResults() []PullOperation {
+func (o *PushOperations) GetResults() []PushOperation {
 	if o == nil {
 		return nil
 	}
 	return o.Results
 }
 
-func (o *DataConnectionHistory) GetTotalResults() int64 {
+func (o *PushOperations) GetTotalResults() int64 {
 	if o == nil {
 		return 0
 	}
