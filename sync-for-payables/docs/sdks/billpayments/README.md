@@ -7,6 +7,7 @@ Bill payments
 ### Available Operations
 
 * [Create](#create) - Create bill payments
+* [Delete](#delete) - Delete bill payment
 * [Get](#get) - Get bill payment
 * [GetCreateModel](#getcreatemodel) - Get create bill payment model
 * [List](#list) - List bill payments
@@ -143,6 +144,81 @@ func main() {
 **[*operations.CreateBillPaymentResponse](../../models/operations/createbillpaymentresponse.md), error**
 
 
+## Delete
+
+﻿The *Delete bill payment* endpoint allows you to delete a specified bill payment from an accounting platform.
+
+[Bill payments](https://docs.codat.io/sync-for-payables-api#/schemas/BillPayment) are an allocation of money within any customer accounts payable account.
+
+### Process
+1. Pass the `{billPaymentId}` to the *Delete bill payment* endpoint and store the `pushOperationKey` returned.
+2. Check the status of the delete operation by checking the status of push operation either via
+    1. [Push operation webhook](https://docs.codat.io/introduction/webhooks/core-rules-types#push-operation-status-has-changed) (advised),
+    2. [Push operation status endpoint](https://docs.codat.io/sync-for-payables-api#/operations/get-push-operation).
+
+   A `Success` status indicates that the bill payment object was deleted from the accounting platform.
+3. (Optional) Check that the bill payment was deleted from the accounting platform.
+
+### Effect on related objects
+Be aware that deleting a bill payment from an accounting platform might cause related objects to be modified.
+
+## Integration specifics
+Integrations that support soft delete do not permanently delete the object in the accounting platform.
+
+| Integration | Soft Delete | Details                                                                                             |  
+|-------------|-------------|-----------------------------------------------------------------------------------------------------|
+| Oracle NetSuite   | No          | See [here](/integrations/accounting/netsuite/accounting-netsuite-how-deleting-bill-payments-works) to learn more. |
+
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"log"
+	"github.com/codatio/client-sdk-go/sync-for-payables"
+	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/operations"
+)
+
+func main() {
+    s := codatsyncpayables.New(
+        codatsyncpayables.WithSecurity(shared.Security{
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
+        }),
+    )
+
+    ctx := context.Background()
+    res, err := s.BillPayments.Delete(ctx, operations.DeleteBillPaymentRequest{
+        BillPaymentID: "error",
+        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.PushOperation != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
+| `request`                                                                                  | [operations.DeleteBillPaymentRequest](../../models/operations/deletebillpaymentrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+| `opts`                                                                                     | [][operations.Option](../../models/operations/option.md)                                   | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
+
+
+### Response
+
+**[*operations.DeleteBillPaymentResponse](../../models/operations/deletebillpaymentresponse.md), error**
+
+
 ## Get
 
 The *Get bill payment* endpoint returns a single bill payment for a given `billPaymentId`.
@@ -176,7 +252,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.BillPayments.Get(ctx, operations.GetBillPaymentsRequest{
-        BillPaymentID: "error",
+        BillPaymentID: "mollitia",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -300,7 +376,7 @@ func main() {
         OrderBy: codatsyncpayables.String("-modifiedDate"),
         Page: codatsyncpayables.Int(1),
         PageSize: codatsyncpayables.Int(100),
-        Query: codatsyncpayables.String("mollitia"),
+        Query: codatsyncpayables.String("magnam"),
     })
     if err != nil {
         log.Fatal(err)

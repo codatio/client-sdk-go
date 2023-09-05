@@ -38,10 +38,12 @@ pkg/models/operations/getcreateupdatebillcreditnotemodel.go
 pkg/models/operations/listbillcreditnotes.go
 pkg/models/operations/updatebillcreditnote.go
 pkg/models/operations/createbillpayment.go
+pkg/models/operations/deletebillpayment.go
 pkg/models/operations/getbillpayments.go
 pkg/models/operations/getcreatebillpaymentmodel.go
 pkg/models/operations/listbillpayments.go
 pkg/models/operations/createbill.go
+pkg/models/operations/deletebill.go
 pkg/models/operations/downloadbillattachment.go
 pkg/models/operations/getbill.go
 pkg/models/operations/getbillattachment.go
@@ -126,6 +128,7 @@ pkg/models/shared/billpayment.go
 pkg/models/shared/billpaymentline.go
 pkg/models/shared/billpaymentlinelink.go
 pkg/models/shared/billpaymentlinelinktype.go
+pkg/models/shared/pushoperation.go
 pkg/models/shared/billpayments.go
 pkg/models/shared/createbillresponse.go
 pkg/models/shared/bill.go
@@ -160,7 +163,6 @@ pkg/models/shared/paymentmethod.go
 pkg/models/shared/paymentmethodtype.go
 pkg/models/shared/paymentmethodstatus.go
 pkg/models/shared/paymentmethods.go
-pkg/models/shared/pushoperation.go
 pkg/models/shared/pushoperations.go
 pkg/models/shared/createsupplierresponse.go
 pkg/models/shared/supplier.go
@@ -215,6 +217,8 @@ docs/models/operations/updatebillcreditnoterequest.md
 docs/models/operations/updatebillcreditnoteresponse.md
 docs/models/operations/createbillpaymentrequest.md
 docs/models/operations/createbillpaymentresponse.md
+docs/models/operations/deletebillpaymentrequest.md
+docs/models/operations/deletebillpaymentresponse.md
 docs/models/operations/getbillpaymentsrequest.md
 docs/models/operations/getbillpaymentsresponse.md
 docs/models/operations/getcreatebillpaymentmodelrequest.md
@@ -223,6 +227,8 @@ docs/models/operations/listbillpaymentsrequest.md
 docs/models/operations/listbillpaymentsresponse.md
 docs/models/operations/createbillrequest.md
 docs/models/operations/createbillresponse.md
+docs/models/operations/deletebillrequest.md
+docs/models/operations/deletebillresponse.md
 docs/models/operations/downloadbillattachmentrequest.md
 docs/models/operations/downloadbillattachmentresponse.md
 docs/models/operations/getbillrequest.md
@@ -344,7 +350,7 @@ docs/models/shared/paymentallocationpayment.md
 docs/models/shared/accountref.md
 docs/models/shared/billcreditnotelineitemitemreference.md
 docs/models/shared/billcreditnotelineitemtrackingcustomerref.md
-docs/models/shared/billcreditnotelineitemtrackingprojectref.md
+docs/models/shared/billcreditnotelineitemtrackingprojectreference.md
 docs/models/shared/billcreditnotelineitemtracking.md
 docs/models/shared/billcreditnotelineitem.md
 docs/models/shared/trackingcategoryref.md
@@ -357,6 +363,7 @@ docs/models/shared/billpayment.md
 docs/models/shared/billpaymentline.md
 docs/models/shared/billpaymentlinelink.md
 docs/models/shared/billpaymentlinelinktype.md
+docs/models/shared/pushoperation.md
 docs/models/shared/billpayments.md
 docs/models/shared/createbillresponse.md
 docs/models/shared/billpaymentallocationallocation.md
@@ -368,7 +375,7 @@ docs/models/shared/bill.md
 docs/models/shared/billstatus.md
 docs/models/shared/billlineitem.md
 docs/models/shared/trackingcustomerref.md
-docs/models/shared/trackingprojectref.md
+docs/models/shared/trackingprojectreference.md
 docs/models/shared/tracking.md
 docs/models/shared/itemref.md
 docs/models/shared/attachment.md
@@ -402,10 +409,9 @@ docs/models/shared/paymentmethod.md
 docs/models/shared/paymentmethodtype.md
 docs/models/shared/paymentmethodstatus.md
 docs/models/shared/paymentmethods.md
-docs/models/shared/pushoperation.md
 docs/models/shared/pushoperations.md
 docs/models/shared/createsupplierresponse.md
-docs/models/shared/supplieraddresses.md
+docs/models/shared/supplieraccountingaddress.md
 docs/models/shared/supplier.md
 docs/models/shared/supplierstatus.md
 docs/models/shared/accountingaddresstype.md

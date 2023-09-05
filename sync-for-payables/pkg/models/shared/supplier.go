@@ -2,7 +2,7 @@
 
 package shared
 
-type SupplierAddresses struct {
+type SupplierAccountingAddress struct {
 	// City of the customer address.
 	City *string `json:"city,omitempty"`
 	// Country of the customer address.
@@ -19,49 +19,49 @@ type SupplierAddresses struct {
 	Type AccountingAddressType `json:"type"`
 }
 
-func (o *SupplierAddresses) GetCity() *string {
+func (o *SupplierAccountingAddress) GetCity() *string {
 	if o == nil {
 		return nil
 	}
 	return o.City
 }
 
-func (o *SupplierAddresses) GetCountry() *string {
+func (o *SupplierAccountingAddress) GetCountry() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Country
 }
 
-func (o *SupplierAddresses) GetLine1() *string {
+func (o *SupplierAccountingAddress) GetLine1() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Line1
 }
 
-func (o *SupplierAddresses) GetLine2() *string {
+func (o *SupplierAccountingAddress) GetLine2() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Line2
 }
 
-func (o *SupplierAddresses) GetPostalCode() *string {
+func (o *SupplierAccountingAddress) GetPostalCode() *string {
 	if o == nil {
 		return nil
 	}
 	return o.PostalCode
 }
 
-func (o *SupplierAddresses) GetRegion() *string {
+func (o *SupplierAccountingAddress) GetRegion() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Region
 }
 
-func (o *SupplierAddresses) GetType() AccountingAddressType {
+func (o *SupplierAccountingAddress) GetType() AccountingAddressType {
 	if o == nil {
 		return AccountingAddressType("")
 	}
@@ -75,7 +75,7 @@ func (o *SupplierAddresses) GetType() AccountingAddressType {
 // From the **Suppliers** endpoints, you can retrieve a list of [all the suppliers for a company](https://docs.codat.io/accounting-api#/operations/list-suppliers). Suppliers' data links to accounts payable [bills](https://docs.codat.io/accounting-api#/schemas/Bill).
 type Supplier struct {
 	// An array of Addresses.
-	Addresses []SupplierAddresses `json:"addresses,omitempty"`
+	Addresses []SupplierAccountingAddress `json:"addresses,omitempty"`
 	// Name of the main contact for the supplier.
 	ContactName *string `json:"contactName,omitempty"`
 	// Default currency the supplier's transactional data is recorded in.
@@ -103,7 +103,7 @@ type Supplier struct {
 	TaxNumber *string `json:"taxNumber,omitempty"`
 }
 
-func (o *Supplier) GetAddresses() []SupplierAddresses {
+func (o *Supplier) GetAddresses() []SupplierAccountingAddress {
 	if o == nil {
 		return nil
 	}

@@ -90,7 +90,7 @@ func main() {
                         },
                         IsBilledTo: shared.BilledToTypeProject,
                         IsRebilledTo: shared.BilledToTypeNotApplicable,
-                        ProjectRef: &shared.BillCreditNoteLineItemTrackingProjectRef{
+                        ProjectRef: &shared.BillCreditNoteLineItemTrackingProjectReference{
                             ID: "6ae395ef-b9ba-488f-ba66-997074ba4469",
                             Name: codatsyncpayables.String("Duane Thiel II"),
                         },
@@ -137,7 +137,7 @@ func main() {
                         },
                         IsBilledTo: shared.BilledToTypeNotApplicable,
                         IsRebilledTo: shared.BilledToTypeCustomer,
-                        ProjectRef: &shared.BillCreditNoteLineItemTrackingProjectRef{
+                        ProjectRef: &shared.BillCreditNoteLineItemTrackingProjectReference{
                             ID: "d2322715-bf0c-4bb1-a31b-8b90f3443a11",
                             Name: codatsyncpayables.String("Miss Billie Ward"),
                         },
@@ -196,7 +196,7 @@ func main() {
                         },
                         IsBilledTo: shared.BilledToTypeCustomer,
                         IsRebilledTo: shared.BilledToTypeCustomer,
-                        ProjectRef: &shared.BillCreditNoteLineItemTrackingProjectRef{
+                        ProjectRef: &shared.BillCreditNoteLineItemTrackingProjectReference{
                             ID: "e8d67864-dbb6-475f-95e6-0b375ed4f6fb",
                             Name: codatsyncpayables.String("Dr. Terence Gulgowski"),
                         },
@@ -243,7 +243,7 @@ func main() {
                         },
                         IsBilledTo: shared.BilledToTypeNotApplicable,
                         IsRebilledTo: shared.BilledToTypeProject,
-                        ProjectRef: &shared.BillCreditNoteLineItemTrackingProjectRef{
+                        ProjectRef: &shared.BillCreditNoteLineItemTrackingProjectReference{
                             ID: "881ead4f-0e10-4125-a3f9-4e29e973e922",
                             Name: codatsyncpayables.String("Leo Kiehn II"),
                         },
@@ -688,7 +688,7 @@ func main() {
                         },
                         IsBilledTo: shared.BilledToTypeCustomer,
                         IsRebilledTo: shared.BilledToTypeUnknown,
-                        ProjectRef: &shared.BillCreditNoteLineItemTrackingProjectRef{
+                        ProjectRef: &shared.BillCreditNoteLineItemTrackingProjectReference{
                             ID: "3ea055b1-97cd-444e-af52-d82d3513bb6f",
                             Name: codatsyncpayables.String("Mattie Raynor"),
                         },

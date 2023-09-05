@@ -45,19 +45,19 @@ func (o *BillCreditNoteLineItemTrackingCustomerRef) GetID() string {
 	return o.ID
 }
 
-type BillCreditNoteLineItemTrackingProjectRef struct {
+type BillCreditNoteLineItemTrackingProjectReference struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *BillCreditNoteLineItemTrackingProjectRef) GetID() string {
+func (o *BillCreditNoteLineItemTrackingProjectReference) GetID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ID
 }
 
-func (o *BillCreditNoteLineItemTrackingProjectRef) GetName() *string {
+func (o *BillCreditNoteLineItemTrackingProjectReference) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -66,11 +66,11 @@ func (o *BillCreditNoteLineItemTrackingProjectRef) GetName() *string {
 
 // BillCreditNoteLineItemTracking - Categories, and a project and customer, against which the item is tracked.
 type BillCreditNoteLineItemTracking struct {
-	CategoryRefs []TrackingCategoryRef                      `json:"categoryRefs"`
-	CustomerRef  *BillCreditNoteLineItemTrackingCustomerRef `json:"customerRef,omitempty"`
-	IsBilledTo   BilledToType                               `json:"isBilledTo"`
-	IsRebilledTo BilledToType                               `json:"isRebilledTo"`
-	ProjectRef   *BillCreditNoteLineItemTrackingProjectRef  `json:"projectRef,omitempty"`
+	CategoryRefs []TrackingCategoryRef                           `json:"categoryRefs"`
+	CustomerRef  *BillCreditNoteLineItemTrackingCustomerRef      `json:"customerRef,omitempty"`
+	IsBilledTo   BilledToType                                    `json:"isBilledTo"`
+	IsRebilledTo BilledToType                                    `json:"isRebilledTo"`
+	ProjectRef   *BillCreditNoteLineItemTrackingProjectReference `json:"projectRef,omitempty"`
 }
 
 func (o *BillCreditNoteLineItemTracking) GetCategoryRefs() []TrackingCategoryRef {
@@ -101,7 +101,7 @@ func (o *BillCreditNoteLineItemTracking) GetIsRebilledTo() BilledToType {
 	return o.IsRebilledTo
 }
 
-func (o *BillCreditNoteLineItemTracking) GetProjectRef() *BillCreditNoteLineItemTrackingProjectRef {
+func (o *BillCreditNoteLineItemTracking) GetProjectRef() *BillCreditNoteLineItemTrackingProjectReference {
 	if o == nil {
 		return nil
 	}

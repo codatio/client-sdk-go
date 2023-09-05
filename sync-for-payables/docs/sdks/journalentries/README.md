@@ -46,92 +46,59 @@ func main() {
     res, err := s.JournalEntries.Create(ctx, operations.CreateJournalEntryRequest{
         JournalEntry: &shared.JournalEntry{
             CreatedOn: codatsyncpayables.String("2022-10-23T00:00:00.000Z"),
-            Description: codatsyncpayables.String("nam"),
-            ID: codatsyncpayables.String("dc41ff5d-4e2a-4e4f-b5cb-35d17638f1ed"),
+            Description: codatsyncpayables.String("culpa"),
+            ID: codatsyncpayables.String("bcdc91fa-abdd-488e-b1f6-c48252d7771e"),
             JournalLines: []shared.JournalLine{
                 shared.JournalLine{
                     AccountRef: &shared.AccountRef{
-                        ID: codatsyncpayables.String("78359ecc-5cb8-460f-8cd5-80ba73810e4f"),
-                        Name: codatsyncpayables.String("Don Hagenes"),
+                        ID: codatsyncpayables.String("fd074009-ef8d-429d-a1dd-7097b5da08c5"),
+                        Name: codatsyncpayables.String("Ora Olson"),
                     },
-                    Currency: codatsyncpayables.String("magni"),
-                    Description: codatsyncpayables.String("excepturi"),
-                    NetAmount: 4576.85,
+                    Currency: codatsyncpayables.String("odio"),
+                    Description: codatsyncpayables.String("atque"),
+                    NetAmount: 6288.11,
                     Tracking: &shared.JournalLineTracking{
                         RecordRefs: []shared.RecordRef{
                             shared.RecordRef{
-                                DataType: codatsyncpayables.String("transfer"),
-                                ID: codatsyncpayables.String("3b1dd3bb-ce24-47b7-a84e-ff50126d71cf"),
+                                DataType: codatsyncpayables.String("journalEntry"),
+                                ID: codatsyncpayables.String("6e19bafe-ca61-4914-9814-0b64ff8ae170"),
+                            },
+                        },
+                    },
+                },
+                shared.JournalLine{
+                    AccountRef: &shared.AccountRef{
+                        ID: codatsyncpayables.String("ef03b5f3-7e4a-4a86-8555-966732aa5dcb"),
+                        Name: codatsyncpayables.String("Ella Lang"),
+                    },
+                    Currency: codatsyncpayables.String("expedita"),
+                    Description: codatsyncpayables.String("in"),
+                    NetAmount: 526.59,
+                    Tracking: &shared.JournalLineTracking{
+                        RecordRefs: []shared.RecordRef{
+                            shared.RecordRef{
+                                DataType: codatsyncpayables.String("accountTransaction"),
+                                ID: codatsyncpayables.String("cfd5fb6e-91b9-4a9f-b484-6e2c3309db05"),
                             },
                             shared.RecordRef{
-                                DataType: codatsyncpayables.String("transfer"),
-                                ID: codatsyncpayables.String("bd0eb74b-8421-4953-b44b-d3c43159d33e"),
+                                DataType: codatsyncpayables.String("journalEntry"),
+                                ID: codatsyncpayables.String("6d9e75ca-006f-4539-ac11-a25a8bf92f97"),
                             },
                             shared.RecordRef{
                                 DataType: codatsyncpayables.String("invoice"),
-                                ID: codatsyncpayables.String("953c0011-3986-43aa-81e6-c31cc2f1fcb5"),
-                            },
-                            shared.RecordRef{
-                                DataType: codatsyncpayables.String("journalEntry"),
-                                ID: codatsyncpayables.String("c9a41ffb-e9cb-4d79-9ee6-5e076cc7abf6"),
-                            },
-                        },
-                    },
-                },
-                shared.JournalLine{
-                    AccountRef: &shared.AccountRef{
-                        ID: codatsyncpayables.String("16ea5c71-6419-434b-90f2-e09d19d2fc2f"),
-                        Name: codatsyncpayables.String("Merle Cormier Jr."),
-                    },
-                    Currency: codatsyncpayables.String("nemo"),
-                    Description: codatsyncpayables.String("provident"),
-                    NetAmount: 2529.57,
-                    Tracking: &shared.JournalLineTracking{
-                        RecordRefs: []shared.RecordRef{
-                            shared.RecordRef{
-                                DataType: codatsyncpayables.String("accountTransaction"),
-                                ID: codatsyncpayables.String("935d237a-72f9-4084-9d6a-ed4aecb7537c"),
-                            },
-                            shared.RecordRef{
-                                DataType: codatsyncpayables.String("transfer"),
-                                ID: codatsyncpayables.String("9222c9ff-5749-41aa-bfa2-e761f0ca4d45"),
-                            },
-                        },
-                    },
-                },
-                shared.JournalLine{
-                    AccountRef: &shared.AccountRef{
-                        ID: codatsyncpayables.String("6ef1031e-6899-4f0c-a001-e22cd55cc058"),
-                        Name: codatsyncpayables.String("Hattie Botsford"),
-                    },
-                    Currency: codatsyncpayables.String("possimus"),
-                    Description: codatsyncpayables.String("nihil"),
-                    NetAmount: 3758.77,
-                    Tracking: &shared.JournalLineTracking{
-                        RecordRefs: []shared.RecordRef{
-                            shared.RecordRef{
-                                DataType: codatsyncpayables.String("accountTransaction"),
-                                ID: codatsyncpayables.String("71fc820c-65b0-437b-b8e0-cc885187e4de"),
-                            },
-                            shared.RecordRef{
-                                DataType: codatsyncpayables.String("journalEntry"),
-                                ID: codatsyncpayables.String("4af28c5d-ddb4-46aa-9cfd-6d828da01319"),
-                            },
-                            shared.RecordRef{
-                                DataType: codatsyncpayables.String("journalEntry"),
-                                ID: codatsyncpayables.String("12964664-5c1d-481f-a904-2f569b7aff0e"),
+                                ID: codatsyncpayables.String("28ad9a9f-8bf8-4221-9253-59d98387f7a7"),
                             },
                             shared.RecordRef{
                                 DataType: codatsyncpayables.String("accountTransaction"),
-                                ID: codatsyncpayables.String("2216cbe0-71bc-4163-a279-a3b084da9925"),
+                                ID: codatsyncpayables.String("cd72cd24-84da-4217-a9f2-ac41ef5725f1"),
                             },
                         },
                     },
                 },
             },
             JournalRef: &shared.JournalRef{
-                ID: "7d04f408-47a7-442d-8449-6cbdeecf6b99",
-                Name: codatsyncpayables.String("Wilbert Jerde"),
+                ID: "169ac1e4-1d8a-423c-a3e3-4f2dfa4a197f",
+                Name: codatsyncpayables.String("Betsy Walter"),
             },
             Metadata: &shared.Metadata{
                 IsDeleted: codatsyncpayables.Bool(false),
@@ -139,18 +106,19 @@ func main() {
             ModifiedDate: codatsyncpayables.String("2022-10-23T00:00:00.000Z"),
             PostedOn: codatsyncpayables.String("2022-10-23T00:00:00.000Z"),
             RecordRef: &shared.JournalEntryRecordReference{
-                DataType: codatsyncpayables.String("transfer"),
-                ID: codatsyncpayables.String("bfdf55c2-94c0-460b-86a1-287764eef6d0"),
+                DataType: codatsyncpayables.String("invoice"),
+                ID: codatsyncpayables.String("1fe17120-9985-43e9-b543-d854439ee224"),
             },
             SourceModifiedDate: codatsyncpayables.String("2022-10-23T00:00:00.000Z"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "temporibus": map[string]interface{}{
-                        "itaque": "nulla",
-                        "excepturi": "quod",
+                    "accusantium": map[string]interface{}{
+                        "aliquam": "dolorem",
+                        "expedita": "impedit",
                     },
-                    "in": map[string]interface{}{
-                        "temporibus": "temporibus",
+                    "architecto": map[string]interface{}{
+                        "magnam": "vitae",
+                        "quos": "atque",
                     },
                 },
             },
@@ -158,7 +126,7 @@ func main() {
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codatsyncpayables.Int(247927),
+        TimeoutInMinutes: codatsyncpayables.Int(125488),
     })
     if err != nil {
         log.Fatal(err)
