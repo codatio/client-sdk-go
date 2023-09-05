@@ -18,14 +18,70 @@ func (o *ListFilesRequest) GetCompanyID() string {
 	return o.CompanyID
 }
 
+// ListFilesErrorMessage - One or more of the resources you referenced could not be found.
+// This might be because your company or data connection id is wrong, or was already deleted.
+type ListFilesErrorMessage struct {
+	CanBeRetried      *string `json:"canBeRetried,omitempty"`
+	CorrelationID     *string `json:"correlationId,omitempty"`
+	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
+	Error             *string `json:"error,omitempty"`
+	Service           *string `json:"service,omitempty"`
+	StatusCode        *int64  `json:"statusCode,omitempty"`
+}
+
+func (o *ListFilesErrorMessage) GetCanBeRetried() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CanBeRetried
+}
+
+func (o *ListFilesErrorMessage) GetCorrelationID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CorrelationID
+}
+
+func (o *ListFilesErrorMessage) GetDetailedErrorCode() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.DetailedErrorCode
+}
+
+func (o *ListFilesErrorMessage) GetError() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Error
+}
+
+func (o *ListFilesErrorMessage) GetService() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Service
+}
+
+func (o *ListFilesErrorMessage) GetStatusCode() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.StatusCode
+}
+
 type ListFilesResponse struct {
 	ContentType string
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
+	// One or more of the resources you referenced could not be found.
+	// This might be because your company or data connection id is wrong, or was already deleted.
+	ErrorMessage *ListFilesErrorMessage
 	// Success
 	Files       []shared.File
 	StatusCode  int
 	RawResponse *http.Response
+	// Your API request was not properly authorized.
+	Schema *shared.Schema
 }
 
 func (o *ListFilesResponse) GetContentType() string {
@@ -35,7 +91,7 @@ func (o *ListFilesResponse) GetContentType() string {
 	return o.ContentType
 }
 
-func (o *ListFilesResponse) GetErrorMessage() *shared.ErrorMessage {
+func (o *ListFilesResponse) GetErrorMessage() *ListFilesErrorMessage {
 	if o == nil {
 		return nil
 	}
@@ -61,4 +117,11 @@ func (o *ListFilesResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
+}
+
+func (o *ListFilesResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }
