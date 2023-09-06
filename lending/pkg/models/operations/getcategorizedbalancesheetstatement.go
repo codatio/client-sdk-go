@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-type GetEnhancedBalanceSheetAccountsRequest struct {
+type GetCategorizedBalanceSheetStatementRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	// The number of periods to return. If not provided, 12 periods will be used as the default value.
 	NumberOfPeriods *int64 `queryParam:"style=form,explode=true,name=numberOfPeriods"`
@@ -15,28 +15,28 @@ type GetEnhancedBalanceSheetAccountsRequest struct {
 	ReportDate string `queryParam:"style=form,explode=true,name=reportDate"`
 }
 
-func (o *GetEnhancedBalanceSheetAccountsRequest) GetCompanyID() string {
+func (o *GetCategorizedBalanceSheetStatementRequest) GetCompanyID() string {
 	if o == nil {
 		return ""
 	}
 	return o.CompanyID
 }
 
-func (o *GetEnhancedBalanceSheetAccountsRequest) GetNumberOfPeriods() *int64 {
+func (o *GetCategorizedBalanceSheetStatementRequest) GetNumberOfPeriods() *int64 {
 	if o == nil {
 		return nil
 	}
 	return o.NumberOfPeriods
 }
 
-func (o *GetEnhancedBalanceSheetAccountsRequest) GetReportDate() string {
+func (o *GetCategorizedBalanceSheetStatementRequest) GetReportDate() string {
 	if o == nil {
 		return ""
 	}
 	return o.ReportDate
 }
 
-type GetEnhancedBalanceSheetAccountsResponse struct {
+type GetCategorizedBalanceSheetStatementResponse struct {
 	ContentType string
 	// OK
 	EnhancedFinancialReport *shared.EnhancedFinancialReport
@@ -46,35 +46,35 @@ type GetEnhancedBalanceSheetAccountsResponse struct {
 	RawResponse  *http.Response
 }
 
-func (o *GetEnhancedBalanceSheetAccountsResponse) GetContentType() string {
+func (o *GetCategorizedBalanceSheetStatementResponse) GetContentType() string {
 	if o == nil {
 		return ""
 	}
 	return o.ContentType
 }
 
-func (o *GetEnhancedBalanceSheetAccountsResponse) GetEnhancedFinancialReport() *shared.EnhancedFinancialReport {
+func (o *GetCategorizedBalanceSheetStatementResponse) GetEnhancedFinancialReport() *shared.EnhancedFinancialReport {
 	if o == nil {
 		return nil
 	}
 	return o.EnhancedFinancialReport
 }
 
-func (o *GetEnhancedBalanceSheetAccountsResponse) GetErrorMessage() *shared.ErrorMessage {
+func (o *GetCategorizedBalanceSheetStatementResponse) GetErrorMessage() *shared.ErrorMessage {
 	if o == nil {
 		return nil
 	}
 	return o.ErrorMessage
 }
 
-func (o *GetEnhancedBalanceSheetAccountsResponse) GetStatusCode() int {
+func (o *GetCategorizedBalanceSheetStatementResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
 	}
 	return o.StatusCode
 }
 
-func (o *GetEnhancedBalanceSheetAccountsResponse) GetRawResponse() *http.Response {
+func (o *GetCategorizedBalanceSheetStatementResponse) GetRawResponse() *http.Response {
 	if o == nil {
 		return nil
 	}

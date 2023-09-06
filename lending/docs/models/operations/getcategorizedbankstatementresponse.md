@@ -1,4 +1,4 @@
-# GetEnhancedCashFlowTransactionsResponse
+# GetCategorizedBankStatementResponse
 
 
 ## Fields

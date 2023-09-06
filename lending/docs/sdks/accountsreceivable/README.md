@@ -16,10 +16,10 @@ Data from a linked accounting platform representing money owed to the business f
 * [GetCustomerAttachment](#getcustomerattachment) - Get customer attachment
 * [GetDirectIncome](#getdirectincome) - Get direct income
 * [GetDirectIncomeAttachment](#getdirectincomeattachment) - Get direct income attachment
-* [GetEnhancedInvoicesReport](#getenhancedinvoicesreport) - Get enhanced invoices report
 * [GetInvoice](#getinvoice) - Get invoice
 * [GetInvoiceAttachment](#getinvoiceattachment) - Get invoice attachment
 * [GetPayment](#getpayment) - Get payment
+* [GetReconciledInvoices](#getreconciledinvoices) - Get reconciled invoices
 * [IsAgedDebtorReportAvailable](#isageddebtorreportavailable) - Aged debtors report available
 * [ListCreditNotes](#listcreditnotes) - List credit notes
 * [ListCustomerAttachments](#listcustomerattachments) - List customer attachments
@@ -621,61 +621,6 @@ func main() {
 **[*operations.GetAccountingDirectIncomeAttachmentResponse](../../models/operations/getaccountingdirectincomeattachmentresponse.md), error**
 
 
-## GetEnhancedInvoicesReport
-
-Gets a list of invoices linked to the corresponding banking transaction
-
-### Example Usage
-
-```go
-package main
-
-import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/lending"
-	"github.com/codatio/client-sdk-go/lending/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/pkg/models/operations"
-)
-
-func main() {
-    s := codatlending.New(
-        codatlending.WithSecurity(shared.Security{
-            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
-        }),
-    )
-
-    ctx := context.Background()
-    res, err := s.AccountsReceivable.GetEnhancedInvoicesReport(ctx, operations.GetEnhancedInvoicesReportRequest{
-        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        Page: codatlending.Int(1),
-        PageSize: codatlending.Int(100),
-        Query: codatlending.String("veritatis"),
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-
-    if res.EnhancedInvoicesReport != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
-| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                                      | :heavy_check_mark:                                                                                         | The context to use for the request.                                                                        |
-| `request`                                                                                                  | [operations.GetEnhancedInvoicesReportRequest](../../models/operations/getenhancedinvoicesreportrequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
-| `opts`                                                                                                     | [][operations.Option](../../models/operations/option.md)                                                   | :heavy_minus_sign:                                                                                         | The options for this request.                                                                              |
-
-
-### Response
-
-**[*operations.GetEnhancedInvoicesReportResponse](../../models/operations/getenhancedinvoicesreportresponse.md), error**
-
-
 ## GetInvoice
 
 The *Get invoice* endpoint returns a single invoice for a given invoiceId.
@@ -710,7 +655,7 @@ func main() {
     ctx := context.Background()
     res, err := s.AccountsReceivable.GetInvoice(ctx, operations.GetAccountingInvoiceRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        InvoiceID: "deserunt",
+        InvoiceID: "veritatis",
     })
     if err != nil {
         log.Fatal(err)
@@ -770,7 +715,7 @@ func main() {
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        InvoiceID: "perferendis",
+        InvoiceID: "deserunt",
     })
     if err != nil {
         log.Fatal(err)
@@ -830,7 +775,7 @@ func main() {
     ctx := context.Background()
     res, err := s.AccountsReceivable.GetPayment(ctx, operations.GetAccountingPaymentRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        PaymentID: "ipsam",
+        PaymentID: "perferendis",
     })
     if err != nil {
         log.Fatal(err)
@@ -854,6 +799,61 @@ func main() {
 ### Response
 
 **[*operations.GetAccountingPaymentResponse](../../models/operations/getaccountingpaymentresponse.md), error**
+
+
+## GetReconciledInvoices
+
+Gets a list of invoices linked to the corresponding banking transaction
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"log"
+	"github.com/codatio/client-sdk-go/lending"
+	"github.com/codatio/client-sdk-go/lending/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/pkg/models/operations"
+)
+
+func main() {
+    s := codatlending.New(
+        codatlending.WithSecurity(shared.Security{
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
+        }),
+    )
+
+    ctx := context.Background()
+    res, err := s.AccountsReceivable.GetReconciledInvoices(ctx, operations.GetReconciledInvoicesRequest{
+        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+        Page: codatlending.Int(1),
+        PageSize: codatlending.Int(100),
+        Query: codatlending.String("ipsam"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.EnhancedInvoicesReport != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                              | :heavy_check_mark:                                                                                 | The context to use for the request.                                                                |
+| `request`                                                                                          | [operations.GetReconciledInvoicesRequest](../../models/operations/getreconciledinvoicesrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
+| `opts`                                                                                             | [][operations.Option](../../models/operations/option.md)                                           | :heavy_minus_sign:                                                                                 | The options for this request.                                                                      |
+
+
+### Response
+
+**[*operations.GetReconciledInvoicesResponse](../../models/operations/getreconciledinvoicesresponse.md), error**
 
 
 ## IsAgedDebtorReportAvailable

@@ -10,7 +10,7 @@ type AccountBalance struct {
 	// Funds that are not yet available in the balance
 	Pending *float64 `json:"pending,omitempty"`
 	// Funds reserved as holdings
-	Reserved *float64 `json:"reserved,omitempty"`
+	Reserved interface{} `json:"reserved,omitempty"`
 }
 
 func (o *AccountBalance) GetAvailable() *float64 {
@@ -34,7 +34,7 @@ func (o *AccountBalance) GetPending() *float64 {
 	return o.Pending
 }
 
-func (o *AccountBalance) GetReserved() *float64 {
+func (o *AccountBalance) GetReserved() interface{} {
 	if o == nil {
 		return nil
 	}

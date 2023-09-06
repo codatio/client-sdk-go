@@ -1,4 +1,4 @@
-# CashFlow
+# Banking
 
 ## Overview
 
@@ -9,7 +9,7 @@ Retrieve banking data from linked bank accounts.
 * [GetBankAccount](#getbankaccount) - Get account
 * [GetBankTransaction](#getbanktransaction) - Get bank transaction
 * [GetBankTransactionCategory](#getbanktransactioncategory) - Get transaction category
-* [GetEnhancedCashFlowTransactions](#getenhancedcashflowtransactions) - Get enhanced cash flow report
+* [GetCategorizedBankStatement](#getcategorizedbankstatement) - Get categorized bank statement
 * [ListBankAccountBalances](#listbankaccountbalances) - List account balances
 * [ListBankAccounts](#listbankaccounts) - List accounts
 * [ListBankTransactionCategories](#listbanktransactioncategories) - List transaction categories
@@ -47,7 +47,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.CashFlow.GetBankAccount(ctx, operations.GetBankingAccountRequest{
+    res, err := s.Banking.GetBankAccount(ctx, operations.GetBankingAccountRequest{
         AccountID: "quod",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -108,7 +108,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.CashFlow.GetBankTransaction(ctx, operations.GetBankingTransactionRequest{
+    res, err := s.Banking.GetBankTransaction(ctx, operations.GetBankingTransactionRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         TransactionID: "quod",
@@ -169,7 +169,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.CashFlow.GetBankTransactionCategory(ctx, operations.GetBankingTransactionCategoryRequest{
+    res, err := s.Banking.GetBankTransactionCategory(ctx, operations.GetBankingTransactionCategoryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         TransactionCategoryID: "esse",
@@ -198,7 +198,7 @@ func main() {
 **[*operations.GetBankingTransactionCategoryResponse](../../models/operations/getbankingtransactioncategoryresponse.md), error**
 
 
-## GetEnhancedCashFlowTransactions
+## GetCategorizedBankStatement
 
 > **Categorization engine**
 > 
@@ -227,7 +227,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.CashFlow.GetEnhancedCashFlowTransactions(ctx, operations.GetEnhancedCashFlowTransactionsRequest{
+    res, err := s.Banking.GetCategorizedBankStatement(ctx, operations.GetCategorizedBankStatementRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         Page: codatlending.Int(1),
         PageSize: codatlending.Int(100),
@@ -245,16 +245,16 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                              | Type                                                                                                                   | Required                                                                                                               | Description                                                                                                            |
-| ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                                  | :heavy_check_mark:                                                                                                     | The context to use for the request.                                                                                    |
-| `request`                                                                                                              | [operations.GetEnhancedCashFlowTransactionsRequest](../../models/operations/getenhancedcashflowtransactionsrequest.md) | :heavy_check_mark:                                                                                                     | The request object to use for the request.                                                                             |
-| `opts`                                                                                                                 | [][operations.Option](../../models/operations/option.md)                                                               | :heavy_minus_sign:                                                                                                     | The options for this request.                                                                                          |
+| Parameter                                                                                                      | Type                                                                                                           | Required                                                                                                       | Description                                                                                                    |
+| -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                                          | :heavy_check_mark:                                                                                             | The context to use for the request.                                                                            |
+| `request`                                                                                                      | [operations.GetCategorizedBankStatementRequest](../../models/operations/getcategorizedbankstatementrequest.md) | :heavy_check_mark:                                                                                             | The request object to use for the request.                                                                     |
+| `opts`                                                                                                         | [][operations.Option](../../models/operations/option.md)                                                       | :heavy_minus_sign:                                                                                             | The options for this request.                                                                                  |
 
 
 ### Response
 
-**[*operations.GetEnhancedCashFlowTransactionsResponse](../../models/operations/getenhancedcashflowtransactionsresponse.md), error**
+**[*operations.GetCategorizedBankStatementResponse](../../models/operations/getcategorizedbankstatementresponse.md), error**
 
 
 ## ListBankAccountBalances
@@ -287,7 +287,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.CashFlow.ListBankAccountBalances(ctx, operations.ListBankingAccountBalancesRequest{
+    res, err := s.Banking.ListBankAccountBalances(ctx, operations.ListBankingAccountBalancesRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         OrderBy: codatlending.String("-modifiedDate"),
@@ -349,7 +349,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.CashFlow.ListBankAccounts(ctx, operations.ListBankingAccountsRequest{
+    res, err := s.Banking.ListBankAccounts(ctx, operations.ListBankingAccountsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         OrderBy: codatlending.String("-modifiedDate"),
@@ -411,7 +411,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.CashFlow.ListBankTransactionCategories(ctx, operations.ListBankingTransactionCategoriesRequest{
+    res, err := s.Banking.ListBankTransactionCategories(ctx, operations.ListBankingTransactionCategoriesRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         OrderBy: codatlending.String("-modifiedDate"),
@@ -473,7 +473,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.CashFlow.ListBankTransactions(ctx, operations.ListBankingTransactionsRequest{
+    res, err := s.Banking.ListBankTransactions(ctx, operations.ListBankingTransactionsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         OrderBy: codatlending.String("-modifiedDate"),

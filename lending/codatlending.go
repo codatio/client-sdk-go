@@ -63,7 +63,29 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 //
 // The Lending API is built on top of the latest accounting, commerce, and banking data, providing you with the most important data points you need to get a full picture of SMB creditworthiness and make a comprehensive assessment of your customers.
 //
-// [See our OpenAPI spec](https://github.com/codatio/oas)
+// [Explore product](https://docs.codat.io/bank-feeds-api/overview) | [See OpenAPI spec](https://github.com/codatio/oas)
+//
+// ---
+//
+// ## Endpoints
+//
+// | Endpoints            | Description                                                                                                |
+// |:---------------------|:-----------------------------------------------------------------------------------------------------------|
+// | Companies            | Create and manage your SMB users' companies.                                                               |
+// | Connections          | Create new and manage existing data connections for a company.                                             |
+// | Company info         | View company profile from the source platform.                                                             |
+// | Accounts payable     | Data from a linked accounting platform representing money the business owes money to its suppliers.        |
+// | Accounts receivable  | Data from a linked accounting platform representing money owed to the business for sold goods or services. |
+// | Transactions         | Data from a linked accounting platform representing transactions.                                          |
+// | Financial statements | Financial data and reports from a linked accounting platform.                                              |
+// | Banking              | Retrieve banking data from linked bank accounts.                                                           |
+// | Sales                | Retrieve standardized sales data from a linked commerce platform.                                          |
+// | Liabilities          | Debt and other liabilities.                                                                                |
+// | Data integrity       | Match mutable accounting data with immutable banking data to increase confidence in financial data.        |
+// | Excel reports        | Download reports in Excel format.                                                                          |
+// | Categories           | Manage Codat's automatic account categorization functionality.                                             |
+// | Manage data          | Control how data is retrieved from an integration.                                                         |
+// | File upload          | Endpoints to manage uploaded files.                                                                        |
 type CodatLending struct {
 	// AccountingBankData - Access bank transactions from an accounting platform.
 	AccountingBankData *accountingBankData
@@ -71,8 +93,8 @@ type CodatLending struct {
 	AccountsPayable *accountsPayable
 	// AccountsReceivable - Data from a linked accounting platform representing money owed to the business for sold goods or services.
 	AccountsReceivable *accountsReceivable
-	// CashFlow - Retrieve banking data from linked bank accounts.
-	CashFlow *cashFlow
+	// Banking - Retrieve banking data from linked bank accounts.
+	Banking *banking
 	// Companies - Create and manage your Codat companies.
 	Companies *companies
 	// CompanyInfo - View company information fetched from the source platform.
@@ -150,8 +172,8 @@ func New(opts ...SDKOption) *CodatLending {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "0.1.1",
-			GenVersion:        "2.96.3",
+			SDKVersion:        "0.1.2",
+			GenVersion:        "2.96.6",
 		},
 	}
 	for _, opt := range opts {
@@ -176,7 +198,7 @@ func New(opts ...SDKOption) *CodatLending {
 
 	sdk.AccountsReceivable = newAccountsReceivable(sdk.sdkConfiguration)
 
-	sdk.CashFlow = newCashFlow(sdk.sdkConfiguration)
+	sdk.Banking = newBanking(sdk.sdkConfiguration)
 
 	sdk.Companies = newCompanies(sdk.sdkConfiguration)
 

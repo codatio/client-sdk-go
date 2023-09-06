@@ -366,11 +366,11 @@ func (s *financialStatements) GetCashFlowStatement(ctx context.Context, request 
 	return res, nil
 }
 
-// GetEnhancedBalanceSheetAccounts - Get enhanced balance sheet accounts
+// GetCategorizedBalanceSheet - Get categorized balance sheet statement
 // The *Get enhanced balance sheet accounts* endpoint returns a list of categorized accounts that appear on a company’s Balance Sheet along with a balance per financial statement date.
 //
 // Codat suggests a category for each account automatically, but you can [change it](https://docs.codat.io/lending/enhanced-financials/overview#categorize-accounts) to a more suitable one.
-func (s *financialStatements) GetEnhancedBalanceSheetAccounts(ctx context.Context, request operations.GetEnhancedBalanceSheetAccountsRequest, opts ...operations.Option) (*operations.GetEnhancedBalanceSheetAccountsResponse, error) {
+func (s *financialStatements) GetCategorizedBalanceSheet(ctx context.Context, request operations.GetCategorizedBalanceSheetStatementRequest, opts ...operations.Option) (*operations.GetCategorizedBalanceSheetStatementResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -440,7 +440,7 @@ func (s *financialStatements) GetEnhancedBalanceSheetAccounts(ctx context.Contex
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetEnhancedBalanceSheetAccountsResponse{
+	res := &operations.GetCategorizedBalanceSheetStatementResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -477,11 +477,11 @@ func (s *financialStatements) GetEnhancedBalanceSheetAccounts(ctx context.Contex
 	return res, nil
 }
 
-// GetEnhancedProfitAndLossAccounts - Get enhanced profit and loss accounts
+// GetCategorizedProfitAndLoss - Get categorized profit and loss statement
 // The *Get enhanced profit and loss accounts* endpoint returns a list of categorized accounts that appear on a company’s Profit and Loss statement. It also includes a balance as of the financial statement date.
 //
 // Codat suggests a category for each account automatically, but you can [change it](https://docs.codat.io/lending/enhanced-financials/overview#categorize-accounts) to a more suitable one.
-func (s *financialStatements) GetEnhancedProfitAndLossAccounts(ctx context.Context, request operations.GetEnhancedProfitAndLossAccountsRequest, opts ...operations.Option) (*operations.GetEnhancedProfitAndLossAccountsResponse, error) {
+func (s *financialStatements) GetCategorizedProfitAndLoss(ctx context.Context, request operations.GetCategorizedProfitAndLossStatementRequest, opts ...operations.Option) (*operations.GetCategorizedProfitAndLossStatementResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -551,7 +551,7 @@ func (s *financialStatements) GetEnhancedProfitAndLossAccounts(ctx context.Conte
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetEnhancedProfitAndLossAccountsResponse{
+	res := &operations.GetCategorizedProfitAndLossStatementResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,

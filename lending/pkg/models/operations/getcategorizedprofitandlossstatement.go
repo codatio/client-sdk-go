@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-type GetEnhancedProfitAndLossAccountsRequest struct {
+type GetCategorizedProfitAndLossStatementRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	// The number of periods to return. If not provided, 12 periods will be used as the default value.
 	NumberOfPeriods *int64 `queryParam:"style=form,explode=true,name=numberOfPeriods"`
@@ -15,28 +15,28 @@ type GetEnhancedProfitAndLossAccountsRequest struct {
 	ReportDate string `queryParam:"style=form,explode=true,name=reportDate"`
 }
 
-func (o *GetEnhancedProfitAndLossAccountsRequest) GetCompanyID() string {
+func (o *GetCategorizedProfitAndLossStatementRequest) GetCompanyID() string {
 	if o == nil {
 		return ""
 	}
 	return o.CompanyID
 }
 
-func (o *GetEnhancedProfitAndLossAccountsRequest) GetNumberOfPeriods() *int64 {
+func (o *GetCategorizedProfitAndLossStatementRequest) GetNumberOfPeriods() *int64 {
 	if o == nil {
 		return nil
 	}
 	return o.NumberOfPeriods
 }
 
-func (o *GetEnhancedProfitAndLossAccountsRequest) GetReportDate() string {
+func (o *GetCategorizedProfitAndLossStatementRequest) GetReportDate() string {
 	if o == nil {
 		return ""
 	}
 	return o.ReportDate
 }
 
-type GetEnhancedProfitAndLossAccountsResponse struct {
+type GetCategorizedProfitAndLossStatementResponse struct {
 	ContentType string
 	// OK
 	EnhancedFinancialReport *shared.EnhancedFinancialReport
@@ -46,35 +46,35 @@ type GetEnhancedProfitAndLossAccountsResponse struct {
 	RawResponse  *http.Response
 }
 
-func (o *GetEnhancedProfitAndLossAccountsResponse) GetContentType() string {
+func (o *GetCategorizedProfitAndLossStatementResponse) GetContentType() string {
 	if o == nil {
 		return ""
 	}
 	return o.ContentType
 }
 
-func (o *GetEnhancedProfitAndLossAccountsResponse) GetEnhancedFinancialReport() *shared.EnhancedFinancialReport {
+func (o *GetCategorizedProfitAndLossStatementResponse) GetEnhancedFinancialReport() *shared.EnhancedFinancialReport {
 	if o == nil {
 		return nil
 	}
 	return o.EnhancedFinancialReport
 }
 
-func (o *GetEnhancedProfitAndLossAccountsResponse) GetErrorMessage() *shared.ErrorMessage {
+func (o *GetCategorizedProfitAndLossStatementResponse) GetErrorMessage() *shared.ErrorMessage {
 	if o == nil {
 		return nil
 	}
 	return o.ErrorMessage
 }
 
-func (o *GetEnhancedProfitAndLossAccountsResponse) GetStatusCode() int {
+func (o *GetCategorizedProfitAndLossStatementResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
 	}
 	return o.StatusCode
 }
 
-func (o *GetEnhancedProfitAndLossAccountsResponse) GetRawResponse() *http.Response {
+func (o *GetCategorizedProfitAndLossStatementResponse) GetRawResponse() *http.Response {
 	if o == nil {
 		return nil
 	}

@@ -1,4 +1,4 @@
-# GetEnhancedCashFlowTransactionsRequest
+# GetReconciledInvoicesRequest
 
 
 ## Fields

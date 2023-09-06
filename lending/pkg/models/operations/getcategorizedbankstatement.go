@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-type GetEnhancedInvoicesReportRequest struct {
+type GetCategorizedBankStatementRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	// Page number. [Read more](https://docs.codat.io/using-the-api/paging).
 	Page *int `queryParam:"style=form,explode=true,name=page"`
@@ -17,73 +17,73 @@ type GetEnhancedInvoicesReportRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-func (o *GetEnhancedInvoicesReportRequest) GetCompanyID() string {
+func (o *GetCategorizedBankStatementRequest) GetCompanyID() string {
 	if o == nil {
 		return ""
 	}
 	return o.CompanyID
 }
 
-func (o *GetEnhancedInvoicesReportRequest) GetPage() *int {
+func (o *GetCategorizedBankStatementRequest) GetPage() *int {
 	if o == nil {
 		return nil
 	}
 	return o.Page
 }
 
-func (o *GetEnhancedInvoicesReportRequest) GetPageSize() *int {
+func (o *GetCategorizedBankStatementRequest) GetPageSize() *int {
 	if o == nil {
 		return nil
 	}
 	return o.PageSize
 }
 
-func (o *GetEnhancedInvoicesReportRequest) GetQuery() *string {
+func (o *GetCategorizedBankStatementRequest) GetQuery() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Query
 }
 
-type GetEnhancedInvoicesReportResponse struct {
+type GetCategorizedBankStatementResponse struct {
 	ContentType string
 	// OK
-	EnhancedInvoicesReport *shared.EnhancedInvoicesReport
+	EnhancedCashFlowTransactions *shared.EnhancedCashFlowTransactions
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
 	StatusCode   int
 	RawResponse  *http.Response
 }
 
-func (o *GetEnhancedInvoicesReportResponse) GetContentType() string {
+func (o *GetCategorizedBankStatementResponse) GetContentType() string {
 	if o == nil {
 		return ""
 	}
 	return o.ContentType
 }
 
-func (o *GetEnhancedInvoicesReportResponse) GetEnhancedInvoicesReport() *shared.EnhancedInvoicesReport {
+func (o *GetCategorizedBankStatementResponse) GetEnhancedCashFlowTransactions() *shared.EnhancedCashFlowTransactions {
 	if o == nil {
 		return nil
 	}
-	return o.EnhancedInvoicesReport
+	return o.EnhancedCashFlowTransactions
 }
 
-func (o *GetEnhancedInvoicesReportResponse) GetErrorMessage() *shared.ErrorMessage {
+func (o *GetCategorizedBankStatementResponse) GetErrorMessage() *shared.ErrorMessage {
 	if o == nil {
 		return nil
 	}
 	return o.ErrorMessage
 }
 
-func (o *GetEnhancedInvoicesReportResponse) GetStatusCode() int {
+func (o *GetCategorizedBankStatementResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
 	}
 	return o.StatusCode
 }
 
-func (o *GetEnhancedInvoicesReportResponse) GetRawResponse() *http.Response {
+func (o *GetCategorizedBankStatementResponse) GetRawResponse() *http.Response {
 	if o == nil {
 		return nil
 	}

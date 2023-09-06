@@ -14,13 +14,13 @@ import (
 	"net/http"
 )
 
-// cashFlow - Retrieve banking data from linked bank accounts.
-type cashFlow struct {
+// banking - Retrieve banking data from linked bank accounts.
+type banking struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newCashFlow(sdkConfig sdkConfiguration) *cashFlow {
-	return &cashFlow{
+func newBanking(sdkConfig sdkConfiguration) *banking {
+	return &banking{
 		sdkConfiguration: sdkConfig,
 	}
 }
@@ -33,7 +33,7 @@ func newCashFlow(sdkConfig sdkConfiguration) *cashFlow {
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/banking?view=tab-by-data-type&dataType=banking-accounts) for integrations that support getting a specific account.
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/lending-api#/operations/refresh-company-data).
-func (s *cashFlow) GetBankAccount(ctx context.Context, request operations.GetBankingAccountRequest, opts ...operations.Option) (*operations.GetBankingAccountResponse, error) {
+func (s *banking) GetBankAccount(ctx context.Context, request operations.GetBankingAccountRequest, opts ...operations.Option) (*operations.GetBankingAccountResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -130,7 +130,7 @@ func (s *cashFlow) GetBankAccount(ctx context.Context, request operations.GetBan
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/banking?view=tab-by-data-type&dataType=banking-transactions) for integrations that support getting a specific transaction.
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/lending-api#/operations/refresh-company-data).
-func (s *cashFlow) GetBankTransaction(ctx context.Context, request operations.GetBankingTransactionRequest, opts ...operations.Option) (*operations.GetBankingTransactionResponse, error) {
+func (s *banking) GetBankTransaction(ctx context.Context, request operations.GetBankingTransactionRequest, opts ...operations.Option) (*operations.GetBankingTransactionResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -227,7 +227,7 @@ func (s *cashFlow) GetBankTransaction(ctx context.Context, request operations.Ge
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/banking?view=tab-by-data-type&dataType=banking-transactionCategories) for integrations that support getting a specific transaction category.
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/lending-api#/operations/refresh-company-data).
-func (s *cashFlow) GetBankTransactionCategory(ctx context.Context, request operations.GetBankingTransactionCategoryRequest, opts ...operations.Option) (*operations.GetBankingTransactionCategoryResponse, error) {
+func (s *banking) GetBankTransactionCategory(ctx context.Context, request operations.GetBankingTransactionCategoryRequest, opts ...operations.Option) (*operations.GetBankingTransactionCategoryResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -316,13 +316,13 @@ func (s *cashFlow) GetBankTransactionCategory(ctx context.Context, request opera
 	return res, nil
 }
 
-// GetEnhancedCashFlowTransactions - Get enhanced cash flow report
+// GetCategorizedBankStatement - Get categorized bank statement
 // > **Categorization engine**
 // >
 // > The categorization engine uses machine learning and has been fully trained against Plaid and TrueLayer banking data sources. It is not fully trained against the Basiq banking data source.
 //
 // The Enhanced Cash Flow Transactions endpoint provides a fully categorized list of banking transactions for a company. Accounts and transaction data are obtained from the company's banking data sources.
-func (s *cashFlow) GetEnhancedCashFlowTransactions(ctx context.Context, request operations.GetEnhancedCashFlowTransactionsRequest, opts ...operations.Option) (*operations.GetEnhancedCashFlowTransactionsResponse, error) {
+func (s *banking) GetCategorizedBankStatement(ctx context.Context, request operations.GetCategorizedBankStatementRequest, opts ...operations.Option) (*operations.GetCategorizedBankStatementResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -392,7 +392,7 @@ func (s *cashFlow) GetEnhancedCashFlowTransactions(ctx context.Context, request 
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetEnhancedCashFlowTransactionsResponse{
+	res := &operations.GetCategorizedBankStatementResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -435,7 +435,7 @@ func (s *cashFlow) GetEnhancedCashFlowTransactions(ctx context.Context, request 
 // [Account balances](https://docs.codat.io/banking-api#/schemas/AccountBalance) are balances for a bank account, including end-of-day batch balance or running balances per transaction.
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/lending-api#/operations/refresh-company-data).
-func (s *cashFlow) ListBankAccountBalances(ctx context.Context, request operations.ListBankingAccountBalancesRequest, opts ...operations.Option) (*operations.ListBankingAccountBalancesResponse, error) {
+func (s *banking) ListBankAccountBalances(ctx context.Context, request operations.ListBankingAccountBalancesRequest, opts ...operations.Option) (*operations.ListBankingAccountBalancesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -552,7 +552,7 @@ func (s *cashFlow) ListBankAccountBalances(ctx context.Context, request operatio
 // [Accounts](https://docs.codat.io/banking-api#/schemas/Account) are financial accounts maintained by a bank or other financial institution.
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/lending-api#/operations/refresh-company-data).
-func (s *cashFlow) ListBankAccounts(ctx context.Context, request operations.ListBankingAccountsRequest, opts ...operations.Option) (*operations.ListBankingAccountsResponse, error) {
+func (s *banking) ListBankAccounts(ctx context.Context, request operations.ListBankingAccountsRequest, opts ...operations.Option) (*operations.ListBankingAccountsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -669,7 +669,7 @@ func (s *cashFlow) ListBankAccounts(ctx context.Context, request operations.List
 // [Transaction categories](https://docs.codat.io/banking-api#/schemas/TransactionCategory) are associated with a transaction to provide greater contextual meaning to transaction activity.
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/lending-api#/operations/refresh-company-data).
-func (s *cashFlow) ListBankTransactionCategories(ctx context.Context, request operations.ListBankingTransactionCategoriesRequest, opts ...operations.Option) (*operations.ListBankingTransactionCategoriesResponse, error) {
+func (s *banking) ListBankTransactionCategories(ctx context.Context, request operations.ListBankingTransactionCategoriesRequest, opts ...operations.Option) (*operations.ListBankingTransactionCategoriesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -786,7 +786,7 @@ func (s *cashFlow) ListBankTransactionCategories(ctx context.Context, request op
 // [Transactions](https://docs.codat.io/banking-api#/schemas/Transaction) provide an immutable source of up-to-date information on income and expenditure.
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/lending-api#/operations/refresh-company-data).
-func (s *cashFlow) ListBankTransactions(ctx context.Context, request operations.ListBankingTransactionsRequest, opts ...operations.Option) (*operations.ListBankingTransactionsResponse, error) {
+func (s *banking) ListBankTransactions(ctx context.Context, request operations.ListBankingTransactionsRequest, opts ...operations.Option) (*operations.ListBankingTransactionsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
