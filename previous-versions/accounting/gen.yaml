@@ -1,22 +1,13 @@
 configVersion: 1.0.0
 management:
-  docChecksum: d47d23ce3b9ab695633fc49f7f00e96f
-  docVersion: 3.0.0
-  speakeasyVersion: 1.77.1
-  generationVersion: 2.91.4
+  docChecksum: '00000000000000000000000000000000'
+  docVersion: 2.1.0
+  speakeasyVersion: 1.53.0
+  generationVersion: 2.58.0
 generation:
   sdkClassName: CodatAccounting
   singleTagPerOp: false
   telemetryEnabled: true
-features:
-  go:
-    core: 2.86.2
-    deprecations: 2.81.1
-    examples: 2.81.1
-    globalSecurity: 2.81.1
-    globalServerURLs: 2.82.0
-    nameOverrides: 2.81.1
-    retries: 2.81.1
 go:
   version: 0.1.0
   maxMethodParams: 0
