@@ -6,7 +6,7 @@ You can use that data for automating decisioning and surfacing new insights on t
 <!-- Start SDK Installation -->
 
 <!-- End SDK Installation -->
-    
+
 ## Example Usage
 <!-- Start SDK Example Usage -->
 
