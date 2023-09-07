@@ -25,7 +25,7 @@ func newTrackingCategories(sdkConfig sdkConfiguration) *trackingCategories {
 	}
 }
 
-// Get - Get tracking categories
+// Get tracking categories
 // The *Get tracking category* endpoint returns a single tracking category for a given `trackingCategoryId`.
 //
 // [Tracking categories](https://docs.codat.io/sync-for-payroll-api#/schemas/TrackingCategory) are used to monitor cost centres and control budgets that sit outside the standard set of accounts.
@@ -140,7 +140,7 @@ func (s *trackingCategories) Get(ctx context.Context, request operations.GetTrac
 	return res, nil
 }
 
-// List - List tracking categories
+// List tracking categories
 // The *List tracking categories* endpoint returns a list of [tracking categories](https://docs.codat.io/sync-for-payroll-api#/schemas/TrackingCategory) for a given company's connection.
 //
 // [Tracking categories](https://docs.codat.io/sync-for-payroll-api#/schemas/TrackingCategory) are used to monitor cost centres and control budgets that sit outside the standard set of accounts.

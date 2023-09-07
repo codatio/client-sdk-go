@@ -65,19 +65,19 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 //
 // [Read More...](https://docs.codat.io/payroll/overview)
 type CodatSyncPayroll struct {
-	// Accounts - Accounts
+	// Accounts
 	Accounts *accounts
-	// Companies - Create and manage your Codat companies.
+	// Create and manage your Codat companies.
 	Companies *companies
-	// Connections - Manage your companies' data connections.
+	// Manage your companies' data connections.
 	Connections *connections
-	// JournalEntries - Journal entries
+	// Journal entries
 	JournalEntries *journalEntries
-	// Journals - Journals
+	// Journals
 	Journals *journals
-	// ManageData - Asynchronously retrieve data from an integration to refresh data in Codat.
+	// Asynchronously retrieve data from an integration to refresh data in Codat.
 	ManageData *manageData
-	// TrackingCategories - Tracking categories
+	// Tracking categories
 	TrackingCategories *trackingCategories
 
 	sdkConfiguration sdkConfiguration
@@ -134,8 +134,8 @@ func New(opts ...SDKOption) *CodatSyncPayroll {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "0.1.1",
-			GenVersion:        "2.96.3",
+			SDKVersion:        "0.1.2",
+			GenVersion:        "2.101.0",
 		},
 	}
 	for _, opt := range opts {

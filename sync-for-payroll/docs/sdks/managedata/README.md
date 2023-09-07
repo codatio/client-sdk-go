@@ -146,7 +146,7 @@ func main() {
     ctx := context.Background()
     res, err := s.ManageData.GetPushOperation(ctx, operations.GetPushOperationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        PushOperationKey: "25870532-02c7-43d5-be9b-90c28909b3fe",
+        PushOperationKey: "97074ba4-469b-46e2-9419-59890afa563e",
     })
     if err != nil {
         log.Fatal(err)
@@ -202,7 +202,7 @@ func main() {
         OrderBy: codatsyncpayroll.String("-modifiedDate"),
         Page: codatsyncpayroll.Int(1),
         PageSize: codatsyncpayroll.Int(100),
-        Query: codatsyncpayroll.String("modi"),
+        Query: codatsyncpayroll.String("odit"),
     })
     if err != nil {
         log.Fatal(err)
@@ -258,7 +258,7 @@ func main() {
         OrderBy: codatsyncpayroll.String("-modifiedDate"),
         Page: codatsyncpayroll.Int(1),
         PageSize: codatsyncpayroll.Int(100),
-        Query: codatsyncpayroll.String("iste"),
+        Query: codatsyncpayroll.String("nemo"),
     })
     if err != nil {
         log.Fatal(err)
@@ -369,7 +369,7 @@ func main() {
     ctx := context.Background()
     res, err := s.ManageData.RefreshDataType(ctx, operations.RefreshDataTypeRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ConnectionID: codatsyncpayroll.String("a8d9cbf4-8633-4323-b9b7-7f3a4100674e"),
+        ConnectionID: codatsyncpayroll.String("16fe4c8b-711e-45b7-bd2e-d028921cddc6"),
         DataType: shared.DataTypeInvoices,
     })
     if err != nil {

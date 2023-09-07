@@ -346,7 +346,7 @@ func (s *manageData) GetPushOperation(ctx context.Context, request operations.Ge
 	return res, nil
 }
 
-// List - List push operations
+// List push operations
 // List push operation records.
 func (s *manageData) List(ctx context.Context, request operations.ListPushOperationsRequest, opts ...operations.Option) (*operations.ListPushOperationsResponse, error) {
 	o := operations.Options{}

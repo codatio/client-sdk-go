@@ -25,7 +25,7 @@ func newJournals(sdkConfig sdkConfiguration) *journals {
 	}
 }
 
-// Create - Create journal
+// Create journal
 // The *Create journal* endpoint creates a new [journal](https://docs.codat.io/sync-for-payroll-api#/schemas/Journal) for a given company's connection.
 //
 // [Journals](https://docs.codat.io/sync-for-payroll-api#/schemas/Journal) are used to record all the financial transactions of a company.
@@ -153,7 +153,7 @@ func (s *journals) Create(ctx context.Context, request operations.CreateJournalR
 	return res, nil
 }
 
-// Get - Get journal
+// Get journal
 // The *Get journal* endpoint returns a single journal for a given `journalId`.
 //
 // [Journals](https://docs.codat.io/sync-for-payroll-api#/schemas/Journal) are used to record all the financial transactions of a company.
@@ -383,7 +383,7 @@ func (s *journals) GetCreateModel(ctx context.Context, request operations.GetCre
 	return res, nil
 }
 
-// List - List journals
+// List journals
 // The *List journals* endpoint returns a list of [journals](https://docs.codat.io/sync-for-payroll-api#/schemas/Journal) for a given company's connection.
 //
 // [Journals](https://docs.codat.io/sync-for-payroll-api#/schemas/Journal) are used to record all the financial transactions of a company.
