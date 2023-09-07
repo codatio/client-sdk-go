@@ -25,7 +25,7 @@ func newTransactions(sdkConfig sdkConfiguration) *transactions {
 	}
 }
 
-// Get - Get bank transaction
+// Get bank transaction
 // The *Get transaction* endpoint returns a single transaction for a given transactionId.
 //
 // [Transactions](https://docs.codat.io/banking-api#/schemas/Transaction) provide an immutable source of up-to-date information on income and expenditure.
@@ -122,7 +122,7 @@ func (s *transactions) Get(ctx context.Context, request operations.GetTransactio
 	return res, nil
 }
 
-// List - List transactions
+// List transactions
 // The *List transactions* endpoint returns a list of [transactions](https://docs.codat.io/banking-api#/schemas/Transaction) for a given company's connection.
 //
 // [Transactions](https://docs.codat.io/banking-api#/schemas/Transaction) provide an immutable source of up-to-date information on income and expenditure.

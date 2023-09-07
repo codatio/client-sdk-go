@@ -25,7 +25,7 @@ func newAccounts(sdkConfig sdkConfiguration) *accounts {
 	}
 }
 
-// Get - Get account
+// Get account
 // The *Get account* endpoint returns a single account for a given accountId.
 //
 // [Accounts](https://docs.codat.io/banking-api#/schemas/Account) are financial accounts maintained by a bank or other financial institution.
@@ -122,7 +122,7 @@ func (s *accounts) Get(ctx context.Context, request operations.GetAccountRequest
 	return res, nil
 }
 
-// List - List accounts
+// List accounts
 // The *List accounts* endpoint returns a list of [accounts](https://docs.codat.io/banking-api#/schemas/Account) for a given company's connection.
 //
 // [Accounts](https://docs.codat.io/banking-api#/schemas/Account) are financial accounts maintained by a bank or other financial institution.
