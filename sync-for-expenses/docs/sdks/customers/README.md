@@ -51,7 +51,7 @@ func main() {
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codatsyncexpenses.Int(870013),
+        TimeoutInMinutes: codatsyncexpenses.Int(383441),
     })
     if err != nil {
         log.Fatal(err)
@@ -111,7 +111,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Customers.Get(ctx, operations.GetCustomerRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        CustomerID: "at",
+        CustomerID: "molestiae",
     })
     if err != nil {
         log.Fatal(err)
@@ -172,7 +172,7 @@ func main() {
         OrderBy: codatsyncexpenses.String("-modifiedDate"),
         Page: codatsyncexpenses.Int(1),
         PageSize: codatsyncexpenses.Int(100),
-        Query: codatsyncexpenses.String("maiores"),
+        Query: codatsyncexpenses.String("minus"),
     })
     if err != nil {
         log.Fatal(err)
@@ -238,9 +238,9 @@ func main() {
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        CustomerID: "molestiae",
+        CustomerID: "placeat",
         ForceUpdate: codatsyncexpenses.Bool(false),
-        TimeoutInMinutes: codatsyncexpenses.Int(799159),
+        TimeoutInMinutes: codatsyncexpenses.Int(528895),
     })
     if err != nil {
         log.Fatal(err)

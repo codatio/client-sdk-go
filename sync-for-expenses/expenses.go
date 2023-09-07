@@ -25,7 +25,7 @@ func newExpenses(sdkConfig sdkConfiguration) *expenses {
 	}
 }
 
-// Create - Create expense transaction
+// Create expense transaction
 // Create an expense transaction
 func (s *expenses) Create(ctx context.Context, request operations.CreateExpenseTransactionRequest, opts ...operations.Option) (*operations.CreateExpenseTransactionResponse, error) {
 	o := operations.Options{}
@@ -141,7 +141,7 @@ func (s *expenses) Create(ctx context.Context, request operations.CreateExpenseT
 	return res, nil
 }
 
-// Update - Update expense-transactions
+// Update expense-transactions
 // Update an expense transaction
 func (s *expenses) Update(ctx context.Context, request operations.UpdateExpenseTransactionRequest, opts ...operations.Option) (*operations.UpdateExpenseTransactionResponse, error) {
 	o := operations.Options{}

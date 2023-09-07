@@ -25,7 +25,7 @@ func newConfiguration(sdkConfig sdkConfiguration) *configuration {
 	}
 }
 
-// Get - Get company configuration
+// Get company configuration
 // Gets a companies expense sync configuration
 func (s *configuration) Get(ctx context.Context, request operations.GetCompanyConfigurationRequest, opts ...operations.Option) (*operations.GetCompanyConfigurationResponse, error) {
 	o := operations.Options{}
@@ -239,7 +239,7 @@ func (s *configuration) GetMappingOptions(ctx context.Context, request operation
 	return res, nil
 }
 
-// Set - Set company configuration
+// Set company configuration
 // Sets a companies expense sync configuration
 func (s *configuration) Set(ctx context.Context, request operations.SetCompanyConfigurationRequest, opts ...operations.Option) (*operations.SetCompanyConfigurationResponse, error) {
 	o := operations.Options{}

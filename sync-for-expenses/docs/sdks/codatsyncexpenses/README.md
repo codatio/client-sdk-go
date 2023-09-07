@@ -12,7 +12,7 @@ integrations with multiple accounting platforms through a standardized API.
 
 [See our OpenAPI spec](https://github.com/codatio/oas)
 
-<!-- Not seeing the end points you're expecting? We've reorganized our products, and you may be using a [different version of Sync for Commerce](https://docs.codat.io/sync-for-expenses-v1-api#/). -->
+Not seeing the endpoints you're expecting? We've [reorganized our products](https://docs.codat.io/updates/230901-new-products), and you may be using a [different version of Sync for Commerce](https://docs.codat.io/sync-for-expenses-v1-api#/).
 
 ### Available Operations
 

@@ -1,14 +1,24 @@
 configVersion: 1.0.0
 management:
-  docChecksum: 853aebc76021ec17db9b1abb7a33f340
-  docVersion: 2.1.0
-  speakeasyVersion: 1.53.0
-  generationVersion: 2.58.0
+  docChecksum: 33240ea1ce0ce85ba4815fee3c681873
+  docVersion: prealpha
+  speakeasyVersion: 1.79.0
+  generationVersion: 2.101.0
 generation:
   sdkClassName: CodatSyncExpenses
   singleTagPerOp: false
   telemetryEnabled: true
+features:
+  go:
+    core: 2.86.4
+    deprecations: 2.81.1
+    docs: 0.1.0
+    examples: 2.81.2
+    globalSecurity: 2.81.1
+    globalServerURLs: 2.82.0
+    nameOverrides: 2.81.1
+    retries: 2.81.1
 go:
-  version: 0.26.0
+  version: 0.27.0
   maxMethodParams: 0
   packageName: github.com/codatio/client-sdk-go/sync-for-expenses

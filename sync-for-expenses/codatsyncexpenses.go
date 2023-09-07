@@ -68,29 +68,29 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 //
 // [See our OpenAPI spec](https://github.com/codatio/oas)
 //
-// <!-- Not seeing the end points you're expecting? We've reorganized our products, and you may be using a [different version of Sync for Commerce](https://docs.codat.io/sync-for-expenses-v1-api#/). -->
+// Not seeing the endpoints you're expecting? We've [reorganized our products](https://docs.codat.io/updates/230901-new-products), and you may be using a [different version of Sync for Commerce](https://docs.codat.io/sync-for-expenses-v1-api#/).
 type CodatSyncExpenses struct {
-	// Accounts - Accounts
+	// Accounts
 	Accounts *accounts
-	// Companies - Create and manage your Codat companies.
+	// Create and manage your Codat companies.
 	Companies *companies
-	// Configuration - Manage mapping options and sync configuration.
+	// Manage mapping options and sync configuration.
 	Configuration *configuration
-	// Connections - Create and manage partner expense connection.
+	// Create and manage partner expense connection.
 	Connections *connections
-	// Customers - Customers
+	// Customers
 	Customers *customers
-	// Expenses - Create expense datasets and upload receipts.
+	// Create expense datasets and upload receipts.
 	Expenses *expenses
-	// ManageData - Asynchronously retrieve data from an integration to refresh data in Codat.
+	// Asynchronously retrieve data from an integration to refresh data in Codat.
 	ManageData *manageData
-	// PushOperations - Access create, update and delete operations made to an SMB's data connection.
+	// Access create, update and delete operations made to an SMB's data connection.
 	PushOperations *pushOperations
-	// Suppliers - Suppliers
+	// Suppliers
 	Suppliers *suppliers
-	// Sync - Trigger and monitor expense syncs to accounting software.
+	// Trigger and monitor expense syncs to accounting software.
 	Sync *sync
-	// TransactionStatus - Retrieve the status of transactions within a sync.
+	// Retrieve the status of transactions within a sync.
 	TransactionStatus *transactionStatus
 
 	sdkConfiguration sdkConfiguration
@@ -147,8 +147,8 @@ func New(opts ...SDKOption) *CodatSyncExpenses {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "prealpha",
-			SDKVersion:        "0.26.0",
-			GenVersion:        "2.91.4",
+			SDKVersion:        "0.27.0",
+			GenVersion:        "2.101.0",
 		},
 	}
 	for _, opt := range opts {

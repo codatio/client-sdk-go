@@ -202,7 +202,7 @@ func main() {
         OrderBy: codatsyncexpenses.String("-modifiedDate"),
         Page: codatsyncexpenses.Int(1),
         PageSize: codatsyncexpenses.Int(100),
-        Query: codatsyncexpenses.String("repellendus"),
+        Query: codatsyncexpenses.String("debitis"),
     })
     if err != nil {
         log.Fatal(err)

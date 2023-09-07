@@ -47,7 +47,7 @@ func main() {
                         ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
                     },
                     Currency: "GBP",
-                    CurrencyRate: codatsyncexpenses.Float64(4614.79),
+                    CurrencyRate: codatsyncexpenses.Float64(4799.77),
                     ID: "4d7c6929-7770-412b-91bb-44d3bc71d111",
                     IssueDate: "2022-10-23T00:00:00.000Z",
                     Lines: []shared.ExpenseTransactionLine{
@@ -61,261 +61,6 @@ func main() {
                                 ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
                             },
                             TrackingRefs: []shared.RecordRef{
-                                shared.RecordRef{
-                                    ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                                },
-                                shared.RecordRef{
-                                    ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                                },
-                                shared.RecordRef{
-                                    ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                                },
-                            },
-                        },
-                        shared.ExpenseTransactionLine{
-                            AccountRef: shared.RecordRef{
-                                ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                            },
-                            NetAmount: 110.42,
-                            TaxAmount: 14.43,
-                            TaxRateRef: &shared.RecordRef{
-                                ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                            },
-                            TrackingRefs: []shared.RecordRef{
-                                shared.RecordRef{
-                                    ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                                },
-                            },
-                        },
-                        shared.ExpenseTransactionLine{
-                            AccountRef: shared.RecordRef{
-                                ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                            },
-                            NetAmount: 110.42,
-                            TaxAmount: 14.43,
-                            TaxRateRef: &shared.RecordRef{
-                                ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                            },
-                            TrackingRefs: []shared.RecordRef{
-                                shared.RecordRef{
-                                    ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                                },
-                                shared.RecordRef{
-                                    ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                                },
-                                shared.RecordRef{
-                                    ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                                },
-                            },
-                        },
-                        shared.ExpenseTransactionLine{
-                            AccountRef: shared.RecordRef{
-                                ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                            },
-                            NetAmount: 110.42,
-                            TaxAmount: 14.43,
-                            TaxRateRef: &shared.RecordRef{
-                                ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                            },
-                            TrackingRefs: []shared.RecordRef{
-                                shared.RecordRef{
-                                    ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                                },
-                                shared.RecordRef{
-                                    ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                                },
-                                shared.RecordRef{
-                                    ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                                },
-                            },
-                        },
-                    },
-                    MerchantName: codatsyncexpenses.String("Amazon UK"),
-                    Notes: codatsyncexpenses.String("APPLE.COM/BILL - 09001077498 - Card Ending: 4590"),
-                    Type: shared.ExpenseTransactionTypePayment,
-                },
-                shared.ExpenseTransaction{
-                    BankAccountRef: &shared.ExpenseTransactionBankAccountReference{
-                        ID: codatsyncexpenses.String("787dfb37-5707-4dc0-8a86-8d74e4cc78ea"),
-                    },
-                    ContactRef: &shared.ContactRef{
-                        ContactType: shared.ContactRefContactTypeSupplier.ToPointer(),
-                        ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                    },
-                    Currency: "GBP",
-                    CurrencyRate: codatsyncexpenses.Float64(5820.2),
-                    ID: "4d7c6929-7770-412b-91bb-44d3bc71d111",
-                    IssueDate: "2022-10-23T00:00:00.000Z",
-                    Lines: []shared.ExpenseTransactionLine{
-                        shared.ExpenseTransactionLine{
-                            AccountRef: shared.RecordRef{
-                                ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                            },
-                            NetAmount: 110.42,
-                            TaxAmount: 14.43,
-                            TaxRateRef: &shared.RecordRef{
-                                ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                            },
-                            TrackingRefs: []shared.RecordRef{
-                                shared.RecordRef{
-                                    ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                                },
-                                shared.RecordRef{
-                                    ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                                },
-                                shared.RecordRef{
-                                    ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                                },
-                                shared.RecordRef{
-                                    ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                                },
-                            },
-                        },
-                        shared.ExpenseTransactionLine{
-                            AccountRef: shared.RecordRef{
-                                ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                            },
-                            NetAmount: 110.42,
-                            TaxAmount: 14.43,
-                            TaxRateRef: &shared.RecordRef{
-                                ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                            },
-                            TrackingRefs: []shared.RecordRef{
-                                shared.RecordRef{
-                                    ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                                },
-                                shared.RecordRef{
-                                    ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                                },
-                                shared.RecordRef{
-                                    ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                                },
-                                shared.RecordRef{
-                                    ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                                },
-                            },
-                        },
-                        shared.ExpenseTransactionLine{
-                            AccountRef: shared.RecordRef{
-                                ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                            },
-                            NetAmount: 110.42,
-                            TaxAmount: 14.43,
-                            TaxRateRef: &shared.RecordRef{
-                                ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                            },
-                            TrackingRefs: []shared.RecordRef{
-                                shared.RecordRef{
-                                    ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                                },
-                                shared.RecordRef{
-                                    ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                                },
-                                shared.RecordRef{
-                                    ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                                },
-                            },
-                        },
-                    },
-                    MerchantName: codatsyncexpenses.String("Amazon UK"),
-                    Notes: codatsyncexpenses.String("APPLE.COM/BILL - 09001077498 - Card Ending: 4590"),
-                    Type: shared.ExpenseTransactionTypePayment,
-                },
-                shared.ExpenseTransaction{
-                    BankAccountRef: &shared.ExpenseTransactionBankAccountReference{
-                        ID: codatsyncexpenses.String("787dfb37-5707-4dc0-8a86-8d74e4cc78ea"),
-                    },
-                    ContactRef: &shared.ContactRef{
-                        ContactType: shared.ContactRefContactTypeSupplier.ToPointer(),
-                        ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                    },
-                    Currency: "GBP",
-                    CurrencyRate: codatsyncexpenses.Float64(1059.07),
-                    ID: "4d7c6929-7770-412b-91bb-44d3bc71d111",
-                    IssueDate: "2022-10-23T00:00:00.000Z",
-                    Lines: []shared.ExpenseTransactionLine{
-                        shared.ExpenseTransactionLine{
-                            AccountRef: shared.RecordRef{
-                                ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                            },
-                            NetAmount: 110.42,
-                            TaxAmount: 14.43,
-                            TaxRateRef: &shared.RecordRef{
-                                ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                            },
-                            TrackingRefs: []shared.RecordRef{
-                                shared.RecordRef{
-                                    ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                                },
-                                shared.RecordRef{
-                                    ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                                },
-                            },
-                        },
-                        shared.ExpenseTransactionLine{
-                            AccountRef: shared.RecordRef{
-                                ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                            },
-                            NetAmount: 110.42,
-                            TaxAmount: 14.43,
-                            TaxRateRef: &shared.RecordRef{
-                                ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                            },
-                            TrackingRefs: []shared.RecordRef{
-                                shared.RecordRef{
-                                    ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                                },
-                            },
-                        },
-                    },
-                    MerchantName: codatsyncexpenses.String("Amazon UK"),
-                    Notes: codatsyncexpenses.String("APPLE.COM/BILL - 09001077498 - Card Ending: 4590"),
-                    Type: shared.ExpenseTransactionTypePayment,
-                },
-                shared.ExpenseTransaction{
-                    BankAccountRef: &shared.ExpenseTransactionBankAccountReference{
-                        ID: codatsyncexpenses.String("787dfb37-5707-4dc0-8a86-8d74e4cc78ea"),
-                    },
-                    ContactRef: &shared.ContactRef{
-                        ContactType: shared.ContactRefContactTypeSupplier.ToPointer(),
-                        ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                    },
-                    Currency: "GBP",
-                    CurrencyRate: codatsyncexpenses.Float64(7742.34),
-                    ID: "4d7c6929-7770-412b-91bb-44d3bc71d111",
-                    IssueDate: "2022-10-23T00:00:00.000Z",
-                    Lines: []shared.ExpenseTransactionLine{
-                        shared.ExpenseTransactionLine{
-                            AccountRef: shared.RecordRef{
-                                ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                            },
-                            NetAmount: 110.42,
-                            TaxAmount: 14.43,
-                            TaxRateRef: &shared.RecordRef{
-                                ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                            },
-                            TrackingRefs: []shared.RecordRef{
-                                shared.RecordRef{
-                                    ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                                },
-                            },
-                        },
-                        shared.ExpenseTransactionLine{
-                            AccountRef: shared.RecordRef{
-                                ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                            },
-                            NetAmount: 110.42,
-                            TaxAmount: 14.43,
-                            TaxRateRef: &shared.RecordRef{
-                                ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                            },
-                            TrackingRefs: []shared.RecordRef{
-                                shared.RecordRef{
-                                    ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                                },
-                                shared.RecordRef{
-                                    ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                                },
                                 shared.RecordRef{
                                     ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
                                 },
@@ -389,7 +134,7 @@ func main() {
                 ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
             },
             Currency: codatsyncexpenses.String("GBP"),
-            CurrencyRate: codatsyncexpenses.Float64(1352.18),
+            CurrencyRate: codatsyncexpenses.Float64(3927.85),
             IssueDate: "2022-06-28T00:00:00.000Z",
             Lines: []shared.ExpenseTransactionLine{
                 shared.ExpenseTransactionLine{
@@ -405,15 +150,12 @@ func main() {
                         shared.RecordRef{
                             ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
                         },
-                        shared.RecordRef{
-                            ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                        },
                     },
                 },
             },
             MerchantName: codatsyncexpenses.String("Amazon UK"),
             Notes: codatsyncexpenses.String("APPLE.COM/BILL - 09001077498 - Card Ending: 4590"),
-            Type: "natus",
+            Type: "recusandae",
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         TransactionID: "336694d8-2dca-4cb5-a28d-3ccb83e55eee",
@@ -469,8 +211,8 @@ func main() {
     ctx := context.Background()
     res, err := s.Expenses.UploadAttachment(ctx, operations.UploadExpenseAttachmentRequest{
         RequestBody: &operations.UploadExpenseAttachmentRequestBody{
-            Content: []byte("sed"),
-            RequestBody: "iste",
+            Content: []byte("temporibus"),
+            RequestBody: "ab",
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         SyncID: "6fb40d5e-b13e-11ed-afa1-0242ac120002",

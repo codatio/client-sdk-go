@@ -25,7 +25,7 @@ func newSuppliers(sdkConfig sdkConfiguration) *suppliers {
 	}
 }
 
-// Create - Create supplier
+// Create supplier
 // The *Create supplier* endpoint creates a new [supplier](https://docs.codat.io/accounting-api#/schemas/Supplier) for a given company's connection.
 //
 // [Suppliers](https://docs.codat.io/accounting-api#/schemas/Supplier) are people or organizations that provide something, such as a product or service.
@@ -153,7 +153,7 @@ func (s *suppliers) Create(ctx context.Context, request operations.CreateSupplie
 	return res, nil
 }
 
-// Get - Get supplier
+// Get supplier
 // The *Get supplier* endpoint returns a single supplier for a given supplierId.
 //
 // [Suppliers](https://docs.codat.io/accounting-api#/schemas/Supplier) are people or organizations that provide something, such as a product or service.
@@ -268,7 +268,7 @@ func (s *suppliers) Get(ctx context.Context, request operations.GetSupplierReque
 	return res, nil
 }
 
-// List - List suppliers
+// List suppliers
 // The *List suppliers* endpoint returns a list of [suppliers](https://docs.codat.io/accounting-api#/schemas/Supplier) for a given company's connection.
 //
 // [Suppliers](https://docs.codat.io/accounting-api#/schemas/Supplier) are people or organizations that provide something, such as a product or service.
@@ -385,7 +385,7 @@ func (s *suppliers) List(ctx context.Context, request operations.ListSuppliersRe
 	return res, nil
 }
 
-// Update - Update supplier
+// Update supplier
 // The *Update supplier* endpoint updates an existing [supplier](https://docs.codat.io/accounting-api#/schemas/Supplier) for a given company's connection.
 //
 // [Suppliers](https://docs.codat.io/accounting-api#/schemas/Supplier) are people or organizations that provide something, such as a product or service.
