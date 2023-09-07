@@ -567,7 +567,7 @@ func (s *connections) ListConnections(ctx context.Context, request operations.Li
 	return res, nil
 }
 
-// Unlink - Unlink connection
+// Unlink connection
 // This allows you to deauthorize a connection, without deleting it from Codat. This means you can still view any data that has previously been pulled into Codat, and also lets you re-authorize in future if your customer wishes to resume sharing their data.
 func (s *connections) Unlink(ctx context.Context, request operations.UnlinkConnectionRequest, opts ...operations.Option) (*operations.UnlinkConnectionResponse, error) {
 	o := operations.Options{}

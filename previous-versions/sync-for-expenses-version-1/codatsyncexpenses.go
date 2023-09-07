@@ -67,22 +67,24 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 // [Read more...](https://docs.codat.io/sync-for-expenses/overview)
 //
 // [See our OpenAPI spec](https://github.com/codatio/oas)
+//
+// Not seeing what you expect? [See the main Sync for Commerce API](https://docs.codat.io/sync-for-commerce-api).
 type CodatSyncExpenses struct {
-	// Companies - Create and manage your Codat companies.
+	// Create and manage your Codat companies.
 	Companies *companies
-	// Configuration - Companies sync configuration.
+	// Companies sync configuration.
 	Configuration *configuration
-	// Connections - Create and manage partner expense connection.
+	// Create and manage partner expense connection.
 	Connections *connections
-	// Expenses - Create expense datasets and upload receipts.
+	// Create expense datasets and upload receipts.
 	Expenses *expenses
-	// MappingOptions - Mapping options for a companies expenses.
+	// Mapping options for a companies expenses.
 	MappingOptions *mappingOptions
-	// Sync - Triggering a new sync of expenses to accounting software.
+	// Triggering a new sync of expenses to accounting software.
 	Sync *sync
-	// SyncStatus - Check the status of ongoing or previous expense syncs.
+	// Check the status of ongoing or previous expense syncs.
 	SyncStatus *syncStatus
-	// TransactionStatus - Retrieve the status of transactions within a sync.
+	// Retrieve the status of transactions within a sync.
 	TransactionStatus *transactionStatus
 
 	sdkConfiguration sdkConfiguration
@@ -139,8 +141,8 @@ func New(opts ...SDKOption) *CodatSyncExpenses {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "prealpha",
-			SDKVersion:        "0.1.0",
-			GenVersion:        "2.91.4",
+			SDKVersion:        "0.2.0",
+			GenVersion:        "2.101.0",
 		},
 	}
 	for _, opt := range opts {
