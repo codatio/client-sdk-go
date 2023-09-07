@@ -41,31 +41,15 @@ func main() {
             ValidDatatypeLinks: []shared.AccountingAccountValidDataTypeLinks{
                 shared.AccountingAccountValidDataTypeLinks{
                     Links: []string{
-                        "corrupti",
-                        "illum",
-                        "vel",
-                        "error",
+                        "unde",
                     },
-                    Property: codatsynccommerce.String("deserunt"),
-                },
-                shared.AccountingAccountValidDataTypeLinks{
-                    Links: []string{
-                        "iure",
-                        "magnam",
-                    },
-                    Property: codatsynccommerce.String("debitis"),
-                },
-                shared.AccountingAccountValidDataTypeLinks{
-                    Links: []string{
-                        "delectus",
-                    },
-                    Property: codatsynccommerce.String("tempora"),
+                    Property: codatsynccommerce.String("nulla"),
                 },
             },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codatsynccommerce.Int(383441),
+        TimeoutInMinutes: codatsynccommerce.Int(544883),
     })
     if err != nil {
         log.Fatal(err)

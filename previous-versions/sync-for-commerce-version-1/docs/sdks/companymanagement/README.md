@@ -90,7 +90,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.CompanyManagement.CreateConnection(ctx, operations.CreateConnectionRequest{
-        RequestBody: codatsynccommerce.String("qui"),
+        RequestBody: codatsynccommerce.String("adipisci"),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -146,7 +146,7 @@ func main() {
         OrderBy: codatsynccommerce.String("-modifiedDate"),
         Page: codatsynccommerce.Int(1),
         PageSize: codatsynccommerce.Int(100),
-        Query: codatsynccommerce.String("deserunt"),
+        Query: codatsynccommerce.String("recusandae"),
     })
     if err != nil {
         log.Fatal(err)
@@ -202,7 +202,7 @@ func main() {
         OrderBy: codatsynccommerce.String("-modifiedDate"),
         Page: codatsynccommerce.Int(1),
         PageSize: codatsynccommerce.Int(100),
-        Query: codatsynccommerce.String("eligendi"),
+        Query: codatsynccommerce.String("similique"),
     })
     if err != nil {
         log.Fatal(err)

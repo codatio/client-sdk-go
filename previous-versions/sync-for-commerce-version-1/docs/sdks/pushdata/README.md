@@ -36,7 +36,7 @@ func main() {
     ctx := context.Background()
     res, err := s.PushData.GetOperation(ctx, operations.GetPushOperationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        PushOperationKey: "fd2315bb-a650-4164-a06f-5bf6ae591bc8",
+        PushOperationKey: "97f92443-da7c-4e52-b895-c537c6454efb",
     })
     if err != nil {
         log.Fatal(err)
@@ -92,7 +92,7 @@ func main() {
         OrderBy: codatsynccommerce.String("-modifiedDate"),
         Page: codatsynccommerce.Int(1),
         PageSize: codatsynccommerce.Int(100),
-        Query: codatsynccommerce.String("facilis"),
+        Query: codatsynccommerce.String("aperiam"),
     })
     if err != nil {
         log.Fatal(err)

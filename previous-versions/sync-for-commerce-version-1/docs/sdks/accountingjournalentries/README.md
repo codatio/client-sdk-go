@@ -45,34 +45,30 @@ func main() {
     res, err := s.AccountingJournalEntries.CreateAccountingJournalEntry(ctx, operations.CreateAccountingJournalEntryRequest{
         AccountingJournalEntry: &shared.AccountingJournalEntry{
             CreatedOn: codatsynccommerce.String("2022-10-23T00:00:00.000Z"),
-            Description: codatsynccommerce.String("excepturi"),
-            ID: codatsynccommerce.String("e81f30be-3e43-4202-9721-657650664187"),
+            Description: codatsynccommerce.String("pariatur"),
+            ID: codatsynccommerce.String("e008e6f8-c5f3-450d-8cdb-5a3418143010"),
             JournalLines: []shared.JournalLine{
                 shared.JournalLine{
                     AccountRef: &shared.AccountRef{
-                        ID: codatsynccommerce.String("d9d21f9a-d030-4c4e-8c11-a0836429068b"),
-                        Name: codatsynccommerce.String("Pedro Armstrong"),
+                        ID: codatsynccommerce.String("421813d5-208e-4ce7-a253-b668451c6c6e"),
+                        Name: codatsynccommerce.String("Helen Heller III"),
                     },
-                    Currency: codatsynccommerce.String("quaerat"),
-                    Description: codatsynccommerce.String("corporis"),
-                    NetAmount: 8843.25,
+                    Currency: codatsynccommerce.String("at"),
+                    Description: codatsynccommerce.String("vero"),
+                    NetAmount: 6675.93,
                     Tracking: &shared.JournalLineTracking{
                         RecordRefs: []shared.RecordRef{
                             shared.RecordRef{
-                                DataType: codatsynccommerce.String("transfer"),
-                                ID: codatsynccommerce.String("73bc845e-320a-4319-b4ba-df947c9a867b"),
-                            },
-                            shared.RecordRef{
-                                DataType: codatsynccommerce.String("transfer"),
-                                ID: codatsynccommerce.String("42426665-816d-4dca-8ef5-1fcb4c593ec1"),
+                                DataType: codatsynccommerce.String("accountTransaction"),
+                                ID: codatsynccommerce.String("3fec9578-a645-4842-b3a8-418d162309fb"),
                             },
                         },
                     },
                 },
             },
             JournalRef: &shared.AccountingJournalEntryJournalReference{
-                ID: "2cdaad0e-c7af-4edb-980d-f448a47f9390",
-                Name: codatsynccommerce.String("Derek Lubowitz"),
+                ID: "0929921a-efb9-4f58-84d8-6e68e4be0560",
+                Name: codatsynccommerce.String("Sheila Wolff"),
             },
             Metadata: &shared.Metadata{
                 IsDeleted: codatsynccommerce.Bool(false),
@@ -80,15 +76,14 @@ func main() {
             ModifiedDate: codatsynccommerce.String("2022-10-23T00:00:00.000Z"),
             PostedOn: codatsynccommerce.String("2022-10-23T00:00:00.000Z"),
             RecordRef: &shared.AccountingJournalEntryRecordReference{
-                DataType: codatsynccommerce.String("accountTransaction"),
-                ID: codatsynccommerce.String("3dabf9ef-3ffd-4d9f-bf07-9af4d35724cd"),
+                DataType: codatsynccommerce.String("invoice"),
+                ID: codatsynccommerce.String("57a59ecf-ef66-4ef1-8aa3-383c2beb4773"),
             },
             SourceModifiedDate: codatsynccommerce.String("2022-10-23T00:00:00.000Z"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "reiciendis": map[string]interface{}{
-                        "vero": "eos",
-                        "quas": "quasi",
+                    "neque": map[string]interface{}{
+                        "quo": "deleniti",
                     },
                 },
             },
@@ -96,7 +91,7 @@ func main() {
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codatsynccommerce.Int(509799),
+        TimeoutInMinutes: codatsynccommerce.Int(437814),
     })
     if err != nil {
         log.Fatal(err)

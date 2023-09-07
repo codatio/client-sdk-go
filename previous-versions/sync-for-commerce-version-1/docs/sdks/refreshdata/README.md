@@ -97,7 +97,7 @@ func main() {
     ctx := context.Background()
     res, err := s.RefreshData.ByDataType(ctx, operations.RefreshDataTypeRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ConnectionID: codatsynccommerce.String("def3612b-63c2-405f-9a84-0774a68a9a35"),
+        ConnectionID: codatsynccommerce.String("b34896c3-ca5a-4cfb-a2fd-570757792917"),
         DataType: shared.DataTypeInvoices,
     })
     if err != nil {
@@ -259,7 +259,7 @@ func main() {
         OrderBy: codatsynccommerce.String("-modifiedDate"),
         Page: codatsynccommerce.Int(1),
         PageSize: codatsynccommerce.Int(100),
-        Query: codatsynccommerce.String("illum"),
+        Query: codatsynccommerce.String("voluptate"),
     })
     if err != nil {
         log.Fatal(err)

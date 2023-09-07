@@ -86,9 +86,9 @@ func main() {
 
     ctx := context.Background()
     res, err := s.SyncFlowPreferences.GetSyncFlowURL(ctx, operations.GetSyncFlowURLRequest{
-        AccountingKey: "expedita",
-        CommerceKey: "voluptas",
-        MerchantIdentifier: codatsynccommerce.String("maiores"),
+        AccountingKey: "optio",
+        CommerceKey: "ex",
+        MerchantIdentifier: codatsynccommerce.String("quaerat"),
     })
     if err != nil {
         log.Fatal(err)
@@ -140,8 +140,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.SyncFlowPreferences.GetVisibleAccounts(ctx, operations.GetVisibleAccountsRequest{
-        ClientID: "66fef020-e9f4-443b-8257-b992c8dbda6a",
-        PlatformKey: "61efa219-8258-4fd0-a9eb-a47f7d3ef049",
+        ClientID: "6ecb5734-09e3-4eb1-a5a2-b12eb07f116d",
+        PlatformKey: "b99545fc-95fa-4889-b0e1-89dbb30fcb33",
     })
     if err != nil {
         log.Fatal(err)
@@ -192,13 +192,9 @@ func main() {
 
     ctx := context.Background()
     res, err := s.SyncFlowPreferences.UpdateConfigTextSyncFlow(ctx, map[string]shared.Localization{
-        "dolore": shared.Localization{
+        "saepe": shared.Localization{
             Required: codatsynccommerce.Bool(false),
-            Text: codatsynccommerce.String("voluptatem"),
-        },
-        "illum": shared.Localization{
-            Required: codatsynccommerce.Bool(false),
-            Text: codatsynccommerce.String("laboriosam"),
+            Text: codatsynccommerce.String("deserunt"),
         },
     })
     if err != nil {
@@ -253,12 +249,10 @@ func main() {
     res, err := s.SyncFlowPreferences.UpdateVisibleAccountsSyncFlow(ctx, operations.UpdateVisibleAccountsSyncFlowRequest{
         VisibleAccounts: &shared.VisibleAccounts{
             VisibleAccounts: []string{
-                "dicta",
-                "atque",
-                "ratione",
+                "doloremque",
             },
         },
-        PlatformKey: "1c87adf5-96fd-4f1a-9837-ae80c1c19c95",
+        PlatformKey: "55b197cd-44e2-4f52-982d-3513bb6f48b6",
     })
     if err != nil {
         log.Fatal(err)

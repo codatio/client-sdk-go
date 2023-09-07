@@ -134,7 +134,7 @@ func (s *accountingCompanyInfo) GetAccountingCompanyInfo(ctx context.Context, re
 	return res, nil
 }
 
-// Refresh - Refresh company info
+// Refresh company info
 // Initiates the process of synchronising basic info for a company
 func (s *accountingCompanyInfo) Refresh(ctx context.Context, request operations.RefreshCompanyInfoRequest, opts ...operations.Option) (*operations.RefreshCompanyInfoResponse, error) {
 	o := operations.Options{}
