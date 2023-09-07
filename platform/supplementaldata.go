@@ -25,7 +25,7 @@ func newSupplementalData(sdkConfig sdkConfiguration) *supplementalData {
 	}
 }
 
-// Configure - Configure
+// Configure
 // The *Configure* endpoint allows you to maintain or change configuration required to return supplemental data for each integration and data type combination.
 //
 // [Supplemental data](https://docs.codat.io/using-the-api/additional-data) is additional data you can include in Codat's standard data types.

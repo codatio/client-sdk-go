@@ -68,21 +68,21 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 //
 // [See our OpenAPI spec](https://github.com/codatio/oas)
 type CodatPlatform struct {
-	// Companies - Create and manage your Codat companies.
+	// Create and manage your Codat companies.
 	Companies *companies
-	// Connections - Manage your companies' data connections.
+	// Manage your companies' data connections.
 	Connections *connections
-	// Integrations - View and manage your available integrations in Codat.
+	// View and manage your available integrations in Codat.
 	Integrations *integrations
-	// PushData - View push options and get push statuses.
+	// View push options and get push statuses.
 	PushData *pushData
-	// RefreshData - Asynchronously retrieve data from an integration to refresh data in Codat.
+	// Asynchronously retrieve data from an integration to refresh data in Codat.
 	RefreshData *refreshData
-	// Settings - Manage your Codat instance.
+	// Manage your Codat instance.
 	Settings *settings
-	// SupplementalData - View and configure supplemental data for supported data types.
+	// View and configure supplemental data for supported data types.
 	SupplementalData *supplementalData
-	// Webhooks - Manage webhooks, rules, and events.
+	// Manage webhooks, rules, and events.
 	Webhooks *webhooks
 
 	sdkConfiguration sdkConfiguration
@@ -139,8 +139,8 @@ func New(opts ...SDKOption) *CodatPlatform {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "0.1.1",
-			GenVersion:        "2.96.3",
+			SDKVersion:        "0.1.2",
+			GenVersion:        "2.101.0",
 		},
 	}
 	for _, opt := range opts {

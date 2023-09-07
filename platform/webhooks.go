@@ -26,7 +26,7 @@ func newWebhooks(sdkConfig sdkConfiguration) *webhooks {
 	}
 }
 
-// Create - Create webhook
+// Create webhook
 // Create a new webhook configuration
 func (s *webhooks) Create(ctx context.Context, request shared.CreateRule, opts ...operations.Option) (*operations.CreateRuleResponse, error) {
 	o := operations.Options{}
@@ -135,7 +135,7 @@ func (s *webhooks) Create(ctx context.Context, request shared.CreateRule, opts .
 	return res, nil
 }
 
-// Get - Get webhook
+// Get webhook
 // Get a single webhook
 func (s *webhooks) Get(ctx context.Context, request operations.GetWebhookRequest, opts ...operations.Option) (*operations.GetWebhookResponse, error) {
 	o := operations.Options{}
@@ -242,7 +242,7 @@ func (s *webhooks) Get(ctx context.Context, request operations.GetWebhookRequest
 	return res, nil
 }
 
-// List - List webhooks
+// List webhooks
 // List webhooks that you are subscribed to.
 func (s *webhooks) List(ctx context.Context, request operations.ListRulesRequest, opts ...operations.Option) (*operations.ListRulesResponse, error) {
 	o := operations.Options{}
