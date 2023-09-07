@@ -7,7 +7,7 @@ You can view your SMB customers' products, orders, payments, payouts, disputes, 
 <!-- Start SDK Installation -->
 
 <!-- End SDK Installation -->
-    
+
 ## Example Usage
 <!-- Start SDK Example Usage -->
 
