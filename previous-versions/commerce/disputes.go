@@ -25,7 +25,7 @@ func newDisputes(sdkConfig sdkConfiguration) *disputes {
 	}
 }
 
-// Get - Get dispute
+// Get dispute
 // The *Get dispute* endpoint returns a single dispute for a given disputeId.
 //
 // [Disputes](https://docs.codat.io/commerce-api#/schemas/Dispute) are created when a customer is unsatisfied with their purchase or believe they have been charged incorrectly.
@@ -140,7 +140,7 @@ func (s *disputes) Get(ctx context.Context, request operations.GetDisputeRequest
 	return res, nil
 }
 
-// List - List disputes
+// List disputes
 // The *List disputes* endpoint returns a list of [disputes](https://docs.codat.io/commerce-api#/schemas/Dispute) for a given company's connection.
 //
 // [Disputes](https://docs.codat.io/commerce-api#/schemas/Dispute) are created when a customer is unsatisfied with their purchase or believe they have been charged incorrectly.

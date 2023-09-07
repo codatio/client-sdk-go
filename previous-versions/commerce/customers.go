@@ -25,7 +25,7 @@ func newCustomers(sdkConfig sdkConfiguration) *customers {
 	}
 }
 
-// Get - Get customer
+// Get customer
 // The *Get customer* endpoint returns a single customer for a given customerId.
 //
 // [Customers](https://docs.codat.io/commerce-api#/schemas/Customer) are people or organizations that place orders, make payments and receive goods and/or services from the SMB.
@@ -140,7 +140,7 @@ func (s *customers) Get(ctx context.Context, request operations.GetCustomerReque
 	return res, nil
 }
 
-// List - List customers
+// List customers
 // The *List customers* endpoint returns a list of [customers](https://docs.codat.io/commerce-api#/schemas/Customer) for a given company's connection.
 //
 // [Customers](https://docs.codat.io/commerce-api#/schemas/Customer) are people or organizations that place orders, make payments and recieve goods and/or services from the SMB.

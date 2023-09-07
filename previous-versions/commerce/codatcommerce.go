@@ -68,23 +68,23 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 //
 // [See our OpenAPI spec](https://github.com/codatio/oas)
 type CodatCommerce struct {
-	// CompanyInfo - Retrieve standardized data from linked commerce platforms.
+	// Retrieve standardized data from linked commerce platforms.
 	CompanyInfo *companyInfo
-	// Customers - Retrieve standardized data from linked commerce platforms.
+	// Retrieve standardized data from linked commerce platforms.
 	Customers *customers
-	// Disputes - Retrieve standardized data from linked commerce platforms.
+	// Retrieve standardized data from linked commerce platforms.
 	Disputes *disputes
-	// Locations - Retrieve standardized data from linked commerce platforms.
+	// Retrieve standardized data from linked commerce platforms.
 	Locations *locations
-	// Orders - Retrieve standardized data from linked commerce platforms.
+	// Retrieve standardized data from linked commerce platforms.
 	Orders *orders
-	// Payments - Retrieve standardized data from linked commerce platforms.
+	// Retrieve standardized data from linked commerce platforms.
 	Payments *payments
-	// Products - Retrieve standardized data from linked commerce platforms.
+	// Retrieve standardized data from linked commerce platforms.
 	Products *products
-	// TaxComponents - Retrieve standardized data from linked commerce platforms.
+	// Retrieve standardized data from linked commerce platforms.
 	TaxComponents *taxComponents
-	// Transactions - Retrieve standardized data from linked commerce platforms.
+	// Retrieve standardized data from linked commerce platforms.
 	Transactions *transactions
 
 	sdkConfiguration sdkConfiguration
@@ -141,8 +141,8 @@ func New(opts ...SDKOption) *CodatCommerce {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "0.1.0",
-			GenVersion:        "2.91.4",
+			SDKVersion:        "0.2.0",
+			GenVersion:        "2.101.0",
 		},
 	}
 	for _, opt := range opts {

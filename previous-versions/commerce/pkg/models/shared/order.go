@@ -4,7 +4,7 @@ package shared
 
 // OrderSupplementalData - Supplemental data is additional data you can include in our standard data types.
 //
-// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/additional-data) about supplemental data.
+// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
 type OrderSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
@@ -82,7 +82,7 @@ type Order struct {
 	SourceModifiedDate *string         `json:"sourceModifiedDate,omitempty"`
 	// Supplemental data is additional data you can include in our standard data types.
 	//
-	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/additional-data) about supplemental data.
+	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
 	SupplementalData *OrderSupplementalData `json:"supplementalData,omitempty"`
 	// Total amount of the order, including tax, net of any discounts and refunds.
 	TotalAmount *float64 `json:"totalAmount,omitempty"`

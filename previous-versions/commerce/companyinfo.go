@@ -25,7 +25,7 @@ func newCompanyInfo(sdkConfig sdkConfiguration) *companyInfo {
 	}
 }
 
-// Get - Get company info
+// Get company info
 // Retrieve information about the company, as seen in the commerce platform.
 //
 // This may include information like addresses, tax registration details and social media or website information.

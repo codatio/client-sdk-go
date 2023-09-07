@@ -25,7 +25,7 @@ func newTaxComponents(sdkConfig sdkConfiguration) *taxComponents {
 	}
 }
 
-// Get - Get tax component
+// Get tax component
 // The *Get tax* endpoint returns a single tax for a given taxId.
 //
 // [Tax components](https://docs.codat.io/commerce-api#/schemas/TaxComponent) are tax rates from the commerce platform, including tax rate's name and value.
@@ -140,7 +140,7 @@ func (s *taxComponents) Get(ctx context.Context, request operations.GetTaxCompon
 	return res, nil
 }
 
-// List - List tax components
+// List tax components
 // The *List tax components* endpoint returns a list of [tax components](https://docs.codat.io/commerce-api#/schemas/TaxComponent) for a given company's connection.
 //
 // [Tax components](https://docs.codat.io/commerce-api#/schemas/TaxComponent) are tax rates from the commerce platform, including tax rate's name and value.

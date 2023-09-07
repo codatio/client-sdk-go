@@ -25,7 +25,7 @@ func newTransactions(sdkConfig sdkConfiguration) *transactions {
 	}
 }
 
-// Get - Get transaction
+// Get transaction
 // The *Get transaction* endpoint returns a single transaction for a given transactionId.
 //
 // [Transactions](https://docs.codat.io/commerce-api#/schemas/Transaction) detail all financial affairs recorded in the commerce or point of sale system.
@@ -140,7 +140,7 @@ func (s *transactions) Get(ctx context.Context, request operations.GetTransactio
 	return res, nil
 }
 
-// List - List transactions
+// List transactions
 // The *List transactions* endpoint returns a list of [transactions](https://docs.codat.io/commerce-api#/schemas/Transaction) for a given company's connection.
 //
 // [Transactions](https://docs.codat.io/commerce-api#/schemas/Transaction) detail all financial affairs recorded in the commerce or point of sale system.

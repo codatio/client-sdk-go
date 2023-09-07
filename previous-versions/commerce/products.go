@@ -25,7 +25,7 @@ func newProducts(sdkConfig sdkConfiguration) *products {
 	}
 }
 
-// Get - Get product
+// Get product
 // The *Get product* endpoint returns a single product for a given productId.
 //
 // [Products](https://docs.codat.io/commerce-api#/schemas/Product) are items in the company's inventory that are available for sale.
@@ -255,7 +255,7 @@ func (s *products) GetCategory(ctx context.Context, request operations.GetProduc
 	return res, nil
 }
 
-// List - List products
+// List products
 // The *List products* endpoint returns a list of [products](https://docs.codat.io/commerce-api#/schemas/Product) for a given company's connection.
 //
 // [Products](https://docs.codat.io/commerce-api#/schemas/Product) are items in the company's inventory that are available for sale.

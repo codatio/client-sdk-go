@@ -25,7 +25,7 @@ func newLocations(sdkConfig sdkConfiguration) *locations {
 	}
 }
 
-// Get - Get location
+// Get location
 // The *Get location* endpoint returns a single location for a given locationId.
 //
 // [Locations](https://docs.codat.io/commerce-api#/schemas/Location) hold information on the geographic location at which stocks of [products](https://docs.codat.io/commerce-api#/schemas/Product) may be held or where [orders](https://docs.codat.io/commerce-api#/schemas/Order) were placed.
@@ -140,7 +140,7 @@ func (s *locations) Get(ctx context.Context, request operations.GetLocationReque
 	return res, nil
 }
 
-// List - List locations
+// List locations
 // The *List locations* endpoint returns a list of [locations](https://docs.codat.io/commerce-api#/schemas/Location) for a given company's connection.
 //
 // [Locations](https://docs.codat.io/commerce-api#/schemas/Location) hold information on the geographic location at which stocks of [products](https://docs.codat.io/commerce-api#/schemas/Product) may be held or where [orders](https://docs.codat.io/commerce-api#/schemas/Order) were placed.

@@ -70,7 +70,7 @@ type Dispute struct {
 	// Current status of the dispute
 	Status *DisputeStatus `json:"status,omitempty"`
 	// Total transaction amount that is under dispute.
-	TotalAmount *float64 `json:"totalAmount,omitempty"`
+	TotalAmount interface{} `json:"totalAmount,omitempty"`
 }
 
 func (o *Dispute) GetCreatedDate() *string {
@@ -136,7 +136,7 @@ func (o *Dispute) GetStatus() *DisputeStatus {
 	return o.Status
 }
 
-func (o *Dispute) GetTotalAmount() *float64 {
+func (o *Dispute) GetTotalAmount() interface{} {
 	if o == nil {
 		return nil
 	}

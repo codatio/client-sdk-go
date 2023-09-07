@@ -14,7 +14,7 @@ type TaxComponent struct {
 	// Name of the Tax Rate Component in the source commerce platform.
 	Name *string `json:"name,omitempty"`
 	// Rate of taxation represented as a fraction of the net price (typically in the range 0.00 - 1.00).
-	Rate               *float32 `json:"rate,omitempty"`
+	Rate               *float64 `json:"rate,omitempty"`
 	SourceModifiedDate *string  `json:"sourceModifiedDate,omitempty"`
 }
 
@@ -46,7 +46,7 @@ func (o *TaxComponent) GetName() *string {
 	return o.Name
 }
 
-func (o *TaxComponent) GetRate() *float32 {
+func (o *TaxComponent) GetRate() *float64 {
 	if o == nil {
 		return nil
 	}
