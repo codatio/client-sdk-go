@@ -46,59 +46,30 @@ func main() {
     res, err := s.JournalEntries.Create(ctx, operations.CreateJournalEntryRequest{
         JournalEntry: &shared.JournalEntry{
             CreatedOn: codatsyncpayables.String("2022-10-23T00:00:00.000Z"),
-            Description: codatsyncpayables.String("culpa"),
-            ID: codatsyncpayables.String("bcdc91fa-abdd-488e-b1f6-c48252d7771e"),
+            Description: codatsyncpayables.String("animi"),
+            ID: codatsyncpayables.String("88970e18-9dbb-430f-8b33-ea055b197cd4"),
             JournalLines: []shared.JournalLine{
                 shared.JournalLine{
                     AccountRef: &shared.AccountRef{
-                        ID: codatsyncpayables.String("fd074009-ef8d-429d-a1dd-7097b5da08c5"),
-                        Name: codatsyncpayables.String("Ora Olson"),
+                        ID: codatsyncpayables.String("4e2f52d8-2d35-413b-b6f4-8b656bcdb35f"),
+                        Name: codatsyncpayables.String("Russell Toy"),
                     },
-                    Currency: codatsyncpayables.String("odio"),
-                    Description: codatsyncpayables.String("atque"),
-                    NetAmount: 6288.11,
+                    Currency: codatsyncpayables.String("eos"),
+                    Description: codatsyncpayables.String("reprehenderit"),
+                    NetAmount: 3455.06,
                     Tracking: &shared.JournalLineTracking{
                         RecordRefs: []shared.RecordRef{
                             shared.RecordRef{
                                 DataType: codatsyncpayables.String("journalEntry"),
-                                ID: codatsyncpayables.String("6e19bafe-ca61-4914-9814-0b64ff8ae170"),
-                            },
-                        },
-                    },
-                },
-                shared.JournalLine{
-                    AccountRef: &shared.AccountRef{
-                        ID: codatsyncpayables.String("ef03b5f3-7e4a-4a86-8555-966732aa5dcb"),
-                        Name: codatsyncpayables.String("Ella Lang"),
-                    },
-                    Currency: codatsyncpayables.String("expedita"),
-                    Description: codatsyncpayables.String("in"),
-                    NetAmount: 526.59,
-                    Tracking: &shared.JournalLineTracking{
-                        RecordRefs: []shared.RecordRef{
-                            shared.RecordRef{
-                                DataType: codatsyncpayables.String("accountTransaction"),
-                                ID: codatsyncpayables.String("cfd5fb6e-91b9-4a9f-b484-6e2c3309db05"),
-                            },
-                            shared.RecordRef{
-                                DataType: codatsyncpayables.String("journalEntry"),
-                                ID: codatsyncpayables.String("6d9e75ca-006f-4539-ac11-a25a8bf92f97"),
-                            },
-                            shared.RecordRef{
-                                DataType: codatsyncpayables.String("invoice"),
-                                ID: codatsyncpayables.String("28ad9a9f-8bf8-4221-9253-59d98387f7a7"),
-                            },
-                            shared.RecordRef{
-                                DataType: codatsyncpayables.String("accountTransaction"),
-                                ID: codatsyncpayables.String("cd72cd24-84da-4217-a9f2-ac41ef5725f1"),
+                                ID: codatsyncpayables.String("7a8cd9e7-319c-4177-9525-f77b114eeb52"),
                             },
                         },
                     },
                 },
             },
             JournalRef: &shared.JournalRef{
-                ID: "169ac1e4-1d8a-423c-a3e3-4f2dfa4a197f",
-                Name: codatsyncpayables.String("Betsy Walter"),
+                ID: "ff785fc3-7814-4d4c-98e0-c2bb89eb75da",
+                Name: codatsyncpayables.String("Elmer Emard"),
             },
             Metadata: &shared.Metadata{
                 IsDeleted: codatsyncpayables.Bool(false),
@@ -106,19 +77,14 @@ func main() {
             ModifiedDate: codatsyncpayables.String("2022-10-23T00:00:00.000Z"),
             PostedOn: codatsyncpayables.String("2022-10-23T00:00:00.000Z"),
             RecordRef: &shared.JournalEntryRecordReference{
-                DataType: codatsyncpayables.String("invoice"),
-                ID: codatsyncpayables.String("1fe17120-9985-43e9-b543-d854439ee224"),
+                DataType: codatsyncpayables.String("journalEntry"),
+                ID: codatsyncpayables.String("503d8bb3-1180-4f73-9ae9-e057eb809e28"),
             },
             SourceModifiedDate: codatsyncpayables.String("2022-10-23T00:00:00.000Z"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "accusantium": map[string]interface{}{
-                        "aliquam": "dolorem",
-                        "expedita": "impedit",
-                    },
-                    "architecto": map[string]interface{}{
-                        "magnam": "vitae",
-                        "quos": "atque",
+                    "voluptatem": map[string]interface{}{
+                        "velit": "dolor",
                     },
                 },
             },
@@ -126,7 +92,7 @@ func main() {
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codatsyncpayables.Int(125488),
+        TimeoutInMinutes: codatsyncpayables.Int(953676),
     })
     if err != nil {
         log.Fatal(err)

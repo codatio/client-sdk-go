@@ -47,11 +47,11 @@ func main() {
     ctx := context.Background()
     res, err := s.Accounts.Create(ctx, operations.CreateAccountRequest{
         Account: &shared.Account{
-            Currency: codatsyncpayables.String("USD"),
+            Currency: codatsyncpayables.String("EUR"),
             CurrentBalance: codatsyncpayables.Float64(0),
             Description: codatsyncpayables.String("Invoices the business has issued but has not yet collected payment on."),
             FullyQualifiedCategory: codatsyncpayables.String("Asset.Current"),
-            FullyQualifiedName: codatsyncpayables.String("Fixed Asset"),
+            FullyQualifiedName: codatsyncpayables.String("Cash On Hand"),
             ID: codatsyncpayables.String("1b6266d1-1e44-46c5-8eb5-a8f98e03124e"),
             IsBankAccount: codatsyncpayables.Bool(false),
             Metadata: &shared.Metadata{
@@ -66,24 +66,15 @@ func main() {
             ValidDatatypeLinks: []shared.AccountValidDataTypeLinks{
                 shared.AccountValidDataTypeLinks{
                     Links: []string{
-                        "nisi",
-                        "recusandae",
-                        "temporibus",
+                        "suscipit",
                     },
-                    Property: codatsyncpayables.String("ab"),
-                },
-                shared.AccountValidDataTypeLinks{
-                    Links: []string{
-                        "veritatis",
-                        "deserunt",
-                    },
-                    Property: codatsyncpayables.String("perferendis"),
+                    Property: codatsyncpayables.String("iure"),
                 },
             },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codatsyncpayables.Int(368241),
+        TimeoutInMinutes: codatsyncpayables.Int(297534),
     })
     if err != nil {
         log.Fatal(err)
@@ -142,7 +133,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Accounts.Get(ctx, operations.GetAccountRequest{
-        AccountID: "repellendus",
+        AccountID: "debitis",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -171,15 +162,15 @@ func main() {
 
 ## GetCreateModel
 
-﻿  The *Get create account model* endpoint returns the expected data for the request payload when creating an [account](https://docs.codat.io/sync-for-payables-api#/schemas/Account) for a given company and integration.
-    
-    [Accounts](https://docs.codat.io/sync-for-payables-api#/schemas/Account) are the categories a business uses to record accounting transactions.
-    
-    **Integration-specific behaviour**
-    
-    See the *response examples* for integration-specific indicative models.
-    
-    Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=chartOfAccounts) for integrations that support creating an account.
+﻿The *Get create account model* endpoint returns the expected data for the request payload when creating an [account](https://docs.codat.io/sync-for-payables-api#/schemas/Account) for a given company and integration.
+
+[Accounts](https://docs.codat.io/sync-for-payables-api#/schemas/Account) are the categories a business uses to record accounting transactions.
+
+**Integration-specific behaviour**
+
+See the *response examples* for integration-specific indicative models.
+
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=chartOfAccounts) for integrations that support creating an account.
 
 
 ### Example Usage
@@ -265,7 +256,7 @@ func main() {
         OrderBy: codatsyncpayables.String("-modifiedDate"),
         Page: codatsyncpayables.Int(1),
         PageSize: codatsyncpayables.Int(100),
-        Query: codatsyncpayables.String("sapiente"),
+        Query: codatsyncpayables.String("ipsa"),
     })
     if err != nil {
         log.Fatal(err)

@@ -49,35 +49,23 @@ func main() {
     res, err := s.BillPayments.Create(ctx, operations.CreateBillPaymentRequest{
         BillPayment: &shared.BillPayment{
             AccountRef: &shared.AccountRef{
-                ID: codatsyncpayables.String("18544ec4-2def-4cce-8f19-77773e63562a"),
-                Name: codatsyncpayables.String("Ms. Verna Gislason"),
+                ID: codatsyncpayables.String("756082d6-8ea1-49f1-9170-51339d08086a"),
+                Name: codatsyncpayables.String("Mrs. Priscilla Fritsch"),
             },
             Currency: codatsyncpayables.String("GBP"),
-            CurrencyRate: codatsyncpayables.Float64(3314.52),
+            CurrencyRate: codatsyncpayables.Float64(7710.89),
             Date: "2022-10-23T00:00:00.000Z",
             ID: codatsyncpayables.String("3d5a8e00-d108-4045-8823-7f342676cffa"),
             Lines: []shared.BillPaymentLine{
                 shared.BillPaymentLine{
                     AllocatedOnDate: codatsyncpayables.String("2022-10-23T00:00:00.000Z"),
-                    Amount: 3071.73,
+                    Amount: 120.36,
                     Links: []shared.BillPaymentLineLink{
                         shared.BillPaymentLineLink{
-                            Amount: codatsyncpayables.Float64(9847.73),
-                            CurrencyRate: codatsyncpayables.Float64(8518.09),
-                            ID: codatsyncpayables.String("af313a1f-5fd9-4425-9c0b-36f25ea944f3"),
-                            Type: shared.BillPaymentLineLinkTypeRefund,
-                        },
-                        shared.BillPaymentLineLink{
-                            Amount: codatsyncpayables.Float64(4483.86),
-                            CurrencyRate: codatsyncpayables.Float64(3296.51),
-                            ID: codatsyncpayables.String("6c11f6c3-7a51-4262-8383-5bbc05a23a45"),
-                            Type: shared.BillPaymentLineLinkTypeManualJournal,
-                        },
-                        shared.BillPaymentLineLink{
-                            Amount: codatsyncpayables.Float64(9322.5),
-                            CurrencyRate: codatsyncpayables.Float64(9555.69),
-                            ID: codatsyncpayables.String("c5fde10a-0ce2-4169-a510-019c6dc5e347"),
-                            Type: shared.BillPaymentLineLinkTypeOther,
+                            Amount: codatsyncpayables.Float64(4910.25),
+                            CurrencyRate: codatsyncpayables.Float64(1154.84),
+                            ID: codatsyncpayables.String("f93f5f06-42da-4c7a-b515-cc413aa63aae"),
+                            Type: shared.BillPaymentLineLinkTypeBillPayment,
                         },
                     },
                 },
@@ -87,38 +75,25 @@ func main() {
             },
             ModifiedDate: codatsyncpayables.String("2022-10-23T00:00:00.000Z"),
             Note: codatsyncpayables.String("Bill Payment against bill c13e37b6-dfaa-4894-b3be-9fe97bda9f44"),
-            PaymentMethodRef: codatsyncpayables.String("odio"),
-            Reference: codatsyncpayables.String("natus"),
+            PaymentMethodRef: codatsyncpayables.String("vel"),
+            Reference: codatsyncpayables.String("ducimus"),
             SourceModifiedDate: codatsyncpayables.String("2022-10-23T00:00:00.000Z"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "doloribus": map[string]interface{}{
-                        "quidem": "itaque",
-                        "laboriosam": "unde",
-                        "modi": "perspiciatis",
-                    },
-                    "hic": map[string]interface{}{
-                        "aspernatur": "libero",
-                        "nam": "incidunt",
-                        "recusandae": "quod",
-                    },
-                    "id": map[string]interface{}{
-                        "autem": "quo",
-                        "nesciunt": "illum",
-                        "nemo": "illum",
-                        "facilis": "non",
+                    "vel": map[string]interface{}{
+                        "labore": "possimus",
                     },
                 },
             },
             SupplierRef: &shared.SupplierRef{
-                ID: "adebd5da-ea4c-4506-a8aa-94c02644cf5e",
-                SupplierName: codatsyncpayables.String("unde"),
+                ID: "bb675fd5-e60b-4375-ad4f-6fbee41f3331",
+                SupplierName: codatsyncpayables.String("dignissimos"),
             },
             TotalAmount: codatsyncpayables.Float64(1329.54),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codatsyncpayables.Int(860311),
+        TimeoutInMinutes: codatsyncpayables.Int(950953),
     })
     if err != nil {
         log.Fatal(err)
@@ -192,7 +167,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.BillPayments.Delete(ctx, operations.DeleteBillPaymentRequest{
-        BillPaymentID: "error",
+        BillPaymentID: "debitis",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -252,7 +227,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.BillPayments.Get(ctx, operations.GetBillPaymentsRequest{
-        BillPaymentID: "mollitia",
+        BillPaymentID: "consectetur",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -376,7 +351,7 @@ func main() {
         OrderBy: codatsyncpayables.String("-modifiedDate"),
         Page: codatsyncpayables.Int(1),
         PageSize: codatsyncpayables.Int(100),
-        Query: codatsyncpayables.String("magnam"),
+        Query: codatsyncpayables.String("corporis"),
     })
     if err != nil {
         log.Fatal(err)

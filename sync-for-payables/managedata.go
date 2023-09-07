@@ -25,7 +25,7 @@ func newManageData(sdkConfig sdkConfiguration) *manageData {
 	}
 }
 
-// Get - Get data status
+// Get data status
 // Get the state of each data type for a company
 func (s *manageData) Get(ctx context.Context, request operations.GetDataStatusRequest, opts ...operations.Option) (*operations.GetDataStatusResponse, error) {
 	o := operations.Options{}

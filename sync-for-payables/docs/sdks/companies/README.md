@@ -202,7 +202,7 @@ func main() {
         OrderBy: codatsyncpayables.String("-modifiedDate"),
         Page: codatsyncpayables.Int(1),
         PageSize: codatsyncpayables.Int(100),
-        Query: codatsyncpayables.String("cumque"),
+        Query: codatsyncpayables.String("doloribus"),
     })
     if err != nil {
         log.Fatal(err)

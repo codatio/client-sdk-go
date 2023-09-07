@@ -25,7 +25,7 @@ func newTaxRates(sdkConfig sdkConfiguration) *taxRates {
 	}
 }
 
-// Get - Get tax rate
+// Get tax rate
 // The *Get tax rate* endpoint returns a single tax rate for a given `taxRateId`.
 //
 // [Tax rates](https://docs.codat.io/sync-for-payables-api#/schemas/TaxRate) are a set of taxes and associated rates within the SMB's accounting package.
@@ -140,7 +140,7 @@ func (s *taxRates) Get(ctx context.Context, request operations.GetTaxRateRequest
 	return res, nil
 }
 
-// List - List all tax rates
+// List all tax rates
 // The *List tax rates* endpoint returns a list of [tax rates](https://docs.codat.io/sync-for-payables-api#/schemas/TaxRate) for a given company's connection.
 //
 // [Tax rates](https://docs.codat.io/sync-for-payables-api#/schemas/TaxRate) are a set of taxes and associated rates within the SMB's accounting package.

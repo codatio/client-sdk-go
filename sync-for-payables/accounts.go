@@ -25,7 +25,7 @@ func newAccounts(sdkConfig sdkConfiguration) *accounts {
 	}
 }
 
-// Create - Create account
+// Create account
 // The *Create account* endpoint creates a new [account](https://docs.codat.io/sync-for-payables-api#/schemas/Account) for a given company's connection.
 //
 // [Accounts](https://docs.codat.io/sync-for-payables-api#/schemas/Account) are the categories a business uses to record accounting transactions.
@@ -153,7 +153,7 @@ func (s *accounts) Create(ctx context.Context, request operations.CreateAccountR
 	return res, nil
 }
 
-// Get - Get account
+// Get account
 // The *Get account* endpoint returns a single account for a given `accountId`.
 //
 // [Accounts](https://docs.codat.io/sync-for-payables-api#/schemas/Account) are the categories a business uses to record accounting transactions.
@@ -269,16 +269,15 @@ func (s *accounts) Get(ctx context.Context, request operations.GetAccountRequest
 }
 
 // GetCreateModel - Get create account model
+// The *Get create account model* endpoint returns the expected data for the request payload when creating an [account](https://docs.codat.io/sync-for-payables-api#/schemas/Account) for a given company and integration.
 //
-//	The *Get create account model* endpoint returns the expected data for the request payload when creating an [account](https://docs.codat.io/sync-for-payables-api#/schemas/Account) for a given company and integration.
+// [Accounts](https://docs.codat.io/sync-for-payables-api#/schemas/Account) are the categories a business uses to record accounting transactions.
 //
-//	  [Accounts](https://docs.codat.io/sync-for-payables-api#/schemas/Account) are the categories a business uses to record accounting transactions.
+// **Integration-specific behaviour**
 //
-//	  **Integration-specific behaviour**
+// See the *response examples* for integration-specific indicative models.
 //
-//	  See the *response examples* for integration-specific indicative models.
-//
-//	  Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=chartOfAccounts) for integrations that support creating an account.
+// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=chartOfAccounts) for integrations that support creating an account.
 func (s *accounts) GetCreateModel(ctx context.Context, request operations.GetCreateAccountModelRequest, opts ...operations.Option) (*operations.GetCreateAccountModelResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -384,7 +383,7 @@ func (s *accounts) GetCreateModel(ctx context.Context, request operations.GetCre
 	return res, nil
 }
 
-// List - List accounts
+// List accounts
 // The *List accounts* endpoint returns a list of [accounts](https://docs.codat.io/sync-for-payables-api#/schemas/Account) for a given company's connection.
 //
 // [Accounts](https://docs.codat.io/sync-for-payables-api#/schemas/Account) are the categories a business uses to record accounting transactions.

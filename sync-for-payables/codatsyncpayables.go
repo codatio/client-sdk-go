@@ -65,33 +65,33 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 //
 // [Read More...](https://docs.codat.io/payables/overview)
 type CodatSyncPayables struct {
-	// Accounts - Accounts
+	// Accounts
 	Accounts *accounts
-	// BillCreditNotes - Bill credit notes
+	// Bill credit notes
 	BillCreditNotes *billCreditNotes
-	// BillPayments - Bill payments
+	// Bill payments
 	BillPayments *billPayments
-	// Bills - Bills
+	// Bills
 	Bills *bills
-	// Companies - Create and manage your Codat companies.
+	// Create and manage your Codat companies.
 	Companies *companies
-	// Connections - Manage your companies' data connections.
+	// Manage your companies' data connections.
 	Connections *connections
-	// JournalEntries - Journal entries
+	// Journal entries
 	JournalEntries *journalEntries
-	// Journals - Journals
+	// Journals
 	Journals *journals
-	// ManageData - Asynchronously retrieve data from an integration to refresh data in Codat.
+	// Asynchronously retrieve data from an integration to refresh data in Codat.
 	ManageData *manageData
-	// PaymentMethods - Payment methods
+	// Payment methods
 	PaymentMethods *paymentMethods
-	// PushOperations - Access create, update and delete operations made to an SMB's data connection.
+	// Access create, update and delete operations made to an SMB's data connection.
 	PushOperations *pushOperations
-	// Suppliers - Suppliers
+	// Suppliers
 	Suppliers *suppliers
-	// TaxRates - Tax rates
+	// Tax rates
 	TaxRates *taxRates
-	// TrackingCategories - Tracking categories
+	// Tracking categories
 	TrackingCategories *trackingCategories
 
 	sdkConfiguration sdkConfiguration
@@ -148,8 +148,8 @@ func New(opts ...SDKOption) *CodatSyncPayables {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "0.1.1",
-			GenVersion:        "2.96.3",
+			SDKVersion:        "0.1.2",
+			GenVersion:        "2.101.0",
 		},
 	}
 	for _, opt := range opts {

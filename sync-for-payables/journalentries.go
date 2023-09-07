@@ -25,7 +25,7 @@ func newJournalEntries(sdkConfig sdkConfiguration) *journalEntries {
 	}
 }
 
-// Create - Create journal entry
+// Create journal entry
 // The *Create journal entry* endpoint creates a new [journal entry](https://docs.codat.io/sync-for-payables-api#/schemas/JournalEntry) for a given company's connection.
 //
 // [Journal entries](https://docs.codat.io/sync-for-payables-api#/schemas/JournalEntry) are  made in a company's general ledger, or accounts, when transactions are approved.
