@@ -25,7 +25,7 @@ func newFileUpload(sdkConfig sdkConfiguration) *fileUpload {
 	}
 }
 
-// Download - Download all files for a company
+// Download all files for a company
 // The *Download files* endpoint downloads all files that have  been uploaded by to SMB to Codat. A `date` may be specified to download any files uploaded on the date provided.
 func (s *fileUpload) Download(ctx context.Context, request operations.DownloadFilesRequest, opts ...operations.Option) (*operations.DownloadFilesResponse, error) {
 	o := operations.Options{}
@@ -246,7 +246,7 @@ func (s *fileUpload) ListUploaded(ctx context.Context, request operations.ListFi
 	return res, nil
 }
 
-// Upload - Upload files for a company
+// Upload files for a company
 // The *Upload files* endpoint uploads multiple files provided by the SMB to Codat. This may include personal identity documents, pitch decks, contracts, or files with accounting and banking data.
 //
 // Uploaded files must meet the following requirements:

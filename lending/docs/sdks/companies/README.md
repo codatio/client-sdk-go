@@ -202,7 +202,7 @@ func main() {
         OrderBy: codatlending.String("-modifiedDate"),
         Page: codatlending.Int(1),
         PageSize: codatlending.Int(100),
-        Query: codatlending.String("officia"),
+        Query: codatlending.String("nam"),
     })
     if err != nil {
         log.Fatal(err)

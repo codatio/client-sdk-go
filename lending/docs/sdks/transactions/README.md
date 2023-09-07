@@ -54,7 +54,7 @@ func main() {
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        DirectCostID: "quasi",
+        DirectCostID: "aut",
     })
     if err != nil {
         log.Fatal(err)
@@ -113,7 +113,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Transactions.GetAccountTransaction(ctx, operations.GetAccountingAccountTransactionRequest{
-        AccountTransactionID: "error",
+        AccountTransactionID: "quasi",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -176,7 +176,7 @@ func main() {
     res, err := s.Transactions.GetDirectCost(ctx, operations.GetAccountingDirectCostRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        DirectCostID: "temporibus",
+        DirectCostID: "error",
     })
     if err != nil {
         log.Fatal(err)
@@ -236,7 +236,7 @@ func main() {
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        DirectCostID: "laborum",
+        DirectCostID: "temporibus",
     })
     if err != nil {
         log.Fatal(err)
@@ -296,7 +296,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Transactions.GetJournal(ctx, operations.GetAccountingJournalRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        JournalID: "quasi",
+        JournalID: "laborum",
     })
     if err != nil {
         log.Fatal(err)
@@ -356,7 +356,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Transactions.GetJournalEntry(ctx, operations.GetAccountingJournalEntryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        JournalEntryID: "reiciendis",
+        JournalEntryID: "quasi",
     })
     if err != nil {
         log.Fatal(err)
@@ -417,7 +417,7 @@ func main() {
     res, err := s.Transactions.GetTransfer(ctx, operations.GetAccountingTransferRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TransferID: "voluptatibus",
+        TransferID: "reiciendis",
     })
     if err != nil {
         log.Fatal(err)
@@ -479,7 +479,7 @@ func main() {
         OrderBy: codatlending.String("-modifiedDate"),
         Page: codatlending.Int(1),
         PageSize: codatlending.Int(100),
-        Query: codatlending.String("vero"),
+        Query: codatlending.String("voluptatibus"),
     })
     if err != nil {
         log.Fatal(err)
@@ -538,7 +538,7 @@ func main() {
     res, err := s.Transactions.ListDirectCostAttachments(ctx, operations.ListAccountingDirectCostAttachmentsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        DirectCostID: "nihil",
+        DirectCostID: "vero",
     })
     if err != nil {
         log.Fatal(err)
@@ -600,7 +600,7 @@ func main() {
         OrderBy: codatlending.String("-modifiedDate"),
         Page: codatlending.Int(1),
         PageSize: codatlending.Int(100),
-        Query: codatlending.String("praesentium"),
+        Query: codatlending.String("nihil"),
     })
     if err != nil {
         log.Fatal(err)
@@ -661,7 +661,7 @@ func main() {
         OrderBy: codatlending.String("-modifiedDate"),
         Page: codatlending.Int(1),
         PageSize: codatlending.Int(100),
-        Query: codatlending.String("voluptatibus"),
+        Query: codatlending.String("praesentium"),
     })
     if err != nil {
         log.Fatal(err)
@@ -722,7 +722,7 @@ func main() {
         OrderBy: codatlending.String("-modifiedDate"),
         Page: codatlending.Int(1),
         PageSize: codatlending.Int(100),
-        Query: codatlending.String("ipsa"),
+        Query: codatlending.String("voluptatibus"),
     })
     if err != nil {
         log.Fatal(err)
@@ -784,7 +784,7 @@ func main() {
         OrderBy: codatlending.String("-modifiedDate"),
         Page: codatlending.Int(1),
         PageSize: codatlending.Int(100),
-        Query: codatlending.String("omnis"),
+        Query: codatlending.String("ipsa"),
     })
     if err != nil {
         log.Fatal(err)

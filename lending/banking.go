@@ -14,7 +14,7 @@ import (
 	"net/http"
 )
 
-// banking - Retrieve banking data from linked bank accounts.
+// Retrieve banking data from linked bank accounts.
 type banking struct {
 	sdkConfiguration sdkConfiguration
 }

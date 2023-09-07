@@ -43,7 +43,7 @@ func main() {
         OrderBy: codatlending.String("-modifiedDate"),
         Page: codatlending.Int(1),
         PageSize: codatlending.Int(100),
-        Query: codatlending.String("hic"),
+        Query: codatlending.String("deleniti"),
     })
     if err != nil {
         log.Fatal(err)
@@ -161,7 +161,7 @@ func main() {
     res, err := s.DataIntegrity.Summaries(ctx, operations.GetDataIntegritySummariesRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         DataType: shared.DataIntegrityDataTypeBankingAccounts,
-        Query: codatlending.String("optio"),
+        Query: codatlending.String("hic"),
     })
     if err != nil {
         log.Fatal(err)

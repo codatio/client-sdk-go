@@ -7,7 +7,6 @@ Access bank transactions from an accounting platform.
 ### Available Operations
 
 * [GetAccount](#getaccount) - Get bank account
-* [GetCreateModel](#getcreatemodel) - Get create bank account transactions model
 * [ListAccounts](#listaccounts) - List bank accounts
 * [ListTransactions](#listtransactions) - List bank account transactions
 
@@ -72,69 +71,6 @@ func main() {
 **[*operations.GetAccountingBankAccountResponse](../../models/operations/getaccountingbankaccountresponse.md), error**
 
 
-## GetCreateModel
-
-The *Get create bank account transactions model* endpoint returns the expected data for the request payload when creating [bank account transactions](https://docs.codat.io/accounting-api#/schemas/BankTransactions) for a given company and integration.
-
-[Bank account transactions](https://docs.codat.io/accounting-api#/schemas/BankTransactions) are records of money that has moved in and out of an SMB's bank account.
-
-**Integration-specific behaviour**
-
-See the *response examples* for integration-specific indicative models.
-
-Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankTransactions) for integrations that support creating an bank transaction.
-
-
-### Example Usage
-
-```go
-package main
-
-import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/lending"
-	"github.com/codatio/client-sdk-go/lending/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/pkg/models/operations"
-)
-
-func main() {
-    s := codatlending.New(
-        codatlending.WithSecurity(shared.Security{
-            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
-        }),
-    )
-
-    ctx := context.Background()
-    res, err := s.AccountingBankData.GetCreateModel(ctx, operations.GetCreateAccountingBankTransactionsModelRequest{
-        AccountID: "distinctio",
-        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-
-    if res.PushOption != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                                                                | Type                                                                                                                                     | Required                                                                                                                                 | Description                                                                                                                              |
-| ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                                                                    | :heavy_check_mark:                                                                                                                       | The context to use for the request.                                                                                                      |
-| `request`                                                                                                                                | [operations.GetCreateAccountingBankTransactionsModelRequest](../../models/operations/getcreateaccountingbanktransactionsmodelrequest.md) | :heavy_check_mark:                                                                                                                       | The request object to use for the request.                                                                                               |
-| `opts`                                                                                                                                   | [][operations.Option](../../models/operations/option.md)                                                                                 | :heavy_minus_sign:                                                                                                                       | The options for this request.                                                                                                            |
-
-
-### Response
-
-**[*operations.GetCreateAccountingBankTransactionsModelResponse](../../models/operations/getcreateaccountingbanktransactionsmodelresponse.md), error**
-
-
 ## ListAccounts
 
 The *List bank accounts* endpoint returns a list of [bank accounts](https://docs.codat.io/accounting-api#/schemas/BankAccount) for a given company's connection.
@@ -171,7 +107,7 @@ func main() {
         OrderBy: codatlending.String("-modifiedDate"),
         Page: codatlending.Int(1),
         PageSize: codatlending.Int(100),
-        Query: codatlending.String("quibusdam"),
+        Query: codatlending.String("distinctio"),
     })
     if err != nil {
         log.Fatal(err)
@@ -230,13 +166,13 @@ func main() {
 
     ctx := context.Background()
     res, err := s.AccountingBankData.ListTransactions(ctx, operations.ListAccountingBankAccountTransactionsRequest{
-        AccountID: "unde",
+        AccountID: "quibusdam",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         OrderBy: codatlending.String("-modifiedDate"),
         Page: codatlending.Int(1),
         PageSize: codatlending.Int(100),
-        Query: codatlending.String("nulla"),
+        Query: codatlending.String("unde"),
     })
     if err != nil {
         log.Fatal(err)

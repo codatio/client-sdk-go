@@ -87,35 +87,35 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 // | Manage data          | Control how data is retrieved from an integration.                                                         |
 // | File upload          | Endpoints to manage uploaded files.                                                                        |
 type CodatLending struct {
-	// AccountingBankData - Access bank transactions from an accounting platform.
+	// Access bank transactions from an accounting platform.
 	AccountingBankData *accountingBankData
-	// AccountsPayable - Data from a linked accounting platform representing money the business owes money to its suppliers.
+	// Data from a linked accounting platform representing money the business owes money to its suppliers.
 	AccountsPayable *accountsPayable
-	// AccountsReceivable - Data from a linked accounting platform representing money owed to the business for sold goods or services.
+	// Data from a linked accounting platform representing money owed to the business for sold goods or services.
 	AccountsReceivable *accountsReceivable
-	// Banking - Retrieve banking data from linked bank accounts.
+	// Retrieve banking data from linked bank accounts.
 	Banking *banking
-	// Companies - Create and manage your Codat companies.
+	// Create and manage your Codat companies.
 	Companies *companies
-	// CompanyInfo - View company information fetched from the source platform.
+	// View company information fetched from the source platform.
 	CompanyInfo *companyInfo
-	// Connections - Manage your companies' data connections.
+	// Manage your companies' data connections.
 	Connections *connections
-	// DataIntegrity - Match mutable accounting data with immutable banking data to increase confidence in financial data.
+	// Match mutable accounting data with immutable banking data to increase confidence in financial data.
 	DataIntegrity *dataIntegrity
-	// ExcelReports - Downloadable reports
+	// Downloadable reports
 	ExcelReports *excelReports
-	// FileUpload - Endpoints to manage uploaded files.
+	// Endpoints to manage uploaded files.
 	FileUpload *fileUpload
-	// FinancialStatements - Financial data and reports from a linked accounting platform.
+	// Financial data and reports from a linked accounting platform.
 	FinancialStatements *financialStatements
-	// Liabilities - Debt and other liabilities.
+	// Debt and other liabilities.
 	Liabilities *liabilities
-	// ManageData - Control how data is retrieved from an integration.
+	// Control how data is retrieved from an integration.
 	ManageData *manageData
-	// Sales - Retrieve standardized sales data from a linked commerce platform.
+	// Retrieve standardized sales data from a linked commerce platform.
 	Sales *sales
-	// Transactions - Data from a linked accounting platform representing transactions.
+	// Data from a linked accounting platform representing transactions.
 	Transactions *transactions
 
 	sdkConfiguration sdkConfiguration
@@ -172,8 +172,8 @@ func New(opts ...SDKOption) *CodatLending {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "0.1.2",
-			GenVersion:        "2.96.6",
+			SDKVersion:        "0.1.3",
+			GenVersion:        "2.101.0",
 		},
 	}
 	for _, opt := range opts {

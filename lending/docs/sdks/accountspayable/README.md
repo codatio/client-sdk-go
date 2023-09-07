@@ -55,7 +55,7 @@ func main() {
     ctx := context.Background()
     res, err := s.AccountsPayable.DownloadBillAttachment(ctx, operations.DownloadAccountingBillAttachmentRequest{
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        BillID: "corrupti",
+        BillID: "nulla",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -117,7 +117,7 @@ func main() {
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        SupplierID: "illum",
+        SupplierID: "corrupti",
     })
     if err != nil {
         log.Fatal(err)
@@ -232,7 +232,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.AccountsPayable.GetBill(ctx, operations.GetAccountingBillRequest{
-        BillID: "vel",
+        BillID: "illum",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -291,7 +291,7 @@ func main() {
     ctx := context.Background()
     res, err := s.AccountsPayable.GetBillAttachment(ctx, operations.GetAccountingBillAttachmentRequest{
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        BillID: "error",
+        BillID: "vel",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -352,7 +352,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.AccountsPayable.GetBillCreditNote(ctx, operations.GetAccountingBillCreditNoteRequest{
-        BillCreditNoteID: "deserunt",
+        BillCreditNoteID: "error",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -412,7 +412,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.AccountsPayable.GetBillPayment(ctx, operations.GetAccountingBillPaymentRequest{
-        BillPaymentID: "suscipit",
+        BillPaymentID: "deserunt",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -473,7 +473,7 @@ func main() {
     ctx := context.Background()
     res, err := s.AccountsPayable.GetSupplier(ctx, operations.GetAccountingSupplierRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        SupplierID: "iure",
+        SupplierID: "suscipit",
     })
     if err != nil {
         log.Fatal(err)
@@ -533,7 +533,7 @@ func main() {
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        SupplierID: "magnam",
+        SupplierID: "iure",
     })
     if err != nil {
         log.Fatal(err)
@@ -642,7 +642,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.AccountsPayable.ListBillAttachments(ctx, operations.ListAccountingBillAttachmentsRequest{
-        BillID: "debitis",
+        BillID: "magnam",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -705,7 +705,7 @@ func main() {
         OrderBy: codatlending.String("-modifiedDate"),
         Page: codatlending.Int(1),
         PageSize: codatlending.Int(100),
-        Query: codatlending.String("ipsa"),
+        Query: codatlending.String("debitis"),
     })
     if err != nil {
         log.Fatal(err)
@@ -766,7 +766,7 @@ func main() {
         OrderBy: codatlending.String("-modifiedDate"),
         Page: codatlending.Int(1),
         PageSize: codatlending.Int(100),
-        Query: codatlending.String("delectus"),
+        Query: codatlending.String("ipsa"),
     })
     if err != nil {
         log.Fatal(err)
@@ -827,7 +827,7 @@ func main() {
         OrderBy: codatlending.String("-modifiedDate"),
         Page: codatlending.Int(1),
         PageSize: codatlending.Int(100),
-        Query: codatlending.String("tempora"),
+        Query: codatlending.String("delectus"),
     })
     if err != nil {
         log.Fatal(err)
@@ -886,7 +886,7 @@ func main() {
     res, err := s.AccountsPayable.ListSupplierAttachments(ctx, operations.ListAccountingSupplierAttachmentsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        SupplierID: "suscipit",
+        SupplierID: "tempora",
     })
     if err != nil {
         log.Fatal(err)
@@ -947,7 +947,7 @@ func main() {
         OrderBy: codatlending.String("-modifiedDate"),
         Page: codatlending.Int(1),
         PageSize: codatlending.Int(100),
-        Query: codatlending.String("molestiae"),
+        Query: codatlending.String("suscipit"),
     })
     if err != nil {
         log.Fatal(err)
