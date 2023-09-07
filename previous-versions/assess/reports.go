@@ -14,7 +14,7 @@ import (
 	"net/http"
 )
 
-// reports - Enriched reports and analyses of financial data
+// Enriched reports and analyses of financial data
 type reports struct {
 	sdkConfiguration sdkConfiguration
 }
