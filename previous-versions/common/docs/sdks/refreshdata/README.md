@@ -97,7 +97,7 @@ func main() {
     ctx := context.Background()
     res, err := s.RefreshData.ByDataType(ctx, operations.RefreshDataTypeRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ConnectionID: codatcommon.String("78ca1ba9-28fc-4816-b42c-b73920592939"),
+        ConnectionID: codatcommon.String("df7cc78c-a1ba-4928-bc81-6742cb739205"),
         DataType: shared.DataTypeInvoices,
     })
     if err != nil {
@@ -259,7 +259,7 @@ func main() {
         OrderBy: codatcommon.String("-modifiedDate"),
         Page: codatcommon.Int(1),
         PageSize: codatcommon.Int(100),
-        Query: codatcommon.String("laboriosam"),
+        Query: codatcommon.String("natus"),
     })
     if err != nil {
         log.Fatal(err)

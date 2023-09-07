@@ -238,7 +238,7 @@ func (s *refreshData) ByDataType(ctx context.Context, request operations.Refresh
 	return res, nil
 }
 
-// Get - Get data status
+// Get data status
 // Get the state of each data type for a company
 func (s *refreshData) Get(ctx context.Context, request operations.GetCompanyDataStatusRequest, opts ...operations.Option) (*operations.GetCompanyDataStatusResponse, error) {
 	o := operations.Options{}

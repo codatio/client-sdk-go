@@ -39,12 +39,10 @@ func main() {
         Notifiers: shared.CreateRuleNotifiers{
             Emails: []string{
                 "info@client.com",
-                "info@client.com",
-                "info@client.com",
             },
             Webhook: codatcommon.String("https://webhook.client.com"),
         },
-        Type: "doloribus",
+        Type: "iste",
     })
     if err != nil {
         log.Fatal(err)
@@ -151,7 +149,7 @@ func main() {
         OrderBy: codatcommon.String("-modifiedDate"),
         Page: codatcommon.Int(1),
         PageSize: codatcommon.Int(100),
-        Query: codatcommon.String("sapiente"),
+        Query: codatcommon.String("iure"),
     })
     if err != nil {
         log.Fatal(err)
