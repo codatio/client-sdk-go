@@ -25,7 +25,7 @@ func newAccounts(sdkConfig sdkConfiguration) *accounts {
 	}
 }
 
-// Create - Create account
+// Create account
 // The *Create account* endpoint creates a new [account](https://docs.codat.io/accounting-api#/schemas/Account) for a given company's connection.
 //
 // [Accounts](https://docs.codat.io/accounting-api#/schemas/Account) are the categories a business uses to record accounting transactions.
@@ -153,7 +153,7 @@ func (s *accounts) Create(ctx context.Context, request operations.CreateAccountR
 	return res, nil
 }
 
-// Get - Get account
+// Get account
 // The *Get account* endpoint returns a single account for a given accountId.
 //
 // [Accounts](https://docs.codat.io/accounting-api#/schemas/Account) are the categories a business uses to record accounting transactions.
@@ -383,7 +383,7 @@ func (s *accounts) GetCreateModel(ctx context.Context, request operations.GetCre
 	return res, nil
 }
 
-// List - List accounts
+// List accounts
 // The *List accounts* endpoint returns a list of [accounts](https://docs.codat.io/accounting-api#/schemas/Account) for a given company's connection.
 //
 // [Accounts](https://docs.codat.io/accounting-api#/schemas/Account) are the categories a business uses to record accounting transactions.

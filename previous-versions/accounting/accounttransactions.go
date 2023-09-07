@@ -25,7 +25,7 @@ func newAccountTransactions(sdkConfig sdkConfiguration) *accountTransactions {
 	}
 }
 
-// Get - Get account transaction
+// Get account transaction
 // The *Get account transaction* endpoint returns a single account transaction for a given accountTransactionId.
 //
 // [Account transactions](https://docs.codat.io/accounting-api#/schemas/AccountTransaction) represent bank activity within an accounting platform. All transactions that go through a bank account are recorded as account transactions.
@@ -140,7 +140,7 @@ func (s *accountTransactions) Get(ctx context.Context, request operations.GetAcc
 	return res, nil
 }
 
-// List - List account transactions
+// List account transactions
 // The *List account transactions* endpoint returns a list of [account transactions](https://docs.codat.io/accounting-api#/schemas/AccountTransaction) for a given company's connection.
 //
 // [Account transactions](https://docs.codat.io/accounting-api#/schemas/AccountTransaction) represent bank activity within an accounting platform. All transactions that go through a bank account are recorded as account transactions.

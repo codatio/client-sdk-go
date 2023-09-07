@@ -25,7 +25,7 @@ func newCustomers(sdkConfig sdkConfiguration) *customers {
 	}
 }
 
-// Create - Create customer
+// Create customer
 // The *Create customer* endpoint creates a new [customer](https://docs.codat.io/accounting-api#/schemas/Customer) for a given company's connection.
 //
 // [Customers](https://docs.codat.io/accounting-api#/schemas/Customer) are people or organizations that buy goods or services from the SMB.
@@ -265,7 +265,7 @@ func (s *customers) DownloadAttachment(ctx context.Context, request operations.D
 	return res, nil
 }
 
-// Get - Get customer
+// Get customer
 // The *Get customer* endpoint returns a single customer for a given customerId.
 //
 // [Customers](https://docs.codat.io/accounting-api#/schemas/Customer) are people or organizations that buy goods or services from the SMB.
@@ -606,7 +606,7 @@ func (s *customers) GetCreateUpdateModel(ctx context.Context, request operations
 	return res, nil
 }
 
-// List - List customers
+// List customers
 // The *List customers* endpoint returns a list of [customers](https://docs.codat.io/accounting-api#/schemas/Customer) for a given company's connection.
 //
 // [Customers](https://docs.codat.io/accounting-api#/schemas/Customer) are people or organizations that buy goods or services from the SMB.
@@ -834,7 +834,7 @@ func (s *customers) ListAttachments(ctx context.Context, request operations.List
 	return res, nil
 }
 
-// Update - Update customer
+// Update customer
 // The *Update customer* endpoint updates an existing [customer](https://docs.codat.io/accounting-api#/schemas/Customer) for a given company's connection.
 //
 // [Customers](https://docs.codat.io/accounting-api#/schemas/Customer) are people or organizations that buy goods or services from the SMB.

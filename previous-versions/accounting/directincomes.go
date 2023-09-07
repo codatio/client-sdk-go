@@ -25,7 +25,7 @@ func newDirectIncomes(sdkConfig sdkConfiguration) *directIncomes {
 	}
 }
 
-// Create - Create direct income
+// Create direct income
 // The *Create direct income* endpoint creates a new [direct income](https://docs.codat.io/accounting-api#/schemas/DirectIncome) for a given company's connection.
 //
 // [Direct incomes](https://docs.codat.io/accounting-api#/schemas/DirectIncome) are sales of items directly to a customer where payment is received at the point of the sale. For example, cash sales of items to a customer, referral commissions, and service fee refunds are considered direct incomes.
@@ -265,7 +265,7 @@ func (s *directIncomes) DownloadAttachment(ctx context.Context, request operatio
 	return res, nil
 }
 
-// Get - Get direct income
+// Get direct income
 // The *Get direct income* endpoint returns a single direct income for a given directIncomeId.
 //
 // [Direct incomes](https://docs.codat.io/accounting-api#/schemas/DirectIncome) are sales of items directly to a customer where payment is received at the point of the sale.
@@ -610,7 +610,7 @@ func (s *directIncomes) GetCreateModel(ctx context.Context, request operations.G
 	return res, nil
 }
 
-// List - List direct incomes
+// List direct incomes
 // The *List direct incomes* endpoint returns a list of [direct incomes](https://docs.codat.io/accounting-api#/schemas/DirectIncome) for a given company's connection.
 //
 // [Direct incomes](https://docs.codat.io/accounting-api#/schemas/DirectIncome) are sales of items directly to a customer where payment is received at the point of the sale.

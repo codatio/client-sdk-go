@@ -160,7 +160,7 @@ type Invoice struct {
 	SubTotal *float64 `json:"subTotal,omitempty"`
 	// Supplemental data is additional data you can include in our standard data types.
 	//
-	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/additional-data) about supplemental data.
+	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
 	SupplementalData *SupplementalData `json:"supplementalData,omitempty"`
 	// Amount of the invoice, inclusive of tax.
 	TotalAmount float64 `json:"totalAmount"`

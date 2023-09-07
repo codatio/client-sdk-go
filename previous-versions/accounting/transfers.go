@@ -25,7 +25,7 @@ func newTransfers(sdkConfig sdkConfiguration) *transfers {
 	}
 }
 
-// Create - Create transfer
+// Create transfer
 // The *Create transfer* endpoint creates a new [transfer](https://docs.codat.io/accounting-api#/schemas/Transfer) for a given company's connection.
 //
 // [Transfers](https://docs.codat.io/accounting-api#/schemas/Transfer) record the movement of money between two bank accounts, or between a bank account and a nominal account.
@@ -149,7 +149,7 @@ func (s *transfers) Create(ctx context.Context, request operations.CreateTransfe
 	return res, nil
 }
 
-// Get - Get transfer
+// Get transfer
 // The *Get transfer* endpoint returns a single transfer for a given transferId.
 //
 // [Transfers](https://docs.codat.io/accounting-api#/schemas/Transfer) record the movement of money between two bank accounts, or between a bank account and a nominal account.
@@ -379,7 +379,7 @@ func (s *transfers) GetCreateModel(ctx context.Context, request operations.GetCr
 	return res, nil
 }
 
-// List - List transfers
+// List transfers
 // The *List transfers* endpoint returns a list of [transfers](https://docs.codat.io/accounting-api#/schemas/Transfer) for a given company's connection.
 //
 // [Transfers](https://docs.codat.io/accounting-api#/schemas/Transfer) record the movement of money between two bank accounts, or between a bank account and a nominal account.

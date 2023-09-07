@@ -25,7 +25,7 @@ func newPayments(sdkConfig sdkConfiguration) *payments {
 	}
 }
 
-// Create - Create payment
+// Create payment
 // The *Create payment* endpoint creates a new [payment](https://docs.codat.io/accounting-api#/schemas/Payment) for a given company's connection.
 //
 // [Payments](https://docs.codat.io/accounting-api#/schemas/Payment) represent an allocation of money within any customer accounts receivable account.
@@ -153,7 +153,7 @@ func (s *payments) Create(ctx context.Context, request operations.CreatePaymentR
 	return res, nil
 }
 
-// Get - Get payment
+// Get payment
 // The *Get payment* endpoint returns a single payment for a given paymentId.
 //
 // [Payments](https://docs.codat.io/accounting-api#/schemas/Payment) represent an allocation of money within any customer accounts receivable account.
@@ -383,7 +383,7 @@ func (s *payments) GetCreateModel(ctx context.Context, request operations.GetCre
 	return res, nil
 }
 
-// List - List payments
+// List payments
 // The *List payments* endpoint returns a list of [payments](https://docs.codat.io/accounting-api#/schemas/Payment) for a given company's connection.
 //
 // [Payments](https://docs.codat.io/accounting-api#/schemas/Payment) represent an allocation of money within any customer accounts receivable account.

@@ -25,7 +25,7 @@ func newCreditNotes(sdkConfig sdkConfiguration) *creditNotes {
 	}
 }
 
-// Create - Create credit note
+// Create credit note
 // The *Create credit note* endpoint creates a new [credit note](https://docs.codat.io/accounting-api#/schemas/CreditNote) for a given company's connection.
 //
 // [Credit notes](https://docs.codat.io/accounting-api#/schemas/CreditNote) are issued to a customer to indicate debt, typically with reference to a previously issued invoice and/or purchase.
@@ -153,7 +153,7 @@ func (s *creditNotes) Create(ctx context.Context, request operations.CreateCredi
 	return res, nil
 }
 
-// Get - Get credit note
+// Get credit note
 // The *Get credit note* endpoint returns a single credit note for a given creditNoteId.
 //
 // [Credit notes](https://docs.codat.io/accounting-api#/schemas/CreditNote) are issued to a customer to indicate debt, typically with reference to a previously issued invoice and/or purchase.
@@ -383,7 +383,7 @@ func (s *creditNotes) GetCreateUpdateModel(ctx context.Context, request operatio
 	return res, nil
 }
 
-// List - List credit notes
+// List credit notes
 // The *List credit notes* endpoint returns a list of [credit notes](https://docs.codat.io/accounting-api#/schemas/CreditNote) for a given company's connection.
 //
 // [Credit notes](https://docs.codat.io/accounting-api#/schemas/CreditNote) are issued to a customer to indicate debt, typically with reference to a previously issued invoice and/or purchase.
@@ -500,7 +500,7 @@ func (s *creditNotes) List(ctx context.Context, request operations.ListCreditNot
 	return res, nil
 }
 
-// Update - Update creditNote
+// Update creditNote
 // The *Update credit note* endpoint updates an existing [credit note](https://docs.codat.io/accounting-api#/schemas/CreditNote) for a given company's connection.
 //
 // [Credit notes](https://docs.codat.io/accounting-api#/schemas/CreditNote) are issued to a customer to indicate debt, typically with reference to a previously issued invoice and/or purchase.

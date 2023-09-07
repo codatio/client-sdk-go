@@ -25,7 +25,7 @@ func newPurchaseOrders(sdkConfig sdkConfiguration) *purchaseOrders {
 	}
 }
 
-// Create - Create purchase order
+// Create purchase order
 // The *Create purchase order* endpoint creates a new [purchase order](https://docs.codat.io/accounting-api#/schemas/PurchaseOrder) for a given company's connection.
 //
 // [Purchase orders](https://docs.codat.io/accounting-api#/schemas/PurchaseOrder) represent a business's intent to purchase goods or services from a supplier.
@@ -153,7 +153,7 @@ func (s *purchaseOrders) Create(ctx context.Context, request operations.CreatePu
 	return res, nil
 }
 
-// Get - Get purchase order
+// Get purchase order
 // The *Get purchase order* endpoint returns a single purchase order for a given purchaseOrderId.
 //
 // [Purchase orders](https://docs.codat.io/accounting-api#/schemas/PurchaseOrder) represent a business's intent to purchase goods or services from a supplier.
@@ -383,7 +383,7 @@ func (s *purchaseOrders) GetCreateUpdateModel(ctx context.Context, request opera
 	return res, nil
 }
 
-// List - List purchase orders
+// List purchase orders
 // The *List purchase orders* endpoint returns a list of [purchase orders](https://docs.codat.io/accounting-api#/schemas/PurchaseOrder) for a given company's connection.
 //
 // [Purchase orders](https://docs.codat.io/accounting-api#/schemas/PurchaseOrder) represent a business's intent to purchase goods or services from a supplier.
@@ -500,7 +500,7 @@ func (s *purchaseOrders) List(ctx context.Context, request operations.ListPurcha
 	return res, nil
 }
 
-// Update - Update purchase order
+// Update purchase order
 // The *Update purchase order* endpoint updates an existing [purchase order](https://docs.codat.io/accounting-api#/schemas/PurchaseOrder) for a given company's connection.
 //
 // [Purchase orders](https://docs.codat.io/accounting-api#/schemas/PurchaseOrder) represent a business's intent to purchase goods or services from a supplier.

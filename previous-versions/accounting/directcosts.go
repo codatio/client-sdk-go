@@ -25,7 +25,7 @@ func newDirectCosts(sdkConfig sdkConfiguration) *directCosts {
 	}
 }
 
-// Create - Create direct cost
+// Create direct cost
 // The *Create direct cost* endpoint creates a new [direct cost](https://docs.codat.io/accounting-api#/schemas/DirectCost) for a given company's connection.
 //
 // [Direct costs](https://docs.codat.io/accounting-api#/schemas/DirectCost) are the expenses associated with a business' operations. For example, purchases of raw materials that are paid off at the point of the purchase and service fees are considered direct costs.
@@ -265,7 +265,7 @@ func (s *directCosts) DownloadAttachment(ctx context.Context, request operations
 	return res, nil
 }
 
-// Get - Get direct cost
+// Get direct cost
 // The *Get direct cost* endpoint returns a single direct cost for a given directCostId.
 //
 // [Direct costs](https://docs.codat.io/accounting-api#/schemas/DirectCost) are purchases of items that are paid off at the point of the purchase.
@@ -606,7 +606,7 @@ func (s *directCosts) GetCreateModel(ctx context.Context, request operations.Get
 	return res, nil
 }
 
-// List - List direct costs
+// List direct costs
 // The *List direct costs* endpoint returns a list of [direct costs](https://docs.codat.io/accounting-api#/schemas/DirectCost) for a given company's connection.
 //
 // [Direct costs](https://docs.codat.io/accounting-api#/schemas/DirectCost) are purchases of items that are paid off at the point of the purchase.

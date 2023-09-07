@@ -25,7 +25,7 @@ func newInvoices(sdkConfig sdkConfiguration) *invoices {
 	}
 }
 
-// Create - Create invoice
+// Create invoice
 // The *Create invoice* endpoint creates a new [invoice](https://docs.codat.io/accounting-api#/schemas/Invoice) for a given company's connection.
 //
 // [Invoices](https://docs.codat.io/accounting-api#/schemas/Invoice) are itemized records of goods sold or services provided to a customer.
@@ -153,7 +153,7 @@ func (s *invoices) Create(ctx context.Context, request operations.CreateInvoiceR
 	return res, nil
 }
 
-// Delete - Delete invoice
+// Delete invoice
 // The *Delete invoice* endpoint allows you to delete a specified invoice from an accounting platform.
 //
 // [Invoices](https://docs.codat.io/accounting-api#/schemas/Invoice) are itemized records of goods sold or services provided to a customer.
@@ -488,7 +488,7 @@ func (s *invoices) DownloadPdf(ctx context.Context, request operations.DownloadI
 	return res, nil
 }
 
-// Get - Get invoice
+// Get invoice
 // The *Get invoice* endpoint returns a single invoice for a given invoiceId.
 //
 // [Invoices](https://docs.codat.io/accounting-api#/schemas/Invoice) are itemized records of goods sold or services provided to a customer.
@@ -829,7 +829,7 @@ func (s *invoices) GetCreateUpdateModel(ctx context.Context, request operations.
 	return res, nil
 }
 
-// List - List invoices
+// List invoices
 // The *List invoices* endpoint returns a list of [invoices](https://docs.codat.io/accounting-api#/schemas/Invoice) for a given company's connection.
 //
 // [Invoices](https://docs.codat.io/accounting-api#/schemas/Invoice) are itemized records of goods sold or services provided to a customer.
@@ -1057,7 +1057,7 @@ func (s *invoices) ListAttachments(ctx context.Context, request operations.ListI
 	return res, nil
 }
 
-// Update - Update invoice
+// Update invoice
 // The *Update invoice* endpoint updates an existing [invoice](https://docs.codat.io/accounting-api#/schemas/Invoice) for a given company's connection.
 //
 // [Invoices](https://docs.codat.io/accounting-api#/schemas/Invoice) are itemized records of goods sold or services provided to a customer.

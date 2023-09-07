@@ -25,7 +25,7 @@ func newBankAccounts(sdkConfig sdkConfiguration) *bankAccounts {
 	}
 }
 
-// Create - Create bank account
+// Create bank account
 // The *Create bank account* endpoint creates a new [bank account](https://docs.codat.io/accounting-api#/schemas/BankAccount) for a given company's connection.
 //
 // [Bank accounts](https://docs.codat.io/accounting-api#/schemas/BankAccount) are financial accounts maintained by a bank or other financial institution.
@@ -153,7 +153,7 @@ func (s *bankAccounts) Create(ctx context.Context, request operations.CreateBank
 	return res, nil
 }
 
-// Get - Get bank account
+// Get bank account
 // The *Get bank account* endpoint returns a single account for a given accountId.
 //
 // [Bank accounts](https://docs.codat.io/accounting-api#/schemas/BankAccount) are financial accounts maintained by a bank or other financial institution.
@@ -383,7 +383,7 @@ func (s *bankAccounts) GetCreateUpdateModel(ctx context.Context, request operati
 	return res, nil
 }
 
-// List - List bank accounts
+// List bank accounts
 // The *List bank accounts* endpoint returns a list of [bank accounts](https://docs.codat.io/accounting-api#/schemas/BankAccount) for a given company's connection.
 //
 // [Bank accounts](https://docs.codat.io/accounting-api#/schemas/BankAccount) are financial accounts maintained by a bank or other financial institution.
@@ -500,7 +500,7 @@ func (s *bankAccounts) List(ctx context.Context, request operations.ListBankAcco
 	return res, nil
 }
 
-// Update - Update bank account
+// Update bank account
 // The *Update bank account* endpoint updates an existing [bank account](https://docs.codat.io/accounting-api#/schemas/BankAccount) for a given company's connection.
 //
 // [Bank accounts](https://docs.codat.io/accounting-api#/schemas/BankAccount) are financial accounts maintained by a bank or other financial institution.

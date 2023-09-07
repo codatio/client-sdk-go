@@ -49,30 +49,26 @@ func main() {
     res, err := s.Transfers.Create(ctx, operations.CreateTransferRequest{
         Transfer: &shared.Transfer{
             ContactRef: &shared.TransferContactRef{
-                DataType: codataccounting.String("quos"),
-                ID: "732be509-c508-4713-9f06-f0bce55a8687",
+                DataType: codataccounting.String("libero"),
+                ID: "e071bc16-3e27-49a3-b084-da99257d04f4",
             },
             Date: codataccounting.String("2022-10-23T00:00:00.000Z"),
             DepositedRecordRefs: []shared.InvoiceTo{
                 shared.InvoiceTo{
-                    DataType: codataccounting.String("journalEntry"),
-                    ID: codataccounting.String("c97905ff-797a-45da-a64b-7e778a74baaa"),
-                },
-                shared.InvoiceTo{
-                    DataType: codataccounting.String("journalEntry"),
-                    ID: codataccounting.String("832bb658-62d2-4a31-b9b1-4aa6bdec7f44"),
+                    DataType: codataccounting.String("accountTransaction"),
+                    ID: codataccounting.String("47a742d8-4496-4cbd-aecf-6b99bc63562e"),
                 },
             },
-            Description: codataccounting.String("dolore"),
+            Description: codataccounting.String("tempore"),
             From: &shared.TransferAccount{
                 AccountRef: &shared.AccountRef{
-                    ID: codataccounting.String("232e9a5d-ee1a-4cd7-aa89-981b58fe682e"),
-                    Name: codataccounting.String("Jasmine Collins"),
+                    ID: codataccounting.String("fdf55c29-4c06-40b0-aa12-87764eef6d0c"),
+                    Name: codataccounting.String("Paulette Kassulke"),
                 },
-                Amount: codataccounting.Float64(8972.88),
-                Currency: codataccounting.String("GBP"),
+                Amount: codataccounting.Float64(5662.13),
+                Currency: codataccounting.String("EUR"),
             },
-            ID: codataccounting.String("3d58e824-7d12-42c9-b676-78fa27958367"),
+            ID: codataccounting.String("73dd6345-7150-49a8-a870-d3c5a1f9c242"),
             Metadata: &shared.Metadata{
                 IsDeleted: codataccounting.Bool(false),
             },
@@ -80,25 +76,23 @@ func main() {
             SourceModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "facere": map[string]interface{}{
-                        "aut": "iusto",
-                        "excepturi": "doloremque",
-                        "natus": "ea",
+                    "quidem": map[string]interface{}{
+                        "iure": "aliquid",
                     },
                 },
             },
             To: &shared.TransferAccount{
                 AccountRef: &shared.AccountRef{
-                    ID: codataccounting.String("faeb8648-0730-4d8f-8b89-d9ca6075656f"),
-                    Name: codataccounting.String("James Trantow"),
+                    ID: codataccounting.String("a1f30c73-df5b-4671-9890-f42a4bb438d8"),
+                    Name: codataccounting.String("Kelli Davis II"),
                 },
-                Amount: codataccounting.Float64(4052.87),
-                Currency: codataccounting.String("USD"),
+                Amount: codataccounting.Float64(5955.95),
+                Currency: codataccounting.String("GBP"),
             },
             TrackingCategoryRefs: []shared.TrackingCategoryRef{
                 shared.TrackingCategoryRef{
-                    ID: "55e2d06a-3070-4d6e-a97f-581fabaaa7d8",
-                    Name: codataccounting.String("Frances Barrows"),
+                    ID: "d745e3c2-059c-49c3-b567-e0e252765b1d",
+                    Name: codataccounting.String("Kathryn Windler"),
                 },
             },
         },
@@ -164,7 +158,7 @@ func main() {
     res, err := s.Transfers.Get(ctx, operations.GetTransferRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TransferID: "eaque",
+        TransferID: "laborum",
     })
     if err != nil {
         log.Fatal(err)
@@ -288,7 +282,7 @@ func main() {
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: codataccounting.Int(1),
         PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("quam"),
+        Query: codataccounting.String("optio"),
     })
     if err != nil {
         log.Fatal(err)
@@ -350,12 +344,12 @@ func main() {
     ctx := context.Background()
     res, err := s.Transfers.UploadAttachment(ctx, operations.UploadTransferAttachmentRequest{
         RequestBody: &operations.UploadTransferAttachmentRequestBody{
-            Content: []byte("laboriosam"),
-            RequestBody: "asperiores",
+            Content: []byte("debitis"),
+            RequestBody: "architecto",
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TransferID: "delectus",
+        TransferID: "reiciendis",
     })
     if err != nil {
         log.Fatal(err)

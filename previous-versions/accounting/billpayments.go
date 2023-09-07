@@ -25,7 +25,7 @@ func newBillPayments(sdkConfig sdkConfiguration) *billPayments {
 	}
 }
 
-// Create - Create bill payments
+// Create bill payments
 // The *Create bill payment* endpoint creates a new [bill payment](https://docs.codat.io/accounting-api#/schemas/BillPayment) for a given company's connection.
 //
 // [Bill payments](https://docs.codat.io/accounting-api#/schemas/BillPayment) are an allocation of money within any customer accounts payable account.
@@ -153,7 +153,7 @@ func (s *billPayments) Create(ctx context.Context, request operations.CreateBill
 	return res, nil
 }
 
-// Delete - Delete bill payment
+// Delete bill payment
 // The *Delete bill payment* endpoint allows you to delete a specified bill payment from an accounting platform.
 //
 // [Bill payments](https://docs.codat.io/accounting-api#/schemas/BillPayment) are an allocation of money within any customer accounts payable account.
@@ -288,7 +288,7 @@ func (s *billPayments) Delete(ctx context.Context, request operations.DeleteBill
 	return res, nil
 }
 
-// Get - Get bill payment
+// Get bill payment
 // The *Get bill payment* endpoint returns a single bill payment for a given billPaymentId.
 //
 // [Bill payments](https://docs.codat.io/accounting-api#/schemas/BillPayment) are an allocation of money within any customer accounts payable account.
@@ -518,7 +518,7 @@ func (s *billPayments) GetCreateModel(ctx context.Context, request operations.Ge
 	return res, nil
 }
 
-// List - List bill payments
+// List bill payments
 // The *List bill payments* endpoint returns a list of [bill payments](https://docs.codat.io/accounting-api#/schemas/BillPayment) for a given company's connection.
 //
 // [Bill payments](https://docs.codat.io/accounting-api#/schemas/BillPayment) are an allocation of money within any customer accounts payable account.

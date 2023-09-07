@@ -25,7 +25,7 @@ func newBillCreditNotes(sdkConfig sdkConfiguration) *billCreditNotes {
 	}
 }
 
-// Create - Create bill credit note
+// Create bill credit note
 // The *Create bill credit note* endpoint creates a new [bill credit note](https://docs.codat.io/accounting-api#/schemas/BillCreditNote) for a given company's connection.
 //
 // [Bill credit notes](https://docs.codat.io/accounting-api#/schemas/BillCreditNote) are issued by a supplier for the purpose of recording credit.
@@ -153,7 +153,7 @@ func (s *billCreditNotes) Create(ctx context.Context, request operations.CreateB
 	return res, nil
 }
 
-// Get - Get bill credit note
+// Get bill credit note
 // The *Get bill credit note* endpoint returns a single bill credit note for a given billCreditNoteId.
 //
 // [Bill credit notes](https://docs.codat.io/accounting-api#/schemas/BillCreditNote) are issued by a supplier for the purpose of recording credit.
@@ -383,7 +383,7 @@ func (s *billCreditNotes) GetCreateUpdateModel(ctx context.Context, request oper
 	return res, nil
 }
 
-// List - List bill credit notes
+// List bill credit notes
 // The *List bill credit notes* endpoint returns a list of [bill credit notes](https://docs.codat.io/accounting-api#/schemas/BillCreditNote) for a given company's connection.
 //
 // [Bill credit notes](https://docs.codat.io/accounting-api#/schemas/BillCreditNote) are issued by a supplier for the purpose of recording credit.
@@ -500,7 +500,7 @@ func (s *billCreditNotes) List(ctx context.Context, request operations.ListBillC
 	return res, nil
 }
 
-// Update - Update bill credit note
+// Update bill credit note
 // The *Update bill credit note* endpoint updates an existing [bill credit note](https://docs.codat.io/accounting-api#/schemas/BillCreditNote) for a given company's connection.
 //
 // [Bill credit notes](https://docs.codat.io/accounting-api#/schemas/BillCreditNote) are issued by a supplier for the purpose of recording credit.

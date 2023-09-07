@@ -67,55 +67,55 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 //
 // [See our OpenAPI spec](https://github.com/codatio/oas)
 type CodatAccounting struct {
-	// AccountTransactions - Account transactions
+	// Account transactions
 	AccountTransactions *accountTransactions
-	// Accounts - Accounts
+	// Accounts
 	Accounts *accounts
-	// BankAccountTransactions - Bank transactions for bank accounts
+	// Bank transactions for bank accounts
 	BankAccountTransactions *bankAccountTransactions
-	// BankAccounts - Bank accounts
+	// Bank accounts
 	BankAccounts *bankAccounts
-	// BillCreditNotes - Bill credit notes
+	// Bill credit notes
 	BillCreditNotes *billCreditNotes
-	// BillPayments - Bill payments
+	// Bill payments
 	BillPayments *billPayments
-	// Bills - Bills
+	// Bills
 	Bills *bills
-	// CompanyInfo - Company info
+	// Company info
 	CompanyInfo *companyInfo
-	// CreditNotes - Credit notes
+	// Credit notes
 	CreditNotes *creditNotes
-	// Customers - Customers
+	// Customers
 	Customers *customers
-	// DirectCosts - Direct costs
+	// Direct costs
 	DirectCosts *directCosts
-	// DirectIncomes - Direct incomes
+	// Direct incomes
 	DirectIncomes *directIncomes
-	// Invoices - Invoices
+	// Invoices
 	Invoices *invoices
-	// Items - Items
+	// Items
 	Items *items
-	// JournalEntries - Journal entries
+	// Journal entries
 	JournalEntries *journalEntries
-	// Journals - Journals
+	// Journals
 	Journals *journals
-	// PaymentMethods - Payment methods
+	// Payment methods
 	PaymentMethods *paymentMethods
-	// Payments - Payments
+	// Payments
 	Payments *payments
-	// PurchaseOrders - Purchase orders
+	// Purchase orders
 	PurchaseOrders *purchaseOrders
-	// Reports - Reports
+	// Reports
 	Reports *reports
-	// SalesOrders - Sales orders
+	// Sales orders
 	SalesOrders *salesOrders
-	// Suppliers - Suppliers
+	// Suppliers
 	Suppliers *suppliers
-	// TaxRates - Tax rates
+	// Tax rates
 	TaxRates *taxRates
-	// TrackingCategories - Tracking categories
+	// Tracking categories
 	TrackingCategories *trackingCategories
-	// Transfers - Transfers
+	// Transfers
 	Transfers *transfers
 
 	sdkConfiguration sdkConfiguration
@@ -172,8 +172,8 @@ func New(opts ...SDKOption) *CodatAccounting {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "0.1.1",
-			GenVersion:        "2.96.3",
+			SDKVersion:        "0.1.2",
+			GenVersion:        "2.101.0",
 		},
 	}
 	for _, opt := range opts {

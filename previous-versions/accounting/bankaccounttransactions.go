@@ -25,7 +25,7 @@ func newBankAccountTransactions(sdkConfig sdkConfiguration) *bankAccountTransact
 	}
 }
 
-// Create - Create bank account transactions
+// Create bank account transactions
 // The *Create bank account transactions* endpoint creates new [bank account transactions](https://docs.codat.io/accounting-api#/schemas/BankTransactions) for a given company's connection.
 //
 // [Bank account transactions](https://docs.codat.io/accounting-api#/schemas/BankTransactions) are records of money that has moved in and out of an SMB's bank account.
@@ -266,7 +266,7 @@ func (s *bankAccountTransactions) GetCreateModel(ctx context.Context, request op
 	return res, nil
 }
 
-// List - List bank account transactions
+// List bank account transactions
 // The *List account bank transactions* endpoint returns a list of [bank account transactions](https://docs.codat.io/accounting-api#/schemas/BankTransactions) for a given company's connection.
 //
 // [Bank account transactions](https://docs.codat.io/accounting-api#/schemas/BankTransactions) are records of money that has moved in and out of an SMB's bank account.

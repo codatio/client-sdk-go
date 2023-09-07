@@ -25,7 +25,7 @@ func newItems(sdkConfig sdkConfiguration) *items {
 	}
 }
 
-// Create - Create item
+// Create item
 // The *Create item* endpoint creates a new [item](https://docs.codat.io/accounting-api#/schemas/Item) for a given company's connection.
 //
 // [Items](https://docs.codat.io/accounting-api#/schemas/Item) allow your customers to save and track details of the products and services that they buy and sell.
@@ -153,7 +153,7 @@ func (s *items) Create(ctx context.Context, request operations.CreateItemRequest
 	return res, nil
 }
 
-// Get - Get item
+// Get item
 // The *Get item* endpoint returns a single item for a given itemId.
 //
 // [Items](https://docs.codat.io/accounting-api#/schemas/Item) allow your customers to save and track details of the products and services that they buy and sell.
@@ -383,7 +383,7 @@ func (s *items) GetCreateModel(ctx context.Context, request operations.GetCreate
 	return res, nil
 }
 
-// List - List items
+// List items
 // The *List items* endpoint returns a list of [items](https://docs.codat.io/accounting-api#/schemas/Item) for a given company's connection.
 //
 // [Items](https://docs.codat.io/accounting-api#/schemas/Item) allow your customers to save and track details of the products and services that they buy and sell.

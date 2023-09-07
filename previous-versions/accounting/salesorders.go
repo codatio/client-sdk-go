@@ -25,7 +25,7 @@ func newSalesOrders(sdkConfig sdkConfiguration) *salesOrders {
 	}
 }
 
-// Get - Get sales order
+// Get sales order
 // The *Get sales order* endpoint returns a single sales order for a given salesOrderId.
 //
 // [Sales orders](https://docs.codat.io/accounting-api#/schemas/SalesOrder) represent a customer's intention to purchase goods or services from the SMB.
@@ -140,7 +140,7 @@ func (s *salesOrders) Get(ctx context.Context, request operations.GetSalesOrderR
 	return res, nil
 }
 
-// List - List sales orders
+// List sales orders
 // The *List sales orders* endpoint returns a list of [sales orders](https://docs.codat.io/accounting-api#/schemas/SalesOrder) for a given company's connection.
 //
 // [Sales orders](https://docs.codat.io/accounting-api#/schemas/SalesOrder) represent a customer's intention to purchase goods or services from the SMB.

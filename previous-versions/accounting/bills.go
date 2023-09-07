@@ -25,7 +25,7 @@ func newBills(sdkConfig sdkConfiguration) *bills {
 	}
 }
 
-// Create - Create bill
+// Create bill
 // The *Create bill* endpoint creates a new [bill](https://docs.codat.io/accounting-api#/schemas/Bill) for a given company's connection.
 //
 // [Bills](https://docs.codat.io/accounting-api#/schemas/Bill) are invoices that represent the SMB's financial obligations to their supplier for a purchase of goods or services.
@@ -153,7 +153,7 @@ func (s *bills) Create(ctx context.Context, request operations.CreateBillRequest
 	return res, nil
 }
 
-// Delete - Delete bill
+// Delete bill
 // The *Delete bill* endpoint allows you to delete a specified bill from an accounting platform.
 //
 // [Bills](https://docs.codat.io/accounting-api#/schemas/Bill) are itemized records of goods received or services provided to the SMB.
@@ -402,7 +402,7 @@ func (s *bills) DownloadAttachment(ctx context.Context, request operations.Downl
 	return res, nil
 }
 
-// Get - Get bill
+// Get bill
 // The *Get bill* endpoint returns a single bill for a given billId.
 //
 // [Bills](https://docs.codat.io/accounting-api#/schemas/Bill) are invoices that represent the SMB's financial obligations to their supplier for a purchase of goods or services.
@@ -743,7 +743,7 @@ func (s *bills) GetCreateUpdateModel(ctx context.Context, request operations.Get
 	return res, nil
 }
 
-// List - List bills
+// List bills
 // The *List bills* endpoint returns a list of [bills](https://docs.codat.io/accounting-api#/schemas/Bill) for a given company's connection.
 //
 // [Bills](https://docs.codat.io/accounting-api#/schemas/Bill) are invoices that represent the SMB's financial obligations to their supplier for a purchase of goods or services.
@@ -971,7 +971,7 @@ func (s *bills) ListAttachments(ctx context.Context, request operations.ListBill
 	return res, nil
 }
 
-// Update - Update bill
+// Update bill
 // The *Update bill* endpoint updates an existing [bill](https://docs.codat.io/accounting-api#/schemas/Bill) for a given company's connection.
 //
 // [Bills](https://docs.codat.io/accounting-api#/schemas/Bill) are invoices that represent the SMB's financial obligations to their supplier for a purchase of goods or services.

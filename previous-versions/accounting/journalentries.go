@@ -25,7 +25,7 @@ func newJournalEntries(sdkConfig sdkConfiguration) *journalEntries {
 	}
 }
 
-// Create - Create journal entry
+// Create journal entry
 // The *Create journal entry* endpoint creates a new [journal entry](https://docs.codat.io/accounting-api#/schemas/JournalEntry) for a given company's connection.
 //
 // [Journal entries](https://docs.codat.io/accounting-api#/schemas/JournalEntry) are  made in a company's general ledger, or accounts, when transactions are approved.
@@ -153,7 +153,7 @@ func (s *journalEntries) Create(ctx context.Context, request operations.CreateJo
 	return res, nil
 }
 
-// Delete - Delete journal entry
+// Delete journal entry
 // > **Use with caution**
 // >
 // >Because journal entries underpin every transaction in an accounting platform, deleting a journal entry can affect every transaction for a given company.
@@ -295,7 +295,7 @@ func (s *journalEntries) Delete(ctx context.Context, request operations.DeleteJo
 	return res, nil
 }
 
-// Get - Get journal entry
+// Get journal entry
 // The *Get journal entry* endpoint returns a single journal entry for a given journalEntryId.
 //
 // [Journal entries](https://docs.codat.io/accounting-api#/schemas/JournalEntry) are  made in a company's general ledger, or accounts, when transactions are approved.
@@ -525,7 +525,7 @@ func (s *journalEntries) GetCreateModel(ctx context.Context, request operations.
 	return res, nil
 }
 
-// List - List journal entries
+// List journal entries
 // The *List journal entries* endpoint returns a list of [journal entries](https://docs.codat.io/accounting-api#/schemas/JournalEntry) for a given company's connection.
 //
 // [Journal entries](https://docs.codat.io/accounting-api#/schemas/JournalEntry) are  made in a company's general ledger, or accounts, when transactions are approved.
