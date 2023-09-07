@@ -117,7 +117,7 @@ func (s *integrations) GetBranding(ctx context.Context, request operations.GetIn
 	return res, nil
 }
 
-// List - List integrations
+// List integrations
 // Retrieve a list of available integrations support by data type and state of release.
 func (s *integrations) List(ctx context.Context, request operations.ListIntegrationsRequest, opts ...operations.Option) (*operations.ListIntegrationsResponse, error) {
 	o := operations.Options{}

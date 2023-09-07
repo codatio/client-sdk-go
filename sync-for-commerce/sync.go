@@ -25,7 +25,7 @@ func newSync(sdkConfig sdkConfiguration) *sync {
 	}
 }
 
-// Get - Get Sync status
+// Get Sync status
 // Get the sync status for a specified sync
 func (s *sync) Get(ctx context.Context, request operations.GetSyncByIDRequest, opts ...operations.Option) (*operations.GetSyncByIDResponse, error) {
 	o := operations.Options{}
@@ -426,7 +426,7 @@ func (s *sync) GetStatus(ctx context.Context, request operations.GetSyncStatusRe
 	return res, nil
 }
 
-// List - List sync statuses
+// List sync statuses
 // Gets a list of sync statuses
 func (s *sync) List(ctx context.Context, request operations.ListSyncsRequest, opts ...operations.Option) (*operations.ListSyncsResponse, error) {
 	o := operations.Options{}

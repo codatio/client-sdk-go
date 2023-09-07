@@ -85,8 +85,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.SyncFlowSettings.GetVisibleAccounts(ctx, operations.GetVisibleAccountsRequest{
-        ClientID: "7cc8796e-d151-4a05-9fc2-ddf7cc78ca1b",
-        PlatformKey: "a928fc81-6742-4cb7-b920-5929396fea75",
+        ClientID: "e0f467cc-8796-4ed1-91a0-5dfc2ddf7cc7",
+        PlatformKey: "8ca1ba92-8fc8-4167-82cb-739205929396",
     })
     if err != nil {
         log.Fatal(err)
@@ -137,17 +137,9 @@ func main() {
 
     ctx := context.Background()
     res, err := s.SyncFlowSettings.UpdateConfigTextSyncFlow(ctx, map[string]shared.Localization{
-        "iure": shared.Localization{
+        "hic": shared.Localization{
             Required: codatsynccommerce.Bool(false),
             Text: codatsynccommerce.String("saepe"),
-        },
-        "quidem": shared.Localization{
-            Required: codatsynccommerce.Bool(false),
-            Text: codatsynccommerce.String("architecto"),
-        },
-        "ipsa": shared.Localization{
-            Required: codatsynccommerce.Bool(false),
-            Text: codatsynccommerce.String("reiciendis"),
         },
     })
     if err != nil {
@@ -202,12 +194,10 @@ func main() {
     res, err := s.SyncFlowSettings.UpdateVisibleAccountsSyncFlow(ctx, operations.UpdateVisibleAccountsSyncFlowRequest{
         VisibleAccounts: &shared.VisibleAccounts{
             VisibleAccounts: []string{
-                "mollitia",
-                "laborum",
-                "dolores",
+                "fuga",
             },
         },
-        PlatformKey: "352c5955-907a-4ff1-a3a2-fa9467739251",
+        PlatformKey: "7596eb10-faaa-4235-ac59-55907aff1a3a",
     })
     if err != nil {
         log.Fatal(err)

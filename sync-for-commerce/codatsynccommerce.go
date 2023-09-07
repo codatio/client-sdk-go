@@ -67,14 +67,14 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 //
 // Not seeing the endpoints you're expecting? We've [reorganized our products](https://docs.codat.io/updates/230901-new-products), and you may be using a [different version of Sync for Commerce](https://docs.codat.io/sync-for-commerce-v1-api#/).
 type CodatSyncCommerce struct {
-	// AdvancedControls - Advanced company management and sync preferences.
+	// Advanced company management and sync preferences.
 	AdvancedControls *advancedControls
 	Connections      *connections
-	// Integrations - View useful information about codat's integrations.
+	// View useful information about codat's integrations.
 	Integrations *integrations
-	// Sync - Initiate and monitor the sync of company data into accounting software.
+	// Initiate and monitor the sync of company data into accounting software.
 	Sync *sync
-	// SyncFlowSettings - Configure preferences for any given Sync for Commerce company using sync flow.
+	// Configure preferences for any given Sync for Commerce company using sync flow.
 	SyncFlowSettings *syncFlowSettings
 
 	sdkConfiguration sdkConfiguration
@@ -131,8 +131,8 @@ func New(opts ...SDKOption) *CodatSyncCommerce {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.1",
-			SDKVersion:        "0.22.1",
-			GenVersion:        "2.96.3",
+			SDKVersion:        "0.22.2",
+			GenVersion:        "2.101.0",
 		},
 	}
 	for _, opt := range opts {

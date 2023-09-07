@@ -24,7 +24,7 @@ func newConnections(sdkConfig sdkConfiguration) *connections {
 	}
 }
 
-// Create - Create connection
+// Create connection
 // Creates a connection for the company by providing a valid `platformKey`.
 //
 // Use the [List Integrations](https://docs.codat.io/sync-for-commerce-api#/operations/list-integrations) endpoint to access valid platform keys.
@@ -235,7 +235,7 @@ func (s *connections) GetSyncFlowURL(ctx context.Context, request operations.Get
 	return res, nil
 }
 
-// List - List connections
+// List connections
 // List the connections for a company.
 func (s *connections) List(ctx context.Context, request operations.ListConnectionsRequest, opts ...operations.Option) (*operations.ListConnectionsResponse, error) {
 	o := operations.Options{}
