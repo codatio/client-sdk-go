@@ -49,19 +49,19 @@ func main() {
             AccountID: codatbankfeeds.String("corporis"),
             Transactions: []shared.Onecompanies1Percent7BcompanyIDPercent7D1connections1Percent7BconnectionIDPercent7D1push1bankAccounts1Percent7BaccountIDPercent7D1bankTransactionsPostRequestBodyContentApplication1jsonSchemaDefinitionsCreateBankAccountTransaction{
                 shared.Onecompanies1Percent7BcompanyIDPercent7D1connections1Percent7BconnectionIDPercent7D1push1bankAccounts1Percent7BaccountIDPercent7D1bankTransactionsPostRequestBodyContentApplication1jsonSchemaDefinitionsCreateBankAccountTransaction{
-                    Amount: codatbankfeeds.Float64(7506.86),
-                    Balance: codatbankfeeds.Float64(3154.28),
+                    Amount: codatbankfeeds.Float64(1289.26),
+                    Balance: codatbankfeeds.Float64(7506.86),
                     Date: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
-                    Description: codatbankfeeds.String("nemo"),
-                    ID: codatbankfeeds.String("5907aff1-a3a2-4fa9-8677-39251aa52c3f"),
+                    Description: codatbankfeeds.String("omnis"),
+                    ID: codatbankfeeds.String("55907aff-1a3a-42fa-9467-739251aa52c3"),
                 },
             },
         },
-        AccountID: "9wg4lep4ush5cxs79pl8sozmsndbaukll3ind4g7buqbm1h2",
+        AccountID: "EILBDVJVNUAGVKRQ",
         AllowSyncOnPushComplete: codatbankfeeds.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codatbankfeeds.Int(662527),
+        TimeoutInMinutes: codatbankfeeds.Int(368725),
     })
     if err != nil {
         log.Fatal(err)
@@ -114,7 +114,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Transactions.GetCreateOperation(ctx, operations.GetCreateOperationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        PushOperationKey: "d019da1f-fe78-4f09-bb00-74f15471b5e6",
+        PushOperationKey: "ad019da1-ffe7-48f0-97b0-074f15471b5e",
     })
     if err != nil {
         log.Fatal(err)
@@ -170,7 +170,7 @@ func main() {
         OrderBy: codatbankfeeds.String("-modifiedDate"),
         Page: codatbankfeeds.Int(1),
         PageSize: codatbankfeeds.Int(100),
-        Query: codatbankfeeds.String("repudiandae"),
+        Query: codatbankfeeds.String("commodi"),
     })
     if err != nil {
         log.Fatal(err)

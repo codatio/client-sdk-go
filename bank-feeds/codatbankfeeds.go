@@ -63,19 +63,29 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 //
 // A bank feed is a connection between a source bank account in your application and a target bank account in a supported accounting package.
 //
-// [Read more...](https://docs.codat.io/bank-feeds-api/overview)
+// [Explore product](https://docs.codat.io/bank-feeds-api/overview) | [See OpenAPI spec](https://github.com/codatio/oas)
 //
-// [See our OpenAPI spec](https://github.com/codatio/oas)
+// ---
+//
+// ## Endpoints
+//
+// | Endpoints | Description |
+// | :- | :- |
+// | Companies | Create and manage your SMB users' companies. |
+// | Connections | Create new and manage existing data connections for a company. |
+// | Source accounts | Provide and manage lists of source bank accounts.   |
+// | Transactions | Create new bank account transactions for a company's connections, and see previous operations. |
+// | Account mapping | Extra functionality for building an account management UI |
 type CodatBankFeeds struct {
-	// AccountMapping - Bank feed bank account mapping.
+	// Bank feed bank account mapping.
 	AccountMapping *accountMapping
-	// Companies - Create and manage your Codat companies.
+	// Create and manage your Codat companies.
 	Companies *companies
-	// Connections - Manage your companies' data connections.
+	// Manage your companies' data connections.
 	Connections *connections
-	// SourceAccounts - Source accounts act as a bridge to bank accounts in accounting software.
+	// Source accounts act as a bridge to bank accounts in accounting software.
 	SourceAccounts *sourceAccounts
-	// Transactions - Transactions represent debits and credits from a source account.
+	// Transactions represent debits and credits from a source account.
 	Transactions *transactions
 
 	sdkConfiguration sdkConfiguration
@@ -132,8 +142,8 @@ func New(opts ...SDKOption) *CodatBankFeeds {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "0.28.0",
-			GenVersion:        "2.96.3",
+			SDKVersion:        "0.28.1",
+			GenVersion:        "2.101.0",
 		},
 	}
 	for _, opt := range opts {

@@ -25,7 +25,7 @@ func newTransactions(sdkConfig sdkConfiguration) *transactions {
 	}
 }
 
-// Create - Create bank transactions
+// Create bank transactions
 // The *Create bank transactions* endpoint creates new [bank transactions](https://docs.codat.io/bank-feeds-api#/schemas/BankTransactions) for a given company's connection.
 //
 // [Bank transactions](https://docs.codat.io/bank-feeds-api#/schemas/BankTransactions) are records of monetary amounts that have moved in and out of an SMB's bank account.

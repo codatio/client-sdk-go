@@ -25,7 +25,7 @@ func newAccountMapping(sdkConfig sdkConfiguration) *accountMapping {
 	}
 }
 
-// Create - Create bank feed account mapping
+// Create bank feed account mapping
 // The *Create bank account mapping* endpoint creates a new mapping between a source bank account and a potential account in the accounting platform (target account).
 //
 // A bank feed account mapping is a specified link between the source account (provided by the Codat user) and the target account (the end users account in the underlying platform).

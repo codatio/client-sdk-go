@@ -25,12 +25,12 @@ func newSourceAccounts(sdkConfig sdkConfiguration) *sourceAccounts {
 	}
 }
 
-// Create - Create source account
-// The _Create Source Account_ endpoint allows you to create a representation of a bank account within Codat's domain. This source account can later be mapped to a target account in your accounting software.
+// Create source account
+// The _Create Source Account_ endpoint allows you to create a representation of a bank account within Codat's domain. The company can then map the source account to an existing or new target account in their accounting software.
 //
 // #### Account Mapping Variability
 //
-// The method of mapping this source account to your target account varies depending on the accounting package you use.
+// The method of mapping the source account to the target account varies depending on the accounting package your company uses.
 //
 // #### Mapping Options:
 //
@@ -160,7 +160,7 @@ func (s *sourceAccounts) Create(ctx context.Context, request operations.CreateSo
 	return res, nil
 }
 
-// Delete - Delete source account
+// Delete source account
 // The _Delete source account_ endpoint enables you to remove a source account.
 //
 // Removing a source account will also remove any mapping between the source bank feed bank accounts and the target bankfeed bank account.
@@ -469,7 +469,7 @@ func (s *sourceAccounts) GenerateCredentials(ctx context.Context, request operat
 	return res, nil
 }
 
-// List - List source accounts
+// List source accounts
 // The _List source accounts_ endpoint returns a list of [source accounts](https://docs.codat.io/bank-feeds-api#/schemas/BankFeedAccount) for a given company's connection.
 //
 // [source accounts](https://docs.codat.io/bank-feeds-api#/schemas/BankFeedAccount) are the bank's bank account within Codat's domain from which transactions are synced into the accounting platform.
@@ -578,7 +578,7 @@ func (s *sourceAccounts) List(ctx context.Context, request operations.ListSource
 	return res, nil
 }
 
-// Update - Update source account
+// Update source account
 // The _Update source account_ endpoint updates a single source account for a single data connection connected to a single company.
 func (s *sourceAccounts) Update(ctx context.Context, request operations.UpdateSourceAccountRequest, opts ...operations.Option) (*operations.UpdateSourceAccountResponse, error) {
 	o := operations.Options{}
