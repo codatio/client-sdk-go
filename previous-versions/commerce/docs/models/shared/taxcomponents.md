@@ -1,7 +1,5 @@
 # TaxComponents
 
-OK
-
 
 ## Fields
 

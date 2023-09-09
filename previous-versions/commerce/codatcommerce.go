@@ -49,6 +49,7 @@ type sdkConfiguration struct {
 	OpenAPIDocVersion string
 	SDKVersion        string
 	GenVersion        string
+	RetryConfig       *utils.RetryConfig
 }
 
 func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
@@ -68,23 +69,23 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 //
 // [See our OpenAPI spec](https://github.com/codatio/oas)
 type CodatCommerce struct {
-	// CompanyInfo - Retrieve standardized data from linked commerce platforms.
+	// Retrieve standardized data from linked commerce platforms.
 	CompanyInfo *companyInfo
-	// Customers - Retrieve standardized data from linked commerce platforms.
+	// Retrieve standardized data from linked commerce platforms.
 	Customers *customers
-	// Disputes - Retrieve standardized data from linked commerce platforms.
+	// Retrieve standardized data from linked commerce platforms.
 	Disputes *disputes
-	// Locations - Retrieve standardized data from linked commerce platforms.
+	// Retrieve standardized data from linked commerce platforms.
 	Locations *locations
-	// Orders - Retrieve standardized data from linked commerce platforms.
+	// Retrieve standardized data from linked commerce platforms.
 	Orders *orders
-	// Payments - Retrieve standardized data from linked commerce platforms.
+	// Retrieve standardized data from linked commerce platforms.
 	Payments *payments
-	// Products - Retrieve standardized data from linked commerce platforms.
+	// Retrieve standardized data from linked commerce platforms.
 	Products *products
-	// TaxComponents - Retrieve standardized data from linked commerce platforms.
+	// Retrieve standardized data from linked commerce platforms.
 	TaxComponents *taxComponents
-	// Transactions - Retrieve standardized data from linked commerce platforms.
+	// Retrieve standardized data from linked commerce platforms.
 	Transactions *transactions
 
 	sdkConfiguration sdkConfiguration
@@ -135,14 +136,20 @@ func WithSecurity(security shared.Security) SDKOption {
 	}
 }
 
+func WithRetryConfig(retryConfig utils.RetryConfig) SDKOption {
+	return func(sdk *CodatCommerce) {
+		sdk.sdkConfiguration.RetryConfig = &retryConfig
+	}
+}
+
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *CodatCommerce {
 	sdk := &CodatCommerce{
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "0.1.0",
-			GenVersion:        "2.91.4",
+			SDKVersion:        "0.24.0",
+			GenVersion:        "2.107.3",
 		},
 	}
 	for _, opt := range opts {

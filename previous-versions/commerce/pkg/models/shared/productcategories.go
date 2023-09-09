@@ -2,7 +2,6 @@
 
 package shared
 
-// ProductCategories - OK
 type ProductCategories struct {
 	Links        Links             `json:"_links"`
 	PageNumber   int64             `json:"pageNumber"`

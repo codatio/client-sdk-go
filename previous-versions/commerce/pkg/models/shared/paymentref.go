@@ -2,9 +2,13 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/types"
+)
+
 type PaymentRef struct {
 	// Payment Amount (including gratuity).
-	Amount *float64 `json:"amount,omitempty"`
+	Amount *types.Decimal `json:"amount,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -65,7 +69,7 @@ type PaymentRef struct {
 	Type *PaymentType `json:"type,omitempty"`
 }
 
-func (o *PaymentRef) GetAmount() *float64 {
+func (o *PaymentRef) GetAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}

@@ -1,7 +1,5 @@
 # ProductCategories
 
-OK
-
 
 ## Fields
 

@@ -2,10 +2,14 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/types"
+)
+
 type ProductInventoryLocation struct {
 	// Reference to the geographic location where the order was placed.
-	LocationRef *LocationRef `json:"locationRef,omitempty"`
-	Quantity    *float64     `json:"quantity,omitempty"`
+	LocationRef *LocationRef   `json:"locationRef,omitempty"`
+	Quantity    *types.Decimal `json:"quantity,omitempty"`
 }
 
 func (o *ProductInventoryLocation) GetLocationRef() *LocationRef {
@@ -15,7 +19,7 @@ func (o *ProductInventoryLocation) GetLocationRef() *LocationRef {
 	return o.LocationRef
 }
 
-func (o *ProductInventoryLocation) GetQuantity() *float64 {
+func (o *ProductInventoryLocation) GetQuantity() *types.Decimal {
 	if o == nil {
 		return nil
 	}

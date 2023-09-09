@@ -2,6 +2,10 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/types"
+)
+
 // Payment - Payments contain details of all payments made by customers to a company, including: amounts, currency used, payment method, payment provider, and payment status.
 //
 // Refunds are recorded as separate, negative payments. Note that a refund can only occur in relation to a payment that has been completed (i.e. has a status of `Paid`). When a customer cancels an order _before_ a payment has been completed, the payment shows as `Cancelled`.
@@ -11,7 +15,7 @@ package shared
 // Explore our [data coverage](https://knowledge.codat.io/supported-features/commerce?view=tab-by-data-type&dataType=commerce-payments) for this data type.
 type Payment struct {
 	// Payment Amount (including gratuity)
-	Amount *float64 `json:"amount,omitempty"`
+	Amount *types.Decimal `json:"amount,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -71,7 +75,7 @@ type Payment struct {
 	Status *PaymentStatus `json:"status,omitempty"`
 }
 
-func (o *Payment) GetAmount() *float64 {
+func (o *Payment) GetAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}
