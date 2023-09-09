@@ -97,7 +97,7 @@ func main() {
     ctx := context.Background()
     res, err := s.RefreshData.ByDataType(ctx, operations.RefreshDataTypeRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ConnectionID: codatplatform.String("78ca1ba9-28fc-4816-b42c-b73920592939"),
+        ConnectionID: codatplatform.String("df7cc78c-a1ba-4928-bc81-6742cb739205"),
         DataType: shared.DataTypeInvoices,
     })
     if err != nil {
@@ -156,7 +156,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.DataStatusResponse != nil {
+    if res.DataStatuses != nil {
         // handle response
     }
 }
@@ -259,13 +259,13 @@ func main() {
         OrderBy: codatplatform.String("-modifiedDate"),
         Page: codatplatform.Int(1),
         PageSize: codatplatform.Int(100),
-        Query: codatplatform.String("laboriosam"),
+        Query: codatplatform.String("natus"),
     })
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.DataConnectionHistory != nil {
+    if res.PullOperations != nil {
         // handle response
     }
 }

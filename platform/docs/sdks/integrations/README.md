@@ -143,7 +143,7 @@ func main() {
         OrderBy: codatplatform.String("-modifiedDate"),
         Page: codatplatform.Int(1),
         PageSize: codatplatform.Int(100),
-        Query: codatplatform.String("suscipit"),
+        Query: codatplatform.String("corrupti"),
     })
     if err != nil {
         log.Fatal(err)

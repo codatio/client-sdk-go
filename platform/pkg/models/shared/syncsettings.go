@@ -2,7 +2,6 @@
 
 package shared
 
-// SyncSettings - OK
 type SyncSettings struct {
 	ClientID          *string       `json:"clientId,omitempty"`
 	OverridesDefaults *bool         `json:"overridesDefaults,omitempty"`
