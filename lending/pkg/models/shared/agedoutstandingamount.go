@@ -2,9 +2,13 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/lending/pkg/types"
+)
+
 type AgedOutstandingAmount struct {
 	// The amount outstanding.
-	Amount *float64 `json:"amount,omitempty"`
+	Amount *types.Decimal `json:"amount,omitempty"`
 	// Array of details.
 	Details []AgedOutstandingAmountDetail `json:"details,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
@@ -49,7 +53,7 @@ type AgedOutstandingAmount struct {
 	ToDate *string `json:"toDate,omitempty"`
 }
 
-func (o *AgedOutstandingAmount) GetAmount() *float64 {
+func (o *AgedOutstandingAmount) GetAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}

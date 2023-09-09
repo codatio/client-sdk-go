@@ -2,7 +2,6 @@
 
 package shared
 
-// AccountingDirectCosts - Success
 type AccountingDirectCosts struct {
 	Links        Links                  `json:"_links"`
 	PageNumber   int64                  `json:"pageNumber"`

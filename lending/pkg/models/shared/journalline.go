@@ -2,6 +2,11 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/lending/pkg/types"
+	"github.com/ericlagergren/decimal"
+)
+
 // JournalLineTracking - List of record refs associated with the tracking information for the line (eg to a Tracking Category, or customer etc.)
 type JournalLineTracking struct {
 	RecordRefs []RecordRef `json:"recordRefs,omitempty"`
@@ -22,7 +27,7 @@ type JournalLine struct {
 	// Description of the journal line item.
 	Description *string `json:"description,omitempty"`
 	// Amount for the journal line. Debit entries are considered positive, and credit entries are considered negative.
-	NetAmount float64 `json:"netAmount"`
+	NetAmount types.Decimal `json:"netAmount"`
 	// List of record refs associated with the tracking information for the line (eg to a Tracking Category, or customer etc.)
 	Tracking *JournalLineTracking `json:"tracking,omitempty"`
 }
@@ -48,9 +53,9 @@ func (o *JournalLine) GetDescription() *string {
 	return o.Description
 }
 
-func (o *JournalLine) GetNetAmount() float64 {
+func (o *JournalLine) GetNetAmount() types.Decimal {
 	if o == nil {
-		return 0.0
+		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
 	}
 	return o.NetAmount
 }

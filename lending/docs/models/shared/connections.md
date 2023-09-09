@@ -1,7 +1,5 @@
 # Connections
 
-OK
-
 
 ## Fields
 

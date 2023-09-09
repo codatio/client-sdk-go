@@ -2,9 +2,13 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/lending/pkg/types"
+)
+
 type DataIntegrityDetail struct {
 	// The transaction value.
-	Amount *float64 `json:"amount,omitempty"`
+	Amount *types.Decimal `json:"amount,omitempty"`
 	// ID GUID representing the connection of the accounting or banking platform.
 	ConnectionID *string `json:"connectionId,omitempty"`
 	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code, e.g. _GBP_.
@@ -44,7 +48,7 @@ type DataIntegrityDetail struct {
 	Type *string `json:"type,omitempty"`
 }
 
-func (o *DataIntegrityDetail) GetAmount() *float64 {
+func (o *DataIntegrityDetail) GetAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}

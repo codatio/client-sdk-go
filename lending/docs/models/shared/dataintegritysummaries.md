@@ -1,7 +1,5 @@
 # DataIntegritySummaries
 
-OK
-
 
 ## Fields
 

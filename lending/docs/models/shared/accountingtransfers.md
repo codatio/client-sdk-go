@@ -1,7 +1,5 @@
 # AccountingTransfers
 
-Success
-
 
 ## Fields
 

@@ -2,7 +2,6 @@
 
 package shared
 
-// LoanSummary - OK
 type LoanSummary struct {
 	ReportInfo *LoanSummaryReportInfo `json:"reportInfo,omitempty"`
 	// Returns a summary of all loan activity for that integration type

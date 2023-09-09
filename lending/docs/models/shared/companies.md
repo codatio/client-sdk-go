@@ -1,7 +1,5 @@
 # Companies
 
-OK
-
 
 ## Fields
 

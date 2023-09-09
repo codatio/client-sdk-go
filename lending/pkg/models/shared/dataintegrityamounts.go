@@ -2,6 +2,10 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/lending/pkg/types"
+)
+
 // DataIntegrityAmounts - Only returned for transactions. For accounts, there is nothing returned.
 type DataIntegrityAmounts struct {
 	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code, e.g. _GBP_.
@@ -13,9 +17,9 @@ type DataIntegrityAmounts struct {
 	// There are only a very small number of edge cases where this currency code is returned by the Codat system.
 	Currency *string `json:"currency,omitempty"`
 	// Highest value of transaction set.
-	Max *float64 `json:"max,omitempty"`
+	Max *types.Decimal `json:"max,omitempty"`
 	// Lowest value of transaction set.
-	Min *float64 `json:"min,omitempty"`
+	Min *types.Decimal `json:"min,omitempty"`
 }
 
 func (o *DataIntegrityAmounts) GetCurrency() *string {
@@ -25,14 +29,14 @@ func (o *DataIntegrityAmounts) GetCurrency() *string {
 	return o.Currency
 }
 
-func (o *DataIntegrityAmounts) GetMax() *float64 {
+func (o *DataIntegrityAmounts) GetMax() *types.Decimal {
 	if o == nil {
 		return nil
 	}
 	return o.Max
 }
 
-func (o *DataIntegrityAmounts) GetMin() *float64 {
+func (o *DataIntegrityAmounts) GetMin() *types.Decimal {
 	if o == nil {
 		return nil
 	}

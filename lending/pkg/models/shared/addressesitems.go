@@ -2,7 +2,7 @@
 
 package shared
 
-type AccountingAddress struct {
+type Addressesitems struct {
 	// City of the customer address.
 	City *string `json:"city,omitempty"`
 	// Country of the customer address.
@@ -19,49 +19,49 @@ type AccountingAddress struct {
 	Type AccountingAddressType `json:"type"`
 }
 
-func (o *AccountingAddress) GetCity() *string {
+func (o *Addressesitems) GetCity() *string {
 	if o == nil {
 		return nil
 	}
 	return o.City
 }
 
-func (o *AccountingAddress) GetCountry() *string {
+func (o *Addressesitems) GetCountry() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Country
 }
 
-func (o *AccountingAddress) GetLine1() *string {
+func (o *Addressesitems) GetLine1() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Line1
 }
 
-func (o *AccountingAddress) GetLine2() *string {
+func (o *Addressesitems) GetLine2() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Line2
 }
 
-func (o *AccountingAddress) GetPostalCode() *string {
+func (o *Addressesitems) GetPostalCode() *string {
 	if o == nil {
 		return nil
 	}
 	return o.PostalCode
 }
 
-func (o *AccountingAddress) GetRegion() *string {
+func (o *Addressesitems) GetRegion() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Region
 }
 
-func (o *AccountingAddress) GetType() AccountingAddressType {
+func (o *Addressesitems) GetType() AccountingAddressType {
 	if o == nil {
 		return AccountingAddressType("")
 	}

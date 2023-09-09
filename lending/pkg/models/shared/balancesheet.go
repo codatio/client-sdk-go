@@ -2,6 +2,11 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/lending/pkg/types"
+	"github.com/ericlagergren/decimal"
+)
+
 type BalanceSheet struct {
 	Assets *ReportLine `json:"assets,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
@@ -27,7 +32,7 @@ type BalanceSheet struct {
 	Equity      *ReportLine `json:"equity,omitempty"`
 	Liabilities *ReportLine `json:"liabilities,omitempty"`
 	// Value of net assets for a company in their base currency.
-	NetAssets float64 `json:"netAssets"`
+	NetAssets types.Decimal `json:"netAssets"`
 }
 
 func (o *BalanceSheet) GetAssets() *ReportLine {
@@ -58,9 +63,9 @@ func (o *BalanceSheet) GetLiabilities() *ReportLine {
 	return o.Liabilities
 }
 
-func (o *BalanceSheet) GetNetAssets() float64 {
+func (o *BalanceSheet) GetNetAssets() types.Decimal {
 	if o == nil {
-		return 0.0
+		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
 	}
 	return o.NetAssets
 }

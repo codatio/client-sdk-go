@@ -7,18 +7,18 @@ import (
 	"net/http"
 )
 
-type GetAccountingCompanyInfoRequest struct {
+type GetAccountingProfileRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
-func (o *GetAccountingCompanyInfoRequest) GetCompanyID() string {
+func (o *GetAccountingProfileRequest) GetCompanyID() string {
 	if o == nil {
 		return ""
 	}
 	return o.CompanyID
 }
 
-type GetAccountingCompanyInfoResponse struct {
+type GetAccountingProfileResponse struct {
 	// Success
 	AccountingCompanyInfo *shared.AccountingCompanyInfo
 	ContentType           string
@@ -28,35 +28,35 @@ type GetAccountingCompanyInfoResponse struct {
 	RawResponse  *http.Response
 }
 
-func (o *GetAccountingCompanyInfoResponse) GetAccountingCompanyInfo() *shared.AccountingCompanyInfo {
+func (o *GetAccountingProfileResponse) GetAccountingCompanyInfo() *shared.AccountingCompanyInfo {
 	if o == nil {
 		return nil
 	}
 	return o.AccountingCompanyInfo
 }
 
-func (o *GetAccountingCompanyInfoResponse) GetContentType() string {
+func (o *GetAccountingProfileResponse) GetContentType() string {
 	if o == nil {
 		return ""
 	}
 	return o.ContentType
 }
 
-func (o *GetAccountingCompanyInfoResponse) GetErrorMessage() *shared.ErrorMessage {
+func (o *GetAccountingProfileResponse) GetErrorMessage() *shared.ErrorMessage {
 	if o == nil {
 		return nil
 	}
 	return o.ErrorMessage
 }
 
-func (o *GetAccountingCompanyInfoResponse) GetStatusCode() int {
+func (o *GetAccountingProfileResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
 	}
 	return o.StatusCode
 }
 
-func (o *GetAccountingCompanyInfoResponse) GetRawResponse() *http.Response {
+func (o *GetAccountingProfileResponse) GetRawResponse() *http.Response {
 	if o == nil {
 		return nil
 	}

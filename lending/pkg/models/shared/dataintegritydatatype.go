@@ -7,7 +7,6 @@ import (
 	"fmt"
 )
 
-// DataIntegrityDataType - A key for a Codat data type.
 type DataIntegrityDataType string
 
 const (

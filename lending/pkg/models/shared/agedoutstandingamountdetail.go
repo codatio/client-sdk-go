@@ -2,14 +2,18 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/lending/pkg/types"
+)
+
 type AgedOutstandingAmountDetail struct {
 	// The amount outstanding.
-	Amount *float64 `json:"amount,omitempty"`
+	Amount *types.Decimal `json:"amount,omitempty"`
 	// Name of data type with outstanding amount for given period.
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *AgedOutstandingAmountDetail) GetAmount() *float64 {
+func (o *AgedOutstandingAmountDetail) GetAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}

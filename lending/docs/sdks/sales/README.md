@@ -93,7 +93,7 @@ func main() {
 
 ## GetCustomerRetentionMetrics
 
-﻿The *Get customer retention metrics* endpoint returns customer retention insights for a specific company's commerce connection over one or more periods of time.
+The *Get customer retention metrics* endpoint returns customer retention insights for a specific company's commerce connection over one or more periods of time.
 
 This detail helps you assess a merchant's health and advise them on performance improvement strategies. It also provides you with key insights you need to assess the credit risk of a company. 
 
@@ -105,7 +105,7 @@ This detail helps you assess a merchant's health and advise them on performance 
 - __Retention rate__: the ratio of existing customers within the specified period compared to the total customers at the end of the previous period represented as a percentage.
 - __Repeat rate__: the ratio of existing customers to total customers over the specified period represented as a percentage.
 
-Learn more about the formulas used to calculate customer retention metrics [here](/lending/commerce-metrics/overview#what-metrics-are-available).
+Learn more about the formulas used to calculate customer retention metrics [here](https://docs.codat.io/lending/commerce-metrics/overview#what-metrics-are-available).
 
 #### Response structure
 
@@ -240,13 +240,13 @@ func main() {
 
 ## GetLifetimeValueMetrics
 
-﻿The *Get lifetime value metrics* endpoint returns the average revenue that a specific company will generate throughout its lifespan over one or more periods of time.
+The *Get lifetime value metrics* endpoint returns the average revenue that a specific company will generate throughout its lifespan over one or more periods of time.
 
 This detail helps you assess a merchant's health and advise them on performance improvement strategies. It also provides you with key insights you need to assess the credit risk of a company.
 
-Learn more about the formulas used to calculate the lifetime value metrics [here](/lending/commerce-metrics/overview#what-metrics-are-available).
+Learn more about the formulas used to calculate the lifetime value metrics [here](https://docs.codat.io/lending/commerce-metrics/overview#what-metrics-are-available).
 
-Refer to the [commerce reporting structure](/lending/commerce-metrics/reporting-structure) page for more detail on commerce reports in Lending.
+Refer to the [commerce reporting structure](https://docs.codat.io/lending/commerce-metrics/reporting-structure) page for more detail on commerce reports in Lending.
 
 #### Response structure
 
@@ -442,13 +442,13 @@ func main() {
 
 ## GetOrdersReport
 
-﻿The *Get orders report* endpoint returns the number of orders, total value, and average order value for a specific company's commerce connection over one or more periods of time.
+The *Get orders report* endpoint returns the number of orders, total value, and average order value for a specific company's commerce connection over one or more periods of time.
 
 This detail helps you assess a merchant's health and advise them on performance improvement strategies. It also provides you with key insights you need to assess the credit risk of a company. 
 
-Learn more about the formulas used to calculate the order metrics [here](/lending/commerce-metrics/overview#what-metrics-are-available).
+Learn more about the formulas used to calculate the order metrics [here](https://docs.codat.io/lending/commerce-metrics/overview#what-metrics-are-available).
 
-Refer to the [commerce reporting structure](/lending/commerce-metrics/reporting-structure) page for more details on commerce reports in Lending.
+Refer to the [commerce reporting structure](https://docs.codat.io/lending/commerce-metrics/reporting-structure) page for more details on commerce reports in Lending.
 
 #### Response structure
 
@@ -767,13 +767,13 @@ func main() {
 
 ## GetRefundsReport
 
-﻿The *Get refunds report* endpoint returns the number and total value of refunds and the refund rate for a specific company's commerce connection over one or more periods of time.
+The *Get refunds report* endpoint returns the number and total value of refunds and the refund rate for a specific company's commerce connection over one or more periods of time.
 
 This detail helps you assess a merchant's health and advise them on performance improvement strategies. It also provides you with key insights you need to assess the credit risk of a company. 
 
-Learn more about the formulas used to calculate the refunds metrics [here](/lending/commerce-metrics/overview#what-metrics-are-available).
+Learn more about the formulas used to calculate the refunds metrics [here](https://docs.codat.io/lending/commerce-metrics/overview#what-metrics-are-available).
 
-Refer to the [commerce reporting structure](/lending/commerce-metrics/reporting-structure) page for more details on commerce reports in Lending.
+Refer to the [commerce reporting structure](https://docs.codat.io/lending/commerce-metrics/reporting-structure) page for more details on commerce reports in Lending.
 
 #### Response structure
 
@@ -849,7 +849,30 @@ func main() {
 
 ## GetRevenueMetrics
 
-Get the revenue and revenue growth for a specific company connection, over one or more periods of time.
+The *Get revenue report* endpoint returns the revenue and revenue growth for a specific company connection over one or more periods of time.
+
+This detail helps you assess a merchant's health and advise them on performance improvement strategies. It also provides you with key insights you need to assess the credit risk of a company. 
+
+Learn more about the formulas used to calculate the revenue metrics [here](https://docs.codat.io/lending/commerce-metrics/overview#what-metrics-are-available).
+
+Refer to the [commerce reporting structure](https://docs.codat.io/lending/commerce-metrics/reporting-structure) page for more details on commerce reports in Lending.
+
+#### Response structure
+
+The Revenue report's dimensions and measures are:
+
+| Index         | Dimensions |
+|---------------|------------|
+|   `index` = 0 | Period     |
+|   `index` = 1 | Revenue    |
+
+| Index         | Measures                                                                                                                 |
+|---------------|--------------------------------------------------------------------------------------------------------------------------|
+| `index` = 0   | Value                                                                                                                    |
+| `index` = 1   | Percentage change, defined as the change between the current and previous periods' values and expressed as a percentage. |
+
+The report data then combines multiple reporting dimensions and measures and outputs the value of each combination.
+
 
 ### Example Usage
 

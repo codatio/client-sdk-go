@@ -1,7 +1,5 @@
 # CommerceCustomers
 
-OK
-
 
 ## Fields
 

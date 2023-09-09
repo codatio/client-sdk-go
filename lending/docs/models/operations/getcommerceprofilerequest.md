@@ -1,4 +1,4 @@
-# GetCommerceCompanyInfoRequest
+# GetCommerceProfileRequest
 
 
 ## Fields

@@ -2,14 +2,19 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/lending/pkg/types"
+	"github.com/ericlagergren/decimal"
+)
+
 type WithholdingTaxitems struct {
-	Amount float64 `json:"amount"`
-	Name   string  `json:"name"`
+	Amount types.Decimal `json:"amount"`
+	Name   string        `json:"name"`
 }
 
-func (o *WithholdingTaxitems) GetAmount() float64 {
+func (o *WithholdingTaxitems) GetAmount() types.Decimal {
 	if o == nil {
-		return 0.0
+		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
 	}
 	return o.Amount
 }

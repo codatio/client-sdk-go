@@ -2,6 +2,10 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/lending/pkg/types"
+)
+
 type DataIntegrityByAmount struct {
 	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code, e.g. _GBP_.
 	//
@@ -12,13 +16,13 @@ type DataIntegrityByAmount struct {
 	// There are only a very small number of edge cases where this currency code is returned by the Codat system.
 	Currency *string `json:"currency,omitempty"`
 	// The percentage of the absolute value of transactions of the type specified in the route which have a match.
-	MatchPercentage *float64 `json:"matchPercentage,omitempty"`
+	MatchPercentage *types.Decimal `json:"matchPercentage,omitempty"`
 	// The sum of the absolute value of transactions of the type specified in the route which have a match.
-	Matched *float64 `json:"matched,omitempty"`
+	Matched *types.Decimal `json:"matched,omitempty"`
 	// The total of unmatched and matched.
-	Total *float64 `json:"total,omitempty"`
+	Total *types.Decimal `json:"total,omitempty"`
 	// The sum of the absolute value of transactions of the type specified in the route which don't have a match.
-	Unmatched *float64 `json:"unmatched,omitempty"`
+	Unmatched *types.Decimal `json:"unmatched,omitempty"`
 }
 
 func (o *DataIntegrityByAmount) GetCurrency() *string {
@@ -28,28 +32,28 @@ func (o *DataIntegrityByAmount) GetCurrency() *string {
 	return o.Currency
 }
 
-func (o *DataIntegrityByAmount) GetMatchPercentage() *float64 {
+func (o *DataIntegrityByAmount) GetMatchPercentage() *types.Decimal {
 	if o == nil {
 		return nil
 	}
 	return o.MatchPercentage
 }
 
-func (o *DataIntegrityByAmount) GetMatched() *float64 {
+func (o *DataIntegrityByAmount) GetMatched() *types.Decimal {
 	if o == nil {
 		return nil
 	}
 	return o.Matched
 }
 
-func (o *DataIntegrityByAmount) GetTotal() *float64 {
+func (o *DataIntegrityByAmount) GetTotal() *types.Decimal {
 	if o == nil {
 		return nil
 	}
 	return o.Total
 }
 
-func (o *DataIntegrityByAmount) GetUnmatched() *float64 {
+func (o *DataIntegrityByAmount) GetUnmatched() *types.Decimal {
 	if o == nil {
 		return nil
 	}

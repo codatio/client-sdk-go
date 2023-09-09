@@ -2,6 +2,11 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/lending/pkg/types"
+	"github.com/ericlagergren/decimal"
+)
+
 type ReportLine struct {
 	// Identifier for the account, unique for the company in the accounting platform.
 	AccountID *string `json:"accountId,omitempty"`
@@ -10,7 +15,7 @@ type ReportLine struct {
 	// Name of the report line item.
 	Name *string `json:"name,omitempty"`
 	// Numerical value of the line item.
-	Value float64 `json:"value"`
+	Value types.Decimal `json:"value"`
 }
 
 func (o *ReportLine) GetAccountID() *string {
@@ -34,9 +39,9 @@ func (o *ReportLine) GetName() *string {
 	return o.Name
 }
 
-func (o *ReportLine) GetValue() float64 {
+func (o *ReportLine) GetValue() types.Decimal {
 	if o == nil {
-		return 0.0
+		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
 	}
 	return o.Value
 }

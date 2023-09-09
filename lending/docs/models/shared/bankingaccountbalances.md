@@ -1,7 +1,5 @@
 # BankingAccountBalances
 
-Success
-
 
 ## Fields
 

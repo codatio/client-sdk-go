@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-type GetEnhancedCashFlowTransactionsRequest struct {
+type GetReconciledInvoicesRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	// Page number. [Read more](https://docs.codat.io/using-the-api/paging).
 	Page *int `queryParam:"style=form,explode=true,name=page"`
@@ -17,73 +17,73 @@ type GetEnhancedCashFlowTransactionsRequest struct {
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 }
 
-func (o *GetEnhancedCashFlowTransactionsRequest) GetCompanyID() string {
+func (o *GetReconciledInvoicesRequest) GetCompanyID() string {
 	if o == nil {
 		return ""
 	}
 	return o.CompanyID
 }
 
-func (o *GetEnhancedCashFlowTransactionsRequest) GetPage() *int {
+func (o *GetReconciledInvoicesRequest) GetPage() *int {
 	if o == nil {
 		return nil
 	}
 	return o.Page
 }
 
-func (o *GetEnhancedCashFlowTransactionsRequest) GetPageSize() *int {
+func (o *GetReconciledInvoicesRequest) GetPageSize() *int {
 	if o == nil {
 		return nil
 	}
 	return o.PageSize
 }
 
-func (o *GetEnhancedCashFlowTransactionsRequest) GetQuery() *string {
+func (o *GetReconciledInvoicesRequest) GetQuery() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Query
 }
 
-type GetEnhancedCashFlowTransactionsResponse struct {
+type GetReconciledInvoicesResponse struct {
 	ContentType string
 	// OK
-	EnhancedCashFlowTransactions *shared.EnhancedCashFlowTransactions
+	EnhancedInvoicesReport *shared.EnhancedInvoicesReport
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
 	StatusCode   int
 	RawResponse  *http.Response
 }
 
-func (o *GetEnhancedCashFlowTransactionsResponse) GetContentType() string {
+func (o *GetReconciledInvoicesResponse) GetContentType() string {
 	if o == nil {
 		return ""
 	}
 	return o.ContentType
 }
 
-func (o *GetEnhancedCashFlowTransactionsResponse) GetEnhancedCashFlowTransactions() *shared.EnhancedCashFlowTransactions {
+func (o *GetReconciledInvoicesResponse) GetEnhancedInvoicesReport() *shared.EnhancedInvoicesReport {
 	if o == nil {
 		return nil
 	}
-	return o.EnhancedCashFlowTransactions
+	return o.EnhancedInvoicesReport
 }
 
-func (o *GetEnhancedCashFlowTransactionsResponse) GetErrorMessage() *shared.ErrorMessage {
+func (o *GetReconciledInvoicesResponse) GetErrorMessage() *shared.ErrorMessage {
 	if o == nil {
 		return nil
 	}
 	return o.ErrorMessage
 }
 
-func (o *GetEnhancedCashFlowTransactionsResponse) GetStatusCode() int {
+func (o *GetReconciledInvoicesResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
 	}
 	return o.StatusCode
 }
 
-func (o *GetEnhancedCashFlowTransactionsResponse) GetRawResponse() *http.Response {
+func (o *GetReconciledInvoicesResponse) GetRawResponse() *http.Response {
 	if o == nil {
 		return nil
 	}

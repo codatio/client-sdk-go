@@ -1,4 +1,4 @@
-# GetAccountingCompanyInfoRequest
+# GetAccountingProfileRequest
 
 
 ## Fields

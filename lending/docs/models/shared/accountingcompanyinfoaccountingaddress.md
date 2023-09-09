@@ -1,4 +1,4 @@
-# AccountingAddress
+# AccountingCompanyInfoAccountingAddress
 
 
 ## Fields

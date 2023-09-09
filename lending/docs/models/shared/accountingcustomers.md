@@ -1,7 +1,5 @@
 # AccountingCustomers
 
-Success
-
 
 ## Fields
 

@@ -2,9 +2,13 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/lending/pkg/types"
+)
+
 // CommerceOrderSupplementalData - Supplemental data is additional data you can include in our standard data types.
 //
-// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/additional-data) about supplemental data.
+// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
 type CommerceOrderSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
@@ -82,18 +86,18 @@ type CommerceOrder struct {
 	SourceModifiedDate *string         `json:"sourceModifiedDate,omitempty"`
 	// Supplemental data is additional data you can include in our standard data types.
 	//
-	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/additional-data) about supplemental data.
+	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
 	SupplementalData *CommerceOrderSupplementalData `json:"supplementalData,omitempty"`
 	// Total amount of the order, including tax, net of any discounts and refunds.
-	TotalAmount *float64 `json:"totalAmount,omitempty"`
+	TotalAmount *types.Decimal `json:"totalAmount,omitempty"`
 	// Total amount of discount applied to the order.
-	TotalDiscount *float64 `json:"totalDiscount,omitempty"`
+	TotalDiscount *types.Decimal `json:"totalDiscount,omitempty"`
 	// Extra amount added to a bill.
-	TotalGratuity *float64 `json:"totalGratuity,omitempty"`
+	TotalGratuity *types.Decimal `json:"totalGratuity,omitempty"`
 	// Total amount refunded issued by a merchant on an order (always a negative value).
-	TotalRefund *float64 `json:"totalRefund,omitempty"`
+	TotalRefund *types.Decimal `json:"totalRefund,omitempty"`
 	// Total amount of tax applied to the order.
-	TotalTaxAmount *float64 `json:"totalTaxAmount,omitempty"`
+	TotalTaxAmount *types.Decimal `json:"totalTaxAmount,omitempty"`
 }
 
 func (o *CommerceOrder) GetClosedDate() *string {
@@ -194,35 +198,35 @@ func (o *CommerceOrder) GetSupplementalData() *CommerceOrderSupplementalData {
 	return o.SupplementalData
 }
 
-func (o *CommerceOrder) GetTotalAmount() *float64 {
+func (o *CommerceOrder) GetTotalAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}
 	return o.TotalAmount
 }
 
-func (o *CommerceOrder) GetTotalDiscount() *float64 {
+func (o *CommerceOrder) GetTotalDiscount() *types.Decimal {
 	if o == nil {
 		return nil
 	}
 	return o.TotalDiscount
 }
 
-func (o *CommerceOrder) GetTotalGratuity() *float64 {
+func (o *CommerceOrder) GetTotalGratuity() *types.Decimal {
 	if o == nil {
 		return nil
 	}
 	return o.TotalGratuity
 }
 
-func (o *CommerceOrder) GetTotalRefund() *float64 {
+func (o *CommerceOrder) GetTotalRefund() *types.Decimal {
 	if o == nil {
 		return nil
 	}
 	return o.TotalRefund
 }
 
-func (o *CommerceOrder) GetTotalTaxAmount() *float64 {
+func (o *CommerceOrder) GetTotalTaxAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}

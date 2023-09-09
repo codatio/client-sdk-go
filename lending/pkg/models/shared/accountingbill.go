@@ -2,6 +2,11 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/lending/pkg/types"
+	"github.com/ericlagergren/decimal"
+)
+
 type AccountingBillPurchaseOrderReference struct {
 	// Identifier for the purchase order, unique for the company in the accounting platform.
 	ID *string `json:"id,omitempty"`
@@ -24,13 +29,13 @@ func (o *AccountingBillPurchaseOrderReference) GetPurchaseOrderNumber() *string 
 }
 
 type AccountingBillWithholdingTax struct {
-	Amount float64 `json:"amount"`
-	Name   string  `json:"name"`
+	Amount types.Decimal `json:"amount"`
+	Name   string        `json:"name"`
 }
 
-func (o *AccountingBillWithholdingTax) GetAmount() float64 {
+func (o *AccountingBillWithholdingTax) GetAmount() types.Decimal {
 	if o == nil {
-		return 0.0
+		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
 	}
 	return o.Amount
 }
@@ -63,7 +68,7 @@ func (o *AccountingBillWithholdingTax) GetName() string {
 // You can find these types of transactions in our [Direct costs](https://docs.codat.io/accounting-api#/schemas/DirectCost) data model.
 type AccountingBill struct {
 	// Amount outstanding on the bill.
-	AmountDue *float64 `json:"amountDue,omitempty"`
+	AmountDue *types.Decimal `json:"amountDue,omitempty"`
 	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code, e.g. _GBP_.
 	//
 	// ## Unknown currencies
@@ -97,8 +102,8 @@ type AccountingBill struct {
 	// | **GBP**          | £20            | 1.277         | $25.54                     |
 	// | **EUR**          | €20            | 1.134         | $22.68                     |
 	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
-	CurrencyRate *float64 `json:"currencyRate,omitempty"`
-	DueDate      *string  `json:"dueDate,omitempty"`
+	CurrencyRate *types.Decimal `json:"currencyRate,omitempty"`
+	DueDate      *string        `json:"dueDate,omitempty"`
 	// Identifier for the bill, unique for the company in the accounting platform.
 	ID        *string `json:"id,omitempty"`
 	IssueDate string  `json:"issueDate"`
@@ -117,21 +122,21 @@ type AccountingBill struct {
 	// Current state of the bill.
 	Status BillStatus `json:"status"`
 	// Total amount of the bill, excluding any taxes.
-	SubTotal float64 `json:"subTotal"`
+	SubTotal types.Decimal `json:"subTotal"`
 	// Supplemental data is additional data you can include in our standard data types.
 	//
-	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/additional-data) about supplemental data.
+	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
 	SupplementalData *SupplementalData `json:"supplementalData,omitempty"`
 	// Reference to the supplier the record relates to.
 	SupplierRef *SupplierRef `json:"supplierRef,omitempty"`
 	// Amount of tax on the bill.
-	TaxAmount float64 `json:"taxAmount"`
+	TaxAmount types.Decimal `json:"taxAmount"`
 	// Amount of the bill, including tax.
-	TotalAmount    float64                        `json:"totalAmount"`
+	TotalAmount    types.Decimal                  `json:"totalAmount"`
 	WithholdingTax []AccountingBillWithholdingTax `json:"withholdingTax,omitempty"`
 }
 
-func (o *AccountingBill) GetAmountDue() *float64 {
+func (o *AccountingBill) GetAmountDue() *types.Decimal {
 	if o == nil {
 		return nil
 	}
@@ -145,7 +150,7 @@ func (o *AccountingBill) GetCurrency() *string {
 	return o.Currency
 }
 
-func (o *AccountingBill) GetCurrencyRate() *float64 {
+func (o *AccountingBill) GetCurrencyRate() *types.Decimal {
 	if o == nil {
 		return nil
 	}
@@ -236,9 +241,9 @@ func (o *AccountingBill) GetStatus() BillStatus {
 	return o.Status
 }
 
-func (o *AccountingBill) GetSubTotal() float64 {
+func (o *AccountingBill) GetSubTotal() types.Decimal {
 	if o == nil {
-		return 0.0
+		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
 	}
 	return o.SubTotal
 }
@@ -257,16 +262,16 @@ func (o *AccountingBill) GetSupplierRef() *SupplierRef {
 	return o.SupplierRef
 }
 
-func (o *AccountingBill) GetTaxAmount() float64 {
+func (o *AccountingBill) GetTaxAmount() types.Decimal {
 	if o == nil {
-		return 0.0
+		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
 	}
 	return o.TaxAmount
 }
 
-func (o *AccountingBill) GetTotalAmount() float64 {
+func (o *AccountingBill) GetTotalAmount() types.Decimal {
 	if o == nil {
-		return 0.0
+		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
 	}
 	return o.TotalAmount
 }

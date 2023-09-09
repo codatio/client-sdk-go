@@ -1,4 +1,4 @@
-# Financials
+# FinancialStatements
 
 ## Overview
 
@@ -9,8 +9,8 @@ Financial data and reports from a linked accounting platform.
 * [GetAccount](#getaccount) - Get account
 * [GetBalanceSheet](#getbalancesheet) - Get balance sheet
 * [GetCashFlowStatement](#getcashflowstatement) - Get cash flow statement
-* [GetEnhancedBalanceSheetAccounts](#getenhancedbalancesheetaccounts) - Get enhanced balance sheet accounts
-* [GetEnhancedProfitAndLossAccounts](#getenhancedprofitandlossaccounts) - Get enhanced profit and loss accounts
+* [GetCategorizedBalanceSheet](#getcategorizedbalancesheet) - Get categorized balance sheet statement
+* [GetCategorizedProfitAndLoss](#getcategorizedprofitandloss) - Get categorized profit and loss statement
 * [GetProfitAndLoss](#getprofitandloss) - Get profit and loss
 * [ListAccounts](#listaccounts) - List accounts
 
@@ -46,7 +46,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Financials.GetAccount(ctx, operations.GetAccountingAccountRequest{
+    res, err := s.FinancialStatements.GetAccount(ctx, operations.GetAccountingAccountRequest{
         AccountID: "qui",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
@@ -99,7 +99,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Financials.GetBalanceSheet(ctx, operations.GetAccountingBalanceSheetRequest{
+    res, err := s.FinancialStatements.GetBalanceSheet(ctx, operations.GetAccountingBalanceSheetRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         PeriodLength: 4,
         PeriodsToCompare: 20,
@@ -154,7 +154,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Financials.GetCashFlowStatement(ctx, operations.GetAccountingCashFlowStatementRequest{
+    res, err := s.FinancialStatements.GetCashFlowStatement(ctx, operations.GetAccountingCashFlowStatementRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         PeriodLength: 4,
         PeriodsToCompare: 20,
@@ -184,9 +184,9 @@ func main() {
 **[*operations.GetAccountingCashFlowStatementResponse](../../models/operations/getaccountingcashflowstatementresponse.md), error**
 
 
-## GetEnhancedBalanceSheetAccounts
+## GetCategorizedBalanceSheet
 
-﻿The *Get enhanced balance sheet accounts* endpoint returns a list of categorized accounts that appear on a company’s Balance Sheet along with a balance per financial statement date.
+The *Get categorized balance sheet statement* endpoint returns a list of categorized accounts that appear on a company’s Balance Sheet along with a balance per financial statement date.
 
 Codat suggests a category for each account automatically, but you can [change it](https://docs.codat.io/lending/enhanced-financials/overview#categorize-accounts) to a more suitable one.
 
@@ -211,7 +211,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Financials.GetEnhancedBalanceSheetAccounts(ctx, operations.GetEnhancedBalanceSheetAccountsRequest{
+    res, err := s.FinancialStatements.GetCategorizedBalanceSheet(ctx, operations.GetCategorizedBalanceSheetStatementRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         NumberOfPeriods: codatlending.Int64(456150),
         ReportDate: "29-09-2020",
@@ -228,21 +228,21 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                              | Type                                                                                                                   | Required                                                                                                               | Description                                                                                                            |
-| ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                                  | :heavy_check_mark:                                                                                                     | The context to use for the request.                                                                                    |
-| `request`                                                                                                              | [operations.GetEnhancedBalanceSheetAccountsRequest](../../models/operations/getenhancedbalancesheetaccountsrequest.md) | :heavy_check_mark:                                                                                                     | The request object to use for the request.                                                                             |
-| `opts`                                                                                                                 | [][operations.Option](../../models/operations/option.md)                                                               | :heavy_minus_sign:                                                                                                     | The options for this request.                                                                                          |
+| Parameter                                                                                                                      | Type                                                                                                                           | Required                                                                                                                       | Description                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                                                          | :heavy_check_mark:                                                                                                             | The context to use for the request.                                                                                            |
+| `request`                                                                                                                      | [operations.GetCategorizedBalanceSheetStatementRequest](../../models/operations/getcategorizedbalancesheetstatementrequest.md) | :heavy_check_mark:                                                                                                             | The request object to use for the request.                                                                                     |
+| `opts`                                                                                                                         | [][operations.Option](../../models/operations/option.md)                                                                       | :heavy_minus_sign:                                                                                                             | The options for this request.                                                                                                  |
 
 
 ### Response
 
-**[*operations.GetEnhancedBalanceSheetAccountsResponse](../../models/operations/getenhancedbalancesheetaccountsresponse.md), error**
+**[*operations.GetCategorizedBalanceSheetStatementResponse](../../models/operations/getcategorizedbalancesheetstatementresponse.md), error**
 
 
-## GetEnhancedProfitAndLossAccounts
+## GetCategorizedProfitAndLoss
 
-﻿The *Get enhanced profit and loss accounts* endpoint returns a list of categorized accounts that appear on a company’s Profit and Loss statement. It also includes a balance as of the financial statement date.
+The *Get categorized profit and loss statement* endpoint returns a list of categorized accounts that appear on a company’s Profit and Loss statement. It also includes a balance as of the financial statement date.
 
 Codat suggests a category for each account automatically, but you can [change it](https://docs.codat.io/lending/enhanced-financials/overview#categorize-accounts) to a more suitable one.
 
@@ -267,7 +267,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Financials.GetEnhancedProfitAndLossAccounts(ctx, operations.GetEnhancedProfitAndLossAccountsRequest{
+    res, err := s.FinancialStatements.GetCategorizedProfitAndLoss(ctx, operations.GetCategorizedProfitAndLossStatementRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         NumberOfPeriods: codatlending.Int64(216550),
         ReportDate: "29-09-2020",
@@ -284,16 +284,16 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                                                    | :heavy_check_mark:                                                                                                       | The context to use for the request.                                                                                      |
-| `request`                                                                                                                | [operations.GetEnhancedProfitAndLossAccountsRequest](../../models/operations/getenhancedprofitandlossaccountsrequest.md) | :heavy_check_mark:                                                                                                       | The request object to use for the request.                                                                               |
-| `opts`                                                                                                                   | [][operations.Option](../../models/operations/option.md)                                                                 | :heavy_minus_sign:                                                                                                       | The options for this request.                                                                                            |
+| Parameter                                                                                                                        | Type                                                                                                                             | Required                                                                                                                         | Description                                                                                                                      |
+| -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                                                            | :heavy_check_mark:                                                                                                               | The context to use for the request.                                                                                              |
+| `request`                                                                                                                        | [operations.GetCategorizedProfitAndLossStatementRequest](../../models/operations/getcategorizedprofitandlossstatementrequest.md) | :heavy_check_mark:                                                                                                               | The request object to use for the request.                                                                                       |
+| `opts`                                                                                                                           | [][operations.Option](../../models/operations/option.md)                                                                         | :heavy_minus_sign:                                                                                                               | The options for this request.                                                                                                    |
 
 
 ### Response
 
-**[*operations.GetEnhancedProfitAndLossAccountsResponse](../../models/operations/getenhancedprofitandlossaccountsresponse.md), error**
+**[*operations.GetCategorizedProfitAndLossStatementResponse](../../models/operations/getcategorizedprofitandlossstatementresponse.md), error**
 
 
 ## GetProfitAndLoss
@@ -321,7 +321,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Financials.GetProfitAndLoss(ctx, operations.GetAccountingProfitAndLossRequest{
+    res, err := s.FinancialStatements.GetProfitAndLoss(ctx, operations.GetAccountingProfitAndLossRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         PeriodLength: 4,
         PeriodsToCompare: 20,
@@ -380,7 +380,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Financials.ListAccounts(ctx, operations.ListAccountingAccountsRequest{
+    res, err := s.FinancialStatements.ListAccounts(ctx, operations.ListAccountingAccountsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         OrderBy: codatlending.String("-modifiedDate"),
         Page: codatlending.Int(1),

@@ -1,4 +1,4 @@
-# GetCommerceCompanyInfoResponse
+# GetCommerceProfileResponse
 
 
 ## Fields

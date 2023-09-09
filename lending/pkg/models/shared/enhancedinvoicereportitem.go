@@ -2,8 +2,12 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/lending/pkg/types"
+)
+
 type EnhancedInvoiceReportItem struct {
-	AmountDue *float64 `json:"amountDue,omitempty"`
+	AmountDue *types.Decimal `json:"amountDue,omitempty"`
 	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code, e.g. _GBP_.
 	//
 	// ## Unknown currencies
@@ -87,10 +91,10 @@ type EnhancedInvoiceReportItem struct {
 	// - `Paid` - Invoice is paid in full. This includes if the invoice has been credited or overpaid (amountDue == 0).
 	// - `Void` - An invoice can become Void when it's deleted, refunded, written off, or cancelled. A voided invoice may still be PartiallyPaid, and so all outstanding amounts on voided invoices are removed from the accounts receivable account.
 	Status      *InvoiceStatus `json:"status,omitempty"`
-	TotalAmount *float64       `json:"totalAmount,omitempty"`
+	TotalAmount *types.Decimal `json:"totalAmount,omitempty"`
 }
 
-func (o *EnhancedInvoiceReportItem) GetAmountDue() *float64 {
+func (o *EnhancedInvoiceReportItem) GetAmountDue() *types.Decimal {
 	if o == nil {
 		return nil
 	}
@@ -174,7 +178,7 @@ func (o *EnhancedInvoiceReportItem) GetStatus() *InvoiceStatus {
 	return o.Status
 }
 
-func (o *EnhancedInvoiceReportItem) GetTotalAmount() *float64 {
+func (o *EnhancedInvoiceReportItem) GetTotalAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}

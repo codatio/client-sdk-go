@@ -2,9 +2,13 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/lending/pkg/types"
+)
+
 type LoanSummaryReportItem struct {
 	// The loan outstanding balance.  This may not equal totalDrawdowns - totalRepayments due to interest which has been accrued.
-	Balance *float64 `json:"balance,omitempty"`
+	Balance *types.Decimal `json:"balance,omitempty"`
 	// The description of the object being referred to. E.g. the account.
 	Description *string               `json:"description,omitempty"`
 	RecordRef   *LoanSummaryRecordRef `json:"recordRef,omitempty"`
@@ -29,12 +33,12 @@ type LoanSummaryReportItem struct {
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	StartDate *string `json:"startDate,omitempty"`
 	// The total loan drawdowns.
-	TotalDrawdowns *float64 `json:"totalDrawdowns,omitempty"`
+	TotalDrawdowns *types.Decimal `json:"totalDrawdowns,omitempty"`
 	// The total loan repayments which includes capital plus any interest.
-	TotalRepayments *float64 `json:"totalRepayments,omitempty"`
+	TotalRepayments *types.Decimal `json:"totalRepayments,omitempty"`
 }
 
-func (o *LoanSummaryReportItem) GetBalance() *float64 {
+func (o *LoanSummaryReportItem) GetBalance() *types.Decimal {
 	if o == nil {
 		return nil
 	}
@@ -62,14 +66,14 @@ func (o *LoanSummaryReportItem) GetStartDate() *string {
 	return o.StartDate
 }
 
-func (o *LoanSummaryReportItem) GetTotalDrawdowns() *float64 {
+func (o *LoanSummaryReportItem) GetTotalDrawdowns() *types.Decimal {
 	if o == nil {
 		return nil
 	}
 	return o.TotalDrawdowns
 }
 
-func (o *LoanSummaryReportItem) GetTotalRepayments() *float64 {
+func (o *LoanSummaryReportItem) GetTotalRepayments() *types.Decimal {
 	if o == nil {
 		return nil
 	}
