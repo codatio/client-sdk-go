@@ -2,6 +2,10 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/types"
+)
+
 type OrderLineItem struct {
 	DiscountAllocations []OrderDiscountAllocation `json:"discountAllocations,omitempty"`
 	// A unique, persistent identifier for this record
@@ -13,17 +17,17 @@ type OrderLineItem struct {
 	// Number of units of the product sold.
 	// For refunds, quantity is a negative value.
 	//
-	Quantity *float64 `json:"quantity,omitempty"`
+	Quantity *types.Decimal `json:"quantity,omitempty"`
 	// Percentage rate (from 0 to 100) of any sale tax applied to the unit amount.
-	TaxPercentage *float64 `json:"taxPercentage,omitempty"`
+	TaxPercentage *types.Decimal `json:"taxPercentage,omitempty"`
 	// Taxes breakdown as applied to order lines.
 	Taxes []Taxesitems `json:"taxes,omitempty"`
 	// Total price of the line item, including discounts, tax and minus any refunds.
-	TotalAmount *float64 `json:"totalAmount,omitempty"`
+	TotalAmount *types.Decimal `json:"totalAmount,omitempty"`
 	// Total amount of tax applied to the line item.
-	TotalTaxAmount *float64 `json:"totalTaxAmount,omitempty"`
+	TotalTaxAmount *types.Decimal `json:"totalTaxAmount,omitempty"`
 	// Price per unit of goods or service.
-	UnitPrice *float64 `json:"unitPrice,omitempty"`
+	UnitPrice *types.Decimal `json:"unitPrice,omitempty"`
 }
 
 func (o *OrderLineItem) GetDiscountAllocations() []OrderDiscountAllocation {
@@ -54,14 +58,14 @@ func (o *OrderLineItem) GetProductVariantRef() *ProductVariantRef {
 	return o.ProductVariantRef
 }
 
-func (o *OrderLineItem) GetQuantity() *float64 {
+func (o *OrderLineItem) GetQuantity() *types.Decimal {
 	if o == nil {
 		return nil
 	}
 	return o.Quantity
 }
 
-func (o *OrderLineItem) GetTaxPercentage() *float64 {
+func (o *OrderLineItem) GetTaxPercentage() *types.Decimal {
 	if o == nil {
 		return nil
 	}
@@ -75,21 +79,21 @@ func (o *OrderLineItem) GetTaxes() []Taxesitems {
 	return o.Taxes
 }
 
-func (o *OrderLineItem) GetTotalAmount() *float64 {
+func (o *OrderLineItem) GetTotalAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}
 	return o.TotalAmount
 }
 
-func (o *OrderLineItem) GetTotalTaxAmount() *float64 {
+func (o *OrderLineItem) GetTotalTaxAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}
 	return o.TotalTaxAmount
 }
 
-func (o *OrderLineItem) GetUnitPrice() *float64 {
+func (o *OrderLineItem) GetUnitPrice() *types.Decimal {
 	if o == nil {
 		return nil
 	}

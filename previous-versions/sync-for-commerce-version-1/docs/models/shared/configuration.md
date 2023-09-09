@@ -1,7 +1,5 @@
 # Configuration
 
-Success
-
 
 ## Fields
 

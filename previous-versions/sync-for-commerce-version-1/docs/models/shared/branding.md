@@ -1,7 +1,5 @@
 # Branding
 
-Success
-
 
 ## Fields
 

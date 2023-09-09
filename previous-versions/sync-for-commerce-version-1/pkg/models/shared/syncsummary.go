@@ -2,7 +2,6 @@
 
 package shared
 
-// SyncSummary - Success
 type SyncSummary struct {
 	// Unique identifier for the sync in Codat.
 	CommerceSyncID *string `json:"commerceSyncId,omitempty"`

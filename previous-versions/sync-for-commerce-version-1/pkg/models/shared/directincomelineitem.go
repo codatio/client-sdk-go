@@ -2,6 +2,11 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/types"
+	"github.com/ericlagergren/decimal"
+)
+
 // DirectIncomeLineItemItemReference - Reference to the product, service type, or inventory item to which the direct cost is linked.
 type DirectIncomeLineItemItemReference struct {
 	// Unique identifier for the item in the accounting platform.
@@ -27,14 +32,14 @@ func (o *DirectIncomeLineItemItemReference) GetName() *string {
 // DirectIncomeLineItemTaxRateReference - Reference to the tax rate to which the line item is linked.
 type DirectIncomeLineItemTaxRateReference struct {
 	// Applicable tax rate.
-	EffectiveTaxRate *float64 `json:"effectiveTaxRate,omitempty"`
+	EffectiveTaxRate *types.Decimal `json:"effectiveTaxRate,omitempty"`
 	// Unique identifier for the tax rate in the accounting platform.
 	ID *string `json:"id,omitempty"`
 	// Name of the tax rate in the accounting platform.
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *DirectIncomeLineItemTaxRateReference) GetEffectiveTaxRate() *float64 {
+func (o *DirectIncomeLineItemTaxRateReference) GetEffectiveTaxRate() *types.Decimal {
 	if o == nil {
 		return nil
 	}
@@ -83,29 +88,29 @@ type DirectIncomeLineItem struct {
 	// A user-friendly name of the goods or services.
 	Description *string `json:"description,omitempty"`
 	// Discount amount for the line before tax.
-	DiscountAmount *float64 `json:"discountAmount,omitempty"`
+	DiscountAmount *types.Decimal `json:"discountAmount,omitempty"`
 	// Discount percentage for the line before tax.
-	DiscountPercentage *float64 `json:"discountPercentage,omitempty"`
+	DiscountPercentage *types.Decimal `json:"discountPercentage,omitempty"`
 	// Reference to the product, service type, or inventory item to which the direct cost is linked.
 	ItemRef *DirectIncomeLineItemItemReference `json:"itemRef,omitempty"`
 	// The number of units of goods or services received.
 	//
 	// Note: If the platform does not provide this information, the quantity will be mapped as 1.
-	Quantity float64 `json:"quantity"`
+	Quantity types.Decimal `json:"quantity"`
 	// The amount of the line, inclusive of discounts, but exclusive of tax.
-	SubTotal *float64 `json:"subTotal,omitempty"`
+	SubTotal *types.Decimal `json:"subTotal,omitempty"`
 	// The amount of tax for the line.
 	// Note: If the platform does not provide this information, the quantity will be mapped as 0.00.
-	TaxAmount *float64 `json:"taxAmount,omitempty"`
+	TaxAmount *types.Decimal `json:"taxAmount,omitempty"`
 	// Reference to the tax rate to which the line item is linked.
 	TaxRateRef *DirectIncomeLineItemTaxRateReference `json:"taxRateRef,omitempty"`
 	// The total amount of the line, including tax.
-	TotalAmount *float64 `json:"totalAmount,omitempty"`
+	TotalAmount *types.Decimal `json:"totalAmount,omitempty"`
 	// An array of categories against which this direct cost is tracked.
 	TrackingCategoryRefs []DirectIncomeLineItemTrackingCategoryRefs `json:"trackingCategoryRefs,omitempty"`
 	// The price of each unit of goods or services.
 	// Note: If the platform does not provide this information, the unit amount will be mapped to the total amount.
-	UnitAmount float64 `json:"unitAmount"`
+	UnitAmount types.Decimal `json:"unitAmount"`
 }
 
 func (o *DirectIncomeLineItem) GetAccountRef() *AccountRef {
@@ -122,14 +127,14 @@ func (o *DirectIncomeLineItem) GetDescription() *string {
 	return o.Description
 }
 
-func (o *DirectIncomeLineItem) GetDiscountAmount() *float64 {
+func (o *DirectIncomeLineItem) GetDiscountAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}
 	return o.DiscountAmount
 }
 
-func (o *DirectIncomeLineItem) GetDiscountPercentage() *float64 {
+func (o *DirectIncomeLineItem) GetDiscountPercentage() *types.Decimal {
 	if o == nil {
 		return nil
 	}
@@ -143,21 +148,21 @@ func (o *DirectIncomeLineItem) GetItemRef() *DirectIncomeLineItemItemReference {
 	return o.ItemRef
 }
 
-func (o *DirectIncomeLineItem) GetQuantity() float64 {
+func (o *DirectIncomeLineItem) GetQuantity() types.Decimal {
 	if o == nil {
-		return 0.0
+		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
 	}
 	return o.Quantity
 }
 
-func (o *DirectIncomeLineItem) GetSubTotal() *float64 {
+func (o *DirectIncomeLineItem) GetSubTotal() *types.Decimal {
 	if o == nil {
 		return nil
 	}
 	return o.SubTotal
 }
 
-func (o *DirectIncomeLineItem) GetTaxAmount() *float64 {
+func (o *DirectIncomeLineItem) GetTaxAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}
@@ -171,7 +176,7 @@ func (o *DirectIncomeLineItem) GetTaxRateRef() *DirectIncomeLineItemTaxRateRefer
 	return o.TaxRateRef
 }
 
-func (o *DirectIncomeLineItem) GetTotalAmount() *float64 {
+func (o *DirectIncomeLineItem) GetTotalAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}
@@ -185,9 +190,9 @@ func (o *DirectIncomeLineItem) GetTrackingCategoryRefs() []DirectIncomeLineItemT
 	return o.TrackingCategoryRefs
 }
 
-func (o *DirectIncomeLineItem) GetUnitAmount() float64 {
+func (o *DirectIncomeLineItem) GetUnitAmount() types.Decimal {
 	if o == nil {
-		return 0.0
+		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
 	}
 	return o.UnitAmount
 }

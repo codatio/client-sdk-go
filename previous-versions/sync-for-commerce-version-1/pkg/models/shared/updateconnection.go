@@ -4,10 +4,10 @@ package shared
 
 type UpdateConnection struct {
 	// The current authorization status of the data connection.
-	Status *string `json:"status,omitempty"`
+	Status *DataConnectionStatus `json:"status,omitempty"`
 }
 
-func (o *UpdateConnection) GetStatus() *string {
+func (o *UpdateConnection) GetStatus() *DataConnectionStatus {
 	if o == nil {
 		return nil
 	}

@@ -2,19 +2,24 @@
 
 package shared
 
-type CreditNoteLineItemTrackingProjectRef struct {
+import (
+	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/types"
+	"github.com/ericlagergren/decimal"
+)
+
+type CreditNoteLineItemTrackingProjectReference struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreditNoteLineItemTrackingProjectRef) GetID() string {
+func (o *CreditNoteLineItemTrackingProjectReference) GetID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ID
 }
 
-func (o *CreditNoteLineItemTrackingProjectRef) GetName() *string {
+func (o *CreditNoteLineItemTrackingProjectReference) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -23,11 +28,11 @@ func (o *CreditNoteLineItemTrackingProjectRef) GetName() *string {
 
 // CreditNoteLineItemTracking - Categories, and a project and customer, against which the item is tracked.
 type CreditNoteLineItemTracking struct {
-	CategoryRefs []TrackingCategoryRefsitems           `json:"categoryRefs"`
-	CustomerRef  *AccountingCustomerRef                `json:"customerRef,omitempty"`
-	IsBilledTo   BilledToType                          `json:"isBilledTo"`
-	IsRebilledTo BilledToType                          `json:"isRebilledTo"`
-	ProjectRef   *CreditNoteLineItemTrackingProjectRef `json:"projectRef,omitempty"`
+	CategoryRefs []TrackingCategoryRefsitems                 `json:"categoryRefs"`
+	CustomerRef  *AccountingCustomerRef                      `json:"customerRef,omitempty"`
+	IsBilledTo   BilledToType                                `json:"isBilledTo"`
+	IsRebilledTo BilledToType                                `json:"isRebilledTo"`
+	ProjectRef   *CreditNoteLineItemTrackingProjectReference `json:"projectRef,omitempty"`
 	// Links the current record to the underlying record or data type that created it.
 	//
 	// For example, if a journal entry is generated based on an invoice, this property allows you to connect the journal entry to the underlying invoice in our data model.
@@ -62,7 +67,7 @@ func (o *CreditNoteLineItemTracking) GetIsRebilledTo() BilledToType {
 	return o.IsRebilledTo
 }
 
-func (o *CreditNoteLineItemTracking) GetProjectRef() *CreditNoteLineItemTrackingProjectRef {
+func (o *CreditNoteLineItemTracking) GetProjectRef() *CreditNoteLineItemTrackingProjectReference {
 	if o == nil {
 		return nil
 	}
@@ -82,22 +87,22 @@ type CreditNoteLineItem struct {
 	// Friendly name of each line item. For example, the goods or service for which credit has been issued.
 	Description *string `json:"description,omitempty"`
 	// Value of any discounts applied.
-	DiscountAmount *float64 `json:"discountAmount,omitempty"`
+	DiscountAmount *types.Decimal `json:"discountAmount,omitempty"`
 	// Percentage rate of any discount applied to the line item.
-	DiscountPercentage *float64 `json:"discountPercentage,omitempty"`
-	IsDirectIncome     *bool    `json:"isDirectIncome,omitempty"`
+	DiscountPercentage *types.Decimal `json:"discountPercentage,omitempty"`
+	IsDirectIncome     *bool          `json:"isDirectIncome,omitempty"`
 	// Reference to the product, service type, or inventory item to which the direct cost is linked.
 	ItemRef *ItemRef `json:"itemRef,omitempty"`
 	// Number of units of the goods or service for which credit has been issued.
-	Quantity float64 `json:"quantity"`
+	Quantity types.Decimal `json:"quantity"`
 	// Amount of credit associated with the line item, including discounts but excluding tax.
-	SubTotal *float64 `json:"subTotal,omitempty"`
+	SubTotal *types.Decimal `json:"subTotal,omitempty"`
 	// Amount of tax associated with the line item.
-	TaxAmount *float64 `json:"taxAmount,omitempty"`
+	TaxAmount *types.Decimal `json:"taxAmount,omitempty"`
 	// Reference to the tax rate to which the line item is linked.
 	TaxRateRef *TaxRateRef `json:"taxRateRef,omitempty"`
 	// Total amount of the line item, including discounts and tax.
-	TotalAmount *float64 `json:"totalAmount,omitempty"`
+	TotalAmount *types.Decimal `json:"totalAmount,omitempty"`
 	// Categories, and a project and customer, against which the item is tracked.
 	Tracking *CreditNoteLineItemTracking `json:"tracking,omitempty"`
 	// Reference to the tracking categories to which the line item is linked.
@@ -105,7 +110,7 @@ type CreditNoteLineItem struct {
 	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	TrackingCategoryRefs []TrackingCategoryRefsitems `json:"trackingCategoryRefs,omitempty"`
 	// Unit price of the goods or service.
-	UnitAmount float64 `json:"unitAmount"`
+	UnitAmount types.Decimal `json:"unitAmount"`
 }
 
 func (o *CreditNoteLineItem) GetAccountRef() *AccountRef {
@@ -122,14 +127,14 @@ func (o *CreditNoteLineItem) GetDescription() *string {
 	return o.Description
 }
 
-func (o *CreditNoteLineItem) GetDiscountAmount() *float64 {
+func (o *CreditNoteLineItem) GetDiscountAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}
 	return o.DiscountAmount
 }
 
-func (o *CreditNoteLineItem) GetDiscountPercentage() *float64 {
+func (o *CreditNoteLineItem) GetDiscountPercentage() *types.Decimal {
 	if o == nil {
 		return nil
 	}
@@ -150,21 +155,21 @@ func (o *CreditNoteLineItem) GetItemRef() *ItemRef {
 	return o.ItemRef
 }
 
-func (o *CreditNoteLineItem) GetQuantity() float64 {
+func (o *CreditNoteLineItem) GetQuantity() types.Decimal {
 	if o == nil {
-		return 0.0
+		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
 	}
 	return o.Quantity
 }
 
-func (o *CreditNoteLineItem) GetSubTotal() *float64 {
+func (o *CreditNoteLineItem) GetSubTotal() *types.Decimal {
 	if o == nil {
 		return nil
 	}
 	return o.SubTotal
 }
 
-func (o *CreditNoteLineItem) GetTaxAmount() *float64 {
+func (o *CreditNoteLineItem) GetTaxAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}
@@ -178,7 +183,7 @@ func (o *CreditNoteLineItem) GetTaxRateRef() *TaxRateRef {
 	return o.TaxRateRef
 }
 
-func (o *CreditNoteLineItem) GetTotalAmount() *float64 {
+func (o *CreditNoteLineItem) GetTotalAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}
@@ -199,9 +204,9 @@ func (o *CreditNoteLineItem) GetTrackingCategoryRefs() []TrackingCategoryRefsite
 	return o.TrackingCategoryRefs
 }
 
-func (o *CreditNoteLineItem) GetUnitAmount() float64 {
+func (o *CreditNoteLineItem) GetUnitAmount() types.Decimal {
 	if o == nil {
-		return 0.0
+		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
 	}
 	return o.UnitAmount
 }

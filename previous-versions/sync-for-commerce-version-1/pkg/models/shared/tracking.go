@@ -2,19 +2,19 @@
 
 package shared
 
-type TrackingProjectRef struct {
+type TrackingProjectReference struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *TrackingProjectRef) GetID() string {
+func (o *TrackingProjectReference) GetID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ID
 }
 
-func (o *TrackingProjectRef) GetName() *string {
+func (o *TrackingProjectReference) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ type Tracking struct {
 	CustomerRef  *AccountingCustomerRef      `json:"customerRef,omitempty"`
 	IsBilledTo   BilledToType                `json:"isBilledTo"`
 	IsRebilledTo BilledToType                `json:"isRebilledTo"`
-	ProjectRef   *TrackingProjectRef         `json:"projectRef,omitempty"`
+	ProjectRef   *TrackingProjectReference   `json:"projectRef,omitempty"`
 	// Links the current record to the underlying record or data type that created it.
 	//
 	// For example, if a journal entry is generated based on an invoice, this property allows you to connect the journal entry to the underlying invoice in our data model.
@@ -62,7 +62,7 @@ func (o *Tracking) GetIsRebilledTo() BilledToType {
 	return o.IsRebilledTo
 }
 
-func (o *Tracking) GetProjectRef() *TrackingProjectRef {
+func (o *Tracking) GetProjectRef() *TrackingProjectReference {
 	if o == nil {
 		return nil
 	}

@@ -93,7 +93,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.AccountingDataset != nil {
+    if res.Dataset != nil {
         // handle response
     }
 }

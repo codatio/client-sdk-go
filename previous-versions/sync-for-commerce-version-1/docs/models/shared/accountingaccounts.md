@@ -1,7 +1,5 @@
 # AccountingAccounts
 
-Success
-
 
 ## Fields
 

@@ -2,10 +2,14 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/types"
+)
+
 // ProductInventory - Information about the total inventory as well as the locations inventory is in.
 type ProductInventory struct {
 	Locations     []ProductInventoryLocation `json:"locations,omitempty"`
-	TotalQuantity *float64                   `json:"totalQuantity,omitempty"`
+	TotalQuantity *types.Decimal             `json:"totalQuantity,omitempty"`
 }
 
 func (o *ProductInventory) GetLocations() []ProductInventoryLocation {
@@ -15,7 +19,7 @@ func (o *ProductInventory) GetLocations() []ProductInventoryLocation {
 	return o.Locations
 }
 
-func (o *ProductInventory) GetTotalQuantity() *float64 {
+func (o *ProductInventory) GetTotalQuantity() *types.Decimal {
 	if o == nil {
 		return nil
 	}

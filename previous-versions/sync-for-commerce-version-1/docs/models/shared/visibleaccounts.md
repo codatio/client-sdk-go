@@ -1,7 +1,5 @@
 # VisibleAccounts
 
-Success
-
 
 ## Fields
 

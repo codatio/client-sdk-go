@@ -2,17 +2,21 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/types"
+)
+
 // TaxRateRef - Reference to the tax rate to which the line item is linked.
 type TaxRateRef struct {
 	// Applicable tax rate.
-	EffectiveTaxRate *float64 `json:"effectiveTaxRate,omitempty"`
+	EffectiveTaxRate *types.Decimal `json:"effectiveTaxRate,omitempty"`
 	// Unique identifier for the tax rate in the accounting platform.
 	ID *string `json:"id,omitempty"`
 	// Name of the tax rate in the accounting platform.
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *TaxRateRef) GetEffectiveTaxRate() *float64 {
+func (o *TaxRateRef) GetEffectiveTaxRate() *types.Decimal {
 	if o == nil {
 		return nil
 	}

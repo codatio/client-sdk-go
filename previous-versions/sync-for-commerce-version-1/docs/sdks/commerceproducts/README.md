@@ -44,7 +44,7 @@ func main() {
     res, err := s.CommerceProducts.GetCommerceProduct(ctx, operations.GetCommerceProductRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        ProductID: "qui",
+        ProductID: "explicabo",
     })
     if err != nil {
         log.Fatal(err)
@@ -106,7 +106,7 @@ func main() {
         OrderBy: codatsynccommerce.String("-modifiedDate"),
         Page: codatsynccommerce.Int(1),
         PageSize: codatsynccommerce.Int(100),
-        Query: codatsynccommerce.String("praesentium"),
+        Query: codatsynccommerce.String("corporis"),
     })
     if err != nil {
         log.Fatal(err)

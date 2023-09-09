@@ -49,6 +49,7 @@ type sdkConfiguration struct {
 	OpenAPIDocVersion string
 	SDKVersion        string
 	GenVersion        string
+	RetryConfig       *utils.RetryConfig
 }
 
 func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
@@ -59,61 +60,63 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 	return ServerList[c.ServerIndex], nil
 }
 
-// CodatSyncCommerce - Sync for Commerce (v1): The API for Sync for Commerce.
+// CodatSyncCommerce - Sync for Commerce (v1): The API for Sync for Commerce V1.
 //
-// Sync for Commerce is an API and a set of supporting tools built to enable e-commerce and point of sale platforms to provide high-quality integrations with numerous accounting platform through standardized API, seamlessly transforming business sale's data into accounting artefacts.
+// Sync for Commerce automatically replicates and reconciles sales data from a merchant’s source PoS, Payments, and eCommerce systems into their accounting software. This eliminates manual processing by merchants and transforms their ability to run and grow their business.
 //
 // [Read More...](https://docs.codat.io/commerce/overview)
+//
+// Not seeing what you expect? [See the main Sync for Commerce API](https://docs.codat.io/sync-for-commerce-api).
 type CodatSyncCommerce struct {
-	// AccountingAccounts - Accounts
+	// Accounts
 	AccountingAccounts *accountingAccounts
-	// AccountingBankAccounts - Bank accounts
+	// Bank accounts
 	AccountingBankAccounts *accountingBankAccounts
-	// AccountingCompanyInfo - Company info
+	// Company info
 	AccountingCompanyInfo *accountingCompanyInfo
-	// AccountingCreditNotes - Credit notes
+	// Credit notes
 	AccountingCreditNotes *accountingCreditNotes
-	// AccountingCustomers - Customers
+	// Customers
 	AccountingCustomers *accountingCustomers
-	// AccountingDirectIncomes - Direct incomes
+	// Direct incomes
 	AccountingDirectIncomes *accountingDirectIncomes
-	// AccountingInvoices - Invoices
+	// Invoices
 	AccountingInvoices *accountingInvoices
-	// AccountingJournalEntries - Journal entries
+	// Journal entries
 	AccountingJournalEntries *accountingJournalEntries
-	// AccountingPayments - Payments
+	// Payments
 	AccountingPayments *accountingPayments
-	// CommerceCompanyInfo - Retrieve standardized data from linked commerce platforms.
+	// Retrieve standardized data from linked commerce platforms.
 	CommerceCompanyInfo *commerceCompanyInfo
-	// CommerceCustomers - Retrieve standardized data from linked commerce platforms.
+	// Retrieve standardized data from linked commerce platforms.
 	CommerceCustomers *commerceCustomers
-	// CommerceLocations - Retrieve standardized data from linked commerce platforms.
+	// Retrieve standardized data from linked commerce platforms.
 	CommerceLocations *commerceLocations
-	// CommerceOrders - Retrieve standardized data from linked commerce platforms.
+	// Retrieve standardized data from linked commerce platforms.
 	CommerceOrders *commerceOrders
-	// CommercePayments - Retrieve standardized data from linked commerce platforms.
+	// Retrieve standardized data from linked commerce platforms.
 	CommercePayments *commercePayments
-	// CommerceProducts - Retrieve standardized data from linked commerce platforms.
+	// Retrieve standardized data from linked commerce platforms.
 	CommerceProducts *commerceProducts
-	// CommerceTransactions - Retrieve standardized data from linked commerce platforms.
+	// Retrieve standardized data from linked commerce platforms.
 	CommerceTransactions *commerceTransactions
-	// Companies - Create and manage your Codat companies.
+	// Create and manage your Codat companies.
 	Companies *companies
-	// CompanyManagement - Create new and manage existing Sync for Commerce companies.
+	// Create new and manage existing Sync for Commerce companies.
 	CompanyManagement *companyManagement
-	// Configuration - Expressively configure preferences for any given Sync for Commerce company.
+	// Expressively configure preferences for any given Sync for Commerce company.
 	Configuration *configuration
-	// Connections - Manage your companies' data connections.
+	// Manage your companies' data connections.
 	Connections *connections
-	// Integrations - View useful information about codat's integrations.
+	// View useful information about codat's integrations.
 	Integrations *integrations
-	// PushData - View push options and get push statuses.
+	// View push options and get push statuses.
 	PushData *pushData
-	// RefreshData - Asynchronously retrieve data from an integration to refresh data in Codat.
+	// Asynchronously retrieve data from an integration to refresh data in Codat.
 	RefreshData *refreshData
-	// Sync - Initiate a sync of Sync for Commerce company data into their respective accounting software.
+	// Initiate a sync of Sync for Commerce company data into their respective accounting software.
 	Sync *sync
-	// SyncFlowPreferences - Configure preferences for any given Sync for Commerce company using sync flow.
+	// Configure preferences for any given Sync for Commerce company using sync flow.
 	SyncFlowPreferences *syncFlowPreferences
 
 	sdkConfiguration sdkConfiguration
@@ -164,14 +167,20 @@ func WithSecurity(security shared.Security) SDKOption {
 	}
 }
 
+func WithRetryConfig(retryConfig utils.RetryConfig) SDKOption {
+	return func(sdk *CodatSyncCommerce) {
+		sdk.sdkConfiguration.RetryConfig = &retryConfig
+	}
+}
+
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *CodatSyncCommerce {
 	sdk := &CodatSyncCommerce{
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.1",
-			SDKVersion:        "0.1.0",
-			GenVersion:        "2.91.4",
+			SDKVersion:        "0.20.0",
+			GenVersion:        "2.107.3",
 		},
 	}
 	for _, opt := range opts {
