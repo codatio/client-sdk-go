@@ -2,6 +2,10 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/types"
+)
+
 // TaxRate - > View the coverage for tax rates in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=taxRates" target="_blank">Data coverage explorer</a>.
 //
 // ## Overview
@@ -27,7 +31,7 @@ type TaxRate struct {
 	Code       *string            `json:"code,omitempty"`
 	Components []TaxRateComponent `json:"components,omitempty"`
 	// See Effective tax rates description.
-	EffectiveTaxRate *float64 `json:"effectiveTaxRate,omitempty"`
+	EffectiveTaxRate *types.Decimal `json:"effectiveTaxRate,omitempty"`
 	// Identifier for the tax rate, unique for the company in the accounting platform.
 	ID           *string   `json:"id,omitempty"`
 	Metadata     *Metadata `json:"metadata,omitempty"`
@@ -41,7 +45,7 @@ type TaxRate struct {
 	// - `Unknown` - Where the status of the tax rate cannot be determined from the underlying platform.
 	Status *TaxRateStatus `json:"status,omitempty"`
 	// Total (not compounded) sum of the components of a tax rate.
-	TotalTaxRate       *float64                  `json:"totalTaxRate,omitempty"`
+	TotalTaxRate       *types.Decimal            `json:"totalTaxRate,omitempty"`
 	ValidDatatypeLinks []ValidDatatypeLinksitems `json:"validDatatypeLinks,omitempty"`
 }
 
@@ -59,7 +63,7 @@ func (o *TaxRate) GetComponents() []TaxRateComponent {
 	return o.Components
 }
 
-func (o *TaxRate) GetEffectiveTaxRate() *float64 {
+func (o *TaxRate) GetEffectiveTaxRate() *types.Decimal {
 	if o == nil {
 		return nil
 	}
@@ -108,7 +112,7 @@ func (o *TaxRate) GetStatus() *TaxRateStatus {
 	return o.Status
 }
 
-func (o *TaxRate) GetTotalTaxRate() *float64 {
+func (o *TaxRate) GetTotalTaxRate() *types.Decimal {
 	if o == nil {
 		return nil
 	}

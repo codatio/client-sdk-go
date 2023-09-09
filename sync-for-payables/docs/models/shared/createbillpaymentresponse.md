@@ -1,7 +1,5 @@
 # CreateBillPaymentResponse
 
-Success
-
 
 ## Fields
 

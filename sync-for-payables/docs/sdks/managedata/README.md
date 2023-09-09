@@ -147,7 +147,7 @@ func main() {
         OrderBy: codatsyncpayables.String("-modifiedDate"),
         Page: codatsyncpayables.Int(1),
         PageSize: codatsyncpayables.Int(100),
-        Query: codatsyncpayables.String("voluptatum"),
+        Query: codatsyncpayables.String("delectus"),
     })
     if err != nil {
         log.Fatal(err)
@@ -258,7 +258,7 @@ func main() {
     ctx := context.Background()
     res, err := s.ManageData.RefreshDataType(ctx, operations.RefreshDataTypeRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ConnectionID: codatsyncpayables.String("90f42a4b-b438-4d85-b260-591d745e3c20"),
+        ConnectionID: codatsyncpayables.String("4b7544e4-72e8-4028-97a5-b40463a7d575"),
         DataType: shared.DataTypeInvoices,
     })
     if err != nil {

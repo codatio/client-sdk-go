@@ -23,19 +23,19 @@ func (o *TrackingCustomerRef) GetID() string {
 	return o.ID
 }
 
-type TrackingProjectRef struct {
+type TrackingProjectReference struct {
 	ID   string  `json:"id"`
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *TrackingProjectRef) GetID() string {
+func (o *TrackingProjectReference) GetID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ID
 }
 
-func (o *TrackingProjectRef) GetName() *string {
+func (o *TrackingProjectReference) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -44,11 +44,11 @@ func (o *TrackingProjectRef) GetName() *string {
 
 // Tracking - Categories, and a project and customer, against which the item is tracked.
 type Tracking struct {
-	CategoryRefs []TrackingCategoryRef `json:"categoryRefs"`
-	CustomerRef  *TrackingCustomerRef  `json:"customerRef,omitempty"`
-	IsBilledTo   BilledToType          `json:"isBilledTo"`
-	IsRebilledTo BilledToType          `json:"isRebilledTo"`
-	ProjectRef   *TrackingProjectRef   `json:"projectRef,omitempty"`
+	CategoryRefs []TrackingCategoryRef     `json:"categoryRefs"`
+	CustomerRef  *TrackingCustomerRef      `json:"customerRef,omitempty"`
+	IsBilledTo   BilledToType              `json:"isBilledTo"`
+	IsRebilledTo BilledToType              `json:"isRebilledTo"`
+	ProjectRef   *TrackingProjectReference `json:"projectRef,omitempty"`
 }
 
 func (o *Tracking) GetCategoryRefs() []TrackingCategoryRef {
@@ -79,7 +79,7 @@ func (o *Tracking) GetIsRebilledTo() BilledToType {
 	return o.IsRebilledTo
 }
 
-func (o *Tracking) GetProjectRef() *TrackingProjectRef {
+func (o *Tracking) GetProjectRef() *TrackingProjectReference {
 	if o == nil {
 		return nil
 	}

@@ -1,7 +1,5 @@
 # Attachments
 
-Success
-
 
 ## Fields
 
