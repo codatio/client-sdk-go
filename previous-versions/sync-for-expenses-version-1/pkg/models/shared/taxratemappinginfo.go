@@ -5,6 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1/pkg/types"
 )
 
 type TaxRateMappingInfoValidTransactionTypes string
@@ -56,13 +57,13 @@ type TaxRateMappingInfo struct {
 	// Code for the tax rate from the accounting platform.
 	Code *string `json:"code,omitempty"`
 	// Effective tax rate.
-	EffectiveTaxRate *float64 `json:"effectiveTaxRate,omitempty"`
+	EffectiveTaxRate *types.Decimal `json:"effectiveTaxRate,omitempty"`
 	// Unique identifier of tax rate.
 	ID *string `json:"id,omitempty"`
 	// Name of the tax rate in the accounting platform.
 	Name *string `json:"name,omitempty"`
 	// Total (not compounded) sum of the components of a tax rate.
-	TotalTaxRate *float64 `json:"totalTaxRate,omitempty"`
+	TotalTaxRate *types.Decimal `json:"totalTaxRate,omitempty"`
 	// Supported transaction types for the account.
 	ValidTransactionTypes []TaxRateMappingInfoValidTransactionTypes `json:"validTransactionTypes,omitempty"`
 }
@@ -74,7 +75,7 @@ func (o *TaxRateMappingInfo) GetCode() *string {
 	return o.Code
 }
 
-func (o *TaxRateMappingInfo) GetEffectiveTaxRate() *float64 {
+func (o *TaxRateMappingInfo) GetEffectiveTaxRate() *types.Decimal {
 	if o == nil {
 		return nil
 	}
@@ -95,7 +96,7 @@ func (o *TaxRateMappingInfo) GetName() *string {
 	return o.Name
 }
 
-func (o *TaxRateMappingInfo) GetTotalTaxRate() *float64 {
+func (o *TaxRateMappingInfo) GetTotalTaxRate() *types.Decimal {
 	if o == nil {
 		return nil
 	}

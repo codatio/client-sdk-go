@@ -2,7 +2,6 @@
 
 package shared
 
-// CompanySyncStatus - Success
 type CompanySyncStatus struct {
 	// Unique identifier for your SMB in Codat.
 	CompanyID *string `json:"companyId,omitempty"`
