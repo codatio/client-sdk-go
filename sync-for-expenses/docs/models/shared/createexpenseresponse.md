@@ -1,7 +1,5 @@
 # CreateExpenseResponse
 
-OK
-
 
 ## Fields
 
