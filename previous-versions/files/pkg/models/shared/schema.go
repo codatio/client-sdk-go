@@ -2,8 +2,7 @@
 
 package shared
 
-// ErrorMessage - The request made is not valid.
-type ErrorMessage struct {
+type Schema struct {
 	CanBeRetried      *string `json:"canBeRetried,omitempty"`
 	CorrelationID     *string `json:"correlationId,omitempty"`
 	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
@@ -12,42 +11,42 @@ type ErrorMessage struct {
 	StatusCode        *int64  `json:"statusCode,omitempty"`
 }
 
-func (o *ErrorMessage) GetCanBeRetried() *string {
+func (o *Schema) GetCanBeRetried() *string {
 	if o == nil {
 		return nil
 	}
 	return o.CanBeRetried
 }
 
-func (o *ErrorMessage) GetCorrelationID() *string {
+func (o *Schema) GetCorrelationID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.CorrelationID
 }
 
-func (o *ErrorMessage) GetDetailedErrorCode() *int64 {
+func (o *Schema) GetDetailedErrorCode() *int64 {
 	if o == nil {
 		return nil
 	}
 	return o.DetailedErrorCode
 }
 
-func (o *ErrorMessage) GetError() *string {
+func (o *Schema) GetError() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Error
 }
 
-func (o *ErrorMessage) GetService() *string {
+func (o *Schema) GetService() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Service
 }
 
-func (o *ErrorMessage) GetStatusCode() *int64 {
+func (o *Schema) GetStatusCode() *int64 {
 	if o == nil {
 		return nil
 	}
