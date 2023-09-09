@@ -2,7 +2,6 @@
 
 package shared
 
-// Companies - Success
 type Companies struct {
 	Links        Links     `json:"_links"`
 	PageNumber   int64     `json:"pageNumber"`

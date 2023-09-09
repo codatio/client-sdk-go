@@ -14,7 +14,6 @@ import (
 	"net/http"
 )
 
-// connections - Create new and manage existing Sync for Commerce companies using the Sync flow UI.
 type connections struct {
 	sdkConfiguration sdkConfiguration
 }
@@ -25,7 +24,7 @@ func newConnections(sdkConfig sdkConfiguration) *connections {
 	}
 }
 
-// Create - Create connection
+// Create connection
 // Creates a connection for the company by providing a valid `platformKey`.
 //
 // Use the [List Integrations](https://docs.codat.io/sync-for-commerce-api#/operations/list-integrations) endpoint to access valid platform keys.
@@ -62,17 +61,22 @@ func (s *connections) Create(ctx context.Context, request operations.CreateConne
 
 	client := s.sdkConfiguration.SecurityClient
 
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
 		}
 	}
 
@@ -141,8 +145,8 @@ func (s *connections) Create(ctx context.Context, request operations.CreateConne
 	return res, nil
 }
 
-// GetSyncFlowURL - Retrieve sync flow url
-// Get a URL for Sync Flow including a one time passcode.
+// GetSyncFlowURL - Start new sync flow
+// Create a new company and connections. Get a URL for Sync Flow, including a one time passcode.
 func (s *connections) GetSyncFlowURL(ctx context.Context, request operations.GetSyncFlowURLRequest, opts ...operations.Option) (*operations.GetSyncFlowURLResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -173,17 +177,22 @@ func (s *connections) GetSyncFlowURL(ctx context.Context, request operations.Get
 
 	client := s.sdkConfiguration.SecurityClient
 
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
 		}
 	}
 
@@ -236,7 +245,7 @@ func (s *connections) GetSyncFlowURL(ctx context.Context, request operations.Get
 	return res, nil
 }
 
-// List - List connections
+// List connections
 // List the connections for a company.
 func (s *connections) List(ctx context.Context, request operations.ListConnectionsRequest, opts ...operations.Option) (*operations.ListConnectionsResponse, error) {
 	o := operations.Options{}
@@ -268,17 +277,22 @@ func (s *connections) List(ctx context.Context, request operations.ListConnectio
 
 	client := s.sdkConfiguration.SecurityClient
 
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
 		}
 	}
 
@@ -384,17 +398,22 @@ func (s *connections) UpdateAuthorization(ctx context.Context, request operation
 
 	client := s.sdkConfiguration.SecurityClient
 
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
 		}
 	}
 
@@ -482,17 +501,22 @@ func (s *connections) UpdateConnection(ctx context.Context, request operations.U
 
 	client := s.sdkConfiguration.SecurityClient
 
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
 		}
 	}
 

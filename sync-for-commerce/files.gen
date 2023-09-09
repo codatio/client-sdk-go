@@ -2,7 +2,7 @@ advancedcontrols.go
 connections.go
 integrations.go
 sync.go
-syncflowpreferences.go
+syncflowsettings.go
 codatsynccommerce.go
 go.mod
 go.sum
@@ -10,6 +10,7 @@ pkg/models/sdkerrors/sdkerror.go
 pkg/types/bigint.go
 pkg/types/date.go
 pkg/types/datetime.go
+pkg/types/decimal.go
 pkg/utils/contenttype.go
 pkg/utils/form.go
 pkg/utils/headers.go
@@ -30,7 +31,6 @@ pkg/models/operations/updateconnectionauthorization.go
 pkg/models/operations/updateconnection.go
 pkg/models/operations/getintegrationbranding.go
 pkg/models/operations/listintegrations.go
-pkg/models/operations/getsyncbyid.go
 pkg/models/operations/getlastsuccessfulsync.go
 pkg/models/operations/getlatestsync.go
 pkg/models/operations/getsyncstatus.go
@@ -85,8 +85,8 @@ pkg/models/shared/supportedfeature.go
 pkg/models/shared/featuretype.go
 pkg/models/shared/featurestate.go
 pkg/models/shared/companysyncstatus.go
+pkg/models/shared/syncstatus.go
 pkg/models/shared/syncsummary.go
-pkg/models/shared/daterange.go
 pkg/models/shared/synctolatestargs.go
 pkg/models/shared/syncrange.go
 pkg/models/shared/localization.go
@@ -98,7 +98,7 @@ docs/sdks/advancedcontrols/README.md
 docs/sdks/connections/README.md
 docs/sdks/integrations/README.md
 docs/sdks/sync/README.md
-docs/sdks/syncflowpreferences/README.md
+docs/sdks/syncflowsettings/README.md
 USAGE.md
 docs/models/operations/createcompanyresponse.md
 docs/models/operations/getconfigurationrequest.md
@@ -122,8 +122,6 @@ docs/models/operations/getintegrationbrandingrequest.md
 docs/models/operations/getintegrationbrandingresponse.md
 docs/models/operations/listintegrationsrequest.md
 docs/models/operations/listintegrationsresponse.md
-docs/models/operations/getsyncbyidrequest.md
-docs/models/operations/getsyncbyidresponse.md
 docs/models/operations/getlastsuccessfulsyncrequest.md
 docs/models/operations/getlastsuccessfulsyncresponse.md
 docs/models/operations/getlatestsyncrequest.md
@@ -182,14 +180,15 @@ docs/models/shared/brandingbutton.md
 docs/models/shared/integrations.md
 docs/models/shared/integration.md
 docs/models/shared/sourcetype.md
-docs/models/shared/datatypefeaturedatatype.md
+docs/models/shared/datatypefeaturedatatypes.md
 docs/models/shared/datatypefeature.md
 docs/models/shared/supportedfeature.md
 docs/models/shared/featuretype.md
 docs/models/shared/featurestate.md
 docs/models/shared/companysyncstatus.md
+docs/models/shared/syncstatus.md
+docs/models/shared/syncsummarysyncdaterangeutc.md
 docs/models/shared/syncsummary.md
-docs/models/shared/daterange.md
 docs/models/shared/synctolatestargs.md
 docs/models/shared/syncrangedaterange.md
 docs/models/shared/syncrange.md

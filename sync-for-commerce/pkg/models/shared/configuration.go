@@ -2,7 +2,6 @@
 
 package shared
 
-// Configuration - Success
 type Configuration struct {
 	Fees        *Fees        `json:"fees,omitempty"`
 	NewPayments *NewPayments `json:"newPayments,omitempty"`

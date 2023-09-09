@@ -15,20 +15,20 @@ import (
 	"strings"
 )
 
-// syncFlowPreferences - Configure preferences for any given Sync for Commerce company using sync flow.
-type syncFlowPreferences struct {
+// syncFlowSettings - Configure preferences for any given Sync for Commerce company using sync flow.
+type syncFlowSettings struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newSyncFlowPreferences(sdkConfig sdkConfiguration) *syncFlowPreferences {
-	return &syncFlowPreferences{
+func newSyncFlowSettings(sdkConfig sdkConfiguration) *syncFlowSettings {
+	return &syncFlowSettings{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // GetConfigTextSyncFlow - Get preferences for text fields
 // Return preferences set for the text fields on sync flow.
-func (s *syncFlowPreferences) GetConfigTextSyncFlow(ctx context.Context, opts ...operations.Option) (*operations.GetConfigTextSyncFlowResponse, error) {
+func (s *syncFlowSettings) GetConfigTextSyncFlow(ctx context.Context, opts ...operations.Option) (*operations.GetConfigTextSyncFlowResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -51,17 +51,22 @@ func (s *syncFlowPreferences) GetConfigTextSyncFlow(ctx context.Context, opts ..
 
 	client := s.sdkConfiguration.SecurityClient
 
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
 		}
 	}
 
@@ -116,7 +121,7 @@ func (s *syncFlowPreferences) GetConfigTextSyncFlow(ctx context.Context, opts ..
 
 // GetVisibleAccounts - List visible accounts
 // Return accounts which are visible on sync flow.
-func (s *syncFlowPreferences) GetVisibleAccounts(ctx context.Context, request operations.GetVisibleAccountsRequest, opts ...operations.Option) (*operations.GetVisibleAccountsResponse, error) {
+func (s *syncFlowSettings) GetVisibleAccounts(ctx context.Context, request operations.GetVisibleAccountsRequest, opts ...operations.Option) (*operations.GetVisibleAccountsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -142,17 +147,22 @@ func (s *syncFlowPreferences) GetVisibleAccounts(ctx context.Context, request op
 
 	client := s.sdkConfiguration.SecurityClient
 
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
 		}
 	}
 
@@ -207,7 +217,7 @@ func (s *syncFlowPreferences) GetVisibleAccounts(ctx context.Context, request op
 
 // UpdateConfigTextSyncFlow - Update preferences for text fields
 // Set preferences for the text fields on sync flow.
-func (s *syncFlowPreferences) UpdateConfigTextSyncFlow(ctx context.Context, request map[string]shared.Localization, opts ...operations.Option) (*operations.UpdateConfigTextSyncFlowResponse, error) {
+func (s *syncFlowSettings) UpdateConfigTextSyncFlow(ctx context.Context, request map[string]shared.Localization, opts ...operations.Option) (*operations.UpdateConfigTextSyncFlowResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -237,17 +247,22 @@ func (s *syncFlowPreferences) UpdateConfigTextSyncFlow(ctx context.Context, requ
 
 	client := s.sdkConfiguration.SecurityClient
 
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
 		}
 	}
 
@@ -302,7 +317,7 @@ func (s *syncFlowPreferences) UpdateConfigTextSyncFlow(ctx context.Context, requ
 
 // UpdateVisibleAccountsSyncFlow - Update visible accounts
 // Update which accounts are visible on sync flow.
-func (s *syncFlowPreferences) UpdateVisibleAccountsSyncFlow(ctx context.Context, request operations.UpdateVisibleAccountsSyncFlowRequest, opts ...operations.Option) (*operations.UpdateVisibleAccountsSyncFlowResponse, error) {
+func (s *syncFlowSettings) UpdateVisibleAccountsSyncFlow(ctx context.Context, request operations.UpdateVisibleAccountsSyncFlowRequest, opts ...operations.Option) (*operations.UpdateVisibleAccountsSyncFlowResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -335,17 +350,22 @@ func (s *syncFlowPreferences) UpdateVisibleAccountsSyncFlow(ctx context.Context,
 
 	client := s.sdkConfiguration.SecurityClient
 
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
 		}
 	}
 
