@@ -7,8 +7,8 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/common"
-	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
 )
 
 func main() {

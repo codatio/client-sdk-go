@@ -1,7 +1,5 @@
 # Branding
 
-OK
-
 
 ## Fields
 

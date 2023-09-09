@@ -8,3 +8,17 @@ type CompanyRequestBody struct {
 	// Name of company being connected.
 	Name string `json:"name"`
 }
+
+func (o *CompanyRequestBody) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *CompanyRequestBody) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}

@@ -1,7 +1,5 @@
 # Integrations
 
-OK
-
 
 ## Fields
 

@@ -6,16 +6,27 @@ Manage your Codat instance.
 
 ### Available Operations
 
+* [CreateAPIKey](#createapikey) - Create API key
+* [DeleteAPIKey](#deleteapikey) - Delete api key
 * [~~GetProfile~~](#getprofile) - Get profile :warning: **Deprecated**
 * [GetSyncSettings](#getsyncsettings) - Get sync settings
+* [ListAPIKeys](#listapikeys) - List API keys
 * [UpdateProfile](#updateprofile) - Update profile
 * [UpdateSyncSettings](#updatesyncsettings) - Update all sync settings
 
-## ~~GetProfile~~
+## CreateAPIKey
 
-Fetch your Codat profile.
+Use the *Create API keys* endpoint to generate a new API key for your client.
 
-> :warning: **DEPRECATED**: this method will be removed in a future release, please migrate away from it as soon as possible.
+[API keys](https://docs.codat.io/codat-api#/schemas/apiKeys) are tokens used to control access to the API. Include this token in the `Authorization` header parameter when making API calls, following the word "Basic" and a space with your API key.
+
+You can [read more](https://docs.codat.io/using-the-api/authentication) about authentication at Codat and managing API keys via the Portal UI or API.
+
+### Tips and pitfalls
+
+* Your first API key is created for you. Access this key via [Codat's Portal](https://app.codat.io/developers/api-keys).
+* If you require multiple API keys, perform multiple calls to the *Create API keys* endpoint. 
+* The number of API keys is limited to 10. If you have reached the maximum amount of keys, use the *Delete API key* endpoint to delete an unused key first.
 
 ### Example Usage
 
@@ -25,8 +36,122 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/common"
-	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
+)
+
+func main() {
+    s := codatcommon.New(
+        codatcommon.WithSecurity(shared.Security{
+            AuthHeader: "",
+        }),
+    )
+
+    ctx := context.Background()
+    res, err := s.Settings.CreateAPIKey(ctx, shared.CreateAPIKey{
+        Name: codatcommon.String("azure-invoice-finance-processor"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.APIKeyDetails != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                  | Type                                                       | Required                                                   | Description                                                |
+| ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
+| `ctx`                                                      | [context.Context](https://pkg.go.dev/context#Context)      | :heavy_check_mark:                                         | The context to use for the request.                        |
+| `request`                                                  | [shared.CreateAPIKey](../../models/shared/createapikey.md) | :heavy_check_mark:                                         | The request object to use for the request.                 |
+| `opts`                                                     | [][operations.Option](../../models/operations/option.md)   | :heavy_minus_sign:                                         | The options for this request.                              |
+
+
+### Response
+
+**[*operations.CreateAPIKeyResponse](../../models/operations/createapikeyresponse.md), error**
+
+
+## DeleteAPIKey
+
+Use the *Delete API keys* endpoint to delete an existing API key, providing its valid `id` as a parameter. Note that this operation is not reversible.
+
+[API keys](https://docs.codat.io/accounting-api#/schemas/apiKeys) are tokens used to control access to the API. Include this token in the `Authorization` header parameter when making API calls, following the word "Basic" and a space with your API key.
+
+You can [read more](https://docs.codat.io/using-the-api/authentication) about authentication at Codat and managing API keys via the Portal UI or API.
+
+### Tips and pitfalls
+
+* It is possible to delete the last remaining API key. If this happens, a new key can be created via the [API key management page](https://app.codat.io/developers/api-keys) of the Portal.
+* It is possible to delete the API key used to authenticate the *Delete API key* request.
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"log"
+	"github.com/codatio/client-sdk-go/previous-versions/common"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/operations"
+)
+
+func main() {
+    s := codatcommon.New(
+        codatcommon.WithSecurity(shared.Security{
+            AuthHeader: "",
+        }),
+    )
+
+    ctx := context.Background()
+    res, err := s.Settings.DeleteAPIKey(ctx, operations.DeleteAPIKeyRequest{
+        APIKeyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.StatusCode == http.StatusOK {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
+| `request`                                                                        | [operations.DeleteAPIKeyRequest](../../models/operations/deleteapikeyrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `opts`                                                                           | [][operations.Option](../../models/operations/option.md)                         | :heavy_minus_sign:                                                               | The options for this request.                                                    |
+
+
+### Response
+
+**[*operations.DeleteAPIKeyResponse](../../models/operations/deleteapikeyresponse.md), error**
+
+
+## ~~GetProfile~~
+
+Fetch your Codat profile.
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"log"
+	"github.com/codatio/client-sdk-go/previous-versions/common"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
 )
 
 func main() {
@@ -73,8 +198,8 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/common"
-	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
 )
 
 func main() {
@@ -109,6 +234,58 @@ func main() {
 **[*operations.GetProfileSyncSettingsResponse](../../models/operations/getprofilesyncsettingsresponse.md), error**
 
 
+## ListAPIKeys
+
+Use the *List API keys* endpoint to return a list of all API keys that currently exist for your client. This includes keys created via the Portal UI or the *Create API keys* endpoint.
+
+[API keys](https://docs.codat.io/accounting-api#/schemas/apiKeys) are tokens used to control access to the API. Include this token in the `Authorization` header parameter when making API calls, following the word "Basic" and a space with your API key.
+
+You can [read more](https://docs.codat.io/using-the-api/authentication) about authentication at Codat and managing API keys via the Portal UI or API.
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"log"
+	"github.com/codatio/client-sdk-go/previous-versions/common"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
+)
+
+func main() {
+    s := codatcommon.New(
+        codatcommon.WithSecurity(shared.Security{
+            AuthHeader: "",
+        }),
+    )
+
+    ctx := context.Background()
+    res, err := s.Settings.ListAPIKeys(ctx)
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.APIKeys != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
+| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
+
+
+### Response
+
+**[*operations.ListAPIKeysResponse](../../models/operations/listapikeysresponse.md), error**
+
+
 ## UpdateProfile
 
 Update your Codat profile
@@ -121,8 +298,8 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/common"
-	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
 )
 
 func main() {
@@ -142,9 +319,6 @@ func main() {
         Name: "Bob's Burgers",
         RedirectURL: "https://bobs-burgers.{countrySuffix}/{companyId}",
         WhiteListUrls: []string{
-            "https://bobs-burgers.com",
-            "https://bobs-burgers.com",
-            "https://bobs-burgers.com",
             "https://bobs-burgers.com",
         },
     })
@@ -184,9 +358,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/common"
-	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/common/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/common"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/operations"
 )
 
 func main() {
@@ -202,43 +376,13 @@ func main() {
         OverridesDefaults: false,
         Settings: []shared.SyncSetting{
             shared.SyncSetting{
-                DataType: shared.SyncSettingDataTypeInvoices,
+                DataType: shared.SyncSettingDataTypesInvoices,
                 FetchOnFirstLink: false,
                 IsLocked: codatcommon.Bool(false),
                 MonthsToSync: codatcommon.Int64(24),
                 SyncFromUtc: codatcommon.String("2022-10-23T00:00:00.000Z"),
                 SyncFromWindow: codatcommon.Int64(24),
-                SyncOrder: 449950,
-                SyncSchedule: 24,
-            },
-            shared.SyncSetting{
-                DataType: shared.SyncSettingDataTypeInvoices,
-                FetchOnFirstLink: false,
-                IsLocked: codatcommon.Bool(false),
-                MonthsToSync: codatcommon.Int64(24),
-                SyncFromUtc: codatcommon.String("2022-10-23T00:00:00.000Z"),
-                SyncFromWindow: codatcommon.Int64(24),
-                SyncOrder: 613064,
-                SyncSchedule: 24,
-            },
-            shared.SyncSetting{
-                DataType: shared.SyncSettingDataTypeInvoices,
-                FetchOnFirstLink: false,
-                IsLocked: codatcommon.Bool(false),
-                MonthsToSync: codatcommon.Int64(24),
-                SyncFromUtc: codatcommon.String("2022-10-23T00:00:00.000Z"),
-                SyncFromWindow: codatcommon.Int64(24),
-                SyncOrder: 902349,
-                SyncSchedule: 24,
-            },
-            shared.SyncSetting{
-                DataType: shared.SyncSettingDataTypeInvoices,
-                FetchOnFirstLink: false,
-                IsLocked: codatcommon.Bool(false),
-                MonthsToSync: codatcommon.Int64(24),
-                SyncFromUtc: codatcommon.String("2022-10-23T00:00:00.000Z"),
-                SyncFromWindow: codatcommon.Int64(24),
-                SyncOrder: 99280,
+                SyncOrder: 612096,
                 SyncSchedule: 24,
             },
         },

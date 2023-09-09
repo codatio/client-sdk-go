@@ -6,9 +6,10 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/codatio/client-sdk-go/common/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/common/pkg/utils"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/utils"
 	"io"
 	"net/http"
 )
@@ -24,7 +25,7 @@ func newSupplementalData(sdkConfig sdkConfiguration) *supplementalData {
 	}
 }
 
-// Configure - Configure
+// Configure
 // The *Configure* endpoint allows you to maintain or change configuration required to return supplemental data for each integration and data type combination.
 //
 // [Supplemental data](https://docs.codat.io/using-the-api/additional-data) is additional data you can include in Codat's standard data types.
@@ -64,17 +65,22 @@ func (s *supplementalData) Configure(ctx context.Context, request operations.Con
 
 	client := s.sdkConfiguration.SecurityClient
 
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
 		}
 	}
 
@@ -124,6 +130,8 @@ func (s *supplementalData) Configure(ctx context.Context, request operations.Con
 			}
 
 			res.ErrorMessage = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -155,22 +163,27 @@ func (s *supplementalData) GetConfiguration(ctx context.Context, request operati
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
+	req.Header.Set("Accept", "application/json")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	client := s.sdkConfiguration.SecurityClient
 
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
 		}
 	}
 
@@ -215,6 +228,8 @@ func (s *supplementalData) GetConfiguration(ctx context.Context, request operati
 			}
 
 			res.SupplementalDataConfiguration = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -229,6 +244,8 @@ func (s *supplementalData) GetConfiguration(ctx context.Context, request operati
 			}
 
 			res.ErrorMessage = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 

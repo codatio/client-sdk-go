@@ -7,9 +7,44 @@ type CreateRuleNotifiers struct {
 	Webhook *string  `json:"webhook,omitempty"`
 }
 
+func (o *CreateRuleNotifiers) GetEmails() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Emails
+}
+
+func (o *CreateRuleNotifiers) GetWebhook() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Webhook
+}
+
 // CreateRule - Create an event notification to a URL or list of email addresses based on the given type or condition.
 type CreateRule struct {
 	CompanyID *string             `json:"companyId,omitempty"`
 	Notifiers CreateRuleNotifiers `json:"notifiers"`
 	Type      string              `json:"type"`
+}
+
+func (o *CreateRule) GetCompanyID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CompanyID
+}
+
+func (o *CreateRule) GetNotifiers() CreateRuleNotifiers {
+	if o == nil {
+		return CreateRuleNotifiers{}
+	}
+	return o.Notifiers
+}
+
+func (o *CreateRule) GetType() string {
+	if o == nil {
+		return ""
+	}
+	return o.Type
 }

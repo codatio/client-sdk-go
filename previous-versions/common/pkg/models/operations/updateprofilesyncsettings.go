@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
 	"net/http"
 )
 
@@ -15,10 +15,59 @@ type UpdateProfileSyncSettingsRequestBody struct {
 	Settings          []shared.SyncSetting `json:"settings"`
 }
 
+func (o *UpdateProfileSyncSettingsRequestBody) GetClientID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ClientID
+}
+
+func (o *UpdateProfileSyncSettingsRequestBody) GetOverridesDefaults() bool {
+	if o == nil {
+		return false
+	}
+	return o.OverridesDefaults
+}
+
+func (o *UpdateProfileSyncSettingsRequestBody) GetSettings() []shared.SyncSetting {
+	if o == nil {
+		return []shared.SyncSetting{}
+	}
+	return o.Settings
+}
+
 type UpdateProfileSyncSettingsResponse struct {
 	ContentType string
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
 	StatusCode   int
 	RawResponse  *http.Response
+}
+
+func (o *UpdateProfileSyncSettingsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *UpdateProfileSyncSettingsResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *UpdateProfileSyncSettingsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *UpdateProfileSyncSettingsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

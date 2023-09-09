@@ -4,8 +4,8 @@ package codatcommon
 
 import (
 	"fmt"
-	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/common/pkg/utils"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/utils"
 	"net/http"
 	"time"
 )
@@ -49,6 +49,7 @@ type sdkConfiguration struct {
 	OpenAPIDocVersion string
 	SDKVersion        string
 	GenVersion        string
+	RetryConfig       *utils.RetryConfig
 }
 
 func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
@@ -59,7 +60,7 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 	return ServerList[c.ServerIndex], nil
 }
 
-// CodatCommon - Common API: Common API
+// CodatCommon - Platform API: Platform API
 // An API for the common components of all of Codat's products.
 //
 // These end points cover creating and managing your companies, data connections, and integrations.
@@ -68,21 +69,21 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 //
 // [See our OpenAPI spec](https://github.com/codatio/oas)
 type CodatCommon struct {
-	// Companies - Create and manage your Codat companies.
+	// Create and manage your Codat companies.
 	Companies *companies
-	// Connections - Manage your companies' data connections.
+	// Manage your companies' data connections.
 	Connections *connections
-	// Integrations - View and manage your available integrations in Codat.
+	// View and manage your available integrations in Codat.
 	Integrations *integrations
-	// PushData - View push options and get push statuses.
+	// View push options and get push statuses.
 	PushData *pushData
-	// RefreshData - Asynchronously retrieve data from an integration to refresh data in Codat.
+	// Asynchronously retrieve data from an integration to refresh data in Codat.
 	RefreshData *refreshData
-	// Settings - Manage your Codat instance.
+	// Manage your Codat instance.
 	Settings *settings
-	// SupplementalData - View and configure supplemental data for supported data types.
+	// View and configure supplemental data for supported data types.
 	SupplementalData *supplementalData
-	// Webhooks - Manage webhooks, rules, and events.
+	// Manage webhooks, rules, and events.
 	Webhooks *webhooks
 
 	sdkConfiguration sdkConfiguration
@@ -133,14 +134,20 @@ func WithSecurity(security shared.Security) SDKOption {
 	}
 }
 
+func WithRetryConfig(retryConfig utils.RetryConfig) SDKOption {
+	return func(sdk *CodatCommon) {
+		sdk.sdkConfiguration.RetryConfig = &retryConfig
+	}
+}
+
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *CodatCommon {
 	sdk := &CodatCommon{
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
-			OpenAPIDocVersion: "2.1.0",
-			SDKVersion:        "0.25.0",
-			GenVersion:        "2.65.0",
+			OpenAPIDocVersion: "3.0.0",
+			SDKVersion:        "0.26.0",
+			GenVersion:        "2.107.3",
 		},
 	}
 	for _, opt := range opts {

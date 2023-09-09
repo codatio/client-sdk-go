@@ -7,59 +7,59 @@ import (
 	"fmt"
 )
 
-// SyncSettingDataType - Available Data types
-type SyncSettingDataType string
+// SyncSettingDataTypes - Available Data types
+type SyncSettingDataTypes string
 
 const (
-	SyncSettingDataTypeAccountTransactions          SyncSettingDataType = "accountTransactions"
-	SyncSettingDataTypeBalanceSheet                 SyncSettingDataType = "balanceSheet"
-	SyncSettingDataTypeBankAccounts                 SyncSettingDataType = "bankAccounts"
-	SyncSettingDataTypeBankTransactions             SyncSettingDataType = "bankTransactions"
-	SyncSettingDataTypeBillCreditNotes              SyncSettingDataType = "billCreditNotes"
-	SyncSettingDataTypeBillPayments                 SyncSettingDataType = "billPayments"
-	SyncSettingDataTypeBills                        SyncSettingDataType = "bills"
-	SyncSettingDataTypeCashFlowStatement            SyncSettingDataType = "cashFlowStatement"
-	SyncSettingDataTypeChartOfAccounts              SyncSettingDataType = "chartOfAccounts"
-	SyncSettingDataTypeCompany                      SyncSettingDataType = "company"
-	SyncSettingDataTypeCreditNotes                  SyncSettingDataType = "creditNotes"
-	SyncSettingDataTypeCustomers                    SyncSettingDataType = "customers"
-	SyncSettingDataTypeDirectCosts                  SyncSettingDataType = "directCosts"
-	SyncSettingDataTypeDirectIncomes                SyncSettingDataType = "directIncomes"
-	SyncSettingDataTypeInvoices                     SyncSettingDataType = "invoices"
-	SyncSettingDataTypeItems                        SyncSettingDataType = "items"
-	SyncSettingDataTypeJournalEntries               SyncSettingDataType = "journalEntries"
-	SyncSettingDataTypeJournals                     SyncSettingDataType = "journals"
-	SyncSettingDataTypePaymentMethods               SyncSettingDataType = "paymentMethods"
-	SyncSettingDataTypePayments                     SyncSettingDataType = "payments"
-	SyncSettingDataTypeProfitAndLoss                SyncSettingDataType = "profitAndLoss"
-	SyncSettingDataTypePurchaseOrders               SyncSettingDataType = "purchaseOrders"
-	SyncSettingDataTypeSalesOrders                  SyncSettingDataType = "salesOrders"
-	SyncSettingDataTypeSuppliers                    SyncSettingDataType = "suppliers"
-	SyncSettingDataTypeTaxRates                     SyncSettingDataType = "taxRates"
-	SyncSettingDataTypeTrackingCategories           SyncSettingDataType = "trackingCategories"
-	SyncSettingDataTypeTransfers                    SyncSettingDataType = "transfers"
-	SyncSettingDataTypeBankingAccountBalances       SyncSettingDataType = "banking-accountBalances"
-	SyncSettingDataTypeBankingAccounts              SyncSettingDataType = "banking-accounts"
-	SyncSettingDataTypeBankingTransactionCategories SyncSettingDataType = "banking-transactionCategories"
-	SyncSettingDataTypeBankingTransactions          SyncSettingDataType = "banking-transactions"
-	SyncSettingDataTypeCommerceCompanyInfo          SyncSettingDataType = "commerce-companyInfo"
-	SyncSettingDataTypeCommerceCustomers            SyncSettingDataType = "commerce-customers"
-	SyncSettingDataTypeCommerceDisputes             SyncSettingDataType = "commerce-disputes"
-	SyncSettingDataTypeCommerceLocations            SyncSettingDataType = "commerce-locations"
-	SyncSettingDataTypeCommerceOrders               SyncSettingDataType = "commerce-orders"
-	SyncSettingDataTypeCommercePaymentMethods       SyncSettingDataType = "commerce-paymentMethods"
-	SyncSettingDataTypeCommercePayments             SyncSettingDataType = "commerce-payments"
-	SyncSettingDataTypeCommerceProductCategories    SyncSettingDataType = "commerce-productCategories"
-	SyncSettingDataTypeCommerceProducts             SyncSettingDataType = "commerce-products"
-	SyncSettingDataTypeCommerceTaxComponents        SyncSettingDataType = "commerce-taxComponents"
-	SyncSettingDataTypeCommerceTransactions         SyncSettingDataType = "commerce-transactions"
+	SyncSettingDataTypesAccountTransactions          SyncSettingDataTypes = "accountTransactions"
+	SyncSettingDataTypesBalanceSheet                 SyncSettingDataTypes = "balanceSheet"
+	SyncSettingDataTypesBankAccounts                 SyncSettingDataTypes = "bankAccounts"
+	SyncSettingDataTypesBankTransactions             SyncSettingDataTypes = "bankTransactions"
+	SyncSettingDataTypesBillCreditNotes              SyncSettingDataTypes = "billCreditNotes"
+	SyncSettingDataTypesBillPayments                 SyncSettingDataTypes = "billPayments"
+	SyncSettingDataTypesBills                        SyncSettingDataTypes = "bills"
+	SyncSettingDataTypesCashFlowStatement            SyncSettingDataTypes = "cashFlowStatement"
+	SyncSettingDataTypesChartOfAccounts              SyncSettingDataTypes = "chartOfAccounts"
+	SyncSettingDataTypesCompany                      SyncSettingDataTypes = "company"
+	SyncSettingDataTypesCreditNotes                  SyncSettingDataTypes = "creditNotes"
+	SyncSettingDataTypesCustomers                    SyncSettingDataTypes = "customers"
+	SyncSettingDataTypesDirectCosts                  SyncSettingDataTypes = "directCosts"
+	SyncSettingDataTypesDirectIncomes                SyncSettingDataTypes = "directIncomes"
+	SyncSettingDataTypesInvoices                     SyncSettingDataTypes = "invoices"
+	SyncSettingDataTypesItems                        SyncSettingDataTypes = "items"
+	SyncSettingDataTypesJournalEntries               SyncSettingDataTypes = "journalEntries"
+	SyncSettingDataTypesJournals                     SyncSettingDataTypes = "journals"
+	SyncSettingDataTypesPaymentMethods               SyncSettingDataTypes = "paymentMethods"
+	SyncSettingDataTypesPayments                     SyncSettingDataTypes = "payments"
+	SyncSettingDataTypesProfitAndLoss                SyncSettingDataTypes = "profitAndLoss"
+	SyncSettingDataTypesPurchaseOrders               SyncSettingDataTypes = "purchaseOrders"
+	SyncSettingDataTypesSalesOrders                  SyncSettingDataTypes = "salesOrders"
+	SyncSettingDataTypesSuppliers                    SyncSettingDataTypes = "suppliers"
+	SyncSettingDataTypesTaxRates                     SyncSettingDataTypes = "taxRates"
+	SyncSettingDataTypesTrackingCategories           SyncSettingDataTypes = "trackingCategories"
+	SyncSettingDataTypesTransfers                    SyncSettingDataTypes = "transfers"
+	SyncSettingDataTypesBankingAccountBalances       SyncSettingDataTypes = "banking-accountBalances"
+	SyncSettingDataTypesBankingAccounts              SyncSettingDataTypes = "banking-accounts"
+	SyncSettingDataTypesBankingTransactionCategories SyncSettingDataTypes = "banking-transactionCategories"
+	SyncSettingDataTypesBankingTransactions          SyncSettingDataTypes = "banking-transactions"
+	SyncSettingDataTypesCommerceCompanyInfo          SyncSettingDataTypes = "commerce-companyInfo"
+	SyncSettingDataTypesCommerceCustomers            SyncSettingDataTypes = "commerce-customers"
+	SyncSettingDataTypesCommerceDisputes             SyncSettingDataTypes = "commerce-disputes"
+	SyncSettingDataTypesCommerceLocations            SyncSettingDataTypes = "commerce-locations"
+	SyncSettingDataTypesCommerceOrders               SyncSettingDataTypes = "commerce-orders"
+	SyncSettingDataTypesCommercePaymentMethods       SyncSettingDataTypes = "commerce-paymentMethods"
+	SyncSettingDataTypesCommercePayments             SyncSettingDataTypes = "commerce-payments"
+	SyncSettingDataTypesCommerceProductCategories    SyncSettingDataTypes = "commerce-productCategories"
+	SyncSettingDataTypesCommerceProducts             SyncSettingDataTypes = "commerce-products"
+	SyncSettingDataTypesCommerceTaxComponents        SyncSettingDataTypes = "commerce-taxComponents"
+	SyncSettingDataTypesCommerceTransactions         SyncSettingDataTypes = "commerce-transactions"
 )
 
-func (e SyncSettingDataType) ToPointer() *SyncSettingDataType {
+func (e SyncSettingDataTypes) ToPointer() *SyncSettingDataTypes {
 	return &e
 }
 
-func (e *SyncSettingDataType) UnmarshalJSON(data []byte) error {
+func (e *SyncSettingDataTypes) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -148,17 +148,17 @@ func (e *SyncSettingDataType) UnmarshalJSON(data []byte) error {
 	case "commerce-taxComponents":
 		fallthrough
 	case "commerce-transactions":
-		*e = SyncSettingDataType(v)
+		*e = SyncSettingDataTypes(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for SyncSettingDataType: %v", v)
+		return fmt.Errorf("invalid value for SyncSettingDataTypes: %v", v)
 	}
 }
 
 // SyncSetting - Describes how often, and how much history, should be fetched for the given data type when a pull operation is queued.
 type SyncSetting struct {
 	// Available Data types
-	DataType SyncSettingDataType `json:"dataType"`
+	DataType SyncSettingDataTypes `json:"dataType"`
 	// Whether this data type should be queued after a company has authorized a connection.
 	FetchOnFirstLink bool  `json:"fetchOnFirstLink"`
 	IsLocked         *bool `json:"isLocked,omitempty"`
@@ -189,4 +189,60 @@ type SyncSetting struct {
 	SyncOrder      int64  `json:"syncOrder"`
 	// Number of hours after which this data type should be refreshed.
 	SyncSchedule int64 `json:"syncSchedule"`
+}
+
+func (o *SyncSetting) GetDataType() SyncSettingDataTypes {
+	if o == nil {
+		return SyncSettingDataTypes("")
+	}
+	return o.DataType
+}
+
+func (o *SyncSetting) GetFetchOnFirstLink() bool {
+	if o == nil {
+		return false
+	}
+	return o.FetchOnFirstLink
+}
+
+func (o *SyncSetting) GetIsLocked() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.IsLocked
+}
+
+func (o *SyncSetting) GetMonthsToSync() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.MonthsToSync
+}
+
+func (o *SyncSetting) GetSyncFromUtc() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SyncFromUtc
+}
+
+func (o *SyncSetting) GetSyncFromWindow() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.SyncFromWindow
+}
+
+func (o *SyncSetting) GetSyncOrder() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.SyncOrder
+}
+
+func (o *SyncSetting) GetSyncSchedule() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.SyncSchedule
 }

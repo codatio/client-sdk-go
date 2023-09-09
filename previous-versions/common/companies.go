@@ -6,9 +6,10 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/codatio/client-sdk-go/common/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/common/pkg/utils"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/utils"
 	"io"
 	"net/http"
 	"strings"
@@ -25,7 +26,7 @@ func newCompanies(sdkConfig sdkConfiguration) *companies {
 	}
 }
 
-// Create - Create company
+// Create company
 // Creates a new company that can be used to assign connections to.
 //
 // If forbidden characters (see `name` pattern) are present in the request, a company will be created with the forbidden characters removed. For example, `Company (Codat[1])` with be created as `Company Codat1`.
@@ -52,24 +53,29 @@ func (s *companies) Create(ctx context.Context, request shared.CompanyRequestBod
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
+	req.Header.Set("Accept", "application/json")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
 	client := s.sdkConfiguration.SecurityClient
 
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
 		}
 	}
 
@@ -114,6 +120,8 @@ func (s *companies) Create(ctx context.Context, request shared.CompanyRequestBod
 			}
 
 			res.Company = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
 		fallthrough
@@ -128,13 +136,15 @@ func (s *companies) Create(ctx context.Context, request shared.CompanyRequestBod
 			}
 
 			res.ErrorMessage = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
 	return res, nil
 }
 
-// Delete - Delete a company
+// Delete a company
 //
 // Permanently deletes a company, its connections and any cached data. This operation is irreversible. If the company ID does not exist an error is returned.
 func (s *companies) Delete(ctx context.Context, request operations.DeleteCompanyRequest, opts ...operations.Option) (*operations.DeleteCompanyResponse, error) {
@@ -163,17 +173,22 @@ func (s *companies) Delete(ctx context.Context, request operations.DeleteCompany
 
 	client := s.sdkConfiguration.SecurityClient
 
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
 		}
 	}
 
@@ -223,13 +238,15 @@ func (s *companies) Delete(ctx context.Context, request operations.DeleteCompany
 			}
 
 			res.ErrorMessage = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
 	return res, nil
 }
 
-// Get - Get company
+// Get company
 // Returns the company for a valid identifier. If the identifier is for a deleted company, a not found response is returned.
 func (s *companies) Get(ctx context.Context, request operations.GetCompanyRequest, opts ...operations.Option) (*operations.GetCompanyResponse, error) {
 	o := operations.Options{}
@@ -252,22 +269,27 @@ func (s *companies) Get(ctx context.Context, request operations.GetCompanyReques
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
+	req.Header.Set("Accept", "application/json")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	client := s.sdkConfiguration.SecurityClient
 
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
 		}
 	}
 
@@ -312,6 +334,8 @@ func (s *companies) Get(ctx context.Context, request operations.GetCompanyReques
 			}
 
 			res.Company = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -326,13 +350,15 @@ func (s *companies) Get(ctx context.Context, request operations.GetCompanyReques
 			}
 
 			res.ErrorMessage = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
 	return res, nil
 }
 
-// List - List companies
+// List companies
 // Returns a list of your companies. The company schema contains a list of [connections](https://docs.codat.io/codat-api#/schemas/Connection) related to the company.
 func (s *companies) List(ctx context.Context, request operations.ListCompaniesRequest, opts ...operations.Option) (*operations.ListCompaniesResponse, error) {
 	o := operations.Options{}
@@ -352,7 +378,7 @@ func (s *companies) List(ctx context.Context, request operations.ListCompaniesRe
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
+	req.Header.Set("Accept", "application/json")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
@@ -361,17 +387,22 @@ func (s *companies) List(ctx context.Context, request operations.ListCompaniesRe
 
 	client := s.sdkConfiguration.SecurityClient
 
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
 		}
 	}
 
@@ -416,6 +447,8 @@ func (s *companies) List(ctx context.Context, request operations.ListCompaniesRe
 			}
 
 			res.Companies = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
 		fallthrough
@@ -430,13 +463,15 @@ func (s *companies) List(ctx context.Context, request operations.ListCompaniesRe
 			}
 
 			res.ErrorMessage = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
 	return res, nil
 }
 
-// Update - Update company
+// Update company
 // Updates both the name and description of the company.
 func (s *companies) Update(ctx context.Context, request operations.UpdateCompanyRequest, opts ...operations.Option) (*operations.UpdateCompanyResponse, error) {
 	o := operations.Options{}
@@ -464,24 +499,29 @@ func (s *companies) Update(ctx context.Context, request operations.UpdateCompany
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
+	req.Header.Set("Accept", "application/json")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
 	client := s.sdkConfiguration.SecurityClient
 
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
 		}
 	}
 
@@ -526,6 +566,8 @@ func (s *companies) Update(ctx context.Context, request operations.UpdateCompany
 			}
 
 			res.Company = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -540,6 +582,8 @@ func (s *companies) Update(ctx context.Context, request operations.UpdateCompany
 			}
 
 			res.ErrorMessage = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 

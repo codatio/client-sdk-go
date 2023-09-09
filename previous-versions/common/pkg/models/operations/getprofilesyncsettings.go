@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
 	"net/http"
 )
 
@@ -15,4 +15,39 @@ type GetProfileSyncSettingsResponse struct {
 	RawResponse  *http.Response
 	// OK
 	SyncSettings *shared.SyncSettings
+}
+
+func (o *GetProfileSyncSettingsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetProfileSyncSettingsResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *GetProfileSyncSettingsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetProfileSyncSettingsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetProfileSyncSettingsResponse) GetSyncSettings() *shared.SyncSettings {
+	if o == nil {
+		return nil
+	}
+	return o.SyncSettings
 }

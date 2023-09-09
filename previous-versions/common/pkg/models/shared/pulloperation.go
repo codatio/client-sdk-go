@@ -129,3 +129,66 @@ type PullOperation struct {
 	Requested string              `json:"requested"`
 	Status    PullOperationStatus `json:"status"`
 }
+
+func (o *PullOperation) GetCompanyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.CompanyID
+}
+
+func (o *PullOperation) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
+func (o *PullOperation) GetDataType() string {
+	if o == nil {
+		return ""
+	}
+	return o.DataType
+}
+
+func (o *PullOperation) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *PullOperation) GetIsCompleted() bool {
+	if o == nil {
+		return false
+	}
+	return o.IsCompleted
+}
+
+func (o *PullOperation) GetIsErrored() bool {
+	if o == nil {
+		return false
+	}
+	return o.IsErrored
+}
+
+func (o *PullOperation) GetProgress() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.Progress
+}
+
+func (o *PullOperation) GetRequested() string {
+	if o == nil {
+		return ""
+	}
+	return o.Requested
+}
+
+func (o *PullOperation) GetStatus() PullOperationStatus {
+	if o == nil {
+		return PullOperationStatus("")
+	}
+	return o.Status
+}
