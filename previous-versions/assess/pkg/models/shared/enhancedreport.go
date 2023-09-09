@@ -2,6 +2,10 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/types"
+)
+
 type EnhancedReportReportItem struct {
 	AccountCategory *EnhancedReportAccountCategory `json:"accountCategory,omitempty"`
 	// The unique account ID.
@@ -9,7 +13,7 @@ type EnhancedReportReportItem struct {
 	// Name of the account.
 	AccountName *string `json:"accountName,omitempty"`
 	// Balance of the account as reported on the profit and loss or Balance sheet.
-	Balance *float64 `json:"balance,omitempty"`
+	Balance *types.Decimal `json:"balance,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -53,7 +57,7 @@ func (o *EnhancedReportReportItem) GetAccountName() *string {
 	return o.AccountName
 }
 
-func (o *EnhancedReportReportItem) GetBalance() *float64 {
+func (o *EnhancedReportReportItem) GetBalance() *types.Decimal {
 	if o == nil {
 		return nil
 	}
@@ -67,7 +71,6 @@ func (o *EnhancedReportReportItem) GetDate() *string {
 	return o.Date
 }
 
-// EnhancedReport - OK
 type EnhancedReport struct {
 	ReportInfo *EnhancedReportInfo `json:"reportInfo,omitempty"`
 	// An array of report items.

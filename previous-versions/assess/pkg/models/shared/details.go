@@ -2,7 +2,6 @@
 
 package shared
 
-// Details - OK
 type Details struct {
 	Links        Links                  `json:"_links"`
 	PageNumber   int64                  `json:"pageNumber"`

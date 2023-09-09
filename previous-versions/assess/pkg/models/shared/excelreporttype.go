@@ -7,7 +7,6 @@ import (
 	"fmt"
 )
 
-// ExcelReportType - The type of report you want to generate and download.
 type ExcelReportType string
 
 const (

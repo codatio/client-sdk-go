@@ -1,7 +1,5 @@
 # Summaries
 
-OK
-
 
 ## Fields
 

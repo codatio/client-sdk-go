@@ -2,7 +2,6 @@
 
 package shared
 
-// Status - OK
 type Status struct {
 	Metadata []DataIntegrityStatus `json:"metadata,omitempty"`
 }

@@ -1,7 +1,5 @@
 # ExcelStatus
 
-OK
-
 
 ## Fields
 
