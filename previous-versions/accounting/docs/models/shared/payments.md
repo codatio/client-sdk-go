@@ -1,7 +1,5 @@
 # Payments
 
-Success
-
 
 ## Fields
 

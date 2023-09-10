@@ -1,7 +1,5 @@
 # Bills
 
-Success
-
 
 ## Fields
 

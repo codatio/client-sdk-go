@@ -2,6 +2,11 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/types"
+	"github.com/ericlagergren/decimal"
+)
+
 // BillCreditNoteLineItemTracking - Categories, and a project and customer, against which the item is tracked.
 type BillCreditNoteLineItemTracking struct {
 	CategoryRefs []TrackingCategoryRef  `json:"categoryRefs"`
@@ -52,16 +57,16 @@ type BillCreditNoteLineItem struct {
 	// Friendly name of each line item. For example, the goods or service for which credit has been received.
 	Description *string `json:"description,omitempty"`
 	// Value of any discounts applied.
-	DiscountAmount *float64 `json:"discountAmount,omitempty"`
+	DiscountAmount *types.Decimal `json:"discountAmount,omitempty"`
 	// Percentage rate of any discount applied to the line item.
-	DiscountPercentage *float64 `json:"discountPercentage,omitempty"`
-	ItemRef            *ItemRef `json:"itemRef,omitempty"`
+	DiscountPercentage *types.Decimal `json:"discountPercentage,omitempty"`
+	ItemRef            *ItemRef       `json:"itemRef,omitempty"`
 	// Number of units of the goods or service for which credit has been received.
-	Quantity float64 `json:"quantity"`
+	Quantity types.Decimal `json:"quantity"`
 	// Amount of credit associated with the line item, including discounts but excluding tax.
-	SubTotal *float64 `json:"subTotal,omitempty"`
+	SubTotal *types.Decimal `json:"subTotal,omitempty"`
 	// Amount of tax associated with the line item.
-	TaxAmount *float64 `json:"taxAmount,omitempty"`
+	TaxAmount *types.Decimal `json:"taxAmount,omitempty"`
 	// Data types that reference a tax rate, for example invoice and bill line items, use a taxRateRef that includes the ID and name of the linked tax rate.
 	//
 	// Found on:
@@ -74,7 +79,7 @@ type BillCreditNoteLineItem struct {
 	// - Items
 	TaxRateRef *TaxRateRef `json:"taxRateRef,omitempty"`
 	// Total amount of the line item, including discounts and tax.
-	TotalAmount *float64 `json:"totalAmount,omitempty"`
+	TotalAmount *types.Decimal `json:"totalAmount,omitempty"`
 	// Categories, and a project and customer, against which the item is tracked.
 	Tracking *BillCreditNoteLineItemTracking `json:"tracking,omitempty"`
 	// Reference to the tracking categories to which the line item is linked.
@@ -82,7 +87,7 @@ type BillCreditNoteLineItem struct {
 	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	TrackingCategoryRefs []TrackingCategoryRef `json:"trackingCategoryRefs,omitempty"`
 	// Unit price of the goods or service.
-	UnitAmount float64 `json:"unitAmount"`
+	UnitAmount types.Decimal `json:"unitAmount"`
 }
 
 func (o *BillCreditNoteLineItem) GetAccountRef() *AccountRef {
@@ -99,14 +104,14 @@ func (o *BillCreditNoteLineItem) GetDescription() *string {
 	return o.Description
 }
 
-func (o *BillCreditNoteLineItem) GetDiscountAmount() *float64 {
+func (o *BillCreditNoteLineItem) GetDiscountAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}
 	return o.DiscountAmount
 }
 
-func (o *BillCreditNoteLineItem) GetDiscountPercentage() *float64 {
+func (o *BillCreditNoteLineItem) GetDiscountPercentage() *types.Decimal {
 	if o == nil {
 		return nil
 	}
@@ -120,21 +125,21 @@ func (o *BillCreditNoteLineItem) GetItemRef() *ItemRef {
 	return o.ItemRef
 }
 
-func (o *BillCreditNoteLineItem) GetQuantity() float64 {
+func (o *BillCreditNoteLineItem) GetQuantity() types.Decimal {
 	if o == nil {
-		return 0.0
+		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
 	}
 	return o.Quantity
 }
 
-func (o *BillCreditNoteLineItem) GetSubTotal() *float64 {
+func (o *BillCreditNoteLineItem) GetSubTotal() *types.Decimal {
 	if o == nil {
 		return nil
 	}
 	return o.SubTotal
 }
 
-func (o *BillCreditNoteLineItem) GetTaxAmount() *float64 {
+func (o *BillCreditNoteLineItem) GetTaxAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}
@@ -148,7 +153,7 @@ func (o *BillCreditNoteLineItem) GetTaxRateRef() *TaxRateRef {
 	return o.TaxRateRef
 }
 
-func (o *BillCreditNoteLineItem) GetTotalAmount() *float64 {
+func (o *BillCreditNoteLineItem) GetTotalAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}
@@ -169,9 +174,9 @@ func (o *BillCreditNoteLineItem) GetTrackingCategoryRefs() []TrackingCategoryRef
 	return o.TrackingCategoryRefs
 }
 
-func (o *BillCreditNoteLineItem) GetUnitAmount() float64 {
+func (o *BillCreditNoteLineItem) GetUnitAmount() types.Decimal {
 	if o == nil {
-		return 0.0
+		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
 	}
 	return o.UnitAmount
 }

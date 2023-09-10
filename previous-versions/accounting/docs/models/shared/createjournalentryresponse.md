@@ -1,7 +1,5 @@
 # CreateJournalEntryResponse
 
-Success
-
 
 ## Fields
 

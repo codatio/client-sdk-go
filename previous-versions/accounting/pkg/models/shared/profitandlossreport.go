@@ -2,6 +2,11 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/types"
+	"github.com/ericlagergren/decimal"
+)
+
 type ProfitAndLossReport struct {
 	CostOfSales *ReportLine `json:"costOfSales,omitempty"`
 	Expenses    *ReportLine `json:"expenses,omitempty"`
@@ -26,16 +31,16 @@ type ProfitAndLossReport struct {
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	FromDate *string `json:"fromDate,omitempty"`
 	// Gross profit of the company in the given date range.
-	GrossProfit float64     `json:"grossProfit"`
-	Income      *ReportLine `json:"income,omitempty"`
+	GrossProfit types.Decimal `json:"grossProfit"`
+	Income      *ReportLine   `json:"income,omitempty"`
 	// Net operating profit of the company in the given date range.
-	NetOperatingProfit float64 `json:"netOperatingProfit"`
+	NetOperatingProfit types.Decimal `json:"netOperatingProfit"`
 	// Net other income of the company in the given date range.
-	NetOtherIncome float64 `json:"netOtherIncome"`
+	NetOtherIncome types.Decimal `json:"netOtherIncome"`
 	// Net profit of the company in the given date range.
-	NetProfit     float64     `json:"netProfit"`
-	OtherExpenses *ReportLine `json:"otherExpenses,omitempty"`
-	OtherIncome   *ReportLine `json:"otherIncome,omitempty"`
+	NetProfit     types.Decimal `json:"netProfit"`
+	OtherExpenses *ReportLine   `json:"otherExpenses,omitempty"`
+	OtherIncome   *ReportLine   `json:"otherIncome,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -79,9 +84,9 @@ func (o *ProfitAndLossReport) GetFromDate() *string {
 	return o.FromDate
 }
 
-func (o *ProfitAndLossReport) GetGrossProfit() float64 {
+func (o *ProfitAndLossReport) GetGrossProfit() types.Decimal {
 	if o == nil {
-		return 0.0
+		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
 	}
 	return o.GrossProfit
 }
@@ -93,23 +98,23 @@ func (o *ProfitAndLossReport) GetIncome() *ReportLine {
 	return o.Income
 }
 
-func (o *ProfitAndLossReport) GetNetOperatingProfit() float64 {
+func (o *ProfitAndLossReport) GetNetOperatingProfit() types.Decimal {
 	if o == nil {
-		return 0.0
+		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
 	}
 	return o.NetOperatingProfit
 }
 
-func (o *ProfitAndLossReport) GetNetOtherIncome() float64 {
+func (o *ProfitAndLossReport) GetNetOtherIncome() types.Decimal {
 	if o == nil {
-		return 0.0
+		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
 	}
 	return o.NetOtherIncome
 }
 
-func (o *ProfitAndLossReport) GetNetProfit() float64 {
+func (o *ProfitAndLossReport) GetNetProfit() types.Decimal {
 	if o == nil {
-		return 0.0
+		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
 	}
 	return o.NetProfit
 }

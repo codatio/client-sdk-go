@@ -1,7 +1,5 @@
 # Customers
 
-Success
-
 
 ## Fields
 

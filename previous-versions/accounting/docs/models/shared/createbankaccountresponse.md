@@ -1,7 +1,5 @@
 # CreateBankAccountResponse
 
-Success
-
 
 ## Fields
 

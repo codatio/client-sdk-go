@@ -2,7 +2,6 @@
 
 package shared
 
-// BillCreditNotes - Success
 type BillCreditNotes struct {
 	Links        Links            `json:"_links"`
 	PageNumber   int64            `json:"pageNumber"`

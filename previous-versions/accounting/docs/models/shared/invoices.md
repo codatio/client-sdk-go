@@ -1,7 +1,5 @@
 # Invoices
 
-Success
-
 
 ## Fields
 

@@ -1,7 +1,5 @@
 # TrackingCategories
 
-Success
-
 
 ## Fields
 

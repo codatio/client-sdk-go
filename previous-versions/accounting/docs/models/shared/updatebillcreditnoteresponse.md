@@ -1,7 +1,5 @@
 # UpdateBillCreditNoteResponse
 
-Success
-
 
 ## Fields
 

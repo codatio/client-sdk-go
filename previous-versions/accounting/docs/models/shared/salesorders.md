@@ -1,7 +1,5 @@
 # SalesOrders
 
-Success
-
 
 ## Fields
 

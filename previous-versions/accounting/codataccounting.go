@@ -49,6 +49,7 @@ type sdkConfiguration struct {
 	OpenAPIDocVersion string
 	SDKVersion        string
 	GenVersion        string
+	RetryConfig       *utils.RetryConfig
 }
 
 func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
@@ -67,55 +68,55 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 //
 // [See our OpenAPI spec](https://github.com/codatio/oas)
 type CodatAccounting struct {
-	// AccountTransactions - Account transactions
+	// Account transactions
 	AccountTransactions *accountTransactions
-	// Accounts - Accounts
+	// Accounts
 	Accounts *accounts
-	// BankAccountTransactions - Bank transactions for bank accounts
+	// Bank transactions for bank accounts
 	BankAccountTransactions *bankAccountTransactions
-	// BankAccounts - Bank accounts
+	// Bank accounts
 	BankAccounts *bankAccounts
-	// BillCreditNotes - Bill credit notes
+	// Bill credit notes
 	BillCreditNotes *billCreditNotes
-	// BillPayments - Bill payments
+	// Bill payments
 	BillPayments *billPayments
-	// Bills - Bills
+	// Bills
 	Bills *bills
-	// CompanyInfo - Company info
+	// Company info
 	CompanyInfo *companyInfo
-	// CreditNotes - Credit notes
+	// Credit notes
 	CreditNotes *creditNotes
-	// Customers - Customers
+	// Customers
 	Customers *customers
-	// DirectCosts - Direct costs
+	// Direct costs
 	DirectCosts *directCosts
-	// DirectIncomes - Direct incomes
+	// Direct incomes
 	DirectIncomes *directIncomes
-	// Invoices - Invoices
+	// Invoices
 	Invoices *invoices
-	// Items - Items
+	// Items
 	Items *items
-	// JournalEntries - Journal entries
+	// Journal entries
 	JournalEntries *journalEntries
-	// Journals - Journals
+	// Journals
 	Journals *journals
-	// PaymentMethods - Payment methods
+	// Payment methods
 	PaymentMethods *paymentMethods
-	// Payments - Payments
+	// Payments
 	Payments *payments
-	// PurchaseOrders - Purchase orders
+	// Purchase orders
 	PurchaseOrders *purchaseOrders
-	// Reports - Reports
+	// Reports
 	Reports *reports
-	// SalesOrders - Sales orders
+	// Sales orders
 	SalesOrders *salesOrders
-	// Suppliers - Suppliers
+	// Suppliers
 	Suppliers *suppliers
-	// TaxRates - Tax rates
+	// Tax rates
 	TaxRates *taxRates
-	// TrackingCategories - Tracking categories
+	// Tracking categories
 	TrackingCategories *trackingCategories
-	// Transfers - Transfers
+	// Transfers
 	Transfers *transfers
 
 	sdkConfiguration sdkConfiguration
@@ -166,14 +167,20 @@ func WithSecurity(security shared.Security) SDKOption {
 	}
 }
 
+func WithRetryConfig(retryConfig utils.RetryConfig) SDKOption {
+	return func(sdk *CodatAccounting) {
+		sdk.sdkConfiguration.RetryConfig = &retryConfig
+	}
+}
+
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *CodatAccounting {
 	sdk := &CodatAccounting{
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "0.1.0",
-			GenVersion:        "2.91.4",
+			SDKVersion:        "0.26.0",
+			GenVersion:        "2.107.3",
 		},
 	}
 	for _, opt := range opts {

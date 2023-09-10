@@ -1,7 +1,5 @@
 # Transfers
 
-Success
-
 
 ## Fields
 

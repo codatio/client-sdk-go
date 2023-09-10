@@ -2,7 +2,6 @@
 
 package shared
 
-// PurchaseOrders - Success
 type PurchaseOrders struct {
 	Links        Links           `json:"_links"`
 	PageNumber   int64           `json:"pageNumber"`

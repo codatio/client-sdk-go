@@ -2,7 +2,6 @@
 
 package shared
 
-// UpdateInvoiceResponse - Success
 type UpdateInvoiceResponse struct {
 	// Contains a single entry that communicates which record has changed and the manner in which it changed.
 	Changes []PushOperationChange `json:"changes,omitempty"`

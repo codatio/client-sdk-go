@@ -1,7 +1,5 @@
 # CreatePurchaseOrderResponse
 
-Success
-
 
 ## Fields
 

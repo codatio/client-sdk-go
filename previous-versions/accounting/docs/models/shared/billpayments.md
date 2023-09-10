@@ -1,7 +1,5 @@
 # BillPayments
 
-Success
-
 
 ## Fields
 
