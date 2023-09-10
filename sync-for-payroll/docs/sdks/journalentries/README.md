@@ -7,6 +7,7 @@ Journal entries
 ### Available Operations
 
 * [Create](#create) - Create journal entry
+* [Delete](#delete) - Delete journal entry
 * [Get](#get) - Get journal entry
 * [GetCreateModel](#getcreatemodel) - Get create journal entry model
 * [List](#list) - List journal entries
@@ -35,6 +36,7 @@ import(
 	"github.com/codatio/client-sdk-go/sync-for-payroll"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/operations"
+	"github.com/ericlagergren/decimal"
 )
 
 func main() {
@@ -48,38 +50,30 @@ func main() {
     res, err := s.JournalEntries.Create(ctx, operations.CreateJournalEntryRequest{
         JournalEntry: &shared.JournalEntry{
             CreatedOn: codatsyncpayroll.String("2022-10-23T00:00:00.000Z"),
-            Description: codatsyncpayroll.String("molestiae"),
-            ID: codatsyncpayroll.String("cc78ca1b-a928-4fc8-9674-2cb739205929"),
+            Description: codatsyncpayroll.String("placeat"),
+            ID: codatsyncpayroll.String("8796ed15-1a05-4dfc-addf-7cc78ca1ba92"),
             JournalLines: []shared.JournalLine{
                 shared.JournalLine{
                     AccountRef: &shared.AccountRef{
-                        ID: codatsyncpayroll.String("96fea759-6eb1-40fa-aa23-52c5955907af"),
-                        Name: codatsyncpayroll.String("Juan O'Hara"),
+                        ID: codatsyncpayroll.String("8fc81674-2cb7-4392-8592-9396fea7596e"),
+                        Name: codatsyncpayroll.String("Roger Beier"),
                     },
-                    Currency: codatsyncpayroll.String("consequuntur"),
-                    Description: codatsyncpayroll.String("repellat"),
-                    NetAmount: 6531.08,
+                    Currency: codatsyncpayroll.String("mollitia"),
+                    Description: codatsyncpayroll.String("laborum"),
+                    NetAmount: *types.MustNewDecimalFromString("1709.09"),
                     Tracking: &shared.JournalLineTracking{
                         RecordRefs: []shared.RecordRef{
                             shared.RecordRef{
-                                DataType: codatsyncpayroll.String("invoice"),
-                                ID: codatsyncpayroll.String("67739251-aa52-4c3f-9ad0-19da1ffe78f0"),
-                            },
-                            shared.RecordRef{
-                                DataType: codatsyncpayroll.String("accountTransaction"),
-                                ID: codatsyncpayroll.String("7b0074f1-5471-4b5e-ae13-b99d488e1e91"),
-                            },
-                            shared.RecordRef{
-                                DataType: codatsyncpayroll.String("transfer"),
-                                ID: codatsyncpayroll.String("450ad2ab-d442-4698-82d5-02a94bb4f63c"),
+                                DataType: codatsyncpayroll.String("journalEntry"),
+                                ID: codatsyncpayroll.String("52c59559-07af-4f1a-ba2f-a9467739251a"),
                             },
                         },
                     },
                 },
             },
             JournalRef: &shared.JournalRef{
-                ID: "969e9a3e-fa77-4dfb-94cd-66ae395efb9b",
-                Name: codatsyncpayroll.String("Nelson Lesch"),
+                ID: "a52c3f5a-d019-4da1-bfe7-8f097b0074f1",
+                Name: codatsyncpayroll.String("Miss Valerie Kshlerin"),
             },
             Metadata: &shared.Metadata{
                 IsDeleted: codatsyncpayroll.Bool(false),
@@ -87,14 +81,14 @@ func main() {
             ModifiedDate: codatsyncpayroll.String("2022-10-23T00:00:00.000Z"),
             PostedOn: codatsyncpayroll.String("2022-10-23T00:00:00.000Z"),
             RecordRef: &shared.JournalEntryRecordReference{
-                DataType: codatsyncpayroll.String("invoice"),
-                ID: codatsyncpayroll.String("997074ba-4469-4b6e-a141-959890afa563"),
+                DataType: codatsyncpayroll.String("transfer"),
+                ID: codatsyncpayroll.String("13b99d48-8e1e-491e-850a-d2abd4426980"),
             },
             SourceModifiedDate: codatsyncpayroll.String("2022-10-23T00:00:00.000Z"),
             SupplementalData: &shared.JournalEntrySupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "nemo": map[string]interface{}{
-                        "iure": "doloribus",
+                    "assumenda": map[string]interface{}{
+                        "ipsam": "alias",
                     },
                 },
             },
@@ -102,7 +96,7 @@ func main() {
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codatsyncpayroll.Int(260341),
+        TimeoutInMinutes: codatsyncpayroll.Int(677817),
     })
     if err != nil {
         log.Fatal(err)
@@ -126,6 +120,88 @@ func main() {
 ### Response
 
 **[*operations.CreateJournalEntryResponse](../../models/operations/createjournalentryresponse.md), error**
+
+
+## Delete
+
+﻿> **Use with caution**
+>
+>Because journal entries underpin every transaction in an accounting platform, deleting a journal entry can affect every transaction for a given company.
+> 
+> **Before you proceed, make sure you understand the implications of deleting journal entries from an accounting perspective.**
+
+The *Delete journal entry* endpoint allows you to delete a specified journal entry from an accounting platform.
+
+[Journal entries](https://docs.codat.io/sync-for-payroll-api#/schemas/JournalEntry) are made in a company's general ledger, or accounts, when transactions are approved.
+
+### Process
+1. Pass the `{journalEntryId}` to the *Delete journal entry* endpoint and store the `pushOperationKey` returned.
+2. Check the status of the delete by checking the status of push operation either via
+   1. [Push operation webhook](https://docs.codat.io/introduction/webhooks/core-rules-types#push-operation-status-has-changed) (advised),
+   2. [Push operation status endpoint](https://docs.codat.io/sync-for-payroll-api#/operations/get-push-operation). 
+   
+   A `Success` status indicates that the journal entry object was deleted from the accounting platform.
+3. (Optional) Check that the journal entry was deleted from the accounting platform.
+
+### Effect on related objects
+
+Be aware that deleting a journal entry from an accounting platform might cause related objects to be modified. For example, if you delete the journal entry for a paid invoice in QuickBooks Online, the invoice is deleted but the payment against that invoice is not. The payment is converted to a payment on account.
+
+## Integration specifics
+Integrations that support soft delete do not permanently delete the object in the accounting platform.
+
+| Integration | Soft Deleted | 
+|-------------|--------------|
+| QuickBooks Online | Yes    |       
+
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"log"
+	"github.com/codatio/client-sdk-go/sync-for-payroll"
+	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/operations"
+)
+
+func main() {
+    s := codatsyncpayroll.New(
+        codatsyncpayroll.WithSecurity(shared.Security{
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
+        }),
+    )
+
+    ctx := context.Background()
+    res, err := s.JournalEntries.Delete(ctx, operations.DeleteJournalEntryRequest{
+        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+        JournalEntryID: "excepturi",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.PushOperation != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
+| `request`                                                                                    | [operations.DeleteJournalEntryRequest](../../models/operations/deletejournalentryrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `opts`                                                                                       | [][operations.Option](../../models/operations/option.md)                                     | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
+
+
+### Response
+
+**[*operations.DeleteJournalEntryResponse](../../models/operations/deletejournalentryresponse.md), error**
 
 
 ## Get
@@ -162,7 +238,7 @@ func main() {
     ctx := context.Background()
     res, err := s.JournalEntries.Get(ctx, operations.GetJournalEntryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        JournalEntryID: "maxime",
+        JournalEntryID: "tempora",
     })
     if err != nil {
         log.Fatal(err)
@@ -285,7 +361,7 @@ func main() {
         OrderBy: codatsyncpayroll.String("-modifiedDate"),
         Page: codatsyncpayroll.Int(1),
         PageSize: codatsyncpayroll.Int(100),
-        Query: codatsyncpayroll.String("deleniti"),
+        Query: codatsyncpayroll.String("facilis"),
     })
     if err != nil {
         log.Fatal(err)

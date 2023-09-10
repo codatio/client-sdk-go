@@ -2,6 +2,10 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/types"
+)
+
 type AccountMetadata struct {
 	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
@@ -113,7 +117,7 @@ type Account struct {
 	// There are only a very small number of edge cases where this currency code is returned by the Codat system.
 	Currency *string `json:"currency,omitempty"`
 	// Current balance in the account.
-	CurrentBalance *float64 `json:"currentBalance,omitempty"`
+	CurrentBalance *types.Decimal `json:"currentBalance,omitempty"`
 	// Description for the account.
 	Description *string `json:"description,omitempty"`
 	// Full category of the account.
@@ -151,7 +155,7 @@ func (o *Account) GetCurrency() *string {
 	return o.Currency
 }
 
-func (o *Account) GetCurrentBalance() *float64 {
+func (o *Account) GetCurrentBalance() *types.Decimal {
 	if o == nil {
 		return nil
 	}

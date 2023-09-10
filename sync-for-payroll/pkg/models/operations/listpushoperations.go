@@ -59,9 +59,9 @@ type ListPushOperationsResponse struct {
 	// Your `query` parameter was not correctly formed
 	ErrorMessage *shared.ErrorMessage
 	// OK
-	PushHistoryResponse *shared.PushHistoryResponse
-	StatusCode          int
-	RawResponse         *http.Response
+	PushOperations *shared.PushOperations
+	StatusCode     int
+	RawResponse    *http.Response
 }
 
 func (o *ListPushOperationsResponse) GetContentType() string {
@@ -78,11 +78,11 @@ func (o *ListPushOperationsResponse) GetErrorMessage() *shared.ErrorMessage {
 	return o.ErrorMessage
 }
 
-func (o *ListPushOperationsResponse) GetPushHistoryResponse() *shared.PushHistoryResponse {
+func (o *ListPushOperationsResponse) GetPushOperations() *shared.PushOperations {
 	if o == nil {
 		return nil
 	}
-	return o.PushHistoryResponse
+	return o.PushOperations
 }
 
 func (o *ListPushOperationsResponse) GetStatusCode() int {

@@ -1,7 +1,5 @@
 # Journals
 
-Success
-
 
 ## Fields
 

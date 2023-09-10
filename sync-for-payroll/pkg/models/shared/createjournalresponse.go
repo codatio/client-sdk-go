@@ -2,7 +2,6 @@
 
 package shared
 
-// CreateJournalResponse - Success
 type CreateJournalResponse struct {
 	// Contains a single entry that communicates which record has changed and the manner in which it changed.
 	Changes []PushOperationChange `json:"changes,omitempty"`

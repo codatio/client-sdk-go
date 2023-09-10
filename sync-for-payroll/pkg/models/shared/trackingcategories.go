@@ -2,7 +2,6 @@
 
 package shared
 
-// TrackingCategories - Success
 type TrackingCategories struct {
 	Links        Links              `json:"_links"`
 	PageNumber   int64              `json:"pageNumber"`
