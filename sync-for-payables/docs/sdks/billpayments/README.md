@@ -50,23 +50,23 @@ func main() {
     res, err := s.BillPayments.Create(ctx, operations.CreateBillPaymentRequest{
         BillPayment: &shared.BillPayment{
             AccountRef: &shared.AccountRef{
-                ID: codatsyncpayables.String("756082d6-8ea1-49f1-9170-51339d08086a"),
-                Name: codatsyncpayables.String("Mrs. Priscilla Fritsch"),
+                ID: codatsyncpayables.String("4bdb04f1-5756-4082-968e-a19f1d170513"),
+                Name: codatsyncpayables.String("Ms. Cora Spencer IV"),
             },
-            Currency: codatsyncpayables.String("GBP"),
-            CurrencyRate: types.MustNewDecimalFromString("7710.89"),
+            Currency: codatsyncpayables.String("USD"),
+            CurrencyRate: types.MustNewDecimalFromString("6498.32"),
             Date: "2022-10-23T00:00:00.000Z",
             ID: codatsyncpayables.String("3d5a8e00-d108-4045-8823-7f342676cffa"),
             Lines: []shared.BillPaymentLine{
                 shared.BillPaymentLine{
                     AllocatedOnDate: codatsyncpayables.String("2022-10-23T00:00:00.000Z"),
-                    Amount: *types.MustNewDecimalFromString("120.36"),
+                    Amount: *types.MustNewDecimalFromString("2519.41"),
                     Links: []shared.BillPaymentLineLink{
                         shared.BillPaymentLineLink{
-                            Amount: types.MustNewDecimalFromString("4910.25"),
-                            CurrencyRate: types.MustNewDecimalFromString("1154.84"),
-                            ID: codatsyncpayables.String("f93f5f06-42da-4c7a-b515-cc413aa63aae"),
-                            Type: shared.BillPaymentLineLinkTypeBillPayment,
+                            Amount: types.MustNewDecimalFromString("324.65"),
+                            CurrencyRate: types.MustNewDecimalFromString("2211.61"),
+                            ID: codatsyncpayables.String("94c26071-f93f-45f0-a42d-ac7af515cc41"),
+                            Type: shared.BillPaymentLineLinkTypeBill,
                         },
                     },
                 },
@@ -76,25 +76,25 @@ func main() {
             },
             ModifiedDate: codatsyncpayables.String("2022-10-23T00:00:00.000Z"),
             Note: codatsyncpayables.String("Bill Payment against bill c13e37b6-dfaa-4894-b3be-9fe97bda9f44"),
-            PaymentMethodRef: codatsyncpayables.String("vel"),
-            Reference: codatsyncpayables.String("ducimus"),
+            PaymentMethodRef: codatsyncpayables.String("id"),
+            Reference: codatsyncpayables.String("suscipit"),
             SourceModifiedDate: codatsyncpayables.String("2022-10-23T00:00:00.000Z"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "vel": map[string]interface{}{
-                        "labore": "possimus",
+                    "culpa": map[string]interface{}{
+                        "est": "recusandae",
                     },
                 },
             },
             SupplierRef: &shared.SupplierRef{
-                ID: "bb675fd5-e60b-4375-ad4f-6fbee41f3331",
-                SupplierName: codatsyncpayables.String("dignissimos"),
+                ID: "8d67864d-bb67-45fd-9e60-b375ed4f6fbe",
+                SupplierName: codatsyncpayables.String("necessitatibus"),
             },
             TotalAmount: types.MustNewDecimalFromString("1329.54"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codatsyncpayables.Int(950953),
+        TimeoutInMinutes: codatsyncpayables.Int(296556),
     })
     if err != nil {
         log.Fatal(err)
@@ -168,7 +168,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.BillPayments.Delete(ctx, operations.DeleteBillPaymentRequest{
-        BillPaymentID: "debitis",
+        BillPaymentID: "sunt",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -228,7 +228,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.BillPayments.Get(ctx, operations.GetBillPaymentsRequest{
-        BillPaymentID: "consectetur",
+        BillPaymentID: "asperiores",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -352,7 +352,7 @@ func main() {
         OrderBy: codatsyncpayables.String("-modifiedDate"),
         Page: codatsyncpayables.Int(1),
         PageSize: codatsyncpayables.Int(100),
-        Query: codatsyncpayables.String("corporis"),
+        Query: codatsyncpayables.String("adipisci"),
     })
     if err != nil {
         log.Fatal(err)

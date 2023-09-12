@@ -10,6 +10,7 @@ import (
 	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/sdkerrors"
 	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/utils"
+	"github.com/spyzhov/ajson"
 	"io"
 	"net/http"
 )
@@ -214,10 +215,34 @@ func (s *pushOperations) List(ctx context.Context, request operations.ListPushOp
 
 	contentType := httpRes.Header.Get("Content-Type")
 
+	nextFunc := func() (*operations.ListPushOperationsResponse, error) {
+		b, err := ajson.Unmarshal(rawBody)
+		if err != nil {
+			return nil, err
+		}
+		nC, err := ajson.Eval(b, "")
+		if err != nil {
+			return nil, err
+		}
+
+		return s.List(
+			ctx,
+			operations.ListPushOperationsRequest{
+				CompanyID: request.CompanyID,
+				OrderBy:   request.OrderBy,
+				Page:      request.Page,
+				PageSize:  request.PageSize,
+				Query:     request.Query,
+			},
+			opts...,
+		)
+	}
+
 	res := &operations.ListPushOperationsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
+		Next:        nextFunc,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

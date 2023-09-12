@@ -54,6 +54,8 @@ type ListCompaniesResponse struct {
 	ErrorMessage *shared.ErrorMessage
 	StatusCode   int
 	RawResponse  *http.Response
+
+	Next func() (*ListCompaniesResponse, error)
 }
 
 func (o *ListCompaniesResponse) GetCompanies() *shared.Companies {

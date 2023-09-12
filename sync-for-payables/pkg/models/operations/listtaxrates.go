@@ -62,6 +62,8 @@ type ListTaxRatesResponse struct {
 	RawResponse  *http.Response
 	// Success
 	TaxRates *shared.TaxRates
+
+	Next func() (*ListTaxRatesResponse, error)
 }
 
 func (o *ListTaxRatesResponse) GetContentType() string {

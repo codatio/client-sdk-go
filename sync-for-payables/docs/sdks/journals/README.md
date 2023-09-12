@@ -49,21 +49,21 @@ func main() {
         Journal: &shared.Journal{
             CreatedOn: codatsyncpayables.String("2022-10-23T00:00:00.000Z"),
             HasChildren: codatsyncpayables.Bool(false),
-            ID: codatsyncpayables.String("981d4c70-0b60-47f3-893c-73b9da3f2ced"),
-            JournalCode: codatsyncpayables.String("laborum"),
+            ID: codatsyncpayables.String("0331f398-1d4c-4700-b607-f3c93c73b9da"),
+            JournalCode: codatsyncpayables.String("amet"),
             Metadata: &shared.Metadata{
                 IsDeleted: codatsyncpayables.Bool(false),
             },
             ModifiedDate: codatsyncpayables.String("2022-10-23T00:00:00.000Z"),
-            Name: codatsyncpayables.String("Clarence Feeney Sr."),
-            ParentID: codatsyncpayables.String("exercitationem"),
+            Name: codatsyncpayables.String("Angelica Waters"),
+            ParentID: codatsyncpayables.String("dignissimos"),
             SourceModifiedDate: codatsyncpayables.String("2022-10-23T00:00:00.000Z"),
             Status: shared.JournalStatusUnknown.ToPointer(),
-            Type: codatsyncpayables.String("ab"),
+            Type: codatsyncpayables.String("consectetur"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codatsyncpayables.Int(72754),
+        TimeoutInMinutes: codatsyncpayables.Int(995816),
     })
     if err != nil {
         log.Fatal(err)
@@ -123,7 +123,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Journals.Get(ctx, operations.GetJournalRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        JournalID: "hic",
+        JournalID: "explicabo",
     })
     if err != nil {
         log.Fatal(err)
@@ -246,7 +246,7 @@ func main() {
         OrderBy: codatsyncpayables.String("-modifiedDate"),
         Page: codatsyncpayables.Int(1),
         PageSize: codatsyncpayables.Int(100),
-        Query: codatsyncpayables.String("deserunt"),
+        Query: codatsyncpayables.String("explicabo"),
     })
     if err != nil {
         log.Fatal(err)

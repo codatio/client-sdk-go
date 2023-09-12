@@ -62,6 +62,8 @@ type ListTrackingCategoriesResponse struct {
 	RawResponse  *http.Response
 	// Success
 	TrackingCategories *shared.TrackingCategories
+
+	Next func() (*ListTrackingCategoriesResponse, error)
 }
 
 func (o *ListTrackingCategoriesResponse) GetContentType() string {
