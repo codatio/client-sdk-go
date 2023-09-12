@@ -54,6 +54,8 @@ type ListRulesResponse struct {
 	RawResponse  *http.Response
 	// OK
 	Webhooks *shared.Webhooks
+
+	Next func() (*ListRulesResponse, error)
 }
 
 func (o *ListRulesResponse) GetContentType() string {

@@ -62,6 +62,8 @@ type GetCompanyPushHistoryResponse struct {
 	PushOperations *shared.PushOperations
 	StatusCode     int
 	RawResponse    *http.Response
+
+	Next func() (*GetCompanyPushHistoryResponse, error)
 }
 
 func (o *GetCompanyPushHistoryResponse) GetContentType() string {
