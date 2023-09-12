@@ -54,6 +54,7 @@ pkg/models/operations/refreshalldatatypes.go
 pkg/models/operations/refreshdatatype.go
 pkg/models/operations/gettrackingcategory.go
 pkg/models/operations/listtrackingcategories.go
+pkg/models/operations/getaccountingprofile.go
 pkg/models/shared/errormessage.go
 pkg/models/shared/createaccountresponse.go
 pkg/models/shared/validation.go
@@ -103,9 +104,11 @@ pkg/models/shared/trackingcategorytree.go
 pkg/models/shared/status.go
 pkg/models/shared/trackingcategories.go
 pkg/models/shared/trackingcategory.go
+pkg/models/shared/onecompanies1percent7bcompanyidpercent7d1data1infogetresponses200contentapplication1jsonschemapropertiesphonenumbersitemsdefinitionsphonenumbertype.go
+pkg/models/shared/onecompanies1percent7bcompanyidpercent7d1data1infogetresponses200contentapplication1jsonschemapropertiesaddressesitemsdefinitionsaccountingaddresstype.go
 pkg/models/shared/security.go
-docs/sdks/codatsyncpayroll/README.md
 docs/models/operations/option.md
+docs/sdks/codatsyncpayroll/README.md
 docs/sdks/accounts/README.md
 docs/sdks/companies/README.md
 docs/sdks/connections/README.md
@@ -179,6 +182,13 @@ docs/models/operations/gettrackingcategoryrequest.md
 docs/models/operations/gettrackingcategoryresponse.md
 docs/models/operations/listtrackingcategoriesrequest.md
 docs/models/operations/listtrackingcategoriesresponse.md
+docs/models/operations/getaccountingprofilerequest.md
+docs/models/operations/getaccountingprofilecompanyinformationaccountingaddress.md
+docs/models/operations/getaccountingprofilecompanyinformationphone.md
+docs/models/operations/getaccountingprofilecompanyinformationweblinktype.md
+docs/models/operations/getaccountingprofilecompanyinformationweblink.md
+docs/models/operations/getaccountingprofilecompanyinformation.md
+docs/models/operations/getaccountingprofileresponse.md
 docs/models/shared/errormessage.md
 docs/models/shared/createaccountresponse.md
 docs/models/shared/validation.md
@@ -235,6 +245,8 @@ docs/models/shared/trackingcategorytree.md
 docs/models/shared/status.md
 docs/models/shared/trackingcategories.md
 docs/models/shared/trackingcategory.md
+docs/models/shared/onecompanies1percent7bcompanyidpercent7d1data1infogetresponses200contentapplication1jsonschemapropertiesphonenumbersitemsdefinitionsphonenumbertype.md
+docs/models/shared/onecompanies1percent7bcompanyidpercent7d1data1infogetresponses200contentapplication1jsonschemapropertiesaddressesitemsdefinitionsaccountingaddresstype.md
 docs/models/shared/security.md
 pkg/models/operations/options.go
 .gitattributes

@@ -47,11 +47,11 @@ func main() {
     ctx := context.Background()
     res, err := s.Accounts.Create(ctx, operations.CreateAccountRequest{
         Account: &shared.Account{
-            Currency: codatsyncpayroll.String("EUR"),
+            Currency: codatsyncpayroll.String("USD"),
             CurrentBalance: types.MustNewDecimalFromString("0"),
             Description: codatsyncpayroll.String("Invoices the business has issued but has not yet collected payment on."),
             FullyQualifiedCategory: codatsyncpayroll.String("Asset.Current"),
-            FullyQualifiedName: codatsyncpayroll.String("Cash On Hand"),
+            FullyQualifiedName: codatsyncpayroll.String("Fixed Asset"),
             ID: codatsyncpayroll.String("1b6266d1-1e44-46c5-8eb5-a8f98e03124e"),
             IsBankAccount: codatsyncpayroll.Bool(false),
             Metadata: &shared.AccountMetadata{
@@ -66,15 +66,15 @@ func main() {
             ValidDatatypeLinks: []shared.AccountValidDataTypeLinks{
                 shared.AccountValidDataTypeLinks{
                     Links: []string{
-                        "suscipit",
+                        "unde",
                     },
-                    Property: codatsyncpayroll.String("iure"),
+                    Property: codatsyncpayroll.String("nulla"),
                 },
             },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codatsyncpayroll.Int(297534),
+        TimeoutInMinutes: codatsyncpayroll.Int(544883),
     })
     if err != nil {
         log.Fatal(err)
@@ -256,7 +256,7 @@ func main() {
         OrderBy: codatsyncpayroll.String("-modifiedDate"),
         Page: codatsyncpayroll.Int(1),
         PageSize: codatsyncpayroll.Int(100),
-        Query: codatsyncpayroll.String("ipsa"),
+        Query: codatsyncpayroll.String("vel"),
     })
     if err != nil {
         log.Fatal(err)
