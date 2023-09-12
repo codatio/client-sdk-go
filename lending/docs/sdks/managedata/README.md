@@ -147,7 +147,7 @@ func main() {
         OrderBy: codatlending.String("-modifiedDate"),
         Page: codatlending.Int(1),
         PageSize: codatlending.Int(100),
-        Query: codatlending.String("ad"),
+        Query: codatlending.String("perferendis"),
     })
     if err != nil {
         log.Fatal(err)
@@ -258,7 +258,7 @@ func main() {
     ctx := context.Background()
     res, err := s.ManageData.RefreshDataType(ctx, operations.RefreshDataTypeRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ConnectionID: codatlending.String("929396fe-a759-46eb-90fa-aa2352c59559"),
+        ConnectionID: codatlending.String("5929396f-ea75-496e-b10f-aaa2352c5955"),
         DataType: shared.DataTypeInvoices,
     })
     if err != nil {

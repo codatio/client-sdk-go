@@ -62,6 +62,8 @@ type ListAccountingJournalEntriesResponse struct {
 	ErrorMessage *shared.ErrorMessage
 	StatusCode   int
 	RawResponse  *http.Response
+
+	Next func() (*ListAccountingJournalEntriesResponse, error)
 }
 
 func (o *ListAccountingJournalEntriesResponse) GetAccountingJournalEntries() *shared.AccountingJournalEntries {

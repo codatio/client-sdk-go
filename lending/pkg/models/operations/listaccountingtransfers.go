@@ -70,6 +70,8 @@ type ListAccountingTransfersResponse struct {
 	ErrorMessage *shared.ErrorMessage
 	StatusCode   int
 	RawResponse  *http.Response
+
+	Next func() (*ListAccountingTransfersResponse, error)
 }
 
 func (o *ListAccountingTransfersResponse) GetAccountingTransfers() *shared.AccountingTransfers {

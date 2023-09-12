@@ -62,6 +62,8 @@ type ListAccountingInvoicesResponse struct {
 	ErrorMessage *shared.ErrorMessage
 	StatusCode   int
 	RawResponse  *http.Response
+
+	Next func() (*ListAccountingInvoicesResponse, error)
 }
 
 func (o *ListAccountingInvoicesResponse) GetAccountingInvoices() *shared.AccountingInvoices {

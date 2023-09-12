@@ -70,6 +70,8 @@ type ListCommerceProductsResponse struct {
 	ErrorMessage *shared.ErrorMessage
 	StatusCode   int
 	RawResponse  *http.Response
+
+	Next func() (*ListCommerceProductsResponse, error)
 }
 
 func (o *ListCommerceProductsResponse) GetCommerceProducts() *shared.CommerceProducts {

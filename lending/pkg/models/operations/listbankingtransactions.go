@@ -70,6 +70,8 @@ type ListBankingTransactionsResponse struct {
 	ErrorMessage *shared.ErrorMessage
 	StatusCode   int
 	RawResponse  *http.Response
+
+	Next func() (*ListBankingTransactionsResponse, error)
 }
 
 func (o *ListBankingTransactionsResponse) GetBankingTransactions() *shared.BankingTransactions {

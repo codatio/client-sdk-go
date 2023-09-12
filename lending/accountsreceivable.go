@@ -10,6 +10,7 @@ import (
 	"github.com/codatio/client-sdk-go/lending/pkg/models/sdkerrors"
 	"github.com/codatio/client-sdk-go/lending/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/pkg/utils"
+	"github.com/spyzhov/ajson"
 	"io"
 	"net/http"
 )
@@ -1536,7 +1537,7 @@ func (s *accountsReceivable) GetPayment(ctx context.Context, request operations.
 }
 
 // GetReconciledInvoices - Get reconciled invoices
-// The _Get reconciled invoices_ endpoint gets a list of invoices linked to the corresponding banking transaction
+// Gets a list of invoices linked to the corresponding banking transaction
 func (s *accountsReceivable) GetReconciledInvoices(ctx context.Context, request operations.GetReconciledInvoicesRequest, opts ...operations.Option) (*operations.GetReconciledInvoicesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -1612,10 +1613,45 @@ func (s *accountsReceivable) GetReconciledInvoices(ctx context.Context, request 
 
 	contentType := httpRes.Header.Get("Content-Type")
 
+	nextFunc := func() (*operations.GetReconciledInvoicesResponse, error) {
+		b, err := ajson.Unmarshal(rawBody)
+		if err != nil {
+			return nil, err
+		}
+		p := *request.Page
+		nP := int(p + 1)
+		r, err := ajson.Eval(b, "$.reportItems")
+		if err != nil {
+			return nil, err
+		}
+		if !r.IsArray() {
+			return nil, nil
+		}
+		arr, err := r.GetArray()
+		if err != nil {
+			return nil, err
+		}
+		if len(arr) == 0 {
+			return nil, nil
+		}
+
+		return s.GetReconciledInvoices(
+			ctx,
+			operations.GetReconciledInvoicesRequest{
+				CompanyID: request.CompanyID,
+				Page:      &nP,
+				PageSize:  request.PageSize,
+				Query:     request.Query,
+			},
+			opts...,
+		)
+	}
+
 	res := &operations.GetReconciledInvoicesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
+		Next:        nextFunc,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -1826,10 +1862,34 @@ func (s *accountsReceivable) ListCreditNotes(ctx context.Context, request operat
 
 	contentType := httpRes.Header.Get("Content-Type")
 
+	nextFunc := func() (*operations.ListAccountingCreditNotesResponse, error) {
+		b, err := ajson.Unmarshal(rawBody)
+		if err != nil {
+			return nil, err
+		}
+		nC, err := ajson.Eval(b, "")
+		if err != nil {
+			return nil, err
+		}
+
+		return s.ListCreditNotes(
+			ctx,
+			operations.ListAccountingCreditNotesRequest{
+				CompanyID: request.CompanyID,
+				OrderBy:   request.OrderBy,
+				Page:      request.Page,
+				PageSize:  request.PageSize,
+				Query:     request.Query,
+			},
+			opts...,
+		)
+	}
+
 	res := &operations.ListAccountingCreditNotesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
+		Next:        nextFunc,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -2064,10 +2124,34 @@ func (s *accountsReceivable) ListCustomers(ctx context.Context, request operatio
 
 	contentType := httpRes.Header.Get("Content-Type")
 
+	nextFunc := func() (*operations.ListAccountingCustomersResponse, error) {
+		b, err := ajson.Unmarshal(rawBody)
+		if err != nil {
+			return nil, err
+		}
+		nC, err := ajson.Eval(b, "")
+		if err != nil {
+			return nil, err
+		}
+
+		return s.ListCustomers(
+			ctx,
+			operations.ListAccountingCustomersRequest{
+				CompanyID: request.CompanyID,
+				OrderBy:   request.OrderBy,
+				Page:      request.Page,
+				PageSize:  request.PageSize,
+				Query:     request.Query,
+			},
+			opts...,
+		)
+	}
+
 	res := &operations.ListAccountingCustomersResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
+		Next:        nextFunc,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -2302,10 +2386,35 @@ func (s *accountsReceivable) ListDirectIncomes(ctx context.Context, request oper
 
 	contentType := httpRes.Header.Get("Content-Type")
 
+	nextFunc := func() (*operations.ListAccountingDirectIncomesResponse, error) {
+		b, err := ajson.Unmarshal(rawBody)
+		if err != nil {
+			return nil, err
+		}
+		nC, err := ajson.Eval(b, "")
+		if err != nil {
+			return nil, err
+		}
+
+		return s.ListDirectIncomes(
+			ctx,
+			operations.ListAccountingDirectIncomesRequest{
+				CompanyID:    request.CompanyID,
+				ConnectionID: request.ConnectionID,
+				OrderBy:      request.OrderBy,
+				Page:         request.Page,
+				PageSize:     request.PageSize,
+				Query:        request.Query,
+			},
+			opts...,
+		)
+	}
+
 	res := &operations.ListAccountingDirectIncomesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
+		Next:        nextFunc,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -2540,10 +2649,34 @@ func (s *accountsReceivable) ListInvoices(ctx context.Context, request operation
 
 	contentType := httpRes.Header.Get("Content-Type")
 
+	nextFunc := func() (*operations.ListAccountingInvoicesResponse, error) {
+		b, err := ajson.Unmarshal(rawBody)
+		if err != nil {
+			return nil, err
+		}
+		nC, err := ajson.Eval(b, "")
+		if err != nil {
+			return nil, err
+		}
+
+		return s.ListInvoices(
+			ctx,
+			operations.ListAccountingInvoicesRequest{
+				CompanyID: request.CompanyID,
+				OrderBy:   request.OrderBy,
+				Page:      request.Page,
+				PageSize:  request.PageSize,
+				Query:     request.Query,
+			},
+			opts...,
+		)
+	}
+
 	res := &operations.ListAccountingInvoicesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
+		Next:        nextFunc,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -2662,10 +2795,34 @@ func (s *accountsReceivable) ListPayments(ctx context.Context, request operation
 
 	contentType := httpRes.Header.Get("Content-Type")
 
+	nextFunc := func() (*operations.ListAccountingPaymentsResponse, error) {
+		b, err := ajson.Unmarshal(rawBody)
+		if err != nil {
+			return nil, err
+		}
+		nC, err := ajson.Eval(b, "")
+		if err != nil {
+			return nil, err
+		}
+
+		return s.ListPayments(
+			ctx,
+			operations.ListAccountingPaymentsRequest{
+				CompanyID: request.CompanyID,
+				OrderBy:   request.OrderBy,
+				Page:      request.Page,
+				PageSize:  request.PageSize,
+				Query:     request.Query,
+			},
+			opts...,
+		)
+	}
+
 	res := &operations.ListAccountingPaymentsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
+		Next:        nextFunc,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

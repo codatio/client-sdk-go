@@ -70,6 +70,8 @@ type ListAccountingDirectCostsResponse struct {
 	ErrorMessage *shared.ErrorMessage
 	StatusCode   int
 	RawResponse  *http.Response
+
+	Next func() (*ListAccountingDirectCostsResponse, error)
 }
 
 func (o *ListAccountingDirectCostsResponse) GetAccountingDirectCosts() *shared.AccountingDirectCosts {

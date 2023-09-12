@@ -62,6 +62,8 @@ type ListConnectionsResponse struct {
 	ErrorMessage *shared.ErrorMessage
 	StatusCode   int
 	RawResponse  *http.Response
+
+	Next func() (*ListConnectionsResponse, error)
 }
 
 func (o *ListConnectionsResponse) GetConnections() *shared.Connections {

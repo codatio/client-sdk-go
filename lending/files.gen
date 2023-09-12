@@ -1,7 +1,7 @@
 accountingbankdata.go
 accountspayable.go
 accountsreceivable.go
-banking.go
+bankstatements.go
 companies.go
 companyinfo.go
 connections.go
@@ -85,7 +85,6 @@ pkg/models/operations/deletecompany.go
 pkg/models/operations/getcompany.go
 pkg/models/operations/listcompanies.go
 pkg/models/operations/updatecompany.go
-pkg/models/operations/getaccountingprofile.go
 pkg/models/operations/getcommerceprofile.go
 pkg/models/operations/createconnection.go
 pkg/models/operations/deleteconnection.go
@@ -151,6 +150,7 @@ pkg/models/operations/listaccountingdirectcosts.go
 pkg/models/operations/listaccountingjournalentries.go
 pkg/models/operations/listaccountingjournals.go
 pkg/models/operations/listaccountingtransfers.go
+pkg/models/operations/getaccountingprofile.go
 pkg/models/shared/errormessage.go
 pkg/models/shared/accountingbankaccount.go
 pkg/models/shared/metadata.go
@@ -260,7 +260,6 @@ pkg/models/shared/dataconnectionstatus.go
 pkg/models/shared/dataconnectionerror.go
 pkg/models/shared/companyrequestbody.go
 pkg/models/shared/companies.go
-pkg/models/shared/accountingcompanyinfo.go
 pkg/models/shared/commercecompanyinfo.go
 pkg/models/shared/weblinksitems.go
 pkg/models/shared/commerceaddress.go
@@ -385,13 +384,14 @@ pkg/models/shared/accountingdirectcosts.go
 pkg/models/shared/accountingjournalentries.go
 pkg/models/shared/accountingjournals.go
 pkg/models/shared/accountingtransfers.go
+pkg/models/shared/accountingcompanyinfo.go
 pkg/models/shared/security.go
-docs/sdks/codatlending/README.md
 docs/models/operations/option.md
+docs/sdks/codatlending/README.md
 docs/sdks/accountingbankdata/README.md
 docs/sdks/accountspayable/README.md
 docs/sdks/accountsreceivable/README.md
-docs/sdks/banking/README.md
+docs/sdks/bankstatements/README.md
 docs/sdks/companies/README.md
 docs/sdks/companyinfo/README.md
 docs/sdks/connections/README.md
@@ -514,8 +514,6 @@ docs/models/operations/listcompaniesrequest.md
 docs/models/operations/listcompaniesresponse.md
 docs/models/operations/updatecompanyrequest.md
 docs/models/operations/updatecompanyresponse.md
-docs/models/operations/getaccountingprofilerequest.md
-docs/models/operations/getaccountingprofileresponse.md
 docs/models/operations/getcommerceprofilerequest.md
 docs/models/operations/getcommerceprofileresponse.md
 docs/models/operations/createconnectionrequestbody.md
@@ -650,6 +648,8 @@ docs/models/operations/listaccountingjournalsrequest.md
 docs/models/operations/listaccountingjournalsresponse.md
 docs/models/operations/listaccountingtransfersrequest.md
 docs/models/operations/listaccountingtransfersresponse.md
+docs/models/operations/getaccountingprofilerequest.md
+docs/models/operations/getaccountingprofileresponse.md
 docs/models/shared/errormessage.md
 docs/models/shared/accountingbankaccount.md
 docs/models/shared/metadata.md
@@ -767,11 +767,6 @@ docs/models/shared/dataconnectionstatus.md
 docs/models/shared/dataconnectionerror.md
 docs/models/shared/companyrequestbody.md
 docs/models/shared/companies.md
-docs/models/shared/accountingcompanyinfoaccountingaddress.md
-docs/models/shared/accountingcompanyinfophone.md
-docs/models/shared/accountingcompanyinfoweblinktype.md
-docs/models/shared/accountingcompanyinfoweblink.md
-docs/models/shared/accountingcompanyinfo.md
 docs/models/shared/commercecompanyinfo.md
 docs/models/shared/itemstype.md
 docs/models/shared/weblinksitems.md
@@ -906,6 +901,11 @@ docs/models/shared/accountingdirectcosts.md
 docs/models/shared/accountingjournalentries.md
 docs/models/shared/accountingjournals.md
 docs/models/shared/accountingtransfers.md
+docs/models/shared/accountingcompanyinfoaccountingaddress.md
+docs/models/shared/accountingcompanyinfophone.md
+docs/models/shared/accountingcompanyinfoweblinktype.md
+docs/models/shared/accountingcompanyinfoweblink.md
+docs/models/shared/accountingcompanyinfo.md
 docs/models/shared/security.md
 pkg/models/operations/options.go
 .gitattributes

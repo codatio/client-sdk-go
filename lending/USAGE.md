@@ -20,16 +20,14 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.AccountingBankData.GetAccount(ctx, operations.GetAccountingBankAccountRequest{
-        AccountID: "corrupti",
+    res, err := s.GetAccountingProfile(ctx, operations.GetAccountingProfileRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.AccountingBankAccount != nil {
+    if res.AccountingCompanyInfo != nil {
         // handle response
     }
 }

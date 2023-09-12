@@ -1,4 +1,4 @@
-# Banking
+# BankStatements
 
 ## Overview
 
@@ -47,8 +47,8 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Banking.GetBankAccount(ctx, operations.GetBankingAccountRequest{
-        AccountID: "molestiae",
+    res, err := s.BankStatements.GetBankAccount(ctx, operations.GetBankingAccountRequest{
+        AccountID: "maiores",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -108,10 +108,10 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Banking.GetBankTransaction(ctx, operations.GetBankingTransactionRequest{
+    res, err := s.BankStatements.GetBankTransaction(ctx, operations.GetBankingTransactionRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TransactionID: "quod",
+        TransactionID: "molestiae",
     })
     if err != nil {
         log.Fatal(err)
@@ -169,7 +169,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Banking.GetBankTransactionCategory(ctx, operations.GetBankingTransactionCategoryRequest{
+    res, err := s.BankStatements.GetBankTransactionCategory(ctx, operations.GetBankingTransactionCategoryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         TransactionCategoryID: "quod",
@@ -227,11 +227,11 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Banking.GetCategorizedBankStatement(ctx, operations.GetCategorizedBankStatementRequest{
+    res, err := s.BankStatements.GetCategorizedBankStatement(ctx, operations.GetCategorizedBankStatementRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         Page: codatlending.Int(1),
         PageSize: codatlending.Int(100),
-        Query: codatlending.String("esse"),
+        Query: codatlending.String("quod"),
     })
     if err != nil {
         log.Fatal(err)
@@ -287,13 +287,13 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Banking.ListBankAccountBalances(ctx, operations.ListBankingAccountBalancesRequest{
+    res, err := s.BankStatements.ListBankAccountBalances(ctx, operations.ListBankingAccountBalancesRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         OrderBy: codatlending.String("-modifiedDate"),
         Page: codatlending.Int(1),
         PageSize: codatlending.Int(100),
-        Query: codatlending.String("totam"),
+        Query: codatlending.String("esse"),
     })
     if err != nil {
         log.Fatal(err)
@@ -349,13 +349,13 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Banking.ListBankAccounts(ctx, operations.ListBankingAccountsRequest{
+    res, err := s.BankStatements.ListBankAccounts(ctx, operations.ListBankingAccountsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         OrderBy: codatlending.String("-modifiedDate"),
         Page: codatlending.Int(1),
         PageSize: codatlending.Int(100),
-        Query: codatlending.String("porro"),
+        Query: codatlending.String("totam"),
     })
     if err != nil {
         log.Fatal(err)
@@ -411,13 +411,13 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Banking.ListBankTransactionCategories(ctx, operations.ListBankingTransactionCategoriesRequest{
+    res, err := s.BankStatements.ListBankTransactionCategories(ctx, operations.ListBankingTransactionCategoriesRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         OrderBy: codatlending.String("-modifiedDate"),
         Page: codatlending.Int(1),
         PageSize: codatlending.Int(100),
-        Query: codatlending.String("dolorum"),
+        Query: codatlending.String("porro"),
     })
     if err != nil {
         log.Fatal(err)
@@ -473,13 +473,13 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Banking.ListBankTransactions(ctx, operations.ListBankingTransactionsRequest{
+    res, err := s.BankStatements.ListBankTransactions(ctx, operations.ListBankingTransactionsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         OrderBy: codatlending.String("-modifiedDate"),
         Page: codatlending.Int(1),
         PageSize: codatlending.Int(100),
-        Query: codatlending.String("dicta"),
+        Query: codatlending.String("dolorum"),
     })
     if err != nil {
         log.Fatal(err)

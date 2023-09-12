@@ -43,7 +43,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.AccountingBankData.GetAccount(ctx, operations.GetAccountingBankAccountRequest{
-        AccountID: "provident",
+        AccountID: "corrupti",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -107,7 +107,7 @@ func main() {
         OrderBy: codatlending.String("-modifiedDate"),
         Page: codatlending.Int(1),
         PageSize: codatlending.Int(100),
-        Query: codatlending.String("distinctio"),
+        Query: codatlending.String("provident"),
     })
     if err != nil {
         log.Fatal(err)
@@ -166,13 +166,13 @@ func main() {
 
     ctx := context.Background()
     res, err := s.AccountingBankData.ListTransactions(ctx, operations.ListAccountingBankAccountTransactionsRequest{
-        AccountID: "quibusdam",
+        AccountID: "distinctio",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         OrderBy: codatlending.String("-modifiedDate"),
         Page: codatlending.Int(1),
         PageSize: codatlending.Int(100),
-        Query: codatlending.String("unde"),
+        Query: codatlending.String("quibusdam"),
     })
     if err != nil {
         log.Fatal(err)

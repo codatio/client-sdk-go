@@ -110,7 +110,7 @@ func main() {
     ctx := context.Background()
     res, err := s.ExcelReports.Generate(ctx, operations.GenerateExcelReportRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ReportType: shared.ExcelReportTypesEnhancedInvoices,
+        ReportType: shared.ExcelReportTypesEnhancedCashFlow,
     })
     if err != nil {
         log.Fatal(err)
@@ -167,7 +167,7 @@ func main() {
     ctx := context.Background()
     res, err := s.ExcelReports.GetStatus(ctx, operations.GetExcelReportGenerationStatusRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ReportType: shared.ExcelReportTypesAudit,
+        ReportType: shared.ExcelReportTypesEnhancedInvoices,
     })
     if err != nil {
         log.Fatal(err)

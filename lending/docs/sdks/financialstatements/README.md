@@ -47,7 +47,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.FinancialStatements.GetAccount(ctx, operations.GetAccountingAccountRequest{
-        AccountID: "qui",
+        AccountID: "modi",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -213,7 +213,7 @@ func main() {
     ctx := context.Background()
     res, err := s.FinancialStatements.GetCategorizedBalanceSheet(ctx, operations.GetCategorizedBalanceSheetStatementRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        NumberOfPeriods: codatlending.Int64(456150),
+        NumberOfPeriods: codatlending.Int64(736918),
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -269,7 +269,7 @@ func main() {
     ctx := context.Background()
     res, err := s.FinancialStatements.GetCategorizedProfitAndLoss(ctx, operations.GetCategorizedProfitAndLossStatementRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        NumberOfPeriods: codatlending.Int64(216550),
+        NumberOfPeriods: codatlending.Int64(456150),
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -385,7 +385,7 @@ func main() {
         OrderBy: codatlending.String("-modifiedDate"),
         Page: codatlending.Int(1),
         PageSize: codatlending.Int(100),
-        Query: codatlending.String("aspernatur"),
+        Query: codatlending.String("excepturi"),
     })
     if err != nil {
         log.Fatal(err)
