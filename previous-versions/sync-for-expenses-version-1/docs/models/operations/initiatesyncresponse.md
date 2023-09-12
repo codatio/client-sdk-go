@@ -1,4 +1,4 @@
-# IntiateSyncResponse
+# InitiateSyncResponse
 
 
 ## Fields

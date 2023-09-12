@@ -6,9 +6,9 @@ Triggering a new sync of expenses to accounting software.
 
 ### Available Operations
 
-* [IntiateSync](#intiatesync) - Initiate sync
+* [InitiateSync](#initiatesync) - Initiate sync
 
-## IntiateSync
+## InitiateSync
 
 Initiate sync of pending transactions.
 
@@ -33,7 +33,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Sync.IntiateSync(ctx, operations.IntiateSyncRequest{
+    res, err := s.Sync.InitiateSync(ctx, operations.InitiateSyncRequest{
         PostSync: &shared.PostSync{
             DatasetIds: []string{
                 "a674e0f4-67cc-4879-aed1-51a05dfc2ddf",
@@ -53,14 +53,14 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
-| `request`                                                                      | [operations.IntiateSyncRequest](../../models/operations/intiatesyncrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
-| `opts`                                                                         | [][operations.Option](../../models/operations/option.md)                       | :heavy_minus_sign:                                                             | The options for this request.                                                  |
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
+| `request`                                                                        | [operations.InitiateSyncRequest](../../models/operations/initiatesyncrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `opts`                                                                           | [][operations.Option](../../models/operations/option.md)                         | :heavy_minus_sign:                                                               | The options for this request.                                                    |
 
 
 ### Response
 
-**[*operations.IntiateSyncResponse](../../models/operations/intiatesyncresponse.md), error**
+**[*operations.InitiateSyncResponse](../../models/operations/initiatesyncresponse.md), error**
 

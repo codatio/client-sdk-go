@@ -25,9 +25,9 @@ func newSync(sdkConfig sdkConfiguration) *sync {
 	}
 }
 
-// IntiateSync - Initiate sync
+// InitiateSync - Initiate sync
 // Initiate sync of pending transactions.
-func (s *sync) IntiateSync(ctx context.Context, request operations.IntiateSyncRequest, opts ...operations.Option) (*operations.IntiateSyncResponse, error) {
+func (s *sync) InitiateSync(ctx context.Context, request operations.InitiateSyncRequest, opts ...operations.Option) (*operations.InitiateSyncResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -105,7 +105,7 @@ func (s *sync) IntiateSync(ctx context.Context, request operations.IntiateSyncRe
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.IntiateSyncResponse{
+	res := &operations.InitiateSyncResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,

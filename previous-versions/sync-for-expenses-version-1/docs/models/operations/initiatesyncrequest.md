@@ -1,4 +1,4 @@
-# IntiateSyncRequest
+# InitiateSyncRequest
 
 
 ## Fields
