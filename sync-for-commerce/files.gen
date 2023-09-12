@@ -31,6 +31,7 @@ pkg/models/operations/updateconnectionauthorization.go
 pkg/models/operations/updateconnection.go
 pkg/models/operations/getintegrationbranding.go
 pkg/models/operations/listintegrations.go
+pkg/models/operations/getsyncbyid.go
 pkg/models/operations/getlastsuccessfulsync.go
 pkg/models/operations/getlatestsync.go
 pkg/models/operations/getsyncstatus.go
@@ -122,6 +123,8 @@ docs/models/operations/getintegrationbrandingrequest.md
 docs/models/operations/getintegrationbrandingresponse.md
 docs/models/operations/listintegrationsrequest.md
 docs/models/operations/listintegrationsresponse.md
+docs/models/operations/getsyncbyidrequest.md
+docs/models/operations/getsyncbyidresponse.md
 docs/models/operations/getlastsuccessfulsyncrequest.md
 docs/models/operations/getlastsuccessfulsyncresponse.md
 docs/models/operations/getlatestsyncrequest.md

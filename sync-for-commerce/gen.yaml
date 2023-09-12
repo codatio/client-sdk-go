@@ -1,9 +1,9 @@
 configVersion: 1.0.0
 management:
-  docChecksum: 88a95dddb5efc68d3c56f5c351df9d7a
+  docChecksum: 883bbfa9c401b3848976eadfc438fd55
   docVersion: "1.1"
-  speakeasyVersion: 1.82.3
-  generationVersion: 2.107.3
+  speakeasyVersion: 1.82.5
+  generationVersion: 2.108.3
 generation:
   sdkClassName: CodatSyncCommerce
   singleTagPerOp: false
@@ -16,8 +16,9 @@ features:
     globalSecurity: 2.81.1
     globalServerURLs: 2.82.0
     nameOverrides: 2.81.1
+    pagination: 2.81.1
     retries: 2.82.1
 go:
-  version: 1.1.0
+  version: 1.1.1
   maxMethodParams: 0
   packageName: github.com/codatio/client-sdk-go/sync-for-commerce

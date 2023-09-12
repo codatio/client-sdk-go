@@ -6,12 +6,48 @@
 
 ```bash
 go get github.com/codatio/client-sdk-go/sync-for-commerce
+```## SDK Installation
+
+```bash
+go get github.com/codatio/client-sdk-go/sync-for-commerce
 ```<!-- Start SDK Installation -->
 
 <!-- End SDK Installation -->
 
 ## Example Usage
 
+
+```go
+package main
+
+import(
+	"context"
+	"log"
+	"github.com/codatio/client-sdk-go/sync-for-commerce"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/models/shared"
+)
+
+func main() {
+    s := codatsynccommerce.New(
+        codatsynccommerce.WithSecurity(shared.Security{
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
+        }),
+    )
+
+    ctx := context.Background()
+    res, err := s.AdvancedControls.CreateCompany(ctx, shared.CreateCompany{
+        Description: codatsynccommerce.String("Requested early access to the new financing scheme."),
+        Name: "Bank of Dave",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.Company != nil {
+        // handle response
+    }
+}
+```
 
 ```go
 package main
@@ -72,6 +108,44 @@ func main() {
 
 ### [Sync](docs/sdks/sync/README.md)
 
+* [GetLastSuccessfulSync](docs/sdks/sync/README.md#getlastsuccessfulsync) - Last successful sync
+* [GetLatestSync](docs/sdks/sync/README.md#getlatestsync) - Latest sync status
+* [GetStatus](docs/sdks/sync/README.md#getstatus) - Get sync status
+* [List](docs/sdks/sync/README.md#list) - List sync statuses
+* [Request](docs/sdks/sync/README.md#request) - Initiate new sync
+* [RequestForDateRange](docs/sdks/sync/README.md#requestfordaterange) - Initiate sync for specific range
+
+### [SyncFlowSettings](docs/sdks/syncflowsettings/README.md)
+
+* [GetConfigTextSyncFlow](docs/sdks/syncflowsettings/README.md#getconfigtextsyncflow) - Get preferences for text fields
+* [GetVisibleAccounts](docs/sdks/syncflowsettings/README.md#getvisibleaccounts) - List visible accounts
+* [UpdateConfigTextSyncFlow](docs/sdks/syncflowsettings/README.md#updateconfigtextsyncflow) - Update preferences for text fields
+* [UpdateVisibleAccountsSyncFlow](docs/sdks/syncflowsettings/README.md#updatevisibleaccountssyncflow) - Update visible accounts## Available Resources and Operations
+
+
+### [AdvancedControls](docs/sdks/advancedcontrols/README.md)
+
+* [CreateCompany](docs/sdks/advancedcontrols/README.md#createcompany) - Create company
+* [GetConfiguration](docs/sdks/advancedcontrols/README.md#getconfiguration) - Get company configuration
+* [ListCompanies](docs/sdks/advancedcontrols/README.md#listcompanies) - List companies
+* [SetConfiguration](docs/sdks/advancedcontrols/README.md#setconfiguration) - Set configuration
+
+### [Connections](docs/sdks/connections/README.md)
+
+* [Create](docs/sdks/connections/README.md#create) - Create connection
+* [GetSyncFlowURL](docs/sdks/connections/README.md#getsyncflowurl) - Start new sync flow
+* [List](docs/sdks/connections/README.md#list) - List connections
+* [UpdateAuthorization](docs/sdks/connections/README.md#updateauthorization) - Update authorization
+* [UpdateConnection](docs/sdks/connections/README.md#updateconnection) - Update connection
+
+### [Integrations](docs/sdks/integrations/README.md)
+
+* [GetBranding](docs/sdks/integrations/README.md#getbranding) - Get branding for an integration
+* [List](docs/sdks/integrations/README.md#list) - List integrations
+
+### [Sync](docs/sdks/sync/README.md)
+
+* [Get](docs/sdks/sync/README.md#get) - Get sync status
 * [GetLastSuccessfulSync](docs/sdks/sync/README.md#getlastsuccessfulsync) - Last successful sync
 * [GetLatestSync](docs/sdks/sync/README.md#getlatestsync) - Latest sync status
 * [GetStatus](docs/sdks/sync/README.md#getstatus) - Get sync status

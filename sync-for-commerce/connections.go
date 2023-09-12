@@ -10,6 +10,7 @@ import (
 	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/models/sdkerrors"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/utils"
+	"github.com/spyzhov/ajson"
 	"io"
 	"net/http"
 )
@@ -322,10 +323,34 @@ func (s *connections) List(ctx context.Context, request operations.ListConnectio
 
 	contentType := httpRes.Header.Get("Content-Type")
 
+	nextFunc := func() (*operations.ListConnectionsResponse, error) {
+		b, err := ajson.Unmarshal(rawBody)
+		if err != nil {
+			return nil, err
+		}
+		nC, err := ajson.Eval(b, "")
+		if err != nil {
+			return nil, err
+		}
+
+		return s.List(
+			ctx,
+			operations.ListConnectionsRequest{
+				CompanyID: request.CompanyID,
+				OrderBy:   request.OrderBy,
+				Page:      request.Page,
+				PageSize:  request.PageSize,
+				Query:     request.Query,
+			},
+			opts...,
+		)
+	}
+
 	res := &operations.ListConnectionsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
+		Next:        nextFunc,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

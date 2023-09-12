@@ -52,6 +52,8 @@ type ListCompaniesResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
+
+	Next func() (*ListCompaniesResponse, error)
 }
 
 func (o *ListCompaniesResponse) GetCompanies() *shared.Companies {
