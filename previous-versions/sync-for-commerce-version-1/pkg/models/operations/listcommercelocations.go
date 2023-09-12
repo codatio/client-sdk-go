@@ -34,6 +34,8 @@ type ListCommerceLocationsResponse struct {
 	ErrorMessage *shared.ErrorMessage
 	StatusCode   int
 	RawResponse  *http.Response
+
+	Next func() (*ListCommerceLocationsResponse, error)
 }
 
 func (o *ListCommerceLocationsResponse) GetCommerceLocations() *shared.CommerceLocations {

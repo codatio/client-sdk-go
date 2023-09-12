@@ -52,6 +52,8 @@ type ListIntegrationsResponse struct {
 	Integrations *shared.Integrations
 	StatusCode   int
 	RawResponse  *http.Response
+
+	Next func() (*ListIntegrationsResponse, error)
 }
 
 func (o *ListIntegrationsResponse) GetContentType() string {

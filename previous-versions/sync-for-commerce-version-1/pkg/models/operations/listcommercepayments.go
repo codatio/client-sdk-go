@@ -70,6 +70,8 @@ type ListCommercePaymentsResponse struct {
 	ErrorMessage *shared.ErrorMessage
 	StatusCode   int
 	RawResponse  *http.Response
+
+	Next func() (*ListCommercePaymentsResponse, error)
 }
 
 func (o *ListCommercePaymentsResponse) GetCommercePayments() *shared.CommercePayments {
