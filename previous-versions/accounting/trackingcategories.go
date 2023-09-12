@@ -10,6 +10,7 @@ import (
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/sdkerrors"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/utils"
+	"github.com/spyzhov/ajson"
 	"io"
 	"net/http"
 )
@@ -226,10 +227,34 @@ func (s *trackingCategories) List(ctx context.Context, request operations.ListTr
 
 	contentType := httpRes.Header.Get("Content-Type")
 
+	nextFunc := func() (*operations.ListTrackingCategoriesResponse, error) {
+		b, err := ajson.Unmarshal(rawBody)
+		if err != nil {
+			return nil, err
+		}
+		nC, err := ajson.Eval(b, "")
+		if err != nil {
+			return nil, err
+		}
+
+		return s.List(
+			ctx,
+			operations.ListTrackingCategoriesRequest{
+				CompanyID: request.CompanyID,
+				OrderBy:   request.OrderBy,
+				Page:      request.Page,
+				PageSize:  request.PageSize,
+				Query:     request.Query,
+			},
+			opts...,
+		)
+	}
+
 	res := &operations.ListTrackingCategoriesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
+		Next:        nextFunc,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

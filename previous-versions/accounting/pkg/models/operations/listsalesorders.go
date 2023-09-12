@@ -62,6 +62,8 @@ type ListSalesOrdersResponse struct {
 	SalesOrders *shared.SalesOrders
 	StatusCode  int
 	RawResponse *http.Response
+
+	Next func() (*ListSalesOrdersResponse, error)
 }
 
 func (o *ListSalesOrdersResponse) GetContentType() string {

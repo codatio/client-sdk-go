@@ -62,6 +62,8 @@ type ListJournalEntriesResponse struct {
 	JournalEntries *shared.JournalEntries
 	StatusCode     int
 	RawResponse    *http.Response
+
+	Next func() (*ListJournalEntriesResponse, error)
 }
 
 func (o *ListJournalEntriesResponse) GetContentType() string {

@@ -10,6 +10,7 @@ import (
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/sdkerrors"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/utils"
+	"github.com/spyzhov/ajson"
 	"io"
 	"net/http"
 )
@@ -716,10 +717,35 @@ func (s *directIncomes) List(ctx context.Context, request operations.ListDirectI
 
 	contentType := httpRes.Header.Get("Content-Type")
 
+	nextFunc := func() (*operations.ListDirectIncomesResponse, error) {
+		b, err := ajson.Unmarshal(rawBody)
+		if err != nil {
+			return nil, err
+		}
+		nC, err := ajson.Eval(b, "")
+		if err != nil {
+			return nil, err
+		}
+
+		return s.List(
+			ctx,
+			operations.ListDirectIncomesRequest{
+				CompanyID:    request.CompanyID,
+				ConnectionID: request.ConnectionID,
+				OrderBy:      request.OrderBy,
+				Page:         request.Page,
+				PageSize:     request.PageSize,
+				Query:        request.Query,
+			},
+			opts...,
+		)
+	}
+
 	res := &operations.ListDirectIncomesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
+		Next:        nextFunc,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

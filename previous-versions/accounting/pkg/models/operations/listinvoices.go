@@ -62,6 +62,8 @@ type ListInvoicesResponse struct {
 	Invoices    *shared.Invoices
 	StatusCode  int
 	RawResponse *http.Response
+
+	Next func() (*ListInvoicesResponse, error)
 }
 
 func (o *ListInvoicesResponse) GetContentType() string {

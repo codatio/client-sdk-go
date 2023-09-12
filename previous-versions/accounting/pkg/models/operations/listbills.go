@@ -62,6 +62,8 @@ type ListBillsResponse struct {
 	ErrorMessage *shared.ErrorMessage
 	StatusCode   int
 	RawResponse  *http.Response
+
+	Next func() (*ListBillsResponse, error)
 }
 
 func (o *ListBillsResponse) GetBills() *shared.Bills {

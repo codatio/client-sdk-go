@@ -62,6 +62,8 @@ type ListSuppliersResponse struct {
 	RawResponse  *http.Response
 	// Success
 	Suppliers *shared.Suppliers
+
+	Next func() (*ListSuppliersResponse, error)
 }
 
 func (o *ListSuppliersResponse) GetContentType() string {

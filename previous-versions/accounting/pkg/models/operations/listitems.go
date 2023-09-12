@@ -62,6 +62,8 @@ type ListItemsResponse struct {
 	Items       *shared.Items1
 	StatusCode  int
 	RawResponse *http.Response
+
+	Next func() (*ListItemsResponse, error)
 }
 
 func (o *ListItemsResponse) GetContentType() string {

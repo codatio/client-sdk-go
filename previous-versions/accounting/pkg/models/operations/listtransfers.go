@@ -70,6 +70,8 @@ type ListTransfersResponse struct {
 	RawResponse  *http.Response
 	// Success
 	Transfers *shared.Transfers
+
+	Next func() (*ListTransfersResponse, error)
 }
 
 func (o *ListTransfersResponse) GetContentType() string {
