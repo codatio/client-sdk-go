@@ -70,6 +70,8 @@ type ListAccountBalancesResponse struct {
 	ErrorMessage *shared.ErrorMessage
 	StatusCode   int
 	RawResponse  *http.Response
+
+	Next func() (*ListAccountBalancesResponse, error)
 }
 
 func (o *ListAccountBalancesResponse) GetAccountBalances() *shared.AccountBalances {

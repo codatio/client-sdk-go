@@ -10,6 +10,7 @@ import (
 	"github.com/codatio/client-sdk-go/previous-versions/banking/pkg/models/sdkerrors"
 	"github.com/codatio/client-sdk-go/previous-versions/banking/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/previous-versions/banking/pkg/utils"
+	"github.com/spyzhov/ajson"
 	"io"
 	"net/http"
 )
@@ -208,10 +209,35 @@ func (s *transactions) List(ctx context.Context, request operations.ListTransact
 
 	contentType := httpRes.Header.Get("Content-Type")
 
+	nextFunc := func() (*operations.ListTransactionsResponse, error) {
+		b, err := ajson.Unmarshal(rawBody)
+		if err != nil {
+			return nil, err
+		}
+		nC, err := ajson.Eval(b, "")
+		if err != nil {
+			return nil, err
+		}
+
+		return s.List(
+			ctx,
+			operations.ListTransactionsRequest{
+				CompanyID:    request.CompanyID,
+				ConnectionID: request.ConnectionID,
+				OrderBy:      request.OrderBy,
+				Page:         request.Page,
+				PageSize:     request.PageSize,
+				Query:        request.Query,
+			},
+			opts...,
+		)
+	}
+
 	res := &operations.ListTransactionsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
+		Next:        nextFunc,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -332,10 +358,34 @@ func (s *transactions) ListBankTransactions(ctx context.Context, request operati
 
 	contentType := httpRes.Header.Get("Content-Type")
 
+	nextFunc := func() (*operations.ListBankTransactionsResponse, error) {
+		b, err := ajson.Unmarshal(rawBody)
+		if err != nil {
+			return nil, err
+		}
+		nC, err := ajson.Eval(b, "")
+		if err != nil {
+			return nil, err
+		}
+
+		return s.ListBankTransactions(
+			ctx,
+			operations.ListBankTransactionsRequest{
+				CompanyID: request.CompanyID,
+				OrderBy:   request.OrderBy,
+				Page:      request.Page,
+				PageSize:  request.PageSize,
+				Query:     request.Query,
+			},
+			opts...,
+		)
+	}
+
 	res := &operations.ListBankTransactionsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
+		Next:        nextFunc,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

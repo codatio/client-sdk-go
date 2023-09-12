@@ -6,6 +6,10 @@
 
 ```bash
 go get github.com/codatio/client-sdk-go/previous-versions/banking
+```## SDK Installation
+
+```bash
+go get github.com/codatio/client-sdk-go/previous-versions/banking
 ```<!-- Start SDK Installation -->
 
 <!-- End SDK Installation -->
@@ -48,11 +52,69 @@ func main() {
         // handle response
     }
 }
+```
+
+```go
+package main
+
+import(
+	"context"
+	"log"
+	"github.com/codatio/client-sdk-go/previous-versions/banking"
+	"github.com/codatio/client-sdk-go/previous-versions/banking/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/banking/pkg/models/operations"
+)
+
+func main() {
+    s := codatbanking.New(
+        codatbanking.WithSecurity(shared.Security{
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
+        }),
+    )
+
+    ctx := context.Background()
+    res, err := s.AccountBalances.List(ctx, operations.ListAccountBalancesRequest{
+        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+        ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
+        OrderBy: codatbanking.String("-modifiedDate"),
+        Page: codatbanking.Int(1),
+        PageSize: codatbanking.Int(100),
+        Query: codatbanking.String("corrupti"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.AccountBalances != nil {
+        // handle response
+    }
+}
 ```<!-- Start SDK Example Usage -->
 
 <!-- End SDK Example Usage -->
 
 ## Available Resources and Operations
+
+
+### [AccountBalances](docs/sdks/accountbalances/README.md)
+
+* [List](docs/sdks/accountbalances/README.md#list) - List account balances
+
+### [Accounts](docs/sdks/accounts/README.md)
+
+* [Get](docs/sdks/accounts/README.md#get) - Get account
+* [List](docs/sdks/accounts/README.md#list) - List accounts
+
+### [TransactionCategories](docs/sdks/transactioncategories/README.md)
+
+* [Get](docs/sdks/transactioncategories/README.md#get) - Get transaction category
+* [List](docs/sdks/transactioncategories/README.md#list) - List transaction categories
+
+### [Transactions](docs/sdks/transactions/README.md)
+
+* [Get](docs/sdks/transactions/README.md#get) - Get bank transaction
+* [List](docs/sdks/transactions/README.md#list) - List transactions
+* [~~ListBankTransactions~~](docs/sdks/transactions/README.md#listbanktransactions) - List banking transactions :warning: **Deprecated** Use `List` instead.## Available Resources and Operations
 
 
 ### [AccountBalances](docs/sdks/accountbalances/README.md)

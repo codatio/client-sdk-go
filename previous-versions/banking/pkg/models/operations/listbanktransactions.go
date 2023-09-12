@@ -60,6 +60,8 @@ type ListBankTransactionsResponse struct {
 	RawResponse *http.Response
 	// Success
 	Transactions *shared.Transactions
+
+	Next func() (*ListBankTransactionsResponse, error)
 }
 
 func (o *ListBankTransactionsResponse) GetContentType() string {

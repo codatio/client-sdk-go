@@ -70,6 +70,8 @@ type ListTransactionCategoriesResponse struct {
 	RawResponse  *http.Response
 	// Success
 	TransactionCategories *shared.TransactionCategories
+
+	Next func() (*ListTransactionCategoriesResponse, error)
 }
 
 func (o *ListTransactionCategoriesResponse) GetContentType() string {

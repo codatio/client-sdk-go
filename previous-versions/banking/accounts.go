@@ -10,6 +10,7 @@ import (
 	"github.com/codatio/client-sdk-go/previous-versions/banking/pkg/models/sdkerrors"
 	"github.com/codatio/client-sdk-go/previous-versions/banking/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/previous-versions/banking/pkg/utils"
+	"github.com/spyzhov/ajson"
 	"io"
 	"net/http"
 )
@@ -208,10 +209,35 @@ func (s *accounts) List(ctx context.Context, request operations.ListAccountsRequ
 
 	contentType := httpRes.Header.Get("Content-Type")
 
+	nextFunc := func() (*operations.ListAccountsResponse, error) {
+		b, err := ajson.Unmarshal(rawBody)
+		if err != nil {
+			return nil, err
+		}
+		nC, err := ajson.Eval(b, "")
+		if err != nil {
+			return nil, err
+		}
+
+		return s.List(
+			ctx,
+			operations.ListAccountsRequest{
+				CompanyID:    request.CompanyID,
+				ConnectionID: request.ConnectionID,
+				OrderBy:      request.OrderBy,
+				Page:         request.Page,
+				PageSize:     request.PageSize,
+				Query:        request.Query,
+			},
+			opts...,
+		)
+	}
+
 	res := &operations.ListAccountsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
+		Next:        nextFunc,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
