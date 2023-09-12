@@ -10,6 +10,7 @@ import (
 	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/sdkerrors"
 	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/utils"
+	"github.com/spyzhov/ajson"
 	"io"
 	"net/http"
 )
@@ -334,10 +335,34 @@ func (s *pushData) ListOperations(ctx context.Context, request operations.GetCom
 
 	contentType := httpRes.Header.Get("Content-Type")
 
+	nextFunc := func() (*operations.GetCompanyPushHistoryResponse, error) {
+		b, err := ajson.Unmarshal(rawBody)
+		if err != nil {
+			return nil, err
+		}
+		nC, err := ajson.Eval(b, "")
+		if err != nil {
+			return nil, err
+		}
+
+		return s.ListOperations(
+			ctx,
+			operations.GetCompanyPushHistoryRequest{
+				CompanyID: request.CompanyID,
+				OrderBy:   request.OrderBy,
+				Page:      request.Page,
+				PageSize:  request.PageSize,
+				Query:     request.Query,
+			},
+			opts...,
+		)
+	}
+
 	res := &operations.GetCompanyPushHistoryResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
+		Next:        nextFunc,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

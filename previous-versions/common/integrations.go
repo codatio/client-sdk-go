@@ -10,6 +10,7 @@ import (
 	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/sdkerrors"
 	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/utils"
+	"github.com/spyzhov/ajson"
 	"io"
 	"net/http"
 	"strings"
@@ -324,10 +325,33 @@ func (s *integrations) List(ctx context.Context, request operations.ListIntegrat
 
 	contentType := httpRes.Header.Get("Content-Type")
 
+	nextFunc := func() (*operations.ListIntegrationsResponse, error) {
+		b, err := ajson.Unmarshal(rawBody)
+		if err != nil {
+			return nil, err
+		}
+		nC, err := ajson.Eval(b, "")
+		if err != nil {
+			return nil, err
+		}
+
+		return s.List(
+			ctx,
+			operations.ListIntegrationsRequest{
+				OrderBy:  request.OrderBy,
+				Page:     request.Page,
+				PageSize: request.PageSize,
+				Query:    request.Query,
+			},
+			opts...,
+		)
+	}
+
 	res := &operations.ListIntegrationsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
+		Next:        nextFunc,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
