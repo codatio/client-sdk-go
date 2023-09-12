@@ -34,6 +34,8 @@ type ListLocationsResponse struct {
 	Locations   *shared.Locations
 	StatusCode  int
 	RawResponse *http.Response
+
+	Next func() (*ListLocationsResponse, error)
 }
 
 func (o *ListLocationsResponse) GetContentType() string {

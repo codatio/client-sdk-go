@@ -70,6 +70,8 @@ type ListProductCategoriesResponse struct {
 	ProductCategories *shared.ProductCategories
 	StatusCode        int
 	RawResponse       *http.Response
+
+	Next func() (*ListProductCategoriesResponse, error)
 }
 
 func (o *ListProductCategoriesResponse) GetContentType() string {

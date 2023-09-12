@@ -70,6 +70,8 @@ type ListCustomersResponse struct {
 	ErrorMessage *shared.ErrorMessage
 	StatusCode   int
 	RawResponse  *http.Response
+
+	Next func() (*ListCustomersResponse, error)
 }
 
 func (o *ListCustomersResponse) GetContentType() string {

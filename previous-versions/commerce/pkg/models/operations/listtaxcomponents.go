@@ -70,6 +70,8 @@ type ListTaxComponentsResponse struct {
 	RawResponse  *http.Response
 	// OK
 	TaxComponents *shared.TaxComponents
+
+	Next func() (*ListTaxComponentsResponse, error)
 }
 
 func (o *ListTaxComponentsResponse) GetContentType() string {

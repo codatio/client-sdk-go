@@ -70,6 +70,8 @@ type ListPaymentMethodsResponse struct {
 	PaymentMethods *shared.PaymentMethods
 	StatusCode     int
 	RawResponse    *http.Response
+
+	Next func() (*ListPaymentMethodsResponse, error)
 }
 
 func (o *ListPaymentMethodsResponse) GetContentType() string {
