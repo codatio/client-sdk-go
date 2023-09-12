@@ -62,6 +62,8 @@ type ListPullOperationsResponse struct {
 	PullOperations *shared.PullOperations
 	StatusCode     int
 	RawResponse    *http.Response
+
+	Next func() (*ListPullOperationsResponse, error)
 }
 
 func (o *ListPullOperationsResponse) GetContentType() string {

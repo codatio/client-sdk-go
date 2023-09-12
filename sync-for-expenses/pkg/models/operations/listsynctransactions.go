@@ -9,12 +9,12 @@ import (
 
 type ListSyncTransactionsRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a sync.
+	SyncID string `pathParam:"style=simple,explode=false,name=syncId"`
 	// Page number. [Read more](https://docs.codat.io/using-the-api/paging).
 	Page *int `queryParam:"style=form,explode=true,name=page"`
 	// Number of records to return in a page. [Read more](https://docs.codat.io/using-the-api/paging).
 	PageSize *int `queryParam:"style=form,explode=true,name=pageSize"`
-	// Unique identifier for a sync.
-	SyncID string `pathParam:"style=simple,explode=false,name=syncId"`
 }
 
 func (o *ListSyncTransactionsRequest) GetCompanyID() string {
@@ -22,6 +22,13 @@ func (o *ListSyncTransactionsRequest) GetCompanyID() string {
 		return ""
 	}
 	return o.CompanyID
+}
+
+func (o *ListSyncTransactionsRequest) GetSyncID() string {
+	if o == nil {
+		return ""
+	}
+	return o.SyncID
 }
 
 func (o *ListSyncTransactionsRequest) GetPage() *int {
@@ -38,13 +45,6 @@ func (o *ListSyncTransactionsRequest) GetPageSize() *int {
 	return o.PageSize
 }
 
-func (o *ListSyncTransactionsRequest) GetSyncID() string {
-	if o == nil {
-		return ""
-	}
-	return o.SyncID
-}
-
 type ListSyncTransactionsResponse struct {
 	ContentType string
 	// Your API request was not properly authorized.
@@ -53,6 +53,8 @@ type ListSyncTransactionsResponse struct {
 	RawResponse  *http.Response
 	// Success
 	Transactions *shared.Transactions
+
+	Next func() (*ListSyncTransactionsResponse, error)
 }
 
 func (o *ListSyncTransactionsResponse) GetContentType() string {
