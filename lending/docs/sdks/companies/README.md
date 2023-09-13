@@ -28,8 +28,8 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending"
-	"github.com/codatio/client-sdk-go/lending/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v2"
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/shared"
 )
 
 func main() {
@@ -81,9 +81,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending"
-	"github.com/codatio/client-sdk-go/lending/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v2"
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/operations"
 )
 
 func main() {
@@ -133,9 +133,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending"
-	"github.com/codatio/client-sdk-go/lending/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v2"
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/operations"
 )
 
 func main() {
@@ -185,9 +185,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending"
-	"github.com/codatio/client-sdk-go/lending/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v2"
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/operations"
 )
 
 func main() {
@@ -202,7 +202,7 @@ func main() {
         OrderBy: codatlending.String("-modifiedDate"),
         Page: codatlending.Int(1),
         PageSize: codatlending.Int(100),
-        Query: codatlending.String("nam"),
+        Query: codatlending.String("minus"),
     })
     if err != nil {
         log.Fatal(err)
@@ -240,9 +240,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending"
-	"github.com/codatio/client-sdk-go/lending/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v2"
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/operations"
 )
 
 func main() {

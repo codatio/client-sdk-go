@@ -2,15 +2,19 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/types"
+)
+
 // AccountCategoryLevel - An object containing an ordered list of account category levels.
 type AccountCategoryLevel struct {
 	// Confidence level of the category. This will only be populated where `status` is `Suggested`.
-	Confidence *float64 `json:"confidence,omitempty"`
+	Confidence *types.Decimal `json:"confidence,omitempty"`
 	// Account category name.
 	LevelName *string `json:"levelName,omitempty"`
 }
 
-func (o *AccountCategoryLevel) GetConfidence() *float64 {
+func (o *AccountCategoryLevel) GetConfidence() *types.Decimal {
 	if o == nil {
 		return nil
 	}

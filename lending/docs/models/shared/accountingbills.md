@@ -1,7 +1,5 @@
 # AccountingBills
 
-Success
-
 
 ## Fields
 

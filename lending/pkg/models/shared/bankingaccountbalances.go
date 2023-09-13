@@ -2,7 +2,6 @@
 
 package shared
 
-// BankingAccountBalances - Success
 type BankingAccountBalances struct {
 	Links        Links                   `json:"_links"`
 	PageNumber   int64                   `json:"pageNumber"`

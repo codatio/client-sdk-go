@@ -4,8 +4,8 @@ package codatlending
 
 import (
 	"fmt"
-	"github.com/codatio/client-sdk-go/lending/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/pkg/utils"
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/utils"
 	"net/http"
 	"time"
 )
@@ -49,6 +49,7 @@ type sdkConfiguration struct {
 	OpenAPIDocVersion string
 	SDKVersion        string
 	GenVersion        string
+	RetryConfig       *utils.RetryConfig
 }
 
 func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
@@ -59,44 +60,58 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 	return ServerList[c.ServerIndex], nil
 }
 
-// CodatLending - Lending API: An API for uploading and downloading files from 'File Upload' Integrations.
+// CodatLending - Lending API: Our Lending API helps you make smarter credit decisions on small businesses by enabling you to pull your customers' latest data from accounting, banking, and commerce platforms they are already using. It also includes features to help providers verify the accuracy of data and process it more efficiently.
 //
-// The Accounting file upload, Banking file upload, and Business documents file upload integrations provide simple file upload functionality.
+// The Lending API is built on top of the latest accounting, commerce, and banking data, providing you with the most important data points you need to get a full picture of SMB creditworthiness and make a comprehensive assessment of your customers.
 //
-// [Read more...](https://docs.codat.io/other/file-upload)
+// [Explore product](https://docs.codat.io/lending/overview) | [See OpenAPI spec](https://github.com/codatio/oas)
 //
-// [See our OpenAPI spec](https://github.com/codatio/oas)
+// ---
+//
+// ## Endpoints
+//
+// | Endpoints            | Description                                                                                                |
+// |:---------------------|:-----------------------------------------------------------------------------------------------------------|
+// | Companies            | Create and manage your SMB users' companies.                                                               |
+// | Connections          | Create new and manage existing data connections for a company.                                             |
+// | Bank statements      | Retrieve banking data from linked bank accounts.                                                           |
+// | Sales                | Retrieve standardized sales data from a linked commerce platform.                                          |
+// | Financial statements | Financial data and reports from a linked accounting platform.                                              |
+// | Liabilities          | Debt and other liabilities.                                                                                |
+// | Accounts payable     | Data from a linked accounting platform representing money the business owes money to its suppliers.        |
+// | Accounts receivable  | Data from a linked accounting platform representing money owed to the business for sold goods or services. |
+// | Transactions         | Data from a linked accounting platform representing transactions.                                          |
+// | Data integrity       | Match mutable accounting data with immutable banking data to increase confidence in financial data.        |
+// | Company info         | View company profile from the source platform.                                                             |
+// | Excel reports        | Download reports in Excel format.                                                                          |
+// | Categories           | Manage Codat's automatic account categorization functionality.                                             |
+// | Manage data          | Control how data is retrieved from an integration.                                                         |
+// | File upload          | Endpoints to manage uploaded files.                                                                        |
 type CodatLending struct {
-	// AccountingBankData - Access bank transactions from an accounting platform.
+	// Access bank transactions from an accounting platform.
 	AccountingBankData *accountingBankData
-	// AccountsPayable - Data from a linked accounting platform representing money the business owes money to its suppliers.
+	// Data from a linked accounting platform representing money the business owes money to its suppliers.
 	AccountsPayable *accountsPayable
-	// AccountsReceivable - Data from a linked accounting platform representing money owed to the business for sold goods or services.
-	AccountsReceivable *accountsReceivable
-	// CashFlow - Retrieve banking data from linked bank accounts.
-	CashFlow *cashFlow
-	// Companies - Create and manage your Codat companies.
+	// Create and manage your Codat companies.
 	Companies *companies
-	// CompanyInfo - View company information fetched from the source platform.
+	// View company information fetched from the source platform.
 	CompanyInfo *companyInfo
-	// Connections - Manage your companies' data connections.
+	// Manage your companies' data connections.
 	Connections *connections
-	// DataIntegrity - Match mutable accounting data with immutable banking data to increase confidence in financial data.
+	// Match mutable accounting data with immutable banking data to increase confidence in financial data.
 	DataIntegrity *dataIntegrity
-	// ExcelReports - Downloadable reports
+	// Download reports in Excel format.
 	ExcelReports *excelReports
-	// FileUpload - Endpoints to manage uploaded files.
+	// Endpoints to manage uploaded files.
 	FileUpload *fileUpload
-	// Financials - Financial data and reports from a linked accounting platform.
-	Financials *financials
-	// Liabilities - Debt and other liabilities.
-	Liabilities *liabilities
-	// ManageData - Control how data is retrieved from an integration.
-	ManageData *manageData
-	// Sales - Retrieve standardized sales data from a linked commerce platform.
-	Sales *sales
-	// Transactions - Data from a linked accounting platform representing transactions.
-	Transactions *transactions
+	// Debt and other liabilities.
+	Liabilities         *liabilities
+	AccountsReceivable  *accountsReceivable
+	Banking             *banking
+	FinancialStatements *financialStatements
+	ManageData          *manageData
+	Sales               *sales
+	Transactions        *transactions
 
 	sdkConfiguration sdkConfiguration
 }
@@ -146,14 +161,20 @@ func WithSecurity(security shared.Security) SDKOption {
 	}
 }
 
+func WithRetryConfig(retryConfig utils.RetryConfig) SDKOption {
+	return func(sdk *CodatLending) {
+		sdk.sdkConfiguration.RetryConfig = &retryConfig
+	}
+}
+
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *CodatLending {
 	sdk := &CodatLending{
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "0.1.0",
-			GenVersion:        "2.91.4",
+			SDKVersion:        "2.0.0",
+			GenVersion:        "2.109.3",
 		},
 	}
 	for _, opt := range opts {
@@ -176,10 +197,6 @@ func New(opts ...SDKOption) *CodatLending {
 
 	sdk.AccountsPayable = newAccountsPayable(sdk.sdkConfiguration)
 
-	sdk.AccountsReceivable = newAccountsReceivable(sdk.sdkConfiguration)
-
-	sdk.CashFlow = newCashFlow(sdk.sdkConfiguration)
-
 	sdk.Companies = newCompanies(sdk.sdkConfiguration)
 
 	sdk.CompanyInfo = newCompanyInfo(sdk.sdkConfiguration)
@@ -192,9 +209,13 @@ func New(opts ...SDKOption) *CodatLending {
 
 	sdk.FileUpload = newFileUpload(sdk.sdkConfiguration)
 
-	sdk.Financials = newFinancials(sdk.sdkConfiguration)
-
 	sdk.Liabilities = newLiabilities(sdk.sdkConfiguration)
+
+	sdk.AccountsReceivable = newAccountsReceivable(sdk.sdkConfiguration)
+
+	sdk.Banking = newBanking(sdk.sdkConfiguration)
+
+	sdk.FinancialStatements = newFinancialStatements(sdk.sdkConfiguration)
 
 	sdk.ManageData = newManageData(sdk.sdkConfiguration)
 

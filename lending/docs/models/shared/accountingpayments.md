@@ -1,7 +1,5 @@
 # AccountingPayments
 
-Success
-
 
 ## Fields
 

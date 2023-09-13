@@ -1,7 +1,5 @@
 # AccountingBillPayments
 
-Success
-
 
 ## Fields
 

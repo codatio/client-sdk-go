@@ -2,10 +2,14 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/types"
+)
+
 type ReportComponentMeasure struct {
-	Index              *int64   `json:"index,omitempty"`
-	MeasureDisplayName *string  `json:"measureDisplayName,omitempty"`
-	Value              *float64 `json:"value,omitempty"`
+	Index              *int64         `json:"index,omitempty"`
+	MeasureDisplayName *string        `json:"measureDisplayName,omitempty"`
+	Value              *types.Decimal `json:"value,omitempty"`
 }
 
 func (o *ReportComponentMeasure) GetIndex() *int64 {
@@ -22,7 +26,7 @@ func (o *ReportComponentMeasure) GetMeasureDisplayName() *string {
 	return o.MeasureDisplayName
 }
 
-func (o *ReportComponentMeasure) GetValue() *float64 {
+func (o *ReportComponentMeasure) GetValue() *types.Decimal {
 	if o == nil {
 		return nil
 	}

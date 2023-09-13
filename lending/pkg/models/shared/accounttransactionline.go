@@ -2,9 +2,13 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/types"
+)
+
 type AccountTransactionLine struct {
 	// Amount in the bill payment currency.
-	Amount *float64 `json:"amount,omitempty"`
+	Amount *types.Decimal `json:"amount,omitempty"`
 	// Description of the account transaction.
 	Description *string `json:"description,omitempty"`
 	// Links the current record to the underlying record or data type that created it.
@@ -13,7 +17,7 @@ type AccountTransactionLine struct {
 	RecordRef *RecordRef `json:"recordRef,omitempty"`
 }
 
-func (o *AccountTransactionLine) GetAmount() *float64 {
+func (o *AccountTransactionLine) GetAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}

@@ -2,12 +2,16 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/types"
+)
+
 type BillPaymentLineLink struct {
 	// Amount by which the balance of the linked entity is altered, in the currency of the linked entity.
 	//
 	// - A negative link amount reduces the outstanding amount on the accounts payable account.
 	// - A positive link amount increases the outstanding amount on the accounts payable account.
-	Amount *float64 `json:"amount,omitempty"`
+	Amount *types.Decimal `json:"amount,omitempty"`
 	// Rate to convert the total amount of the payment into the base currency for the company at the time of the payment.
 	//
 	// Currency rates in Codat are implemented as the multiple of foreign currency units to each base currency unit.
@@ -33,21 +37,21 @@ type BillPaymentLineLink struct {
 	// | **GBP**          | £20            | 1.277         | $25.54                     |
 	// | **EUR**          | €20            | 1.134         | $22.68                     |
 	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
-	CurrencyRate *float64 `json:"currencyRate,omitempty"`
+	CurrencyRate *types.Decimal `json:"currencyRate,omitempty"`
 	// Unique identifier of the transaction represented by the link.
 	ID *string `json:"id,omitempty"`
 	// Types of links to bill payment lines.
 	Type BillPaymentLineLinkType `json:"type"`
 }
 
-func (o *BillPaymentLineLink) GetAmount() *float64 {
+func (o *BillPaymentLineLink) GetAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}
 	return o.Amount
 }
 
-func (o *BillPaymentLineLink) GetCurrencyRate() *float64 {
+func (o *BillPaymentLineLink) GetCurrencyRate() *types.Decimal {
 	if o == nil {
 		return nil
 	}

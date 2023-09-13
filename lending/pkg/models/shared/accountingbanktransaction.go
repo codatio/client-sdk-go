@@ -2,6 +2,10 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/types"
+)
+
 // AccountingBankTransaction - > **Accessing Bank Accounts through Banking API**
 // >
 // > This datatype was originally used for accessing bank account data both in accounting integrations and open banking aggregators.
@@ -19,9 +23,9 @@ package shared
 // * Current account balance.
 // * Transaction type, for example, credit, debit, or transfer.
 type AccountingBankTransaction struct {
-	AccountID *string  `json:"accountId,omitempty"`
-	Amount    *float64 `json:"amount,omitempty"`
-	Balance   *float64 `json:"balance,omitempty"`
+	AccountID *string        `json:"accountId,omitempty"`
+	Amount    *types.Decimal `json:"amount,omitempty"`
+	Balance   *types.Decimal `json:"balance,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -58,14 +62,14 @@ func (o *AccountingBankTransaction) GetAccountID() *string {
 	return o.AccountID
 }
 
-func (o *AccountingBankTransaction) GetAmount() *float64 {
+func (o *AccountingBankTransaction) GetAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}
 	return o.Amount
 }
 
-func (o *AccountingBankTransaction) GetBalance() *float64 {
+func (o *AccountingBankTransaction) GetBalance() *types.Decimal {
 	if o == nil {
 		return nil
 	}

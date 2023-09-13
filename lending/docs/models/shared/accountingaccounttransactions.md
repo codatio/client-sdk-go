@@ -1,7 +1,5 @@
 # AccountingAccountTransactions
 
-Success
-
 
 ## Fields
 

@@ -2,11 +2,15 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/types"
+)
+
 type OrderDiscountAllocation struct {
 	// Name of the discount in the commerce or point of sale platform.
 	Name *string `json:"name,omitempty"`
 	// Total amount of discount applied.
-	TotalAmount *float64 `json:"totalAmount,omitempty"`
+	TotalAmount *types.Decimal `json:"totalAmount,omitempty"`
 }
 
 func (o *OrderDiscountAllocation) GetName() *string {
@@ -16,7 +20,7 @@ func (o *OrderDiscountAllocation) GetName() *string {
 	return o.Name
 }
 
-func (o *OrderDiscountAllocation) GetTotalAmount() *float64 {
+func (o *OrderDiscountAllocation) GetTotalAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}

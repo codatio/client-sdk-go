@@ -2,7 +2,6 @@
 
 package shared
 
-// ExcelStatus - OK
 type ExcelStatus struct {
 	// Error details in case the report generation request was unsuccessful.
 	ErrorMessage *string `json:"errorMessage,omitempty"`

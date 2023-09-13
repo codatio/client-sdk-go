@@ -2,11 +2,15 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/types"
+)
+
 type TransferAccount struct {
 	// Data types that reference an account, for example bill and invoice line items, use an accountRef that includes the ID and name of the linked account.
 	AccountRef *AccountRef `json:"accountRef,omitempty"`
 	// The amount transferred between accounts.
-	Amount *float64 `json:"amount,omitempty"`
+	Amount *types.Decimal `json:"amount,omitempty"`
 	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code, e.g. _GBP_.
 	//
 	// ## Unknown currencies
@@ -24,7 +28,7 @@ func (o *TransferAccount) GetAccountRef() *AccountRef {
 	return o.AccountRef
 }
 
-func (o *TransferAccount) GetAmount() *float64 {
+func (o *TransferAccount) GetAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}

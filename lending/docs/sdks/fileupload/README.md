@@ -22,9 +22,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending"
-	"github.com/codatio/client-sdk-go/lending/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v2"
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/operations"
 )
 
 func main() {
@@ -75,9 +75,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending"
-	"github.com/codatio/client-sdk-go/lending/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v2"
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/operations"
 )
 
 func main() {
@@ -133,9 +133,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending"
-	"github.com/codatio/client-sdk-go/lending/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v2"
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/operations"
 )
 
 func main() {
@@ -148,8 +148,8 @@ func main() {
     ctx := context.Background()
     res, err := s.FileUpload.Upload(ctx, operations.UploadFilesRequest{
         RequestBody: &operations.UploadFilesRequestBody{
-            Content: []byte("molestiae"),
-            RequestBody: "modi",
+            Content: []byte("veritatis"),
+            RequestBody: "deserunt",
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",

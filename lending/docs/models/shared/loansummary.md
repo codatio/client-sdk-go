@@ -1,7 +1,5 @@
 # LoanSummary
 
-OK
-
 
 ## Fields
 

@@ -6,12 +6,12 @@ Debt and other liabilities.
 
 ### Available Operations
 
-* [GetLoanSummary](#getloansummary) - Get enhanced loan summaries
-* [ListLoanTransactions](#listloantransactions) - List enhanced loan transactions
+* [GetLoanSummary](#getloansummary) - Get loan summaries
+* [ListLoanTransactions](#listloantransactions) - List loan transactions
 
 ## GetLoanSummary
 
-﻿The *Get enhanced loan summaries* endpoint returns a summary by integration type of all loans identified in each integration.
+The *Get loan summaries* endpoint returns a summary by integration type of all loans identified in each integration.
 
 The endpoint returns a list of a company's [loan summaries](https://docs.codat.io/lending-api#/schemas/LoanSummary) for each valid data connection.
 
@@ -26,9 +26,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending"
-	"github.com/codatio/client-sdk-go/lending/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v2"
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/operations"
 )
 
 func main() {
@@ -68,7 +68,7 @@ func main() {
 
 ## ListLoanTransactions
 
-﻿The *List enhanced loan transactions* endpoint returns all [loan transactions](https://docs.codat.io/lending-api#/schemas/LoanTransactions) identified from a company's accounting, banking, and commerce integrations.
+The *List loan transactions* endpoint returns all [loan transactions](https://docs.codat.io/lending-api#/schemas/LoanTransactions) identified from a company's accounting, banking, and commerce integrations.
 
 This detail gives analysts a better idea of the loan obligations a company may have.
 
@@ -83,9 +83,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending"
-	"github.com/codatio/client-sdk-go/lending/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v2"
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/operations"
 )
 
 func main() {

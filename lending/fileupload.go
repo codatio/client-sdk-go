@@ -6,10 +6,10 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/codatio/client-sdk-go/lending/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/lending/pkg/models/sdkerrors"
-	"github.com/codatio/client-sdk-go/lending/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/pkg/utils"
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/utils"
 	"io"
 	"net/http"
 )
@@ -25,7 +25,7 @@ func newFileUpload(sdkConfig sdkConfiguration) *fileUpload {
 	}
 }
 
-// Download - Download all files for a company
+// Download all files for a company
 // The *Download files* endpoint downloads all files that have  been uploaded by to SMB to Codat. A `date` may be specified to download any files uploaded on the date provided.
 func (s *fileUpload) Download(ctx context.Context, request operations.DownloadFilesRequest, opts ...operations.Option) (*operations.DownloadFilesResponse, error) {
 	o := operations.Options{}
@@ -63,17 +63,22 @@ func (s *fileUpload) Download(ctx context.Context, request operations.DownloadFi
 
 	client := s.sdkConfiguration.SecurityClient
 
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
 		}
 	}
 
@@ -167,17 +172,22 @@ func (s *fileUpload) ListUploaded(ctx context.Context, request operations.ListFi
 
 	client := s.sdkConfiguration.SecurityClient
 
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
 		}
 	}
 
@@ -246,7 +256,7 @@ func (s *fileUpload) ListUploaded(ctx context.Context, request operations.ListFi
 	return res, nil
 }
 
-// Upload - Upload files for a company
+// Upload files for a company
 // The *Upload files* endpoint uploads multiple files provided by the SMB to Codat. This may include personal identity documents, pitch decks, contracts, or files with accounting and banking data.
 //
 // Uploaded files must meet the following requirements:
@@ -287,17 +297,22 @@ func (s *fileUpload) Upload(ctx context.Context, request operations.UploadFilesR
 
 	client := s.sdkConfiguration.SecurityClient
 
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
 		}
 	}
 

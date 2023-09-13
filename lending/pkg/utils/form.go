@@ -10,17 +10,20 @@ import (
 	"strings"
 	"time"
 
-	"github.com/codatio/client-sdk-go/lending/pkg/types"
+	"github.com/ericlagergren/decimal"
+
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/types"
 )
 
 func populateForm(paramName string, explode bool, objType reflect.Type, objValue reflect.Value, delimiter string, getFieldName func(reflect.StructField) string) url.Values {
 
 	formValues := url.Values{}
 
+	if isNil(objType, objValue) {
+		return formValues
+	}
+
 	if objType.Kind() == reflect.Pointer {
-		if objValue.IsNil() {
-			return formValues
-		}
 		objType = objType.Elem()
 		objValue = objValue.Elem()
 	}
@@ -36,6 +39,10 @@ func populateForm(paramName string, explode bool, objType reflect.Type, objValue
 			formValues.Add(paramName, valToString(objValue.Interface()))
 		case big.Int:
 			formValues.Add(paramName, valToString(objValue.Interface()))
+		case types.Decimal:
+			formValues.Add(paramName, valToString(objValue.Interface()))
+		case decimal.Big:
+			formValues.Add(paramName, valToString(objValue.Interface()))
 		default:
 			var items []string
 
@@ -43,11 +50,11 @@ func populateForm(paramName string, explode bool, objType reflect.Type, objValue
 				fieldType := objType.Field(i)
 				valType := objValue.Field(i)
 
-				if valType.Kind() == reflect.Pointer {
-					if valType.IsNil() {
-						continue
-					}
+				if isNil(fieldType.Type, valType) {
+					continue
+				}
 
+				if valType.Kind() == reflect.Pointer {
 					valType = valType.Elem()
 				}
 

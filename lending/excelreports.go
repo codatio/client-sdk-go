@@ -6,15 +6,15 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/codatio/client-sdk-go/lending/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/lending/pkg/models/sdkerrors"
-	"github.com/codatio/client-sdk-go/lending/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/pkg/utils"
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/utils"
 	"io"
 	"net/http"
 )
 
-// excelReports - Downloadable reports
+// excelReports - Download reports in Excel format.
 type excelReports struct {
 	sdkConfiguration sdkConfiguration
 }
@@ -25,7 +25,7 @@ func newExcelReports(sdkConfig sdkConfiguration) *excelReports {
 	}
 }
 
-// Download - Download Excel report
+// Download Excel report
 // The *Download Excel report* endpoint downloads the latest successfully generated Excel report of a specified report type for a given company.
 //
 // The downloadable Excel file is returned in the response. You can save it to your local machine.
@@ -67,17 +67,22 @@ func (s *excelReports) Download(ctx context.Context, request operations.Download
 
 	client := s.sdkConfiguration.SecurityClient
 
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
 		}
 	}
 
@@ -139,12 +144,21 @@ func (s *excelReports) Download(ctx context.Context, request operations.Download
 	return res, nil
 }
 
-// Generate - Generate Excel report
+// Generate Excel report
 // The *Generate Excel report* endpoint requests the production of a downloadable Excel file for a report type specified in the `reportType` query parameter.
 //
 // In response, the endpoint returns the [status](https://docs.codat.io/lending-api#/schemas/ExcelStatus) detailing the current state of the report generation request.
 //
-// You can [learn more](https://docs.codat.io/lending/excel/overview) about valid Excel report types.
+// ### Report types
+//
+// | reportType                                                                           | Description                                                                                                                                   |
+// |--------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
+// | [audit](https://docs.codat.io/lending/excel/audit-report)                            | Identifies inaccurate or out-of-date accounts, helping you to make decisions with confidence.                                                   || [audit](https://docs.codat.io/lending/excel/audit-report)                            | Identify inaccurate or out-of-date accounts, helping you to make decisions with confidence.                                                   |
+// | [enhancedCashFlow](https://docs.codat.io/lending/excel/enhanced-invoices-report)     | Provides a fully categorized list of bank transactions for a company, allowing lenders to accurately forecast a company's cash flow.  |
+// | [enhancedFinancials](https://docs.codat.io/lending/excel/enhanced-financials-report) | Supports decision-making using fully categorized financial statements to allow lenders to automate their underwriting processes.                |
+// | [enhancedInvoices](https://docs.codat.io/lending/excel/enhanced-invoices-report)     | Helps verify that payments have been made against historic invoices. Great for invoice finance lenders.                                       |
+//
+// [Learn more](https://docs.codat.io/lending/excel/overview) about valid Excel report types.
 func (s *excelReports) Generate(ctx context.Context, request operations.GenerateExcelReportRequest, opts ...operations.Option) (*operations.GenerateExcelReportResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -175,17 +189,22 @@ func (s *excelReports) Generate(ctx context.Context, request operations.Generate
 
 	client := s.sdkConfiguration.SecurityClient
 
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
 		}
 	}
 
@@ -288,17 +307,22 @@ func (s *excelReports) GetStatus(ctx context.Context, request operations.GetExce
 
 	client := s.sdkConfiguration.SecurityClient
 
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
 		}
 	}
 

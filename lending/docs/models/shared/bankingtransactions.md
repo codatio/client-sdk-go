@@ -1,7 +1,5 @@
 # BankingTransactions
 
-Success
-
 
 ## Fields
 

@@ -1,7 +1,5 @@
 # AccountingDirectIncomes
 
-Success
-
 
 ## Fields
 
