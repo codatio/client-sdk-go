@@ -122,7 +122,7 @@ docs/models/operations/getconnectionrequest.md
 docs/models/operations/getconnectionresponse.md
 docs/models/operations/listconnectionsrequest.md
 docs/models/operations/listconnectionsresponse.md
-docs/models/operations/unlinkconnectionrequestbody.md
+docs/models/operations/unlinkconnectionupdateconnection.md
 docs/models/operations/unlinkconnectionrequest.md
 docs/models/operations/unlinkconnectionresponse.md
 docs/models/operations/createexpensedatasetrequest.md
