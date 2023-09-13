@@ -33,7 +33,6 @@ func (o *SupplementalDataConfigurationSupplementalDataSourceConfiguration) GetPu
 	return o.PushData
 }
 
-// SupplementalDataConfiguration - OK
 type SupplementalDataConfiguration struct {
 	SupplementalDataConfig map[string]SupplementalDataConfigurationSupplementalDataSourceConfiguration `json:"supplementalDataConfig,omitempty"`
 }

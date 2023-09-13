@@ -1,7 +1,5 @@
 # SupplementalDataConfiguration
 
-OK
-
 
 ## Fields
 

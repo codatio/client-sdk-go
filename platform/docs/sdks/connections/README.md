@@ -259,8 +259,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Connections.Unlink(ctx, operations.UnlinkConnectionRequest{
-        RequestBody: &operations.UnlinkConnectionRequestBody{
-            Status: codatplatform.String("quibusdam"),
+        UpdateConnectionStatus: &shared.UpdateConnectionStatus{
+            Status: shared.DataConnectionStatusDeauthorized.ToPointer(),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -316,9 +316,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Connections.UpdateAuthorization(ctx, operations.UpdateConnectionAuthorizationRequest{
         RequestBody: map[string]string{
-            "nulla": "corrupti",
-            "illum": "vel",
-            "error": "deserunt",
+            "unde": "nulla",
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",

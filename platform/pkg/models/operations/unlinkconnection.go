@@ -7,28 +7,17 @@ import (
 	"net/http"
 )
 
-type UnlinkConnectionRequestBody struct {
-	Status *string `json:"status,omitempty"`
-}
-
-func (o *UnlinkConnectionRequestBody) GetStatus() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Status
-}
-
 type UnlinkConnectionRequest struct {
-	RequestBody  *UnlinkConnectionRequestBody `request:"mediaType=application/json"`
-	CompanyID    string                       `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID string                       `pathParam:"style=simple,explode=false,name=connectionId"`
+	UpdateConnectionStatus *shared.UpdateConnectionStatus `request:"mediaType=application/json"`
+	CompanyID              string                         `pathParam:"style=simple,explode=false,name=companyId"`
+	ConnectionID           string                         `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
-func (o *UnlinkConnectionRequest) GetRequestBody() *UnlinkConnectionRequestBody {
+func (o *UnlinkConnectionRequest) GetUpdateConnectionStatus() *shared.UpdateConnectionStatus {
 	if o == nil {
 		return nil
 	}
-	return o.RequestBody
+	return o.UpdateConnectionStatus
 }
 
 func (o *UnlinkConnectionRequest) GetCompanyID() string {

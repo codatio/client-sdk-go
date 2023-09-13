@@ -39,18 +39,16 @@ func main() {
         Notifiers: shared.CreateRuleNotifiers{
             Emails: []string{
                 "info@client.com",
-                "info@client.com",
-                "info@client.com",
             },
             Webhook: codatplatform.String("https://webhook.client.com"),
         },
-        Type: "doloribus",
+        Type: "iste",
     })
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.Rule != nil {
+    if res.Webhook != nil {
         // handle response
     }
 }
@@ -102,7 +100,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.Rule != nil {
+    if res.Webhook != nil {
         // handle response
     }
 }
@@ -151,13 +149,13 @@ func main() {
         OrderBy: codatplatform.String("-modifiedDate"),
         Page: codatplatform.Int(1),
         PageSize: codatplatform.Int(100),
-        Query: codatplatform.String("sapiente"),
+        Query: codatplatform.String("iure"),
     })
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.Rules != nil {
+    if res.Webhooks != nil {
         // handle response
     }
 }
