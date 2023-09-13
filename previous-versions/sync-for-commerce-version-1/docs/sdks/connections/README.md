@@ -143,8 +143,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Connections.Unlink(ctx, operations.UnlinkConnectionRequest{
-        RequestBody: &operations.UnlinkConnectionRequestBody{
-            Status: codatsynccommerce.String("quidem"),
+        UpdateConnection: &shared.UpdateConnection{
+            Status: shared.DataConnectionStatusUnlinked.ToPointer(),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",

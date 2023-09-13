@@ -356,7 +356,6 @@ docs/models/operations/deleteconnectionrequest.md
 docs/models/operations/deleteconnectionresponse.md
 docs/models/operations/getconnectionrequest.md
 docs/models/operations/getconnectionresponse.md
-docs/models/operations/unlinkconnectionrequestbody.md
 docs/models/operations/unlinkconnectionrequest.md
 docs/models/operations/unlinkconnectionresponse.md
 docs/models/operations/getintegrationbrandingrequest.md
