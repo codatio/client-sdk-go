@@ -2,7 +2,6 @@
 
 package shared
 
-// Summaries - OK
 type Summaries struct {
 	Summaries []DataIntegritySummary `json:"summaries,omitempty"`
 }

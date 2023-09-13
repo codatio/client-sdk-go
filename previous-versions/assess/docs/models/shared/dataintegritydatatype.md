@@ -1,7 +1,5 @@
 # DataIntegrityDataType
 
-A key for a Codat data type.
-
 
 ## Values
 
