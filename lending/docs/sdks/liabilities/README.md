@@ -98,7 +98,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Liabilities.ListLoanTransactions(ctx, operations.ListLoanTransactionsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        SourceType: operations.ListLoanTransactionsSourceTypeBanking,
+        SourceType: operations.ListLoanTransactionsSourceTypeCommerce,
     })
     if err != nil {
         log.Fatal(err)

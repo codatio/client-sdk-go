@@ -14,7 +14,7 @@ import (
 	"net/http"
 )
 
-// excelReports - Downloadable reports
+// excelReports - Download reports in Excel format.
 type excelReports struct {
 	sdkConfiguration sdkConfiguration
 }

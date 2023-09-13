@@ -3,14 +3,9 @@
 package codatlending
 
 import (
-	"bytes"
-	"context"
 	"fmt"
-	"github.com/codatio/client-sdk-go/lending/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/lending/pkg/models/sdkerrors"
 	"github.com/codatio/client-sdk-go/lending/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/pkg/utils"
-	"io"
 	"net/http"
 	"time"
 )
@@ -79,15 +74,15 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 // |:---------------------|:-----------------------------------------------------------------------------------------------------------|
 // | Companies            | Create and manage your SMB users' companies.                                                               |
 // | Connections          | Create new and manage existing data connections for a company.                                             |
-// | Company info         | View company profile from the source platform.                                                             |
+// | Bank statements      | Retrieve banking data from linked bank accounts.                                                           |
+// | Sales                | Retrieve standardized sales data from a linked commerce platform.                                          |
+// | Financial statements | Financial data and reports from a linked accounting platform.                                              |
+// | Liabilities          | Debt and other liabilities.                                                                                |
 // | Accounts payable     | Data from a linked accounting platform representing money the business owes money to its suppliers.        |
 // | Accounts receivable  | Data from a linked accounting platform representing money owed to the business for sold goods or services. |
 // | Transactions         | Data from a linked accounting platform representing transactions.                                          |
-// | Financial statements | Financial data and reports from a linked accounting platform.                                              |
-// | Bank statements              | Retrieve banking data from linked bank accounts.                                                           |
-// | Sales                | Retrieve standardized sales data from a linked commerce platform.                                          |
-// | Liabilities          | Debt and other liabilities.                                                                                |
 // | Data integrity       | Match mutable accounting data with immutable banking data to increase confidence in financial data.        |
+// | Company info         | View company profile from the source platform.                                                             |
 // | Excel reports        | Download reports in Excel format.                                                                          |
 // | Categories           | Manage Codat's automatic account categorization functionality.                                             |
 // | Manage data          | Control how data is retrieved from an integration.                                                         |
@@ -97,10 +92,6 @@ type CodatLending struct {
 	AccountingBankData *accountingBankData
 	// Data from a linked accounting platform representing money the business owes money to its suppliers.
 	AccountsPayable *accountsPayable
-	// Data from a linked accounting platform representing money owed to the business for sold goods or services.
-	AccountsReceivable *accountsReceivable
-	// Retrieve banking data from linked bank accounts.
-	BankStatements *bankStatements
 	// Create and manage your Codat companies.
 	Companies *companies
 	// View company information fetched from the source platform.
@@ -109,20 +100,22 @@ type CodatLending struct {
 	Connections *connections
 	// Match mutable accounting data with immutable banking data to increase confidence in financial data.
 	DataIntegrity *dataIntegrity
-	// Downloadable reports
+	// Download reports in Excel format.
 	ExcelReports *excelReports
 	// Endpoints to manage uploaded files.
 	FileUpload *fileUpload
-	// Financial data and reports from a linked accounting platform.
-	FinancialStatements *financialStatements
 	// Debt and other liabilities.
 	Liabilities *liabilities
-	// Control how data is retrieved from an integration.
-	ManageData *manageData
-	// Retrieve standardized sales data from a linked commerce platform.
-	Sales *sales
-	// Data from a linked accounting platform representing transactions.
-	Transactions *transactions
+	// Access bank transactions from an accounting platform.
+	AccountingBankData *accountingBankData
+	// Data from a linked accounting platform representing money the business owes money to its suppliers.
+	AccountsPayable     *accountsPayable
+	AccountsReceivable  *accountsReceivable
+	Banking             *banking
+	FinancialStatements *financialStatements
+	ManageData          *manageData
+	Sales               *sales
+	Transactions        *transactions
 
 	sdkConfiguration sdkConfiguration
 }
@@ -184,7 +177,7 @@ func New(opts ...SDKOption) *CodatLending {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "0.2.1",
+			SDKVersion:        "0.2.2",
 			GenVersion:        "2.108.3",
 		},
 	}
@@ -208,10 +201,6 @@ func New(opts ...SDKOption) *CodatLending {
 
 	sdk.AccountsPayable = newAccountsPayable(sdk.sdkConfiguration)
 
-	sdk.AccountsReceivable = newAccountsReceivable(sdk.sdkConfiguration)
-
-	sdk.BankStatements = newBankStatements(sdk.sdkConfiguration)
-
 	sdk.Companies = newCompanies(sdk.sdkConfiguration)
 
 	sdk.CompanyInfo = newCompanyInfo(sdk.sdkConfiguration)
@@ -224,9 +213,17 @@ func New(opts ...SDKOption) *CodatLending {
 
 	sdk.FileUpload = newFileUpload(sdk.sdkConfiguration)
 
-	sdk.FinancialStatements = newFinancialStatements(sdk.sdkConfiguration)
-
 	sdk.Liabilities = newLiabilities(sdk.sdkConfiguration)
+
+	sdk.AccountingBankData = newAccountingBankData(sdk.sdkConfiguration)
+
+	sdk.AccountsPayable = newAccountsPayable(sdk.sdkConfiguration)
+
+	sdk.AccountsReceivable = newAccountsReceivable(sdk.sdkConfiguration)
+
+	sdk.Banking = newBanking(sdk.sdkConfiguration)
+
+	sdk.FinancialStatements = newFinancialStatements(sdk.sdkConfiguration)
 
 	sdk.ManageData = newManageData(sdk.sdkConfiguration)
 
@@ -235,118 +232,4 @@ func New(opts ...SDKOption) *CodatLending {
 	sdk.Transactions = newTransactions(sdk.sdkConfiguration)
 
 	return sdk
-}
-
-// GetAccountingProfile - Get company accounting profile
-// Gets the latest basic info for a company.
-func (s *CodatLending) GetAccountingProfile(ctx context.Context, request operations.GetAccountingProfileRequest, opts ...operations.Option) (*operations.GetAccountingProfileResponse, error) {
-	o := operations.Options{}
-	supportedOptions := []string{
-		operations.SupportedOptionRetries,
-	}
-
-	for _, opt := range opts {
-		if err := opt(&o, supportedOptions...); err != nil {
-			return nil, fmt.Errorf("error applying option: %w", err)
-		}
-	}
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/info", request, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error generating URL: %w", err)
-	}
-
-	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error creating request: %w", err)
-	}
-	req.Header.Set("Accept", "application/json")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
-
-	client := s.sdkConfiguration.SecurityClient
-
-	globalRetryConfig := s.sdkConfiguration.RetryConfig
-	retryConfig := o.Retries
-	if retryConfig == nil {
-		if globalRetryConfig == nil {
-			retryConfig = &utils.RetryConfig{
-				Strategy: "backoff",
-				Backoff: &utils.BackoffStrategy{
-					InitialInterval: 500,
-					MaxInterval:     60000,
-					Exponent:        1.5,
-					MaxElapsedTime:  3600000,
-				},
-				RetryConnectionErrors: true,
-			}
-		} else {
-			retryConfig = globalRetryConfig
-		}
-	}
-
-	httpRes, err := utils.Retry(ctx, utils.Retries{
-		Config: retryConfig,
-		StatusCodes: []string{
-			"408",
-			"429",
-			"5XX",
-		},
-	}, func() (*http.Response, error) {
-		return client.Do(req)
-	})
-	if err != nil {
-		return nil, fmt.Errorf("error sending request: %w", err)
-	}
-	if httpRes == nil {
-		return nil, fmt.Errorf("error sending request: no response")
-	}
-
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
-	contentType := httpRes.Header.Get("Content-Type")
-
-	res := &operations.GetAccountingProfileResponse{
-		StatusCode:  httpRes.StatusCode,
-		ContentType: contentType,
-		RawResponse: httpRes,
-	}
-	switch {
-	case httpRes.StatusCode == 200:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.AccountingCompanyInfo
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
-			}
-
-			res.AccountingCompanyInfo = out
-		default:
-			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
-		}
-	case httpRes.StatusCode == 401:
-		fallthrough
-	case httpRes.StatusCode == 404:
-		fallthrough
-	case httpRes.StatusCode == 409:
-		fallthrough
-	case httpRes.StatusCode == 429:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ErrorMessage
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
-			}
-
-			res.ErrorMessage = out
-		default:
-			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
-		}
-	}
-
-	return res, nil
 }

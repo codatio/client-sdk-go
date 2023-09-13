@@ -2,7 +2,7 @@
 
 ## Overview
 
-Downloadable reports
+Download reports in Excel format.
 
 ### Available Operations
 
@@ -41,7 +41,7 @@ func main() {
     ctx := context.Background()
     res, err := s.ExcelReports.Download(ctx, operations.DownloadExcelReportRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ReportType: shared.ExcelReportTypesEnhancedCashFlow,
+        ReportType: shared.ExcelReportTypesEnhancedFinancials,
     })
     if err != nil {
         log.Fatal(err)
@@ -110,7 +110,7 @@ func main() {
     ctx := context.Background()
     res, err := s.ExcelReports.Generate(ctx, operations.GenerateExcelReportRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ReportType: shared.ExcelReportTypesEnhancedCashFlow,
+        ReportType: shared.ExcelReportTypesEnhancedFinancials,
     })
     if err != nil {
         log.Fatal(err)
@@ -167,7 +167,7 @@ func main() {
     ctx := context.Background()
     res, err := s.ExcelReports.GetStatus(ctx, operations.GetExcelReportGenerationStatusRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ReportType: shared.ExcelReportTypesEnhancedInvoices,
+        ReportType: shared.ExcelReportTypesEnhancedCashFlow,
     })
     if err != nil {
         log.Fatal(err)

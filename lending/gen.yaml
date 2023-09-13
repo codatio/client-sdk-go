@@ -1,6 +1,6 @@
 configVersion: 1.0.0
 management:
-  docChecksum: 8242b988db4fd0329756bad6a7f32db5
+  docChecksum: f99a103495452e83691090a2efd003fb
   docVersion: 3.0.0
   speakeasyVersion: 1.82.5
   generationVersion: 2.108.3
@@ -15,10 +15,11 @@ features:
     examples: 2.81.2
     globalSecurity: 2.81.1
     globalServerURLs: 2.82.0
+    groups: 2.81.1
     nameOverrides: 2.81.1
     pagination: 2.81.1
     retries: 2.82.1
 go:
-  version: 0.2.1
+  version: 0.2.2
   maxMethodParams: 0
   packageName: github.com/codatio/client-sdk-go/lending
