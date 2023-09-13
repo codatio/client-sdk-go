@@ -70,7 +70,9 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 type CodatSyncCommerce struct {
 	// Advanced company management and sync preferences.
 	AdvancedControls *advancedControls
-	Connections      *connections
+	// Create new and manage existing Sync for Commerce companies using the Sync flow UI.
+	Companies   *companies
+	Connections *connections
 	// View useful information about codat's integrations.
 	Integrations *integrations
 	// Initiate and monitor the sync of company data into accounting software.
@@ -138,7 +140,7 @@ func New(opts ...SDKOption) *CodatSyncCommerce {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.1",
-			SDKVersion:        "1.1.1",
+			SDKVersion:        "1.1.2",
 			GenVersion:        "2.108.3",
 		},
 	}
@@ -159,6 +161,8 @@ func New(opts ...SDKOption) *CodatSyncCommerce {
 	}
 
 	sdk.AdvancedControls = newAdvancedControls(sdk.sdkConfiguration)
+
+	sdk.Companies = newCompanies(sdk.sdkConfiguration)
 
 	sdk.Connections = newConnections(sdk.sdkConfiguration)
 
