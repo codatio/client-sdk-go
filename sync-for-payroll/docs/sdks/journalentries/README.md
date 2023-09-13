@@ -50,30 +50,30 @@ func main() {
     res, err := s.JournalEntries.Create(ctx, operations.CreateJournalEntryRequest{
         JournalEntry: &shared.JournalEntry{
             CreatedOn: codatsyncpayroll.String("2022-10-23T00:00:00.000Z"),
-            Description: codatsyncpayroll.String("debitis"),
-            ID: codatsyncpayroll.String("0f467cc8-796e-4d15-9a05-dfc2ddf7cc78"),
+            Description: codatsyncpayroll.String("placeat"),
+            ID: codatsyncpayroll.String("8796ed15-1a05-4dfc-addf-7cc78ca1ba92"),
             JournalLines: []shared.JournalLine{
                 shared.JournalLine{
                     AccountRef: &shared.AccountRef{
-                        ID: codatsyncpayroll.String("ca1ba928-fc81-4674-acb7-39205929396f"),
-                        Name: codatsyncpayroll.String("Wilbur Kirlin"),
+                        ID: codatsyncpayroll.String("8fc81674-2cb7-4392-8592-9396fea7596e"),
+                        Name: codatsyncpayroll.String("Roger Beier"),
                     },
-                    Currency: codatsyncpayroll.String("iure"),
-                    Description: codatsyncpayroll.String("saepe"),
-                    NetAmount: *types.MustNewDecimalFromString("6976.31"),
+                    Currency: codatsyncpayroll.String("mollitia"),
+                    Description: codatsyncpayroll.String("laborum"),
+                    NetAmount: *types.MustNewDecimalFromString("1709.09"),
                     Tracking: &shared.JournalLineTracking{
                         RecordRefs: []shared.RecordRef{
                             shared.RecordRef{
                                 DataType: codatsyncpayroll.String("journalEntry"),
-                                ID: codatsyncpayroll.String("0faaa235-2c59-4559-87af-f1a3a2fa9467"),
+                                ID: codatsyncpayroll.String("52c59559-07af-4f1a-ba2f-a9467739251a"),
                             },
                         },
                     },
                 },
             },
             JournalRef: &shared.JournalRef{
-                ID: "739251aa-52c3-4f5a-9019-da1ffe78f097",
-                Name: codatsyncpayroll.String("Thomas Batz"),
+                ID: "a52c3f5a-d019-4da1-bfe7-8f097b0074f1",
+                Name: codatsyncpayroll.String("Miss Valerie Kshlerin"),
             },
             Metadata: &shared.Metadata{
                 IsDeleted: codatsyncpayroll.Bool(false),
@@ -81,14 +81,14 @@ func main() {
             ModifiedDate: codatsyncpayroll.String("2022-10-23T00:00:00.000Z"),
             PostedOn: codatsyncpayroll.String("2022-10-23T00:00:00.000Z"),
             RecordRef: &shared.JournalEntryRecordReference{
-                DataType: codatsyncpayroll.String("invoice"),
-                ID: codatsyncpayroll.String("471b5e6e-13b9-49d4-88e1-e91e450ad2ab"),
+                DataType: codatsyncpayroll.String("transfer"),
+                ID: codatsyncpayroll.String("13b99d48-8e1e-491e-850a-d2abd4426980"),
             },
             SourceModifiedDate: codatsyncpayroll.String("2022-10-23T00:00:00.000Z"),
             SupplementalData: &shared.JournalEntrySupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "labore": map[string]interface{}{
-                        "modi": "qui",
+                    "assumenda": map[string]interface{}{
+                        "ipsam": "alias",
                     },
                 },
             },
@@ -96,7 +96,7 @@ func main() {
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codatsyncpayroll.Int(586513),
+        TimeoutInMinutes: codatsyncpayroll.Int(677817),
     })
     if err != nil {
         log.Fatal(err)
@@ -178,7 +178,7 @@ func main() {
     ctx := context.Background()
     res, err := s.JournalEntries.Delete(ctx, operations.DeleteJournalEntryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        JournalEntryID: "quos",
+        JournalEntryID: "excepturi",
     })
     if err != nil {
         log.Fatal(err)
@@ -238,7 +238,7 @@ func main() {
     ctx := context.Background()
     res, err := s.JournalEntries.Get(ctx, operations.GetJournalEntryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        JournalEntryID: "perferendis",
+        JournalEntryID: "tempora",
     })
     if err != nil {
         log.Fatal(err)
@@ -361,7 +361,7 @@ func main() {
         OrderBy: codatsyncpayroll.String("-modifiedDate"),
         Page: codatsyncpayroll.Int(1),
         PageSize: codatsyncpayroll.Int(100),
-        Query: codatsyncpayroll.String("magni"),
+        Query: codatsyncpayroll.String("facilis"),
     })
     if err != nil {
         log.Fatal(err)

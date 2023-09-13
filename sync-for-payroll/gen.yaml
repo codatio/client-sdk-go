@@ -1,6 +1,6 @@
 configVersion: 1.0.0
 management:
-  docChecksum: 24b6c43b012136788e99189f8a9e99fe
+  docChecksum: 9dbebecfc314c4f46c4e4ee23a46d37d
   docVersion: 3.0.0
   speakeasyVersion: 1.82.5
   generationVersion: 2.108.3
@@ -19,6 +19,6 @@ features:
     pagination: 2.81.1
     retries: 2.82.1
 go:
-  version: 0.2.1
+  version: 0.2.2
   maxMethodParams: 0
   packageName: github.com/codatio/client-sdk-go/sync-for-payroll
