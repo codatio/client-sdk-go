@@ -1,4 +1,4 @@
-# RuleNotifiers
+# WebhookNotifiers
 
 
 ## Fields

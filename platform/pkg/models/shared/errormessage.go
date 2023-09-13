@@ -2,7 +2,6 @@
 
 package shared
 
-// ErrorMessage - Your API request was not properly authorized.
 type ErrorMessage struct {
 	CanBeRetried      *string `json:"canBeRetried,omitempty"`
 	CorrelationID     *string `json:"correlationId,omitempty"`

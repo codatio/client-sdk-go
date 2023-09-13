@@ -2,43 +2,43 @@
 
 package shared
 
-type Companies struct {
+type Webhooks struct {
 	Links        Links     `json:"_links"`
 	PageNumber   int64     `json:"pageNumber"`
 	PageSize     int64     `json:"pageSize"`
-	Results      []Company `json:"results,omitempty"`
+	Results      []Webhook `json:"results,omitempty"`
 	TotalResults int64     `json:"totalResults"`
 }
 
-func (o *Companies) GetLinks() Links {
+func (o *Webhooks) GetLinks() Links {
 	if o == nil {
 		return Links{}
 	}
 	return o.Links
 }
 
-func (o *Companies) GetPageNumber() int64 {
+func (o *Webhooks) GetPageNumber() int64 {
 	if o == nil {
 		return 0
 	}
 	return o.PageNumber
 }
 
-func (o *Companies) GetPageSize() int64 {
+func (o *Webhooks) GetPageSize() int64 {
 	if o == nil {
 		return 0
 	}
 	return o.PageSize
 }
 
-func (o *Companies) GetResults() []Company {
+func (o *Webhooks) GetResults() []Webhook {
 	if o == nil {
 		return nil
 	}
 	return o.Results
 }
 
-func (o *Companies) GetTotalResults() int64 {
+func (o *Webhooks) GetTotalResults() int64 {
 	if o == nil {
 		return 0
 	}

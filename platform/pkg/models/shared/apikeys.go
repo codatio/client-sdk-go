@@ -2,7 +2,6 @@
 
 package shared
 
-// APIKeys - Success
 type APIKeys struct {
 	Results []APIKeyDetails `json:"results,omitempty"`
 }
