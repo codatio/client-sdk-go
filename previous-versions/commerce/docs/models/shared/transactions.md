@@ -1,7 +1,5 @@
 # Transactions
 
-OK
-
 
 ## Fields
 

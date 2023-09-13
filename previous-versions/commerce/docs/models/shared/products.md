@@ -1,7 +1,5 @@
 # Products
 
-OK
-
 
 ## Fields
 

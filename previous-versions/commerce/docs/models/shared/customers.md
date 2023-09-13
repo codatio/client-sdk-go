@@ -1,7 +1,5 @@
 # Customers
 
-OK
-
 
 ## Fields
 

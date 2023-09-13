@@ -1,7 +1,5 @@
 # Locations
 
-OK
-
 
 ## Fields
 

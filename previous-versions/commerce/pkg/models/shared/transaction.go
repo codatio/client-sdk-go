@@ -2,6 +2,10 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/types"
+)
+
 // Transaction - Details of all financial transactions recorded in the commerce or point of sale system are added to the Transactions data type. For example, payments, service charges, and fees.
 //
 // You can use data from the Transactions endpoints to calculate key metrics, such as:
@@ -68,7 +72,7 @@ type Transaction struct {
 	// Non-standardised transaction type data from the commerce platform
 	SubType *string `json:"subType,omitempty"`
 	// The total transaction amount
-	TotalAmount *float64 `json:"totalAmount,omitempty"`
+	TotalAmount *types.Decimal `json:"totalAmount,omitempty"`
 	// Link to the source event which triggered this transaction
 	TransactionSourceRef *TransactionSourceRef `json:"transactionSourceRef,omitempty"`
 	// The type of the platform transaction:
@@ -132,7 +136,7 @@ func (o *Transaction) GetSubType() *string {
 	return o.SubType
 }
 
-func (o *Transaction) GetTotalAmount() *float64 {
+func (o *Transaction) GetTotalAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}
