@@ -47,11 +47,11 @@ func main() {
     ctx := context.Background()
     res, err := s.Accounts.Create(ctx, operations.CreateAccountRequest{
         Account: &shared.Account{
-            Currency: codatsyncpayables.String("USD"),
+            Currency: codatsyncpayables.String("EUR"),
             CurrentBalance: types.MustNewDecimalFromString("0"),
             Description: codatsyncpayables.String("Invoices the business has issued but has not yet collected payment on."),
             FullyQualifiedCategory: codatsyncpayables.String("Asset.Current"),
-            FullyQualifiedName: codatsyncpayables.String("Fixed Asset"),
+            FullyQualifiedName: codatsyncpayables.String("Cash On Hand"),
             ID: codatsyncpayables.String("1b6266d1-1e44-46c5-8eb5-a8f98e03124e"),
             IsBankAccount: codatsyncpayables.Bool(false),
             Metadata: &shared.Metadata{
@@ -66,15 +66,15 @@ func main() {
             ValidDatatypeLinks: []shared.AccountValidDataTypeLinks{
                 shared.AccountValidDataTypeLinks{
                     Links: []string{
-                        "unde",
+                        "suscipit",
                     },
-                    Property: codatsyncpayables.String("nulla"),
+                    Property: codatsyncpayables.String("iure"),
                 },
             },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codatsyncpayables.Int(544883),
+        TimeoutInMinutes: codatsyncpayables.Int(297534),
     })
     if err != nil {
         log.Fatal(err)
@@ -133,7 +133,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Accounts.Get(ctx, operations.GetAccountRequest{
-        AccountID: "illum",
+        AccountID: "debitis",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -256,7 +256,7 @@ func main() {
         OrderBy: codatsyncpayables.String("-modifiedDate"),
         Page: codatsyncpayables.Int(1),
         PageSize: codatsyncpayables.Int(100),
-        Query: codatsyncpayables.String("vel"),
+        Query: codatsyncpayables.String("ipsa"),
     })
     if err != nil {
         log.Fatal(err)

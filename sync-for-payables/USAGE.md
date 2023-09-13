@@ -20,14 +20,42 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.GetAccountingProfile(ctx, operations.GetAccountingProfileRequest{
+    res, err := s.Accounts.Create(ctx, operations.CreateAccountRequest{
+        Account: &shared.Account{
+            Currency: codatsyncpayables.String("USD"),
+            CurrentBalance: types.MustNewDecimalFromString("0"),
+            Description: codatsyncpayables.String("Invoices the business has issued but has not yet collected payment on."),
+            FullyQualifiedCategory: codatsyncpayables.String("Asset.Current"),
+            FullyQualifiedName: codatsyncpayables.String("Fixed Asset"),
+            ID: codatsyncpayables.String("1b6266d1-1e44-46c5-8eb5-a8f98e03124e"),
+            IsBankAccount: codatsyncpayables.Bool(false),
+            Metadata: &shared.Metadata{
+                IsDeleted: codatsyncpayables.Bool(false),
+            },
+            ModifiedDate: codatsyncpayables.String("2022-10-23T00:00:00.000Z"),
+            Name: codatsyncpayables.String("Accounts Receivable"),
+            NominalCode: codatsyncpayables.String("610"),
+            SourceModifiedDate: codatsyncpayables.String("2022-10-23T00:00:00.000Z"),
+            Status: shared.AccountStatusActive.ToPointer(),
+            Type: shared.AccountTypeAsset.ToPointer(),
+            ValidDatatypeLinks: []shared.AccountValidDataTypeLinks{
+                shared.AccountValidDataTypeLinks{
+                    Links: []string{
+                        "unde",
+                    },
+                    Property: codatsyncpayables.String("nulla"),
+                },
+            },
+        },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+        ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
+        TimeoutInMinutes: codatsyncpayables.Int(544883),
     })
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.CompanyInformation != nil {
+    if res.CreateAccountResponse != nil {
         // handle response
     }
 }

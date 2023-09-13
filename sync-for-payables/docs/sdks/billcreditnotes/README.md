@@ -51,58 +51,58 @@ func main() {
         BillCreditNote: &shared.BillCreditNote{
             AllocatedOnDate: codatsyncpayables.String("2022-10-23T00:00:00.000Z"),
             BillCreditNoteNumber: codatsyncpayables.String("91fe2a83-e161-4c21-929d-c5c10c4b07e5"),
-            Currency: codatsyncpayables.String("USD"),
-            CurrencyRate: types.MustNewDecimalFromString("3843.82"),
+            Currency: codatsyncpayables.String("GBP"),
+            CurrencyRate: types.MustNewDecimalFromString("3834.41"),
             DiscountPercentage: *types.MustNewDecimalFromString("0"),
             ID: codatsyncpayables.String("1509398f-98e2-436d-8a5d-c042e0c74ffc"),
             IssueDate: codatsyncpayables.String("2022-10-23T00:00:00.000Z"),
             LineItems: []shared.BillCreditNoteLineItem{
                 shared.BillCreditNoteLineItem{
                     AccountRef: &shared.AccountRef{
-                        ID: codatsyncpayables.String("4e0f467c-c879-46ed-951a-05dfc2ddf7cc"),
-                        Name: codatsyncpayables.String("Deanna Sauer MD"),
+                        ID: codatsyncpayables.String("cc8796ed-151a-405d-bc2d-df7cc78ca1ba"),
+                        Name: codatsyncpayables.String("Wayne Lind"),
                     },
-                    Description: codatsyncpayables.String("officia"),
-                    DiscountAmount: types.MustNewDecimalFromString("5820.2"),
-                    DiscountPercentage: types.MustNewDecimalFromString("1433.53"),
+                    Description: codatsyncpayables.String("totam"),
+                    DiscountAmount: types.MustNewDecimalFromString("1059.07"),
+                    DiscountPercentage: types.MustNewDecimalFromString("4146.62"),
                     ItemRef: &shared.BillCreditNoteLineItemItemReference{
-                        ID: "8fc81674-2cb7-4392-8592-9396fea7596e",
-                        Name: codatsyncpayables.String("Roger Beier"),
+                        ID: "742cb739-2059-4293-96fe-a7596eb10faa",
+                        Name: codatsyncpayables.String("Ernest Ebert"),
                     },
-                    Quantity: *types.MustNewDecimalFromString("6531.4"),
-                    SubTotal: types.MustNewDecimalFromString("6706.38"),
-                    TaxAmount: types.MustNewDecimalFromString("1709.09"),
+                    Quantity: *types.MustNewDecimalFromString("7506.86"),
+                    SubTotal: types.MustNewDecimalFromString("3154.28"),
+                    TaxAmount: types.MustNewDecimalFromString("6078.31"),
                     TaxRateRef: &shared.TaxRateRef{
-                        EffectiveTaxRate: types.MustNewDecimalFromString("2103.82"),
-                        ID: codatsyncpayables.String("52c59559-07af-4f1a-ba2f-a9467739251a"),
-                        Name: codatsyncpayables.String("Bill Conn"),
+                        EffectiveTaxRate: types.MustNewDecimalFromString("3637.11"),
+                        ID: codatsyncpayables.String("5907aff1-a3a2-4fa9-8677-39251aa52c3f"),
+                        Name: codatsyncpayables.String("Mr. Alberta Schuster"),
                     },
-                    TotalAmount: types.MustNewDecimalFromString("9495.72"),
+                    TotalAmount: types.MustNewDecimalFromString("8379.45"),
                     Tracking: &shared.BillCreditNoteLineItemTracking{
                         CategoryRefs: []shared.TrackingCategoryRef{
                             shared.TrackingCategoryRef{
-                                ID: "5ad019da-1ffe-478f-897b-0074f15471b5",
-                                Name: codatsyncpayables.String("Mrs. Leslie VonRueden"),
+                                ID: "a1ffe78f-097b-4007-8f15-471b5e6e13b9",
+                                Name: codatsyncpayables.String("Ervin Gleason"),
                             },
                         },
                         CustomerRef: &shared.BillCreditNoteLineItemTrackingCustomerRef{
-                            CompanyName: codatsyncpayables.String("molestias"),
-                            ID: "9d488e1e-91e4-450a-92ab-d44269802d50",
+                            CompanyName: codatsyncpayables.String("voluptates"),
+                            ID: "1e91e450-ad2a-4bd4-8269-802d502a94bb",
                         },
-                        IsBilledTo: shared.BilledToTypeUnknown,
-                        IsRebilledTo: shared.BilledToTypeCustomer,
+                        IsBilledTo: shared.BilledToTypeNotApplicable,
+                        IsRebilledTo: shared.BilledToTypeProject,
                         ProjectRef: &shared.BillCreditNoteLineItemTrackingProjectReference{
-                            ID: "94bb4f63-c969-4e9a-befa-77dfb14cd66a",
-                            Name: codatsyncpayables.String("Alfred McClure"),
+                            ID: "63c969e9-a3ef-4a77-9fb1-4cd66ae395ef",
+                            Name: codatsyncpayables.String("Rene Reinger"),
                         },
                     },
                     TrackingCategoryRefs: []shared.TrackingCategoryRef{
                         shared.TrackingCategoryRef{
-                            ID: "fb9ba88f-3a66-4997-874b-a4469b6e2141",
-                            Name: codatsyncpayables.String("Derrick McLaughlin"),
+                            ID: "8f3a6699-7074-4ba4-869b-6e2141959890",
+                            Name: codatsyncpayables.String("Abel O'Hara"),
                         },
                     },
-                    UnitAmount: *types.MustNewDecimalFromString("336.25"),
+                    UnitAmount: *types.MustNewDecimalFromString("2212.62"),
                 },
             },
             Metadata: &shared.Metadata{
@@ -115,21 +115,21 @@ func main() {
                     Allocation: shared.ItemsAllocation{
                         AllocatedOnDate: codatsyncpayables.String("2022-10-23T00:00:00.000Z"),
                         Currency: codatsyncpayables.String("USD"),
-                        CurrencyRate: types.MustNewDecimalFromString("3209.97"),
-                        TotalAmount: types.MustNewDecimalFromString("4314.18"),
+                        CurrencyRate: types.MustNewDecimalFromString("972.6"),
+                        TotalAmount: types.MustNewDecimalFromString("4358.65"),
                     },
                     Payment: shared.PaymentAllocationPayment{
                         AccountRef: &shared.AccountRef{
-                            ID: codatsyncpayables.String("3e2516fe-4c8b-4711-a5b7-fd2ed028921c"),
-                            Name: codatsyncpayables.String("Ervin Schoen"),
+                            ID: codatsyncpayables.String("fe4c8b71-1e5b-47fd-aed0-28921cddc692"),
+                            Name: codatsyncpayables.String("Donna Bernhard"),
                         },
-                        Currency: codatsyncpayables.String("GBP"),
-                        CurrencyRate: types.MustNewDecimalFromString("4071.83"),
-                        ID: codatsyncpayables.String("01fb576b-0d5f-40d3-8c5f-bb2587053202"),
-                        Note: codatsyncpayables.String("minus"),
+                        Currency: codatsyncpayables.String("USD"),
+                        CurrencyRate: types.MustNewDecimalFromString("4535.43"),
+                        ID: codatsyncpayables.String("6b0d5f0d-30c5-4fbb-a587-053202c73d5f"),
+                        Note: codatsyncpayables.String("recusandae"),
                         PaidOnDate: codatsyncpayables.String("2022-10-23T00:00:00.000Z"),
-                        Reference: codatsyncpayables.String("dolor"),
-                        TotalAmount: types.MustNewDecimalFromString("8745.73"),
+                        Reference: codatsyncpayables.String("facilis"),
+                        TotalAmount: types.MustNewDecimalFromString("5966.56"),
                     },
                 },
             },
@@ -139,28 +139,28 @@ func main() {
             SubTotal: *types.MustNewDecimalFromString("805.78"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "hic": map[string]interface{}{
-                        "recusandae": "omnis",
+                    "porro": map[string]interface{}{
+                        "consequuntur": "blanditiis",
                     },
                 },
             },
             SupplierRef: &shared.SupplierRef{
-                ID: "b90c2890-9b3f-4e49-a8d9-cbf48633323f",
-                SupplierName: codatsyncpayables.String("excepturi"),
+                ID: "909b3fe4-9a8d-49cb-b486-33323f9b77f3",
+                SupplierName: codatsyncpayables.String("dolorum"),
             },
             TotalAmount: *types.MustNewDecimalFromString("805.78"),
             TotalDiscount: *types.MustNewDecimalFromString("0"),
             TotalTaxAmount: *types.MustNewDecimalFromString("0"),
             WithholdingTax: []shared.WithholdingTaxitems{
                 shared.WithholdingTaxitems{
-                    Amount: *types.MustNewDecimalFromString("7395.51"),
-                    Name: "Marian Wisozk",
+                    Amount: *types.MustNewDecimalFromString("2543.56"),
+                    Name: "Melissa Bednar",
                 },
             },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codatsyncpayables.Int(254356),
+        TimeoutInMinutes: codatsyncpayables.Int(311796),
     })
     if err != nil {
         log.Fatal(err)
@@ -219,7 +219,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.BillCreditNotes.Get(ctx, operations.GetBillCreditNoteRequest{
-        BillCreditNoteID: "veritatis",
+        BillCreditNoteID: "accusamus",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -343,7 +343,7 @@ func main() {
         OrderBy: codatsyncpayables.String("-modifiedDate"),
         Page: codatsyncpayables.Int(1),
         PageSize: codatsyncpayables.Int(100),
-        Query: codatsyncpayables.String("ipsa"),
+        Query: codatsyncpayables.String("quidem"),
     })
     if err != nil {
         log.Fatal(err)
@@ -409,57 +409,57 @@ func main() {
             AllocatedOnDate: codatsyncpayables.String("2022-10-23T00:00:00.000Z"),
             BillCreditNoteNumber: codatsyncpayables.String("91fe2a83-e161-4c21-929d-c5c10c4b07e5"),
             Currency: codatsyncpayables.String("USD"),
-            CurrencyRate: types.MustNewDecimalFromString("4878.38"),
+            CurrencyRate: types.MustNewDecimalFromString("6176.58"),
             DiscountPercentage: *types.MustNewDecimalFromString("0"),
             ID: codatsyncpayables.String("1509398f-98e2-436d-8a5d-c042e0c74ffc"),
             IssueDate: codatsyncpayables.String("2022-10-23T00:00:00.000Z"),
             LineItems: []shared.BillCreditNoteLineItem{
                 shared.BillCreditNoteLineItem{
                     AccountRef: &shared.AccountRef{
-                        ID: codatsyncpayables.String("ebf69280-d1ba-477a-89eb-f737ae4203ce"),
-                        Name: codatsyncpayables.String("Jenna Hoppe"),
+                        ID: codatsyncpayables.String("80d1ba77-a89e-4bf7-b7ae-4203ce5e6a95"),
+                        Name: codatsyncpayables.String("Dr. Jimmie Murphy"),
                     },
-                    Description: codatsyncpayables.String("minima"),
-                    DiscountAmount: types.MustNewDecimalFromString("8310.49"),
-                    DiscountPercentage: types.MustNewDecimalFromString("5197.11"),
+                    Description: codatsyncpayables.String("tempora"),
+                    DiscountAmount: types.MustNewDecimalFromString("4254.51"),
+                    DiscountPercentage: types.MustNewDecimalFromString("7980.47"),
                     ItemRef: &shared.BillCreditNoteLineItemItemReference{
-                        ID: "a0d446ce-2af7-4a73-8f3b-e453f870b326",
-                        Name: codatsyncpayables.String("Glen Oberbrunner"),
+                        ID: "e2af7a73-cf3b-4e45-bf87-0b326b5a7342",
+                        Name: codatsyncpayables.String("Simon Stracke MD"),
                     },
-                    Quantity: *types.MustNewDecimalFromString("2776.28"),
-                    SubTotal: types.MustNewDecimalFromString("1864.58"),
-                    TaxAmount: types.MustNewDecimalFromString("5867.84"),
+                    Quantity: *types.MustNewDecimalFromString("5173.79"),
+                    SubTotal: types.MustNewDecimalFromString("2768.94"),
+                    TaxAmount: types.MustNewDecimalFromString("1320.68"),
                     TaxRateRef: &shared.TaxRateRef{
-                        EffectiveTaxRate: types.MustNewDecimalFromString("8075.81"),
-                        ID: codatsyncpayables.String("db1a8422-bb67-49d2-b227-15bf0cbb1e31"),
-                        Name: codatsyncpayables.String("Isaac Reynolds DVM"),
+                        EffectiveTaxRate: types.MustNewDecimalFromString("1749.09"),
+                        ID: codatsyncpayables.String("bb679d23-2271-45bf-8cbb-1e31b8b90f34"),
+                        Name: codatsyncpayables.String("Mr. Josephine Pagac V"),
                     },
-                    TotalAmount: types.MustNewDecimalFromString("2091.57"),
+                    TotalAmount: types.MustNewDecimalFromString("9295.3"),
                     Tracking: &shared.BillCreditNoteLineItemTracking{
                         CategoryRefs: []shared.TrackingCategoryRef{
                             shared.TrackingCategoryRef{
-                                ID: "443a1108-e0ad-4cf4-b921-879fce953f73",
-                                Name: codatsyncpayables.String("Roman Kulas"),
+                                ID: "0adcf4b9-2187-49fc-a953-f73ef7fbc7ab",
+                                Name: codatsyncpayables.String("Allan Greenholt"),
                             },
                         },
                         CustomerRef: &shared.BillCreditNoteLineItemTrackingCustomerRef{
-                            CompanyName: codatsyncpayables.String("quod"),
-                            ID: "7abd74dd-39c0-4f5d-acff-7c70a45626d4",
+                            CompanyName: codatsyncpayables.String("sequi"),
+                            ID: "9c0f5d2c-ff7c-470a-8562-6d436813f16d",
                         },
-                        IsBilledTo: shared.BilledToTypeUnknown,
-                        IsRebilledTo: shared.BilledToTypeNotApplicable,
+                        IsBilledTo: shared.BilledToTypeCustomer,
+                        IsRebilledTo: shared.BilledToTypeProject,
                         ProjectRef: &shared.BillCreditNoteLineItemTrackingProjectReference{
-                            ID: "813f16d9-f5fc-4e6c-9561-46c3e250fb00",
-                            Name: codatsyncpayables.String("Myron Haag"),
+                            ID: "5fce6c55-6146-4c3e-a50f-b008c42e141a",
+                            Name: codatsyncpayables.String("Clark Franecki"),
                         },
                     },
                     TrackingCategoryRefs: []shared.TrackingCategoryRef{
                         shared.TrackingCategoryRef{
-                            ID: "141aac36-6c8d-4d6b-9442-907474778a7b",
-                            Name: codatsyncpayables.String("Bernard Kerluke"),
+                            ID: "c8dd6b14-4290-4747-8778-a7bd466d28c1",
+                            Name: codatsyncpayables.String("Amelia Predovic"),
                         },
                     },
-                    UnitAmount: *types.MustNewDecimalFromString("1811.51"),
+                    UnitAmount: *types.MustNewDecimalFromString("8472.76"),
                 },
             },
             Metadata: &shared.Metadata{
@@ -472,21 +472,21 @@ func main() {
                     Allocation: shared.ItemsAllocation{
                         AllocatedOnDate: codatsyncpayables.String("2022-10-23T00:00:00.000Z"),
                         Currency: codatsyncpayables.String("GBP"),
-                        CurrencyRate: types.MustNewDecimalFromString("568.48"),
-                        TotalAmount: types.MustNewDecimalFromString("6600.4"),
+                        CurrencyRate: types.MustNewDecimalFromString("1783.67"),
+                        TotalAmount: types.MustNewDecimalFromString("3738.13"),
                     },
                     Payment: shared.PaymentAllocationPayment{
                         AccountRef: &shared.AccountRef{
-                            ID: codatsyncpayables.String("b3cdca42-5190-44e5-a3c7-e0bc7178e479"),
-                            Name: codatsyncpayables.String("Miranda Daniel"),
+                            ID: codatsyncpayables.String("1904e523-c7e0-4bc7-978e-4796f2a70c68"),
+                            Name: codatsyncpayables.String("Eugene Leuschke"),
                         },
-                        Currency: codatsyncpayables.String("GBP"),
-                        CurrencyRate: types.MustNewDecimalFromString("7836.48"),
-                        ID: codatsyncpayables.String("688282aa-4825-462f-a22e-9817ee17cbe6"),
-                        Note: codatsyncpayables.String("quasi"),
+                        Currency: codatsyncpayables.String("USD"),
+                        CurrencyRate: types.MustNewDecimalFromString("2775.96"),
+                        ID: codatsyncpayables.String("82562f22-2e98-417e-a17c-be61e6b7b95b"),
+                        Note: codatsyncpayables.String("eligendi"),
                         PaidOnDate: codatsyncpayables.String("2022-10-23T00:00:00.000Z"),
-                        Reference: codatsyncpayables.String("vel"),
-                        TotalAmount: types.MustNewDecimalFromString("6900.25"),
+                        Reference: codatsyncpayables.String("culpa"),
+                        TotalAmount: types.MustNewDecimalFromString("7313.98"),
                     },
                 },
             },
@@ -496,30 +496,30 @@ func main() {
             SubTotal: *types.MustNewDecimalFromString("805.78"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "rerum": map[string]interface{}{
-                        "occaecati": "minima",
+                    "cumque": map[string]interface{}{
+                        "consequuntur": "consequatur",
                     },
                 },
             },
             SupplierRef: &shared.SupplierRef{
-                ID: "bc0ab3c2-0c4f-4378-9fd8-71f99dd2efd1",
-                SupplierName: codatsyncpayables.String("consequuntur"),
+                ID: "c4f3789f-d871-4f99-9d2e-fd121aa6f1e6",
+                SupplierName: codatsyncpayables.String("in"),
             },
             TotalAmount: *types.MustNewDecimalFromString("805.78"),
             TotalDiscount: *types.MustNewDecimalFromString("0"),
             TotalTaxAmount: *types.MustNewDecimalFromString("0"),
             WithholdingTax: []shared.WithholdingTaxitems{
                 shared.WithholdingTaxitems{
-                    Amount: *types.MustNewDecimalFromString("944.58"),
-                    Name: "Shannon Jacobi DVM",
+                    Amount: *types.MustNewDecimalFromString("2586.84"),
+                    Name: "Mrs. Gilberto Roberts",
                 },
             },
         },
-        BillCreditNoteID: "vel",
+        BillCreditNoteID: "dicta",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         ForceUpdate: codatsyncpayables.Bool(false),
-        TimeoutInMinutes: codatsyncpayables.Int(447378),
+        TimeoutInMinutes: codatsyncpayables.Int(355369),
     })
     if err != nil {
         log.Fatal(err)

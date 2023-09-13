@@ -1,6 +1,6 @@
 configVersion: 1.0.0
 management:
-  docChecksum: 299d49c3bea217209c7297db9ab7b9f7
+  docChecksum: 20dff07521c517f5ccb59cc5b8ec767c
   docVersion: 3.0.0
   speakeasyVersion: 1.82.5
   generationVersion: 2.108.3
@@ -19,6 +19,6 @@ features:
     pagination: 2.81.1
     retries: 2.82.1
 go:
-  version: 0.2.1
+  version: 0.2.2
   maxMethodParams: 0
   packageName: github.com/codatio/client-sdk-go/sync-for-payables

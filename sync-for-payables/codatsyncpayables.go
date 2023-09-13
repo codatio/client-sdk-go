@@ -3,14 +3,9 @@
 package codatsyncpayables
 
 import (
-	"bytes"
-	"context"
 	"fmt"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/sdkerrors"
 	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/utils"
-	"io"
 	"net/http"
 	"time"
 )
@@ -69,7 +64,29 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 //
 // Sync for Payables is an API and a set of supporting tools built to help integrate with your customers' accounting software, and keep their supplier information, invoices, and payments in sync.
 //
-// [Read More...](https://docs.codat.io/payables/overview)
+// [Explore product](https://docs.codat.io/payables/overview) | [See OpenAPI spec](https://github.com/codatio/oas)
+//
+// ---
+//
+// ## Endpoints
+//
+// | Endpoints            | Description                                                                                                |
+// |:---------------------|:-----------------------------------------------------------------------------------------------------------|
+// | Companies            | Create and manage your SMB users' companies.                                                               |
+// | Connections          | Create new and manage existing data connections for a company.                                             |
+// | Accounts             | Get, create, and update Accounts                                                           |
+// | Bills                | Get, create, and update Bills                                                                          |
+// | Bill credit notes    | Get, create, and update Bill credit notes                                                              |
+// | Bill payments        | Get, create, and update Bill payments                                                                  |
+// | Journals             | Get, create, and update Journals                                                                       |
+// | Journal entries      | Get, create, and update Journal entries                                                                |
+// | Payment methods      | Get, create, and update Payment methods                                                                |
+// | Suppliers            | Get, create, and update Suppliers                                                                      |
+// | Tax rates            | Get, create, and update Tax rates                                                                      |
+// | Tracking categories  | Get, create, and update Tracking categories                                                            |
+// | Push operations      | View historic push operations                                                         |
+// | Company info         | View company profile from the source platform.                                                             |
+// | Manage data          | Control how data is retrieved from an integration.                                                         |
 type CodatSyncPayables struct {
 	// Accounts
 	Accounts *accounts
@@ -81,6 +98,8 @@ type CodatSyncPayables struct {
 	Bills *bills
 	// Create and manage your Codat companies.
 	Companies *companies
+	// View company information fetched from the source platform.
+	CompanyInfo *companyInfo
 	// Manage your companies' data connections.
 	Connections *connections
 	// Journal entries
@@ -160,7 +179,7 @@ func New(opts ...SDKOption) *CodatSyncPayables {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "0.2.1",
+			SDKVersion:        "0.2.2",
 			GenVersion:        "2.108.3",
 		},
 	}
@@ -190,6 +209,8 @@ func New(opts ...SDKOption) *CodatSyncPayables {
 
 	sdk.Companies = newCompanies(sdk.sdkConfiguration)
 
+	sdk.CompanyInfo = newCompanyInfo(sdk.sdkConfiguration)
+
 	sdk.Connections = newConnections(sdk.sdkConfiguration)
 
 	sdk.JournalEntries = newJournalEntries(sdk.sdkConfiguration)
@@ -209,118 +230,4 @@ func New(opts ...SDKOption) *CodatSyncPayables {
 	sdk.TrackingCategories = newTrackingCategories(sdk.sdkConfiguration)
 
 	return sdk
-}
-
-// GetAccountingProfile - Get company accounting profile
-// Gets the latest basic info for a company.
-func (s *CodatSyncPayables) GetAccountingProfile(ctx context.Context, request operations.GetAccountingProfileRequest, opts ...operations.Option) (*operations.GetAccountingProfileResponse, error) {
-	o := operations.Options{}
-	supportedOptions := []string{
-		operations.SupportedOptionRetries,
-	}
-
-	for _, opt := range opts {
-		if err := opt(&o, supportedOptions...); err != nil {
-			return nil, fmt.Errorf("error applying option: %w", err)
-		}
-	}
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/data/info", request, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error generating URL: %w", err)
-	}
-
-	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error creating request: %w", err)
-	}
-	req.Header.Set("Accept", "application/json")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
-
-	client := s.sdkConfiguration.SecurityClient
-
-	globalRetryConfig := s.sdkConfiguration.RetryConfig
-	retryConfig := o.Retries
-	if retryConfig == nil {
-		if globalRetryConfig == nil {
-			retryConfig = &utils.RetryConfig{
-				Strategy: "backoff",
-				Backoff: &utils.BackoffStrategy{
-					InitialInterval: 500,
-					MaxInterval:     60000,
-					Exponent:        1.5,
-					MaxElapsedTime:  3600000,
-				},
-				RetryConnectionErrors: true,
-			}
-		} else {
-			retryConfig = globalRetryConfig
-		}
-	}
-
-	httpRes, err := utils.Retry(ctx, utils.Retries{
-		Config: retryConfig,
-		StatusCodes: []string{
-			"408",
-			"429",
-			"5XX",
-		},
-	}, func() (*http.Response, error) {
-		return client.Do(req)
-	})
-	if err != nil {
-		return nil, fmt.Errorf("error sending request: %w", err)
-	}
-	if httpRes == nil {
-		return nil, fmt.Errorf("error sending request: no response")
-	}
-
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
-	contentType := httpRes.Header.Get("Content-Type")
-
-	res := &operations.GetAccountingProfileResponse{
-		StatusCode:  httpRes.StatusCode,
-		ContentType: contentType,
-		RawResponse: httpRes,
-	}
-	switch {
-	case httpRes.StatusCode == 200:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *operations.GetAccountingProfileCompanyInformation
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
-			}
-
-			res.CompanyInformation = out
-		default:
-			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
-		}
-	case httpRes.StatusCode == 401:
-		fallthrough
-	case httpRes.StatusCode == 404:
-		fallthrough
-	case httpRes.StatusCode == 409:
-		fallthrough
-	case httpRes.StatusCode == 429:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ErrorMessage
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
-			}
-
-			res.ErrorMessage = out
-		default:
-			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
-		}
-	}
-
-	return res, nil
 }
