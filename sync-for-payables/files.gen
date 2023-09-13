@@ -3,6 +3,7 @@ billcreditnotes.go
 billpayments.go
 bills.go
 companies.go
+companyinfo.go
 connections.go
 journalentries.go
 journals.go
@@ -19,6 +20,7 @@ pkg/models/sdkerrors/sdkerror.go
 pkg/types/bigint.go
 pkg/types/date.go
 pkg/types/datetime.go
+pkg/types/decimal.go
 pkg/utils/contenttype.go
 pkg/utils/form.go
 pkg/utils/headers.go
@@ -38,10 +40,12 @@ pkg/models/operations/getcreateupdatebillcreditnotemodel.go
 pkg/models/operations/listbillcreditnotes.go
 pkg/models/operations/updatebillcreditnote.go
 pkg/models/operations/createbillpayment.go
+pkg/models/operations/deletebillpayment.go
 pkg/models/operations/getbillpayments.go
 pkg/models/operations/getcreatebillpaymentmodel.go
 pkg/models/operations/listbillpayments.go
 pkg/models/operations/createbill.go
+pkg/models/operations/deletebill.go
 pkg/models/operations/downloadbillattachment.go
 pkg/models/operations/getbill.go
 pkg/models/operations/getbillattachment.go
@@ -55,6 +59,7 @@ pkg/models/operations/deletecompany.go
 pkg/models/operations/getcompany.go
 pkg/models/operations/listcompanies.go
 pkg/models/operations/updatecompany.go
+pkg/models/operations/getaccountingprofile.go
 pkg/models/operations/createconnection.go
 pkg/models/operations/deleteconnection.go
 pkg/models/operations/getconnection.go
@@ -126,6 +131,7 @@ pkg/models/shared/billpayment.go
 pkg/models/shared/billpaymentline.go
 pkg/models/shared/billpaymentlinelink.go
 pkg/models/shared/billpaymentlinelinktype.go
+pkg/models/shared/pushoperation.go
 pkg/models/shared/billpayments.go
 pkg/models/shared/createbillresponse.go
 pkg/models/shared/bill.go
@@ -143,6 +149,9 @@ pkg/models/shared/dataconnectionstatus.go
 pkg/models/shared/dataconnectionerror.go
 pkg/models/shared/companyrequestbody.go
 pkg/models/shared/companies.go
+pkg/models/shared/onecompanies1percent7bcompanyidpercent7d1data1infogetresponses200contentapplication1jsonschemapropertiesphonenumbersitemsdefinitionsphonenumbertype.go
+pkg/models/shared/addressesitems.go
+pkg/models/shared/accountingaddresstype.go
 pkg/models/shared/connections.go
 pkg/models/shared/createjournalentryresponse.go
 pkg/models/shared/journalentry.go
@@ -160,12 +169,10 @@ pkg/models/shared/paymentmethod.go
 pkg/models/shared/paymentmethodtype.go
 pkg/models/shared/paymentmethodstatus.go
 pkg/models/shared/paymentmethods.go
-pkg/models/shared/pushoperation.go
 pkg/models/shared/pushoperations.go
 pkg/models/shared/createsupplierresponse.go
 pkg/models/shared/supplier.go
 pkg/models/shared/supplierstatus.go
-pkg/models/shared/accountingaddresstype.go
 pkg/models/shared/suppliers.go
 pkg/models/shared/updatesupplierresponse.go
 pkg/models/shared/taxrate.go
@@ -185,6 +192,7 @@ docs/sdks/billcreditnotes/README.md
 docs/sdks/billpayments/README.md
 docs/sdks/bills/README.md
 docs/sdks/companies/README.md
+docs/sdks/companyinfo/README.md
 docs/sdks/connections/README.md
 docs/sdks/journalentries/README.md
 docs/sdks/journals/README.md
@@ -215,6 +223,8 @@ docs/models/operations/updatebillcreditnoterequest.md
 docs/models/operations/updatebillcreditnoteresponse.md
 docs/models/operations/createbillpaymentrequest.md
 docs/models/operations/createbillpaymentresponse.md
+docs/models/operations/deletebillpaymentrequest.md
+docs/models/operations/deletebillpaymentresponse.md
 docs/models/operations/getbillpaymentsrequest.md
 docs/models/operations/getbillpaymentsresponse.md
 docs/models/operations/getcreatebillpaymentmodelrequest.md
@@ -223,6 +233,8 @@ docs/models/operations/listbillpaymentsrequest.md
 docs/models/operations/listbillpaymentsresponse.md
 docs/models/operations/createbillrequest.md
 docs/models/operations/createbillresponse.md
+docs/models/operations/deletebillrequest.md
+docs/models/operations/deletebillresponse.md
 docs/models/operations/downloadbillattachmentrequest.md
 docs/models/operations/downloadbillattachmentresponse.md
 docs/models/operations/getbillrequest.md
@@ -249,6 +261,12 @@ docs/models/operations/listcompaniesrequest.md
 docs/models/operations/listcompaniesresponse.md
 docs/models/operations/updatecompanyrequest.md
 docs/models/operations/updatecompanyresponse.md
+docs/models/operations/getaccountingprofilerequest.md
+docs/models/operations/getaccountingprofilecompanyinformationphone.md
+docs/models/operations/getaccountingprofilecompanyinformationweblinktype.md
+docs/models/operations/getaccountingprofilecompanyinformationweblink.md
+docs/models/operations/getaccountingprofilecompanyinformation.md
+docs/models/operations/getaccountingprofileresponse.md
 docs/models/operations/createconnectionrequestbody.md
 docs/models/operations/createconnectionrequest.md
 docs/models/operations/createconnectionresponse.md
@@ -258,7 +276,7 @@ docs/models/operations/getconnectionrequest.md
 docs/models/operations/getconnectionresponse.md
 docs/models/operations/listconnectionsrequest.md
 docs/models/operations/listconnectionsresponse.md
-docs/models/operations/unlinkconnectionrequestbody.md
+docs/models/operations/unlinkconnectionupdateconnection.md
 docs/models/operations/unlinkconnectionrequest.md
 docs/models/operations/unlinkconnectionresponse.md
 docs/models/operations/createjournalentryrequest.md
@@ -344,7 +362,7 @@ docs/models/shared/paymentallocationpayment.md
 docs/models/shared/accountref.md
 docs/models/shared/billcreditnotelineitemitemreference.md
 docs/models/shared/billcreditnotelineitemtrackingcustomerref.md
-docs/models/shared/billcreditnotelineitemtrackingprojectref.md
+docs/models/shared/billcreditnotelineitemtrackingprojectreference.md
 docs/models/shared/billcreditnotelineitemtracking.md
 docs/models/shared/billcreditnotelineitem.md
 docs/models/shared/trackingcategoryref.md
@@ -357,6 +375,7 @@ docs/models/shared/billpayment.md
 docs/models/shared/billpaymentline.md
 docs/models/shared/billpaymentlinelink.md
 docs/models/shared/billpaymentlinelinktype.md
+docs/models/shared/pushoperation.md
 docs/models/shared/billpayments.md
 docs/models/shared/createbillresponse.md
 docs/models/shared/billpaymentallocationallocation.md
@@ -368,7 +387,7 @@ docs/models/shared/bill.md
 docs/models/shared/billstatus.md
 docs/models/shared/billlineitem.md
 docs/models/shared/trackingcustomerref.md
-docs/models/shared/trackingprojectref.md
+docs/models/shared/trackingprojectreference.md
 docs/models/shared/tracking.md
 docs/models/shared/itemref.md
 docs/models/shared/attachment.md
@@ -382,6 +401,9 @@ docs/models/shared/dataconnectionstatus.md
 docs/models/shared/dataconnectionerror.md
 docs/models/shared/companyrequestbody.md
 docs/models/shared/companies.md
+docs/models/shared/onecompanies1percent7bcompanyidpercent7d1data1infogetresponses200contentapplication1jsonschemapropertiesphonenumbersitemsdefinitionsphonenumbertype.md
+docs/models/shared/addressesitems.md
+docs/models/shared/accountingaddresstype.md
 docs/models/shared/connections.md
 docs/models/shared/createjournalentryresponse.md
 docs/models/shared/journalentryrecordreference.md
@@ -402,13 +424,11 @@ docs/models/shared/paymentmethod.md
 docs/models/shared/paymentmethodtype.md
 docs/models/shared/paymentmethodstatus.md
 docs/models/shared/paymentmethods.md
-docs/models/shared/pushoperation.md
 docs/models/shared/pushoperations.md
 docs/models/shared/createsupplierresponse.md
-docs/models/shared/supplieraddresses.md
+docs/models/shared/supplieraccountingaddress.md
 docs/models/shared/supplier.md
 docs/models/shared/supplierstatus.md
-docs/models/shared/accountingaddresstype.md
 docs/models/shared/suppliers.md
 docs/models/shared/updatesupplierresponse.md
 docs/models/shared/taxrate.md

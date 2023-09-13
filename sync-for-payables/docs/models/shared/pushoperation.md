@@ -1,7 +1,5 @@
 # PushOperation
 
-OK
-
 
 ## Fields
 

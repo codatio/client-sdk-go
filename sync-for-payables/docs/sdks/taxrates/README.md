@@ -43,7 +43,7 @@ func main() {
     ctx := context.Background()
     res, err := s.TaxRates.Get(ctx, operations.GetTaxRateRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        TaxRateID: "sequi",
+        TaxRateID: "possimus",
     })
     if err != nil {
         log.Fatal(err)
@@ -104,7 +104,7 @@ func main() {
         OrderBy: codatsyncpayables.String("-modifiedDate"),
         Page: codatsyncpayables.Int(1),
         PageSize: codatsyncpayables.Int(100),
-        Query: codatsyncpayables.String("optio"),
+        Query: codatsyncpayables.String("unde"),
     })
     if err != nil {
         log.Fatal(err)

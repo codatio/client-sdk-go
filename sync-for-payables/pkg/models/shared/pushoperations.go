@@ -2,7 +2,6 @@
 
 package shared
 
-// PushOperations - OK
 type PushOperations struct {
 	Links        Links           `json:"_links"`
 	PageNumber   int64           `json:"pageNumber"`

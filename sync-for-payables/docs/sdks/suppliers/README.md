@@ -48,52 +48,42 @@ func main() {
     ctx := context.Background()
     res, err := s.Suppliers.Create(ctx, operations.CreateSupplierRequest{
         Supplier: &shared.Supplier{
-            Addresses: []shared.SupplierAddresses{
-                shared.SupplierAddresses{
-                    City: codatsyncpayables.String("South Pollyshire"),
-                    Country: codatsyncpayables.String("Cayman Islands"),
-                    Line1: codatsyncpayables.String("aspernatur"),
-                    Line2: codatsyncpayables.String("sequi"),
-                    PostalCode: codatsyncpayables.String("85913-7808"),
-                    Region: codatsyncpayables.String("inventore"),
-                    Type: shared.AccountingAddressTypeBilling,
+            Addresses: []shared.SupplierAccountingAddress{
+                shared.SupplierAccountingAddress{
+                    City: codatsyncpayables.String("Fort Virgilfurt"),
+                    Country: codatsyncpayables.String("Sweden"),
+                    Line1: codatsyncpayables.String("officia"),
+                    Line2: codatsyncpayables.String("sed"),
+                    PostalCode: codatsyncpayables.String("09902"),
+                    Region: codatsyncpayables.String("qui"),
+                    Type: shared.AccountingAddressTypeUnknown,
                 },
             },
-            ContactName: codatsyncpayables.String("quibusdam"),
-            DefaultCurrency: codatsyncpayables.String("excepturi"),
-            EmailAddress: codatsyncpayables.String("nostrum"),
-            ID: codatsyncpayables.String("9f439e39-266c-4bd9-9f7a-a2b24113695d"),
+            ContactName: codatsyncpayables.String("necessitatibus"),
+            DefaultCurrency: codatsyncpayables.String("harum"),
+            EmailAddress: codatsyncpayables.String("explicabo"),
+            ID: codatsyncpayables.String("164cf9ab-8366-4c72-bffd-a9e06bee4825"),
             Metadata: &shared.Metadata{
                 IsDeleted: codatsyncpayables.Bool(false),
             },
             ModifiedDate: codatsyncpayables.String("2022-10-23T00:00:00.000Z"),
-            Phone: codatsyncpayables.String("01224 658 999"),
-            RegistrationNumber: codatsyncpayables.String("nisi"),
+            Phone: codatsyncpayables.String("+44 25691 154789"),
+            RegistrationNumber: codatsyncpayables.String("voluptatibus"),
             SourceModifiedDate: codatsyncpayables.String("2022-10-23T00:00:00.000Z"),
-            Status: shared.SupplierStatusActive,
+            Status: shared.SupplierStatusUnknown,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "repellat": map[string]interface{}{
-                        "eligendi": "quaerat",
-                        "veniam": "perspiciatis",
-                        "commodi": "dolores",
-                        "dicta": "molestiae",
-                    },
-                    "maxime": map[string]interface{}{
-                        "molestias": "quam",
-                    },
-                    "molestiae": map[string]interface{}{
-                        "voluptate": "eum",
-                        "consectetur": "velit",
+                    "officiis": map[string]interface{}{
+                        "architecto": "architecto",
                     },
                 },
             },
-            SupplierName: codatsyncpayables.String("tempora"),
-            TaxNumber: codatsyncpayables.String("aspernatur"),
+            SupplierName: codatsyncpayables.String("enim"),
+            TaxNumber: codatsyncpayables.String("optio"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codatsyncpayables.Int(323569),
+        TimeoutInMinutes: codatsyncpayables.Int(525951),
     })
     if err != nil {
         log.Fatal(err)
@@ -153,7 +143,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Suppliers.Get(ctx, operations.GetSupplierRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        SupplierID: "incidunt",
+        SupplierID: "perferendis",
     })
     if err != nil {
         log.Fatal(err)
@@ -276,7 +266,7 @@ func main() {
         OrderBy: codatsyncpayables.String("-modifiedDate"),
         Page: codatsyncpayables.Int(1),
         PageSize: codatsyncpayables.Int(100),
-        Query: codatsyncpayables.String("alias"),
+        Query: codatsyncpayables.String("facilis"),
     })
     if err != nil {
         log.Fatal(err)
@@ -338,49 +328,44 @@ func main() {
     ctx := context.Background()
     res, err := s.Suppliers.Update(ctx, operations.UpdateSupplierRequest{
         Supplier: &shared.Supplier{
-            Addresses: []shared.SupplierAddresses{
-                shared.SupplierAddresses{
-                    City: codatsyncpayables.String("Murlworth"),
-                    Country: codatsyncpayables.String("Portugal"),
-                    Line1: codatsyncpayables.String("minima"),
-                    Line2: codatsyncpayables.String("cupiditate"),
-                    PostalCode: codatsyncpayables.String("08550"),
-                    Region: codatsyncpayables.String("perspiciatis"),
-                    Type: shared.AccountingAddressTypeUnknown,
+            Addresses: []shared.SupplierAccountingAddress{
+                shared.SupplierAccountingAddress{
+                    City: codatsyncpayables.String("Wauwatosa"),
+                    Country: codatsyncpayables.String("Nauru"),
+                    Line1: codatsyncpayables.String("dicta"),
+                    Line2: codatsyncpayables.String("quos"),
+                    PostalCode: codatsyncpayables.String("22982"),
+                    Region: codatsyncpayables.String("consequuntur"),
+                    Type: shared.AccountingAddressTypeDelivery,
                 },
             },
-            ContactName: codatsyncpayables.String("corporis"),
-            DefaultCurrency: codatsyncpayables.String("ullam"),
-            EmailAddress: codatsyncpayables.String("molestiae"),
-            ID: codatsyncpayables.String("389cedba-c7fd-4a39-994d-66bc2ae48063"),
+            ContactName: codatsyncpayables.String("vero"),
+            DefaultCurrency: codatsyncpayables.String("doloribus"),
+            EmailAddress: codatsyncpayables.String("impedit"),
+            ID: codatsyncpayables.String("ce8f1977-773e-4635-a2a7-b408f05e3d48"),
             Metadata: &shared.Metadata{
                 IsDeleted: codatsyncpayables.Bool(false),
             },
             ModifiedDate: codatsyncpayables.String("2022-10-23T00:00:00.000Z"),
             Phone: codatsyncpayables.String("01224 658 999"),
-            RegistrationNumber: codatsyncpayables.String("iste"),
+            RegistrationNumber: codatsyncpayables.String("est"),
             SourceModifiedDate: codatsyncpayables.String("2022-10-23T00:00:00.000Z"),
             Status: shared.SupplierStatusUnknown,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "libero": map[string]interface{}{
-                        "voluptatibus": "id",
-                        "qui": "explicabo",
-                    },
-                    "accusantium": map[string]interface{}{
-                        "nesciunt": "commodi",
-                        "molestias": "atque",
+                    "vitae": map[string]interface{}{
+                        "nesciunt": "similique",
                     },
                 },
             },
-            SupplierName: codatsyncpayables.String("explicabo"),
-            TaxNumber: codatsyncpayables.String("totam"),
+            SupplierName: codatsyncpayables.String("illo"),
+            TaxNumber: codatsyncpayables.String("repellat"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         ForceUpdate: codatsyncpayables.Bool(false),
-        SupplierID: "ipsam",
-        TimeoutInMinutes: codatsyncpayables.Int(367727),
+        SupplierID: "nemo",
+        TimeoutInMinutes: codatsyncpayables.Int(987890),
     })
     if err != nil {
         log.Fatal(err)
