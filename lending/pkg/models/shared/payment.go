@@ -2,8 +2,12 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/types"
+)
+
 type Payment struct {
-	Amount                 *float64                `json:"amount,omitempty"`
+	Amount                 *types.Decimal          `json:"amount,omitempty"`
 	BankingTransactionRefs []BankingTransactionRef `json:"bankingTransactionRefs,omitempty"`
 	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code, e.g. _GBP_.
 	//
@@ -38,7 +42,7 @@ type Payment struct {
 	// | **GBP**          | £20            | 1.277         | $25.54                     |
 	// | **EUR**          | €20            | 1.134         | $22.68                     |
 	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
-	CurrencyRate *float64 `json:"currencyRate,omitempty"`
+	CurrencyRate *types.Decimal `json:"currencyRate,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -64,7 +68,7 @@ type Payment struct {
 	PaymentType *string `json:"paymentType,omitempty"`
 }
 
-func (o *Payment) GetAmount() *float64 {
+func (o *Payment) GetAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}
@@ -85,7 +89,7 @@ func (o *Payment) GetCurrency() *string {
 	return o.Currency
 }
 
-func (o *Payment) GetCurrencyRate() *float64 {
+func (o *Payment) GetCurrencyRate() *types.Decimal {
 	if o == nil {
 		return nil
 	}

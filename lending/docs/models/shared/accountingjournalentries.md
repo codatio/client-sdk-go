@@ -1,7 +1,5 @@
 # AccountingJournalEntries
 
-Success
-
 
 ## Fields
 

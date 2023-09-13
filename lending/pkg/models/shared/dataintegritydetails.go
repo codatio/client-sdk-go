@@ -2,7 +2,6 @@
 
 package shared
 
-// DataIntegrityDetails - OK
 type DataIntegrityDetails struct {
 	Links        Links                 `json:"_links"`
 	PageNumber   int64                 `json:"pageNumber"`

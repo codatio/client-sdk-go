@@ -2,14 +2,18 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/types"
+)
+
 type TaxComponentAllocation struct {
 	// Tax amount on order line sale as available from source commerce platform.
-	Rate *float64 `json:"rate,omitempty"`
+	Rate *types.Decimal `json:"rate,omitempty"`
 	// Taxes rates reference object depending on the rates being available on source commerce package.
 	TaxComponentRef *TaxComponentRef `json:"taxComponentRef,omitempty"`
 }
 
-func (o *TaxComponentAllocation) GetRate() *float64 {
+func (o *TaxComponentAllocation) GetRate() *types.Decimal {
 	if o == nil {
 		return nil
 	}

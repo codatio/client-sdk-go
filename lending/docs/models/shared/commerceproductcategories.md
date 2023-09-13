@@ -1,7 +1,5 @@
 # CommerceProductCategories
 
-OK
-
 
 ## Fields
 

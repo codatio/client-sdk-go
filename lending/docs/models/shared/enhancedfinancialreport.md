@@ -1,7 +1,5 @@
 # EnhancedFinancialReport
 
-OK
-
 
 ## Fields
 

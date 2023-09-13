@@ -1,0 +1,14 @@
+# AccountingCompanyInfoAccountingAddress
+
+
+## Fields
+
+| Field                                                                 | Type                                                                  | Required                                                              | Description                                                           |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `City`                                                                | **string*                                                             | :heavy_minus_sign:                                                    | City of the customer address.                                         |
+| `Country`                                                             | **string*                                                             | :heavy_minus_sign:                                                    | Country of the customer address.                                      |
+| `Line1`                                                               | **string*                                                             | :heavy_minus_sign:                                                    | Line 1 of the customer address.                                       |
+| `Line2`                                                               | **string*                                                             | :heavy_minus_sign:                                                    | Line 2 of the customer address.                                       |
+| `PostalCode`                                                          | **string*                                                             | :heavy_minus_sign:                                                    | Postal code or zip code.                                              |
+| `Region`                                                              | **string*                                                             | :heavy_minus_sign:                                                    | Region of the customer address.                                       |
+| `Type`                                                                | [AccountingAddressType](../../models/shared/accountingaddresstype.md) | :heavy_check_mark:                                                    | The type of the address                                               |

@@ -2,6 +2,10 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/types"
+)
+
 // AccountingAccountValidDataTypeLinks - When querying Codat's data model, some data types return `validDatatypeLinks` metadata in the JSON response. This indicates where that object can be used as a reference—a _valid link_—when creating or updating other data.
 //
 // For example, `validDatatypeLinks` might indicate the following references:
@@ -101,7 +105,7 @@ type AccountingAccount struct {
 	// There are only a very small number of edge cases where this currency code is returned by the Codat system.
 	Currency *string `json:"currency,omitempty"`
 	// Current balance in the account.
-	CurrentBalance *float64 `json:"currentBalance,omitempty"`
+	CurrentBalance *types.Decimal `json:"currentBalance,omitempty"`
 	// Description for the account.
 	Description *string `json:"description,omitempty"`
 	// Full category of the account.
@@ -139,7 +143,7 @@ func (o *AccountingAccount) GetCurrency() *string {
 	return o.Currency
 }
 
-func (o *AccountingAccount) GetCurrentBalance() *float64 {
+func (o *AccountingAccount) GetCurrentBalance() *types.Decimal {
 	if o == nil {
 		return nil
 	}

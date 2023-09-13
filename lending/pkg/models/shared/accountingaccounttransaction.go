@@ -5,6 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/types"
 )
 
 // AccountingAccountTransactionStatus - The status of the account transaction.
@@ -94,7 +95,7 @@ type AccountingAccountTransaction struct {
 	// | **GBP**          | £20            | 1.277         | $25.54                     |
 	// | **EUR**          | €20            | 1.134         | $22.68                     |
 	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
-	CurrencyRate *float64 `json:"currencyRate,omitempty"`
+	CurrencyRate *types.Decimal `json:"currencyRate,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -127,7 +128,7 @@ type AccountingAccountTransaction struct {
 	// The status of the account transaction.
 	Status *AccountingAccountTransactionStatus `json:"status,omitempty"`
 	// Total amount of the account transactions, inclusive of tax.
-	TotalAmount *float64 `json:"totalAmount,omitempty"`
+	TotalAmount *types.Decimal `json:"totalAmount,omitempty"`
 	// Identifier of the transaction (unique to the company).
 	TransactionID *string `json:"transactionId,omitempty"`
 }
@@ -146,7 +147,7 @@ func (o *AccountingAccountTransaction) GetCurrency() *string {
 	return o.Currency
 }
 
-func (o *AccountingAccountTransaction) GetCurrencyRate() *float64 {
+func (o *AccountingAccountTransaction) GetCurrencyRate() *types.Decimal {
 	if o == nil {
 		return nil
 	}
@@ -209,7 +210,7 @@ func (o *AccountingAccountTransaction) GetStatus() *AccountingAccountTransaction
 	return o.Status
 }
 
-func (o *AccountingAccountTransaction) GetTotalAmount() *float64 {
+func (o *AccountingAccountTransaction) GetTotalAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}

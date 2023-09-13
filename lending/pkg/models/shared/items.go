@@ -4,14 +4,14 @@ package shared
 
 type Items struct {
 	// A phone number.
-	Number string `json:"number"`
+	Number *string `json:"number"`
 	// The type of phone number
 	Type PhoneNumberType `json:"type"`
 }
 
-func (o *Items) GetNumber() string {
+func (o *Items) GetNumber() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.Number
 }

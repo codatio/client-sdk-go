@@ -1,7 +1,5 @@
 # CommerceTransactions
 
-OK
-
 
 ## Fields
 

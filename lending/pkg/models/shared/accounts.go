@@ -2,6 +2,10 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/types"
+)
+
 type Accounts struct {
 	// The name of the account according to the provider.
 	AccountName *string `json:"accountName,omitempty"`
@@ -18,7 +22,7 @@ type Accounts struct {
 	// There are only a very small number of edge cases where this currency code is returned by the Codat system.
 	Currency *string `json:"currency,omitempty"`
 	// The balance of the bank account.
-	CurrentBalance *float64 `json:"currentBalance,omitempty"`
+	CurrentBalance *types.Decimal `json:"currentBalance,omitempty"`
 	// Name of the banking data source, e.g. "Plaid".
 	PlatformName *string `json:"platformName,omitempty"`
 	// A source reference containing the `sourceType` object "Banking".
@@ -53,7 +57,7 @@ func (o *Accounts) GetCurrency() *string {
 	return o.Currency
 }
 
-func (o *Accounts) GetCurrentBalance() *float64 {
+func (o *Accounts) GetCurrentBalance() *types.Decimal {
 	if o == nil {
 		return nil
 	}

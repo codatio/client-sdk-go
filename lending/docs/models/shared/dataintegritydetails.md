@@ -1,7 +1,5 @@
 # DataIntegrityDetails
 
-OK
-
 
 ## Fields
 

@@ -2,18 +2,22 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/types"
+)
+
 type AccountBalance struct {
 	// The account's current balance
-	Available *float64 `json:"available,omitempty"`
+	Available *types.Decimal `json:"available,omitempty"`
 	// The currency of the account
 	Currency *string `json:"currency,omitempty"`
 	// Funds that are not yet available in the balance
-	Pending *float64 `json:"pending,omitempty"`
+	Pending *types.Decimal `json:"pending,omitempty"`
 	// Funds reserved as holdings
-	Reserved *float64 `json:"reserved,omitempty"`
+	Reserved interface{} `json:"reserved,omitempty"`
 }
 
-func (o *AccountBalance) GetAvailable() *float64 {
+func (o *AccountBalance) GetAvailable() *types.Decimal {
 	if o == nil {
 		return nil
 	}
@@ -27,14 +31,14 @@ func (o *AccountBalance) GetCurrency() *string {
 	return o.Currency
 }
 
-func (o *AccountBalance) GetPending() *float64 {
+func (o *AccountBalance) GetPending() *types.Decimal {
 	if o == nil {
 		return nil
 	}
 	return o.Pending
 }
 
-func (o *AccountBalance) GetReserved() *float64 {
+func (o *AccountBalance) GetReserved() interface{} {
 	if o == nil {
 		return nil
 	}

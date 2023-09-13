@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/lending/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/shared"
 	"net/http"
 )
 

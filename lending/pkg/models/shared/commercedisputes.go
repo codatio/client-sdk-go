@@ -2,7 +2,6 @@
 
 package shared
 
-// CommerceDisputes - OK
 type CommerceDisputes struct {
 	Links        Links             `json:"_links"`
 	PageNumber   int64             `json:"pageNumber"`

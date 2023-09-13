@@ -1,7 +1,5 @@
 # AccountingSuppliers
 
-Success
-
 
 ## Fields
 

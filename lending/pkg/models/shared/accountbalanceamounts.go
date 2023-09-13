@@ -2,31 +2,35 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/types"
+)
+
 // AccountBalanceAmounts - Depending on the data provided by the underlying bank, not all balances are always available.
 type AccountBalanceAmounts struct {
 	// The balance available in the account, including any pending transactions. This doesn't include additional funds available from any overdrafts.
-	Available *float64 `json:"available,omitempty"`
+	Available *types.Decimal `json:"available,omitempty"`
 	// The balance of the account only including cleared transactions.
-	Current *float64 `json:"current,omitempty"`
+	Current *types.Decimal `json:"current,omitempty"`
 	// The minimum allowed balance for the account. For example, a $100.00 overdraft would show as a limit of `-100.00`.
-	Limit *float64 `json:"limit,omitempty"`
+	Limit *types.Decimal `json:"limit,omitempty"`
 }
 
-func (o *AccountBalanceAmounts) GetAvailable() *float64 {
+func (o *AccountBalanceAmounts) GetAvailable() *types.Decimal {
 	if o == nil {
 		return nil
 	}
 	return o.Available
 }
 
-func (o *AccountBalanceAmounts) GetCurrent() *float64 {
+func (o *AccountBalanceAmounts) GetCurrent() *types.Decimal {
 	if o == nil {
 		return nil
 	}
 	return o.Current
 }
 
-func (o *AccountBalanceAmounts) GetLimit() *float64 {
+func (o *AccountBalanceAmounts) GetLimit() *types.Decimal {
 	if o == nil {
 		return nil
 	}

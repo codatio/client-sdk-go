@@ -2,6 +2,10 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/types"
+)
+
 // ProductVariant - Represents a variation of a product available for sale, for example an item of clothing that may be available for sale in multiple sizes and colors.
 type ProductVariant struct {
 	// Unique product number of the variant. This might be a barcode, UPC, ISBN, etc.
@@ -46,7 +50,7 @@ type ProductVariant struct {
 	// Unit of measure for the variant, such as `kg` or `meters`.
 	UnitOfMeasure *string `json:"unitOfMeasure,omitempty"`
 	// VAT rate for the product variant if sales taxes are enabled.
-	VatPercentage *float64 `json:"vatPercentage,omitempty"`
+	VatPercentage *types.Decimal `json:"vatPercentage,omitempty"`
 }
 
 func (o *ProductVariant) GetBarcode() *string {
@@ -140,7 +144,7 @@ func (o *ProductVariant) GetUnitOfMeasure() *string {
 	return o.UnitOfMeasure
 }
 
-func (o *ProductVariant) GetVatPercentage() *float64 {
+func (o *ProductVariant) GetVatPercentage() *types.Decimal {
 	if o == nil {
 		return nil
 	}

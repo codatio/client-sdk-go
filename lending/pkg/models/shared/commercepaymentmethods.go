@@ -2,7 +2,6 @@
 
 package shared
 
-// CommercePaymentMethods - OK
 type CommercePaymentMethods struct {
 	Links        Links                   `json:"_links"`
 	PageNumber   int64                   `json:"pageNumber"`

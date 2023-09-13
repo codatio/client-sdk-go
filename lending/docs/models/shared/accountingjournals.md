@@ -1,7 +1,5 @@
 # AccountingJournals
 
-Success
-
 
 ## Fields
 

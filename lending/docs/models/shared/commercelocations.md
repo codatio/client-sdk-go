@@ -1,7 +1,5 @@
 # CommerceLocations
 
-OK
-
 
 ## Fields
 

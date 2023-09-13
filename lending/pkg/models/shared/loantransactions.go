@@ -2,7 +2,6 @@
 
 package shared
 
-// LoanTransactions - OK
 type LoanTransactions struct {
 	// If there are no errors, an empty array is returned.
 	Errors     []interface{}               `json:"errors,omitempty"`

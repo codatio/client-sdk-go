@@ -2,6 +2,10 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/types"
+)
+
 // BankingTransaction - The Banking Transactions data type provides an immutable source of up-to-date information on income and expenditure.
 //
 // Responses are paged, so you should provide `page` and `pageSize` query parameters in your request.
@@ -11,7 +15,7 @@ type BankingTransaction struct {
 	// The unique identifier of the bank account.
 	AccountID string `json:"accountId"`
 	// The amount of the bank transaction.
-	Amount *float64 `json:"amount,omitempty"`
+	Amount *types.Decimal `json:"amount,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -75,7 +79,7 @@ func (o *BankingTransaction) GetAccountID() string {
 	return o.AccountID
 }
 
-func (o *BankingTransaction) GetAmount() *float64 {
+func (o *BankingTransaction) GetAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}

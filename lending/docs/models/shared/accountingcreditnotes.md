@@ -1,7 +1,5 @@
 # AccountingCreditNotes
 
-Success
-
 
 ## Fields
 

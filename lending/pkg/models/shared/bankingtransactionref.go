@@ -2,11 +2,15 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/types"
+)
+
 type BankingTransactionRef struct {
-	AccountID        *string  `json:"accountId,omitempty"`
-	AccountName      *string  `json:"accountName,omitempty"`
-	Amount           *float64 `json:"amount,omitempty"`
-	DataConnectionID *string  `json:"dataConnectionId,omitempty"`
+	AccountID        *string        `json:"accountId,omitempty"`
+	AccountName      *string        `json:"accountName,omitempty"`
+	Amount           *types.Decimal `json:"amount,omitempty"`
+	DataConnectionID *string        `json:"dataConnectionId,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -45,7 +49,7 @@ func (o *BankingTransactionRef) GetAccountName() *string {
 	return o.AccountName
 }
 
-func (o *BankingTransactionRef) GetAmount() *float64 {
+func (o *BankingTransactionRef) GetAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}

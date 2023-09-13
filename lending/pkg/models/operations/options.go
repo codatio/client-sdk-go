@@ -4,7 +4,7 @@ package operations
 
 import (
 	"errors"
-	"github.com/codatio/client-sdk-go/lending/pkg/utils"
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/utils"
 )
 
 var ErrUnsupportedOption = errors.New("unsupported option")

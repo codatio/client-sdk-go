@@ -2,6 +2,11 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/types"
+	"github.com/ericlagergren/decimal"
+)
+
 type BillPaymentLine struct {
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
@@ -24,7 +29,7 @@ type BillPaymentLine struct {
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	AllocatedOnDate *string `json:"allocatedOnDate,omitempty"`
 	// Amount in the bill payment currency.
-	Amount float64               `json:"amount"`
+	Amount types.Decimal         `json:"amount"`
 	Links  []BillPaymentLineLink `json:"links,omitempty"`
 }
 
@@ -35,9 +40,9 @@ func (o *BillPaymentLine) GetAllocatedOnDate() *string {
 	return o.AllocatedOnDate
 }
 
-func (o *BillPaymentLine) GetAmount() float64 {
+func (o *BillPaymentLine) GetAmount() types.Decimal {
 	if o == nil {
-		return 0.0
+		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
 	}
 	return o.Amount
 }

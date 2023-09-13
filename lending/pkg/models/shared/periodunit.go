@@ -7,7 +7,6 @@ import (
 	"fmt"
 )
 
-// PeriodUnit - The period unit of time returned.
 type PeriodUnit string
 
 const (

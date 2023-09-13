@@ -1,7 +1,5 @@
 # AccountingDirectCosts
 
-Success
-
 
 ## Fields
 

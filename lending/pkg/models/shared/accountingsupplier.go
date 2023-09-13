@@ -9,7 +9,7 @@ package shared
 // From the **Suppliers** endpoints, you can retrieve a list of [all the suppliers for a company](https://docs.codat.io/accounting-api#/operations/list-suppliers). Suppliers' data links to accounts payable [bills](https://docs.codat.io/accounting-api#/schemas/Bill).
 type AccountingSupplier struct {
 	// An array of Addresses.
-	Addresses []AccountingAddress `json:"addresses,omitempty"`
+	Addresses []Addressesitems `json:"addresses,omitempty"`
 	// Name of the main contact for the supplier.
 	ContactName *string `json:"contactName,omitempty"`
 	// Default currency the supplier's transactional data is recorded in.
@@ -29,7 +29,7 @@ type AccountingSupplier struct {
 	Status SupplierStatus `json:"status"`
 	// Supplemental data is additional data you can include in our standard data types.
 	//
-	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/additional-data) about supplemental data.
+	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
 	SupplementalData *SupplementalData `json:"supplementalData,omitempty"`
 	// Name of the supplier as recorded in the accounting system, typically the company name.
 	SupplierName *string `json:"supplierName,omitempty"`
@@ -37,7 +37,7 @@ type AccountingSupplier struct {
 	TaxNumber *string `json:"taxNumber,omitempty"`
 }
 
-func (o *AccountingSupplier) GetAddresses() []AccountingAddress {
+func (o *AccountingSupplier) GetAddresses() []Addressesitems {
 	if o == nil {
 		return nil
 	}

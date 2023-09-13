@@ -2,12 +2,16 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/lending/v2/pkg/types"
+)
+
 type EnhancedCashFlowTransaction struct {
 	// An account reference containing the account id and name.
 	AccountRef *AccountRef `json:"accountRef,omitempty"`
 	// The bank transaction amount.
-	Amount   *float64 `json:"amount,omitempty"`
-	Currency *string  `json:"currency,omitempty"`
+	Amount   *types.Decimal `json:"amount,omitempty"`
+	Currency *string        `json:"currency,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -46,7 +50,7 @@ func (o *EnhancedCashFlowTransaction) GetAccountRef() *AccountRef {
 	return o.AccountRef
 }
 
-func (o *EnhancedCashFlowTransaction) GetAmount() *float64 {
+func (o *EnhancedCashFlowTransaction) GetAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}
