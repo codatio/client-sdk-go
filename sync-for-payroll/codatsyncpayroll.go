@@ -49,6 +49,7 @@ type sdkConfiguration struct {
 	OpenAPIDocVersion string
 	SDKVersion        string
 	GenVersion        string
+	RetryConfig       *utils.RetryConfig
 }
 
 func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
@@ -63,23 +64,38 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 //
 // Sync for Payroll is an API and a set of supporting tools built to help integrate your customers' payroll data from their HR and payroll platforms into their accounting platforms and to support its reconciliation.
 //
-// [Read More...](https://docs.codat.io/payroll/overview)
+// [Explore product](https://docs.codat.io/payroll/overview) | [See OpenAPI spec](https://github.com/codatio/oas)
+//
+// ---
+//
+// ## Endpoints
+//
+// | Endpoints            | Description                                                                                                |
+// |:---------------------|:-----------------------------------------------------------------------------------------------------------|
+// | Companies            | Create and manage your SMB users' companies.                                                               |
+// | Connections          | Create new and manage existing data connections for a company.                                             |
+// | Accounts             | Get, create, and update Accounts.                                                           |
+// | Journal entries      | Get, create, and update Journal entries.                                                           |
+// | Journals             | Get, create, and update Journals.                                                           |
+// | Tracking categories  | Get, create, and update Tracking Categories for additional categorization of payroll components.                                                           |
+// | Company info         | View company profile from the source platform.                                                             |
+// | Manage data          | Control how data is retrieved from an integration.                                                         |
 type CodatSyncPayroll struct {
-	// Accounts - Accounts
+	// Accounts
 	Accounts *accounts
-	// Companies - Create and manage your Codat companies.
+	// Create and manage your Codat companies.
 	Companies *companies
-	// Connections - Manage your companies' data connections.
+	// View company information fetched from the source platform.
+	CompanyInfo *companyInfo
+	// Manage your companies' data connections.
 	Connections *connections
-	// JournalEntries - Journal entries
+	// Journal entries
 	JournalEntries *journalEntries
-	// Journals - Journals
+	// Journals
 	Journals *journals
-	// ManageData - Asynchronously retrieve data from an integration to refresh data in Codat.
+	// Asynchronously retrieve data from an integration to refresh data in Codat.
 	ManageData *manageData
-	// PushOperations - Access create, update and delete operations made to an SMB's data connection.
-	PushOperations *pushOperations
-	// TrackingCategories - Tracking categories
+	// Tracking categories
 	TrackingCategories *trackingCategories
 
 	sdkConfiguration sdkConfiguration
@@ -130,14 +146,20 @@ func WithSecurity(security shared.Security) SDKOption {
 	}
 }
 
+func WithRetryConfig(retryConfig utils.RetryConfig) SDKOption {
+	return func(sdk *CodatSyncPayroll) {
+		sdk.sdkConfiguration.RetryConfig = &retryConfig
+	}
+}
+
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *CodatSyncPayroll {
 	sdk := &CodatSyncPayroll{
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "0.1.0",
-			GenVersion:        "2.91.4",
+			SDKVersion:        "0.2.0",
+			GenVersion:        "2.109.1",
 		},
 	}
 	for _, opt := range opts {
@@ -160,6 +182,8 @@ func New(opts ...SDKOption) *CodatSyncPayroll {
 
 	sdk.Companies = newCompanies(sdk.sdkConfiguration)
 
+	sdk.CompanyInfo = newCompanyInfo(sdk.sdkConfiguration)
+
 	sdk.Connections = newConnections(sdk.sdkConfiguration)
 
 	sdk.JournalEntries = newJournalEntries(sdk.sdkConfiguration)
@@ -167,8 +191,6 @@ func New(opts ...SDKOption) *CodatSyncPayroll {
 	sdk.Journals = newJournals(sdk.sdkConfiguration)
 
 	sdk.ManageData = newManageData(sdk.sdkConfiguration)
-
-	sdk.PushOperations = newPushOperations(sdk.sdkConfiguration)
 
 	sdk.TrackingCategories = newTrackingCategories(sdk.sdkConfiguration)
 
