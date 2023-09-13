@@ -2,7 +2,6 @@
 
 package shared
 
-// Attachment - OK
 type Attachment struct {
 	// Unique ID of company in Codat
 	CompanyID *string `json:"companyId,omitempty"`

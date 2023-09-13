@@ -2,7 +2,6 @@
 
 package shared
 
-// MappingOptions - Success
 type MappingOptions struct {
 	// Array of available accounts for mapping.
 	Accounts []AccountMappingInfo `json:"accounts,omitempty"`

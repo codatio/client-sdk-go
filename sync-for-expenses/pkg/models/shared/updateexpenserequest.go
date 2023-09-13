@@ -2,6 +2,10 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/types"
+)
+
 type UpdateExpenseRequestBankAccountReference struct {
 	// Identifier of the bank account.
 	ID *string `json:"id,omitempty"`
@@ -44,7 +48,7 @@ type UpdateExpenseRequest struct {
 	// | **GBP**          | £20            | 1.277         | $25.54                     |
 	// | **EUR**          | €20            | 1.134         | $22.68                     |
 	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
-	CurrencyRate *float64 `json:"currencyRate,omitempty"`
+	CurrencyRate *types.Decimal `json:"currencyRate,omitempty"`
 	// Date the transaction was recorded.
 	IssueDate string `json:"issueDate"`
 	// Array of transaction lines.
@@ -77,7 +81,7 @@ func (o *UpdateExpenseRequest) GetCurrency() *string {
 	return o.Currency
 }
 
-func (o *UpdateExpenseRequest) GetCurrencyRate() *float64 {
+func (o *UpdateExpenseRequest) GetCurrencyRate() *types.Decimal {
 	if o == nil {
 		return nil
 	}

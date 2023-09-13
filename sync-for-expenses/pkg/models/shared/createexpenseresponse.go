@@ -2,7 +2,6 @@
 
 package shared
 
-// CreateExpenseResponse - OK
 type CreateExpenseResponse struct {
 	// Unique id of dataset created
 	DatasetID *string `json:"datasetId,omitempty"`

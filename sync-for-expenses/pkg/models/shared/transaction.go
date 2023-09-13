@@ -2,7 +2,6 @@
 
 package shared
 
-// Transaction - Success
 type Transaction struct {
 	// Type of transaction that has been processed e.g. Expense or Bank Feed.
 	IntegrationType *IntegrationType `json:"integrationType,omitempty"`

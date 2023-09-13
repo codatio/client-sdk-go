@@ -25,7 +25,7 @@ func newTransactionStatus(sdkConfig sdkConfiguration) *transactionStatus {
 	}
 }
 
-// Get - Get Sync Transaction
+// Get Sync Transaction
 // Gets the status of a transaction for a sync
 func (s *transactionStatus) Get(ctx context.Context, request operations.GetSyncTransactionRequest, opts ...operations.Option) (*operations.GetSyncTransactionResponse, error) {
 	o := operations.Options{}
@@ -53,17 +53,22 @@ func (s *transactionStatus) Get(ctx context.Context, request operations.GetSyncT
 
 	client := s.sdkConfiguration.SecurityClient
 
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
 		}
 	}
 
@@ -132,7 +137,7 @@ func (s *transactionStatus) Get(ctx context.Context, request operations.GetSyncT
 	return res, nil
 }
 
-// List - List sync transactions
+// List sync transactions
 // Gets the transactions and status for a sync
 func (s *transactionStatus) List(ctx context.Context, request operations.ListSyncTransactionsRequest, opts ...operations.Option) (*operations.ListSyncTransactionsResponse, error) {
 	o := operations.Options{}
@@ -164,17 +169,22 @@ func (s *transactionStatus) List(ctx context.Context, request operations.ListSyn
 
 	client := s.sdkConfiguration.SecurityClient
 
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
 		}
 	}
 

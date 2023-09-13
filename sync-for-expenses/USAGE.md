@@ -23,7 +23,7 @@ func main() {
     res, err := s.Accounts.Create(ctx, operations.CreateAccountRequest{
         Account: &shared.Account{
             Currency: codatsyncexpenses.String("USD"),
-            CurrentBalance: codatsyncexpenses.Float64(0),
+            CurrentBalance: types.MustNewDecimalFromString("0"),
             Description: codatsyncexpenses.String("Invoices the business has issued but has not yet collected payment on."),
             FullyQualifiedCategory: codatsyncexpenses.String("Asset.Current"),
             FullyQualifiedName: codatsyncexpenses.String("Fixed Asset"),
@@ -41,31 +41,15 @@ func main() {
             ValidDatatypeLinks: []shared.AccountValidDataTypeLinks{
                 shared.AccountValidDataTypeLinks{
                     Links: []string{
-                        "corrupti",
-                        "illum",
-                        "vel",
-                        "error",
+                        "unde",
                     },
-                    Property: codatsyncexpenses.String("deserunt"),
-                },
-                shared.AccountValidDataTypeLinks{
-                    Links: []string{
-                        "iure",
-                        "magnam",
-                    },
-                    Property: codatsyncexpenses.String("debitis"),
-                },
-                shared.AccountValidDataTypeLinks{
-                    Links: []string{
-                        "delectus",
-                    },
-                    Property: codatsyncexpenses.String("tempora"),
+                    Property: codatsyncexpenses.String("nulla"),
                 },
             },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codatsyncexpenses.Int(383441),
+        TimeoutInMinutes: codatsyncexpenses.Int(544883),
     })
     if err != nil {
         log.Fatal(err)

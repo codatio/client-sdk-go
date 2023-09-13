@@ -2,7 +2,6 @@
 
 package shared
 
-// Customer - Success
 type Customer struct {
 	// id of the customer for all income related activities to be associated to.
 	ID *string `json:"id,omitempty"`

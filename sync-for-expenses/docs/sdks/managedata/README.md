@@ -147,7 +147,7 @@ func main() {
         OrderBy: codatsyncexpenses.String("-modifiedDate"),
         Page: codatsyncexpenses.Int(1),
         PageSize: codatsyncexpenses.Int(100),
-        Query: codatsyncexpenses.String("dolor"),
+        Query: codatsyncexpenses.String("quis"),
     })
     if err != nil {
         log.Fatal(err)
@@ -258,7 +258,7 @@ func main() {
     ctx := context.Background()
     res, err := s.ManageData.RefreshDataType(ctx, operations.RefreshDataTypeRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ConnectionID: codatsyncexpenses.String("96fea759-6eb1-40fa-aa23-52c5955907af"),
+        ConnectionID: codatsyncexpenses.String("1a05dfc2-ddf7-4cc7-8ca1-ba928fc81674"),
         DataType: shared.DataTypeInvoices,
     })
     if err != nil {

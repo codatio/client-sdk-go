@@ -1,7 +1,5 @@
 # UpdateExpenseResponse
 
-Accepted
-
 
 ## Fields
 

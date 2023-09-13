@@ -51,7 +51,7 @@ func main() {
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codatsyncexpenses.Int(673660),
+        TimeoutInMinutes: codatsyncexpenses.Int(358152),
     })
     if err != nil {
         log.Fatal(err)
@@ -172,7 +172,7 @@ func main() {
         OrderBy: codatsyncexpenses.String("-modifiedDate"),
         Page: codatsyncexpenses.Int(1),
         PageSize: codatsyncexpenses.Int(100),
-        Query: codatsyncexpenses.String("reiciendis"),
+        Query: codatsyncexpenses.String("nobis"),
     })
     if err != nil {
         log.Fatal(err)
@@ -239,8 +239,8 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         ForceUpdate: codatsyncexpenses.Bool(false),
-        SupplierID: "EILBDVJVNUAGVKRQ",
-        TimeoutInMinutes: codatsyncexpenses.Int(878194),
+        SupplierID: "9wg4lep4ush5cxs79pl8sozmsndbaukll3ind4g7buqbm1h2",
+        TimeoutInMinutes: codatsyncexpenses.Int(607831),
     })
     if err != nil {
         log.Fatal(err)

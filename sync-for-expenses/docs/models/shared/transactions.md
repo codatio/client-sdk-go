@@ -1,7 +1,5 @@
 # Transactions
 
-Success
-
 
 ## Fields
 

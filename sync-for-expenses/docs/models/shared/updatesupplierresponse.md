@@ -1,7 +1,5 @@
 # UpdateSupplierResponse
 
-Success
-
 
 ## Fields
 

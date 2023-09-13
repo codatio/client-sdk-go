@@ -1,7 +1,5 @@
 # UpdateCustomerResponse
 
-Success
-
 
 ## Fields
 

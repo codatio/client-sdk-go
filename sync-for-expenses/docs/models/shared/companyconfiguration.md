@@ -1,7 +1,5 @@
 # CompanyConfiguration
 
-Success
-
 
 ## Fields
 
