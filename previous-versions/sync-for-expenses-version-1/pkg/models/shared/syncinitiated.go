@@ -2,7 +2,6 @@
 
 package shared
 
-// SyncInitiated - Returns the newly created SyncId
 type SyncInitiated struct {
 	SyncID *string `json:"syncId,omitempty"`
 }

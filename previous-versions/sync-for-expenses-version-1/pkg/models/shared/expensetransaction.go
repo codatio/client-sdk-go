@@ -5,6 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1/pkg/types"
 )
 
 // ExpenseTransactionType - The type of transaction.
@@ -82,7 +83,7 @@ type ExpenseTransaction struct {
 	// | **GBP**          | £20            | 1.277         | $25.54                     |
 	// | **EUR**          | €20            | 1.134         | $22.68                     |
 	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
-	CurrencyRate *float64 `json:"currencyRate,omitempty"`
+	CurrencyRate *types.Decimal `json:"currencyRate,omitempty"`
 	// Your unique identifier for the transaction.
 	ID string `json:"id"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
@@ -129,7 +130,7 @@ func (o *ExpenseTransaction) GetCurrency() string {
 	return o.Currency
 }
 
-func (o *ExpenseTransaction) GetCurrencyRate() *float64 {
+func (o *ExpenseTransaction) GetCurrencyRate() *types.Decimal {
 	if o == nil {
 		return nil
 	}

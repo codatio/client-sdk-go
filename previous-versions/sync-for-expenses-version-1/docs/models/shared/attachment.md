@@ -1,7 +1,5 @@
 # Attachment
 
-OK
-
 
 ## Fields
 
