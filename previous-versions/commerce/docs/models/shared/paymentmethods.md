@@ -1,7 +1,5 @@
 # PaymentMethods
 
-OK
-
 
 ## Fields
 
