@@ -7,26 +7,26 @@ import (
 	"net/http"
 )
 
-type IntiateSyncRequest struct {
+type InitiateSyncRequest struct {
 	PostSync  *shared.PostSync `request:"mediaType=application/json"`
 	CompanyID string           `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
-func (o *IntiateSyncRequest) GetPostSync() *shared.PostSync {
+func (o *InitiateSyncRequest) GetPostSync() *shared.PostSync {
 	if o == nil {
 		return nil
 	}
 	return o.PostSync
 }
 
-func (o *IntiateSyncRequest) GetCompanyID() string {
+func (o *InitiateSyncRequest) GetCompanyID() string {
 	if o == nil {
 		return ""
 	}
 	return o.CompanyID
 }
 
-type IntiateSyncResponse struct {
+type InitiateSyncResponse struct {
 	ContentType string
 	// If model is incorrect
 	ErrorMessage *shared.ErrorMessage
@@ -36,35 +36,35 @@ type IntiateSyncResponse struct {
 	SyncInitiated *shared.SyncInitiated
 }
 
-func (o *IntiateSyncResponse) GetContentType() string {
+func (o *InitiateSyncResponse) GetContentType() string {
 	if o == nil {
 		return ""
 	}
 	return o.ContentType
 }
 
-func (o *IntiateSyncResponse) GetErrorMessage() *shared.ErrorMessage {
+func (o *InitiateSyncResponse) GetErrorMessage() *shared.ErrorMessage {
 	if o == nil {
 		return nil
 	}
 	return o.ErrorMessage
 }
 
-func (o *IntiateSyncResponse) GetStatusCode() int {
+func (o *InitiateSyncResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
 	}
 	return o.StatusCode
 }
 
-func (o *IntiateSyncResponse) GetRawResponse() *http.Response {
+func (o *InitiateSyncResponse) GetRawResponse() *http.Response {
 	if o == nil {
 		return nil
 	}
 	return o.RawResponse
 }
 
-func (o *IntiateSyncResponse) GetSyncInitiated() *shared.SyncInitiated {
+func (o *InitiateSyncResponse) GetSyncInitiated() *shared.SyncInitiated {
 	if o == nil {
 		return nil
 	}

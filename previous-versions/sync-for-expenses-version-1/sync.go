@@ -25,9 +25,9 @@ func newSync(sdkConfig sdkConfiguration) *sync {
 	}
 }
 
-// IntiateSync - Initiate sync
+// InitiateSync - Initiate sync
 // Initiate sync of pending transactions.
-func (s *sync) IntiateSync(ctx context.Context, request operations.IntiateSyncRequest, opts ...operations.Option) (*operations.IntiateSyncResponse, error) {
+func (s *sync) InitiateSync(ctx context.Context, request operations.InitiateSyncRequest, opts ...operations.Option) (*operations.InitiateSyncResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -60,17 +60,22 @@ func (s *sync) IntiateSync(ctx context.Context, request operations.IntiateSyncRe
 
 	client := s.sdkConfiguration.SecurityClient
 
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
 		}
 	}
 
@@ -100,7 +105,7 @@ func (s *sync) IntiateSync(ctx context.Context, request operations.IntiateSyncRe
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.IntiateSyncResponse{
+	res := &operations.InitiateSyncResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,

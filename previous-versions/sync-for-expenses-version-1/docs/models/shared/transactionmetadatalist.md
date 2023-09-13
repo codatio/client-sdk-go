@@ -1,7 +1,5 @@
 # TransactionMetadataList
 
-Success
-
 
 ## Fields
 

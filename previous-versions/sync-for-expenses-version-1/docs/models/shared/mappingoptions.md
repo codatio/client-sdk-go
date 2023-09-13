@@ -1,7 +1,5 @@
 # MappingOptions
 
-Success
-
 
 ## Fields
 

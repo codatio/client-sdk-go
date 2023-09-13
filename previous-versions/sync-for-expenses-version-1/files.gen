@@ -13,6 +13,7 @@ pkg/models/sdkerrors/sdkerror.go
 pkg/types/bigint.go
 pkg/types/date.go
 pkg/types/datetime.go
+pkg/types/decimal.go
 pkg/utils/contenttype.go
 pkg/utils/form.go
 pkg/utils/headers.go
@@ -39,7 +40,7 @@ pkg/models/operations/createexpensedataset.go
 pkg/models/operations/updateexpensedataset.go
 pkg/models/operations/uploadattachment.go
 pkg/models/operations/getmappingoptions.go
-pkg/models/operations/intiatesync.go
+pkg/models/operations/initiatesync.go
 pkg/models/operations/getlastsuccessfulsync.go
 pkg/models/operations/getlatestsync.go
 pkg/models/operations/getsyncbyid.go
@@ -121,7 +122,7 @@ docs/models/operations/getconnectionrequest.md
 docs/models/operations/getconnectionresponse.md
 docs/models/operations/listconnectionsrequest.md
 docs/models/operations/listconnectionsresponse.md
-docs/models/operations/unlinkconnectionrequestbody.md
+docs/models/operations/unlinkconnectionupdateconnection.md
 docs/models/operations/unlinkconnectionrequest.md
 docs/models/operations/unlinkconnectionresponse.md
 docs/models/operations/createexpensedatasetrequest.md
@@ -134,8 +135,8 @@ docs/models/operations/uploadattachmentrequest.md
 docs/models/operations/uploadattachmentresponse.md
 docs/models/operations/getmappingoptionsrequest.md
 docs/models/operations/getmappingoptionsresponse.md
-docs/models/operations/intiatesyncrequest.md
-docs/models/operations/intiatesyncresponse.md
+docs/models/operations/initiatesyncrequest.md
+docs/models/operations/initiatesyncresponse.md
 docs/models/operations/getlastsuccessfulsyncrequest.md
 docs/models/operations/getlastsuccessfulsyncresponse.md
 docs/models/operations/getlatestsyncrequest.md

@@ -2,7 +2,6 @@
 
 package shared
 
-// CompanyConfiguration - Success
 type CompanyConfiguration struct {
 	BankAccount BankAccount `json:"bankAccount"`
 	Customer    Customer    `json:"customer"`
