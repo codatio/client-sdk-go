@@ -1,7 +1,5 @@
 # TransactionCategories
 
-Success
-
 
 ## Fields
 
