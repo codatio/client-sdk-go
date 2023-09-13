@@ -6,7 +6,7 @@ Initiate and monitor the sync of company data into accounting software.
 
 ### Available Operations
 
-* [Get](#get) - Get Sync status
+* [Get](#get) - Get sync status
 * [GetLastSuccessfulSync](#getlastsuccessfulsync) - Last successful sync
 * [GetLatestSync](#getlatestsync) - Latest sync status
 * [GetStatus](#getstatus) - Get sync status
@@ -203,7 +203,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.StatusCode == http.StatusOK {
+    if res.SyncStatus != nil {
         // handle response
     }
 }

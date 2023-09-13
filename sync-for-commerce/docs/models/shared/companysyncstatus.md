@@ -1,7 +1,5 @@
 # CompanySyncStatus
 
-Success
-
 
 ## Fields
 

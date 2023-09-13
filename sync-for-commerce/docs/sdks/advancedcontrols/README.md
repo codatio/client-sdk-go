@@ -36,7 +36,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.AdvancedControls.CreateCompany(ctx, shared.CreateCompany{
-        Name: "Bob's Burgers",
+        Description: codatsynccommerce.String("Requested early access to the new financing scheme."),
+        Name: "Bank of Dave",
     })
     if err != nil {
         log.Fatal(err)

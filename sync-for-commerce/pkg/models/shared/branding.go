@@ -2,7 +2,6 @@
 
 package shared
 
-// Branding - Success
 type Branding struct {
 	// Button branding references.
 	Button *BrandingButton `json:"button,omitempty"`

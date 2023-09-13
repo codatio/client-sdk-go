@@ -1,7 +1,5 @@
 # Companies
 
-Success
-
 
 ## Fields
 

@@ -2,20 +2,24 @@
 
 package shared
 
-type CompanySyncStatus struct {
-	// Unique identifier for your SMB in Codat.
-	CompanyID *string `json:"companyId,omitempty"`
-	// Boolean of whether the sync resulted in data being pushed.
+// SyncStatus - The status of syncing for a company and its connections.
+type SyncStatus struct {
+	// Unique identifier for the sync in Codat.
+	CommerceSyncID *string     `json:"commerceSyncId,omitempty"`
+	CompanyID      interface{} `json:"companyId,omitempty"`
+	// Array of containing objects data connection information for the company.
+	DataConnections []Connection `json:"dataConnections,omitempty"`
+	// Boolean indicator for data being pushed during a sync operation.
 	DataPushed *bool `json:"dataPushed,omitempty"`
-	// Error message of the sync.
+	// Friendly error message for the sync operation.
 	ErrorMessage *string `json:"errorMessage,omitempty"`
-	// Exception message of the sync.
+	// Exception message for the sync operation.
 	SyncExceptionMessage *string `json:"syncExceptionMessage,omitempty"`
-	// Unique identifier of the sync.
+	// Unique identifier for the sync in Codat.
 	SyncID *string `json:"syncId,omitempty"`
-	// Text status of the sync.
+	// Status of the sync of the company data. This is linked to status code.
 	SyncStatus *string `json:"syncStatus,omitempty"`
-	// Status code of the sync.
+	// Numerical status code sync of the company data.
 	SyncStatusCode *int `json:"syncStatusCode,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
@@ -39,56 +43,70 @@ type CompanySyncStatus struct {
 	SyncUtc *string `json:"syncUtc,omitempty"`
 }
 
-func (o *CompanySyncStatus) GetCompanyID() *string {
+func (o *SyncStatus) GetCommerceSyncID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CommerceSyncID
+}
+
+func (o *SyncStatus) GetCompanyID() interface{} {
 	if o == nil {
 		return nil
 	}
 	return o.CompanyID
 }
 
-func (o *CompanySyncStatus) GetDataPushed() *bool {
+func (o *SyncStatus) GetDataConnections() []Connection {
+	if o == nil {
+		return nil
+	}
+	return o.DataConnections
+}
+
+func (o *SyncStatus) GetDataPushed() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.DataPushed
 }
 
-func (o *CompanySyncStatus) GetErrorMessage() *string {
+func (o *SyncStatus) GetErrorMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ErrorMessage
 }
 
-func (o *CompanySyncStatus) GetSyncExceptionMessage() *string {
+func (o *SyncStatus) GetSyncExceptionMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.SyncExceptionMessage
 }
 
-func (o *CompanySyncStatus) GetSyncID() *string {
+func (o *SyncStatus) GetSyncID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.SyncID
 }
 
-func (o *CompanySyncStatus) GetSyncStatus() *string {
+func (o *SyncStatus) GetSyncStatus() *string {
 	if o == nil {
 		return nil
 	}
 	return o.SyncStatus
 }
 
-func (o *CompanySyncStatus) GetSyncStatusCode() *int {
+func (o *SyncStatus) GetSyncStatusCode() *int {
 	if o == nil {
 		return nil
 	}
 	return o.SyncStatusCode
 }
 
-func (o *CompanySyncStatus) GetSyncUtc() *string {
+func (o *SyncStatus) GetSyncUtc() *string {
 	if o == nil {
 		return nil
 	}

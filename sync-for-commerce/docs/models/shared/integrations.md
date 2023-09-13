@@ -1,7 +1,5 @@
 # Integrations
 
-Success
-
 
 ## Fields
 

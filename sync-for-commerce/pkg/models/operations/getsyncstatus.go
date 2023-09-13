@@ -3,6 +3,7 @@
 package operations
 
 import (
+	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/models/shared"
 	"net/http"
 )
 
@@ -18,9 +19,22 @@ func (o *GetSyncStatusRequest) GetCompanyID() string {
 }
 
 type GetSyncStatusResponse struct {
+	// Bad Request
+	BadRequest  interface{}
 	ContentType string
+	// Not Found
+	NotFound    interface{}
 	StatusCode  int
 	RawResponse *http.Response
+	// Success
+	SyncStatus *shared.SyncStatus
+}
+
+func (o *GetSyncStatusResponse) GetBadRequest() interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.BadRequest
 }
 
 func (o *GetSyncStatusResponse) GetContentType() string {
@@ -28,6 +42,13 @@ func (o *GetSyncStatusResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *GetSyncStatusResponse) GetNotFound() interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.NotFound
 }
 
 func (o *GetSyncStatusResponse) GetStatusCode() int {
@@ -42,4 +63,11 @@ func (o *GetSyncStatusResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
+}
+
+func (o *GetSyncStatusResponse) GetSyncStatus() *shared.SyncStatus {
+	if o == nil {
+		return nil
+	}
+	return o.SyncStatus
 }

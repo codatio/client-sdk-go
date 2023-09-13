@@ -1,4 +1,4 @@
-# SyncFlowPreferences
+# SyncFlowSettings
 
 ## Overview
 
@@ -35,7 +35,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.SyncFlowPreferences.GetConfigTextSyncFlow(ctx)
+    res, err := s.SyncFlowSettings.GetConfigTextSyncFlow(ctx)
     if err != nil {
         log.Fatal(err)
     }
@@ -84,9 +84,9 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.SyncFlowPreferences.GetVisibleAccounts(ctx, operations.GetVisibleAccountsRequest{
-        ClientID: "67cc8796-ed15-41a0-9dfc-2ddf7cc78ca1",
-        PlatformKey: "ba928fc8-1674-42cb-b392-05929396fea7",
+    res, err := s.SyncFlowSettings.GetVisibleAccounts(ctx, operations.GetVisibleAccountsRequest{
+        ClientID: "e0f467cc-8796-4ed1-91a0-5dfc2ddf7cc7",
+        PlatformKey: "8ca1ba92-8fc8-4167-82cb-739205929396",
     })
     if err != nil {
         log.Fatal(err)
@@ -136,14 +136,10 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.SyncFlowPreferences.UpdateConfigTextSyncFlow(ctx, map[string]shared.Localization{
-        "iste": shared.Localization{
+    res, err := s.SyncFlowSettings.UpdateConfigTextSyncFlow(ctx, map[string]shared.Localization{
+        "hic": shared.Localization{
             Required: codatsynccommerce.Bool(false),
-            Text: codatsynccommerce.String("iure"),
-        },
-        "saepe": shared.Localization{
-            Required: codatsynccommerce.Bool(false),
-            Text: codatsynccommerce.String("quidem"),
+            Text: codatsynccommerce.String("saepe"),
         },
     })
     if err != nil {
@@ -195,13 +191,13 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.SyncFlowPreferences.UpdateVisibleAccountsSyncFlow(ctx, operations.UpdateVisibleAccountsSyncFlowRequest{
+    res, err := s.SyncFlowSettings.UpdateVisibleAccountsSyncFlow(ctx, operations.UpdateVisibleAccountsSyncFlowRequest{
         VisibleAccounts: &shared.VisibleAccounts{
             VisibleAccounts: []string{
-                "ipsa",
+                "fuga",
             },
         },
-        PlatformKey: "faaa2352-c595-4590-baff-1a3a2fa94677",
+        PlatformKey: "7596eb10-faaa-4235-ac59-55907aff1a3a",
     })
     if err != nil {
         log.Fatal(err)
