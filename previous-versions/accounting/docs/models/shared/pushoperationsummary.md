@@ -1,7 +1,5 @@
 # PushOperationSummary
 
-OK
-
 
 ## Fields
 

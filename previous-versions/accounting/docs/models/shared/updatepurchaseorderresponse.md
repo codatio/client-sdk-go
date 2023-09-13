@@ -1,7 +1,5 @@
 # UpdatePurchaseOrderResponse
 
-Success
-
 
 ## Fields
 

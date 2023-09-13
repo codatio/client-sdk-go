@@ -2,6 +2,10 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/types"
+)
+
 // SalesOrderShipToContact - Details of the named contact at the delivery address.
 type SalesOrderShipToContact struct {
 	// Email address of the contact at the delivery address.
@@ -95,7 +99,7 @@ type SalesOrder struct {
 	// | **GBP**          | £20            | 1.277         | $25.54                     |
 	// | **EUR**          | €20            | 1.134         | $22.68                     |
 	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
-	CurrencyRate *float64 `json:"currencyRate,omitempty"`
+	CurrencyRate *types.Decimal `json:"currencyRate,omitempty"`
 	// A customer-supplied identifier for the purchase order in the customer's system.
 	CustomerPurchaseOrderNumber *string                `json:"customerPurchaseOrderNumber,omitempty"`
 	CustomerRef                 *AccountingCustomerRef `json:"customerRef,omitempty"`
@@ -157,14 +161,14 @@ type SalesOrder struct {
 	// Current state of the sales order.
 	Status *SalesOrderStatus `json:"status,omitempty"`
 	// Total amount of the sales order, including discounts but excluding tax.
-	SubTotal *float64 `json:"subTotal,omitempty"`
+	SubTotal *types.Decimal `json:"subTotal,omitempty"`
 	// Total amount of the sales order, including discounts and tax.
-	TotalAmount *float64 `json:"totalAmount,omitempty"`
+	TotalAmount *types.Decimal `json:"totalAmount,omitempty"`
 	//
 	// Total value of any discounts applied to the sales order.
-	TotalDiscount *float64 `json:"totalDiscount,omitempty"`
+	TotalDiscount *types.Decimal `json:"totalDiscount,omitempty"`
 	// Total amount of tax included in the sales order.
-	TotalTaxAmount *float64 `json:"totalTaxAmount,omitempty"`
+	TotalTaxAmount *types.Decimal `json:"totalTaxAmount,omitempty"`
 }
 
 func (o *SalesOrder) GetCurrency() *string {
@@ -174,7 +178,7 @@ func (o *SalesOrder) GetCurrency() *string {
 	return o.Currency
 }
 
-func (o *SalesOrder) GetCurrencyRate() *float64 {
+func (o *SalesOrder) GetCurrencyRate() *types.Decimal {
 	if o == nil {
 		return nil
 	}
@@ -279,28 +283,28 @@ func (o *SalesOrder) GetStatus() *SalesOrderStatus {
 	return o.Status
 }
 
-func (o *SalesOrder) GetSubTotal() *float64 {
+func (o *SalesOrder) GetSubTotal() *types.Decimal {
 	if o == nil {
 		return nil
 	}
 	return o.SubTotal
 }
 
-func (o *SalesOrder) GetTotalAmount() *float64 {
+func (o *SalesOrder) GetTotalAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}
 	return o.TotalAmount
 }
 
-func (o *SalesOrder) GetTotalDiscount() *float64 {
+func (o *SalesOrder) GetTotalDiscount() *types.Decimal {
 	if o == nil {
 		return nil
 	}
 	return o.TotalDiscount
 }
 
-func (o *SalesOrder) GetTotalTaxAmount() *float64 {
+func (o *SalesOrder) GetTotalTaxAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}

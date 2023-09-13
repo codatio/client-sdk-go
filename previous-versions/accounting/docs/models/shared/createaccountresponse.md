@@ -1,7 +1,5 @@
 # CreateAccountResponse
 
-Success
-
 
 ## Fields
 

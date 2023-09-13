@@ -2,6 +2,11 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/types"
+	"github.com/ericlagergren/decimal"
+)
+
 type BillLineItem struct {
 	// Data types that reference an account, for example bill and invoice line items, use an accountRef that includes the ID and name of the linked account.
 	AccountRef *AccountRef `json:"accountRef,omitempty"`
@@ -10,16 +15,16 @@ type BillLineItem struct {
 	// Numerical value of any discounts applied.
 	//
 	// Do not use to apply discounts in Oracle NetSuite—see Oracle NetSuite integration reference.
-	DiscountAmount     *float64 `json:"discountAmount,omitempty"`
-	DiscountPercentage *float64 `json:"discountPercentage,omitempty"`
-	IsDirectCost       *bool    `json:"isDirectCost,omitempty"`
-	ItemRef            *ItemRef `json:"itemRef,omitempty"`
+	DiscountAmount     *types.Decimal `json:"discountAmount,omitempty"`
+	DiscountPercentage *types.Decimal `json:"discountPercentage,omitempty"`
+	IsDirectCost       *bool          `json:"isDirectCost,omitempty"`
+	ItemRef            *ItemRef       `json:"itemRef,omitempty"`
 	// Number of units of goods or services received.
-	Quantity float64 `json:"quantity"`
+	Quantity types.Decimal `json:"quantity"`
 	// Amount of the line, inclusive of discounts but exclusive of tax.
-	SubTotal *float64 `json:"subTotal,omitempty"`
+	SubTotal *types.Decimal `json:"subTotal,omitempty"`
 	// Amount of tax for the line.
-	TaxAmount *float64 `json:"taxAmount,omitempty"`
+	TaxAmount *types.Decimal `json:"taxAmount,omitempty"`
 	// Data types that reference a tax rate, for example invoice and bill line items, use a taxRateRef that includes the ID and name of the linked tax rate.
 	//
 	// Found on:
@@ -32,13 +37,13 @@ type BillLineItem struct {
 	// - Items
 	TaxRateRef *TaxRateRef `json:"taxRateRef,omitempty"`
 	// Total amount of the line, including tax.
-	TotalAmount *float64 `json:"totalAmount,omitempty"`
+	TotalAmount *types.Decimal `json:"totalAmount,omitempty"`
 	// Categories, and a project and customer, against which the item is tracked.
 	Tracking *Propertiestracking `json:"tracking,omitempty"`
 	// Collection of categories against which this item is tracked.
 	TrackingCategoryRefs []TrackingCategoryRef `json:"trackingCategoryRefs,omitempty"`
 	// Price of each unit of goods or services.
-	UnitAmount float64 `json:"unitAmount"`
+	UnitAmount types.Decimal `json:"unitAmount"`
 }
 
 func (o *BillLineItem) GetAccountRef() *AccountRef {
@@ -55,14 +60,14 @@ func (o *BillLineItem) GetDescription() *string {
 	return o.Description
 }
 
-func (o *BillLineItem) GetDiscountAmount() *float64 {
+func (o *BillLineItem) GetDiscountAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}
 	return o.DiscountAmount
 }
 
-func (o *BillLineItem) GetDiscountPercentage() *float64 {
+func (o *BillLineItem) GetDiscountPercentage() *types.Decimal {
 	if o == nil {
 		return nil
 	}
@@ -83,21 +88,21 @@ func (o *BillLineItem) GetItemRef() *ItemRef {
 	return o.ItemRef
 }
 
-func (o *BillLineItem) GetQuantity() float64 {
+func (o *BillLineItem) GetQuantity() types.Decimal {
 	if o == nil {
-		return 0.0
+		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
 	}
 	return o.Quantity
 }
 
-func (o *BillLineItem) GetSubTotal() *float64 {
+func (o *BillLineItem) GetSubTotal() *types.Decimal {
 	if o == nil {
 		return nil
 	}
 	return o.SubTotal
 }
 
-func (o *BillLineItem) GetTaxAmount() *float64 {
+func (o *BillLineItem) GetTaxAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}
@@ -111,7 +116,7 @@ func (o *BillLineItem) GetTaxRateRef() *TaxRateRef {
 	return o.TaxRateRef
 }
 
-func (o *BillLineItem) GetTotalAmount() *float64 {
+func (o *BillLineItem) GetTotalAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}
@@ -132,9 +137,9 @@ func (o *BillLineItem) GetTrackingCategoryRefs() []TrackingCategoryRef {
 	return o.TrackingCategoryRefs
 }
 
-func (o *BillLineItem) GetUnitAmount() float64 {
+func (o *BillLineItem) GetUnitAmount() types.Decimal {
 	if o == nil {
-		return 0.0
+		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
 	}
 	return o.UnitAmount
 }

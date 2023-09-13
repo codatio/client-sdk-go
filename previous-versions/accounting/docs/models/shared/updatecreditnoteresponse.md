@@ -1,7 +1,5 @@
 # UpdateCreditNoteResponse
 
-Success
-
 
 ## Fields
 

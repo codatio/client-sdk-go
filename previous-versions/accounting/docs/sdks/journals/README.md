@@ -49,21 +49,21 @@ func main() {
         Journal: &shared.Journal{
             CreatedOn: codataccounting.String("2022-10-23T00:00:00.000Z"),
             HasChildren: codataccounting.Bool(false),
-            ID: codataccounting.String("a1f340bb-36f6-477a-8851-9c3374902848"),
-            JournalCode: codataccounting.String("quos"),
+            ID: codataccounting.String("ce525c67-641a-4831-ae50-47b4c21ccb42"),
+            JournalCode: codataccounting.String("amet"),
             Metadata: &shared.Metadata{
                 IsDeleted: codataccounting.Bool(false),
             },
             ModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
-            Name: codataccounting.String("Mrs. Candice Rau"),
-            ParentID: codataccounting.String("nihil"),
+            Name: codataccounting.String("Kim Swift"),
+            ParentID: codataccounting.String("et"),
             SourceModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
             Status: shared.JournalStatusArchived.ToPointer(),
-            Type: codataccounting.String("consequuntur"),
+            Type: codataccounting.String("est"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codataccounting.Int(142769),
+        TimeoutInMinutes: codataccounting.Int(716024),
     })
     if err != nil {
         log.Fatal(err)
@@ -123,7 +123,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Journals.Get(ctx, operations.GetJournalRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        JournalID: "enim",
+        JournalID: "fugiat",
     })
     if err != nil {
         log.Fatal(err)
@@ -246,7 +246,7 @@ func main() {
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: codataccounting.Int(1),
         PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("debitis"),
+        Query: codataccounting.String("nulla"),
     })
     if err != nil {
         log.Fatal(err)

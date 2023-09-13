@@ -1,7 +1,5 @@
 # CreateBankTransactionsResponse
 
-Success
-
 
 ## Fields
 

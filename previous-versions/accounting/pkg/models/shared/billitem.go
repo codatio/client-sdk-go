@@ -2,6 +2,10 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/types"
+)
+
 // BillItem - Item details that are only for bills.
 type BillItem struct {
 	// Data types that reference an account, for example bill and invoice line items, use an accountRef that includes the ID and name of the linked account.
@@ -20,7 +24,7 @@ type BillItem struct {
 	// - Items
 	TaxRateRef *TaxRateRef `json:"taxRateRef,omitempty"`
 	// Unit price of the product or service.
-	UnitPrice *float64 `json:"unitPrice,omitempty"`
+	UnitPrice *types.Decimal `json:"unitPrice,omitempty"`
 }
 
 func (o *BillItem) GetAccountRef() *AccountRef {
@@ -44,7 +48,7 @@ func (o *BillItem) GetTaxRateRef() *TaxRateRef {
 	return o.TaxRateRef
 }
 
-func (o *BillItem) GetUnitPrice() *float64 {
+func (o *BillItem) GetUnitPrice() *types.Decimal {
 	if o == nil {
 		return nil
 	}

@@ -1,7 +1,5 @@
 # CreateItemResponse
 
-Success
-
 
 ## Fields
 

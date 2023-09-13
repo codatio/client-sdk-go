@@ -1,7 +1,5 @@
 # CreditNotes
 
-Success
-
 
 ## Fields
 

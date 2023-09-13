@@ -2,6 +2,10 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/types"
+)
+
 // Account - > **Language tip:** Accounts are also referred to as **chart of accounts**, **nominal accounts**, and **general ledger**.
 //
 // View the coverage for accounts in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=chartOfAccounts" target="_blank">Data coverage explorer</a>.
@@ -40,7 +44,7 @@ type Account struct {
 	// There are only a very small number of edge cases where this currency code is returned by the Codat system.
 	Currency *string `json:"currency,omitempty"`
 	// Current balance in the account.
-	CurrentBalance *float64 `json:"currentBalance,omitempty"`
+	CurrentBalance *types.Decimal `json:"currentBalance,omitempty"`
 	// Description for the account.
 	Description *string `json:"description,omitempty"`
 	// Full category of the account.
@@ -78,7 +82,7 @@ func (o *Account) GetCurrency() *string {
 	return o.Currency
 }
 
-func (o *Account) GetCurrentBalance() *float64 {
+func (o *Account) GetCurrentBalance() *types.Decimal {
 	if o == nil {
 		return nil
 	}

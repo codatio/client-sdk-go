@@ -2,7 +2,6 @@
 
 package shared
 
-// AttachmentsDataset - Success
 type AttachmentsDataset struct {
 	Attachments []Attachment `json:"attachments,omitempty"`
 }

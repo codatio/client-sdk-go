@@ -2,6 +2,10 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/types"
+)
+
 // BillPayment - > **Bill payments or payments?**
 // >
 // > We distinguish between transactions where the company received money vs. paid money. If the transaction represents a company spending money (accounts payable) we call this a Bill payment.
@@ -181,8 +185,8 @@ type BillPayment struct {
 	// | **GBP**          | £20            | 1.277         | $25.54                     |
 	// | **EUR**          | €20            | 1.134         | $22.68                     |
 	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
-	CurrencyRate *float64 `json:"currencyRate,omitempty"`
-	Date         string   `json:"date"`
+	CurrencyRate *types.Decimal `json:"currencyRate,omitempty"`
+	Date         string         `json:"date"`
 	// Identifier for the bill payment, unique for the company in the accounting platform.
 	ID *string `json:"id,omitempty"`
 	// An array of bill payment lines.
@@ -197,11 +201,11 @@ type BillPayment struct {
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Supplemental data is additional data you can include in our standard data types.
 	//
-	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/additional-data) about supplemental data.
+	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
 	SupplementalData *SupplementalData `json:"supplementalData,omitempty"`
 	SupplierRef      *SupplierRef      `json:"supplierRef,omitempty"`
 	// Amount of the payment in the payment currency. This value never changes and represents the amount of money that is paid into the supplier's account.
-	TotalAmount *float64 `json:"totalAmount,omitempty"`
+	TotalAmount *types.Decimal `json:"totalAmount,omitempty"`
 }
 
 func (o *BillPayment) GetAccountRef() *AccountRef {
@@ -218,7 +222,7 @@ func (o *BillPayment) GetCurrency() *string {
 	return o.Currency
 }
 
-func (o *BillPayment) GetCurrencyRate() *float64 {
+func (o *BillPayment) GetCurrencyRate() *types.Decimal {
 	if o == nil {
 		return nil
 	}
@@ -302,7 +306,7 @@ func (o *BillPayment) GetSupplierRef() *SupplierRef {
 	return o.SupplierRef
 }
 
-func (o *BillPayment) GetTotalAmount() *float64 {
+func (o *BillPayment) GetTotalAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}

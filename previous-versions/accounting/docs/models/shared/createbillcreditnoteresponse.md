@@ -1,7 +1,5 @@
 # CreateBillCreditNoteResponse
 
-Success
-
 
 ## Fields
 

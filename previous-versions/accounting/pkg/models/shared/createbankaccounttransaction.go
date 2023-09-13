@@ -2,9 +2,13 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/types"
+)
+
 type CreateBankAccountTransaction struct {
-	Amount  *float64 `json:"amount,omitempty"`
-	Balance *float64 `json:"balance,omitempty"`
+	Amount  *types.Decimal `json:"amount,omitempty"`
+	Balance *types.Decimal `json:"balance,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -29,14 +33,14 @@ type CreateBankAccountTransaction struct {
 	ID          *string `json:"id,omitempty"`
 }
 
-func (o *CreateBankAccountTransaction) GetAmount() *float64 {
+func (o *CreateBankAccountTransaction) GetAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}
 	return o.Amount
 }
 
-func (o *CreateBankAccountTransaction) GetBalance() *float64 {
+func (o *CreateBankAccountTransaction) GetBalance() *types.Decimal {
 	if o == nil {
 		return nil
 	}

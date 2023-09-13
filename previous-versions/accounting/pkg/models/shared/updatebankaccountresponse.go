@@ -2,8 +2,8 @@
 
 package shared
 
-// UpdateBankAccountResponse - Success
 type UpdateBankAccountResponse struct {
+	DollarRef interface{} `json:"$ref,omitempty"`
 	// Contains a single entry that communicates which record has changed and the manner in which it changed.
 	Changes []PushOperationChange `json:"changes,omitempty"`
 	// Unique identifier for your SMB in Codat.
@@ -27,24 +27,8 @@ type UpdateBankAccountResponse struct {
 	// >
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	CompletedOnUtc *string `json:"completedOnUtc,omitempty"`
-	// > **Accessing Bank Accounts through Banking API**
-	// >
-	// > This datatype was originally used for accessing bank account data both in accounting integrations and open banking aggregators.
-	// >
-	// > To view bank account data through the Banking API, please refer to the new datatype [here](https://docs.codat.io/banking-api#/schemas/Account)
-	//
-	// > View the coverage for bank accounts in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankAccounts" target="_blank">Data coverage explorer</a>.
-	//
-	// ## Overview
-	//
-	// A list of bank accounts associated with a company and a specific data connection.
-	//
-	// Bank accounts data includes:
-	// * The name and ID of the account in the accounting platform.
-	// * The currency and balance of the account.
-	// * The sort code and account number.
-	Data *BankAccount `json:"data,omitempty"`
+	CompletedOnUtc *string     `json:"completedOnUtc,omitempty"`
+	Data           interface{} `json:"data,omitempty"`
 	// Unique identifier for a company's data connection.
 	DataConnectionKey string `json:"dataConnectionKey"`
 	// Available Data types
@@ -82,6 +66,13 @@ type UpdateBankAccountResponse struct {
 	Validation *Validation `json:"validation,omitempty"`
 }
 
+func (o *UpdateBankAccountResponse) GetDollarRef() interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.DollarRef
+}
+
 func (o *UpdateBankAccountResponse) GetChanges() []PushOperationChange {
 	if o == nil {
 		return nil
@@ -103,7 +94,7 @@ func (o *UpdateBankAccountResponse) GetCompletedOnUtc() *string {
 	return o.CompletedOnUtc
 }
 
-func (o *UpdateBankAccountResponse) GetData() *BankAccount {
+func (o *UpdateBankAccountResponse) GetData() interface{} {
 	if o == nil {
 		return nil
 	}
