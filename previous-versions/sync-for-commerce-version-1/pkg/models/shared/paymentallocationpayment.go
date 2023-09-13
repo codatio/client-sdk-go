@@ -2,6 +2,10 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/types"
+)
+
 type PaymentAllocationPayment struct {
 	// Data types that reference an account, for example bill and invoice line items, use an accountRef that includes the ID and name of the linked account.
 	AccountRef *AccountRef `json:"accountRef,omitempty"`
@@ -38,7 +42,7 @@ type PaymentAllocationPayment struct {
 	// | **GBP**          | £20            | 1.277         | $25.54                     |
 	// | **EUR**          | €20            | 1.134         | $22.68                     |
 	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
-	CurrencyRate *float64 `json:"currencyRate,omitempty"`
+	CurrencyRate *types.Decimal `json:"currencyRate,omitempty"`
 	// Identifier of the allocated payment.
 	ID *string `json:"id,omitempty"`
 	// Notes attached to the allocated payment.
@@ -66,7 +70,7 @@ type PaymentAllocationPayment struct {
 	// Reference to the allocated payment.
 	Reference *string `json:"reference,omitempty"`
 	// Total amount that was paid.
-	TotalAmount *float64 `json:"totalAmount,omitempty"`
+	TotalAmount *types.Decimal `json:"totalAmount,omitempty"`
 }
 
 func (o *PaymentAllocationPayment) GetAccountRef() *AccountRef {
@@ -83,7 +87,7 @@ func (o *PaymentAllocationPayment) GetCurrency() *string {
 	return o.Currency
 }
 
-func (o *PaymentAllocationPayment) GetCurrencyRate() *float64 {
+func (o *PaymentAllocationPayment) GetCurrencyRate() *types.Decimal {
 	if o == nil {
 		return nil
 	}
@@ -118,7 +122,7 @@ func (o *PaymentAllocationPayment) GetReference() *string {
 	return o.Reference
 }
 
-func (o *PaymentAllocationPayment) GetTotalAmount() *float64 {
+func (o *PaymentAllocationPayment) GetTotalAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}

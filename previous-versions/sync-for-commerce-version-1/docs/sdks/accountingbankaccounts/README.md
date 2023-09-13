@@ -42,7 +42,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.AccountingBankAccounts.GetAccountingBankAccount(ctx, operations.GetAccountingBankAccountRequest{
-        AccountID: "quo",
+        AccountID: "delectus",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -106,7 +106,7 @@ func main() {
         OrderBy: codatsynccommerce.String("-modifiedDate"),
         Page: codatsynccommerce.Int(1),
         PageSize: codatsynccommerce.Int(100),
-        Query: codatsynccommerce.String("odit"),
+        Query: codatsynccommerce.String("tempora"),
     })
     if err != nil {
         log.Fatal(err)

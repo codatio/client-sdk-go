@@ -8,15 +8,15 @@ import (
 )
 
 type UpdateCompanyRequest struct {
-	CompanyRequestBody *shared.CompanyRequestBody `request:"mediaType=application/json"`
-	CompanyID          string                     `pathParam:"style=simple,explode=false,name=companyId"`
+	CreateCompany *shared.CreateCompany `request:"mediaType=application/json"`
+	CompanyID     string                `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
-func (o *UpdateCompanyRequest) GetCompanyRequestBody() *shared.CompanyRequestBody {
+func (o *UpdateCompanyRequest) GetCreateCompany() *shared.CreateCompany {
 	if o == nil {
 		return nil
 	}
-	return o.CompanyRequestBody
+	return o.CreateCompany
 }
 
 func (o *UpdateCompanyRequest) GetCompanyID() string {

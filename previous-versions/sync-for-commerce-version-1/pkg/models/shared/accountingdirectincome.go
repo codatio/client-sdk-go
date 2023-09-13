@@ -2,6 +2,11 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/types"
+	"github.com/ericlagergren/decimal"
+)
+
 // AccountingDirectIncomeContactRef - A customer or supplier associated with the direct income.
 type AccountingDirectIncomeContactRef struct {
 	DataType *string `json:"dataType,omitempty"`
@@ -73,7 +78,7 @@ type AccountingDirectIncome struct {
 	// | **GBP**          | £20            | 1.277         | $25.54                     |
 	// | **EUR**          | €20            | 1.134         | $22.68                     |
 	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
-	CurrencyRate *float64 `json:"currencyRate,omitempty"`
+	CurrencyRate *types.Decimal `json:"currencyRate,omitempty"`
 	// Identifier of the direct income, unique for the company.
 	ID *string `json:"id,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
@@ -106,15 +111,15 @@ type AccountingDirectIncome struct {
 	Reference          *string `json:"reference,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// The total amount of the direct incomes, excluding any taxes.
-	SubTotal float64 `json:"subTotal"`
+	SubTotal types.Decimal `json:"subTotal"`
 	// Supplemental data is additional data you can include in our standard data types.
 	//
-	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/additional-data) about supplemental data.
+	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
 	SupplementalData *SupplementalData `json:"supplementalData,omitempty"`
 	// The total amount of tax on the direct incomes.
-	TaxAmount float64 `json:"taxAmount"`
+	TaxAmount types.Decimal `json:"taxAmount"`
 	// The amount of the direct incomes, inclusive of tax.
-	TotalAmount float64 `json:"totalAmount"`
+	TotalAmount types.Decimal `json:"totalAmount"`
 }
 
 func (o *AccountingDirectIncome) GetContactRef() *AccountingDirectIncomeContactRef {
@@ -131,7 +136,7 @@ func (o *AccountingDirectIncome) GetCurrency() string {
 	return o.Currency
 }
 
-func (o *AccountingDirectIncome) GetCurrencyRate() *float64 {
+func (o *AccountingDirectIncome) GetCurrencyRate() *types.Decimal {
 	if o == nil {
 		return nil
 	}
@@ -201,9 +206,9 @@ func (o *AccountingDirectIncome) GetSourceModifiedDate() *string {
 	return o.SourceModifiedDate
 }
 
-func (o *AccountingDirectIncome) GetSubTotal() float64 {
+func (o *AccountingDirectIncome) GetSubTotal() types.Decimal {
 	if o == nil {
-		return 0.0
+		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
 	}
 	return o.SubTotal
 }
@@ -215,16 +220,16 @@ func (o *AccountingDirectIncome) GetSupplementalData() *SupplementalData {
 	return o.SupplementalData
 }
 
-func (o *AccountingDirectIncome) GetTaxAmount() float64 {
+func (o *AccountingDirectIncome) GetTaxAmount() types.Decimal {
 	if o == nil {
-		return 0.0
+		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
 	}
 	return o.TaxAmount
 }
 
-func (o *AccountingDirectIncome) GetTotalAmount() float64 {
+func (o *AccountingDirectIncome) GetTotalAmount() types.Decimal {
 	if o == nil {
-		return 0.0
+		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
 	}
 	return o.TotalAmount
 }

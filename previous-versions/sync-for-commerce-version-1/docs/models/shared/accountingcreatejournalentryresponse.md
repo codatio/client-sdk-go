@@ -1,7 +1,5 @@
 # AccountingCreateJournalEntryResponse
 
-Success
-
 
 ## Fields
 

@@ -2,7 +2,6 @@
 
 package shared
 
-// CommerceLocations - OK
 type CommerceLocations struct {
 	Links        Links              `json:"_links"`
 	PageNumber   int64              `json:"pageNumber"`

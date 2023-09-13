@@ -1,7 +1,5 @@
 # AccountingCreateCreditNoteResponse
 
-Success
-
 
 ## Fields
 

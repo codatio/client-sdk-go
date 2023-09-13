@@ -32,6 +32,7 @@ import(
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/operations"
+	"github.com/ericlagergren/decimal"
 )
 
 func main() {
@@ -45,111 +46,27 @@ func main() {
     res, err := s.AccountingPayments.CreateAccountingPayment(ctx, operations.CreateAccountingPaymentRequest{
         AccountingPayment: &shared.AccountingPayment{
             AccountRef: &shared.AccountRef{
-                ID: codatsynccommerce.String("7d56844e-ded8-45a9-865e-628bdfc2032b"),
-                Name: codatsynccommerce.String("Angelica Langworth"),
+                ID: codatsynccommerce.String("2f64d1db-1f2c-4431-8661-e96349e1cf9e"),
+                Name: codatsynccommerce.String("Alma Waters"),
             },
-            Currency: codatsynccommerce.String("USD"),
-            CurrencyRate: codatsynccommerce.Float64(1443.97),
+            Currency: codatsynccommerce.String("GBP"),
+            CurrencyRate: types.MustNewDecimalFromString("2244.67"),
             CustomerRef: &shared.AccountingCustomerRef{
-                CompanyName: codatsynccommerce.String("dolorem"),
-                ID: "b7e13584-f7ae-412c-a891-f82ce1157172",
+                CompanyName: codatsynccommerce.String("iusto"),
+                ID: "000ae6b6-bc9b-48f7-99ea-c55a9741d311",
             },
             Date: "2022-10-23T00:00:00.000Z",
-            ID: codatsynccommerce.String("05377dcf-a89d-4f97-9e35-6686092e9c3d"),
+            ID: codatsynccommerce.String("52965bb8-a720-4261-9435-e139dbc2259b"),
             Lines: []shared.PaymentLine{
                 shared.PaymentLine{
                     AllocatedOnDate: codatsynccommerce.String("2022-10-23T00:00:00.000Z"),
-                    Amount: 3269.42,
+                    Amount: *types.MustNewDecimalFromString("6633.18"),
                     Links: []shared.PaymentLineLink{
                         shared.PaymentLineLink{
-                            Amount: codatsynccommerce.Float64(1048.34),
-                            CurrencyRate: codatsynccommerce.Float64(1142.12),
-                            ID: codatsynccommerce.String("1dea1026-d541-4a4d-990f-eb21780bccc0"),
-                            Type: shared.PaymentLinkTypeManualJournal,
-                        },
-                        shared.PaymentLineLink{
-                            Amount: codatsynccommerce.Float64(7188.79),
-                            CurrencyRate: codatsynccommerce.Float64(7148.35),
-                            ID: codatsynccommerce.String("ddb48470-8fb4-4e39-9e6b-c158c4c4e545"),
-                            Type: shared.PaymentLinkTypeRefund,
-                        },
-                        shared.PaymentLineLink{
-                            Amount: codatsynccommerce.Float64(5786.1),
-                            CurrencyRate: codatsynccommerce.Float64(9294.43),
-                            ID: codatsynccommerce.String("a342260e-9b20-40ce-b8a1-bd8fb7a0a116"),
+                            Amount: types.MustNewDecimalFromString("7278.88"),
+                            CurrencyRate: types.MustNewDecimalFromString("8544.6"),
+                            ID: codatsynccommerce.String("a8c070e1-084c-4b06-b2d1-ad879eeb9665"),
                             Type: shared.PaymentLinkTypePaymentOnAccount,
-                        },
-                        shared.PaymentLineLink{
-                            Amount: codatsynccommerce.Float64(8855.23),
-                            CurrencyRate: codatsynccommerce.Float64(4909.56),
-                            ID: codatsynccommerce.String("23d4097f-a30e-49af-b25b-29122030d83f"),
-                            Type: shared.PaymentLinkTypeCreditNote,
-                        },
-                    },
-                },
-                shared.PaymentLine{
-                    AllocatedOnDate: codatsynccommerce.String("2022-10-23T00:00:00.000Z"),
-                    Amount: 9319.53,
-                    Links: []shared.PaymentLineLink{
-                        shared.PaymentLineLink{
-                            Amount: codatsynccommerce.Float64(4802.95),
-                            CurrencyRate: codatsynccommerce.Float64(4938.65),
-                            ID: codatsynccommerce.String("99d22e8c-1f84-4938-a5fd-c42c876c2c2d"),
-                            Type: shared.PaymentLinkTypeDiscount,
-                        },
-                        shared.PaymentLineLink{
-                            Amount: codatsynccommerce.Float64(6908.71),
-                            CurrencyRate: codatsynccommerce.Float64(3049.64),
-                            ID: codatsynccommerce.String("cfc1c762-30f8-441f-b1bd-23fdb14db6be"),
-                            Type: shared.PaymentLinkTypeCreditNote,
-                        },
-                        shared.PaymentLineLink{
-                            Amount: codatsynccommerce.Float64(6422.79),
-                            CurrencyRate: codatsynccommerce.Float64(3755.88),
-                            ID: codatsynccommerce.String("85998e22-ae20-4da1-afc2-b271a289c57e"),
-                            Type: shared.PaymentLinkTypeRefund,
-                        },
-                    },
-                },
-                shared.PaymentLine{
-                    AllocatedOnDate: codatsynccommerce.String("2022-10-23T00:00:00.000Z"),
-                    Amount: 2505.2,
-                    Links: []shared.PaymentLineLink{
-                        shared.PaymentLineLink{
-                            Amount: codatsynccommerce.Float64(6050.43),
-                            CurrencyRate: codatsynccommerce.Float64(585.67),
-                            ID: codatsynccommerce.String("439d2224-6569-4462-8070-84f7ab37cef0"),
-                            Type: shared.PaymentLinkTypeUnlinked,
-                        },
-                        shared.PaymentLineLink{
-                            Amount: codatsynccommerce.Float64(1806.6),
-                            CurrencyRate: codatsynccommerce.Float64(1622.51),
-                            ID: codatsynccommerce.String("5194db55-410a-4dc6-a9af-90a26c7cdc98"),
-                            Type: shared.PaymentLinkTypeUnknown,
-                        },
-                        shared.PaymentLineLink{
-                            Amount: codatsynccommerce.Float64(9788.57),
-                            CurrencyRate: codatsynccommerce.Float64(298.53),
-                            ID: codatsynccommerce.String("68981d6b-b33c-4faa-b48c-31bf407ee4fc"),
-                            Type: shared.PaymentLinkTypeDiscount,
-                        },
-                        shared.PaymentLineLink{
-                            Amount: codatsynccommerce.Float64(0.73),
-                            CurrencyRate: codatsynccommerce.Float64(7704.67),
-                            ID: codatsynccommerce.String("42b78f15-6263-498a-8dc7-66324ccb06c8"),
-                            Type: shared.PaymentLinkTypePaymentOnAccount,
-                        },
-                    },
-                },
-                shared.PaymentLine{
-                    AllocatedOnDate: codatsynccommerce.String("2022-10-23T00:00:00.000Z"),
-                    Amount: 815.41,
-                    Links: []shared.PaymentLineLink{
-                        shared.PaymentLineLink{
-                            Amount: codatsynccommerce.Float64(8310.37),
-                            CurrencyRate: codatsynccommerce.Float64(271.97),
-                            ID: codatsynccommerce.String("2529270b-8d57-422d-9895-b8bcf24db959"),
-                            Type: shared.PaymentLinkTypeCreditNote,
                         },
                     },
                 },
@@ -158,35 +75,22 @@ func main() {
                 IsDeleted: codatsynccommerce.Bool(false),
             },
             ModifiedDate: codatsynccommerce.String("2022-10-23T00:00:00.000Z"),
-            Note: codatsynccommerce.String("amet"),
-            PaymentMethodRef: codatsynccommerce.String("dolor"),
-            Reference: codatsynccommerce.String("nostrum"),
+            Note: codatsynccommerce.String("corporis"),
+            PaymentMethodRef: codatsynccommerce.String("officiis"),
+            Reference: codatsynccommerce.String("voluptatibus"),
             SourceModifiedDate: codatsynccommerce.String("2022-10-23T00:00:00.000Z"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "molestiae": map[string]interface{}{
-                        "ullam": "velit",
-                        "adipisci": "cupiditate",
-                    },
-                    "occaecati": map[string]interface{}{
-                        "fugiat": "molestiae",
-                        "quas": "repellendus",
-                    },
-                    "saepe": map[string]interface{}{
-                        "distinctio": "vel",
-                    },
-                    "necessitatibus": map[string]interface{}{
-                        "nesciunt": "corrupti",
-                        "cupiditate": "voluptatibus",
-                        "ullam": "dolorum",
+                    "at": map[string]interface{}{
+                        "alias": "quia",
                     },
                 },
             },
-            TotalAmount: codatsynccommerce.Float64(7437.05),
+            TotalAmount: types.MustNewDecimalFromString("6941.58"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codatsynccommerce.Int(739946),
+        TimeoutInMinutes: codatsynccommerce.Int(684126),
     })
     if err != nil {
         log.Fatal(err)

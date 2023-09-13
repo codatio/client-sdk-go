@@ -2,7 +2,6 @@
 
 package shared
 
-// SyncFlowURL - Success
 type SyncFlowURL struct {
 	// Sync flow URL.
 	URL *string `json:"url,omitempty"`

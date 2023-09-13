@@ -56,12 +56,12 @@ func (o *ListPullOperationsRequest) GetQuery() *string {
 
 type ListPullOperationsResponse struct {
 	ContentType string
-	// OK
-	DataConnectionHistory *shared.DataConnectionHistory
 	// Your `query` parameter was not correctly formed
 	ErrorMessage *shared.ErrorMessage
-	StatusCode   int
-	RawResponse  *http.Response
+	// OK
+	PullOperations *shared.PullOperations
+	StatusCode     int
+	RawResponse    *http.Response
 }
 
 func (o *ListPullOperationsResponse) GetContentType() string {
@@ -71,18 +71,18 @@ func (o *ListPullOperationsResponse) GetContentType() string {
 	return o.ContentType
 }
 
-func (o *ListPullOperationsResponse) GetDataConnectionHistory() *shared.DataConnectionHistory {
-	if o == nil {
-		return nil
-	}
-	return o.DataConnectionHistory
-}
-
 func (o *ListPullOperationsResponse) GetErrorMessage() *shared.ErrorMessage {
 	if o == nil {
 		return nil
 	}
 	return o.ErrorMessage
+}
+
+func (o *ListPullOperationsResponse) GetPullOperations() *shared.PullOperations {
+	if o == nil {
+		return nil
+	}
+	return o.PullOperations
 }
 
 func (o *ListPullOperationsResponse) GetStatusCode() int {
