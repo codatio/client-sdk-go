@@ -1,7 +1,5 @@
 # SyncSettings
 
-OK
-
 
 ## Fields
 

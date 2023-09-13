@@ -11,3 +11,24 @@ type PushOperationHasTimedOutResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 }
+
+func (o *PushOperationHasTimedOutResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *PushOperationHasTimedOutResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *PushOperationHasTimedOutResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}

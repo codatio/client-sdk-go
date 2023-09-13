@@ -22,8 +22,8 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/common"
-	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
 )
 
 func main() {
@@ -39,18 +39,16 @@ func main() {
         Notifiers: shared.CreateRuleNotifiers{
             Emails: []string{
                 "info@client.com",
-                "info@client.com",
-                "info@client.com",
             },
             Webhook: codatcommon.String("https://webhook.client.com"),
         },
-        Type: "doloribus",
+        Type: "iste",
     })
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.Rule != nil {
+    if res.Webhook != nil {
         // handle response
     }
 }
@@ -82,9 +80,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/common"
-	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/common/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/common"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/operations"
 )
 
 func main() {
@@ -102,7 +100,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.Rule != nil {
+    if res.Webhook != nil {
         // handle response
     }
 }
@@ -134,9 +132,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/common"
-	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/common/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/common"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/operations"
 )
 
 func main() {
@@ -151,13 +149,13 @@ func main() {
         OrderBy: codatcommon.String("-modifiedDate"),
         Page: codatcommon.Int(1),
         PageSize: codatcommon.Int(100),
-        Query: codatcommon.String("sapiente"),
+        Query: codatcommon.String("iure"),
     })
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.Rules != nil {
+    if res.Webhooks != nil {
         // handle response
     }
 }

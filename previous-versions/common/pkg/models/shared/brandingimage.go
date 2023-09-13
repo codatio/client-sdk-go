@@ -6,3 +6,10 @@ type BrandingImage struct {
 	// Image reference.
 	Image *ImageReference `json:"image,omitempty"`
 }
+
+func (o *BrandingImage) GetImage() *ImageReference {
+	if o == nil {
+		return nil
+	}
+	return o.Image
+}

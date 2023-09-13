@@ -5,7 +5,7 @@ package operations
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
 	"net/http"
 )
 
@@ -102,10 +102,59 @@ type ConfigureSupplementalDataRequest struct {
 	PlatformKey string                            `pathParam:"style=simple,explode=false,name=platformKey"`
 }
 
+func (o *ConfigureSupplementalDataRequest) GetSupplementalDataConfiguration() *shared.SupplementalDataConfiguration {
+	if o == nil {
+		return nil
+	}
+	return o.SupplementalDataConfiguration
+}
+
+func (o *ConfigureSupplementalDataRequest) GetDataType() ConfigureSupplementalDataDataType {
+	if o == nil {
+		return ConfigureSupplementalDataDataType("")
+	}
+	return o.DataType
+}
+
+func (o *ConfigureSupplementalDataRequest) GetPlatformKey() string {
+	if o == nil {
+		return ""
+	}
+	return o.PlatformKey
+}
+
 type ConfigureSupplementalDataResponse struct {
 	ContentType string
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
 	StatusCode   int
 	RawResponse  *http.Response
+}
+
+func (o *ConfigureSupplementalDataResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *ConfigureSupplementalDataResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
+}
+
+func (o *ConfigureSupplementalDataResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *ConfigureSupplementalDataResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

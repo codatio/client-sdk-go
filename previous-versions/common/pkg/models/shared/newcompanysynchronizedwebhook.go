@@ -15,3 +15,38 @@ type NewCompanySynchronizedWebhook struct {
 	// The type of rule.
 	Type *string `json:"Type,omitempty"`
 }
+
+func (o *NewCompanySynchronizedWebhook) GetAlertID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AlertID
+}
+
+func (o *NewCompanySynchronizedWebhook) GetCompanyID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CompanyID
+}
+
+func (o *NewCompanySynchronizedWebhook) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *NewCompanySynchronizedWebhook) GetRuleID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.RuleID
+}
+
+func (o *NewCompanySynchronizedWebhook) GetType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}
