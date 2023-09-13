@@ -1,7 +1,5 @@
 # BillCreditNotes
 
-Success
-
 
 ## Fields
 

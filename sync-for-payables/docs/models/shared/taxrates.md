@@ -1,7 +1,5 @@
 # TaxRates
 
-Success
-
 
 ## Fields
 

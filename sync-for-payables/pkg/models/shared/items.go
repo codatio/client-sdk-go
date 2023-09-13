@@ -2,6 +2,10 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/types"
+)
+
 type ItemsAllocation struct {
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
@@ -56,9 +60,9 @@ type ItemsAllocation struct {
 	// | **GBP**          | £20            | 1.277         | $25.54                     |
 	// | **EUR**          | €20            | 1.134         | $22.68                     |
 	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
-	CurrencyRate *float64 `json:"currencyRate,omitempty"`
+	CurrencyRate *types.Decimal `json:"currencyRate,omitempty"`
 	// The total amount that has been allocated.
-	TotalAmount *float64 `json:"totalAmount,omitempty"`
+	TotalAmount *types.Decimal `json:"totalAmount,omitempty"`
 }
 
 func (o *ItemsAllocation) GetAllocatedOnDate() *string {
@@ -75,14 +79,14 @@ func (o *ItemsAllocation) GetCurrency() *string {
 	return o.Currency
 }
 
-func (o *ItemsAllocation) GetCurrencyRate() *float64 {
+func (o *ItemsAllocation) GetCurrencyRate() *types.Decimal {
 	if o == nil {
 		return nil
 	}
 	return o.CurrencyRate
 }
 
-func (o *ItemsAllocation) GetTotalAmount() *float64 {
+func (o *ItemsAllocation) GetTotalAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}

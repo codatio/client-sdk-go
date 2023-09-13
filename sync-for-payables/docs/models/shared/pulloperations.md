@@ -1,7 +1,5 @@
 # PullOperations
 
-OK
-
 
 ## Fields
 

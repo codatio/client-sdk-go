@@ -49,6 +49,7 @@ type sdkConfiguration struct {
 	OpenAPIDocVersion string
 	SDKVersion        string
 	GenVersion        string
+	RetryConfig       *utils.RetryConfig
 }
 
 func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
@@ -63,35 +64,59 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 //
 // Sync for Payables is an API and a set of supporting tools built to help integrate with your customers' accounting software, and keep their supplier information, invoices, and payments in sync.
 //
-// [Read More...](https://docs.codat.io/payables/overview)
+// [Explore product](https://docs.codat.io/payables/overview) | [See OpenAPI spec](https://github.com/codatio/oas)
+//
+// ---
+//
+// ## Endpoints
+//
+// | Endpoints            | Description                                                                                                |
+// |:---------------------|:-----------------------------------------------------------------------------------------------------------|
+// | Companies            | Create and manage your SMB users' companies.                                                               |
+// | Connections          | Create new and manage existing data connections for a company.                                             |
+// | Accounts             | Get, create, and update Accounts                                                           |
+// | Bills                | Get, create, and update Bills                                                                          |
+// | Bill credit notes    | Get, create, and update Bill credit notes                                                              |
+// | Bill payments        | Get, create, and update Bill payments                                                                  |
+// | Journals             | Get, create, and update Journals                                                                       |
+// | Journal entries      | Get, create, and update Journal entries                                                                |
+// | Payment methods      | Get, create, and update Payment methods                                                                |
+// | Suppliers            | Get, create, and update Suppliers                                                                      |
+// | Tax rates            | Get, create, and update Tax rates                                                                      |
+// | Tracking categories  | Get, create, and update Tracking categories                                                            |
+// | Push operations      | View historic push operations                                                         |
+// | Company info         | View company profile from the source platform.                                                             |
+// | Manage data          | Control how data is retrieved from an integration.                                                         |
 type CodatSyncPayables struct {
-	// Accounts - Accounts
+	// Accounts
 	Accounts *accounts
-	// BillCreditNotes - Bill credit notes
+	// Bill credit notes
 	BillCreditNotes *billCreditNotes
-	// BillPayments - Bill payments
+	// Bill payments
 	BillPayments *billPayments
-	// Bills - Bills
+	// Bills
 	Bills *bills
-	// Companies - Create and manage your Codat companies.
+	// Create and manage your Codat companies.
 	Companies *companies
-	// Connections - Manage your companies' data connections.
+	// View company information fetched from the source platform.
+	CompanyInfo *companyInfo
+	// Manage your companies' data connections.
 	Connections *connections
-	// JournalEntries - Journal entries
+	// Journal entries
 	JournalEntries *journalEntries
-	// Journals - Journals
+	// Journals
 	Journals *journals
-	// ManageData - Asynchronously retrieve data from an integration to refresh data in Codat.
+	// Asynchronously retrieve data from an integration to refresh data in Codat.
 	ManageData *manageData
-	// PaymentMethods - Payment methods
+	// Payment methods
 	PaymentMethods *paymentMethods
-	// PushOperations - Access create, update and delete operations made to an SMB's data connection.
+	// Access create, update and delete operations made to an SMB's data connection.
 	PushOperations *pushOperations
-	// Suppliers - Suppliers
+	// Suppliers
 	Suppliers *suppliers
-	// TaxRates - Tax rates
+	// Tax rates
 	TaxRates *taxRates
-	// TrackingCategories - Tracking categories
+	// Tracking categories
 	TrackingCategories *trackingCategories
 
 	sdkConfiguration sdkConfiguration
@@ -142,14 +167,20 @@ func WithSecurity(security shared.Security) SDKOption {
 	}
 }
 
+func WithRetryConfig(retryConfig utils.RetryConfig) SDKOption {
+	return func(sdk *CodatSyncPayables) {
+		sdk.sdkConfiguration.RetryConfig = &retryConfig
+	}
+}
+
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *CodatSyncPayables {
 	sdk := &CodatSyncPayables{
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "0.1.0",
-			GenVersion:        "2.91.4",
+			SDKVersion:        "0.2.0",
+			GenVersion:        "2.109.1",
 		},
 	}
 	for _, opt := range opts {
@@ -177,6 +208,8 @@ func New(opts ...SDKOption) *CodatSyncPayables {
 	sdk.Bills = newBills(sdk.sdkConfiguration)
 
 	sdk.Companies = newCompanies(sdk.sdkConfiguration)
+
+	sdk.CompanyInfo = newCompanyInfo(sdk.sdkConfiguration)
 
 	sdk.Connections = newConnections(sdk.sdkConfiguration)
 

@@ -41,7 +41,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Connections.Create(ctx, operations.CreateConnectionRequest{
         RequestBody: &operations.CreateConnectionRequestBody{
-            PlatformKey: codatsyncpayables.String("laudantium"),
+            PlatformKey: codatsyncpayables.String("eligendi"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
@@ -206,7 +206,7 @@ func main() {
         OrderBy: codatsyncpayables.String("-modifiedDate"),
         Page: codatsyncpayables.Int(1),
         PageSize: codatsyncpayables.Int(100),
-        Query: codatsyncpayables.String("qui"),
+        Query: codatsyncpayables.String("sint"),
     })
     if err != nil {
         log.Fatal(err)
@@ -258,8 +258,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Connections.Unlink(ctx, operations.UnlinkConnectionRequest{
-        RequestBody: &operations.UnlinkConnectionRequestBody{
-            Status: codatsyncpayables.String("libero"),
+        RequestBody: &operations.UnlinkConnectionUpdateConnection{
+            Status: shared.DataConnectionStatusLinked.ToPointer(),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",

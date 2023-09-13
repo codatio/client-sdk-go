@@ -2,7 +2,6 @@
 
 package shared
 
-// Attachments - Success
 type Attachments struct {
 	Attachments []Attachment `json:"attachments,omitempty"`
 }
