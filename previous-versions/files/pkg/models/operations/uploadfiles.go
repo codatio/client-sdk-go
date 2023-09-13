@@ -53,12 +53,68 @@ func (o *UploadFilesRequest) GetConnectionID() string {
 	return o.ConnectionID
 }
 
+// UploadFilesErrorMessage - One or more of the resources you referenced could not be found.
+// This might be because your company or data connection id is wrong, or was already deleted.
+type UploadFilesErrorMessage struct {
+	CanBeRetried      *string `json:"canBeRetried,omitempty"`
+	CorrelationID     *string `json:"correlationId,omitempty"`
+	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
+	Error             *string `json:"error,omitempty"`
+	Service           *string `json:"service,omitempty"`
+	StatusCode        *int64  `json:"statusCode,omitempty"`
+}
+
+func (o *UploadFilesErrorMessage) GetCanBeRetried() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CanBeRetried
+}
+
+func (o *UploadFilesErrorMessage) GetCorrelationID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CorrelationID
+}
+
+func (o *UploadFilesErrorMessage) GetDetailedErrorCode() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.DetailedErrorCode
+}
+
+func (o *UploadFilesErrorMessage) GetError() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Error
+}
+
+func (o *UploadFilesErrorMessage) GetService() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Service
+}
+
+func (o *UploadFilesErrorMessage) GetStatusCode() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.StatusCode
+}
+
 type UploadFilesResponse struct {
 	ContentType string
-	// The request made is not valid.
-	ErrorMessage *shared.ErrorMessage
+	// One or more of the resources you referenced could not be found.
+	// This might be because your company or data connection id is wrong, or was already deleted.
+	ErrorMessage *UploadFilesErrorMessage
 	StatusCode   int
 	RawResponse  *http.Response
+	// The request made is not valid.
+	Schema *shared.Schema
 }
 
 func (o *UploadFilesResponse) GetContentType() string {
@@ -68,7 +124,7 @@ func (o *UploadFilesResponse) GetContentType() string {
 	return o.ContentType
 }
 
-func (o *UploadFilesResponse) GetErrorMessage() *shared.ErrorMessage {
+func (o *UploadFilesResponse) GetErrorMessage() *UploadFilesErrorMessage {
 	if o == nil {
 		return nil
 	}
@@ -87,4 +143,11 @@ func (o *UploadFilesResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
+}
+
+func (o *UploadFilesResponse) GetSchema() *shared.Schema {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }
