@@ -7,9 +7,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/bank-feeds"
-	"github.com/codatio/client-sdk-go/bank-feeds/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bank-feeds/v2"
+	"github.com/codatio/client-sdk-go/bank-feeds/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v2/pkg/models/operations"
 )
 
 func main() {
@@ -21,7 +21,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.AccountMapping.Create(ctx, operations.CreateBankAccountMappingRequest{
-        BankFeedAccountMapping: &shared.BankFeedAccountMapping{
+        RequestBody: &operations.CreateBankAccountMappingBankFeedAccountMapping{
             FeedStartDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
             SourceAccountID: codatbankfeeds.String("provident"),
             TargetAccountID: codatbankfeeds.String("distinctio"),

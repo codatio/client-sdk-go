@@ -1,4 +1,4 @@
-# DeleteBankFeedBankAccountResponse
+# DeleteSourceAccountResponse
 
 
 ## Fields

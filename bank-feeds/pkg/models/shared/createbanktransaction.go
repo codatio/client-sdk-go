@@ -2,8 +2,13 @@
 
 package shared
 
-// BankFeedAccountMapping - A bank feed connection between a source account and a target account.
-type BankFeedAccountMapping struct {
+import (
+	"github.com/codatio/client-sdk-go/bank-feeds/v2/pkg/types"
+)
+
+type CreateBankTransaction struct {
+	Amount  *types.Decimal `json:"amount,omitempty"`
+	Balance *types.Decimal `json:"balance,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -23,30 +28,42 @@ type BankFeedAccountMapping struct {
 	// >
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	FeedStartDate *string `json:"feedStartDate,omitempty"`
-	// Unique ID for the source account
-	SourceAccountID *string `json:"sourceAccountId,omitempty"`
-	// Unique ID for the target account
-	TargetAccountID *string `json:"targetAccountId,omitempty"`
+	Date        *string `json:"date,omitempty"`
+	Description *string `json:"description,omitempty"`
+	ID          *string `json:"id,omitempty"`
 }
 
-func (o *BankFeedAccountMapping) GetFeedStartDate() *string {
+func (o *CreateBankTransaction) GetAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}
-	return o.FeedStartDate
+	return o.Amount
 }
 
-func (o *BankFeedAccountMapping) GetSourceAccountID() *string {
+func (o *CreateBankTransaction) GetBalance() *types.Decimal {
 	if o == nil {
 		return nil
 	}
-	return o.SourceAccountID
+	return o.Balance
 }
 
-func (o *BankFeedAccountMapping) GetTargetAccountID() *string {
+func (o *CreateBankTransaction) GetDate() *string {
 	if o == nil {
 		return nil
 	}
-	return o.TargetAccountID
+	return o.Date
+}
+
+func (o *CreateBankTransaction) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *CreateBankTransaction) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }

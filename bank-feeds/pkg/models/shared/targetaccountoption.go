@@ -2,11 +2,15 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/bank-feeds/v2/pkg/types"
+)
+
 type TargetAccountOption struct {
 	// The account number of the account.
 	AccountNumber *string `json:"accountNumber,omitempty"`
 	// The balance of the account.
-	Balance *float64 `json:"balance,omitempty"`
+	Balance *types.Decimal `json:"balance,omitempty"`
 	// Id of the target account.
 	ID *string `json:"id,omitempty"`
 	// Name of the target account.
@@ -22,7 +26,7 @@ func (o *TargetAccountOption) GetAccountNumber() *string {
 	return o.AccountNumber
 }
 
-func (o *TargetAccountOption) GetBalance() *float64 {
+func (o *TargetAccountOption) GetBalance() *types.Decimal {
 	if o == nil {
 		return nil
 	}

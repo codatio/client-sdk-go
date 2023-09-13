@@ -7,55 +7,64 @@ import (
 	"net/http"
 )
 
-type DeleteBankFeedCredentialsRequest struct {
+type ListSourceAccountsRequest struct {
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
-func (o *DeleteBankFeedCredentialsRequest) GetCompanyID() string {
+func (o *ListSourceAccountsRequest) GetCompanyID() string {
 	if o == nil {
 		return ""
 	}
 	return o.CompanyID
 }
 
-func (o *DeleteBankFeedCredentialsRequest) GetConnectionID() string {
+func (o *ListSourceAccountsRequest) GetConnectionID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ConnectionID
 }
 
-type DeleteBankFeedCredentialsResponse struct {
+type ListSourceAccountsResponse struct {
 	ContentType string
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
-	StatusCode   int
-	RawResponse  *http.Response
+	// Success
+	SourceAccount *shared.SourceAccount
+	StatusCode    int
+	RawResponse   *http.Response
 }
 
-func (o *DeleteBankFeedCredentialsResponse) GetContentType() string {
+func (o *ListSourceAccountsResponse) GetContentType() string {
 	if o == nil {
 		return ""
 	}
 	return o.ContentType
 }
 
-func (o *DeleteBankFeedCredentialsResponse) GetErrorMessage() *shared.ErrorMessage {
+func (o *ListSourceAccountsResponse) GetErrorMessage() *shared.ErrorMessage {
 	if o == nil {
 		return nil
 	}
 	return o.ErrorMessage
 }
 
-func (o *DeleteBankFeedCredentialsResponse) GetStatusCode() int {
+func (o *ListSourceAccountsResponse) GetSourceAccount() *shared.SourceAccount {
+	if o == nil {
+		return nil
+	}
+	return o.SourceAccount
+}
+
+func (o *ListSourceAccountsResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
 	}
 	return o.StatusCode
 }
 
-func (o *DeleteBankFeedCredentialsResponse) GetRawResponse() *http.Response {
+func (o *ListSourceAccountsResponse) GetRawResponse() *http.Response {
 	if o == nil {
 		return nil
 	}

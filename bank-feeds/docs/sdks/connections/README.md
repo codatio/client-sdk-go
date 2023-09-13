@@ -26,9 +26,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/bank-feeds"
-	"github.com/codatio/client-sdk-go/bank-feeds/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bank-feeds/v2"
+	"github.com/codatio/client-sdk-go/bank-feeds/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v2/pkg/models/operations"
 )
 
 func main() {
@@ -82,9 +82,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/bank-feeds"
-	"github.com/codatio/client-sdk-go/bank-feeds/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bank-feeds/v2"
+	"github.com/codatio/client-sdk-go/bank-feeds/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v2/pkg/models/operations"
 )
 
 func main() {
@@ -135,9 +135,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/bank-feeds"
-	"github.com/codatio/client-sdk-go/bank-feeds/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bank-feeds/v2"
+	"github.com/codatio/client-sdk-go/bank-feeds/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v2/pkg/models/operations"
 )
 
 func main() {
@@ -188,9 +188,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/bank-feeds"
-	"github.com/codatio/client-sdk-go/bank-feeds/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bank-feeds/v2"
+	"github.com/codatio/client-sdk-go/bank-feeds/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v2/pkg/models/operations"
 )
 
 func main() {
@@ -244,9 +244,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/bank-feeds"
-	"github.com/codatio/client-sdk-go/bank-feeds/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bank-feeds/v2"
+	"github.com/codatio/client-sdk-go/bank-feeds/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v2/pkg/models/operations"
 )
 
 func main() {
@@ -258,8 +258,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Connections.Unlink(ctx, operations.UnlinkConnectionRequest{
-        RequestBody: &operations.UnlinkConnectionRequestBody{
-            Status: codatbankfeeds.String("error"),
+        RequestBody: &operations.UnlinkConnectionUpdateConnection{
+            Status: shared.DataConnectionStatusUnlinked.ToPointer(),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",

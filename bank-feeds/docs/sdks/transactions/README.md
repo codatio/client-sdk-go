@@ -6,15 +6,15 @@ Transactions represent debits and credits from a source account.
 
 ### Available Operations
 
-* [Create](#create) - Create bank account transactions
+* [Create](#create) - Create bank transactions
 * [GetCreateOperation](#getcreateoperation) - Get create operation
 * [ListCreateOperations](#listcreateoperations) - List create operations
 
 ## Create
 
-﻿The *Create bank account transactions* endpoint creates new [bank account transactions](https://docs.codat.io/bank-feeds-api#/schemas/BankTransactions) for a given company's connection.
+﻿The *Create bank transactions* endpoint creates new [bank transactions](https://docs.codat.io/bank-feeds-api#/schemas/BankTransactions) for a given company's connection.
 
-[Bank account transactions](https://docs.codat.io/bank-feeds-api#/schemas/BankTransactions) are records of monetary amounts that have moved in and out of an SMB's bank account.
+[Bank transactions](https://docs.codat.io/bank-feeds-api#/schemas/BankTransactions) are records of monetary amounts that have moved in and out of an SMB's bank account.
 
 **Integration-specific behaviour**
 
@@ -31,9 +31,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/bank-feeds"
-	"github.com/codatio/client-sdk-go/bank-feeds/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bank-feeds/v2"
+	"github.com/codatio/client-sdk-go/bank-feeds/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v2/pkg/models/operations"
 )
 
 func main() {
@@ -47,21 +47,21 @@ func main() {
     res, err := s.Transactions.Create(ctx, operations.CreateBankTransactionsRequest{
         CreateBankTransactions: &shared.CreateBankTransactions{
             AccountID: codatbankfeeds.String("corporis"),
-            Transactions: []shared.CreateBankAccountTransaction{
-                shared.CreateBankAccountTransaction{
-                    Amount: codatbankfeeds.Float64(7506.86),
-                    Balance: codatbankfeeds.Float64(3154.28),
+            Transactions: []shared.CreateBankTransaction{
+                shared.CreateBankTransaction{
+                    Amount: types.MustNewDecimalFromString("1289.26"),
+                    Balance: types.MustNewDecimalFromString("7506.86"),
                     Date: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
-                    Description: codatbankfeeds.String("nemo"),
-                    ID: codatbankfeeds.String("5907aff1-a3a2-4fa9-8677-39251aa52c3f"),
+                    Description: codatbankfeeds.String("omnis"),
+                    ID: codatbankfeeds.String("55907aff-1a3a-42fa-9467-739251aa52c3"),
                 },
             },
         },
-        AccountID: "9wg4lep4ush5cxs79pl8sozmsndbaukll3ind4g7buqbm1h2",
+        AccountID: "EILBDVJVNUAGVKRQ",
         AllowSyncOnPushComplete: codatbankfeeds.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codatbankfeeds.Int(662527),
+        TimeoutInMinutes: codatbankfeeds.Int(368725),
     })
     if err != nil {
         log.Fatal(err)
@@ -99,9 +99,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/bank-feeds"
-	"github.com/codatio/client-sdk-go/bank-feeds/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bank-feeds/v2"
+	"github.com/codatio/client-sdk-go/bank-feeds/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v2/pkg/models/operations"
 )
 
 func main() {
@@ -114,7 +114,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Transactions.GetCreateOperation(ctx, operations.GetCreateOperationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        PushOperationKey: "d019da1f-fe78-4f09-bb00-74f15471b5e6",
+        PushOperationKey: "ad019da1-ffe7-48f0-97b0-074f15471b5e",
     })
     if err != nil {
         log.Fatal(err)
@@ -152,9 +152,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/bank-feeds"
-	"github.com/codatio/client-sdk-go/bank-feeds/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bank-feeds/v2"
+	"github.com/codatio/client-sdk-go/bank-feeds/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v2/pkg/models/operations"
 )
 
 func main() {
@@ -170,13 +170,13 @@ func main() {
         OrderBy: codatbankfeeds.String("-modifiedDate"),
         Page: codatbankfeeds.Int(1),
         PageSize: codatbankfeeds.Int(100),
-        Query: codatbankfeeds.String("repudiandae"),
+        Query: codatbankfeeds.String("commodi"),
     })
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.ListPushOperations != nil {
+    if res.PushOperations != nil {
         // handle response
     }
 }
