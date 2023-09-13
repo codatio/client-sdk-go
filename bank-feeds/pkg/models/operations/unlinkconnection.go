@@ -3,15 +3,16 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/bank-feeds/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v2/pkg/models/shared"
 	"net/http"
 )
 
-type UnlinkConnectionRequestBody struct {
-	Status *string `json:"status,omitempty"`
+type UnlinkConnectionUpdateConnection struct {
+	// The current authorization status of the data connection.
+	Status *shared.DataConnectionStatus `json:"status,omitempty"`
 }
 
-func (o *UnlinkConnectionRequestBody) GetStatus() *string {
+func (o *UnlinkConnectionUpdateConnection) GetStatus() *shared.DataConnectionStatus {
 	if o == nil {
 		return nil
 	}
@@ -19,12 +20,12 @@ func (o *UnlinkConnectionRequestBody) GetStatus() *string {
 }
 
 type UnlinkConnectionRequest struct {
-	RequestBody  *UnlinkConnectionRequestBody `request:"mediaType=application/json"`
-	CompanyID    string                       `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID string                       `pathParam:"style=simple,explode=false,name=connectionId"`
+	RequestBody  *UnlinkConnectionUpdateConnection `request:"mediaType=application/json"`
+	CompanyID    string                            `pathParam:"style=simple,explode=false,name=companyId"`
+	ConnectionID string                            `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
-func (o *UnlinkConnectionRequest) GetRequestBody() *UnlinkConnectionRequestBody {
+func (o *UnlinkConnectionRequest) GetRequestBody() *UnlinkConnectionUpdateConnection {
 	if o == nil {
 		return nil
 	}

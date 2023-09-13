@@ -6,10 +6,10 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/codatio/client-sdk-go/bank-feeds/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/bank-feeds/pkg/models/sdkerrors"
-	"github.com/codatio/client-sdk-go/bank-feeds/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/pkg/utils"
+	"github.com/codatio/client-sdk-go/bank-feeds/v2/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bank-feeds/v2/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/bank-feeds/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v2/pkg/utils"
 	"io"
 	"net/http"
 )
@@ -25,7 +25,7 @@ func newAccountMapping(sdkConfig sdkConfiguration) *accountMapping {
 	}
 }
 
-// Create - Create bank feed bank account mapping
+// Create bank feed account mapping
 // The *Create bank account mapping* endpoint creates a new mapping between a source bank account and a potential account in the accounting platform (target account).
 //
 // A bank feed account mapping is a specified link between the source account (provided by the Codat user) and the target account (the end users account in the underlying platform).
@@ -50,7 +50,7 @@ func (s *accountMapping) Create(ctx context.Context, request operations.CreateBa
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "BankFeedAccountMapping", "json")
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -66,17 +66,22 @@ func (s *accountMapping) Create(ctx context.Context, request operations.CreateBa
 
 	client := s.sdkConfiguration.SecurityClient
 
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
 		}
 	}
 
@@ -179,17 +184,22 @@ func (s *accountMapping) Get(ctx context.Context, request operations.GetBankAcco
 
 	client := s.sdkConfiguration.SecurityClient
 
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
 		}
 	}
 

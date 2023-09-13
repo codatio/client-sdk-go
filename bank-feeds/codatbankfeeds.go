@@ -4,8 +4,8 @@ package codatbankfeeds
 
 import (
 	"fmt"
-	"github.com/codatio/client-sdk-go/bank-feeds/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/pkg/utils"
+	"github.com/codatio/client-sdk-go/bank-feeds/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v2/pkg/utils"
 	"net/http"
 	"time"
 )
@@ -49,6 +49,7 @@ type sdkConfiguration struct {
 	OpenAPIDocVersion string
 	SDKVersion        string
 	GenVersion        string
+	RetryConfig       *utils.RetryConfig
 }
 
 func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
@@ -63,19 +64,29 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 //
 // A bank feed is a connection between a source bank account in your application and a target bank account in a supported accounting package.
 //
-// [Read more...](https://docs.codat.io/bank-feeds-api/overview)
+// [Explore product](https://docs.codat.io/bank-feeds-api/overview) | [See OpenAPI spec](https://github.com/codatio/oas)
 //
-// [See our OpenAPI spec](https://github.com/codatio/oas)
+// ---
+//
+// ## Endpoints
+//
+// | Endpoints | Description |
+// | :- | :- |
+// | Companies | Create and manage your SMB users' companies. |
+// | Connections | Create new and manage existing data connections for a company. |
+// | Source accounts | Provide and manage lists of source bank accounts.   |
+// | Transactions | Create new bank account transactions for a company's connections, and see previous operations. |
+// | Account mapping | Extra functionality for building an account management UI |
 type CodatBankFeeds struct {
-	// AccountMapping - Bank feed bank account mapping.
+	// Bank feed bank account mapping.
 	AccountMapping *accountMapping
-	// Companies - Create and manage your Codat companies.
+	// Create and manage your Codat companies.
 	Companies *companies
-	// Connections - Manage your companies' data connections.
+	// Manage your companies' data connections.
 	Connections *connections
-	// SourceAccounts - Source accounts act as a bridge to bank accounts in accounting software.
+	// Source accounts act as a bridge to bank accounts in accounting software.
 	SourceAccounts *sourceAccounts
-	// Transactions - Transactions represent debits and credits from a source account.
+	// Transactions represent debits and credits from a source account.
 	Transactions *transactions
 
 	sdkConfiguration sdkConfiguration
@@ -126,14 +137,20 @@ func WithSecurity(security shared.Security) SDKOption {
 	}
 }
 
+func WithRetryConfig(retryConfig utils.RetryConfig) SDKOption {
+	return func(sdk *CodatBankFeeds) {
+		sdk.sdkConfiguration.RetryConfig = &retryConfig
+	}
+}
+
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *CodatBankFeeds {
 	sdk := &CodatBankFeeds{
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "0.27.0",
-			GenVersion:        "2.91.4",
+			SDKVersion:        "2.0.0",
+			GenVersion:        "2.109.3",
 		},
 	}
 	for _, opt := range opts {
