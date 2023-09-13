@@ -2,12 +2,12 @@
 
 ## Overview
 
-Create new and manage existing Sync for Commerce companies using the Sync flow UI.
+Create new and manage existing Sync for Commerce connections using the Sync flow UI.
 
 ### Available Operations
 
 * [Create](#create) - Create connection
-* [GetSyncFlowURL](#getsyncflowurl) - Retrieve sync flow url
+* [GetSyncFlowURL](#getsyncflowurl) - Start new sync flow
 * [List](#list) - List connections
 * [UpdateAuthorization](#updateauthorization) - Update authorization
 * [UpdateConnection](#updateconnection) - Update connection
@@ -71,7 +71,7 @@ func main() {
 
 ## GetSyncFlowURL
 
-Get a URL for Sync Flow including a one time passcode.
+Create a new company and connections. Get a URL for Sync Flow, including a one time passcode.
 
 ### Example Usage
 
@@ -206,9 +206,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Connections.UpdateAuthorization(ctx, operations.UpdateConnectionAuthorizationRequest{
         RequestBody: map[string]string{
-            "illum": "vel",
-            "error": "deserunt",
-            "suscipit": "iure",
+            "corrupti": "illum",
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -264,7 +262,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Connections.UpdateConnection(ctx, operations.UpdateConnectionRequest{
         UpdateConnection: &shared.UpdateConnection{
-            Status: codatsynccommerce.String("Linked"),
+            Status: shared.DataConnectionStatusLinked.ToPointer(),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
