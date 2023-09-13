@@ -2,6 +2,10 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/types"
+)
+
 // PurchaseOrder - > View the coverage for purchase orders in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=purchaseOrders" target="_blank">Data coverage explorer</a>.
 //
 // ## Overview
@@ -43,7 +47,7 @@ type PurchaseOrder struct {
 	// | **GBP**          | £20            | 1.277         | $25.54                     |
 	// | **EUR**          | €20            | 1.134         | $22.68                     |
 	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
-	CurrencyRate *float64 `json:"currencyRate,omitempty"`
+	CurrencyRate *types.Decimal `json:"currencyRate,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -140,16 +144,16 @@ type PurchaseOrder struct {
 	// Current state of the purchase order
 	Status *PurchaseOrderStatus `json:"status,omitempty"`
 	// Total amount of the purchase order, including discounts but excluding tax.
-	SubTotal *float64 `json:"subTotal,omitempty"`
+	SubTotal *types.Decimal `json:"subTotal,omitempty"`
 	// Reference to the supplier the record relates to.
 	SupplierRef *SupplierRef `json:"supplierRef,omitempty"`
 	// Total amount of the purchase order, including discounts and tax.
-	TotalAmount *float64 `json:"totalAmount,omitempty"`
+	TotalAmount *types.Decimal `json:"totalAmount,omitempty"`
 	// Total value of any discounts applied to the purchase order.
-	TotalDiscount *float64 `json:"totalDiscount,omitempty"`
+	TotalDiscount *types.Decimal `json:"totalDiscount,omitempty"`
 	//
 	// Total amount of tax included in the purchase order.
-	TotalTaxAmount *float64 `json:"totalTaxAmount,omitempty"`
+	TotalTaxAmount *types.Decimal `json:"totalTaxAmount,omitempty"`
 }
 
 func (o *PurchaseOrder) GetCurrency() *string {
@@ -159,7 +163,7 @@ func (o *PurchaseOrder) GetCurrency() *string {
 	return o.Currency
 }
 
-func (o *PurchaseOrder) GetCurrencyRate() *float64 {
+func (o *PurchaseOrder) GetCurrencyRate() *types.Decimal {
 	if o == nil {
 		return nil
 	}
@@ -257,7 +261,7 @@ func (o *PurchaseOrder) GetStatus() *PurchaseOrderStatus {
 	return o.Status
 }
 
-func (o *PurchaseOrder) GetSubTotal() *float64 {
+func (o *PurchaseOrder) GetSubTotal() *types.Decimal {
 	if o == nil {
 		return nil
 	}
@@ -271,21 +275,21 @@ func (o *PurchaseOrder) GetSupplierRef() *SupplierRef {
 	return o.SupplierRef
 }
 
-func (o *PurchaseOrder) GetTotalAmount() *float64 {
+func (o *PurchaseOrder) GetTotalAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}
 	return o.TotalAmount
 }
 
-func (o *PurchaseOrder) GetTotalDiscount() *float64 {
+func (o *PurchaseOrder) GetTotalDiscount() *types.Decimal {
 	if o == nil {
 		return nil
 	}
 	return o.TotalDiscount
 }
 
-func (o *PurchaseOrder) GetTotalTaxAmount() *float64 {
+func (o *PurchaseOrder) GetTotalTaxAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}

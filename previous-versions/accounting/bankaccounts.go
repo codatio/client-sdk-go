@@ -25,7 +25,7 @@ func newBankAccounts(sdkConfig sdkConfiguration) *bankAccounts {
 	}
 }
 
-// Create - Create bank account
+// Create bank account
 // The *Create bank account* endpoint creates a new [bank account](https://docs.codat.io/accounting-api#/schemas/BankAccount) for a given company's connection.
 //
 // [Bank accounts](https://docs.codat.io/accounting-api#/schemas/BankAccount) are financial accounts maintained by a bank or other financial institution.
@@ -72,17 +72,22 @@ func (s *bankAccounts) Create(ctx context.Context, request operations.CreateBank
 
 	client := s.sdkConfiguration.SecurityClient
 
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
 		}
 	}
 
@@ -153,7 +158,7 @@ func (s *bankAccounts) Create(ctx context.Context, request operations.CreateBank
 	return res, nil
 }
 
-// Get - Get bank account
+// Get bank account
 // The *Get bank account* endpoint returns a single account for a given accountId.
 //
 // [Bank accounts](https://docs.codat.io/accounting-api#/schemas/BankAccount) are financial accounts maintained by a bank or other financial institution.
@@ -187,17 +192,22 @@ func (s *bankAccounts) Get(ctx context.Context, request operations.GetBankAccoun
 
 	client := s.sdkConfiguration.SecurityClient
 
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
 		}
 	}
 
@@ -304,17 +314,22 @@ func (s *bankAccounts) GetCreateUpdateModel(ctx context.Context, request operati
 
 	client := s.sdkConfiguration.SecurityClient
 
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
 		}
 	}
 
@@ -383,7 +398,7 @@ func (s *bankAccounts) GetCreateUpdateModel(ctx context.Context, request operati
 	return res, nil
 }
 
-// List - List bank accounts
+// List bank accounts
 // The *List bank accounts* endpoint returns a list of [bank accounts](https://docs.codat.io/accounting-api#/schemas/BankAccount) for a given company's connection.
 //
 // [Bank accounts](https://docs.codat.io/accounting-api#/schemas/BankAccount) are financial accounts maintained by a bank or other financial institution.
@@ -419,17 +434,22 @@ func (s *bankAccounts) List(ctx context.Context, request operations.ListBankAcco
 
 	client := s.sdkConfiguration.SecurityClient
 
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
 		}
 	}
 
@@ -500,7 +520,7 @@ func (s *bankAccounts) List(ctx context.Context, request operations.ListBankAcco
 	return res, nil
 }
 
-// Update - Update bank account
+// Update bank account
 // The *Update bank account* endpoint updates an existing [bank account](https://docs.codat.io/accounting-api#/schemas/BankAccount) for a given company's connection.
 //
 // [Bank accounts](https://docs.codat.io/accounting-api#/schemas/BankAccount) are financial accounts maintained by a bank or other financial institution.
@@ -547,17 +567,22 @@ func (s *bankAccounts) Update(ctx context.Context, request operations.UpdateBank
 
 	client := s.sdkConfiguration.SecurityClient
 
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
 		}
 	}
 

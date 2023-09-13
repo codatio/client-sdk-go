@@ -25,7 +25,7 @@ func newCompanyInfo(sdkConfig sdkConfiguration) *companyInfo {
 	}
 }
 
-// Get - Get company info
+// Get company info
 // Gets the latest basic info for a company.
 func (s *companyInfo) Get(ctx context.Context, request operations.GetCompanyInfoRequest, opts ...operations.Option) (*operations.GetCompanyInfoResponse, error) {
 	o := operations.Options{}
@@ -53,17 +53,22 @@ func (s *companyInfo) Get(ctx context.Context, request operations.GetCompanyInfo
 
 	client := s.sdkConfiguration.SecurityClient
 
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
 		}
 	}
 
@@ -134,7 +139,7 @@ func (s *companyInfo) Get(ctx context.Context, request operations.GetCompanyInfo
 	return res, nil
 }
 
-// Refresh - Refresh company info
+// Refresh company info
 // Initiates the process of synchronising basic info for a company
 func (s *companyInfo) Refresh(ctx context.Context, request operations.RefreshCompanyInfoRequest, opts ...operations.Option) (*operations.RefreshCompanyInfoResponse, error) {
 	o := operations.Options{}
@@ -162,17 +167,22 @@ func (s *companyInfo) Refresh(ctx context.Context, request operations.RefreshCom
 
 	client := s.sdkConfiguration.SecurityClient
 
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
 		}
 	}
 

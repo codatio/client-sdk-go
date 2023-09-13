@@ -1,7 +1,5 @@
 # CreateTransferResponse
 
-Success
-
 
 ## Fields
 

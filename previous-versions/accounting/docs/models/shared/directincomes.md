@@ -1,7 +1,5 @@
 # DirectIncomes
 
-Success
-
 
 ## Fields
 

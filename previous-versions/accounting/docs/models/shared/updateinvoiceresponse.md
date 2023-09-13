@@ -1,7 +1,5 @@
 # UpdateInvoiceResponse
 
-Success
-
 
 ## Fields
 

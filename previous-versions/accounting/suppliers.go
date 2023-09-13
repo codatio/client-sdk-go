@@ -25,7 +25,7 @@ func newSuppliers(sdkConfig sdkConfiguration) *suppliers {
 	}
 }
 
-// Create - Create supplier
+// Create supplier
 // The *Create supplier* endpoint creates a new [supplier](https://docs.codat.io/accounting-api#/schemas/Supplier) for a given company's connection.
 //
 // [Suppliers](https://docs.codat.io/accounting-api#/schemas/Supplier) are people or organizations that provide something, such as a product or service.
@@ -72,17 +72,22 @@ func (s *suppliers) Create(ctx context.Context, request operations.CreateSupplie
 
 	client := s.sdkConfiguration.SecurityClient
 
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
 		}
 	}
 
@@ -191,17 +196,22 @@ func (s *suppliers) DownloadAttachment(ctx context.Context, request operations.D
 
 	client := s.sdkConfiguration.SecurityClient
 
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
 		}
 	}
 
@@ -265,7 +275,7 @@ func (s *suppliers) DownloadAttachment(ctx context.Context, request operations.D
 	return res, nil
 }
 
-// Get - Get supplier
+// Get supplier
 // The *Get supplier* endpoint returns a single supplier for a given supplierId.
 //
 // [Suppliers](https://docs.codat.io/accounting-api#/schemas/Supplier) are people or organizations that provide something, such as a product or service.
@@ -299,17 +309,22 @@ func (s *suppliers) Get(ctx context.Context, request operations.GetSupplierReque
 
 	client := s.sdkConfiguration.SecurityClient
 
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
 		}
 	}
 
@@ -412,17 +427,22 @@ func (s *suppliers) GetAttachment(ctx context.Context, request operations.GetSup
 
 	client := s.sdkConfiguration.SecurityClient
 
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
 		}
 	}
 
@@ -527,17 +547,22 @@ func (s *suppliers) GetCreateUpdateModel(ctx context.Context, request operations
 
 	client := s.sdkConfiguration.SecurityClient
 
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
 		}
 	}
 
@@ -606,7 +631,7 @@ func (s *suppliers) GetCreateUpdateModel(ctx context.Context, request operations
 	return res, nil
 }
 
-// List - List suppliers
+// List suppliers
 // The *List suppliers* endpoint returns a list of [suppliers](https://docs.codat.io/accounting-api#/schemas/Supplier) for a given company's connection.
 //
 // [Suppliers](https://docs.codat.io/accounting-api#/schemas/Supplier) are people or organizations that provide something, such as a product or service.
@@ -642,17 +667,22 @@ func (s *suppliers) List(ctx context.Context, request operations.ListSuppliersRe
 
 	client := s.sdkConfiguration.SecurityClient
 
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
 		}
 	}
 
@@ -755,17 +785,22 @@ func (s *suppliers) ListAttachments(ctx context.Context, request operations.List
 
 	client := s.sdkConfiguration.SecurityClient
 
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
 		}
 	}
 
@@ -834,7 +869,7 @@ func (s *suppliers) ListAttachments(ctx context.Context, request operations.List
 	return res, nil
 }
 
-// Update - Update supplier
+// Update supplier
 // The *Update supplier* endpoint updates an existing [supplier](https://docs.codat.io/accounting-api#/schemas/Supplier) for a given company's connection.
 //
 // [Suppliers](https://docs.codat.io/accounting-api#/schemas/Supplier) are people or organizations that provide something, such as a product or service.
@@ -881,17 +916,22 @@ func (s *suppliers) Update(ctx context.Context, request operations.UpdateSupplie
 
 	client := s.sdkConfiguration.SecurityClient
 
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
 		}
 	}
 

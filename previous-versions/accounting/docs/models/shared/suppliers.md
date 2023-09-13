@@ -1,7 +1,5 @@
 # Suppliers
 
-Success
-
 
 ## Fields
 

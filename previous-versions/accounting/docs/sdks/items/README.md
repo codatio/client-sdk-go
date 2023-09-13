@@ -49,46 +49,46 @@ func main() {
         Item: &shared.Item{
             BillItem: &shared.BillItem{
                 AccountRef: &shared.AccountRef{
-                    ID: codataccounting.String("b7a73df4-0ca0-4d76-97c1-641bbf055271"),
-                    Name: codataccounting.String("Mr. Alan Haley"),
+                    ID: codataccounting.String("33e66bd8-fe5d-400b-979e-f20387320590"),
+                    Name: codataccounting.String("Mr. Forrest Ryan"),
                 },
-                Description: codataccounting.String("assumenda"),
+                Description: codataccounting.String("ea"),
                 TaxRateRef: &shared.TaxRateRef{
-                    EffectiveTaxRate: codataccounting.Float64(3834.21),
-                    ID: codataccounting.String("06dd1b28-272b-4c9c-b221-697b1880fcbb"),
-                    Name: codataccounting.String("Verna Marks"),
+                    EffectiveTaxRate: types.MustNewDecimalFromString("2622.31"),
+                    ID: codataccounting.String("00313b3e-5044-4f65-be72-dc4077d0cc3f"),
+                    Name: codataccounting.String("Carol Lowe"),
                 },
-                UnitPrice: codataccounting.Float64(702.82),
+                UnitPrice: types.MustNewDecimalFromString("7738.54"),
             },
-            Code: codataccounting.String("nostrum"),
-            ID: codataccounting.String("f670bd17-8483-4165-beeb-3b6e241c3109"),
+            Code: codataccounting.String("dicta"),
+            ID: codataccounting.String("5ceb4d6e-1eae-40f7-9aed-f2acab58b991"),
             InvoiceItem: &shared.InvoiceItem{
                 AccountRef: &shared.AccountRef{
-                    ID: codataccounting.String("983663c6-6dcb-4b7d-b6cb-09c8b408e071"),
-                    Name: codataccounting.String("Minnie Kirlin"),
+                    ID: codataccounting.String("c926ddb5-8946-41e7-821c-be6d9502f0ea"),
+                    Name: codataccounting.String("Sean Auer"),
                 },
-                Description: codataccounting.String("saepe"),
+                Description: codataccounting.String("sint"),
                 TaxRateRef: &shared.TaxRateRef{
-                    EffectiveTaxRate: codataccounting.Float64(2505.06),
-                    ID: codataccounting.String("fee101d9-780a-410c-87b9-5040d6c8b2a5"),
-                    Name: codataccounting.String("John Aufderhar"),
+                    EffectiveTaxRate: types.MustNewDecimalFromString("9787.97"),
+                    ID: codataccounting.String("7ac2f72f-8850-4090-8911-608207888ec6"),
+                    Name: codataccounting.String("Teresa Lueilwitz"),
                 },
-                UnitPrice: codataccounting.Float64(249.94),
+                UnitPrice: types.MustNewDecimalFromString("9454.09"),
             },
             IsBillItem: false,
             IsInvoiceItem: false,
-            ItemStatus: shared.ItemStatusActive,
+            ItemStatus: shared.ItemStatusArchived,
             Metadata: &shared.Metadata{
                 IsDeleted: codataccounting.Bool(false),
             },
             ModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
-            Name: codataccounting.String("Brenda Greenholt"),
+            Name: codataccounting.String("Marion Mills"),
             SourceModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
             Type: shared.ItemTypeUnknown,
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codataccounting.Int(4409),
+        TimeoutInMinutes: codataccounting.Int(881095),
     })
     if err != nil {
         log.Fatal(err)
@@ -148,7 +148,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Items.Get(ctx, operations.GetItemRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ItemID: "sit",
+        ItemID: "quod",
     })
     if err != nil {
         log.Fatal(err)
@@ -271,7 +271,7 @@ func main() {
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: codataccounting.Int(1),
         PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("iste"),
+        Query: codataccounting.String("sunt"),
     })
     if err != nil {
         log.Fatal(err)

@@ -1,7 +1,5 @@
 # DirectCosts
 
-Success
-
 
 ## Fields
 

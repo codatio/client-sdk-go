@@ -2,6 +2,11 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/types"
+	"github.com/ericlagergren/decimal"
+)
+
 // DirectCost - > **Language tip:** Direct costs may also be referred to as **Spend transactions**, **Spend money transactions**, or **Payments** in various accounting platforms.
 //
 // > View the coverage for direct costs in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=directCosts" target="_blank">Data coverage explorer</a>.
@@ -53,7 +58,7 @@ type DirectCost struct {
 	// | **GBP**          | £20            | 1.277         | $25.54                     |
 	// | **EUR**          | €20            | 1.134         | $22.68                     |
 	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
-	CurrencyRate *float64 `json:"currencyRate,omitempty"`
+	CurrencyRate *types.Decimal `json:"currencyRate,omitempty"`
 	// Identifier of the direct cost, unique for the company.
 	ID *string `json:"id,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
@@ -88,15 +93,15 @@ type DirectCost struct {
 	Reference          *string `json:"reference,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// The total amount of the direct costs, excluding any taxes.
-	SubTotal float64 `json:"subTotal"`
+	SubTotal types.Decimal `json:"subTotal"`
 	// Supplemental data is additional data you can include in our standard data types.
 	//
-	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/additional-data) about supplemental data.
+	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
 	SupplementalData *SupplementalData `json:"supplementalData,omitempty"`
 	// The total amount of tax on the direct costs.
-	TaxAmount float64 `json:"taxAmount"`
+	TaxAmount types.Decimal `json:"taxAmount"`
 	// The amount of the direct costs, inclusive of tax.
-	TotalAmount float64 `json:"totalAmount"`
+	TotalAmount types.Decimal `json:"totalAmount"`
 }
 
 func (o *DirectCost) GetContactRef() *ContactRef {
@@ -113,7 +118,7 @@ func (o *DirectCost) GetCurrency() string {
 	return o.Currency
 }
 
-func (o *DirectCost) GetCurrencyRate() *float64 {
+func (o *DirectCost) GetCurrencyRate() *types.Decimal {
 	if o == nil {
 		return nil
 	}
@@ -183,9 +188,9 @@ func (o *DirectCost) GetSourceModifiedDate() *string {
 	return o.SourceModifiedDate
 }
 
-func (o *DirectCost) GetSubTotal() float64 {
+func (o *DirectCost) GetSubTotal() types.Decimal {
 	if o == nil {
-		return 0.0
+		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
 	}
 	return o.SubTotal
 }
@@ -197,16 +202,16 @@ func (o *DirectCost) GetSupplementalData() *SupplementalData {
 	return o.SupplementalData
 }
 
-func (o *DirectCost) GetTaxAmount() float64 {
+func (o *DirectCost) GetTaxAmount() types.Decimal {
 	if o == nil {
-		return 0.0
+		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
 	}
 	return o.TaxAmount
 }
 
-func (o *DirectCost) GetTotalAmount() float64 {
+func (o *DirectCost) GetTotalAmount() types.Decimal {
 	if o == nil {
-		return 0.0
+		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
 	}
 	return o.TotalAmount
 }

@@ -2,6 +2,10 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/types"
+)
+
 // TaxRateRef - Data types that reference a tax rate, for example invoice and bill line items, use a taxRateRef that includes the ID and name of the linked tax rate.
 //
 // Found on:
@@ -14,14 +18,14 @@ package shared
 // - Items
 type TaxRateRef struct {
 	// Applicable tax rate.
-	EffectiveTaxRate *float64 `json:"effectiveTaxRate,omitempty"`
+	EffectiveTaxRate *types.Decimal `json:"effectiveTaxRate,omitempty"`
 	// Unique identifier for the tax rate in the accounting platform.
 	ID *string `json:"id,omitempty"`
 	// Name of the tax rate in the accounting platform.
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *TaxRateRef) GetEffectiveTaxRate() *float64 {
+func (o *TaxRateRef) GetEffectiveTaxRate() *types.Decimal {
 	if o == nil {
 		return nil
 	}

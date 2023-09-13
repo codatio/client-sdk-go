@@ -2,22 +2,26 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/types"
+)
+
 type PurchaseOrderLineItem struct {
 	// Data types that reference an account, for example bill and invoice line items, use an accountRef that includes the ID and name of the linked account.
 	AccountRef *AccountRef `json:"accountRef,omitempty"`
 	// Description of the goods / services that have been ordered.
 	Description *string `json:"description,omitempty"`
 	// Value of any discounts applied.
-	DiscountAmount *float64 `json:"discountAmount,omitempty"`
+	DiscountAmount *types.Decimal `json:"discountAmount,omitempty"`
 	// Percentage rate (from 0 to 100) of any discounts applied to the unit amount.
-	DiscountPercentage *float64 `json:"discountPercentage,omitempty"`
-	ItemRef            *ItemRef `json:"itemRef,omitempty"`
+	DiscountPercentage *types.Decimal `json:"discountPercentage,omitempty"`
+	ItemRef            *ItemRef       `json:"itemRef,omitempty"`
 	// Number of units that have been ordered.
-	Quantity *float64 `json:"quantity,omitempty"`
+	Quantity *types.Decimal `json:"quantity,omitempty"`
 	// Amount of the line, inclusive of discounts but exclusive of tax.
-	SubTotal *float64 `json:"subTotal,omitempty"`
+	SubTotal *types.Decimal `json:"subTotal,omitempty"`
 	// Amount of tax for the line.
-	TaxAmount *float64 `json:"taxAmount,omitempty"`
+	TaxAmount *types.Decimal `json:"taxAmount,omitempty"`
 	// Data types that reference a tax rate, for example invoice and bill line items, use a taxRateRef that includes the ID and name of the linked tax rate.
 	//
 	// Found on:
@@ -30,11 +34,11 @@ type PurchaseOrderLineItem struct {
 	// - Items
 	TaxRateRef *TaxRateRef `json:"taxRateRef,omitempty"`
 	// Total amount of the line, inclusive of discounts and tax.
-	TotalAmount *float64 `json:"totalAmount,omitempty"`
+	TotalAmount *types.Decimal `json:"totalAmount,omitempty"`
 	// Reference to the tracking categories to which the line item is linked.
 	TrackingCategoryRefs []TrackingCategoryRef `json:"trackingCategoryRefs,omitempty"`
 	// Price of each unit.
-	UnitAmount *float64 `json:"unitAmount,omitempty"`
+	UnitAmount *types.Decimal `json:"unitAmount,omitempty"`
 }
 
 func (o *PurchaseOrderLineItem) GetAccountRef() *AccountRef {
@@ -51,14 +55,14 @@ func (o *PurchaseOrderLineItem) GetDescription() *string {
 	return o.Description
 }
 
-func (o *PurchaseOrderLineItem) GetDiscountAmount() *float64 {
+func (o *PurchaseOrderLineItem) GetDiscountAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}
 	return o.DiscountAmount
 }
 
-func (o *PurchaseOrderLineItem) GetDiscountPercentage() *float64 {
+func (o *PurchaseOrderLineItem) GetDiscountPercentage() *types.Decimal {
 	if o == nil {
 		return nil
 	}
@@ -72,21 +76,21 @@ func (o *PurchaseOrderLineItem) GetItemRef() *ItemRef {
 	return o.ItemRef
 }
 
-func (o *PurchaseOrderLineItem) GetQuantity() *float64 {
+func (o *PurchaseOrderLineItem) GetQuantity() *types.Decimal {
 	if o == nil {
 		return nil
 	}
 	return o.Quantity
 }
 
-func (o *PurchaseOrderLineItem) GetSubTotal() *float64 {
+func (o *PurchaseOrderLineItem) GetSubTotal() *types.Decimal {
 	if o == nil {
 		return nil
 	}
 	return o.SubTotal
 }
 
-func (o *PurchaseOrderLineItem) GetTaxAmount() *float64 {
+func (o *PurchaseOrderLineItem) GetTaxAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}
@@ -100,7 +104,7 @@ func (o *PurchaseOrderLineItem) GetTaxRateRef() *TaxRateRef {
 	return o.TaxRateRef
 }
 
-func (o *PurchaseOrderLineItem) GetTotalAmount() *float64 {
+func (o *PurchaseOrderLineItem) GetTotalAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}
@@ -114,7 +118,7 @@ func (o *PurchaseOrderLineItem) GetTrackingCategoryRefs() []TrackingCategoryRef 
 	return o.TrackingCategoryRefs
 }
 
-func (o *PurchaseOrderLineItem) GetUnitAmount() *float64 {
+func (o *PurchaseOrderLineItem) GetUnitAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}

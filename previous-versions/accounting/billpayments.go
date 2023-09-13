@@ -25,7 +25,7 @@ func newBillPayments(sdkConfig sdkConfiguration) *billPayments {
 	}
 }
 
-// Create - Create bill payments
+// Create bill payments
 // The *Create bill payment* endpoint creates a new [bill payment](https://docs.codat.io/accounting-api#/schemas/BillPayment) for a given company's connection.
 //
 // [Bill payments](https://docs.codat.io/accounting-api#/schemas/BillPayment) are an allocation of money within any customer accounts payable account.
@@ -72,17 +72,22 @@ func (s *billPayments) Create(ctx context.Context, request operations.CreateBill
 
 	client := s.sdkConfiguration.SecurityClient
 
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
 		}
 	}
 
@@ -153,7 +158,7 @@ func (s *billPayments) Create(ctx context.Context, request operations.CreateBill
 	return res, nil
 }
 
-// Delete - Delete bill payment
+// Delete bill payment
 // The *Delete bill payment* endpoint allows you to delete a specified bill payment from an accounting platform.
 //
 // [Bill payments](https://docs.codat.io/accounting-api#/schemas/BillPayment) are an allocation of money within any customer accounts payable account.
@@ -209,17 +214,22 @@ func (s *billPayments) Delete(ctx context.Context, request operations.DeleteBill
 
 	client := s.sdkConfiguration.SecurityClient
 
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
 		}
 	}
 
@@ -288,7 +298,7 @@ func (s *billPayments) Delete(ctx context.Context, request operations.DeleteBill
 	return res, nil
 }
 
-// Get - Get bill payment
+// Get bill payment
 // The *Get bill payment* endpoint returns a single bill payment for a given billPaymentId.
 //
 // [Bill payments](https://docs.codat.io/accounting-api#/schemas/BillPayment) are an allocation of money within any customer accounts payable account.
@@ -322,17 +332,22 @@ func (s *billPayments) Get(ctx context.Context, request operations.GetBillPaymen
 
 	client := s.sdkConfiguration.SecurityClient
 
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
 		}
 	}
 
@@ -439,17 +454,22 @@ func (s *billPayments) GetCreateModel(ctx context.Context, request operations.Ge
 
 	client := s.sdkConfiguration.SecurityClient
 
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
 		}
 	}
 
@@ -518,7 +538,7 @@ func (s *billPayments) GetCreateModel(ctx context.Context, request operations.Ge
 	return res, nil
 }
 
-// List - List bill payments
+// List bill payments
 // The *List bill payments* endpoint returns a list of [bill payments](https://docs.codat.io/accounting-api#/schemas/BillPayment) for a given company's connection.
 //
 // [Bill payments](https://docs.codat.io/accounting-api#/schemas/BillPayment) are an allocation of money within any customer accounts payable account.
@@ -554,17 +574,22 @@ func (s *billPayments) List(ctx context.Context, request operations.ListBillPaym
 
 	client := s.sdkConfiguration.SecurityClient
 
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
-		retryConfig = &utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 500,
-				MaxInterval:     60000,
-				Exponent:        1.5,
-				MaxElapsedTime:  3600000,
-			},
-			RetryConnectionErrors: true,
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
 		}
 	}
 

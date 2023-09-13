@@ -2,7 +2,6 @@
 
 package shared
 
-// PaymentMethods - Success
 type PaymentMethods struct {
 	Links        Links           `json:"_links"`
 	PageNumber   int64           `json:"pageNumber"`

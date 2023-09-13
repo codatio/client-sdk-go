@@ -1,7 +1,5 @@
 # CreatePaymentResponse
 
-Success
-
 
 ## Fields
 

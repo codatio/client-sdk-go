@@ -1,7 +1,5 @@
 # CreateDirectCostResponse
 
-Success
-
 
 ## Fields
 

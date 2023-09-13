@@ -2,7 +2,11 @@
 
 package shared
 
-// BankTransactions - > **Accessing Bank Accounts through Banking API**
+import (
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/types"
+)
+
+// BankTransactionsSourceModifiedDate - > **Accessing Bank Accounts through Banking API**
 // >
 // > This datatype was originally used for accessing bank account data both in accounting integrations and open banking aggregators.
 // >
@@ -18,10 +22,10 @@ package shared
 // * Amount of the transaction.
 // * Current account balance.
 // * Transaction type, for example, credit, debit, or transfer.
-type BankTransactions struct {
-	AccountID *string  `json:"accountId,omitempty"`
-	Amount    *float64 `json:"amount,omitempty"`
-	Balance   *float64 `json:"balance,omitempty"`
+type BankTransactionsSourceModifiedDate struct {
+	AccountID *string        `json:"accountId,omitempty"`
+	Amount    *types.Decimal `json:"amount,omitempty"`
+	Balance   *types.Decimal `json:"balance,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -51,72 +55,115 @@ type BankTransactions struct {
 	TransactionType *BankTransactionType `json:"transactionType,omitempty"`
 }
 
-func (o *BankTransactions) GetAccountID() *string {
+func (o *BankTransactionsSourceModifiedDate) GetAccountID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.AccountID
 }
 
-func (o *BankTransactions) GetAmount() *float64 {
+func (o *BankTransactionsSourceModifiedDate) GetAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}
 	return o.Amount
 }
 
-func (o *BankTransactions) GetBalance() *float64 {
+func (o *BankTransactionsSourceModifiedDate) GetBalance() *types.Decimal {
 	if o == nil {
 		return nil
 	}
 	return o.Balance
 }
 
-func (o *BankTransactions) GetClearedOnDate() *string {
+func (o *BankTransactionsSourceModifiedDate) GetClearedOnDate() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ClearedOnDate
 }
 
-func (o *BankTransactions) GetDescription() *string {
+func (o *BankTransactionsSourceModifiedDate) GetDescription() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Description
 }
 
-func (o *BankTransactions) GetID() *string {
+func (o *BankTransactionsSourceModifiedDate) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *BankTransactions) GetModifiedDate() *string {
+func (o *BankTransactionsSourceModifiedDate) GetModifiedDate() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ModifiedDate
 }
 
-func (o *BankTransactions) GetReconciled() *bool {
+func (o *BankTransactionsSourceModifiedDate) GetReconciled() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Reconciled
 }
 
-func (o *BankTransactions) GetSourceModifiedDate() *string {
+func (o *BankTransactionsSourceModifiedDate) GetSourceModifiedDate() *string {
 	if o == nil {
 		return nil
 	}
 	return o.SourceModifiedDate
 }
 
-func (o *BankTransactions) GetTransactionType() *BankTransactionType {
+func (o *BankTransactionsSourceModifiedDate) GetTransactionType() *BankTransactionType {
 	if o == nil {
 		return nil
 	}
 	return o.TransactionType
+}
+
+type BankTransactions struct {
+	Links        Links                                `json:"_links"`
+	PageNumber   int64                                `json:"pageNumber"`
+	PageSize     int64                                `json:"pageSize"`
+	Results      []BankTransactionsSourceModifiedDate `json:"results,omitempty"`
+	TotalResults int64                                `json:"totalResults"`
+}
+
+func (o *BankTransactions) GetLinks() Links {
+	if o == nil {
+		return Links{}
+	}
+	return o.Links
+}
+
+func (o *BankTransactions) GetPageNumber() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.PageNumber
+}
+
+func (o *BankTransactions) GetPageSize() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.PageSize
+}
+
+func (o *BankTransactions) GetResults() []BankTransactionsSourceModifiedDate {
+	if o == nil {
+		return nil
+	}
+	return o.Results
+}
+
+func (o *BankTransactions) GetTotalResults() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.TotalResults
 }

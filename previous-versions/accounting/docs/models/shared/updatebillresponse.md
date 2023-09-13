@@ -1,7 +1,5 @@
 # UpdateBillResponse
 
-Success
-
 
 ## Fields
 

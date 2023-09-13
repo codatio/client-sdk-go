@@ -46,36 +46,22 @@ func main() {
     ctx := context.Background()
     res, err := s.BankAccountTransactions.Create(ctx, operations.CreateBankTransactionsRequest{
         CreateBankTransactions: &shared.CreateBankTransactions{
-            AccountID: codataccounting.String("veritatis"),
+            AccountID: codataccounting.String("iure"),
             Transactions: []shared.CreateBankAccountTransaction{
                 shared.CreateBankAccountTransaction{
-                    Amount: codataccounting.Float64(202.18),
-                    Balance: codataccounting.Float64(3682.41),
+                    Amount: types.MustNewDecimalFromString("2975.34"),
+                    Balance: types.MustNewDecimalFromString("8917.73"),
                     Date: codataccounting.String("2022-10-23T00:00:00.000Z"),
-                    Description: codataccounting.String("sapiente"),
-                    ID: codataccounting.String("c2ddf7cc-78ca-41ba-928f-c816742cb739"),
-                },
-                shared.CreateBankAccountTransaction{
-                    Amount: codataccounting.Float64(1352.18),
-                    Balance: codataccounting.Float64(187.89),
-                    Date: codataccounting.String("2022-10-23T00:00:00.000Z"),
-                    Description: codataccounting.String("natus"),
-                    ID: codataccounting.String("29396fea-7596-4eb1-8faa-a2352c595590"),
-                },
-                shared.CreateBankAccountTransaction{
-                    Amount: codataccounting.Float64(4386.01),
-                    Balance: codataccounting.Float64(6342.74),
-                    Date: codataccounting.String("2022-10-23T00:00:00.000Z"),
-                    Description: codataccounting.String("sapiente"),
-                    ID: codataccounting.String("1a3a2fa9-4677-4392-91aa-52c3f5ad019d"),
+                    Description: codataccounting.String("delectus"),
+                    ID: codataccounting.String("467cc879-6ed1-451a-85df-c2ddf7cc78ca"),
                 },
             },
         },
-        AccountID: "laborum",
+        AccountID: "dicta",
         AllowSyncOnPushComplete: codataccounting.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codataccounting.Int(96098),
+        TimeoutInMinutes: codataccounting.Int(720633),
     })
     if err != nil {
         log.Fatal(err)
@@ -136,7 +122,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.BankAccountTransactions.GetCreateModel(ctx, operations.GetCreateBankTransactionsModelRequest{
-        AccountID: "reiciendis",
+        AccountID: "officia",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -197,19 +183,19 @@ func main() {
 
     ctx := context.Background()
     res, err := s.BankAccountTransactions.List(ctx, operations.ListBankAccountTransactionsRequest{
-        AccountID: "voluptatibus",
+        AccountID: "occaecati",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         OrderBy: codataccounting.String("-modifiedDate"),
         Page: codataccounting.Int(1),
         PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("vero"),
+        Query: codataccounting.String("fugit"),
     })
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.BankTransactionsResponse != nil {
+    if res.BankTransactions != nil {
         // handle response
     }
 }

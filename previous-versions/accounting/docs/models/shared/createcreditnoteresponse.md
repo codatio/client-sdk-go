@@ -1,7 +1,5 @@
 # CreateCreditNoteResponse
 
-Success
-
 
 ## Fields
 

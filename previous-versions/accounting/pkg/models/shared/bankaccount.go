@@ -5,6 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/types"
 )
 
 // BankAccountBankAccountType - The type of transactions and balances on the account.
@@ -72,9 +73,9 @@ type BankAccount struct {
 	// For Debit accounts, positive balances are assets, and positive transactions **increase** assets.
 	AccountType *BankAccountBankAccountType `json:"accountType,omitempty"`
 	// Total available balance of the bank account as reported by the underlying data source. This may take into account overdrafts or pending transactions for example.
-	AvailableBalance *float64 `json:"availableBalance,omitempty"`
+	AvailableBalance *types.Decimal `json:"availableBalance,omitempty"`
 	// Balance of the bank account.
-	Balance *float64 `json:"balance,omitempty"`
+	Balance *types.Decimal `json:"balance,omitempty"`
 	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code, e.g. _GBP_.
 	//
 	// ## Unknown currencies
@@ -96,7 +97,7 @@ type BankAccount struct {
 	// Pre-arranged overdraft limit of the account.
 	//
 	// The value is always positive. For example, an overdraftLimit of `1000` means that the balance of the account can go down to `-1000`.
-	OverdraftLimit *float64 `json:"overdraftLimit,omitempty"`
+	OverdraftLimit *types.Decimal `json:"overdraftLimit,omitempty"`
 	// Sort code for the bank account.
 	//
 	// Xero integrations
@@ -126,14 +127,14 @@ func (o *BankAccount) GetAccountType() *BankAccountBankAccountType {
 	return o.AccountType
 }
 
-func (o *BankAccount) GetAvailableBalance() *float64 {
+func (o *BankAccount) GetAvailableBalance() *types.Decimal {
 	if o == nil {
 		return nil
 	}
 	return o.AvailableBalance
 }
 
-func (o *BankAccount) GetBalance() *float64 {
+func (o *BankAccount) GetBalance() *types.Decimal {
 	if o == nil {
 		return nil
 	}
@@ -189,7 +190,7 @@ func (o *BankAccount) GetNominalCode() *string {
 	return o.NominalCode
 }
 
-func (o *BankAccount) GetOverdraftLimit() *float64 {
+func (o *BankAccount) GetOverdraftLimit() *types.Decimal {
 	if o == nil {
 		return nil
 	}

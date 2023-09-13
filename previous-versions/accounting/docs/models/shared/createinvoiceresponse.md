@@ -1,7 +1,5 @@
 # CreateInvoiceResponse
 
-Success
-
 
 ## Fields
 

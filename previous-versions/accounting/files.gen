@@ -30,6 +30,7 @@ pkg/models/sdkerrors/sdkerror.go
 pkg/types/bigint.go
 pkg/types/date.go
 pkg/types/datetime.go
+pkg/types/decimal.go
 pkg/utils/contenttype.go
 pkg/utils/form.go
 pkg/utils/headers.go
@@ -197,7 +198,6 @@ pkg/models/shared/accounts.go
 pkg/models/shared/createbanktransactionsresponse.go
 pkg/models/shared/createbanktransactions.go
 pkg/models/shared/createbankaccounttransaction.go
-pkg/models/shared/banktransactionsresponse.go
 pkg/models/shared/banktransactions.go
 pkg/models/shared/banktransactiontype.go
 pkg/models/shared/createbankaccountresponse.go
@@ -670,7 +670,7 @@ docs/models/shared/accounts.md
 docs/models/shared/createbanktransactionsresponse.md
 docs/models/shared/createbanktransactions.md
 docs/models/shared/createbankaccounttransaction.md
-docs/models/shared/banktransactionsresponse.md
+docs/models/shared/banktransactionssourcemodifieddate.md
 docs/models/shared/banktransactions.md
 docs/models/shared/banktransactiontype.md
 docs/models/shared/createbankaccountresponse.md
@@ -719,7 +719,7 @@ docs/models/shared/attachment.md
 docs/models/shared/bills.md
 docs/models/shared/attachmentsdataset.md
 docs/models/shared/updatebillresponse.md
-docs/models/shared/companydatasetaddresses.md
+docs/models/shared/companydatasetaccountingaddress.md
 docs/models/shared/companydatasetphone.md
 docs/models/shared/companydatasetweblinktype.md
 docs/models/shared/companydatasetweblink.md
