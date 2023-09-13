@@ -49,6 +49,7 @@ type sdkConfiguration struct {
 	OpenAPIDocVersion string
 	SDKVersion        string
 	GenVersion        string
+	RetryConfig       *utils.RetryConfig
 }
 
 func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
@@ -67,7 +68,7 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 //
 // [See our OpenAPI spec](https://github.com/codatio/oas)
 type CodatFiles struct {
-	// Files - Endpoints to manage uploaded files.
+	// Endpoints to manage uploaded files.
 	Files *files
 
 	sdkConfiguration sdkConfiguration
@@ -118,6 +119,12 @@ func WithSecurity(security shared.Security) SDKOption {
 	}
 }
 
+func WithRetryConfig(retryConfig utils.RetryConfig) SDKOption {
+	return func(sdk *CodatFiles) {
+		sdk.sdkConfiguration.RetryConfig = &retryConfig
+	}
+}
+
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *CodatFiles {
 	sdk := &CodatFiles{
@@ -125,7 +132,7 @@ func New(opts ...SDKOption) *CodatFiles {
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
 			SDKVersion:        "0.23.0",
-			GenVersion:        "2.91.4",
+			GenVersion:        "2.109.1",
 		},
 	}
 	for _, opt := range opts {
