@@ -2,7 +2,6 @@
 
 package shared
 
-// JournalEntries - Success
 type JournalEntries struct {
 	Links        Links          `json:"_links"`
 	PageNumber   int64          `json:"pageNumber"`
