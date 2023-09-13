@@ -26,9 +26,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/common"
-	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/common/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/common"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/operations"
 )
 
 func main() {
@@ -42,22 +42,19 @@ func main() {
     res, err := s.SupplementalData.Configure(ctx, operations.ConfigureSupplementalDataRequest{
         SupplementalDataConfiguration: &shared.SupplementalDataConfiguration{
             SupplementalDataConfig: map[string]shared.SupplementalDataConfigurationSupplementalDataSourceConfiguration{
-                "reiciendis": shared.SupplementalDataConfigurationSupplementalDataSourceConfiguration{
-                    DataSource: codatcommon.String("est"),
+                "dolor": shared.SupplementalDataConfigurationSupplementalDataSourceConfiguration{
+                    DataSource: codatcommon.String("natus"),
                     PullData: map[string]string{
-                        "laborum": "dolores",
-                        "dolorem": "corporis",
-                        "explicabo": "nobis",
+                        "laboriosam": "hic",
                     },
                     PushData: map[string]string{
-                        "omnis": "nemo",
-                        "minima": "excepturi",
+                        "saepe": "fuga",
                     },
                 },
             },
         },
         DataType: operations.ConfigureSupplementalDataDataTypeInvoices,
-        PlatformKey: "accusantium",
+        PlatformKey: "in",
     })
     if err != nil {
         log.Fatal(err)
@@ -97,9 +94,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/common"
-	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/common/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/common"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/operations"
 )
 
 func main() {
@@ -112,7 +109,7 @@ func main() {
     ctx := context.Background()
     res, err := s.SupplementalData.GetConfiguration(ctx, operations.GetSupplementalDataConfigurationRequest{
         DataType: operations.GetSupplementalDataConfigurationDataTypeInvoices,
-        PlatformKey: "iure",
+        PlatformKey: "corporis",
     })
     if err != nil {
         log.Fatal(err)

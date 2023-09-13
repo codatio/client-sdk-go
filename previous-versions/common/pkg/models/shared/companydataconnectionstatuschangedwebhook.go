@@ -6,11 +6,39 @@ type CompanyDataConnectionStatusChangedWebhookData struct {
 	// Unique identifier for a company's data connection.
 	DataConnectionID *string `json:"dataConnectionId,omitempty"`
 	// The current authorization status of the data connection.
-	NewStatus *ConnectionStatus `json:"newStatus,omitempty"`
+	NewStatus *DataConnectionStatus `json:"newStatus,omitempty"`
 	// The current authorization status of the data connection.
-	OldStatus *ConnectionStatus `json:"oldStatus,omitempty"`
+	OldStatus *DataConnectionStatus `json:"oldStatus,omitempty"`
 	// A unique 4-letter key to represent a platform in each integration. View [accounting](https://docs.codat.io/integrations/accounting/accounting-platform-keys), [banking](https://docs.codat.io/integrations/banking/banking-platform-keys), and [commerce](https://docs.codat.io/integrations/commerce/commerce-platform-keys) platform keys.
 	PlatformKey *string `json:"platformKey,omitempty"`
+}
+
+func (o *CompanyDataConnectionStatusChangedWebhookData) GetDataConnectionID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DataConnectionID
+}
+
+func (o *CompanyDataConnectionStatusChangedWebhookData) GetNewStatus() *DataConnectionStatus {
+	if o == nil {
+		return nil
+	}
+	return o.NewStatus
+}
+
+func (o *CompanyDataConnectionStatusChangedWebhookData) GetOldStatus() *DataConnectionStatus {
+	if o == nil {
+		return nil
+	}
+	return o.OldStatus
+}
+
+func (o *CompanyDataConnectionStatusChangedWebhookData) GetPlatformKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PlatformKey
 }
 
 // CompanyDataConnectionStatusChangedWebhook - Webhook request body for a company's data connection status changed.
@@ -26,4 +54,46 @@ type CompanyDataConnectionStatusChangedWebhook struct {
 	RuleID *string `json:"RuleId,omitempty"`
 	// The type of rule.
 	Type *string `json:"Type,omitempty"`
+}
+
+func (o *CompanyDataConnectionStatusChangedWebhook) GetAlertID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AlertID
+}
+
+func (o *CompanyDataConnectionStatusChangedWebhook) GetCompanyID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CompanyID
+}
+
+func (o *CompanyDataConnectionStatusChangedWebhook) GetData() *CompanyDataConnectionStatusChangedWebhookData {
+	if o == nil {
+		return nil
+	}
+	return o.Data
+}
+
+func (o *CompanyDataConnectionStatusChangedWebhook) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *CompanyDataConnectionStatusChangedWebhook) GetRuleID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.RuleID
+}
+
+func (o *CompanyDataConnectionStatusChangedWebhook) GetType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Type
 }

@@ -7,3 +7,17 @@ type Validation struct {
 	Errors   []ValidationItem `json:"errors,omitempty"`
 	Warnings []ValidationItem `json:"warnings,omitempty"`
 }
+
+func (o *Validation) GetErrors() []ValidationItem {
+	if o == nil {
+		return nil
+	}
+	return o.Errors
+}
+
+func (o *Validation) GetWarnings() []ValidationItem {
+	if o == nil {
+		return nil
+	}
+	return o.Warnings
+}

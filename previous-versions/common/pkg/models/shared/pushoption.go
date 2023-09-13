@@ -2,7 +2,6 @@
 
 package shared
 
-// PushOption - OK
 type PushOption struct {
 	Description *string                       `json:"description,omitempty"`
 	DisplayName string                        `json:"displayName"`
@@ -11,4 +10,53 @@ type PushOption struct {
 	Required    bool                          `json:"required"`
 	Type        PushOptionType                `json:"type"`
 	Validation  *PushValidationInfo           `json:"validation,omitempty"`
+}
+
+func (o *PushOption) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *PushOption) GetDisplayName() string {
+	if o == nil {
+		return ""
+	}
+	return o.DisplayName
+}
+
+func (o *PushOption) GetOptions() []PushOptionChoice {
+	if o == nil {
+		return nil
+	}
+	return o.Options
+}
+
+func (o *PushOption) GetProperties() map[string]PushOptionProperty {
+	if o == nil {
+		return nil
+	}
+	return o.Properties
+}
+
+func (o *PushOption) GetRequired() bool {
+	if o == nil {
+		return false
+	}
+	return o.Required
+}
+
+func (o *PushOption) GetType() PushOptionType {
+	if o == nil {
+		return PushOptionType("")
+	}
+	return o.Type
+}
+
+func (o *PushOption) GetValidation() *PushValidationInfo {
+	if o == nil {
+		return nil
+	}
+	return o.Validation
 }

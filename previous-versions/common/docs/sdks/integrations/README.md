@@ -22,9 +22,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/common"
-	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/common/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/common"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/operations"
 )
 
 func main() {
@@ -74,9 +74,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/common"
-	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/common/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/common"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/operations"
 )
 
 func main() {
@@ -126,9 +126,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/common"
-	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/common/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/common"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/operations"
 )
 
 func main() {
@@ -143,7 +143,7 @@ func main() {
         OrderBy: codatcommon.String("-modifiedDate"),
         Page: codatcommon.Int(1),
         PageSize: codatcommon.Int(100),
-        Query: codatcommon.String("suscipit"),
+        Query: codatcommon.String("corrupti"),
     })
     if err != nil {
         log.Fatal(err)

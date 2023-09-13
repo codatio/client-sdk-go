@@ -11,3 +11,52 @@ type PushOptionProperty struct {
 	Type        PushOptionType                `json:"type"`
 	Validation  *PushValidationInfo           `json:"validation,omitempty"`
 }
+
+func (o *PushOptionProperty) GetDescription() string {
+	if o == nil {
+		return ""
+	}
+	return o.Description
+}
+
+func (o *PushOptionProperty) GetDisplayName() string {
+	if o == nil {
+		return ""
+	}
+	return o.DisplayName
+}
+
+func (o *PushOptionProperty) GetOptions() []PushOptionChoice {
+	if o == nil {
+		return nil
+	}
+	return o.Options
+}
+
+func (o *PushOptionProperty) GetProperties() map[string]PushOptionProperty {
+	if o == nil {
+		return nil
+	}
+	return o.Properties
+}
+
+func (o *PushOptionProperty) GetRequired() bool {
+	if o == nil {
+		return false
+	}
+	return o.Required
+}
+
+func (o *PushOptionProperty) GetType() PushOptionType {
+	if o == nil {
+		return PushOptionType("")
+	}
+	return o.Type
+}
+
+func (o *PushOptionProperty) GetValidation() *PushValidationInfo {
+	if o == nil {
+		return nil
+	}
+	return o.Validation
+}

@@ -31,9 +31,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/common"
-	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/common/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/common"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/operations"
 )
 
 func main() {
@@ -85,9 +85,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/common"
-	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/common/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/common"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/operations"
 )
 
 func main() {
@@ -100,7 +100,7 @@ func main() {
     ctx := context.Background()
     res, err := s.PushData.GetOperation(ctx, operations.GetPushOperationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        PushOperationKey: "74e0f467-cc87-496e-9151-a05dfc2ddf7c",
+        PushOperationKey: "d69a674e-0f46-47cc-8796-ed151a05dfc2",
     })
     if err != nil {
         log.Fatal(err)
@@ -138,9 +138,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/common"
-	"github.com/codatio/client-sdk-go/common/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/common/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/common"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/operations"
 )
 
 func main() {
@@ -156,13 +156,13 @@ func main() {
         OrderBy: codatcommon.String("-modifiedDate"),
         Page: codatcommon.Int(1),
         PageSize: codatcommon.Int(100),
-        Query: codatcommon.String("quod"),
+        Query: codatcommon.String("at"),
     })
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.PushHistoryResponse != nil {
+    if res.PushOperations != nil {
         // handle response
     }
 }

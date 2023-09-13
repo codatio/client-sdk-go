@@ -6,3 +6,17 @@ type SupportedFeature struct {
 	FeatureState FeatureState `json:"featureState"`
 	FeatureType  FeatureType  `json:"featureType"`
 }
+
+func (o *SupportedFeature) GetFeatureState() FeatureState {
+	if o == nil {
+		return FeatureState("")
+	}
+	return o.FeatureState
+}
+
+func (o *SupportedFeature) GetFeatureType() FeatureType {
+	if o == nil {
+		return FeatureType("")
+	}
+	return o.FeatureType
+}

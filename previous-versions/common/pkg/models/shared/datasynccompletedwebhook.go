@@ -9,6 +9,20 @@ type DataSyncCompletedWebhookData struct {
 	DatasetID *string `json:"datasetId,omitempty"`
 }
 
+func (o *DataSyncCompletedWebhookData) GetDataType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DataType
+}
+
+func (o *DataSyncCompletedWebhookData) GetDatasetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DatasetID
+}
+
 // DataSyncCompletedWebhook - Webhook request body to notify the completion of a data sync.
 type DataSyncCompletedWebhook struct {
 	// Unique identifier of the webhook event.
@@ -28,4 +42,67 @@ type DataSyncCompletedWebhook struct {
 	RuleID *string `json:"RuleId,omitempty"`
 	// The type of rule.
 	Type *string `json:"Type,omitempty"`
+}
+
+func (o *DataSyncCompletedWebhook) GetAlertID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AlertID
+}
+
+func (o *DataSyncCompletedWebhook) GetClientID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ClientID
+}
+
+func (o *DataSyncCompletedWebhook) GetClientName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ClientName
+}
+
+func (o *DataSyncCompletedWebhook) GetCompanyID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CompanyID
+}
+
+func (o *DataSyncCompletedWebhook) GetData() *DataSyncCompletedWebhookData {
+	if o == nil {
+		return nil
+	}
+	return o.Data
+}
+
+func (o *DataSyncCompletedWebhook) GetDataConnectionID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DataConnectionID
+}
+
+func (o *DataSyncCompletedWebhook) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *DataSyncCompletedWebhook) GetRuleID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.RuleID
+}
+
+func (o *DataSyncCompletedWebhook) GetType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Type
 }

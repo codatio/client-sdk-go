@@ -21,3 +21,80 @@ type Integration struct {
 	// The type of platform of the connection.
 	SourceType *SourceType `json:"sourceType,omitempty"`
 }
+
+func (o *Integration) GetDataProvidedBy() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DataProvidedBy
+}
+
+func (o *Integration) GetDatatypeFeatures() []DataTypeFeature {
+	if o == nil {
+		return nil
+	}
+	return o.DatatypeFeatures
+}
+
+func (o *Integration) GetEnabled() bool {
+	if o == nil {
+		return false
+	}
+	return o.Enabled
+}
+
+func (o *Integration) GetIntegrationID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IntegrationID
+}
+
+func (o *Integration) GetIsBeta() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.IsBeta
+}
+
+func (o *Integration) GetIsOfflineConnector() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.IsOfflineConnector
+}
+
+func (o *Integration) GetKey() string {
+	if o == nil {
+		return ""
+	}
+	return o.Key
+}
+
+func (o *Integration) GetLogoURL() string {
+	if o == nil {
+		return ""
+	}
+	return o.LogoURL
+}
+
+func (o *Integration) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *Integration) GetSourceID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceID
+}
+
+func (o *Integration) GetSourceType() *SourceType {
+	if o == nil {
+		return nil
+	}
+	return o.SourceType
+}
