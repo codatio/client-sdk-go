@@ -2,7 +2,6 @@
 
 package shared
 
-// UpdateExpenseResponse - Accepted
 type UpdateExpenseResponse struct {
 	SyncID *string `json:"syncId,omitempty"`
 }

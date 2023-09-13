@@ -1,7 +1,5 @@
 # CreateCustomerResponse
 
-Success
-
 
 ## Fields
 

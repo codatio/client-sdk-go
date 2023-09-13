@@ -44,11 +44,11 @@ func main() {
     ctx := context.Background()
     res, err := s.Accounts.Create(ctx, operations.CreateAccountRequest{
         Account: &shared.Account{
-            Currency: codatsyncexpenses.String("USD"),
-            CurrentBalance: codatsyncexpenses.Float64(0),
+            Currency: codatsyncexpenses.String("EUR"),
+            CurrentBalance: types.MustNewDecimalFromString("0"),
             Description: codatsyncexpenses.String("Invoices the business has issued but has not yet collected payment on."),
             FullyQualifiedCategory: codatsyncexpenses.String("Asset.Current"),
-            FullyQualifiedName: codatsyncexpenses.String("Fixed Asset"),
+            FullyQualifiedName: codatsyncexpenses.String("Cash On Hand"),
             ID: codatsyncexpenses.String("1b6266d1-1e44-46c5-8eb5-a8f98e03124e"),
             IsBankAccount: codatsyncexpenses.Bool(false),
             Metadata: &shared.AccountMetadata{
@@ -63,24 +63,15 @@ func main() {
             ValidDatatypeLinks: []shared.AccountValidDataTypeLinks{
                 shared.AccountValidDataTypeLinks{
                     Links: []string{
-                        "nisi",
-                        "recusandae",
-                        "temporibus",
+                        "suscipit",
                     },
-                    Property: codatsyncexpenses.String("ab"),
-                },
-                shared.AccountValidDataTypeLinks{
-                    Links: []string{
-                        "veritatis",
-                        "deserunt",
-                    },
-                    Property: codatsyncexpenses.String("perferendis"),
+                    Property: codatsyncexpenses.String("iure"),
                 },
             },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codatsyncexpenses.Int(368241),
+        TimeoutInMinutes: codatsyncexpenses.Int(297534),
     })
     if err != nil {
         log.Fatal(err)

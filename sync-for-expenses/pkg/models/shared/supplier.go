@@ -2,7 +2,6 @@
 
 package shared
 
-// Supplier - Success
 type Supplier struct {
 	// id of the supplier for all purchases to be associated to
 	ID *string `json:"id,omitempty"`

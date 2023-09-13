@@ -1,7 +1,5 @@
 # Supplier
 
-Success
-
 
 ## Fields
 

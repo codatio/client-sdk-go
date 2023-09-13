@@ -1,7 +1,5 @@
 # SyncInitiated
 
-Returns the newly created SyncId
-
 
 ## Fields
 

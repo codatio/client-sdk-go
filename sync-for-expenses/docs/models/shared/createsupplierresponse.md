@@ -1,7 +1,5 @@
 # CreateSupplierResponse
 
-Success
-
 
 ## Fields
 
