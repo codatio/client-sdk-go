@@ -1,7 +1,5 @@
 # PeriodUnit
 
-The period unit of time returned.
-
 
 ## Values
 

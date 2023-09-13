@@ -1,7 +1,5 @@
 # Details
 
-OK
-
 
 ## Fields
 

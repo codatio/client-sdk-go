@@ -1,7 +1,5 @@
 # LoanTransactions
 
-OK
-
 
 ## Fields
 

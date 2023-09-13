@@ -1,7 +1,5 @@
 # EnhancedReport
 
-OK
-
 
 ## Fields
 
