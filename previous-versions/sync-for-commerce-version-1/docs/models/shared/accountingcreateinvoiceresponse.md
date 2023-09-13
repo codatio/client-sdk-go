@@ -1,7 +1,5 @@
 # AccountingCreateInvoiceResponse
 
-Success
-
 
 ## Fields
 

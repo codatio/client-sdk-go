@@ -2,6 +2,10 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/types"
+)
+
 // ItemsTaxComponentRef - Taxes rates reference object depending on the rates being available on source commerce package.
 type ItemsTaxComponentRef struct {
 	// The unique identitifer of the tax component being referenced.
@@ -26,12 +30,12 @@ func (o *ItemsTaxComponentRef) GetName() string {
 
 type Taxesitems struct {
 	// Tax amount on order line sale as available from source commerce platform.
-	Rate *float64 `json:"rate,omitempty"`
+	Rate *types.Decimal `json:"rate,omitempty"`
 	// Taxes rates reference object depending on the rates being available on source commerce package.
 	TaxComponentRef *ItemsTaxComponentRef `json:"taxComponentRef,omitempty"`
 }
 
-func (o *Taxesitems) GetRate() *float64 {
+func (o *Taxesitems) GetRate() *types.Decimal {
 	if o == nil {
 		return nil
 	}

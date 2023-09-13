@@ -2,28 +2,33 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/types"
+	"github.com/ericlagergren/decimal"
+)
+
 type InvoiceLineItem struct {
 	// Data types that reference an account, for example bill and invoice line items, use an accountRef that includes the ID and name of the linked account.
 	AccountRef *AccountRef `json:"accountRef,omitempty"`
 	// Friendly name of the goods or services provided.
 	Description *string `json:"description,omitempty"`
 	// Numerical value of any discounts applied.
-	DiscountAmount *float64 `json:"discountAmount,omitempty"`
+	DiscountAmount *types.Decimal `json:"discountAmount,omitempty"`
 	// Percentage rate (from 0 to 100) of any discounts applied to the unit amount.
-	DiscountPercentage *float64 `json:"discountPercentage,omitempty"`
-	IsDirectIncome     *bool    `json:"isDirectIncome,omitempty"`
+	DiscountPercentage *types.Decimal `json:"discountPercentage,omitempty"`
+	IsDirectIncome     *bool          `json:"isDirectIncome,omitempty"`
 	// Reference to the product, service type, or inventory item to which the direct cost is linked.
 	ItemRef *ItemRef `json:"itemRef,omitempty"`
 	// Number of units of goods or services provided.
-	Quantity float64 `json:"quantity"`
+	Quantity types.Decimal `json:"quantity"`
 	// Amount of the line, inclusive of discounts but exclusive of tax.
-	SubTotal *float64 `json:"subTotal,omitempty"`
+	SubTotal *types.Decimal `json:"subTotal,omitempty"`
 	// Amount of tax for the line.
-	TaxAmount *float64 `json:"taxAmount,omitempty"`
+	TaxAmount *types.Decimal `json:"taxAmount,omitempty"`
 	// Reference to the tax rate to which the line item is linked.
 	TaxRateRef *TaxRateRef `json:"taxRateRef,omitempty"`
 	// Total amount of the line, including tax. When pushing invoices to Xero, the total amount is exclusive of tax to allow automatic calculations if a tax rate or tax amount is not specified.
-	TotalAmount *float64 `json:"totalAmount,omitempty"`
+	TotalAmount *types.Decimal `json:"totalAmount,omitempty"`
 	// Categories, and a project and customer, against which the item is tracked.
 	Tracking *Tracking `json:"tracking,omitempty"`
 	// Reference to the tracking categories to which the line item is linked.
@@ -31,7 +36,7 @@ type InvoiceLineItem struct {
 	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	TrackingCategoryRefs []TrackingCategoryRefsitems `json:"trackingCategoryRefs,omitempty"`
 	// Price of each unit of goods or services.
-	UnitAmount float64 `json:"unitAmount"`
+	UnitAmount types.Decimal `json:"unitAmount"`
 }
 
 func (o *InvoiceLineItem) GetAccountRef() *AccountRef {
@@ -48,14 +53,14 @@ func (o *InvoiceLineItem) GetDescription() *string {
 	return o.Description
 }
 
-func (o *InvoiceLineItem) GetDiscountAmount() *float64 {
+func (o *InvoiceLineItem) GetDiscountAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}
 	return o.DiscountAmount
 }
 
-func (o *InvoiceLineItem) GetDiscountPercentage() *float64 {
+func (o *InvoiceLineItem) GetDiscountPercentage() *types.Decimal {
 	if o == nil {
 		return nil
 	}
@@ -76,21 +81,21 @@ func (o *InvoiceLineItem) GetItemRef() *ItemRef {
 	return o.ItemRef
 }
 
-func (o *InvoiceLineItem) GetQuantity() float64 {
+func (o *InvoiceLineItem) GetQuantity() types.Decimal {
 	if o == nil {
-		return 0.0
+		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
 	}
 	return o.Quantity
 }
 
-func (o *InvoiceLineItem) GetSubTotal() *float64 {
+func (o *InvoiceLineItem) GetSubTotal() *types.Decimal {
 	if o == nil {
 		return nil
 	}
 	return o.SubTotal
 }
 
-func (o *InvoiceLineItem) GetTaxAmount() *float64 {
+func (o *InvoiceLineItem) GetTaxAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}
@@ -104,7 +109,7 @@ func (o *InvoiceLineItem) GetTaxRateRef() *TaxRateRef {
 	return o.TaxRateRef
 }
 
-func (o *InvoiceLineItem) GetTotalAmount() *float64 {
+func (o *InvoiceLineItem) GetTotalAmount() *types.Decimal {
 	if o == nil {
 		return nil
 	}
@@ -125,9 +130,9 @@ func (o *InvoiceLineItem) GetTrackingCategoryRefs() []TrackingCategoryRefsitems 
 	return o.TrackingCategoryRefs
 }
 
-func (o *InvoiceLineItem) GetUnitAmount() float64 {
+func (o *InvoiceLineItem) GetUnitAmount() types.Decimal {
 	if o == nil {
-		return 0.0
+		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
 	}
 	return o.UnitAmount
 }

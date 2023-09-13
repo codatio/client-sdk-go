@@ -46,11 +46,11 @@ func main() {
     ctx := context.Background()
     res, err := s.AccountingAccounts.CreateAccountingAccount(ctx, operations.CreateAccountingAccountRequest{
         AccountingAccount: &shared.AccountingAccount{
-            Currency: codatsynccommerce.String("USD"),
-            CurrentBalance: codatsynccommerce.Float64(0),
+            Currency: codatsynccommerce.String("EUR"),
+            CurrentBalance: types.MustNewDecimalFromString("0"),
             Description: codatsynccommerce.String("Invoices the business has issued but has not yet collected payment on."),
             FullyQualifiedCategory: codatsynccommerce.String("Asset.Current"),
-            FullyQualifiedName: codatsynccommerce.String("Fixed Asset"),
+            FullyQualifiedName: codatsynccommerce.String("Cash On Hand"),
             ID: codatsynccommerce.String("1b6266d1-1e44-46c5-8eb5-a8f98e03124e"),
             IsBankAccount: codatsynccommerce.Bool(false),
             Metadata: &shared.AccountingAccountMetadata{
@@ -65,24 +65,15 @@ func main() {
             ValidDatatypeLinks: []shared.AccountingAccountValidDataTypeLinks{
                 shared.AccountingAccountValidDataTypeLinks{
                     Links: []string{
-                        "nisi",
-                        "recusandae",
-                        "temporibus",
+                        "suscipit",
                     },
-                    Property: codatsynccommerce.String("ab"),
-                },
-                shared.AccountingAccountValidDataTypeLinks{
-                    Links: []string{
-                        "veritatis",
-                        "deserunt",
-                    },
-                    Property: codatsynccommerce.String("perferendis"),
+                    Property: codatsynccommerce.String("iure"),
                 },
             },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codatsynccommerce.Int(368241),
+        TimeoutInMinutes: codatsynccommerce.Int(297534),
     })
     if err != nil {
         log.Fatal(err)
@@ -141,7 +132,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.AccountingAccounts.GetAccountingAccount(ctx, operations.GetAccountingAccountRequest{
-        AccountID: "repellendus",
+        AccountID: "debitis",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -202,7 +193,7 @@ func main() {
         OrderBy: codatsynccommerce.String("-modifiedDate"),
         Page: codatsynccommerce.Int(1),
         PageSize: codatsynccommerce.Int(100),
-        Query: codatsynccommerce.String("sapiente"),
+        Query: codatsynccommerce.String("ipsa"),
     })
     if err != nil {
         log.Fatal(err)

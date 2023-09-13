@@ -1,7 +1,5 @@
 # CommercePayments
 
-OK
-
 
 ## Fields
 

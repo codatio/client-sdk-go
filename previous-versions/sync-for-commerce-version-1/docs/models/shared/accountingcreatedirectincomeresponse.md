@@ -1,7 +1,5 @@
 # AccountingCreateDirectIncomeResponse
 
-Success
-
 
 ## Fields
 

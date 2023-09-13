@@ -1,7 +1,5 @@
 # AccountingCreateCustomerResponse
 
-Success
-
 
 ## Fields
 

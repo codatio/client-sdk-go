@@ -1,7 +1,5 @@
 # SyncSummary
 
-Success
-
 
 ## Fields
 

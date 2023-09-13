@@ -1,7 +1,5 @@
 # AccountingCreatePaymentResponse
 
-Success
-
 
 ## Fields
 

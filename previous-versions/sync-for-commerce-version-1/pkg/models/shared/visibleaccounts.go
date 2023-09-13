@@ -2,7 +2,6 @@
 
 package shared
 
-// VisibleAccounts - Success
 type VisibleAccounts struct {
 	// Visible accounts on sync flow.
 	VisibleAccounts []string `json:"visibleAccounts,omitempty"`

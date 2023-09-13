@@ -1,7 +1,5 @@
 # AccountingCreateAccountResponse
 
-Success
-
 
 ## Fields
 

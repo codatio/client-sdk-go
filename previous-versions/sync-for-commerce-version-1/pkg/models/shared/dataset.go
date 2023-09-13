@@ -7,37 +7,37 @@ import (
 	"fmt"
 )
 
-type AccountingDatasetStatus string
+type DatasetStatus string
 
 const (
-	AccountingDatasetStatusInitial            AccountingDatasetStatus = "Initial"
-	AccountingDatasetStatusQueued             AccountingDatasetStatus = "Queued"
-	AccountingDatasetStatusFetching           AccountingDatasetStatus = "Fetching"
-	AccountingDatasetStatusMapQueued          AccountingDatasetStatus = "MapQueued"
-	AccountingDatasetStatusMapping            AccountingDatasetStatus = "Mapping"
-	AccountingDatasetStatusComplete           AccountingDatasetStatus = "Complete"
-	AccountingDatasetStatusFetchError         AccountingDatasetStatus = "FetchError"
-	AccountingDatasetStatusMapError           AccountingDatasetStatus = "MapError"
-	AccountingDatasetStatusInternalError      AccountingDatasetStatus = "InternalError"
-	AccountingDatasetStatusProcessingQueued   AccountingDatasetStatus = "ProcessingQueued"
-	AccountingDatasetStatusProcessing         AccountingDatasetStatus = "Processing"
-	AccountingDatasetStatusProcessingError    AccountingDatasetStatus = "ProcessingError"
-	AccountingDatasetStatusValidationQueued   AccountingDatasetStatus = "ValidationQueued"
-	AccountingDatasetStatusValidating         AccountingDatasetStatus = "Validating"
-	AccountingDatasetStatusValidationError    AccountingDatasetStatus = "ValidationError"
-	AccountingDatasetStatusAuthError          AccountingDatasetStatus = "AuthError"
-	AccountingDatasetStatusCancelled          AccountingDatasetStatus = "Cancelled"
-	AccountingDatasetStatusNotSupported       AccountingDatasetStatus = "NotSupported"
-	AccountingDatasetStatusRateLimitError     AccountingDatasetStatus = "RateLimitError"
-	AccountingDatasetStatusPermissionsError   AccountingDatasetStatus = "PermissionsError"
-	AccountingDatasetStatusPrerequisiteNotMet AccountingDatasetStatus = "PrerequisiteNotMet"
+	DatasetStatusInitial            DatasetStatus = "Initial"
+	DatasetStatusQueued             DatasetStatus = "Queued"
+	DatasetStatusFetching           DatasetStatus = "Fetching"
+	DatasetStatusMapQueued          DatasetStatus = "MapQueued"
+	DatasetStatusMapping            DatasetStatus = "Mapping"
+	DatasetStatusComplete           DatasetStatus = "Complete"
+	DatasetStatusFetchError         DatasetStatus = "FetchError"
+	DatasetStatusMapError           DatasetStatus = "MapError"
+	DatasetStatusInternalError      DatasetStatus = "InternalError"
+	DatasetStatusProcessingQueued   DatasetStatus = "ProcessingQueued"
+	DatasetStatusProcessing         DatasetStatus = "Processing"
+	DatasetStatusProcessingError    DatasetStatus = "ProcessingError"
+	DatasetStatusValidationQueued   DatasetStatus = "ValidationQueued"
+	DatasetStatusValidating         DatasetStatus = "Validating"
+	DatasetStatusValidationError    DatasetStatus = "ValidationError"
+	DatasetStatusAuthError          DatasetStatus = "AuthError"
+	DatasetStatusCancelled          DatasetStatus = "Cancelled"
+	DatasetStatusNotSupported       DatasetStatus = "NotSupported"
+	DatasetStatusRateLimitError     DatasetStatus = "RateLimitError"
+	DatasetStatusPermissionsError   DatasetStatus = "PermissionsError"
+	DatasetStatusPrerequisiteNotMet DatasetStatus = "PrerequisiteNotMet"
 )
 
-func (e AccountingDatasetStatus) ToPointer() *AccountingDatasetStatus {
+func (e DatasetStatus) ToPointer() *DatasetStatus {
 	return &e
 }
 
-func (e *AccountingDatasetStatus) UnmarshalJSON(data []byte) error {
+func (e *DatasetStatus) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -84,15 +84,14 @@ func (e *AccountingDatasetStatus) UnmarshalJSON(data []byte) error {
 	case "PermissionsError":
 		fallthrough
 	case "PrerequisiteNotMet":
-		*e = AccountingDatasetStatus(v)
+		*e = DatasetStatus(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for AccountingDatasetStatus: %v", v)
+		return fmt.Errorf("invalid value for DatasetStatus: %v", v)
 	}
 }
 
-// AccountingDataset - Success
-type AccountingDataset struct {
+type Dataset struct {
 	CompanyID string `json:"companyId"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
@@ -141,96 +140,96 @@ type AccountingDataset struct {
 	// >
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	Requested                string                  `json:"requested"`
-	Status                   AccountingDatasetStatus `json:"status"`
-	ValidationInformationURL *string                 `json:"validationInformationUrl,omitempty"`
+	Requested                string        `json:"requested"`
+	Status                   DatasetStatus `json:"status"`
+	ValidationInformationURL *string       `json:"validationInformationUrl,omitempty"`
 }
 
-func (o *AccountingDataset) GetCompanyID() string {
+func (o *Dataset) GetCompanyID() string {
 	if o == nil {
 		return ""
 	}
 	return o.CompanyID
 }
 
-func (o *AccountingDataset) GetCompleted() *string {
+func (o *Dataset) GetCompleted() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Completed
 }
 
-func (o *AccountingDataset) GetConnectionID() string {
+func (o *Dataset) GetConnectionID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ConnectionID
 }
 
-func (o *AccountingDataset) GetDataType() *string {
+func (o *Dataset) GetDataType() *string {
 	if o == nil {
 		return nil
 	}
 	return o.DataType
 }
 
-func (o *AccountingDataset) GetDatasetLogsURL() *string {
+func (o *Dataset) GetDatasetLogsURL() *string {
 	if o == nil {
 		return nil
 	}
 	return o.DatasetLogsURL
 }
 
-func (o *AccountingDataset) GetErrorMessage() *string {
+func (o *Dataset) GetErrorMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ErrorMessage
 }
 
-func (o *AccountingDataset) GetID() string {
+func (o *Dataset) GetID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ID
 }
 
-func (o *AccountingDataset) GetIsCompleted() bool {
+func (o *Dataset) GetIsCompleted() bool {
 	if o == nil {
 		return false
 	}
 	return o.IsCompleted
 }
 
-func (o *AccountingDataset) GetIsErrored() bool {
+func (o *Dataset) GetIsErrored() bool {
 	if o == nil {
 		return false
 	}
 	return o.IsErrored
 }
 
-func (o *AccountingDataset) GetProgress() int {
+func (o *Dataset) GetProgress() int {
 	if o == nil {
 		return 0
 	}
 	return o.Progress
 }
 
-func (o *AccountingDataset) GetRequested() string {
+func (o *Dataset) GetRequested() string {
 	if o == nil {
 		return ""
 	}
 	return o.Requested
 }
 
-func (o *AccountingDataset) GetStatus() AccountingDatasetStatus {
+func (o *Dataset) GetStatus() DatasetStatus {
 	if o == nil {
-		return AccountingDatasetStatus("")
+		return DatasetStatus("")
 	}
 	return o.Status
 }
 
-func (o *AccountingDataset) GetValidationInformationURL() *string {
+func (o *Dataset) GetValidationInformationURL() *string {
 	if o == nil {
 		return nil
 	}

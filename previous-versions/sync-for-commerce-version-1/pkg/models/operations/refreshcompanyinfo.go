@@ -19,20 +19,13 @@ func (o *RefreshCompanyInfoRequest) GetCompanyID() string {
 }
 
 type RefreshCompanyInfoResponse struct {
+	ContentType string
 	// Success
-	AccountingDataset *shared.AccountingDataset
-	ContentType       string
+	Dataset *shared.Dataset
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
 	StatusCode   int
 	RawResponse  *http.Response
-}
-
-func (o *RefreshCompanyInfoResponse) GetAccountingDataset() *shared.AccountingDataset {
-	if o == nil {
-		return nil
-	}
-	return o.AccountingDataset
 }
 
 func (o *RefreshCompanyInfoResponse) GetContentType() string {
@@ -40,6 +33,13 @@ func (o *RefreshCompanyInfoResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *RefreshCompanyInfoResponse) GetDataset() *shared.Dataset {
+	if o == nil {
+		return nil
+	}
+	return o.Dataset
 }
 
 func (o *RefreshCompanyInfoResponse) GetErrorMessage() *shared.ErrorMessage {
