@@ -68,6 +68,7 @@ pkg/models/shared/companies.go
 pkg/models/shared/links.go
 pkg/models/shared/halref.go
 pkg/models/shared/connections.go
+pkg/models/shared/updateconnectionstatus.go
 pkg/models/shared/integration.go
 pkg/models/shared/datatypefeature.go
 pkg/models/shared/supportedfeature.go
@@ -109,7 +110,6 @@ pkg/models/shared/createrule.go
 pkg/models/shared/webhooks.go
 pkg/models/shared/security.go
 pkg/models/shared/companydataconnectionstatuschangedwebhook.go
-pkg/models/shared/connectionstatus.go
 pkg/models/shared/datasynccompletedwebhook.go
 pkg/models/shared/datasetdatachangedwebhook.go
 pkg/models/shared/datasetstatuschangederrorwebhook.go
@@ -152,7 +152,6 @@ docs/models/operations/getconnectionrequest.md
 docs/models/operations/getconnectionresponse.md
 docs/models/operations/listconnectionsrequest.md
 docs/models/operations/listconnectionsresponse.md
-docs/models/operations/unlinkconnectionrequestbody.md
 docs/models/operations/unlinkconnectionrequest.md
 docs/models/operations/unlinkconnectionresponse.md
 docs/models/operations/updateconnectionauthorizationrequest.md
@@ -210,6 +209,7 @@ docs/models/shared/companies.md
 docs/models/shared/links.md
 docs/models/shared/halref.md
 docs/models/shared/connections.md
+docs/models/shared/updateconnectionstatus.md
 docs/models/shared/integration.md
 docs/models/shared/datatypefeature.md
 docs/models/shared/supportedfeature.md
@@ -257,7 +257,6 @@ docs/models/shared/webhooks.md
 docs/models/shared/security.md
 docs/models/shared/companydataconnectionstatuschangedwebhookdata.md
 docs/models/shared/companydataconnectionstatuschangedwebhook.md
-docs/models/shared/connectionstatus.md
 docs/models/shared/datasynccompletedwebhookdata.md
 docs/models/shared/datasynccompletedwebhook.md
 docs/models/shared/datasetdatachangedwebhookdata.md
