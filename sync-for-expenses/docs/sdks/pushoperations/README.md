@@ -36,7 +36,7 @@ func main() {
     ctx := context.Background()
     res, err := s.PushOperations.Get(ctx, operations.GetPushOperationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        PushOperationKey: "2cb73920-5929-4396-bea7-596eb10faaa2",
+        PushOperationKey: "0d446ce2-af7a-473c-b3be-453f870b326b",
     })
     if err != nil {
         log.Fatal(err)
@@ -92,7 +92,7 @@ func main() {
         OrderBy: codatsyncexpenses.String("-modifiedDate"),
         Page: codatsyncexpenses.Int(1),
         PageSize: codatsyncexpenses.Int(100),
-        Query: codatsyncexpenses.String("dolorem"),
+        Query: codatsyncexpenses.String("voluptas"),
     })
     if err != nil {
         log.Fatal(err)

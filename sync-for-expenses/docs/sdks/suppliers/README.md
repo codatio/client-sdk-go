@@ -47,11 +47,42 @@ func main() {
     ctx := context.Background()
     res, err := s.Suppliers.Create(ctx, operations.CreateSupplierRequest{
         Supplier: &shared.Supplier{
-            ID: codatsyncexpenses.String("124"),
+            Addresses: []shared.SupplierAccountingAddress{
+                shared.SupplierAccountingAddress{
+                    City: codatsyncexpenses.String("Kohlerberg"),
+                    Country: codatsyncexpenses.String("Faroe Islands"),
+                    Line1: codatsyncexpenses.String("qui"),
+                    Line2: codatsyncexpenses.String("cupiditate"),
+                    PostalCode: codatsyncexpenses.String("87165-2117"),
+                    Region: codatsyncexpenses.String("facilis"),
+                    Type: shared.AccountingAddressTypeBilling,
+                },
+            },
+            ContactName: codatsyncexpenses.String("quam"),
+            DefaultCurrency: codatsyncexpenses.String("molestias"),
+            EmailAddress: codatsyncexpenses.String("temporibus"),
+            ID: codatsyncexpenses.String("2322715b-f0cb-4b1e-b1b8-b90f3443a110"),
+            Metadata: &shared.Metadata{
+                IsDeleted: codatsyncexpenses.Bool(false),
+            },
+            ModifiedDate: codatsyncexpenses.String("2022-10-23T00:00:00.000Z"),
+            Phone: codatsyncexpenses.String("01224 658 999"),
+            RegistrationNumber: codatsyncexpenses.String("consequatur"),
+            SourceModifiedDate: codatsyncexpenses.String("2022-10-23T00:00:00.000Z"),
+            Status: shared.SupplierStatusArchived,
+            SupplementalData: &shared.SupplierSupplementalData{
+                Content: map[string]map[string]interface{}{
+                    "porro": map[string]interface{}{
+                        "doloribus": "ut",
+                    },
+                },
+            },
+            SupplierName: codatsyncexpenses.String("facilis"),
+            TaxNumber: codatsyncexpenses.String("cupiditate"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codatsyncexpenses.Int(358152),
+        TimeoutInMinutes: codatsyncexpenses.Int(181631),
     })
     if err != nil {
         log.Fatal(err)
@@ -172,7 +203,7 @@ func main() {
         OrderBy: codatsyncexpenses.String("-modifiedDate"),
         Page: codatsyncexpenses.Int(1),
         PageSize: codatsyncexpenses.Int(100),
-        Query: codatsyncexpenses.String("nobis"),
+        Query: codatsyncexpenses.String("laudantium"),
     })
     if err != nil {
         log.Fatal(err)
@@ -234,13 +265,44 @@ func main() {
     ctx := context.Background()
     res, err := s.Suppliers.Update(ctx, operations.UpdateSupplierRequest{
         Supplier: &shared.Supplier{
-            ID: codatsyncexpenses.String("124"),
+            Addresses: []shared.SupplierAccountingAddress{
+                shared.SupplierAccountingAddress{
+                    City: codatsyncexpenses.String("Krisworth"),
+                    Country: codatsyncexpenses.String("Senegal"),
+                    Line1: codatsyncexpenses.String("vero"),
+                    Line2: codatsyncexpenses.String("omnis"),
+                    PostalCode: codatsyncexpenses.String("29428"),
+                    Region: codatsyncexpenses.String("tenetur"),
+                    Type: shared.AccountingAddressTypeBilling,
+                },
+            },
+            ContactName: codatsyncexpenses.String("hic"),
+            DefaultCurrency: codatsyncexpenses.String("distinctio"),
+            EmailAddress: codatsyncexpenses.String("quod"),
+            ID: codatsyncexpenses.String("7abd74dd-39c0-4f5d-acff-7c70a45626d4"),
+            Metadata: &shared.Metadata{
+                IsDeleted: codatsyncexpenses.Bool(false),
+            },
+            ModifiedDate: codatsyncexpenses.String("2022-10-23T00:00:00.000Z"),
+            Phone: codatsyncexpenses.String("(877) 492-8687"),
+            RegistrationNumber: codatsyncexpenses.String("laudantium"),
+            SourceModifiedDate: codatsyncexpenses.String("2022-10-23T00:00:00.000Z"),
+            Status: shared.SupplierStatusUnknown,
+            SupplementalData: &shared.SupplierSupplementalData{
+                Content: map[string]map[string]interface{}{
+                    "maiores": map[string]interface{}{
+                        "quasi": "ex",
+                    },
+                },
+            },
+            SupplierName: codatsyncexpenses.String("nulla"),
+            TaxNumber: codatsyncexpenses.String("excepturi"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         ForceUpdate: codatsyncexpenses.Bool(false),
-        SupplierID: "9wg4lep4ush5cxs79pl8sozmsndbaukll3ind4g7buqbm1h2",
-        TimeoutInMinutes: codatsyncexpenses.Int(607831),
+        SupplierID: "EILBDVJVNUAGVKRQ",
+        TimeoutInMinutes: codatsyncexpenses.Int(343605),
     })
     if err != nil {
         log.Fatal(err)

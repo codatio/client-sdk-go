@@ -145,10 +145,95 @@ func main() {
                 ID: codatsyncexpenses.String("32"),
             },
             Customer: shared.Customer{
-                ID: codatsyncexpenses.String("142"),
+                Addresses: []shared.Items{
+                    shared.Items{
+                        City: codatsyncexpenses.String("Fort Donnybury"),
+                        Country: codatsyncexpenses.String("Kyrgyz Republic"),
+                        Line1: codatsyncexpenses.String("minus"),
+                        Line2: codatsyncexpenses.String("placeat"),
+                        PostalCode: codatsyncexpenses.String("45398-0306"),
+                        Region: codatsyncexpenses.String("perferendis"),
+                        Type: shared.AccountingAddressTypeBilling,
+                    },
+                },
+                ContactName: codatsyncexpenses.String("repellendus"),
+                Contacts: []shared.Contact{
+                    shared.Contact{
+                        Address: &shared.Items{
+                            City: codatsyncexpenses.String("San Antonio"),
+                            Country: codatsyncexpenses.String("Burundi"),
+                            Line1: codatsyncexpenses.String("at"),
+                            Line2: codatsyncexpenses.String("at"),
+                            PostalCode: codatsyncexpenses.String("47845-7617"),
+                            Region: codatsyncexpenses.String("officia"),
+                            Type: shared.AccountingAddressTypeBilling,
+                        },
+                        Email: codatsyncexpenses.String("Kale_Welch10@gmail.com"),
+                        ModifiedDate: codatsyncexpenses.String("2022-10-23T00:00:00.000Z"),
+                        Name: codatsyncexpenses.String("Pauline Dibbert"),
+                        Phone: []shared.ContactPhone{
+                            shared.ContactPhone{
+                                Number: "(877) 492-8687",
+                                Type: shared.PhoneNumberTypeLandline,
+                            },
+                        },
+                        Status: shared.CustomerStatusActive,
+                    },
+                },
+                CustomerName: codatsyncexpenses.String("aspernatur"),
+                DefaultCurrency: codatsyncexpenses.String("GBP"),
+                EmailAddress: codatsyncexpenses.String("ad"),
+                ID: codatsyncexpenses.String("929396fe-a759-46eb-90fa-aa2352c59559"),
+                Metadata: &shared.Metadata{
+                    IsDeleted: codatsyncexpenses.Bool(false),
+                },
+                ModifiedDate: codatsyncexpenses.String("2022-10-23T00:00:00.000Z"),
+                Phone: codatsyncexpenses.String("799.262.6196 x524"),
+                RegistrationNumber: codatsyncexpenses.String("quam"),
+                SourceModifiedDate: codatsyncexpenses.String("2022-10-23T00:00:00.000Z"),
+                Status: shared.CustomerStatusUnknown,
+                SupplementalData: &shared.SupplementalData{
+                    Content: map[string]map[string]interface{}{
+                        "error": map[string]interface{}{
+                            "quia": "quis",
+                        },
+                    },
+                },
+                TaxNumber: codatsyncexpenses.String("vitae"),
             },
             Supplier: shared.Supplier{
-                ID: codatsyncexpenses.String("124"),
+                Addresses: []shared.SupplierAccountingAddress{
+                    shared.SupplierAccountingAddress{
+                        City: codatsyncexpenses.String("O'Konborough"),
+                        Country: codatsyncexpenses.String("Burkina Faso"),
+                        Line1: codatsyncexpenses.String("quo"),
+                        Line2: codatsyncexpenses.String("sequi"),
+                        PostalCode: codatsyncexpenses.String("36800-6860"),
+                        Region: codatsyncexpenses.String("reiciendis"),
+                        Type: shared.AccountingAddressTypeDelivery,
+                    },
+                },
+                ContactName: codatsyncexpenses.String("vero"),
+                DefaultCurrency: codatsyncexpenses.String("nihil"),
+                EmailAddress: codatsyncexpenses.String("praesentium"),
+                ID: codatsyncexpenses.String("f097b007-4f15-4471-b5e6-e13b99d488e1"),
+                Metadata: &shared.Metadata{
+                    IsDeleted: codatsyncexpenses.Bool(false),
+                },
+                ModifiedDate: codatsyncexpenses.String("2022-10-23T00:00:00.000Z"),
+                Phone: codatsyncexpenses.String("(877) 492-8687"),
+                RegistrationNumber: codatsyncexpenses.String("veritatis"),
+                SourceModifiedDate: codatsyncexpenses.String("2022-10-23T00:00:00.000Z"),
+                Status: shared.SupplierStatusUnknown,
+                SupplementalData: &shared.SupplierSupplementalData{
+                    Content: map[string]map[string]interface{}{
+                        "enim": map[string]interface{}{
+                            "consequatur": "est",
+                        },
+                    },
+                },
+                SupplierName: codatsyncexpenses.String("quibusdam"),
+                TaxNumber: codatsyncexpenses.String("explicabo"),
             },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
