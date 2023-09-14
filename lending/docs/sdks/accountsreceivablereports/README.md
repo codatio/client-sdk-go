@@ -19,10 +19,10 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v2"
-	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/lending/v2/pkg/types"
+	"github.com/codatio/client-sdk-go/lending/v3"
+	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v3/pkg/types"
 )
 
 func main() {
@@ -75,10 +75,10 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v2"
-	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/lending/v2/pkg/types"
+	"github.com/codatio/client-sdk-go/lending/v3"
+	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v3/pkg/types"
 )
 
 func main() {
@@ -131,9 +131,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v2"
-	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v3"
+	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/operations"
 )
 
 func main() {
@@ -183,9 +183,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v2"
-	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v3"
+	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/operations"
 )
 
 func main() {

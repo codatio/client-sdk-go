@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v2/pkg/types"
+	"github.com/codatio/client-sdk-go/lending/v3/pkg/types"
 )
 
 // ProductVariant - Represents a variation of a product available for sale, for example an item of clothing that may be available for sale in multiple sizes and colors.

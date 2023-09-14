@@ -20,9 +20,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v2"
-	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v3"
+	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/operations"
 )
 
 func main() {
@@ -65,35 +65,6 @@ func main() {
 
 * [Get](docs/sdks/accountingbankdataaccounts/README.md#get) - Get bank account
 * [List](docs/sdks/accountingbankdataaccounts/README.md#list) - List bank accounts
-
-### [AccountsPayable](docs/sdks/accountspayable/README.md)
-
-* [DownloadBillAttachment](docs/sdks/accountspayable/README.md#downloadbillattachment) - Download bill attachment
-* [GetBillAttachment](docs/sdks/accountspayable/README.md#getbillattachment) - Get bill attachment
-
-### [AccountsPayableBillCreditNotes](docs/sdks/accountspayablebillcreditnotes/README.md)
-
-* [Get](docs/sdks/accountspayablebillcreditnotes/README.md#get) - Get bill credit note
-* [List](docs/sdks/accountspayablebillcreditnotes/README.md#list) - List bill credit notes
-
-### [AccountsPayableBillPayments](docs/sdks/accountspayablebillpayments/README.md)
-
-* [Get](docs/sdks/accountspayablebillpayments/README.md#get) - Get bill payment
-* [List](docs/sdks/accountspayablebillpayments/README.md#list) - List bill payments
-
-### [AccountsPayableBills](docs/sdks/accountspayablebills/README.md)
-
-* [Get](docs/sdks/accountspayablebills/README.md#get) - Get bill
-* [List](docs/sdks/accountspayablebills/README.md#list) - List bills
-* [ListAttachments](docs/sdks/accountspayablebills/README.md#listattachments) - List bill attachments
-
-### [AccountsPayableSuppliers](docs/sdks/accountspayablesuppliers/README.md)
-
-* [DownloadAttachment](docs/sdks/accountspayablesuppliers/README.md#downloadattachment) - Download supplier attachment
-* [Get](docs/sdks/accountspayablesuppliers/README.md#get) - Get supplier
-* [GetAttachment](docs/sdks/accountspayablesuppliers/README.md#getattachment) - Get supplier attachment
-* [List](docs/sdks/accountspayablesuppliers/README.md#list) - List suppliers
-* [ListAttachments](docs/sdks/accountspayablesuppliers/README.md#listattachments) - List supplier attachments
 
 ### [Companies](docs/sdks/companies/README.md)
 
@@ -138,6 +109,33 @@ func main() {
 
 * [GetLoanSummary](docs/sdks/liabilities/README.md#getloansummary) - Get loan summaries
 * [ListLoanTransactions](docs/sdks/liabilities/README.md#listloantransactions) - List loan transactions
+
+
+### [AccountsPayableBillCreditNotes](docs/sdks/accountspayablebillcreditnotes/README.md)
+
+* [Get](docs/sdks/accountspayablebillcreditnotes/README.md#get) - Get bill credit note
+* [List](docs/sdks/accountspayablebillcreditnotes/README.md#list) - List bill credit notes
+
+### [AccountsPayableBillPayments](docs/sdks/accountspayablebillpayments/README.md)
+
+* [Get](docs/sdks/accountspayablebillpayments/README.md#get) - Get bill payment
+* [List](docs/sdks/accountspayablebillpayments/README.md#list) - List bill payments
+
+### [AccountsPayableBills](docs/sdks/accountspayablebills/README.md)
+
+* [DownloadAttachment](docs/sdks/accountspayablebills/README.md#downloadattachment) - Download bill attachment
+* [Get](docs/sdks/accountspayablebills/README.md#get) - Get bill
+* [GetAttachment](docs/sdks/accountspayablebills/README.md#getattachment) - Get bill attachment
+* [List](docs/sdks/accountspayablebills/README.md#list) - List bills
+* [ListAttachments](docs/sdks/accountspayablebills/README.md#listattachments) - List bill attachments
+
+### [AccountsPayableSuppliers](docs/sdks/accountspayablesuppliers/README.md)
+
+* [DownloadAttachment](docs/sdks/accountspayablesuppliers/README.md#downloadattachment) - Download supplier attachment
+* [Get](docs/sdks/accountspayablesuppliers/README.md#get) - Get supplier
+* [GetAttachment](docs/sdks/accountspayablesuppliers/README.md#getattachment) - Get supplier attachment
+* [List](docs/sdks/accountspayablesuppliers/README.md#list) - List suppliers
+* [ListAttachments](docs/sdks/accountspayablesuppliers/README.md#listattachments) - List supplier attachments
 
 
 ### [AccountsReceivableCreditNotes](docs/sdks/accountsreceivablecreditnotes/README.md)

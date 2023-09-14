@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v2/pkg/types"
+	"github.com/codatio/client-sdk-go/lending/v3/pkg/types"
 )
 
 // CommercePayment - Payments contain details of all payments made by customers to a company, including: amounts, currency used, payment method, payment provider, and payment status.

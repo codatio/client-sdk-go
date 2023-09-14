@@ -4,8 +4,8 @@ package codatlending
 
 import (
 	"fmt"
-	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v2/pkg/utils"
+	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v3/pkg/utils"
 	"net/http"
 	"time"
 )
@@ -90,8 +90,6 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 type CodatLending struct {
 	// Access bank transactions from an accounting platform.
 	AccountingBankData *accountingBankData
-	// Data from a linked accounting platform representing money the business owes money to its suppliers.
-	AccountsPayable *accountsPayable
 	// Create and manage your Codat companies.
 	Companies *companies
 	// View company information fetched from the source platform.
@@ -106,6 +104,7 @@ type CodatLending struct {
 	FileUpload *fileUpload
 	// Debt and other liabilities.
 	Liabilities         *liabilities
+	AccountsPayable     *accountsPayable
 	AccountsReceivable  *accountsReceivable
 	Banking             *banking
 	FinancialStatements *financialStatements
@@ -173,7 +172,7 @@ func New(opts ...SDKOption) *CodatLending {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "2.0.0",
+			SDKVersion:        "3.1.0",
 			GenVersion:        "2.109.3",
 		},
 	}
@@ -195,8 +194,6 @@ func New(opts ...SDKOption) *CodatLending {
 
 	sdk.AccountingBankData = newAccountingBankData(sdk.sdkConfiguration)
 
-	sdk.AccountsPayable = newAccountsPayable(sdk.sdkConfiguration)
-
 	sdk.Companies = newCompanies(sdk.sdkConfiguration)
 
 	sdk.CompanyInfo = newCompanyInfo(sdk.sdkConfiguration)
@@ -210,6 +207,8 @@ func New(opts ...SDKOption) *CodatLending {
 	sdk.FileUpload = newFileUpload(sdk.sdkConfiguration)
 
 	sdk.Liabilities = newLiabilities(sdk.sdkConfiguration)
+
+	sdk.AccountsPayable = newAccountsPayable(sdk.sdkConfiguration)
 
 	sdk.AccountsReceivable = newAccountsReceivable(sdk.sdkConfiguration)
 

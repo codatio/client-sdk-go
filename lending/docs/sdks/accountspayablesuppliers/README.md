@@ -25,9 +25,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v2"
-	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v3"
+	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/operations"
 )
 
 func main() {
@@ -42,7 +42,7 @@ func main() {
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        SupplierID: "ipsa",
+        SupplierID: "ab",
     })
     if err != nil {
         log.Fatal(err)
@@ -87,9 +87,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v2"
-	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v3"
+	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/operations"
 )
 
 func main() {
@@ -102,7 +102,7 @@ func main() {
     ctx := context.Background()
     res, err := s.AccountsPayableSuppliers.Get(ctx, operations.GetAccountingSupplierRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        SupplierID: "delectus",
+        SupplierID: "quis",
     })
     if err != nil {
         log.Fatal(err)
@@ -145,9 +145,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v2"
-	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v3"
+	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/operations"
 )
 
 func main() {
@@ -162,7 +162,7 @@ func main() {
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        SupplierID: "tempora",
+        SupplierID: "veritatis",
     })
     if err != nil {
         log.Fatal(err)
@@ -205,9 +205,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v2"
-	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v3"
+	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/operations"
 )
 
 func main() {
@@ -223,7 +223,7 @@ func main() {
         OrderBy: codatlending.String("-modifiedDate"),
         Page: codatlending.Int(1),
         PageSize: codatlending.Int(100),
-        Query: codatlending.String("suscipit"),
+        Query: codatlending.String("deserunt"),
     })
     if err != nil {
         log.Fatal(err)
@@ -266,9 +266,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v2"
-	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v3"
+	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/operations"
 )
 
 func main() {
@@ -282,7 +282,7 @@ func main() {
     res, err := s.AccountsPayableSuppliers.ListAttachments(ctx, operations.ListAccountingSupplierAttachmentsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        SupplierID: "molestiae",
+        SupplierID: "perferendis",
     })
     if err != nil {
         log.Fatal(err)
