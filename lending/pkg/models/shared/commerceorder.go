@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v2/pkg/types"
+	"github.com/codatio/client-sdk-go/lending/v3/pkg/types"
 )
 
 // CommerceOrderSupplementalData - Supplemental data is additional data you can include in our standard data types.

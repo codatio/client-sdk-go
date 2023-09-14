@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v2/pkg/types"
+	"github.com/codatio/client-sdk-go/lending/v3/pkg/types"
 )
 
 // TaxRateRef - Data types that reference a tax rate, for example invoice and bill line items, use a taxRateRef that includes the ID and name of the linked tax rate.

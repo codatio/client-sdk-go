@@ -26,9 +26,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v2"
-	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v3"
+	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/operations"
 )
 
 func main() {
@@ -41,7 +41,7 @@ func main() {
     ctx := context.Background()
     res, err := s.ExcelReports.Download(ctx, operations.DownloadExcelReportRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ReportType: shared.ExcelReportTypesEnhancedCashFlow,
+        ReportType: shared.ExcelReportTypesEnhancedFinancials,
     })
     if err != nil {
         log.Fatal(err)
@@ -95,9 +95,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v2"
-	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v3"
+	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/operations"
 )
 
 func main() {
@@ -110,7 +110,7 @@ func main() {
     ctx := context.Background()
     res, err := s.ExcelReports.Generate(ctx, operations.GenerateExcelReportRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ReportType: shared.ExcelReportTypesEnhancedCashFlow,
+        ReportType: shared.ExcelReportTypesEnhancedFinancials,
     })
     if err != nil {
         log.Fatal(err)
@@ -152,9 +152,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v2"
-	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v2/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v3"
+	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/operations"
 )
 
 func main() {
@@ -167,7 +167,7 @@ func main() {
     ctx := context.Background()
     res, err := s.ExcelReports.GetStatus(ctx, operations.GetExcelReportGenerationStatusRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ReportType: shared.ExcelReportTypesAudit,
+        ReportType: shared.ExcelReportTypesEnhancedCashFlow,
     })
     if err != nil {
         log.Fatal(err)
