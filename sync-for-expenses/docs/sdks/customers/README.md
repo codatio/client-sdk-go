@@ -47,11 +47,65 @@ func main() {
     ctx := context.Background()
     res, err := s.Customers.Create(ctx, operations.CreateCustomerRequest{
         Customer: &shared.Customer{
-            ID: codatsyncexpenses.String("142"),
+            Addresses: []shared.Items{
+                shared.Items{
+                    City: codatsyncexpenses.String("West Christa"),
+                    Country: codatsyncexpenses.String("Iceland"),
+                    Line1: codatsyncexpenses.String("cupiditate"),
+                    Line2: codatsyncexpenses.String("quos"),
+                    PostalCode: codatsyncexpenses.String("18301"),
+                    Region: codatsyncexpenses.String("dolorum"),
+                    Type: shared.AccountingAddressTypeBilling,
+                },
+            },
+            ContactName: codatsyncexpenses.String("tempora"),
+            Contacts: []shared.Contact{
+                shared.Contact{
+                    Address: &shared.Items{
+                        City: codatsyncexpenses.String("Riceboro"),
+                        Country: codatsyncexpenses.String("Vanuatu"),
+                        Line1: codatsyncexpenses.String("eum"),
+                        Line2: codatsyncexpenses.String("non"),
+                        PostalCode: codatsyncexpenses.String("53585-6289"),
+                        Region: codatsyncexpenses.String("dolorum"),
+                        Type: shared.AccountingAddressTypeBilling,
+                    },
+                    Email: codatsyncexpenses.String("Rose.Wolff29@yahoo.com"),
+                    ModifiedDate: codatsyncexpenses.String("2022-10-23T00:00:00.000Z"),
+                    Name: codatsyncexpenses.String("Nathaniel Hyatt"),
+                    Phone: []shared.ContactPhone{
+                        shared.ContactPhone{
+                            Number: "+44 25691 154789",
+                            Type: shared.PhoneNumberTypeMobile,
+                        },
+                    },
+                    Status: shared.CustomerStatusUnknown,
+                },
+            },
+            CustomerName: codatsyncexpenses.String("accusamus"),
+            DefaultCurrency: codatsyncexpenses.String("EUR"),
+            EmailAddress: codatsyncexpenses.String("quidem"),
+            ID: codatsyncexpenses.String("9ba88f3a-6699-4707-8ba4-469b6e214195"),
+            Metadata: &shared.Metadata{
+                IsDeleted: codatsyncexpenses.Bool(false),
+            },
+            ModifiedDate: codatsyncexpenses.String("2022-10-23T00:00:00.000Z"),
+            Phone: codatsyncexpenses.String("606-963-4281 x3049"),
+            RegistrationNumber: codatsyncexpenses.String("debitis"),
+            SourceModifiedDate: codatsyncexpenses.String("2022-10-23T00:00:00.000Z"),
+            Status: shared.CustomerStatusArchived,
+            SupplementalData: &shared.SupplementalData{
+                Content: map[string]map[string]interface{}{
+                    "deleniti": map[string]interface{}{
+                        "facilis": "in",
+                    },
+                },
+            },
+            TaxNumber: codatsyncexpenses.String("architecto"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codatsyncexpenses.Int(383441),
+        TimeoutInMinutes: codatsyncexpenses.Int(99569),
     })
     if err != nil {
         log.Fatal(err)
@@ -111,7 +165,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Customers.Get(ctx, operations.GetCustomerRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        CustomerID: "molestiae",
+        CustomerID: "repudiandae",
     })
     if err != nil {
         log.Fatal(err)
@@ -172,7 +226,7 @@ func main() {
         OrderBy: codatsyncexpenses.String("-modifiedDate"),
         Page: codatsyncexpenses.Int(1),
         PageSize: codatsyncexpenses.Int(100),
-        Query: codatsyncexpenses.String("minus"),
+        Query: codatsyncexpenses.String("ullam"),
     })
     if err != nil {
         log.Fatal(err)
@@ -234,13 +288,67 @@ func main() {
     ctx := context.Background()
     res, err := s.Customers.Update(ctx, operations.UpdateCustomerRequest{
         Customer: &shared.Customer{
-            ID: codatsyncexpenses.String("142"),
+            Addresses: []shared.Items{
+                shared.Items{
+                    City: codatsyncexpenses.String("Kossworth"),
+                    Country: codatsyncexpenses.String("Sudan"),
+                    Line1: codatsyncexpenses.String("sed"),
+                    Line2: codatsyncexpenses.String("saepe"),
+                    PostalCode: codatsyncexpenses.String("01561-1788"),
+                    Region: codatsyncexpenses.String("maxime"),
+                    Type: shared.AccountingAddressTypeBilling,
+                },
+            },
+            ContactName: codatsyncexpenses.String("excepturi"),
+            Contacts: []shared.Contact{
+                shared.Contact{
+                    Address: &shared.Items{
+                        City: codatsyncexpenses.String("South Alexanneton"),
+                        Country: codatsyncexpenses.String("Wallis and Futuna"),
+                        Line1: codatsyncexpenses.String("quidem"),
+                        Line2: codatsyncexpenses.String("ipsam"),
+                        PostalCode: codatsyncexpenses.String("47083"),
+                        Region: codatsyncexpenses.String("voluptatibus"),
+                        Type: shared.AccountingAddressTypeUnknown,
+                    },
+                    Email: codatsyncexpenses.String("Darian.Anderson94@hotmail.com"),
+                    ModifiedDate: codatsyncexpenses.String("2022-10-23T00:00:00.000Z"),
+                    Name: codatsyncexpenses.String("Ernest Hayes"),
+                    Phone: []shared.ContactPhone{
+                        shared.ContactPhone{
+                            Number: "+44 25691 154789",
+                            Type: shared.PhoneNumberTypeLandline,
+                        },
+                    },
+                    Status: shared.CustomerStatusUnknown,
+                },
+            },
+            CustomerName: codatsyncexpenses.String("eos"),
+            DefaultCurrency: codatsyncexpenses.String("GBP"),
+            EmailAddress: codatsyncexpenses.String("dolores"),
+            ID: codatsyncexpenses.String("c73d5fe9-b90c-4289-89b3-fe49a8d9cbf4"),
+            Metadata: &shared.Metadata{
+                IsDeleted: codatsyncexpenses.Bool(false),
+            },
+            ModifiedDate: codatsyncexpenses.String("2022-10-23T00:00:00.000Z"),
+            Phone: codatsyncexpenses.String("1-322-329-5744 x926"),
+            RegistrationNumber: codatsyncexpenses.String("numquam"),
+            SourceModifiedDate: codatsyncexpenses.String("2022-10-23T00:00:00.000Z"),
+            Status: shared.CustomerStatusUnknown,
+            SupplementalData: &shared.SupplementalData{
+                Content: map[string]map[string]interface{}{
+                    "ipsa": map[string]interface{}{
+                        "iure": "odio",
+                    },
+                },
+            },
+            TaxNumber: codatsyncexpenses.String("quaerat"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        CustomerID: "placeat",
+        CustomerID: "accusamus",
         ForceUpdate: codatsyncexpenses.Bool(false),
-        TimeoutInMinutes: codatsyncexpenses.Int(528895),
+        TimeoutInMinutes: codatsyncexpenses.Int(696344),
     })
     if err != nil {
         log.Fatal(err)
