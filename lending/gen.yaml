@@ -19,6 +19,6 @@ features:
     nameOverrides: 2.81.1
     retries: 2.82.1
 go:
-  version: 2.0.0
+  version: 3.0.0
   maxMethodParams: 0
   packageName: github.com/codatio/client-sdk-go/lending
