@@ -1,4 +1,4 @@
-# TransactionsDirectCosts
+# Transactions.DirectCosts
 
 ### Available Operations
 
@@ -38,7 +38,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.TransactionsDirectCosts.DownloadAttachment(ctx, operations.DownloadAccountingDirectCostAttachmentRequest{
+    res, err := s.Transactions.DirectCosts.DownloadAttachment(ctx, operations.DownloadAccountingDirectCostAttachmentRequest{
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -100,7 +100,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.TransactionsDirectCosts.Get(ctx, operations.GetAccountingDirectCostRequest{
+    res, err := s.Transactions.DirectCosts.Get(ctx, operations.GetAccountingDirectCostRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         DirectCostID: "laborum",
@@ -159,7 +159,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.TransactionsDirectCosts.GetAttachment(ctx, operations.GetAccountingDirectCostAttachmentRequest{
+    res, err := s.Transactions.DirectCosts.GetAttachment(ctx, operations.GetAccountingDirectCostAttachmentRequest{
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -219,7 +219,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.TransactionsDirectCosts.List(ctx, operations.ListAccountingDirectCostsRequest{
+    res, err := s.Transactions.DirectCosts.List(ctx, operations.ListAccountingDirectCostsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         OrderBy: codatlending.String("-modifiedDate"),
@@ -281,7 +281,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.TransactionsDirectCosts.ListAttachments(ctx, operations.ListAccountingDirectCostAttachmentsRequest{
+    res, err := s.Transactions.DirectCosts.ListAttachments(ctx, operations.ListAccountingDirectCostAttachmentsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         DirectCostID: "voluptatibus",

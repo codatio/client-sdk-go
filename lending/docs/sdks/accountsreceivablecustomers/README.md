@@ -1,4 +1,4 @@
-# AccountsReceivableCustomers
+# AccountsReceivable.Customers
 
 ### Available Operations
 
@@ -38,7 +38,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.AccountsReceivableCustomers.DownloadAttachment(ctx, operations.DownloadAccountingCustomerAttachmentRequest{
+    res, err := s.AccountsReceivable.Customers.DownloadAttachment(ctx, operations.DownloadAccountingCustomerAttachmentRequest{
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -100,7 +100,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.AccountsReceivableCustomers.Get(ctx, operations.GetAccountingCustomerRequest{
+    res, err := s.AccountsReceivable.Customers.Get(ctx, operations.GetAccountingCustomerRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CustomerID: "quo",
     })
@@ -158,7 +158,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.AccountsReceivableCustomers.GetAttachment(ctx, operations.GetAccountingCustomerAttachmentRequest{
+    res, err := s.AccountsReceivable.Customers.GetAttachment(ctx, operations.GetAccountingCustomerAttachmentRequest{
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -218,7 +218,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.AccountsReceivableCustomers.List(ctx, operations.ListAccountingCustomersRequest{
+    res, err := s.AccountsReceivable.Customers.List(ctx, operations.ListAccountingCustomersRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         OrderBy: codatlending.String("-modifiedDate"),
         Page: codatlending.Int(1),
@@ -279,7 +279,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.AccountsReceivableCustomers.ListAttachments(ctx, operations.ListAccountingCustomerAttachmentsRequest{
+    res, err := s.AccountsReceivable.Customers.ListAttachments(ctx, operations.ListAccountingCustomerAttachmentsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         CustomerID: "at",

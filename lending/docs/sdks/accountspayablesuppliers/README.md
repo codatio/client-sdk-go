@@ -1,4 +1,4 @@
-# AccountsPayableSuppliers
+# AccountsPayable.Suppliers
 
 ### Available Operations
 
@@ -38,7 +38,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.AccountsPayableSuppliers.DownloadAttachment(ctx, operations.DownloadAccountingSupplierAttachmentRequest{
+    res, err := s.AccountsPayable.Suppliers.DownloadAttachment(ctx, operations.DownloadAccountingSupplierAttachmentRequest{
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -100,7 +100,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.AccountsPayableSuppliers.Get(ctx, operations.GetAccountingSupplierRequest{
+    res, err := s.AccountsPayable.Suppliers.Get(ctx, operations.GetAccountingSupplierRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         SupplierID: "quis",
     })
@@ -158,7 +158,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.AccountsPayableSuppliers.GetAttachment(ctx, operations.GetAccountingSupplierAttachmentRequest{
+    res, err := s.AccountsPayable.Suppliers.GetAttachment(ctx, operations.GetAccountingSupplierAttachmentRequest{
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -218,7 +218,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.AccountsPayableSuppliers.List(ctx, operations.ListAccountingSuppliersRequest{
+    res, err := s.AccountsPayable.Suppliers.List(ctx, operations.ListAccountingSuppliersRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         OrderBy: codatlending.String("-modifiedDate"),
         Page: codatlending.Int(1),
@@ -279,7 +279,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.AccountsPayableSuppliers.ListAttachments(ctx, operations.ListAccountingSupplierAttachmentsRequest{
+    res, err := s.AccountsPayable.Suppliers.ListAttachments(ctx, operations.ListAccountingSupplierAttachmentsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         SupplierID: "perferendis",

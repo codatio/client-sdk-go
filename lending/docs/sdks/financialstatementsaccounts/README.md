@@ -1,4 +1,4 @@
-# FinancialStatementsAccounts
+# FinancialStatements.Accounts
 
 ### Available Operations
 
@@ -37,7 +37,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.FinancialStatementsAccounts.Get(ctx, operations.GetAccountingAccountRequest{
+    res, err := s.FinancialStatements.Accounts.Get(ctx, operations.GetAccountingAccountRequest{
         AccountID: "cum",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
@@ -94,7 +94,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.FinancialStatementsAccounts.List(ctx, operations.ListAccountingAccountsRequest{
+    res, err := s.FinancialStatements.Accounts.List(ctx, operations.ListAccountingAccountsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         OrderBy: codatlending.String("-modifiedDate"),
         Page: codatlending.Int(1),

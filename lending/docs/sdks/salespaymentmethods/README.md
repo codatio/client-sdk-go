@@ -1,4 +1,4 @@
-# SalesPaymentMethods
+# Sales.PaymentMethods
 
 ### Available Operations
 
@@ -37,7 +37,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.SalesPaymentMethods.Get(ctx, operations.GetCommercePaymentMethodRequest{
+    res, err := s.Sales.PaymentMethods.Get(ctx, operations.GetCommercePaymentMethodRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         PaymentMethodID: "velit",
@@ -96,7 +96,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.SalesPaymentMethods.List(ctx, operations.ListCommercePaymentMethodsRequest{
+    res, err := s.Sales.PaymentMethods.List(ctx, operations.ListCommercePaymentMethodsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         OrderBy: codatlending.String("-modifiedDate"),

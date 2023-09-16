@@ -1,4 +1,4 @@
-# FinancialStatementsCashFlow
+# FinancialStatements.CashFlow
 
 ### Available Operations
 
@@ -29,7 +29,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.FinancialStatementsCashFlow.Get(ctx, operations.GetAccountingCashFlowStatementRequest{
+    res, err := s.FinancialStatements.CashFlow.Get(ctx, operations.GetAccountingCashFlowStatementRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         PeriodLength: 4,
         PeriodsToCompare: 20,

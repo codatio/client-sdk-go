@@ -1,4 +1,4 @@
-# AccountsReceivableInvoices
+# AccountsReceivable.Invoices
 
 ### Available Operations
 
@@ -40,7 +40,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.AccountsReceivableInvoices.DownloadAttachment(ctx, operations.DownloadAccountingInvoiceAttachmentRequest{
+    res, err := s.AccountsReceivable.Invoices.DownloadAttachment(ctx, operations.DownloadAccountingInvoiceAttachmentRequest{
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -95,7 +95,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.AccountsReceivableInvoices.DownloadPdf(ctx, operations.DownloadAccountingInvoicePdfRequest{
+    res, err := s.AccountsReceivable.Invoices.DownloadPdf(ctx, operations.DownloadAccountingInvoicePdfRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         InvoiceID: "dolorum",
     })
@@ -154,7 +154,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.AccountsReceivableInvoices.Get(ctx, operations.GetAccountingInvoiceRequest{
+    res, err := s.AccountsReceivable.Invoices.Get(ctx, operations.GetAccountingInvoiceRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         InvoiceID: "dicta",
     })
@@ -212,7 +212,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.AccountsReceivableInvoices.GetAttachment(ctx, operations.GetAccountingInvoiceAttachmentRequest{
+    res, err := s.AccountsReceivable.Invoices.GetAttachment(ctx, operations.GetAccountingInvoiceAttachmentRequest{
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -278,7 +278,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.AccountsReceivableInvoices.List(ctx, operations.ListAccountingInvoicesRequest{
+    res, err := s.AccountsReceivable.Invoices.List(ctx, operations.ListAccountingInvoicesRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         OrderBy: codatlending.String("-modifiedDate"),
         Page: codatlending.Int(1),
@@ -339,7 +339,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.AccountsReceivableInvoices.ListAttachments(ctx, operations.ListAccountingInvoiceAttachmentsRequest{
+    res, err := s.AccountsReceivable.Invoices.ListAttachments(ctx, operations.ListAccountingInvoiceAttachmentsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         InvoiceID: "occaecati",
@@ -393,7 +393,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.AccountsReceivableInvoices.ListReconciled(ctx, operations.ListReconciledInvoicesRequest{
+    res, err := s.AccountsReceivable.Invoices.ListReconciled(ctx, operations.ListReconciledInvoicesRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         Page: codatlending.Int(1),
         PageSize: codatlending.Int(100),

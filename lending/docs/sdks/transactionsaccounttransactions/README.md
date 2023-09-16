@@ -1,4 +1,4 @@
-# TransactionsAccountTransactions
+# Transactions.AccountTransactions
 
 ### Available Operations
 
@@ -37,7 +37,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.TransactionsAccountTransactions.Get(ctx, operations.GetAccountingAccountTransactionRequest{
+    res, err := s.Transactions.AccountTransactions.Get(ctx, operations.GetAccountingAccountTransactionRequest{
         AccountTransactionID: "quasi",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -96,7 +96,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.TransactionsAccountTransactions.List(ctx, operations.ListAccountingAccountTransactionsRequest{
+    res, err := s.Transactions.AccountTransactions.List(ctx, operations.ListAccountingAccountTransactionsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         OrderBy: codatlending.String("-modifiedDate"),

@@ -1,4 +1,4 @@
-# FinancialStatementsProfitAndLoss
+# FinancialStatements.ProfitAndLoss
 
 ### Available Operations
 
@@ -30,7 +30,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.FinancialStatementsProfitAndLoss.Get(ctx, operations.GetAccountingProfitAndLossRequest{
+    res, err := s.FinancialStatements.ProfitAndLoss.Get(ctx, operations.GetAccountingProfitAndLossRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         PeriodLength: 4,
         PeriodsToCompare: 20,
@@ -87,7 +87,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.FinancialStatementsProfitAndLoss.GetCategorizedAccounts(ctx, operations.GetCategorizedProfitAndLossStatementRequest{
+    res, err := s.FinancialStatements.ProfitAndLoss.GetCategorizedAccounts(ctx, operations.GetCategorizedProfitAndLossStatementRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         NumberOfPeriods: codatlending.Int64(324141),
         ReportDate: "29-09-2020",

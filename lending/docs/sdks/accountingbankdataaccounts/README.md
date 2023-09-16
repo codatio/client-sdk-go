@@ -1,4 +1,4 @@
-# AccountingBankDataAccounts
+# AccountingBankData.Accounts
 
 ### Available Operations
 
@@ -37,7 +37,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.AccountingBankDataAccounts.Get(ctx, operations.GetAccountingBankAccountRequest{
+    res, err := s.AccountingBankData.Accounts.Get(ctx, operations.GetAccountingBankAccountRequest{
         AccountID: "unde",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -96,7 +96,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.AccountingBankDataAccounts.List(ctx, operations.ListAccountingBankAccountsRequest{
+    res, err := s.AccountingBankData.Accounts.List(ctx, operations.ListAccountingBankAccountsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         OrderBy: codatlending.String("-modifiedDate"),

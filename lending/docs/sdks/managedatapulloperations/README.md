@@ -1,4 +1,4 @@
-# ManageDataPullOperations
+# ManageData.PullOperations
 
 ### Available Operations
 
@@ -30,7 +30,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.ManageDataPullOperations.Get(ctx, operations.GetPullOperationRequest{
+    res, err := s.ManageData.PullOperations.Get(ctx, operations.GetPullOperationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         DatasetID: "eaed9f0f-e77b-4bc9-a58f-ab8b4b99ab18",
     })
@@ -83,7 +83,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.ManageDataPullOperations.List(ctx, operations.ListPullOperationsRequest{
+    res, err := s.ManageData.PullOperations.List(ctx, operations.ListPullOperationsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         OrderBy: codatlending.String("-modifiedDate"),
         Page: codatlending.Int(1),

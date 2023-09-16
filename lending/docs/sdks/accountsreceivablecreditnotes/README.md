@@ -1,4 +1,4 @@
-# AccountsReceivableCreditNotes
+# AccountsReceivable.CreditNotes
 
 ### Available Operations
 
@@ -37,7 +37,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.AccountsReceivableCreditNotes.Get(ctx, operations.GetAccountingCreditNoteRequest{
+    res, err := s.AccountsReceivable.CreditNotes.Get(ctx, operations.GetAccountingCreditNoteRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CreditNoteID: "ipsam",
     })
@@ -95,7 +95,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.AccountsReceivableCreditNotes.List(ctx, operations.ListAccountingCreditNotesRequest{
+    res, err := s.AccountsReceivable.CreditNotes.List(ctx, operations.ListAccountingCreditNotesRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         OrderBy: codatlending.String("-modifiedDate"),
         Page: codatlending.Int(1),

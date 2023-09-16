@@ -1,4 +1,4 @@
-# ManageDataRefresh
+# ManageData.Refresh
 
 ### Available Operations
 
@@ -34,7 +34,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.ManageDataRefresh.AllDataTypes(ctx, operations.RefreshAllDataTypesRequest{
+    res, err := s.ManageData.Refresh.AllDataTypes(ctx, operations.RefreshAllDataTypesRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -88,7 +88,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.ManageDataRefresh.DataType(ctx, operations.RefreshDataTypeRequest{
+    res, err := s.ManageData.Refresh.DataType(ctx, operations.RefreshDataTypeRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: codatlending.String("29396fea-7596-4eb1-8faa-a2352c595590"),
         DataType: shared.DataTypeInvoices,

@@ -172,8 +172,8 @@ func New(opts ...SDKOption) *CodatLending {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "3.1.0",
-			GenVersion:        "2.109.3",
+			SDKVersion:        "3.1.1",
+			GenVersion:        "2.115.2",
 		},
 	}
 	for _, opt := range opts {

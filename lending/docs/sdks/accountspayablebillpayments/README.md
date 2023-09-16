@@ -1,4 +1,4 @@
-# AccountsPayableBillPayments
+# AccountsPayable.BillPayments
 
 ### Available Operations
 
@@ -37,7 +37,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.AccountsPayableBillPayments.Get(ctx, operations.GetAccountingBillPaymentRequest{
+    res, err := s.AccountsPayable.BillPayments.Get(ctx, operations.GetAccountingBillPaymentRequest{
         BillPaymentID: "placeat",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
@@ -95,7 +95,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.AccountsPayableBillPayments.List(ctx, operations.ListAccountingBillPaymentsRequest{
+    res, err := s.AccountsPayable.BillPayments.List(ctx, operations.ListAccountingBillPaymentsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         OrderBy: codatlending.String("-modifiedDate"),
         Page: codatlending.Int(1),

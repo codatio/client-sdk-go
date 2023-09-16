@@ -1,4 +1,4 @@
-# TransactionsJournalEntries
+# Transactions.JournalEntries
 
 ### Available Operations
 
@@ -37,7 +37,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.TransactionsJournalEntries.Get(ctx, operations.GetAccountingJournalEntryRequest{
+    res, err := s.Transactions.JournalEntries.Get(ctx, operations.GetAccountingJournalEntryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         JournalEntryID: "vero",
     })
@@ -95,7 +95,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.TransactionsJournalEntries.List(ctx, operations.ListAccountingJournalEntriesRequest{
+    res, err := s.Transactions.JournalEntries.List(ctx, operations.ListAccountingJournalEntriesRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         OrderBy: codatlending.String("-modifiedDate"),
         Page: codatlending.Int(1),

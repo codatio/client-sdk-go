@@ -1,4 +1,4 @@
-# BankingCategorizedStatement
+# Banking.CategorizedStatement
 
 ### Available Operations
 
@@ -33,7 +33,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.BankingCategorizedStatement.Get(ctx, operations.GetCategorizedBankStatementRequest{
+    res, err := s.Banking.CategorizedStatement.Get(ctx, operations.GetCategorizedBankStatementRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         Page: codatlending.Int(1),
         PageSize: codatlending.Int(100),

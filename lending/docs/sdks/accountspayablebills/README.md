@@ -1,4 +1,4 @@
-# AccountsPayableBills
+# AccountsPayable.Bills
 
 ### Available Operations
 
@@ -38,7 +38,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.AccountsPayableBills.DownloadAttachment(ctx, operations.DownloadAccountingBillAttachmentRequest{
+    res, err := s.AccountsPayable.Bills.DownloadAttachment(ctx, operations.DownloadAccountingBillAttachmentRequest{
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         BillID: "iusto",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
@@ -100,7 +100,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.AccountsPayableBills.Get(ctx, operations.GetAccountingBillRequest{
+    res, err := s.AccountsPayable.Bills.Get(ctx, operations.GetAccountingBillRequest{
         BillID: "excepturi",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
@@ -158,7 +158,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.AccountsPayableBills.GetAttachment(ctx, operations.GetAccountingBillAttachmentRequest{
+    res, err := s.AccountsPayable.Bills.GetAttachment(ctx, operations.GetAccountingBillAttachmentRequest{
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         BillID: "nisi",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
@@ -218,7 +218,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.AccountsPayableBills.List(ctx, operations.ListAccountingBillsRequest{
+    res, err := s.AccountsPayable.Bills.List(ctx, operations.ListAccountingBillsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         OrderBy: codatlending.String("-modifiedDate"),
         Page: codatlending.Int(1),
@@ -279,7 +279,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.AccountsPayableBills.ListAttachments(ctx, operations.ListAccountingBillAttachmentsRequest{
+    res, err := s.AccountsPayable.Bills.ListAttachments(ctx, operations.ListAccountingBillAttachmentsRequest{
         BillID: "temporibus",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",

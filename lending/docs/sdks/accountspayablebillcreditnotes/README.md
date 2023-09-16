@@ -1,4 +1,4 @@
-# AccountsPayableBillCreditNotes
+# AccountsPayable.BillCreditNotes
 
 ### Available Operations
 
@@ -37,7 +37,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.AccountsPayableBillCreditNotes.Get(ctx, operations.GetAccountingBillCreditNoteRequest{
+    res, err := s.AccountsPayable.BillCreditNotes.Get(ctx, operations.GetAccountingBillCreditNoteRequest{
         BillCreditNoteID: "molestiae",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
@@ -95,7 +95,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.AccountsPayableBillCreditNotes.List(ctx, operations.ListAccountingBillCreditNotesRequest{
+    res, err := s.AccountsPayable.BillCreditNotes.List(ctx, operations.ListAccountingBillCreditNotesRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         OrderBy: codatlending.String("-modifiedDate"),
         Page: codatlending.Int(1),
