@@ -23,8 +23,8 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-commerce"
-	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/v2"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
 )
 
 func main() {
@@ -71,9 +71,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-commerce"
-	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/v2"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/operations"
 )
 
 func main() {
@@ -124,8 +124,8 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-commerce"
-	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/v2"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
 )
 
 func main() {
@@ -178,9 +178,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-commerce"
-	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/v2"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/operations"
 )
 
 func main() {

@@ -93,6 +93,8 @@ pkg/models/shared/syncrange.go
 pkg/models/shared/localization.go
 pkg/models/shared/visibleaccounts.go
 pkg/models/shared/security.go
+pkg/models/shared/syncconnectiondeletedwebhook.go
+pkg/models/webhooks/syncconnectiondeleted.go
 docs/sdks/codatsynccommerce/README.md
 docs/models/operations/option.md
 docs/sdks/advancedcontrols/README.md
@@ -198,5 +200,7 @@ docs/models/shared/syncrange.md
 docs/models/shared/localization.md
 docs/models/shared/visibleaccounts.md
 docs/models/shared/security.md
+docs/models/shared/syncconnectiondeletedwebhook.md
+docs/models/webhooks/syncconnectiondeletedresponse.md
 pkg/models/operations/options.go
 .gitattributes
