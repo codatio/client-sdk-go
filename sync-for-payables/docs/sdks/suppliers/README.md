@@ -48,8 +48,8 @@ func main() {
     ctx := context.Background()
     res, err := s.Suppliers.Create(ctx, operations.CreateSupplierRequest{
         Supplier: &shared.Supplier{
-            Addresses: []shared.SupplierAccountingAddress{
-                shared.SupplierAccountingAddress{
+            Addresses: []shared.Address{
+                shared.Address{
                     City: codatsyncpayables.String("Fort Virgilfurt"),
                     Country: codatsyncpayables.String("Sweden"),
                     Line1: codatsyncpayables.String("officia"),
@@ -328,8 +328,8 @@ func main() {
     ctx := context.Background()
     res, err := s.Suppliers.Update(ctx, operations.UpdateSupplierRequest{
         Supplier: &shared.Supplier{
-            Addresses: []shared.SupplierAccountingAddress{
-                shared.SupplierAccountingAddress{
+            Addresses: []shared.Address{
+                shared.Address{
                     City: codatsyncpayables.String("Wauwatosa"),
                     Country: codatsyncpayables.String("Nauru"),
                     Line1: codatsyncpayables.String("dicta"),
