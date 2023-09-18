@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/types"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/types"
 )
 
 type AccountMetadata struct {

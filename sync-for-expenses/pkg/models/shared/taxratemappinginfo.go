@@ -5,7 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/types"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/types"
 )
 
 type TaxRateMappingInfoValidTransactionTypes string

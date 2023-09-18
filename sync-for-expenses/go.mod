@@ -1,4 +1,4 @@
-module github.com/codatio/client-sdk-go/sync-for-expenses
+module github.com/codatio/client-sdk-go/sync-for-expenses/v2
 
 go 1.14
 
