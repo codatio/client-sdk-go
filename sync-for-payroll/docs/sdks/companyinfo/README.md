@@ -40,7 +40,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.CompanyInformation != nil {
+    if res.CompanyInfo != nil {
         // handle response
     }
 }
