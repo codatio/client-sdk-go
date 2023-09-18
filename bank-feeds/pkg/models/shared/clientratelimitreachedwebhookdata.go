@@ -2,13 +2,9 @@
 
 package shared
 
-import (
-	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/types"
-)
-
-type CreateBankTransaction struct {
-	Amount  *types.Decimal `json:"amount,omitempty"`
-	Balance *types.Decimal `json:"balance,omitempty"`
+type ClientRateLimitReachedWebhookData struct {
+	// The number of available requests per day.
+	DailyQuota *int64 `json:"DailyQuota,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -28,42 +24,19 @@ type CreateBankTransaction struct {
 	// >
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	Date        *string `json:"date,omitempty"`
-	Description *string `json:"description,omitempty"`
-	ID          *string `json:"id,omitempty"`
+	ExpiresUtc *string `json:"ExpiresUtc,omitempty"`
 }
 
-func (o *CreateBankTransaction) GetAmount() *types.Decimal {
+func (o *ClientRateLimitReachedWebhookData) GetDailyQuota() *int64 {
 	if o == nil {
 		return nil
 	}
-	return o.Amount
+	return o.DailyQuota
 }
 
-func (o *CreateBankTransaction) GetBalance() *types.Decimal {
+func (o *ClientRateLimitReachedWebhookData) GetExpiresUtc() *string {
 	if o == nil {
 		return nil
 	}
-	return o.Balance
-}
-
-func (o *CreateBankTransaction) GetDate() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Date
-}
-
-func (o *CreateBankTransaction) GetDescription() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Description
-}
-
-func (o *CreateBankTransaction) GetID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ID
+	return o.ExpiresUtc
 }
