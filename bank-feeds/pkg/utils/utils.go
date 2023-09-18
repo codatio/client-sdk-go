@@ -14,7 +14,7 @@ import (
 
 	"github.com/ericlagergren/decimal"
 
-	"github.com/codatio/client-sdk-go/bank-feeds/v2/pkg/types"
+	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/types"
 )
 
 const (

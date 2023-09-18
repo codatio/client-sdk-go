@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/bank-feeds/v2/pkg/types"
+	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/types"
 )
 
 // SourceAccount - The target bank account in a supported accounting package for ingestion into a bank feed.

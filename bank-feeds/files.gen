@@ -69,6 +69,12 @@ pkg/models/shared/pushoperationref.go
 pkg/models/shared/pushoperation.go
 pkg/models/shared/pushoperations.go
 pkg/models/shared/security.go
+pkg/models/shared/clientratelimitreachedwebhook.go
+pkg/models/shared/clientratelimitreachedwebhookdata.go
+pkg/models/shared/clientratelimitresetwebhook.go
+pkg/models/shared/clientratelimitresetwebhookdata.go
+pkg/models/webhooks/clientratelimitreached.go
+pkg/models/webhooks/clientratelimitreset.go
 docs/sdks/codatbankfeeds/README.md
 docs/models/operations/option.md
 docs/sdks/accountmapping/README.md
@@ -150,5 +156,11 @@ docs/models/shared/pushoperationref.md
 docs/models/shared/pushoperation.md
 docs/models/shared/pushoperations.md
 docs/models/shared/security.md
+docs/models/shared/clientratelimitreachedwebhook.md
+docs/models/shared/clientratelimitreachedwebhookdata.md
+docs/models/shared/clientratelimitresetwebhook.md
+docs/models/shared/clientratelimitresetwebhookdata.md
+docs/models/webhooks/clientratelimitreachedresponse.md
+docs/models/webhooks/clientratelimitresetresponse.md
 pkg/models/operations/options.go
 .gitattributes

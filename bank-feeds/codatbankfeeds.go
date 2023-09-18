@@ -4,8 +4,8 @@ package codatbankfeeds
 
 import (
 	"fmt"
-	"github.com/codatio/client-sdk-go/bank-feeds/v2/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/v2/pkg/utils"
+	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/utils"
 	"net/http"
 	"time"
 )
@@ -149,8 +149,8 @@ func New(opts ...SDKOption) *CodatBankFeeds {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "2.0.0",
-			GenVersion:        "2.109.3",
+			SDKVersion:        "3.1.0",
+			GenVersion:        "2.116.0",
 		},
 	}
 	for _, opt := range opts {

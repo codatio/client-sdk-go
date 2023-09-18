@@ -2,13 +2,9 @@
 
 package shared
 
-import (
-	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/types"
-)
-
-type CreateBankTransaction struct {
-	Amount  *types.Decimal `json:"amount,omitempty"`
-	Balance *types.Decimal `json:"balance,omitempty"`
+type ClientRateLimitResetWebhookData struct {
+	// The number of available requests per day.
+	DailyQuota *int64 `json:"DailyQuota,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -28,42 +24,37 @@ type CreateBankTransaction struct {
 	// >
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	Date        *string `json:"date,omitempty"`
-	Description *string `json:"description,omitempty"`
-	ID          *string `json:"id,omitempty"`
+	ExpiresUtc *string `json:"ExpiresUtc,omitempty"`
+	// Total number of request remaining for your client.
+	QuotaRemaining *int64 `json:"QuotaRemaining,omitempty"`
+	// The reason for your rate limit quota being reset.
+	ResetReason *string `json:"ResetReason,omitempty"`
 }
 
-func (o *CreateBankTransaction) GetAmount() *types.Decimal {
+func (o *ClientRateLimitResetWebhookData) GetDailyQuota() *int64 {
 	if o == nil {
 		return nil
 	}
-	return o.Amount
+	return o.DailyQuota
 }
 
-func (o *CreateBankTransaction) GetBalance() *types.Decimal {
+func (o *ClientRateLimitResetWebhookData) GetExpiresUtc() *string {
 	if o == nil {
 		return nil
 	}
-	return o.Balance
+	return o.ExpiresUtc
 }
 
-func (o *CreateBankTransaction) GetDate() *string {
+func (o *ClientRateLimitResetWebhookData) GetQuotaRemaining() *int64 {
 	if o == nil {
 		return nil
 	}
-	return o.Date
+	return o.QuotaRemaining
 }
 
-func (o *CreateBankTransaction) GetDescription() *string {
+func (o *ClientRateLimitResetWebhookData) GetResetReason() *string {
 	if o == nil {
 		return nil
 	}
-	return o.Description
-}
-
-func (o *CreateBankTransaction) GetID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ID
+	return o.ResetReason
 }

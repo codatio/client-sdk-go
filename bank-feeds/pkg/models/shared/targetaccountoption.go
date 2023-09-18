@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/bank-feeds/v2/pkg/types"
+	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/types"
 )
 
 type TargetAccountOption struct {
