@@ -3,7 +3,7 @@
 package shared
 
 type Contact struct {
-	Address *Addressesitems `json:"address,omitempty"`
+	Address *AccountingAddress `json:"address,omitempty"`
 	// Email of a contact for a customer.
 	Email *string `json:"email,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
@@ -29,12 +29,12 @@ type Contact struct {
 	// Name of a contact for a customer.
 	Name *string `json:"name,omitempty"`
 	// An array of Phone numbers.
-	Phone []Items `json:"phone,omitempty"`
+	Phone []PhoneNumber `json:"phone,omitempty"`
 	// Status of customer.
 	Status CustomerStatus `json:"status"`
 }
 
-func (o *Contact) GetAddress() *Addressesitems {
+func (o *Contact) GetAddress() *AccountingAddress {
 	if o == nil {
 		return nil
 	}
@@ -62,7 +62,7 @@ func (o *Contact) GetName() *string {
 	return o.Name
 }
 
-func (o *Contact) GetPhone() []Items {
+func (o *Contact) GetPhone() []PhoneNumber {
 	if o == nil {
 		return nil
 	}

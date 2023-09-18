@@ -1,4 +1,4 @@
-# AccountsReceivableDirectIncomes
+# AccountsReceivable.DirectIncomes
 
 ### Available Operations
 
@@ -25,9 +25,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v3"
-	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v4"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )
 
 func main() {
@@ -38,7 +38,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.AccountsReceivableDirectIncomes.DownloadAttachment(ctx, operations.DownloadAccountingDirectIncomeAttachmentRequest{
+    res, err := s.AccountsReceivable.DirectIncomes.DownloadAttachment(ctx, operations.DownloadAccountingDirectIncomeAttachmentRequest{
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -87,9 +87,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v3"
-	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v4"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )
 
 func main() {
@@ -100,7 +100,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.AccountsReceivableDirectIncomes.Get(ctx, operations.GetAccountingDirectIncomeRequest{
+    res, err := s.AccountsReceivable.DirectIncomes.Get(ctx, operations.GetAccountingDirectIncomeRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         DirectIncomeID: "molestiae",
@@ -146,9 +146,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v3"
-	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v4"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )
 
 func main() {
@@ -159,7 +159,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.AccountsReceivableDirectIncomes.GetAttachment(ctx, operations.GetAccountingDirectIncomeAttachmentRequest{
+    res, err := s.AccountsReceivable.DirectIncomes.GetAttachment(ctx, operations.GetAccountingDirectIncomeAttachmentRequest{
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -207,9 +207,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v3"
-	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v4"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )
 
 func main() {
@@ -220,7 +220,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.AccountsReceivableDirectIncomes.List(ctx, operations.ListAccountingDirectIncomesRequest{
+    res, err := s.AccountsReceivable.DirectIncomes.List(ctx, operations.ListAccountingDirectIncomesRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         OrderBy: codatlending.String("-modifiedDate"),
@@ -269,9 +269,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v3"
-	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v4"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )
 
 func main() {
@@ -282,7 +282,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.AccountsReceivableDirectIncomes.ListAttachments(ctx, operations.ListAccountingDirectIncomeAttachmentsRequest{
+    res, err := s.AccountsReceivable.DirectIncomes.ListAttachments(ctx, operations.ListAccountingDirectIncomeAttachmentsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         DirectIncomeID: "totam",

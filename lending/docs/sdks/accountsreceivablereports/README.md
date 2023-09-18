@@ -1,4 +1,4 @@
-# AccountsReceivableReports
+# AccountsReceivable.Reports
 
 ### Available Operations
 
@@ -19,10 +19,10 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v3"
-	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/lending/v3/pkg/types"
+	"github.com/codatio/client-sdk-go/lending/v4"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/types"
 )
 
 func main() {
@@ -33,7 +33,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.AccountsReceivableReports.GetAgedCreditors(ctx, operations.GetAccountingAgedCreditorsReportRequest{
+    res, err := s.AccountsReceivable.Reports.GetAgedCreditors(ctx, operations.GetAccountingAgedCreditorsReportRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         NumberOfPeriods: codatlending.Int(12),
         PeriodLengthDays: codatlending.Int(30),
@@ -75,10 +75,10 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v3"
-	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/lending/v3/pkg/types"
+	"github.com/codatio/client-sdk-go/lending/v4"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/types"
 )
 
 func main() {
@@ -89,7 +89,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.AccountsReceivableReports.GetAgedDebtors(ctx, operations.GetAccountingAgedDebtorsReportRequest{
+    res, err := s.AccountsReceivable.Reports.GetAgedDebtors(ctx, operations.GetAccountingAgedDebtorsReportRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         NumberOfPeriods: codatlending.Int(12),
         PeriodLengthDays: codatlending.Int(30),
@@ -131,9 +131,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v3"
-	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v4"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )
 
 func main() {
@@ -144,7 +144,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.AccountsReceivableReports.IsAgedCreditorsAvailable(ctx, operations.IsAgedCreditorsReportAvailableRequest{
+    res, err := s.AccountsReceivable.Reports.IsAgedCreditorsAvailable(ctx, operations.IsAgedCreditorsReportAvailableRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -183,9 +183,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v3"
-	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v4"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )
 
 func main() {
@@ -196,7 +196,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.AccountsReceivableReports.IsAgedDebtorsAvailable(ctx, operations.IsAgedDebtorsReportAvailableRequest{
+    res, err := s.AccountsReceivable.Reports.IsAgedDebtorsAvailable(ctx, operations.IsAgedDebtorsReportAvailableRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {

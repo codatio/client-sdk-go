@@ -1,4 +1,4 @@
-module github.com/codatio/client-sdk-go/lending/v3
+module github.com/codatio/client-sdk-go/lending/v4
 
 go 1.14
 

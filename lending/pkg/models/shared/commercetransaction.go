@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v3/pkg/types"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/types"
 )
 
 // CommerceTransaction - Details of all financial transactions recorded in the commerce or point of sale system are added to the Transactions data type. For example, payments, service charges, and fees.
