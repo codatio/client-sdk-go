@@ -47,14 +47,14 @@ type CommerceCompanyInfo struct {
 	CreatedDate  *string `json:"createdDate,omitempty"`
 	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Phone numbers associated with the company
-	PhoneNumbers []Items `json:"phoneNumbers,omitempty"`
+	PhoneNumbers []PhoneNumber `json:"phoneNumbers,omitempty"`
 	// The registration number of the company
 	RegistrationNumber *string `json:"registrationNumber,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// URL addresses for the originating system. For example, potential use cases include 'deeplinking' to the originating system
 	SourceUrls map[string]string `json:"sourceUrls,omitempty"`
 	// Weblinks associated with the company
-	WebLinks []WebLinksitems `json:"webLinks,omitempty"`
+	WebLinks []WebLink `json:"webLinks,omitempty"`
 }
 
 func (o *CommerceCompanyInfo) GetAccountBalances() []AccountBalance {
@@ -113,7 +113,7 @@ func (o *CommerceCompanyInfo) GetModifiedDate() *string {
 	return o.ModifiedDate
 }
 
-func (o *CommerceCompanyInfo) GetPhoneNumbers() []Items {
+func (o *CommerceCompanyInfo) GetPhoneNumbers() []PhoneNumber {
 	if o == nil {
 		return nil
 	}
@@ -141,7 +141,7 @@ func (o *CommerceCompanyInfo) GetSourceUrls() map[string]string {
 	return o.SourceUrls
 }
 
-func (o *CommerceCompanyInfo) GetWebLinks() []WebLinksitems {
+func (o *CommerceCompanyInfo) GetWebLinks() []WebLink {
 	if o == nil {
 		return nil
 	}

@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v3/pkg/types"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/types"
 )
 
 // BankingTransaction - The Banking Transactions data type provides an immutable source of up-to-date information on income and expenditure.

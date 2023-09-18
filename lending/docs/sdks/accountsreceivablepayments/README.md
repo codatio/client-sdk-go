@@ -1,4 +1,4 @@
-# AccountsReceivablePayments
+# AccountsReceivable.Payments
 
 ### Available Operations
 
@@ -24,9 +24,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v3"
-	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v4"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )
 
 func main() {
@@ -37,7 +37,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.AccountsReceivablePayments.Get(ctx, operations.GetAccountingPaymentRequest{
+    res, err := s.AccountsReceivable.Payments.Get(ctx, operations.GetAccountingPaymentRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         PaymentID: "deleniti",
     })
@@ -82,9 +82,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v3"
-	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v4"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )
 
 func main() {
@@ -95,7 +95,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.AccountsReceivablePayments.List(ctx, operations.ListAccountingPaymentsRequest{
+    res, err := s.AccountsReceivable.Payments.List(ctx, operations.ListAccountingPaymentsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         OrderBy: codatlending.String("-modifiedDate"),
         Page: codatlending.Int(1),

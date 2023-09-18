@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v3/pkg/types"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/types"
 	"github.com/ericlagergren/decimal"
 )
 
@@ -125,8 +125,8 @@ type AccountingCreditNote struct {
 	// Any discounts applied to the credit note amount.
 	TotalDiscount types.Decimal `json:"totalDiscount"`
 	// Any tax applied to the credit note amount.
-	TotalTaxAmount types.Decimal         `json:"totalTaxAmount"`
-	WithholdingTax []WithholdingTaxitems `json:"withholdingTax,omitempty"`
+	TotalTaxAmount types.Decimal `json:"totalTaxAmount"`
+	WithholdingTax []Items       `json:"withholdingTax,omitempty"`
 }
 
 func (o *AccountingCreditNote) GetAdditionalTaxAmount() *types.Decimal {
@@ -290,7 +290,7 @@ func (o *AccountingCreditNote) GetTotalTaxAmount() types.Decimal {
 	return o.TotalTaxAmount
 }
 
-func (o *AccountingCreditNote) GetWithholdingTax() []WithholdingTaxitems {
+func (o *AccountingCreditNote) GetWithholdingTax() []Items {
 	if o == nil {
 		return nil
 	}

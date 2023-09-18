@@ -1,4 +1,4 @@
-# FinancialStatementsBalanceSheet
+# FinancialStatements.BalanceSheet
 
 ### Available Operations
 
@@ -17,9 +17,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v3"
-	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v4"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )
 
 func main() {
@@ -30,7 +30,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.FinancialStatementsBalanceSheet.Get(ctx, operations.GetAccountingBalanceSheetRequest{
+    res, err := s.FinancialStatements.BalanceSheet.Get(ctx, operations.GetAccountingBalanceSheetRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         PeriodLength: 4,
         PeriodsToCompare: 20,
@@ -74,9 +74,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v3"
-	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v4"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )
 
 func main() {
@@ -87,7 +87,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.FinancialStatementsBalanceSheet.GetCategorizedAccounts(ctx, operations.GetCategorizedBalanceSheetStatementRequest{
+    res, err := s.FinancialStatements.BalanceSheet.GetCategorizedAccounts(ctx, operations.GetCategorizedBalanceSheetStatementRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         NumberOfPeriods: codatlending.Int64(568434),
         ReportDate: "29-09-2020",

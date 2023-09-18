@@ -4,8 +4,8 @@ package codatlending
 
 import (
 	"fmt"
-	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v3/pkg/utils"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/utils"
 	"net/http"
 	"time"
 )
@@ -172,8 +172,8 @@ func New(opts ...SDKOption) *CodatLending {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "3.1.0",
-			GenVersion:        "2.109.3",
+			SDKVersion:        "4.1.0",
+			GenVersion:        "2.116.0",
 		},
 	}
 	for _, opt := range opts {

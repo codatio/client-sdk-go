@@ -1,4 +1,4 @@
-# FinancialStatementsCashFlow
+# FinancialStatements.CashFlow
 
 ### Available Operations
 
@@ -16,9 +16,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v3"
-	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v4"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )
 
 func main() {
@@ -29,7 +29,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.FinancialStatementsCashFlow.Get(ctx, operations.GetAccountingCashFlowStatementRequest{
+    res, err := s.FinancialStatements.CashFlow.Get(ctx, operations.GetAccountingCashFlowStatementRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         PeriodLength: 4,
         PeriodsToCompare: 20,

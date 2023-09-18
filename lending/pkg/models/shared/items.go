@@ -2,23 +2,26 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/types"
+	"github.com/ericlagergren/decimal"
+)
+
 type Items struct {
-	// A phone number.
-	Number *string `json:"number"`
-	// The type of phone number
-	Type PhoneNumberType `json:"type"`
+	Amount types.Decimal `json:"amount"`
+	Name   string        `json:"name"`
 }
 
-func (o *Items) GetNumber() *string {
+func (o *Items) GetAmount() types.Decimal {
 	if o == nil {
-		return nil
+		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
 	}
-	return o.Number
+	return o.Amount
 }
 
-func (o *Items) GetType() PhoneNumberType {
+func (o *Items) GetName() string {
 	if o == nil {
-		return PhoneNumberType("")
+		return ""
 	}
-	return o.Type
+	return o.Name
 }

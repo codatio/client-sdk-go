@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v3/pkg/types"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/types"
 )
 
 // AccountBalanceAmounts - Depending on the data provided by the underlying bank, not all balances are always available.

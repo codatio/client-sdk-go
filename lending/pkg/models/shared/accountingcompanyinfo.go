@@ -2,151 +2,6 @@
 
 package shared
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
-type AccountingCompanyInfoAccountingAddress struct {
-	// City of the customer address.
-	City *string `json:"city,omitempty"`
-	// Country of the customer address.
-	Country *string `json:"country,omitempty"`
-	// Line 1 of the customer address.
-	Line1 *string `json:"line1,omitempty"`
-	// Line 2 of the customer address.
-	Line2 *string `json:"line2,omitempty"`
-	// Postal code or zip code.
-	PostalCode *string `json:"postalCode,omitempty"`
-	// Region of the customer address.
-	Region *string `json:"region,omitempty"`
-	// The type of the address
-	Type AccountingAddressType `json:"type"`
-}
-
-func (o *AccountingCompanyInfoAccountingAddress) GetCity() *string {
-	if o == nil {
-		return nil
-	}
-	return o.City
-}
-
-func (o *AccountingCompanyInfoAccountingAddress) GetCountry() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Country
-}
-
-func (o *AccountingCompanyInfoAccountingAddress) GetLine1() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Line1
-}
-
-func (o *AccountingCompanyInfoAccountingAddress) GetLine2() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Line2
-}
-
-func (o *AccountingCompanyInfoAccountingAddress) GetPostalCode() *string {
-	if o == nil {
-		return nil
-	}
-	return o.PostalCode
-}
-
-func (o *AccountingCompanyInfoAccountingAddress) GetRegion() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Region
-}
-
-func (o *AccountingCompanyInfoAccountingAddress) GetType() AccountingAddressType {
-	if o == nil {
-		return AccountingAddressType("")
-	}
-	return o.Type
-}
-
-type AccountingCompanyInfoPhone struct {
-	// A phone number.
-	Number *string `json:"number"`
-	// The type of phone number
-	Type PhoneNumberType `json:"type"`
-}
-
-func (o *AccountingCompanyInfoPhone) GetNumber() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Number
-}
-
-func (o *AccountingCompanyInfoPhone) GetType() PhoneNumberType {
-	if o == nil {
-		return PhoneNumberType("")
-	}
-	return o.Type
-}
-
-// AccountingCompanyInfoWeblinkType - The type of the weblink.
-type AccountingCompanyInfoWeblinkType string
-
-const (
-	AccountingCompanyInfoWeblinkTypeWebsite AccountingCompanyInfoWeblinkType = "Website"
-	AccountingCompanyInfoWeblinkTypeSocial  AccountingCompanyInfoWeblinkType = "Social"
-	AccountingCompanyInfoWeblinkTypeUnknown AccountingCompanyInfoWeblinkType = "Unknown"
-)
-
-func (e AccountingCompanyInfoWeblinkType) ToPointer() *AccountingCompanyInfoWeblinkType {
-	return &e
-}
-
-func (e *AccountingCompanyInfoWeblinkType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Website":
-		fallthrough
-	case "Social":
-		fallthrough
-	case "Unknown":
-		*e = AccountingCompanyInfoWeblinkType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for AccountingCompanyInfoWeblinkType: %v", v)
-	}
-}
-
-// AccountingCompanyInfoWeblink - Weblink associated with the company.
-type AccountingCompanyInfoWeblink struct {
-	// The type of the weblink.
-	Type *AccountingCompanyInfoWeblinkType `json:"type,omitempty"`
-	// The full URL for the weblink.
-	URL *string `json:"url,omitempty"`
-}
-
-func (o *AccountingCompanyInfoWeblink) GetType() *AccountingCompanyInfoWeblinkType {
-	if o == nil {
-		return nil
-	}
-	return o.Type
-}
-
-func (o *AccountingCompanyInfoWeblink) GetURL() *string {
-	if o == nil {
-		return nil
-	}
-	return o.URL
-}
-
 // AccountingCompanyInfo - > View the coverage for company info in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=cashFlowStatement" target="_blank">Data coverage explorer</a>.
 //
 // Company info provides standard details about a linked company such as their address, phone number, and company registration.
@@ -158,7 +13,7 @@ type AccountingCompanyInfo struct {
 	// Identifier or reference for the company in the accounting platform.
 	AccountingPlatformRef *string `json:"accountingPlatformRef,omitempty"`
 	// An array of Addresses.
-	Addresses []AccountingCompanyInfoAccountingAddress `json:"addresses,omitempty"`
+	Addresses []AccountingAddress `json:"addresses,omitempty"`
 	// Currency set in the accounting platform of the linked company. Used by the currency rate.
 	BaseCurrency *string `json:"baseCurrency,omitempty"`
 	// Registered legal name of the linked company.
@@ -226,7 +81,7 @@ type AccountingCompanyInfo struct {
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	LedgerLockDate *string `json:"ledgerLockDate,omitempty"`
 	// An array of phone numbers.
-	PhoneNumbers []AccountingCompanyInfoPhone `json:"phoneNumbers,omitempty"`
+	PhoneNumbers []PhoneNumber `json:"phoneNumbers,omitempty"`
 	// Registration number given to the linked company by the companies authority in the country of origin. In the UK this is Companies House.
 	RegistrationNumber *string `json:"registrationNumber,omitempty"`
 	// URL addresses for the accounting source.
@@ -236,7 +91,7 @@ type AccountingCompanyInfo struct {
 	// Company tax number.
 	TaxNumber *string `json:"taxNumber,omitempty"`
 	// An array of weblinks.
-	WebLinks []AccountingCompanyInfoWeblink `json:"webLinks,omitempty"`
+	WebLinks []WebLink `json:"webLinks,omitempty"`
 }
 
 func (o *AccountingCompanyInfo) GetAccountingPlatformRef() *string {
@@ -246,7 +101,7 @@ func (o *AccountingCompanyInfo) GetAccountingPlatformRef() *string {
 	return o.AccountingPlatformRef
 }
 
-func (o *AccountingCompanyInfo) GetAddresses() []AccountingCompanyInfoAccountingAddress {
+func (o *AccountingCompanyInfo) GetAddresses() []AccountingAddress {
 	if o == nil {
 		return nil
 	}
@@ -295,7 +150,7 @@ func (o *AccountingCompanyInfo) GetLedgerLockDate() *string {
 	return o.LedgerLockDate
 }
 
-func (o *AccountingCompanyInfo) GetPhoneNumbers() []AccountingCompanyInfoPhone {
+func (o *AccountingCompanyInfo) GetPhoneNumbers() []PhoneNumber {
 	if o == nil {
 		return nil
 	}
@@ -323,7 +178,7 @@ func (o *AccountingCompanyInfo) GetTaxNumber() *string {
 	return o.TaxNumber
 }
 
-func (o *AccountingCompanyInfo) GetWebLinks() []AccountingCompanyInfoWeblink {
+func (o *AccountingCompanyInfo) GetWebLinks() []WebLink {
 	if o == nil {
 		return nil
 	}
