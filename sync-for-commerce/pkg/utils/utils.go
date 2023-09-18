@@ -14,7 +14,7 @@ import (
 
 	"github.com/ericlagergren/decimal"
 
-	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/types"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/types"
 )
 
 const (

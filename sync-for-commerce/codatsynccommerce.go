@@ -4,8 +4,8 @@ package codatsynccommerce
 
 import (
 	"fmt"
-	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-commerce/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/utils"
 	"net/http"
 	"time"
 )
@@ -139,8 +139,8 @@ func New(opts ...SDKOption) *CodatSyncCommerce {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.1",
-			SDKVersion:        "1.1.0",
-			GenVersion:        "2.109.1",
+			SDKVersion:        "2.1.0",
+			GenVersion:        "2.116.0",
 		},
 	}
 	for _, opt := range opts {
