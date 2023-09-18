@@ -22,9 +22,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-expenses"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/operations"
 	"github.com/ericlagergren/decimal"
 )
 
@@ -48,7 +48,7 @@ func main() {
                         ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
                     },
                     Currency: "GBP",
-                    CurrencyRate: types.MustNewDecimalFromString("9764.05"),
+                    CurrencyRate: types.MustNewDecimalFromString("9840.43"),
                     ID: "4d7c6929-7770-412b-91bb-44d3bc71d111",
                     IssueDate: "2022-10-23T00:00:00.000Z",
                     Lines: []shared.ExpenseTransactionLine{
@@ -112,9 +112,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-expenses"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/operations"
 	"github.com/ericlagergren/decimal"
 )
 
@@ -136,7 +136,7 @@ func main() {
                 ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
             },
             Currency: codatsyncexpenses.String("GBP"),
-            CurrencyRate: types.MustNewDecimalFromString("6176.58"),
+            CurrencyRate: types.MustNewDecimalFromString("2603.41"),
             IssueDate: "2022-06-28T00:00:00.000Z",
             Lines: []shared.ExpenseTransactionLine{
                 shared.ExpenseTransactionLine{
@@ -157,7 +157,7 @@ func main() {
             },
             MerchantName: codatsyncexpenses.String("Amazon UK"),
             Notes: codatsyncexpenses.String("APPLE.COM/BILL - 09001077498 - Card Ending: 4590"),
-            Type: "eos",
+            Type: "maxime",
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         TransactionID: "336694d8-2dca-4cb5-a28d-3ccb83e55eee",
@@ -198,9 +198,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-expenses"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/operations"
 )
 
 func main() {
@@ -213,8 +213,8 @@ func main() {
     ctx := context.Background()
     res, err := s.Expenses.UploadAttachment(ctx, operations.UploadExpenseAttachmentRequest{
         RequestBody: &operations.UploadExpenseAttachmentRequestBody{
-            Content: []byte("atque"),
-            RequestBody: "sit",
+            Content: []byte("deleniti"),
+            RequestBody: "facilis",
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         SyncID: "6fb40d5e-b13e-11ed-afa1-0242ac120002",

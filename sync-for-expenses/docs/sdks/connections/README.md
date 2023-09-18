@@ -27,9 +27,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-expenses"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/operations"
 )
 
 func main() {
@@ -42,7 +42,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Connections.Create(ctx, operations.CreateConnectionRequest{
         RequestBody: &operations.CreateConnectionRequestBody{
-            PlatformKey: codatsyncexpenses.String("deserunt"),
+            PlatformKey: codatsyncexpenses.String("saepe"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
@@ -82,9 +82,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-expenses"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/operations"
 )
 
 func main() {
@@ -135,9 +135,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-expenses"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/operations"
 )
 
 func main() {
@@ -188,9 +188,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-expenses"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/operations"
 )
 
 func main() {
@@ -241,9 +241,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-expenses"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/operations"
 )
 
 func main() {
@@ -259,7 +259,7 @@ func main() {
         OrderBy: codatsyncexpenses.String("-modifiedDate"),
         Page: codatsyncexpenses.Int(1),
         PageSize: codatsyncexpenses.Int(100),
-        Query: codatsyncexpenses.String("distinctio"),
+        Query: codatsyncexpenses.String("fuga"),
     })
     if err != nil {
         log.Fatal(err)
@@ -297,9 +297,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-expenses"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/operations"
 )
 
 func main() {
@@ -312,7 +312,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Connections.Unlink(ctx, operations.UnlinkConnectionRequest{
         RequestBody: &operations.UnlinkConnectionUpdateConnection{
-            Status: shared.DataConnectionStatusDeauthorized.ToPointer(),
+            Status: shared.DataConnectionStatusLinked.ToPointer(),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",

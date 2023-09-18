@@ -24,9 +24,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-expenses"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/operations"
 )
 
 func main() {
@@ -77,9 +77,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-expenses"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/operations"
 )
 
 func main() {
@@ -129,9 +129,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-expenses"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/operations"
 )
 
 func main() {
@@ -181,9 +181,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-expenses"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/operations"
 )
 
 func main() {
@@ -197,7 +197,7 @@ func main() {
     res, err := s.Sync.InitiateSync(ctx, operations.InitiateSyncRequest{
         InitiateSync: &shared.InitiateSync{
             DatasetIds: []string{
-                "fce6c556-146c-43e2-90fb-008c42e141aa",
+                "a8422bb6-79d2-4322-b15b-f0cbb1e31b8b",
             },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
@@ -238,9 +238,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-expenses"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/operations"
 )
 
 func main() {

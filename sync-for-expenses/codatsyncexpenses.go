@@ -4,8 +4,8 @@ package codatsyncexpenses
 
 import (
 	"fmt"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/utils"
 	"net/http"
 	"time"
 )
@@ -154,8 +154,8 @@ func New(opts ...SDKOption) *CodatSyncExpenses {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "prealpha",
-			SDKVersion:        "1.2.0",
-			GenVersion:        "2.109.3",
+			SDKVersion:        "2.1.0",
+			GenVersion:        "2.116.0",
 		},
 	}
 	for _, opt := range opts {

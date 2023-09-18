@@ -28,8 +28,8 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-expenses"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
 )
 
 func main() {
@@ -81,9 +81,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-expenses"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/operations"
 )
 
 func main() {
@@ -133,9 +133,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-expenses"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/operations"
 )
 
 func main() {
@@ -185,9 +185,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-expenses"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/operations"
 )
 
 func main() {
@@ -240,9 +240,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-expenses"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/operations"
 )
 
 func main() {

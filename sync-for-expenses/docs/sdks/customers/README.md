@@ -32,9 +32,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-expenses"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/operations"
 )
 
 func main() {
@@ -49,63 +49,63 @@ func main() {
         Customer: &shared.Customer{
             Addresses: []shared.Items{
                 shared.Items{
-                    City: codatsyncexpenses.String("West Christa"),
-                    Country: codatsyncexpenses.String("Iceland"),
-                    Line1: codatsyncexpenses.String("cupiditate"),
-                    Line2: codatsyncexpenses.String("quos"),
-                    PostalCode: codatsyncexpenses.String("18301"),
-                    Region: codatsyncexpenses.String("dolorum"),
+                    City: codatsyncexpenses.String("New Humberto"),
+                    Country: codatsyncexpenses.String("Trinidad and Tobago"),
+                    Line1: codatsyncexpenses.String("quidem"),
+                    Line2: codatsyncexpenses.String("architecto"),
+                    PostalCode: codatsyncexpenses.String("96661"),
+                    Region: codatsyncexpenses.String("dolorem"),
                     Type: shared.AccountingAddressTypeBilling,
                 },
             },
-            ContactName: codatsyncexpenses.String("tempora"),
+            ContactName: codatsyncexpenses.String("explicabo"),
             Contacts: []shared.Contact{
                 shared.Contact{
                     Address: &shared.Items{
-                        City: codatsyncexpenses.String("Riceboro"),
-                        Country: codatsyncexpenses.String("Vanuatu"),
-                        Line1: codatsyncexpenses.String("eum"),
-                        Line2: codatsyncexpenses.String("non"),
-                        PostalCode: codatsyncexpenses.String("53585-6289"),
-                        Region: codatsyncexpenses.String("dolorum"),
-                        Type: shared.AccountingAddressTypeBilling,
+                        City: codatsyncexpenses.String("Halvorsonstead"),
+                        Country: codatsyncexpenses.String("Guinea"),
+                        Line1: codatsyncexpenses.String("minima"),
+                        Line2: codatsyncexpenses.String("excepturi"),
+                        PostalCode: codatsyncexpenses.String("46991"),
+                        Region: codatsyncexpenses.String("mollitia"),
+                        Type: shared.AccountingAddressTypeUnknown,
                     },
-                    Email: codatsyncexpenses.String("Rose.Wolff29@yahoo.com"),
+                    Email: codatsyncexpenses.String("Caroline_Ziemann@yahoo.com"),
                     ModifiedDate: codatsyncexpenses.String("2022-10-23T00:00:00.000Z"),
-                    Name: codatsyncexpenses.String("Nathaniel Hyatt"),
+                    Name: codatsyncexpenses.String("Claudia Krajcik"),
                     Phone: []shared.ContactPhone{
                         shared.ContactPhone{
                             Number: "+44 25691 154789",
-                            Type: shared.PhoneNumberTypeMobile,
+                            Type: shared.PhoneNumberTypeLandline,
                         },
                     },
                     Status: shared.CustomerStatusUnknown,
                 },
             },
-            CustomerName: codatsyncexpenses.String("accusamus"),
-            DefaultCurrency: codatsyncexpenses.String("EUR"),
-            EmailAddress: codatsyncexpenses.String("quidem"),
-            ID: codatsyncexpenses.String("9ba88f3a-6699-4707-8ba4-469b6e214195"),
+            CustomerName: codatsyncexpenses.String("laborum"),
+            DefaultCurrency: codatsyncexpenses.String("USD"),
+            EmailAddress: codatsyncexpenses.String("enim"),
+            ID: codatsyncexpenses.String("2c3f5ad0-19da-41ff-a78f-097b0074f154"),
             Metadata: &shared.Metadata{
                 IsDeleted: codatsyncexpenses.Bool(false),
             },
             ModifiedDate: codatsyncexpenses.String("2022-10-23T00:00:00.000Z"),
-            Phone: codatsyncexpenses.String("606-963-4281 x3049"),
-            RegistrationNumber: codatsyncexpenses.String("debitis"),
+            Phone: codatsyncexpenses.String("(738) 590-2655"),
+            RegistrationNumber: codatsyncexpenses.String("pariatur"),
             SourceModifiedDate: codatsyncexpenses.String("2022-10-23T00:00:00.000Z"),
-            Status: shared.CustomerStatusArchived,
+            Status: shared.CustomerStatusActive,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "deleniti": map[string]interface{}{
-                        "facilis": "in",
+                    "rem": map[string]interface{}{
+                        "voluptates": "quasi",
                     },
                 },
             },
-            TaxNumber: codatsyncexpenses.String("architecto"),
+            TaxNumber: codatsyncexpenses.String("repudiandae"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codatsyncexpenses.Int(99569),
+        TimeoutInMinutes: codatsyncexpenses.Int(575947),
     })
     if err != nil {
         log.Fatal(err)
@@ -150,9 +150,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-expenses"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/operations"
 )
 
 func main() {
@@ -165,7 +165,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Customers.Get(ctx, operations.GetCustomerRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        CustomerID: "repudiandae",
+        CustomerID: "veritatis",
     })
     if err != nil {
         log.Fatal(err)
@@ -208,9 +208,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-expenses"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/operations"
 )
 
 func main() {
@@ -226,7 +226,7 @@ func main() {
         OrderBy: codatsyncexpenses.String("-modifiedDate"),
         Page: codatsyncexpenses.Int(1),
         PageSize: codatsyncexpenses.Int(100),
-        Query: codatsyncexpenses.String("ullam"),
+        Query: codatsyncexpenses.String("itaque"),
     })
     if err != nil {
         log.Fatal(err)
@@ -273,9 +273,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-expenses"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/operations"
 )
 
 func main() {
@@ -290,65 +290,65 @@ func main() {
         Customer: &shared.Customer{
             Addresses: []shared.Items{
                 shared.Items{
-                    City: codatsyncexpenses.String("Kossworth"),
-                    Country: codatsyncexpenses.String("Sudan"),
-                    Line1: codatsyncexpenses.String("sed"),
-                    Line2: codatsyncexpenses.String("saepe"),
-                    PostalCode: codatsyncexpenses.String("01561-1788"),
-                    Region: codatsyncexpenses.String("maxime"),
-                    Type: shared.AccountingAddressTypeBilling,
+                    City: codatsyncexpenses.String("West Adele"),
+                    Country: codatsyncexpenses.String("Norway"),
+                    Line1: codatsyncexpenses.String("quibusdam"),
+                    Line2: codatsyncexpenses.String("explicabo"),
+                    PostalCode: codatsyncexpenses.String("78221-3550"),
+                    Region: codatsyncexpenses.String("magni"),
+                    Type: shared.AccountingAddressTypeDelivery,
                 },
             },
-            ContactName: codatsyncexpenses.String("excepturi"),
+            ContactName: codatsyncexpenses.String("ipsam"),
             Contacts: []shared.Contact{
                 shared.Contact{
                     Address: &shared.Items{
-                        City: codatsyncexpenses.String("South Alexanneton"),
-                        Country: codatsyncexpenses.String("Wallis and Futuna"),
-                        Line1: codatsyncexpenses.String("quidem"),
-                        Line2: codatsyncexpenses.String("ipsam"),
-                        PostalCode: codatsyncexpenses.String("47083"),
-                        Region: codatsyncexpenses.String("voluptatibus"),
-                        Type: shared.AccountingAddressTypeUnknown,
+                        City: codatsyncexpenses.String("East Marianostead"),
+                        Country: codatsyncexpenses.String("Estonia"),
+                        Line1: codatsyncexpenses.String("facilis"),
+                        Line2: codatsyncexpenses.String("tempore"),
+                        PostalCode: codatsyncexpenses.String("94275"),
+                        Region: codatsyncexpenses.String("aliquid"),
+                        Type: shared.AccountingAddressTypeBilling,
                     },
-                    Email: codatsyncexpenses.String("Darian.Anderson94@hotmail.com"),
+                    Email: codatsyncexpenses.String("Kianna89@hotmail.com"),
                     ModifiedDate: codatsyncexpenses.String("2022-10-23T00:00:00.000Z"),
-                    Name: codatsyncexpenses.String("Ernest Hayes"),
+                    Name: codatsyncexpenses.String("Arnold Kirlin"),
                     Phone: []shared.ContactPhone{
                         shared.ContactPhone{
-                            Number: "+44 25691 154789",
-                            Type: shared.PhoneNumberTypeLandline,
+                            Number: "01224 658 999",
+                            Type: shared.PhoneNumberTypePrimary,
                         },
                     },
                     Status: shared.CustomerStatusUnknown,
                 },
             },
-            CustomerName: codatsyncexpenses.String("eos"),
-            DefaultCurrency: codatsyncexpenses.String("GBP"),
-            EmailAddress: codatsyncexpenses.String("dolores"),
-            ID: codatsyncexpenses.String("c73d5fe9-b90c-4289-89b3-fe49a8d9cbf4"),
+            CustomerName: codatsyncexpenses.String("cumque"),
+            DefaultCurrency: codatsyncexpenses.String("EUR"),
+            EmailAddress: codatsyncexpenses.String("ea"),
+            ID: codatsyncexpenses.String("6ae395ef-b9ba-488f-ba66-997074ba4469"),
             Metadata: &shared.Metadata{
                 IsDeleted: codatsyncexpenses.Bool(false),
             },
             ModifiedDate: codatsyncexpenses.String("2022-10-23T00:00:00.000Z"),
-            Phone: codatsyncexpenses.String("1-322-329-5744 x926"),
-            RegistrationNumber: codatsyncexpenses.String("numquam"),
+            Phone: codatsyncexpenses.String("1-911-405-3555 x069"),
+            RegistrationNumber: codatsyncexpenses.String("mollitia"),
             SourceModifiedDate: codatsyncexpenses.String("2022-10-23T00:00:00.000Z"),
-            Status: shared.CustomerStatusUnknown,
+            Status: shared.CustomerStatusActive,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "ipsa": map[string]interface{}{
-                        "iure": "odio",
+                    "dolor": map[string]interface{}{
+                        "necessitatibus": "odit",
                     },
                 },
             },
-            TaxNumber: codatsyncexpenses.String("quaerat"),
+            TaxNumber: codatsyncexpenses.String("nemo"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        CustomerID: "accusamus",
+        CustomerID: "quasi",
         ForceUpdate: codatsyncexpenses.Bool(false),
-        TimeoutInMinutes: codatsyncexpenses.Int(696344),
+        TimeoutInMinutes: codatsyncexpenses.Int(435865),
     })
     if err != nil {
         log.Fatal(err)
