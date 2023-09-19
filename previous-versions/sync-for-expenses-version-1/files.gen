@@ -82,7 +82,9 @@ pkg/models/shared/integrationtype.go
 pkg/models/shared/transactionmetadatalist.go
 pkg/models/shared/security.go
 pkg/models/shared/synccompletewebhook.go
+pkg/models/shared/synccompletewebhookdata.go
 pkg/models/shared/syncfailedwebhook.go
+pkg/models/shared/syncfailedwebhookdata.go
 pkg/models/shared/syncstartedwebhook.go
 pkg/models/webhooks/synccomplete.go
 pkg/models/webhooks/syncfailed.go
@@ -189,10 +191,10 @@ docs/models/shared/transactionstatus.md
 docs/models/shared/integrationtype.md
 docs/models/shared/transactionmetadatalist.md
 docs/models/shared/security.md
-docs/models/shared/synccompletewebhookdata.md
 docs/models/shared/synccompletewebhook.md
-docs/models/shared/syncfailedwebhookdata.md
+docs/models/shared/synccompletewebhookdata.md
 docs/models/shared/syncfailedwebhook.md
+docs/models/shared/syncfailedwebhookdata.md
 docs/models/shared/syncstartedwebhookdata.md
 docs/models/shared/syncstartedwebhook.md
 docs/models/webhooks/synccompleteresponse.md
