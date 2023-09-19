@@ -98,6 +98,7 @@ pkg/models/shared/itemref.go
 pkg/models/shared/loantransactionsreportinfo.go
 pkg/models/shared/security.go
 pkg/models/shared/accountcategoriesupdatedwebhook.go
+pkg/models/shared/accountcategoriesupdatedwebhookdata.go
 pkg/models/webhooks/accountcategoriesupdated.go
 docs/sdks/codatassess/README.md
 docs/models/operations/option.md
@@ -209,8 +210,8 @@ docs/models/shared/loanref.md
 docs/models/shared/itemref.md
 docs/models/shared/loantransactionsreportinfo.md
 docs/models/shared/security.md
-docs/models/shared/accountcategoriesupdatedwebhookdata.md
 docs/models/shared/accountcategoriesupdatedwebhook.md
+docs/models/shared/accountcategoriesupdatedwebhookdata.md
 docs/models/webhooks/accountcategoriesupdatedresponse.md
 pkg/models/operations/options.go
 .gitattributes
