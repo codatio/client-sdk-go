@@ -46,8 +46,8 @@ import(
 )
 
 func main() {
-    s := codatlending.New(
-        codatlending.WithSecurity(shared.Security{
+    s := lending.New(
+        lending.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -56,9 +56,9 @@ func main() {
     res, err := s.Sales.Reports.GetOrders(ctx, operations.GetCommerceOrdersReportRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        IncludeDisplayNames: codatlending.Bool(false),
-        NumberOfPeriods: 138183,
-        PeriodLength: 778346,
+        IncludeDisplayNames: lending.Bool(false),
+        NumberOfPeriods: 992012,
+        PeriodLength: 241545,
         PeriodUnit: shared.PeriodUnitDay,
         ReportDate: "29-09-2020",
     })
@@ -128,8 +128,8 @@ import(
 )
 
 func main() {
-    s := codatlending.New(
-        codatlending.WithSecurity(shared.Security{
+    s := lending.New(
+        lending.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -138,10 +138,10 @@ func main() {
     res, err := s.Sales.Reports.GetRefunds(ctx, operations.GetCommerceRefundsReportRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        IncludeDisplayNames: codatlending.Bool(false),
-        NumberOfPeriods: 949572,
-        PeriodLength: 368725,
-        PeriodUnit: shared.PeriodUnitMonth,
+        IncludeDisplayNames: lending.Bool(false),
+        NumberOfPeriods: 228263,
+        PeriodLength: 105906,
+        PeriodUnit: shared.PeriodUnitWeek,
         ReportDate: "29-09-2020",
     })
     if err != nil {

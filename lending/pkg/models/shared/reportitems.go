@@ -5,7 +5,8 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/types"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 type ReportItemsLoanTransactionType string
@@ -43,7 +44,7 @@ func (e *ReportItemsLoanTransactionType) UnmarshalJSON(data []byte) error {
 
 type ReportItems struct {
 	// The loan transaction amount.
-	Amount *types.Decimal `json:"amount,omitempty"`
+	Amount *decimal.Big `decimal:"number" json:"amount,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -69,7 +70,18 @@ type ReportItems struct {
 	LoanTransactionType *ReportItemsLoanTransactionType `json:"loanTransactionType,omitempty"`
 }
 
-func (o *ReportItems) GetAmount() *types.Decimal {
+func (r ReportItems) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
+}
+
+func (r *ReportItems) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *ReportItems) GetAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}

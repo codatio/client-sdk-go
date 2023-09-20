@@ -52,8 +52,8 @@ import(
 )
 
 func main() {
-    s := codatlending.New(
-        codatlending.WithSecurity(shared.Security{
+    s := lending.New(
+        lending.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -62,10 +62,10 @@ func main() {
     res, err := s.Sales.Metrics.GetCustomerRetention(ctx, operations.GetCommerceCustomerRetentionMetricsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        IncludeDisplayNames: codatlending.Bool(false),
-        NumberOfPeriods: 652790,
-        PeriodLength: 208876,
-        PeriodUnit: shared.PeriodUnitMonth,
+        IncludeDisplayNames: lending.Bool(false),
+        NumberOfPeriods: 363161,
+        PeriodLength: 924967,
+        PeriodUnit: shared.PeriodUnitWeek,
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -132,8 +132,8 @@ import(
 )
 
 func main() {
-    s := codatlending.New(
-        codatlending.WithSecurity(shared.Security{
+    s := lending.New(
+        lending.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -142,10 +142,10 @@ func main() {
     res, err := s.Sales.Metrics.GetLifetimeValue(ctx, operations.GetCommerceLifetimeValueMetricsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        IncludeDisplayNames: codatlending.Bool(false),
-        NumberOfPeriods: 161309,
-        PeriodLength: 995300,
-        PeriodUnit: shared.PeriodUnitMonth,
+        IncludeDisplayNames: lending.Bool(false),
+        NumberOfPeriods: 46007,
+        PeriodLength: 738683,
+        PeriodUnit: shared.PeriodUnitDay,
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -213,8 +213,8 @@ import(
 )
 
 func main() {
-    s := codatlending.New(
-        codatlending.WithSecurity(shared.Security{
+    s := lending.New(
+        lending.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -223,10 +223,10 @@ func main() {
     res, err := s.Sales.Metrics.GetRevenue(ctx, operations.GetCommerceRevenueMetricsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        IncludeDisplayNames: codatlending.Bool(false),
-        NumberOfPeriods: 581850,
-        PeriodLength: 253291,
-        PeriodUnit: shared.PeriodUnitWeek,
+        IncludeDisplayNames: lending.Bool(false),
+        NumberOfPeriods: 449083,
+        PeriodLength: 348519,
+        PeriodUnit: shared.PeriodUnitYear,
         ReportDate: "29-09-2020",
     })
     if err != nil {

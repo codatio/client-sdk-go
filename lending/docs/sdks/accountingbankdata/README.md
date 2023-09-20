@@ -33,8 +33,8 @@ import(
 )
 
 func main() {
-    s := codatlending.New(
-        codatlending.WithSecurity(shared.Security{
+    s := lending.New(
+        lending.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -44,10 +44,10 @@ func main() {
         AccountID: "distinctio",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        OrderBy: codatlending.String("-modifiedDate"),
-        Page: codatlending.Int(1),
-        PageSize: codatlending.Int(100),
-        Query: codatlending.String("quibusdam"),
+        OrderBy: lending.String("-modifiedDate"),
+        Page: lending.Int(1),
+        PageSize: lending.Int(100),
+        Query: lending.String("quibusdam"),
     })
     if err != nil {
         log.Fatal(err)

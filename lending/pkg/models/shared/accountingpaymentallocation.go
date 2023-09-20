@@ -3,7 +3,8 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/types"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 type AccountingPaymentAllocationAllocation struct {
@@ -60,9 +61,20 @@ type AccountingPaymentAllocationAllocation struct {
 	// | **GBP**          | £20            | 1.277         | $25.54                     |
 	// | **EUR**          | €20            | 1.134         | $22.68                     |
 	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
-	CurrencyRate *types.Decimal `json:"currencyRate,omitempty"`
+	CurrencyRate *decimal.Big `decimal:"number" json:"currencyRate,omitempty"`
 	// The total amount that has been allocated.
-	TotalAmount *types.Decimal `json:"totalAmount,omitempty"`
+	TotalAmount *decimal.Big `decimal:"number" json:"totalAmount,omitempty"`
+}
+
+func (a AccountingPaymentAllocationAllocation) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AccountingPaymentAllocationAllocation) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *AccountingPaymentAllocationAllocation) GetAllocatedOnDate() *string {
@@ -79,14 +91,14 @@ func (o *AccountingPaymentAllocationAllocation) GetCurrency() *string {
 	return o.Currency
 }
 
-func (o *AccountingPaymentAllocationAllocation) GetCurrencyRate() *types.Decimal {
+func (o *AccountingPaymentAllocationAllocation) GetCurrencyRate() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.CurrencyRate
 }
 
-func (o *AccountingPaymentAllocationAllocation) GetTotalAmount() *types.Decimal {
+func (o *AccountingPaymentAllocationAllocation) GetTotalAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}

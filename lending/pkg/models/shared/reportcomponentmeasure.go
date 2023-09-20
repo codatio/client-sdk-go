@@ -3,13 +3,25 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/types"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 type ReportComponentMeasure struct {
-	Index              *int64         `json:"index,omitempty"`
-	MeasureDisplayName *string        `json:"measureDisplayName,omitempty"`
-	Value              *types.Decimal `json:"value,omitempty"`
+	Index              *int64       `json:"index,omitempty"`
+	MeasureDisplayName *string      `json:"measureDisplayName,omitempty"`
+	Value              *decimal.Big `decimal:"number" json:"value,omitempty"`
+}
+
+func (r ReportComponentMeasure) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
+}
+
+func (r *ReportComponentMeasure) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ReportComponentMeasure) GetIndex() *int64 {
@@ -26,7 +38,7 @@ func (o *ReportComponentMeasure) GetMeasureDisplayName() *string {
 	return o.MeasureDisplayName
 }
 
-func (o *ReportComponentMeasure) GetValue() *types.Decimal {
+func (o *ReportComponentMeasure) GetValue() *decimal.Big {
 	if o == nil {
 		return nil
 	}

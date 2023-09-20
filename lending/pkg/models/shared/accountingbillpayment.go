@@ -3,7 +3,8 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/types"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 // AccountingBillPayment - > **Bill payments or payments?**
@@ -185,8 +186,8 @@ type AccountingBillPayment struct {
 	// | **GBP**          | £20            | 1.277         | $25.54                     |
 	// | **EUR**          | €20            | 1.134         | $22.68                     |
 	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
-	CurrencyRate *types.Decimal `json:"currencyRate,omitempty"`
-	Date         string         `json:"date"`
+	CurrencyRate *decimal.Big `decimal:"number" json:"currencyRate,omitempty"`
+	Date         string       `json:"date"`
 	// Identifier for the bill payment, unique for the company in the accounting platform.
 	ID *string `json:"id,omitempty"`
 	// An array of bill payment lines.
@@ -205,7 +206,18 @@ type AccountingBillPayment struct {
 	SupplementalData *SupplementalData `json:"supplementalData,omitempty"`
 	SupplierRef      *SupplierRef      `json:"supplierRef,omitempty"`
 	// Amount of the payment in the payment currency. This value never changes and represents the amount of money that is paid into the supplier's account.
-	TotalAmount *types.Decimal `json:"totalAmount,omitempty"`
+	TotalAmount *decimal.Big `decimal:"number" json:"totalAmount,omitempty"`
+}
+
+func (a AccountingBillPayment) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AccountingBillPayment) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *AccountingBillPayment) GetAccountRef() *AccountRef {
@@ -222,7 +234,7 @@ func (o *AccountingBillPayment) GetCurrency() *string {
 	return o.Currency
 }
 
-func (o *AccountingBillPayment) GetCurrencyRate() *types.Decimal {
+func (o *AccountingBillPayment) GetCurrencyRate() *decimal.Big {
 	if o == nil {
 		return nil
 	}
@@ -306,7 +318,7 @@ func (o *AccountingBillPayment) GetSupplierRef() *SupplierRef {
 	return o.SupplierRef
 }
 
-func (o *AccountingBillPayment) GetTotalAmount() *types.Decimal {
+func (o *AccountingBillPayment) GetTotalAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}

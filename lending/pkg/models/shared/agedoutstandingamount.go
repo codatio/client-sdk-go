@@ -3,12 +3,13 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/types"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 type AgedOutstandingAmount struct {
 	// The amount outstanding.
-	Amount *types.Decimal `json:"amount,omitempty"`
+	Amount *decimal.Big `decimal:"number" json:"amount,omitempty"`
 	// Array of details.
 	Details []AgedOutstandingAmountDetail `json:"details,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
@@ -53,7 +54,18 @@ type AgedOutstandingAmount struct {
 	ToDate *string `json:"toDate,omitempty"`
 }
 
-func (o *AgedOutstandingAmount) GetAmount() *types.Decimal {
+func (a AgedOutstandingAmount) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AgedOutstandingAmount) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *AgedOutstandingAmount) GetAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}

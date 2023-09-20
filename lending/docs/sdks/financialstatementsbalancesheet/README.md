@@ -23,8 +23,8 @@ import(
 )
 
 func main() {
-    s := codatlending.New(
-        codatlending.WithSecurity(shared.Security{
+    s := lending.New(
+        lending.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -34,7 +34,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         PeriodLength: 4,
         PeriodsToCompare: 20,
-        StartMonth: codatlending.String("2022-10-23T00:00:00.000Z"),
+        StartMonth: lending.String("2022-10-23T00:00:00.000Z"),
     })
     if err != nil {
         log.Fatal(err)
@@ -80,8 +80,8 @@ import(
 )
 
 func main() {
-    s := codatlending.New(
-        codatlending.WithSecurity(shared.Security{
+    s := lending.New(
+        lending.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -89,7 +89,7 @@ func main() {
     ctx := context.Background()
     res, err := s.FinancialStatements.BalanceSheet.GetCategorizedAccounts(ctx, operations.GetCategorizedBalanceSheetStatementRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        NumberOfPeriods: codatlending.Int64(568434),
+        NumberOfPeriods: lending.Int64(568434),
         ReportDate: "29-09-2020",
     })
     if err != nil {

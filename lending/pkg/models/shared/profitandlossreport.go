@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/types"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
@@ -31,16 +31,16 @@ type ProfitAndLossReport struct {
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	FromDate *string `json:"fromDate,omitempty"`
 	// Gross profit of the company in the given date range.
-	GrossProfit types.Decimal `json:"grossProfit"`
-	Income      *ReportLine   `json:"income,omitempty"`
+	GrossProfit *decimal.Big `decimal:"number" json:"grossProfit"`
+	Income      *ReportLine  `json:"income,omitempty"`
 	// Net operating profit of the company in the given date range.
-	NetOperatingProfit types.Decimal `json:"netOperatingProfit"`
+	NetOperatingProfit *decimal.Big `decimal:"number" json:"netOperatingProfit"`
 	// Net other income of the company in the given date range.
-	NetOtherIncome types.Decimal `json:"netOtherIncome"`
+	NetOtherIncome *decimal.Big `decimal:"number" json:"netOtherIncome"`
 	// Net profit of the company in the given date range.
-	NetProfit     types.Decimal `json:"netProfit"`
-	OtherExpenses *ReportLine   `json:"otherExpenses,omitempty"`
-	OtherIncome   *ReportLine   `json:"otherIncome,omitempty"`
+	NetProfit     *decimal.Big `decimal:"number" json:"netProfit"`
+	OtherExpenses *ReportLine  `json:"otherExpenses,omitempty"`
+	OtherIncome   *ReportLine  `json:"otherIncome,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -61,6 +61,17 @@ type ProfitAndLossReport struct {
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	ToDate *string `json:"toDate,omitempty"`
+}
+
+func (p ProfitAndLossReport) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *ProfitAndLossReport) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ProfitAndLossReport) GetCostOfSales() *ReportLine {
@@ -84,9 +95,9 @@ func (o *ProfitAndLossReport) GetFromDate() *string {
 	return o.FromDate
 }
 
-func (o *ProfitAndLossReport) GetGrossProfit() types.Decimal {
+func (o *ProfitAndLossReport) GetGrossProfit() *decimal.Big {
 	if o == nil {
-		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
+		return new(decimal.Big).SetFloat64(0.0)
 	}
 	return o.GrossProfit
 }
@@ -98,23 +109,23 @@ func (o *ProfitAndLossReport) GetIncome() *ReportLine {
 	return o.Income
 }
 
-func (o *ProfitAndLossReport) GetNetOperatingProfit() types.Decimal {
+func (o *ProfitAndLossReport) GetNetOperatingProfit() *decimal.Big {
 	if o == nil {
-		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
+		return new(decimal.Big).SetFloat64(0.0)
 	}
 	return o.NetOperatingProfit
 }
 
-func (o *ProfitAndLossReport) GetNetOtherIncome() types.Decimal {
+func (o *ProfitAndLossReport) GetNetOtherIncome() *decimal.Big {
 	if o == nil {
-		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
+		return new(decimal.Big).SetFloat64(0.0)
 	}
 	return o.NetOtherIncome
 }
 
-func (o *ProfitAndLossReport) GetNetProfit() types.Decimal {
+func (o *ProfitAndLossReport) GetNetProfit() *decimal.Big {
 	if o == nil {
-		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
+		return new(decimal.Big).SetFloat64(0.0)
 	}
 	return o.NetProfit
 }

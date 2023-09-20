@@ -33,15 +33,15 @@ import(
 )
 
 func main() {
-    s := codatlending.New(
-        codatlending.WithSecurity(shared.Security{
+    s := lending.New(
+        lending.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
     ctx := context.Background()
     res, err := s.Companies.Create(ctx, shared.CompanyRequestBody{
-        Description: codatlending.String("Requested early access to the new financing scheme."),
+        Description: lending.String("Requested early access to the new financing scheme."),
         Name: "Bank of Dave",
     })
     if err != nil {
@@ -87,8 +87,8 @@ import(
 )
 
 func main() {
-    s := codatlending.New(
-        codatlending.WithSecurity(shared.Security{
+    s := lending.New(
+        lending.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -139,8 +139,8 @@ import(
 )
 
 func main() {
-    s := codatlending.New(
-        codatlending.WithSecurity(shared.Security{
+    s := lending.New(
+        lending.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -191,18 +191,18 @@ import(
 )
 
 func main() {
-    s := codatlending.New(
-        codatlending.WithSecurity(shared.Security{
+    s := lending.New(
+        lending.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
     ctx := context.Background()
     res, err := s.Companies.List(ctx, operations.ListCompaniesRequest{
-        OrderBy: codatlending.String("-modifiedDate"),
-        Page: codatlending.Int(1),
-        PageSize: codatlending.Int(100),
-        Query: codatlending.String("corrupti"),
+        OrderBy: lending.String("-modifiedDate"),
+        Page: lending.Int(1),
+        PageSize: lending.Int(100),
+        Query: lending.String("corrupti"),
     })
     if err != nil {
         log.Fatal(err)
@@ -246,8 +246,8 @@ import(
 )
 
 func main() {
-    s := codatlending.New(
-        codatlending.WithSecurity(shared.Security{
+    s := lending.New(
+        lending.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -255,7 +255,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Companies.Update(ctx, operations.UpdateCompanyRequest{
         CompanyRequestBody: &shared.CompanyRequestBody{
-            Description: codatlending.String("Requested early access to the new financing scheme."),
+            Description: lending.String("Requested early access to the new financing scheme."),
             Name: "Bank of Dave",
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
