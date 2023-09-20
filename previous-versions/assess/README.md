@@ -27,8 +27,8 @@ import(
 )
 
 func main() {
-    s := codatassess.New(
-        codatassess.WithSecurity(shared.Security{
+    s := assess.New(
+        assess.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -37,10 +37,10 @@ func main() {
     res, err := s.DataIntegrity.Details(ctx, operations.ListDataTypeDataIntegrityDetailsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         DataType: shared.DataIntegrityDataTypeBankingAccounts,
-        OrderBy: codatassess.String("-modifiedDate"),
-        Page: codatassess.Int(1),
-        PageSize: codatassess.Int(100),
-        Query: codatassess.String("corrupti"),
+        OrderBy: assess.String("-modifiedDate"),
+        Page: assess.Int(1),
+        PageSize: assess.Int(100),
+        Query: assess.String("corrupti"),
     })
     if err != nil {
         log.Fatal(err)
