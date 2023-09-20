@@ -26,8 +26,8 @@ import(
 )
 
 func main() {
-    s := codatlending.New(
-        codatlending.WithSecurity(shared.Security{
+    s := lending.New(
+        lending.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -37,10 +37,10 @@ func main() {
         AccountID: "corrupti",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        OrderBy: codatlending.String("-modifiedDate"),
-        Page: codatlending.Int(1),
-        PageSize: codatlending.Int(100),
-        Query: codatlending.String("provident"),
+        OrderBy: lending.String("-modifiedDate"),
+        Page: lending.Int(1),
+        PageSize: lending.Int(100),
+        Query: lending.String("provident"),
     })
     if err != nil {
         log.Fatal(err)
@@ -224,6 +224,42 @@ func main() {
 
 * [Get](docs/sdks/financialstatementsprofitandloss/README.md#get) - Get profit and loss
 * [GetCategorizedAccounts](docs/sdks/financialstatementsprofitandloss/README.md#getcategorizedaccounts) - Get categorized profit and loss statement
+
+
+### [LoanWriteback.Accounts](docs/sdks/loanwritebackaccounts/README.md)
+
+* [Create](docs/sdks/loanwritebackaccounts/README.md#create) - Create account
+* [GetCreateModel](docs/sdks/loanwritebackaccounts/README.md#getcreatemodel) - Get create account model
+
+### [LoanWriteback.BankAccounts](docs/sdks/loanwritebackbankaccounts/README.md)
+
+* [Create](docs/sdks/loanwritebackbankaccounts/README.md#create) - Create bank account
+* [GetCreateUpdateModel](docs/sdks/loanwritebackbankaccounts/README.md#getcreateupdatemodel) - Get create/update bank account model
+
+### [LoanWriteback.BankTransactions](docs/sdks/loanwritebackbanktransactions/README.md)
+
+* [Create](docs/sdks/loanwritebackbanktransactions/README.md#create) - Create bank account transactions
+* [GetCreateModel](docs/sdks/loanwritebackbanktransactions/README.md#getcreatemodel) - Get create bank account transactions model
+
+### [LoanWriteback.CreateOperations](docs/sdks/loanwritebackcreateoperations/README.md)
+
+* [Get](docs/sdks/loanwritebackcreateoperations/README.md#get) - Get create operation
+* [List](docs/sdks/loanwritebackcreateoperations/README.md#list) - List create operations
+
+### [LoanWriteback.DirectCosts](docs/sdks/loanwritebackdirectcosts/README.md)
+
+* [Create](docs/sdks/loanwritebackdirectcosts/README.md#create) - Create direct cost
+* [GetCreateModel](docs/sdks/loanwritebackdirectcosts/README.md#getcreatemodel) - Get create direct cost model
+
+### [LoanWriteback.Suppliers](docs/sdks/loanwritebacksuppliers/README.md)
+
+* [Create](docs/sdks/loanwritebacksuppliers/README.md#create) - Create supplier
+* [GetCreateUpdateModel](docs/sdks/loanwritebacksuppliers/README.md#getcreateupdatemodel) - Get create/update supplier model
+
+### [LoanWriteback.Transfers](docs/sdks/loanwritebacktransfers/README.md)
+
+* [Create](docs/sdks/loanwritebacktransfers/README.md#create) - Create transfer
+* [GetCreateModel](docs/sdks/loanwritebacktransfers/README.md#getcreatemodel) - Get create transfer model
 
 ### [ManageData](docs/sdks/managedata/README.md)
 

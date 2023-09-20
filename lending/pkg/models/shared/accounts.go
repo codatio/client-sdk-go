@@ -3,7 +3,8 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/types"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 type Accounts struct {
@@ -22,11 +23,22 @@ type Accounts struct {
 	// There are only a very small number of edge cases where this currency code is returned by the Codat system.
 	Currency *string `json:"currency,omitempty"`
 	// The balance of the bank account.
-	CurrentBalance *types.Decimal `json:"currentBalance,omitempty"`
+	CurrentBalance *decimal.Big `decimal:"number" json:"currentBalance,omitempty"`
 	// Name of the banking data source, e.g. "Plaid".
 	PlatformName *string `json:"platformName,omitempty"`
 	// A source reference containing the `sourceType` object "Banking".
 	SourceRef *SourceRef `json:"sourceRef,omitempty"`
+}
+
+func (a Accounts) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *Accounts) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *Accounts) GetAccountName() *string {
@@ -57,7 +69,7 @@ func (o *Accounts) GetCurrency() *string {
 	return o.Currency
 }
 
-func (o *Accounts) GetCurrentBalance() *types.Decimal {
+func (o *Accounts) GetCurrentBalance() *decimal.Big {
 	if o == nil {
 		return nil
 	}

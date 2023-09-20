@@ -3,7 +3,8 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/types"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 // BankingTransaction - The Banking Transactions data type provides an immutable source of up-to-date information on income and expenditure.
@@ -15,7 +16,7 @@ type BankingTransaction struct {
 	// The unique identifier of the bank account.
 	AccountID string `json:"accountId"`
 	// The amount of the bank transaction.
-	Amount *types.Decimal `json:"amount,omitempty"`
+	Amount *decimal.Big `decimal:"number" json:"amount,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -72,6 +73,17 @@ type BankingTransaction struct {
 	TransactionCategoryRef *TransactionCategoryRef `json:"transactionCategoryRef,omitempty"`
 }
 
+func (b BankingTransaction) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(b, "", false)
+}
+
+func (b *BankingTransaction) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &b, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (o *BankingTransaction) GetAccountID() string {
 	if o == nil {
 		return ""
@@ -79,7 +91,7 @@ func (o *BankingTransaction) GetAccountID() string {
 	return o.AccountID
 }
 
-func (o *BankingTransaction) GetAmount() *types.Decimal {
+func (o *BankingTransaction) GetAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}

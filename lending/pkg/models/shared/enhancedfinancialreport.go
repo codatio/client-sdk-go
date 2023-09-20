@@ -3,7 +3,8 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/types"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 type EnhancedFinancialReportReportItem struct {
@@ -13,7 +14,7 @@ type EnhancedFinancialReportReportItem struct {
 	// Name of the account.
 	AccountName *string `json:"accountName,omitempty"`
 	// Balance of the account as reported on the profit and loss or Balance sheet.
-	Balance *types.Decimal `json:"balance,omitempty"`
+	Balance *decimal.Big `decimal:"number" json:"balance,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -34,6 +35,17 @@ type EnhancedFinancialReportReportItem struct {
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	Date *string `json:"date,omitempty"`
+}
+
+func (e EnhancedFinancialReportReportItem) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *EnhancedFinancialReportReportItem) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *EnhancedFinancialReportReportItem) GetAccountCategory() *EnhancedReportAccountCategory {
@@ -57,7 +69,7 @@ func (o *EnhancedFinancialReportReportItem) GetAccountName() *string {
 	return o.AccountName
 }
 
-func (o *EnhancedFinancialReportReportItem) GetBalance() *types.Decimal {
+func (o *EnhancedFinancialReportReportItem) GetBalance() *decimal.Big {
 	if o == nil {
 		return nil
 	}

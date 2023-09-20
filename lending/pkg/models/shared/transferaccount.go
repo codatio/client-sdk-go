@@ -3,14 +3,15 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/types"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 type TransferAccount struct {
 	// Data types that reference an account, for example bill and invoice line items, use an accountRef that includes the ID and name of the linked account.
 	AccountRef *AccountRef `json:"accountRef,omitempty"`
 	// The amount transferred between accounts.
-	Amount *types.Decimal `json:"amount,omitempty"`
+	Amount *decimal.Big `decimal:"number" json:"amount,omitempty"`
 	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code, e.g. _GBP_.
 	//
 	// ## Unknown currencies
@@ -21,6 +22,17 @@ type TransferAccount struct {
 	Currency *string `json:"currency,omitempty"`
 }
 
+func (t TransferAccount) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
+}
+
+func (t *TransferAccount) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (o *TransferAccount) GetAccountRef() *AccountRef {
 	if o == nil {
 		return nil
@@ -28,7 +40,7 @@ func (o *TransferAccount) GetAccountRef() *AccountRef {
 	return o.AccountRef
 }
 
-func (o *TransferAccount) GetAmount() *types.Decimal {
+func (o *TransferAccount) GetAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}

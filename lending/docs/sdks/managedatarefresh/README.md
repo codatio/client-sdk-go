@@ -27,8 +27,8 @@ import(
 )
 
 func main() {
-    s := codatlending.New(
-        codatlending.WithSecurity(shared.Security{
+    s := lending.New(
+        lending.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -81,8 +81,8 @@ import(
 )
 
 func main() {
-    s := codatlending.New(
-        codatlending.WithSecurity(shared.Security{
+    s := lending.New(
+        lending.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -90,7 +90,7 @@ func main() {
     ctx := context.Background()
     res, err := s.ManageData.Refresh.DataType(ctx, operations.RefreshDataTypeRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ConnectionID: codatlending.String("29396fea-7596-4eb1-8faa-a2352c595590"),
+        ConnectionID: lending.String("dac7af51-5cc4-413a-a63a-ae8d67864dbb"),
         DataType: shared.DataTypeInvoices,
     })
     if err != nil {

@@ -5,6 +5,7 @@ package operations
 import (
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/types"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/utils"
 	"net/http"
 )
 
@@ -16,6 +17,17 @@ type GetAccountingAgedCreditorsReportRequest struct {
 	PeriodLengthDays *int `queryParam:"style=form,explode=true,name=periodLengthDays"`
 	// Date the report is generated up to.
 	ReportDate *types.Date `queryParam:"style=form,explode=true,name=reportDate"`
+}
+
+func (g GetAccountingAgedCreditorsReportRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetAccountingAgedCreditorsReportRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *GetAccountingAgedCreditorsReportRequest) GetCompanyID() string {

@@ -3,7 +3,8 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/types"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 // AccountingAccountValidDataTypeLinks - When querying Codat's data model, some data types return `validDatatypeLinks` metadata in the JSON response. This indicates where that object can be used as a reference—a _valid link_—when creating or updating other data.
@@ -105,7 +106,7 @@ type AccountingAccount struct {
 	// There are only a very small number of edge cases where this currency code is returned by the Codat system.
 	Currency *string `json:"currency,omitempty"`
 	// Current balance in the account.
-	CurrentBalance *types.Decimal `json:"currentBalance,omitempty"`
+	CurrentBalance *decimal.Big `decimal:"number" json:"currentBalance,omitempty"`
 	// Description for the account.
 	Description *string `json:"description,omitempty"`
 	// Full category of the account.
@@ -136,6 +137,17 @@ type AccountingAccount struct {
 	ValidDatatypeLinks []AccountingAccountValidDataTypeLinks `json:"validDatatypeLinks,omitempty"`
 }
 
+func (a AccountingAccount) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AccountingAccount) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (o *AccountingAccount) GetCurrency() *string {
 	if o == nil {
 		return nil
@@ -143,7 +155,7 @@ func (o *AccountingAccount) GetCurrency() *string {
 	return o.Currency
 }
 
-func (o *AccountingAccount) GetCurrentBalance() *types.Decimal {
+func (o *AccountingAccount) GetCurrentBalance() *decimal.Big {
 	if o == nil {
 		return nil
 	}

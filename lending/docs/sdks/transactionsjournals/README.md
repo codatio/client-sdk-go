@@ -30,8 +30,8 @@ import(
 )
 
 func main() {
-    s := codatlending.New(
-        codatlending.WithSecurity(shared.Security{
+    s := lending.New(
+        lending.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -39,7 +39,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Transactions.Journals.Get(ctx, operations.GetAccountingJournalRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        JournalID: "praesentium",
+        JournalID: "similique",
     })
     if err != nil {
         log.Fatal(err)
@@ -88,8 +88,8 @@ import(
 )
 
 func main() {
-    s := codatlending.New(
-        codatlending.WithSecurity(shared.Security{
+    s := lending.New(
+        lending.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -97,10 +97,10 @@ func main() {
     ctx := context.Background()
     res, err := s.Transactions.Journals.List(ctx, operations.ListAccountingJournalsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        OrderBy: codatlending.String("-modifiedDate"),
-        Page: codatlending.Int(1),
-        PageSize: codatlending.Int(100),
-        Query: codatlending.String("voluptatibus"),
+        OrderBy: lending.String("-modifiedDate"),
+        Page: lending.Int(1),
+        PageSize: lending.Int(100),
+        Query: lending.String("tempora"),
     })
     if err != nil {
         log.Fatal(err)
