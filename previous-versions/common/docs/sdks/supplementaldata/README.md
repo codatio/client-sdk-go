@@ -32,8 +32,8 @@ import(
 )
 
 func main() {
-    s := codatcommon.New(
-        codatcommon.WithSecurity(shared.Security{
+    s := common.New(
+        common.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
@@ -43,7 +43,7 @@ func main() {
         SupplementalDataConfiguration: &shared.SupplementalDataConfiguration{
             SupplementalDataConfig: map[string]shared.SupplementalDataConfigurationSupplementalDataSourceConfiguration{
                 "dolor": shared.SupplementalDataConfigurationSupplementalDataSourceConfiguration{
-                    DataSource: codatcommon.String("natus"),
+                    DataSource: common.String("natus"),
                     PullData: map[string]string{
                         "laboriosam": "hic",
                     },
@@ -100,8 +100,8 @@ import(
 )
 
 func main() {
-    s := codatcommon.New(
-        codatcommon.WithSecurity(shared.Security{
+    s := common.New(
+        common.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
