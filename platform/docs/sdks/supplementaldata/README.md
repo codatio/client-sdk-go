@@ -32,8 +32,8 @@ import(
 )
 
 func main() {
-    s := codatplatform.New(
-        codatplatform.WithSecurity(shared.Security{
+    s := platform.New(
+        platform.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
@@ -43,7 +43,7 @@ func main() {
         SupplementalDataConfiguration: &shared.SupplementalDataConfiguration{
             SupplementalDataConfig: map[string]shared.SupplementalDataConfigurationSupplementalDataSourceConfiguration{
                 "dolor": shared.SupplementalDataConfigurationSupplementalDataSourceConfiguration{
-                    DataSource: codatplatform.String("natus"),
+                    DataSource: platform.String("natus"),
                     PullData: map[string]string{
                         "laboriosam": "hic",
                     },
@@ -100,8 +100,8 @@ import(
 )
 
 func main() {
-    s := codatplatform.New(
-        codatplatform.WithSecurity(shared.Security{
+    s := platform.New(
+        platform.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )

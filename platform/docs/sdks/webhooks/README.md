@@ -27,20 +27,20 @@ import(
 )
 
 func main() {
-    s := codatplatform.New(
-        codatplatform.WithSecurity(shared.Security{
+    s := platform.New(
+        platform.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
 
     ctx := context.Background()
     res, err := s.Webhooks.Create(ctx, shared.CreateRule{
-        CompanyID: codatplatform.String("39b73b17-cc2e-429e-915d-71654e9dcd1e"),
+        CompanyID: platform.String("39b73b17-cc2e-429e-915d-71654e9dcd1e"),
         Notifiers: shared.CreateRuleNotifiers{
             Emails: []string{
                 "info@client.com",
             },
-            Webhook: codatplatform.String("https://webhook.client.com"),
+            Webhook: platform.String("https://webhook.client.com"),
         },
         Type: "iste",
     })
@@ -86,8 +86,8 @@ import(
 )
 
 func main() {
-    s := codatplatform.New(
-        codatplatform.WithSecurity(shared.Security{
+    s := platform.New(
+        platform.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
@@ -138,18 +138,18 @@ import(
 )
 
 func main() {
-    s := codatplatform.New(
-        codatplatform.WithSecurity(shared.Security{
+    s := platform.New(
+        platform.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
 
     ctx := context.Background()
     res, err := s.Webhooks.List(ctx, operations.ListRulesRequest{
-        OrderBy: codatplatform.String("-modifiedDate"),
-        Page: codatplatform.Int(1),
-        PageSize: codatplatform.Int(100),
-        Query: codatplatform.String("iure"),
+        OrderBy: platform.String("-modifiedDate"),
+        Page: platform.Int(1),
+        PageSize: platform.Int(100),
+        Query: platform.String("iure"),
     })
     if err != nil {
         log.Fatal(err)
