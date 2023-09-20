@@ -3,18 +3,29 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/types"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
 type Items struct {
-	Amount types.Decimal `json:"amount"`
-	Name   string        `json:"name"`
+	Amount *decimal.Big `decimal:"number" json:"amount"`
+	Name   string       `json:"name"`
 }
 
-func (o *Items) GetAmount() types.Decimal {
+func (i Items) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(i, "", false)
+}
+
+func (i *Items) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &i, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *Items) GetAmount() *decimal.Big {
 	if o == nil {
-		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
+		return new(decimal.Big).SetFloat64(0.0)
 	}
 	return o.Amount
 }

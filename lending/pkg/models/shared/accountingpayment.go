@@ -3,7 +3,8 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/types"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 // AccountingPayment - > **Payments or bill payments?**
@@ -724,7 +725,7 @@ type AccountingPayment struct {
 	// | **GBP**          | £20            | 1.277         | $25.54                     |
 	// | **EUR**          | €20            | 1.134         | $22.68                     |
 	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
-	CurrencyRate *types.Decimal         `json:"currencyRate,omitempty"`
+	CurrencyRate *decimal.Big           `decimal:"number" json:"currencyRate,omitempty"`
 	CustomerRef  *AccountingCustomerRef `json:"customerRef,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
@@ -763,7 +764,18 @@ type AccountingPayment struct {
 	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
 	SupplementalData *SupplementalData `json:"supplementalData,omitempty"`
 	// Amount of the payment in the payment currency. This value should never change and represents the amount of money paid into the customer's account.
-	TotalAmount *types.Decimal `json:"totalAmount,omitempty"`
+	TotalAmount *decimal.Big `decimal:"number" json:"totalAmount,omitempty"`
+}
+
+func (a AccountingPayment) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AccountingPayment) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *AccountingPayment) GetAccountRef() *AccountRef {
@@ -780,7 +792,7 @@ func (o *AccountingPayment) GetCurrency() *string {
 	return o.Currency
 }
 
-func (o *AccountingPayment) GetCurrencyRate() *types.Decimal {
+func (o *AccountingPayment) GetCurrencyRate() *decimal.Big {
 	if o == nil {
 		return nil
 	}
@@ -864,7 +876,7 @@ func (o *AccountingPayment) GetSupplementalData() *SupplementalData {
 	return o.SupplementalData
 }
 
-func (o *AccountingPayment) GetTotalAmount() *types.Decimal {
+func (o *AccountingPayment) GetTotalAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}

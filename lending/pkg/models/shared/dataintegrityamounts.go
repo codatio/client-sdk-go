@@ -3,7 +3,8 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/types"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 // DataIntegrityAmounts - Only returned for transactions. For accounts, there is nothing returned.
@@ -17,9 +18,20 @@ type DataIntegrityAmounts struct {
 	// There are only a very small number of edge cases where this currency code is returned by the Codat system.
 	Currency *string `json:"currency,omitempty"`
 	// Highest value of transaction set.
-	Max *types.Decimal `json:"max,omitempty"`
+	Max *decimal.Big `decimal:"number" json:"max,omitempty"`
 	// Lowest value of transaction set.
-	Min *types.Decimal `json:"min,omitempty"`
+	Min *decimal.Big `decimal:"number" json:"min,omitempty"`
+}
+
+func (d DataIntegrityAmounts) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DataIntegrityAmounts) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *DataIntegrityAmounts) GetCurrency() *string {
@@ -29,14 +41,14 @@ func (o *DataIntegrityAmounts) GetCurrency() *string {
 	return o.Currency
 }
 
-func (o *DataIntegrityAmounts) GetMax() *types.Decimal {
+func (o *DataIntegrityAmounts) GetMax() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.Max
 }
 
-func (o *DataIntegrityAmounts) GetMin() *types.Decimal {
+func (o *DataIntegrityAmounts) GetMin() *decimal.Big {
 	if o == nil {
 		return nil
 	}

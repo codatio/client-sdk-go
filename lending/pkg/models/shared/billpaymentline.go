@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/types"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
@@ -29,8 +29,19 @@ type BillPaymentLine struct {
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	AllocatedOnDate *string `json:"allocatedOnDate,omitempty"`
 	// Amount in the bill payment currency.
-	Amount types.Decimal         `json:"amount"`
+	Amount *decimal.Big          `decimal:"number" json:"amount"`
 	Links  []BillPaymentLineLink `json:"links,omitempty"`
+}
+
+func (b BillPaymentLine) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(b, "", false)
+}
+
+func (b *BillPaymentLine) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &b, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *BillPaymentLine) GetAllocatedOnDate() *string {
@@ -40,9 +51,9 @@ func (o *BillPaymentLine) GetAllocatedOnDate() *string {
 	return o.AllocatedOnDate
 }
 
-func (o *BillPaymentLine) GetAmount() types.Decimal {
+func (o *BillPaymentLine) GetAmount() *decimal.Big {
 	if o == nil {
-		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
+		return new(decimal.Big).SetFloat64(0.0)
 	}
 	return o.Amount
 }

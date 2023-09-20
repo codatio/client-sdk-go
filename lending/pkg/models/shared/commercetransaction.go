@@ -3,7 +3,8 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/types"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 // CommerceTransaction - Details of all financial transactions recorded in the commerce or point of sale system are added to the Transactions data type. For example, payments, service charges, and fees.
@@ -72,7 +73,7 @@ type CommerceTransaction struct {
 	// Non-standardised transaction type data from the commerce platform
 	SubType *string `json:"subType,omitempty"`
 	// The total transaction amount
-	TotalAmount *types.Decimal `json:"totalAmount,omitempty"`
+	TotalAmount *decimal.Big `decimal:"number" json:"totalAmount,omitempty"`
 	// Link to the source event which triggered this transaction
 	TransactionSourceRef *TransactionSourceRef `json:"transactionSourceRef,omitempty"`
 	// The type of the platform transaction:
@@ -85,6 +86,17 @@ type CommerceTransaction struct {
 	// - `Refund` — Refunds to a customer's credit or debit card.
 	// - `Transfer` — Secure transfer of funds to the seller's bank account.
 	Type *TransactionType `json:"type,omitempty"`
+}
+
+func (c CommerceTransaction) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CommerceTransaction) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *CommerceTransaction) GetCreatedDate() *string {
@@ -136,7 +148,7 @@ func (o *CommerceTransaction) GetSubType() *string {
 	return o.SubType
 }
 
-func (o *CommerceTransaction) GetTotalAmount() *types.Decimal {
+func (o *CommerceTransaction) GetTotalAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}

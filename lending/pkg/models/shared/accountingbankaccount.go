@@ -3,7 +3,8 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/types"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 // AccountingBankAccount - > **Accessing Bank Accounts through Banking API**
@@ -38,9 +39,9 @@ type AccountingBankAccount struct {
 	// For Debit accounts, positive balances are assets, and positive transactions **increase** assets.
 	AccountType *AccountingBankAccountType `json:"accountType,omitempty"`
 	// Total available balance of the bank account as reported by the underlying data source. This may take into account overdrafts or pending transactions for example.
-	AvailableBalance *types.Decimal `json:"availableBalance,omitempty"`
+	AvailableBalance *decimal.Big `decimal:"number" json:"availableBalance,omitempty"`
 	// Balance of the bank account.
-	Balance *types.Decimal `json:"balance,omitempty"`
+	Balance *decimal.Big `decimal:"number" json:"balance,omitempty"`
 	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code, e.g. _GBP_.
 	//
 	// ## Unknown currencies
@@ -62,13 +63,24 @@ type AccountingBankAccount struct {
 	// Pre-arranged overdraft limit of the account.
 	//
 	// The value is always positive. For example, an overdraftLimit of `1000` means that the balance of the account can go down to `-1000`.
-	OverdraftLimit *types.Decimal `json:"overdraftLimit,omitempty"`
+	OverdraftLimit *decimal.Big `decimal:"number" json:"overdraftLimit,omitempty"`
 	// Sort code for the bank account.
 	//
 	// Xero integrations
 	// The sort code is only displayed when the currency = GBP and the sort code and account number sum to 14 digits. For non-GBP accounts, this field is not populated.
 	SortCode           *string `json:"sortCode,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
+}
+
+func (a AccountingBankAccount) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AccountingBankAccount) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *AccountingBankAccount) GetAccountName() *string {
@@ -92,14 +104,14 @@ func (o *AccountingBankAccount) GetAccountType() *AccountingBankAccountType {
 	return o.AccountType
 }
 
-func (o *AccountingBankAccount) GetAvailableBalance() *types.Decimal {
+func (o *AccountingBankAccount) GetAvailableBalance() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.AvailableBalance
 }
 
-func (o *AccountingBankAccount) GetBalance() *types.Decimal {
+func (o *AccountingBankAccount) GetBalance() *decimal.Big {
 	if o == nil {
 		return nil
 	}
@@ -155,7 +167,7 @@ func (o *AccountingBankAccount) GetNominalCode() *string {
 	return o.NominalCode
 }
 
-func (o *AccountingBankAccount) GetOverdraftLimit() *types.Decimal {
+func (o *AccountingBankAccount) GetOverdraftLimit() *decimal.Big {
 	if o == nil {
 		return nil
 	}

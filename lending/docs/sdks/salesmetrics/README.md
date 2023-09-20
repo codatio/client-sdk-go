@@ -52,8 +52,8 @@ import(
 )
 
 func main() {
-    s := codatlending.New(
-        codatlending.WithSecurity(shared.Security{
+    s := lending.New(
+        lending.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -62,7 +62,7 @@ func main() {
     res, err := s.Sales.Metrics.GetCustomerRetention(ctx, operations.GetCommerceCustomerRetentionMetricsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        IncludeDisplayNames: codatlending.Bool(false),
+        IncludeDisplayNames: lending.Bool(false),
         NumberOfPeriods: 652790,
         PeriodLength: 208876,
         PeriodUnit: shared.PeriodUnitMonth,
@@ -132,8 +132,8 @@ import(
 )
 
 func main() {
-    s := codatlending.New(
-        codatlending.WithSecurity(shared.Security{
+    s := lending.New(
+        lending.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -142,7 +142,7 @@ func main() {
     res, err := s.Sales.Metrics.GetLifetimeValue(ctx, operations.GetCommerceLifetimeValueMetricsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        IncludeDisplayNames: codatlending.Bool(false),
+        IncludeDisplayNames: lending.Bool(false),
         NumberOfPeriods: 161309,
         PeriodLength: 995300,
         PeriodUnit: shared.PeriodUnitMonth,
@@ -213,8 +213,8 @@ import(
 )
 
 func main() {
-    s := codatlending.New(
-        codatlending.WithSecurity(shared.Security{
+    s := lending.New(
+        lending.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -223,7 +223,7 @@ func main() {
     res, err := s.Sales.Metrics.GetRevenue(ctx, operations.GetCommerceRevenueMetricsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        IncludeDisplayNames: codatlending.Bool(false),
+        IncludeDisplayNames: lending.Bool(false),
         NumberOfPeriods: 581850,
         PeriodLength: 253291,
         PeriodUnit: shared.PeriodUnitWeek,

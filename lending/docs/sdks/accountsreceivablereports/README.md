@@ -26,8 +26,8 @@ import(
 )
 
 func main() {
-    s := codatlending.New(
-        codatlending.WithSecurity(shared.Security{
+    s := lending.New(
+        lending.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -35,8 +35,8 @@ func main() {
     ctx := context.Background()
     res, err := s.AccountsReceivable.Reports.GetAgedCreditors(ctx, operations.GetAccountingAgedCreditorsReportRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        NumberOfPeriods: codatlending.Int(12),
-        PeriodLengthDays: codatlending.Int(30),
+        NumberOfPeriods: lending.Int(12),
+        PeriodLengthDays: lending.Int(30),
         ReportDate: types.MustDateFromString("2022-12-31"),
     })
     if err != nil {
@@ -82,8 +82,8 @@ import(
 )
 
 func main() {
-    s := codatlending.New(
-        codatlending.WithSecurity(shared.Security{
+    s := lending.New(
+        lending.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -91,8 +91,8 @@ func main() {
     ctx := context.Background()
     res, err := s.AccountsReceivable.Reports.GetAgedDebtors(ctx, operations.GetAccountingAgedDebtorsReportRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        NumberOfPeriods: codatlending.Int(12),
-        PeriodLengthDays: codatlending.Int(30),
+        NumberOfPeriods: lending.Int(12),
+        PeriodLengthDays: lending.Int(30),
         ReportDate: types.MustDateFromString("2022-12-31"),
     })
     if err != nil {
@@ -137,8 +137,8 @@ import(
 )
 
 func main() {
-    s := codatlending.New(
-        codatlending.WithSecurity(shared.Security{
+    s := lending.New(
+        lending.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -189,8 +189,8 @@ import(
 )
 
 func main() {
-    s := codatlending.New(
-        codatlending.WithSecurity(shared.Security{
+    s := lending.New(
+        lending.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )

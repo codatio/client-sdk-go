@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/types"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
@@ -32,7 +32,18 @@ type BalanceSheet struct {
 	Equity      *ReportLine `json:"equity,omitempty"`
 	Liabilities *ReportLine `json:"liabilities,omitempty"`
 	// Value of net assets for a company in their base currency.
-	NetAssets types.Decimal `json:"netAssets"`
+	NetAssets *decimal.Big `decimal:"number" json:"netAssets"`
+}
+
+func (b BalanceSheet) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(b, "", false)
+}
+
+func (b *BalanceSheet) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &b, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *BalanceSheet) GetAssets() *ReportLine {
@@ -63,9 +74,9 @@ func (o *BalanceSheet) GetLiabilities() *ReportLine {
 	return o.Liabilities
 }
 
-func (o *BalanceSheet) GetNetAssets() types.Decimal {
+func (o *BalanceSheet) GetNetAssets() *decimal.Big {
 	if o == nil {
-		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
+		return new(decimal.Big).SetFloat64(0.0)
 	}
 	return o.NetAssets
 }
