@@ -3,14 +3,26 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/types"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 type OrderDiscountAllocation struct {
 	// Name of the discount in the commerce or point of sale platform.
 	Name *string `json:"name,omitempty"`
 	// Total amount of discount applied.
-	TotalAmount *types.Decimal `json:"totalAmount,omitempty"`
+	TotalAmount *decimal.Big `decimal:"number" json:"totalAmount,omitempty"`
+}
+
+func (o OrderDiscountAllocation) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(o, "", false)
+}
+
+func (o *OrderDiscountAllocation) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &o, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *OrderDiscountAllocation) GetName() *string {
@@ -20,7 +32,7 @@ func (o *OrderDiscountAllocation) GetName() *string {
 	return o.Name
 }
 
-func (o *OrderDiscountAllocation) GetTotalAmount() *types.Decimal {
+func (o *OrderDiscountAllocation) GetTotalAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}

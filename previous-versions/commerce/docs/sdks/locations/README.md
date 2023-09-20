@@ -34,8 +34,8 @@ import(
 )
 
 func main() {
-    s := codatcommerce.New(
-        codatcommerce.WithSecurity(shared.Security{
+    s := commerce.New(
+        commerce.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -93,8 +93,8 @@ import(
 )
 
 func main() {
-    s := codatcommerce.New(
-        codatcommerce.WithSecurity(shared.Security{
+    s := commerce.New(
+        commerce.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
