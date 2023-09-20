@@ -34,8 +34,8 @@ import(
 )
 
 func main() {
-    s := codatbanking.New(
-        codatbanking.WithSecurity(shared.Security{
+    s := banking.New(
+        banking.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -93,8 +93,8 @@ import(
 )
 
 func main() {
-    s := codatbanking.New(
-        codatbanking.WithSecurity(shared.Security{
+    s := banking.New(
+        banking.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -103,10 +103,10 @@ func main() {
     res, err := s.Accounts.List(ctx, operations.ListAccountsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        OrderBy: codatbanking.String("-modifiedDate"),
-        Page: codatbanking.Int(1),
-        PageSize: codatbanking.Int(100),
-        Query: codatbanking.String("quibusdam"),
+        OrderBy: banking.String("-modifiedDate"),
+        Page: banking.Int(1),
+        PageSize: banking.Int(100),
+        Query: banking.String("quibusdam"),
     })
     if err != nil {
         log.Fatal(err)
