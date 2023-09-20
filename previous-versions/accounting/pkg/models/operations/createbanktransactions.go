@@ -4,6 +4,7 @@ package operations
 
 import (
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/utils"
 	"net/http"
 )
 
@@ -11,10 +12,21 @@ type CreateBankTransactionsRequest struct {
 	CreateBankTransactions *shared.CreateBankTransactions `request:"mediaType=application/json"`
 	// Unique identifier for an account
 	AccountID               string `pathParam:"style=simple,explode=false,name=accountId"`
-	AllowSyncOnPushComplete *bool  `queryParam:"style=form,explode=true,name=allowSyncOnPushComplete"`
+	AllowSyncOnPushComplete *bool  `default:"true" queryParam:"style=form,explode=true,name=allowSyncOnPushComplete"`
 	CompanyID               string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID            string `pathParam:"style=simple,explode=false,name=connectionId"`
 	TimeoutInMinutes        *int   `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
+}
+
+func (c CreateBankTransactionsRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CreateBankTransactionsRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *CreateBankTransactionsRequest) GetCreateBankTransactions() *shared.CreateBankTransactions {

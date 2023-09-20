@@ -4,6 +4,7 @@ package operations
 
 import (
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/utils"
 	"net/http"
 )
 
@@ -13,8 +14,19 @@ type UpdateCustomerRequest struct {
 	ConnectionID string           `pathParam:"style=simple,explode=false,name=connectionId"`
 	CustomerID   string           `pathParam:"style=simple,explode=false,name=customerId"`
 	// When updating data in the destination platform Codat checks the `sourceModifiedDate` against the `lastupdated` date from the accounting platform, if they're different Codat will return an error suggesting you should initiate another pull of the data. If this is set to `true` then the update will override this check.
-	ForceUpdate      *bool `queryParam:"style=form,explode=true,name=forceUpdate"`
+	ForceUpdate      *bool `default:"false" queryParam:"style=form,explode=true,name=forceUpdate"`
 	TimeoutInMinutes *int  `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
+}
+
+func (u UpdateCustomerRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateCustomerRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *UpdateCustomerRequest) GetCustomer() *shared.Customer {

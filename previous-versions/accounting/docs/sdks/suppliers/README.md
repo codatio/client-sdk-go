@@ -42,8 +42,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -53,26 +53,26 @@ func main() {
         Supplier: &shared.Supplier{
             Addresses: []shared.Addressesitems{
                 shared.Addressesitems{
-                    City: codataccounting.String("Arvada"),
-                    Country: codataccounting.String("Serbia"),
-                    Line1: codataccounting.String("explicabo"),
-                    Line2: codataccounting.String("accusantium"),
-                    PostalCode: codataccounting.String("09117"),
-                    Region: codataccounting.String("illum"),
+                    City: accounting.String("Arvada"),
+                    Country: accounting.String("Serbia"),
+                    Line1: accounting.String("explicabo"),
+                    Line2: accounting.String("accusantium"),
+                    PostalCode: accounting.String("09117"),
+                    Region: accounting.String("illum"),
                     Type: shared.AccountingAddressTypeUnknown,
                 },
             },
-            ContactName: codataccounting.String("exercitationem"),
-            DefaultCurrency: codataccounting.String("quod"),
-            EmailAddress: codataccounting.String("quod"),
-            ID: codataccounting.String("0584a184-d76d-4971-bc82-0c65b037bb8e"),
+            ContactName: accounting.String("exercitationem"),
+            DefaultCurrency: accounting.String("quod"),
+            EmailAddress: accounting.String("quod"),
+            ID: accounting.String("0584a184-d76d-4971-bc82-0c65b037bb8e"),
             Metadata: &shared.Metadata{
-                IsDeleted: codataccounting.Bool(false),
+                IsDeleted: accounting.Bool(false),
             },
-            ModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
-            Phone: codataccounting.String("01224 658 999"),
-            RegistrationNumber: codataccounting.String("impedit"),
-            SourceModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            Phone: accounting.String("01224 658 999"),
+            RegistrationNumber: accounting.String("impedit"),
+            SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
             Status: shared.SupplierStatusActive,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
@@ -81,12 +81,12 @@ func main() {
                     },
                 },
             },
-            SupplierName: codataccounting.String("molestiae"),
-            TaxNumber: codataccounting.String("officiis"),
+            SupplierName: accounting.String("molestiae"),
+            TaxNumber: accounting.String("officiis"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codataccounting.Int(287293),
+        TimeoutInMinutes: accounting.Int(287293),
     })
     if err != nil {
         log.Fatal(err)
@@ -135,8 +135,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -197,8 +197,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -255,8 +255,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -319,8 +319,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -377,8 +377,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -386,10 +386,10 @@ func main() {
     ctx := context.Background()
     res, err := s.Suppliers.List(ctx, operations.ListSuppliersRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        OrderBy: codataccounting.String("-modifiedDate"),
-        Page: codataccounting.Int(1),
-        PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("ut"),
+        OrderBy: accounting.String("-modifiedDate"),
+        Page: accounting.Int(1),
+        PageSize: accounting.Int(100),
+        Query: accounting.String("ut"),
     })
     if err != nil {
         log.Fatal(err)
@@ -438,8 +438,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -501,8 +501,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -512,26 +512,26 @@ func main() {
         Supplier: &shared.Supplier{
             Addresses: []shared.Addressesitems{
                 shared.Addressesitems{
-                    City: codataccounting.String("Cathedral City"),
-                    Country: codataccounting.String("Malta"),
-                    Line1: codataccounting.String("maxime"),
-                    Line2: codataccounting.String("ad"),
-                    PostalCode: codataccounting.String("88624-6607"),
-                    Region: codataccounting.String("voluptatibus"),
+                    City: accounting.String("Cathedral City"),
+                    Country: accounting.String("Malta"),
+                    Line1: accounting.String("maxime"),
+                    Line2: accounting.String("ad"),
+                    PostalCode: accounting.String("88624-6607"),
+                    Region: accounting.String("voluptatibus"),
                     Type: shared.AccountingAddressTypeDelivery,
                 },
             },
-            ContactName: codataccounting.String("ea"),
-            DefaultCurrency: codataccounting.String("facere"),
-            EmailAddress: codataccounting.String("corrupti"),
-            ID: codataccounting.String("28da0131-9112-4964-a645-c1d81f29042f"),
+            ContactName: accounting.String("ea"),
+            DefaultCurrency: accounting.String("facere"),
+            EmailAddress: accounting.String("corrupti"),
+            ID: accounting.String("28da0131-9112-4964-a645-c1d81f29042f"),
             Metadata: &shared.Metadata{
-                IsDeleted: codataccounting.Bool(false),
+                IsDeleted: accounting.Bool(false),
             },
-            ModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
-            Phone: codataccounting.String("(877) 492-8687"),
-            RegistrationNumber: codataccounting.String("iste"),
-            SourceModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            Phone: accounting.String("(877) 492-8687"),
+            RegistrationNumber: accounting.String("iste"),
+            SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
             Status: shared.SupplierStatusActive,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
@@ -540,14 +540,14 @@ func main() {
                     },
                 },
             },
-            SupplierName: codataccounting.String("consequatur"),
-            TaxNumber: codataccounting.String("voluptates"),
+            SupplierName: accounting.String("consequatur"),
+            TaxNumber: accounting.String("voluptates"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        ForceUpdate: codataccounting.Bool(false),
+        ForceUpdate: accounting.Bool(false),
         SupplierID: "dolorum",
-        TimeoutInMinutes: codataccounting.Int(148004),
+        TimeoutInMinutes: accounting.Int(148004),
     })
     if err != nil {
         log.Fatal(err)

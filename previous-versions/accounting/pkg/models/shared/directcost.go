@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/types"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
@@ -58,7 +58,7 @@ type DirectCost struct {
 	// | **GBP**          | £20            | 1.277         | $25.54                     |
 	// | **EUR**          | €20            | 1.134         | $22.68                     |
 	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
-	CurrencyRate *types.Decimal `json:"currencyRate,omitempty"`
+	CurrencyRate *decimal.Big `decimal:"number" json:"currencyRate,omitempty"`
 	// Identifier of the direct cost, unique for the company.
 	ID *string `json:"id,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
@@ -93,15 +93,26 @@ type DirectCost struct {
 	Reference          *string `json:"reference,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// The total amount of the direct costs, excluding any taxes.
-	SubTotal types.Decimal `json:"subTotal"`
+	SubTotal *decimal.Big `decimal:"number" json:"subTotal"`
 	// Supplemental data is additional data you can include in our standard data types.
 	//
 	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
 	SupplementalData *SupplementalData `json:"supplementalData,omitempty"`
 	// The total amount of tax on the direct costs.
-	TaxAmount types.Decimal `json:"taxAmount"`
+	TaxAmount *decimal.Big `decimal:"number" json:"taxAmount"`
 	// The amount of the direct costs, inclusive of tax.
-	TotalAmount types.Decimal `json:"totalAmount"`
+	TotalAmount *decimal.Big `decimal:"number" json:"totalAmount"`
+}
+
+func (d DirectCost) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DirectCost) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *DirectCost) GetContactRef() *ContactRef {
@@ -118,7 +129,7 @@ func (o *DirectCost) GetCurrency() string {
 	return o.Currency
 }
 
-func (o *DirectCost) GetCurrencyRate() *types.Decimal {
+func (o *DirectCost) GetCurrencyRate() *decimal.Big {
 	if o == nil {
 		return nil
 	}
@@ -188,9 +199,9 @@ func (o *DirectCost) GetSourceModifiedDate() *string {
 	return o.SourceModifiedDate
 }
 
-func (o *DirectCost) GetSubTotal() types.Decimal {
+func (o *DirectCost) GetSubTotal() *decimal.Big {
 	if o == nil {
-		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
+		return new(decimal.Big).SetFloat64(0.0)
 	}
 	return o.SubTotal
 }
@@ -202,16 +213,16 @@ func (o *DirectCost) GetSupplementalData() *SupplementalData {
 	return o.SupplementalData
 }
 
-func (o *DirectCost) GetTaxAmount() types.Decimal {
+func (o *DirectCost) GetTaxAmount() *decimal.Big {
 	if o == nil {
-		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
+		return new(decimal.Big).SetFloat64(0.0)
 	}
 	return o.TaxAmount
 }
 
-func (o *DirectCost) GetTotalAmount() types.Decimal {
+func (o *DirectCost) GetTotalAmount() *decimal.Big {
 	if o == nil {
-		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
+		return new(decimal.Big).SetFloat64(0.0)
 	}
 	return o.TotalAmount
 }

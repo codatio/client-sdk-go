@@ -7,7 +7,7 @@ import (
 	"fmt"
 )
 
-// PushOperationStatus - The status of the push operation.
+// PushOperationStatus - The current status of the push operation.
 type PushOperationStatus string
 
 const (

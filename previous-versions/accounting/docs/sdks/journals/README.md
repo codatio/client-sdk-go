@@ -38,8 +38,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -47,23 +47,23 @@ func main() {
     ctx := context.Background()
     res, err := s.Journals.Create(ctx, operations.CreateJournalRequest{
         Journal: &shared.Journal{
-            CreatedOn: codataccounting.String("2022-10-23T00:00:00.000Z"),
-            HasChildren: codataccounting.Bool(false),
-            ID: codataccounting.String("ce525c67-641a-4831-ae50-47b4c21ccb42"),
-            JournalCode: codataccounting.String("amet"),
+            CreatedOn: accounting.String("2022-10-23T00:00:00.000Z"),
+            HasChildren: accounting.Bool(false),
+            ID: accounting.String("ce525c67-641a-4831-ae50-47b4c21ccb42"),
+            JournalCode: accounting.String("amet"),
             Metadata: &shared.Metadata{
-                IsDeleted: codataccounting.Bool(false),
+                IsDeleted: accounting.Bool(false),
             },
-            ModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
-            Name: codataccounting.String("Kim Swift"),
-            ParentID: codataccounting.String("et"),
-            SourceModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            Name: accounting.String("Kim Swift"),
+            ParentID: accounting.String("et"),
+            SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
             Status: shared.JournalStatusArchived.ToPointer(),
-            Type: codataccounting.String("est"),
+            Type: accounting.String("est"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codataccounting.Int(716024),
+        TimeoutInMinutes: accounting.Int(716024),
     })
     if err != nil {
         log.Fatal(err)
@@ -114,8 +114,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -176,8 +176,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -234,8 +234,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -243,10 +243,10 @@ func main() {
     ctx := context.Background()
     res, err := s.Journals.List(ctx, operations.ListJournalsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        OrderBy: codataccounting.String("-modifiedDate"),
-        Page: codataccounting.Int(1),
-        PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("nulla"),
+        OrderBy: accounting.String("-modifiedDate"),
+        Page: accounting.Int(1),
+        PageSize: accounting.Int(100),
+        Query: accounting.String("nulla"),
     })
     if err != nil {
         log.Fatal(err)
