@@ -28,8 +28,8 @@ import(
 )
 
 func main() {
-    s := codatcommon.New(
-        codatcommon.WithSecurity(shared.Security{
+    s := common.New(
+        common.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
@@ -80,8 +80,8 @@ import(
 )
 
 func main() {
-    s := codatcommon.New(
-        codatcommon.WithSecurity(shared.Security{
+    s := common.New(
+        common.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
@@ -132,18 +132,18 @@ import(
 )
 
 func main() {
-    s := codatcommon.New(
-        codatcommon.WithSecurity(shared.Security{
+    s := common.New(
+        common.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
 
     ctx := context.Background()
     res, err := s.Integrations.List(ctx, operations.ListIntegrationsRequest{
-        OrderBy: codatcommon.String("-modifiedDate"),
-        Page: codatcommon.Int(1),
-        PageSize: codatcommon.Int(100),
-        Query: codatcommon.String("corrupti"),
+        OrderBy: common.String("-modifiedDate"),
+        Page: common.Int(1),
+        PageSize: common.Int(100),
+        Query: common.String("corrupti"),
     })
     if err != nil {
         log.Fatal(err)

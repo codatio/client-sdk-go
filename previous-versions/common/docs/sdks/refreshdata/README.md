@@ -34,8 +34,8 @@ import(
 )
 
 func main() {
-    s := codatcommon.New(
-        codatcommon.WithSecurity(shared.Security{
+    s := common.New(
+        common.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
@@ -88,8 +88,8 @@ import(
 )
 
 func main() {
-    s := codatcommon.New(
-        codatcommon.WithSecurity(shared.Security{
+    s := common.New(
+        common.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
@@ -97,7 +97,7 @@ func main() {
     ctx := context.Background()
     res, err := s.RefreshData.ByDataType(ctx, operations.RefreshDataTypeRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ConnectionID: codatcommon.String("df7cc78c-a1ba-4928-bc81-6742cb739205"),
+        ConnectionID: common.String("df7cc78c-a1ba-4928-bc81-6742cb739205"),
         DataType: shared.DataTypeInvoices,
     })
     if err != nil {
@@ -142,8 +142,8 @@ import(
 )
 
 func main() {
-    s := codatcommon.New(
-        codatcommon.WithSecurity(shared.Security{
+    s := common.New(
+        common.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
@@ -194,8 +194,8 @@ import(
 )
 
 func main() {
-    s := codatcommon.New(
-        codatcommon.WithSecurity(shared.Security{
+    s := common.New(
+        common.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
@@ -247,8 +247,8 @@ import(
 )
 
 func main() {
-    s := codatcommon.New(
-        codatcommon.WithSecurity(shared.Security{
+    s := common.New(
+        common.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
@@ -256,10 +256,10 @@ func main() {
     ctx := context.Background()
     res, err := s.RefreshData.ListPullOperations(ctx, operations.ListPullOperationsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        OrderBy: codatcommon.String("-modifiedDate"),
-        Page: codatcommon.Int(1),
-        PageSize: codatcommon.Int(100),
-        Query: codatcommon.String("natus"),
+        OrderBy: common.String("-modifiedDate"),
+        Page: common.Int(1),
+        PageSize: common.Int(100),
+        Query: common.String("natus"),
     })
     if err != nil {
         log.Fatal(err)
