@@ -4,6 +4,7 @@ package operations
 
 import (
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/utils"
 	"net/http"
 )
 
@@ -12,11 +13,22 @@ type ListAccountsRequest struct {
 	// Field to order results by. [Read more](https://docs.codat.io/using-the-api/ordering-results).
 	OrderBy *string `queryParam:"style=form,explode=true,name=orderBy"`
 	// Page number. [Read more](https://docs.codat.io/using-the-api/paging).
-	Page *int `queryParam:"style=form,explode=true,name=page"`
+	Page *int `default:"1" queryParam:"style=form,explode=true,name=page"`
 	// Number of records to return in a page. [Read more](https://docs.codat.io/using-the-api/paging).
-	PageSize *int `queryParam:"style=form,explode=true,name=pageSize"`
+	PageSize *int `default:"100" queryParam:"style=form,explode=true,name=pageSize"`
 	// Codat query string. [Read more](https://docs.codat.io/using-the-api/querying).
 	Query *string `queryParam:"style=form,explode=true,name=query"`
+}
+
+func (l ListAccountsRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListAccountsRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ListAccountsRequest) GetCompanyID() string {

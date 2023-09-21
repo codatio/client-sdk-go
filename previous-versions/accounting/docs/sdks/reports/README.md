@@ -33,8 +33,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -42,8 +42,8 @@ func main() {
     ctx := context.Background()
     res, err := s.Reports.GetAgedCreditorsReport(ctx, operations.GetAgedCreditorsReportRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        NumberOfPeriods: codataccounting.Int(12),
-        PeriodLengthDays: codataccounting.Int(30),
+        NumberOfPeriods: accounting.Int(12),
+        PeriodLengthDays: accounting.Int(30),
         ReportDate: types.MustDateFromString("2022-12-31"),
     })
     if err != nil {
@@ -89,8 +89,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -98,8 +98,8 @@ func main() {
     ctx := context.Background()
     res, err := s.Reports.GetAgedDebtorsReport(ctx, operations.GetAgedDebtorsReportRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        NumberOfPeriods: codataccounting.Int(12),
-        PeriodLengthDays: codataccounting.Int(30),
+        NumberOfPeriods: accounting.Int(12),
+        PeriodLengthDays: accounting.Int(30),
         ReportDate: types.MustDateFromString("2022-12-31"),
     })
     if err != nil {
@@ -144,8 +144,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -155,7 +155,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         PeriodLength: 4,
         PeriodsToCompare: 20,
-        StartMonth: codataccounting.String("2022-10-23T00:00:00.000Z"),
+        StartMonth: accounting.String("2022-10-23T00:00:00.000Z"),
     })
     if err != nil {
         log.Fatal(err)
@@ -199,8 +199,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -210,7 +210,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         PeriodLength: 4,
         PeriodsToCompare: 20,
-        StartMonth: codataccounting.String("2022-10-23T00:00:00.000Z"),
+        StartMonth: accounting.String("2022-10-23T00:00:00.000Z"),
     })
     if err != nil {
         log.Fatal(err)
@@ -254,8 +254,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -265,7 +265,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         PeriodLength: 4,
         PeriodsToCompare: 20,
-        StartMonth: codataccounting.String("2022-10-23T00:00:00.000Z"),
+        StartMonth: accounting.String("2022-10-23T00:00:00.000Z"),
     })
     if err != nil {
         log.Fatal(err)
@@ -309,8 +309,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -361,8 +361,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )

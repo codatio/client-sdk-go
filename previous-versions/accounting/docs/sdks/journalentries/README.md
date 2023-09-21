@@ -36,12 +36,12 @@ import(
 	"github.com/codatio/client-sdk-go/previous-versions/accounting"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
-	"github.com/ericlagergren/decimal"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/types"
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -49,23 +49,23 @@ func main() {
     ctx := context.Background()
     res, err := s.JournalEntries.Create(ctx, operations.CreateJournalEntryRequest{
         JournalEntry: &shared.JournalEntry{
-            CreatedOn: codataccounting.String("2022-10-23T00:00:00.000Z"),
-            Description: codataccounting.String("earum"),
-            ID: codataccounting.String("af75b0b5-32a4-4da3-bcba-af4452c4842c"),
+            CreatedOn: accounting.String("2022-10-23T00:00:00.000Z"),
+            Description: accounting.String("earum"),
+            ID: accounting.String("af75b0b5-32a4-4da3-bcba-af4452c4842c"),
             JournalLines: []shared.JournalLine{
                 shared.JournalLine{
                     AccountRef: &shared.AccountRef{
-                        ID: codataccounting.String("9b2ad32d-afe8-41a8-8f44-44573fecd473"),
-                        Name: codataccounting.String("Robin Weimann"),
+                        ID: accounting.String("9b2ad32d-afe8-41a8-8f44-44573fecd473"),
+                        Name: accounting.String("Robin Weimann"),
                     },
-                    Currency: codataccounting.String("placeat"),
-                    Description: codataccounting.String("quos"),
-                    NetAmount: *types.MustNewDecimalFromString("1523.02"),
+                    Currency: accounting.String("placeat"),
+                    Description: accounting.String("quos"),
+                    NetAmount: types.MustNewDecimalFromString("1523.02"),
                     Tracking: &shared.Propertiestracking2{
                         RecordRefs: []shared.InvoiceTo{
                             shared.InvoiceTo{
-                                DataType: codataccounting.String("journalEntry"),
-                                ID: codataccounting.String("9379aa69-cd5f-4bcf-b9da-18a7822bf958"),
+                                DataType: accounting.String("journalEntry"),
+                                ID: accounting.String("9379aa69-cd5f-4bcf-b9da-18a7822bf958"),
                             },
                         },
                     },
@@ -73,18 +73,18 @@ func main() {
             },
             JournalRef: &shared.JournalRef{
                 ID: "94e6861a-db55-4f9e-9d75-1c9fe8f7502b",
-                Name: codataccounting.String("Orville Schinner"),
+                Name: accounting.String("Orville Schinner"),
             },
             Metadata: &shared.Metadata{
-                IsDeleted: codataccounting.Bool(false),
+                IsDeleted: accounting.Bool(false),
             },
-            ModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
-            PostedOn: codataccounting.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            PostedOn: accounting.String("2022-10-23T00:00:00.000Z"),
             RecordRef: &shared.InvoiceTo{
-                DataType: codataccounting.String("accountTransaction"),
-                ID: codataccounting.String("41f17644-5637-49f3-bb27-e21f862657b3"),
+                DataType: accounting.String("accountTransaction"),
+                ID: accounting.String("41f17644-5637-49f3-bb27-e21f862657b3"),
             },
-            SourceModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
+            SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
                     "delectus": map[string]interface{}{
@@ -92,11 +92,11 @@ func main() {
                     },
                 },
             },
-            UpdatedOn: codataccounting.String("2022-10-23T00:00:00.000Z"),
+            UpdatedOn: accounting.String("2022-10-23T00:00:00.000Z"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codataccounting.Int(586163),
+        TimeoutInMinutes: accounting.Int(586163),
     })
     if err != nil {
         log.Fatal(err)
@@ -172,8 +172,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -233,8 +233,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -295,8 +295,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -353,8 +353,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -362,10 +362,10 @@ func main() {
     ctx := context.Background()
     res, err := s.JournalEntries.List(ctx, operations.ListJournalEntriesRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        OrderBy: codataccounting.String("-modifiedDate"),
-        Page: codataccounting.Int(1),
-        PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("deleniti"),
+        OrderBy: accounting.String("-modifiedDate"),
+        Page: accounting.Int(1),
+        PageSize: accounting.Int(100),
+        Query: accounting.String("deleniti"),
     })
     if err != nil {
         log.Fatal(err)

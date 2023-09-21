@@ -35,11 +35,12 @@ import(
 	"github.com/codatio/client-sdk-go/previous-versions/accounting"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/types"
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -47,20 +48,20 @@ func main() {
     ctx := context.Background()
     res, err := s.Accounts.Create(ctx, operations.CreateAccountRequest{
         Account: &shared.Account{
-            Currency: codataccounting.String("EUR"),
+            Currency: accounting.String("EUR"),
             CurrentBalance: types.MustNewDecimalFromString("0"),
-            Description: codataccounting.String("Invoices the business has issued but has not yet collected payment on."),
-            FullyQualifiedCategory: codataccounting.String("Asset.Current"),
-            FullyQualifiedName: codataccounting.String("Fixed Asset"),
-            ID: codataccounting.String("1b6266d1-1e44-46c5-8eb5-a8f98e03124e"),
-            IsBankAccount: codataccounting.Bool(false),
+            Description: accounting.String("Invoices the business has issued but has not yet collected payment on."),
+            FullyQualifiedCategory: accounting.String("Asset.Current"),
+            FullyQualifiedName: accounting.String("Fixed Asset"),
+            ID: accounting.String("1b6266d1-1e44-46c5-8eb5-a8f98e03124e"),
+            IsBankAccount: accounting.Bool(false),
             Metadata: &shared.Metadata{
-                IsDeleted: codataccounting.Bool(false),
+                IsDeleted: accounting.Bool(false),
             },
-            ModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
-            Name: codataccounting.String("Accounts Receivable"),
-            NominalCode: codataccounting.String("610"),
-            SourceModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            Name: accounting.String("Accounts Receivable"),
+            NominalCode: accounting.String("610"),
+            SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
             Status: shared.AccountStatusActive.ToPointer(),
             Type: shared.AccountTypeAsset.ToPointer(),
             ValidDatatypeLinks: []shared.ValidDataTypeLinks{
@@ -68,13 +69,13 @@ func main() {
                     Links: []string{
                         "illum",
                     },
-                    Property: codataccounting.String("vel"),
+                    Property: accounting.String("vel"),
                 },
             },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codataccounting.Int(623564),
+        TimeoutInMinutes: accounting.Int(623564),
     })
     if err != nil {
         log.Fatal(err)
@@ -125,8 +126,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -187,8 +188,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -244,8 +245,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -253,10 +254,10 @@ func main() {
     ctx := context.Background()
     res, err := s.Accounts.List(ctx, operations.ListAccountsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        OrderBy: codataccounting.String("-modifiedDate"),
-        Page: codataccounting.Int(1),
-        PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("suscipit"),
+        OrderBy: accounting.String("-modifiedDate"),
+        Page: accounting.Int(1),
+        PageSize: accounting.Int(100),
+        Query: accounting.String("suscipit"),
     })
     if err != nil {
         log.Fatal(err)

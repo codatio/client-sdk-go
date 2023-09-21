@@ -3,7 +3,8 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/types"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 // BankTransactionsSourceModifiedDate - > **Accessing Bank Accounts through Banking API**
@@ -23,9 +24,9 @@ import (
 // * Current account balance.
 // * Transaction type, for example, credit, debit, or transfer.
 type BankTransactionsSourceModifiedDate struct {
-	AccountID *string        `json:"accountId,omitempty"`
-	Amount    *types.Decimal `json:"amount,omitempty"`
-	Balance   *types.Decimal `json:"balance,omitempty"`
+	AccountID *string      `json:"accountId,omitempty"`
+	Amount    *decimal.Big `decimal:"number" json:"amount,omitempty"`
+	Balance   *decimal.Big `decimal:"number" json:"balance,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -55,6 +56,17 @@ type BankTransactionsSourceModifiedDate struct {
 	TransactionType *BankTransactionType `json:"transactionType,omitempty"`
 }
 
+func (b BankTransactionsSourceModifiedDate) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(b, "", false)
+}
+
+func (b *BankTransactionsSourceModifiedDate) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &b, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (o *BankTransactionsSourceModifiedDate) GetAccountID() *string {
 	if o == nil {
 		return nil
@@ -62,14 +74,14 @@ func (o *BankTransactionsSourceModifiedDate) GetAccountID() *string {
 	return o.AccountID
 }
 
-func (o *BankTransactionsSourceModifiedDate) GetAmount() *types.Decimal {
+func (o *BankTransactionsSourceModifiedDate) GetAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.Amount
 }
 
-func (o *BankTransactionsSourceModifiedDate) GetBalance() *types.Decimal {
+func (o *BankTransactionsSourceModifiedDate) GetBalance() *decimal.Big {
 	if o == nil {
 		return nil
 	}
