@@ -10,6 +10,7 @@ pkg/types/decimal.go
 pkg/utils/contenttype.go
 pkg/utils/form.go
 pkg/utils/headers.go
+pkg/utils/json.go
 pkg/utils/pathparams.go
 pkg/utils/queryparams.go
 pkg/utils/requestbody.go
