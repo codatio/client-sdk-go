@@ -41,15 +41,15 @@ import(
 )
 
 func main() {
-    s := codatplatform.New(
-        codatplatform.WithSecurity(shared.Security{
+    s := platform.New(
+        platform.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
 
     ctx := context.Background()
     res, err := s.Settings.CreateAPIKey(ctx, shared.CreateAPIKey{
-        Name: codatplatform.String("azure-invoice-finance-processor"),
+        Name: platform.String("azure-invoice-finance-processor"),
     })
     if err != nil {
         log.Fatal(err)
@@ -102,8 +102,8 @@ import(
 )
 
 func main() {
-    s := codatplatform.New(
-        codatplatform.WithSecurity(shared.Security{
+    s := platform.New(
+        platform.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
@@ -155,8 +155,8 @@ import(
 )
 
 func main() {
-    s := codatplatform.New(
-        codatplatform.WithSecurity(shared.Security{
+    s := platform.New(
+        platform.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
@@ -203,8 +203,8 @@ import(
 )
 
 func main() {
-    s := codatplatform.New(
-        codatplatform.WithSecurity(shared.Security{
+    s := platform.New(
+        platform.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
@@ -255,8 +255,8 @@ import(
 )
 
 func main() {
-    s := codatplatform.New(
-        codatplatform.WithSecurity(shared.Security{
+    s := platform.New(
+        platform.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
@@ -303,19 +303,19 @@ import(
 )
 
 func main() {
-    s := codatplatform.New(
-        codatplatform.WithSecurity(shared.Security{
+    s := platform.New(
+        platform.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
 
     ctx := context.Background()
     res, err := s.Settings.UpdateProfile(ctx, shared.Profile{
-        AlertAuthHeader: codatplatform.String("Bearer tXEiHiRK7XCtI8TNHbpGs1LI1pumdb4Cl1QIo7B2"),
-        APIKey: codatplatform.String("sartANTjHAkLdbyDfaynoTQb7pkmj6hXHmnQKMrB"),
-        ConfirmCompanyName: codatplatform.Bool(false),
-        IconURL: codatplatform.String("https://client-images.codat.io/icon/042399f5-d104-4f38-9ce8-cac3524f4e88_3f5623af-d992-4c22-bc08-e58c520a8526.ico"),
-        LogoURL: codatplatform.String("https://client-images.codat.io/logo/042399f5-d104-4f38-9ce8-cac3524f4e88_5806cb1f-7342-4c0e-a0a8-99bfbc47b0ff.png"),
+        AlertAuthHeader: platform.String("Bearer tXEiHiRK7XCtI8TNHbpGs1LI1pumdb4Cl1QIo7B2"),
+        APIKey: platform.String("sartANTjHAkLdbyDfaynoTQb7pkmj6hXHmnQKMrB"),
+        ConfirmCompanyName: platform.Bool(false),
+        IconURL: platform.String("https://client-images.codat.io/icon/042399f5-d104-4f38-9ce8-cac3524f4e88_3f5623af-d992-4c22-bc08-e58c520a8526.ico"),
+        LogoURL: platform.String("https://client-images.codat.io/logo/042399f5-d104-4f38-9ce8-cac3524f4e88_5806cb1f-7342-4c0e-a0a8-99bfbc47b0ff.png"),
         Name: "Bob's Burgers",
         RedirectURL: "https://bobs-burgers.{countrySuffix}/{companyId}",
         WhiteListUrls: []string{
@@ -364,8 +364,8 @@ import(
 )
 
 func main() {
-    s := codatplatform.New(
-        codatplatform.WithSecurity(shared.Security{
+    s := platform.New(
+        platform.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
@@ -373,15 +373,15 @@ func main() {
     ctx := context.Background()
     res, err := s.Settings.UpdateSyncSettings(ctx, operations.UpdateProfileSyncSettingsRequestBody{
         ClientID: "367f7975-267b-439b-90c6-a6040ee680f3",
-        OverridesDefaults: false,
+        OverridesDefaults: platform.Bool(false),
         Settings: []shared.SyncSetting{
             shared.SyncSetting{
                 DataType: shared.SyncSettingDataTypesInvoices,
                 FetchOnFirstLink: false,
-                IsLocked: codatplatform.Bool(false),
-                MonthsToSync: codatplatform.Int64(24),
-                SyncFromUtc: codatplatform.String("2022-10-23T00:00:00.000Z"),
-                SyncFromWindow: codatplatform.Int64(24),
+                IsLocked: platform.Bool(false),
+                MonthsToSync: platform.Int64(24),
+                SyncFromUtc: platform.String("2022-10-23T00:00:00.000Z"),
+                SyncFromWindow: platform.Int64(24),
                 SyncOrder: 612096,
                 SyncSchedule: 24,
             },

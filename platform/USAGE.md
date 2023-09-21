@@ -12,15 +12,15 @@ import(
 )
 
 func main() {
-    s := codatplatform.New(
-        codatplatform.WithSecurity(shared.Security{
+    s := platform.New(
+        platform.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
 
     ctx := context.Background()
     res, err := s.Companies.Create(ctx, shared.CompanyRequestBody{
-        Description: codatplatform.String("Requested early access to the new financing scheme."),
+        Description: platform.String("Requested early access to the new financing scheme."),
         Name: "Bank of Dave",
     })
     if err != nil {

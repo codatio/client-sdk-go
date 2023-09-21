@@ -33,8 +33,8 @@ import(
 )
 
 func main() {
-    s := codatplatform.New(
-        codatplatform.WithSecurity(shared.Security{
+    s := platform.New(
+        platform.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
@@ -42,7 +42,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Connections.Create(ctx, operations.CreateConnectionRequest{
         RequestBody: &operations.CreateConnectionRequestBody{
-            PlatformKey: codatplatform.String("provident"),
+            PlatformKey: platform.String("provident"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
@@ -89,8 +89,8 @@ import(
 )
 
 func main() {
-    s := codatplatform.New(
-        codatplatform.WithSecurity(shared.Security{
+    s := platform.New(
+        platform.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
@@ -142,8 +142,8 @@ import(
 )
 
 func main() {
-    s := codatplatform.New(
-        codatplatform.WithSecurity(shared.Security{
+    s := platform.New(
+        platform.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
@@ -195,8 +195,8 @@ import(
 )
 
 func main() {
-    s := codatplatform.New(
-        codatplatform.WithSecurity(shared.Security{
+    s := platform.New(
+        platform.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
@@ -204,10 +204,10 @@ func main() {
     ctx := context.Background()
     res, err := s.Connections.List(ctx, operations.ListConnectionsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        OrderBy: codatplatform.String("-modifiedDate"),
-        Page: codatplatform.Int(1),
-        PageSize: codatplatform.Int(100),
-        Query: codatplatform.String("distinctio"),
+        OrderBy: platform.String("-modifiedDate"),
+        Page: platform.Int(1),
+        PageSize: platform.Int(100),
+        Query: platform.String("distinctio"),
     })
     if err != nil {
         log.Fatal(err)
@@ -251,8 +251,8 @@ import(
 )
 
 func main() {
-    s := codatplatform.New(
-        codatplatform.WithSecurity(shared.Security{
+    s := platform.New(
+        platform.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
@@ -307,8 +307,8 @@ import(
 )
 
 func main() {
-    s := codatplatform.New(
-        codatplatform.WithSecurity(shared.Security{
+    s := platform.New(
+        platform.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
