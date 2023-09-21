@@ -3,15 +3,16 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/types"
+	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 type EnhancedCashFlowTransaction struct {
 	// An account reference containing the account id and name.
 	AccountRef *AccountRef `json:"accountRef,omitempty"`
 	// The bank transaction amount.
-	Amount   *types.Decimal `json:"amount,omitempty"`
-	Currency *string        `json:"currency,omitempty"`
+	Amount   *decimal.Big `decimal:"number" json:"amount,omitempty"`
+	Currency *string      `json:"currency,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -43,6 +44,17 @@ type EnhancedCashFlowTransaction struct {
 	TransactionCategory *TransactionCategory `json:"transactionCategory,omitempty"`
 }
 
+func (e EnhancedCashFlowTransaction) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *EnhancedCashFlowTransaction) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (o *EnhancedCashFlowTransaction) GetAccountRef() *AccountRef {
 	if o == nil {
 		return nil
@@ -50,7 +62,7 @@ func (o *EnhancedCashFlowTransaction) GetAccountRef() *AccountRef {
 	return o.AccountRef
 }
 
-func (o *EnhancedCashFlowTransaction) GetAmount() *types.Decimal {
+func (o *EnhancedCashFlowTransaction) GetAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}
