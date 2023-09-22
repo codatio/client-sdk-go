@@ -33,14 +33,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payables"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/operations"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncpayables.New(
-        codatsyncpayables.WithSecurity(shared.Security{
+    s := syncforpayables.New(
+        syncforpayables.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -50,40 +50,40 @@ func main() {
         Supplier: &shared.Supplier{
             Addresses: []shared.Address{
                 shared.Address{
-                    City: codatsyncpayables.String("Fort Virgilfurt"),
-                    Country: codatsyncpayables.String("Sweden"),
-                    Line1: codatsyncpayables.String("officia"),
-                    Line2: codatsyncpayables.String("sed"),
-                    PostalCode: codatsyncpayables.String("09902"),
-                    Region: codatsyncpayables.String("qui"),
-                    Type: shared.AccountingAddressTypeUnknown,
+                    City: syncforpayables.String("North Tadshire"),
+                    Country: syncforpayables.String("Anguilla"),
+                    Line1: syncforpayables.String("incidunt"),
+                    Line2: syncforpayables.String("qui"),
+                    PostalCode: syncforpayables.String("86113"),
+                    Region: syncforpayables.String("modi"),
+                    Type: shared.AccountingAddressTypeDelivery,
                 },
             },
-            ContactName: codatsyncpayables.String("necessitatibus"),
-            DefaultCurrency: codatsyncpayables.String("harum"),
-            EmailAddress: codatsyncpayables.String("explicabo"),
-            ID: codatsyncpayables.String("164cf9ab-8366-4c72-bffd-a9e06bee4825"),
+            ContactName: syncforpayables.String("voluptatibus"),
+            DefaultCurrency: syncforpayables.String("molestias"),
+            EmailAddress: syncforpayables.String("officia"),
+            ID: syncforpayables.String("b8366c72-3ffd-4a9e-86be-e4825c1fc0e1"),
             Metadata: &shared.Metadata{
-                IsDeleted: codatsyncpayables.Bool(false),
+                IsDeleted: syncforpayables.Bool(false),
             },
-            ModifiedDate: codatsyncpayables.String("2022-10-23T00:00:00.000Z"),
-            Phone: codatsyncpayables.String("+44 25691 154789"),
-            RegistrationNumber: codatsyncpayables.String("voluptatibus"),
-            SourceModifiedDate: codatsyncpayables.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
+            Phone: syncforpayables.String("+44 25691 154789"),
+            RegistrationNumber: syncforpayables.String("optio"),
+            SourceModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
             Status: shared.SupplierStatusUnknown,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "officiis": map[string]interface{}{
-                        "architecto": "architecto",
+                    "facilis": map[string]interface{}{
+                        "reiciendis": "a",
                     },
                 },
             },
-            SupplierName: codatsyncpayables.String("enim"),
-            TaxNumber: codatsyncpayables.String("optio"),
+            SupplierName: syncforpayables.String("iste"),
+            TaxNumber: syncforpayables.String("dicta"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codatsyncpayables.Int(525951),
+        TimeoutInMinutes: syncforpayables.Int(552439),
     })
     if err != nil {
         log.Fatal(err)
@@ -128,14 +128,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payables"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/operations"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncpayables.New(
-        codatsyncpayables.WithSecurity(shared.Security{
+    s := syncforpayables.New(
+        syncforpayables.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -143,7 +143,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Suppliers.Get(ctx, operations.GetSupplierRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        SupplierID: "perferendis",
+        SupplierID: "ullam",
     })
     if err != nil {
         log.Fatal(err)
@@ -190,14 +190,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payables"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/operations"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncpayables.New(
-        codatsyncpayables.WithSecurity(shared.Security{
+    s := syncforpayables.New(
+        syncforpayables.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -248,14 +248,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payables"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/operations"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncpayables.New(
-        codatsyncpayables.WithSecurity(shared.Security{
+    s := syncforpayables.New(
+        syncforpayables.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -263,10 +263,10 @@ func main() {
     ctx := context.Background()
     res, err := s.Suppliers.List(ctx, operations.ListSuppliersRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        OrderBy: codatsyncpayables.String("-modifiedDate"),
-        Page: codatsyncpayables.Int(1),
-        PageSize: codatsyncpayables.Int(100),
-        Query: codatsyncpayables.String("facilis"),
+        OrderBy: syncforpayables.String("-modifiedDate"),
+        Page: syncforpayables.Int(1),
+        PageSize: syncforpayables.Int(100),
+        Query: syncforpayables.String("dolore"),
     })
     if err != nil {
         log.Fatal(err)
@@ -313,14 +313,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payables"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/operations"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncpayables.New(
-        codatsyncpayables.WithSecurity(shared.Security{
+    s := syncforpayables.New(
+        syncforpayables.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -330,42 +330,42 @@ func main() {
         Supplier: &shared.Supplier{
             Addresses: []shared.Address{
                 shared.Address{
-                    City: codatsyncpayables.String("Wauwatosa"),
-                    Country: codatsyncpayables.String("Nauru"),
-                    Line1: codatsyncpayables.String("dicta"),
-                    Line2: codatsyncpayables.String("quos"),
-                    PostalCode: codatsyncpayables.String("22982"),
-                    Region: codatsyncpayables.String("consequuntur"),
-                    Type: shared.AccountingAddressTypeDelivery,
+                    City: syncforpayables.String("Fort Rafael"),
+                    Country: syncforpayables.String("Eritrea"),
+                    Line1: syncforpayables.String("consequuntur"),
+                    Line2: syncforpayables.String("assumenda"),
+                    PostalCode: syncforpayables.String("97785-9054"),
+                    Region: syncforpayables.String("esse"),
+                    Type: shared.AccountingAddressTypeBilling,
                 },
             },
-            ContactName: codatsyncpayables.String("vero"),
-            DefaultCurrency: codatsyncpayables.String("doloribus"),
-            EmailAddress: codatsyncpayables.String("impedit"),
-            ID: codatsyncpayables.String("ce8f1977-773e-4635-a2a7-b408f05e3d48"),
+            ContactName: syncforpayables.String("odio"),
+            DefaultCurrency: syncforpayables.String("nesciunt"),
+            EmailAddress: syncforpayables.String("debitis"),
+            ID: syncforpayables.String("63562a7b-408f-405e-bd48-fdaf313a1f5f"),
             Metadata: &shared.Metadata{
-                IsDeleted: codatsyncpayables.Bool(false),
+                IsDeleted: syncforpayables.Bool(false),
             },
-            ModifiedDate: codatsyncpayables.String("2022-10-23T00:00:00.000Z"),
-            Phone: codatsyncpayables.String("01224 658 999"),
-            RegistrationNumber: codatsyncpayables.String("est"),
-            SourceModifiedDate: codatsyncpayables.String("2022-10-23T00:00:00.000Z"),
-            Status: shared.SupplierStatusUnknown,
+            ModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
+            Phone: syncforpayables.String("(877) 492-8687"),
+            RegistrationNumber: syncforpayables.String("incidunt"),
+            SourceModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
+            Status: shared.SupplierStatusActive,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "vitae": map[string]interface{}{
-                        "nesciunt": "similique",
+                    "cupiditate": map[string]interface{}{
+                        "optio": "alias",
                     },
                 },
             },
-            SupplierName: codatsyncpayables.String("illo"),
-            TaxNumber: codatsyncpayables.String("repellat"),
+            SupplierName: syncforpayables.String("quidem"),
+            TaxNumber: syncforpayables.String("nesciunt"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        ForceUpdate: codatsyncpayables.Bool(false),
-        SupplierID: "nemo",
-        TimeoutInMinutes: codatsyncpayables.Int(987890),
+        ForceUpdate: syncforpayables.Bool(false),
+        SupplierID: "commodi",
+        TimeoutInMinutes: syncforpayables.Int(956124),
     })
     if err != nil {
         log.Fatal(err)

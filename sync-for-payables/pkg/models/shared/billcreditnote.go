@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/types"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
@@ -79,9 +79,9 @@ type BillCreditNote struct {
 	// | **GBP**          | £20            | 1.277         | $25.54                     |
 	// | **EUR**          | €20            | 1.134         | $22.68                     |
 	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
-	CurrencyRate *types.Decimal `json:"currencyRate,omitempty"`
+	CurrencyRate *decimal.Big `decimal:"number" json:"currencyRate,omitempty"`
 	// Percentage rate of any discount applied to the bill credit note.
-	DiscountPercentage types.Decimal `json:"discountPercentage"`
+	DiscountPercentage *decimal.Big `decimal:"number" json:"discountPercentage"`
 	// Identifier for the bill credit note that is unique to a company in the accounting platform.
 	ID *string `json:"id,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
@@ -113,12 +113,12 @@ type BillCreditNote struct {
 	// An array of payment allocations.
 	PaymentAllocations []Items `json:"paymentAllocations,omitempty"`
 	// Amount of the bill credit note that is still outstanding.
-	RemainingCredit    *types.Decimal `json:"remainingCredit,omitempty"`
-	SourceModifiedDate *string        `json:"sourceModifiedDate,omitempty"`
+	RemainingCredit    *decimal.Big `decimal:"number" json:"remainingCredit,omitempty"`
+	SourceModifiedDate *string      `json:"sourceModifiedDate,omitempty"`
 	// Current state of the bill credit note
 	Status BillCreditNoteStatus `json:"status"`
 	// Total amount of the bill credit note, including discounts but excluding tax.
-	SubTotal types.Decimal `json:"subTotal"`
+	SubTotal *decimal.Big `decimal:"number" json:"subTotal"`
 	// Supplemental data is additional data you can include in our standard data types.
 	//
 	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
@@ -126,12 +126,23 @@ type BillCreditNote struct {
 	// Reference to the supplier the record relates to.
 	SupplierRef *SupplierRef `json:"supplierRef,omitempty"`
 	// Total amount of credit that has been applied to the business' account with the supplier, including discounts and tax.
-	TotalAmount types.Decimal `json:"totalAmount"`
+	TotalAmount *decimal.Big `decimal:"number" json:"totalAmount"`
 	// Total value of any discounts applied.
-	TotalDiscount types.Decimal `json:"totalDiscount"`
+	TotalDiscount *decimal.Big `decimal:"number" json:"totalDiscount"`
 	// Amount of tax included in the bill credit note.
-	TotalTaxAmount types.Decimal         `json:"totalTaxAmount"`
+	TotalTaxAmount *decimal.Big          `decimal:"number" json:"totalTaxAmount"`
 	WithholdingTax []WithholdingTaxitems `json:"withholdingTax,omitempty"`
+}
+
+func (b BillCreditNote) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(b, "", false)
+}
+
+func (b *BillCreditNote) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &b, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *BillCreditNote) GetAllocatedOnDate() *string {
@@ -155,16 +166,16 @@ func (o *BillCreditNote) GetCurrency() *string {
 	return o.Currency
 }
 
-func (o *BillCreditNote) GetCurrencyRate() *types.Decimal {
+func (o *BillCreditNote) GetCurrencyRate() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.CurrencyRate
 }
 
-func (o *BillCreditNote) GetDiscountPercentage() types.Decimal {
+func (o *BillCreditNote) GetDiscountPercentage() *decimal.Big {
 	if o == nil {
-		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
+		return new(decimal.Big).SetFloat64(0.0)
 	}
 	return o.DiscountPercentage
 }
@@ -218,7 +229,7 @@ func (o *BillCreditNote) GetPaymentAllocations() []Items {
 	return o.PaymentAllocations
 }
 
-func (o *BillCreditNote) GetRemainingCredit() *types.Decimal {
+func (o *BillCreditNote) GetRemainingCredit() *decimal.Big {
 	if o == nil {
 		return nil
 	}
@@ -239,9 +250,9 @@ func (o *BillCreditNote) GetStatus() BillCreditNoteStatus {
 	return o.Status
 }
 
-func (o *BillCreditNote) GetSubTotal() types.Decimal {
+func (o *BillCreditNote) GetSubTotal() *decimal.Big {
 	if o == nil {
-		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
+		return new(decimal.Big).SetFloat64(0.0)
 	}
 	return o.SubTotal
 }
@@ -260,23 +271,23 @@ func (o *BillCreditNote) GetSupplierRef() *SupplierRef {
 	return o.SupplierRef
 }
 
-func (o *BillCreditNote) GetTotalAmount() types.Decimal {
+func (o *BillCreditNote) GetTotalAmount() *decimal.Big {
 	if o == nil {
-		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
+		return new(decimal.Big).SetFloat64(0.0)
 	}
 	return o.TotalAmount
 }
 
-func (o *BillCreditNote) GetTotalDiscount() types.Decimal {
+func (o *BillCreditNote) GetTotalDiscount() *decimal.Big {
 	if o == nil {
-		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
+		return new(decimal.Big).SetFloat64(0.0)
 	}
 	return o.TotalDiscount
 }
 
-func (o *BillCreditNote) GetTotalTaxAmount() types.Decimal {
+func (o *BillCreditNote) GetTotalTaxAmount() *decimal.Big {
 	if o == nil {
-		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
+		return new(decimal.Big).SetFloat64(0.0)
 	}
 	return o.TotalTaxAmount
 }

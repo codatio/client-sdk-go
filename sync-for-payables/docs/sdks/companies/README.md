@@ -28,20 +28,20 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payables"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
 )
 
 func main() {
-    s := codatsyncpayables.New(
-        codatsyncpayables.WithSecurity(shared.Security{
+    s := syncforpayables.New(
+        syncforpayables.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
     ctx := context.Background()
     res, err := s.Companies.Create(ctx, shared.CompanyRequestBody{
-        Description: codatsyncpayables.String("Requested early access to the new financing scheme."),
+        Description: syncforpayables.String("Requested early access to the new financing scheme."),
         Name: "Bank of Dave",
     })
     if err != nil {
@@ -81,14 +81,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payables"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/operations"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncpayables.New(
-        codatsyncpayables.WithSecurity(shared.Security{
+    s := syncforpayables.New(
+        syncforpayables.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -133,14 +133,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payables"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/operations"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncpayables.New(
-        codatsyncpayables.WithSecurity(shared.Security{
+    s := syncforpayables.New(
+        syncforpayables.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -185,24 +185,24 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payables"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/operations"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncpayables.New(
-        codatsyncpayables.WithSecurity(shared.Security{
+    s := syncforpayables.New(
+        syncforpayables.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
     ctx := context.Background()
     res, err := s.Companies.List(ctx, operations.ListCompaniesRequest{
-        OrderBy: codatsyncpayables.String("-modifiedDate"),
-        Page: codatsyncpayables.Int(1),
-        PageSize: codatsyncpayables.Int(100),
-        Query: codatsyncpayables.String("doloribus"),
+        OrderBy: syncforpayables.String("-modifiedDate"),
+        Page: syncforpayables.Int(1),
+        PageSize: syncforpayables.Int(100),
+        Query: syncforpayables.String("quas"),
     })
     if err != nil {
         log.Fatal(err)
@@ -240,14 +240,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payables"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/operations"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncpayables.New(
-        codatsyncpayables.WithSecurity(shared.Security{
+    s := syncforpayables.New(
+        syncforpayables.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -255,7 +255,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Companies.Update(ctx, operations.UpdateCompanyRequest{
         CompanyRequestBody: &shared.CompanyRequestBody{
-            Description: codatsyncpayables.String("Requested early access to the new financing scheme."),
+            Description: syncforpayables.String("Requested early access to the new financing scheme."),
             Name: "Bank of Dave",
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",

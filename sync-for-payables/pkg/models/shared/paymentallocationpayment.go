@@ -3,7 +3,8 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/types"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 type PaymentAllocationPayment struct {
@@ -42,7 +43,7 @@ type PaymentAllocationPayment struct {
 	// | **GBP**          | £20            | 1.277         | $25.54                     |
 	// | **EUR**          | €20            | 1.134         | $22.68                     |
 	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
-	CurrencyRate *types.Decimal `json:"currencyRate,omitempty"`
+	CurrencyRate *decimal.Big `decimal:"number" json:"currencyRate,omitempty"`
 	// Identifier of the allocated payment.
 	ID *string `json:"id,omitempty"`
 	// Notes attached to the allocated payment.
@@ -70,7 +71,18 @@ type PaymentAllocationPayment struct {
 	// Reference to the allocated payment.
 	Reference *string `json:"reference,omitempty"`
 	// Total amount that was paid.
-	TotalAmount *types.Decimal `json:"totalAmount,omitempty"`
+	TotalAmount *decimal.Big `decimal:"number" json:"totalAmount,omitempty"`
+}
+
+func (p PaymentAllocationPayment) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PaymentAllocationPayment) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *PaymentAllocationPayment) GetAccountRef() *AccountRef {
@@ -87,7 +99,7 @@ func (o *PaymentAllocationPayment) GetCurrency() *string {
 	return o.Currency
 }
 
-func (o *PaymentAllocationPayment) GetCurrencyRate() *types.Decimal {
+func (o *PaymentAllocationPayment) GetCurrencyRate() *decimal.Big {
 	if o == nil {
 		return nil
 	}
@@ -122,7 +134,7 @@ func (o *PaymentAllocationPayment) GetReference() *string {
 	return o.Reference
 }
 
-func (o *PaymentAllocationPayment) GetTotalAmount() *types.Decimal {
+func (o *PaymentAllocationPayment) GetTotalAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}

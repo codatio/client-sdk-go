@@ -20,14 +20,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payables"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/operations"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncpayables.New(
-        codatsyncpayables.WithSecurity(shared.Security{
+    s := syncforpayables.New(
+        syncforpayables.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )

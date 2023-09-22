@@ -32,14 +32,15 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payables"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/operations"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/types"
 )
 
 func main() {
-    s := codatsyncpayables.New(
-        codatsyncpayables.WithSecurity(shared.Security{
+    s := syncforpayables.New(
+        syncforpayables.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -47,20 +48,20 @@ func main() {
     ctx := context.Background()
     res, err := s.Accounts.Create(ctx, operations.CreateAccountRequest{
         Account: &shared.Account{
-            Currency: codatsyncpayables.String("EUR"),
+            Currency: syncforpayables.String("EUR"),
             CurrentBalance: types.MustNewDecimalFromString("0"),
-            Description: codatsyncpayables.String("Invoices the business has issued but has not yet collected payment on."),
-            FullyQualifiedCategory: codatsyncpayables.String("Asset.Current"),
-            FullyQualifiedName: codatsyncpayables.String("Cash On Hand"),
-            ID: codatsyncpayables.String("1b6266d1-1e44-46c5-8eb5-a8f98e03124e"),
-            IsBankAccount: codatsyncpayables.Bool(false),
+            Description: syncforpayables.String("Invoices the business has issued but has not yet collected payment on."),
+            FullyQualifiedCategory: syncforpayables.String("Asset.Current"),
+            FullyQualifiedName: syncforpayables.String("Cash On Hand"),
+            ID: syncforpayables.String("1b6266d1-1e44-46c5-8eb5-a8f98e03124e"),
+            IsBankAccount: syncforpayables.Bool(false),
             Metadata: &shared.Metadata{
-                IsDeleted: codatsyncpayables.Bool(false),
+                IsDeleted: syncforpayables.Bool(false),
             },
-            ModifiedDate: codatsyncpayables.String("2022-10-23T00:00:00.000Z"),
-            Name: codatsyncpayables.String("Accounts Receivable"),
-            NominalCode: codatsyncpayables.String("610"),
-            SourceModifiedDate: codatsyncpayables.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
+            Name: syncforpayables.String("Accounts Receivable"),
+            NominalCode: syncforpayables.String("610"),
+            SourceModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
             Status: shared.AccountStatusActive.ToPointer(),
             Type: shared.AccountTypeAsset.ToPointer(),
             ValidDatatypeLinks: []shared.AccountValidDataTypeLinks{
@@ -68,13 +69,13 @@ func main() {
                     Links: []string{
                         "suscipit",
                     },
-                    Property: codatsyncpayables.String("iure"),
+                    Property: syncforpayables.String("molestiae"),
                 },
             },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codatsyncpayables.Int(297534),
+        TimeoutInMinutes: syncforpayables.Int(791725),
     })
     if err != nil {
         log.Fatal(err)
@@ -119,21 +120,21 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payables"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/operations"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncpayables.New(
-        codatsyncpayables.WithSecurity(shared.Security{
+    s := syncforpayables.New(
+        syncforpayables.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
     ctx := context.Background()
     res, err := s.Accounts.Get(ctx, operations.GetAccountRequest{
-        AccountID: "debitis",
+        AccountID: "placeat",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -181,14 +182,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payables"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/operations"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncpayables.New(
-        codatsyncpayables.WithSecurity(shared.Security{
+    s := syncforpayables.New(
+        syncforpayables.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -238,14 +239,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payables"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/operations"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncpayables.New(
-        codatsyncpayables.WithSecurity(shared.Security{
+    s := syncforpayables.New(
+        syncforpayables.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -253,10 +254,10 @@ func main() {
     ctx := context.Background()
     res, err := s.Accounts.List(ctx, operations.ListAccountsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        OrderBy: codatsyncpayables.String("-modifiedDate"),
-        Page: codatsyncpayables.Int(1),
-        PageSize: codatsyncpayables.Int(100),
-        Query: codatsyncpayables.String("ipsa"),
+        OrderBy: syncforpayables.String("-modifiedDate"),
+        Page: syncforpayables.Int(1),
+        PageSize: syncforpayables.Int(100),
+        Query: syncforpayables.String("voluptatum"),
     })
     if err != nil {
         log.Fatal(err)

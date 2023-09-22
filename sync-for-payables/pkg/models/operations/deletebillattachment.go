@@ -7,35 +7,44 @@ import (
 	"net/http"
 )
 
-type DeleteBillRequest struct {
+type DeleteBillAttachmentRequest struct {
+	// Unique identifier for an attachment
+	AttachmentID string `pathParam:"style=simple,explode=false,name=attachmentId"`
 	// Unique identifier for a bill
 	BillID       string `pathParam:"style=simple,explode=false,name=billId"`
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
-func (o *DeleteBillRequest) GetBillID() string {
+func (o *DeleteBillAttachmentRequest) GetAttachmentID() string {
+	if o == nil {
+		return ""
+	}
+	return o.AttachmentID
+}
+
+func (o *DeleteBillAttachmentRequest) GetBillID() string {
 	if o == nil {
 		return ""
 	}
 	return o.BillID
 }
 
-func (o *DeleteBillRequest) GetCompanyID() string {
+func (o *DeleteBillAttachmentRequest) GetCompanyID() string {
 	if o == nil {
 		return ""
 	}
 	return o.CompanyID
 }
 
-func (o *DeleteBillRequest) GetConnectionID() string {
+func (o *DeleteBillAttachmentRequest) GetConnectionID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ConnectionID
 }
 
-type DeleteBillResponse struct {
+type DeleteBillAttachmentResponse struct {
 	ContentType string
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
@@ -45,35 +54,35 @@ type DeleteBillResponse struct {
 	RawResponse   *http.Response
 }
 
-func (o *DeleteBillResponse) GetContentType() string {
+func (o *DeleteBillAttachmentResponse) GetContentType() string {
 	if o == nil {
 		return ""
 	}
 	return o.ContentType
 }
 
-func (o *DeleteBillResponse) GetErrorMessage() *shared.ErrorMessage {
+func (o *DeleteBillAttachmentResponse) GetErrorMessage() *shared.ErrorMessage {
 	if o == nil {
 		return nil
 	}
 	return o.ErrorMessage
 }
 
-func (o *DeleteBillResponse) GetPushOperation() *shared.PushOperation {
+func (o *DeleteBillAttachmentResponse) GetPushOperation() *shared.PushOperation {
 	if o == nil {
 		return nil
 	}
 	return o.PushOperation
 }
 
-func (o *DeleteBillResponse) GetStatusCode() int {
+func (o *DeleteBillAttachmentResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
 	}
 	return o.StatusCode
 }
 
-func (o *DeleteBillResponse) GetRawResponse() *http.Response {
+func (o *DeleteBillAttachmentResponse) GetRawResponse() *http.Response {
 	if o == nil {
 		return nil
 	}
