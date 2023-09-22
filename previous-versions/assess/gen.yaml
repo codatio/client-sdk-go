@@ -1,7 +1,7 @@
 configVersion: 1.0.0
 management:
   docChecksum: f53309849cf86ec1929878a76006bffa
-  docVersion: "1.0"
+  docVersion: '1.0'
   speakeasyVersion: 1.83.0
   generationVersion: 2.109.1
 generation:
