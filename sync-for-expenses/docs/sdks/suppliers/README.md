@@ -32,14 +32,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v2"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v2"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncexpenses.New(
-        codatsyncexpenses.WithSecurity(shared.Security{
+    s := syncforexpenses.New(
+        syncforexpenses.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -49,40 +49,40 @@ func main() {
         Supplier: &shared.Supplier{
             Addresses: []shared.SupplierAccountingAddress{
                 shared.SupplierAccountingAddress{
-                    City: codatsyncexpenses.String("Purdystead"),
-                    Country: codatsyncexpenses.String("Antarctica (the territory South of 60 deg S)"),
-                    Line1: codatsyncexpenses.String("porro"),
-                    Line2: codatsyncexpenses.String("consequuntur"),
-                    PostalCode: codatsyncexpenses.String("60562-9926"),
-                    Region: codatsyncexpenses.String("dolorum"),
+                    City: syncforexpenses.String("Beattystead"),
+                    Country: syncforexpenses.String("Peru"),
+                    Line1: syncforexpenses.String("adipisci"),
+                    Line2: syncforexpenses.String("asperiores"),
+                    PostalCode: syncforexpenses.String("26658-5779"),
+                    Region: syncforexpenses.String("quaerat"),
                     Type: shared.AccountingAddressTypeBilling,
                 },
             },
-            ContactName: codatsyncexpenses.String("pariatur"),
-            DefaultCurrency: codatsyncexpenses.String("provident"),
-            EmailAddress: codatsyncexpenses.String("nobis"),
-            ID: codatsyncexpenses.String("bf486333-23f9-4b77-b3a4-100674ebf692"),
+            ContactName: syncforexpenses.String("aliquid"),
+            DefaultCurrency: syncforexpenses.String("dolorem"),
+            EmailAddress: syncforexpenses.String("dolorem"),
+            ID: syncforexpenses.String("323f9b77-f3a4-4100-a74e-bf69280d1ba7"),
             Metadata: &shared.Metadata{
-                IsDeleted: codatsyncexpenses.Bool(false),
+                IsDeleted: syncforexpenses.Bool(false),
             },
-            ModifiedDate: codatsyncexpenses.String("2022-10-23T00:00:00.000Z"),
-            Phone: codatsyncexpenses.String("+44 25691 154789"),
-            RegistrationNumber: codatsyncexpenses.String("fugiat"),
-            SourceModifiedDate: codatsyncexpenses.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: syncforexpenses.String("2022-10-23T00:00:00.000Z"),
+            Phone: syncforexpenses.String("01224 658 999"),
+            RegistrationNumber: syncforexpenses.String("deleniti"),
+            SourceModifiedDate: syncforexpenses.String("2022-10-23T00:00:00.000Z"),
             Status: shared.SupplierStatusArchived,
             SupplementalData: &shared.SupplierSupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "dolorum": map[string]interface{}{
-                        "iusto": "voluptate",
+                    "distinctio": map[string]interface{}{
+                        "asperiores": "nihil",
                     },
                 },
             },
-            SupplierName: codatsyncexpenses.String("dolorum"),
-            TaxNumber: codatsyncexpenses.String("deleniti"),
+            SupplierName: syncforexpenses.String("ipsum"),
+            TaxNumber: syncforexpenses.String("voluptate"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codatsyncexpenses.Int(607045),
+        TimeoutInMinutes: syncforexpenses.Int(663078),
     })
     if err != nil {
         log.Fatal(err)
@@ -127,14 +127,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v2"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v2"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncexpenses.New(
-        codatsyncexpenses.WithSecurity(shared.Security{
+    s := syncforexpenses.New(
+        syncforexpenses.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -185,14 +185,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v2"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v2"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncexpenses.New(
-        codatsyncexpenses.WithSecurity(shared.Security{
+    s := syncforexpenses.New(
+        syncforexpenses.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -200,10 +200,10 @@ func main() {
     ctx := context.Background()
     res, err := s.Suppliers.List(ctx, operations.ListSuppliersRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        OrderBy: codatsyncexpenses.String("-modifiedDate"),
-        Page: codatsyncexpenses.Int(1),
-        PageSize: codatsyncexpenses.Int(100),
-        Query: codatsyncexpenses.String("distinctio"),
+        OrderBy: syncforexpenses.String("-modifiedDate"),
+        Page: syncforexpenses.Int(1),
+        PageSize: syncforexpenses.Int(100),
+        Query: syncforexpenses.String("eius"),
     })
     if err != nil {
         log.Fatal(err)
@@ -250,14 +250,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v2"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v2"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncexpenses.New(
-        codatsyncexpenses.WithSecurity(shared.Security{
+    s := syncforexpenses.New(
+        syncforexpenses.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -267,42 +267,42 @@ func main() {
         Supplier: &shared.Supplier{
             Addresses: []shared.SupplierAccountingAddress{
                 shared.SupplierAccountingAddress{
-                    City: codatsyncexpenses.String("Lake Havasu City"),
-                    Country: codatsyncexpenses.String("Croatia"),
-                    Line1: codatsyncexpenses.String("voluptate"),
-                    Line2: codatsyncexpenses.String("id"),
-                    PostalCode: codatsyncexpenses.String("21027-8393"),
-                    Region: codatsyncexpenses.String("deserunt"),
-                    Type: shared.AccountingAddressTypeBilling,
+                    City: syncforexpenses.String("North Daphnefort"),
+                    Country: syncforexpenses.String("Thailand"),
+                    Line1: syncforexpenses.String("ad"),
+                    Line2: syncforexpenses.String("saepe"),
+                    PostalCode: syncforexpenses.String("65385"),
+                    Region: syncforexpenses.String("similique"),
+                    Type: shared.AccountingAddressTypeUnknown,
                 },
             },
-            ContactName: codatsyncexpenses.String("minima"),
-            DefaultCurrency: codatsyncexpenses.String("repellendus"),
-            EmailAddress: codatsyncexpenses.String("totam"),
-            ID: codatsyncexpenses.String("a0d446ce-2af7-4a73-8f3b-e453f870b326"),
+            ContactName: syncforexpenses.String("at"),
+            DefaultCurrency: syncforexpenses.String("quaerat"),
+            EmailAddress: syncforexpenses.String("tempora"),
+            ID: syncforexpenses.String("6ce2af7a-73cf-43be-853f-870b326b5a73"),
             Metadata: &shared.Metadata{
-                IsDeleted: codatsyncexpenses.Bool(false),
+                IsDeleted: syncforexpenses.Bool(false),
             },
-            ModifiedDate: codatsyncexpenses.String("2022-10-23T00:00:00.000Z"),
-            Phone: codatsyncexpenses.String("(877) 492-8687"),
-            RegistrationNumber: codatsyncexpenses.String("deserunt"),
-            SourceModifiedDate: codatsyncexpenses.String("2022-10-23T00:00:00.000Z"),
-            Status: shared.SupplierStatusUnknown,
+            ModifiedDate: syncforexpenses.String("2022-10-23T00:00:00.000Z"),
+            Phone: syncforexpenses.String("+44 25691 154789"),
+            RegistrationNumber: syncforexpenses.String("cupiditate"),
+            SourceModifiedDate: syncforexpenses.String("2022-10-23T00:00:00.000Z"),
+            Status: shared.SupplierStatusArchived,
             SupplementalData: &shared.SupplierSupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "incidunt": map[string]interface{}{
-                        "qui": "cupiditate",
+                    "soluta": map[string]interface{}{
+                        "dicta": "laborum",
                     },
                 },
             },
-            SupplierName: codatsyncexpenses.String("maxime"),
-            TaxNumber: codatsyncexpenses.String("pariatur"),
+            SupplierName: syncforexpenses.String("totam"),
+            TaxNumber: syncforexpenses.String("incidunt"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        ForceUpdate: codatsyncexpenses.Bool(false),
-        SupplierID: "7110701885",
-        TimeoutInMinutes: codatsyncexpenses.Int(117531),
+        ForceUpdate: syncforexpenses.Bool(false),
+        SupplierID: "13d946f0-c5d5-42bc-b092-97ece17923ab",
+        TimeoutInMinutes: syncforexpenses.Int(174909),
     })
     if err != nil {
         log.Fatal(err)

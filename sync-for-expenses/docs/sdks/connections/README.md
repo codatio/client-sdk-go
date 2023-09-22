@@ -27,14 +27,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v2"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v2"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncexpenses.New(
-        codatsyncexpenses.WithSecurity(shared.Security{
+    s := syncforexpenses.New(
+        syncforexpenses.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -42,7 +42,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Connections.Create(ctx, operations.CreateConnectionRequest{
         RequestBody: &operations.CreateConnectionRequestBody{
-            PlatformKey: codatsyncexpenses.String("saepe"),
+            PlatformKey: syncforexpenses.String("quidem"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
@@ -82,14 +82,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v2"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v2"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncexpenses.New(
-        codatsyncexpenses.WithSecurity(shared.Security{
+    s := syncforexpenses.New(
+        syncforexpenses.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -135,14 +135,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v2"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v2"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncexpenses.New(
-        codatsyncexpenses.WithSecurity(shared.Security{
+    s := syncforexpenses.New(
+        syncforexpenses.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -188,14 +188,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v2"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v2"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncexpenses.New(
-        codatsyncexpenses.WithSecurity(shared.Security{
+    s := syncforexpenses.New(
+        syncforexpenses.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -241,14 +241,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v2"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v2"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncexpenses.New(
-        codatsyncexpenses.WithSecurity(shared.Security{
+    s := syncforexpenses.New(
+        syncforexpenses.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -256,10 +256,10 @@ func main() {
     ctx := context.Background()
     res, err := s.Connections.List(ctx, operations.ListConnectionsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        OrderBy: codatsyncexpenses.String("-modifiedDate"),
-        Page: codatsyncexpenses.Int(1),
-        PageSize: codatsyncexpenses.Int(100),
-        Query: codatsyncexpenses.String("fuga"),
+        OrderBy: syncforexpenses.String("-modifiedDate"),
+        Page: syncforexpenses.Int(1),
+        PageSize: syncforexpenses.Int(100),
+        Query: syncforexpenses.String("architecto"),
     })
     if err != nil {
         log.Fatal(err)
@@ -297,14 +297,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v2"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v2"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncexpenses.New(
-        codatsyncexpenses.WithSecurity(shared.Security{
+    s := syncforexpenses.New(
+        syncforexpenses.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -312,7 +312,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Connections.Unlink(ctx, operations.UnlinkConnectionRequest{
         RequestBody: &operations.UnlinkConnectionUpdateConnection{
-            Status: shared.DataConnectionStatusLinked.ToPointer(),
+            Status: shared.DataConnectionStatusPendingAuth.ToPointer(),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
