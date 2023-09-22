@@ -7,6 +7,7 @@ pkg/types/bigint.go
 pkg/types/date.go
 pkg/types/datetime.go
 pkg/types/decimal.go
+pkg/types/pointers.go
 pkg/utils/contenttype.go
 pkg/utils/form.go
 pkg/utils/headers.go
@@ -23,9 +24,6 @@ pkg/models/operations/uploadfiles.go
 pkg/models/shared/schema.go
 pkg/models/shared/file.go
 pkg/models/shared/security.go
-docs/sdks/codatfiles/README.md
-docs/models/operations/option.md
-docs/sdks/files/README.md
 USAGE.md
 docs/models/operations/downloadfilesrequest.md
 docs/models/operations/downloadfileserrormessage.md
@@ -40,5 +38,8 @@ docs/models/operations/uploadfilesresponse.md
 docs/models/shared/schema.md
 docs/models/shared/file.md
 docs/models/shared/security.md
+docs/sdks/codatfiles/README.md
+docs/models/operations/option.md
+docs/sdks/files/README.md
 pkg/models/operations/options.go
 .gitattributes
