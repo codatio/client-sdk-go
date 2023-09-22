@@ -26,14 +26,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payables"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables"
 	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncpayables.New(
-        codatsyncpayables.WithSecurity(shared.Security{
+    s := syncforpayables.New(
+        syncforpayables.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -41,7 +41,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Connections.Create(ctx, operations.CreateConnectionRequest{
         RequestBody: &operations.CreateConnectionRequestBody{
-            PlatformKey: codatsyncpayables.String("eligendi"),
+            PlatformKey: syncforpayables.String("totam"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
@@ -82,14 +82,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payables"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables"
 	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncpayables.New(
-        codatsyncpayables.WithSecurity(shared.Security{
+    s := syncforpayables.New(
+        syncforpayables.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -135,14 +135,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payables"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables"
 	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncpayables.New(
-        codatsyncpayables.WithSecurity(shared.Security{
+    s := syncforpayables.New(
+        syncforpayables.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -188,14 +188,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payables"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables"
 	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncpayables.New(
-        codatsyncpayables.WithSecurity(shared.Security{
+    s := syncforpayables.New(
+        syncforpayables.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -203,10 +203,10 @@ func main() {
     ctx := context.Background()
     res, err := s.Connections.List(ctx, operations.ListConnectionsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        OrderBy: codatsyncpayables.String("-modifiedDate"),
-        Page: codatsyncpayables.Int(1),
-        PageSize: codatsyncpayables.Int(100),
-        Query: codatsyncpayables.String("sint"),
+        OrderBy: syncforpayables.String("-modifiedDate"),
+        Page: syncforpayables.Int(1),
+        PageSize: syncforpayables.Int(100),
+        Query: syncforpayables.String("molestias"),
     })
     if err != nil {
         log.Fatal(err)
@@ -244,14 +244,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payables"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables"
 	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncpayables.New(
-        codatsyncpayables.WithSecurity(shared.Security{
+    s := syncforpayables.New(
+        syncforpayables.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )

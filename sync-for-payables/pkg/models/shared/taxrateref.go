@@ -3,7 +3,8 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/types"
+	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 // TaxRateRef - Data types that reference a tax rate, for example invoice and bill line items, use a taxRateRef that includes the ID and name of the linked tax rate.
@@ -18,14 +19,25 @@ import (
 // - Items
 type TaxRateRef struct {
 	// Applicable tax rate.
-	EffectiveTaxRate *types.Decimal `json:"effectiveTaxRate,omitempty"`
+	EffectiveTaxRate *decimal.Big `decimal:"number" json:"effectiveTaxRate,omitempty"`
 	// Unique identifier for the tax rate in the accounting platform.
 	ID *string `json:"id,omitempty"`
 	// Name of the tax rate in the accounting platform.
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *TaxRateRef) GetEffectiveTaxRate() *types.Decimal {
+func (t TaxRateRef) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
+}
+
+func (t *TaxRateRef) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *TaxRateRef) GetEffectiveTaxRate() *decimal.Big {
 	if o == nil {
 		return nil
 	}
