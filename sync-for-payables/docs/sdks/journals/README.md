@@ -32,14 +32,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payables"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/operations"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncpayables.New(
-        codatsyncpayables.WithSecurity(shared.Security{
+    s := syncforpayables.New(
+        syncforpayables.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -47,23 +47,23 @@ func main() {
     ctx := context.Background()
     res, err := s.Journals.Create(ctx, operations.CreateJournalRequest{
         Journal: &shared.Journal{
-            CreatedOn: codatsyncpayables.String("2022-10-23T00:00:00.000Z"),
-            HasChildren: codatsyncpayables.Bool(false),
-            ID: codatsyncpayables.String("981d4c70-0b60-47f3-893c-73b9da3f2ced"),
-            JournalCode: codatsyncpayables.String("laborum"),
+            CreatedOn: syncforpayables.String("2022-10-23T00:00:00.000Z"),
+            HasChildren: syncforpayables.Bool(false),
+            ID: syncforpayables.String("00b607f3-c93c-473b-9da3-f2ceda7e23f2"),
+            JournalCode: syncforpayables.String("explicabo"),
             Metadata: &shared.Metadata{
-                IsDeleted: codatsyncpayables.Bool(false),
+                IsDeleted: syncforpayables.Bool(false),
             },
-            ModifiedDate: codatsyncpayables.String("2022-10-23T00:00:00.000Z"),
-            Name: codatsyncpayables.String("Clarence Feeney Sr."),
-            ParentID: codatsyncpayables.String("exercitationem"),
-            SourceModifiedDate: codatsyncpayables.String("2022-10-23T00:00:00.000Z"),
-            Status: shared.JournalStatusUnknown.ToPointer(),
-            Type: codatsyncpayables.String("ab"),
+            ModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
+            Name: syncforpayables.String("Dr. Elaine Bernhard"),
+            ParentID: syncforpayables.String("delectus"),
+            SourceModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
+            Status: shared.JournalStatusArchived.ToPointer(),
+            Type: syncforpayables.String("in"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codatsyncpayables.Int(72754),
+        TimeoutInMinutes: syncforpayables.Int(349993),
     })
     if err != nil {
         log.Fatal(err)
@@ -108,14 +108,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payables"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/operations"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncpayables.New(
-        codatsyncpayables.WithSecurity(shared.Security{
+    s := syncforpayables.New(
+        syncforpayables.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -123,7 +123,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Journals.Get(ctx, operations.GetJournalRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        JournalID: "hic",
+        JournalID: "labore",
     })
     if err != nil {
         log.Fatal(err)
@@ -170,14 +170,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payables"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/operations"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncpayables.New(
-        codatsyncpayables.WithSecurity(shared.Security{
+    s := syncforpayables.New(
+        syncforpayables.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -228,14 +228,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payables"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/operations"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncpayables.New(
-        codatsyncpayables.WithSecurity(shared.Security{
+    s := syncforpayables.New(
+        syncforpayables.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -243,10 +243,10 @@ func main() {
     ctx := context.Background()
     res, err := s.Journals.List(ctx, operations.ListJournalsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        OrderBy: codatsyncpayables.String("-modifiedDate"),
-        Page: codatsyncpayables.Int(1),
-        PageSize: codatsyncpayables.Int(100),
-        Query: codatsyncpayables.String("deserunt"),
+        OrderBy: syncforpayables.String("-modifiedDate"),
+        Page: syncforpayables.Int(1),
+        PageSize: syncforpayables.Int(100),
+        Query: syncforpayables.String("numquam"),
     })
     if err != nil {
         log.Fatal(err)

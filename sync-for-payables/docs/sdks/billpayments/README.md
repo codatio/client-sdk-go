@@ -33,15 +33,15 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payables"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/operations"
-	"github.com/ericlagergren/decimal"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/types"
 )
 
 func main() {
-    s := codatsyncpayables.New(
-        codatsyncpayables.WithSecurity(shared.Security{
+    s := syncforpayables.New(
+        syncforpayables.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -50,51 +50,51 @@ func main() {
     res, err := s.BillPayments.Create(ctx, operations.CreateBillPaymentRequest{
         BillPayment: &shared.BillPayment{
             AccountRef: &shared.AccountRef{
-                ID: codatsyncpayables.String("756082d6-8ea1-49f1-9170-51339d08086a"),
-                Name: codatsyncpayables.String("Mrs. Priscilla Fritsch"),
+                ID: syncforpayables.String("82d68ea1-9f1d-4170-9133-9d08086a1840"),
+                Name: syncforpayables.String("Toni Fritsch"),
             },
-            Currency: codatsyncpayables.String("GBP"),
-            CurrencyRate: types.MustNewDecimalFromString("7710.89"),
+            Currency: syncforpayables.String("USD"),
+            CurrencyRate: types.MustNewDecimalFromString("120.36"),
             Date: "2022-10-23T00:00:00.000Z",
-            ID: codatsyncpayables.String("3d5a8e00-d108-4045-8823-7f342676cffa"),
+            ID: syncforpayables.String("3d5a8e00-d108-4045-8823-7f342676cffa"),
             Lines: []shared.BillPaymentLine{
                 shared.BillPaymentLine{
-                    AllocatedOnDate: codatsyncpayables.String("2022-10-23T00:00:00.000Z"),
-                    Amount: *types.MustNewDecimalFromString("120.36"),
+                    AllocatedOnDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
+                    Amount: types.MustNewDecimalFromString("9816.4"),
                     Links: []shared.BillPaymentLineLink{
                         shared.BillPaymentLineLink{
-                            Amount: types.MustNewDecimalFromString("4910.25"),
-                            CurrencyRate: types.MustNewDecimalFromString("1154.84"),
-                            ID: codatsyncpayables.String("f93f5f06-42da-4c7a-b515-cc413aa63aae"),
-                            Type: shared.BillPaymentLineLinkTypeBillPayment,
+                            Amount: types.MustNewDecimalFromString("6184.8"),
+                            CurrencyRate: types.MustNewDecimalFromString("2446.51"),
+                            ID: syncforpayables.String("f5f0642d-ac7a-4f51-9cc4-13aa63aae8d6"),
+                            Type: shared.BillPaymentLineLinkTypeCreditNote,
                         },
                     },
                 },
             },
             Metadata: &shared.Metadata{
-                IsDeleted: codatsyncpayables.Bool(false),
+                IsDeleted: syncforpayables.Bool(false),
             },
-            ModifiedDate: codatsyncpayables.String("2022-10-23T00:00:00.000Z"),
-            Note: codatsyncpayables.String("Bill Payment against bill c13e37b6-dfaa-4894-b3be-9fe97bda9f44"),
-            PaymentMethodRef: codatsyncpayables.String("vel"),
-            Reference: codatsyncpayables.String("ducimus"),
-            SourceModifiedDate: codatsyncpayables.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
+            Note: syncforpayables.String("Bill Payment against bill c13e37b6-dfaa-4894-b3be-9fe97bda9f44"),
+            PaymentMethodRef: syncforpayables.String("vel"),
+            Reference: syncforpayables.String("labore"),
+            SourceModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "vel": map[string]interface{}{
-                        "labore": "possimus",
+                    "facilis": map[string]interface{}{
+                        "cum": "commodi",
                     },
                 },
             },
             SupplierRef: &shared.SupplierRef{
-                ID: "bb675fd5-e60b-4375-ad4f-6fbee41f3331",
-                SupplierName: codatsyncpayables.String("dignissimos"),
+                ID: "75fd5e60-b375-4ed4-b6fb-ee41f33317fe",
+                SupplierName: syncforpayables.String("consectetur"),
             },
             TotalAmount: types.MustNewDecimalFromString("1329.54"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codatsyncpayables.Int(950953),
+        TimeoutInMinutes: syncforpayables.Int(358107),
     })
     if err != nil {
         log.Fatal(err)
@@ -154,21 +154,21 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payables"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/operations"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncpayables.New(
-        codatsyncpayables.WithSecurity(shared.Security{
+    s := syncforpayables.New(
+        syncforpayables.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
     ctx := context.Background()
     res, err := s.BillPayments.Delete(ctx, operations.DeleteBillPaymentRequest{
-        BillPaymentID: "debitis",
+        BillPaymentID: "harum",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -214,21 +214,21 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payables"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/operations"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncpayables.New(
-        codatsyncpayables.WithSecurity(shared.Security{
+    s := syncforpayables.New(
+        syncforpayables.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
     ctx := context.Background()
     res, err := s.BillPayments.Get(ctx, operations.GetBillPaymentsRequest{
-        BillPaymentID: "consectetur",
+        BillPaymentID: "laboriosam",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -276,14 +276,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payables"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/operations"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncpayables.New(
-        codatsyncpayables.WithSecurity(shared.Security{
+    s := syncforpayables.New(
+        syncforpayables.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -334,14 +334,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payables"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/operations"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncpayables.New(
-        codatsyncpayables.WithSecurity(shared.Security{
+    s := syncforpayables.New(
+        syncforpayables.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -349,10 +349,10 @@ func main() {
     ctx := context.Background()
     res, err := s.BillPayments.List(ctx, operations.ListBillPaymentsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        OrderBy: codatsyncpayables.String("-modifiedDate"),
-        Page: codatsyncpayables.Int(1),
-        PageSize: codatsyncpayables.Int(100),
-        Query: codatsyncpayables.String("corporis"),
+        OrderBy: syncforpayables.String("-modifiedDate"),
+        Page: syncforpayables.Int(1),
+        PageSize: syncforpayables.Int(100),
+        Query: syncforpayables.String("ipsa"),
     })
     if err != nil {
         log.Fatal(err)

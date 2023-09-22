@@ -12,22 +12,21 @@ go get github.com/codatio/client-sdk-go/sync-for-payables
 
 ## Example Usage
 <!-- Start SDK Example Usage -->
-
-
 ```go
 package main
 
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payables"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/operations"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/types"
 )
 
 func main() {
-    s := codatsyncpayables.New(
-        codatsyncpayables.WithSecurity(shared.Security{
+    s := syncforpayables.New(
+        syncforpayables.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -35,34 +34,34 @@ func main() {
     ctx := context.Background()
     res, err := s.Accounts.Create(ctx, operations.CreateAccountRequest{
         Account: &shared.Account{
-            Currency: codatsyncpayables.String("USD"),
+            Currency: syncforpayables.String("EUR"),
             CurrentBalance: types.MustNewDecimalFromString("0"),
-            Description: codatsyncpayables.String("Invoices the business has issued but has not yet collected payment on."),
-            FullyQualifiedCategory: codatsyncpayables.String("Asset.Current"),
-            FullyQualifiedName: codatsyncpayables.String("Fixed Asset"),
-            ID: codatsyncpayables.String("1b6266d1-1e44-46c5-8eb5-a8f98e03124e"),
-            IsBankAccount: codatsyncpayables.Bool(false),
+            Description: syncforpayables.String("Invoices the business has issued but has not yet collected payment on."),
+            FullyQualifiedCategory: syncforpayables.String("Asset.Current"),
+            FullyQualifiedName: syncforpayables.String("Cash On Hand"),
+            ID: syncforpayables.String("1b6266d1-1e44-46c5-8eb5-a8f98e03124e"),
+            IsBankAccount: syncforpayables.Bool(false),
             Metadata: &shared.Metadata{
-                IsDeleted: codatsyncpayables.Bool(false),
+                IsDeleted: syncforpayables.Bool(false),
             },
-            ModifiedDate: codatsyncpayables.String("2022-10-23T00:00:00.000Z"),
-            Name: codatsyncpayables.String("Accounts Receivable"),
-            NominalCode: codatsyncpayables.String("610"),
-            SourceModifiedDate: codatsyncpayables.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
+            Name: syncforpayables.String("Accounts Receivable"),
+            NominalCode: syncforpayables.String("610"),
+            SourceModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
             Status: shared.AccountStatusActive.ToPointer(),
             Type: shared.AccountTypeAsset.ToPointer(),
             ValidDatatypeLinks: []shared.AccountValidDataTypeLinks{
                 shared.AccountValidDataTypeLinks{
                     Links: []string{
-                        "unde",
+                        "suscipit",
                     },
-                    Property: codatsyncpayables.String("nulla"),
+                    Property: syncforpayables.String("iure"),
                 },
             },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codatsyncpayables.Int(544883),
+        TimeoutInMinutes: syncforpayables.Int(297534),
     })
     if err != nil {
         log.Fatal(err)
@@ -106,6 +105,7 @@ func main() {
 
 * [Create](docs/sdks/bills/README.md#create) - Create bill
 * [Delete](docs/sdks/bills/README.md#delete) - Delete bill
+* [DeleteAttachment](docs/sdks/bills/README.md#deleteattachment) - Delete bill attachment
 * [DownloadAttachment](docs/sdks/bills/README.md#downloadattachment) - Download bill attachment
 * [Get](docs/sdks/bills/README.md#get) - Get bill
 * [GetAttachment](docs/sdks/bills/README.md#getattachment) - Get bill attachment
@@ -183,4 +183,36 @@ func main() {
 * [Get](docs/sdks/trackingcategories/README.md#get) - Get tracking categories
 * [List](docs/sdks/trackingcategories/README.md#list) - List tracking categories
 <!-- End SDK Available Operations -->
+
+
+
+<!-- Start Dev Containers -->
+
+
+
+<!-- End Dev Containers -->
+
+
+
+<!-- Start Pagination -->
+# Pagination
+
+Some of the endpoints in this SDK support pagination. To use pagination, you make your SDK calls as usual, but the
+returned response object will have a `Next` method that can be called to pull down the next group of results. If the
+return value of `Next` is `nil`, then there are no more pages to be fetched.
+
+Here's an example of one such pagination call:
+
+
+<!-- End Pagination -->
+
+
+
+<!-- Start Go Types -->
+
+<!-- End Go Types -->
+
+<!-- Placeholder for Future Speakeasy SDK Sections -->
+
+
 ### Library generated by [Speakeasy](https://docs.speakeasyapi.dev/docs/using-speakeasy/client-sdks)

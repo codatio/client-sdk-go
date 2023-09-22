@@ -13,7 +13,7 @@ import (
 
 	"github.com/ericlagergren/decimal"
 
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/types"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/types"
 )
 
 func GenerateURL(ctx context.Context, serverURL, path string, pathParams interface{}, globals map[string]map[string]map[string]interface{}) (string, error) {
@@ -106,11 +106,7 @@ func getSimplePathParams(ctx context.Context, parentName string, objType reflect
 			pathParams[parentName] = valToString(objValue.Interface())
 		case types.Date:
 			pathParams[parentName] = valToString(objValue.Interface())
-		case types.BigInt:
-			pathParams[parentName] = valToString(objValue.Interface())
 		case big.Int:
-			pathParams[parentName] = valToString(objValue.Interface())
-		case types.Decimal:
 			pathParams[parentName] = valToString(objValue.Interface())
 		case decimal.Big:
 			pathParams[parentName] = valToString(objValue.Interface())
