@@ -28,20 +28,20 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payroll"
+	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/shared"
 )
 
 func main() {
-    s := codatsyncpayroll.New(
-        codatsyncpayroll.WithSecurity(shared.Security{
+    s := syncforpayroll.New(
+        syncforpayroll.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
     ctx := context.Background()
     res, err := s.Companies.Create(ctx, shared.CompanyRequestBody{
-        Description: codatsyncpayroll.String("Requested early access to the new financing scheme."),
+        Description: syncforpayroll.String("Requested early access to the new financing scheme."),
         Name: "Bank of Dave",
     })
     if err != nil {
@@ -81,14 +81,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payroll"
+	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncpayroll.New(
-        codatsyncpayroll.WithSecurity(shared.Security{
+    s := syncforpayroll.New(
+        syncforpayroll.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -133,14 +133,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payroll"
+	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncpayroll.New(
-        codatsyncpayroll.WithSecurity(shared.Security{
+    s := syncforpayroll.New(
+        syncforpayroll.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -185,24 +185,24 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payroll"
+	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncpayroll.New(
-        codatsyncpayroll.WithSecurity(shared.Security{
+    s := syncforpayroll.New(
+        syncforpayroll.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
     ctx := context.Background()
     res, err := s.Companies.List(ctx, operations.ListCompaniesRequest{
-        OrderBy: codatsyncpayroll.String("-modifiedDate"),
-        Page: codatsyncpayroll.Int(1),
-        PageSize: codatsyncpayroll.Int(100),
-        Query: codatsyncpayroll.String("delectus"),
+        OrderBy: syncforpayroll.String("-modifiedDate"),
+        Page: syncforpayroll.Int(1),
+        PageSize: syncforpayroll.Int(100),
+        Query: syncforpayroll.String("iusto"),
     })
     if err != nil {
         log.Fatal(err)
@@ -240,14 +240,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payroll"
+	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncpayroll.New(
-        codatsyncpayroll.WithSecurity(shared.Security{
+    s := syncforpayroll.New(
+        syncforpayroll.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -255,7 +255,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Companies.Update(ctx, operations.UpdateCompanyRequest{
         CompanyRequestBody: &shared.CompanyRequestBody{
-            Description: codatsyncpayroll.String("Requested early access to the new financing scheme."),
+            Description: syncforpayroll.String("Requested early access to the new financing scheme."),
             Name: "Bank of Dave",
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
