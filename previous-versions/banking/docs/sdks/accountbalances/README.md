@@ -44,7 +44,7 @@ func main() {
         OrderBy: banking.String("-modifiedDate"),
         Page: banking.Int(1),
         PageSize: banking.Int(100),
-        Query: banking.String("provident"),
+        Query: banking.String("distinctio"),
     })
     if err != nil {
         log.Fatal(err)
