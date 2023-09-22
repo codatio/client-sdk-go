@@ -9,6 +9,7 @@ pkg/types/bigint.go
 pkg/types/date.go
 pkg/types/datetime.go
 pkg/types/decimal.go
+pkg/types/pointers.go
 pkg/utils/contenttype.go
 pkg/utils/form.go
 pkg/utils/headers.go
@@ -101,11 +102,6 @@ pkg/models/shared/security.go
 pkg/models/shared/accountcategoriesupdatedwebhook.go
 pkg/models/shared/accountcategoriesupdatedwebhookdata.go
 pkg/models/webhooks/accountcategoriesupdated.go
-docs/sdks/codatassess/README.md
-docs/models/operations/option.md
-docs/sdks/dataintegrity/README.md
-docs/sdks/excelreports/README.md
-docs/sdks/reports/README.md
 USAGE.md
 docs/models/operations/listdatatypedataintegritydetailsrequest.md
 docs/models/operations/listdatatypedataintegritydetailsresponse.md
@@ -214,5 +210,10 @@ docs/models/shared/security.md
 docs/models/shared/accountcategoriesupdatedwebhook.md
 docs/models/shared/accountcategoriesupdatedwebhookdata.md
 docs/models/webhooks/accountcategoriesupdatedresponse.md
+docs/sdks/codatassess/README.md
+docs/models/operations/option.md
+docs/sdks/dataintegrity/README.md
+docs/sdks/excelreports/README.md
+docs/sdks/reports/README.md
 pkg/models/operations/options.go
 .gitattributes
