@@ -45,14 +45,15 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/bank-feeds/v3"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v3"
 	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/types"
 )
 
 func main() {
-    s := codatbankfeeds.New(
-        codatbankfeeds.WithSecurity(shared.Security{
+    s := bankfeeds.New(
+        bankfeeds.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -60,16 +61,16 @@ func main() {
     ctx := context.Background()
     res, err := s.SourceAccounts.Create(ctx, operations.CreateSourceAccountRequest{
         SourceAccount: &shared.SourceAccount{
-            AccountName: codatbankfeeds.String("deserunt"),
-            AccountNumber: codatbankfeeds.String("suscipit"),
-            AccountType: codatbankfeeds.String("iure"),
-            Balance: types.MustNewDecimalFromString("2975.34"),
-            Currency: codatbankfeeds.String("EUR"),
-            FeedStartDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
-            ID: "f467cc87-96ed-4151-a05d-fc2ddf7cc78c",
-            ModifiedDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
-            SortCode: codatbankfeeds.String("dicta"),
-            Status: codatbankfeeds.String("nam"),
+            AccountName: bankfeeds.String("magnam"),
+            AccountNumber: bankfeeds.String("debitis"),
+            AccountType: bankfeeds.String("ipsa"),
+            Balance: types.MustNewDecimalFromString("9636.63"),
+            Currency: bankfeeds.String("GBP"),
+            FeedStartDate: bankfeeds.String("2022-10-23T00:00:00.000Z"),
+            ID: "7cc8796e-d151-4a05-9fc2-ddf7cc78ca1b",
+            ModifiedDate: bankfeeds.String("2022-10-23T00:00:00.000Z"),
+            SortCode: bankfeeds.String("occaecati"),
+            Status: bankfeeds.String("fugit"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -113,14 +114,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/bank-feeds/v3"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v3"
 	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/operations"
 )
 
 func main() {
-    s := codatbankfeeds.New(
-        codatbankfeeds.WithSecurity(shared.Security{
+    s := bankfeeds.New(
+        bankfeeds.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -169,14 +170,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/bank-feeds/v3"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v3"
 	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/operations"
 )
 
 func main() {
-    s := codatbankfeeds.New(
-        codatbankfeeds.WithSecurity(shared.Security{
+    s := bankfeeds.New(
+        bankfeeds.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -225,21 +226,21 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/bank-feeds/v3"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v3"
 	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/operations"
 )
 
 func main() {
-    s := codatbankfeeds.New(
-        codatbankfeeds.WithSecurity(shared.Security{
+    s := bankfeeds.New(
+        bankfeeds.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
     ctx := context.Background()
     res, err := s.SourceAccounts.GenerateCredentials(ctx, operations.GenerateCredentialsRequest{
-        RequestBody: []byte("occaecati"),
+        RequestBody: []byte("hic"),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -282,14 +283,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/bank-feeds/v3"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v3"
 	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/operations"
 )
 
 func main() {
-    s := codatbankfeeds.New(
-        codatbankfeeds.WithSecurity(shared.Security{
+    s := bankfeeds.New(
+        bankfeeds.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -336,14 +337,15 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/bank-feeds/v3"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v3"
 	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/types"
 )
 
 func main() {
-    s := codatbankfeeds.New(
-        codatbankfeeds.WithSecurity(shared.Security{
+    s := bankfeeds.New(
+        bankfeeds.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -351,18 +353,18 @@ func main() {
     ctx := context.Background()
     res, err := s.SourceAccounts.Update(ctx, operations.UpdateSourceAccountRequest{
         SourceAccount: &shared.SourceAccount{
-            AccountName: codatbankfeeds.String("fugit"),
-            AccountNumber: codatbankfeeds.String("deleniti"),
-            AccountType: codatbankfeeds.String("hic"),
-            Balance: types.MustNewDecimalFromString("7586.16"),
-            Currency: codatbankfeeds.String("USD"),
-            FeedStartDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
-            ID: "6742cb73-9205-4929-b96f-ea7596eb10fa",
-            ModifiedDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
-            SortCode: codatbankfeeds.String("laborum"),
-            Status: codatbankfeeds.String("dolores"),
+            AccountName: bankfeeds.String("optio"),
+            AccountNumber: bankfeeds.String("totam"),
+            AccountType: bankfeeds.String("beatae"),
+            Balance: types.MustNewDecimalFromString("4146.62"),
+            Currency: bankfeeds.String("USD"),
+            FeedStartDate: bankfeeds.String("2022-10-23T00:00:00.000Z"),
+            ID: "2cb73920-5929-4396-bea7-596eb10faaa2",
+            ModifiedDate: bankfeeds.String("2022-10-23T00:00:00.000Z"),
+            SortCode: bankfeeds.String("corporis"),
+            Status: bankfeeds.String("explicabo"),
         },
-        AccountID: "13d946f0-c5d5-42bc-b092-97ece17923ab",
+        AccountID: "EILBDVJVNUAGVKRQ",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })

@@ -3,7 +3,8 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/types"
+	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 // SourceAccount - The target bank account in a supported accounting package for ingestion into a bank feed.
@@ -15,7 +16,7 @@ type SourceAccount struct {
 	// The type of bank account e.g. Credit
 	AccountType *string `json:"accountType,omitempty"`
 	// The latest balance for the bank account
-	Balance *types.Decimal `json:"balance,omitempty"`
+	Balance *decimal.Big `decimal:"number" json:"balance,omitempty"`
 	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code, e.g. _GBP_.
 	//
 	// ## Unknown currencies
@@ -71,6 +72,17 @@ type SourceAccount struct {
 	Status   *string `json:"status,omitempty"`
 }
 
+func (s SourceAccount) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SourceAccount) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (o *SourceAccount) GetAccountName() *string {
 	if o == nil {
 		return nil
@@ -92,7 +104,7 @@ func (o *SourceAccount) GetAccountType() *string {
 	return o.AccountType
 }
 
-func (o *SourceAccount) GetBalance() *types.Decimal {
+func (o *SourceAccount) GetBalance() *decimal.Big {
 	if o == nil {
 		return nil
 	}
