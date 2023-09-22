@@ -29,15 +29,15 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
+	syncforcommerceversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/operations"
-	"github.com/ericlagergren/decimal"
+	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/types"
 )
 
 func main() {
-    s := codatsynccommerce.New(
-        codatsynccommerce.WithSecurity(shared.Security{
+    s := syncforcommerceversion1.New(
+        syncforcommerceversion1.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -45,54 +45,54 @@ func main() {
     ctx := context.Background()
     res, err := s.AccountingJournalEntries.CreateAccountingJournalEntry(ctx, operations.CreateAccountingJournalEntryRequest{
         AccountingJournalEntry: &shared.AccountingJournalEntry{
-            CreatedOn: codatsynccommerce.String("2022-10-23T00:00:00.000Z"),
-            Description: codatsynccommerce.String("pariatur"),
-            ID: codatsynccommerce.String("e008e6f8-c5f3-450d-8cdb-5a3418143010"),
+            CreatedOn: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
+            Description: syncforcommerceversion1.String("nam"),
+            ID: syncforcommerceversion1.String("5a341814-3010-4421-813d-5208ece7e253"),
             JournalLines: []shared.JournalLine{
                 shared.JournalLine{
                     AccountRef: &shared.AccountRef{
-                        ID: codatsynccommerce.String("421813d5-208e-4ce7-a253-b668451c6c6e"),
-                        Name: codatsynccommerce.String("Helen Heller III"),
+                        ID: syncforcommerceversion1.String("b668451c-6c6e-4205-a16d-eab3fec9578a"),
+                        Name: syncforcommerceversion1.String("Marjorie Hickle"),
                     },
-                    Currency: codatsynccommerce.String("at"),
-                    Description: codatsynccommerce.String("vero"),
-                    NetAmount: *types.MustNewDecimalFromString("6675.93"),
+                    Currency: syncforcommerceversion1.String("aspernatur"),
+                    Description: syncforcommerceversion1.String("ducimus"),
+                    NetAmount: types.MustNewDecimalFromString("2005.16"),
                     Tracking: &shared.JournalLineTracking{
                         RecordRefs: []shared.RecordRef{
                             shared.RecordRef{
-                                DataType: codatsynccommerce.String("accountTransaction"),
-                                ID: codatsynccommerce.String("3fec9578-a645-4842-b3a8-418d162309fb"),
+                                DataType: syncforcommerceversion1.String("accountTransaction"),
+                                ID: syncforcommerceversion1.String("8418d162-309f-4b09-a992-1aefb9f58c4d"),
                             },
                         },
                     },
                 },
             },
             JournalRef: &shared.AccountingJournalEntryJournalReference{
-                ID: "0929921a-efb9-4f58-84d8-6e68e4be0560",
-                Name: codatsynccommerce.String("Sheila Wolff"),
+                ID: "86e68e4b-e056-4013-b59d-a757a59ecfef",
+                Name: syncforcommerceversion1.String("Loretta Tremblay DDS"),
             },
             Metadata: &shared.Metadata{
-                IsDeleted: codatsynccommerce.Bool(false),
+                IsDeleted: syncforcommerceversion1.Bool(false),
             },
-            ModifiedDate: codatsynccommerce.String("2022-10-23T00:00:00.000Z"),
-            PostedOn: codatsynccommerce.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
+            PostedOn: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
             RecordRef: &shared.AccountingJournalEntryRecordReference{
-                DataType: codatsynccommerce.String("invoice"),
-                ID: codatsynccommerce.String("57a59ecf-ef66-4ef1-8aa3-383c2beb4773"),
+                DataType: syncforcommerceversion1.String("journalEntry"),
+                ID: syncforcommerceversion1.String("383c2beb-4773-473c-8d72-f64d1db1f2c4"),
             },
-            SourceModifiedDate: codatsynccommerce.String("2022-10-23T00:00:00.000Z"),
+            SourceModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "neque": map[string]interface{}{
-                        "quo": "deleniti",
+                    "illo": map[string]interface{}{
+                        "accusantium": "vel",
                     },
                 },
             },
-            UpdatedOn: codatsynccommerce.String("2022-10-23T00:00:00.000Z"),
+            UpdatedOn: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codatsynccommerce.Int(437814),
+        TimeoutInMinutes: syncforcommerceversion1.Int(107617),
     })
     if err != nil {
         log.Fatal(err)

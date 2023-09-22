@@ -67,7 +67,7 @@ type AccountingCreateCreditNoteResponse struct {
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	RequestedOnUtc string `json:"requestedOnUtc"`
-	// The status of the push operation.
+	// The current status of the push operation.
 	Status           PushOperationStatus `json:"status"`
 	StatusCode       int64               `json:"statusCode"`
 	TimeoutInMinutes *int                `json:"timeoutInMinutes,omitempty"`

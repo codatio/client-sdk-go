@@ -29,15 +29,15 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
+	syncforcommerceversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/operations"
-	"github.com/ericlagergren/decimal"
+	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/types"
 )
 
 func main() {
-    s := codatsynccommerce.New(
-        codatsynccommerce.WithSecurity(shared.Security{
+    s := syncforcommerceversion1.New(
+        syncforcommerceversion1.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -45,132 +45,132 @@ func main() {
     ctx := context.Background()
     res, err := s.AccountingInvoices.CreateAccountingInvoice(ctx, operations.CreateAccountingInvoiceRequest{
         AccountingInvoice: &shared.AccountingInvoice{
-            AdditionalTaxAmount: types.MustNewDecimalFromString("7386.83"),
-            AdditionalTaxPercentage: types.MustNewDecimalFromString("2326.27"),
-            AmountDue: *types.MustNewDecimalFromString("4490.83"),
-            Currency: codatsynccommerce.String("USD"),
-            CurrencyRate: types.MustNewDecimalFromString("9372.85"),
+            AdditionalTaxAmount: types.MustNewDecimalFromString("2282.63"),
+            AdditionalTaxPercentage: types.MustNewDecimalFromString("1059.06"),
+            AmountDue: types.MustNewDecimalFromString("4895.09"),
+            Currency: syncforcommerceversion1.String("EUR"),
+            CurrencyRate: types.MustNewDecimalFromString("8915.23"),
             CustomerRef: &shared.AccountingCustomerRef{
-                CompanyName: codatsynccommerce.String("facere"),
-                ID: "4f6fbee4-1f33-4317-be35-b60eb1ea4265",
+                CompanyName: syncforcommerceversion1.String("consectetur"),
+                ID: "5b60eb1e-a426-4555-ba3c-28744ed53b88",
             },
-            DiscountPercentage: types.MustNewDecimalFromString("3742.96"),
-            DueDate: codatsynccommerce.String("2022-10-23T00:00:00.000Z"),
-            ID: codatsynccommerce.String("ba3c2874-4ed5-43b8-8f3a-8d8f5c0b2f2f"),
-            InvoiceNumber: codatsynccommerce.String("facilis"),
+            DiscountPercentage: types.MustNewDecimalFromString("9425.84"),
+            DueDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
+            ID: syncforcommerceversion1.String("a8d8f5c0-b2f2-4fb7-b194-a276b26916fe"),
+            InvoiceNumber: syncforcommerceversion1.String("illo"),
             IssueDate: "2022-10-23T00:00:00.000Z",
             LineItems: []shared.InvoiceLineItem{
                 shared.InvoiceLineItem{
                     AccountRef: &shared.AccountRef{
-                        ID: codatsynccommerce.String("b194a276-b269-416f-a1f0-8f4294e3698f"),
-                        Name: codatsynccommerce.String("Rhonda Klocko"),
+                        ID: syncforcommerceversion1.String("08f4294e-3698-4f44-bf60-3e8b445e80ca"),
+                        Name: syncforcommerceversion1.String("Lorraine Walsh"),
                     },
-                    Description: codatsynccommerce.String("sit"),
-                    DiscountAmount: types.MustNewDecimalFromString("2484.13"),
-                    DiscountPercentage: types.MustNewDecimalFromString("8880.44"),
-                    IsDirectIncome: codatsynccommerce.Bool(false),
+                    Description: syncforcommerceversion1.String("magni"),
+                    DiscountAmount: types.MustNewDecimalFromString("486.9"),
+                    DiscountPercentage: types.MustNewDecimalFromString("9014.83"),
+                    IsDirectIncome: syncforcommerceversion1.Bool(false),
                     ItemRef: &shared.ItemRef{
-                        ID: "8b445e80-ca55-4efd-a0e4-57e1858b6a89",
-                        Name: codatsynccommerce.String("Rudolph Trantow"),
+                        ID: "457e1858-b6a8-49fb-a3a5-aa8e4824d0ab",
+                        Name: syncforcommerceversion1.String("Barbara Koelpin IV"),
                     },
-                    Quantity: *types.MustNewDecimalFromString("3416.98"),
-                    SubTotal: types.MustNewDecimalFromString("6390.28"),
-                    TaxAmount: types.MustNewDecimalFromString("6762.43"),
+                    Quantity: types.MustNewDecimalFromString("5580.65"),
+                    SubTotal: types.MustNewDecimalFromString("9221.12"),
+                    TaxAmount: types.MustNewDecimalFromString("3611.51"),
                     TaxRateRef: &shared.TaxRateRef{
-                        EffectiveTaxRate: types.MustNewDecimalFromString("5483.61"),
-                        ID: codatsynccommerce.String("e4824d0a-b407-4508-8e51-862065e904f3"),
-                        Name: codatsynccommerce.String("Gerald Bradtke"),
+                        EffectiveTaxRate: types.MustNewDecimalFromString("894.94"),
+                        ID: syncforcommerceversion1.String("862065e9-04f3-4b11-94b8-abf603a79f9d"),
+                        Name: syncforcommerceversion1.String("Noah Armstrong"),
                     },
-                    TotalAmount: types.MustNewDecimalFromString("6952.7"),
+                    TotalAmount: types.MustNewDecimalFromString("4406.66"),
                     Tracking: &shared.Tracking{
                         CategoryRefs: []shared.TrackingCategoryRefsitems{
                             shared.TrackingCategoryRefsitems{
-                                ID: "8abf603a-79f9-4dfe-8ab7-da8a50ce187f",
-                                Name: codatsynccommerce.String("Sam Powlowski IV"),
+                                ID: "da8a50ce-187f-486b-8173-d689eee9526f",
+                                Name: syncforcommerceversion1.String("Wilfred Mueller"),
                             },
                         },
                         CustomerRef: &shared.AccountingCustomerRef{
-                            CompanyName: codatsynccommerce.String("amet"),
-                            ID: "d689eee9-526f-48d9-86e8-81ead4f0e101",
+                            CompanyName: syncforcommerceversion1.String("repudiandae"),
+                            ID: "881ead4f-0e10-4125-a3f9-4e29e973e922",
                         },
-                        IsBilledTo: shared.BilledToTypeUnknown,
-                        IsRebilledTo: shared.BilledToTypeUnknown,
+                        IsBilledTo: shared.BilledToTypeNotApplicable,
+                        IsRebilledTo: shared.BilledToTypeNotApplicable,
                         ProjectRef: &shared.TrackingProjectReference{
-                            ID: "63f94e29-e973-4e92-aa57-a15be3e06080",
-                            Name: codatsynccommerce.String("Tricia Denesik"),
+                            ID: "7a15be3e-0608-407e-ab6e-3ab8845f0597",
+                            Name: syncforcommerceversion1.String("Shane Abshire"),
                         },
                         RecordRef: &shared.RecordRef{
-                            DataType: codatsynccommerce.String("transfer"),
-                            ID: codatsynccommerce.String("3ab8845f-0597-4a60-bf2a-54a31e94764a"),
+                            DataType: syncforcommerceversion1.String("journalEntry"),
+                            ID: syncforcommerceversion1.String("a54a31e9-4764-4a3e-865e-7956f9251a5a"),
                         },
                     },
                     TrackingCategoryRefs: []shared.TrackingCategoryRefsitems{
                         shared.TrackingCategoryRefsitems{
-                            ID: "3e865e79-56f9-4251-a5a9-da660ff57bfa",
-                            Name: codatsynccommerce.String("Irving Gleichner"),
+                            ID: "9da660ff-57bf-4aad-8f9e-fc1b4512c103",
+                            Name: syncforcommerceversion1.String("Agnes Gibson"),
                         },
                     },
-                    UnitAmount: *types.MustNewDecimalFromString("8897.94"),
+                    UnitAmount: types.MustNewDecimalFromString("7730.84"),
                 },
             },
             Metadata: &shared.Metadata{
-                IsDeleted: codatsynccommerce.Bool(false),
+                IsDeleted: syncforcommerceversion1.Bool(false),
             },
-            ModifiedDate: codatsynccommerce.String("2022-10-23T00:00:00.000Z"),
-            Note: codatsynccommerce.String("cumque"),
-            PaidOnDate: codatsynccommerce.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
+            Note: syncforcommerceversion1.String("sapiente"),
+            PaidOnDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
             PaymentAllocations: []shared.AccountingInvoicePaymentAllocation{
                 shared.AccountingInvoicePaymentAllocation{
                     Allocation: shared.AccountingInvoicePaymentAllocationAllocation{
-                        AllocatedOnDate: codatsynccommerce.String("2022-10-23T00:00:00.000Z"),
-                        Currency: codatsynccommerce.String("GBP"),
-                        CurrencyRate: types.MustNewDecimalFromString("3354.98"),
-                        TotalAmount: types.MustNewDecimalFromString("820.57"),
+                        AllocatedOnDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
+                        Currency: syncforcommerceversion1.String("GBP"),
+                        CurrencyRate: types.MustNewDecimalFromString("1070.04"),
+                        TotalAmount: types.MustNewDecimalFromString("5834.04"),
                     },
                     Payment: shared.PaymentAllocationPayment{
                         AccountRef: &shared.AccountRef{
-                            ID: codatsynccommerce.String("2c103264-8dc2-4f61-9199-ebfd0e9fe6c6"),
-                            Name: codatsynccommerce.String("Denise Runolfsdottir"),
+                            ID: syncforcommerceversion1.String("9ebfd0e9-fe6c-4632-8a3a-ed0117996312"),
+                            Name: syncforcommerceversion1.String("Mrs. Orville Treutel"),
                         },
-                        Currency: codatsynccommerce.String("USD"),
-                        CurrencyRate: types.MustNewDecimalFromString("8987.6"),
-                        ID: codatsynccommerce.String("d0117996-312f-4de0-8771-778ff61d0174"),
-                        Note: codatsynccommerce.String("esse"),
-                        PaidOnDate: codatsynccommerce.String("2022-10-23T00:00:00.000Z"),
-                        Reference: codatsynccommerce.String("consectetur"),
-                        TotalAmount: types.MustNewDecimalFromString("3998.12"),
+                        Currency: syncforcommerceversion1.String("USD"),
+                        CurrencyRate: types.MustNewDecimalFromString("1158.34"),
+                        ID: syncforcommerceversion1.String("778ff61d-0174-4763-a0a1-5db6a660659a"),
+                        Note: syncforcommerceversion1.String("ab"),
+                        PaidOnDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
+                        Reference: syncforcommerceversion1.String("possimus"),
+                        TotalAmount: types.MustNewDecimalFromString("9139.92"),
                     },
                 },
             },
             SalesOrderRefs: []shared.AccountingInvoiceSalesOrderReference{
                 shared.AccountingInvoiceSalesOrderReference{
-                    DataType: codatsynccommerce.String("ipsa"),
-                    ID: codatsynccommerce.String("a15db6a6-6065-49a1-adea-ab5851d6c645"),
+                    DataType: syncforcommerceversion1.String("mollitia"),
+                    ID: syncforcommerceversion1.String("ab5851d6-c645-4b08-b618-91baa0fe1ade"),
                 },
             },
-            SourceModifiedDate: codatsynccommerce.String("2022-10-23T00:00:00.000Z"),
+            SourceModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
             Status: shared.InvoiceStatusUnknown,
-            SubTotal: types.MustNewDecimalFromString("5615.77"),
+            SubTotal: types.MustNewDecimalFromString("5349.17"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "cum": map[string]interface{}{
-                        "aliquid": "beatae",
+                    "earum": map[string]interface{}{
+                        "ex": "sapiente",
                     },
                 },
             },
-            TotalAmount: *types.MustNewDecimalFromString("5308.6"),
-            TotalDiscount: types.MustNewDecimalFromString("6063.08"),
-            TotalTaxAmount: *types.MustNewDecimalFromString("852.33"),
+            TotalAmount: types.MustNewDecimalFromString("5241.84"),
+            TotalDiscount: types.MustNewDecimalFromString("7963.2"),
+            TotalTaxAmount: types.MustNewDecimalFromString("3651"),
             WithholdingTax: []shared.AccountingInvoiceWithholdingTax{
                 shared.AccountingInvoiceWithholdingTax{
-                    Amount: *types.MustNewDecimalFromString("7032.18"),
-                    Name: "Trevor Bartell",
+                    Amount: types.MustNewDecimalFromString("9920.74"),
+                    Name: "Marion Aufderhar",
                 },
             },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codatsynccommerce.Int(103298),
+        TimeoutInMinutes: syncforcommerceversion1.Int(770675),
     })
     if err != nil {
         log.Fatal(err)

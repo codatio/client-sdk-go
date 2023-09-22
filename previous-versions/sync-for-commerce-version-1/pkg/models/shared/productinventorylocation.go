@@ -3,13 +3,25 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/types"
+	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 type ProductInventoryLocation struct {
 	// Reference to the geographic location where the order was placed.
-	LocationRef *LocationRef   `json:"locationRef,omitempty"`
-	Quantity    *types.Decimal `json:"quantity,omitempty"`
+	LocationRef *LocationRef `json:"locationRef,omitempty"`
+	Quantity    *decimal.Big `decimal:"number" json:"quantity,omitempty"`
+}
+
+func (p ProductInventoryLocation) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *ProductInventoryLocation) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ProductInventoryLocation) GetLocationRef() *LocationRef {
@@ -19,7 +31,7 @@ func (o *ProductInventoryLocation) GetLocationRef() *LocationRef {
 	return o.LocationRef
 }
 
-func (o *ProductInventoryLocation) GetQuantity() *types.Decimal {
+func (o *ProductInventoryLocation) GetQuantity() *decimal.Big {
 	if o == nil {
 		return nil
 	}
