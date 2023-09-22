@@ -17,7 +17,7 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v4"
+	lending "github.com/codatio/client-sdk-go/lending/v4"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )
@@ -32,7 +32,7 @@ func main() {
     ctx := context.Background()
     res, err := s.LoanWriteback.CreateOperations.Get(ctx, operations.GetCreateOperationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        PushOperationKey: "e6e13b99-d488-4e1e-91e4-50ad2abd4426",
+        PushOperationKey: "e13b99d4-88e1-4e91-a450-ad2abd442698",
     })
     if err != nil {
         log.Fatal(err)
@@ -70,7 +70,7 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v4"
+	lending "github.com/codatio/client-sdk-go/lending/v4"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )
@@ -88,7 +88,7 @@ func main() {
         OrderBy: lending.String("-modifiedDate"),
         Page: lending.Int(1),
         PageSize: lending.Int(100),
-        Query: lending.String("cupiditate"),
+        Query: lending.String("perferendis"),
     })
     if err != nil {
         log.Fatal(err)

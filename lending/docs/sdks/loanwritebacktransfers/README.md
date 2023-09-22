@@ -26,7 +26,7 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v4"
+	lending "github.com/codatio/client-sdk-go/lending/v4"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/types"
@@ -43,26 +43,26 @@ func main() {
     res, err := s.LoanWriteback.Transfers.Create(ctx, operations.CreateTransferRequest{
         AccountingTransfer: &shared.AccountingTransfer{
             ContactRef: &shared.AccountingTransferContactRef{
-                DataType: lending.String("laborum"),
-                ID: "c366c8dd-6b14-4429-8747-4778a7bd466d",
+                DataType: lending.String("velit"),
+                ID: "66c8dd6b-1442-4907-8747-78a7bd466d28",
             },
             Date: lending.String("2022-10-23T00:00:00.000Z"),
             DepositedRecordRefs: []shared.RecordRef{
                 shared.RecordRef{
-                    DataType: lending.String("accountTransaction"),
-                    ID: lending.String("c10ab3cd-ca42-4519-84e5-23c7e0bc7178"),
+                    DataType: lending.String("journalEntry"),
+                    ID: lending.String("0ab3cdca-4251-4904-a523-c7e0bc7178e4"),
                 },
             },
-            Description: lending.String("accusamus"),
+            Description: lending.String("odio"),
             From: &shared.TransferAccount{
                 AccountRef: &shared.AccountRef{
-                    ID: lending.String("4796f2a7-0c68-4828-aaa4-82562f222e98"),
-                    Name: lending.String("Tamara Vandervort IV"),
+                    ID: lending.String("96f2a70c-6882-482a-a482-562f222e9817"),
+                    Name: lending.String("Sheldon Boehm"),
                 },
-                Amount: types.MustNewDecimalFromString("8003.79"),
+                Amount: types.MustNewDecimalFromString("7241.68"),
                 Currency: lending.String("EUR"),
             },
-            ID: lending.String("e61e6b7b-95bc-40ab-bc20-c4f3789fd871"),
+            ID: lending.String("61e6b7b9-5bc0-4ab3-820c-4f3789fd871f"),
             Metadata: &shared.Metadata{
                 IsDeleted: lending.Bool(false),
             },
@@ -70,23 +70,23 @@ func main() {
             SourceModifiedDate: lending.String("2022-10-23T00:00:00.000Z"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "sint": map[string]interface{}{
-                        "pariatur": "possimus",
+                    "pariatur": map[string]interface{}{
+                        "possimus": "quia",
                     },
                 },
             },
             To: &shared.TransferAccount{
                 AccountRef: &shared.AccountRef{
-                    ID: lending.String("2efd121a-a6f1-4e67-8bdb-04f15756082d"),
-                    Name: lending.String("Cassandra Ward V"),
+                    ID: lending.String("efd121aa-6f1e-4674-bdb0-4f15756082d6"),
+                    Name: lending.String("Miss Percy Parisian"),
                 },
-                Amount: types.MustNewDecimalFromString("9453.02"),
-                Currency: lending.String("GBP"),
+                Amount: types.MustNewDecimalFromString("984.78"),
+                Currency: lending.String("EUR"),
             },
             TrackingCategoryRefs: []shared.TrackingCategoryRef{
                 shared.TrackingCategoryRef{
-                    ID: "d1705133-9d08-4086-a184-0394c26071f9",
-                    Name: lending.String("Camille Hirthe III"),
+                    ID: "17051339-d080-486a-9840-394c26071f93",
+                    Name: lending.String("Ms. Glen Zboncak"),
                 },
             },
         },
@@ -94,7 +94,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         ForceUpdate: lending.Bool(false),
-        TimeoutInMinutes: lending.Int(310067),
+        TimeoutInMinutes: lending.Int(162954),
     })
     if err != nil {
         log.Fatal(err)
@@ -141,7 +141,7 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v4"
+	lending "github.com/codatio/client-sdk-go/lending/v4"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )

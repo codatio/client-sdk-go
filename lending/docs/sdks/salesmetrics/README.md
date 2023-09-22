@@ -46,7 +46,7 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v4"
+	lending "github.com/codatio/client-sdk-go/lending/v4"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )
@@ -63,9 +63,9 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         IncludeDisplayNames: lending.Bool(false),
-        NumberOfPeriods: 363161,
-        PeriodLength: 924967,
-        PeriodUnit: shared.PeriodUnitWeek,
+        NumberOfPeriods: 924967,
+        PeriodLength: 397533,
+        PeriodUnit: shared.PeriodUnitDay,
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -126,7 +126,7 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v4"
+	lending "github.com/codatio/client-sdk-go/lending/v4"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )
@@ -143,9 +143,9 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         IncludeDisplayNames: lending.Bool(false),
-        NumberOfPeriods: 46007,
-        PeriodLength: 738683,
-        PeriodUnit: shared.PeriodUnitDay,
+        NumberOfPeriods: 738683,
+        PeriodLength: 232627,
+        PeriodUnit: shared.PeriodUnitWeek,
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -207,7 +207,7 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v4"
+	lending "github.com/codatio/client-sdk-go/lending/v4"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )
@@ -224,8 +224,8 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         IncludeDisplayNames: lending.Bool(false),
-        NumberOfPeriods: 449083,
-        PeriodLength: 348519,
+        NumberOfPeriods: 348519,
+        PeriodLength: 937285,
         PeriodUnit: shared.PeriodUnitYear,
         ReportDate: "29-09-2020",
     })

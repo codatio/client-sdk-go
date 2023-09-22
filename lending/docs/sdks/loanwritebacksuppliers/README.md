@@ -26,7 +26,7 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v4"
+	lending "github.com/codatio/client-sdk-go/lending/v4"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )
@@ -43,42 +43,42 @@ func main() {
         AccountingSupplier: &shared.AccountingSupplier{
             Addresses: []shared.AccountingAddress{
                 shared.AccountingAddress{
-                    City: lending.String("Ankundingworth"),
-                    Country: lending.String("Guadeloupe"),
-                    Line1: lending.String("nulla"),
-                    Line2: lending.String("fugit"),
-                    PostalCode: lending.String("99474-0623"),
-                    Region: lending.String("ea"),
-                    Type: shared.AccountingAddressTypeUnknown,
+                    City: lending.String("Fort Faehaven"),
+                    Country: lending.String("Cameroon"),
+                    Line1: lending.String("porro"),
+                    Line2: lending.String("maiores"),
+                    PostalCode: lending.String("47406-2341"),
+                    Region: lending.String("vel"),
+                    Type: shared.AccountingAddressTypeDelivery,
                 },
             },
-            ContactName: lending.String("vel"),
-            DefaultCurrency: lending.String("possimus"),
-            EmailAddress: lending.String("magnam"),
-            ID: lending.String("36813f16-d9f5-4fce-ac55-6146c3e250fb"),
+            ContactName: lending.String("magnam"),
+            DefaultCurrency: lending.String("ratione"),
+            EmailAddress: lending.String("ex"),
+            ID: lending.String("813f16d9-f5fc-4e6c-9561-46c3e250fb00"),
             Metadata: &shared.Metadata{
                 IsDeleted: lending.Bool(false),
             },
             ModifiedDate: lending.String("2022-10-23T00:00:00.000Z"),
-            Phone: lending.String("+44 25691 154789"),
-            RegistrationNumber: lending.String("deleniti"),
+            Phone: lending.String("01224 658 999"),
+            RegistrationNumber: lending.String("aliquam"),
             SourceModifiedDate: lending.String("2022-10-23T00:00:00.000Z"),
-            Status: shared.SupplierStatusUnknown,
+            Status: shared.SupplierStatusArchived,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "fugit": map[string]interface{}{
-                        "accusamus": "inventore",
+                    "inventore": map[string]interface{}{
+                        "non": "et",
                     },
                 },
             },
-            SupplierName: lending.String("non"),
-            TaxNumber: lending.String("et"),
+            SupplierName: lending.String("dolorum"),
+            TaxNumber: lending.String("laborum"),
         },
         AllowSyncOnPushComplete: lending.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         ForceUpdate: lending.Bool(false),
-        TimeoutInMinutes: lending.Int(677412),
+        TimeoutInMinutes: lending.Int(810424),
     })
     if err != nil {
         log.Fatal(err)
@@ -125,7 +125,7 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v4"
+	lending "github.com/codatio/client-sdk-go/lending/v4"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )

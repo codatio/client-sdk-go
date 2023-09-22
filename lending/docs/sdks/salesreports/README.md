@@ -40,7 +40,7 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v4"
+	lending "github.com/codatio/client-sdk-go/lending/v4"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )
@@ -57,8 +57,8 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         IncludeDisplayNames: lending.Bool(false),
-        NumberOfPeriods: 992012,
-        PeriodLength: 241545,
+        NumberOfPeriods: 241545,
+        PeriodLength: 249420,
         PeriodUnit: shared.PeriodUnitDay,
         ReportDate: "29-09-2020",
     })
@@ -122,7 +122,7 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v4"
+	lending "github.com/codatio/client-sdk-go/lending/v4"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )
@@ -139,9 +139,9 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         IncludeDisplayNames: lending.Bool(false),
-        NumberOfPeriods: 228263,
-        PeriodLength: 105906,
-        PeriodUnit: shared.PeriodUnitWeek,
+        NumberOfPeriods: 105906,
+        PeriodLength: 489509,
+        PeriodUnit: shared.PeriodUnitYear,
         ReportDate: "29-09-2020",
     })
     if err != nil {

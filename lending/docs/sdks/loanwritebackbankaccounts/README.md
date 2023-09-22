@@ -25,7 +25,7 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v4"
+	lending "github.com/codatio/client-sdk-go/lending/v4"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/types"
@@ -41,29 +41,29 @@ func main() {
     ctx := context.Background()
     res, err := s.LoanWriteback.BankAccounts.Create(ctx, operations.CreateBankAccountRequest{
         AccountingBankAccount: &shared.AccountingBankAccount{
-            AccountName: lending.String("saepe"),
-            AccountNumber: lending.String("fuga"),
+            AccountName: lending.String("in"),
+            AccountNumber: lending.String("corporis"),
             AccountType: shared.AccountingBankAccountTypeCredit.ToPointer(),
-            AvailableBalance: types.MustNewDecimalFromString("3595.08"),
-            Balance: types.MustNewDecimalFromString("6130.64"),
-            Currency: lending.String("USD"),
-            IBan: lending.String("saepe"),
-            ID: lending.String("b10faaa2-352c-4595-9907-aff1a3a2fa94"),
-            Institution: lending.String("commodi"),
+            AvailableBalance: types.MustNewDecimalFromString("4370.32"),
+            Balance: types.MustNewDecimalFromString("9023.49"),
+            Currency: lending.String("EUR"),
+            IBan: lending.String("architecto"),
+            ID: lending.String("0faaa235-2c59-4559-87af-f1a3a2fa9467"),
+            Institution: lending.String("molestiae"),
             Metadata: &shared.Metadata{
                 IsDeleted: lending.Bool(false),
             },
             ModifiedDate: lending.String("2022-10-23T00:00:00.000Z"),
-            NominalCode: lending.String("molestiae"),
-            OverdraftLimit: types.MustNewDecimalFromString("2444.25"),
-            SortCode: lending.String("error"),
+            NominalCode: lending.String("error"),
+            OverdraftLimit: types.MustNewDecimalFromString("1589.69"),
+            SortCode: lending.String("quis"),
             SourceModifiedDate: lending.String("2022-10-23T00:00:00.000Z"),
         },
         AllowSyncOnPushComplete: lending.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         ForceUpdate: lending.Bool(false),
-        TimeoutInMinutes: lending.Int(338007),
+        TimeoutInMinutes: lending.Int(674752),
     })
     if err != nil {
         log.Fatal(err)
@@ -110,7 +110,7 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v4"
+	lending "github.com/codatio/client-sdk-go/lending/v4"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )

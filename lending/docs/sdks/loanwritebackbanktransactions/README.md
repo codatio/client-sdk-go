@@ -26,7 +26,7 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v4"
+	lending "github.com/codatio/client-sdk-go/lending/v4"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/types"
@@ -42,23 +42,23 @@ func main() {
     ctx := context.Background()
     res, err := s.LoanWriteback.BankTransactions.Create(ctx, operations.CreateBankTransactionsRequest{
         AccountingCreateBankTransactions: &shared.AccountingCreateBankTransactions{
-            AccountID: lending.String("vitae"),
+            AccountID: lending.String("animi"),
             Transactions: []shared.CreateBankAccountTransaction{
                 shared.CreateBankAccountTransaction{
-                    Amount: types.MustNewDecimalFromString("6747.52"),
-                    Balance: types.MustNewDecimalFromString("6563.3"),
+                    Amount: types.MustNewDecimalFromString("3172.02"),
+                    Balance: types.MustNewDecimalFromString("1381.83"),
                     Date: lending.String("2022-10-23T00:00:00.000Z"),
-                    Description: lending.String("odit"),
-                    ID: lending.String("c3f5ad01-9da1-4ffe-b8f0-97b0074f1547"),
+                    Description: lending.String("sequi"),
+                    ID: lending.String("f5ad019d-a1ff-4e78-b097-b0074f15471b"),
                 },
             },
         },
-        AccountID: "dicta",
+        AccountID: "enim",
         AllowSyncOnPushComplete: lending.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         ForceUpdate: lending.Bool(false),
-        TimeoutInMinutes: lending.Int(688661),
+        TimeoutInMinutes: lending.Int(880476),
     })
     if err != nil {
         log.Fatal(err)
@@ -105,7 +105,7 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v4"
+	lending "github.com/codatio/client-sdk-go/lending/v4"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )
@@ -119,7 +119,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.LoanWriteback.BankTransactions.GetCreateModel(ctx, operations.GetCreateBankTransactionsModelRequest{
-        AccountID: "enim",
+        AccountID: "commodi",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })

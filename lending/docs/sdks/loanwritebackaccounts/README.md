@@ -26,7 +26,7 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v4"
+	lending "github.com/codatio/client-sdk-go/lending/v4"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/types"
@@ -61,9 +61,9 @@ func main() {
             ValidDatatypeLinks: []shared.AccountingAccountValidDataTypeLinks{
                 shared.AccountingAccountValidDataTypeLinks{
                     Links: []string{
-                        "natus",
+                        "hic",
                     },
-                    Property: lending.String("laboriosam"),
+                    Property: lending.String("saepe"),
                 },
             },
         },
@@ -71,7 +71,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         ForceUpdate: lending.Bool(false),
-        TimeoutInMinutes: lending.Int(943749),
+        TimeoutInMinutes: lending.Int(681820),
     })
     if err != nil {
         log.Fatal(err)
@@ -118,7 +118,7 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v4"
+	lending "github.com/codatio/client-sdk-go/lending/v4"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )
