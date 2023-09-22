@@ -3,7 +3,8 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/types"
+	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 type BillPaymentLineLink struct {
@@ -11,7 +12,7 @@ type BillPaymentLineLink struct {
 	//
 	// - A negative link amount reduces the outstanding amount on the accounts payable account.
 	// - A positive link amount increases the outstanding amount on the accounts payable account.
-	Amount *types.Decimal `json:"amount,omitempty"`
+	Amount *decimal.Big `decimal:"number" json:"amount,omitempty"`
 	// Rate to convert the total amount of the payment into the base currency for the company at the time of the payment.
 	//
 	// Currency rates in Codat are implemented as the multiple of foreign currency units to each base currency unit.
@@ -37,21 +38,32 @@ type BillPaymentLineLink struct {
 	// | **GBP**          | £20            | 1.277         | $25.54                     |
 	// | **EUR**          | €20            | 1.134         | $22.68                     |
 	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
-	CurrencyRate *types.Decimal `json:"currencyRate,omitempty"`
+	CurrencyRate *decimal.Big `decimal:"number" json:"currencyRate,omitempty"`
 	// Unique identifier of the transaction represented by the link.
 	ID *string `json:"id,omitempty"`
 	// Types of links to bill payment lines.
 	Type BillPaymentLineLinkType `json:"type"`
 }
 
-func (o *BillPaymentLineLink) GetAmount() *types.Decimal {
+func (b BillPaymentLineLink) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(b, "", false)
+}
+
+func (b *BillPaymentLineLink) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &b, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *BillPaymentLineLink) GetAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.Amount
 }
 
-func (o *BillPaymentLineLink) GetCurrencyRate() *types.Decimal {
+func (o *BillPaymentLineLink) GetCurrencyRate() *decimal.Big {
 	if o == nil {
 		return nil
 	}

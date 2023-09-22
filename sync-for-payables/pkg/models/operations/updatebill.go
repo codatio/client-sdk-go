@@ -4,6 +4,7 @@ package operations
 
 import (
 	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/utils"
 	"net/http"
 )
 
@@ -14,8 +15,19 @@ type UpdateBillRequest struct {
 	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 	// When updating data in the destination platform Codat checks the `sourceModifiedDate` against the `lastupdated` date from the accounting platform, if they're different Codat will return an error suggesting you should initiate another pull of the data. If this is set to `true` then the update will override this check.
-	ForceUpdate      *bool `queryParam:"style=form,explode=true,name=forceUpdate"`
+	ForceUpdate      *bool `default:"false" queryParam:"style=form,explode=true,name=forceUpdate"`
 	TimeoutInMinutes *int  `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
+}
+
+func (u UpdateBillRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateBillRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *UpdateBillRequest) GetBill() *shared.Bill {
