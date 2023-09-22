@@ -48,7 +48,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Accounts.Create(ctx, operations.CreateAccountRequest{
         Account: &shared.Account{
-            Currency: accounting.String("EUR"),
+            Currency: accounting.String("USD"),
             CurrentBalance: types.MustNewDecimalFromString("0"),
             Description: accounting.String("Invoices the business has issued but has not yet collected payment on."),
             FullyQualifiedCategory: accounting.String("Asset.Current"),
@@ -67,15 +67,15 @@ func main() {
             ValidDatatypeLinks: []shared.ValidDataTypeLinks{
                 shared.ValidDataTypeLinks{
                     Links: []string{
-                        "illum",
+                        "vel",
                     },
-                    Property: accounting.String("vel"),
+                    Property: accounting.String("error"),
                 },
             },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: accounting.Int(623564),
+        TimeoutInMinutes: accounting.Int(645894),
     })
     if err != nil {
         log.Fatal(err)
@@ -134,7 +134,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Accounts.Get(ctx, operations.GetAccountRequest{
-        AccountID: "deserunt",
+        AccountID: "suscipit",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -257,7 +257,7 @@ func main() {
         OrderBy: accounting.String("-modifiedDate"),
         Page: accounting.Int(1),
         PageSize: accounting.Int(100),
-        Query: accounting.String("suscipit"),
+        Query: accounting.String("iure"),
     })
     if err != nil {
         log.Fatal(err)

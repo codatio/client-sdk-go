@@ -47,22 +47,22 @@ func main() {
     ctx := context.Background()
     res, err := s.BankAccountTransactions.Create(ctx, operations.CreateBankTransactionsRequest{
         CreateBankTransactions: &shared.CreateBankTransactions{
-            AccountID: accounting.String("iure"),
+            AccountID: accounting.String("magnam"),
             Transactions: []shared.CreateBankAccountTransaction{
                 shared.CreateBankAccountTransaction{
-                    Amount: types.MustNewDecimalFromString("2975.34"),
-                    Balance: types.MustNewDecimalFromString("8917.73"),
+                    Amount: types.MustNewDecimalFromString("8917.73"),
+                    Balance: types.MustNewDecimalFromString("567.13"),
                     Date: accounting.String("2022-10-23T00:00:00.000Z"),
-                    Description: accounting.String("delectus"),
-                    ID: accounting.String("467cc879-6ed1-451a-85df-c2ddf7cc78ca"),
+                    Description: accounting.String("tempora"),
+                    ID: accounting.String("67cc8796-ed15-41a0-9dfc-2ddf7cc78ca1"),
                 },
             },
         },
-        AccountID: "dicta",
+        AccountID: "nam",
         AllowSyncOnPushComplete: accounting.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: accounting.Int(720633),
+        TimeoutInMinutes: accounting.Int(639921),
     })
     if err != nil {
         log.Fatal(err)
@@ -123,7 +123,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.BankAccountTransactions.GetCreateModel(ctx, operations.GetCreateBankTransactionsModelRequest{
-        AccountID: "officia",
+        AccountID: "occaecati",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -184,13 +184,13 @@ func main() {
 
     ctx := context.Background()
     res, err := s.BankAccountTransactions.List(ctx, operations.ListBankAccountTransactionsRequest{
-        AccountID: "occaecati",
+        AccountID: "fugit",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         OrderBy: accounting.String("-modifiedDate"),
         Page: accounting.Int(1),
         PageSize: accounting.Int(100),
-        Query: accounting.String("fugit"),
+        Query: accounting.String("deleniti"),
     })
     if err != nil {
         log.Fatal(err)

@@ -48,28 +48,28 @@ func main() {
     ctx := context.Background()
     res, err := s.BankAccounts.Create(ctx, operations.CreateBankAccountRequest{
         BankAccount: &shared.BankAccount{
-            AccountName: accounting.String("deleniti"),
-            AccountNumber: accounting.String("hic"),
-            AccountType: shared.BankAccountBankAccountTypeDebit.ToPointer(),
-            AvailableBalance: types.MustNewDecimalFromString("5218.48"),
-            Balance: types.MustNewDecimalFromString("1059.07"),
+            AccountName: accounting.String("hic"),
+            AccountNumber: accounting.String("optio"),
+            AccountType: shared.BankAccountBankAccountTypeCredit.ToPointer(),
+            AvailableBalance: types.MustNewDecimalFromString("1059.07"),
+            Balance: types.MustNewDecimalFromString("4146.62"),
             Currency: accounting.String("USD"),
-            IBan: accounting.String("molestiae"),
-            ID: accounting.String("42cb7392-0592-4939-afea-7596eb10faaa"),
-            Institution: accounting.String("dolores"),
+            IBan: accounting.String("modi"),
+            ID: accounting.String("2cb73920-5929-4396-bea7-596eb10faaa2"),
+            Institution: accounting.String("dolorem"),
             Metadata: &shared.Metadata{
                 IsDeleted: accounting.Bool(false),
             },
             ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
-            NominalCode: accounting.String("corporis"),
-            OverdraftLimit: types.MustNewDecimalFromString("1289.26"),
-            SortCode: accounting.String("nobis"),
+            NominalCode: accounting.String("explicabo"),
+            OverdraftLimit: types.MustNewDecimalFromString("7506.86"),
+            SortCode: accounting.String("enim"),
             SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
         },
         AllowSyncOnPushComplete: accounting.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: accounting.Int(607831),
+        TimeoutInMinutes: accounting.Int(363711),
     })
     if err != nil {
         log.Fatal(err)
@@ -128,7 +128,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.BankAccounts.Get(ctx, operations.GetBankAccountRequest{
-        AccountID: "nemo",
+        AccountID: "minima",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -254,7 +254,7 @@ func main() {
         OrderBy: accounting.String("-modifiedDate"),
         Page: accounting.Int(1),
         PageSize: accounting.Int(100),
-        Query: accounting.String("minima"),
+        Query: accounting.String("excepturi"),
     })
     if err != nil {
         log.Fatal(err)
@@ -317,29 +317,29 @@ func main() {
     ctx := context.Background()
     res, err := s.BankAccounts.Update(ctx, operations.UpdateBankAccountRequest{
         BankAccount: &shared.BankAccount{
-            AccountName: accounting.String("excepturi"),
-            AccountNumber: accounting.String("accusantium"),
+            AccountName: accounting.String("accusantium"),
+            AccountNumber: accounting.String("iure"),
             AccountType: shared.BankAccountBankAccountTypeCredit.ToPointer(),
-            AvailableBalance: types.MustNewDecimalFromString("6342.74"),
-            Balance: types.MustNewDecimalFromString("9883.74"),
-            Currency: accounting.String("EUR"),
-            IBan: accounting.String("architecto"),
-            ID: accounting.String("a3a2fa94-6773-4925-9aa5-2c3f5ad019da"),
-            Institution: accounting.String("quasi"),
+            AvailableBalance: types.MustNewDecimalFromString("9883.74"),
+            Balance: types.MustNewDecimalFromString("9589.5"),
+            Currency: accounting.String("GBP"),
+            IBan: accounting.String("mollitia"),
+            ID: accounting.String("3a2fa946-7739-4251-aa52-c3f5ad019da1"),
+            Institution: accounting.String("reiciendis"),
             Metadata: &shared.Metadata{
                 IsDeleted: accounting.Bool(false),
             },
             ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
-            NominalCode: accounting.String("voluptatibus"),
-            OverdraftLimit: types.MustNewDecimalFromString("8781.94"),
-            SortCode: accounting.String("nihil"),
+            NominalCode: accounting.String("vero"),
+            OverdraftLimit: types.MustNewDecimalFromString("4686.51"),
+            SortCode: accounting.String("praesentium"),
             SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
         },
-        BankAccountID: "voluptatibus",
+        BankAccountID: "ipsa",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         ForceUpdate: accounting.Bool(false),
-        TimeoutInMinutes: accounting.Int(55714),
+        TimeoutInMinutes: accounting.Int(604846),
     })
     if err != nil {
         log.Fatal(err)

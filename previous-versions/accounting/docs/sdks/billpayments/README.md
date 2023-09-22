@@ -50,22 +50,22 @@ func main() {
     res, err := s.BillPayments.Create(ctx, operations.CreateBillPaymentRequest{
         BillPayment: &shared.BillPayment{
             AccountRef: &shared.AccountRef{
-                ID: accounting.String("6555ba3c-2874-44ed-93b8-8f3a8d8f5c0b"),
-                Name: accounting.String("Faith Cole"),
+                ID: accounting.String("a3c28744-ed53-4b88-b3a8-d8f5c0b2f2fb"),
+                Name: accounting.String("Kristy Bernier"),
             },
-            Currency: accounting.String("USD"),
-            CurrencyRate: types.MustNewDecimalFromString("7090.72"),
+            Currency: accounting.String("EUR"),
+            CurrencyRate: types.MustNewDecimalFromString("1523.54"),
             Date: "2022-10-23T00:00:00.000Z",
             ID: accounting.String("3d5a8e00-d108-4045-8823-7f342676cffa"),
             Lines: []shared.BillPaymentLine{
                 shared.BillPaymentLine{
                     AllocatedOnDate: accounting.String("2022-10-23T00:00:00.000Z"),
-                    Amount: types.MustNewDecimalFromString("2927.94"),
+                    Amount: types.MustNewDecimalFromString("6960.77"),
                     Links: []shared.BillPaymentLineLink{
                         shared.BillPaymentLineLink{
-                            Amount: types.MustNewDecimalFromString("6719.07"),
-                            CurrencyRate: types.MustNewDecimalFromString("1523.54"),
-                            ID: accounting.String("76b26916-fe1f-408f-8294-e3698f447f60"),
+                            Amount: types.MustNewDecimalFromString("1312.89"),
+                            CurrencyRate: types.MustNewDecimalFromString("3783.26"),
+                            ID: accounting.String("916fe1f0-8f42-494e-b698-f447f603e8b4"),
                             Type: shared.BillPaymentLineLinkTypeBill,
                         },
                     },
@@ -76,25 +76,25 @@ func main() {
             },
             ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
             Note: accounting.String("Bill Payment against bill c13e37b6-dfaa-4894-b3be-9fe97bda9f44"),
-            PaymentMethodRef: accounting.String("praesentium"),
-            Reference: accounting.String("facilis"),
+            PaymentMethodRef: accounting.String("debitis"),
+            Reference: accounting.String("rem"),
             SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "incidunt": map[string]interface{}{
-                        "ipsam": "debitis",
+                    "nobis": map[string]interface{}{
+                        "error": "veniam",
                     },
                 },
             },
             SupplierRef: &shared.SupplierRef{
-                ID: "80ca55ef-d20e-4457-a185-8b6a89fbe3a5",
-                SupplierName: accounting.String("officia"),
+                ID: "5efd20e4-57e1-4858-b6a8-9fbe3a5aa8e4",
+                SupplierName: accounting.String("atque"),
             },
             TotalAmount: types.MustNewDecimalFromString("1329.54"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: accounting.Int(676243),
+        TimeoutInMinutes: accounting.Int(148268),
     })
     if err != nil {
         log.Fatal(err)
@@ -171,7 +171,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.BillPayments.Delete(ctx, operations.DeleteBillPaymentRequest{
-        BillPaymentID: "corrupti",
+        BillPaymentID: "ut",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -232,7 +232,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.BillPayments.Get(ctx, operations.GetBillPaymentsRequest{
-        BillPaymentID: "accusamus",
+        BillPaymentID: "fugiat",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -356,7 +356,7 @@ func main() {
         OrderBy: accounting.String("-modifiedDate"),
         Page: accounting.Int(1),
         PageSize: accounting.Int(100),
-        Query: accounting.String("tempora"),
+        Query: accounting.String("voluptatem"),
     })
     if err != nil {
         log.Fatal(err)
