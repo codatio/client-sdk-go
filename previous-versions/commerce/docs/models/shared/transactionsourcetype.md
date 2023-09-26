@@ -1,5 +1,7 @@
 # TransactionSourceType
 
+The type of source the transaction arose.
+
 
 ## Values
 

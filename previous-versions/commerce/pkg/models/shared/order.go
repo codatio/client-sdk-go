@@ -3,7 +3,8 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/types"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 // OrderSupplementalData - Supplemental data is additional data you can include in our standard data types.
@@ -89,15 +90,26 @@ type Order struct {
 	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
 	SupplementalData *OrderSupplementalData `json:"supplementalData,omitempty"`
 	// Total amount of the order, including tax, net of any discounts and refunds.
-	TotalAmount *types.Decimal `json:"totalAmount,omitempty"`
+	TotalAmount *decimal.Big `decimal:"number" json:"totalAmount,omitempty"`
 	// Total amount of discount applied to the order.
-	TotalDiscount *types.Decimal `json:"totalDiscount,omitempty"`
+	TotalDiscount *decimal.Big `decimal:"number" json:"totalDiscount,omitempty"`
 	// Extra amount added to a bill.
-	TotalGratuity *types.Decimal `json:"totalGratuity,omitempty"`
+	TotalGratuity *decimal.Big `decimal:"number" json:"totalGratuity,omitempty"`
 	// Total amount refunded issued by a merchant on an order (always a negative value).
-	TotalRefund *types.Decimal `json:"totalRefund,omitempty"`
+	TotalRefund *decimal.Big `decimal:"number" json:"totalRefund,omitempty"`
 	// Total amount of tax applied to the order.
-	TotalTaxAmount *types.Decimal `json:"totalTaxAmount,omitempty"`
+	TotalTaxAmount *decimal.Big `decimal:"number" json:"totalTaxAmount,omitempty"`
+}
+
+func (o Order) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(o, "", false)
+}
+
+func (o *Order) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &o, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *Order) GetClosedDate() *string {
@@ -198,35 +210,35 @@ func (o *Order) GetSupplementalData() *OrderSupplementalData {
 	return o.SupplementalData
 }
 
-func (o *Order) GetTotalAmount() *types.Decimal {
+func (o *Order) GetTotalAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.TotalAmount
 }
 
-func (o *Order) GetTotalDiscount() *types.Decimal {
+func (o *Order) GetTotalDiscount() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.TotalDiscount
 }
 
-func (o *Order) GetTotalGratuity() *types.Decimal {
+func (o *Order) GetTotalGratuity() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.TotalGratuity
 }
 
-func (o *Order) GetTotalRefund() *types.Decimal {
+func (o *Order) GetTotalRefund() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.TotalRefund
 }
 
-func (o *Order) GetTotalTaxAmount() *types.Decimal {
+func (o *Order) GetTotalTaxAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}
