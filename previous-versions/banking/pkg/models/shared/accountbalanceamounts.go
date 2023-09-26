@@ -3,34 +3,46 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/previous-versions/banking/pkg/types"
+	"github.com/codatio/client-sdk-go/previous-versions/banking/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 // AccountBalanceAmounts - Depending on the data provided by the underlying bank, not all balances are always available.
 type AccountBalanceAmounts struct {
 	// The balance available in the account, including any pending transactions. This doesn't include additional funds available from any overdrafts.
-	Available *types.Decimal `json:"available,omitempty"`
+	Available *decimal.Big `decimal:"number" json:"available,omitempty"`
 	// The balance of the account only including cleared transactions.
-	Current *types.Decimal `json:"current,omitempty"`
+	Current *decimal.Big `decimal:"number" json:"current,omitempty"`
 	// The minimum allowed balance for the account. For example, a $100.00 overdraft would show as a limit of `-100.00`.
-	Limit *types.Decimal `json:"limit,omitempty"`
+	Limit *decimal.Big `decimal:"number" json:"limit,omitempty"`
 }
 
-func (o *AccountBalanceAmounts) GetAvailable() *types.Decimal {
+func (a AccountBalanceAmounts) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AccountBalanceAmounts) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *AccountBalanceAmounts) GetAvailable() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.Available
 }
 
-func (o *AccountBalanceAmounts) GetCurrent() *types.Decimal {
+func (o *AccountBalanceAmounts) GetCurrent() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.Current
 }
 
-func (o *AccountBalanceAmounts) GetLimit() *types.Decimal {
+func (o *AccountBalanceAmounts) GetLimit() *decimal.Big {
 	if o == nil {
 		return nil
 	}
