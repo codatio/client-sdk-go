@@ -12,15 +12,15 @@ import(
 )
 
 func main() {
-    s := codatcommon.New(
-        codatcommon.WithSecurity(shared.Security{
+    s := common.New(
+        common.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
 
     ctx := context.Background()
     res, err := s.Companies.Create(ctx, shared.CompanyRequestBody{
-        Description: codatcommon.String("Requested early access to the new financing scheme."),
+        Description: common.String("Requested early access to the new financing scheme."),
         Name: "Bank of Dave",
     })
     if err != nil {
