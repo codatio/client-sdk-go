@@ -35,11 +35,12 @@ import(
 	"github.com/codatio/client-sdk-go/previous-versions/accounting"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/types"
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -47,28 +48,28 @@ func main() {
     ctx := context.Background()
     res, err := s.BankAccounts.Create(ctx, operations.CreateBankAccountRequest{
         BankAccount: &shared.BankAccount{
-            AccountName: codataccounting.String("deleniti"),
-            AccountNumber: codataccounting.String("hic"),
-            AccountType: shared.BankAccountBankAccountTypeDebit.ToPointer(),
-            AvailableBalance: types.MustNewDecimalFromString("5218.48"),
-            Balance: types.MustNewDecimalFromString("1059.07"),
-            Currency: codataccounting.String("USD"),
-            IBan: codataccounting.String("molestiae"),
-            ID: codataccounting.String("42cb7392-0592-4939-afea-7596eb10faaa"),
-            Institution: codataccounting.String("dolores"),
+            AccountName: accounting.String("hic"),
+            AccountNumber: accounting.String("optio"),
+            AccountType: shared.BankAccountBankAccountTypeCredit.ToPointer(),
+            AvailableBalance: types.MustNewDecimalFromString("1059.07"),
+            Balance: types.MustNewDecimalFromString("4146.62"),
+            Currency: accounting.String("USD"),
+            IBan: accounting.String("modi"),
+            ID: accounting.String("2cb73920-5929-4396-bea7-596eb10faaa2"),
+            Institution: accounting.String("dolorem"),
             Metadata: &shared.Metadata{
-                IsDeleted: codataccounting.Bool(false),
+                IsDeleted: accounting.Bool(false),
             },
-            ModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
-            NominalCode: codataccounting.String("corporis"),
-            OverdraftLimit: types.MustNewDecimalFromString("1289.26"),
-            SortCode: codataccounting.String("nobis"),
-            SourceModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            NominalCode: accounting.String("explicabo"),
+            OverdraftLimit: types.MustNewDecimalFromString("7506.86"),
+            SortCode: accounting.String("enim"),
+            SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
         },
-        AllowSyncOnPushComplete: codataccounting.Bool(false),
+        AllowSyncOnPushComplete: accounting.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codataccounting.Int(607831),
+        TimeoutInMinutes: accounting.Int(363711),
     })
     if err != nil {
         log.Fatal(err)
@@ -119,15 +120,15 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
     ctx := context.Background()
     res, err := s.BankAccounts.Get(ctx, operations.GetBankAccountRequest{
-        AccountID: "nemo",
+        AccountID: "minima",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -182,8 +183,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -240,8 +241,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -250,10 +251,10 @@ func main() {
     res, err := s.BankAccounts.List(ctx, operations.ListBankAccountsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        OrderBy: codataccounting.String("-modifiedDate"),
-        Page: codataccounting.Int(1),
-        PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("minima"),
+        OrderBy: accounting.String("-modifiedDate"),
+        Page: accounting.Int(1),
+        PageSize: accounting.Int(100),
+        Query: accounting.String("excepturi"),
     })
     if err != nil {
         log.Fatal(err)
@@ -303,11 +304,12 @@ import(
 	"github.com/codatio/client-sdk-go/previous-versions/accounting"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/types"
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -315,29 +317,29 @@ func main() {
     ctx := context.Background()
     res, err := s.BankAccounts.Update(ctx, operations.UpdateBankAccountRequest{
         BankAccount: &shared.BankAccount{
-            AccountName: codataccounting.String("excepturi"),
-            AccountNumber: codataccounting.String("accusantium"),
+            AccountName: accounting.String("accusantium"),
+            AccountNumber: accounting.String("iure"),
             AccountType: shared.BankAccountBankAccountTypeCredit.ToPointer(),
-            AvailableBalance: types.MustNewDecimalFromString("6342.74"),
-            Balance: types.MustNewDecimalFromString("9883.74"),
-            Currency: codataccounting.String("EUR"),
-            IBan: codataccounting.String("architecto"),
-            ID: codataccounting.String("a3a2fa94-6773-4925-9aa5-2c3f5ad019da"),
-            Institution: codataccounting.String("quasi"),
+            AvailableBalance: types.MustNewDecimalFromString("9883.74"),
+            Balance: types.MustNewDecimalFromString("9589.5"),
+            Currency: accounting.String("GBP"),
+            IBan: accounting.String("mollitia"),
+            ID: accounting.String("3a2fa946-7739-4251-aa52-c3f5ad019da1"),
+            Institution: accounting.String("reiciendis"),
             Metadata: &shared.Metadata{
-                IsDeleted: codataccounting.Bool(false),
+                IsDeleted: accounting.Bool(false),
             },
-            ModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
-            NominalCode: codataccounting.String("voluptatibus"),
-            OverdraftLimit: types.MustNewDecimalFromString("8781.94"),
-            SortCode: codataccounting.String("nihil"),
-            SourceModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            NominalCode: accounting.String("vero"),
+            OverdraftLimit: types.MustNewDecimalFromString("4686.51"),
+            SortCode: accounting.String("praesentium"),
+            SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
         },
-        BankAccountID: "voluptatibus",
+        BankAccountID: "ipsa",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        ForceUpdate: codataccounting.Bool(false),
-        TimeoutInMinutes: codataccounting.Int(55714),
+        ForceUpdate: accounting.Bool(false),
+        TimeoutInMinutes: accounting.Int(604846),
     })
     if err != nil {
         log.Fatal(err)

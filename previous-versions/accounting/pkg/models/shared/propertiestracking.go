@@ -6,9 +6,11 @@ package shared
 type Propertiestracking struct {
 	CategoryRefs []TrackingCategoryRef  `json:"categoryRefs"`
 	CustomerRef  *AccountingCustomerRef `json:"customerRef,omitempty"`
-	IsBilledTo   BilledToType           `json:"isBilledTo"`
-	IsRebilledTo BilledToType           `json:"isRebilledTo"`
-	ProjectRef   *ProjectRef            `json:"projectRef,omitempty"`
+	// Defines if the invoice or credit note is billed/rebilled to a project or customer.
+	IsBilledTo BilledToType `json:"isBilledTo"`
+	// Defines if the invoice or credit note is billed/rebilled to a project or customer.
+	IsRebilledTo BilledToType `json:"isRebilledTo"`
+	ProjectRef   *ProjectRef  `json:"projectRef,omitempty"`
 }
 
 func (o *Propertiestracking) GetCategoryRefs() []TrackingCategoryRef {

@@ -36,12 +36,12 @@ import(
 	"github.com/codatio/client-sdk-go/previous-versions/accounting"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
-	"github.com/ericlagergren/decimal"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/types"
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -50,51 +50,51 @@ func main() {
     res, err := s.BillPayments.Create(ctx, operations.CreateBillPaymentRequest{
         BillPayment: &shared.BillPayment{
             AccountRef: &shared.AccountRef{
-                ID: codataccounting.String("6555ba3c-2874-44ed-93b8-8f3a8d8f5c0b"),
-                Name: codataccounting.String("Faith Cole"),
+                ID: accounting.String("a3c28744-ed53-4b88-b3a8-d8f5c0b2f2fb"),
+                Name: accounting.String("Kristy Bernier"),
             },
-            Currency: codataccounting.String("USD"),
-            CurrencyRate: types.MustNewDecimalFromString("7090.72"),
+            Currency: accounting.String("EUR"),
+            CurrencyRate: types.MustNewDecimalFromString("1523.54"),
             Date: "2022-10-23T00:00:00.000Z",
-            ID: codataccounting.String("3d5a8e00-d108-4045-8823-7f342676cffa"),
+            ID: accounting.String("3d5a8e00-d108-4045-8823-7f342676cffa"),
             Lines: []shared.BillPaymentLine{
                 shared.BillPaymentLine{
-                    AllocatedOnDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
-                    Amount: *types.MustNewDecimalFromString("2927.94"),
+                    AllocatedOnDate: accounting.String("2022-10-23T00:00:00.000Z"),
+                    Amount: types.MustNewDecimalFromString("6960.77"),
                     Links: []shared.BillPaymentLineLink{
                         shared.BillPaymentLineLink{
-                            Amount: types.MustNewDecimalFromString("6719.07"),
-                            CurrencyRate: types.MustNewDecimalFromString("1523.54"),
-                            ID: codataccounting.String("76b26916-fe1f-408f-8294-e3698f447f60"),
+                            Amount: types.MustNewDecimalFromString("1312.89"),
+                            CurrencyRate: types.MustNewDecimalFromString("3783.26"),
+                            ID: accounting.String("916fe1f0-8f42-494e-b698-f447f603e8b4"),
                             Type: shared.BillPaymentLineLinkTypeBill,
                         },
                     },
                 },
             },
             Metadata: &shared.Metadata{
-                IsDeleted: codataccounting.Bool(false),
+                IsDeleted: accounting.Bool(false),
             },
-            ModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
-            Note: codataccounting.String("Bill Payment against bill c13e37b6-dfaa-4894-b3be-9fe97bda9f44"),
-            PaymentMethodRef: codataccounting.String("praesentium"),
-            Reference: codataccounting.String("facilis"),
-            SourceModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            Note: accounting.String("Bill Payment against bill c13e37b6-dfaa-4894-b3be-9fe97bda9f44"),
+            PaymentMethodRef: accounting.String("debitis"),
+            Reference: accounting.String("rem"),
+            SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "incidunt": map[string]interface{}{
-                        "ipsam": "debitis",
+                    "nobis": map[string]interface{}{
+                        "error": "veniam",
                     },
                 },
             },
             SupplierRef: &shared.SupplierRef{
-                ID: "80ca55ef-d20e-4457-a185-8b6a89fbe3a5",
-                SupplierName: codataccounting.String("officia"),
+                ID: "5efd20e4-57e1-4858-b6a8-9fbe3a5aa8e4",
+                SupplierName: accounting.String("atque"),
             },
             TotalAmount: types.MustNewDecimalFromString("1329.54"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codataccounting.Int(676243),
+        TimeoutInMinutes: accounting.Int(148268),
     })
     if err != nil {
         log.Fatal(err)
@@ -122,7 +122,7 @@ func main() {
 
 ## Delete
 
-﻿The *Delete bill payment* endpoint allows you to delete a specified bill payment from an accounting platform.
+The *Delete bill payment* endpoint allows you to delete a specified bill payment from an accounting platform.
 
 [Bill payments](https://docs.codat.io/accounting-api#/schemas/BillPayment) are an allocation of money within any customer accounts payable account.
 
@@ -141,13 +141,14 @@ Be aware that deleting a bill payment from an accounting platform might cause re
 ## Integration specifics
 Integrations that support soft delete do not permanently delete the object in the accounting platform.
 
-| Integration | Soft Delete | Details                                                                                             |  
-|-------------|-------------|-----------------------------------------------------------------------------------------------------|
+| Integration | Soft Delete | Details                                                                                                      |  
+|-------------|-------------|--------------------------------------------------------------------------------------------------------------|
+| QuickBooks Online | No          | -                                                                                   
 | Oracle NetSuite   | No          | See [here](/integrations/accounting/netsuite/how-deleting-bill-payments-works) to learn more. |
 
 > **Supported Integrations**
 >
-> This functionality is currently only supported for our QuickBooks Online abd Oracle NetSuite integrations. Check out our [public roadmap](https://portal.productboard.com/codat/7-public-product-roadmap/tabs/46-accounting-api) to see what we're building next, and to submit ideas for new features.
+> This functionality is currently only supported for our QuickBooks Online and Oracle NetSuite integrations.
 
 ### Example Usage
 
@@ -163,15 +164,15 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
     ctx := context.Background()
     res, err := s.BillPayments.Delete(ctx, operations.DeleteBillPaymentRequest{
-        BillPaymentID: "corrupti",
+        BillPaymentID: "ut",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -224,15 +225,15 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
     ctx := context.Background()
     res, err := s.BillPayments.Get(ctx, operations.GetBillPaymentsRequest{
-        BillPaymentID: "accusamus",
+        BillPaymentID: "fugiat",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -286,8 +287,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -344,8 +345,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -353,10 +354,10 @@ func main() {
     ctx := context.Background()
     res, err := s.BillPayments.List(ctx, operations.ListBillPaymentsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        OrderBy: codataccounting.String("-modifiedDate"),
-        Page: codataccounting.Int(1),
-        PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("tempora"),
+        OrderBy: accounting.String("-modifiedDate"),
+        Page: accounting.Int(1),
+        PageSize: accounting.Int(100),
+        Query: accounting.String("voluptatem"),
     })
     if err != nil {
         log.Fatal(err)

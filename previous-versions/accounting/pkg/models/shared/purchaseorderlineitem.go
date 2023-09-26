@@ -3,7 +3,8 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/types"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 type PurchaseOrderLineItem struct {
@@ -12,16 +13,16 @@ type PurchaseOrderLineItem struct {
 	// Description of the goods / services that have been ordered.
 	Description *string `json:"description,omitempty"`
 	// Value of any discounts applied.
-	DiscountAmount *types.Decimal `json:"discountAmount,omitempty"`
+	DiscountAmount *decimal.Big `decimal:"number" json:"discountAmount,omitempty"`
 	// Percentage rate (from 0 to 100) of any discounts applied to the unit amount.
-	DiscountPercentage *types.Decimal `json:"discountPercentage,omitempty"`
-	ItemRef            *ItemRef       `json:"itemRef,omitempty"`
+	DiscountPercentage *decimal.Big `decimal:"number" json:"discountPercentage,omitempty"`
+	ItemRef            *ItemRef     `json:"itemRef,omitempty"`
 	// Number of units that have been ordered.
-	Quantity *types.Decimal `json:"quantity,omitempty"`
+	Quantity *decimal.Big `decimal:"number" json:"quantity,omitempty"`
 	// Amount of the line, inclusive of discounts but exclusive of tax.
-	SubTotal *types.Decimal `json:"subTotal,omitempty"`
+	SubTotal *decimal.Big `decimal:"number" json:"subTotal,omitempty"`
 	// Amount of tax for the line.
-	TaxAmount *types.Decimal `json:"taxAmount,omitempty"`
+	TaxAmount *decimal.Big `decimal:"number" json:"taxAmount,omitempty"`
 	// Data types that reference a tax rate, for example invoice and bill line items, use a taxRateRef that includes the ID and name of the linked tax rate.
 	//
 	// Found on:
@@ -34,11 +35,22 @@ type PurchaseOrderLineItem struct {
 	// - Items
 	TaxRateRef *TaxRateRef `json:"taxRateRef,omitempty"`
 	// Total amount of the line, inclusive of discounts and tax.
-	TotalAmount *types.Decimal `json:"totalAmount,omitempty"`
+	TotalAmount *decimal.Big `decimal:"number" json:"totalAmount,omitempty"`
 	// Reference to the tracking categories to which the line item is linked.
 	TrackingCategoryRefs []TrackingCategoryRef `json:"trackingCategoryRefs,omitempty"`
 	// Price of each unit.
-	UnitAmount *types.Decimal `json:"unitAmount,omitempty"`
+	UnitAmount *decimal.Big `decimal:"number" json:"unitAmount,omitempty"`
+}
+
+func (p PurchaseOrderLineItem) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PurchaseOrderLineItem) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *PurchaseOrderLineItem) GetAccountRef() *AccountRef {
@@ -55,14 +67,14 @@ func (o *PurchaseOrderLineItem) GetDescription() *string {
 	return o.Description
 }
 
-func (o *PurchaseOrderLineItem) GetDiscountAmount() *types.Decimal {
+func (o *PurchaseOrderLineItem) GetDiscountAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.DiscountAmount
 }
 
-func (o *PurchaseOrderLineItem) GetDiscountPercentage() *types.Decimal {
+func (o *PurchaseOrderLineItem) GetDiscountPercentage() *decimal.Big {
 	if o == nil {
 		return nil
 	}
@@ -76,21 +88,21 @@ func (o *PurchaseOrderLineItem) GetItemRef() *ItemRef {
 	return o.ItemRef
 }
 
-func (o *PurchaseOrderLineItem) GetQuantity() *types.Decimal {
+func (o *PurchaseOrderLineItem) GetQuantity() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.Quantity
 }
 
-func (o *PurchaseOrderLineItem) GetSubTotal() *types.Decimal {
+func (o *PurchaseOrderLineItem) GetSubTotal() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.SubTotal
 }
 
-func (o *PurchaseOrderLineItem) GetTaxAmount() *types.Decimal {
+func (o *PurchaseOrderLineItem) GetTaxAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}
@@ -104,7 +116,7 @@ func (o *PurchaseOrderLineItem) GetTaxRateRef() *TaxRateRef {
 	return o.TaxRateRef
 }
 
-func (o *PurchaseOrderLineItem) GetTotalAmount() *types.Decimal {
+func (o *PurchaseOrderLineItem) GetTotalAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}
@@ -118,7 +130,7 @@ func (o *PurchaseOrderLineItem) GetTrackingCategoryRefs() []TrackingCategoryRef 
 	return o.TrackingCategoryRefs
 }
 
-func (o *PurchaseOrderLineItem) GetUnitAmount() *types.Decimal {
+func (o *PurchaseOrderLineItem) GetUnitAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}

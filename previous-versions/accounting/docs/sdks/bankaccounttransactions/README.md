@@ -34,11 +34,12 @@ import(
 	"github.com/codatio/client-sdk-go/previous-versions/accounting"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/types"
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -46,22 +47,22 @@ func main() {
     ctx := context.Background()
     res, err := s.BankAccountTransactions.Create(ctx, operations.CreateBankTransactionsRequest{
         CreateBankTransactions: &shared.CreateBankTransactions{
-            AccountID: codataccounting.String("iure"),
+            AccountID: accounting.String("magnam"),
             Transactions: []shared.CreateBankAccountTransaction{
                 shared.CreateBankAccountTransaction{
-                    Amount: types.MustNewDecimalFromString("2975.34"),
-                    Balance: types.MustNewDecimalFromString("8917.73"),
-                    Date: codataccounting.String("2022-10-23T00:00:00.000Z"),
-                    Description: codataccounting.String("delectus"),
-                    ID: codataccounting.String("467cc879-6ed1-451a-85df-c2ddf7cc78ca"),
+                    Amount: types.MustNewDecimalFromString("8917.73"),
+                    Balance: types.MustNewDecimalFromString("567.13"),
+                    Date: accounting.String("2022-10-23T00:00:00.000Z"),
+                    Description: accounting.String("tempora"),
+                    ID: accounting.String("67cc8796-ed15-41a0-9dfc-2ddf7cc78ca1"),
                 },
             },
         },
-        AccountID: "dicta",
-        AllowSyncOnPushComplete: codataccounting.Bool(false),
+        AccountID: "nam",
+        AllowSyncOnPushComplete: accounting.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codataccounting.Int(720633),
+        TimeoutInMinutes: accounting.Int(639921),
     })
     if err != nil {
         log.Fatal(err)
@@ -114,15 +115,15 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
     ctx := context.Background()
     res, err := s.BankAccountTransactions.GetCreateModel(ctx, operations.GetCreateBankTransactionsModelRequest{
-        AccountID: "officia",
+        AccountID: "occaecati",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -175,21 +176,21 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
     ctx := context.Background()
     res, err := s.BankAccountTransactions.List(ctx, operations.ListBankAccountTransactionsRequest{
-        AccountID: "occaecati",
+        AccountID: "fugit",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        OrderBy: codataccounting.String("-modifiedDate"),
-        Page: codataccounting.Int(1),
-        PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("fugit"),
+        OrderBy: accounting.String("-modifiedDate"),
+        Page: accounting.Int(1),
+        PageSize: accounting.Int(100),
+        Query: accounting.String("deleniti"),
     })
     if err != nil {
         log.Fatal(err)

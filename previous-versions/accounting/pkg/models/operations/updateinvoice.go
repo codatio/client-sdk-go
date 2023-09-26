@@ -4,18 +4,33 @@ package operations
 
 import (
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/utils"
 	"net/http"
 )
 
 type UpdateInvoiceRequest struct {
-	Invoice      *shared.Invoice `request:"mediaType=application/json"`
-	CompanyID    string          `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID string          `pathParam:"style=simple,explode=false,name=connectionId"`
+	Invoice *shared.Invoice `request:"mediaType=application/json"`
+	// Unique identifier for a company.
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a connection.
+	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 	// When updating data in the destination platform Codat checks the `sourceModifiedDate` against the `lastupdated` date from the accounting platform, if they're different Codat will return an error suggesting you should initiate another pull of the data. If this is set to `true` then the update will override this check.
-	ForceUpdate *bool `queryParam:"style=form,explode=true,name=forceUpdate"`
-	// Unique identifier for an invoice
-	InvoiceID        string `pathParam:"style=simple,explode=false,name=invoiceId"`
-	TimeoutInMinutes *int   `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
+	ForceUpdate *bool `default:"false" queryParam:"style=form,explode=true,name=forceUpdate"`
+	// Unique identifier for an invoice.
+	InvoiceID string `pathParam:"style=simple,explode=false,name=invoiceId"`
+	// Time limit for the push operation to complete before it is timed out.
+	TimeoutInMinutes *int `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
+}
+
+func (u UpdateInvoiceRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateInvoiceRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *UpdateInvoiceRequest) GetInvoice() *shared.Invoice {
@@ -61,11 +76,14 @@ func (o *UpdateInvoiceRequest) GetTimeoutInMinutes() *int {
 }
 
 type UpdateInvoiceResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// The request made is not valid.
 	ErrorMessage *shared.ErrorMessage
-	StatusCode   int
-	RawResponse  *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 	// Success
 	UpdateInvoiceResponse *shared.UpdateInvoiceResponse
 }

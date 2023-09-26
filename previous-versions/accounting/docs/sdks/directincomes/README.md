@@ -39,12 +39,12 @@ import(
 	"github.com/codatio/client-sdk-go/previous-versions/accounting"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
-	"github.com/ericlagergren/decimal"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/types"
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -53,88 +53,88 @@ func main() {
     res, err := s.DirectIncomes.Create(ctx, operations.CreateDirectIncomeRequest{
         DirectIncome: &shared.DirectIncome{
             ContactRef: &shared.ContactRef{
-                DataType: codataccounting.String("unde"),
-                ID: "ad030c4e-cc11-4a08-b642-9068b8502a55",
+                DataType: shared.DataTypeInvoices.ToPointer(),
+                ID: "9ad030c4-ecc1-41a0-8364-29068b8502a5",
             },
-            Currency: "EUR",
-            CurrencyRate: types.MustNewDecimalFromString("4813.07"),
-            ID: codataccounting.String("f73bc845-e320-4a31-9f4b-adf947c9a867"),
+            Currency: "USD",
+            CurrencyRate: types.MustNewDecimalFromString("8843.25"),
+            ID: accounting.String("7f73bc84-5e32-40a3-99f4-badf947c9a86"),
             IssueDate: "2022-10-23T00:00:00.000Z",
             LineItems: []shared.DirectIncomeLineItem{
                 shared.DirectIncomeLineItem{
                     AccountRef: &shared.AccountRef{
-                        ID: codataccounting.String("c4242666-5816-4ddc-a8ef-51fcb4c593ec"),
-                        Name: codataccounting.String("Beverly Satterfield"),
+                        ID: accounting.String("bc424266-6581-46dd-8a8e-f51fcb4c593e"),
+                        Name: accounting.String("Ryan Considine"),
                     },
-                    Description: codataccounting.String("id"),
-                    DiscountAmount: types.MustNewDecimalFromString("8409.92"),
-                    DiscountPercentage: types.MustNewDecimalFromString("590.23"),
+                    Description: accounting.String("mollitia"),
+                    DiscountAmount: types.MustNewDecimalFromString("6615.78"),
+                    DiscountPercentage: types.MustNewDecimalFromString("8409.92"),
                     ItemRef: &shared.ItemRef{
-                        ID: "ec7afedb-d80d-4f44-8a47-f9390c588809",
-                        Name: codataccounting.String("Manuel Swift"),
+                        ID: "0ec7afed-bd80-4df4-88a4-7f9390c58880",
+                        Name: accounting.String("Willard Erdman"),
                     },
-                    Quantity: *types.MustNewDecimalFromString("9830.6"),
-                    SubTotal: types.MustNewDecimalFromString("6229.68"),
-                    TaxAmount: types.MustNewDecimalFromString("9261.19"),
+                    Quantity: types.MustNewDecimalFromString("7047.32"),
+                    SubTotal: types.MustNewDecimalFromString("9830.6"),
+                    TaxAmount: types.MustNewDecimalFromString("6229.68"),
                     TaxRateRef: &shared.TaxRateRef{
-                        EffectiveTaxRate: types.MustNewDecimalFromString("9559.62"),
-                        ID: codataccounting.String("3ffdd9f7-f079-4af4-9357-24cdb0f4d281"),
-                        Name: codataccounting.String("Irma Kub"),
+                        EffectiveTaxRate: types.MustNewDecimalFromString("9261.19"),
+                        ID: accounting.String("f3ffdd9f-7f07-49af-8d35-724cdb0f4d28"),
+                        Name: accounting.String("Alice Langosh"),
                     },
-                    TotalAmount: types.MustNewDecimalFromString("4357.13"),
+                    TotalAmount: types.MustNewDecimalFromString("3136.95"),
                     TrackingCategoryRefs: []shared.TrackingCategoryRef{
                         shared.TrackingCategoryRef{
-                            ID: "844eded8-5a90-465e-a28b-dfc2032b6c87",
-                            Name: codataccounting.String("Alejandro Considine"),
+                            ID: "6844eded-85a9-4065-a628-bdfc2032b6c8",
+                            Name: accounting.String("Guadalupe Monahan"),
                         },
                     },
-                    UnitAmount: *types.MustNewDecimalFromString("4766.14"),
+                    UnitAmount: types.MustNewDecimalFromString("6962.91"),
                 },
             },
             Metadata: &shared.Metadata{
-                IsDeleted: codataccounting.Bool(false),
+                IsDeleted: accounting.Bool(false),
             },
-            ModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
-            Note: codataccounting.String("vitae"),
+            ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            Note: accounting.String("debitis"),
             PaymentAllocations: []shared.Items{
                 shared.Items{
                     Allocation: shared.ItemsAllocation{
-                        AllocatedOnDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
-                        Currency: codataccounting.String("GBP"),
-                        CurrencyRate: types.MustNewDecimalFromString("5398.86"),
-                        TotalAmount: types.MustNewDecimalFromString("2847.79"),
+                        AllocatedOnDate: accounting.String("2022-10-23T00:00:00.000Z"),
+                        Currency: accounting.String("GBP"),
+                        CurrencyRate: types.MustNewDecimalFromString("3214.22"),
+                        TotalAmount: types.MustNewDecimalFromString("5398.86"),
                     },
                     Payment: shared.PaymentAllocationPayment{
                         AccountRef: &shared.AccountRef{
-                            ID: codataccounting.String("f7ae12c6-891f-482c-a115-7172305377dc"),
-                            Name: codataccounting.String("Horace Leannon"),
+                            ID: accounting.String("4f7ae12c-6891-4f82-8e11-57172305377d"),
+                            Name: accounting.String("Tommie Pfannerstill"),
                         },
-                        Currency: codataccounting.String("EUR"),
-                        CurrencyRate: types.MustNewDecimalFromString("6081.72"),
-                        ID: codataccounting.String("75e35668-6092-4e9c-bddc-5f111dea1026"),
-                        Note: codataccounting.String("pariatur"),
-                        PaidOnDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
-                        Reference: codataccounting.String("numquam"),
-                        TotalAmount: types.MustNewDecimalFromString("1031.93"),
+                        Currency: accounting.String("EUR"),
+                        CurrencyRate: types.MustNewDecimalFromString("9865.94"),
+                        ID: accounting.String("975e3566-8609-42e9-83dd-c5f111dea102"),
+                        Note: accounting.String("aliquid"),
+                        PaidOnDate: accounting.String("2022-10-23T00:00:00.000Z"),
+                        Reference: accounting.String("enim"),
+                        TotalAmount: types.MustNewDecimalFromString("2542.88"),
                     },
                 },
             },
-            Reference: codataccounting.String("est"),
-            SourceModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
-            SubTotal: *types.MustNewDecimalFromString("8167.26"),
+            Reference: accounting.String("architecto"),
+            SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            SubTotal: types.MustNewDecimalFromString("3098.52"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "vitae": map[string]interface{}{
-                        "omnis": "alias",
+                    "facere": map[string]interface{}{
+                        "vitae": "omnis",
                     },
                 },
             },
-            TaxAmount: *types.MustNewDecimalFromString("9574.89"),
-            TotalAmount: *types.MustNewDecimalFromString("8876"),
+            TaxAmount: types.MustNewDecimalFromString("38.6"),
+            TotalAmount: types.MustNewDecimalFromString("9574.89"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codataccounting.Int(708883),
+        TimeoutInMinutes: accounting.Int(887600),
     })
     if err != nil {
         log.Fatal(err)
@@ -183,8 +183,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -194,7 +194,7 @@ func main() {
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        DirectIncomeID: "quia",
+        DirectIncomeID: "expedita",
     })
     if err != nil {
         log.Fatal(err)
@@ -245,8 +245,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -255,7 +255,7 @@ func main() {
     res, err := s.DirectIncomes.Get(ctx, operations.GetDirectIncomeRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        DirectIncomeID: "vitae",
+        DirectIncomeID: "quia",
     })
     if err != nil {
         log.Fatal(err)
@@ -304,8 +304,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -315,8 +315,8 @@ func main() {
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        DirectIncomeID: "odio",
-        TimeoutInMinutes: codataccounting.Int(558410),
+        DirectIncomeID: "vitae",
+        TimeoutInMinutes: accounting.Int(487839),
     })
     if err != nil {
         log.Fatal(err)
@@ -369,8 +369,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -427,8 +427,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -437,10 +437,10 @@ func main() {
     res, err := s.DirectIncomes.List(ctx, operations.ListDirectIncomesRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        OrderBy: codataccounting.String("-modifiedDate"),
-        Page: codataccounting.Int(1),
-        PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("ipsa"),
+        OrderBy: accounting.String("-modifiedDate"),
+        Page: accounting.Int(1),
+        PageSize: accounting.Int(100),
+        Query: accounting.String("quas"),
     })
     if err != nil {
         log.Fatal(err)
@@ -489,8 +489,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -499,7 +499,7 @@ func main() {
     res, err := s.DirectIncomes.ListAttachments(ctx, operations.ListDirectIncomeAttachmentsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        DirectIncomeID: "distinctio",
+        DirectIncomeID: "ipsa",
     })
     if err != nil {
         log.Fatal(err)
@@ -552,8 +552,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -561,12 +561,12 @@ func main() {
     ctx := context.Background()
     res, err := s.DirectIncomes.UploadAttachment(ctx, operations.UploadDirectIncomeAttachmentRequest{
         RequestBody: &operations.UploadDirectIncomeAttachmentRequestBody{
-            Content: []byte("placeat"),
-            RequestBody: "quod",
+            Content: []byte("distinctio"),
+            RequestBody: "placeat",
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        DirectIncomeID: "eligendi",
+        DirectIncomeID: "quod",
     })
     if err != nil {
         log.Fatal(err)

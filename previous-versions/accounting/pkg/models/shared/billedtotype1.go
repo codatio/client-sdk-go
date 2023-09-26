@@ -7,6 +7,7 @@ import (
 	"fmt"
 )
 
+// BilledToType1 - Defines if the bill or bill credit note is billed/rebilled to a project.
 type BilledToType1 string
 
 const (

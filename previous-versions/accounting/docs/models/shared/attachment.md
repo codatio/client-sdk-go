@@ -6,7 +6,7 @@ The Codat API supports pulling and pushing of file attachments for invoices, bil
 > 
 > If a company is authorized, you can query the Codat API to read, download, and upload attachments without requiring a fresh sync of data.
 
-Unlike other data types, Codat doesn't support sync settings for attachments.
+Unlike other data types, Codat doesn't support [sync settings](https://docs.codat.io/knowledge-base/advanced-sync-settings) for attachments.
 
 Note that different integrations have different requirements to file size and extension of attachments.
 

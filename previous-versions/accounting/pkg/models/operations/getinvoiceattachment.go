@@ -8,11 +8,13 @@ import (
 )
 
 type GetInvoiceAttachmentRequest struct {
-	// Unique identifier for an attachment
+	// Unique identifier for an attachment.
 	AttachmentID string `pathParam:"style=simple,explode=false,name=attachmentId"`
-	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a company.
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a connection.
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
-	// Unique identifier for an invoice
+	// Unique identifier for an invoice.
 	InvoiceID string `pathParam:"style=simple,explode=false,name=invoiceId"`
 }
 
@@ -46,12 +48,15 @@ func (o *GetInvoiceAttachmentRequest) GetInvoiceID() string {
 
 type GetInvoiceAttachmentResponse struct {
 	// Success
-	Attachment  *shared.Attachment
+	Attachment *shared.Attachment
+	// HTTP response content type for this operation
 	ContentType string
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
-	StatusCode   int
-	RawResponse  *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *GetInvoiceAttachmentResponse) GetAttachment() *shared.Attachment {
