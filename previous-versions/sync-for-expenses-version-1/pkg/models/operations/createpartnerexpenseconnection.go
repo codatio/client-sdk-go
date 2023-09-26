@@ -8,6 +8,7 @@ import (
 )
 
 type CreatePartnerExpenseConnectionRequest struct {
+	// Unique identifier for a company.
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
@@ -20,12 +21,15 @@ func (o *CreatePartnerExpenseConnectionRequest) GetCompanyID() string {
 
 type CreatePartnerExpenseConnectionResponse struct {
 	// Success
-	Connection  *shared.Connection
+	Connection *shared.Connection
+	// HTTP response content type for this operation
 	ContentType string
 	// The request made is not valid.
 	ErrorMessage *shared.ErrorMessage
-	StatusCode   int
-	RawResponse  *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *CreatePartnerExpenseConnectionResponse) GetConnection() *shared.Connection {
