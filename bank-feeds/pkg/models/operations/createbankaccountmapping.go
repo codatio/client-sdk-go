@@ -57,9 +57,11 @@ func (o *CreateBankAccountMappingBankFeedAccountMapping) GetTargetAccountID() *s
 }
 
 type CreateBankAccountMappingRequest struct {
-	RequestBody  *CreateBankAccountMappingBankFeedAccountMapping `request:"mediaType=application/json"`
-	CompanyID    string                                          `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID string                                          `pathParam:"style=simple,explode=false,name=connectionId"`
+	RequestBody *CreateBankAccountMappingBankFeedAccountMapping `request:"mediaType=application/json"`
+	// Unique identifier for a company.
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a connection.
+	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
 func (o *CreateBankAccountMappingRequest) GetRequestBody() *CreateBankAccountMappingBankFeedAccountMapping {
@@ -86,11 +88,14 @@ func (o *CreateBankAccountMappingRequest) GetConnectionID() string {
 type CreateBankAccountMappingResponse struct {
 	// Success
 	BankFeedAccountMappingResponse *shared.BankFeedAccountMappingResponse
-	ContentType                    string
+	// HTTP response content type for this operation
+	ContentType string
 	// The request made is not valid.
 	ErrorMessage *shared.ErrorMessage
-	StatusCode   int
-	RawResponse  *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *CreateBankAccountMappingResponse) GetBankFeedAccountMappingResponse() *shared.BankFeedAccountMappingResponse {

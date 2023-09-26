@@ -3,12 +3,15 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/types"
+	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 type CreateBankTransaction struct {
-	Amount  *types.Decimal `json:"amount,omitempty"`
-	Balance *types.Decimal `json:"balance,omitempty"`
+	// The amount transacted in the bank transaction.
+	Amount *decimal.Big `decimal:"number" json:"amount,omitempty"`
+	// The remaining balance in the account with ID `accountId`.
+	Balance *decimal.Big `decimal:"number" json:"balance,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -28,19 +31,32 @@ type CreateBankTransaction struct {
 	// >
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	Date        *string `json:"date,omitempty"`
+	Date *string `json:"date,omitempty"`
+	// Description of the bank transaction.
 	Description *string `json:"description,omitempty"`
-	ID          *string `json:"id,omitempty"`
+	// Identifier for the bank account transaction, unique for the company in the accounting platform.
+	ID *string `json:"id,omitempty"`
 }
 
-func (o *CreateBankTransaction) GetAmount() *types.Decimal {
+func (c CreateBankTransaction) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CreateBankTransaction) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *CreateBankTransaction) GetAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.Amount
 }
 
-func (o *CreateBankTransaction) GetBalance() *types.Decimal {
+func (o *CreateBankTransaction) GetBalance() *decimal.Big {
 	if o == nil {
 		return nil
 	}

@@ -31,14 +31,15 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/bank-feeds/v3"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v3"
 	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/types"
 )
 
 func main() {
-    s := codatbankfeeds.New(
-        codatbankfeeds.WithSecurity(shared.Security{
+    s := bankfeeds.New(
+        bankfeeds.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -46,22 +47,22 @@ func main() {
     ctx := context.Background()
     res, err := s.Transactions.Create(ctx, operations.CreateBankTransactionsRequest{
         CreateBankTransactions: &shared.CreateBankTransactions{
-            AccountID: codatbankfeeds.String("corporis"),
+            AccountID: bankfeeds.String("nobis"),
             Transactions: []shared.CreateBankTransaction{
                 shared.CreateBankTransaction{
-                    Amount: types.MustNewDecimalFromString("1289.26"),
-                    Balance: types.MustNewDecimalFromString("7506.86"),
-                    Date: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
-                    Description: codatbankfeeds.String("omnis"),
-                    ID: codatbankfeeds.String("55907aff-1a3a-42fa-9467-739251aa52c3"),
+                    Amount: types.MustNewDecimalFromString("3154.28"),
+                    Balance: types.MustNewDecimalFromString("6078.31"),
+                    Date: bankfeeds.String("2022-10-23T00:00:00.000Z"),
+                    Description: bankfeeds.String("minima"),
+                    ID: bankfeeds.String("907aff1a-3a2f-4a94-a773-9251aa52c3f5"),
                 },
             },
         },
-        AccountID: "EILBDVJVNUAGVKRQ",
-        AllowSyncOnPushComplete: codatbankfeeds.Bool(false),
+        AccountID: "7110701885",
+        AllowSyncOnPushComplete: bankfeeds.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codatbankfeeds.Int(368725),
+        TimeoutInMinutes: bankfeeds.Int(820994),
     })
     if err != nil {
         log.Fatal(err)
@@ -99,14 +100,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/bank-feeds/v3"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v3"
 	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/operations"
 )
 
 func main() {
-    s := codatbankfeeds.New(
-        codatbankfeeds.WithSecurity(shared.Security{
+    s := bankfeeds.New(
+        bankfeeds.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -114,7 +115,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Transactions.GetCreateOperation(ctx, operations.GetCreateOperationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        PushOperationKey: "ad019da1-ffe7-48f0-97b0-074f15471b5e",
+        PushOperationKey: "019da1ff-e78f-4097-b007-4f15471b5e6e",
     })
     if err != nil {
         log.Fatal(err)
@@ -152,14 +153,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/bank-feeds/v3"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v3"
 	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/operations"
 )
 
 func main() {
-    s := codatbankfeeds.New(
-        codatbankfeeds.WithSecurity(shared.Security{
+    s := bankfeeds.New(
+        bankfeeds.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -167,10 +168,10 @@ func main() {
     ctx := context.Background()
     res, err := s.Transactions.ListCreateOperations(ctx, operations.ListCreateOperationsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        OrderBy: codatbankfeeds.String("-modifiedDate"),
-        Page: codatbankfeeds.Int(1),
-        PageSize: codatbankfeeds.Int(100),
-        Query: codatbankfeeds.String("commodi"),
+        OrderBy: bankfeeds.String("-modifiedDate"),
+        Page: bankfeeds.Int(1),
+        PageSize: bankfeeds.Int(100),
+        Query: bankfeeds.String("quae"),
     })
     if err != nil {
         log.Fatal(err)

@@ -3,6 +3,7 @@
 package shared
 
 type CreateBankTransactions struct {
+	// Unique identifier for a bank account.
 	AccountID    *string                 `json:"accountId,omitempty"`
 	Transactions []CreateBankTransaction `json:"transactions,omitempty"`
 }
