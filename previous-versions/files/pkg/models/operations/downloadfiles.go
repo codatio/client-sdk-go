@@ -8,6 +8,7 @@ import (
 )
 
 type DownloadFilesRequest struct {
+	// Unique identifier for a company.
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	// Only download files uploaded on this date.
 	Date *string `queryParam:"style=form,explode=true,name=date"`
@@ -30,12 +31,18 @@ func (o *DownloadFilesRequest) GetDate() *string {
 // DownloadFilesErrorMessage - One or more of the resources you referenced could not be found.
 // This might be because your company or data connection id is wrong, or was already deleted.
 type DownloadFilesErrorMessage struct {
-	CanBeRetried      *string `json:"canBeRetried,omitempty"`
-	CorrelationID     *string `json:"correlationId,omitempty"`
-	DetailedErrorCode *int64  `json:"detailedErrorCode,omitempty"`
-	Error             *string `json:"error,omitempty"`
-	Service           *string `json:"service,omitempty"`
-	StatusCode        *int64  `json:"statusCode,omitempty"`
+	// `True` if the error occurred transiently and can be retried.
+	CanBeRetried *string `json:"canBeRetried,omitempty"`
+	// Unique identifier used to propagate to all downstream services and determine the source of the error.
+	CorrelationID *string `json:"correlationId,omitempty"`
+	// Machine readable error code used to automate processes based on the code returned.
+	DetailedErrorCode *int64 `json:"detailedErrorCode,omitempty"`
+	// A brief description of the error.
+	Error *string `json:"error,omitempty"`
+	// Codat's service the returned the error.
+	Service *string `json:"service,omitempty"`
+	// The HTTP status code returned by the error.
+	StatusCode *int64 `json:"statusCode,omitempty"`
 }
 
 func (o *DownloadFilesErrorMessage) GetCanBeRetried() *string {
@@ -81,14 +88,17 @@ func (o *DownloadFilesErrorMessage) GetStatusCode() *int64 {
 }
 
 type DownloadFilesResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// Success
 	Data []byte
 	// One or more of the resources you referenced could not be found.
 	// This might be because your company or data connection id is wrong, or was already deleted.
 	ErrorMessage *DownloadFilesErrorMessage
-	StatusCode   int
-	RawResponse  *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 	// The request made is not valid.
 	Schema *shared.Schema
 }
