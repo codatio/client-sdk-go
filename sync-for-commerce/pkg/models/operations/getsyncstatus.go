@@ -8,6 +8,7 @@ import (
 )
 
 type GetSyncStatusRequest struct {
+	// Unique identifier for a company.
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
@@ -20,11 +21,14 @@ func (o *GetSyncStatusRequest) GetCompanyID() string {
 
 type GetSyncStatusResponse struct {
 	// Bad Request
-	BadRequest  interface{}
+	BadRequest interface{}
+	// HTTP response content type for this operation
 	ContentType string
 	// Not Found
-	NotFound    interface{}
-	StatusCode  int
+	NotFound interface{}
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Success
 	SyncStatus *shared.SyncStatus

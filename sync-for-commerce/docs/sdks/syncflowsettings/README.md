@@ -23,13 +23,13 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-commerce/v2"
+	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v2"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
 )
 
 func main() {
-    s := codatsynccommerce.New(
-        codatsynccommerce.WithSecurity(shared.Security{
+    s := syncforcommerce.New(
+        syncforcommerce.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -71,22 +71,22 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-commerce/v2"
+	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v2"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/operations"
 )
 
 func main() {
-    s := codatsynccommerce.New(
-        codatsynccommerce.WithSecurity(shared.Security{
+    s := syncforcommerce.New(
+        syncforcommerce.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
     ctx := context.Background()
     res, err := s.SyncFlowSettings.GetVisibleAccounts(ctx, operations.GetVisibleAccountsRequest{
-        ClientID: "e0f467cc-8796-4ed1-91a0-5dfc2ddf7cc7",
-        PlatformKey: "8ca1ba92-8fc8-4167-82cb-739205929396",
+        ClientID: "74e0f467-cc87-496e-9151-a05dfc2ddf7c",
+        PlatformKey: "gbol",
     })
     if err != nil {
         log.Fatal(err)
@@ -124,22 +124,22 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-commerce/v2"
+	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v2"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
 )
 
 func main() {
-    s := codatsynccommerce.New(
-        codatsynccommerce.WithSecurity(shared.Security{
+    s := syncforcommerce.New(
+        syncforcommerce.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
     ctx := context.Background()
     res, err := s.SyncFlowSettings.UpdateConfigTextSyncFlow(ctx, map[string]shared.Localization{
-        "hic": shared.Localization{
-            Required: codatsynccommerce.Bool(false),
-            Text: codatsynccommerce.String("saepe"),
+        "quod": shared.Localization{
+            Required: syncforcommerce.Bool(false),
+            Text: syncforcommerce.String("esse"),
         },
     })
     if err != nil {
@@ -178,14 +178,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-commerce/v2"
+	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v2"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/operations"
 )
 
 func main() {
-    s := codatsynccommerce.New(
-        codatsynccommerce.WithSecurity(shared.Security{
+    s := syncforcommerce.New(
+        syncforcommerce.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -194,10 +194,10 @@ func main() {
     res, err := s.SyncFlowSettings.UpdateVisibleAccountsSyncFlow(ctx, operations.UpdateVisibleAccountsSyncFlowRequest{
         VisibleAccounts: &shared.VisibleAccounts{
             VisibleAccounts: []string{
-                "fuga",
+                "totam",
             },
         },
-        PlatformKey: "7596eb10-faaa-4235-ac59-55907aff1a3a",
+        PlatformKey: "gbol",
     })
     if err != nil {
         log.Fatal(err)
