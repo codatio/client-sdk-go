@@ -26,14 +26,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payroll"
+	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncpayroll.New(
-        codatsyncpayroll.WithSecurity(shared.Security{
+    s := syncforpayroll.New(
+        syncforpayroll.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -78,14 +78,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payroll"
+	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncpayroll.New(
-        codatsyncpayroll.WithSecurity(shared.Security{
+    s := syncforpayroll.New(
+        syncforpayroll.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -93,7 +93,7 @@ func main() {
     ctx := context.Background()
     res, err := s.ManageData.GetPullOperation(ctx, operations.GetPullOperationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        DatasetID: "eaed9f0f-e77b-4bc9-a58f-ab8b4b99ab18",
+        DatasetID: "4469b6e2-1419-4598-90af-a563e2516fe4",
     })
     if err != nil {
         log.Fatal(err)
@@ -131,14 +131,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payroll"
+	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncpayroll.New(
-        codatsyncpayroll.WithSecurity(shared.Security{
+    s := syncforpayroll.New(
+        syncforpayroll.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -146,7 +146,7 @@ func main() {
     ctx := context.Background()
     res, err := s.ManageData.GetPushOperation(ctx, operations.GetPushOperationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        PushOperationKey: "97074ba4-469b-46e2-9419-59890afa563e",
+        PushOperationKey: "c8b711e5-b7fd-42ed-8289-21cddc692601",
     })
     if err != nil {
         log.Fatal(err)
@@ -184,14 +184,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payroll"
+	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncpayroll.New(
-        codatsyncpayroll.WithSecurity(shared.Security{
+    s := syncforpayroll.New(
+        syncforpayroll.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -199,10 +199,10 @@ func main() {
     ctx := context.Background()
     res, err := s.ManageData.List(ctx, operations.ListPushOperationsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        OrderBy: codatsyncpayroll.String("-modifiedDate"),
-        Page: codatsyncpayroll.Int(1),
-        PageSize: codatsyncpayroll.Int(100),
-        Query: codatsyncpayroll.String("odit"),
+        OrderBy: syncforpayroll.String("-modifiedDate"),
+        Page: syncforpayroll.Int(1),
+        PageSize: syncforpayroll.Int(100),
+        Query: syncforpayroll.String("maiores"),
     })
     if err != nil {
         log.Fatal(err)
@@ -240,14 +240,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payroll"
+	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncpayroll.New(
-        codatsyncpayroll.WithSecurity(shared.Security{
+    s := syncforpayroll.New(
+        syncforpayroll.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -255,10 +255,10 @@ func main() {
     ctx := context.Background()
     res, err := s.ManageData.ListPullOperations(ctx, operations.ListPullOperationsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        OrderBy: codatsyncpayroll.String("-modifiedDate"),
-        Page: codatsyncpayroll.Int(1),
-        PageSize: codatsyncpayroll.Int(100),
-        Query: codatsyncpayroll.String("nemo"),
+        OrderBy: syncforpayroll.String("-modifiedDate"),
+        Page: syncforpayroll.Int(1),
+        PageSize: syncforpayroll.Int(100),
+        Query: syncforpayroll.String("quidem"),
     })
     if err != nil {
         log.Fatal(err)
@@ -300,14 +300,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payroll"
+	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncpayroll.New(
-        codatsyncpayroll.WithSecurity(shared.Security{
+    s := syncforpayroll.New(
+        syncforpayroll.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -354,14 +354,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payroll"
+	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncpayroll.New(
-        codatsyncpayroll.WithSecurity(shared.Security{
+    s := syncforpayroll.New(
+        syncforpayroll.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -369,7 +369,7 @@ func main() {
     ctx := context.Background()
     res, err := s.ManageData.RefreshDataType(ctx, operations.RefreshDataTypeRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ConnectionID: codatsyncpayroll.String("16fe4c8b-711e-45b7-bd2e-d028921cddc6"),
+        ConnectionID: syncforpayroll.String("576b0d5f-0d30-4c5f-bb25-87053202c73d"),
         DataType: shared.DataTypeInvoices,
     })
     if err != nil {

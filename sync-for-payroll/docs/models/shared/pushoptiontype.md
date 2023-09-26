@@ -1,5 +1,7 @@
 # PushOptionType
 
+The option type.
+
 
 ## Values
 
