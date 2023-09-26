@@ -43,7 +43,8 @@ type SyncStartedWebhookData struct {
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	SyncDateRangeStartUtc *string `json:"SyncDateRangeStartUtc,omitempty"`
-	SyncID                *string `json:"syncId,omitempty"`
+	// Unique identifier for the failed sync.
+	SyncID *string `json:"syncId,omitempty"`
 	// The type of sync being performed.
 	SyncType *string `json:"syncType,omitempty"`
 }

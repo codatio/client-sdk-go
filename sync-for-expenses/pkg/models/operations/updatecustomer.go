@@ -4,17 +4,35 @@ package operations
 
 import (
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/utils"
 	"net/http"
 )
 
 type UpdateCustomerRequest struct {
-	Customer     *shared.Customer `request:"mediaType=application/json"`
-	CompanyID    string           `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID string           `pathParam:"style=simple,explode=false,name=connectionId"`
-	CustomerID   string           `pathParam:"style=simple,explode=false,name=customerId"`
+	Customer *shared.Customer `request:"mediaType=application/json"`
+	// Allow a sync upon push completion.
+	AllowSyncOnPushComplete *bool `default:"true" queryParam:"style=form,explode=true,name=allowSyncOnPushComplete"`
+	// Unique identifier for a company.
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a connection.
+	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
+	// Unique identifier for a customer.
+	CustomerID string `pathParam:"style=simple,explode=false,name=customerId"`
 	// When updating data in the destination platform Codat checks the `sourceModifiedDate` against the `lastupdated` date from the accounting platform, if they're different Codat will return an error suggesting you should initiate another pull of the data. If this is set to `true` then the update will override this check.
-	ForceUpdate      *bool `queryParam:"style=form,explode=true,name=forceUpdate"`
-	TimeoutInMinutes *int  `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
+	ForceUpdate *bool `default:"false" queryParam:"style=form,explode=true,name=forceUpdate"`
+	// Time limit for the push operation to complete before it is timed out.
+	TimeoutInMinutes *int `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
+}
+
+func (u UpdateCustomerRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateCustomerRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *UpdateCustomerRequest) GetCustomer() *shared.Customer {
@@ -22,6 +40,13 @@ func (o *UpdateCustomerRequest) GetCustomer() *shared.Customer {
 		return nil
 	}
 	return o.Customer
+}
+
+func (o *UpdateCustomerRequest) GetAllowSyncOnPushComplete() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.AllowSyncOnPushComplete
 }
 
 func (o *UpdateCustomerRequest) GetCompanyID() string {
@@ -60,11 +85,14 @@ func (o *UpdateCustomerRequest) GetTimeoutInMinutes() *int {
 }
 
 type UpdateCustomerResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// The request made is not valid.
 	ErrorMessage *shared.ErrorMessage
-	StatusCode   int
-	RawResponse  *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 	// Success
 	UpdateCustomerResponse *shared.UpdateCustomerResponse
 }

@@ -2,10 +2,165 @@
 
 package shared
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
+// DataStatusDataTypes - Available Data types
+type DataStatusDataTypes string
+
+const (
+	DataStatusDataTypesAccountTransactions          DataStatusDataTypes = "accountTransactions"
+	DataStatusDataTypesBalanceSheet                 DataStatusDataTypes = "balanceSheet"
+	DataStatusDataTypesBankAccounts                 DataStatusDataTypes = "bankAccounts"
+	DataStatusDataTypesBankTransactions             DataStatusDataTypes = "bankTransactions"
+	DataStatusDataTypesBillCreditNotes              DataStatusDataTypes = "billCreditNotes"
+	DataStatusDataTypesBillPayments                 DataStatusDataTypes = "billPayments"
+	DataStatusDataTypesBills                        DataStatusDataTypes = "bills"
+	DataStatusDataTypesCashFlowStatement            DataStatusDataTypes = "cashFlowStatement"
+	DataStatusDataTypesChartOfAccounts              DataStatusDataTypes = "chartOfAccounts"
+	DataStatusDataTypesCompany                      DataStatusDataTypes = "company"
+	DataStatusDataTypesCreditNotes                  DataStatusDataTypes = "creditNotes"
+	DataStatusDataTypesCustomers                    DataStatusDataTypes = "customers"
+	DataStatusDataTypesDirectCosts                  DataStatusDataTypes = "directCosts"
+	DataStatusDataTypesDirectIncomes                DataStatusDataTypes = "directIncomes"
+	DataStatusDataTypesInvoices                     DataStatusDataTypes = "invoices"
+	DataStatusDataTypesItems                        DataStatusDataTypes = "items"
+	DataStatusDataTypesJournalEntries               DataStatusDataTypes = "journalEntries"
+	DataStatusDataTypesJournals                     DataStatusDataTypes = "journals"
+	DataStatusDataTypesPaymentMethods               DataStatusDataTypes = "paymentMethods"
+	DataStatusDataTypesPayments                     DataStatusDataTypes = "payments"
+	DataStatusDataTypesProfitAndLoss                DataStatusDataTypes = "profitAndLoss"
+	DataStatusDataTypesPurchaseOrders               DataStatusDataTypes = "purchaseOrders"
+	DataStatusDataTypesSalesOrders                  DataStatusDataTypes = "salesOrders"
+	DataStatusDataTypesSuppliers                    DataStatusDataTypes = "suppliers"
+	DataStatusDataTypesTaxRates                     DataStatusDataTypes = "taxRates"
+	DataStatusDataTypesTrackingCategories           DataStatusDataTypes = "trackingCategories"
+	DataStatusDataTypesTransfers                    DataStatusDataTypes = "transfers"
+	DataStatusDataTypesBankingAccountBalances       DataStatusDataTypes = "banking-accountBalances"
+	DataStatusDataTypesBankingAccounts              DataStatusDataTypes = "banking-accounts"
+	DataStatusDataTypesBankingTransactionCategories DataStatusDataTypes = "banking-transactionCategories"
+	DataStatusDataTypesBankingTransactions          DataStatusDataTypes = "banking-transactions"
+	DataStatusDataTypesCommerceCompanyInfo          DataStatusDataTypes = "commerce-companyInfo"
+	DataStatusDataTypesCommerceCustomers            DataStatusDataTypes = "commerce-customers"
+	DataStatusDataTypesCommerceDisputes             DataStatusDataTypes = "commerce-disputes"
+	DataStatusDataTypesCommerceLocations            DataStatusDataTypes = "commerce-locations"
+	DataStatusDataTypesCommerceOrders               DataStatusDataTypes = "commerce-orders"
+	DataStatusDataTypesCommercePaymentMethods       DataStatusDataTypes = "commerce-paymentMethods"
+	DataStatusDataTypesCommercePayments             DataStatusDataTypes = "commerce-payments"
+	DataStatusDataTypesCommerceProductCategories    DataStatusDataTypes = "commerce-productCategories"
+	DataStatusDataTypesCommerceProducts             DataStatusDataTypes = "commerce-products"
+	DataStatusDataTypesCommerceTaxComponents        DataStatusDataTypes = "commerce-taxComponents"
+	DataStatusDataTypesCommerceTransactions         DataStatusDataTypes = "commerce-transactions"
+)
+
+func (e DataStatusDataTypes) ToPointer() *DataStatusDataTypes {
+	return &e
+}
+
+func (e *DataStatusDataTypes) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "accountTransactions":
+		fallthrough
+	case "balanceSheet":
+		fallthrough
+	case "bankAccounts":
+		fallthrough
+	case "bankTransactions":
+		fallthrough
+	case "billCreditNotes":
+		fallthrough
+	case "billPayments":
+		fallthrough
+	case "bills":
+		fallthrough
+	case "cashFlowStatement":
+		fallthrough
+	case "chartOfAccounts":
+		fallthrough
+	case "company":
+		fallthrough
+	case "creditNotes":
+		fallthrough
+	case "customers":
+		fallthrough
+	case "directCosts":
+		fallthrough
+	case "directIncomes":
+		fallthrough
+	case "invoices":
+		fallthrough
+	case "items":
+		fallthrough
+	case "journalEntries":
+		fallthrough
+	case "journals":
+		fallthrough
+	case "paymentMethods":
+		fallthrough
+	case "payments":
+		fallthrough
+	case "profitAndLoss":
+		fallthrough
+	case "purchaseOrders":
+		fallthrough
+	case "salesOrders":
+		fallthrough
+	case "suppliers":
+		fallthrough
+	case "taxRates":
+		fallthrough
+	case "trackingCategories":
+		fallthrough
+	case "transfers":
+		fallthrough
+	case "banking-accountBalances":
+		fallthrough
+	case "banking-accounts":
+		fallthrough
+	case "banking-transactionCategories":
+		fallthrough
+	case "banking-transactions":
+		fallthrough
+	case "commerce-companyInfo":
+		fallthrough
+	case "commerce-customers":
+		fallthrough
+	case "commerce-disputes":
+		fallthrough
+	case "commerce-locations":
+		fallthrough
+	case "commerce-orders":
+		fallthrough
+	case "commerce-paymentMethods":
+		fallthrough
+	case "commerce-payments":
+		fallthrough
+	case "commerce-productCategories":
+		fallthrough
+	case "commerce-products":
+		fallthrough
+	case "commerce-taxComponents":
+		fallthrough
+	case "commerce-transactions":
+		*e = DataStatusDataTypes(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for DataStatusDataTypes: %v", v)
+	}
+}
+
 // DataStatus - Describes the state of data in the Codat cache for a company and data type
 type DataStatus struct {
+	// The current status of the dataset in Codat's cache.
 	CurrentStatus string `json:"currentStatus"`
-	DataType      string `json:"dataType"`
+	// Available Data types
+	DataType DataStatusDataTypes `json:"dataType"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -25,9 +180,11 @@ type DataStatus struct {
 	// >
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	LastSuccessfulSync     string  `json:"lastSuccessfulSync"`
+	LastSuccessfulSync string `json:"lastSuccessfulSync"`
+	// Unique identifier for the most recent successful sync of data type.
 	LatestSuccessfulSyncID *string `json:"latestSuccessfulSyncId,omitempty"`
-	LatestSyncID           *string `json:"latestSyncId,omitempty"`
+	// Unique identifier for most recent sync of data type.
+	LatestSyncID *string `json:"latestSyncId,omitempty"`
 }
 
 func (o *DataStatus) GetCurrentStatus() string {
@@ -37,9 +194,9 @@ func (o *DataStatus) GetCurrentStatus() string {
 	return o.CurrentStatus
 }
 
-func (o *DataStatus) GetDataType() string {
+func (o *DataStatus) GetDataType() DataStatusDataTypes {
 	if o == nil {
-		return ""
+		return DataStatusDataTypes("")
 	}
 	return o.DataType
 }

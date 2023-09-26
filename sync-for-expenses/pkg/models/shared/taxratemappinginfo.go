@@ -5,7 +5,8 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/types"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 type TaxRateMappingInfoValidTransactionTypes string
@@ -57,15 +58,26 @@ type TaxRateMappingInfo struct {
 	// Code for the tax rate from the accounting platform.
 	Code *string `json:"code,omitempty"`
 	// Effective tax rate.
-	EffectiveTaxRate *types.Decimal `json:"effectiveTaxRate,omitempty"`
+	EffectiveTaxRate *decimal.Big `decimal:"number" json:"effectiveTaxRate,omitempty"`
 	// Unique identifier of tax rate.
 	ID *string `json:"id,omitempty"`
 	// Name of the tax rate in the accounting platform.
 	Name *string `json:"name,omitempty"`
 	// Total (not compounded) sum of the components of a tax rate.
-	TotalTaxRate *types.Decimal `json:"totalTaxRate,omitempty"`
+	TotalTaxRate *decimal.Big `decimal:"number" json:"totalTaxRate,omitempty"`
 	// Supported transaction types for the account.
 	ValidTransactionTypes []TaxRateMappingInfoValidTransactionTypes `json:"validTransactionTypes,omitempty"`
+}
+
+func (t TaxRateMappingInfo) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
+}
+
+func (t *TaxRateMappingInfo) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *TaxRateMappingInfo) GetCode() *string {
@@ -75,7 +87,7 @@ func (o *TaxRateMappingInfo) GetCode() *string {
 	return o.Code
 }
 
-func (o *TaxRateMappingInfo) GetEffectiveTaxRate() *types.Decimal {
+func (o *TaxRateMappingInfo) GetEffectiveTaxRate() *decimal.Big {
 	if o == nil {
 		return nil
 	}
@@ -96,7 +108,7 @@ func (o *TaxRateMappingInfo) GetName() *string {
 	return o.Name
 }
 
-func (o *TaxRateMappingInfo) GetTotalTaxRate() *types.Decimal {
+func (o *TaxRateMappingInfo) GetTotalTaxRate() *decimal.Big {
 	if o == nil {
 		return nil
 	}

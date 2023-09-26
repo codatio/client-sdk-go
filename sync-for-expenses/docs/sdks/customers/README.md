@@ -13,13 +13,13 @@ Customers
 
 ## Create
 
-The *Create customer* endpoint creates a new [customer](https://docs.codat.io/accounting-api#/schemas/Customer) for a given company's connection.
+The *Create customer* endpoint creates a new [customer](https://docs.codat.io/sync-for-expenses-api#/schemas/Customer) for a given company's connection.
 
-[Customers](https://docs.codat.io/accounting-api#/schemas/Customer) are people or organizations that buy goods or services from the SMB.
+[Customers](https://docs.codat.io/sync-for-expenses-api#/schemas/Customer) are people or organizations that buy goods or services from the SMB.
 
 **Integration-specific behaviour**
 
-Required data may vary by integration. To see what data to post, first call [Get create/update customer model](https://docs.codat.io/accounting-api#/operations/get-create-update-customers-model).
+Required data may vary by integration. To see what data to post, first call [Get create/update customer model](https://docs.codat.io/sync-for-expenses-api#/operations/get-create-update-customers-model).
 
 Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=customers) for integrations that support creating an account.
 
@@ -32,14 +32,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v2"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v2"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncexpenses.New(
-        codatsyncexpenses.WithSecurity(shared.Security{
+    s := syncforexpenses.New(
+        syncforexpenses.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -49,63 +49,64 @@ func main() {
         Customer: &shared.Customer{
             Addresses: []shared.Items{
                 shared.Items{
-                    City: codatsyncexpenses.String("New Humberto"),
-                    Country: codatsyncexpenses.String("Trinidad and Tobago"),
-                    Line1: codatsyncexpenses.String("quidem"),
-                    Line2: codatsyncexpenses.String("architecto"),
-                    PostalCode: codatsyncexpenses.String("96661"),
-                    Region: codatsyncexpenses.String("dolorem"),
+                    City: syncforexpenses.String("Fort Manuelachester"),
+                    Country: syncforexpenses.String("Oman"),
+                    Line1: syncforexpenses.String("dolores"),
+                    Line2: syncforexpenses.String("dolorem"),
+                    PostalCode: syncforexpenses.String("17363"),
+                    Region: syncforexpenses.String("minima"),
                     Type: shared.AccountingAddressTypeBilling,
                 },
             },
-            ContactName: codatsyncexpenses.String("explicabo"),
+            ContactName: syncforexpenses.String("accusantium"),
             Contacts: []shared.Contact{
                 shared.Contact{
                     Address: &shared.Items{
-                        City: codatsyncexpenses.String("Halvorsonstead"),
-                        Country: codatsyncexpenses.String("Guinea"),
-                        Line1: codatsyncexpenses.String("minima"),
-                        Line2: codatsyncexpenses.String("excepturi"),
-                        PostalCode: codatsyncexpenses.String("46991"),
-                        Region: codatsyncexpenses.String("mollitia"),
-                        Type: shared.AccountingAddressTypeUnknown,
+                        City: syncforexpenses.String("Lorenzaworth"),
+                        Country: syncforexpenses.String("Uzbekistan"),
+                        Line1: syncforexpenses.String("architecto"),
+                        Line2: syncforexpenses.String("mollitia"),
+                        PostalCode: syncforexpenses.String("61965"),
+                        Region: syncforexpenses.String("numquam"),
+                        Type: shared.AccountingAddressTypeBilling,
                     },
-                    Email: codatsyncexpenses.String("Caroline_Ziemann@yahoo.com"),
-                    ModifiedDate: codatsyncexpenses.String("2022-10-23T00:00:00.000Z"),
-                    Name: codatsyncexpenses.String("Claudia Krajcik"),
+                    Email: syncforexpenses.String("Jarred.Frami@yahoo.com"),
+                    ModifiedDate: syncforexpenses.String("2022-10-23T00:00:00.000Z"),
+                    Name: syncforexpenses.String("Kayla O'Kon"),
                     Phone: []shared.ContactPhone{
                         shared.ContactPhone{
-                            Number: "+44 25691 154789",
-                            Type: shared.PhoneNumberTypeLandline,
+                            Number: "01224 658 999",
+                            Type: shared.PhoneNumberTypePrimary,
                         },
                     },
-                    Status: shared.CustomerStatusUnknown,
+                    Status: shared.CustomerStatusArchived,
                 },
             },
-            CustomerName: codatsyncexpenses.String("laborum"),
-            DefaultCurrency: codatsyncexpenses.String("USD"),
-            EmailAddress: codatsyncexpenses.String("enim"),
-            ID: codatsyncexpenses.String("2c3f5ad0-19da-41ff-a78f-097b0074f154"),
+            CustomerName: syncforexpenses.String("ipsam"),
+            DefaultCurrency: syncforexpenses.String("USD"),
+            EmailAddress: syncforexpenses.String("possimus"),
+            ID: syncforexpenses.String("019da1ff-e78f-4097-b007-4f15471b5e6e"),
             Metadata: &shared.Metadata{
-                IsDeleted: codatsyncexpenses.Bool(false),
+                IsDeleted: syncforexpenses.Bool(false),
             },
-            ModifiedDate: codatsyncexpenses.String("2022-10-23T00:00:00.000Z"),
-            Phone: codatsyncexpenses.String("(738) 590-2655"),
-            RegistrationNumber: codatsyncexpenses.String("pariatur"),
-            SourceModifiedDate: codatsyncexpenses.String("2022-10-23T00:00:00.000Z"),
-            Status: shared.CustomerStatusActive,
+            ModifiedDate: syncforexpenses.String("2022-10-23T00:00:00.000Z"),
+            Phone: syncforexpenses.String("755.825.5909"),
+            RegistrationNumber: syncforexpenses.String("sint"),
+            SourceModifiedDate: syncforexpenses.String("2022-10-23T00:00:00.000Z"),
+            Status: shared.CustomerStatusArchived,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "rem": map[string]interface{}{
-                        "voluptates": "quasi",
+                    "incidunt": map[string]interface{}{
+                        "enim": "consequatur",
                     },
                 },
             },
-            TaxNumber: codatsyncexpenses.String("repudiandae"),
+            TaxNumber: syncforexpenses.String("est"),
         },
+        AllowSyncOnPushComplete: syncforexpenses.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codatsyncexpenses.Int(575947),
+        TimeoutInMinutes: syncforexpenses.Int(842342),
     })
     if err != nil {
         log.Fatal(err)
@@ -135,7 +136,7 @@ func main() {
 
 The *Get customer* endpoint returns a single customer for a given customerId.
 
-[Customers](https://docs.codat.io/accounting-api#/schemas/Customer) are people or organizations that buy goods or services from the SMB.
+[Customers](https://docs.codat.io/sync-for-expenses-api#/schemas/Customer) are people or organizations that buy goods or services from the SMB.
 
 Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=customers) for integrations that support getting a specific customer.
 
@@ -150,14 +151,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v2"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v2"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncexpenses.New(
-        codatsyncexpenses.WithSecurity(shared.Security{
+    s := syncforexpenses.New(
+        syncforexpenses.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -165,7 +166,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Customers.Get(ctx, operations.GetCustomerRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        CustomerID: "veritatis",
+        CustomerID: "explicabo",
     })
     if err != nil {
         log.Fatal(err)
@@ -193,9 +194,9 @@ func main() {
 
 ## List
 
-The *List customers* endpoint returns a list of [customers](https://docs.codat.io/accounting-api#/schemas/Customer) for a given company's connection.
+The *List customers* endpoint returns a list of [customers](https://docs.codat.io/sync-for-expenses-api#/schemas/Customer) for a given company's connection.
 
-[Customers](https://docs.codat.io/accounting-api#/schemas/Customer) are people or organizations that buy goods or services from the SMB.
+[Customers](https://docs.codat.io/sync-for-expenses-api#/schemas/Customer) are people or organizations that buy goods or services from the SMB.
 
 Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/sync-for-expenses-api#/operations/refresh-company-data).
     
@@ -208,14 +209,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v2"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v2"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncexpenses.New(
-        codatsyncexpenses.WithSecurity(shared.Security{
+    s := syncforexpenses.New(
+        syncforexpenses.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -223,10 +224,10 @@ func main() {
     ctx := context.Background()
     res, err := s.Customers.List(ctx, operations.ListCustomersRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        OrderBy: codatsyncexpenses.String("-modifiedDate"),
-        Page: codatsyncexpenses.Int(1),
-        PageSize: codatsyncexpenses.Int(100),
-        Query: codatsyncexpenses.String("itaque"),
+        OrderBy: syncforexpenses.String("-modifiedDate"),
+        Page: syncforexpenses.Int(1),
+        PageSize: syncforexpenses.Int(100),
+        Query: syncforexpenses.String("deserunt"),
     })
     if err != nil {
         log.Fatal(err)
@@ -254,13 +255,13 @@ func main() {
 
 ## Update
 
-The *Update customer* endpoint updates an existing [customer](https://docs.codat.io/accounting-api#/schemas/Customer) for a given company's connection.
+The *Update customer* endpoint updates an existing [customer](https://docs.codat.io/sync-for-expenses-api#/schemas/Customer) for a given company's connection.
 
-[Customers](https://docs.codat.io/accounting-api#/schemas/Customer) are people or organizations that buy goods or services from the SMB.
+[Customers](https://docs.codat.io/sync-for-expenses-api#/schemas/Customer) are people or organizations that buy goods or services from the SMB.
 
 **Integration-specific behaviour**
 
-Required data may vary by integration. To see what data to post, first call [Get create/update customer model](https://docs.codat.io/accounting-api#/operations/get-create-update-customers-model).
+Required data may vary by integration. To see what data to post, first call [Get create/update customer model](https://docs.codat.io/sync-for-expenses-api#/operations/get-create-update-customers-model).
 
 Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=customers) for integrations that support creating an account.
 
@@ -273,14 +274,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v2"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v2"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncexpenses.New(
-        codatsyncexpenses.WithSecurity(shared.Security{
+    s := syncforexpenses.New(
+        syncforexpenses.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -290,65 +291,66 @@ func main() {
         Customer: &shared.Customer{
             Addresses: []shared.Items{
                 shared.Items{
-                    City: codatsyncexpenses.String("West Adele"),
-                    Country: codatsyncexpenses.String("Norway"),
-                    Line1: codatsyncexpenses.String("quibusdam"),
-                    Line2: codatsyncexpenses.String("explicabo"),
-                    PostalCode: codatsyncexpenses.String("78221-3550"),
-                    Region: codatsyncexpenses.String("magni"),
+                    City: syncforexpenses.String("Spencerboro"),
+                    Country: syncforexpenses.String("Eritrea"),
+                    Line1: syncforexpenses.String("qui"),
+                    Line2: syncforexpenses.String("aliquid"),
+                    PostalCode: syncforexpenses.String("50183-0165"),
+                    Region: syncforexpenses.String("tempora"),
                     Type: shared.AccountingAddressTypeDelivery,
                 },
             },
-            ContactName: codatsyncexpenses.String("ipsam"),
+            ContactName: syncforexpenses.String("tempore"),
             Contacts: []shared.Contact{
                 shared.Contact{
                     Address: &shared.Items{
-                        City: codatsyncexpenses.String("East Marianostead"),
-                        Country: codatsyncexpenses.String("Estonia"),
-                        Line1: codatsyncexpenses.String("facilis"),
-                        Line2: codatsyncexpenses.String("tempore"),
-                        PostalCode: codatsyncexpenses.String("94275"),
-                        Region: codatsyncexpenses.String("aliquid"),
-                        Type: shared.AccountingAddressTypeBilling,
+                        City: syncforexpenses.String("Fort Horacio"),
+                        Country: syncforexpenses.String("Ecuador"),
+                        Line1: syncforexpenses.String("eligendi"),
+                        Line2: syncforexpenses.String("sint"),
+                        PostalCode: syncforexpenses.String("58562"),
+                        Region: syncforexpenses.String("debitis"),
+                        Type: shared.AccountingAddressTypeDelivery,
                     },
-                    Email: codatsyncexpenses.String("Kianna89@hotmail.com"),
-                    ModifiedDate: codatsyncexpenses.String("2022-10-23T00:00:00.000Z"),
-                    Name: codatsyncexpenses.String("Arnold Kirlin"),
+                    Email: syncforexpenses.String("Isadore_Kirlin69@hotmail.com"),
+                    ModifiedDate: syncforexpenses.String("2022-10-23T00:00:00.000Z"),
+                    Name: syncforexpenses.String("Blanca Schulist"),
                     Phone: []shared.ContactPhone{
                         shared.ContactPhone{
                             Number: "01224 658 999",
-                            Type: shared.PhoneNumberTypePrimary,
+                            Type: shared.PhoneNumberTypeUnknown,
                         },
                     },
                     Status: shared.CustomerStatusUnknown,
                 },
             },
-            CustomerName: codatsyncexpenses.String("cumque"),
-            DefaultCurrency: codatsyncexpenses.String("EUR"),
-            EmailAddress: codatsyncexpenses.String("ea"),
-            ID: codatsyncexpenses.String("6ae395ef-b9ba-488f-ba66-997074ba4469"),
+            CustomerName: syncforexpenses.String("occaecati"),
+            DefaultCurrency: syncforexpenses.String("GBP"),
+            EmailAddress: syncforexpenses.String("accusamus"),
+            ID: syncforexpenses.String("fb9ba88f-3a66-4997-874b-a4469b6e2141"),
             Metadata: &shared.Metadata{
-                IsDeleted: codatsyncexpenses.Bool(false),
+                IsDeleted: syncforexpenses.Bool(false),
             },
-            ModifiedDate: codatsyncexpenses.String("2022-10-23T00:00:00.000Z"),
-            Phone: codatsyncexpenses.String("1-911-405-3555 x069"),
-            RegistrationNumber: codatsyncexpenses.String("mollitia"),
-            SourceModifiedDate: codatsyncexpenses.String("2022-10-23T00:00:00.000Z"),
-            Status: shared.CustomerStatusActive,
+            ModifiedDate: syncforexpenses.String("2022-10-23T00:00:00.000Z"),
+            Phone: syncforexpenses.String("(655) 269-6342 x813"),
+            RegistrationNumber: syncforexpenses.String("quasi"),
+            SourceModifiedDate: syncforexpenses.String("2022-10-23T00:00:00.000Z"),
+            Status: shared.CustomerStatusArchived,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "dolor": map[string]interface{}{
-                        "necessitatibus": "odit",
+                    "debitis": map[string]interface{}{
+                        "eius": "maxime",
                     },
                 },
             },
-            TaxNumber: codatsyncexpenses.String("nemo"),
+            TaxNumber: syncforexpenses.String("deleniti"),
         },
+        AllowSyncOnPushComplete: syncforexpenses.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        CustomerID: "quasi",
-        ForceUpdate: codatsyncexpenses.Bool(false),
-        TimeoutInMinutes: codatsyncexpenses.Int(435865),
+        CustomerID: "facilis",
+        ForceUpdate: syncforexpenses.Bool(false),
+        TimeoutInMinutes: syncforexpenses.Int(447926),
     })
     if err != nil {
         log.Fatal(err)

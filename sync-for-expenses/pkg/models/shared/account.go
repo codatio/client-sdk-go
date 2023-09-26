@@ -3,7 +3,8 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/types"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 type AccountMetadata struct {
@@ -99,7 +100,7 @@ func (o *AccountValidDataTypeLinks) GetProperty() *string {
 // At the same time, each integration may have its own requirements to the categories. For example, a Paypal account in Xero is of the `Asset.Bank` category and therefore requires additional properties to be provided.
 //
 // To determine the list of allowed categories for a specific integration, you can:
-// - Follow our [Create, update, delete data](https://docs.codat.io/using-the-api/push) guide and use the [Get create account model](https://docs.codat.io/accounting-api#/operations/get-create-chartOfAccounts-model).
+// - Follow our [Create, update, delete data](https://docs.codat.io/using-the-api/push) guide and use the [Get create account model](https://docs.codat.io/sync-for-expenses-api#/operations/get-create-chartOfAccounts-model).
 // - Refer to the integration's own documentation.
 //
 // > **Accounts with no category**
@@ -117,7 +118,7 @@ type Account struct {
 	// There are only a very small number of edge cases where this currency code is returned by the Codat system.
 	Currency *string `json:"currency,omitempty"`
 	// Current balance in the account.
-	CurrentBalance *types.Decimal `json:"currentBalance,omitempty"`
+	CurrentBalance *decimal.Big `decimal:"number" json:"currentBalance,omitempty"`
 	// Description for the account.
 	Description *string `json:"description,omitempty"`
 	// Full category of the account.
@@ -144,8 +145,19 @@ type Account struct {
 	Status *AccountStatus `json:"status,omitempty"`
 	// Type of account
 	Type *AccountType `json:"type,omitempty"`
-	// The validDatatypeLinks can be used to determine whether an account can be correctly mapped to another object; for example, accounts with a `type` of `income` might only support being used on an Invoice and Direct Income. For more information, see [Valid Data Type Links](/accounting-api#/schemas/ValidDataTypeLinks).
+	// The validDatatypeLinks can be used to determine whether an account can be correctly mapped to another object; for example, accounts with a `type` of `income` might only support being used on an Invoice and Direct Income. For more information, see [Valid Data Type Links](/sync-for-expenses-api#/schemas/ValidDataTypeLinks).
 	ValidDatatypeLinks []AccountValidDataTypeLinks `json:"validDatatypeLinks,omitempty"`
+}
+
+func (a Account) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *Account) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *Account) GetCurrency() *string {
@@ -155,7 +167,7 @@ func (o *Account) GetCurrency() *string {
 	return o.Currency
 }
 
-func (o *Account) GetCurrentBalance() *types.Decimal {
+func (o *Account) GetCurrentBalance() *decimal.Big {
 	if o == nil {
 		return nil
 	}

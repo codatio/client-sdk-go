@@ -12,22 +12,21 @@ go get github.com/codatio/client-sdk-go/sync-for-expenses
 
 ## Example Usage
 <!-- Start SDK Example Usage -->
-
-
 ```go
 package main
 
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v2"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v2"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/types"
 )
 
 func main() {
-    s := codatsyncexpenses.New(
-        codatsyncexpenses.WithSecurity(shared.Security{
+    s := syncforexpenses.New(
+        syncforexpenses.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -35,34 +34,35 @@ func main() {
     ctx := context.Background()
     res, err := s.Accounts.Create(ctx, operations.CreateAccountRequest{
         Account: &shared.Account{
-            Currency: codatsyncexpenses.String("USD"),
+            Currency: syncforexpenses.String("EUR"),
             CurrentBalance: types.MustNewDecimalFromString("0"),
-            Description: codatsyncexpenses.String("Invoices the business has issued but has not yet collected payment on."),
-            FullyQualifiedCategory: codatsyncexpenses.String("Asset.Current"),
-            FullyQualifiedName: codatsyncexpenses.String("Fixed Asset"),
-            ID: codatsyncexpenses.String("1b6266d1-1e44-46c5-8eb5-a8f98e03124e"),
-            IsBankAccount: codatsyncexpenses.Bool(false),
+            Description: syncforexpenses.String("Invoices the business has issued but has not yet collected payment on."),
+            FullyQualifiedCategory: syncforexpenses.String("Asset.Current"),
+            FullyQualifiedName: syncforexpenses.String("Cash On Hand"),
+            ID: syncforexpenses.String("1b6266d1-1e44-46c5-8eb5-a8f98e03124e"),
+            IsBankAccount: syncforexpenses.Bool(false),
             Metadata: &shared.AccountMetadata{
-                IsDeleted: codatsyncexpenses.Bool(false),
+                IsDeleted: syncforexpenses.Bool(false),
             },
-            ModifiedDate: codatsyncexpenses.String("2022-10-23T00:00:00.000Z"),
-            Name: codatsyncexpenses.String("Accounts Receivable"),
-            NominalCode: codatsyncexpenses.String("610"),
-            SourceModifiedDate: codatsyncexpenses.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: syncforexpenses.String("2022-10-23T00:00:00.000Z"),
+            Name: syncforexpenses.String("Accounts Receivable"),
+            NominalCode: syncforexpenses.String("610"),
+            SourceModifiedDate: syncforexpenses.String("2022-10-23T00:00:00.000Z"),
             Status: shared.AccountStatusActive.ToPointer(),
             Type: shared.AccountTypeAsset.ToPointer(),
             ValidDatatypeLinks: []shared.AccountValidDataTypeLinks{
                 shared.AccountValidDataTypeLinks{
                     Links: []string{
-                        "unde",
+                        "suscipit",
                     },
-                    Property: codatsyncexpenses.String("nulla"),
+                    Property: syncforexpenses.String("iure"),
                 },
             },
         },
+        AllowSyncOnPushComplete: syncforexpenses.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codatsyncexpenses.Int(544883),
+        TimeoutInMinutes: syncforexpenses.Int(297534),
     })
     if err != nil {
         log.Fatal(err)
@@ -100,7 +100,7 @@ func main() {
 ### [Connections](docs/sdks/connections/README.md)
 
 * [Create](docs/sdks/connections/README.md#create) - Create connection
-* [CreatePartnerExpenseConnection](docs/sdks/connections/README.md#createpartnerexpenseconnection) - Create Partner Expense connection
+* [CreatePartnerExpenseConnection](docs/sdks/connections/README.md#createpartnerexpenseconnection) - Create partner expense connection
 * [Delete](docs/sdks/connections/README.md#delete) - Delete connection
 * [Get](docs/sdks/connections/README.md#get) - Get connection
 * [List](docs/sdks/connections/README.md#list) - List connections
@@ -141,7 +141,7 @@ func main() {
 
 ### [Sync](docs/sdks/sync/README.md)
 
-* [Get](docs/sdks/sync/README.md#get) - Get Sync status
+* [Get](docs/sdks/sync/README.md#get) - Get sync status
 * [GetLastSuccessfulSync](docs/sdks/sync/README.md#getlastsuccessfulsync) - Last successful sync
 * [GetLatestSync](docs/sdks/sync/README.md#getlatestsync) - Latest sync status
 * [InitiateSync](docs/sdks/sync/README.md#initiatesync) - Initiate sync
@@ -149,7 +149,39 @@ func main() {
 
 ### [TransactionStatus](docs/sdks/transactionstatus/README.md)
 
-* [Get](docs/sdks/transactionstatus/README.md#get) - Get Sync Transaction
+* [Get](docs/sdks/transactionstatus/README.md#get) - Get sync transaction
 * [List](docs/sdks/transactionstatus/README.md#list) - List sync transactions
 <!-- End SDK Available Operations -->
+
+
+
+<!-- Start Dev Containers -->
+
+
+
+<!-- End Dev Containers -->
+
+
+
+<!-- Start Pagination -->
+# Pagination
+
+Some of the endpoints in this SDK support pagination. To use pagination, you make your SDK calls as usual, but the
+returned response object will have a `Next` method that can be called to pull down the next group of results. If the
+return value of `Next` is `nil`, then there are no more pages to be fetched.
+
+Here's an example of one such pagination call:
+
+
+<!-- End Pagination -->
+
+
+
+<!-- Start Go Types -->
+
+<!-- End Go Types -->
+
+<!-- Placeholder for Future Speakeasy SDK Sections -->
+
+
 ### Library generated by [Speakeasy](https://docs.speakeasyapi.dev/docs/using-speakeasy/client-sdks)

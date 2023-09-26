@@ -4,14 +4,31 @@ package operations
 
 import (
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/utils"
 	"net/http"
 )
 
 type CreateAccountRequest struct {
-	Account          *shared.Account `request:"mediaType=application/json"`
-	CompanyID        string          `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID     string          `pathParam:"style=simple,explode=false,name=connectionId"`
-	TimeoutInMinutes *int            `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
+	Account *shared.Account `request:"mediaType=application/json"`
+	// Allow a sync upon push completion.
+	AllowSyncOnPushComplete *bool `default:"true" queryParam:"style=form,explode=true,name=allowSyncOnPushComplete"`
+	// Unique identifier for a company.
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a connection.
+	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
+	// Time limit for the push operation to complete before it is timed out.
+	TimeoutInMinutes *int `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
+}
+
+func (c CreateAccountRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CreateAccountRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *CreateAccountRequest) GetAccount() *shared.Account {
@@ -19,6 +36,13 @@ func (o *CreateAccountRequest) GetAccount() *shared.Account {
 		return nil
 	}
 	return o.Account
+}
+
+func (o *CreateAccountRequest) GetAllowSyncOnPushComplete() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.AllowSyncOnPushComplete
 }
 
 func (o *CreateAccountRequest) GetCompanyID() string {
@@ -43,13 +67,16 @@ func (o *CreateAccountRequest) GetTimeoutInMinutes() *int {
 }
 
 type CreateAccountResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// Success
 	CreateAccountResponse *shared.CreateAccountResponse
 	// The request made is not valid.
 	ErrorMessage *shared.ErrorMessage
-	StatusCode   int
-	RawResponse  *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *CreateAccountResponse) GetContentType() string {
