@@ -50,40 +50,40 @@ func main() {
         Supplier: &shared.Supplier{
             Addresses: []shared.Address{
                 shared.Address{
-                    City: syncforpayables.String("North Tadshire"),
-                    Country: syncforpayables.String("Anguilla"),
-                    Line1: syncforpayables.String("incidunt"),
-                    Line2: syncforpayables.String("qui"),
-                    PostalCode: syncforpayables.String("86113"),
-                    Region: syncforpayables.String("modi"),
+                    City: syncforpayables.String("Mosciskiside"),
+                    Country: syncforpayables.String("Armenia"),
+                    Line1: syncforpayables.String("nisi"),
+                    Line2: syncforpayables.String("rerum"),
+                    PostalCode: syncforpayables.String("92513-7197"),
+                    Region: syncforpayables.String("quae"),
                     Type: shared.AccountingAddressTypeDelivery,
                 },
             },
-            ContactName: syncforpayables.String("voluptatibus"),
-            DefaultCurrency: syncforpayables.String("molestias"),
-            EmailAddress: syncforpayables.String("officia"),
-            ID: syncforpayables.String("b8366c72-3ffd-4a9e-86be-e4825c1fc0e1"),
+            ContactName: syncforpayables.String("architecto"),
+            DefaultCurrency: syncforpayables.String("architecto"),
+            EmailAddress: syncforpayables.String("enim"),
+            ID: syncforpayables.String("c80bff91-8544-4ec4-adef-cce8f1977773"),
             Metadata: &shared.Metadata{
                 IsDeleted: syncforpayables.Bool(false),
             },
             ModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
-            Phone: syncforpayables.String("+44 25691 154789"),
-            RegistrationNumber: syncforpayables.String("optio"),
+            Phone: syncforpayables.String("(877) 492-8687"),
+            RegistrationNumber: syncforpayables.String("neque"),
             SourceModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
-            Status: shared.SupplierStatusUnknown,
+            Status: shared.SupplierStatusActive,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "facilis": map[string]interface{}{
-                        "reiciendis": "a",
+                    "consequuntur": map[string]interface{}{
+                        "officia": "reprehenderit",
                     },
                 },
             },
-            SupplierName: syncforpayables.String("iste"),
-            TaxNumber: syncforpayables.String("dicta"),
+            SupplierName: syncforpayables.String("distinctio"),
+            TaxNumber: syncforpayables.String("eius"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: syncforpayables.Int(552439),
+        TimeoutInMinutes: syncforpayables.Int(56372),
     })
     if err != nil {
         log.Fatal(err)
@@ -143,7 +143,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Suppliers.Get(ctx, operations.GetSupplierRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        SupplierID: "ullam",
+        SupplierID: "rem",
     })
     if err != nil {
         log.Fatal(err)
@@ -266,7 +266,7 @@ func main() {
         OrderBy: syncforpayables.String("-modifiedDate"),
         Page: syncforpayables.Int(1),
         PageSize: syncforpayables.Int(100),
-        Query: syncforpayables.String("dolore"),
+        Query: syncforpayables.String("maiores"),
     })
     if err != nil {
         log.Fatal(err)
@@ -330,42 +330,42 @@ func main() {
         Supplier: &shared.Supplier{
             Addresses: []shared.Address{
                 shared.Address{
-                    City: syncforpayables.String("Fort Rafael"),
-                    Country: syncforpayables.String("Eritrea"),
-                    Line1: syncforpayables.String("consequuntur"),
-                    Line2: syncforpayables.String("assumenda"),
-                    PostalCode: syncforpayables.String("97785-9054"),
-                    Region: syncforpayables.String("esse"),
-                    Type: shared.AccountingAddressTypeBilling,
+                    City: syncforpayables.String("West Suzanneberg"),
+                    Country: syncforpayables.String("Solomon Islands"),
+                    Line1: syncforpayables.String("aliquam"),
+                    Line2: syncforpayables.String("quos"),
+                    PostalCode: syncforpayables.String("86921-2609"),
+                    Region: syncforpayables.String("nemo"),
+                    Type: shared.AccountingAddressTypeDelivery,
                 },
             },
-            ContactName: syncforpayables.String("odio"),
-            DefaultCurrency: syncforpayables.String("nesciunt"),
-            EmailAddress: syncforpayables.String("debitis"),
-            ID: syncforpayables.String("63562a7b-408f-405e-bd48-fdaf313a1f5f"),
+            ContactName: syncforpayables.String("possimus"),
+            DefaultCurrency: syncforpayables.String("unde"),
+            EmailAddress: syncforpayables.String("incidunt"),
+            ID: syncforpayables.String("259c0b36-f25e-4a94-8f3b-756c11f6c37a"),
             Metadata: &shared.Metadata{
                 IsDeleted: syncforpayables.Bool(false),
             },
             ModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
-            Phone: syncforpayables.String("(877) 492-8687"),
-            RegistrationNumber: syncforpayables.String("incidunt"),
+            Phone: syncforpayables.String("+44 25691 154789"),
+            RegistrationNumber: syncforpayables.String("qui"),
             SourceModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
-            Status: shared.SupplierStatusActive,
+            Status: shared.SupplierStatusUnknown,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "cupiditate": map[string]interface{}{
-                        "optio": "alias",
+                    "incidunt": map[string]interface{}{
+                        "adipisci": "praesentium",
                     },
                 },
             },
-            SupplierName: syncforpayables.String("quidem"),
-            TaxNumber: syncforpayables.String("nesciunt"),
+            SupplierName: syncforpayables.String("dolor"),
+            TaxNumber: syncforpayables.String("exercitationem"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         ForceUpdate: syncforpayables.Bool(false),
-        SupplierID: "commodi",
-        TimeoutInMinutes: syncforpayables.Int(956124),
+        SupplierID: "expedita",
+        TimeoutInMinutes: syncforpayables.Int(706411),
     })
     if err != nil {
         log.Fatal(err)

@@ -9,14 +9,17 @@ import (
 )
 
 type UpdateSupplierRequest struct {
-	Supplier     *shared.Supplier `request:"mediaType=application/json"`
-	CompanyID    string           `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID string           `pathParam:"style=simple,explode=false,name=connectionId"`
+	Supplier *shared.Supplier `request:"mediaType=application/json"`
+	// Unique identifier for a company.
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a connection.
+	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 	// When updating data in the destination platform Codat checks the `sourceModifiedDate` against the `lastupdated` date from the accounting platform, if they're different Codat will return an error suggesting you should initiate another pull of the data. If this is set to `true` then the update will override this check.
 	ForceUpdate *bool `default:"false" queryParam:"style=form,explode=true,name=forceUpdate"`
-	// Unique identifier for a supplier
-	SupplierID       string `pathParam:"style=simple,explode=false,name=supplierId"`
-	TimeoutInMinutes *int   `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
+	// Unique identifier for a supplier.
+	SupplierID string `pathParam:"style=simple,explode=false,name=supplierId"`
+	// Time limit for the push operation to complete before it is timed out.
+	TimeoutInMinutes *int `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
 }
 
 func (u UpdateSupplierRequest) MarshalJSON() ([]byte, error) {
@@ -73,11 +76,14 @@ func (o *UpdateSupplierRequest) GetTimeoutInMinutes() *int {
 }
 
 type UpdateSupplierResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// The request made is not valid.
 	ErrorMessage *shared.ErrorMessage
-	StatusCode   int
-	RawResponse  *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 	// Success
 	UpdateSupplierResponse *shared.UpdateSupplierResponse
 }

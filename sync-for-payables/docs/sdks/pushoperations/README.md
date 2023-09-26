@@ -36,7 +36,7 @@ func main() {
     ctx := context.Background()
     res, err := s.PushOperations.Get(ctx, operations.GetPushOperationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        PushOperationKey: "ad7334ec-1b78-41b3-aa08-088d100efada",
+        PushOperationKey: "a200ef04-22eb-4216-8cf9-ab8366c723ff",
     })
     if err != nil {
         log.Fatal(err)
@@ -92,7 +92,7 @@ func main() {
         OrderBy: syncforpayables.String("-modifiedDate"),
         Page: syncforpayables.Int(1),
         PageSize: syncforpayables.Int(100),
-        Query: syncforpayables.String("sed"),
+        Query: syncforpayables.String("nulla"),
     })
     if err != nil {
         log.Fatal(err)

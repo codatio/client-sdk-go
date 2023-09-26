@@ -161,7 +161,7 @@ func (s *bills) Create(ctx context.Context, request operations.CreateBillRequest
 // Delete bill
 // The *Delete bill* endpoint allows you to delete a specified bill from an accounting platform.
 //
-// [Bills](https://docs.codat.io/accounting-api#/schemas/Bill) are itemized records of goods received or services provided to the SMB.
+// [Bills](https://docs.codat.io/sync-for-payables-api#/schemas/Bill) are itemized records of goods received or services provided to the SMB.
 //
 // ### Process
 // 1. Pass the `{billId}` to the *Delete bill* endpoint and store the `pushOperationKey` returned.
@@ -189,7 +189,7 @@ func (s *bills) Create(ctx context.Context, request operations.CreateBillRequest
 //
 // > **Supported Integrations**
 // >
-// > This functionality is currently only supported for our QuickBooks Online abd Oracle NetSuite integrations. Check out our [public roadmap](https://portal.productboard.com/codat/7-public-product-roadmap/tabs/46-accounting-api) to see what we're building next, and to submit ideas for new features.
+// > This functionality is currently supported for our QuickBooks Online, Xero and Oracle NetSuite integrations.
 func (s *bills) Delete(ctx context.Context, request operations.DeleteBillRequest, opts ...operations.Option) (*operations.DeleteBillResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -303,7 +303,7 @@ func (s *bills) Delete(ctx context.Context, request operations.DeleteBillRequest
 // DeleteAttachment - Delete bill attachment
 // The *Delete bill attachment* endpoint allows you to delete a specified bill attachment from an accounting platform.
 //
-// [Bills](https://docs.codat.io/accounting-api#/schemas/Bill) are invoices
+// [Bills](https://docs.codat.io/sync-for-payables-api#/schemas/Bill) are invoices
 // that represent the SMB's financial obligations to their supplier for a
 // purchase of goods or services.
 //

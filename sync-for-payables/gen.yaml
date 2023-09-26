@@ -1,9 +1,9 @@
 configVersion: 1.0.0
 management:
-  docChecksum: d4fce06bcead09dbfdcd3874d046f3bc
+  docChecksum: 3da979f75e4b7196786b76751fa91519
   docVersion: 3.0.0
-  speakeasyVersion: 1.90.0
-  generationVersion: 2.125.1
+  speakeasyVersion: 1.91.0
+  generationVersion: 2.129.1
 generation:
   sdkClassName: CodatSyncPayables
   singleTagPerOp: false
@@ -11,7 +11,7 @@ generation:
 features:
   go:
     constsAndDefaults: 0.1.0
-    core: 2.88.4
+    core: 2.89.0
     deprecations: 2.81.1
     examples: 2.81.2
     globalSecurity: 2.81.1
@@ -19,6 +19,6 @@ features:
     nameOverrides: 2.81.1
     retries: 2.82.1
 go:
-  version: 2.1.0
+  version: 2.2.0
   maxMethodParams: 0
   packageName: github.com/codatio/client-sdk-go/sync-for-payables

@@ -91,7 +91,7 @@ func main() {
     ctx := context.Background()
     res, err := s.ManageData.GetPullOperation(ctx, operations.GetPullOperationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        DatasetID: "eaed9f0f-e77b-4bc9-a58f-ab8b4b99ab18",
+        DatasetID: "4e472e80-2857-4a5b-8046-3a7d575f1400",
     })
     if err != nil {
         log.Fatal(err)
@@ -147,7 +147,7 @@ func main() {
         OrderBy: syncforpayables.String("-modifiedDate"),
         Page: syncforpayables.Int(1),
         PageSize: syncforpayables.Int(100),
-        Query: syncforpayables.String("repudiandae"),
+        Query: syncforpayables.String("eveniet"),
     })
     if err != nil {
         log.Fatal(err)
@@ -258,7 +258,7 @@ func main() {
     ctx := context.Background()
     res, err := s.ManageData.RefreshDataType(ctx, operations.RefreshDataTypeRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ConnectionID: syncforpayables.String("472e8028-57a5-4b40-863a-7d575f1400e7"),
+        ConnectionID: syncforpayables.String("764ad733-4ec1-4b78-9b36-a08088d100ef"),
         DataType: shared.DataTypeInvoices,
     })
     if err != nil {

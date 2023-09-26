@@ -47,30 +47,30 @@ func main() {
     res, err := s.JournalEntries.Create(ctx, operations.CreateJournalEntryRequest{
         JournalEntry: &shared.JournalEntry{
             CreatedOn: syncforpayables.String("2022-10-23T00:00:00.000Z"),
-            Description: syncforpayables.String("saepe"),
-            ID: syncforpayables.String("189dbb30-fcb3-43ea-855b-197cd44e2f52"),
+            Description: syncforpayables.String("eaque"),
+            ID: syncforpayables.String("e189dbb3-0fcb-433e-a055-b197cd44e2f5"),
             JournalLines: []shared.JournalLine{
                 shared.JournalLine{
                     AccountRef: &shared.AccountRef{
-                        ID: syncforpayables.String("d82d3513-bb6f-448b-a56b-cdb35ff2e4b2"),
-                        Name: syncforpayables.String("Audrey Durgan"),
+                        ID: syncforpayables.String("2d82d351-3bb6-4f48-b656-bcdb35ff2e4b"),
+                        Name: syncforpayables.String("Bessie Hegmann"),
                     },
-                    Currency: syncforpayables.String("rem"),
-                    Description: syncforpayables.String("eligendi"),
-                    NetAmount: types.MustNewDecimalFromString("8536.06"),
+                    Currency: syncforpayables.String("est"),
+                    Description: syncforpayables.String("rem"),
+                    NetAmount: types.MustNewDecimalFromString("7538.9"),
                     Tracking: &shared.JournalLineTracking{
                         RecordRefs: []shared.RecordRef{
                             shared.RecordRef{
-                                DataType: syncforpayables.String("accountTransaction"),
-                                ID: syncforpayables.String("e7319c17-7d52-45f7-bb11-4eeb52ff785f"),
+                                DataType: syncforpayables.String("transfer"),
+                                ID: syncforpayables.String("9e7319c1-77d5-425f-b7b1-14eeb52ff785"),
                             },
                         },
                     },
                 },
             },
             JournalRef: &shared.JournalRef{
-                ID: "c37814d4-c98e-40c2-bb89-eb75dad636c6",
-                Name: syncforpayables.String("Mrs. Donna Hand"),
+                ID: "fc37814d-4c98-4e0c-abb8-9eb75dad636c",
+                Name: syncforpayables.String("Maria Bartoletti I"),
             },
             Metadata: &shared.Metadata{
                 IsDeleted: syncforpayables.Bool(false),
@@ -79,13 +79,13 @@ func main() {
             PostedOn: syncforpayables.String("2022-10-23T00:00:00.000Z"),
             RecordRef: &shared.JournalEntryRecordReference{
                 DataType: syncforpayables.String("accountTransaction"),
-                ID: syncforpayables.String("31180f73-9ae9-4e05-beb8-09e2810331f3"),
+                ID: syncforpayables.String("b31180f7-39ae-49e0-97eb-809e2810331f"),
             },
             SourceModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "atque": map[string]interface{}{
-                        "beatae": "at",
+                    "occaecati": map[string]interface{}{
+                        "atque": "beatae",
                     },
                 },
             },
@@ -93,7 +93,7 @@ func main() {
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: syncforpayables.Int(794988),
+        TimeoutInMinutes: syncforpayables.Int(287544),
     })
     if err != nil {
         log.Fatal(err)

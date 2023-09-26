@@ -49,21 +49,21 @@ func main() {
         Journal: &shared.Journal{
             CreatedOn: syncforpayables.String("2022-10-23T00:00:00.000Z"),
             HasChildren: syncforpayables.Bool(false),
-            ID: syncforpayables.String("00b607f3-c93c-473b-9da3-f2ceda7e23f2"),
+            ID: syncforpayables.String("700b607f-3c93-4c73-b9da-3f2ceda7e23f"),
             JournalCode: syncforpayables.String("explicabo"),
             Metadata: &shared.Metadata{
                 IsDeleted: syncforpayables.Bool(false),
             },
             ModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
-            Name: syncforpayables.String("Dr. Elaine Bernhard"),
-            ParentID: syncforpayables.String("delectus"),
+            Name: syncforpayables.String("Mr. Marcia Fritsch"),
+            ParentID: syncforpayables.String("deserunt"),
             SourceModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
-            Status: shared.JournalStatusArchived.ToPointer(),
-            Type: syncforpayables.String("in"),
+            Status: shared.JournalStatusUnknown.ToPointer(),
+            Type: syncforpayables.String("distinctio"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: syncforpayables.Int(349993),
+        TimeoutInMinutes: syncforpayables.Int(450224),
     })
     if err != nil {
         log.Fatal(err)
@@ -123,7 +123,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Journals.Get(ctx, operations.GetJournalRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        JournalID: "labore",
+        JournalID: "exercitationem",
     })
     if err != nil {
         log.Fatal(err)
@@ -246,7 +246,7 @@ func main() {
         OrderBy: syncforpayables.String("-modifiedDate"),
         Page: syncforpayables.Int(1),
         PageSize: syncforpayables.Int(100),
-        Query: syncforpayables.String("numquam"),
+        Query: syncforpayables.String("labore"),
     })
     if err != nil {
         log.Fatal(err)
