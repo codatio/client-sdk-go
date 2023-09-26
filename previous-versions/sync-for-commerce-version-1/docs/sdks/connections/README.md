@@ -23,14 +23,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
+	syncforcommerceversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/operations"
 )
 
 func main() {
-    s := codatsynccommerce.New(
-        codatsynccommerce.WithSecurity(shared.Security{
+    s := syncforcommerceversion1.New(
+        syncforcommerceversion1.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -76,14 +76,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
+	syncforcommerceversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/operations"
 )
 
 func main() {
-    s := codatsynccommerce.New(
-        codatsynccommerce.WithSecurity(shared.Security{
+    s := syncforcommerceversion1.New(
+        syncforcommerceversion1.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -129,14 +129,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
+	syncforcommerceversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/operations"
 )
 
 func main() {
-    s := codatsynccommerce.New(
-        codatsynccommerce.WithSecurity(shared.Security{
+    s := syncforcommerceversion1.New(
+        syncforcommerceversion1.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )

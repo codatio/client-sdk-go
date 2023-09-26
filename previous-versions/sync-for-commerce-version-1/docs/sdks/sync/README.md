@@ -22,14 +22,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
+	syncforcommerceversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/operations"
 )
 
 func main() {
-    s := codatsynccommerce.New(
-        codatsynccommerce.WithSecurity(shared.Security{
+    s := syncforcommerceversion1.New(
+        syncforcommerceversion1.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -75,14 +75,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
+	syncforcommerceversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/operations"
 )
 
 func main() {
-    s := codatsynccommerce.New(
-        codatsynccommerce.WithSecurity(shared.Security{
+    s := syncforcommerceversion1.New(
+        syncforcommerceversion1.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -90,7 +90,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Sync.RequestSync(ctx, operations.RequestSyncRequest{
         SyncToLatestArgs: &shared.SyncToLatestArgs{
-            SyncTo: codatsynccommerce.String("2022-10-23T00:00:00.000Z"),
+            SyncTo: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
@@ -130,14 +130,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
+	syncforcommerceversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/operations"
 )
 
 func main() {
-    s := codatsynccommerce.New(
-        codatsynccommerce.WithSecurity(shared.Security{
+    s := syncforcommerceversion1.New(
+        syncforcommerceversion1.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )

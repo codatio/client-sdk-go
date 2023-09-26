@@ -21,14 +21,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
+	syncforcommerceversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/operations"
 )
 
 func main() {
-    s := codatsynccommerce.New(
-        codatsynccommerce.WithSecurity(shared.Security{
+    s := syncforcommerceversion1.New(
+        syncforcommerceversion1.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -36,7 +36,7 @@ func main() {
     ctx := context.Background()
     res, err := s.PushData.GetOperation(ctx, operations.GetPushOperationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        PushOperationKey: "97f92443-da7c-4e52-b895-c537c6454efb",
+        PushOperationKey: "5c537c64-54ef-4b0b-b489-6c3ca5acfbe2",
     })
     if err != nil {
         log.Fatal(err)
@@ -74,14 +74,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
+	syncforcommerceversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/operations"
 )
 
 func main() {
-    s := codatsynccommerce.New(
-        codatsynccommerce.WithSecurity(shared.Security{
+    s := syncforcommerceversion1.New(
+        syncforcommerceversion1.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -89,10 +89,10 @@ func main() {
     ctx := context.Background()
     res, err := s.PushData.ListOperations(ctx, operations.GetCompanyPushHistoryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        OrderBy: codatsynccommerce.String("-modifiedDate"),
-        Page: codatsynccommerce.Int(1),
-        PageSize: codatsynccommerce.Int(100),
-        Query: codatsynccommerce.String("aperiam"),
+        OrderBy: syncforcommerceversion1.String("-modifiedDate"),
+        Page: syncforcommerceversion1.Int(1),
+        PageSize: syncforcommerceversion1.Int(100),
+        Query: syncforcommerceversion1.String("repellat"),
     })
     if err != nil {
         log.Fatal(err)

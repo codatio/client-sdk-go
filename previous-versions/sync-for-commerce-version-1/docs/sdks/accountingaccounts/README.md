@@ -31,14 +31,15 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
+	syncforcommerceversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/types"
 )
 
 func main() {
-    s := codatsynccommerce.New(
-        codatsynccommerce.WithSecurity(shared.Security{
+    s := syncforcommerceversion1.New(
+        syncforcommerceversion1.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -46,20 +47,20 @@ func main() {
     ctx := context.Background()
     res, err := s.AccountingAccounts.CreateAccountingAccount(ctx, operations.CreateAccountingAccountRequest{
         AccountingAccount: &shared.AccountingAccount{
-            Currency: codatsynccommerce.String("EUR"),
+            Currency: syncforcommerceversion1.String("EUR"),
             CurrentBalance: types.MustNewDecimalFromString("0"),
-            Description: codatsynccommerce.String("Invoices the business has issued but has not yet collected payment on."),
-            FullyQualifiedCategory: codatsynccommerce.String("Asset.Current"),
-            FullyQualifiedName: codatsynccommerce.String("Cash On Hand"),
-            ID: codatsynccommerce.String("1b6266d1-1e44-46c5-8eb5-a8f98e03124e"),
-            IsBankAccount: codatsynccommerce.Bool(false),
+            Description: syncforcommerceversion1.String("Invoices the business has issued but has not yet collected payment on."),
+            FullyQualifiedCategory: syncforcommerceversion1.String("Asset.Current"),
+            FullyQualifiedName: syncforcommerceversion1.String("Cash On Hand"),
+            ID: syncforcommerceversion1.String("1b6266d1-1e44-46c5-8eb5-a8f98e03124e"),
+            IsBankAccount: syncforcommerceversion1.Bool(false),
             Metadata: &shared.AccountingAccountMetadata{
-                IsDeleted: codatsynccommerce.Bool(false),
+                IsDeleted: syncforcommerceversion1.Bool(false),
             },
-            ModifiedDate: codatsynccommerce.String("2022-10-23T00:00:00.000Z"),
-            Name: codatsynccommerce.String("Accounts Receivable"),
-            NominalCode: codatsynccommerce.String("610"),
-            SourceModifiedDate: codatsynccommerce.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
+            Name: syncforcommerceversion1.String("Accounts Receivable"),
+            NominalCode: syncforcommerceversion1.String("610"),
+            SourceModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
             Status: shared.AccountStatusActive.ToPointer(),
             Type: shared.AccountTypeAsset.ToPointer(),
             ValidDatatypeLinks: []shared.AccountingAccountValidDataTypeLinks{
@@ -67,13 +68,13 @@ func main() {
                     Links: []string{
                         "suscipit",
                     },
-                    Property: codatsynccommerce.String("iure"),
+                    Property: syncforcommerceversion1.String("molestiae"),
                 },
             },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codatsynccommerce.Int(297534),
+        TimeoutInMinutes: syncforcommerceversion1.Int(791725),
     })
     if err != nil {
         log.Fatal(err)
@@ -118,21 +119,21 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
+	syncforcommerceversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/operations"
 )
 
 func main() {
-    s := codatsynccommerce.New(
-        codatsynccommerce.WithSecurity(shared.Security{
+    s := syncforcommerceversion1.New(
+        syncforcommerceversion1.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
     ctx := context.Background()
     res, err := s.AccountingAccounts.GetAccountingAccount(ctx, operations.GetAccountingAccountRequest{
-        AccountID: "debitis",
+        AccountID: "placeat",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -175,14 +176,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
+	syncforcommerceversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/operations"
 )
 
 func main() {
-    s := codatsynccommerce.New(
-        codatsynccommerce.WithSecurity(shared.Security{
+    s := syncforcommerceversion1.New(
+        syncforcommerceversion1.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -190,10 +191,10 @@ func main() {
     ctx := context.Background()
     res, err := s.AccountingAccounts.ListAccountingAccounts(ctx, operations.ListAccountingAccountsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        OrderBy: codatsynccommerce.String("-modifiedDate"),
-        Page: codatsynccommerce.Int(1),
-        PageSize: codatsynccommerce.Int(100),
-        Query: codatsynccommerce.String("ipsa"),
+        OrderBy: syncforcommerceversion1.String("-modifiedDate"),
+        Page: syncforcommerceversion1.Int(1),
+        PageSize: syncforcommerceversion1.Int(100),
+        Query: syncforcommerceversion1.String("voluptatum"),
     })
     if err != nil {
         log.Fatal(err)
