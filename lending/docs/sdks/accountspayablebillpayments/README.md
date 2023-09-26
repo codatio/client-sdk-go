@@ -9,7 +9,7 @@
 
 The *Get bill payment* endpoint returns a single bill payment for a given billPaymentId.
 
-[Bill payments](https://docs.codat.io/accounting-api#/schemas/BillPayment) are an allocation of money within any customer accounts payable account.
+[Bill payments](https://docs.codat.io/lending-api#/schemas/BillPayment) are an allocation of money within any customer accounts payable account.
 
 Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=billPayments) for integrations that support getting a specific bill payment.
 
@@ -24,7 +24,7 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v4"
+	lending "github.com/codatio/client-sdk-go/lending/v4"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )
@@ -38,7 +38,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.AccountsPayable.BillPayments.Get(ctx, operations.GetAccountingBillPaymentRequest{
-        BillPaymentID: "placeat",
+        BillPaymentID: "voluptatum",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -67,9 +67,9 @@ func main() {
 
 ## List
 
-The *List bill payments* endpoint returns a list of [bill payments](https://docs.codat.io/accounting-api#/schemas/BillPayment) for a given company's connection.
+The *List bill payments* endpoint returns a list of [bill payments](https://docs.codat.io/lending-api#/schemas/BillPayment) for a given company's connection.
 
-[Bill payments](https://docs.codat.io/accounting-api#/schemas/BillPayment) are an allocation of money within any customer accounts payable account.
+[Bill payments](https://docs.codat.io/lending-api#/schemas/BillPayment) are an allocation of money within any customer accounts payable account.
 
 Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/lending-api#/operations/refresh-company-data).
     
@@ -82,7 +82,7 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v4"
+	lending "github.com/codatio/client-sdk-go/lending/v4"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )
@@ -100,7 +100,7 @@ func main() {
         OrderBy: lending.String("-modifiedDate"),
         Page: lending.Int(1),
         PageSize: lending.Int(100),
-        Query: lending.String("voluptatum"),
+        Query: lending.String("iusto"),
     })
     if err != nil {
         log.Fatal(err)

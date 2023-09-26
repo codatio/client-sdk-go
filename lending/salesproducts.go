@@ -27,7 +27,7 @@ func newSalesProducts(sdkConfig sdkConfiguration) *salesProducts {
 // Get product
 // The *Get product* endpoint returns a single product for a given productId.
 //
-// [Products](https://docs.codat.io/commerce-api#/schemas/Product) are items in the company's inventory that are available for sale.
+// [Products](https://docs.codat.io/lending-api#/schemas/Product) are items in the company's inventory that are available for sale.
 //
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/commerce?view=tab-by-data-type&dataType=commerce-products) for integrations that support getting a specific product.
 //
@@ -145,9 +145,9 @@ func (s *salesProducts) Get(ctx context.Context, request operations.GetCommerceP
 }
 
 // List products
-// The *List products* endpoint returns a list of [products](https://docs.codat.io/commerce-api#/schemas/Product) for a given company's connection.
+// The *List products* endpoint returns a list of [products](https://docs.codat.io/lending-api#/schemas/Product) for a given company's connection.
 //
-// [Products](https://docs.codat.io/commerce-api#/schemas/Product) are items in the company's inventory that are available for sale.
+// [Products](https://docs.codat.io/lending-api#/schemas/Product) are items in the company's inventory that are available for sale.
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/lending-api#/operations/refresh-company-data).
 func (s *salesProducts) List(ctx context.Context, request operations.ListCommerceProductsRequest, opts ...operations.Option) (*operations.ListCommerceProductsResponse, error) {

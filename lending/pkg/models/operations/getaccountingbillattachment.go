@@ -8,11 +8,13 @@ import (
 )
 
 type GetAccountingBillAttachmentRequest struct {
-	// Unique identifier for an attachment
+	// Unique identifier for an attachment.
 	AttachmentID string `pathParam:"style=simple,explode=false,name=attachmentId"`
-	// Unique identifier for a bill
-	BillID       string `pathParam:"style=simple,explode=false,name=billId"`
-	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a bill.
+	BillID string `pathParam:"style=simple,explode=false,name=billId"`
+	// Unique identifier for a company.
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a connection.
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
@@ -47,11 +49,14 @@ func (o *GetAccountingBillAttachmentRequest) GetConnectionID() string {
 type GetAccountingBillAttachmentResponse struct {
 	// Success
 	AccountingAttachment *shared.AccountingAttachment
-	ContentType          string
+	// HTTP response content type for this operation
+	ContentType string
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
-	StatusCode   int
-	RawResponse  *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *GetAccountingBillAttachmentResponse) GetAccountingAttachment() *shared.AccountingAttachment {

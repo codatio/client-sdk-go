@@ -10,9 +10,9 @@ Access bank transactions from an accounting platform.
 
 ## ListTransactions
 
-The *List account bank transactions* endpoint returns a list of [bank account transactions](https://docs.codat.io/accounting-api#/schemas/BankTransactions) for a given company's connection.
+The *List account bank transactions* endpoint returns a list of [bank account transactions](https://docs.codat.io/lending-api#/schemas/BankTransactions) for a given company's connection.
 
-[Bank account transactions](https://docs.codat.io/accounting-api#/schemas/BankTransactions) are records of money that has moved in and out of an SMB's bank account.
+[Bank account transactions](https://docs.codat.io/lending-api#/schemas/BankTransactions) are records of money that has moved in and out of an SMB's bank account.
 
 Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankTransactions) for integrations that support listing bank transactions.
 
@@ -27,7 +27,7 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v4"
+	lending "github.com/codatio/client-sdk-go/lending/v4"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )
@@ -41,13 +41,13 @@ func main() {
 
     ctx := context.Background()
     res, err := s.AccountingBankData.ListTransactions(ctx, operations.ListAccountingBankAccountTransactionsRequest{
-        AccountID: "distinctio",
+        AccountID: "unde",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         OrderBy: lending.String("-modifiedDate"),
         Page: lending.Int(1),
         PageSize: lending.Int(100),
-        Query: lending.String("quibusdam"),
+        Query: lending.String("nulla"),
     })
     if err != nil {
         log.Fatal(err)

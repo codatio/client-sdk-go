@@ -9,7 +9,7 @@
 
 The *Get journal entry* endpoint returns a single journal entry for a given journalEntryId.
 
-[Journal entries](https://docs.codat.io/accounting-api#/schemas/JournalEntry) are  made in a company's general ledger, or accounts, when transactions are approved.
+[Journal entries](https://docs.codat.io/lending-api#/schemas/JournalEntry) are  made in a company's general ledger, or accounts, when transactions are approved.
 
 Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journalEntries) for integrations that support getting a specific journal entry.
 
@@ -24,7 +24,7 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v4"
+	lending "github.com/codatio/client-sdk-go/lending/v4"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )
@@ -39,7 +39,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Transactions.JournalEntries.Get(ctx, operations.GetAccountingJournalEntryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        JournalEntryID: "vitae",
+        JournalEntryID: "culpa",
     })
     if err != nil {
         log.Fatal(err)
@@ -67,9 +67,9 @@ func main() {
 
 ## List
 
-The *List journal entries* endpoint returns a list of [journal entries](https://docs.codat.io/accounting-api#/schemas/JournalEntry) for a given company's connection.
+The *List journal entries* endpoint returns a list of [journal entries](https://docs.codat.io/lending-api#/schemas/JournalEntry) for a given company's connection.
 
-[Journal entries](https://docs.codat.io/accounting-api#/schemas/JournalEntry) are  made in a company's general ledger, or accounts, when transactions are approved.
+[Journal entries](https://docs.codat.io/lending-api#/schemas/JournalEntry) are  made in a company's general ledger, or accounts, when transactions are approved.
 
 Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/lending-api#/operations/refresh-company-data).
     
@@ -82,7 +82,7 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v4"
+	lending "github.com/codatio/client-sdk-go/lending/v4"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )
@@ -100,7 +100,7 @@ func main() {
         OrderBy: lending.String("-modifiedDate"),
         Page: lending.Int(1),
         PageSize: lending.Int(100),
-        Query: lending.String("accusamus"),
+        Query: lending.String("corrupti"),
     })
     if err != nil {
         log.Fatal(err)

@@ -41,6 +41,7 @@ func (e *ListLoanTransactionsSourceType) UnmarshalJSON(data []byte) error {
 }
 
 type ListLoanTransactionsRequest struct {
+	// Unique identifier for a company.
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	// Data source type
 	SourceType ListLoanTransactionsSourceType `queryParam:"style=form,explode=true,name=sourceType"`
@@ -61,13 +62,16 @@ func (o *ListLoanTransactionsRequest) GetSourceType() ListLoanTransactionsSource
 }
 
 type ListLoanTransactionsResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
 	// OK
 	LoanTransactions *shared.LoanTransactions
-	StatusCode       int
-	RawResponse      *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *ListLoanTransactionsResponse) GetContentType() string {

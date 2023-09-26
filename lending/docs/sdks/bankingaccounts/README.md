@@ -9,7 +9,7 @@
 
 The *Get account* endpoint returns a single account for a given accountId.
 
-[Accounts](https://docs.codat.io/banking-api#/schemas/Account) are financial accounts maintained by a bank or other financial institution.
+[Accounts](https://docs.codat.io/lending-api#/schemas/Account) are financial accounts maintained by a bank or other financial institution.
 
 Check out our [coverage explorer](https://knowledge.codat.io/supported-features/banking?view=tab-by-data-type&dataType=banking-accounts) for integrations that support getting a specific account.
 
@@ -24,7 +24,7 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v4"
+	lending "github.com/codatio/client-sdk-go/lending/v4"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )
@@ -38,7 +38,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Banking.Accounts.Get(ctx, operations.GetBankingAccountRequest{
-        AccountID: "totam",
+        AccountID: "beatae",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -68,9 +68,9 @@ func main() {
 
 ## List
 
-The *List accounts* endpoint returns a list of [accounts](https://docs.codat.io/banking-api#/schemas/Account) for a given company's connection.
+The *List accounts* endpoint returns a list of [accounts](https://docs.codat.io/lending-api#/schemas/Account) for a given company's connection.
 
-[Accounts](https://docs.codat.io/banking-api#/schemas/Account) are financial accounts maintained by a bank or other financial institution.
+[Accounts](https://docs.codat.io/lending-api#/schemas/Account) are financial accounts maintained by a bank or other financial institution.
 
 Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/lending-api#/operations/refresh-company-data).
     
@@ -83,7 +83,7 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v4"
+	lending "github.com/codatio/client-sdk-go/lending/v4"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )
@@ -102,7 +102,7 @@ func main() {
         OrderBy: lending.String("-modifiedDate"),
         Page: lending.Int(1),
         PageSize: lending.Int(100),
-        Query: lending.String("beatae"),
+        Query: lending.String("commodi"),
     })
     if err != nil {
         log.Fatal(err)

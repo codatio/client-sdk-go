@@ -27,7 +27,7 @@ func newAccountsPayableSuppliers(sdkConfig sdkConfiguration) *accountsPayableSup
 // DownloadAttachment - Download supplier attachment
 // The *Download supplier attachment* endpoint downloads a specific attachment for a given `supplierId` and `attachmentId`.
 //
-// [Suppliers](https://docs.codat.io/accounting-api#/schemas/Supplier) are people or organizations that provide something, such as a product or service.
+// [Suppliers](https://docs.codat.io/lending-api#/schemas/Supplier) are people or organizations that provide something, such as a product or service.
 //
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=suppliers) for integrations that support downloading a supplier attachment.
 func (s *accountsPayableSuppliers) DownloadAttachment(ctx context.Context, request operations.DownloadAccountingSupplierAttachmentRequest, opts ...operations.Option) (*operations.DownloadAccountingSupplierAttachmentResponse, error) {
@@ -144,7 +144,7 @@ func (s *accountsPayableSuppliers) DownloadAttachment(ctx context.Context, reque
 // Get supplier
 // The *Get supplier* endpoint returns a single supplier for a given supplierId.
 //
-// [Suppliers](https://docs.codat.io/accounting-api#/schemas/Supplier) are people or organizations that provide something, such as a product or service.
+// [Suppliers](https://docs.codat.io/lending-api#/schemas/Supplier) are people or organizations that provide something, such as a product or service.
 //
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=suppliers) for integrations that support getting a specific supplier.
 //
@@ -264,7 +264,7 @@ func (s *accountsPayableSuppliers) Get(ctx context.Context, request operations.G
 // GetAttachment - Get supplier attachment
 // The *Get supplier attachment* endpoint returns a specific attachment for a given `supplierId` and `attachmentId`.
 //
-// [Suppliers](https://docs.codat.io/accounting-api#/schemas/Supplier) are people or organizations that provide something, such as a product or service.
+// [Suppliers](https://docs.codat.io/lending-api#/schemas/Supplier) are people or organizations that provide something, such as a product or service.
 //
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=suppliers) for integrations that support getting a supplier attachment.
 func (s *accountsPayableSuppliers) GetAttachment(ctx context.Context, request operations.GetAccountingSupplierAttachmentRequest, opts ...operations.Option) (*operations.GetAccountingSupplierAttachmentResponse, error) {
@@ -378,9 +378,9 @@ func (s *accountsPayableSuppliers) GetAttachment(ctx context.Context, request op
 }
 
 // List suppliers
-// The *List suppliers* endpoint returns a list of [suppliers](https://docs.codat.io/accounting-api#/schemas/Supplier) for a given company's connection.
+// The *List suppliers* endpoint returns a list of [suppliers](https://docs.codat.io/lending-api#/schemas/Supplier) for a given company's connection.
 //
-// [Suppliers](https://docs.codat.io/accounting-api#/schemas/Supplier) are people or organizations that provide something, such as a product or service.
+// [Suppliers](https://docs.codat.io/lending-api#/schemas/Supplier) are people or organizations that provide something, such as a product or service.
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/lending-api#/operations/refresh-company-data).
 func (s *accountsPayableSuppliers) List(ctx context.Context, request operations.ListAccountingSuppliersRequest, opts ...operations.Option) (*operations.ListAccountingSuppliersResponse, error) {
@@ -502,7 +502,7 @@ func (s *accountsPayableSuppliers) List(ctx context.Context, request operations.
 // ListAttachments - List supplier attachments
 // The *List supplier attachments* endpoint returns a list of attachments available to download for given `supplierId`.
 //
-// [Suppliers](https://docs.codat.io/accounting-api#/schemas/Supplier) are people or organizations that provide something, such as a product or service.
+// [Suppliers](https://docs.codat.io/lending-api#/schemas/Supplier) are people or organizations that provide something, such as a product or service.
 //
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=suppliers) for integrations that support listing supplier attachments.
 func (s *accountsPayableSuppliers) ListAttachments(ctx context.Context, request operations.ListAccountingSupplierAttachmentsRequest, opts ...operations.Option) (*operations.ListAccountingSupplierAttachmentsResponse, error) {

@@ -8,7 +8,9 @@ import (
 )
 
 type ListCommerceLocationsRequest struct {
-	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a company.
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a connection.
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
@@ -29,11 +31,14 @@ func (o *ListCommerceLocationsRequest) GetConnectionID() string {
 type ListCommerceLocationsResponse struct {
 	// OK
 	CommerceLocations *shared.CommerceLocations
-	ContentType       string
+	// HTTP response content type for this operation
+	ContentType string
 	// Your `query` parameter was not correctly formed
 	ErrorMessage *shared.ErrorMessage
-	StatusCode   int
-	RawResponse  *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *ListCommerceLocationsResponse) GetCommerceLocations() *shared.CommerceLocations {

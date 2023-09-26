@@ -4,7 +4,7 @@
 > 
 > This datatype was originally used for accessing bank account data both in accounting integrations and open banking aggregators. 
 > 
-> To view bank account data through the Banking API, please refer to the new datatype [here](https://docs.codat.io/banking-api#/schemas/Account)
+> To view bank account data through the Banking API, please refer to the new datatype [here](https://docs.codat.io/lending-api#/schemas/Account)
 
 > View the coverage for bank accounts in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankAccounts" target="_blank">Data coverage explorer</a>.
 

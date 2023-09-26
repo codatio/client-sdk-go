@@ -16,7 +16,8 @@ type InvoiceLineItem struct {
 	DiscountAmount *decimal.Big `decimal:"number" json:"discountAmount,omitempty"`
 	// Percentage rate (from 0 to 100) of any discounts applied to the unit amount.
 	DiscountPercentage *decimal.Big `decimal:"number" json:"discountPercentage,omitempty"`
-	IsDirectIncome     *bool        `json:"isDirectIncome,omitempty"`
+	// The invoice is a direct income if `True`.
+	IsDirectIncome *bool `json:"isDirectIncome,omitempty"`
 	// Reference to the item the line is linked to.
 	ItemRef *ItemRef `json:"itemRef,omitempty"`
 	// Number of units of goods or services provided.

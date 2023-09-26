@@ -3,9 +3,12 @@
 package shared
 
 type File struct {
+	// An optional display name for the file.
 	DisplayName *string `json:"displayName,omitempty"`
-	FileName    *string `json:"fileName,omitempty"`
-	SourceType  *string `json:"sourceType,omitempty"`
+	// The file's name.
+	FileName *string `json:"fileName,omitempty"`
+	// The source of the file uploaded.
+	SourceType *string `json:"sourceType,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```

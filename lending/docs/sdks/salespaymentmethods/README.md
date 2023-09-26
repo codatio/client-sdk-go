@@ -9,7 +9,7 @@
 
 The *Get payment method* endpoint returns a single payment method for a given paymentMethodId.
 
-[Payment methods](https://docs.codat.io/commerce-api#/schemas/PaymentMethod) represent the payment method(s) used to make payments.
+[Payment methods](https://docs.codat.io/lending-api#/schemas/PaymentMethod) represent the payment method(s) used to make payments.
 
 Check out our [coverage explorer](https://knowledge.codat.io/supported-features/commerce?view=tab-by-data-type&dataType=commerce-paymentMethods) for integrations that support getting a specific payment method.
 
@@ -24,7 +24,7 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v4"
+	lending "github.com/codatio/client-sdk-go/lending/v4"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )
@@ -40,7 +40,7 @@ func main() {
     res, err := s.Sales.PaymentMethods.Get(ctx, operations.GetCommercePaymentMethodRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        PaymentMethodID: "doloribus",
+        PaymentMethodID: "aspernatur",
     })
     if err != nil {
         log.Fatal(err)
@@ -68,9 +68,9 @@ func main() {
 
 ## List
 
-The *List payment methods* endpoint returns a list of [payment methods](https://docs.codat.io/commerce-api#/schemas/PaymentMethod) for a given company's connection.
+The *List payment methods* endpoint returns a list of [payment methods](https://docs.codat.io/lending-api#/schemas/PaymentMethod) for a given company's connection.
 
-[Payment methods](https://docs.codat.io/commerce-api#/schemas/PaymentMethod) represent the payment method(s) used to make payments.
+[Payment methods](https://docs.codat.io/lending-api#/schemas/PaymentMethod) represent the payment method(s) used to make payments.
 
 Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/lending-api#/operations/refresh-company-data).
     
@@ -83,7 +83,7 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v4"
+	lending "github.com/codatio/client-sdk-go/lending/v4"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )
@@ -102,7 +102,7 @@ func main() {
         OrderBy: lending.String("-modifiedDate"),
         Page: lending.Int(1),
         PageSize: lending.Int(100),
-        Query: lending.String("suscipit"),
+        Query: lending.String("voluptas"),
     })
     if err != nil {
         log.Fatal(err)

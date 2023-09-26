@@ -9,7 +9,7 @@
 
 The *Get account transaction* endpoint returns a single account transaction for a given accountTransactionId.
 
-[Account transactions](https://docs.codat.io/accounting-api#/schemas/AccountTransaction) represent bank activity within an accounting platform. All transactions that go through a bank account are recorded as account transactions.
+[Account transactions](https://docs.codat.io/lending-api#/schemas/AccountTransaction) represent bank activity within an accounting platform. All transactions that go through a bank account are recorded as account transactions.
 
 Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=accountTransactions) for integrations that support getting a specific account transaction.
 
@@ -24,7 +24,7 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v4"
+	lending "github.com/codatio/client-sdk-go/lending/v4"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )
@@ -38,7 +38,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Transactions.AccountTransactions.Get(ctx, operations.GetAccountingAccountTransactionRequest{
-        AccountTransactionID: "consectetur",
+        AccountTransactionID: "ullam",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -68,9 +68,9 @@ func main() {
 
 ## List
 
-The *List account transactions* endpoint returns a list of [account transactions](https://docs.codat.io/accounting-api#/schemas/AccountTransaction) for a given company's connection.
+The *List account transactions* endpoint returns a list of [account transactions](https://docs.codat.io/lending-api#/schemas/AccountTransaction) for a given company's connection.
 
-[Account transactions](https://docs.codat.io/accounting-api#/schemas/AccountTransaction) represent bank activity within an accounting platform. All transactions that go through a bank account are recorded as account transactions.
+[Account transactions](https://docs.codat.io/lending-api#/schemas/AccountTransaction) represent bank activity within an accounting platform. All transactions that go through a bank account are recorded as account transactions.
 
 Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/lending-api#/operations/refresh-company-data).
     
@@ -83,7 +83,7 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v4"
+	lending "github.com/codatio/client-sdk-go/lending/v4"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )
@@ -102,7 +102,7 @@ func main() {
         OrderBy: lending.String("-modifiedDate"),
         Page: lending.Int(1),
         PageSize: lending.Int(100),
-        Query: lending.String("corporis"),
+        Query: lending.String("adipisci"),
     })
     if err != nil {
         log.Fatal(err)

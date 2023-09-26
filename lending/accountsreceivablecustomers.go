@@ -27,7 +27,7 @@ func newAccountsReceivableCustomers(sdkConfig sdkConfiguration) *accountsReceiva
 // DownloadAttachment - Download customer attachment
 // The *Download customer attachment* endpoint downloads a specific attachment for a given `customerId` and `attachmentId`.
 //
-// [Customers](https://docs.codat.io/accounting-api#/schemas/Customer) are people or organizations that buy goods or services from the SMB.
+// [Customers](https://docs.codat.io/lending-api#/schemas/Customer) are people or organizations that buy goods or services from the SMB.
 //
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=customers) for integrations that support downloading a customer attachment.
 func (s *accountsReceivableCustomers) DownloadAttachment(ctx context.Context, request operations.DownloadAccountingCustomerAttachmentRequest, opts ...operations.Option) (*operations.DownloadAccountingCustomerAttachmentResponse, error) {
@@ -144,7 +144,7 @@ func (s *accountsReceivableCustomers) DownloadAttachment(ctx context.Context, re
 // Get customer
 // The *Get customer* endpoint returns a single customer for a given customerId.
 //
-// [Customers](https://docs.codat.io/accounting-api#/schemas/Customer) are people or organizations that buy goods or services from the SMB.
+// [Customers](https://docs.codat.io/lending-api#/schemas/Customer) are people or organizations that buy goods or services from the SMB.
 //
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=customers) for integrations that support getting a specific customer.
 //
@@ -264,7 +264,7 @@ func (s *accountsReceivableCustomers) Get(ctx context.Context, request operation
 // GetAttachment - Get customer attachment
 // The *Get customer attachment* endpoint returns a specific attachment for a given `customerId` and `attachmentId`.
 //
-// [Customers](https://docs.codat.io/accounting-api#/schemas/Customer) are people or organizations that buy goods or services from the SMB.
+// [Customers](https://docs.codat.io/lending-api#/schemas/Customer) are people or organizations that buy goods or services from the SMB.
 //
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=customers) for integrations that support getting a customer attachment.
 func (s *accountsReceivableCustomers) GetAttachment(ctx context.Context, request operations.GetAccountingCustomerAttachmentRequest, opts ...operations.Option) (*operations.GetAccountingCustomerAttachmentResponse, error) {
@@ -378,9 +378,9 @@ func (s *accountsReceivableCustomers) GetAttachment(ctx context.Context, request
 }
 
 // List customers
-// The *List customers* endpoint returns a list of [customers](https://docs.codat.io/accounting-api#/schemas/Customer) for a given company's connection.
+// The *List customers* endpoint returns a list of [customers](https://docs.codat.io/lending-api#/schemas/Customer) for a given company's connection.
 //
-// [Customers](https://docs.codat.io/accounting-api#/schemas/Customer) are people or organizations that buy goods or services from the SMB.
+// [Customers](https://docs.codat.io/lending-api#/schemas/Customer) are people or organizations that buy goods or services from the SMB.
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/lending-api#/operations/refresh-company-data).
 func (s *accountsReceivableCustomers) List(ctx context.Context, request operations.ListAccountingCustomersRequest, opts ...operations.Option) (*operations.ListAccountingCustomersResponse, error) {
@@ -502,7 +502,7 @@ func (s *accountsReceivableCustomers) List(ctx context.Context, request operatio
 // ListAttachments - List customer attachments
 // The *List customer attachments* endpoint returns a list of attachments avialable to download for given `customerId`.
 //
-// [Customers](https://docs.codat.io/accounting-api#/schemas/Customer) are people or organizations that buy goods or services from the SMB.
+// [Customers](https://docs.codat.io/lending-api#/schemas/Customer) are people or organizations that buy goods or services from the SMB.
 //
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=customers) for integrations that support listing customer attachments.
 func (s *accountsReceivableCustomers) ListAttachments(ctx context.Context, request operations.ListAccountingCustomerAttachmentsRequest, opts ...operations.Option) (*operations.ListAccountingCustomerAttachmentsResponse, error) {

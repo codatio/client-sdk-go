@@ -27,7 +27,7 @@ func newSalesProductCategories(sdkConfig sdkConfiguration) *salesProductCategori
 // Get product category
 // The *Get product* endpoint returns a single product for a given productId.
 //
-// [Product categories](https://docs.codat.io/commerce-api#/schemas/ProductCategory) are used to classify a group of products together, either by type (e.g. "Furniture"), or sometimes by tax profile.
+// [Product categories](https://docs.codat.io/lending-api#/schemas/ProductCategory) are used to classify a group of products together, either by type (e.g. "Furniture"), or sometimes by tax profile.
 //
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/commerce?view=tab-by-data-type&dataType=commerce-productCategories) for integrations that support getting a specific product.
 //
@@ -145,9 +145,9 @@ func (s *salesProductCategories) Get(ctx context.Context, request operations.Get
 }
 
 // List product categories
-// The *List product categories* endpoint returns a list of [product categories](https://docs.codat.io/commerce-api#/schemas/ProductCategory) for a given company's connection.
+// The *List product categories* endpoint returns a list of [product categories](https://docs.codat.io/lending-api#/schemas/ProductCategory) for a given company's connection.
 //
-// [Product categories](https://docs.codat.io/commerce-api#/schemas/ProductCategory) are used to classify a group of products together, either by type (e.g. "Furniture"), or sometimes by tax profile.
+// [Product categories](https://docs.codat.io/lending-api#/schemas/ProductCategory) are used to classify a group of products together, either by type (e.g. "Furniture"), or sometimes by tax profile.
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/lending-api#/operations/refresh-company-data).
 func (s *salesProductCategories) List(ctx context.Context, request operations.ListCommerceProductCategoriesRequest, opts ...operations.Option) (*operations.ListCommerceProductCategoriesResponse, error) {

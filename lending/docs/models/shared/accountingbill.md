@@ -4,7 +4,7 @@
 >
 > We distinguish between invoices where the company *owes money* vs. *is owed money*. If the company has received an invoice, and owes money to someone else (accounts payable) we call this a Bill.
 >
-> See [Invoices](https://docs.codat.io/accounting-api#/schemas/Invoice) for the accounts receivable equivalent of bills.
+> See [Invoices](https://docs.codat.io/lending-api#/schemas/Invoice) for the accounts receivable equivalent of bills.
 
 View the coverage for bills in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bills" target="_blank">Data coverage explorer</a>.
 
@@ -18,7 +18,7 @@ In Codat, a bill contains details of:
 
 Some accounting platforms give a separate name to purchases where the payment is made immediately, such as something bought with a credit card or online payment. One example of this would be QuickBooks Online's *expenses*.
 
-You can find these types of transactions in our [Direct costs](https://docs.codat.io/accounting-api#/schemas/DirectCost) data model.
+You can find these types of transactions in our [Direct costs](https://docs.codat.io/lending-api#/schemas/DirectCost) data model.
 
 
 ## Fields

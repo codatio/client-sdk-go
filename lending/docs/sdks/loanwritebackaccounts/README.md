@@ -7,13 +7,13 @@
 
 ## Create
 
-The *Create account* endpoint creates a new [account](https://docs.codat.io/accounting-api#/schemas/Account) for a given company's connection.
+The *Create account* endpoint creates a new [account](https://docs.codat.io/lending-api#/schemas/Account) for a given company's connection.
 
-[Accounts](https://docs.codat.io/accounting-api#/schemas/Account) are the categories a business uses to record accounting transactions.
+[Accounts](https://docs.codat.io/lending-api#/schemas/Account) are the categories a business uses to record accounting transactions.
 
 **Integration-specific behaviour**
 
-Required data may vary by integration. To see what data to post, first call [Get create account model](https://docs.codat.io/accounting-api#/operations/get-create-chartOfAccounts-model).
+Required data may vary by integration. To see what data to post, first call [Get create account model](https://docs.codat.io/lending-api#/operations/get-create-chartOfAccounts-model).
 
 Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=chartOfAccounts) for integrations that support creating an account.
 
@@ -26,7 +26,7 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v4"
+	lending "github.com/codatio/client-sdk-go/lending/v4"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/types"
@@ -42,11 +42,11 @@ func main() {
     ctx := context.Background()
     res, err := s.LoanWriteback.Accounts.Create(ctx, operations.CreateAccountRequest{
         AccountingAccount: &shared.AccountingAccount{
-            Currency: lending.String("USD"),
+            Currency: lending.String("GBP"),
             CurrentBalance: types.MustNewDecimalFromString("0"),
             Description: lending.String("Invoices the business has issued but has not yet collected payment on."),
             FullyQualifiedCategory: lending.String("Asset.Current"),
-            FullyQualifiedName: lending.String("Cash On Hand"),
+            FullyQualifiedName: lending.String("Fixed Asset"),
             ID: lending.String("1b6266d1-1e44-46c5-8eb5-a8f98e03124e"),
             IsBankAccount: lending.Bool(false),
             Metadata: &shared.Metadata{
@@ -61,17 +61,16 @@ func main() {
             ValidDatatypeLinks: []shared.AccountingAccountValidDataTypeLinks{
                 shared.AccountingAccountValidDataTypeLinks{
                     Links: []string{
-                        "natus",
+                        "laboriosam",
                     },
-                    Property: lending.String("laboriosam"),
+                    Property: lending.String("hic"),
                 },
             },
         },
         AllowSyncOnPushComplete: lending.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        ForceUpdate: lending.Bool(false),
-        TimeoutInMinutes: lending.Int(943749),
+        TimeoutInMinutes: lending.Int(902599),
     })
     if err != nil {
         log.Fatal(err)
@@ -99,9 +98,9 @@ func main() {
 
 ## GetCreateModel
 
-The *Get create account model* endpoint returns the expected data for the request payload when creating an [account](https://docs.codat.io/accounting-api#/schemas/Account) for a given company and integration.
+The *Get create account model* endpoint returns the expected data for the request payload when creating an [account](https://docs.codat.io/lending-api#/schemas/Account) for a given company and integration.
 
-[Accounts](https://docs.codat.io/accounting-api#/schemas/Account) are the categories a business uses to record accounting transactions.
+[Accounts](https://docs.codat.io/lending-api#/schemas/Account) are the categories a business uses to record accounting transactions.
 
 **Integration-specific behaviour**
 
@@ -118,7 +117,7 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v4"
+	lending "github.com/codatio/client-sdk-go/lending/v4"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )

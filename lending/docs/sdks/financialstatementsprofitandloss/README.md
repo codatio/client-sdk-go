@@ -17,7 +17,7 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v4"
+	lending "github.com/codatio/client-sdk-go/lending/v4"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )
@@ -74,7 +74,7 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v4"
+	lending "github.com/codatio/client-sdk-go/lending/v4"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )
@@ -89,7 +89,7 @@ func main() {
     ctx := context.Background()
     res, err := s.FinancialStatements.ProfitAndLoss.GetCategorizedAccounts(ctx, operations.GetCategorizedProfitAndLossStatementRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        NumberOfPeriods: lending.Int64(324141),
+        NumberOfPeriods: lending.Int64(617636),
         ReportDate: "29-09-2020",
     })
     if err != nil {

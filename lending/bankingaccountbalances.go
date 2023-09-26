@@ -25,9 +25,9 @@ func newBankingAccountBalances(sdkConfig sdkConfiguration) *bankingAccountBalanc
 }
 
 // List account balances
-// The *List account balances* endpoint returns a list of [account balances](https://docs.codat.io/banking-api#/schemas/AccountBalance) for a given company's connection.
+// The *List account balances* endpoint returns a list of [account balances](https://docs.codat.io/lending-api#/schemas/AccountBalance) for a given company's connection.
 //
-// [Account balances](https://docs.codat.io/banking-api#/schemas/AccountBalance) are balances for a bank account, including end-of-day batch balance or running balances per transaction.
+// [Account balances](https://docs.codat.io/lending-api#/schemas/AccountBalance) are balances for a bank account, including end-of-day batch balance or running balances per transaction.
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/lending-api#/operations/refresh-company-data).
 func (s *bankingAccountBalances) List(ctx context.Context, request operations.ListBankingAccountBalancesRequest, opts ...operations.Option) (*operations.ListBankingAccountBalancesResponse, error) {

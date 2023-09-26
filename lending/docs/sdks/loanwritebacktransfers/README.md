@@ -7,13 +7,13 @@
 
 ## Create
 
-The *Create transfer* endpoint creates a new [transfer](https://docs.codat.io/accounting-api#/schemas/Transfer) for a given company's connection.
+The *Create transfer* endpoint creates a new [transfer](https://docs.codat.io/lending-api#/schemas/Transfer) for a given company's connection.
 
-[Transfers](https://docs.codat.io/accounting-api#/schemas/Transfer) record the movement of money between two bank accounts, or between a bank account and a nominal account.
+[Transfers](https://docs.codat.io/lending-api#/schemas/Transfer) record the movement of money between two bank accounts, or between a bank account and a nominal account.
 
 **Integration-specific behaviour**
 
-Required data may vary by integration. To see what data to post, first call [Get create transfer model](https://docs.codat.io/accounting-api#/operations/get-create-transfers-model).
+Required data may vary by integration. To see what data to post, first call [Get create transfer model](https://docs.codat.io/lending-api#/operations/get-create-transfers-model).
 
 Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=transfers) for integrations that support creating an account.
 
@@ -26,7 +26,7 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v4"
+	lending "github.com/codatio/client-sdk-go/lending/v4"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/types"
@@ -43,26 +43,26 @@ func main() {
     res, err := s.LoanWriteback.Transfers.Create(ctx, operations.CreateTransferRequest{
         AccountingTransfer: &shared.AccountingTransfer{
             ContactRef: &shared.AccountingTransferContactRef{
-                DataType: lending.String("laborum"),
-                ID: "c366c8dd-6b14-4429-8747-4778a7bd466d",
+                DataType: shared.DataTypeInvoices.ToPointer(),
+                ID: "ac366c8d-d6b1-4442-9074-74778a7bd466",
             },
             Date: lending.String("2022-10-23T00:00:00.000Z"),
             DepositedRecordRefs: []shared.RecordRef{
                 shared.RecordRef{
-                    DataType: lending.String("accountTransaction"),
-                    ID: lending.String("c10ab3cd-ca42-4519-84e5-23c7e0bc7178"),
+                    DataType: lending.String("journalEntry"),
+                    ID: lending.String("8c10ab3c-dca4-4251-904e-523c7e0bc717"),
                 },
             },
-            Description: lending.String("accusamus"),
+            Description: lending.String("totam"),
             From: &shared.TransferAccount{
                 AccountRef: &shared.AccountRef{
-                    ID: lending.String("4796f2a7-0c68-4828-aaa4-82562f222e98"),
-                    Name: lending.String("Tamara Vandervort IV"),
+                    ID: lending.String("e4796f2a-70c6-4882-82aa-482562f222e9"),
+                    Name: lending.String("Carl Koch"),
                 },
-                Amount: types.MustNewDecimalFromString("8003.79"),
-                Currency: lending.String("EUR"),
+                Amount: types.MustNewDecimalFromString("829.71"),
+                Currency: lending.String("USD"),
             },
-            ID: lending.String("e61e6b7b-95bc-40ab-bc20-c4f3789fd871"),
+            ID: lending.String("cbe61e6b-7b95-4bc0-ab3c-20c4f3789fd8"),
             Metadata: &shared.Metadata{
                 IsDeleted: lending.Bool(false),
             },
@@ -70,31 +70,30 @@ func main() {
             SourceModifiedDate: lending.String("2022-10-23T00:00:00.000Z"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "sint": map[string]interface{}{
-                        "pariatur": "possimus",
+                    "a": map[string]interface{}{
+                        "error": "sint",
                     },
                 },
             },
             To: &shared.TransferAccount{
                 AccountRef: &shared.AccountRef{
-                    ID: lending.String("2efd121a-a6f1-4e67-8bdb-04f15756082d"),
-                    Name: lending.String("Cassandra Ward V"),
+                    ID: lending.String("dd2efd12-1aa6-4f1e-a74b-db04f1575608"),
+                    Name: lending.String("Rosemarie Jacobs"),
                 },
-                Amount: types.MustNewDecimalFromString("9453.02"),
+                Amount: types.MustNewDecimalFromString("6802.7"),
                 Currency: lending.String("GBP"),
             },
             TrackingCategoryRefs: []shared.TrackingCategoryRef{
                 shared.TrackingCategoryRef{
-                    ID: "d1705133-9d08-4086-a184-0394c26071f9",
-                    Name: lending.String("Camille Hirthe III"),
+                    ID: "9f1d1705-1339-4d08-886a-1840394c2607",
+                    Name: lending.String("Elisa Mosciski"),
                 },
             },
         },
         AllowSyncOnPushComplete: lending.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        ForceUpdate: lending.Bool(false),
-        TimeoutInMinutes: lending.Int(310067),
+        TimeoutInMinutes: lending.Int(374323),
     })
     if err != nil {
         log.Fatal(err)
@@ -122,9 +121,9 @@ func main() {
 
 ## GetCreateModel
 
-The *Get create transfer model* endpoint returns the expected data for the request payload when creating a [transfer](https://docs.codat.io/accounting-api#/schemas/Transfer) for a given company and integration.
+The *Get create transfer model* endpoint returns the expected data for the request payload when creating a [transfer](https://docs.codat.io/lending-api#/schemas/Transfer) for a given company and integration.
 
-[Transfers](https://docs.codat.io/accounting-api#/schemas/Transfer) record the movement of money between two bank accounts, or between a bank account and a nominal account.
+[Transfers](https://docs.codat.io/lending-api#/schemas/Transfer) record the movement of money between two bank accounts, or between a bank account and a nominal account.
 
 **Integration-specific behaviour**
 
@@ -141,7 +140,7 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v4"
+	lending "github.com/codatio/client-sdk-go/lending/v4"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )

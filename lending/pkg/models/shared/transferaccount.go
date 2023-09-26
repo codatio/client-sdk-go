@@ -7,6 +7,7 @@ import (
 	"github.com/ericlagergren/decimal"
 )
 
+// TransferAccount - Account details of the account sending or receiving the transfer.
 type TransferAccount struct {
 	// Data types that reference an account, for example bill and invoice line items, use an accountRef that includes the ID and name of the linked account.
 	AccountRef *AccountRef `json:"accountRef,omitempty"`

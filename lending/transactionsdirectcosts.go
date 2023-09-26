@@ -27,7 +27,7 @@ func newTransactionsDirectCosts(sdkConfig sdkConfiguration) *transactionsDirectC
 // DownloadAttachment - Download direct cost attachment
 // The *Download direct cost attachment* endpoint downloads a specific attachment for a given `directCostId` and `attachmentId`.
 //
-// [Direct costs](https://docs.codat.io/accounting-api#/schemas/DirectCost) are purchases of items that are paid off at the point of the purchase.
+// [Direct costs](https://docs.codat.io/lending-api#/schemas/DirectCost) are purchases of items that are paid off at the point of the purchase.
 //
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=directCosts) for integrations that support downloading a direct cost attachment.
 func (s *transactionsDirectCosts) DownloadAttachment(ctx context.Context, request operations.DownloadAccountingDirectCostAttachmentRequest, opts ...operations.Option) (*operations.DownloadAccountingDirectCostAttachmentResponse, error) {
@@ -144,7 +144,7 @@ func (s *transactionsDirectCosts) DownloadAttachment(ctx context.Context, reques
 // Get direct cost
 // The *Get direct cost* endpoint returns a single direct cost for a given directCostId.
 //
-// [Direct costs](https://docs.codat.io/accounting-api#/schemas/DirectCost) are purchases of items that are paid off at the point of the purchase.
+// [Direct costs](https://docs.codat.io/lending-api#/schemas/DirectCost) are purchases of items that are paid off at the point of the purchase.
 //
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=directCosts) for integrations that support getting a specific direct cost.
 //
@@ -264,7 +264,7 @@ func (s *transactionsDirectCosts) Get(ctx context.Context, request operations.Ge
 // GetAttachment - Get direct cost attachment
 // The *Get direct cost attachment* endpoint returns a specific attachment for a given `directCostId` and `attachmentId`.
 //
-// [Direct costs](https://docs.codat.io/accounting-api#/schemas/DirectCost) are purchases of items that are paid off at the point of the purchase.
+// [Direct costs](https://docs.codat.io/lending-api#/schemas/DirectCost) are purchases of items that are paid off at the point of the purchase.
 //
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=directCosts) for integrations that support getting a direct cost attachment.
 func (s *transactionsDirectCosts) GetAttachment(ctx context.Context, request operations.GetAccountingDirectCostAttachmentRequest, opts ...operations.Option) (*operations.GetAccountingDirectCostAttachmentResponse, error) {
@@ -378,9 +378,9 @@ func (s *transactionsDirectCosts) GetAttachment(ctx context.Context, request ope
 }
 
 // List direct costs
-// The *List direct costs* endpoint returns a list of [direct costs](https://docs.codat.io/accounting-api#/schemas/DirectCost) for a given company's connection.
+// The *List direct costs* endpoint returns a list of [direct costs](https://docs.codat.io/lending-api#/schemas/DirectCost) for a given company's connection.
 //
-// [Direct costs](https://docs.codat.io/accounting-api#/schemas/DirectCost) are purchases of items that are paid off at the point of the purchase.
+// [Direct costs](https://docs.codat.io/lending-api#/schemas/DirectCost) are purchases of items that are paid off at the point of the purchase.
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/lending-api#/operations/refresh-company-data).
 func (s *transactionsDirectCosts) List(ctx context.Context, request operations.ListAccountingDirectCostsRequest, opts ...operations.Option) (*operations.ListAccountingDirectCostsResponse, error) {
@@ -502,7 +502,7 @@ func (s *transactionsDirectCosts) List(ctx context.Context, request operations.L
 // ListAttachments - List direct cost attachments
 // The *List direct cost attachments* endpoint returns a list of attachments available to download for given `directCostId`.
 //
-// [Direct costs](https://docs.codat.io/accounting-api#/schemas/DirectCost) are purchases of items that are paid off at the point of the purchase.
+// [Direct costs](https://docs.codat.io/lending-api#/schemas/DirectCost) are purchases of items that are paid off at the point of the purchase.
 //
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=directCosts) for integrations that support listing direct cost attachments.
 func (s *transactionsDirectCosts) ListAttachments(ctx context.Context, request operations.ListAccountingDirectCostAttachmentsRequest, opts ...operations.Option) (*operations.ListAccountingDirectCostAttachmentsResponse, error) {

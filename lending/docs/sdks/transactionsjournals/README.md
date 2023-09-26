@@ -9,7 +9,7 @@
 
 The *Get journal* endpoint returns a single journal for a given journalId.
 
-[Journals](https://docs.codat.io/accounting-api#/schemas/Journal) are used to record all the financial transactions of a company.
+[Journals](https://docs.codat.io/lending-api#/schemas/Journal) are used to record all the financial transactions of a company.
 
 Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journals) for integrations that support getting a specific journal.
 
@@ -24,7 +24,7 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v4"
+	lending "github.com/codatio/client-sdk-go/lending/v4"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )
@@ -39,7 +39,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Transactions.Journals.Get(ctx, operations.GetAccountingJournalRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        JournalID: "similique",
+        JournalID: "pariatur",
     })
     if err != nil {
         log.Fatal(err)
@@ -67,9 +67,9 @@ func main() {
 
 ## List
 
-The *List journals* endpoint returns a list of [journals](https://docs.codat.io/accounting-api#/schemas/Journal) for a given company's connection.
+The *List journals* endpoint returns a list of [journals](https://docs.codat.io/lending-api#/schemas/Journal) for a given company's connection.
 
-[Journals](https://docs.codat.io/accounting-api#/schemas/Journal) are used to record all the financial transactions of a company.
+[Journals](https://docs.codat.io/lending-api#/schemas/Journal) are used to record all the financial transactions of a company.
 
 Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/lending-api#/operations/refresh-company-data).
     
@@ -82,7 +82,7 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v4"
+	lending "github.com/codatio/client-sdk-go/lending/v4"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )
@@ -100,7 +100,7 @@ func main() {
         OrderBy: lending.String("-modifiedDate"),
         Page: lending.Int(1),
         PageSize: lending.Int(100),
-        Query: lending.String("tempora"),
+        Query: lending.String("totam"),
     })
     if err != nil {
         log.Fatal(err)
