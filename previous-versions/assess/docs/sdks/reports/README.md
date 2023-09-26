@@ -40,8 +40,8 @@ import(
 )
 
 func main() {
-    s := codatassess.New(
-        codatassess.WithSecurity(shared.Security{
+    s := assess.New(
+        assess.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -49,7 +49,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Reports.GetAccountsForEnhancedBalanceSheet(ctx, operations.GetAccountsForEnhancedBalanceSheetRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        NumberOfPeriods: codatassess.Int64(623564),
+        NumberOfPeriods: assess.Int64(645894),
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -96,8 +96,8 @@ import(
 )
 
 func main() {
-    s := codatassess.New(
-        codatassess.WithSecurity(shared.Security{
+    s := assess.New(
+        assess.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -105,7 +105,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Reports.GetAccountsForEnhancedProfitAndLoss(ctx, operations.GetAccountsForEnhancedProfitAndLossRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        NumberOfPeriods: codatassess.Int64(645894),
+        NumberOfPeriods: assess.Int64(384382),
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -150,8 +150,8 @@ import(
 )
 
 func main() {
-    s := codatassess.New(
-        codatassess.WithSecurity(shared.Security{
+    s := assess.New(
+        assess.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -160,10 +160,10 @@ func main() {
     res, err := s.Reports.GetCommerceCustomerRetentionMetrics(ctx, operations.GetCommerceCustomerRetentionMetricsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        IncludeDisplayNames: codatassess.Bool(false),
-        NumberOfPeriods: 384382,
-        PeriodLength: 437587,
-        PeriodUnit: shared.PeriodUnitWeek,
+        IncludeDisplayNames: assess.Bool(false),
+        NumberOfPeriods: 437587,
+        PeriodLength: 297534,
+        PeriodUnit: shared.PeriodUnitYear,
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -208,8 +208,8 @@ import(
 )
 
 func main() {
-    s := codatassess.New(
-        codatassess.WithSecurity(shared.Security{
+    s := assess.New(
+        assess.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -218,10 +218,10 @@ func main() {
     res, err := s.Reports.GetCommerceLifetimeValueMetrics(ctx, operations.GetCommerceLifetimeValueMetricsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        IncludeDisplayNames: codatassess.Bool(false),
-        NumberOfPeriods: 891773,
-        PeriodLength: 56713,
-        PeriodUnit: shared.PeriodUnitYear,
+        IncludeDisplayNames: assess.Bool(false),
+        NumberOfPeriods: 56713,
+        PeriodLength: 963663,
+        PeriodUnit: shared.PeriodUnitWeek,
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -266,8 +266,8 @@ import(
 )
 
 func main() {
-    s := codatassess.New(
-        codatassess.WithSecurity(shared.Security{
+    s := assess.New(
+        assess.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -276,10 +276,10 @@ func main() {
     res, err := s.Reports.GetCommerceOrdersMetrics(ctx, operations.GetCommerceOrdersMetricsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        IncludeDisplayNames: codatassess.Bool(false),
-        NumberOfPeriods: 272656,
-        PeriodLength: 383441,
-        PeriodUnit: shared.PeriodUnitWeek,
+        IncludeDisplayNames: assess.Bool(false),
+        NumberOfPeriods: 383441,
+        PeriodLength: 477665,
+        PeriodUnit: shared.PeriodUnitYear,
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -324,8 +324,8 @@ import(
 )
 
 func main() {
-    s := codatassess.New(
-        codatassess.WithSecurity(shared.Security{
+    s := assess.New(
+        assess.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -334,10 +334,10 @@ func main() {
     res, err := s.Reports.GetCommerceRefundsMetrics(ctx, operations.GetCommerceRefundsMetricsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        IncludeDisplayNames: codatassess.Bool(false),
-        NumberOfPeriods: 791725,
-        PeriodLength: 812169,
-        PeriodUnit: shared.PeriodUnitMonth,
+        IncludeDisplayNames: assess.Bool(false),
+        NumberOfPeriods: 812169,
+        PeriodLength: 528895,
+        PeriodUnit: shared.PeriodUnitWeek,
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -382,8 +382,8 @@ import(
 )
 
 func main() {
-    s := codatassess.New(
-        codatassess.WithSecurity(shared.Security{
+    s := assess.New(
+        assess.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -392,10 +392,10 @@ func main() {
     res, err := s.Reports.GetCommerceRevenueMetrics(ctx, operations.GetCommerceRevenueMetricsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        IncludeDisplayNames: codatassess.Bool(false),
-        NumberOfPeriods: 479977,
-        PeriodLength: 568045,
-        PeriodUnit: shared.PeriodUnitWeek,
+        IncludeDisplayNames: assess.Bool(false),
+        NumberOfPeriods: 568045,
+        PeriodLength: 392785,
+        PeriodUnit: shared.PeriodUnitYear,
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -444,8 +444,8 @@ import(
 )
 
 func main() {
-    s := codatassess.New(
-        codatassess.WithSecurity(shared.Security{
+    s := assess.New(
+        assess.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -453,9 +453,9 @@ func main() {
     ctx := context.Background()
     res, err := s.Reports.GetEnhancedCashFlowTransactions(ctx, operations.GetEnhancedCashFlowTransactionsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        Page: codatassess.Int(1),
-        PageSize: codatassess.Int(100),
-        Query: codatassess.String("recusandae"),
+        Page: assess.Int(1),
+        PageSize: assess.Int(100),
+        Query: assess.String("temporibus"),
     })
     if err != nil {
         log.Fatal(err)
@@ -499,8 +499,8 @@ import(
 )
 
 func main() {
-    s := codatassess.New(
-        codatassess.WithSecurity(shared.Security{
+    s := assess.New(
+        assess.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -508,9 +508,9 @@ func main() {
     ctx := context.Background()
     res, err := s.Reports.GetEnhancedInvoicesReport(ctx, operations.GetEnhancedInvoicesReportRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        Page: codatassess.Int(1),
-        PageSize: codatassess.Int(100),
-        Query: codatassess.String("temporibus"),
+        Page: assess.Int(1),
+        PageSize: assess.Int(100),
+        Query: assess.String("ab"),
     })
     if err != nil {
         log.Fatal(err)
@@ -538,7 +538,7 @@ func main() {
 
 ## GetLoanSummary
 
-Get enhanced loan summaries
+Returns a summary of loan transactions identified for the SMB.
 
 ### Example Usage
 
@@ -554,8 +554,8 @@ import(
 )
 
 func main() {
-    s := codatassess.New(
-        codatassess.WithSecurity(shared.Security{
+    s := assess.New(
+        assess.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -606,8 +606,8 @@ import(
 )
 
 func main() {
-    s := codatassess.New(
-        codatassess.WithSecurity(shared.Security{
+    s := assess.New(
+        assess.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -643,7 +643,7 @@ func main() {
 
 ## ListLoanTransactions
 
-List enhanced loan transactions
+Returns a list of transactions identified as relating to a loan.
 
 ### Example Usage
 
@@ -659,8 +659,8 @@ import(
 )
 
 func main() {
-    s := codatassess.New(
-        codatassess.WithSecurity(shared.Security{
+    s := assess.New(
+        assess.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -668,7 +668,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Reports.ListLoanTransactions(ctx, operations.ListLoanTransactionsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        SourceType: operations.ListLoanTransactionsSourceTypeBanking,
+        SourceType: operations.ListLoanTransactionsSourceTypeCommerce,
     })
     if err != nil {
         log.Fatal(err)
@@ -712,8 +712,8 @@ import(
 )
 
 func main() {
-    s := codatassess.New(
-        codatassess.WithSecurity(shared.Security{
+    s := assess.New(
+        assess.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )

@@ -4,17 +4,30 @@ package operations
 
 import (
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/utils"
 	"net/http"
 )
 
 type GetEnhancedCashFlowTransactionsRequest struct {
+	// Unique identifier for a company.
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	// Page number. [Read more](https://docs.codat.io/using-the-api/paging).
-	Page *int `queryParam:"style=form,explode=true,name=page"`
+	Page *int `default:"1" queryParam:"style=form,explode=true,name=page"`
 	// Number of records to return in a page. [Read more](https://docs.codat.io/using-the-api/paging).
-	PageSize *int `queryParam:"style=form,explode=true,name=pageSize"`
+	PageSize *int `default:"100" queryParam:"style=form,explode=true,name=pageSize"`
 	// Codat query string. [Read more](https://docs.codat.io/using-the-api/querying).
 	Query *string `queryParam:"style=form,explode=true,name=query"`
+}
+
+func (g GetEnhancedCashFlowTransactionsRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetEnhancedCashFlowTransactionsRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *GetEnhancedCashFlowTransactionsRequest) GetCompanyID() string {
@@ -46,13 +59,16 @@ func (o *GetEnhancedCashFlowTransactionsRequest) GetQuery() *string {
 }
 
 type GetEnhancedCashFlowTransactionsResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// OK
 	EnhancedCashFlowTransactions *shared.EnhancedCashFlowTransactions
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
-	StatusCode   int
-	RawResponse  *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *GetEnhancedCashFlowTransactionsResponse) GetContentType() string {
