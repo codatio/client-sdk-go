@@ -1,4 +1,5 @@
-# AccountsReceivable.Reports
+# AccountsReceivableReports
+(*AccountsReceivable.Reports*)
 
 ### Available Operations
 

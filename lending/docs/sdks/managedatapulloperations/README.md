@@ -1,4 +1,5 @@
-# ManageData.PullOperations
+# ManageDataPullOperations
+(*ManageData.PullOperations*)
 
 ### Available Operations
 
@@ -32,7 +33,7 @@ func main() {
     ctx := context.Background()
     res, err := s.ManageData.PullOperations.Get(ctx, operations.GetPullOperationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        DatasetID: "f0642dac-7af5-415c-8413-aa63aae8d678",
+        DatasetID: "2dac7af5-15cc-4413-aa63-aae8d67864db",
     })
     if err != nil {
         log.Fatal(err)
@@ -88,7 +89,7 @@ func main() {
         OrderBy: lending.String("-modifiedDate"),
         Page: lending.Int(1),
         PageSize: lending.Int(100),
-        Query: lending.String("vel"),
+        Query: lending.String("cum"),
     })
     if err != nil {
         log.Fatal(err)

@@ -1,4 +1,5 @@
-# AccountsReceivable.Invoices
+# AccountsReceivableInvoices
+(*AccountsReceivable.Invoices*)
 
 ### Available Operations
 
@@ -44,7 +45,7 @@ func main() {
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        InvoiceID: "dolorum",
+        InvoiceID: "officia",
     })
     if err != nil {
         log.Fatal(err)
@@ -97,7 +98,7 @@ func main() {
     ctx := context.Background()
     res, err := s.AccountsReceivable.Invoices.DownloadPdf(ctx, operations.DownloadAccountingInvoicePdfRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        InvoiceID: "dicta",
+        InvoiceID: "occaecati",
     })
     if err != nil {
         log.Fatal(err)
@@ -156,7 +157,7 @@ func main() {
     ctx := context.Background()
     res, err := s.AccountsReceivable.Invoices.Get(ctx, operations.GetAccountingInvoiceRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        InvoiceID: "nam",
+        InvoiceID: "fugit",
     })
     if err != nil {
         log.Fatal(err)
@@ -216,7 +217,7 @@ func main() {
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        InvoiceID: "officia",
+        InvoiceID: "deleniti",
     })
     if err != nil {
         log.Fatal(err)
@@ -283,7 +284,7 @@ func main() {
         OrderBy: lending.String("-modifiedDate"),
         Page: lending.Int(1),
         PageSize: lending.Int(100),
-        Query: lending.String("occaecati"),
+        Query: lending.String("hic"),
     })
     if err != nil {
         log.Fatal(err)
@@ -342,7 +343,7 @@ func main() {
     res, err := s.AccountsReceivable.Invoices.ListAttachments(ctx, operations.ListAccountingInvoiceAttachmentsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        InvoiceID: "fugit",
+        InvoiceID: "optio",
     })
     if err != nil {
         log.Fatal(err)
@@ -397,7 +398,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         Page: lending.Int(1),
         PageSize: lending.Int(100),
-        Query: lending.String("deleniti"),
+        Query: lending.String("totam"),
     })
     if err != nil {
         log.Fatal(err)

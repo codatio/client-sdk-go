@@ -1,4 +1,5 @@
-# AccountsReceivable.CreditNotes
+# AccountsReceivableCreditNotes
+(*AccountsReceivable.CreditNotes*)
 
 ### Available Operations
 
@@ -39,7 +40,7 @@ func main() {
     ctx := context.Background()
     res, err := s.AccountsReceivable.CreditNotes.Get(ctx, operations.GetAccountingCreditNoteRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        CreditNoteID: "repellendus",
+        CreditNoteID: "odit",
     })
     if err != nil {
         log.Fatal(err)
@@ -100,7 +101,7 @@ func main() {
         OrderBy: lending.String("-modifiedDate"),
         Page: lending.Int(1),
         PageSize: lending.Int(100),
-        Query: lending.String("sapiente"),
+        Query: lending.String("at"),
     })
     if err != nil {
         log.Fatal(err)

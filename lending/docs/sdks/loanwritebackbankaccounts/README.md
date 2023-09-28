@@ -1,4 +1,5 @@
-# LoanWriteback.BankAccounts
+# LoanWritebackBankAccounts
+(*LoanWriteback.BankAccounts*)
 
 ### Available Operations
 
@@ -41,28 +42,28 @@ func main() {
     ctx := context.Background()
     res, err := s.LoanWriteback.BankAccounts.Create(ctx, operations.CreateBankAccountRequest{
         AccountingBankAccount: &shared.AccountingBankAccount{
-            AccountName: lending.String("fuga"),
-            AccountNumber: lending.String("in"),
-            AccountType: shared.AccountingBankAccountTypeCredit.ToPointer(),
-            AvailableBalance: types.MustNewDecimalFromString("6130.64"),
-            Balance: types.MustNewDecimalFromString("4370.32"),
-            Currency: lending.String("EUR"),
-            IBan: lending.String("quidem"),
-            ID: lending.String("10faaa23-52c5-4955-907a-ff1a3a2fa946"),
-            Institution: lending.String("quam"),
+            AccountName: lending.String("iste"),
+            AccountNumber: lending.String("iure"),
+            AccountType: shared.AccountingBankAccountTypeDebit.ToPointer(),
+            AvailableBalance: types.MustNewDecimalFromString("6976.31"),
+            Balance: types.MustNewDecimalFromString("992.8"),
+            Currency: lending.String("GBP"),
+            IBan: lending.String("reiciendis"),
+            ID: lending.String("aaa2352c-5955-4907-aff1-a3a2fa946773"),
+            Institution: lending.String("error"),
             Metadata: &shared.Metadata{
                 IsDeleted: lending.Bool(false),
             },
             ModifiedDate: lending.String("2022-10-23T00:00:00.000Z"),
-            NominalCode: lending.String("velit"),
-            OverdraftLimit: types.MustNewDecimalFromString("6235.1"),
-            SortCode: lending.String("quia"),
+            NominalCode: lending.String("quis"),
+            OverdraftLimit: types.MustNewDecimalFromString("1103.75"),
+            SortCode: lending.String("laborum"),
             SourceModifiedDate: lending.String("2022-10-23T00:00:00.000Z"),
         },
         AllowSyncOnPushComplete: lending.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: lending.Int(110375),
+        TimeoutInMinutes: lending.Int(317202),
     })
     if err != nil {
         log.Fatal(err)

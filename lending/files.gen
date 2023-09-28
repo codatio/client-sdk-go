@@ -102,6 +102,8 @@ pkg/models/operations/getexcelreportgenerationstatus.go
 pkg/models/operations/downloadfiles.go
 pkg/models/operations/listfiles.go
 pkg/models/operations/uploadfiles.go
+pkg/models/operations/generateloansummary.go
+pkg/models/operations/generateloantransactions.go
 pkg/models/operations/getloansummary.go
 pkg/models/operations/listloantransactions.go
 pkg/models/operations/getaccountingbillcreditnote.go
@@ -530,6 +532,13 @@ docs/models/operations/listfilesresponse.md
 docs/models/operations/uploadfilesrequestbody.md
 docs/models/operations/uploadfilesrequest.md
 docs/models/operations/uploadfilesresponse.md
+docs/models/operations/generateloansummarysourcetype.md
+docs/models/operations/generateloansummaryrequest.md
+docs/models/operations/generateloansummaryresponse.md
+docs/models/operations/generateloantransactionssourcetype.md
+docs/models/operations/generateloantransactionsrequest.md
+docs/models/operations/generateloantransactionsresponse.md
+docs/models/operations/getloansummarysourcetype.md
 docs/models/operations/getloansummaryrequest.md
 docs/models/operations/getloansummaryresponse.md
 docs/models/operations/listloantransactionssourcetype.md

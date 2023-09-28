@@ -1,4 +1,5 @@
-# AccountsPayable.BillCreditNotes
+# AccountsPayableBillCreditNotes
+(*AccountsPayable.BillCreditNotes*)
 
 ### Available Operations
 
@@ -38,7 +39,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.AccountsPayable.BillCreditNotes.Get(ctx, operations.GetAccountingBillCreditNoteRequest{
-        BillCreditNoteID: "minus",
+        BillCreditNoteID: "iusto",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -100,7 +101,7 @@ func main() {
         OrderBy: lending.String("-modifiedDate"),
         Page: lending.Int(1),
         PageSize: lending.Int(100),
-        Query: lending.String("placeat"),
+        Query: lending.String("excepturi"),
     })
     if err != nil {
         log.Fatal(err)

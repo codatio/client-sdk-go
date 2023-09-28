@@ -1,4 +1,5 @@
-# FinancialStatements.ProfitAndLoss
+# FinancialStatementsProfitAndLoss
+(*FinancialStatements.ProfitAndLoss*)
 
 ### Available Operations
 
@@ -89,7 +90,7 @@ func main() {
     ctx := context.Background()
     res, err := s.FinancialStatements.ProfitAndLoss.GetCategorizedAccounts(ctx, operations.GetCategorizedProfitAndLossStatementRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        NumberOfPeriods: lending.Int64(617636),
+        NumberOfPeriods: lending.Int64(222321),
         ReportDate: "29-09-2020",
     })
     if err != nil {

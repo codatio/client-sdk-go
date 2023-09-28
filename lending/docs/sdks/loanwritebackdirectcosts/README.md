@@ -1,4 +1,5 @@
-# LoanWriteback.DirectCosts
+# LoanWritebackDirectCosts
+(*LoanWriteback.DirectCosts*)
 
 ### Available Operations
 
@@ -44,100 +45,100 @@ func main() {
         AccountingDirectCost: &shared.AccountingDirectCost{
             ContactRef: &shared.ContactRef{
                 DataType: shared.DataTypeInvoices.ToPointer(),
-                ID: "02d502a9-4bb4-4f63-8969-e9a3efa77dfb",
+                ID: "502a94bb-4f63-4c96-9e9a-3efa77dfb14c",
             },
-            Currency: "GBP",
-            CurrencyRate: types.MustNewDecimalFromString("2974.37"),
-            ID: lending.String("cd66ae39-5efb-49ba-88f3-a66997074ba4"),
+            Currency: "EUR",
+            CurrencyRate: types.MustNewDecimalFromString("4118.2"),
+            ID: lending.String("6ae395ef-b9ba-488f-ba66-997074ba4469"),
             IssueDate: "2022-10-23T00:00:00.000Z",
             LineItems: []shared.DirectCostLineItem{
                 shared.DirectCostLineItem{
                     AccountRef: &shared.AccountRef{
-                        ID: lending.String("69b6e214-1959-4890-afa5-63e2516fe4c8"),
-                        Name: lending.String("Dr. Arnold Bradtke"),
+                        ID: lending.String("6e214195-9890-4afa-963e-2516fe4c8b71"),
+                        Name: lending.String("Elvira Herman"),
                     },
-                    Description: lending.String("expedita"),
-                    DiscountAmount: types.MustNewDecimalFromString("4692.49"),
-                    DiscountPercentage: types.MustNewDecimalFromString("9988.48"),
+                    Description: lending.String("repellat"),
+                    DiscountAmount: types.MustNewDecimalFromString("8411.4"),
+                    DiscountPercentage: types.MustNewDecimalFromString("1494.48"),
                     ItemRef: &shared.ItemRef{
-                        ID: "d2ed0289-21cd-4dc6-9260-1fb576b0d5f0",
-                        Name: lending.String("Vincent Anderson"),
+                        ID: "ed028921-cddc-4692-a01f-b576b0d5f0d3",
+                        Name: lending.String("Erma Hessel"),
                     },
-                    Quantity: types.MustNewDecimalFromString("9441.24"),
-                    SubTotal: types.MustNewDecimalFromString("7299.91"),
-                    TaxAmount: types.MustNewDecimalFromString("7499.99"),
+                    Quantity: types.MustNewDecimalFromString("7499.99"),
+                    SubTotal: types.MustNewDecimalFromString("1716.29"),
+                    TaxAmount: types.MustNewDecimalFromString("3394.04"),
                     TaxRateRef: &shared.TaxRateRef{
-                        EffectiveTaxRate: types.MustNewDecimalFromString("1716.29"),
-                        ID: lending.String("58705320-2c73-4d5f-a9b9-0c28909b3fe4"),
-                        Name: lending.String("Omar Leuschke"),
+                        EffectiveTaxRate: types.MustNewDecimalFromString("5210.37"),
+                        ID: lending.String("7053202c-73d5-4fe9-b90c-28909b3fe49a"),
+                        Name: lending.String("Ervin McLaughlin"),
                     },
-                    TotalAmount: types.MustNewDecimalFromString("7508.44"),
+                    TotalAmount: types.MustNewDecimalFromString("9644.9"),
                     Tracking: &shared.Tracking{
                         InvoiceTo: &shared.RecordRef{
-                            DataType: lending.String("accountTransaction"),
-                            ID: lending.String("f4863332-3f9b-477f-ba41-00674ebf6928"),
+                            DataType: lending.String("invoice"),
+                            ID: lending.String("8633323f-9b77-4f3a-8100-674ebf69280d"),
                         },
                         RecordRefs: []shared.RecordRef{
                             shared.RecordRef{
                                 DataType: lending.String("journalEntry"),
-                                ID: lending.String("d1ba77a8-9ebf-4737-ae42-03ce5e6a95d8"),
+                                ID: lending.String("ba77a89e-bf73-47ae-8203-ce5e6a95d8a0"),
                             },
                         },
                     },
                     TrackingCategoryRefs: []shared.TrackingCategoryRef{
                         shared.TrackingCategoryRef{
-                            ID: "a0d446ce-2af7-4a73-8f3b-e453f870b326",
-                            Name: lending.String("Glen Oberbrunner"),
+                            ID: "d446ce2a-f7a7-43cf-bbe4-53f870b326b5",
+                            Name: lending.String("Darryl Emard"),
                         },
                     },
-                    UnitAmount: types.MustNewDecimalFromString("2776.28"),
+                    UnitAmount: types.MustNewDecimalFromString("5867.84"),
                 },
             },
             Metadata: &shared.Metadata{
                 IsDeleted: lending.Bool(false),
             },
             ModifiedDate: lending.String("2022-10-23T00:00:00.000Z"),
-            Note: lending.String("cupiditate"),
+            Note: lending.String("pariatur"),
             PaymentAllocations: []shared.AccountingPaymentAllocation{
                 shared.AccountingPaymentAllocation{
                     Allocation: shared.AccountingPaymentAllocationAllocation{
                         AllocatedOnDate: lending.String("2022-10-23T00:00:00.000Z"),
-                        Currency: lending.String("EUR"),
-                        CurrencyRate: types.MustNewDecimalFromString("7470.8"),
-                        TotalAmount: types.MustNewDecimalFromString("1175.31"),
+                        Currency: lending.String("GBP"),
+                        CurrencyRate: types.MustNewDecimalFromString("6748.48"),
+                        TotalAmount: types.MustNewDecimalFromString("5173.79"),
                     },
                     Payment: shared.PaymentAllocationPayment{
                         AccountRef: &shared.AccountRef{
-                            ID: lending.String("a8422bb6-79d2-4322-b15b-f0cbb1e31b8b"),
-                            Name: lending.String("Kevin Willms"),
+                            ID: lending.String("422bb679-d232-4271-9bf0-cbb1e31b8b90"),
+                            Name: lending.String("Mike Greenholt"),
                         },
-                        Currency: lending.String("GBP"),
-                        CurrencyRate: types.MustNewDecimalFromString("2408.29"),
-                        ID: lending.String("a1108e0a-dcf4-4b92-9879-fce953f73ef7"),
-                        Note: lending.String("hic"),
+                        Currency: lending.String("EUR"),
+                        CurrencyRate: types.MustNewDecimalFromString("1002.94"),
+                        ID: lending.String("108e0adc-f4b9-4218-b9fc-e953f73ef7fb"),
+                        Note: lending.String("quod"),
                         PaidOnDate: lending.String("2022-10-23T00:00:00.000Z"),
-                        Reference: lending.String("quod"),
-                        TotalAmount: types.MustNewDecimalFromString("4861.6"),
+                        Reference: lending.String("similique"),
+                        TotalAmount: types.MustNewDecimalFromString("7085.48"),
                     },
                 },
             },
-            Reference: lending.String("similique"),
+            Reference: lending.String("vero"),
             SourceModifiedDate: lending.String("2022-10-23T00:00:00.000Z"),
-            SubTotal: types.MustNewDecimalFromString("8742.88"),
+            SubTotal: types.MustNewDecimalFromString("2930.2"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "ducimus": map[string]interface{}{
-                        "dolore": "quibusdam",
+                    "quibusdam": map[string]interface{}{
+                        "illum": "sequi",
                     },
                 },
             },
-            TaxAmount: types.MustNewDecimalFromString("8489.44"),
-            TotalAmount: types.MustNewDecimalFromString("1943.42"),
+            TaxAmount: types.MustNewDecimalFromString("6178.77"),
+            TotalAmount: types.MustNewDecimalFromString("7733.26"),
         },
         AllowSyncOnPushComplete: lending.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: lending.Int(617877),
+        TimeoutInMinutes: lending.Int(13236),
     })
     if err != nil {
         log.Fatal(err)

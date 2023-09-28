@@ -9,7 +9,7 @@ import (
 	"net/http"
 )
 
-// ListLoanTransactionsSourceType - Data source type
+// ListLoanTransactionsSourceType - Data source type.
 type ListLoanTransactionsSourceType string
 
 const (
@@ -43,7 +43,7 @@ func (e *ListLoanTransactionsSourceType) UnmarshalJSON(data []byte) error {
 type ListLoanTransactionsRequest struct {
 	// Unique identifier for a company.
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
-	// Data source type
+	// Data source type.
 	SourceType ListLoanTransactionsSourceType `queryParam:"style=form,explode=true,name=sourceType"`
 }
 

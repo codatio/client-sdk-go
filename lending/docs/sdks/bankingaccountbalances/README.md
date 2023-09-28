@@ -1,4 +1,5 @@
-# Banking.AccountBalances
+# BankingAccountBalances
+(*Banking.AccountBalances*)
 
 ### Available Operations
 
@@ -40,7 +41,7 @@ func main() {
         OrderBy: lending.String("-modifiedDate"),
         Page: lending.Int(1),
         PageSize: lending.Int(100),
-        Query: lending.String("totam"),
+        Query: lending.String("molestiae"),
     })
     if err != nil {
         log.Fatal(err)

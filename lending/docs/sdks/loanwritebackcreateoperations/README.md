@@ -1,4 +1,5 @@
-# LoanWriteback.CreateOperations
+# LoanWritebackCreateOperations
+(*LoanWriteback.CreateOperations*)
 
 ### Available Operations
 
@@ -32,7 +33,7 @@ func main() {
     ctx := context.Background()
     res, err := s.LoanWriteback.CreateOperations.Get(ctx, operations.GetCreateOperationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        PushOperationKey: "6e13b99d-488e-41e9-9e45-0ad2abd44269",
+        PushOperationKey: "3b99d488-e1e9-41e4-90ad-2abd44269802",
     })
     if err != nil {
         log.Fatal(err)
@@ -88,7 +89,7 @@ func main() {
         OrderBy: lending.String("-modifiedDate"),
         Page: lending.Int(1),
         PageSize: lending.Int(100),
-        Query: lending.String("quos"),
+        Query: lending.String("assumenda"),
     })
     if err != nil {
         log.Fatal(err)

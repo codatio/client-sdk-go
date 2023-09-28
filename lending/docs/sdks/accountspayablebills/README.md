@@ -1,4 +1,5 @@
-# AccountsPayable.Bills
+# AccountsPayableBills
+(*AccountsPayable.Bills*)
 
 ### Available Operations
 
@@ -40,7 +41,7 @@ func main() {
     ctx := context.Background()
     res, err := s.AccountsPayable.Bills.DownloadAttachment(ctx, operations.DownloadAccountingBillAttachmentRequest{
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        BillID: "excepturi",
+        BillID: "temporibus",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -101,7 +102,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.AccountsPayable.Bills.Get(ctx, operations.GetAccountingBillRequest{
-        BillID: "nisi",
+        BillID: "ab",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -160,7 +161,7 @@ func main() {
     ctx := context.Background()
     res, err := s.AccountsPayable.Bills.GetAttachment(ctx, operations.GetAccountingBillAttachmentRequest{
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        BillID: "recusandae",
+        BillID: "quis",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -223,7 +224,7 @@ func main() {
         OrderBy: lending.String("-modifiedDate"),
         Page: lending.Int(1),
         PageSize: lending.Int(100),
-        Query: lending.String("temporibus"),
+        Query: lending.String("veritatis"),
     })
     if err != nil {
         log.Fatal(err)
@@ -280,7 +281,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.AccountsPayable.Bills.ListAttachments(ctx, operations.ListAccountingBillAttachmentsRequest{
-        BillID: "ab",
+        BillID: "deserunt",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })

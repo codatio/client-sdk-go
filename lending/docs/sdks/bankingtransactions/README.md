@@ -1,4 +1,5 @@
-# Banking.Transactions
+# BankingTransactions
+(*Banking.Transactions*)
 
 ### Available Operations
 
@@ -40,7 +41,7 @@ func main() {
     res, err := s.Banking.Transactions.Get(ctx, operations.GetBankingTransactionRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TransactionID: "impedit",
+        TransactionID: "ipsum",
     })
     if err != nil {
         log.Fatal(err)
@@ -102,7 +103,7 @@ func main() {
         OrderBy: lending.String("-modifiedDate"),
         Page: lending.Int(1),
         PageSize: lending.Int(100),
-        Query: lending.String("cum"),
+        Query: lending.String("excepturi"),
     })
     if err != nil {
         log.Fatal(err)

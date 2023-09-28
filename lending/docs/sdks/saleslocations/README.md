@@ -1,4 +1,5 @@
-# Sales.Locations
+# SalesLocations
+(*Sales.Locations*)
 
 ### Available Operations
 
@@ -40,7 +41,7 @@ func main() {
     res, err := s.Sales.Locations.Get(ctx, operations.GetCommerceLocationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        LocationID: "debitis",
+        LocationID: "laboriosam",
     })
     if err != nil {
         log.Fatal(err)

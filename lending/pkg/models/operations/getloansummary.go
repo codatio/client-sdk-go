@@ -3,13 +3,48 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"net/http"
 )
 
+// GetLoanSummarySourceType - Data source type.
+type GetLoanSummarySourceType string
+
+const (
+	GetLoanSummarySourceTypeBanking    GetLoanSummarySourceType = "banking"
+	GetLoanSummarySourceTypeCommerce   GetLoanSummarySourceType = "commerce"
+	GetLoanSummarySourceTypeAccounting GetLoanSummarySourceType = "accounting"
+)
+
+func (e GetLoanSummarySourceType) ToPointer() *GetLoanSummarySourceType {
+	return &e
+}
+
+func (e *GetLoanSummarySourceType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "banking":
+		fallthrough
+	case "commerce":
+		fallthrough
+	case "accounting":
+		*e = GetLoanSummarySourceType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetLoanSummarySourceType: %v", v)
+	}
+}
+
 type GetLoanSummaryRequest struct {
 	// Unique identifier for a company.
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Data source type.
+	SourceType GetLoanSummarySourceType `queryParam:"style=form,explode=true,name=sourceType"`
 }
 
 func (o *GetLoanSummaryRequest) GetCompanyID() string {
@@ -17,6 +52,13 @@ func (o *GetLoanSummaryRequest) GetCompanyID() string {
 		return ""
 	}
 	return o.CompanyID
+}
+
+func (o *GetLoanSummaryRequest) GetSourceType() GetLoanSummarySourceType {
+	if o == nil {
+		return GetLoanSummarySourceType("")
+	}
+	return o.SourceType
 }
 
 type GetLoanSummaryResponse struct {

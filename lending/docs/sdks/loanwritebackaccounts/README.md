@@ -1,4 +1,5 @@
-# LoanWriteback.Accounts
+# LoanWritebackAccounts
+(*LoanWriteback.Accounts*)
 
 ### Available Operations
 
@@ -42,11 +43,11 @@ func main() {
     ctx := context.Background()
     res, err := s.LoanWriteback.Accounts.Create(ctx, operations.CreateAccountRequest{
         AccountingAccount: &shared.AccountingAccount{
-            Currency: lending.String("GBP"),
+            Currency: lending.String("USD"),
             CurrentBalance: types.MustNewDecimalFromString("0"),
             Description: lending.String("Invoices the business has issued but has not yet collected payment on."),
             FullyQualifiedCategory: lending.String("Asset.Current"),
-            FullyQualifiedName: lending.String("Fixed Asset"),
+            FullyQualifiedName: lending.String("Cash On Hand"),
             ID: lending.String("1b6266d1-1e44-46c5-8eb5-a8f98e03124e"),
             IsBankAccount: lending.Bool(false),
             Metadata: &shared.Metadata{
@@ -61,16 +62,16 @@ func main() {
             ValidDatatypeLinks: []shared.AccountingAccountValidDataTypeLinks{
                 shared.AccountingAccountValidDataTypeLinks{
                     Links: []string{
-                        "laboriosam",
+                        "fuga",
                     },
-                    Property: lending.String("hic"),
+                    Property: lending.String("in"),
                 },
             },
         },
         AllowSyncOnPushComplete: lending.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: lending.Int(902599),
+        TimeoutInMinutes: lending.Int(359508),
     })
     if err != nil {
         log.Fatal(err)

@@ -1,4 +1,5 @@
-# Sales.PaymentMethods
+# SalesPaymentMethods
+(*Sales.PaymentMethods*)
 
 ### Available Operations
 
@@ -40,7 +41,7 @@ func main() {
     res, err := s.Sales.PaymentMethods.Get(ctx, operations.GetCommercePaymentMethodRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        PaymentMethodID: "aspernatur",
+        PaymentMethodID: "minima",
     })
     if err != nil {
         log.Fatal(err)
@@ -102,7 +103,7 @@ func main() {
         OrderBy: lending.String("-modifiedDate"),
         Page: lending.Int(1),
         PageSize: lending.Int(100),
-        Query: lending.String("voluptas"),
+        Query: lending.String("nobis"),
     })
     if err != nil {
         log.Fatal(err)

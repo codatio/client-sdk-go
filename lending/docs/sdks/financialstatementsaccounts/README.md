@@ -1,4 +1,5 @@
-# FinancialStatements.Accounts
+# FinancialStatementsAccounts
+(*FinancialStatements.Accounts*)
 
 ### Available Operations
 
@@ -38,7 +39,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.FinancialStatements.Accounts.Get(ctx, operations.GetAccountingAccountRequest{
-        AccountID: "esse",
+        AccountID: "aspernatur",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -99,7 +100,7 @@ func main() {
         OrderBy: lending.String("-modifiedDate"),
         Page: lending.Int(1),
         PageSize: lending.Int(100),
-        Query: lending.String("ipsum"),
+        Query: lending.String("perferendis"),
     })
     if err != nil {
         log.Fatal(err)

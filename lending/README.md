@@ -105,6 +105,8 @@ func main() {
 
 ### [Liabilities](docs/sdks/liabilities/README.md)
 
+* [GenerateLoanSummary](docs/sdks/liabilities/README.md#generateloansummary) - Generate loan summaries report
+* [GenerateLoanTransactions](docs/sdks/liabilities/README.md#generateloantransactions) - Generate loan transactions report
 * [GetLoanSummary](docs/sdks/liabilities/README.md#getloansummary) - Get loan summaries
 * [ListLoanTransactions](docs/sdks/liabilities/README.md#listloantransactions) - List loan transactions
 
@@ -364,8 +366,6 @@ func main() {
 
 <!-- Start Dev Containers -->
 
-
-
 <!-- End Dev Containers -->
 
 
@@ -378,8 +378,6 @@ returned response object will have a `Next` method that can be called to pull do
 return value of `Next` is `nil`, then there are no more pages to be fetched.
 
 Here's an example of one such pagination call:
-
-
 <!-- End Pagination -->
 
 

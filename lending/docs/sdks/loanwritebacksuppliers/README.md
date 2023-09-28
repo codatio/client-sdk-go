@@ -1,4 +1,5 @@
-# LoanWriteback.Suppliers
+# LoanWritebackSuppliers
+(*LoanWriteback.Suppliers*)
 
 ### Available Operations
 
@@ -43,41 +44,41 @@ func main() {
         AccountingSupplier: &shared.AccountingSupplier{
             Addresses: []shared.AccountingAddress{
                 shared.AccountingAddress{
-                    City: lending.String("Ankundingworth"),
-                    Country: lending.String("Guadeloupe"),
-                    Line1: lending.String("nulla"),
-                    Line2: lending.String("fugit"),
-                    PostalCode: lending.String("99474-0623"),
-                    Region: lending.String("ea"),
-                    Type: shared.AccountingAddressTypeUnknown,
+                    City: lending.String("Germantown"),
+                    Country: lending.String("Switzerland"),
+                    Line1: lending.String("fugit"),
+                    Line2: lending.String("porro"),
+                    PostalCode: lending.String("94740-6234"),
+                    Region: lending.String("aspernatur"),
+                    Type: shared.AccountingAddressTypeBilling,
                 },
             },
-            ContactName: lending.String("vel"),
-            DefaultCurrency: lending.String("possimus"),
-            EmailAddress: lending.String("magnam"),
-            ID: lending.String("36813f16-d9f5-4fce-ac55-6146c3e250fb"),
+            ContactName: lending.String("possimus"),
+            DefaultCurrency: lending.String("magnam"),
+            EmailAddress: lending.String("ratione"),
+            ID: lending.String("6813f16d-9f5f-4ce6-8556-146c3e250fb0"),
             Metadata: &shared.Metadata{
                 IsDeleted: lending.Bool(false),
             },
             ModifiedDate: lending.String("2022-10-23T00:00:00.000Z"),
-            Phone: lending.String("+44 25691 154789"),
-            RegistrationNumber: lending.String("deleniti"),
+            Phone: lending.String("(877) 492-8687"),
+            RegistrationNumber: lending.String("impedit"),
             SourceModifiedDate: lending.String("2022-10-23T00:00:00.000Z"),
             Status: shared.SupplierStatusUnknown,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "fugit": map[string]interface{}{
-                        "accusamus": "inventore",
+                    "accusamus": map[string]interface{}{
+                        "inventore": "non",
                     },
                 },
             },
-            SupplierName: lending.String("non"),
-            TaxNumber: lending.String("et"),
+            SupplierName: lending.String("et"),
+            TaxNumber: lending.String("dolorum"),
         },
         AllowSyncOnPushComplete: lending.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: lending.Int(677412),
+        TimeoutInMinutes: lending.Int(672048),
     })
     if err != nil {
         log.Fatal(err)
