@@ -1,4 +1,5 @@
 # Transactions
+(*Transactions*)
 
 ## Overview
 
@@ -47,22 +48,26 @@ func main() {
     ctx := context.Background()
     res, err := s.Transactions.Create(ctx, operations.CreateBankTransactionsRequest{
         CreateBankTransactions: &shared.CreateBankTransactions{
-            AccountID: bankfeeds.String("nobis"),
-            Transactions: []shared.CreateBankTransaction{
-                shared.CreateBankTransaction{
-                    Amount: types.MustNewDecimalFromString("3154.28"),
-                    Balance: types.MustNewDecimalFromString("6078.31"),
-                    Date: bankfeeds.String("2022-10-23T00:00:00.000Z"),
-                    Description: bankfeeds.String("minima"),
-                    ID: bankfeeds.String("907aff1a-3a2f-4a94-a773-9251aa52c3f5"),
+            AccountID: bankfeeds.String("EILBDVJVNUAGVKRQ"),
+            Transactions: []shared.BankTransactions{
+                shared.BankTransactions{
+                    Amount: types.MustNewDecimalFromString("999.99"),
+                    Balance: types.MustNewDecimalFromString("-999.99"),
+                    ClearedOnDate: bankfeeds.String("2022-10-23T00:00:00.000Z"),
+                    Counterparty: bankfeeds.String("ACME INC"),
+                    Description: bankfeeds.String("Debit for Payment Id sdp-1-57379a43-c4b8-49f5-bd7c-699189ee7a60"),
+                    ID: bankfeeds.String("716422529"),
+                    Reconciled: bankfeeds.Bool(false),
+                    Reference: bankfeeds.String("reference for transaction"),
+                    TransactionType: shared.BankTransactionsBankTransactionTypeXfer.ToPointer(),
                 },
             },
         },
-        AccountID: "7110701885",
+        AccountID: "9wg4lep4ush5cxs79pl8sozmsndbaukll3ind4g7buqbm1h2",
         AllowSyncOnPushComplete: bankfeeds.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: bankfeeds.Int(820994),
+        TimeoutInMinutes: bankfeeds.Int(325047),
     })
     if err != nil {
         log.Fatal(err)
@@ -115,7 +120,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Transactions.GetCreateOperation(ctx, operations.GetCreateOperationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        PushOperationKey: "019da1ff-e78f-4097-b007-4f15471b5e6e",
+        PushOperationKey: "907aff1a-3a2f-4a94-a773-9251aa52c3f5",
     })
     if err != nil {
         log.Fatal(err)
@@ -171,7 +176,7 @@ func main() {
         OrderBy: bankfeeds.String("-modifiedDate"),
         Page: bankfeeds.Int(1),
         PageSize: bankfeeds.Int(100),
-        Query: bankfeeds.String("quae"),
+        Query: bankfeeds.String("id"),
     })
     if err != nil {
         log.Fatal(err)

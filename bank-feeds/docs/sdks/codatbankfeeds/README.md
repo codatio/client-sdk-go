@@ -1,5 +1,6 @@
 # CodatBankFeeds SDK
 
+
 ## Overview
 
 Bank Feeds API: Bank Feeds API enables your SMB users to set up bank feeds from accounts in your application to supported accounting platforms.
