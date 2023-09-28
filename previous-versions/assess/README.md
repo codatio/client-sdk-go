@@ -70,6 +70,8 @@ func main() {
 
 ### [Reports](docs/sdks/reports/README.md)
 
+* [GenerateLoanSummary](docs/sdks/reports/README.md#generateloansummary) - Generate loan summaries report
+* [GenerateLoanTransactions](docs/sdks/reports/README.md#generateloantransactions) - Generate loan transactions report
 * [GetAccountsForEnhancedBalanceSheet](docs/sdks/reports/README.md#getaccountsforenhancedbalancesheet) - Get enhanced balance sheet accounts
 * [GetAccountsForEnhancedProfitAndLoss](docs/sdks/reports/README.md#getaccountsforenhancedprofitandloss) - Get enhanced profit and loss accounts
 * [GetCommerceCustomerRetentionMetrics](docs/sdks/reports/README.md#getcommercecustomerretentionmetrics) - Get customer retention metrics
@@ -79,17 +81,15 @@ func main() {
 * [GetCommerceRevenueMetrics](docs/sdks/reports/README.md#getcommercerevenuemetrics) - Get commerce revenue metrics
 * [GetEnhancedCashFlowTransactions](docs/sdks/reports/README.md#getenhancedcashflowtransactions) - Get enhanced cash flow report
 * [GetEnhancedInvoicesReport](docs/sdks/reports/README.md#getenhancedinvoicesreport) - Get enhanced invoices report
-* [GetLoanSummary](docs/sdks/reports/README.md#getloansummary) - Get enhanced loan summaries
+* [GetLoanSummary](docs/sdks/reports/README.md#getloansummary) - Get loan summaries
 * [GetRecurringRevenueMetrics](docs/sdks/reports/README.md#getrecurringrevenuemetrics) - Get key subscription revenue metrics
-* [ListLoanTransactions](docs/sdks/reports/README.md#listloantransactions) - List enhanced loan transactions
+* [ListLoanTransactions](docs/sdks/reports/README.md#listloantransactions) - List loan transactions
 * [RequestRecurringRevenueMetrics](docs/sdks/reports/README.md#requestrecurringrevenuemetrics) - Generate key subscription revenue metrics
 <!-- End SDK Available Operations -->
 
 
 
 <!-- Start Dev Containers -->
-
-
 
 <!-- End Dev Containers -->
 
@@ -103,8 +103,6 @@ returned response object will have a `Next` method that can be called to pull do
 return value of `Next` is `nil`, then there are no more pages to be fetched.
 
 Here's an example of one such pagination call:
-
-
 <!-- End Pagination -->
 
 
