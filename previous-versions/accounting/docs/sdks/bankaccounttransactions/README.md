@@ -1,4 +1,5 @@
 # BankAccountTransactions
+(*BankAccountTransactions*)
 
 ## Overview
 
@@ -47,7 +48,7 @@ func main() {
     ctx := context.Background()
     res, err := s.BankAccountTransactions.Create(ctx, operations.CreateBankTransactionsRequest{
         CreateBankTransactions: &shared.CreateBankTransactions{
-            AccountID: accounting.String("magnam"),
+            AccountID: accounting.String("9wg4lep4ush5cxs79pl8sozmsndbaukll3ind4g7buqbm1h2"),
             Transactions: []shared.CreateBankAccountTransaction{
                 shared.CreateBankAccountTransaction{
                     Amount: types.MustNewDecimalFromString("8917.73"),
