@@ -62,16 +62,16 @@ func main() {
             ValidDatatypeLinks: []shared.AccountingAccountValidDataTypeLinks{
                 shared.AccountingAccountValidDataTypeLinks{
                     Links: []string{
-                        "fuga",
+                        "Money",
                     },
-                    Property: lending.String("in"),
+                    Property: lending.String("Cambridgeshire grey technology"),
                 },
             },
         },
         AllowSyncOnPushComplete: lending.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: lending.Int(359508),
+        TimeoutInMinutes: lending.Int(86),
     })
     if err != nil {
         log.Fatal(err)

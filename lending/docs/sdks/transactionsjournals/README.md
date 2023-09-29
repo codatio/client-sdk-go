@@ -40,7 +40,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Transactions.Journals.Get(ctx, operations.GetAccountingJournalRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        JournalID: "nobis",
+        JournalID: "Northeast Hatchback Kia",
     })
     if err != nil {
         log.Fatal(err)
@@ -101,7 +101,7 @@ func main() {
         OrderBy: lending.String("-modifiedDate"),
         Page: lending.Int(1),
         PageSize: lending.Int(100),
-        Query: lending.String("sit"),
+        Query: lending.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)

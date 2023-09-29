@@ -41,7 +41,7 @@ func main() {
         OrderBy: lending.String("-modifiedDate"),
         Page: lending.Int(1),
         PageSize: lending.Int(100),
-        Query: lending.String("molestiae"),
+        Query: lending.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)

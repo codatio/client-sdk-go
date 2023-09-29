@@ -43,7 +43,7 @@ func main() {
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        DirectCostID: "nesciunt",
+        DirectCostID: "Dakota Avon specifically",
     })
     if err != nil {
         log.Fatal(err)
@@ -104,7 +104,7 @@ func main() {
     res, err := s.Transactions.DirectCosts.Get(ctx, operations.GetAccountingDirectCostRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        DirectCostID: "culpa",
+        DirectCostID: "Northeast Hatchback Kia",
     })
     if err != nil {
         log.Fatal(err)
@@ -164,7 +164,7 @@ func main() {
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        DirectCostID: "corrupti",
+        DirectCostID: "array East along",
     })
     if err != nil {
         log.Fatal(err)
@@ -226,7 +226,7 @@ func main() {
         OrderBy: lending.String("-modifiedDate"),
         Page: lending.Int(1),
         PageSize: lending.Int(100),
-        Query: lending.String("pariatur"),
+        Query: lending.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)
@@ -285,7 +285,7 @@ func main() {
     res, err := s.Transactions.DirectCosts.ListAttachments(ctx, operations.ListAccountingDirectCostAttachmentsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        DirectCostID: "totam",
+        DirectCostID: "intuitive Frozen ouch",
     })
     if err != nil {
         log.Fatal(err)

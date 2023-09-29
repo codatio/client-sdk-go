@@ -207,7 +207,7 @@ func main() {
         OrderBy: lending.String("-modifiedDate"),
         Page: lending.Int(1),
         PageSize: lending.Int(100),
-        Query: lending.String("error"),
+        Query: lending.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)
@@ -260,7 +260,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Connections.Unlink(ctx, operations.UnlinkConnectionRequest{
         RequestBody: &operations.UnlinkConnectionUpdateConnection{
-            Status: shared.DataConnectionStatusUnlinked.ToPointer(),
+            Status: shared.DataConnectionStatusPendingAuth.ToPointer(),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",

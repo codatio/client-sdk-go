@@ -90,7 +90,7 @@ func main() {
     ctx := context.Background()
     res, err := s.FinancialStatements.BalanceSheet.GetCategorizedAccounts(ctx, operations.GetCategorizedBalanceSheetStatementRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        NumberOfPeriods: lending.Int64(617636),
+        NumberOfPeriods: lending.Int64(258121),
         ReportDate: "29-09-2020",
     })
     if err != nil {

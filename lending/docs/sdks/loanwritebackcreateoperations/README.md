@@ -33,7 +33,7 @@ func main() {
     ctx := context.Background()
     res, err := s.LoanWriteback.CreateOperations.Get(ctx, operations.GetCreateOperationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        PushOperationKey: "3b99d488-e1e9-41e4-90ad-2abd44269802",
+        PushOperationKey: "b18d8d81-fd7b-4764-a31e-475cb1f36591",
     })
     if err != nil {
         log.Fatal(err)
@@ -89,7 +89,7 @@ func main() {
         OrderBy: lending.String("-modifiedDate"),
         Page: lending.Int(1),
         PageSize: lending.Int(100),
-        Query: lending.String("assumenda"),
+        Query: lending.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)

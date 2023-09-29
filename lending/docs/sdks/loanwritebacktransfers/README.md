@@ -45,25 +45,25 @@ func main() {
         AccountingTransfer: &shared.AccountingTransfer{
             ContactRef: &shared.AccountingTransferContactRef{
                 DataType: shared.DataTypeInvoices.ToPointer(),
-                ID: "c366c8dd-6b14-4429-8747-4778a7bd466d",
+                ID: "<ID>",
             },
             Date: lending.String("2022-10-23T00:00:00.000Z"),
             DepositedRecordRefs: []shared.RecordRef{
                 shared.RecordRef{
-                    DataType: lending.String("accountTransaction"),
-                    ID: lending.String("c10ab3cd-ca42-4519-84e5-23c7e0bc7178"),
+                    DataType: lending.String("invoice"),
+                    ID: lending.String("<ID>"),
                 },
             },
-            Description: lending.String("accusamus"),
+            Description: lending.String("Proactive systematic Graphical User Interface"),
             From: &shared.TransferAccount{
                 AccountRef: &shared.AccountRef{
-                    ID: lending.String("4796f2a7-0c68-4828-aaa4-82562f222e98"),
-                    Name: lending.String("Tamara Vandervort IV"),
+                    ID: lending.String("<ID>"),
+                    Name: lending.String("South"),
                 },
-                Amount: types.MustNewDecimalFromString("8003.79"),
+                Amount: types.MustNewDecimalFromString("9967.06"),
                 Currency: lending.String("EUR"),
             },
-            ID: lending.String("e61e6b7b-95bc-40ab-bc20-c4f3789fd871"),
+            ID: lending.String("<ID>"),
             Metadata: &shared.Metadata{
                 IsDeleted: lending.Bool(false),
             },
@@ -71,30 +71,30 @@ func main() {
             SourceModifiedDate: lending.String("2022-10-23T00:00:00.000Z"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "sint": map[string]interface{}{
-                        "pariatur": "possimus",
+                    "debitis": map[string]interface{}{
+                        "alias": "deposit",
                     },
                 },
             },
             To: &shared.TransferAccount{
                 AccountRef: &shared.AccountRef{
-                    ID: lending.String("2efd121a-a6f1-4e67-8bdb-04f15756082d"),
-                    Name: lending.String("Cassandra Ward V"),
+                    ID: lending.String("<ID>"),
+                    Name: lending.String("Northwest"),
                 },
-                Amount: types.MustNewDecimalFromString("9453.02"),
-                Currency: lending.String("GBP"),
+                Amount: types.MustNewDecimalFromString("7926.2"),
+                Currency: lending.String("EUR"),
             },
             TrackingCategoryRefs: []shared.TrackingCategoryRef{
                 shared.TrackingCategoryRef{
-                    ID: "d1705133-9d08-4086-a184-0394c26071f9",
-                    Name: lending.String("Camille Hirthe III"),
+                    ID: "<ID>",
+                    Name: lending.String("quantify Polestar mobile"),
                 },
             },
         },
         AllowSyncOnPushComplete: lending.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: lending.Int(310067),
+        TimeoutInMinutes: lending.Int(656256),
     })
     if err != nil {
         log.Fatal(err)

@@ -149,8 +149,8 @@ func main() {
     ctx := context.Background()
     res, err := s.FileUpload.Upload(ctx, operations.UploadFilesRequest{
         RequestBody: &operations.UploadFilesRequestBody{
-            Content: []byte("tempora"),
-            RequestBody: "suscipit",
+            Content: []byte("F?SRSKG@^n"),
+            RequestBody: "ullam",
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",

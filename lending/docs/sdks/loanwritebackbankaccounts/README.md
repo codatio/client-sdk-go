@@ -42,28 +42,28 @@ func main() {
     ctx := context.Background()
     res, err := s.LoanWriteback.BankAccounts.Create(ctx, operations.CreateBankAccountRequest{
         AccountingBankAccount: &shared.AccountingBankAccount{
-            AccountName: lending.String("iste"),
-            AccountNumber: lending.String("iure"),
+            AccountName: lending.String("bluetooth Extended"),
+            AccountNumber: lending.String("blue"),
             AccountType: shared.AccountingBankAccountTypeDebit.ToPointer(),
-            AvailableBalance: types.MustNewDecimalFromString("6976.31"),
-            Balance: types.MustNewDecimalFromString("992.8"),
-            Currency: lending.String("GBP"),
-            IBan: lending.String("reiciendis"),
-            ID: lending.String("aaa2352c-5955-4907-aff1-a3a2fa946773"),
-            Institution: lending.String("error"),
+            AvailableBalance: types.MustNewDecimalFromString("7964.74"),
+            Balance: types.MustNewDecimalFromString("3768.44"),
+            Currency: lending.String("EUR"),
+            IBan: lending.String("ES4002078579630900307003"),
+            ID: lending.String("<ID>"),
+            Institution: lending.String("Grocery Borders Northwest"),
             Metadata: &shared.Metadata{
                 IsDeleted: lending.Bool(false),
             },
             ModifiedDate: lending.String("2022-10-23T00:00:00.000Z"),
-            NominalCode: lending.String("quis"),
-            OverdraftLimit: types.MustNewDecimalFromString("1103.75"),
-            SortCode: lending.String("laborum"),
+            NominalCode: lending.String("metrics"),
+            OverdraftLimit: types.MustNewDecimalFromString("365.21"),
+            SortCode: lending.String("Interactions Senior Mouse"),
             SourceModifiedDate: lending.String("2022-10-23T00:00:00.000Z"),
         },
         AllowSyncOnPushComplete: lending.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: lending.Int(317202),
+        TimeoutInMinutes: lending.Int(908106),
     })
     if err != nil {
         log.Fatal(err)

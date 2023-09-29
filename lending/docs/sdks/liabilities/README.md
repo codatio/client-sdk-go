@@ -44,7 +44,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Liabilities.GenerateLoanSummary(ctx, operations.GenerateLoanSummaryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        SourceType: operations.GenerateLoanSummarySourceTypeCommerce,
+        SourceType: operations.GenerateLoanSummarySourceTypeAccounting,
     })
     if err != nil {
         log.Fatal(err)
@@ -160,7 +160,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Liabilities.GetLoanSummary(ctx, operations.GetLoanSummaryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        SourceType: operations.GetLoanSummarySourceTypeAccounting,
+        SourceType: operations.GetLoanSummarySourceTypeBanking,
     })
     if err != nil {
         log.Fatal(err)

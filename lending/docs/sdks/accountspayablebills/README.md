@@ -41,7 +41,7 @@ func main() {
     ctx := context.Background()
     res, err := s.AccountsPayable.Bills.DownloadAttachment(ctx, operations.DownloadAccountingBillAttachmentRequest{
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        BillID: "temporibus",
+        BillID: "Dakota Avon specifically",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -102,7 +102,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.AccountsPayable.Bills.Get(ctx, operations.GetAccountingBillRequest{
-        BillID: "ab",
+        BillID: "Northeast Hatchback Kia",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -161,7 +161,7 @@ func main() {
     ctx := context.Background()
     res, err := s.AccountsPayable.Bills.GetAttachment(ctx, operations.GetAccountingBillAttachmentRequest{
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        BillID: "quis",
+        BillID: "array East along",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -224,7 +224,7 @@ func main() {
         OrderBy: lending.String("-modifiedDate"),
         Page: lending.Int(1),
         PageSize: lending.Int(100),
-        Query: lending.String("veritatis"),
+        Query: lending.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)
@@ -281,7 +281,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.AccountsPayable.Bills.ListAttachments(ctx, operations.ListAccountingBillAttachmentsRequest{
-        BillID: "deserunt",
+        BillID: "intuitive Frozen ouch",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })

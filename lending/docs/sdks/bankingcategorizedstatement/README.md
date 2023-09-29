@@ -38,7 +38,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         Page: lending.Int(1),
         PageSize: lending.Int(100),
-        Query: lending.String("impedit"),
+        Query: lending.String("Northeast Hatchback Kia"),
     })
     if err != nil {
         log.Fatal(err)

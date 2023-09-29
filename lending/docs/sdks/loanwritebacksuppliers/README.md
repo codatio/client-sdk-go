@@ -44,41 +44,41 @@ func main() {
         AccountingSupplier: &shared.AccountingSupplier{
             Addresses: []shared.AccountingAddress{
                 shared.AccountingAddress{
-                    City: lending.String("Germantown"),
-                    Country: lending.String("Switzerland"),
-                    Line1: lending.String("fugit"),
-                    Line2: lending.String("porro"),
-                    PostalCode: lending.String("94740-6234"),
-                    Region: lending.String("aspernatur"),
+                    City: lending.String("Jenafurt"),
+                    Country: lending.String("Sweden"),
+                    Line1: lending.String("innovative blue"),
+                    Line2: lending.String("grey technology East"),
+                    PostalCode: lending.String("30778"),
+                    Region: lending.String("quantify Polestar mobile"),
                     Type: shared.AccountingAddressTypeBilling,
                 },
             },
-            ContactName: lending.String("possimus"),
-            DefaultCurrency: lending.String("magnam"),
-            EmailAddress: lending.String("ratione"),
-            ID: lending.String("6813f16d-9f5f-4ce6-8556-146c3e250fb0"),
+            ContactName: lending.String("Durham after"),
+            DefaultCurrency: lending.String("Intelligent Fish"),
+            EmailAddress: lending.String("Ricardo.Hand41@gmail.com"),
+            ID: lending.String("<ID>"),
             Metadata: &shared.Metadata{
                 IsDeleted: lending.Bool(false),
             },
             ModifiedDate: lending.String("2022-10-23T00:00:00.000Z"),
             Phone: lending.String("(877) 492-8687"),
-            RegistrationNumber: lending.String("impedit"),
+            RegistrationNumber: lending.String("Profound"),
             SourceModifiedDate: lending.String("2022-10-23T00:00:00.000Z"),
-            Status: shared.SupplierStatusUnknown,
+            Status: shared.SupplierStatusActive,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "accusamus": map[string]interface{}{
-                        "inventore": "non",
+                    "pariatur": map[string]interface{}{
+                        "accusantium": "Minivan",
                     },
                 },
             },
-            SupplierName: lending.String("et"),
-            TaxNumber: lending.String("dolorum"),
+            SupplierName: lending.String("Senior Mouse West"),
+            TaxNumber: lending.String("Towels likewise"),
         },
         AllowSyncOnPushComplete: lending.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: lending.Int(672048),
+        TimeoutInMinutes: lending.Int(452224),
     })
     if err != nil {
         log.Fatal(err)

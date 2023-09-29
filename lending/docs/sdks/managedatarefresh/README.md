@@ -91,7 +91,7 @@ func main() {
     ctx := context.Background()
     res, err := s.ManageData.Refresh.DataType(ctx, operations.RefreshDataTypeRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ConnectionID: lending.String("675fd5e6-0b37-45ed-8f6f-bee41f33317f"),
+        ConnectionID: lending.String("34f47fda-384b-4d2f-a80b-311909008b33"),
         DataType: shared.DataTypeInvoices,
     })
     if err != nil {

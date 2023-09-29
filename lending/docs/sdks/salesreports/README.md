@@ -58,9 +58,9 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         IncludeDisplayNames: lending.Bool(false),
-        NumberOfPeriods: 296242,
-        PeriodLength: 304468,
-        PeriodUnit: shared.PeriodUnitYear,
+        NumberOfPeriods: 491586,
+        PeriodLength: 776309,
+        PeriodUnit: shared.PeriodUnitWeek,
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -140,9 +140,9 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         IncludeDisplayNames: lending.Bool(false),
-        NumberOfPeriods: 839189,
-        PeriodLength: 351870,
-        PeriodUnit: shared.PeriodUnitDay,
+        NumberOfPeriods: 277786,
+        PeriodLength: 876670,
+        PeriodUnit: shared.PeriodUnitYear,
         ReportDate: "29-09-2020",
     })
     if err != nil {

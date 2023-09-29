@@ -43,7 +43,7 @@ func main() {
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        DirectIncomeID: "esse",
+        DirectIncomeID: "Dakota Avon specifically",
     })
     if err != nil {
         log.Fatal(err)
@@ -104,7 +104,7 @@ func main() {
     res, err := s.AccountsReceivable.DirectIncomes.Get(ctx, operations.GetAccountingDirectIncomeRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        DirectIncomeID: "totam",
+        DirectIncomeID: "Northeast Hatchback Kia",
     })
     if err != nil {
         log.Fatal(err)
@@ -164,8 +164,8 @@ func main() {
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        DirectIncomeID: "porro",
-        TimeoutInMinutes: lending.Int(678880),
+        DirectIncomeID: "array East along",
+        TimeoutInMinutes: lending.Int(329312),
     })
     if err != nil {
         log.Fatal(err)
@@ -227,7 +227,7 @@ func main() {
         OrderBy: lending.String("-modifiedDate"),
         Page: lending.Int(1),
         PageSize: lending.Int(100),
-        Query: lending.String("dicta"),
+        Query: lending.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)
@@ -286,7 +286,7 @@ func main() {
     res, err := s.AccountsReceivable.DirectIncomes.ListAttachments(ctx, operations.ListAccountingDirectIncomeAttachmentsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        DirectIncomeID: "nam",
+        DirectIncomeID: "intuitive Frozen ouch",
     })
     if err != nil {
         log.Fatal(err)

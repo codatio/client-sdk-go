@@ -43,22 +43,22 @@ func main() {
     ctx := context.Background()
     res, err := s.LoanWriteback.BankTransactions.Create(ctx, operations.CreateBankTransactionsRequest{
         AccountingCreateBankTransactions: &shared.AccountingCreateBankTransactions{
-            AccountID: lending.String("13d946f0-c5d5-42bc-b092-97ece17923ab"),
+            AccountID: lending.String("7110701885"),
             Transactions: []shared.CreateBankAccountTransaction{
                 shared.CreateBankAccountTransaction{
-                    Amount: types.MustNewDecimalFromString("7783.46"),
-                    Balance: types.MustNewDecimalFromString("1965.82"),
+                    Amount: types.MustNewDecimalFromString("4893.82"),
+                    Balance: types.MustNewDecimalFromString("6384.24"),
                     Date: lending.String("2022-10-23T00:00:00.000Z"),
-                    Description: lending.String("ipsam"),
-                    ID: lending.String("ad019da1-ffe7-48f0-97b0-074f15471b5e"),
+                    Description: lending.String("Inverse discrete benchmark"),
+                    ID: lending.String("<ID>"),
                 },
             },
         },
-        AccountID: "commodi",
+        AccountID: "Cambridgeshire grey technology",
         AllowSyncOnPushComplete: lending.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: lending.Int(918236),
+        TimeoutInMinutes: lending.Int(86),
     })
     if err != nil {
         log.Fatal(err)
@@ -119,7 +119,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.LoanWriteback.BankTransactions.GetCreateModel(ctx, operations.GetCreateBankTransactionsModelRequest{
-        AccountID: "quae",
+        AccountID: "Northwest",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })

@@ -33,7 +33,7 @@ func main() {
     ctx := context.Background()
     res, err := s.ManageData.PullOperations.Get(ctx, operations.GetPullOperationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        DatasetID: "2dac7af5-15cc-4413-aa63-aae8d67864db",
+        DatasetID: "b18d8d81-fd7b-4764-a31e-475cb1f36591",
     })
     if err != nil {
         log.Fatal(err)
@@ -89,7 +89,7 @@ func main() {
         OrderBy: lending.String("-modifiedDate"),
         Page: lending.Int(1),
         PageSize: lending.Int(100),
-        Query: lending.String("cum"),
+        Query: lending.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)
