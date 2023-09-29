@@ -1,4 +1,5 @@
 # BillCreditNotes
+(*BillCreditNotes*)
 
 ## Overview
 
@@ -52,57 +53,57 @@ func main() {
             AllocatedOnDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
             BillCreditNoteNumber: syncforpayables.String("91fe2a83-e161-4c21-929d-c5c10c4b07e5"),
             Currency: syncforpayables.String("USD"),
-            CurrencyRate: types.MustNewDecimalFromString("3927.85"),
+            CurrencyRate: types.MustNewDecimalFromString("6384.24"),
             DiscountPercentage: types.MustNewDecimalFromString("0"),
             ID: syncforpayables.String("1509398f-98e2-436d-8a5d-c042e0c74ffc"),
             IssueDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
             LineItems: []shared.BillCreditNoteLineItem{
                 shared.BillCreditNoteLineItem{
                     AccountRef: &shared.AccountRef{
-                        ID: syncforpayables.String("d151a05d-fc2d-4df7-8c78-ca1ba928fc81"),
-                        Name: syncforpayables.String("Tanya Gleason"),
+                        ID: syncforpayables.String("<ID>"),
+                        Name: syncforpayables.String("innovative blue"),
                     },
-                    Description: syncforpayables.String("cum"),
-                    DiscountAmount: types.MustNewDecimalFromString("4561.5"),
-                    DiscountPercentage: types.MustNewDecimalFromString("2165.5"),
+                    Description: syncforpayables.String("Vision-oriented responsive function"),
+                    DiscountAmount: types.MustNewDecimalFromString("9510.62"),
+                    DiscountPercentage: types.MustNewDecimalFromString("8915.1"),
                     ItemRef: &shared.BillCreditNoteLineItemItemReference{
-                        ID: "92059293-96fe-4a75-96eb-10faaa2352c5",
-                        Name: syncforpayables.String("Corey Hane III"),
+                        ID: "<ID>",
+                        Name: syncforpayables.String("deposit"),
                     },
-                    Quantity: types.MustNewDecimalFromString("6342.74"),
-                    SubTotal: types.MustNewDecimalFromString("9883.74"),
-                    TaxAmount: types.MustNewDecimalFromString("9589.5"),
+                    Quantity: types.MustNewDecimalFromString("3015.1"),
+                    SubTotal: types.MustNewDecimalFromString("899.64"),
+                    TaxAmount: types.MustNewDecimalFromString("7150.4"),
                     TaxRateRef: &shared.TaxRateRef{
-                        EffectiveTaxRate: types.MustNewDecimalFromString("1020.44"),
-                        ID: syncforpayables.String("a3a2fa94-6773-4925-9aa5-2c3f5ad019da"),
-                        Name: syncforpayables.String("Johanna Wolf"),
+                        EffectiveTaxRate: types.MustNewDecimalFromString("7926.2"),
+                        ID: syncforpayables.String("<ID>"),
+                        Name: syncforpayables.String("Gasoline Screen mobile"),
                     },
-                    TotalAmount: types.MustNewDecimalFromString("5096.24"),
+                    TotalAmount: types.MustNewDecimalFromString("6562.56"),
                     Tracking: &shared.BillCreditNoteLineItemTracking{
                         CategoryRefs: []shared.TrackingCategoryRef{
                             shared.TrackingCategoryRef{
-                                ID: "f097b007-4f15-4471-b5e6-e13b99d488e1",
-                                Name: syncforpayables.String("Kirk Boehm"),
+                                ID: "<ID>",
+                                Name: syncforpayables.String("Durham after"),
                             },
                         },
                         CustomerRef: &shared.BillCreditNoteLineItemTrackingCustomerRef{
-                            CompanyName: syncforpayables.String("enim"),
-                            ID: "0ad2abd4-4269-4802-9502-a94bb4f63c96",
+                            CompanyName: syncforpayables.String("Fay - Durgan"),
+                            ID: "<ID>",
                         },
-                        IsBilledTo: shared.BilledToTypeCustomer,
-                        IsRebilledTo: shared.BilledToTypeProject,
+                        IsBilledTo: shared.BilledToTypeUnknown,
+                        IsRebilledTo: shared.BilledToTypeCustomer,
                         ProjectRef: &shared.BillCreditNoteLineItemTrackingProjectReference{
-                            ID: "9a3efa77-dfb1-44cd-a6ae-395efb9ba88f",
-                            Name: syncforpayables.String("Sandy Huels"),
+                            ID: "<ID>",
+                            Name: syncforpayables.String("Fiat"),
                         },
                     },
                     TrackingCategoryRefs: []shared.TrackingCategoryRef{
                         shared.TrackingCategoryRef{
-                            ID: "97074ba4-469b-46e2-9419-59890afa563e",
-                            Name: syncforpayables.String("Vivian Boyle"),
+                            ID: "<ID>",
+                            Name: syncforpayables.String("Grocery Borders Northwest"),
                         },
                     },
-                    UnitAmount: types.MustNewDecimalFromString("8919.24"),
+                    UnitAmount: types.MustNewDecimalFromString("6519.85"),
                 },
             },
             Metadata: &shared.Metadata{
@@ -114,22 +115,22 @@ func main() {
                 shared.Items{
                     Allocation: shared.ItemsAllocation{
                         AllocatedOnDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
-                        Currency: syncforpayables.String("USD"),
-                        CurrencyRate: types.MustNewDecimalFromString("7038.89"),
-                        TotalAmount: types.MustNewDecimalFromString("4479.26"),
+                        Currency: syncforpayables.String("EUR"),
+                        CurrencyRate: types.MustNewDecimalFromString("365.21"),
+                        TotalAmount: types.MustNewDecimalFromString("8424.64"),
                     },
                     Payment: shared.PaymentAllocationPayment{
                         AccountRef: &shared.AccountRef{
-                            ID: syncforpayables.String("11e5b7fd-2ed0-4289-a1cd-dc692601fb57"),
-                            Name: syncforpayables.String("Candice Beatty"),
+                            ID: syncforpayables.String("<ID>"),
+                            Name: syncforpayables.String("though East"),
                         },
-                        Currency: syncforpayables.String("EUR"),
-                        CurrencyRate: types.MustNewDecimalFromString("166.27"),
-                        ID: syncforpayables.String("d30c5fbb-2587-4053-a02c-73d5fe9b90c2"),
-                        Note: syncforpayables.String("blanditiis"),
+                        Currency: syncforpayables.String("GBP"),
+                        CurrencyRate: types.MustNewDecimalFromString("155.52"),
+                        ID: syncforpayables.String("<ID>"),
+                        Note: syncforpayables.String("array Edinburg Investor"),
                         PaidOnDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
-                        Reference: syncforpayables.String("eaque"),
-                        TotalAmount: types.MustNewDecimalFromString("5772.29"),
+                        Reference: syncforpayables.String("likewise payment 1080p"),
+                        TotalAmount: types.MustNewDecimalFromString("2597.72"),
                     },
                 },
             },
@@ -139,28 +140,28 @@ func main() {
             SubTotal: types.MustNewDecimalFromString("805.78"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "adipisci": map[string]interface{}{
-                        "asperiores": "earum",
+                    "porro": map[string]interface{}{
+                        "asperiores": "Indiana",
                     },
                 },
             },
             SupplierRef: &shared.SupplierRef{
-                ID: "49a8d9cb-f486-4333-a3f9-b77f3a410067",
-                SupplierName: syncforpayables.String("quaerat"),
+                ID: "<ID>",
+                SupplierName: syncforpayables.String("Toyota Neptunium round"),
             },
             TotalAmount: types.MustNewDecimalFromString("805.78"),
             TotalDiscount: types.MustNewDecimalFromString("0"),
             TotalTaxAmount: types.MustNewDecimalFromString("0"),
             WithholdingTax: []shared.WithholdingTaxitems{
                 shared.WithholdingTaxitems{
-                    Amount: types.MustNewDecimalFromString("8810.05"),
-                    Name: "Jan Hodkiewicz",
+                    Amount: types.MustNewDecimalFromString("1406.49"),
+                    Name: "meanwhile",
                 },
             },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: syncforpayables.Int(542499),
+        TimeoutInMinutes: syncforpayables.Int(863813),
     })
     if err != nil {
         log.Fatal(err)
@@ -219,7 +220,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.BillCreditNotes.Get(ctx, operations.GetBillCreditNoteRequest{
-        BillCreditNoteID: "sit",
+        BillCreditNoteID: "Northeast Hatchback Kia",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -343,7 +344,7 @@ func main() {
         OrderBy: syncforpayables.String("-modifiedDate"),
         Page: syncforpayables.Int(1),
         PageSize: syncforpayables.Int(100),
-        Query: syncforpayables.String("fugiat"),
+        Query: syncforpayables.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)
@@ -408,58 +409,58 @@ func main() {
         BillCreditNote: &shared.BillCreditNote{
             AllocatedOnDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
             BillCreditNoteNumber: syncforpayables.String("91fe2a83-e161-4c21-929d-c5c10c4b07e5"),
-            Currency: syncforpayables.String("EUR"),
-            CurrencyRate: types.MustNewDecimalFromString("6793.93"),
+            Currency: syncforpayables.String("GBP"),
+            CurrencyRate: types.MustNewDecimalFromString("5971.29"),
             DiscountPercentage: types.MustNewDecimalFromString("0"),
             ID: syncforpayables.String("1509398f-98e2-436d-8a5d-c042e0c74ffc"),
             IssueDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
             LineItems: []shared.BillCreditNoteLineItem{
                 shared.BillCreditNoteLineItem{
                     AccountRef: &shared.AccountRef{
-                        ID: syncforpayables.String("7a89ebf7-37ae-4420-bce5-e6a95d8a0d44"),
-                        Name: syncforpayables.String("Bernadette Torp"),
+                        ID: syncforpayables.String("<ID>"),
+                        Name: syncforpayables.String("male Metal"),
                     },
-                    Description: syncforpayables.String("a"),
-                    DiscountAmount: types.MustNewDecimalFromString("4561.3"),
-                    DiscountPercentage: types.MustNewDecimalFromString("6874.88"),
+                    Description: syncforpayables.String("Visionary bi-directional analyzer"),
+                    DiscountAmount: types.MustNewDecimalFromString("2782.81"),
+                    DiscountPercentage: types.MustNewDecimalFromString("8965.01"),
                     ItemRef: &shared.BillCreditNoteLineItemItemReference{
-                        ID: "73cf3be4-53f8-470b-b26b-5a73429cdb1a",
-                        Name: syncforpayables.String("Randall Cole"),
+                        ID: "<ID>",
+                        Name: syncforpayables.String("withdrawal extend"),
                     },
-                    Quantity: types.MustNewDecimalFromString("7044.74"),
-                    SubTotal: types.MustNewDecimalFromString("3960.6"),
-                    TaxAmount: types.MustNewDecimalFromString("4631.5"),
+                    Quantity: types.MustNewDecimalFromString("2494.4"),
+                    SubTotal: types.MustNewDecimalFromString("3668.07"),
+                    TaxAmount: types.MustNewDecimalFromString("1395.79"),
                     TaxRateRef: &shared.TaxRateRef{
-                        EffectiveTaxRate: types.MustNewDecimalFromString("5654.21"),
-                        ID: syncforpayables.String("d2322715-bf0c-4bb1-a31b-8b90f3443a11"),
-                        Name: syncforpayables.String("Miss Billie Ward"),
+                        EffectiveTaxRate: types.MustNewDecimalFromString("6447.13"),
+                        ID: syncforpayables.String("<ID>"),
+                        Name: syncforpayables.String("syndicate East Baht"),
                     },
-                    TotalAmount: types.MustNewDecimalFromString("7851.53"),
+                    TotalAmount: types.MustNewDecimalFromString("6298.17"),
                     Tracking: &shared.BillCreditNoteLineItemTracking{
                         CategoryRefs: []shared.TrackingCategoryRef{
                             shared.TrackingCategoryRef{
-                                ID: "f4b92187-9fce-4953-b73e-f7fbc7abd74d",
-                                Name: syncforpayables.String("Earl Mosciski DVM"),
+                                ID: "<ID>",
+                                Name: syncforpayables.String("guestbook driver users"),
                             },
                         },
                         CustomerRef: &shared.BillCreditNoteLineItemTrackingCustomerRef{
-                            CompanyName: syncforpayables.String("exercitationem"),
-                            ID: "d2cff7c7-0a45-4626-9436-813f16d9f5fc",
+                            CompanyName: syncforpayables.String("Schroeder - Nienow"),
+                            ID: "<ID>",
                         },
-                        IsBilledTo: shared.BilledToTypeProject,
-                        IsRebilledTo: shared.BilledToTypeNotApplicable,
+                        IsBilledTo: shared.BilledToTypeNotApplicable,
+                        IsRebilledTo: shared.BilledToTypeUnknown,
                         ProjectRef: &shared.BillCreditNoteLineItemTrackingProjectReference{
-                            ID: "c556146c-3e25-40fb-808c-42e141aac366",
-                            Name: syncforpayables.String("Clifton Simonis"),
+                            ID: "<ID>",
+                            Name: syncforpayables.String("Wooden Internal"),
                         },
                     },
                     TrackingCategoryRefs: []shared.TrackingCategoryRef{
                         shared.TrackingCategoryRef{
-                            ID: "b1442907-4747-478a-bbd4-66d28c10ab3c",
-                            Name: syncforpayables.String("Salvatore Parker"),
+                            ID: "<ID>",
+                            Name: syncforpayables.String("Dodge brightly"),
                         },
                     },
-                    UnitAmount: types.MustNewDecimalFromString("3738.13"),
+                    UnitAmount: types.MustNewDecimalFromString("7115.64"),
                 },
             },
             Metadata: &shared.Metadata{
@@ -472,21 +473,21 @@ func main() {
                     Allocation: shared.ItemsAllocation{
                         AllocatedOnDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
                         Currency: syncforpayables.String("GBP"),
-                        CurrencyRate: types.MustNewDecimalFromString("2728.22"),
-                        TotalAmount: types.MustNewDecimalFromString("8920.5"),
+                        CurrencyRate: types.MustNewDecimalFromString("3297.12"),
+                        TotalAmount: types.MustNewDecimalFromString("4939.56"),
                     },
                     Payment: shared.PaymentAllocationPayment{
                         AccountRef: &shared.AccountRef{
-                            ID: syncforpayables.String("523c7e0b-c717-48e4-b96f-2a70c688282a"),
-                            Name: syncforpayables.String("Randall Lindgren"),
+                            ID: syncforpayables.String("<ID>"),
+                            Name: syncforpayables.String("modulo Kia"),
                         },
                         Currency: syncforpayables.String("USD"),
-                        CurrencyRate: types.MustNewDecimalFromString("1470.14"),
-                        ID: syncforpayables.String("f222e981-7ee1-47cb-a61e-6b7b95bc0ab3"),
-                        Note: syncforpayables.String("cumque"),
+                        CurrencyRate: types.MustNewDecimalFromString("8000.94"),
+                        ID: syncforpayables.String("<ID>"),
+                        Note: syncforpayables.String("Avon"),
                         PaidOnDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
-                        Reference: syncforpayables.String("consequatur"),
-                        TotalAmount: types.MustNewDecimalFromString("7963.92"),
+                        Reference: syncforpayables.String("Reactive Global Northeast"),
+                        TotalAmount: types.MustNewDecimalFromString("6090.5"),
                     },
                 },
             },
@@ -496,30 +497,30 @@ func main() {
             SubTotal: types.MustNewDecimalFromString("805.78"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "sapiente": map[string]interface{}{
-                        "consectetur": "esse",
+                    "alias": map[string]interface{}{
+                        "veritatis": "ADP",
                     },
                 },
             },
             SupplierRef: &shared.SupplierRef{
-                ID: "89fd871f-99dd-42ef-9121-aa6f1e674bdb",
-                SupplierName: syncforpayables.String("accusantium"),
+                ID: "<ID>",
+                SupplierName: syncforpayables.String("quisquam"),
             },
             TotalAmount: types.MustNewDecimalFromString("805.78"),
             TotalDiscount: types.MustNewDecimalFromString("0"),
             TotalTaxAmount: types.MustNewDecimalFromString("0"),
             WithholdingTax: []shared.WithholdingTaxitems{
                 shared.WithholdingTaxitems{
-                    Amount: types.MustNewDecimalFromString("3069.86"),
-                    Name: "Samuel Hermiston",
+                    Amount: types.MustNewDecimalFromString("8523.4"),
+                    Name: "pascal Plastic",
                 },
             },
         },
-        BillCreditNoteID: "nisi",
+        BillCreditNoteID: "magenta",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         ForceUpdate: syncforpayables.Bool(false),
-        TimeoutInMinutes: syncforpayables.Int(16328),
+        TimeoutInMinutes: syncforpayables.Int(639383),
     })
     if err != nil {
         log.Fatal(err)

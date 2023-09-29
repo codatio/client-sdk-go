@@ -34,7 +34,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Accounts.Create(ctx, operations.CreateAccountRequest{
         Account: &shared.Account{
-            Currency: syncforpayables.String("EUR"),
+            Currency: syncforpayables.String("USD"),
             CurrentBalance: types.MustNewDecimalFromString("0"),
             Description: syncforpayables.String("Invoices the business has issued but has not yet collected payment on."),
             FullyQualifiedCategory: syncforpayables.String("Asset.Current"),
@@ -53,15 +53,15 @@ func main() {
             ValidDatatypeLinks: []shared.AccountValidDataTypeLinks{
                 shared.AccountValidDataTypeLinks{
                     Links: []string{
-                        "suscipit",
+                        "Money",
                     },
-                    Property: syncforpayables.String("iure"),
+                    Property: syncforpayables.String("Cambridgeshire grey technology"),
                 },
             },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: syncforpayables.Int(297534),
+        TimeoutInMinutes: syncforpayables.Int(86),
     })
     if err != nil {
         log.Fatal(err)

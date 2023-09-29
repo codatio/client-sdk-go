@@ -1,4 +1,5 @@
 # Journals
+(*Journals*)
 
 ## Overview
 
@@ -49,21 +50,21 @@ func main() {
         Journal: &shared.Journal{
             CreatedOn: syncforpayables.String("2022-10-23T00:00:00.000Z"),
             HasChildren: syncforpayables.Bool(false),
-            ID: syncforpayables.String("700b607f-3c93-4c73-b9da-3f2ceda7e23f"),
-            JournalCode: syncforpayables.String("explicabo"),
+            ID: syncforpayables.String("<ID>"),
+            JournalCode: syncforpayables.String("Configuration Money"),
             Metadata: &shared.Metadata{
                 IsDeleted: syncforpayables.Bool(false),
             },
             ModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
-            Name: syncforpayables.String("Mr. Marcia Fritsch"),
-            ParentID: syncforpayables.String("deserunt"),
+            Name: syncforpayables.String("shred"),
+            ParentID: syncforpayables.String("technology East"),
             SourceModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
             Status: shared.JournalStatusUnknown.ToPointer(),
-            Type: syncforpayables.String("distinctio"),
+            Type: syncforpayables.String("male"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: syncforpayables.Int(450224),
+        TimeoutInMinutes: syncforpayables.Int(855952),
     })
     if err != nil {
         log.Fatal(err)
@@ -123,7 +124,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Journals.Get(ctx, operations.GetJournalRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        JournalID: "exercitationem",
+        JournalID: "Northeast Hatchback Kia",
     })
     if err != nil {
         log.Fatal(err)
@@ -246,7 +247,7 @@ func main() {
         OrderBy: syncforpayables.String("-modifiedDate"),
         Page: syncforpayables.Int(1),
         PageSize: syncforpayables.Int(100),
-        Query: syncforpayables.String("labore"),
+        Query: syncforpayables.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)
