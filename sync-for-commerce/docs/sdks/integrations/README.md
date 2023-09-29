@@ -1,4 +1,5 @@
 # Integrations
+(*Integrations*)
 
 ## Overview
 
@@ -90,7 +91,7 @@ func main() {
         OrderBy: syncforcommerce.String("-modifiedDate"),
         Page: syncforcommerce.Int(1),
         PageSize: syncforcommerce.Int(100),
-        Query: syncforcommerce.String("vel"),
+        Query: syncforcommerce.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)

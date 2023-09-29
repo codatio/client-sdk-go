@@ -1,4 +1,5 @@
 # SyncFlowSettings
+(*SyncFlowSettings*)
 
 ## Overview
 
@@ -85,7 +86,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.SyncFlowSettings.GetVisibleAccounts(ctx, operations.GetVisibleAccountsRequest{
-        ClientID: "74e0f467-cc87-496e-9151-a05dfc2ddf7c",
+        ClientID: "86fe9741-738d-4f2c-8e96-9c3f84156e91",
         PlatformKey: "gbol",
     })
     if err != nil {
@@ -137,9 +138,9 @@ func main() {
 
     ctx := context.Background()
     res, err := s.SyncFlowSettings.UpdateConfigTextSyncFlow(ctx, map[string]shared.Localization{
-        "quod": shared.Localization{
+        "perferendis": shared.Localization{
             Required: syncforcommerce.Bool(false),
-            Text: syncforcommerce.String("esse"),
+            Text: syncforcommerce.String("Gasoline Cotton azure"),
         },
     })
     if err != nil {
@@ -194,7 +195,7 @@ func main() {
     res, err := s.SyncFlowSettings.UpdateVisibleAccountsSyncFlow(ctx, operations.UpdateVisibleAccountsSyncFlowRequest{
         VisibleAccounts: &shared.VisibleAccounts{
             VisibleAccounts: []string{
-                "totam",
+                "Coordinator",
             },
         },
         PlatformKey: "gbol",
