@@ -1,4 +1,5 @@
 # Webhooks
+(*Webhooks*)
 
 ## Overview
 
@@ -42,7 +43,7 @@ func main() {
             },
             Webhook: common.String("https://webhook.client.com"),
         },
-        Type: "iste",
+        Type: "bluetooth Extended",
     })
     if err != nil {
         log.Fatal(err)
@@ -149,7 +150,7 @@ func main() {
         OrderBy: common.String("-modifiedDate"),
         Page: common.Int(1),
         PageSize: common.Int(100),
-        Query: common.String("iure"),
+        Query: common.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)

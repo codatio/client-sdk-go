@@ -1,4 +1,5 @@
 # Connections
+(*Connections*)
 
 ## Overview
 
@@ -42,7 +43,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Connections.Create(ctx, operations.CreateConnectionRequest{
         RequestBody: &operations.CreateConnectionRequestBody{
-            PlatformKey: common.String("provident"),
+            PlatformKey: common.String("bluetooth Extended"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
@@ -207,7 +208,7 @@ func main() {
         OrderBy: common.String("-modifiedDate"),
         Page: common.Int(1),
         PageSize: common.Int(100),
-        Query: common.String("distinctio"),
+        Query: common.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)
@@ -260,7 +261,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Connections.Unlink(ctx, operations.UnlinkConnectionRequest{
         UpdateConnectionStatus: &shared.UpdateConnectionStatus{
-            Status: shared.DataConnectionStatusDeauthorized.ToPointer(),
+            Status: shared.DataConnectionStatusPendingAuth.ToPointer(),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -316,7 +317,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Connections.UpdateAuthorization(ctx, operations.UpdateConnectionAuthorizationRequest{
         RequestBody: map[string]string{
-            "unde": "nulla",
+            "libero": "teal",
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",

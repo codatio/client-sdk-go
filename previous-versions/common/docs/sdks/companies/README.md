@@ -1,4 +1,5 @@
 # Companies
+(*Companies*)
 
 ## Overview
 
@@ -202,7 +203,7 @@ func main() {
         OrderBy: common.String("-modifiedDate"),
         Page: common.Int(1),
         PageSize: common.Int(100),
-        Query: common.String("corrupti"),
+        Query: common.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)
