@@ -1,4 +1,5 @@
 # ManageData
+(*ManageData*)
 
 ## Overview
 
@@ -93,7 +94,7 @@ func main() {
     ctx := context.Background()
     res, err := s.ManageData.GetPullOperation(ctx, operations.GetPullOperationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        DatasetID: "4469b6e2-1419-4598-90af-a563e2516fe4",
+        DatasetID: "7911a54a-c808-4f4b-b87e-b195f52b4da5",
     })
     if err != nil {
         log.Fatal(err)
@@ -146,7 +147,7 @@ func main() {
     ctx := context.Background()
     res, err := s.ManageData.GetPushOperation(ctx, operations.GetPushOperationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        PushOperationKey: "c8b711e5-b7fd-42ed-8289-21cddc692601",
+        PushOperationKey: "2a6486f4-00c4-40bd-900d-b29c15ad0581",
     })
     if err != nil {
         log.Fatal(err)
@@ -202,7 +203,7 @@ func main() {
         OrderBy: syncforpayroll.String("-modifiedDate"),
         Page: syncforpayroll.Int(1),
         PageSize: syncforpayroll.Int(100),
-        Query: syncforpayroll.String("maiores"),
+        Query: syncforpayroll.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)
@@ -258,7 +259,7 @@ func main() {
         OrderBy: syncforpayroll.String("-modifiedDate"),
         Page: syncforpayroll.Int(1),
         PageSize: syncforpayroll.Int(100),
-        Query: syncforpayroll.String("quidem"),
+        Query: syncforpayroll.String("Dock Elegant Buckinghamshire"),
     })
     if err != nil {
         log.Fatal(err)
@@ -369,7 +370,7 @@ func main() {
     ctx := context.Background()
     res, err := s.ManageData.RefreshDataType(ctx, operations.RefreshDataTypeRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ConnectionID: syncforpayroll.String("576b0d5f-0d30-4c5f-bb25-87053202c73d"),
+        ConnectionID: syncforpayroll.String("d6258093-be98-4f60-90e1-ca6bcd49fb9a"),
         DataType: shared.DataTypeInvoices,
     })
     if err != nil {

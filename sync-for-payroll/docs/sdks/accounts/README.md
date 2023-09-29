@@ -1,4 +1,5 @@
 # Accounts
+(*Accounts*)
 
 ## Overview
 
@@ -48,7 +49,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Accounts.Create(ctx, operations.CreateAccountRequest{
         Account: &shared.Account{
-            Currency: syncforpayroll.String("EUR"),
+            Currency: syncforpayroll.String("USD"),
             CurrentBalance: types.MustNewDecimalFromString("0"),
             Description: syncforpayroll.String("Invoices the business has issued but has not yet collected payment on."),
             FullyQualifiedCategory: syncforpayroll.String("Asset.Current"),
@@ -67,16 +68,16 @@ func main() {
             ValidDatatypeLinks: []shared.AccountValidDataTypeLinks{
                 shared.AccountValidDataTypeLinks{
                     Links: []string{
-                        "suscipit",
+                        "Money",
                     },
-                    Property: syncforpayroll.String("molestiae"),
+                    Property: syncforpayroll.String("Cambridgeshire grey technology"),
                 },
             },
         },
         AllowSyncOnPushComplete: syncforpayroll.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: syncforpayroll.Int(791725),
+        TimeoutInMinutes: syncforpayroll.Int(86),
     })
     if err != nil {
         log.Fatal(err)
@@ -135,7 +136,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Accounts.Get(ctx, operations.GetAccountRequest{
-        AccountID: "EILBDVJVNUAGVKRQ",
+        AccountID: "7110701885",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -164,15 +165,15 @@ func main() {
 
 ## GetCreateModel
 
-﻿  The *Get create account model* endpoint returns the expected data for the request payload when creating an [account](https://docs.codat.io/sync-for-payroll-api#/schemas/Account) for a given company and integration.
+The *Get create account model* endpoint returns the expected data for the request payload when creating an [account](https://docs.codat.io/sync-for-payroll-api#/schemas/Account) for a given company and integration.
     
-    [Accounts](https://docs.codat.io/sync-for-payroll-api#/schemas/Account) are the categories a business uses to record accounting transactions.
+[Accounts](https://docs.codat.io/sync-for-payroll-api#/schemas/Account) are the categories a business uses to record accounting transactions.
     
-    **Integration-specific behaviour**
+**Integration-specific behaviour**
     
-    See the *response examples* for integration-specific indicative models.
+See the *response examples* for integration-specific indicative models.
     
-    Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=chartOfAccounts) for integrations that support creating an account.
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=chartOfAccounts) for integrations that support creating an account.
 
 
 ### Example Usage
@@ -258,7 +259,7 @@ func main() {
         OrderBy: syncforpayroll.String("-modifiedDate"),
         Page: syncforpayroll.Int(1),
         PageSize: syncforpayroll.Int(100),
-        Query: syncforpayroll.String("voluptatum"),
+        Query: syncforpayroll.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)

@@ -1,5 +1,6 @@
 # CodatSyncPayroll SDK
 
+
 ## Overview
 
 Sync for Payroll: The API for Sync for Payroll. 

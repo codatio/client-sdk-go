@@ -1,4 +1,5 @@
 # TrackingCategories
+(*TrackingCategories*)
 
 ## Overview
 
@@ -43,7 +44,7 @@ func main() {
     ctx := context.Background()
     res, err := s.TrackingCategories.Get(ctx, operations.GetTrackingCategoryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        TrackingCategoryID: "nostrum",
+        TrackingCategoryID: "Northeast Hatchback Kia",
     })
     if err != nil {
         log.Fatal(err)
@@ -104,7 +105,7 @@ func main() {
         OrderBy: syncforpayroll.String("-modifiedDate"),
         Page: syncforpayroll.Int(1),
         PageSize: syncforpayroll.Int(100),
-        Query: syncforpayroll.String("hic"),
+        Query: syncforpayroll.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)

@@ -1,4 +1,5 @@
 # Companies
+(*Companies*)
 
 ## Overview
 
@@ -202,7 +203,7 @@ func main() {
         OrderBy: syncforpayroll.String("-modifiedDate"),
         Page: syncforpayroll.Int(1),
         PageSize: syncforpayroll.Int(100),
-        Query: syncforpayroll.String("iusto"),
+        Query: syncforpayroll.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)

@@ -1,4 +1,5 @@
 # Journals
+(*Journals*)
 
 ## Overview
 
@@ -49,22 +50,22 @@ func main() {
         Journal: &shared.Journal{
             CreatedOn: syncforpayroll.String("2022-10-23T00:00:00.000Z"),
             HasChildren: syncforpayroll.Bool(false),
-            ID: syncforpayroll.String("9e9a3efa-77df-4b14-8d66-ae395efb9ba8"),
-            JournalCode: syncforpayroll.String("deleniti"),
+            ID: syncforpayroll.String("<ID>"),
+            JournalCode: syncforpayroll.String("Configuration Money"),
             Metadata: &shared.Metadata{
                 IsDeleted: syncforpayroll.Bool(false),
             },
             ModifiedDate: syncforpayroll.String("2022-10-23T00:00:00.000Z"),
-            Name: syncforpayroll.String("Sandy Huels"),
-            ParentID: syncforpayroll.String("omnis"),
+            Name: syncforpayroll.String("shred"),
+            ParentID: syncforpayroll.String("technology East"),
             SourceModifiedDate: syncforpayroll.String("2022-10-23T00:00:00.000Z"),
             Status: shared.JournalStatusUnknown.ToPointer(),
-            Type: syncforpayroll.String("nihil"),
+            Type: syncforpayroll.String("male"),
         },
         AllowSyncOnPushComplete: syncforpayroll.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: syncforpayroll.Int(301575),
+        TimeoutInMinutes: syncforpayroll.Int(855952),
     })
     if err != nil {
         log.Fatal(err)
@@ -124,7 +125,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Journals.Get(ctx, operations.GetJournalRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        JournalID: "distinctio",
+        JournalID: "Northeast Hatchback Kia",
     })
     if err != nil {
         log.Fatal(err)
@@ -247,7 +248,7 @@ func main() {
         OrderBy: syncforpayroll.String("-modifiedDate"),
         Page: syncforpayroll.Int(1),
         PageSize: syncforpayroll.Int(100),
-        Query: syncforpayroll.String("id"),
+        Query: syncforpayroll.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)

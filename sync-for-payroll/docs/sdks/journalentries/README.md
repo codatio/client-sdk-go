@@ -1,4 +1,5 @@
 # JournalEntries
+(*JournalEntries*)
 
 ## Overview
 
@@ -50,30 +51,30 @@ func main() {
     res, err := s.JournalEntries.Create(ctx, operations.CreateJournalEntryRequest{
         JournalEntry: &shared.JournalEntry{
             CreatedOn: syncforpayroll.String("2022-10-23T00:00:00.000Z"),
-            Description: syncforpayroll.String("temporibus"),
-            ID: syncforpayroll.String("151a05df-c2dd-4f7c-878c-a1ba928fc816"),
+            Description: syncforpayroll.String("Multi-tiered motivating standardization"),
+            ID: syncforpayroll.String("<ID>"),
             JournalLines: []shared.JournalLine{
                 shared.JournalLine{
                     AccountRef: &shared.AccountRef{
-                        ID: syncforpayroll.String("742cb739-2059-4293-96fe-a7596eb10faa"),
-                        Name: syncforpayroll.String("Ernest Ebert"),
+                        ID: syncforpayroll.String("<ID>"),
+                        Name: syncforpayroll.String("innovative blue"),
                     },
-                    Currency: syncforpayroll.String("nobis"),
-                    Description: syncforpayroll.String("enim"),
-                    NetAmount: types.MustNewDecimalFromString("6078.31"),
+                    Currency: syncforpayroll.String("Zimbabwe Dollar"),
+                    Description: syncforpayroll.String("Secured exuding throughput"),
+                    NetAmount: types.MustNewDecimalFromString("8915.1"),
                     Tracking: &shared.JournalLineTracking{
                         RecordRefs: []shared.RecordRef{
                             shared.RecordRef{
-                                DataType: syncforpayroll.String("invoice"),
-                                ID: syncforpayroll.String("5907aff1-a3a2-4fa9-8677-39251aa52c3f"),
+                                DataType: syncforpayroll.String("journalEntry"),
+                                ID: syncforpayroll.String("<ID>"),
                             },
                         },
                     },
                 },
             },
             JournalRef: &shared.JournalRef{
-                ID: "5ad019da-1ffe-478f-897b-0074f15471b5",
-                Name: syncforpayroll.String("Mrs. Leslie VonRueden"),
+                ID: "<ID>",
+                Name: syncforpayroll.String("orange Northwest"),
             },
             Metadata: &shared.Metadata{
                 IsDeleted: syncforpayroll.Bool(false),
@@ -82,13 +83,13 @@ func main() {
             PostedOn: syncforpayroll.String("2022-10-23T00:00:00.000Z"),
             RecordRef: &shared.JournalEntryRecordReference{
                 DataType: syncforpayroll.String("transfer"),
-                ID: syncforpayroll.String("488e1e91-e450-4ad2-abd4-4269802d502a"),
+                ID: syncforpayroll.String("<ID>"),
             },
             SourceModifiedDate: syncforpayroll.String("2022-10-23T00:00:00.000Z"),
             SupplementalData: &shared.JournalEntrySupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "tempora": map[string]interface{}{
-                        "facilis": "tempore",
+                    "cupiditate": map[string]interface{}{
+                        "assumenda": "volt",
                     },
                 },
             },
@@ -97,7 +98,7 @@ func main() {
         AllowSyncOnPushComplete: syncforpayroll.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: syncforpayroll.Int(962189),
+        TimeoutInMinutes: syncforpayroll.Int(656256),
     })
     if err != nil {
         log.Fatal(err)
@@ -181,8 +182,8 @@ func main() {
         AllowSyncOnPushComplete: syncforpayroll.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        JournalEntryID: "eum",
-        TimeoutInMinutes: syncforpayroll.Int(248753),
+        JournalEntryID: "Van complexity",
+        TimeoutInMinutes: syncforpayroll.Int(952479),
     })
     if err != nil {
         log.Fatal(err)
@@ -242,7 +243,7 @@ func main() {
     ctx := context.Background()
     res, err := s.JournalEntries.Get(ctx, operations.GetJournalEntryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        JournalEntryID: "eligendi",
+        JournalEntryID: "Northeast Hatchback Kia",
     })
     if err != nil {
         log.Fatal(err)
@@ -365,7 +366,7 @@ func main() {
         OrderBy: syncforpayroll.String("-modifiedDate"),
         Page: syncforpayroll.Int(1),
         PageSize: syncforpayroll.Int(100),
-        Query: syncforpayroll.String("sint"),
+        Query: syncforpayroll.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)

@@ -27,7 +27,7 @@ func main() {
             CurrentBalance: types.MustNewDecimalFromString("0"),
             Description: syncforpayroll.String("Invoices the business has issued but has not yet collected payment on."),
             FullyQualifiedCategory: syncforpayroll.String("Asset.Current"),
-            FullyQualifiedName: syncforpayroll.String("Fixed Asset"),
+            FullyQualifiedName: syncforpayroll.String("Cash On Hand"),
             ID: syncforpayroll.String("1b6266d1-1e44-46c5-8eb5-a8f98e03124e"),
             IsBankAccount: syncforpayroll.Bool(false),
             Metadata: &shared.AccountMetadata{
@@ -42,16 +42,16 @@ func main() {
             ValidDatatypeLinks: []shared.AccountValidDataTypeLinks{
                 shared.AccountValidDataTypeLinks{
                     Links: []string{
-                        "unde",
+                        "Money",
                     },
-                    Property: syncforpayroll.String("nulla"),
+                    Property: syncforpayroll.String("Cambridgeshire grey technology"),
                 },
             },
         },
         AllowSyncOnPushComplete: syncforpayroll.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: syncforpayroll.Int(544883),
+        TimeoutInMinutes: syncforpayroll.Int(86),
     })
     if err != nil {
         log.Fatal(err)
