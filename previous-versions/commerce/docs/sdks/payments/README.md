@@ -1,4 +1,5 @@
 # Payments
+(*Payments*)
 
 ## Overview
 
@@ -46,7 +47,7 @@ func main() {
     res, err := s.Payments.Get(ctx, operations.GetPaymentRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        PaymentID: "illum",
+        PaymentID: "Northeast Hatchback Kia",
     })
     if err != nil {
         log.Fatal(err)
@@ -107,7 +108,7 @@ func main() {
     res, err := s.Payments.GetMethod(ctx, operations.GetPaymentMethodRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        PaymentMethodID: "vel",
+        PaymentMethodID: "Markets",
     })
     if err != nil {
         log.Fatal(err)
@@ -169,7 +170,7 @@ func main() {
         OrderBy: commerce.String("-modifiedDate"),
         Page: commerce.Int(1),
         PageSize: commerce.Int(100),
-        Query: commerce.String("error"),
+        Query: commerce.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)
@@ -231,7 +232,7 @@ func main() {
         OrderBy: commerce.String("-modifiedDate"),
         Page: commerce.Int(1),
         PageSize: commerce.Int(100),
-        Query: commerce.String("deserunt"),
+        Query: commerce.String("limply"),
     })
     if err != nil {
         log.Fatal(err)
