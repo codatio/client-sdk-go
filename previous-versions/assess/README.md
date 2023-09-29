@@ -38,7 +38,7 @@ func main() {
         OrderBy: assess.String("-modifiedDate"),
         Page: assess.Int(1),
         PageSize: assess.Int(100),
-        Query: assess.String("provident"),
+        Query: assess.String("Savings"),
     })
     if err != nil {
         log.Fatal(err)

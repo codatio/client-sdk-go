@@ -42,7 +42,7 @@ func main() {
         OrderBy: assess.String("-modifiedDate"),
         Page: assess.Int(1),
         PageSize: assess.Int(100),
-        Query: assess.String("distinctio"),
+        Query: assess.String("Savings"),
     })
     if err != nil {
         log.Fatal(err)
@@ -149,7 +149,7 @@ func main() {
     res, err := s.DataIntegrity.Summary(ctx, operations.GetDataIntegritySummariesRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         DataType: shared.DataIntegrityDataTypeBankingAccounts,
-        Query: assess.String("quibusdam"),
+        Query: assess.String("Milwaukee"),
     })
     if err != nil {
         log.Fatal(err)

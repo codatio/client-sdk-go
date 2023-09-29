@@ -55,7 +55,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Reports.GenerateLoanSummary(ctx, operations.GenerateLoanSummaryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        SourceType: operations.GenerateLoanSummarySourceTypeCommerce,
+        SourceType: operations.GenerateLoanSummarySourceTypeAccounting,
     })
     if err != nil {
         log.Fatal(err)
@@ -113,7 +113,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Reports.GenerateLoanTransactions(ctx, operations.GenerateLoanTransactionsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        SourceType: operations.GenerateLoanTransactionsSourceTypeCommerce,
+        SourceType: operations.GenerateLoanTransactionsSourceTypeAccounting,
     })
     if err != nil {
         log.Fatal(err)
@@ -168,7 +168,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Reports.GetAccountsForEnhancedBalanceSheet(ctx, operations.GetAccountsForEnhancedBalanceSheetRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        NumberOfPeriods: assess.Int64(437587),
+        NumberOfPeriods: assess.Int64(320225),
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -224,7 +224,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Reports.GetAccountsForEnhancedProfitAndLoss(ctx, operations.GetAccountsForEnhancedProfitAndLossRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        NumberOfPeriods: assess.Int64(297534),
+        NumberOfPeriods: assess.Int64(909701),
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -280,9 +280,9 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         IncludeDisplayNames: assess.Bool(false),
-        NumberOfPeriods: 891773,
-        PeriodLength: 56713,
-        PeriodUnit: shared.PeriodUnitYear,
+        NumberOfPeriods: 474636,
+        PeriodLength: 781048,
+        PeriodUnit: shared.PeriodUnitDay,
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -338,9 +338,9 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         IncludeDisplayNames: assess.Bool(false),
-        NumberOfPeriods: 272656,
-        PeriodLength: 383441,
-        PeriodUnit: shared.PeriodUnitWeek,
+        NumberOfPeriods: 463554,
+        PeriodLength: 892968,
+        PeriodUnit: shared.PeriodUnitDay,
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -396,9 +396,9 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         IncludeDisplayNames: assess.Bool(false),
-        NumberOfPeriods: 791725,
-        PeriodLength: 812169,
-        PeriodUnit: shared.PeriodUnitMonth,
+        NumberOfPeriods: 661381,
+        PeriodLength: 875123,
+        PeriodUnit: shared.PeriodUnitYear,
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -454,9 +454,9 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         IncludeDisplayNames: assess.Bool(false),
-        NumberOfPeriods: 479977,
-        PeriodLength: 568045,
-        PeriodUnit: shared.PeriodUnitWeek,
+        NumberOfPeriods: 806705,
+        PeriodLength: 498153,
+        PeriodUnit: shared.PeriodUnitDay,
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -512,9 +512,9 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         IncludeDisplayNames: assess.Bool(false),
-        NumberOfPeriods: 925597,
-        PeriodLength: 836079,
-        PeriodUnit: shared.PeriodUnitDay,
+        NumberOfPeriods: 58448,
+        PeriodLength: 864392,
+        PeriodUnit: shared.PeriodUnitWeek,
         ReportDate: "29-09-2020",
     })
     if err != nil {
@@ -574,7 +574,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         Page: assess.Int(1),
         PageSize: assess.Int(100),
-        Query: assess.String("quis"),
+        Query: assess.String("joule"),
     })
     if err != nil {
         log.Fatal(err)
@@ -629,7 +629,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         Page: assess.Int(1),
         PageSize: assess.Int(100),
-        Query: assess.String("veritatis"),
+        Query: assess.String("bandwidth Southwest silver"),
     })
     if err != nil {
         log.Fatal(err)
@@ -687,7 +687,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Reports.GetLoanSummary(ctx, operations.GetLoanSummaryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        SourceType: operations.GetLoanSummarySourceTypeCommerce,
+        SourceType: operations.GetLoanSummarySourceTypeBanking,
     })
     if err != nil {
         log.Fatal(err)
@@ -798,7 +798,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Reports.ListLoanTransactions(ctx, operations.ListLoanTransactionsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        SourceType: operations.ListLoanTransactionsSourceTypeBanking,
+        SourceType: operations.ListLoanTransactionsSourceTypeCommerce,
     })
     if err != nil {
         log.Fatal(err)
