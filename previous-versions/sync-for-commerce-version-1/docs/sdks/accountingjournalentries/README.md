@@ -1,4 +1,5 @@
 # AccountingJournalEntries
+(*AccountingJournalEntries*)
 
 ## Overview
 
@@ -46,30 +47,30 @@ func main() {
     res, err := s.AccountingJournalEntries.CreateAccountingJournalEntry(ctx, operations.CreateAccountingJournalEntryRequest{
         AccountingJournalEntry: &shared.AccountingJournalEntry{
             CreatedOn: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
-            Description: syncforcommerceversion1.String("nam"),
-            ID: syncforcommerceversion1.String("5a341814-3010-4421-813d-5208ece7e253"),
+            Description: syncforcommerceversion1.String("Upgradable 24/7 parallelism"),
+            ID: syncforcommerceversion1.String("<ID>"),
             JournalLines: []shared.JournalLine{
                 shared.JournalLine{
                     AccountRef: &shared.AccountRef{
-                        ID: syncforcommerceversion1.String("b668451c-6c6e-4205-a16d-eab3fec9578a"),
-                        Name: syncforcommerceversion1.String("Marjorie Hickle"),
+                        ID: syncforcommerceversion1.String("<ID>"),
+                        Name: syncforcommerceversion1.String("Northwest Minivan"),
                     },
-                    Currency: syncforcommerceversion1.String("aspernatur"),
-                    Description: syncforcommerceversion1.String("ducimus"),
-                    NetAmount: types.MustNewDecimalFromString("2005.16"),
+                    Currency: syncforcommerceversion1.String("Denar"),
+                    Description: syncforcommerceversion1.String("Cross-platform motivating migration"),
+                    NetAmount: types.MustNewDecimalFromString("9996.19"),
                     Tracking: &shared.JournalLineTracking{
                         RecordRefs: []shared.RecordRef{
                             shared.RecordRef{
-                                DataType: syncforcommerceversion1.String("accountTransaction"),
-                                ID: syncforcommerceversion1.String("8418d162-309f-4b09-a992-1aefb9f58c4d"),
+                                DataType: syncforcommerceversion1.String("invoice"),
+                                ID: syncforcommerceversion1.String("<ID>"),
                             },
                         },
                     },
                 },
             },
             JournalRef: &shared.AccountingJournalEntryJournalReference{
-                ID: "86e68e4b-e056-4013-b59d-a757a59ecfef",
-                Name: syncforcommerceversion1.String("Loretta Tremblay DDS"),
+                ID: "<ID>",
+                Name: syncforcommerceversion1.String("facilitate"),
             },
             Metadata: &shared.Metadata{
                 IsDeleted: syncforcommerceversion1.Bool(false),
@@ -77,14 +78,14 @@ func main() {
             ModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
             PostedOn: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
             RecordRef: &shared.AccountingJournalEntryRecordReference{
-                DataType: syncforcommerceversion1.String("journalEntry"),
-                ID: syncforcommerceversion1.String("383c2beb-4773-473c-8d72-f64d1db1f2c4"),
+                DataType: syncforcommerceversion1.String("accountTransaction"),
+                ID: syncforcommerceversion1.String("<ID>"),
             },
             SourceModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "illo": map[string]interface{}{
-                        "accusantium": "vel",
+                    "eum": map[string]interface{}{
+                        "labore": "Corporate",
                     },
                 },
             },
@@ -92,7 +93,7 @@ func main() {
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: syncforcommerceversion1.Int(107617),
+        TimeoutInMinutes: syncforcommerceversion1.Int(174830),
     })
     if err != nil {
         log.Fatal(err)

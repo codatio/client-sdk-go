@@ -1,4 +1,5 @@
 # CompanyManagement
+(*CompanyManagement*)
 
 ## Overview
 
@@ -90,7 +91,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.CompanyManagement.CreateConnection(ctx, operations.CreateConnectionRequest{
-        RequestBody: syncforcommerceversion1.String("necessitatibus"),
+        RequestBody: syncforcommerceversion1.String("blue"),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -146,7 +147,7 @@ func main() {
         OrderBy: syncforcommerceversion1.String("-modifiedDate"),
         Page: syncforcommerceversion1.Int(1),
         PageSize: syncforcommerceversion1.Int(100),
-        Query: syncforcommerceversion1.String("corporis"),
+        Query: syncforcommerceversion1.String("New"),
     })
     if err != nil {
         log.Fatal(err)
@@ -202,7 +203,7 @@ func main() {
         OrderBy: syncforcommerceversion1.String("-modifiedDate"),
         Page: syncforcommerceversion1.Int(1),
         PageSize: syncforcommerceversion1.Int(100),
-        Query: syncforcommerceversion1.String("qui"),
+        Query: syncforcommerceversion1.String("Factors"),
     })
     if err != nil {
         log.Fatal(err)
@@ -255,7 +256,7 @@ func main() {
     ctx := context.Background()
     res, err := s.CompanyManagement.UpdateConnection(ctx, operations.UpdateConnectionRequest{
         UpdateConnection: &shared.UpdateConnection{
-            Status: shared.DataConnectionStatusUnlinked.ToPointer(),
+            Status: shared.DataConnectionStatusDeauthorized.ToPointer(),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",

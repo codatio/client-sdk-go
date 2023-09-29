@@ -1,4 +1,5 @@
 # AccountingBankAccounts
+(*AccountingBankAccounts*)
 
 ## Overview
 
@@ -42,7 +43,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.AccountingBankAccounts.GetAccountingBankAccount(ctx, operations.GetAccountingBankAccountRequest{
-        AccountID: "iusto",
+        AccountID: "optimal Buckinghamshire",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -106,7 +107,7 @@ func main() {
         OrderBy: syncforcommerceversion1.String("-modifiedDate"),
         Page: syncforcommerceversion1.Int(1),
         PageSize: syncforcommerceversion1.Int(100),
-        Query: syncforcommerceversion1.String("excepturi"),
+        Query: syncforcommerceversion1.String("crushing lumen"),
     })
     if err != nil {
         log.Fatal(err)

@@ -1,4 +1,5 @@
 # PushData
+(*PushData*)
 
 ## Overview
 
@@ -36,7 +37,7 @@ func main() {
     ctx := context.Background()
     res, err := s.PushData.GetOperation(ctx, operations.GetPushOperationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        PushOperationKey: "5c537c64-54ef-4b0b-b489-6c3ca5acfbe2",
+        PushOperationKey: "59acd79e-29d3-4138-91d3-91d4641bf7ed",
     })
     if err != nil {
         log.Fatal(err)
@@ -92,7 +93,7 @@ func main() {
         OrderBy: syncforcommerceversion1.String("-modifiedDate"),
         Page: syncforcommerceversion1.Int(1),
         PageSize: syncforcommerceversion1.Int(100),
-        Query: syncforcommerceversion1.String("repellat"),
+        Query: syncforcommerceversion1.String("Synchronised"),
     })
     if err != nil {
         log.Fatal(err)

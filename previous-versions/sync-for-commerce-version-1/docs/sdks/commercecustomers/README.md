@@ -1,4 +1,5 @@
 # CommerceCustomers
+(*CommerceCustomers*)
 
 ## Overview
 
@@ -44,7 +45,7 @@ func main() {
     res, err := s.CommerceCustomers.GetCommerceCustomer(ctx, operations.GetCommerceCustomerRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        CustomerID: "beatae",
+        CustomerID: "contingency",
     })
     if err != nil {
         log.Fatal(err)
@@ -106,7 +107,7 @@ func main() {
         OrderBy: syncforcommerceversion1.String("-modifiedDate"),
         Page: syncforcommerceversion1.Int(1),
         PageSize: syncforcommerceversion1.Int(100),
-        Query: syncforcommerceversion1.String("unde"),
+        Query: syncforcommerceversion1.String("Maldives Tricycle pink"),
     })
     if err != nil {
         log.Fatal(err)

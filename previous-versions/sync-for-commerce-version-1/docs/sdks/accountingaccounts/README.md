@@ -1,4 +1,5 @@
 # AccountingAccounts
+(*AccountingAccounts*)
 
 ## Overview
 
@@ -47,7 +48,7 @@ func main() {
     ctx := context.Background()
     res, err := s.AccountingAccounts.CreateAccountingAccount(ctx, operations.CreateAccountingAccountRequest{
         AccountingAccount: &shared.AccountingAccount{
-            Currency: syncforcommerceversion1.String("EUR"),
+            Currency: syncforcommerceversion1.String("GBP"),
             CurrentBalance: types.MustNewDecimalFromString("0"),
             Description: syncforcommerceversion1.String("Invoices the business has issued but has not yet collected payment on."),
             FullyQualifiedCategory: syncforcommerceversion1.String("Asset.Current"),
@@ -66,15 +67,15 @@ func main() {
             ValidDatatypeLinks: []shared.AccountingAccountValidDataTypeLinks{
                 shared.AccountingAccountValidDataTypeLinks{
                     Links: []string{
-                        "suscipit",
+                        "Gasoline",
                     },
-                    Property: syncforcommerceversion1.String("molestiae"),
+                    Property: syncforcommerceversion1.String("orchid"),
                 },
             },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: syncforcommerceversion1.Int(791725),
+        TimeoutInMinutes: syncforcommerceversion1.Int(977465),
     })
     if err != nil {
         log.Fatal(err)
@@ -133,7 +134,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.AccountingAccounts.GetAccountingAccount(ctx, operations.GetAccountingAccountRequest{
-        AccountID: "placeat",
+        AccountID: "Officer steer whoa",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -194,7 +195,7 @@ func main() {
         OrderBy: syncforcommerceversion1.String("-modifiedDate"),
         Page: syncforcommerceversion1.Int(1),
         PageSize: syncforcommerceversion1.Int(100),
-        Query: syncforcommerceversion1.String("voluptatum"),
+        Query: syncforcommerceversion1.String("Bicycle stroll Savings"),
     })
     if err != nil {
         log.Fatal(err)

@@ -23,11 +23,11 @@ func main() {
     ctx := context.Background()
     res, err := s.AccountingAccounts.CreateAccountingAccount(ctx, operations.CreateAccountingAccountRequest{
         AccountingAccount: &shared.AccountingAccount{
-            Currency: syncforcommerceversion1.String("USD"),
+            Currency: syncforcommerceversion1.String("GBP"),
             CurrentBalance: types.MustNewDecimalFromString("0"),
             Description: syncforcommerceversion1.String("Invoices the business has issued but has not yet collected payment on."),
             FullyQualifiedCategory: syncforcommerceversion1.String("Asset.Current"),
-            FullyQualifiedName: syncforcommerceversion1.String("Fixed Asset"),
+            FullyQualifiedName: syncforcommerceversion1.String("Cash On Hand"),
             ID: syncforcommerceversion1.String("1b6266d1-1e44-46c5-8eb5-a8f98e03124e"),
             IsBankAccount: syncforcommerceversion1.Bool(false),
             Metadata: &shared.AccountingAccountMetadata{
@@ -42,15 +42,15 @@ func main() {
             ValidDatatypeLinks: []shared.AccountingAccountValidDataTypeLinks{
                 shared.AccountingAccountValidDataTypeLinks{
                     Links: []string{
-                        "unde",
+                        "Gasoline",
                     },
-                    Property: syncforcommerceversion1.String("nulla"),
+                    Property: syncforcommerceversion1.String("orchid"),
                 },
             },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: syncforcommerceversion1.Int(544883),
+        TimeoutInMinutes: syncforcommerceversion1.Int(977465),
     })
     if err != nil {
         log.Fatal(err)

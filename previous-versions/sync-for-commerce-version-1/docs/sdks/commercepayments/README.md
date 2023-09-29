@@ -1,4 +1,5 @@
 # CommercePayments
+(*CommercePayments*)
 
 ## Overview
 
@@ -46,7 +47,7 @@ func main() {
     res, err := s.CommercePayments.GetCommercePayment(ctx, operations.GetCommercePaymentRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        PaymentID: "fugit",
+        PaymentID: "Chief Music",
     })
     if err != nil {
         log.Fatal(err)
@@ -107,7 +108,7 @@ func main() {
     res, err := s.CommercePayments.GetMethod(ctx, operations.GetCommercePaymentMethodRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        PaymentMethodID: "numquam",
+        PaymentMethodID: "Markets",
     })
     if err != nil {
         log.Fatal(err)
@@ -169,7 +170,7 @@ func main() {
         OrderBy: syncforcommerceversion1.String("-modifiedDate"),
         Page: syncforcommerceversion1.Int(1),
         PageSize: syncforcommerceversion1.Int(100),
-        Query: syncforcommerceversion1.String("numquam"),
+        Query: syncforcommerceversion1.String("Rustic Metal"),
     })
     if err != nil {
         log.Fatal(err)
@@ -231,7 +232,7 @@ func main() {
         OrderBy: syncforcommerceversion1.String("-modifiedDate"),
         Page: syncforcommerceversion1.Int(1),
         PageSize: syncforcommerceversion1.Int(100),
-        Query: syncforcommerceversion1.String("nesciunt"),
+        Query: syncforcommerceversion1.String("limply"),
     })
     if err != nil {
         log.Fatal(err)

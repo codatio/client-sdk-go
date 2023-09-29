@@ -1,4 +1,5 @@
 # Integrations
+(*Integrations*)
 
 ## Overview
 
@@ -90,7 +91,7 @@ func main() {
         OrderBy: syncforcommerceversion1.String("-modifiedDate"),
         Page: syncforcommerceversion1.Int(1),
         PageSize: syncforcommerceversion1.Int(100),
-        Query: syncforcommerceversion1.String("cupiditate"),
+        Query: syncforcommerceversion1.String("Hybrid"),
     })
     if err != nil {
         log.Fatal(err)

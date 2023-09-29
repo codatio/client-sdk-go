@@ -1,4 +1,5 @@
 # AccountingCustomers
+(*AccountingCustomers*)
 
 ## Overview
 
@@ -46,63 +47,63 @@ func main() {
         AccountingCustomer: &shared.AccountingCustomer{
             Addresses: []shared.Items1{
                 shared.Items1{
-                    City: syncforcommerceversion1.String("East Mikaylacester"),
-                    Country: syncforcommerceversion1.String("Hungary"),
-                    Line1: syncforcommerceversion1.String("quam"),
-                    Line2: syncforcommerceversion1.String("molestias"),
-                    PostalCode: syncforcommerceversion1.String("12114-1379"),
-                    Region: syncforcommerceversion1.String("voluptatem"),
-                    Type: shared.AccountingAddressTypeDelivery,
+                    City: syncforcommerceversion1.String("Binghamton"),
+                    Country: syncforcommerceversion1.String("Saint Pierre and Miquelon"),
+                    Line1: syncforcommerceversion1.String("Southeast"),
+                    Line2: syncforcommerceversion1.String("Adventure"),
+                    PostalCode: syncforcommerceversion1.String("03600"),
+                    Region: syncforcommerceversion1.String("gray Bespoke Bahamian"),
+                    Type: shared.AccountingAddressTypeUnknown,
                 },
             },
-            ContactName: syncforcommerceversion1.String("soluta"),
+            ContactName: syncforcommerceversion1.String("Southeast GB Product"),
             Contacts: []shared.Contact{
                 shared.Contact{
                     Address: &shared.Items1{
-                        City: syncforcommerceversion1.String("Boscoside"),
-                        Country: syncforcommerceversion1.String("Cuba"),
-                        Line1: syncforcommerceversion1.String("veritatis"),
-                        Line2: syncforcommerceversion1.String("nobis"),
-                        PostalCode: syncforcommerceversion1.String("75092-2226"),
-                        Region: syncforcommerceversion1.String("architecto"),
-                        Type: shared.AccountingAddressTypeUnknown,
+                        City: syncforcommerceversion1.String("South Jackyshire"),
+                        Country: syncforcommerceversion1.String("Comoros"),
+                        Line1: syncforcommerceversion1.String("Coordinator"),
+                        Line2: syncforcommerceversion1.String("Lead"),
+                        PostalCode: syncforcommerceversion1.String("69139-7324"),
+                        Region: syncforcommerceversion1.String("considering"),
+                        Type: shared.AccountingAddressTypeDelivery,
                     },
-                    Email: syncforcommerceversion1.String("Kayleigh66@gmail.com"),
+                    Email: syncforcommerceversion1.String("Lonzo_Von@gmail.com"),
                     ModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
-                    Name: syncforcommerceversion1.String("Domingo Grady"),
+                    Name: syncforcommerceversion1.String("North Guarani"),
                     Phone: []shared.PhoneNumbersitems{
                         shared.PhoneNumbersitems{
-                            Number: "+44 25691 154789",
-                            Type: shared.PhoneNumberTypePrimary,
+                            Number: "01224 658 999",
+                            Type: shared.PhoneNumberTypeLandline,
                         },
                     },
-                    Status: shared.CustomerStatusActive,
+                    Status: shared.CustomerStatusUnknown,
                 },
             },
-            CustomerName: syncforcommerceversion1.String("odio"),
+            CustomerName: syncforcommerceversion1.String("Wilmington Soft"),
             DefaultCurrency: syncforcommerceversion1.String("USD"),
-            EmailAddress: syncforcommerceversion1.String("voluptatibus"),
-            ID: syncforcommerceversion1.String("ce953f73-ef7f-4bc7-abd7-4dd39c0f5d2c"),
+            EmailAddress: syncforcommerceversion1.String("Ronny.Terry91@yahoo.com"),
+            ID: syncforcommerceversion1.String("<ID>"),
             Metadata: &shared.Metadata{
                 IsDeleted: syncforcommerceversion1.Bool(false),
             },
             ModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
-            Phone: syncforcommerceversion1.String("574.262.3414 x82145"),
-            RegistrationNumber: syncforcommerceversion1.String("dicta"),
+            Phone: syncforcommerceversion1.String("(577) 959-8272"),
+            RegistrationNumber: syncforcommerceversion1.String("Plastic"),
             SourceModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
             Status: shared.CustomerStatusArchived,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "quasi": map[string]interface{}{
-                        "ex": "nulla",
+                    "distinctio": map[string]interface{}{
+                        "molestiae": "programming",
                     },
                 },
             },
-            TaxNumber: syncforcommerceversion1.String("excepturi"),
+            TaxNumber: syncforcommerceversion1.String("Rubber Androgyne Bronze"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: syncforcommerceversion1.Int(972920),
+        TimeoutInMinutes: syncforcommerceversion1.Int(359161),
     })
     if err != nil {
         log.Fatal(err)

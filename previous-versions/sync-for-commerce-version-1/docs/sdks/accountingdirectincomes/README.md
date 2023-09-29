@@ -1,4 +1,5 @@
 # AccountingDirectIncomes
+(*AccountingDirectIncomes*)
 
 ## Overview
 
@@ -47,87 +48,87 @@ func main() {
         AccountingDirectIncome: &shared.AccountingDirectIncome{
             ContactRef: &shared.AccountingDirectIncomeContactRef{
                 DataType: shared.DataTypeInvoices.ToPointer(),
-                ID: "5fce6c55-6146-4c3e-a50f-b008c42e141a",
+                ID: "<ID>",
             },
-            Currency: "EUR",
-            CurrencyRate: types.MustNewDecimalFromString("8104.24"),
-            ID: syncforcommerceversion1.String("366c8dd6-b144-4290-b474-778a7bd466d2"),
+            Currency: "GBP",
+            CurrencyRate: types.MustNewDecimalFromString("6548.38"),
+            ID: syncforcommerceversion1.String("<ID>"),
             IssueDate: "2022-10-23T00:00:00.000Z",
             LineItems: []shared.DirectIncomeLineItem{
                 shared.DirectIncomeLineItem{
                     AccountRef: &shared.AccountRef{
-                        ID: syncforcommerceversion1.String("c10ab3cd-ca42-4519-84e5-23c7e0bc7178"),
-                        Name: syncforcommerceversion1.String("Tom Kuhn"),
+                        ID: syncforcommerceversion1.String("<ID>"),
+                        Name: syncforcommerceversion1.String("Meitnerium watt Assistant"),
                     },
-                    Description: syncforcommerceversion1.String("sapiente"),
-                    DiscountAmount: types.MustNewDecimalFromString("1741.12"),
-                    DiscountPercentage: types.MustNewDecimalFromString("6455.7"),
+                    Description: syncforcommerceversion1.String("Organized directional moratorium"),
+                    DiscountAmount: types.MustNewDecimalFromString("6259.31"),
+                    DiscountPercentage: types.MustNewDecimalFromString("3251.14"),
                     ItemRef: &shared.DirectIncomeLineItemItemReference{
-                        ID: "70c68828-2aa4-4825-a2f2-22e9817ee17c",
-                        Name: syncforcommerceversion1.String("Dr. Ignacio Jacobi"),
+                        ID: "<ID>",
+                        Name: syncforcommerceversion1.String("Supervisor virtual sadly"),
                     },
-                    Quantity: types.MustNewDecimalFromString("6900.25"),
-                    SubTotal: types.MustNewDecimalFromString("4732.21"),
-                    TaxAmount: types.MustNewDecimalFromString("6996.22"),
+                    Quantity: types.MustNewDecimalFromString("7605.88"),
+                    SubTotal: types.MustNewDecimalFromString("2695.32"),
+                    TaxAmount: types.MustNewDecimalFromString("3396.83"),
                     TaxRateRef: &shared.DirectIncomeLineItemTaxRateReference{
-                        EffectiveTaxRate: types.MustNewDecimalFromString("5801.97"),
-                        ID: syncforcommerceversion1.String("5bc0ab3c-20c4-4f37-89fd-871f99dd2efd"),
-                        Name: syncforcommerceversion1.String("Marilyn Botsford"),
+                        EffectiveTaxRate: types.MustNewDecimalFromString("2606.73"),
+                        ID: syncforcommerceversion1.String("<ID>"),
+                        Name: syncforcommerceversion1.String("Pensacola Som Northwest"),
                     },
-                    TotalAmount: types.MustNewDecimalFromString("3984.34"),
+                    TotalAmount: types.MustNewDecimalFromString("6880.22"),
                     TrackingCategoryRefs: []shared.DirectIncomeLineItemTrackingCategoryRefs{
                         shared.DirectIncomeLineItemTrackingCategoryRefs{
-                            ID: "f1e674bd-b04f-4157-9608-2d68ea19f1d1",
-                            Name: syncforcommerceversion1.String("Mrs. Cynthia Hansen"),
+                            ID: "<ID>",
+                            Name: syncforcommerceversion1.String("Pickup"),
                         },
                     },
-                    UnitAmount: types.MustNewDecimalFromString("6144.65"),
+                    UnitAmount: types.MustNewDecimalFromString("8819.46"),
                 },
             },
             Metadata: &shared.Metadata{
                 IsDeleted: syncforcommerceversion1.Bool(false),
             },
             ModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
-            Note: syncforcommerceversion1.String("accusantium"),
+            Note: syncforcommerceversion1.String("magni"),
             PaymentAllocations: []shared.PaymentAllocationsitems{
                 shared.PaymentAllocationsitems{
                     Allocation: shared.ItemsAllocation{
                         AllocatedOnDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
-                        Currency: syncforcommerceversion1.String("GBP"),
-                        CurrencyRate: types.MustNewDecimalFromString("5130.75"),
-                        TotalAmount: types.MustNewDecimalFromString("4287.96"),
+                        Currency: syncforcommerceversion1.String("USD"),
+                        CurrencyRate: types.MustNewDecimalFromString("2449.75"),
+                        TotalAmount: types.MustNewDecimalFromString("6540.35"),
                     },
                     Payment: shared.PaymentAllocationPayment{
                         AccountRef: &shared.AccountRef{
-                            ID: syncforcommerceversion1.String("a1840394-c260-471f-93f5-f0642dac7af5"),
-                            Name: syncforcommerceversion1.String("Darlene Sawayn"),
+                            ID: syncforcommerceversion1.String("<ID>"),
+                            Name: syncforcommerceversion1.String("Officer mobile Infrastructure"),
                         },
-                        Currency: syncforcommerceversion1.String("GBP"),
-                        CurrencyRate: types.MustNewDecimalFromString("2414.18"),
-                        ID: syncforcommerceversion1.String("aa63aae8-d678-464d-bb67-5fd5e60b375e"),
-                        Note: syncforcommerceversion1.String("facere"),
+                        Currency: syncforcommerceversion1.String("EUR"),
+                        CurrencyRate: types.MustNewDecimalFromString("4022.79"),
+                        ID: syncforcommerceversion1.String("<ID>"),
+                        Note: syncforcommerceversion1.String("Tools Dynamic Industrial"),
                         PaidOnDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
-                        Reference: syncforcommerceversion1.String("doloribus"),
-                        TotalAmount: types.MustNewDecimalFromString("3817.6"),
+                        Reference: syncforcommerceversion1.String("parallelism"),
+                        TotalAmount: types.MustNewDecimalFromString("9002.17"),
                     },
                 },
             },
-            Reference: syncforcommerceversion1.String("reiciendis"),
+            Reference: syncforcommerceversion1.String("Man Cotton virtual"),
             SourceModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
-            SubTotal: types.MustNewDecimalFromString("9049.49"),
+            SubTotal: types.MustNewDecimalFromString("4300.87"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "necessitatibus": map[string]interface{}{
-                        "dolore": "sunt",
+                    "eos": map[string]interface{}{
+                        "facere": "TLS",
                     },
                 },
             },
-            TaxAmount: types.MustNewDecimalFromString("9920.12"),
-            TotalAmount: types.MustNewDecimalFromString("2415.45"),
+            TaxAmount: types.MustNewDecimalFromString("356.06"),
+            TotalAmount: types.MustNewDecimalFromString("9132.9"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: syncforcommerceversion1.Int(249420),
+        TimeoutInMinutes: syncforcommerceversion1.Int(156594),
     })
     if err != nil {
         log.Fatal(err)

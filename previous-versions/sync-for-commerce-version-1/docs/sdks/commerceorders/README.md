@@ -1,4 +1,5 @@
 # CommerceOrders
+(*CommerceOrders*)
 
 ## Overview
 
@@ -44,7 +45,7 @@ func main() {
     res, err := s.CommerceOrders.GetCommerceOrder(ctx, operations.GetCommerceOrderRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        OrderID: "delectus",
+        OrderID: "Borders outside",
     })
     if err != nil {
         log.Fatal(err)
@@ -106,7 +107,7 @@ func main() {
         OrderBy: syncforcommerceversion1.String("-modifiedDate"),
         Page: syncforcommerceversion1.Int(1),
         PageSize: syncforcommerceversion1.Int(100),
-        Query: syncforcommerceversion1.String("cupiditate"),
+        Query: syncforcommerceversion1.String("Accounts Orchestrator"),
     })
     if err != nil {
         log.Fatal(err)

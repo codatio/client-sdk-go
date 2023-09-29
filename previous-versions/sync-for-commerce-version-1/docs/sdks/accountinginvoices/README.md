@@ -1,4 +1,5 @@
 # AccountingInvoices
+(*AccountingInvoices*)
 
 ## Overview
 
@@ -45,132 +46,132 @@ func main() {
     ctx := context.Background()
     res, err := s.AccountingInvoices.CreateAccountingInvoice(ctx, operations.CreateAccountingInvoiceRequest{
         AccountingInvoice: &shared.AccountingInvoice{
-            AdditionalTaxAmount: types.MustNewDecimalFromString("2282.63"),
-            AdditionalTaxPercentage: types.MustNewDecimalFromString("1059.06"),
-            AmountDue: types.MustNewDecimalFromString("4895.09"),
+            AdditionalTaxAmount: types.MustNewDecimalFromString("9907.57"),
+            AdditionalTaxPercentage: types.MustNewDecimalFromString("9015.63"),
+            AmountDue: types.MustNewDecimalFromString("195.45"),
             Currency: syncforcommerceversion1.String("EUR"),
-            CurrencyRate: types.MustNewDecimalFromString("8915.23"),
+            CurrencyRate: types.MustNewDecimalFromString("1021.57"),
             CustomerRef: &shared.AccountingCustomerRef{
-                CompanyName: syncforcommerceversion1.String("consectetur"),
-                ID: "5b60eb1e-a426-4555-ba3c-28744ed53b88",
+                CompanyName: syncforcommerceversion1.String("Runte Inc"),
+                ID: "<ID>",
             },
-            DiscountPercentage: types.MustNewDecimalFromString("9425.84"),
+            DiscountPercentage: types.MustNewDecimalFromString("7432.38"),
             DueDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
-            ID: syncforcommerceversion1.String("a8d8f5c0-b2f2-4fb7-b194-a276b26916fe"),
-            InvoiceNumber: syncforcommerceversion1.String("illo"),
+            ID: syncforcommerceversion1.String("<ID>"),
+            InvoiceNumber: syncforcommerceversion1.String("Manors"),
             IssueDate: "2022-10-23T00:00:00.000Z",
             LineItems: []shared.InvoiceLineItem{
                 shared.InvoiceLineItem{
                     AccountRef: &shared.AccountRef{
-                        ID: syncforcommerceversion1.String("08f4294e-3698-4f44-bf60-3e8b445e80ca"),
-                        Name: syncforcommerceversion1.String("Lorraine Walsh"),
+                        ID: syncforcommerceversion1.String("<ID>"),
+                        Name: syncforcommerceversion1.String("as"),
                     },
-                    Description: syncforcommerceversion1.String("magni"),
-                    DiscountAmount: types.MustNewDecimalFromString("486.9"),
-                    DiscountPercentage: types.MustNewDecimalFromString("9014.83"),
+                    Description: syncforcommerceversion1.String("Visionary discrete task-force"),
+                    DiscountAmount: types.MustNewDecimalFromString("1010.92"),
+                    DiscountPercentage: types.MustNewDecimalFromString("6455.29"),
                     IsDirectIncome: syncforcommerceversion1.Bool(false),
                     ItemRef: &shared.ItemRef{
-                        ID: "457e1858-b6a8-49fb-a3a5-aa8e4824d0ab",
-                        Name: syncforcommerceversion1.String("Barbara Koelpin IV"),
+                        ID: "<ID>",
+                        Name: syncforcommerceversion1.String("Shoes Tennessee"),
                     },
-                    Quantity: types.MustNewDecimalFromString("5580.65"),
-                    SubTotal: types.MustNewDecimalFromString("9221.12"),
-                    TaxAmount: types.MustNewDecimalFromString("3611.51"),
+                    Quantity: types.MustNewDecimalFromString("8154.23"),
+                    SubTotal: types.MustNewDecimalFromString("7362.43"),
+                    TaxAmount: types.MustNewDecimalFromString("6235.41"),
                     TaxRateRef: &shared.TaxRateRef{
-                        EffectiveTaxRate: types.MustNewDecimalFromString("894.94"),
-                        ID: syncforcommerceversion1.String("862065e9-04f3-4b11-94b8-abf603a79f9d"),
-                        Name: syncforcommerceversion1.String("Noah Armstrong"),
+                        EffectiveTaxRate: types.MustNewDecimalFromString("9166.8"),
+                        ID: syncforcommerceversion1.String("<ID>"),
+                        Name: syncforcommerceversion1.String("yellow Chair"),
                     },
-                    TotalAmount: types.MustNewDecimalFromString("4406.66"),
+                    TotalAmount: types.MustNewDecimalFromString("1049.23"),
                     Tracking: &shared.Tracking{
                         CategoryRefs: []shared.TrackingCategoryRefsitems{
                             shared.TrackingCategoryRefsitems{
-                                ID: "da8a50ce-187f-486b-8173-d689eee9526f",
-                                Name: syncforcommerceversion1.String("Wilfred Mueller"),
+                                ID: "<ID>",
+                                Name: syncforcommerceversion1.String("rural Bulgarian Producer"),
                             },
                         },
                         CustomerRef: &shared.AccountingCustomerRef{
-                            CompanyName: syncforcommerceversion1.String("repudiandae"),
-                            ID: "881ead4f-0e10-4125-a3f9-4e29e973e922",
+                            CompanyName: syncforcommerceversion1.String("Grimes, Yost and Champlin"),
+                            ID: "<ID>",
                         },
                         IsBilledTo: shared.BilledToTypeNotApplicable,
-                        IsRebilledTo: shared.BilledToTypeNotApplicable,
+                        IsRebilledTo: shared.BilledToTypeUnknown,
                         ProjectRef: &shared.TrackingProjectReference{
-                            ID: "7a15be3e-0608-407e-ab6e-3ab8845f0597",
-                            Name: syncforcommerceversion1.String("Shane Abshire"),
+                            ID: "<ID>",
+                            Name: syncforcommerceversion1.String("Organized UDP"),
                         },
                         RecordRef: &shared.RecordRef{
                             DataType: syncforcommerceversion1.String("journalEntry"),
-                            ID: syncforcommerceversion1.String("a54a31e9-4764-4a3e-865e-7956f9251a5a"),
+                            ID: syncforcommerceversion1.String("<ID>"),
                         },
                     },
                     TrackingCategoryRefs: []shared.TrackingCategoryRefsitems{
                         shared.TrackingCategoryRefsitems{
-                            ID: "9da660ff-57bf-4aad-8f9e-fc1b4512c103",
-                            Name: syncforcommerceversion1.String("Agnes Gibson"),
+                            ID: "<ID>",
+                            Name: syncforcommerceversion1.String("Garden"),
                         },
                     },
-                    UnitAmount: types.MustNewDecimalFromString("7730.84"),
+                    UnitAmount: types.MustNewDecimalFromString("5528.53"),
                 },
             },
             Metadata: &shared.Metadata{
                 IsDeleted: syncforcommerceversion1.Bool(false),
             },
             ModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
-            Note: syncforcommerceversion1.String("sapiente"),
+            Note: syncforcommerceversion1.String("Home Applications Fermium"),
             PaidOnDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
             PaymentAllocations: []shared.AccountingInvoicePaymentAllocation{
                 shared.AccountingInvoicePaymentAllocation{
                     Allocation: shared.AccountingInvoicePaymentAllocationAllocation{
                         AllocatedOnDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
                         Currency: syncforcommerceversion1.String("GBP"),
-                        CurrencyRate: types.MustNewDecimalFromString("1070.04"),
-                        TotalAmount: types.MustNewDecimalFromString("5834.04"),
+                        CurrencyRate: types.MustNewDecimalFromString("4747.86"),
+                        TotalAmount: types.MustNewDecimalFromString("8682.37"),
                     },
                     Payment: shared.PaymentAllocationPayment{
                         AccountRef: &shared.AccountRef{
-                            ID: syncforcommerceversion1.String("9ebfd0e9-fe6c-4632-8a3a-ed0117996312"),
-                            Name: syncforcommerceversion1.String("Mrs. Orville Treutel"),
+                            ID: syncforcommerceversion1.String("<ID>"),
+                            Name: syncforcommerceversion1.String("West Avon Herzegovina"),
                         },
-                        Currency: syncforcommerceversion1.String("USD"),
-                        CurrencyRate: types.MustNewDecimalFromString("1158.34"),
-                        ID: syncforcommerceversion1.String("778ff61d-0174-4763-a0a1-5db6a660659a"),
-                        Note: syncforcommerceversion1.String("ab"),
+                        Currency: syncforcommerceversion1.String("GBP"),
+                        CurrencyRate: types.MustNewDecimalFromString("7606.26"),
+                        ID: syncforcommerceversion1.String("<ID>"),
+                        Note: syncforcommerceversion1.String("Berkshire"),
                         PaidOnDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
-                        Reference: syncforcommerceversion1.String("possimus"),
-                        TotalAmount: types.MustNewDecimalFromString("9139.92"),
+                        Reference: syncforcommerceversion1.String("Palm scam"),
+                        TotalAmount: types.MustNewDecimalFromString("2223.49"),
                     },
                 },
             },
             SalesOrderRefs: []shared.AccountingInvoiceSalesOrderReference{
                 shared.AccountingInvoiceSalesOrderReference{
                     DataType: shared.DataTypeInvoices.ToPointer(),
-                    ID: syncforcommerceversion1.String("aab5851d-6c64-45b0-8b61-891baa0fe1ad"),
+                    ID: syncforcommerceversion1.String("<ID>"),
                 },
             },
             SourceModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
             Status: shared.InvoiceStatusUnknown,
-            SubTotal: types.MustNewDecimalFromString("12.07"),
+            SubTotal: types.MustNewDecimalFromString("7559.48"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "deleniti": map[string]interface{}{
-                        "earum": "ex",
+                    "explicabo": map[string]interface{}{
+                        "fugiat": "definition",
                     },
                 },
             },
-            TotalAmount: types.MustNewDecimalFromString("9583.08"),
-            TotalDiscount: types.MustNewDecimalFromString("5241.84"),
-            TotalTaxAmount: types.MustNewDecimalFromString("7963.2"),
+            TotalAmount: types.MustNewDecimalFromString("2429.55"),
+            TotalDiscount: types.MustNewDecimalFromString("6497.09"),
+            TotalTaxAmount: types.MustNewDecimalFromString("337.26"),
             WithholdingTax: []shared.AccountingInvoiceWithholdingTax{
                 shared.AccountingInvoiceWithholdingTax{
-                    Amount: types.MustNewDecimalFromString("3651"),
-                    Name: "Dr. Chris Hermiston",
+                    Amount: types.MustNewDecimalFromString("676.3"),
+                    Name: "whether Division so",
                 },
             },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: syncforcommerceversion1.Int(770675),
+        TimeoutInMinutes: syncforcommerceversion1.Int(658558),
     })
     if err != nil {
         log.Fatal(err)

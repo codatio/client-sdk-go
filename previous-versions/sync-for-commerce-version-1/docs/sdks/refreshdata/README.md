@@ -1,4 +1,5 @@
 # RefreshData
+(*RefreshData*)
 
 ## Overview
 
@@ -97,7 +98,7 @@ func main() {
     ctx := context.Background()
     res, err := s.RefreshData.ByDataType(ctx, operations.RefreshDataTypeRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ConnectionID: syncforcommerceversion1.String("d5707577-9291-477d-aac6-46ecb573409e"),
+        ConnectionID: syncforcommerceversion1.String("8803f6d1-c3aa-40d5-a409-b9d7f498be91"),
         DataType: shared.DataTypeInvoices,
     })
     if err != nil {
@@ -203,7 +204,7 @@ func main() {
     ctx := context.Background()
     res, err := s.RefreshData.GetPullOperation(ctx, operations.GetPullOperationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        DatasetID: "3eb1e5a2-b12e-4b07-b116-db99545fc95f",
+        DatasetID: "7911a54a-c808-4f4b-b87e-b195f52b4da5",
     })
     if err != nil {
         log.Fatal(err)
@@ -259,7 +260,7 @@ func main() {
         OrderBy: syncforcommerceversion1.String("-modifiedDate"),
         Page: syncforcommerceversion1.Int(1),
         PageSize: syncforcommerceversion1.Int(100),
-        Query: syncforcommerceversion1.String("animi"),
+        Query: syncforcommerceversion1.String("Dock Elegant Buckinghamshire"),
     })
     if err != nil {
         log.Fatal(err)

@@ -1,4 +1,5 @@
 # SyncFlowPreferences
+(*SyncFlowPreferences*)
 
 ## Overview
 
@@ -86,9 +87,9 @@ func main() {
 
     ctx := context.Background()
     res, err := s.SyncFlowPreferences.GetSyncFlowURL(ctx, operations.GetSyncFlowURLRequest{
-        AccountingKey: "odio",
-        CommerceKey: "eaque",
-        MerchantIdentifier: syncforcommerceversion1.String("saepe"),
+        AccountingKey: "Manager",
+        CommerceKey: "payment",
+        MerchantIdentifier: syncforcommerceversion1.String("Rupiah tertiary Zealand"),
     })
     if err != nil {
         log.Fatal(err)
@@ -140,7 +141,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.SyncFlowPreferences.GetVisibleAccounts(ctx, operations.GetVisibleAccountsRequest{
-        ClientID: "189dbb30-fcb3-43ea-855b-197cd44e2f52",
+        ClientID: "86fe9741-738d-4f2c-8e96-9c3f84156e91",
         PlatformKey: "gbol",
     })
     if err != nil {
@@ -192,9 +193,9 @@ func main() {
 
     ctx := context.Background()
     res, err := s.SyncFlowPreferences.UpdateConfigTextSyncFlow(ctx, map[string]shared.Localization{
-        "facere": shared.Localization{
+        "perferendis": shared.Localization{
             Required: syncforcommerceversion1.Bool(false),
-            Text: syncforcommerceversion1.String("laudantium"),
+            Text: syncforcommerceversion1.String("Gasoline Cotton azure"),
         },
     })
     if err != nil {
@@ -249,7 +250,7 @@ func main() {
     res, err := s.SyncFlowPreferences.UpdateVisibleAccountsSyncFlow(ctx, operations.UpdateVisibleAccountsSyncFlowRequest{
         VisibleAccounts: &shared.VisibleAccounts{
             VisibleAccounts: []string{
-                "odit",
+                "Coordinator",
             },
         },
         PlatformKey: "gbol",
