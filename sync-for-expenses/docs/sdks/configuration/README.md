@@ -1,4 +1,5 @@
 # Configuration
+(*Configuration*)
 
 ## Overview
 
@@ -145,10 +146,10 @@ func main() {
                 ID: syncforexpenses.String("32"),
             },
             Customer: shared.CustomerDetails{
-                ID: syncforexpenses.String("8796ed15-1a05-4dfc-addf-7cc78ca1ba92"),
+                ID: syncforexpenses.String("<ID>"),
             },
             Supplier: shared.SupplierDetails{
-                ID: syncforexpenses.String("8fc81674-2cb7-4392-8592-9396fea7596e"),
+                ID: syncforexpenses.String("<ID>"),
             },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",

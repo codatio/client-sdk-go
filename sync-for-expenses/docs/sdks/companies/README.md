@@ -1,4 +1,5 @@
 # Companies
+(*Companies*)
 
 ## Overview
 
@@ -202,7 +203,7 @@ func main() {
         OrderBy: syncforexpenses.String("-modifiedDate"),
         Page: syncforexpenses.Int(1),
         PageSize: syncforexpenses.Int(100),
-        Query: syncforexpenses.String("placeat"),
+        Query: syncforexpenses.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)

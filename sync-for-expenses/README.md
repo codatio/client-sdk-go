@@ -34,7 +34,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Accounts.Create(ctx, operations.CreateAccountRequest{
         Account: &shared.Account{
-            Currency: syncforexpenses.String("EUR"),
+            Currency: syncforexpenses.String("USD"),
             CurrentBalance: types.MustNewDecimalFromString("0"),
             Description: syncforexpenses.String("Invoices the business has issued but has not yet collected payment on."),
             FullyQualifiedCategory: syncforexpenses.String("Asset.Current"),
@@ -53,16 +53,16 @@ func main() {
             ValidDatatypeLinks: []shared.AccountValidDataTypeLinks{
                 shared.AccountValidDataTypeLinks{
                     Links: []string{
-                        "suscipit",
+                        "Money",
                     },
-                    Property: syncforexpenses.String("iure"),
+                    Property: syncforexpenses.String("Cambridgeshire grey technology"),
                 },
             },
         },
         AllowSyncOnPushComplete: syncforexpenses.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: syncforexpenses.Int(297534),
+        TimeoutInMinutes: syncforexpenses.Int(86),
     })
     if err != nil {
         log.Fatal(err)
@@ -157,8 +157,6 @@ func main() {
 
 <!-- Start Dev Containers -->
 
-
-
 <!-- End Dev Containers -->
 
 
@@ -171,8 +169,6 @@ returned response object will have a `Next` method that can be called to pull do
 return value of `Next` is `nil`, then there are no more pages to be fetched.
 
 Here's an example of one such pagination call:
-
-
 <!-- End Pagination -->
 
 

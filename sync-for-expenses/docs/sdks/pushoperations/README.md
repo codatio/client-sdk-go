@@ -1,4 +1,5 @@
 # PushOperations
+(*PushOperations*)
 
 ## Overview
 
@@ -36,7 +37,7 @@ func main() {
     ctx := context.Background()
     res, err := s.PushOperations.Get(ctx, operations.GetPushOperationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        PushOperationKey: "8909b3fe-49a8-4d9c-bf48-633323f9b77f",
+        PushOperationKey: "b18d8d81-fd7b-4764-a31e-475cb1f36591",
     })
     if err != nil {
         log.Fatal(err)
@@ -92,7 +93,7 @@ func main() {
         OrderBy: syncforexpenses.String("-modifiedDate"),
         Page: syncforexpenses.Int(1),
         PageSize: syncforexpenses.Int(100),
-        Query: syncforexpenses.String("amet"),
+        Query: syncforexpenses.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)

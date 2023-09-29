@@ -1,4 +1,5 @@
 # ManageData
+(*ManageData*)
 
 ## Overview
 
@@ -91,7 +92,7 @@ func main() {
     ctx := context.Background()
     res, err := s.ManageData.GetPullOperation(ctx, operations.GetPullOperationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        DatasetID: "fd2ed028-921c-4ddc-a926-01fb576b0d5f",
+        DatasetID: "7911a54a-c808-4f4b-b87e-b195f52b4da5",
     })
     if err != nil {
         log.Fatal(err)
@@ -147,7 +148,7 @@ func main() {
         OrderBy: syncforexpenses.String("-modifiedDate"),
         Page: syncforexpenses.Int(1),
         PageSize: syncforexpenses.Int(100),
-        Query: syncforexpenses.String("perferendis"),
+        Query: syncforexpenses.String("Dock Elegant Buckinghamshire"),
     })
     if err != nil {
         log.Fatal(err)
@@ -258,7 +259,7 @@ func main() {
     ctx := context.Background()
     res, err := s.ManageData.RefreshDataType(ctx, operations.RefreshDataTypeRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ConnectionID: syncforexpenses.String("d30c5fbb-2587-4053-a02c-73d5fe9b90c2"),
+        ConnectionID: syncforexpenses.String("d6258093-be98-4f60-90e1-ca6bcd49fb9a"),
         DataType: shared.DataTypeInvoices,
     })
     if err != nil {

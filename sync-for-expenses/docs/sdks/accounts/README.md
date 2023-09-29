@@ -1,4 +1,5 @@
 # Accounts
+(*Accounts*)
 
 ## Overview
 
@@ -45,7 +46,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Accounts.Create(ctx, operations.CreateAccountRequest{
         Account: &shared.Account{
-            Currency: syncforexpenses.String("EUR"),
+            Currency: syncforexpenses.String("USD"),
             CurrentBalance: types.MustNewDecimalFromString("0"),
             Description: syncforexpenses.String("Invoices the business has issued but has not yet collected payment on."),
             FullyQualifiedCategory: syncforexpenses.String("Asset.Current"),
@@ -64,16 +65,16 @@ func main() {
             ValidDatatypeLinks: []shared.AccountValidDataTypeLinks{
                 shared.AccountValidDataTypeLinks{
                     Links: []string{
-                        "suscipit",
+                        "Money",
                     },
-                    Property: syncforexpenses.String("molestiae"),
+                    Property: syncforexpenses.String("Cambridgeshire grey technology"),
                 },
             },
         },
         AllowSyncOnPushComplete: syncforexpenses.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: syncforexpenses.Int(791725),
+        TimeoutInMinutes: syncforexpenses.Int(86),
     })
     if err != nil {
         log.Fatal(err)
