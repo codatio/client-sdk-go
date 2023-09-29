@@ -23,8 +23,8 @@ func main() {
     res, err := s.AccountMapping.Create(ctx, operations.CreateBankAccountMappingRequest{
         RequestBody: &operations.CreateBankAccountMappingBankFeedAccountMapping{
             FeedStartDate: bankfeeds.String("2022-10-23T00:00:00.000Z"),
-            SourceAccountID: bankfeeds.String("provident"),
-            TargetAccountID: bankfeeds.String("distinctio"),
+            SourceAccountID: bankfeeds.String("Configuration Money"),
+            TargetAccountID: bankfeeds.String("Cambridgeshire grey technology"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",

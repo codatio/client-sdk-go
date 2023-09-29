@@ -203,7 +203,7 @@ func main() {
         OrderBy: bankfeeds.String("-modifiedDate"),
         Page: bankfeeds.Int(1),
         PageSize: bankfeeds.Int(100),
-        Query: bankfeeds.String("error"),
+        Query: bankfeeds.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)

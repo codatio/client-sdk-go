@@ -48,7 +48,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Transactions.Create(ctx, operations.CreateBankTransactionsRequest{
         CreateBankTransactions: &shared.CreateBankTransactions{
-            AccountID: bankfeeds.String("EILBDVJVNUAGVKRQ"),
+            AccountID: bankfeeds.String("7110701885"),
             Transactions: []shared.BankTransactions{
                 shared.BankTransactions{
                     Amount: types.MustNewDecimalFromString("999.99"),
@@ -59,15 +59,15 @@ func main() {
                     ID: bankfeeds.String("716422529"),
                     Reconciled: bankfeeds.Bool(false),
                     Reference: bankfeeds.String("reference for transaction"),
-                    TransactionType: shared.BankTransactionsBankTransactionTypeXfer.ToPointer(),
+                    TransactionType: shared.BankTransactionsBankTransactionTypeCheck.ToPointer(),
                 },
             },
         },
-        AccountID: "9wg4lep4ush5cxs79pl8sozmsndbaukll3ind4g7buqbm1h2",
+        AccountID: "EILBDVJVNUAGVKRQ",
         AllowSyncOnPushComplete: bankfeeds.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: bankfeeds.Int(325047),
+        TimeoutInMinutes: bankfeeds.Int(417458),
     })
     if err != nil {
         log.Fatal(err)
@@ -120,7 +120,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Transactions.GetCreateOperation(ctx, operations.GetCreateOperationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        PushOperationKey: "907aff1a-3a2f-4a94-a773-9251aa52c3f5",
+        PushOperationKey: "1fb73c31-a851-46c2-ab8a-5ce6e25b57b8",
     })
     if err != nil {
         log.Fatal(err)
@@ -176,7 +176,7 @@ func main() {
         OrderBy: bankfeeds.String("-modifiedDate"),
         Page: bankfeeds.Int(1),
         PageSize: bankfeeds.Int(100),
-        Query: bankfeeds.String("id"),
+        Query: bankfeeds.String("Hassium"),
     })
     if err != nil {
         log.Fatal(err)

@@ -62,16 +62,16 @@ func main() {
     ctx := context.Background()
     res, err := s.SourceAccounts.Create(ctx, operations.CreateSourceAccountRequest{
         SourceAccount: &shared.SourceAccount{
-            AccountName: bankfeeds.String("iure"),
-            AccountNumber: bankfeeds.String("magnam"),
-            AccountType: bankfeeds.String("debitis"),
-            Balance: types.MustNewDecimalFromString("567.13"),
-            Currency: bankfeeds.String("EUR"),
+            AccountName: bankfeeds.String("bluetooth Extended"),
+            AccountNumber: bankfeeds.String("blue"),
+            AccountType: bankfeeds.String("grey technology East"),
+            Balance: types.MustNewDecimalFromString("1697.27"),
+            Currency: bankfeeds.String("GBP"),
             FeedStartDate: bankfeeds.String("2022-10-23T00:00:00.000Z"),
-            ID: "67cc8796-ed15-41a0-9dfc-2ddf7cc78ca1",
+            ID: "<ID>",
             ModifiedDate: bankfeeds.String("2022-10-23T00:00:00.000Z"),
-            SortCode: bankfeeds.String("officia"),
-            Status: bankfeeds.String("occaecati"),
+            SortCode: bankfeeds.String("SUV quantify Polestar"),
+            Status: bankfeeds.String("physical Ameliorated"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -129,7 +129,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.SourceAccounts.Delete(ctx, operations.DeleteSourceAccountRequest{
-        AccountID: "13d946f0-c5d5-42bc-b092-97ece17923ab",
+        AccountID: "7110701885",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -241,7 +241,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.SourceAccounts.GenerateCredentials(ctx, operations.GenerateCredentialsRequest{
-        RequestBody: []byte("deleniti"),
+        RequestBody: []byte("^upd|k\]Iy"),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -354,18 +354,18 @@ func main() {
     ctx := context.Background()
     res, err := s.SourceAccounts.Update(ctx, operations.UpdateSourceAccountRequest{
         SourceAccount: &shared.SourceAccount{
-            AccountName: bankfeeds.String("hic"),
-            AccountNumber: bankfeeds.String("optio"),
-            AccountType: bankfeeds.String("totam"),
-            Balance: types.MustNewDecimalFromString("1059.07"),
+            AccountName: bankfeeds.String("New Reactive dock"),
+            AccountNumber: bankfeeds.String("Analyst invoice"),
+            AccountType: bankfeeds.String("Islands"),
+            Balance: types.MustNewDecimalFromString("4995.57"),
             Currency: bankfeeds.String("USD"),
             FeedStartDate: bankfeeds.String("2022-10-23T00:00:00.000Z"),
-            ID: "42cb7392-0592-4939-afea-7596eb10faaa",
+            ID: "<ID>",
             ModifiedDate: bankfeeds.String("2022-10-23T00:00:00.000Z"),
-            SortCode: bankfeeds.String("dolorem"),
-            Status: bankfeeds.String("corporis"),
+            SortCode: bankfeeds.String("Plastic Carolina syndicate"),
+            Status: bankfeeds.String("implement JBOD"),
         },
-        AccountID: "13d946f0-c5d5-42bc-b092-97ece17923ab",
+        AccountID: "EILBDVJVNUAGVKRQ",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
