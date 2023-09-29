@@ -1,4 +1,5 @@
 # RefreshData
+(*RefreshData*)
 
 ## Overview
 
@@ -97,7 +98,7 @@ func main() {
     ctx := context.Background()
     res, err := s.RefreshData.ByDataType(ctx, operations.RefreshDataTypeRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ConnectionID: platform.String("df7cc78c-a1ba-4928-bc81-6742cb739205"),
+        ConnectionID: platform.String("8803f6d1-c3aa-40d5-a409-b9d7f498be91"),
         DataType: shared.DataTypeInvoices,
     })
     if err != nil {
@@ -259,7 +260,7 @@ func main() {
         OrderBy: platform.String("-modifiedDate"),
         Page: platform.Int(1),
         PageSize: platform.Int(100),
-        Query: platform.String("natus"),
+        Query: platform.String("Dock Elegant Buckinghamshire"),
     })
     if err != nil {
         log.Fatal(err)

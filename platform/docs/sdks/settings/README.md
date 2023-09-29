@@ -1,4 +1,5 @@
 # Settings
+(*Settings*)
 
 ## Overview
 
@@ -382,7 +383,7 @@ func main() {
                 MonthsToSync: platform.Int64(24),
                 SyncFromUtc: platform.String("2022-10-23T00:00:00.000Z"),
                 SyncFromWindow: platform.Int64(24),
-                SyncOrder: 612096,
+                SyncOrder: 898268,
                 SyncSchedule: 24,
             },
         },
