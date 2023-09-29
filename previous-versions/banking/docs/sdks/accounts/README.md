@@ -1,4 +1,5 @@
 # Accounts
+(*Accounts*)
 
 ## Overview
 
@@ -42,7 +43,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Accounts.Get(ctx, operations.GetAccountRequest{
-        AccountID: "EILBDVJVNUAGVKRQ",
+        AccountID: "7110701885",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -106,7 +107,7 @@ func main() {
         OrderBy: banking.String("-modifiedDate"),
         Page: banking.Int(1),
         PageSize: banking.Int(100),
-        Query: banking.String("unde"),
+        Query: banking.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)

@@ -37,7 +37,7 @@ func main() {
         OrderBy: banking.String("-modifiedDate"),
         Page: banking.Int(1),
         PageSize: banking.Int(100),
-        Query: banking.String("provident"),
+        Query: banking.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)
@@ -79,8 +79,6 @@ func main() {
 
 <!-- Start Dev Containers -->
 
-
-
 <!-- End Dev Containers -->
 
 
@@ -93,8 +91,6 @@ returned response object will have a `Next` method that can be called to pull do
 return value of `Next` is `nil`, then there are no more pages to be fetched.
 
 Here's an example of one such pagination call:
-
-
 <!-- End Pagination -->
 
 

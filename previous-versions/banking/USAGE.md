@@ -26,7 +26,7 @@ func main() {
         OrderBy: banking.String("-modifiedDate"),
         Page: banking.Int(1),
         PageSize: banking.Int(100),
-        Query: banking.String("corrupti"),
+        Query: banking.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)
