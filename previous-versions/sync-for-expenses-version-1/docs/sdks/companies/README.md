@@ -1,4 +1,5 @@
 # Companies
+(*Companies*)
 
 ## Overview
 
@@ -202,7 +203,7 @@ func main() {
         OrderBy: syncforexpensesversion1.String("-modifiedDate"),
         Page: syncforexpensesversion1.Int(1),
         PageSize: syncforexpensesversion1.Int(100),
-        Query: syncforexpensesversion1.String("corrupti"),
+        Query: syncforexpensesversion1.String("New"),
     })
     if err != nil {
         log.Fatal(err)

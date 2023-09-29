@@ -1,4 +1,5 @@
 # Sync
+(*Sync*)
 
 ## Overview
 
@@ -36,7 +37,7 @@ func main() {
     res, err := s.Sync.InitiateSync(ctx, operations.InitiateSyncRequest{
         PostSync: &shared.PostSync{
             DatasetIds: []string{
-                "9a674e0f-467c-4c87-96ed-151a05dfc2dd",
+                "acce2362-83d6-4e3e-a27f-f4a08e7217d5",
             },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
