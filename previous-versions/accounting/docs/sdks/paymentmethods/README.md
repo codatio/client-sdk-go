@@ -44,7 +44,7 @@ func main() {
     ctx := context.Background()
     res, err := s.PaymentMethods.Get(ctx, operations.GetPaymentMethodRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        PaymentMethodID: "totam",
+        PaymentMethodID: "Northeast Hatchback Kia",
     })
     if err != nil {
         log.Fatal(err)
@@ -105,7 +105,7 @@ func main() {
         OrderBy: accounting.String("-modifiedDate"),
         Page: accounting.Int(1),
         PageSize: accounting.Int(100),
-        Query: accounting.String("praesentium"),
+        Query: accounting.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)

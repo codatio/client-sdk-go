@@ -50,21 +50,21 @@ func main() {
         Journal: &shared.Journal{
             CreatedOn: accounting.String("2022-10-23T00:00:00.000Z"),
             HasChildren: accounting.Bool(false),
-            ID: accounting.String("ce525c67-641a-4831-ae50-47b4c21ccb42"),
-            JournalCode: accounting.String("amet"),
+            ID: accounting.String("<ID>"),
+            JournalCode: accounting.String("Configuration Money"),
             Metadata: &shared.Metadata{
                 IsDeleted: accounting.Bool(false),
             },
             ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
-            Name: accounting.String("Kim Swift"),
-            ParentID: accounting.String("et"),
+            Name: accounting.String("shred"),
+            ParentID: accounting.String("technology East"),
             SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
-            Status: shared.JournalStatusArchived.ToPointer(),
-            Type: accounting.String("est"),
+            Status: shared.JournalStatusUnknown.ToPointer(),
+            Type: accounting.String("male"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: accounting.Int(716024),
+        TimeoutInMinutes: accounting.Int(855952),
     })
     if err != nil {
         log.Fatal(err)
@@ -124,7 +124,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Journals.Get(ctx, operations.GetJournalRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        JournalID: "fugiat",
+        JournalID: "Northeast Hatchback Kia",
     })
     if err != nil {
         log.Fatal(err)
@@ -247,7 +247,7 @@ func main() {
         OrderBy: accounting.String("-modifiedDate"),
         Page: accounting.Int(1),
         PageSize: accounting.Int(100),
-        Query: accounting.String("nulla"),
+        Query: accounting.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)

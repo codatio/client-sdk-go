@@ -53,7 +53,7 @@ func main() {
             CurrentBalance: types.MustNewDecimalFromString("0"),
             Description: accounting.String("Invoices the business has issued but has not yet collected payment on."),
             FullyQualifiedCategory: accounting.String("Asset.Current"),
-            FullyQualifiedName: accounting.String("Fixed Asset"),
+            FullyQualifiedName: accounting.String("Cash On Hand"),
             ID: accounting.String("1b6266d1-1e44-46c5-8eb5-a8f98e03124e"),
             IsBankAccount: accounting.Bool(false),
             Metadata: &shared.Metadata{
@@ -68,15 +68,15 @@ func main() {
             ValidDatatypeLinks: []shared.ValidDataTypeLinks{
                 shared.ValidDataTypeLinks{
                     Links: []string{
-                        "vel",
+                        "Money",
                     },
-                    Property: accounting.String("error"),
+                    Property: accounting.String("Cambridgeshire grey technology"),
                 },
             },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: accounting.Int(645894),
+        TimeoutInMinutes: accounting.Int(86),
     })
     if err != nil {
         log.Fatal(err)
@@ -135,7 +135,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Accounts.Get(ctx, operations.GetAccountRequest{
-        AccountID: "suscipit",
+        AccountID: "Northeast Hatchback Kia",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -258,7 +258,7 @@ func main() {
         OrderBy: accounting.String("-modifiedDate"),
         Page: accounting.Int(1),
         PageSize: accounting.Int(100),
-        Query: accounting.String("iure"),
+        Query: accounting.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)

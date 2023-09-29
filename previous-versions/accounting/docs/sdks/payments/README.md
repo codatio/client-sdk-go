@@ -50,27 +50,27 @@ func main() {
     res, err := s.Payments.Create(ctx, operations.CreatePaymentRequest{
         Payment: &shared.Payment{
             AccountRef: &shared.AccountRef{
-                ID: accounting.String("e71f6c48-252d-4777-9e7f-d074009ef8d2"),
-                Name: accounting.String("Dr. Levi Volkman"),
+                ID: accounting.String("<ID>"),
+                Name: accounting.String("bluetooth Extended"),
             },
-            Currency: accounting.String("USD"),
-            CurrencyRate: types.MustNewDecimalFromString("161.58"),
+            Currency: accounting.String("GBP"),
+            CurrencyRate: types.MustNewDecimalFromString("7865.46"),
             CustomerRef: &shared.AccountingCustomerRef{
-                CompanyName: accounting.String("provident"),
-                ID: "7b5da08c-57fa-46c7-8a21-6e19bafeca61",
+                CompanyName: accounting.String("Zieme Group"),
+                ID: "<ID>",
             },
             Date: "2022-10-23T00:00:00.000Z",
-            ID: accounting.String("1498140b-64ff-48ae-970e-f03b5f37e4aa"),
+            ID: accounting.String("<ID>"),
             Lines: []shared.PaymentLine{
                 shared.PaymentLine{
                     AllocatedOnDate: accounting.String("2022-10-23T00:00:00.000Z"),
-                    Amount: types.MustNewDecimalFromString("3819.74"),
+                    Amount: types.MustNewDecimalFromString("8915.1"),
                     Links: []shared.PaymentLineLink{
                         shared.PaymentLineLink{
-                            Amount: types.MustNewDecimalFromString("5576.51"),
-                            CurrencyRate: types.MustNewDecimalFromString("3385.42"),
-                            ID: accounting.String("55966732-aa5d-4cb6-a82c-b70f8cfd5fb6"),
-                            Type: shared.PaymentLinkTypeDiscount,
+                            Amount: types.MustNewDecimalFromString("0.86"),
+                            CurrencyRate: types.MustNewDecimalFromString("4552.22"),
+                            ID: accounting.String("<ID>"),
+                            Type: shared.PaymentLinkTypeUnlinked,
                         },
                     },
                 },
@@ -79,22 +79,22 @@ func main() {
                 IsDeleted: accounting.Bool(false),
             },
             ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
-            Note: accounting.String("dicta"),
-            PaymentMethodRef: accounting.String("quidem"),
-            Reference: accounting.String("omnis"),
+            Note: accounting.String("male"),
+            PaymentMethodRef: accounting.String("SUV"),
+            Reference: accounting.String("Screen mobile"),
             SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "molestias": map[string]interface{}{
-                        "a": "dignissimos",
+                    "ullam": map[string]interface{}{
+                        "voluptatem": "Fresh",
                     },
                 },
             },
-            TotalAmount: types.MustNewDecimalFromString("2883.48"),
+            TotalAmount: types.MustNewDecimalFromString("177.59"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: accounting.Int(511054),
+        TimeoutInMinutes: accounting.Int(519028),
     })
     if err != nil {
         log.Fatal(err)
@@ -154,7 +154,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Payments.Get(ctx, operations.GetPaymentRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        PaymentID: "dolore",
+        PaymentID: "Northeast Hatchback Kia",
     })
     if err != nil {
         log.Fatal(err)
@@ -277,7 +277,7 @@ func main() {
         OrderBy: accounting.String("-modifiedDate"),
         Page: accounting.Int(1),
         PageSize: accounting.Int(100),
-        Query: accounting.String("aliquid"),
+        Query: accounting.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)

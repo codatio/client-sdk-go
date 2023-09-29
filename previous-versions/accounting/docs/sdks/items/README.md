@@ -51,46 +51,46 @@ func main() {
         Item: &shared.Item{
             BillItem: &shared.BillItem{
                 AccountRef: &shared.AccountRef{
-                    ID: accounting.String("233e66bd-8fe5-4d00-b979-ef2038732059"),
-                    Name: accounting.String("Pat Schmitt Jr."),
+                    ID: accounting.String("<ID>"),
+                    Name: accounting.String("bluetooth Extended"),
                 },
-                Description: accounting.String("perspiciatis"),
+                Description: accounting.String("Customer-focused regional approach"),
                 TaxRateRef: &shared.TaxRateRef{
-                    EffectiveTaxRate: types.MustNewDecimalFromString("4069.46"),
-                    ID: accounting.String("400313b3-e504-44f6-9fe7-2dc4077d0cc3"),
-                    Name: accounting.String("Francis Barton"),
+                    EffectiveTaxRate: types.MustNewDecimalFromString("9967.06"),
+                    ID: accounting.String("<ID>"),
+                    Name: accounting.String("abnormally deposit evolve"),
                 },
-                UnitPrice: types.MustNewDecimalFromString("9380.15"),
+                UnitPrice: types.MustNewDecimalFromString("7150.4"),
             },
-            Code: accounting.String("impedit"),
-            ID: accounting.String("15ceb4d6-e1ea-4e0f-b5ae-df2acab58b99"),
+            Code: accounting.String("SUV quantify Polestar"),
+            ID: accounting.String("<ID>"),
             InvoiceItem: &shared.InvoiceItem{
                 AccountRef: &shared.AccountRef{
-                    ID: accounting.String("1c926ddb-5894-461e-b421-cbe6d9502f0e"),
-                    Name: accounting.String("Miss Evan Dibbert"),
+                    ID: accounting.String("<ID>"),
+                    Name: accounting.String("physical Ameliorated"),
                 },
-                Description: accounting.String("sint"),
+                Description: accounting.String("Exclusive transitional access"),
                 TaxRateRef: &shared.TaxRateRef{
-                    EffectiveTaxRate: types.MustNewDecimalFromString("9787.97"),
-                    ID: accounting.String("7ac2f72f-8850-4090-8911-608207888ec6"),
-                    Name: accounting.String("Teresa Lueilwitz"),
+                    EffectiveTaxRate: types.MustNewDecimalFromString("5190.28"),
+                    ID: accounting.String("<ID>"),
+                    Name: accounting.String("Bike"),
                 },
-                UnitPrice: types.MustNewDecimalFromString("9454.09"),
+                UnitPrice: types.MustNewDecimalFromString("7141.15"),
             },
             IsBillItem: false,
             IsInvoiceItem: false,
-            ItemStatus: shared.ItemStatusArchived,
+            ItemStatus: shared.ItemStatusUnknown,
             Metadata: &shared.Metadata{
                 IsDeleted: accounting.Bool(false),
             },
             ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
-            Name: accounting.String("Marion Mills"),
+            Name: accounting.String("easily"),
             SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
             Type: shared.ItemTypeUnknown,
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: accounting.Int(881095),
+        TimeoutInMinutes: accounting.Int(585365),
     })
     if err != nil {
         log.Fatal(err)
@@ -150,7 +150,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Items.Get(ctx, operations.GetItemRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ItemID: "quod",
+        ItemID: "Northeast Hatchback Kia",
     })
     if err != nil {
         log.Fatal(err)
@@ -273,7 +273,7 @@ func main() {
         OrderBy: accounting.String("-modifiedDate"),
         Page: accounting.Int(1),
         PageSize: accounting.Int(100),
-        Query: accounting.String("sunt"),
+        Query: accounting.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)

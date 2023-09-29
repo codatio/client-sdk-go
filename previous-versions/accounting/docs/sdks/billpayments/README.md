@@ -51,23 +51,23 @@ func main() {
     res, err := s.BillPayments.Create(ctx, operations.CreateBillPaymentRequest{
         BillPayment: &shared.BillPayment{
             AccountRef: &shared.AccountRef{
-                ID: accounting.String("a3c28744-ed53-4b88-b3a8-d8f5c0b2f2fb"),
-                Name: accounting.String("Kristy Bernier"),
+                ID: accounting.String("<ID>"),
+                Name: accounting.String("bluetooth Extended"),
             },
-            Currency: accounting.String("EUR"),
-            CurrencyRate: types.MustNewDecimalFromString("1523.54"),
+            Currency: accounting.String("GBP"),
+            CurrencyRate: types.MustNewDecimalFromString("7865.46"),
             Date: "2022-10-23T00:00:00.000Z",
             ID: accounting.String("3d5a8e00-d108-4045-8823-7f342676cffa"),
             Lines: []shared.BillPaymentLine{
                 shared.BillPaymentLine{
                     AllocatedOnDate: accounting.String("2022-10-23T00:00:00.000Z"),
-                    Amount: types.MustNewDecimalFromString("6960.77"),
+                    Amount: types.MustNewDecimalFromString("7964.74"),
                     Links: []shared.BillPaymentLineLink{
                         shared.BillPaymentLineLink{
-                            Amount: types.MustNewDecimalFromString("1312.89"),
-                            CurrencyRate: types.MustNewDecimalFromString("3783.26"),
-                            ID: accounting.String("916fe1f0-8f42-494e-b698-f447f603e8b4"),
-                            Type: shared.BillPaymentLineLinkTypeBill,
+                            Amount: types.MustNewDecimalFromString("3768.44"),
+                            CurrencyRate: types.MustNewDecimalFromString("9510.62"),
+                            ID: accounting.String("<ID>"),
+                            Type: shared.BillPaymentLineLinkTypeManualJournal,
                         },
                     },
                 },
@@ -77,25 +77,25 @@ func main() {
             },
             ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
             Note: accounting.String("Bill Payment against bill c13e37b6-dfaa-4894-b3be-9fe97bda9f44"),
-            PaymentMethodRef: accounting.String("debitis"),
-            Reference: accounting.String("rem"),
+            PaymentMethodRef: accounting.String("deposit"),
+            Reference: accounting.String("Northwest"),
             SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "nobis": map[string]interface{}{
-                        "error": "veniam",
+                    "fugiat": map[string]interface{}{
+                        "facere": "quantify",
                     },
                 },
             },
             SupplierRef: &shared.SupplierRef{
-                ID: "5efd20e4-57e1-4858-b6a8-9fbe3a5aa8e4",
-                SupplierName: accounting.String("atque"),
+                ID: "<ID>",
+                SupplierName: accounting.String("volt physical Ameliorated"),
             },
             TotalAmount: types.MustNewDecimalFromString("1329.54"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: accounting.Int(148268),
+        TimeoutInMinutes: accounting.Int(259629),
     })
     if err != nil {
         log.Fatal(err)
@@ -173,7 +173,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.BillPayments.Delete(ctx, operations.DeleteBillPaymentRequest{
-        BillPaymentID: "ut",
+        BillPaymentID: "Van complexity",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -234,7 +234,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.BillPayments.Get(ctx, operations.GetBillPaymentsRequest{
-        BillPaymentID: "fugiat",
+        BillPaymentID: "Northeast Hatchback Kia",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -358,7 +358,7 @@ func main() {
         OrderBy: accounting.String("-modifiedDate"),
         Page: accounting.Int(1),
         PageSize: accounting.Int(100),
-        Query: accounting.String("voluptatem"),
+        Query: accounting.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)

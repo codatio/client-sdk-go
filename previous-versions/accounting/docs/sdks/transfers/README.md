@@ -52,25 +52,25 @@ func main() {
         Transfer: &shared.Transfer{
             ContactRef: &shared.TransferContactRef{
                 DataType: shared.DataTypeInvoices.ToPointer(),
-                ID: "be071bc1-63e2-479a-bb08-4da99257d04f",
+                ID: "<ID>",
             },
             Date: accounting.String("2022-10-23T00:00:00.000Z"),
             DepositedRecordRefs: []shared.InvoiceTo{
                 shared.InvoiceTo{
-                    DataType: accounting.String("journalEntry"),
-                    ID: accounting.String("847a742d-8449-46cb-9eec-f6b99bc63562"),
+                    DataType: accounting.String("invoice"),
+                    ID: accounting.String("<ID>"),
                 },
             },
-            Description: accounting.String("eveniet"),
+            Description: accounting.String("Proactive systematic Graphical User Interface"),
             From: &shared.TransferAccount{
                 AccountRef: &shared.AccountRef{
-                    ID: accounting.String("bfdf55c2-94c0-460b-86a1-287764eef6d0"),
-                    Name: accounting.String("Sam Smitham"),
+                    ID: accounting.String("<ID>"),
+                    Name: accounting.String("South"),
                 },
-                Amount: types.MustNewDecimalFromString("8616.38"),
-                Currency: accounting.String("USD"),
+                Amount: types.MustNewDecimalFromString("9967.06"),
+                Currency: accounting.String("EUR"),
             },
-            ID: accounting.String("c73dd634-5715-409a-8e87-0d3c5a1f9c24"),
+            ID: accounting.String("<ID>"),
             Metadata: &shared.Metadata{
                 IsDeleted: accounting.Bool(false),
             },
@@ -78,23 +78,23 @@ func main() {
             SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "odio": map[string]interface{}{
-                        "quidem": "iure",
+                    "debitis": map[string]interface{}{
+                        "alias": "deposit",
                     },
                 },
             },
             To: &shared.TransferAccount{
                 AccountRef: &shared.AccountRef{
-                    ID: accounting.String("6a1f30c7-3df5-4b67-9989-0f42a4bb438d"),
-                    Name: accounting.String("Greg Renner"),
+                    ID: accounting.String("<ID>"),
+                    Name: accounting.String("Northwest"),
                 },
-                Amount: types.MustNewDecimalFromString("476.2"),
-                Currency: accounting.String("GBP"),
+                Amount: types.MustNewDecimalFromString("7926.2"),
+                Currency: accounting.String("EUR"),
             },
             TrackingCategoryRefs: []shared.TrackingCategoryRef{
                 shared.TrackingCategoryRef{
-                    ID: "91d745e3-c205-49c9-83f5-67e0e252765b",
-                    Name: accounting.String("Kari Jacobson"),
+                    ID: "<ID>",
+                    Name: accounting.String("quantify Polestar mobile"),
                 },
             },
         },
@@ -160,7 +160,7 @@ func main() {
     res, err := s.Transfers.Get(ctx, operations.GetTransferRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TransferID: "nobis",
+        TransferID: "Northeast Hatchback Kia",
     })
     if err != nil {
         log.Fatal(err)
@@ -284,7 +284,7 @@ func main() {
         OrderBy: accounting.String("-modifiedDate"),
         Page: accounting.Int(1),
         PageSize: accounting.Int(100),
-        Query: accounting.String("possimus"),
+        Query: accounting.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)
@@ -346,12 +346,12 @@ func main() {
     ctx := context.Background()
     res, err := s.Transfers.UploadAttachment(ctx, operations.UploadTransferAttachmentRequest{
         RequestBody: &operations.UploadTransferAttachmentRequestBody{
-            Content: []byte("laborum"),
-            RequestBody: "optio",
+            Content: []byte("v/ghW&IC$x"),
+            RequestBody: "Elegant Producer Electric",
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TransferID: "debitis",
+        TransferID: "Iowa Bentley",
     })
     if err != nil {
         log.Fatal(err)

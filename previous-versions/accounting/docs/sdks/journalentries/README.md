@@ -51,30 +51,30 @@ func main() {
     res, err := s.JournalEntries.Create(ctx, operations.CreateJournalEntryRequest{
         JournalEntry: &shared.JournalEntry{
             CreatedOn: accounting.String("2022-10-23T00:00:00.000Z"),
-            Description: accounting.String("earum"),
-            ID: accounting.String("af75b0b5-32a4-4da3-bcba-af4452c4842c"),
+            Description: accounting.String("Multi-tiered motivating standardization"),
+            ID: accounting.String("<ID>"),
             JournalLines: []shared.JournalLine{
                 shared.JournalLine{
                     AccountRef: &shared.AccountRef{
-                        ID: accounting.String("9b2ad32d-afe8-41a8-8f44-44573fecd473"),
-                        Name: accounting.String("Robin Weimann"),
+                        ID: accounting.String("<ID>"),
+                        Name: accounting.String("innovative blue"),
                     },
-                    Currency: accounting.String("placeat"),
-                    Description: accounting.String("quos"),
-                    NetAmount: types.MustNewDecimalFromString("1523.02"),
+                    Currency: accounting.String("Zimbabwe Dollar"),
+                    Description: accounting.String("Secured exuding throughput"),
+                    NetAmount: types.MustNewDecimalFromString("8915.1"),
                     Tracking: &shared.Propertiestracking2{
                         RecordRefs: []shared.InvoiceTo{
                             shared.InvoiceTo{
                                 DataType: accounting.String("journalEntry"),
-                                ID: accounting.String("9379aa69-cd5f-4bcf-b9da-18a7822bf958"),
+                                ID: accounting.String("<ID>"),
                             },
                         },
                     },
                 },
             },
             JournalRef: &shared.JournalRef{
-                ID: "94e6861a-db55-4f9e-9d75-1c9fe8f7502b",
-                Name: accounting.String("Orville Schinner"),
+                ID: "<ID>",
+                Name: accounting.String("orange Northwest"),
             },
             Metadata: &shared.Metadata{
                 IsDeleted: accounting.Bool(false),
@@ -82,14 +82,14 @@ func main() {
             ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
             PostedOn: accounting.String("2022-10-23T00:00:00.000Z"),
             RecordRef: &shared.InvoiceTo{
-                DataType: accounting.String("accountTransaction"),
-                ID: accounting.String("41f17644-5637-49f3-bb27-e21f862657b3"),
+                DataType: accounting.String("transfer"),
+                ID: accounting.String("<ID>"),
             },
             SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "delectus": map[string]interface{}{
-                        "maxime": "vel",
+                    "cupiditate": map[string]interface{}{
+                        "assumenda": "volt",
                     },
                 },
             },
@@ -97,7 +97,7 @@ func main() {
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: accounting.Int(586163),
+        TimeoutInMinutes: accounting.Int(656256),
     })
     if err != nil {
         log.Fatal(err)
@@ -183,7 +183,7 @@ func main() {
     res, err := s.JournalEntries.Delete(ctx, operations.DeleteJournalEntryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        JournalEntryID: "hic",
+        JournalEntryID: "Van complexity",
     })
     if err != nil {
         log.Fatal(err)
@@ -243,7 +243,7 @@ func main() {
     ctx := context.Background()
     res, err := s.JournalEntries.Get(ctx, operations.GetJournalEntryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        JournalEntryID: "quis",
+        JournalEntryID: "Northeast Hatchback Kia",
     })
     if err != nil {
         log.Fatal(err)
@@ -366,7 +366,7 @@ func main() {
         OrderBy: accounting.String("-modifiedDate"),
         Page: accounting.Int(1),
         PageSize: accounting.Int(100),
-        Query: accounting.String("deleniti"),
+        Query: accounting.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)

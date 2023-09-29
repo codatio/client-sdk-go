@@ -48,22 +48,22 @@ func main() {
     ctx := context.Background()
     res, err := s.BankAccountTransactions.Create(ctx, operations.CreateBankTransactionsRequest{
         CreateBankTransactions: &shared.CreateBankTransactions{
-            AccountID: accounting.String("9wg4lep4ush5cxs79pl8sozmsndbaukll3ind4g7buqbm1h2"),
+            AccountID: accounting.String("7110701885"),
             Transactions: []shared.CreateBankAccountTransaction{
                 shared.CreateBankAccountTransaction{
-                    Amount: types.MustNewDecimalFromString("8917.73"),
-                    Balance: types.MustNewDecimalFromString("567.13"),
+                    Amount: types.MustNewDecimalFromString("4893.82"),
+                    Balance: types.MustNewDecimalFromString("6384.24"),
                     Date: accounting.String("2022-10-23T00:00:00.000Z"),
-                    Description: accounting.String("tempora"),
-                    ID: accounting.String("67cc8796-ed15-41a0-9dfc-2ddf7cc78ca1"),
+                    Description: accounting.String("Inverse discrete benchmark"),
+                    ID: accounting.String("<ID>"),
                 },
             },
         },
-        AccountID: "nam",
+        AccountID: "Cambridgeshire grey technology",
         AllowSyncOnPushComplete: accounting.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: accounting.Int(639921),
+        TimeoutInMinutes: accounting.Int(86),
     })
     if err != nil {
         log.Fatal(err)
@@ -124,7 +124,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.BankAccountTransactions.GetCreateModel(ctx, operations.GetCreateBankTransactionsModelRequest{
-        AccountID: "occaecati",
+        AccountID: "Northwest",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -185,13 +185,13 @@ func main() {
 
     ctx := context.Background()
     res, err := s.BankAccountTransactions.List(ctx, operations.ListBankAccountTransactionsRequest{
-        AccountID: "fugit",
+        AccountID: "Northeast Metal Canada",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         OrderBy: accounting.String("-modifiedDate"),
         Page: accounting.Int(1),
         PageSize: accounting.Int(100),
-        Query: accounting.String("deleniti"),
+        Query: accounting.String("Data Response West"),
     })
     if err != nil {
         log.Fatal(err)

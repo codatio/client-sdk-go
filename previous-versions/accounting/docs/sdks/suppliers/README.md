@@ -54,40 +54,40 @@ func main() {
         Supplier: &shared.Supplier{
             Addresses: []shared.Addressesitems{
                 shared.Addressesitems{
-                    City: accounting.String("Arvada"),
-                    Country: accounting.String("Serbia"),
-                    Line1: accounting.String("explicabo"),
-                    Line2: accounting.String("accusantium"),
-                    PostalCode: accounting.String("09117"),
-                    Region: accounting.String("illum"),
-                    Type: shared.AccountingAddressTypeUnknown,
+                    City: accounting.String("Jenafurt"),
+                    Country: accounting.String("Sweden"),
+                    Line1: accounting.String("innovative blue"),
+                    Line2: accounting.String("grey technology East"),
+                    PostalCode: accounting.String("30778"),
+                    Region: accounting.String("quantify Polestar mobile"),
+                    Type: shared.AccountingAddressTypeBilling,
                 },
             },
-            ContactName: accounting.String("exercitationem"),
-            DefaultCurrency: accounting.String("quod"),
-            EmailAddress: accounting.String("quod"),
-            ID: accounting.String("0584a184-d76d-4971-bc82-0c65b037bb8e"),
+            ContactName: accounting.String("Durham after"),
+            DefaultCurrency: accounting.String("Intelligent Fish"),
+            EmailAddress: accounting.String("Ricardo.Hand41@gmail.com"),
+            ID: accounting.String("<ID>"),
             Metadata: &shared.Metadata{
                 IsDeleted: accounting.Bool(false),
             },
             ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
-            Phone: accounting.String("01224 658 999"),
-            RegistrationNumber: accounting.String("impedit"),
+            Phone: accounting.String("(877) 492-8687"),
+            RegistrationNumber: accounting.String("Profound"),
             SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
             Status: shared.SupplierStatusActive,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "ullam": map[string]interface{}{
-                        "veritatis": "quas",
+                    "pariatur": map[string]interface{}{
+                        "accusantium": "Minivan",
                     },
                 },
             },
-            SupplierName: accounting.String("molestiae"),
-            TaxNumber: accounting.String("officiis"),
+            SupplierName: accounting.String("Senior Mouse West"),
+            TaxNumber: accounting.String("Towels likewise"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: accounting.Int(287293),
+        TimeoutInMinutes: accounting.Int(452224),
     })
     if err != nil {
         log.Fatal(err)
@@ -147,7 +147,7 @@ func main() {
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        SupplierID: "nulla",
+        SupplierID: "Dakota Avon specifically",
     })
     if err != nil {
         log.Fatal(err)
@@ -207,7 +207,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Suppliers.Get(ctx, operations.GetSupplierRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        SupplierID: "accusamus",
+        SupplierID: "Northeast Hatchback Kia",
     })
     if err != nil {
         log.Fatal(err)
@@ -267,7 +267,7 @@ func main() {
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        SupplierID: "consequatur",
+        SupplierID: "array East along",
     })
     if err != nil {
         log.Fatal(err)
@@ -390,7 +390,7 @@ func main() {
         OrderBy: accounting.String("-modifiedDate"),
         Page: accounting.Int(1),
         PageSize: accounting.Int(100),
-        Query: accounting.String("ut"),
+        Query: accounting.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)
@@ -449,7 +449,7 @@ func main() {
     res, err := s.Suppliers.ListAttachments(ctx, operations.ListSupplierAttachmentsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        SupplierID: "laborum",
+        SupplierID: "intuitive Frozen ouch",
     })
     if err != nil {
         log.Fatal(err)
@@ -513,42 +513,42 @@ func main() {
         Supplier: &shared.Supplier{
             Addresses: []shared.Addressesitems{
                 shared.Addressesitems{
-                    City: accounting.String("Cathedral City"),
-                    Country: accounting.String("Malta"),
-                    Line1: accounting.String("maxime"),
-                    Line2: accounting.String("ad"),
-                    PostalCode: accounting.String("88624-6607"),
-                    Region: accounting.String("voluptatibus"),
-                    Type: shared.AccountingAddressTypeDelivery,
+                    City: accounting.String("Ann Arbor"),
+                    Country: accounting.String("Montserrat"),
+                    Line1: accounting.String("Reactive"),
+                    Line2: accounting.String("Metal cheater Islands"),
+                    PostalCode: accounting.String("43372"),
+                    Region: accounting.String("Carolina syndicate"),
+                    Type: shared.AccountingAddressTypeBilling,
                 },
             },
-            ContactName: accounting.String("ea"),
-            DefaultCurrency: accounting.String("facere"),
-            EmailAddress: accounting.String("corrupti"),
-            ID: accounting.String("28da0131-9112-4964-a645-c1d81f29042f"),
+            ContactName: accounting.String("East"),
+            DefaultCurrency: accounting.String("Bicycle guestbook"),
+            EmailAddress: accounting.String("Alexys.Hayes81@yahoo.com"),
+            ID: accounting.String("<ID>"),
             Metadata: &shared.Metadata{
                 IsDeleted: accounting.Bool(false),
             },
             ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
             Phone: accounting.String("(877) 492-8687"),
-            RegistrationNumber: accounting.String("iste"),
+            RegistrationNumber: accounting.String("indexing"),
             SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
-            Status: shared.SupplierStatusActive,
+            Status: shared.SupplierStatusUnknown,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "culpa": map[string]interface{}{
-                        "reiciendis": "a",
+                    "consectetur": map[string]interface{}{
+                        "ullam": "Jaguar",
                     },
                 },
             },
-            SupplierName: accounting.String("consequatur"),
-            TaxNumber: accounting.String("voluptates"),
+            SupplierName: accounting.String("visionary Buckinghamshire frictionless"),
+            TaxNumber: accounting.String("parse possimus"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         ForceUpdate: accounting.Bool(false),
-        SupplierID: "dolorum",
-        TimeoutInMinutes: accounting.Int(148004),
+        SupplierID: "Turkish Avon",
+        TimeoutInMinutes: accounting.Int(151827),
     })
     if err != nil {
         log.Fatal(err)

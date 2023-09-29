@@ -49,28 +49,28 @@ func main() {
     ctx := context.Background()
     res, err := s.BankAccounts.Create(ctx, operations.CreateBankAccountRequest{
         BankAccount: &shared.BankAccount{
-            AccountName: accounting.String("hic"),
-            AccountNumber: accounting.String("optio"),
-            AccountType: shared.BankAccountBankAccountTypeCredit.ToPointer(),
-            AvailableBalance: types.MustNewDecimalFromString("1059.07"),
-            Balance: types.MustNewDecimalFromString("4146.62"),
-            Currency: accounting.String("USD"),
-            IBan: accounting.String("modi"),
-            ID: accounting.String("2cb73920-5929-4396-bea7-596eb10faaa2"),
-            Institution: accounting.String("dolorem"),
+            AccountName: accounting.String("bluetooth Extended"),
+            AccountNumber: accounting.String("blue"),
+            AccountType: shared.BankAccountBankAccountTypeDebit.ToPointer(),
+            AvailableBalance: types.MustNewDecimalFromString("7964.74"),
+            Balance: types.MustNewDecimalFromString("3768.44"),
+            Currency: accounting.String("EUR"),
+            IBan: accounting.String("ES4002078579630900307003"),
+            ID: accounting.String("<ID>"),
+            Institution: accounting.String("Grocery Borders Northwest"),
             Metadata: &shared.Metadata{
                 IsDeleted: accounting.Bool(false),
             },
             ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
-            NominalCode: accounting.String("explicabo"),
-            OverdraftLimit: types.MustNewDecimalFromString("7506.86"),
-            SortCode: accounting.String("enim"),
+            NominalCode: accounting.String("metrics"),
+            OverdraftLimit: types.MustNewDecimalFromString("365.21"),
+            SortCode: accounting.String("Interactions Senior Mouse"),
             SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
         },
         AllowSyncOnPushComplete: accounting.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: accounting.Int(363711),
+        TimeoutInMinutes: accounting.Int(908106),
     })
     if err != nil {
         log.Fatal(err)
@@ -129,7 +129,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.BankAccounts.Get(ctx, operations.GetBankAccountRequest{
-        AccountID: "minima",
+        AccountID: "Northeast Hatchback Kia",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -255,7 +255,7 @@ func main() {
         OrderBy: accounting.String("-modifiedDate"),
         Page: accounting.Int(1),
         PageSize: accounting.Int(100),
-        Query: accounting.String("excepturi"),
+        Query: accounting.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)
@@ -318,29 +318,29 @@ func main() {
     ctx := context.Background()
     res, err := s.BankAccounts.Update(ctx, operations.UpdateBankAccountRequest{
         BankAccount: &shared.BankAccount{
-            AccountName: accounting.String("accusantium"),
-            AccountNumber: accounting.String("iure"),
-            AccountType: shared.BankAccountBankAccountTypeCredit.ToPointer(),
-            AvailableBalance: types.MustNewDecimalFromString("9883.74"),
-            Balance: types.MustNewDecimalFromString("9589.5"),
-            Currency: accounting.String("GBP"),
-            IBan: accounting.String("mollitia"),
-            ID: accounting.String("3a2fa946-7739-4251-aa52-c3f5ad019da1"),
-            Institution: accounting.String("reiciendis"),
+            AccountName: accounting.String("New Reactive dock"),
+            AccountNumber: accounting.String("Analyst invoice"),
+            AccountType: shared.BankAccountBankAccountTypeUnknown.ToPointer(),
+            AvailableBalance: types.MustNewDecimalFromString("540.62"),
+            Balance: types.MustNewDecimalFromString("2782.81"),
+            Currency: accounting.String("EUR"),
+            IBan: accounting.String("XK423723008830469503"),
+            ID: accounting.String("<ID>"),
+            Institution: accounting.String("Sharable Division Northeast"),
             Metadata: &shared.Metadata{
                 IsDeleted: accounting.Bool(false),
             },
             ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
-            NominalCode: accounting.String("vero"),
-            OverdraftLimit: types.MustNewDecimalFromString("4686.51"),
-            SortCode: accounting.String("praesentium"),
+            NominalCode: accounting.String("Wooden"),
+            OverdraftLimit: types.MustNewDecimalFromString("3529.19"),
+            SortCode: accounting.String("Internal invoice"),
             SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
         },
-        BankAccountID: "13d946f0-c5d5-42bc-b092-97ece17923ab",
+        BankAccountID: "Checking 0202",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         ForceUpdate: accounting.Bool(false),
-        TimeoutInMinutes: accounting.Int(604846),
+        TimeoutInMinutes: accounting.Int(77428),
     })
     if err != nil {
         log.Fatal(err)
