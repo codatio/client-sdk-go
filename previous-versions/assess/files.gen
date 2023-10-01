@@ -84,11 +84,6 @@ pkg/models/shared/reportinfo.go
 pkg/models/shared/datasource.go
 pkg/models/shared/accounts.go
 pkg/models/shared/enhancedinvoicesreport.go
-pkg/models/shared/enhancedinvoicereportitem.go
-pkg/models/shared/invoicestatus.go
-pkg/models/shared/payment.go
-pkg/models/shared/bankingtransactionref.go
-pkg/models/shared/lendingcustomerref.go
 pkg/models/shared/loansummary.go
 pkg/models/shared/loansummaryreportitem.go
 pkg/models/shared/loansummaryrecordref.go
@@ -198,11 +193,6 @@ docs/models/shared/reportinfo.md
 docs/models/shared/datasource.md
 docs/models/shared/accounts.md
 docs/models/shared/enhancedinvoicesreport.md
-docs/models/shared/enhancedinvoicereportitem.md
-docs/models/shared/invoicestatus.md
-docs/models/shared/payment.md
-docs/models/shared/bankingtransactionref.md
-docs/models/shared/lendingcustomerref.md
 docs/models/shared/loansummary.md
 docs/models/shared/loansummaryreportitem.md
 docs/models/shared/loansummaryrecordref.md
