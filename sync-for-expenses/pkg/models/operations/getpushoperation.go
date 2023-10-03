@@ -3,11 +3,12 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/shared"
 	"net/http"
 )
 
 type GetPushOperationRequest struct {
+	// Unique identifier for a company.
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	// Push operation key.
 	PushOperationKey string `pathParam:"style=simple,explode=false,name=pushOperationKey"`
@@ -28,13 +29,16 @@ func (o *GetPushOperationRequest) GetPushOperationKey() string {
 }
 
 type GetPushOperationResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
 	// OK
 	PushOperation *shared.PushOperation
-	StatusCode    int
-	RawResponse   *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *GetPushOperationResponse) GetContentType() string {

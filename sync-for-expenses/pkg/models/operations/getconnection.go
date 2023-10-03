@@ -3,12 +3,14 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/shared"
 	"net/http"
 )
 
 type GetConnectionRequest struct {
-	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a company.
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a connection.
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
@@ -28,12 +30,15 @@ func (o *GetConnectionRequest) GetConnectionID() string {
 
 type GetConnectionResponse struct {
 	// OK
-	Connection  *shared.Connection
+	Connection *shared.Connection
+	// HTTP response content type for this operation
 	ContentType string
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
-	StatusCode   int
-	RawResponse  *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *GetConnectionResponse) GetConnection() *shared.Connection {

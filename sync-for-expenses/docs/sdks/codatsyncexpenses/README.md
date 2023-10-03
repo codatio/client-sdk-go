@@ -1,5 +1,6 @@
 # CodatSyncExpenses SDK
 
+
 ## Overview
 
 Sync for Expenses: The API for Sync for Expenses.
