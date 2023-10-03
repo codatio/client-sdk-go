@@ -66,12 +66,6 @@ func (c *SecurityClient) Do(req *http.Request) (*http.Response, error) {
 		queryParams.Add(k, v)
 	}
 
-	for k, v := range queryParams {
-		for _, z := range v {
-			queryParams.Add(k, z)
-		}
-	}
-
 	req.URL.RawQuery = queryParams.Encode()
 
 	return c.HTTPClient.Do(req)

@@ -82,6 +82,7 @@ func main() {
 ### [Accounts](docs/sdks/accounts/README.md)
 
 * [Create](docs/sdks/accounts/README.md#create) - Create account
+* [GetCreateModel](docs/sdks/accounts/README.md#getcreatemodel) - Get create account model
 
 ### [Companies](docs/sdks/companies/README.md)
 
