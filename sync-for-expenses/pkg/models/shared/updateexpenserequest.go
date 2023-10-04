@@ -3,7 +3,8 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/types"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 type UpdateExpenseRequestBankAccountReference struct {
@@ -48,7 +49,7 @@ type UpdateExpenseRequest struct {
 	// | **GBP**          | £20            | 1.277         | $25.54                     |
 	// | **EUR**          | €20            | 1.134         | $22.68                     |
 	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
-	CurrencyRate *types.Decimal `json:"currencyRate,omitempty"`
+	CurrencyRate *decimal.Big `decimal:"number" json:"currencyRate,omitempty"`
 	// Date the transaction was recorded.
 	IssueDate string `json:"issueDate"`
 	// Array of transaction lines.
@@ -58,6 +59,17 @@ type UpdateExpenseRequest struct {
 	// Any private, company notes about the transaction.
 	Notes *string     `json:"notes,omitempty"`
 	Type  interface{} `json:"type"`
+}
+
+func (u UpdateExpenseRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateExpenseRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *UpdateExpenseRequest) GetBankAccountRef() *UpdateExpenseRequestBankAccountReference {
@@ -81,7 +93,7 @@ func (o *UpdateExpenseRequest) GetCurrency() *string {
 	return o.Currency
 }
 
-func (o *UpdateExpenseRequest) GetCurrencyRate() *types.Decimal {
+func (o *UpdateExpenseRequest) GetCurrencyRate() *decimal.Big {
 	if o == nil {
 		return nil
 	}

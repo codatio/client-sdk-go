@@ -3,15 +3,32 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/utils"
 	"net/http"
 )
 
 type CreateSupplierRequest struct {
-	Supplier         *shared.Supplier `request:"mediaType=application/json"`
-	CompanyID        string           `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID     string           `pathParam:"style=simple,explode=false,name=connectionId"`
-	TimeoutInMinutes *int             `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
+	Supplier *shared.Supplier `request:"mediaType=application/json"`
+	// Allow a sync upon push completion.
+	AllowSyncOnPushComplete *bool `default:"true" queryParam:"style=form,explode=true,name=allowSyncOnPushComplete"`
+	// Unique identifier for a company.
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a connection.
+	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
+	// Time limit for the push operation to complete before it is timed out.
+	TimeoutInMinutes *int `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
+}
+
+func (c CreateSupplierRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CreateSupplierRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *CreateSupplierRequest) GetSupplier() *shared.Supplier {
@@ -19,6 +36,13 @@ func (o *CreateSupplierRequest) GetSupplier() *shared.Supplier {
 		return nil
 	}
 	return o.Supplier
+}
+
+func (o *CreateSupplierRequest) GetAllowSyncOnPushComplete() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.AllowSyncOnPushComplete
 }
 
 func (o *CreateSupplierRequest) GetCompanyID() string {
@@ -43,13 +67,16 @@ func (o *CreateSupplierRequest) GetTimeoutInMinutes() *int {
 }
 
 type CreateSupplierResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// Success
 	CreateSupplierResponse *shared.CreateSupplierResponse
 	// The request made is not valid.
 	ErrorMessage *shared.ErrorMessage
-	StatusCode   int
-	RawResponse  *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *CreateSupplierResponse) GetContentType() string {
