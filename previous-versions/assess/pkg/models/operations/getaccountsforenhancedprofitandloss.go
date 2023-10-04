@@ -8,6 +8,7 @@ import (
 )
 
 type GetAccountsForEnhancedProfitAndLossRequest struct {
+	// Unique identifier for a company.
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	// The number of periods to return. If not provided, 12 periods will be used as the default value.
 	NumberOfPeriods *int64 `queryParam:"style=form,explode=true,name=numberOfPeriods"`
@@ -37,13 +38,16 @@ func (o *GetAccountsForEnhancedProfitAndLossRequest) GetReportDate() string {
 }
 
 type GetAccountsForEnhancedProfitAndLossResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// OK
 	EnhancedReport *shared.EnhancedReport
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
-	StatusCode   int
-	RawResponse  *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *GetAccountsForEnhancedProfitAndLossResponse) GetContentType() string {

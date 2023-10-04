@@ -3,9 +3,9 @@
 package shared
 
 type LendingCustomerRef struct {
-	// `customerName` from the Customer data type
+	// `customerName` from the Customer data type.
 	CustomerName *string `json:"customerName,omitempty"`
-	// `id` from the Customers data type
+	// `id` from the Customers data type.
 	ID *string `json:"id,omitempty"`
 }
 

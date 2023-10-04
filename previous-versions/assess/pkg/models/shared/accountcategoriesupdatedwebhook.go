@@ -2,18 +2,6 @@
 
 package shared
 
-type AccountCategoriesUpdatedWebhookData struct {
-	// The date on which this account categories were last modified in Codat.
-	ModifiedDate *string `json:"modifiedDate,omitempty"`
-}
-
-func (o *AccountCategoriesUpdatedWebhookData) GetModifiedDate() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ModifiedDate
-}
-
 // AccountCategoriesUpdatedWebhook - Webhook request body for account categories updated.
 type AccountCategoriesUpdatedWebhook struct {
 	// Unique identifier of the webhook event.
@@ -32,7 +20,7 @@ type AccountCategoriesUpdatedWebhook struct {
 	// Unique identifier for the rule.
 	RuleID *string `json:"RuleId,omitempty"`
 	// The type of rule.
-	Type *string `json:"Type,omitempty"`
+	RuleType *string `json:"RuleType,omitempty"`
 }
 
 func (o *AccountCategoriesUpdatedWebhook) GetAlertID() *string {
@@ -91,9 +79,9 @@ func (o *AccountCategoriesUpdatedWebhook) GetRuleID() *string {
 	return o.RuleID
 }
 
-func (o *AccountCategoriesUpdatedWebhook) GetType() *string {
+func (o *AccountCategoriesUpdatedWebhook) GetRuleType() *string {
 	if o == nil {
 		return nil
 	}
-	return o.Type
+	return o.RuleType
 }

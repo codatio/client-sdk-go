@@ -5,9 +5,11 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/types"
+	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
+// ReportItemsLoanTransactionType - The type of loan transaction.
 type ReportItemsLoanTransactionType string
 
 const (
@@ -43,7 +45,7 @@ func (e *ReportItemsLoanTransactionType) UnmarshalJSON(data []byte) error {
 
 type ReportItems struct {
 	// The loan transaction amount.
-	Amount *types.Decimal `json:"amount,omitempty"`
+	Amount *decimal.Big `decimal:"number" json:"amount,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -63,13 +65,27 @@ type ReportItems struct {
 	// >
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	Date                *string                         `json:"date,omitempty"`
-	ItemRef             *ItemRef                        `json:"itemRef,omitempty"`
-	LoanRef             *LoanRef                        `json:"loanRef,omitempty"`
+	Date    *string  `json:"date,omitempty"`
+	ItemRef *ItemRef `json:"itemRef,omitempty"`
+	// The name of lender providing the loan.
+	LenderName *string  `json:"lenderName,omitempty"`
+	LoanRef    *LoanRef `json:"loanRef,omitempty"`
+	// The type of loan transaction.
 	LoanTransactionType *ReportItemsLoanTransactionType `json:"loanTransactionType,omitempty"`
 }
 
-func (o *ReportItems) GetAmount() *types.Decimal {
+func (r ReportItems) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
+}
+
+func (r *ReportItems) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *ReportItems) GetAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}
@@ -88,6 +104,13 @@ func (o *ReportItems) GetItemRef() *ItemRef {
 		return nil
 	}
 	return o.ItemRef
+}
+
+func (o *ReportItems) GetLenderName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.LenderName
 }
 
 func (o *ReportItems) GetLoanRef() *LoanRef {
