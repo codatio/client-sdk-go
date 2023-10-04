@@ -1,4 +1,5 @@
 # PushData
+(*PushData*)
 
 ## Overview
 
@@ -37,8 +38,8 @@ import(
 )
 
 func main() {
-    s := codatplatform.New(
-        codatplatform.WithSecurity(shared.Security{
+    s := platform.New(
+        platform.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
@@ -91,8 +92,8 @@ import(
 )
 
 func main() {
-    s := codatplatform.New(
-        codatplatform.WithSecurity(shared.Security{
+    s := platform.New(
+        platform.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
@@ -100,7 +101,7 @@ func main() {
     ctx := context.Background()
     res, err := s.PushData.GetOperation(ctx, operations.GetPushOperationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        PushOperationKey: "d69a674e-0f46-47cc-8796-ed151a05dfc2",
+        PushOperationKey: "59acd79e-29d3-4138-91d3-91d4641bf7ed",
     })
     if err != nil {
         log.Fatal(err)
@@ -144,8 +145,8 @@ import(
 )
 
 func main() {
-    s := codatplatform.New(
-        codatplatform.WithSecurity(shared.Security{
+    s := platform.New(
+        platform.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
@@ -153,10 +154,10 @@ func main() {
     ctx := context.Background()
     res, err := s.PushData.ListOperations(ctx, operations.GetCompanyPushHistoryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        OrderBy: codatplatform.String("-modifiedDate"),
-        Page: codatplatform.Int(1),
-        PageSize: codatplatform.Int(100),
-        Query: codatplatform.String("at"),
+        OrderBy: platform.String("-modifiedDate"),
+        Page: platform.Int(1),
+        PageSize: platform.Int(100),
+        Query: platform.String("Synchronised"),
     })
     if err != nil {
         log.Fatal(err)

@@ -1,4 +1,5 @@
 # SupplementalData
+(*SupplementalData*)
 
 ## Overview
 
@@ -32,8 +33,8 @@ import(
 )
 
 func main() {
-    s := codatplatform.New(
-        codatplatform.WithSecurity(shared.Security{
+    s := platform.New(
+        platform.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
@@ -42,19 +43,19 @@ func main() {
     res, err := s.SupplementalData.Configure(ctx, operations.ConfigureSupplementalDataRequest{
         SupplementalDataConfiguration: &shared.SupplementalDataConfiguration{
             SupplementalDataConfig: map[string]shared.SupplementalDataConfigurationSupplementalDataSourceConfiguration{
-                "dolor": shared.SupplementalDataConfigurationSupplementalDataSourceConfiguration{
-                    DataSource: codatplatform.String("natus"),
+                "voluptatem": shared.SupplementalDataConfigurationSupplementalDataSourceConfiguration{
+                    DataSource: platform.String("Alabama"),
                     PullData: map[string]string{
-                        "laboriosam": "hic",
+                        "dicta": "transmitter",
                     },
                     PushData: map[string]string{
-                        "saepe": "fuga",
+                        "nisi": "primary",
                     },
                 },
             },
         },
         DataType: operations.ConfigureSupplementalDataDataTypeInvoices,
-        PlatformKey: "in",
+        PlatformKey: "to",
     })
     if err != nil {
         log.Fatal(err)
@@ -100,8 +101,8 @@ import(
 )
 
 func main() {
-    s := codatplatform.New(
-        codatplatform.WithSecurity(shared.Security{
+    s := platform.New(
+        platform.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
@@ -109,7 +110,7 @@ func main() {
     ctx := context.Background()
     res, err := s.SupplementalData.GetConfiguration(ctx, operations.GetSupplementalDataConfigurationRequest{
         DataType: operations.GetSupplementalDataConfigurationDataTypeInvoices,
-        PlatformKey: "corporis",
+        PlatformKey: "violent Metal calculating",
     })
     if err != nil {
         log.Fatal(err)

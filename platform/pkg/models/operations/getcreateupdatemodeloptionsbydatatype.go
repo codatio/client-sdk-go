@@ -36,12 +36,15 @@ func (o *GetCreateUpdateModelOptionsByDataTypeRequest) GetDataType() shared.Data
 }
 
 type GetCreateUpdateModelOptionsByDataTypeResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
 	// OK
-	PushOption  *shared.PushOption
-	StatusCode  int
+	PushOption *shared.PushOption
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 }
 
