@@ -3,11 +3,13 @@
 package shared
 
 type SalesOrderRef struct {
-	DataType *string `json:"dataType,omitempty"`
-	ID       *string `json:"id,omitempty"`
+	// Available Data types
+	DataType *DataType `json:"dataType,omitempty"`
+	// Unique identifier to a record in `dataType`.
+	ID *string `json:"id,omitempty"`
 }
 
-func (o *SalesOrderRef) GetDataType() *string {
+func (o *SalesOrderRef) GetDataType() *DataType {
 	if o == nil {
 		return nil
 	}

@@ -8,10 +8,13 @@ import (
 )
 
 type CreateDirectCostRequest struct {
-	DirectCost       *shared.DirectCost `request:"mediaType=application/json"`
-	CompanyID        string             `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID     string             `pathParam:"style=simple,explode=false,name=connectionId"`
-	TimeoutInMinutes *int               `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
+	DirectCost *shared.DirectCost `request:"mediaType=application/json"`
+	// Unique identifier for a company.
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a connection.
+	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
+	// Time limit for the push operation to complete before it is timed out.
+	TimeoutInMinutes *int `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
 }
 
 func (o *CreateDirectCostRequest) GetDirectCost() *shared.DirectCost {
@@ -43,13 +46,16 @@ func (o *CreateDirectCostRequest) GetTimeoutInMinutes() *int {
 }
 
 type CreateDirectCostResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// Success
 	CreateDirectCostResponse *shared.CreateDirectCostResponse
 	// The request made is not valid.
 	ErrorMessage *shared.ErrorMessage
-	StatusCode   int
-	RawResponse  *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *CreateDirectCostResponse) GetContentType() string {

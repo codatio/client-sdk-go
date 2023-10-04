@@ -1,5 +1,6 @@
 # CodatAccounting SDK
 
+
 ## Overview
 
 Accounting API: A flexible API for pulling accounting data, normalized and aggregated from 20 accounting integrations.

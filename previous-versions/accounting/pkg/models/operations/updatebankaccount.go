@@ -4,18 +4,33 @@ package operations
 
 import (
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/utils"
 	"net/http"
 )
 
 type UpdateBankAccountRequest struct {
 	BankAccount *shared.BankAccount `request:"mediaType=application/json"`
-	// Unique identifier for a bank account
+	// Unique identifier for a bank account.
 	BankAccountID string `pathParam:"style=simple,explode=false,name=bankAccountId"`
-	CompanyID     string `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID  string `pathParam:"style=simple,explode=false,name=connectionId"`
+	// Unique identifier for a company.
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a connection.
+	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 	// When updating data in the destination platform Codat checks the `sourceModifiedDate` against the `lastupdated` date from the accounting platform, if they're different Codat will return an error suggesting you should initiate another pull of the data. If this is set to `true` then the update will override this check.
-	ForceUpdate      *bool `queryParam:"style=form,explode=true,name=forceUpdate"`
-	TimeoutInMinutes *int  `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
+	ForceUpdate *bool `default:"false" queryParam:"style=form,explode=true,name=forceUpdate"`
+	// Time limit for the push operation to complete before it is timed out.
+	TimeoutInMinutes *int `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
+}
+
+func (u UpdateBankAccountRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateBankAccountRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *UpdateBankAccountRequest) GetBankAccount() *shared.BankAccount {
@@ -61,11 +76,14 @@ func (o *UpdateBankAccountRequest) GetTimeoutInMinutes() *int {
 }
 
 type UpdateBankAccountResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// The request made is not valid.
 	ErrorMessage *shared.ErrorMessage
-	StatusCode   int
-	RawResponse  *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 	// Success
 	UpdateBankAccountResponse *shared.UpdateBankAccountResponse
 }

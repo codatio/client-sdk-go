@@ -7,7 +7,7 @@ import (
 	"fmt"
 )
 
-// BankTransactionType - Type of transaction for the bank statement line
+// BankTransactionType - Type of transaction for the bank statement line.
 type BankTransactionType string
 
 const (

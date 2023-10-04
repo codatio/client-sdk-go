@@ -2,96 +2,8 @@
 
 package shared
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
-type DatasetStatus string
-
-const (
-	DatasetStatusInitial            DatasetStatus = "Initial"
-	DatasetStatusQueued             DatasetStatus = "Queued"
-	DatasetStatusFetching           DatasetStatus = "Fetching"
-	DatasetStatusMapQueued          DatasetStatus = "MapQueued"
-	DatasetStatusMapping            DatasetStatus = "Mapping"
-	DatasetStatusComplete           DatasetStatus = "Complete"
-	DatasetStatusFetchError         DatasetStatus = "FetchError"
-	DatasetStatusMapError           DatasetStatus = "MapError"
-	DatasetStatusInternalError      DatasetStatus = "InternalError"
-	DatasetStatusProcessingQueued   DatasetStatus = "ProcessingQueued"
-	DatasetStatusProcessing         DatasetStatus = "Processing"
-	DatasetStatusProcessingError    DatasetStatus = "ProcessingError"
-	DatasetStatusValidationQueued   DatasetStatus = "ValidationQueued"
-	DatasetStatusValidating         DatasetStatus = "Validating"
-	DatasetStatusValidationError    DatasetStatus = "ValidationError"
-	DatasetStatusAuthError          DatasetStatus = "AuthError"
-	DatasetStatusCancelled          DatasetStatus = "Cancelled"
-	DatasetStatusNotSupported       DatasetStatus = "NotSupported"
-	DatasetStatusRateLimitError     DatasetStatus = "RateLimitError"
-	DatasetStatusPermissionsError   DatasetStatus = "PermissionsError"
-	DatasetStatusPrerequisiteNotMet DatasetStatus = "PrerequisiteNotMet"
-)
-
-func (e DatasetStatus) ToPointer() *DatasetStatus {
-	return &e
-}
-
-func (e *DatasetStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Initial":
-		fallthrough
-	case "Queued":
-		fallthrough
-	case "Fetching":
-		fallthrough
-	case "MapQueued":
-		fallthrough
-	case "Mapping":
-		fallthrough
-	case "Complete":
-		fallthrough
-	case "FetchError":
-		fallthrough
-	case "MapError":
-		fallthrough
-	case "InternalError":
-		fallthrough
-	case "ProcessingQueued":
-		fallthrough
-	case "Processing":
-		fallthrough
-	case "ProcessingError":
-		fallthrough
-	case "ValidationQueued":
-		fallthrough
-	case "Validating":
-		fallthrough
-	case "ValidationError":
-		fallthrough
-	case "AuthError":
-		fallthrough
-	case "Cancelled":
-		fallthrough
-	case "NotSupported":
-		fallthrough
-	case "RateLimitError":
-		fallthrough
-	case "PermissionsError":
-		fallthrough
-	case "PrerequisiteNotMet":
-		*e = DatasetStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for DatasetStatus: %v", v)
-	}
-}
-
 type Dataset struct {
+	// Unique identifier for your SMB in Codat.
 	CompanyID string `json:"companyId"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
@@ -112,15 +24,23 @@ type Dataset struct {
 	// >
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	Completed      *string `json:"completed,omitempty"`
-	ConnectionID   string  `json:"connectionId"`
-	DataType       *string `json:"dataType,omitempty"`
+	Completed *string `json:"completed,omitempty"`
+	// Unique identifier for a company's data connection.
+	ConnectionID string `json:"connectionId"`
+	// Available Data types
+	DataType *DataType `json:"dataType,omitempty"`
+	// URI to the dataset's logs.
 	DatasetLogsURL *string `json:"datasetLogsUrl,omitempty"`
-	ErrorMessage   *string `json:"errorMessage,omitempty"`
-	ID             string  `json:"id"`
-	IsCompleted    bool    `json:"isCompleted"`
-	IsErrored      bool    `json:"isErrored"`
-	Progress       int     `json:"progress"`
+	// A brief message about the error.
+	ErrorMessage *string `json:"errorMessage,omitempty"`
+	// Identifier for the dataset.
+	ID string `json:"id"`
+	// `True` if the dataset completed successfully.
+	IsCompleted bool `json:"isCompleted"`
+	// `True` if the dataset entered an error state.
+	IsErrored bool `json:"isErrored"`
+	// An integer signifying the progress of the dataset.
+	Progress int `json:"progress"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -140,9 +60,11 @@ type Dataset struct {
 	// >
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	Requested                string        `json:"requested"`
-	Status                   DatasetStatus `json:"status"`
-	ValidationInformationURL *string       `json:"validationInformationUrl,omitempty"`
+	Requested string `json:"requested"`
+	// The current status of the dataset.
+	Status DatasetStatus `json:"status"`
+	// URI to the dataset's validation information.
+	ValidationInformationURL *string `json:"validationInformationUrl,omitempty"`
 }
 
 func (o *Dataset) GetCompanyID() string {
@@ -166,7 +88,7 @@ func (o *Dataset) GetConnectionID() string {
 	return o.ConnectionID
 }
 
-func (o *Dataset) GetDataType() *string {
+func (o *Dataset) GetDataType() *DataType {
 	if o == nil {
 		return nil
 	}

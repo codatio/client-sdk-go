@@ -8,8 +8,9 @@ import (
 )
 
 type GetInvoiceRequest struct {
+	// Unique identifier for a company.
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
-	// Unique identifier for an invoice
+	// Unique identifier for an invoice.
 	InvoiceID string `pathParam:"style=simple,explode=false,name=invoiceId"`
 }
 
@@ -28,12 +29,15 @@ func (o *GetInvoiceRequest) GetInvoiceID() string {
 }
 
 type GetInvoiceResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
 	// Success
-	Invoice     *shared.Invoice
-	StatusCode  int
+	Invoice *shared.Invoice
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 }
 

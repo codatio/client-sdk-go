@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/types"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
@@ -37,10 +37,12 @@ import (
 // >
 // > In Sage 50 and ClearBooks, you may prefer to use the **invoiceNumber** to identify an invoice rather than the invoice **id**. Each time a draft invoice is submitted or printed, the draft **id** becomes void and a submitted invoice with a new **id** exists in its place. In both platforms, the **invoiceNumber** should remain the same.
 type Invoice struct {
-	AdditionalTaxAmount     *types.Decimal `json:"additionalTaxAmount,omitempty"`
-	AdditionalTaxPercentage *types.Decimal `json:"additionalTaxPercentage,omitempty"`
+	// Additional tax amount applied to invoice.
+	AdditionalTaxAmount *decimal.Big `decimal:"number" json:"additionalTaxAmount,omitempty"`
+	// Percentage rate of any additional tax applied to the invoice.
+	AdditionalTaxPercentage *decimal.Big `decimal:"number" json:"additionalTaxPercentage,omitempty"`
 	// Amount outstanding on the invoice.
-	AmountDue types.Decimal `json:"amountDue"`
+	AmountDue *decimal.Big `decimal:"number" json:"amountDue"`
 	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code, e.g. _GBP_.
 	//
 	// ## Unknown currencies
@@ -74,10 +76,10 @@ type Invoice struct {
 	// | **GBP**          | £20            | 1.277         | $25.54                     |
 	// | **EUR**          | €20            | 1.134         | $22.68                     |
 	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
-	CurrencyRate *types.Decimal         `json:"currencyRate,omitempty"`
+	CurrencyRate *decimal.Big           `decimal:"number" json:"currencyRate,omitempty"`
 	CustomerRef  *AccountingCustomerRef `json:"customerRef,omitempty"`
 	// Percentage rate (from 0 to 100) of discounts applied to the invoice. For example: A 5% discount will return a value of `5`, not `0.05`.
-	DiscountPercentage *types.Decimal `json:"discountPercentage,omitempty"`
+	DiscountPercentage *decimal.Big `decimal:"number" json:"discountPercentage,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -162,37 +164,48 @@ type Invoice struct {
 	// - `Void` - An invoice can become Void when it's deleted, refunded, written off, or cancelled. A voided invoice may still be PartiallyPaid, and so all outstanding amounts on voided invoices are removed from the accounts receivable account.
 	Status InvoiceStatus `json:"status"`
 	// Total amount of the invoice excluding any taxes.
-	SubTotal *types.Decimal `json:"subTotal,omitempty"`
+	SubTotal *decimal.Big `decimal:"number" json:"subTotal,omitempty"`
 	// Supplemental data is additional data you can include in our standard data types.
 	//
 	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
 	SupplementalData *SupplementalData `json:"supplementalData,omitempty"`
 	// Amount of the invoice, inclusive of tax.
-	TotalAmount types.Decimal `json:"totalAmount"`
+	TotalAmount *decimal.Big `decimal:"number" json:"totalAmount"`
 	// Numerical value of discounts applied to the invoice.
-	TotalDiscount *types.Decimal `json:"totalDiscount,omitempty"`
+	TotalDiscount *decimal.Big `decimal:"number" json:"totalDiscount,omitempty"`
 	// Amount of tax on the invoice.
-	TotalTaxAmount types.Decimal         `json:"totalTaxAmount"`
+	TotalTaxAmount *decimal.Big          `decimal:"number" json:"totalTaxAmount"`
 	WithholdingTax []WithholdingTaxitems `json:"withholdingTax,omitempty"`
 }
 
-func (o *Invoice) GetAdditionalTaxAmount() *types.Decimal {
+func (i Invoice) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(i, "", false)
+}
+
+func (i *Invoice) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &i, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *Invoice) GetAdditionalTaxAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.AdditionalTaxAmount
 }
 
-func (o *Invoice) GetAdditionalTaxPercentage() *types.Decimal {
+func (o *Invoice) GetAdditionalTaxPercentage() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.AdditionalTaxPercentage
 }
 
-func (o *Invoice) GetAmountDue() types.Decimal {
+func (o *Invoice) GetAmountDue() *decimal.Big {
 	if o == nil {
-		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
+		return new(decimal.Big).SetFloat64(0.0)
 	}
 	return o.AmountDue
 }
@@ -204,7 +217,7 @@ func (o *Invoice) GetCurrency() *string {
 	return o.Currency
 }
 
-func (o *Invoice) GetCurrencyRate() *types.Decimal {
+func (o *Invoice) GetCurrencyRate() *decimal.Big {
 	if o == nil {
 		return nil
 	}
@@ -218,7 +231,7 @@ func (o *Invoice) GetCustomerRef() *AccountingCustomerRef {
 	return o.CustomerRef
 }
 
-func (o *Invoice) GetDiscountPercentage() *types.Decimal {
+func (o *Invoice) GetDiscountPercentage() *decimal.Big {
 	if o == nil {
 		return nil
 	}
@@ -316,7 +329,7 @@ func (o *Invoice) GetStatus() InvoiceStatus {
 	return o.Status
 }
 
-func (o *Invoice) GetSubTotal() *types.Decimal {
+func (o *Invoice) GetSubTotal() *decimal.Big {
 	if o == nil {
 		return nil
 	}
@@ -330,23 +343,23 @@ func (o *Invoice) GetSupplementalData() *SupplementalData {
 	return o.SupplementalData
 }
 
-func (o *Invoice) GetTotalAmount() types.Decimal {
+func (o *Invoice) GetTotalAmount() *decimal.Big {
 	if o == nil {
-		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
+		return new(decimal.Big).SetFloat64(0.0)
 	}
 	return o.TotalAmount
 }
 
-func (o *Invoice) GetTotalDiscount() *types.Decimal {
+func (o *Invoice) GetTotalDiscount() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.TotalDiscount
 }
 
-func (o *Invoice) GetTotalTaxAmount() types.Decimal {
+func (o *Invoice) GetTotalTaxAmount() *decimal.Big {
 	if o == nil {
-		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
+		return new(decimal.Big).SetFloat64(0.0)
 	}
 	return o.TotalTaxAmount
 }

@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/types"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
@@ -15,7 +15,18 @@ type ReportLine struct {
 	// Name of the report line item.
 	Name *string `json:"name,omitempty"`
 	// Numerical value of the line item.
-	Value types.Decimal `json:"value"`
+	Value *decimal.Big `decimal:"number" json:"value"`
+}
+
+func (r ReportLine) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
+}
+
+func (r *ReportLine) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ReportLine) GetAccountID() *string {
@@ -39,9 +50,9 @@ func (o *ReportLine) GetName() *string {
 	return o.Name
 }
 
-func (o *ReportLine) GetValue() types.Decimal {
+func (o *ReportLine) GetValue() *decimal.Big {
 	if o == nil {
-		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
+		return new(decimal.Big).SetFloat64(0.0)
 	}
 	return o.Value
 }
