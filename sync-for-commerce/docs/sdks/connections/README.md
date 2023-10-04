@@ -1,4 +1,5 @@
 # Connections
+(*Connections*)
 
 ## Overview
 
@@ -16,7 +17,7 @@ Create new and manage existing Sync for Commerce connections using the Sync flow
 
 ﻿Creates a connection for the company by providing a valid `platformKey`. 
 
-Use the [List Integrations](https://docs.codat.io/sync-for-commerce-api#/operations/list-integrations) endpoint to access valid platform keys. 
+Use the [List Integrations](https://docs.codat.io/sync-for-sync-for-commerce-api#/operations/list-integrations) endpoint to access valid platform keys. 
 
 ### Example Usage
 
@@ -26,14 +27,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-commerce/v2"
+	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v2"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/operations"
 )
 
 func main() {
-    s := codatsynccommerce.New(
-        codatsynccommerce.WithSecurity(shared.Security{
+    s := syncforcommerce.New(
+        syncforcommerce.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -41,7 +42,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Connections.Create(ctx, operations.CreateConnectionRequest{
         RequestBody: &operations.CreateConnectionRequestBody{
-            PlatformKey: codatsynccommerce.String("provident"),
+            PlatformKey: syncforcommerce.String("gbol"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
@@ -81,23 +82,23 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-commerce/v2"
+	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v2"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/operations"
 )
 
 func main() {
-    s := codatsynccommerce.New(
-        codatsynccommerce.WithSecurity(shared.Security{
+    s := syncforcommerce.New(
+        syncforcommerce.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
     ctx := context.Background()
     res, err := s.Connections.GetSyncFlowURL(ctx, operations.GetSyncFlowURLRequest{
-        AccountingKey: "distinctio",
-        CommerceKey: "quibusdam",
-        MerchantIdentifier: codatsynccommerce.String("unde"),
+        AccountingKey: "Manager",
+        CommerceKey: "payment",
+        MerchantIdentifier: syncforcommerce.String("Rupiah tertiary Zealand"),
     })
     if err != nil {
         log.Fatal(err)
@@ -135,14 +136,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-commerce/v2"
+	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v2"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/operations"
 )
 
 func main() {
-    s := codatsynccommerce.New(
-        codatsynccommerce.WithSecurity(shared.Security{
+    s := syncforcommerce.New(
+        syncforcommerce.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -150,10 +151,10 @@ func main() {
     ctx := context.Background()
     res, err := s.Connections.List(ctx, operations.ListConnectionsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        OrderBy: codatsynccommerce.String("-modifiedDate"),
-        Page: codatsynccommerce.Int(1),
-        PageSize: codatsynccommerce.Int(100),
-        Query: codatsynccommerce.String("nulla"),
+        OrderBy: syncforcommerce.String("-modifiedDate"),
+        Page: syncforcommerce.Int(1),
+        PageSize: syncforcommerce.Int(100),
+        Query: syncforcommerce.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)
@@ -191,14 +192,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-commerce/v2"
+	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v2"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/operations"
 )
 
 func main() {
-    s := codatsynccommerce.New(
-        codatsynccommerce.WithSecurity(shared.Security{
+    s := syncforcommerce.New(
+        syncforcommerce.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -206,7 +207,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Connections.UpdateAuthorization(ctx, operations.UpdateConnectionAuthorizationRequest{
         RequestBody: map[string]string{
-            "corrupti": "illum",
+            "libero": "teal",
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -247,14 +248,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-commerce/v2"
+	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v2"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/operations"
 )
 
 func main() {
-    s := codatsynccommerce.New(
-        codatsynccommerce.WithSecurity(shared.Security{
+    s := syncforcommerce.New(
+        syncforcommerce.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -262,7 +263,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Connections.UpdateConnection(ctx, operations.UpdateConnectionRequest{
         UpdateConnection: &shared.UpdateConnection{
-            Status: shared.DataConnectionStatusLinked.ToPointer(),
+            Status: shared.DataConnectionStatusDeauthorized.ToPointer(),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
