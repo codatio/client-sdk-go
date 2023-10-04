@@ -1,4 +1,5 @@
 # Disputes
+(*Disputes*)
 
 ## Overview
 
@@ -34,8 +35,8 @@ import(
 )
 
 func main() {
-    s := codatcommerce.New(
-        codatcommerce.WithSecurity(shared.Security{
+    s := commerce.New(
+        commerce.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -44,7 +45,7 @@ func main() {
     res, err := s.Disputes.Get(ctx, operations.GetDisputeRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        DisputeID: "distinctio",
+        DisputeID: "Northeast Hatchback Kia",
     })
     if err != nil {
         log.Fatal(err)
@@ -93,8 +94,8 @@ import(
 )
 
 func main() {
-    s := codatcommerce.New(
-        codatcommerce.WithSecurity(shared.Security{
+    s := commerce.New(
+        commerce.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -103,10 +104,10 @@ func main() {
     res, err := s.Disputes.List(ctx, operations.ListDisputesRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        OrderBy: codatcommerce.String("-modifiedDate"),
-        Page: codatcommerce.Int(1),
-        PageSize: codatcommerce.Int(100),
-        Query: codatcommerce.String("quibusdam"),
+        OrderBy: commerce.String("-modifiedDate"),
+        Page: commerce.Int(1),
+        PageSize: commerce.Int(100),
+        Query: commerce.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)

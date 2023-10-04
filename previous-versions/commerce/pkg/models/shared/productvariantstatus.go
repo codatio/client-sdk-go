@@ -7,6 +7,7 @@ import (
 	"fmt"
 )
 
+// ProductVariantStatus - The status of the product variant.
 type ProductVariantStatus string
 
 const (

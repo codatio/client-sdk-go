@@ -3,7 +3,8 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/types"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 // TaxComponent - The Tax Components endpoints return tax rates data from the commerce platform, including tax rate names and values. This is to support the mapping of tax rates from the commerce platform to those in the accounting platform.
@@ -18,8 +19,19 @@ type TaxComponent struct {
 	// Name of the Tax Rate Component in the source commerce platform.
 	Name *string `json:"name,omitempty"`
 	// Rate of taxation represented as a fraction of the net price (typically in the range 0.00 - 1.00).
-	Rate               *types.Decimal `json:"rate,omitempty"`
-	SourceModifiedDate *string        `json:"sourceModifiedDate,omitempty"`
+	Rate               *decimal.Big `decimal:"number" json:"rate,omitempty"`
+	SourceModifiedDate *string      `json:"sourceModifiedDate,omitempty"`
+}
+
+func (t TaxComponent) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
+}
+
+func (t *TaxComponent) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *TaxComponent) GetID() string {
@@ -50,7 +62,7 @@ func (o *TaxComponent) GetName() *string {
 	return o.Name
 }
 
-func (o *TaxComponent) GetRate() *types.Decimal {
+func (o *TaxComponent) GetRate() *decimal.Big {
 	if o == nil {
 		return nil
 	}
