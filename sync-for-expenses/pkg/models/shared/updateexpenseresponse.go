@@ -3,6 +3,7 @@
 package shared
 
 type UpdateExpenseResponse struct {
+	// Unique identifier for the update expense sync.
 	SyncID *string `json:"syncId,omitempty"`
 }
 

@@ -3,13 +3,14 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/shared"
 	"net/http"
 )
 
 type InitiateSyncRequest struct {
 	InitiateSync *shared.InitiateSync `request:"mediaType=application/json"`
-	CompanyID    string               `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a company.
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
 func (o *InitiateSyncRequest) GetInitiateSync() *shared.InitiateSync {
@@ -27,11 +28,14 @@ func (o *InitiateSyncRequest) GetCompanyID() string {
 }
 
 type InitiateSyncResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// If model is incorrect
 	ErrorMessage *shared.ErrorMessage
-	StatusCode   int
-	RawResponse  *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 	// Returns the newly created SyncId
 	SyncInitiated *shared.SyncInitiated
 }

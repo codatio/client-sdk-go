@@ -3,13 +3,14 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/shared"
 	"net/http"
 )
 
 type UpdateExpenseTransactionRequest struct {
 	UpdateExpenseRequest *shared.UpdateExpenseRequest `request:"mediaType=application/json"`
-	CompanyID            string                       `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a company.
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	// The unique identifier for your SMB's transaction.
 	TransactionID string `pathParam:"style=simple,explode=false,name=transactionId"`
 }
@@ -36,11 +37,14 @@ func (o *UpdateExpenseTransactionRequest) GetTransactionID() string {
 }
 
 type UpdateExpenseTransactionResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// The request made is not valid.
 	ErrorMessage *shared.ErrorMessage
-	StatusCode   int
-	RawResponse  *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 	// Accepted
 	UpdateExpenseResponse *shared.UpdateExpenseResponse
 }
