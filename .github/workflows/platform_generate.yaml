@@ -13,7 +13,7 @@ jobs:
     uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-generation.yaml@v14
     with:
       speakeasy_version: latest
-      openapi_doc_location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Common.yaml
+      openapi_doc_location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Platform.yaml
       languages: |-
         - go: ./platform
       create_release: true
