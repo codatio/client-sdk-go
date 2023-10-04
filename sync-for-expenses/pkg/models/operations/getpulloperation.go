@@ -3,13 +3,14 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/shared"
 	"net/http"
 )
 
 type GetPullOperationRequest struct {
+	// Unique identifier for a company.
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
-	// Unique ID of a dataset or pull operation.
+	// Unique identifier for the dataset that completed its sync.
 	DatasetID string `pathParam:"style=simple,explode=false,name=datasetId"`
 }
 
@@ -28,13 +29,16 @@ func (o *GetPullOperationRequest) GetDatasetID() string {
 }
 
 type GetPullOperationResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
 	// OK
 	PullOperation *shared.PullOperation
-	StatusCode    int
-	RawResponse   *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *GetPullOperationResponse) GetContentType() string {

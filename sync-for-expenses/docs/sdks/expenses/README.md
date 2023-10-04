@@ -1,4 +1,5 @@
 # Expenses
+(*Expenses*)
 
 ## Overview
 
@@ -22,15 +23,15 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v2"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/operations"
-	"github.com/ericlagergren/decimal"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v3"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/types"
 )
 
 func main() {
-    s := codatsyncexpenses.New(
-        codatsyncexpenses.WithSecurity(shared.Security{
+    s := syncforexpenses.New(
+        syncforexpenses.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -41,35 +42,35 @@ func main() {
             Items: []shared.ExpenseTransaction{
                 shared.ExpenseTransaction{
                     BankAccountRef: &shared.ExpenseTransactionBankAccountReference{
-                        ID: codatsyncexpenses.String("787dfb37-5707-4dc0-8a86-8d74e4cc78ea"),
+                        ID: syncforexpenses.String("787dfb37-5707-4dc0-8a86-8d74e4cc78ea"),
                     },
                     ContactRef: &shared.ContactRef{
-                        ContactType: shared.ContactRefContactTypeSupplier.ToPointer(),
-                        ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
+                        ID: syncforexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
+                        Type: syncforexpenses.String("Supplier"),
                     },
                     Currency: "GBP",
-                    CurrencyRate: types.MustNewDecimalFromString("9840.43"),
+                    CurrencyRate: types.MustNewDecimalFromString("4865.89"),
                     ID: "4d7c6929-7770-412b-91bb-44d3bc71d111",
                     IssueDate: "2022-10-23T00:00:00.000Z",
                     Lines: []shared.ExpenseTransactionLine{
                         shared.ExpenseTransactionLine{
                             AccountRef: shared.RecordRef{
-                                ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
+                                ID: syncforexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
                             },
-                            NetAmount: *types.MustNewDecimalFromString("110.42"),
-                            TaxAmount: *types.MustNewDecimalFromString("14.43"),
+                            NetAmount: types.MustNewDecimalFromString("110.42"),
+                            TaxAmount: types.MustNewDecimalFromString("14.43"),
                             TaxRateRef: &shared.RecordRef{
-                                ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
+                                ID: syncforexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
                             },
                             TrackingRefs: []shared.RecordRef{
                                 shared.RecordRef{
-                                    ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
+                                    ID: syncforexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
                                 },
                             },
                         },
                     },
-                    MerchantName: codatsyncexpenses.String("Amazon UK"),
-                    Notes: codatsyncexpenses.String("APPLE.COM/BILL - 09001077498 - Card Ending: 4590"),
+                    MerchantName: syncforexpenses.String("Amazon UK"),
+                    Notes: syncforexpenses.String("APPLE.COM/BILL - 09001077498 - Card Ending: 4590"),
                     Type: shared.ExpenseTransactionTypePayment,
                 },
             },
@@ -112,15 +113,15 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v2"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/operations"
-	"github.com/ericlagergren/decimal"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v3"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/types"
 )
 
 func main() {
-    s := codatsyncexpenses.New(
-        codatsyncexpenses.WithSecurity(shared.Security{
+    s := syncforexpenses.New(
+        syncforexpenses.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -129,35 +130,35 @@ func main() {
     res, err := s.Expenses.Update(ctx, operations.UpdateExpenseTransactionRequest{
         UpdateExpenseRequest: &shared.UpdateExpenseRequest{
             BankAccountRef: &shared.UpdateExpenseRequestBankAccountReference{
-                ID: codatsyncexpenses.String("787dfb37-5707-4dc0-8a86-8d74e4cc78ea"),
+                ID: syncforexpenses.String("787dfb37-5707-4dc0-8a86-8d74e4cc78ea"),
             },
             ContactRef: &shared.ContactRef{
-                ContactType: shared.ContactRefContactTypeSupplier.ToPointer(),
-                ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
+                ID: syncforexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
+                Type: syncforexpenses.String("Supplier"),
             },
-            Currency: codatsyncexpenses.String("GBP"),
-            CurrencyRate: types.MustNewDecimalFromString("2603.41"),
+            Currency: syncforexpenses.String("GBP"),
+            CurrencyRate: types.MustNewDecimalFromString("8574.78"),
             IssueDate: "2022-06-28T00:00:00.000Z",
             Lines: []shared.ExpenseTransactionLine{
                 shared.ExpenseTransactionLine{
                     AccountRef: shared.RecordRef{
-                        ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
+                        ID: syncforexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
                     },
-                    NetAmount: *types.MustNewDecimalFromString("110.42"),
-                    TaxAmount: *types.MustNewDecimalFromString("14.43"),
+                    NetAmount: types.MustNewDecimalFromString("110.42"),
+                    TaxAmount: types.MustNewDecimalFromString("14.43"),
                     TaxRateRef: &shared.RecordRef{
-                        ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
+                        ID: syncforexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
                     },
                     TrackingRefs: []shared.RecordRef{
                         shared.RecordRef{
-                            ID: codatsyncexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
+                            ID: syncforexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
                         },
                     },
                 },
             },
-            MerchantName: codatsyncexpenses.String("Amazon UK"),
-            Notes: codatsyncexpenses.String("APPLE.COM/BILL - 09001077498 - Card Ending: 4590"),
-            Type: "maxime",
+            MerchantName: syncforexpenses.String("Amazon UK"),
+            Notes: syncforexpenses.String("APPLE.COM/BILL - 09001077498 - Card Ending: 4590"),
+            Type: "New",
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         TransactionID: "336694d8-2dca-4cb5-a28d-3ccb83e55eee",
@@ -198,14 +199,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v2"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/operations"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v3"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncexpenses.New(
-        codatsyncexpenses.WithSecurity(shared.Security{
+    s := syncforexpenses.New(
+        syncforexpenses.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -213,8 +214,8 @@ func main() {
     ctx := context.Background()
     res, err := s.Expenses.UploadAttachment(ctx, operations.UploadExpenseAttachmentRequest{
         RequestBody: &operations.UploadExpenseAttachmentRequestBody{
-            Content: []byte("deleniti"),
-            RequestBody: "facilis",
+            Content: []byte("v/ghW&IC$x"),
+            RequestBody: "Elegant Producer Electric",
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         SyncID: "6fb40d5e-b13e-11ed-afa1-0242ac120002",

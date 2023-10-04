@@ -3,11 +3,12 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/shared"
 	"net/http"
 )
 
 type RefreshDataTypeRequest struct {
+	// Unique identifier for a company.
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	// Optionally, provide a data connection id to only queue pull operations on that connection.
 	ConnectionID *string `queryParam:"style=form,explode=true,name=connectionId"`
@@ -37,13 +38,16 @@ func (o *RefreshDataTypeRequest) GetDataType() shared.DataType {
 }
 
 type RefreshDataTypeResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
 	// OK
 	PullOperation *shared.PullOperation
-	StatusCode    int
-	RawResponse   *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *RefreshDataTypeResponse) GetContentType() string {

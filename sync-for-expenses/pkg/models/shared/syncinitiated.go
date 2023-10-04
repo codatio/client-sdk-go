@@ -3,6 +3,7 @@
 package shared
 
 type SyncInitiated struct {
+	// Unique identifier for the sync initiated.
 	SyncID *string `json:"syncId,omitempty"`
 }
 
