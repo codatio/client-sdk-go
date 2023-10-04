@@ -1,4 +1,5 @@
 # Accounts
+(*Accounts*)
 
 ## Overview
 
@@ -48,7 +49,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Accounts.Create(ctx, operations.CreateAccountRequest{
         Account: &shared.Account{
-            Currency: syncforpayables.String("EUR"),
+            Currency: syncforpayables.String("USD"),
             CurrentBalance: types.MustNewDecimalFromString("0"),
             Description: syncforpayables.String("Invoices the business has issued but has not yet collected payment on."),
             FullyQualifiedCategory: syncforpayables.String("Asset.Current"),
@@ -67,15 +68,15 @@ func main() {
             ValidDatatypeLinks: []shared.AccountValidDataTypeLinks{
                 shared.AccountValidDataTypeLinks{
                     Links: []string{
-                        "suscipit",
+                        "Money",
                     },
-                    Property: syncforpayables.String("molestiae"),
+                    Property: syncforpayables.String("Cambridgeshire grey technology"),
                 },
             },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: syncforpayables.Int(791725),
+        TimeoutInMinutes: syncforpayables.Int(86),
     })
     if err != nil {
         log.Fatal(err)
@@ -134,7 +135,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Accounts.Get(ctx, operations.GetAccountRequest{
-        AccountID: "placeat",
+        AccountID: "Northeast Hatchback Kia",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -257,7 +258,7 @@ func main() {
         OrderBy: syncforpayables.String("-modifiedDate"),
         Page: syncforpayables.Int(1),
         PageSize: syncforpayables.Int(100),
-        Query: syncforpayables.String("voluptatum"),
+        Query: syncforpayables.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)

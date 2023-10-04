@@ -413,6 +413,7 @@ docs/models/shared/createjournalresponse.md
 docs/models/shared/journal.md
 docs/models/shared/journalstatus.md
 docs/models/shared/journals.md
+docs/models/shared/datastatusdatatypes.md
 docs/models/shared/datastatus.md
 docs/models/shared/pulloperationstatus.md
 docs/models/shared/pulloperation.md

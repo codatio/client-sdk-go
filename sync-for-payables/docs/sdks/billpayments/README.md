@@ -1,4 +1,5 @@
 # BillPayments
+(*BillPayments*)
 
 ## Overview
 
@@ -50,23 +51,23 @@ func main() {
     res, err := s.BillPayments.Create(ctx, operations.CreateBillPaymentRequest{
         BillPayment: &shared.BillPayment{
             AccountRef: &shared.AccountRef{
-                ID: syncforpayables.String("82d68ea1-9f1d-4170-9133-9d08086a1840"),
-                Name: syncforpayables.String("Toni Fritsch"),
+                ID: syncforpayables.String("<ID>"),
+                Name: syncforpayables.String("bluetooth Extended"),
             },
-            Currency: syncforpayables.String("USD"),
-            CurrencyRate: types.MustNewDecimalFromString("120.36"),
+            Currency: syncforpayables.String("GBP"),
+            CurrencyRate: types.MustNewDecimalFromString("7865.46"),
             Date: "2022-10-23T00:00:00.000Z",
             ID: syncforpayables.String("3d5a8e00-d108-4045-8823-7f342676cffa"),
             Lines: []shared.BillPaymentLine{
                 shared.BillPaymentLine{
                     AllocatedOnDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
-                    Amount: types.MustNewDecimalFromString("9816.4"),
+                    Amount: types.MustNewDecimalFromString("7964.74"),
                     Links: []shared.BillPaymentLineLink{
                         shared.BillPaymentLineLink{
-                            Amount: types.MustNewDecimalFromString("6184.8"),
-                            CurrencyRate: types.MustNewDecimalFromString("2446.51"),
-                            ID: syncforpayables.String("f5f0642d-ac7a-4f51-9cc4-13aa63aae8d6"),
-                            Type: shared.BillPaymentLineLinkTypeCreditNote,
+                            Amount: types.MustNewDecimalFromString("3768.44"),
+                            CurrencyRate: types.MustNewDecimalFromString("9510.62"),
+                            ID: syncforpayables.String("<ID>"),
+                            Type: shared.BillPaymentLineLinkTypeManualJournal,
                         },
                     },
                 },
@@ -76,25 +77,25 @@ func main() {
             },
             ModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
             Note: syncforpayables.String("Bill Payment against bill c13e37b6-dfaa-4894-b3be-9fe97bda9f44"),
-            PaymentMethodRef: syncforpayables.String("vel"),
-            Reference: syncforpayables.String("labore"),
+            PaymentMethodRef: syncforpayables.String("deposit"),
+            Reference: syncforpayables.String("Northwest"),
             SourceModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "facilis": map[string]interface{}{
-                        "cum": "commodi",
+                    "fugiat": map[string]interface{}{
+                        "facere": "quantify",
                     },
                 },
             },
             SupplierRef: &shared.SupplierRef{
-                ID: "75fd5e60-b375-4ed4-b6fb-ee41f33317fe",
-                SupplierName: syncforpayables.String("consectetur"),
+                ID: "<ID>",
+                SupplierName: syncforpayables.String("volt physical Ameliorated"),
             },
             TotalAmount: types.MustNewDecimalFromString("1329.54"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: syncforpayables.Int(358107),
+        TimeoutInMinutes: syncforpayables.Int(259629),
     })
     if err != nil {
         log.Fatal(err)
@@ -129,8 +130,8 @@ func main() {
 ### Process
 1. Pass the `{billPaymentId}` to the *Delete bill payment* endpoint and store the `pushOperationKey` returned.
 2. Check the status of the delete operation by checking the status of push operation either via
-    1. [Push operation webhook](https://docs.codat.io/introduction/webhooks/core-rules-types#push-operation-status-has-changed) (advised),
-    2. [Push operation status endpoint](https://docs.codat.io/sync-for-payables-api#/operations/get-push-operation).
+   1. [Push operation webhook](https://docs.codat.io/introduction/webhooks/core-rules-types#push-operation-status-has-changed) (advised),
+   2. [Push operation status endpoint](https://docs.codat.io/sync-for-payables-api#/operations/get-push-operation).
 
    A `Success` status indicates that the bill payment object was deleted from the accounting platform.
 3. (Optional) Check that the bill payment was deleted from the accounting platform.
@@ -141,9 +142,15 @@ Be aware that deleting a bill payment from an accounting platform might cause re
 ## Integration specifics
 Integrations that support soft delete do not permanently delete the object in the accounting platform.
 
-| Integration | Soft Delete | Details                                                                                             |  
-|-------------|-------------|-----------------------------------------------------------------------------------------------------|
-| Oracle NetSuite   | No          | See [here](/integrations/accounting/netsuite/accounting-netsuite-how-deleting-bill-payments-works) to learn more. |
+| Integration | Soft Delete | Details                                                                                              |  
+|-------------|-------------|------------------------------------------------------------------------------------------------------|                                                        
+| Oracle NetSuite   | No          | See [here](/integrations/accounting/netsuite/how-deleting-bill-payments-works) to learn more.  |
+| QuickBooks Online | No          | -                                                                                              |
+| Xero | Yes          | -                                                                                                          |
+
+> **Supported integrations**
+>
+> This functionality is currently supported for our QuickBooks Online, Xero and Oracle NetSuite integrations.
 
 
 ### Example Usage
@@ -168,7 +175,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.BillPayments.Delete(ctx, operations.DeleteBillPaymentRequest{
-        BillPaymentID: "harum",
+        BillPaymentID: "Van complexity",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -228,7 +235,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.BillPayments.Get(ctx, operations.GetBillPaymentsRequest{
-        BillPaymentID: "laboriosam",
+        BillPaymentID: "Northeast Hatchback Kia",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -352,7 +359,7 @@ func main() {
         OrderBy: syncforpayables.String("-modifiedDate"),
         Page: syncforpayables.Int(1),
         PageSize: syncforpayables.Int(100),
-        Query: syncforpayables.String("ipsa"),
+        Query: syncforpayables.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)
