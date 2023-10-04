@@ -4,6 +4,7 @@ package operations
 
 import (
 	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/utils"
 	"net/http"
 )
 
@@ -11,8 +12,19 @@ import (
 // `syncFromWindow`, `syncFromUTC` & `monthsToSync` only need to be included if you wish to set a value for them.
 type UpdateProfileSyncSettingsRequestBody struct {
 	ClientID          string               `json:"clientId"`
-	OverridesDefaults bool                 `json:"overridesDefaults"`
+	OverridesDefaults *bool                `default:"true" json:"overridesDefaults"`
 	Settings          []shared.SyncSetting `json:"settings"`
+}
+
+func (u UpdateProfileSyncSettingsRequestBody) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateProfileSyncSettingsRequestBody) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *UpdateProfileSyncSettingsRequestBody) GetClientID() string {
@@ -22,9 +34,9 @@ func (o *UpdateProfileSyncSettingsRequestBody) GetClientID() string {
 	return o.ClientID
 }
 
-func (o *UpdateProfileSyncSettingsRequestBody) GetOverridesDefaults() bool {
+func (o *UpdateProfileSyncSettingsRequestBody) GetOverridesDefaults() *bool {
 	if o == nil {
-		return false
+		return nil
 	}
 	return o.OverridesDefaults
 }
@@ -37,11 +49,14 @@ func (o *UpdateProfileSyncSettingsRequestBody) GetSettings() []shared.SyncSettin
 }
 
 type UpdateProfileSyncSettingsResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
-	StatusCode   int
-	RawResponse  *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *UpdateProfileSyncSettingsResponse) GetContentType() string {

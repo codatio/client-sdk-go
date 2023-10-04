@@ -1,4 +1,5 @@
 # Companies
+(*Companies*)
 
 ## Overview
 
@@ -33,15 +34,15 @@ import(
 )
 
 func main() {
-    s := codatcommon.New(
-        codatcommon.WithSecurity(shared.Security{
+    s := common.New(
+        common.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
 
     ctx := context.Background()
     res, err := s.Companies.Create(ctx, shared.CompanyRequestBody{
-        Description: codatcommon.String("Requested early access to the new financing scheme."),
+        Description: common.String("Requested early access to the new financing scheme."),
         Name: "Bank of Dave",
     })
     if err != nil {
@@ -87,8 +88,8 @@ import(
 )
 
 func main() {
-    s := codatcommon.New(
-        codatcommon.WithSecurity(shared.Security{
+    s := common.New(
+        common.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
@@ -139,8 +140,8 @@ import(
 )
 
 func main() {
-    s := codatcommon.New(
-        codatcommon.WithSecurity(shared.Security{
+    s := common.New(
+        common.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
@@ -191,18 +192,18 @@ import(
 )
 
 func main() {
-    s := codatcommon.New(
-        codatcommon.WithSecurity(shared.Security{
+    s := common.New(
+        common.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
 
     ctx := context.Background()
     res, err := s.Companies.List(ctx, operations.ListCompaniesRequest{
-        OrderBy: codatcommon.String("-modifiedDate"),
-        Page: codatcommon.Int(1),
-        PageSize: codatcommon.Int(100),
-        Query: codatcommon.String("corrupti"),
+        OrderBy: common.String("-modifiedDate"),
+        Page: common.Int(1),
+        PageSize: common.Int(100),
+        Query: common.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)
@@ -246,8 +247,8 @@ import(
 )
 
 func main() {
-    s := codatcommon.New(
-        codatcommon.WithSecurity(shared.Security{
+    s := common.New(
+        common.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
@@ -255,7 +256,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Companies.Update(ctx, operations.UpdateCompanyRequest{
         CompanyRequestBody: &shared.CompanyRequestBody{
-            Description: codatcommon.String("Requested early access to the new financing scheme."),
+            Description: common.String("Requested early access to the new financing scheme."),
             Name: "Bank of Dave",
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
