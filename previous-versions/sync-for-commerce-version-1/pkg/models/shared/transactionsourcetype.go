@@ -7,6 +7,7 @@ import (
 	"fmt"
 )
 
+// TransactionSourceType - The type of source the transaction arose.
 type TransactionSourceType string
 
 const (

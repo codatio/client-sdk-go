@@ -1,5 +1,7 @@
 # DatasetStatus
 
+The current status of the dataset.
+
 
 ## Values
 

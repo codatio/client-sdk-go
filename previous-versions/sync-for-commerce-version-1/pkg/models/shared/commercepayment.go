@@ -3,7 +3,8 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/types"
+	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 // CommercePayment - Payments contain details of all payments made by customers to a company, including: amounts, currency used, payment method, payment provider, and payment status.
@@ -15,7 +16,7 @@ import (
 // Explore our [data coverage](https://knowledge.codat.io/supported-features/commerce?view=tab-by-data-type&dataType=commerce-payments) for this data type.
 type CommercePayment struct {
 	// Payment Amount (including gratuity)
-	Amount *types.Decimal `json:"amount,omitempty"`
+	Amount *decimal.Big `decimal:"number" json:"amount,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -75,7 +76,18 @@ type CommercePayment struct {
 	Status *PaymentStatus `json:"status,omitempty"`
 }
 
-func (o *CommercePayment) GetAmount() *types.Decimal {
+func (c CommercePayment) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CommercePayment) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *CommercePayment) GetAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}

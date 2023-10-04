@@ -1,4 +1,5 @@
 # AccountingPayments
+(*AccountingPayments*)
 
 ## Overview
 
@@ -29,15 +30,15 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
+	syncforcommerceversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/operations"
-	"github.com/ericlagergren/decimal"
+	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/types"
 )
 
 func main() {
-    s := codatsynccommerce.New(
-        codatsynccommerce.WithSecurity(shared.Security{
+    s := syncforcommerceversion1.New(
+        syncforcommerceversion1.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -46,51 +47,51 @@ func main() {
     res, err := s.AccountingPayments.CreateAccountingPayment(ctx, operations.CreateAccountingPaymentRequest{
         AccountingPayment: &shared.AccountingPayment{
             AccountRef: &shared.AccountRef{
-                ID: codatsynccommerce.String("2f64d1db-1f2c-4431-8661-e96349e1cf9e"),
-                Name: codatsynccommerce.String("Alma Waters"),
+                ID: syncforcommerceversion1.String("<ID>"),
+                Name: syncforcommerceversion1.String("female Romaguera property"),
             },
-            Currency: codatsynccommerce.String("GBP"),
-            CurrencyRate: types.MustNewDecimalFromString("2244.67"),
+            Currency: syncforcommerceversion1.String("GBP"),
+            CurrencyRate: types.MustNewDecimalFromString("2253.13"),
             CustomerRef: &shared.AccountingCustomerRef{
-                CompanyName: codatsynccommerce.String("iusto"),
-                ID: "000ae6b6-bc9b-48f7-99ea-c55a9741d311",
+                CompanyName: syncforcommerceversion1.String("Rohan - Stoltenberg"),
+                ID: "<ID>",
             },
             Date: "2022-10-23T00:00:00.000Z",
-            ID: codatsynccommerce.String("52965bb8-a720-4261-9435-e139dbc2259b"),
+            ID: syncforcommerceversion1.String("<ID>"),
             Lines: []shared.PaymentLine{
                 shared.PaymentLine{
-                    AllocatedOnDate: codatsynccommerce.String("2022-10-23T00:00:00.000Z"),
-                    Amount: *types.MustNewDecimalFromString("6633.18"),
+                    AllocatedOnDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
+                    Amount: types.MustNewDecimalFromString("2946.18"),
                     Links: []shared.PaymentLineLink{
                         shared.PaymentLineLink{
-                            Amount: types.MustNewDecimalFromString("7278.88"),
-                            CurrencyRate: types.MustNewDecimalFromString("8544.6"),
-                            ID: codatsynccommerce.String("a8c070e1-084c-4b06-b2d1-ad879eeb9665"),
-                            Type: shared.PaymentLinkTypePaymentOnAccount,
+                            Amount: types.MustNewDecimalFromString("7256.22"),
+                            CurrencyRate: types.MustNewDecimalFromString("9866.42"),
+                            ID: syncforcommerceversion1.String("<ID>"),
+                            Type: shared.PaymentLinkTypePayment,
                         },
                     },
                 },
             },
             Metadata: &shared.Metadata{
-                IsDeleted: codatsynccommerce.Bool(false),
+                IsDeleted: syncforcommerceversion1.Bool(false),
             },
-            ModifiedDate: codatsynccommerce.String("2022-10-23T00:00:00.000Z"),
-            Note: codatsynccommerce.String("corporis"),
-            PaymentMethodRef: codatsynccommerce.String("officiis"),
-            Reference: codatsynccommerce.String("voluptatibus"),
-            SourceModifiedDate: codatsynccommerce.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
+            Note: syncforcommerceversion1.String("East HDD"),
+            PaymentMethodRef: syncforcommerceversion1.String("Diesel"),
+            Reference: syncforcommerceversion1.String("lumen"),
+            SourceModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "at": map[string]interface{}{
-                        "alias": "quia",
+                    "ab": map[string]interface{}{
+                        "eligendi": "nimble",
                     },
                 },
             },
-            TotalAmount: types.MustNewDecimalFromString("6941.58"),
+            TotalAmount: types.MustNewDecimalFromString("4535.25"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codatsynccommerce.Int(684126),
+        TimeoutInMinutes: syncforcommerceversion1.Int(324249),
     })
     if err != nil {
         log.Fatal(err)

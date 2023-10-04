@@ -9,9 +9,12 @@ import (
 
 type CreateAccountingInvoiceRequest struct {
 	AccountingInvoice *shared.AccountingInvoice `request:"mediaType=application/json"`
-	CompanyID         string                    `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID      string                    `pathParam:"style=simple,explode=false,name=connectionId"`
-	TimeoutInMinutes  *int                      `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
+	// Unique identifier for a company.
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a connection.
+	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
+	// Time limit for the push operation to complete before it is timed out.
+	TimeoutInMinutes *int `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
 }
 
 func (o *CreateAccountingInvoiceRequest) GetAccountingInvoice() *shared.AccountingInvoice {
@@ -45,11 +48,14 @@ func (o *CreateAccountingInvoiceRequest) GetTimeoutInMinutes() *int {
 type CreateAccountingInvoiceResponse struct {
 	// Success
 	AccountingCreateInvoiceResponse *shared.AccountingCreateInvoiceResponse
-	ContentType                     string
+	// HTTP response content type for this operation
+	ContentType string
 	// The request made is not valid.
 	ErrorMessage *shared.ErrorMessage
-	StatusCode   int
-	RawResponse  *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *CreateAccountingInvoiceResponse) GetAccountingCreateInvoiceResponse() *shared.AccountingCreateInvoiceResponse {
