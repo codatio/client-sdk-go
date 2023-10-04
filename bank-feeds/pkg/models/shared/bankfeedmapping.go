@@ -40,7 +40,8 @@ type BankFeedMapping struct {
 	//
 	// There are only a very small number of edge cases where this currency code is returned by the Codat system.
 	SourceCurrency *string `json:"sourceCurrency,omitempty"`
-	Status         *string `json:"status,omitempty"`
+	// The status.
+	Status *string `json:"status,omitempty"`
 	// Unique ID for the target account in the accounting platform.
 	TargetAccountID *string `json:"targetAccountId,omitempty"`
 	// Name for the target account in the accounting platform.

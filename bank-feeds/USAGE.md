@@ -7,14 +7,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/bank-feeds/v3"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v3"
 	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/operations"
 )
 
 func main() {
-    s := codatbankfeeds.New(
-        codatbankfeeds.WithSecurity(shared.Security{
+    s := bankfeeds.New(
+        bankfeeds.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -22,9 +22,9 @@ func main() {
     ctx := context.Background()
     res, err := s.AccountMapping.Create(ctx, operations.CreateBankAccountMappingRequest{
         RequestBody: &operations.CreateBankAccountMappingBankFeedAccountMapping{
-            FeedStartDate: codatbankfeeds.String("2022-10-23T00:00:00.000Z"),
-            SourceAccountID: codatbankfeeds.String("provident"),
-            TargetAccountID: codatbankfeeds.String("distinctio"),
+            FeedStartDate: bankfeeds.String("2022-10-23T00:00:00.000Z"),
+            SourceAccountID: bankfeeds.String("Configuration Money"),
+            TargetAccountID: bankfeeds.String("Cambridgeshire grey technology"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
