@@ -3,11 +3,14 @@
 package shared
 
 type AccountingDirectIncomes struct {
-	Links        Links                    `json:"_links"`
-	PageNumber   int64                    `json:"pageNumber"`
-	PageSize     int64                    `json:"pageSize"`
-	Results      []AccountingDirectIncome `json:"results,omitempty"`
-	TotalResults int64                    `json:"totalResults"`
+	Links Links `json:"_links"`
+	// Current page number.
+	PageNumber int64 `json:"pageNumber"`
+	// Number of items to return in results array.
+	PageSize int64                    `json:"pageSize"`
+	Results  []AccountingDirectIncome `json:"results,omitempty"`
+	// Total number of items.
+	TotalResults int64 `json:"totalResults"`
 }
 
 func (o *AccountingDirectIncomes) GetLinks() Links {

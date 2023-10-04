@@ -8,10 +8,14 @@ import (
 )
 
 type BankingTransactionRef struct {
-	AccountID        *string      `json:"accountId,omitempty"`
-	AccountName      *string      `json:"accountName,omitempty"`
-	Amount           *decimal.Big `decimal:"number" json:"amount,omitempty"`
-	DataConnectionID *string      `json:"dataConnectionId,omitempty"`
+	// Unique identifier of the bank transaction's account.
+	AccountID *string `json:"accountId,omitempty"`
+	// Name given to account.
+	AccountName *string `json:"accountName,omitempty"`
+	// Bank transaction amount.
+	Amount *decimal.Big `decimal:"number" json:"amount,omitempty"`
+	// Unique identifier of the bank transaction's connection.
+	DataConnectionID *string `json:"dataConnectionId,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -31,9 +35,11 @@ type BankingTransactionRef struct {
 	// >
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	Date        *string `json:"date,omitempty"`
+	Date *string `json:"date,omitempty"`
+	// Description given to bank transaction.
 	Description *string `json:"description,omitempty"`
-	ID          *string `json:"id,omitempty"`
+	// Unique identifier for the bank transaction.
+	ID *string `json:"id,omitempty"`
 }
 
 func (b BankingTransactionRef) MarshalJSON() ([]byte, error) {

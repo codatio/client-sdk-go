@@ -3,7 +3,9 @@
 package shared
 
 type ProjectRef struct {
-	ID   string  `json:"id"`
+	// Unique identifier to the project reference.
+	ID string `json:"id"`
+	// The project's name.
 	Name *string `json:"name,omitempty"`
 }
 

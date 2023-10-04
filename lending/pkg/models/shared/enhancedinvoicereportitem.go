@@ -8,6 +8,7 @@ import (
 )
 
 type EnhancedInvoiceReportItem struct {
+	// Invoice's total amount due.
 	AmountDue *decimal.Big `decimal:"number" json:"amountDue,omitempty"`
 	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code, e.g. _GBP_.
 	//
@@ -38,8 +39,9 @@ type EnhancedInvoiceReportItem struct {
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	DueDate *string `json:"dueDate,omitempty"`
-	// ID of the invoice, which may be a GUID but it may be something else depending on the accounting platdform
-	ID            *string `json:"id,omitempty"`
+	// ID of the invoice, which may be a GUID but it may be something else depending on the accounting platform.
+	ID *string `json:"id,omitempty"`
+	// Invoice number.
 	InvoiceNumber *string `json:"invoiceNumber,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
@@ -91,8 +93,9 @@ type EnhancedInvoiceReportItem struct {
 	// - `PartiallyPaid` - The balance paid against the invoice is positive, but less than the total invoice amount (0 < amountDue < totalAmount).
 	// - `Paid` - Invoice is paid in full. This includes if the invoice has been credited or overpaid (amountDue == 0).
 	// - `Void` - An invoice can become Void when it's deleted, refunded, written off, or cancelled. A voided invoice may still be PartiallyPaid, and so all outstanding amounts on voided invoices are removed from the accounts receivable account.
-	Status      *InvoiceStatus `json:"status,omitempty"`
-	TotalAmount *decimal.Big   `decimal:"number" json:"totalAmount,omitempty"`
+	Status *InvoiceStatus `json:"status,omitempty"`
+	// Invoice's total amount.
+	TotalAmount *decimal.Big `decimal:"number" json:"totalAmount,omitempty"`
 }
 
 func (e EnhancedInvoiceReportItem) MarshalJSON() ([]byte, error) {

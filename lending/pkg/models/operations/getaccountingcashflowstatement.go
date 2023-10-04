@@ -8,12 +8,14 @@ import (
 )
 
 type GetAccountingCashFlowStatementRequest struct {
+	// Unique identifier for a company.
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	// Number of months defining the period of interest.
 	PeriodLength int `queryParam:"style=form,explode=true,name=periodLength"`
 	// Number of periods with `periodLength` to compare.
-	PeriodsToCompare int     `queryParam:"style=form,explode=true,name=periodsToCompare"`
-	StartMonth       *string `queryParam:"style=form,explode=true,name=startMonth"`
+	PeriodsToCompare int `queryParam:"style=form,explode=true,name=periodsToCompare"`
+	// The month the report starts from.
+	StartMonth *string `queryParam:"style=form,explode=true,name=startMonth"`
 }
 
 func (o *GetAccountingCashFlowStatementRequest) GetCompanyID() string {
@@ -47,11 +49,14 @@ func (o *GetAccountingCashFlowStatementRequest) GetStartMonth() *string {
 type GetAccountingCashFlowStatementResponse struct {
 	// Success
 	AccountingCashFlowStatement *shared.AccountingCashFlowStatement
-	ContentType                 string
+	// HTTP response content type for this operation
+	ContentType string
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
-	StatusCode   int
-	RawResponse  *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *GetAccountingCashFlowStatementResponse) GetAccountingCashFlowStatement() *shared.AccountingCashFlowStatement {

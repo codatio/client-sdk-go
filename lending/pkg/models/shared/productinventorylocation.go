@@ -10,7 +10,8 @@ import (
 type ProductInventoryLocation struct {
 	// Reference to the geographic location where the order was placed.
 	LocationRef *LocationRef `json:"locationRef,omitempty"`
-	Quantity    *decimal.Big `decimal:"number" json:"quantity,omitempty"`
+	// The quantity of stock remaining at location.
+	Quantity *decimal.Big `decimal:"number" json:"quantity,omitempty"`
 }
 
 func (p ProductInventoryLocation) MarshalJSON() ([]byte, error) {

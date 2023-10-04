@@ -1,4 +1,5 @@
-# ManageData.PullOperations
+# ManageDataPullOperations
+(*ManageData.PullOperations*)
 
 ### Available Operations
 
@@ -17,7 +18,7 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v4"
+	lending "github.com/codatio/client-sdk-go/lending/v4"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )
@@ -32,7 +33,7 @@ func main() {
     ctx := context.Background()
     res, err := s.ManageData.PullOperations.Get(ctx, operations.GetPullOperationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        DatasetID: "eaed9f0f-e77b-4bc9-a58f-ab8b4b99ab18",
+        DatasetID: "b18d8d81-fd7b-4764-a31e-475cb1f36591",
     })
     if err != nil {
         log.Fatal(err)
@@ -70,7 +71,7 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v4"
+	lending "github.com/codatio/client-sdk-go/lending/v4"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )
@@ -88,7 +89,7 @@ func main() {
         OrderBy: lending.String("-modifiedDate"),
         Page: lending.Int(1),
         PageSize: lending.Int(100),
-        Query: lending.String("consequuntur"),
+        Query: lending.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)

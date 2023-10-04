@@ -1,4 +1,5 @@
-# ManageData.Refresh
+# ManageDataRefresh
+(*ManageData.Refresh*)
 
 ### Available Operations
 
@@ -21,7 +22,7 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v4"
+	lending "github.com/codatio/client-sdk-go/lending/v4"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )
@@ -75,7 +76,7 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v4"
+	lending "github.com/codatio/client-sdk-go/lending/v4"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )
@@ -90,7 +91,7 @@ func main() {
     ctx := context.Background()
     res, err := s.ManageData.Refresh.DataType(ctx, operations.RefreshDataTypeRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ConnectionID: lending.String("dac7af51-5cc4-413a-a63a-ae8d67864dbb"),
+        ConnectionID: lending.String("34f47fda-384b-4d2f-a80b-311909008b33"),
         DataType: shared.DataTypeInvoices,
     })
     if err != nil {

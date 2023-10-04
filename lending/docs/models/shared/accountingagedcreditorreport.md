@@ -10,7 +10,7 @@ Total assets or liabilities are grouped into 30-day periods for each supplier, u
 
 ## Underlying data
 
-The Aged Creditors report is generated from a set of required data types: [Suppliers](https://docs.codat.io/accounting-api#/schemas/Supplier), [Bills](https://docs.codat.io/accounting-api#/schemas/Bill), [Bill credit notes](https://docs.codat.io/accounting-api#/schemas/BillCreditNote), and [Bill payments](https://docs.codat.io/accounting-api#/schemas/BillPayment).
+The Aged Creditors report is generated from a set of required data types: [Suppliers](https://docs.codat.io/lending-api#/schemas/Supplier), [Bills](https://docs.codat.io/lending-api#/schemas/Bill), [Bill credit notes](https://docs.codat.io/lending-api#/schemas/BillCreditNote), and [Bill payments](https://docs.codat.io/lending-api#/schemas/BillPayment).
 
 To generate the report, the underlying data types must have been synced within 24 hours of each other. Otherwise an error is displayed when you try to run the report. Sync the required data types by clicking the link in the error, and then run the report again.
 

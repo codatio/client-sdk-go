@@ -1,4 +1,5 @@
-# LoanWriteback.Suppliers
+# LoanWritebackSuppliers
+(*LoanWriteback.Suppliers*)
 
 ### Available Operations
 
@@ -7,13 +8,13 @@
 
 ## Create
 
-The *Create supplier* endpoint creates a new [supplier](https://docs.codat.io/accounting-api#/schemas/Supplier) for a given company's connection.
+The *Create supplier* endpoint creates a new [supplier](https://docs.codat.io/lending-api#/schemas/Supplier) for a given company's connection.
 
-[Suppliers](https://docs.codat.io/accounting-api#/schemas/Supplier) are people or organizations that provide something, such as a product or service.
+[Suppliers](https://docs.codat.io/lending-api#/schemas/Supplier) are people or organizations that provide something, such as a product or service.
 
 **Integration-specific behaviour**
 
-Required data may vary by integration. To see what data to post, first call [Get create/update supplier model](https://docs.codat.io/accounting-api#/operations/get-create-update-suppliers-model).
+Required data may vary by integration. To see what data to post, first call [Get create/update supplier model](https://docs.codat.io/lending-api#/operations/get-create-update-suppliers-model).
 
 Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=suppliers) for integrations that support creating an account.
 
@@ -26,7 +27,7 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v4"
+	lending "github.com/codatio/client-sdk-go/lending/v4"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )
@@ -43,42 +44,41 @@ func main() {
         AccountingSupplier: &shared.AccountingSupplier{
             Addresses: []shared.AccountingAddress{
                 shared.AccountingAddress{
-                    City: lending.String("Ankundingworth"),
-                    Country: lending.String("Guadeloupe"),
-                    Line1: lending.String("nulla"),
-                    Line2: lending.String("fugit"),
-                    PostalCode: lending.String("99474-0623"),
-                    Region: lending.String("ea"),
-                    Type: shared.AccountingAddressTypeUnknown,
+                    City: lending.String("Jenafurt"),
+                    Country: lending.String("Sweden"),
+                    Line1: lending.String("innovative blue"),
+                    Line2: lending.String("grey technology East"),
+                    PostalCode: lending.String("30778"),
+                    Region: lending.String("quantify Polestar mobile"),
+                    Type: shared.AccountingAddressTypeBilling,
                 },
             },
-            ContactName: lending.String("vel"),
-            DefaultCurrency: lending.String("possimus"),
-            EmailAddress: lending.String("magnam"),
-            ID: lending.String("36813f16-d9f5-4fce-ac55-6146c3e250fb"),
+            ContactName: lending.String("Durham after"),
+            DefaultCurrency: lending.String("Intelligent Fish"),
+            EmailAddress: lending.String("Ricardo.Hand41@gmail.com"),
+            ID: lending.String("<ID>"),
             Metadata: &shared.Metadata{
                 IsDeleted: lending.Bool(false),
             },
             ModifiedDate: lending.String("2022-10-23T00:00:00.000Z"),
-            Phone: lending.String("+44 25691 154789"),
-            RegistrationNumber: lending.String("deleniti"),
+            Phone: lending.String("(877) 492-8687"),
+            RegistrationNumber: lending.String("Profound"),
             SourceModifiedDate: lending.String("2022-10-23T00:00:00.000Z"),
-            Status: shared.SupplierStatusUnknown,
+            Status: shared.SupplierStatusActive,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "fugit": map[string]interface{}{
-                        "accusamus": "inventore",
+                    "pariatur": map[string]interface{}{
+                        "accusantium": "Minivan",
                     },
                 },
             },
-            SupplierName: lending.String("non"),
-            TaxNumber: lending.String("et"),
+            SupplierName: lending.String("Senior Mouse West"),
+            TaxNumber: lending.String("Towels likewise"),
         },
         AllowSyncOnPushComplete: lending.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        ForceUpdate: lending.Bool(false),
-        TimeoutInMinutes: lending.Int(677412),
+        TimeoutInMinutes: lending.Int(452224),
     })
     if err != nil {
         log.Fatal(err)
@@ -106,9 +106,9 @@ func main() {
 
 ## GetCreateUpdateModel
 
-The *Get create/update supplier model* endpoint returns the expected data for the request payload when creating and updating a [supplier](https://docs.codat.io/accounting-api#/schemas/Supplier) for a given company and integration.
+The *Get create/update supplier model* endpoint returns the expected data for the request payload when creating and updating a [supplier](https://docs.codat.io/lending-api#/schemas/Supplier) for a given company and integration.
 
-[Suppliers](https://docs.codat.io/accounting-api#/schemas/Supplier) are people or organizations that provide something, such as a product or service.
+[Suppliers](https://docs.codat.io/lending-api#/schemas/Supplier) are people or organizations that provide something, such as a product or service.
 
 **Integration-specific behaviour**
 
@@ -125,7 +125,7 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v4"
+	lending "github.com/codatio/client-sdk-go/lending/v4"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )

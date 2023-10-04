@@ -4,11 +4,13 @@ package shared
 
 // AccountingTransferContactRef - The customer or supplier for the transfer, if available.
 type AccountingTransferContactRef struct {
-	DataType *string `json:"dataType,omitempty"`
-	ID       string  `json:"id"`
+	// Available Data types
+	DataType *DataType `json:"dataType,omitempty"`
+	// Unique identifier for a customer or supplier.
+	ID string `json:"id"`
 }
 
-func (o *AccountingTransferContactRef) GetDataType() *string {
+func (o *AccountingTransferContactRef) GetDataType() *DataType {
 	if o == nil {
 		return nil
 	}
@@ -24,7 +26,7 @@ func (o *AccountingTransferContactRef) GetID() string {
 
 // AccountingTransfer - > View the coverage for transfers in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=transfers" target="_blank">Data coverage explorer</a>.
 //
-// A transfer records the movement of money between two bank accounts, or between a bank account and a nominal account. It is a child data type of [account transactions](https://docs.codat.io/accounting-api#/schemas/AccountTransaction).
+// A transfer records the movement of money between two bank accounts, or between a bank account and a nominal account. It is a child data type of [account transactions](https://docs.codat.io/lending-api#/schemas/AccountTransaction).
 type AccountingTransfer struct {
 	// The customer or supplier for the transfer, if available.
 	ContactRef *AccountingTransferContactRef `json:"contactRef,omitempty"`
@@ -51,8 +53,9 @@ type AccountingTransfer struct {
 	// List of selected transactions to associate with the transfer. Use this field to include transactions which are posted to the _undeposited funds_ (or other holding) account within the transfer.
 	DepositedRecordRefs []RecordRef `json:"depositedRecordRefs,omitempty"`
 	// Description of the transfer.
-	Description *string          `json:"description,omitempty"`
-	From        *TransferAccount `json:"from,omitempty"`
+	Description *string `json:"description,omitempty"`
+	// Account details of the account sending or receiving the transfer.
+	From *TransferAccount `json:"from,omitempty"`
 	// Unique identifier for the transfer.
 	ID                 *string   `json:"id,omitempty"`
 	Metadata           *Metadata `json:"metadata,omitempty"`
@@ -62,7 +65,8 @@ type AccountingTransfer struct {
 	//
 	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
 	SupplementalData *SupplementalData `json:"supplementalData,omitempty"`
-	To               *TransferAccount  `json:"to,omitempty"`
+	// Account details of the account sending or receiving the transfer.
+	To *TransferAccount `json:"to,omitempty"`
 	// Reference to the tracking categories this transfer is being tracked against.
 	TrackingCategoryRefs []TrackingCategoryRef `json:"trackingCategoryRefs,omitempty"`
 }

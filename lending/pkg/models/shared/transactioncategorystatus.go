@@ -7,6 +7,7 @@ import (
 	"fmt"
 )
 
+// TransactionCategoryStatus - The status of the transaction category.
 type TransactionCategoryStatus string
 
 const (
