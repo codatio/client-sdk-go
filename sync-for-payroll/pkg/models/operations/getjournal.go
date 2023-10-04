@@ -8,7 +8,9 @@ import (
 )
 
 type GetJournalRequest struct {
+	// Unique identifier for a company.
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a journal.
 	JournalID string `pathParam:"style=simple,explode=false,name=journalId"`
 }
 
@@ -27,12 +29,15 @@ func (o *GetJournalRequest) GetJournalID() string {
 }
 
 type GetJournalResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
 	// Success
-	Journal     *shared.Journal
-	StatusCode  int
+	Journal *shared.Journal
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 }
 

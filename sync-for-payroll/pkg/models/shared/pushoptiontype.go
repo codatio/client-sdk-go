@@ -7,6 +7,7 @@ import (
 	"fmt"
 )
 
+// PushOptionType - The option type.
 type PushOptionType string
 
 const (

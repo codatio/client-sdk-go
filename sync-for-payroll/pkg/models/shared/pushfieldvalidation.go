@@ -3,9 +3,12 @@
 package shared
 
 type PushFieldValidation struct {
-	Details string  `json:"details"`
-	Field   *string `json:"field,omitempty"`
-	Ref     *string `json:"ref,omitempty"`
+	// Details on the validation issue.
+	Details string `json:"details"`
+	// Field name that resulted in the validation issue.
+	Field *string `json:"field,omitempty"`
+	// Unique reference identifier for the validation issue.
+	Ref *string `json:"ref,omitempty"`
 }
 
 func (o *PushFieldValidation) GetDetails() string {
