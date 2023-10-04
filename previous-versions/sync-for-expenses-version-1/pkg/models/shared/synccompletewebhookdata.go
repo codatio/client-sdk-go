@@ -2,7 +2,7 @@
 
 package shared
 
-type SyncStartedWebhookData struct {
+type SyncCompleteWebhookData struct {
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -49,105 +49,30 @@ type SyncStartedWebhookData struct {
 	SyncType *string `json:"syncType,omitempty"`
 }
 
-func (o *SyncStartedWebhookData) GetSyncDateRangeFinishUtc() *string {
+func (o *SyncCompleteWebhookData) GetSyncDateRangeFinishUtc() *string {
 	if o == nil {
 		return nil
 	}
 	return o.SyncDateRangeFinishUtc
 }
 
-func (o *SyncStartedWebhookData) GetSyncDateRangeStartUtc() *string {
+func (o *SyncCompleteWebhookData) GetSyncDateRangeStartUtc() *string {
 	if o == nil {
 		return nil
 	}
 	return o.SyncDateRangeStartUtc
 }
 
-func (o *SyncStartedWebhookData) GetSyncID() *string {
+func (o *SyncCompleteWebhookData) GetSyncID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.SyncID
 }
 
-func (o *SyncStartedWebhookData) GetSyncType() *string {
+func (o *SyncCompleteWebhookData) GetSyncType() *string {
 	if o == nil {
 		return nil
 	}
 	return o.SyncType
-}
-
-// SyncStartedWebhook - Webhook request body used to notify that a sync has started.
-type SyncStartedWebhook struct {
-	// Unique identifier of the webhook event.
-	AlertID *string `json:"AlertId,omitempty"`
-	// Unique identifier for your client in Codat.
-	ClientID *string `json:"ClientId,omitempty"`
-	// Name of your client in Codat.
-	ClientName *string `json:"ClientName,omitempty"`
-	// Unique identifier for your SMB in Codat.
-	CompanyID *string                 `json:"CompanyId,omitempty"`
-	Data      *SyncStartedWebhookData `json:"Data,omitempty"`
-	// A human readable message about the webhook.
-	Message *string `json:"Message,omitempty"`
-	// Unique identifier for the rule.
-	RuleID *string `json:"RuleId,omitempty"`
-	// The type of rule.
-	RuleType *string `json:"RuleType,omitempty"`
-}
-
-func (o *SyncStartedWebhook) GetAlertID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.AlertID
-}
-
-func (o *SyncStartedWebhook) GetClientID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ClientID
-}
-
-func (o *SyncStartedWebhook) GetClientName() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ClientName
-}
-
-func (o *SyncStartedWebhook) GetCompanyID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CompanyID
-}
-
-func (o *SyncStartedWebhook) GetData() *SyncStartedWebhookData {
-	if o == nil {
-		return nil
-	}
-	return o.Data
-}
-
-func (o *SyncStartedWebhook) GetMessage() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Message
-}
-
-func (o *SyncStartedWebhook) GetRuleID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.RuleID
-}
-
-func (o *SyncStartedWebhook) GetRuleType() *string {
-	if o == nil {
-		return nil
-	}
-	return o.RuleType
 }

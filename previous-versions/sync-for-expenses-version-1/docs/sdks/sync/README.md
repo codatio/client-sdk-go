@@ -1,4 +1,5 @@
 # Sync
+(*Sync*)
 
 ## Overview
 
@@ -20,14 +21,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1"
+	syncforexpensesversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncexpenses.New(
-        codatsyncexpenses.WithSecurity(shared.Security{
+    s := syncforexpensesversion1.New(
+        syncforexpensesversion1.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -36,7 +37,7 @@ func main() {
     res, err := s.Sync.InitiateSync(ctx, operations.InitiateSyncRequest{
         PostSync: &shared.PostSync{
             DatasetIds: []string{
-                "a674e0f4-67cc-4879-aed1-51a05dfc2ddf",
+                "acce2362-83d6-4e3e-a27f-f4a08e7217d5",
             },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",

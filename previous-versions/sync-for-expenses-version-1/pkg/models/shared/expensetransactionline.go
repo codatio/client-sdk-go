@@ -3,18 +3,29 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1/pkg/types"
+	"github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
 type ExpenseTransactionLine struct {
 	AccountRef RecordRef `json:"accountRef"`
 	// Amount of the line, exclusive of tax.
-	NetAmount types.Decimal `json:"netAmount"`
+	NetAmount *decimal.Big `decimal:"number" json:"netAmount"`
 	// Amount of tax for the line.
-	TaxAmount    types.Decimal `json:"taxAmount"`
-	TaxRateRef   *RecordRef    `json:"taxRateRef,omitempty"`
-	TrackingRefs []RecordRef   `json:"trackingRefs,omitempty"`
+	TaxAmount    *decimal.Big `decimal:"number" json:"taxAmount"`
+	TaxRateRef   *RecordRef   `json:"taxRateRef,omitempty"`
+	TrackingRefs []RecordRef  `json:"trackingRefs,omitempty"`
+}
+
+func (e ExpenseTransactionLine) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *ExpenseTransactionLine) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ExpenseTransactionLine) GetAccountRef() RecordRef {
@@ -24,16 +35,16 @@ func (o *ExpenseTransactionLine) GetAccountRef() RecordRef {
 	return o.AccountRef
 }
 
-func (o *ExpenseTransactionLine) GetNetAmount() types.Decimal {
+func (o *ExpenseTransactionLine) GetNetAmount() *decimal.Big {
 	if o == nil {
-		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
+		return new(decimal.Big).SetFloat64(0.0)
 	}
 	return o.NetAmount
 }
 
-func (o *ExpenseTransactionLine) GetTaxAmount() types.Decimal {
+func (o *ExpenseTransactionLine) GetTaxAmount() *decimal.Big {
 	if o == nil {
-		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
+		return new(decimal.Big).SetFloat64(0.0)
 	}
 	return o.TaxAmount
 }
