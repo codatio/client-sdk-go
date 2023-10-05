@@ -8,7 +8,9 @@ import (
 )
 
 type GetProductRequest struct {
-	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a company.
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a connection.
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 	// Unique identifier for a product.
 	ProductID string `pathParam:"style=simple,explode=false,name=productId"`
@@ -36,12 +38,15 @@ func (o *GetProductRequest) GetProductID() string {
 }
 
 type GetProductResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
 	// OK
-	Product     *shared.Product
-	StatusCode  int
+	Product *shared.Product
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 }
 

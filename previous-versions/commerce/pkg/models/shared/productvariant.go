@@ -3,7 +3,8 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/types"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 // ProductVariant - Represents a variation of a product available for sale, for example an item of clothing that may be available for sale in multiple sizes and colors.
@@ -44,13 +45,25 @@ type ProductVariant struct {
 	// Indicates whether or not the product requires physical delivery.
 	ShippingRequired *bool `json:"shippingRequired,omitempty"`
 	// SKU (stock keeping unit) of the variant, as defined by the merchant.
-	Sku                *string               `json:"sku,omitempty"`
-	SourceModifiedDate *string               `json:"sourceModifiedDate,omitempty"`
-	Status             *ProductVariantStatus `json:"status,omitempty"`
+	Sku                *string `json:"sku,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
+	// The status of the product variant.
+	Status *ProductVariantStatus `json:"status,omitempty"`
 	// Unit of measure for the variant, such as `kg` or `meters`.
 	UnitOfMeasure *string `json:"unitOfMeasure,omitempty"`
 	// VAT rate for the product variant if sales taxes are enabled.
-	VatPercentage *types.Decimal `json:"vatPercentage,omitempty"`
+	VatPercentage *decimal.Big `decimal:"number" json:"vatPercentage,omitempty"`
+}
+
+func (p ProductVariant) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *ProductVariant) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ProductVariant) GetBarcode() *string {
@@ -144,7 +157,7 @@ func (o *ProductVariant) GetUnitOfMeasure() *string {
 	return o.UnitOfMeasure
 }
 
-func (o *ProductVariant) GetVatPercentage() *types.Decimal {
+func (o *ProductVariant) GetVatPercentage() *decimal.Big {
 	if o == nil {
 		return nil
 	}

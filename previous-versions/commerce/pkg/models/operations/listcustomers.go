@@ -4,20 +4,34 @@ package operations
 
 import (
 	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/utils"
 	"net/http"
 )
 
 type ListCustomersRequest struct {
-	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a company.
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a connection.
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 	// Field to order results by. [Read more](https://docs.codat.io/using-the-api/ordering-results).
 	OrderBy *string `queryParam:"style=form,explode=true,name=orderBy"`
 	// Page number. [Read more](https://docs.codat.io/using-the-api/paging).
-	Page *int `queryParam:"style=form,explode=true,name=page"`
+	Page *int `default:"1" queryParam:"style=form,explode=true,name=page"`
 	// Number of records to return in a page. [Read more](https://docs.codat.io/using-the-api/paging).
-	PageSize *int `queryParam:"style=form,explode=true,name=pageSize"`
+	PageSize *int `default:"100" queryParam:"style=form,explode=true,name=pageSize"`
 	// Codat query string. [Read more](https://docs.codat.io/using-the-api/querying).
 	Query *string `queryParam:"style=form,explode=true,name=query"`
+}
+
+func (l ListCustomersRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListCustomersRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ListCustomersRequest) GetCompanyID() string {
@@ -63,13 +77,16 @@ func (o *ListCustomersRequest) GetQuery() *string {
 }
 
 type ListCustomersResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// OK
 	Customers *shared.Customers
 	// Your `query` parameter was not correctly formed
 	ErrorMessage *shared.ErrorMessage
-	StatusCode   int
-	RawResponse  *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *ListCustomersResponse) GetContentType() string {
