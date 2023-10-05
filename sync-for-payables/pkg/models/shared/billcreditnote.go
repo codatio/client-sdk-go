@@ -9,7 +9,7 @@ import (
 
 // BillCreditNote - > **Bill credit notes or credit notes?**
 // >
-// > In Codat, bill credit notes represent accounts payable only. For accounts receivable, see [Credit notes](https://docs.codat.io/accounting-api#/schemas/CreditNote).
+// > In Codat, bill credit notes represent accounts payable only. For accounts receivable, see [Credit notes](https://docs.codat.io/sync-for-payables-api#/schemas/CreditNote).
 //
 // View the coverage for bill credit notes in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=billCreditNotes" target="_blank">Data coverage explorer</a>.
 //
@@ -17,11 +17,11 @@ import (
 //
 // A bill credit note is issued by a supplier for the purpose of recording credit. For example, if a supplier was unable to fulfil an order that was placed by a business, or delivered damaged goods, they would issue a bill credit note. A bill credit note reduces the amount a business owes to the supplier. It can be refunded to the business or used to pay off future bills.
 //
-// In the Codat API, a bill credit note is an accounts payable record issued by a [supplier](https://docs.codat.io/accounting-api#/schemas/Supplier).
+// In the Codat API, a bill credit note is an accounts payable record issued by a [supplier](https://docs.codat.io/sync-for-payables-api#/schemas/Supplier).
 //
 // A bill credit note includes details of:
 // * The original and remaining credit.
-// * Any allocations of the credit against other records, such as [bills](https://docs.codat.io/accounting-api#/schemas/Bill).
+// * Any allocations of the credit against other records, such as [bills](https://docs.codat.io/sync-for-payables-api#/schemas/Bill).
 // * The supplier that issued the bill credit note.
 type BillCreditNote struct {
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:

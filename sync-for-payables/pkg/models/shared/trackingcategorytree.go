@@ -7,8 +7,9 @@ type TrackingCategoryTree struct {
 	// Boolean value indicating whether this category has SubCategories
 	HasChildren *bool `json:"hasChildren,omitempty"`
 	// The identifier for the item, unique per tracking category
-	ID           *string `json:"id,omitempty"`
-	ModifiedDate *string `json:"modifiedDate,omitempty"`
+	ID           *string   `json:"id,omitempty"`
+	Metadata     *Metadata `json:"metadata,omitempty"`
+	ModifiedDate *string   `json:"modifiedDate,omitempty"`
 	// The name of the tracking category
 	Name *string `json:"name,omitempty"`
 	// The identifier for this item's immediate parent
@@ -32,6 +33,13 @@ func (o *TrackingCategoryTree) GetID() *string {
 		return nil
 	}
 	return o.ID
+}
+
+func (o *TrackingCategoryTree) GetMetadata() *Metadata {
+	if o == nil {
+		return nil
+	}
+	return o.Metadata
 }
 
 func (o *TrackingCategoryTree) GetModifiedDate() *string {

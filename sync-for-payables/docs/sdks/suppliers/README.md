@@ -1,4 +1,5 @@
 # Suppliers
+(*Suppliers*)
 
 ## Overview
 
@@ -50,40 +51,40 @@ func main() {
         Supplier: &shared.Supplier{
             Addresses: []shared.Address{
                 shared.Address{
-                    City: syncforpayables.String("North Tadshire"),
-                    Country: syncforpayables.String("Anguilla"),
-                    Line1: syncforpayables.String("incidunt"),
-                    Line2: syncforpayables.String("qui"),
-                    PostalCode: syncforpayables.String("86113"),
-                    Region: syncforpayables.String("modi"),
-                    Type: shared.AccountingAddressTypeDelivery,
+                    City: syncforpayables.String("Jenafurt"),
+                    Country: syncforpayables.String("Sweden"),
+                    Line1: syncforpayables.String("innovative blue"),
+                    Line2: syncforpayables.String("grey technology East"),
+                    PostalCode: syncforpayables.String("30778"),
+                    Region: syncforpayables.String("quantify Polestar mobile"),
+                    Type: shared.AccountingAddressTypeBilling,
                 },
             },
-            ContactName: syncforpayables.String("voluptatibus"),
-            DefaultCurrency: syncforpayables.String("molestias"),
-            EmailAddress: syncforpayables.String("officia"),
-            ID: syncforpayables.String("b8366c72-3ffd-4a9e-86be-e4825c1fc0e1"),
+            ContactName: syncforpayables.String("Durham after"),
+            DefaultCurrency: syncforpayables.String("Intelligent Fish"),
+            EmailAddress: syncforpayables.String("Ricardo.Hand41@gmail.com"),
+            ID: syncforpayables.String("<ID>"),
             Metadata: &shared.Metadata{
                 IsDeleted: syncforpayables.Bool(false),
             },
             ModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
-            Phone: syncforpayables.String("+44 25691 154789"),
-            RegistrationNumber: syncforpayables.String("optio"),
+            Phone: syncforpayables.String("(877) 492-8687"),
+            RegistrationNumber: syncforpayables.String("Profound"),
             SourceModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
-            Status: shared.SupplierStatusUnknown,
+            Status: shared.SupplierStatusActive,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "facilis": map[string]interface{}{
-                        "reiciendis": "a",
+                    "pariatur": map[string]interface{}{
+                        "accusantium": "Minivan",
                     },
                 },
             },
-            SupplierName: syncforpayables.String("iste"),
-            TaxNumber: syncforpayables.String("dicta"),
+            SupplierName: syncforpayables.String("Senior Mouse West"),
+            TaxNumber: syncforpayables.String("Towels likewise"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: syncforpayables.Int(552439),
+        TimeoutInMinutes: syncforpayables.Int(452224),
     })
     if err != nil {
         log.Fatal(err)
@@ -143,7 +144,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Suppliers.Get(ctx, operations.GetSupplierRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        SupplierID: "ullam",
+        SupplierID: "Northeast Hatchback Kia",
     })
     if err != nil {
         log.Fatal(err)
@@ -266,7 +267,7 @@ func main() {
         OrderBy: syncforpayables.String("-modifiedDate"),
         Page: syncforpayables.Int(1),
         PageSize: syncforpayables.Int(100),
-        Query: syncforpayables.String("dolore"),
+        Query: syncforpayables.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)
@@ -330,42 +331,42 @@ func main() {
         Supplier: &shared.Supplier{
             Addresses: []shared.Address{
                 shared.Address{
-                    City: syncforpayables.String("Fort Rafael"),
-                    Country: syncforpayables.String("Eritrea"),
-                    Line1: syncforpayables.String("consequuntur"),
-                    Line2: syncforpayables.String("assumenda"),
-                    PostalCode: syncforpayables.String("97785-9054"),
-                    Region: syncforpayables.String("esse"),
+                    City: syncforpayables.String("Ann Arbor"),
+                    Country: syncforpayables.String("Montserrat"),
+                    Line1: syncforpayables.String("Reactive"),
+                    Line2: syncforpayables.String("Metal cheater Islands"),
+                    PostalCode: syncforpayables.String("43372"),
+                    Region: syncforpayables.String("Carolina syndicate"),
                     Type: shared.AccountingAddressTypeBilling,
                 },
             },
-            ContactName: syncforpayables.String("odio"),
-            DefaultCurrency: syncforpayables.String("nesciunt"),
-            EmailAddress: syncforpayables.String("debitis"),
-            ID: syncforpayables.String("63562a7b-408f-405e-bd48-fdaf313a1f5f"),
+            ContactName: syncforpayables.String("East"),
+            DefaultCurrency: syncforpayables.String("Bicycle guestbook"),
+            EmailAddress: syncforpayables.String("Alexys.Hayes81@yahoo.com"),
+            ID: syncforpayables.String("<ID>"),
             Metadata: &shared.Metadata{
                 IsDeleted: syncforpayables.Bool(false),
             },
             ModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
             Phone: syncforpayables.String("(877) 492-8687"),
-            RegistrationNumber: syncforpayables.String("incidunt"),
+            RegistrationNumber: syncforpayables.String("indexing"),
             SourceModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
-            Status: shared.SupplierStatusActive,
+            Status: shared.SupplierStatusUnknown,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "cupiditate": map[string]interface{}{
-                        "optio": "alias",
+                    "consectetur": map[string]interface{}{
+                        "ullam": "Jaguar",
                     },
                 },
             },
-            SupplierName: syncforpayables.String("quidem"),
-            TaxNumber: syncforpayables.String("nesciunt"),
+            SupplierName: syncforpayables.String("visionary Buckinghamshire frictionless"),
+            TaxNumber: syncforpayables.String("parse possimus"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         ForceUpdate: syncforpayables.Bool(false),
-        SupplierID: "commodi",
-        TimeoutInMinutes: syncforpayables.Int(956124),
+        SupplierID: "Turkish Avon",
+        TimeoutInMinutes: syncforpayables.Int(151827),
     })
     if err != nil {
         log.Fatal(err)

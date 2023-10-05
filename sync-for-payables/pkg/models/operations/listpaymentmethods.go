@@ -9,6 +9,7 @@ import (
 )
 
 type ListPaymentMethodsRequest struct {
+	// Unique identifier for a company.
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	// Field to order results by. [Read more](https://docs.codat.io/using-the-api/ordering-results).
 	OrderBy *string `queryParam:"style=form,explode=true,name=orderBy"`
@@ -67,13 +68,16 @@ func (o *ListPaymentMethodsRequest) GetQuery() *string {
 }
 
 type ListPaymentMethodsResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// Your `query` parameter was not correctly formed
 	ErrorMessage *shared.ErrorMessage
 	// Success
 	PaymentMethods *shared.PaymentMethods
-	StatusCode     int
-	RawResponse    *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *ListPaymentMethodsResponse) GetContentType() string {

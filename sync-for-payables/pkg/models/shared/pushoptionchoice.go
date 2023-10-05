@@ -3,10 +3,14 @@
 package shared
 
 type PushOptionChoice struct {
-	Description *string         `json:"description,omitempty"`
-	DisplayName *string         `json:"displayName,omitempty"`
-	Required    *bool           `json:"required,omitempty"`
-	Type        *PushOptionType `json:"type,omitempty"`
+	// A description of the property.
+	Description *string `json:"description,omitempty"`
+	// The property's display name.
+	DisplayName *string `json:"displayName,omitempty"`
+	// The property is required if `True`.
+	Required *bool `json:"required,omitempty"`
+	// The option type.
+	Type *PushOptionType `json:"type,omitempty"`
 	// Allowed value for field.
 	Value *string `json:"value,omitempty"`
 }

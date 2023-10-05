@@ -15,9 +15,11 @@ type BillLineItem struct {
 	// Numerical value of any discounts applied.
 	//
 	// Do not use to apply discounts in Oracle NetSuite—see Oracle NetSuite integration reference.
-	DiscountAmount     *decimal.Big `decimal:"number" json:"discountAmount,omitempty"`
+	DiscountAmount *decimal.Big `decimal:"number" json:"discountAmount,omitempty"`
+	// Percentage rate of any discount applied to the bill.
 	DiscountPercentage *decimal.Big `decimal:"number" json:"discountPercentage,omitempty"`
-	IsDirectCost       *bool        `json:"isDirectCost,omitempty"`
+	// The bill is a direct cost if `True`.
+	IsDirectCost *bool `json:"isDirectCost,omitempty"`
 	// Reference to the item the line is linked to.
 	ItemRef *ItemRef `json:"itemRef,omitempty"`
 	// Number of units of goods or services received.

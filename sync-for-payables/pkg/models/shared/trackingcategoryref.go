@@ -6,7 +6,9 @@ package shared
 //
 // Deprecated type: This will be removed in a future release, please migrate away from it as soon as possible.
 type TrackingCategoryRef struct {
-	ID   string  `json:"id"`
+	// Unique identifier to the tracking category.
+	ID string `json:"id"`
+	// Name of tracking category.
 	Name *string `json:"name,omitempty"`
 }
 
