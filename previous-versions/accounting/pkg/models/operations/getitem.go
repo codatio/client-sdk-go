@@ -8,8 +8,10 @@ import (
 )
 
 type GetItemRequest struct {
+	// Unique identifier for a company.
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
-	ItemID    string `pathParam:"style=simple,explode=false,name=itemId"`
+	// Unique identifier for an item.
+	ItemID string `pathParam:"style=simple,explode=false,name=itemId"`
 }
 
 func (o *GetItemRequest) GetCompanyID() string {
@@ -27,12 +29,15 @@ func (o *GetItemRequest) GetItemID() string {
 }
 
 type GetItemResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
 	// Success
-	Item        *shared.Item
-	StatusCode  int
+	Item *shared.Item
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 }
 

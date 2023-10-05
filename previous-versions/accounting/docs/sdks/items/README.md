@@ -1,4 +1,5 @@
 # Items
+(*Items*)
 
 ## Overview
 
@@ -35,11 +36,12 @@ import(
 	"github.com/codatio/client-sdk-go/previous-versions/accounting"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/types"
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -49,46 +51,46 @@ func main() {
         Item: &shared.Item{
             BillItem: &shared.BillItem{
                 AccountRef: &shared.AccountRef{
-                    ID: codataccounting.String("33e66bd8-fe5d-400b-979e-f20387320590"),
-                    Name: codataccounting.String("Mr. Forrest Ryan"),
+                    ID: accounting.String("<ID>"),
+                    Name: accounting.String("bluetooth Extended"),
                 },
-                Description: codataccounting.String("ea"),
+                Description: accounting.String("Customer-focused regional approach"),
                 TaxRateRef: &shared.TaxRateRef{
-                    EffectiveTaxRate: types.MustNewDecimalFromString("2622.31"),
-                    ID: codataccounting.String("00313b3e-5044-4f65-be72-dc4077d0cc3f"),
-                    Name: codataccounting.String("Carol Lowe"),
+                    EffectiveTaxRate: types.MustNewDecimalFromString("9967.06"),
+                    ID: accounting.String("<ID>"),
+                    Name: accounting.String("abnormally deposit evolve"),
                 },
-                UnitPrice: types.MustNewDecimalFromString("7738.54"),
+                UnitPrice: types.MustNewDecimalFromString("7150.4"),
             },
-            Code: codataccounting.String("dicta"),
-            ID: codataccounting.String("5ceb4d6e-1eae-40f7-9aed-f2acab58b991"),
+            Code: accounting.String("SUV quantify Polestar"),
+            ID: accounting.String("<ID>"),
             InvoiceItem: &shared.InvoiceItem{
                 AccountRef: &shared.AccountRef{
-                    ID: codataccounting.String("c926ddb5-8946-41e7-821c-be6d9502f0ea"),
-                    Name: codataccounting.String("Sean Auer"),
+                    ID: accounting.String("<ID>"),
+                    Name: accounting.String("physical Ameliorated"),
                 },
-                Description: codataccounting.String("sint"),
+                Description: accounting.String("Exclusive transitional access"),
                 TaxRateRef: &shared.TaxRateRef{
-                    EffectiveTaxRate: types.MustNewDecimalFromString("9787.97"),
-                    ID: codataccounting.String("7ac2f72f-8850-4090-8911-608207888ec6"),
-                    Name: codataccounting.String("Teresa Lueilwitz"),
+                    EffectiveTaxRate: types.MustNewDecimalFromString("5190.28"),
+                    ID: accounting.String("<ID>"),
+                    Name: accounting.String("Bike"),
                 },
-                UnitPrice: types.MustNewDecimalFromString("9454.09"),
+                UnitPrice: types.MustNewDecimalFromString("7141.15"),
             },
             IsBillItem: false,
             IsInvoiceItem: false,
-            ItemStatus: shared.ItemStatusArchived,
+            ItemStatus: shared.ItemStatusUnknown,
             Metadata: &shared.Metadata{
-                IsDeleted: codataccounting.Bool(false),
+                IsDeleted: accounting.Bool(false),
             },
-            ModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
-            Name: codataccounting.String("Marion Mills"),
-            SourceModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            Name: accounting.String("easily"),
+            SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
             Type: shared.ItemTypeUnknown,
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codataccounting.Int(881095),
+        TimeoutInMinutes: accounting.Int(585365),
     })
     if err != nil {
         log.Fatal(err)
@@ -139,8 +141,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -148,7 +150,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Items.Get(ctx, operations.GetItemRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ItemID: "quod",
+        ItemID: "Northeast Hatchback Kia",
     })
     if err != nil {
         log.Fatal(err)
@@ -201,8 +203,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -259,8 +261,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -268,10 +270,10 @@ func main() {
     ctx := context.Background()
     res, err := s.Items.List(ctx, operations.ListItemsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        OrderBy: codataccounting.String("-modifiedDate"),
-        Page: codataccounting.Int(1),
-        PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("sunt"),
+        OrderBy: accounting.String("-modifiedDate"),
+        Page: accounting.Int(1),
+        PageSize: accounting.Int(100),
+        Query: accounting.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)

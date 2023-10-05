@@ -1,4 +1,5 @@
 # SalesOrders
+(*SalesOrders*)
 
 ## Overview
 
@@ -34,8 +35,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -43,7 +44,7 @@ func main() {
     ctx := context.Background()
     res, err := s.SalesOrders.Get(ctx, operations.GetSalesOrderRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        SalesOrderID: "perspiciatis",
+        SalesOrderID: "Northeast Hatchback Kia",
     })
     if err != nil {
         log.Fatal(err)
@@ -92,8 +93,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -101,10 +102,10 @@ func main() {
     ctx := context.Background()
     res, err := s.SalesOrders.List(ctx, operations.ListSalesOrdersRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        OrderBy: codataccounting.String("-modifiedDate"),
-        Page: codataccounting.Int(1),
-        PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("omnis"),
+        OrderBy: accounting.String("-modifiedDate"),
+        Page: accounting.Int(1),
+        PageSize: accounting.Int(100),
+        Query: accounting.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)

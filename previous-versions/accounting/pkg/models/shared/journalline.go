@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/types"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
@@ -15,8 +15,19 @@ type JournalLine struct {
 	// Description of the journal line item.
 	Description *string `json:"description,omitempty"`
 	// Amount for the journal line. Debit entries are considered positive, and credit entries are considered negative.
-	NetAmount types.Decimal        `json:"netAmount"`
+	NetAmount *decimal.Big         `decimal:"number" json:"netAmount"`
 	Tracking  *Propertiestracking2 `json:"tracking,omitempty"`
+}
+
+func (j JournalLine) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(j, "", false)
+}
+
+func (j *JournalLine) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &j, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *JournalLine) GetAccountRef() *AccountRef {
@@ -40,9 +51,9 @@ func (o *JournalLine) GetDescription() *string {
 	return o.Description
 }
 
-func (o *JournalLine) GetNetAmount() types.Decimal {
+func (o *JournalLine) GetNetAmount() *decimal.Big {
 	if o == nil {
-		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
+		return new(decimal.Big).SetFloat64(0.0)
 	}
 	return o.NetAmount
 }
