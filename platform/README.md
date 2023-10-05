@@ -1,6 +1,7 @@
 # Platform
 
 <!-- Start Codat Library Description -->
+Manage the building blocks of Codat, including companies, connections, and more.
 <!-- End Codat Library Description -->
 
 <!-- Start SDK Installation -->
