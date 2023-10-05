@@ -18,4 +18,4 @@ features:
 go:
   version: 0.23.0
   maxMethodParams: 0
-  packageName: github.com/codatio/client-sdk-go/previous-versions/files
+  packageName: github.com/codatio/client-sdk-go/None/files
