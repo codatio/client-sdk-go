@@ -52,11 +52,12 @@ To get your authorization header from the [Codat Portal](https://app.codat.io):
 
 | Library | Description | `go get` |
 | :- | :- | :- |
-| **[Platform](https://github.com/codatio/client-sdk-go/tree/main/platform)** | Manage the building blocks of Codat, including companies, connections, and more. | `github.com/codatio/client-sdk-go/platform` |
-| **[Bank Feeds](https://github.com/codatio/client-sdk-go/tree/main/bank-feeds)** | Set up bank feeds from accounts in your application to supported accounting platforms. | `github.com/codatio/client-sdk-go/bank-feeds` |
-| **[Sync for Commerce](https://github.com/codatio/client-sdk-go/tree/main/sync-for-commerce)** | Push merchants' data from your ecommerce or point-of-sale (POS) platform into your merchants' accounting platform. | `github.com/codatio/client-sdk-go/sync-for-commerce` |
-| **[Sync for Expenses](https://github.com/codatio/client-sdk-go/tree/main/sync-for-expenses)** | Push expenses to accounting platforms. | `github.com/codatio/client-sdk-go/sync-for-expenses` |
-| **[Lending](https://github.com/codatio/client-sdk-go/tree/main/lending)** | Make credit decisions backed by enhanced financials, metrics, reports, and data integrity features. | `github.com/codatio/client-sdk-go/lending` |
-| **[Sync for Payroll](https://github.com/codatio/client-sdk-go/tree/main/sync-for-payroll)** | Push payroll to accounting platforms. | `github.com/codatio/client-sdk-go/sync-for-payroll` |
-| **[Sync for Payables](https://github.com/codatio/client-sdk-go/tree/main/sync-for-payables)** | Streamline your customers' accounts payable workflow. | `github.com/codatio/client-sdk-go/sync-for-payables` |
+| **[Common](https://github.com/codatio/client-sdk-go/tree/main/previous-versions/common)** | Manage the building blocks of Codat, including companies, connections, and more. | `github.com/codatio/client-sdk-go/previous-versions/common` |
+| **[Accounting](https://github.com/codatio/client-sdk-go/tree/main/previous-versions/accounting)** | Access standardized accounting data from our accounting integrations. | `github.com/codatio/client-sdk-go/previous-versions/accounting` |
+| **[Banking](https://github.com/codatio/client-sdk-go/tree/main/previous-versions/banking)** | Access standardized banking data from our banking integrations. | `github.com/codatio/client-sdk-go/previous-versions/banking` |
+| **[Commerce](https://github.com/codatio/client-sdk-go/tree/main/previous-versions/commerce)** | Access standardized commerce data from our commerce integrations. | `github.com/codatio/client-sdk-go/previous-versions/commerce` |
+| **[Assess](https://github.com/codatio/client-sdk-go/tree/main/previous-versions/assess)** | Make credit decisions backed by enhanced financials, metrics, reports, and data integrity features. | `github.com/codatio/client-sdk-go/previous-versions/assess` |
+| **[Sync for Commerce version 1](https://github.com/codatio/client-sdk-go/tree/main/previous-versions/sync-for-commerce-version-1)** | Push merchants' data from your ecommerce or point-of-sale (POS) platform into your merchants' accounting platform. | `github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1` |
+| **[Sync for Expenses version 1](https://github.com/codatio/client-sdk-go/tree/main/previous-versions/sync-for-expenses-version-1)** | Push expenses to accounting platforms. | `github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1` |
+| **[Files](https://github.com/codatio/client-sdk-go/tree/main/previous-versions/files)** | Use Codat's Files API to upload your SMB customers' files. | `github.com/codatio/client-sdk-go/previous-versions/files` |
 <!-- End Codat Client Libraries -->

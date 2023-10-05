@@ -4,7 +4,7 @@ package operations
 
 import (
 	"errors"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v2/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/utils"
 )
 
 var ErrUnsupportedOption = errors.New("unsupported option")
