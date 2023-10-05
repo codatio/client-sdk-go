@@ -1,7 +1,7 @@
 # Sync for Expenses
 
 <!-- Start Codat Library Description -->
-Embedded accounting integrations for corporate card providers.
+﻿Embedded accounting integrations for corporate card providers.
 <!-- End Codat Library Description  -->
 
 <!-- Start SDK Installation -->

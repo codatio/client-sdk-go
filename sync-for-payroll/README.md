@@ -1,7 +1,7 @@
 # Sync for Payroll
 
 <!-- Start Codat Library Description -->
-<!-- End Codat Library Description  -->
+Push payroll to accounting platforms.
 
 <!-- Start SDK Installation -->
 ## SDK Installation

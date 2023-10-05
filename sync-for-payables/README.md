@@ -1,7 +1,7 @@
 # Sync for Payables
 
 <!-- Start Codat Library Description -->
-<!-- End Codat Library Description  -->
+Streamline your customers' accounts payable workflow.
 
 <!-- Start SDK Installation -->
 ## SDK Installation

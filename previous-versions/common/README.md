@@ -1,7 +1,7 @@
 # Common
 
 <!-- Start Codat Library Description -->
-<!-- End Codat Library Description  -->
+Manage the building blocks of Codat, including companies, connections, and more.
 
 <!-- Start SDK Installation -->
 ## SDK Installation

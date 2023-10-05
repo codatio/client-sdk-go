@@ -1,7 +1,7 @@
 # Sync for Commerce version 1
 
 <!-- Start Codat Library Description -->
-Embedded accounting integrations for POS and eCommerce platforms.
+﻿Embedded accounting integrations for POS and eCommerce platforms.
 <!-- End Codat Library Description  -->
 
 <!-- Start SDK Installation -->

@@ -1,7 +1,7 @@
 # Sync for Expenses version 1
 
 <!-- Start Codat Library Description -->
-<!-- End Codat Library Description  -->
+Push expenses to accounting platforms.
 
 <!-- Start SDK Installation -->
 ## SDK Installation
