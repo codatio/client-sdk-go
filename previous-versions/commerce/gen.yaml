@@ -19,4 +19,4 @@ features:
 go:
   version: 0.24.0
   maxMethodParams: 0
-  packageName: github.com/codatio/client-sdk-go/None/commerce
+  packageName: github.com/codatio/client-sdk-go/previous-versions/commerce

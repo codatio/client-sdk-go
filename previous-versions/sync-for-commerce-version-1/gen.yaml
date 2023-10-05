@@ -20,4 +20,4 @@ features:
 go:
   version: 0.20.0
   maxMethodParams: 0
-  packageName: github.com/codatio/client-sdk-go/None/sync-for-commerce-version-1
+  packageName: github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1

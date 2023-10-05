@@ -20,4 +20,4 @@ features:
 go:
   version: 0.26.0
   maxMethodParams: 0
-  packageName: github.com/codatio/client-sdk-go/None/common
+  packageName: github.com/codatio/client-sdk-go/previous-versions/common
