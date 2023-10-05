@@ -1,8 +1,8 @@
 # Bank Feeds
 
 <!-- Start Codat Library Description -->
-<!-- End Codat Library Description  -->    
 Bank Feeds API enables your SMB users to set up bank feeds from accounts in your application to supported accounting platforms.
+<!-- End Codat Library Description  -->    
 
 <!-- Start SDK Installation -->
 ## SDK Installation
