@@ -9,6 +9,7 @@ import (
 )
 
 type ListReconciledInvoicesRequest struct {
+	// Unique identifier for a company.
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	// Page number. [Read more](https://docs.codat.io/using-the-api/paging).
 	Page *int `default:"1" queryParam:"style=form,explode=true,name=page"`
@@ -58,13 +59,16 @@ func (o *ListReconciledInvoicesRequest) GetQuery() *string {
 }
 
 type ListReconciledInvoicesResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// OK
 	EnhancedInvoicesReport *shared.EnhancedInvoicesReport
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
-	StatusCode   int
-	RawResponse  *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *ListReconciledInvoicesResponse) GetContentType() string {

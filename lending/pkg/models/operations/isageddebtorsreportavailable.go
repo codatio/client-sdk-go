@@ -7,6 +7,7 @@ import (
 )
 
 type IsAgedDebtorsReportAvailableRequest struct {
+	// Unique identifier for a company.
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
@@ -18,8 +19,11 @@ func (o *IsAgedDebtorsReportAvailableRequest) GetCompanyID() string {
 }
 
 type IsAgedDebtorsReportAvailableResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
-	StatusCode  int
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// OK
 	IsAgedDebtorsReportAvailable200ApplicationJSONBoolean *bool

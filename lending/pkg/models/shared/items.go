@@ -8,8 +8,10 @@ import (
 )
 
 type Items struct {
+	// Amount of tax withheld.
 	Amount *decimal.Big `decimal:"number" json:"amount"`
-	Name   string       `json:"name"`
+	// Name assigned to withheld tax.
+	Name string `json:"name"`
 }
 
 func (i Items) MarshalJSON() ([]byte, error) {

@@ -21,7 +21,7 @@ import (
 // - Refunding an item in cash to a contact.
 // - Depositing money into a bank account.
 //
-// Direct incomes is a child data type of [account transactions](https://docs.codat.io/accounting-api#/schemas/AccountTransaction).
+// Direct incomes is a child data type of [account transactions](https://docs.codat.io/lending-api#/schemas/AccountTransaction).
 type AccountingDirectIncome struct {
 	// The customer or supplier for the transfer, if available.
 	ContactRef *ContactRef `json:"contactRef,omitempty"`
@@ -82,9 +82,10 @@ type AccountingDirectIncome struct {
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	IssueDate string `json:"issueDate"`
 	// An array of line items.
-	LineItems          []DirectIncomeLineItem        `json:"lineItems"`
-	Metadata           *Metadata                     `json:"metadata,omitempty"`
-	ModifiedDate       *string                       `json:"modifiedDate,omitempty"`
+	LineItems    []DirectIncomeLineItem `json:"lineItems"`
+	Metadata     *Metadata              `json:"metadata,omitempty"`
+	ModifiedDate *string                `json:"modifiedDate,omitempty"`
+	// An optional note on the direct income that can be used to assign the direct income with a reference ID in your application.
 	Note               *string                       `json:"note,omitempty"`
 	PaymentAllocations []AccountingPaymentAllocation `json:"paymentAllocations"`
 	// User-friendly reference for the direct income.

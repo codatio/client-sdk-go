@@ -1,4 +1,5 @@
-# LoanWriteback.BankAccounts
+# LoanWritebackBankAccounts
+(*LoanWriteback.BankAccounts*)
 
 ### Available Operations
 
@@ -7,13 +8,13 @@
 
 ## Create
 
-The *Create bank account* endpoint creates a new [bank account](https://docs.codat.io/accounting-api#/schemas/BankAccount) for a given company's connection.
+The *Create bank account* endpoint creates a new [bank account](https://docs.codat.io/lending-api#/schemas/BankAccount) for a given company's connection.
 
-[Bank accounts](https://docs.codat.io/accounting-api#/schemas/BankAccount) are financial accounts maintained by a bank or other financial institution.
+[Bank accounts](https://docs.codat.io/lending-api#/schemas/BankAccount) are financial accounts maintained by a bank or other financial institution.
 
 **Integration-specific behaviour**
 
-Required data may vary by integration. To see what data to post, first call [Get create/update bank account model](https://docs.codat.io/accounting-api#/operations/get-create-update-bankAccounts-model).
+Required data may vary by integration. To see what data to post, first call [Get create/update bank account model](https://docs.codat.io/lending-api#/operations/get-create-update-bankAccounts-model).
 
 Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankAccounts) for integrations that support creating an account.
 
@@ -25,7 +26,7 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v4"
+	lending "github.com/codatio/client-sdk-go/lending/v4"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/types"
@@ -41,29 +42,28 @@ func main() {
     ctx := context.Background()
     res, err := s.LoanWriteback.BankAccounts.Create(ctx, operations.CreateBankAccountRequest{
         AccountingBankAccount: &shared.AccountingBankAccount{
-            AccountName: lending.String("saepe"),
-            AccountNumber: lending.String("fuga"),
-            AccountType: shared.AccountingBankAccountTypeCredit.ToPointer(),
-            AvailableBalance: types.MustNewDecimalFromString("3595.08"),
-            Balance: types.MustNewDecimalFromString("6130.64"),
-            Currency: lending.String("USD"),
-            IBan: lending.String("saepe"),
-            ID: lending.String("b10faaa2-352c-4595-9907-aff1a3a2fa94"),
-            Institution: lending.String("commodi"),
+            AccountName: lending.String("bluetooth Extended"),
+            AccountNumber: lending.String("blue"),
+            AccountType: shared.AccountingBankAccountTypeDebit.ToPointer(),
+            AvailableBalance: types.MustNewDecimalFromString("7964.74"),
+            Balance: types.MustNewDecimalFromString("3768.44"),
+            Currency: lending.String("EUR"),
+            IBan: lending.String("ES4002078579630900307003"),
+            ID: lending.String("<ID>"),
+            Institution: lending.String("Grocery Borders Northwest"),
             Metadata: &shared.Metadata{
                 IsDeleted: lending.Bool(false),
             },
             ModifiedDate: lending.String("2022-10-23T00:00:00.000Z"),
-            NominalCode: lending.String("molestiae"),
-            OverdraftLimit: types.MustNewDecimalFromString("2444.25"),
-            SortCode: lending.String("error"),
+            NominalCode: lending.String("metrics"),
+            OverdraftLimit: types.MustNewDecimalFromString("365.21"),
+            SortCode: lending.String("Interactions Senior Mouse"),
             SourceModifiedDate: lending.String("2022-10-23T00:00:00.000Z"),
         },
         AllowSyncOnPushComplete: lending.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        ForceUpdate: lending.Bool(false),
-        TimeoutInMinutes: lending.Int(338007),
+        TimeoutInMinutes: lending.Int(908106),
     })
     if err != nil {
         log.Fatal(err)
@@ -91,9 +91,9 @@ func main() {
 
 ## GetCreateUpdateModel
 
-The *Get create/update bank account model* endpoint returns the expected data for the request payload when creating and updating a [bank account](https://docs.codat.io/accounting-api#/schemas/BankAccount) for a given company and integration.
+The *Get create/update bank account model* endpoint returns the expected data for the request payload when creating and updating a [bank account](https://docs.codat.io/lending-api#/schemas/BankAccount) for a given company and integration.
 
-[Bank accounts](https://docs.codat.io/accounting-api#/schemas/BankAccount) are financial accounts maintained by a bank or other financial institution.
+[Bank accounts](https://docs.codat.io/lending-api#/schemas/BankAccount) are financial accounts maintained by a bank or other financial institution.
 
 **Integration-specific behaviour**
 
@@ -110,7 +110,7 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v4"
+	lending "github.com/codatio/client-sdk-go/lending/v4"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )

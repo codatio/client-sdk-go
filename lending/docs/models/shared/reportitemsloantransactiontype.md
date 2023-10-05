@@ -1,5 +1,7 @@
 # ReportItemsLoanTransactionType
 
+The type of loan transaction.
+
 
 ## Values
 

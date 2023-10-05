@@ -8,9 +8,12 @@ import (
 )
 
 type ReportComponentMeasure struct {
-	Index              *int64       `json:"index,omitempty"`
-	MeasureDisplayName *string      `json:"measureDisplayName,omitempty"`
-	Value              *decimal.Big `decimal:"number" json:"value,omitempty"`
+	// The measure's index.
+	Index *int64 `json:"index,omitempty"`
+	// The measure's display name.
+	MeasureDisplayName *string `json:"measureDisplayName,omitempty"`
+	// The measure's value.
+	Value *decimal.Big `decimal:"number" json:"value,omitempty"`
 }
 
 func (r ReportComponentMeasure) MarshalJSON() ([]byte, error) {

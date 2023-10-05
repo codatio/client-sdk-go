@@ -10,14 +10,16 @@ import (
 
 type CreateBankTransactionsRequest struct {
 	AccountingCreateBankTransactions *shared.AccountingCreateBankTransactions `request:"mediaType=application/json"`
-	// Unique identifier for an account
-	AccountID               string `pathParam:"style=simple,explode=false,name=accountId"`
-	AllowSyncOnPushComplete *bool  `default:"true" queryParam:"style=form,explode=true,name=allowSyncOnPushComplete"`
-	CompanyID               string `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID            string `pathParam:"style=simple,explode=false,name=connectionId"`
-	// When updating data in the destination platform Codat checks the `sourceModifiedDate` against the `lastupdated` date from the accounting platform, if they're different Codat will return an error suggesting you should initiate another pull of the data. If this is set to `true` then the update will override this check.
-	ForceUpdate      *bool `default:"false" queryParam:"style=form,explode=true,name=forceUpdate"`
-	TimeoutInMinutes *int  `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
+	// Unique identifier for an account.
+	AccountID string `pathParam:"style=simple,explode=false,name=accountId"`
+	// Allow a sync upon push completion.
+	AllowSyncOnPushComplete *bool `default:"true" queryParam:"style=form,explode=true,name=allowSyncOnPushComplete"`
+	// Unique identifier for a company.
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a connection.
+	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
+	// Time limit for the push operation to complete before it is timed out.
+	TimeoutInMinutes *int `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
 }
 
 func (c CreateBankTransactionsRequest) MarshalJSON() ([]byte, error) {
@@ -66,13 +68,6 @@ func (o *CreateBankTransactionsRequest) GetConnectionID() string {
 	return o.ConnectionID
 }
 
-func (o *CreateBankTransactionsRequest) GetForceUpdate() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.ForceUpdate
-}
-
 func (o *CreateBankTransactionsRequest) GetTimeoutInMinutes() *int {
 	if o == nil {
 		return nil
@@ -83,11 +78,14 @@ func (o *CreateBankTransactionsRequest) GetTimeoutInMinutes() *int {
 type CreateBankTransactionsResponse struct {
 	// Success
 	AccountingCreateBankTransactionsResponse *shared.AccountingCreateBankTransactionsResponse
-	ContentType                              string
+	// HTTP response content type for this operation
+	ContentType string
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
-	StatusCode   int
-	RawResponse  *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *CreateBankTransactionsResponse) GetAccountingCreateBankTransactionsResponse() *shared.AccountingCreateBankTransactionsResponse {

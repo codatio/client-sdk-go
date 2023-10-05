@@ -11,8 +11,10 @@ type LoanSummaryReportItem struct {
 	// The loan outstanding balance.  This may not equal totalDrawdowns - totalRepayments due to interest which has been accrued.
 	Balance *decimal.Big `decimal:"number" json:"balance,omitempty"`
 	// The description of the object being referred to. E.g. the account.
-	Description *string               `json:"description,omitempty"`
-	RecordRef   *LoanSummaryRecordRef `json:"recordRef,omitempty"`
+	Description *string `json:"description,omitempty"`
+	// The name of lender providing the loan.
+	LenderName *string               `json:"lenderName,omitempty"`
+	RecordRef  *LoanSummaryRecordRef `json:"recordRef,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -62,6 +64,13 @@ func (o *LoanSummaryReportItem) GetDescription() *string {
 		return nil
 	}
 	return o.Description
+}
+
+func (o *LoanSummaryReportItem) GetLenderName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.LenderName
 }
 
 func (o *LoanSummaryReportItem) GetRecordRef() *LoanSummaryRecordRef {

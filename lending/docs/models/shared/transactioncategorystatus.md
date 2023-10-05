@@ -1,5 +1,7 @@
 # TransactionCategoryStatus
 
+The status of the transaction category.
+
 
 ## Values
 

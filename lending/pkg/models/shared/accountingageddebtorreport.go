@@ -12,7 +12,7 @@ package shared
 //
 // ## Underlying data
 //
-// The Aged Debtors report is generated from a set of required data types: [Customers](https://docs.codat.io/accounting-api#/schemas/Customer), [Invoices](https://docs.codat.io/accounting-api#/schemas/Invoice), [Credit notes](https://docs.codat.io/accounting-api#/schemas/CreditNote), and [Payments](https://docs.codat.io/accounting-api#/schemas/Payment).
+// The Aged Debtors report is generated from a set of required data types: [Customers](https://docs.codat.io/lending-api#/schemas/Customer), [Invoices](https://docs.codat.io/lending-api#/schemas/Invoice), [Credit notes](https://docs.codat.io/lending-api#/schemas/CreditNote), and [Payments](https://docs.codat.io/lending-api#/schemas/Payment).
 //
 // To generate the report, the underlying data types must have been synced within 24 hours of each other. Otherwise an error is displayed when you try to run the report. Sync the required data types by clicking the link in the error, and then run the report again.
 //

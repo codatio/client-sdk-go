@@ -1,6 +1,6 @@
 # ListLoanTransactionsSourceType
 
-Data source type
+Data source type.
 
 
 ## Values

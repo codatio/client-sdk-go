@@ -4,11 +4,13 @@ package shared
 
 // ContactRef - The customer or supplier for the transfer, if available.
 type ContactRef struct {
-	DataType *string `json:"dataType,omitempty"`
-	ID       string  `json:"id"`
+	// Available Data types
+	DataType *DataType `json:"dataType,omitempty"`
+	// Unique identifier for a customer or supplier.
+	ID string `json:"id"`
 }
 
-func (o *ContactRef) GetDataType() *string {
+func (o *ContactRef) GetDataType() *DataType {
 	if o == nil {
 		return nil
 	}
