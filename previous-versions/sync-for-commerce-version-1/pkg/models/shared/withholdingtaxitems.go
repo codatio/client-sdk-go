@@ -3,18 +3,31 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/types"
+	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
 type WithholdingTaxitems struct {
-	Amount types.Decimal `json:"amount"`
-	Name   string        `json:"name"`
+	// Amount of tax withheld.
+	Amount *decimal.Big `decimal:"number" json:"amount"`
+	// Name assigned to withheld tax.
+	Name string `json:"name"`
 }
 
-func (o *WithholdingTaxitems) GetAmount() types.Decimal {
+func (w WithholdingTaxitems) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(w, "", false)
+}
+
+func (w *WithholdingTaxitems) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &w, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *WithholdingTaxitems) GetAmount() *decimal.Big {
 	if o == nil {
-		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
+		return new(decimal.Big).SetFloat64(0.0)
 	}
 	return o.Amount
 }

@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/types"
+	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
@@ -29,8 +29,19 @@ type PaymentLine struct {
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	AllocatedOnDate *string `json:"allocatedOnDate,omitempty"`
 	// Amount in the payment currency.
-	Amount types.Decimal     `json:"amount"`
+	Amount *decimal.Big      `decimal:"number" json:"amount"`
 	Links  []PaymentLineLink `json:"links,omitempty"`
+}
+
+func (p PaymentLine) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PaymentLine) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *PaymentLine) GetAllocatedOnDate() *string {
@@ -40,9 +51,9 @@ func (o *PaymentLine) GetAllocatedOnDate() *string {
 	return o.AllocatedOnDate
 }
 
-func (o *PaymentLine) GetAmount() types.Decimal {
+func (o *PaymentLine) GetAmount() *decimal.Big {
 	if o == nil {
-		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
+		return new(decimal.Big).SetFloat64(0.0)
 	}
 	return o.Amount
 }

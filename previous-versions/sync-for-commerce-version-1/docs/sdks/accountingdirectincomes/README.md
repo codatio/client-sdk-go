@@ -1,4 +1,5 @@
 # AccountingDirectIncomes
+(*AccountingDirectIncomes*)
 
 ## Overview
 
@@ -29,15 +30,15 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
+	syncforcommerceversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/operations"
-	"github.com/ericlagergren/decimal"
+	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/types"
 )
 
 func main() {
-    s := codatsynccommerce.New(
-        codatsynccommerce.WithSecurity(shared.Security{
+    s := syncforcommerceversion1.New(
+        syncforcommerceversion1.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -46,88 +47,88 @@ func main() {
     res, err := s.AccountingDirectIncomes.CreateAccountingDirectIncome(ctx, operations.CreateAccountingDirectIncomeRequest{
         AccountingDirectIncome: &shared.AccountingDirectIncome{
             ContactRef: &shared.AccountingDirectIncomeContactRef{
-                DataType: codatsynccommerce.String("tempora"),
-                ID: "5626d436-813f-416d-9f5f-ce6c556146c3",
+                DataType: shared.DataTypeInvoices.ToPointer(),
+                ID: "<ID>",
             },
-            Currency: "EUR",
-            CurrencyRate: types.MustNewDecimalFromString("1324.87"),
-            ID: codatsynccommerce.String("50fb008c-42e1-441a-ac36-6c8dd6b14429"),
+            Currency: "GBP",
+            CurrencyRate: types.MustNewDecimalFromString("6548.38"),
+            ID: syncforcommerceversion1.String("<ID>"),
             IssueDate: "2022-10-23T00:00:00.000Z",
             LineItems: []shared.DirectIncomeLineItem{
                 shared.DirectIncomeLineItem{
                     AccountRef: &shared.AccountRef{
-                        ID: codatsynccommerce.String("7474778a-7bd4-466d-a8c1-0ab3cdca4251"),
-                        Name: codatsynccommerce.String("William Goodwin"),
+                        ID: syncforcommerceversion1.String("<ID>"),
+                        Name: syncforcommerceversion1.String("Meitnerium watt Assistant"),
                     },
-                    Description: codatsynccommerce.String("aspernatur"),
-                    DiscountAmount: types.MustNewDecimalFromString("1970.54"),
-                    DiscountPercentage: types.MustNewDecimalFromString("7791.92"),
+                    Description: syncforcommerceversion1.String("Organized directional moratorium"),
+                    DiscountAmount: types.MustNewDecimalFromString("6259.31"),
+                    DiscountPercentage: types.MustNewDecimalFromString("3251.14"),
                     ItemRef: &shared.DirectIncomeLineItemItemReference{
-                        ID: "7e0bc717-8e47-496f-aa70-c688282aa482",
-                        Name: codatsynccommerce.String("Sue Corkery"),
+                        ID: "<ID>",
+                        Name: syncforcommerceversion1.String("Supervisor virtual sadly"),
                     },
-                    Quantity: *types.MustNewDecimalFromString("1871.31"),
-                    SubTotal: types.MustNewDecimalFromString("1294.12"),
-                    TaxAmount: types.MustNewDecimalFromString("9039.84"),
+                    Quantity: types.MustNewDecimalFromString("7605.88"),
+                    SubTotal: types.MustNewDecimalFromString("2695.32"),
+                    TaxAmount: types.MustNewDecimalFromString("3396.83"),
                     TaxRateRef: &shared.DirectIncomeLineItemTaxRateReference{
-                        EffectiveTaxRate: types.MustNewDecimalFromString("5789.22"),
-                        ID: codatsynccommerce.String("817ee17c-be61-4e6b-bb95-bc0ab3c20c4f"),
-                        Name: codatsynccommerce.String("Joy Labadie"),
+                        EffectiveTaxRate: types.MustNewDecimalFromString("2606.73"),
+                        ID: syncforcommerceversion1.String("<ID>"),
+                        Name: syncforcommerceversion1.String("Pensacola Som Northwest"),
                     },
-                    TotalAmount: types.MustNewDecimalFromString("8577.23"),
+                    TotalAmount: types.MustNewDecimalFromString("6880.22"),
                     TrackingCategoryRefs: []shared.DirectIncomeLineItemTrackingCategoryRefs{
                         shared.DirectIncomeLineItemTrackingCategoryRefs{
-                            ID: "871f99dd-2efd-4121-aa6f-1e674bdb04f1",
-                            Name: codatsynccommerce.String("Delores Hermiston IV"),
+                            ID: "<ID>",
+                            Name: syncforcommerceversion1.String("Pickup"),
                         },
                     },
-                    UnitAmount: *types.MustNewDecimalFromString("1852.32"),
+                    UnitAmount: types.MustNewDecimalFromString("8819.46"),
                 },
             },
             Metadata: &shared.Metadata{
-                IsDeleted: codatsynccommerce.Bool(false),
+                IsDeleted: syncforcommerceversion1.Bool(false),
             },
-            ModifiedDate: codatsynccommerce.String("2022-10-23T00:00:00.000Z"),
-            Note: codatsynccommerce.String("ex"),
+            ModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
+            Note: syncforcommerceversion1.String("magni"),
             PaymentAllocations: []shared.PaymentAllocationsitems{
                 shared.PaymentAllocationsitems{
                     Allocation: shared.ItemsAllocation{
-                        AllocatedOnDate: codatsynccommerce.String("2022-10-23T00:00:00.000Z"),
-                        Currency: codatsynccommerce.String("EUR"),
-                        CurrencyRate: types.MustNewDecimalFromString("6802.7"),
-                        TotalAmount: types.MustNewDecimalFromString("996.15"),
+                        AllocatedOnDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
+                        Currency: syncforcommerceversion1.String("USD"),
+                        CurrencyRate: types.MustNewDecimalFromString("2449.75"),
+                        TotalAmount: types.MustNewDecimalFromString("6540.35"),
                     },
                     Payment: shared.PaymentAllocationPayment{
                         AccountRef: &shared.AccountRef{
-                            ID: codatsynccommerce.String("9f1d1705-1339-4d08-886a-1840394c2607"),
-                            Name: codatsynccommerce.String("Elisa Mosciski"),
+                            ID: syncforcommerceversion1.String("<ID>"),
+                            Name: syncforcommerceversion1.String("Officer mobile Infrastructure"),
                         },
-                        Currency: codatsynccommerce.String("USD"),
-                        CurrencyRate: types.MustNewDecimalFromString("9903.45"),
-                        ID: codatsynccommerce.String("0642dac7-af51-45cc-813a-a63aae8d6786"),
-                        Note: codatsynccommerce.String("labore"),
-                        PaidOnDate: codatsynccommerce.String("2022-10-23T00:00:00.000Z"),
-                        Reference: codatsynccommerce.String("facilis"),
-                        TotalAmount: types.MustNewDecimalFromString("7382.27"),
+                        Currency: syncforcommerceversion1.String("EUR"),
+                        CurrencyRate: types.MustNewDecimalFromString("4022.79"),
+                        ID: syncforcommerceversion1.String("<ID>"),
+                        Note: syncforcommerceversion1.String("Tools Dynamic Industrial"),
+                        PaidOnDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
+                        Reference: syncforcommerceversion1.String("parallelism"),
+                        TotalAmount: types.MustNewDecimalFromString("9002.17"),
                     },
                 },
             },
-            Reference: codatsynccommerce.String("commodi"),
-            SourceModifiedDate: codatsynccommerce.String("2022-10-23T00:00:00.000Z"),
-            SubTotal: *types.MustNewDecimalFromString("3605.45"),
+            Reference: syncforcommerceversion1.String("Man Cotton virtual"),
+            SourceModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
+            SubTotal: types.MustNewDecimalFromString("4300.87"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "reiciendis": map[string]interface{}{
-                        "assumenda": "nemo",
+                    "eos": map[string]interface{}{
+                        "facere": "TLS",
                     },
                 },
             },
-            TaxAmount: *types.MustNewDecimalFromString("9249.67"),
-            TotalAmount: *types.MustNewDecimalFromString("3975.33"),
+            TaxAmount: types.MustNewDecimalFromString("356.06"),
+            TotalAmount: types.MustNewDecimalFromString("9132.9"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codatsynccommerce.Int(46007),
+        TimeoutInMinutes: syncforcommerceversion1.Int(156594),
     })
     if err != nil {
         log.Fatal(err)

@@ -1,5 +1,7 @@
 # FeatureState
 
+The current release state of the feature.
+
 
 ## Values
 
