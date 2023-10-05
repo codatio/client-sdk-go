@@ -3,19 +3,20 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/types"
+	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 // SourceAccount - The target bank account in a supported accounting package for ingestion into a bank feed.
 type SourceAccount struct {
-	// The bank account name
+	// The bank account name.
 	AccountName *string `json:"accountName,omitempty"`
-	// The account number
+	// The account number.
 	AccountNumber *string `json:"accountNumber,omitempty"`
-	// The type of bank account e.g. Credit
+	// The type of bank account e.g. Credit.
 	AccountType *string `json:"accountType,omitempty"`
-	// The latest balance for the bank account
-	Balance *types.Decimal `json:"balance,omitempty"`
+	// The latest balance for the bank account.
+	Balance *decimal.Big `decimal:"number" json:"balance,omitempty"`
 	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code, e.g. _GBP_.
 	//
 	// ## Unknown currencies
@@ -44,7 +45,7 @@ type SourceAccount struct {
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	FeedStartDate *string `json:"feedStartDate,omitempty"`
-	// Unique ID for the bank account
+	// Unique ID for the bank account.
 	ID string `json:"id"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
@@ -66,9 +67,21 @@ type SourceAccount struct {
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	ModifiedDate *string `json:"modifiedDate,omitempty"`
-	// The sort code
+	// The sort code.
 	SortCode *string `json:"sortCode,omitempty"`
-	Status   *string `json:"status,omitempty"`
+	// Status of the source account.
+	Status *string `json:"status,omitempty"`
+}
+
+func (s SourceAccount) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SourceAccount) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *SourceAccount) GetAccountName() *string {
@@ -92,7 +105,7 @@ func (o *SourceAccount) GetAccountType() *string {
 	return o.AccountType
 }
 
-func (o *SourceAccount) GetBalance() *types.Decimal {
+func (o *SourceAccount) GetBalance() *decimal.Big {
 	if o == nil {
 		return nil
 	}
