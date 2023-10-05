@@ -19,12 +19,15 @@ func (o *GetIntegrationRequest) GetPlatformKey() string {
 }
 
 type GetIntegrationResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
 	// OK
 	Integration *shared.Integration
-	StatusCode  int
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 }
 
