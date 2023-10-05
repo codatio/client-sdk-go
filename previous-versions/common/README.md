@@ -1,7 +1,7 @@
 # Common
 
 <!-- Start Codat Library Description -->
-<!-- End Codat Library Description  -->
+<!-- End Codat Library Description -->
 
 <!-- Start SDK Installation -->
 ## SDK Installation

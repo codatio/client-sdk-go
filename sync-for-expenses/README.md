@@ -2,7 +2,7 @@
 
 <!-- Start Codat Library Description -->
 Embedded accounting integrations for corporate card providers.
-<!-- End Codat Library Description  -->
+<!-- End Codat Library Description -->
 
 <!-- Start SDK Installation -->
 ## SDK Installation
