@@ -1,4 +1,5 @@
 # Journals
+(*Journals*)
 
 ## Overview
 
@@ -32,14 +33,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payroll"
+	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncpayroll.New(
-        codatsyncpayroll.WithSecurity(shared.Security{
+    s := syncforpayroll.New(
+        syncforpayroll.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -47,23 +48,24 @@ func main() {
     ctx := context.Background()
     res, err := s.Journals.Create(ctx, operations.CreateJournalRequest{
         Journal: &shared.Journal{
-            CreatedOn: codatsyncpayroll.String("2022-10-23T00:00:00.000Z"),
-            HasChildren: codatsyncpayroll.Bool(false),
-            ID: codatsyncpayroll.String("4f63c969-e9a3-4efa-b7df-b14cd66ae395"),
-            JournalCode: codatsyncpayroll.String("accusamus"),
+            CreatedOn: syncforpayroll.String("2022-10-23T00:00:00.000Z"),
+            HasChildren: syncforpayroll.Bool(false),
+            ID: syncforpayroll.String("<ID>"),
+            JournalCode: syncforpayroll.String("Configuration Money"),
             Metadata: &shared.Metadata{
-                IsDeleted: codatsyncpayroll.Bool(false),
+                IsDeleted: syncforpayroll.Bool(false),
             },
-            ModifiedDate: codatsyncpayroll.String("2022-10-23T00:00:00.000Z"),
-            Name: codatsyncpayroll.String("Rene Reinger"),
-            ParentID: codatsyncpayroll.String("deleniti"),
-            SourceModifiedDate: codatsyncpayroll.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: syncforpayroll.String("2022-10-23T00:00:00.000Z"),
+            Name: syncforpayroll.String("shred"),
+            ParentID: syncforpayroll.String("technology East"),
+            SourceModifiedDate: syncforpayroll.String("2022-10-23T00:00:00.000Z"),
             Status: shared.JournalStatusUnknown.ToPointer(),
-            Type: codatsyncpayroll.String("deserunt"),
+            Type: syncforpayroll.String("male"),
         },
+        AllowSyncOnPushComplete: syncforpayroll.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codatsyncpayroll.Int(394869),
+        TimeoutInMinutes: syncforpayroll.Int(855952),
     })
     if err != nil {
         log.Fatal(err)
@@ -108,14 +110,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payroll"
+	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncpayroll.New(
-        codatsyncpayroll.WithSecurity(shared.Security{
+    s := syncforpayroll.New(
+        syncforpayroll.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -123,7 +125,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Journals.Get(ctx, operations.GetJournalRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        JournalID: "vel",
+        JournalID: "Northeast Hatchback Kia",
     })
     if err != nil {
         log.Fatal(err)
@@ -170,14 +172,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payroll"
+	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncpayroll.New(
-        codatsyncpayroll.WithSecurity(shared.Security{
+    s := syncforpayroll.New(
+        syncforpayroll.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -228,14 +230,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payroll"
+	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncpayroll.New(
-        codatsyncpayroll.WithSecurity(shared.Security{
+    s := syncforpayroll.New(
+        syncforpayroll.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -243,10 +245,10 @@ func main() {
     ctx := context.Background()
     res, err := s.Journals.List(ctx, operations.ListJournalsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        OrderBy: codatsyncpayroll.String("-modifiedDate"),
-        Page: codatsyncpayroll.Int(1),
-        PageSize: codatsyncpayroll.Int(100),
-        Query: codatsyncpayroll.String("natus"),
+        OrderBy: syncforpayroll.String("-modifiedDate"),
+        Page: syncforpayroll.Int(1),
+        PageSize: syncforpayroll.Int(100),
+        Query: syncforpayroll.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)
