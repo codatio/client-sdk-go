@@ -2,8 +2,13 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/utils"
+)
+
 type Transactions struct {
-	Links Links `json:"_links"`
+	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
+	Links                Links                  `json:"_links"`
 	// Current page number.
 	PageNumber int64 `json:"pageNumber"`
 	// Number of items to return in results array.
@@ -11,6 +16,24 @@ type Transactions struct {
 	Results  []Transaction `json:"results,omitempty"`
 	// Total number of items.
 	TotalResults int64 `json:"totalResults"`
+}
+
+func (t Transactions) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
+}
+
+func (t *Transactions) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *Transactions) GetAdditionalProperties() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 func (o *Transactions) GetLinks() Links {

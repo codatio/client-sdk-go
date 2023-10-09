@@ -42,10 +42,7 @@ func main() {
             FullyQualifiedCategory: syncforexpenses.String("Asset.Current"),
             FullyQualifiedName: syncforexpenses.String("Cash On Hand"),
             ID: syncforexpenses.String("1b6266d1-1e44-46c5-8eb5-a8f98e03124e"),
-            IsBankAccount: syncforexpenses.Bool(false),
-            Metadata: &shared.AccountMetadata{
-                IsDeleted: syncforexpenses.Bool(false),
-            },
+            Metadata: &shared.AccountMetadata{},
             ModifiedDate: syncforexpenses.String("2022-10-23T00:00:00.000Z"),
             Name: syncforexpenses.String("Accounts Receivable"),
             NominalCode: syncforexpenses.String("610"),
@@ -57,14 +54,11 @@ func main() {
                     Links: []string{
                         "Money",
                     },
-                    Property: syncforexpenses.String("Cambridgeshire grey technology"),
                 },
             },
         },
-        AllowSyncOnPushComplete: syncforexpenses.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: syncforexpenses.Int(86),
     })
     if err != nil {
         log.Fatal(err)
@@ -158,8 +152,6 @@ func main() {
 
 <!-- Start Dev Containers -->
 
-
-
 <!-- End Dev Containers -->
 
 
@@ -172,8 +164,6 @@ returned response object will have a `Next` method that can be called to pull do
 return value of `Next` is `nil`, then there are no more pages to be fetched.
 
 Here's an example of one such pagination call:
-
-
 <!-- End Pagination -->
 
 

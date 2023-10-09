@@ -41,7 +41,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Companies.Create(ctx, shared.CompanyRequestBody{
+    res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
         Description: syncforexpenses.String("Requested early access to the new financing scheme."),
         Name: "Bank of Dave",
     })
@@ -203,7 +203,6 @@ func main() {
         OrderBy: syncforexpenses.String("-modifiedDate"),
         Page: syncforexpenses.Int(1),
         PageSize: syncforexpenses.Int(100),
-        Query: syncforexpenses.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)

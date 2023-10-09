@@ -145,12 +145,8 @@ func main() {
             BankAccount: shared.BankAccount{
                 ID: syncforexpenses.String("32"),
             },
-            Customer: shared.CustomerDetails{
-                ID: syncforexpenses.String("<ID>"),
-            },
-            Supplier: shared.SupplierDetails{
-                ID: syncforexpenses.String("<ID>"),
-            },
+            Customer: shared.CustomerDetails{},
+            Supplier: shared.SupplierDetails{},
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })

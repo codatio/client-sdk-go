@@ -2,7 +2,12 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/utils"
+)
+
 type TrackingCategoryMappingInfo struct {
+	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// Boolean of whether the tracking category has child categories.
 	HasChildren *bool `json:"hasChildren,omitempty"`
 	// Unique identifier of the tracking category.
@@ -31,6 +36,24 @@ type TrackingCategoryMappingInfo struct {
 	Name *string `json:"name,omitempty"`
 	// ID of the parent tracking category
 	ParentID *string `json:"parentId,omitempty"`
+}
+
+func (t TrackingCategoryMappingInfo) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
+}
+
+func (t *TrackingCategoryMappingInfo) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *TrackingCategoryMappingInfo) GetAdditionalProperties() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 func (o *TrackingCategoryMappingInfo) GetHasChildren() *bool {

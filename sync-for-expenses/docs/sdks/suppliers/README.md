@@ -50,41 +50,24 @@ func main() {
         Supplier: &shared.Supplier{
             Addresses: []shared.SupplierAccountingAddress{
                 shared.SupplierAccountingAddress{
-                    City: syncforexpenses.String("Jenafurt"),
-                    Country: syncforexpenses.String("Sweden"),
-                    Line1: syncforexpenses.String("innovative blue"),
-                    Line2: syncforexpenses.String("grey technology East"),
-                    PostalCode: syncforexpenses.String("30778"),
-                    Region: syncforexpenses.String("quantify Polestar mobile"),
                     Type: shared.AccountingAddressTypeBilling,
                 },
             },
-            ContactName: syncforexpenses.String("Durham after"),
-            DefaultCurrency: syncforexpenses.String("Intelligent Fish"),
-            EmailAddress: syncforexpenses.String("Ricardo.Hand41@gmail.com"),
-            ID: syncforexpenses.String("<ID>"),
-            Metadata: &shared.Metadata{
-                IsDeleted: syncforexpenses.Bool(false),
-            },
+            Metadata: &shared.Metadata{},
             ModifiedDate: syncforexpenses.String("2022-10-23T00:00:00.000Z"),
             Phone: syncforexpenses.String("(877) 492-8687"),
-            RegistrationNumber: syncforexpenses.String("Profound"),
             SourceModifiedDate: syncforexpenses.String("2022-10-23T00:00:00.000Z"),
             Status: shared.SupplierStatusActive,
             SupplementalData: &shared.SupplierSupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "pariatur": map[string]interface{}{
-                        "accusantium": "Minivan",
+                    "innovative": map[string]interface{}{
+                        "blue": "shred",
                     },
                 },
             },
-            SupplierName: syncforexpenses.String("Senior Mouse West"),
-            TaxNumber: syncforexpenses.String("Towels likewise"),
         },
-        AllowSyncOnPushComplete: syncforexpenses.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: syncforexpenses.Int(452224),
     })
     if err != nil {
         log.Fatal(err)
@@ -205,7 +188,6 @@ func main() {
         OrderBy: syncforexpenses.String("-modifiedDate"),
         Page: syncforexpenses.Int(1),
         PageSize: syncforexpenses.Int(100),
-        Query: syncforexpenses.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)
@@ -269,43 +251,25 @@ func main() {
         Supplier: &shared.Supplier{
             Addresses: []shared.SupplierAccountingAddress{
                 shared.SupplierAccountingAddress{
-                    City: syncforexpenses.String("Ann Arbor"),
-                    Country: syncforexpenses.String("Montserrat"),
-                    Line1: syncforexpenses.String("Reactive"),
-                    Line2: syncforexpenses.String("Metal cheater Islands"),
-                    PostalCode: syncforexpenses.String("43372"),
-                    Region: syncforexpenses.String("Carolina syndicate"),
-                    Type: shared.AccountingAddressTypeBilling,
+                    Type: shared.AccountingAddressTypeDelivery,
                 },
             },
-            ContactName: syncforexpenses.String("East"),
-            DefaultCurrency: syncforexpenses.String("Bicycle guestbook"),
-            EmailAddress: syncforexpenses.String("Alexys.Hayes81@yahoo.com"),
-            ID: syncforexpenses.String("<ID>"),
-            Metadata: &shared.Metadata{
-                IsDeleted: syncforexpenses.Bool(false),
-            },
+            Metadata: &shared.Metadata{},
             ModifiedDate: syncforexpenses.String("2022-10-23T00:00:00.000Z"),
             Phone: syncforexpenses.String("(877) 492-8687"),
-            RegistrationNumber: syncforexpenses.String("indexing"),
             SourceModifiedDate: syncforexpenses.String("2022-10-23T00:00:00.000Z"),
-            Status: shared.SupplierStatusUnknown,
+            Status: shared.SupplierStatusActive,
             SupplementalData: &shared.SupplierSupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "consectetur": map[string]interface{}{
-                        "ullam": "Jaguar",
+                    "male": map[string]interface{}{
+                        "Metal": "cheater",
                     },
                 },
             },
-            SupplierName: syncforexpenses.String("visionary Buckinghamshire frictionless"),
-            TaxNumber: syncforexpenses.String("parse possimus"),
         },
-        AllowSyncOnPushComplete: syncforexpenses.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        ForceUpdate: syncforexpenses.Bool(false),
-        SupplierID: "7110701885",
-        TimeoutInMinutes: syncforexpenses.Int(427089),
+        SupplierID: "13d946f0-c5d5-42bc-b092-97ece17923ab",
     })
     if err != nil {
         log.Fatal(err)

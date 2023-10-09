@@ -4,12 +4,32 @@ package operations
 
 import (
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/utils"
 	"net/http"
 )
 
 type UnlinkConnectionUpdateConnection struct {
+	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// The current authorization status of the data connection.
 	Status *shared.DataConnectionStatus `json:"status,omitempty"`
+}
+
+func (u UnlinkConnectionUpdateConnection) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UnlinkConnectionUpdateConnection) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *UnlinkConnectionUpdateConnection) GetAdditionalProperties() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 func (o *UnlinkConnectionUpdateConnection) GetStatus() *shared.DataConnectionStatus {

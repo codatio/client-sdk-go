@@ -2,9 +2,32 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/utils"
+)
+
 type SyncInitiated struct {
+	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// Unique identifier for the sync initiated.
 	SyncID *string `json:"syncId,omitempty"`
+}
+
+func (s SyncInitiated) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SyncInitiated) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *SyncInitiated) GetAdditionalProperties() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 func (o *SyncInitiated) GetSyncID() *string {

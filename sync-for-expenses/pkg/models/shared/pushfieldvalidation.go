@@ -2,13 +2,36 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/utils"
+)
+
 type PushFieldValidation struct {
+	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// Details on the validation issue.
 	Details string `json:"details"`
 	// Field name that resulted in the validation issue.
 	Field *string `json:"field,omitempty"`
 	// Unique reference identifier for the validation issue.
 	Ref *string `json:"ref,omitempty"`
+}
+
+func (p PushFieldValidation) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PushFieldValidation) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *PushFieldValidation) GetAdditionalProperties() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 func (o *PushFieldValidation) GetDetails() string {

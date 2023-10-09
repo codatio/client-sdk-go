@@ -3,6 +3,7 @@
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `DatasetIds`       | []*string*         | :heavy_minus_sign: | N/A                |
+| Field                    | Type                     | Required                 | Description              |
+| ------------------------ | ------------------------ | ------------------------ | ------------------------ |
+| `AdditionalProperties`   | map[string]*interface{}* | :heavy_minus_sign:       | N/A                      |
+| `DatasetIds`             | []*string*               | :heavy_minus_sign:       | N/A                      |

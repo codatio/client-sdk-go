@@ -2,8 +2,31 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/utils"
+)
+
 type InitiateSync struct {
-	DatasetIds []string `json:"datasetIds,omitempty"`
+	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
+	DatasetIds           []string               `json:"datasetIds,omitempty"`
+}
+
+func (i InitiateSync) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(i, "", false)
+}
+
+func (i *InitiateSync) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &i, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *InitiateSync) GetAdditionalProperties() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 func (o *InitiateSync) GetDatasetIds() []string {
