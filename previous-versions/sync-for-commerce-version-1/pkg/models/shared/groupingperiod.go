@@ -2,11 +2,34 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/utils"
+)
+
 type GroupingPeriod struct {
+	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// Array of grouping period options.
 	GroupingPeriodOptions []string `json:"groupingPeriodOptions,omitempty"`
 	// Grouping period i.e. Daily sales.
 	SelectedGroupingPeriod *string `json:"selectedGroupingPeriod,omitempty"`
+}
+
+func (g GroupingPeriod) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GroupingPeriod) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *GroupingPeriod) GetAdditionalProperties() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 func (o *GroupingPeriod) GetGroupingPeriodOptions() []string {

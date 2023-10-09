@@ -2,11 +2,34 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/utils"
+)
+
 type Fees struct {
-	Accounts     map[string]ConfigAccount `json:"accounts,omitempty"`
-	FeesSupplier *FeesSupplier            `json:"feesSupplier,omitempty"`
+	AdditionalProperties map[string]interface{}   `additionalProperties:"true" json:"-"`
+	Accounts             map[string]ConfigAccount `json:"accounts,omitempty"`
+	FeesSupplier         *FeesSupplier            `json:"feesSupplier,omitempty"`
 	// Boolean indicator to enable syncing fees.
 	SyncFees *bool `json:"syncFees,omitempty"`
+}
+
+func (f Fees) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(f, "", false)
+}
+
+func (f *Fees) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &f, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *Fees) GetAdditionalProperties() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 func (o *Fees) GetAccounts() map[string]ConfigAccount {

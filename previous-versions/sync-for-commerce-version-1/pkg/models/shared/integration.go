@@ -4,18 +4,23 @@ package shared
 
 // Integration - An integration that Codat supports
 type Integration struct {
+	// The name of the data provider.
 	DataProvidedBy   *string           `json:"dataProvidedBy,omitempty"`
 	DatatypeFeatures []DataTypeFeature `json:"datatypeFeatures,omitempty"`
-	// Whether this integration is enabled for your customers to use
+	// Whether this integration is enabled for your customers to use.
 	Enabled bool `json:"enabled"`
 	// A Codat ID representing the integration.
-	IntegrationID      *string `json:"integrationId,omitempty"`
-	IsBeta             *bool   `json:"isBeta,omitempty"`
-	IsOfflineConnector *bool   `json:"isOfflineConnector,omitempty"`
-	// A unique 4-letter key to represent a platform in each integration. View [accounting](https://docs.codat.io/integrations/accounting/accounting-platform-keys), [banking](https://docs.codat.io/integrations/banking/banking-platform-keys), and [commerce](https://docs.codat.io/integrations/commerce/commerce-platform-keys) platform keys.
-	Key     string `json:"key"`
+	IntegrationID *string `json:"integrationId,omitempty"`
+	// `True` if the integration is currently in beta release.
+	IsBeta *bool `json:"isBeta,omitempty"`
+	// `True` if the integration is to an application installed and run locally on an SMBs computer.
+	IsOfflineConnector *bool `json:"isOfflineConnector,omitempty"`
+	// A unique 4-letter key to represent a platform in each integration. View [accounting](https://docs.codat.io/integrations/accounting/overview#platform-keys), [banking](https://docs.codat.io/integrations/banking/overview#platform-keys), and [commerce](https://docs.codat.io/integrations/commerce/overview#platform-keys) platform keys.
+	Key string `json:"key"`
+	// Static url for integration's logo.
 	LogoURL string `json:"logoUrl"`
-	Name    string `json:"name"`
+	// Name of integration.
+	Name string `json:"name"`
 	// A source-specific ID used to distinguish between different sources originating from the same data connection. In general, a data connection is a single data source. However, for TrueLayer, `sourceId` is associated with a specific bank and has a many-to-one relationship with the `integrationId`.
 	SourceID *string `json:"sourceId,omitempty"`
 	// The type of platform of the connection.

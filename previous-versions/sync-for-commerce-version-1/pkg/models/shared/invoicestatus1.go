@@ -2,11 +2,34 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/utils"
+)
+
 type InvoiceStatus1 struct {
+	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// Options for invoice statuses.
 	InvoiceStatusOptions []string `json:"invoiceStatusOptions,omitempty"`
 	// Selected option for invoice status for invoice to be synced.
 	SelectedInvoiceStatus *string `json:"selectedInvoiceStatus,omitempty"`
+}
+
+func (i InvoiceStatus1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(i, "", false)
+}
+
+func (i *InvoiceStatus1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &i, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *InvoiceStatus1) GetAdditionalProperties() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 func (o *InvoiceStatus1) GetInvoiceStatusOptions() []string {

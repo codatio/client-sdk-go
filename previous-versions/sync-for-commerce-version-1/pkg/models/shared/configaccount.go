@@ -2,8 +2,13 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/utils"
+)
+
 // ConfigAccount - G/L account object for configuration.
 type ConfigAccount struct {
+	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// Object containing account options.
 	AccountOptions []AccountOption `json:"accountOptions,omitempty"`
 	// Descriprtive text for sales configuration section.
@@ -14,6 +19,24 @@ type ConfigAccount struct {
 	Required *bool `json:"required,omitempty"`
 	// Selected account id from the list of available accounts.
 	SelectedAccountID *string `json:"selectedAccountId,omitempty"`
+}
+
+func (c ConfigAccount) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *ConfigAccount) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *ConfigAccount) GetAdditionalProperties() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 func (o *ConfigAccount) GetAccountOptions() []AccountOption {

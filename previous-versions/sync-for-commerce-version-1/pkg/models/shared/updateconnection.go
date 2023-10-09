@@ -2,9 +2,32 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/utils"
+)
+
 type UpdateConnection struct {
+	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// The current authorization status of the data connection.
 	Status *DataConnectionStatus `json:"status,omitempty"`
+}
+
+func (u UpdateConnection) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateConnection) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *UpdateConnection) GetAdditionalProperties() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 func (o *UpdateConnection) GetStatus() *DataConnectionStatus {

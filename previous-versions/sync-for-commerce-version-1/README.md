@@ -14,22 +14,21 @@ go get github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-vers
 
 ## Example Usage
 <!-- Start SDK Example Usage -->
-
-
 ```go
 package main
 
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
+	syncforcommerceversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/types"
 )
 
 func main() {
-    s := codatsynccommerce.New(
-        codatsynccommerce.WithSecurity(shared.Security{
+    s := syncforcommerceversion1.New(
+        syncforcommerceversion1.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -37,34 +36,29 @@ func main() {
     ctx := context.Background()
     res, err := s.AccountingAccounts.CreateAccountingAccount(ctx, operations.CreateAccountingAccountRequest{
         AccountingAccount: &shared.AccountingAccount{
-            Currency: codatsynccommerce.String("USD"),
+            Currency: syncforcommerceversion1.String("GBP"),
             CurrentBalance: types.MustNewDecimalFromString("0"),
-            Description: codatsynccommerce.String("Invoices the business has issued but has not yet collected payment on."),
-            FullyQualifiedCategory: codatsynccommerce.String("Asset.Current"),
-            FullyQualifiedName: codatsynccommerce.String("Fixed Asset"),
-            ID: codatsynccommerce.String("1b6266d1-1e44-46c5-8eb5-a8f98e03124e"),
-            IsBankAccount: codatsynccommerce.Bool(false),
-            Metadata: &shared.AccountingAccountMetadata{
-                IsDeleted: codatsynccommerce.Bool(false),
-            },
-            ModifiedDate: codatsynccommerce.String("2022-10-23T00:00:00.000Z"),
-            Name: codatsynccommerce.String("Accounts Receivable"),
-            NominalCode: codatsynccommerce.String("610"),
-            SourceModifiedDate: codatsynccommerce.String("2022-10-23T00:00:00.000Z"),
+            Description: syncforcommerceversion1.String("Invoices the business has issued but has not yet collected payment on."),
+            FullyQualifiedCategory: syncforcommerceversion1.String("Asset.Current"),
+            FullyQualifiedName: syncforcommerceversion1.String("Cash On Hand"),
+            ID: syncforcommerceversion1.String("1b6266d1-1e44-46c5-8eb5-a8f98e03124e"),
+            Metadata: &shared.AccountingAccountMetadata{},
+            ModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
+            Name: syncforcommerceversion1.String("Accounts Receivable"),
+            NominalCode: syncforcommerceversion1.String("610"),
+            SourceModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
             Status: shared.AccountStatusActive.ToPointer(),
             Type: shared.AccountTypeAsset.ToPointer(),
             ValidDatatypeLinks: []shared.AccountingAccountValidDataTypeLinks{
                 shared.AccountingAccountValidDataTypeLinks{
                     Links: []string{
-                        "unde",
+                        "Gasoline",
                     },
-                    Property: codatsynccommerce.String("nulla"),
                 },
             },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codatsynccommerce.Int(544883),
     })
     if err != nil {
         log.Fatal(err)
@@ -165,7 +159,7 @@ func main() {
 
 ### [CompanyManagement](docs/sdks/companymanagement/README.md)
 
-* [CreateCompany](docs/sdks/companymanagement/README.md#createcompany) - Create Sync for Commerce company
+* [CreateCompany](docs/sdks/companymanagement/README.md#createcompany) - Create sync for commerce company
 * [CreateConnection](docs/sdks/companymanagement/README.md#createconnection) - Create connection
 * [ListCompanies](docs/sdks/companymanagement/README.md#listcompanies) - List companies
 * [ListConnections](docs/sdks/companymanagement/README.md#listconnections) - List data connections
@@ -173,8 +167,8 @@ func main() {
 
 ### [Configuration](docs/sdks/configuration/README.md)
 
-* [GetConfiguration](docs/sdks/configuration/README.md#getconfiguration) - Retrieve config preferences set for a company.
-* [SetConfiguration](docs/sdks/configuration/README.md#setconfiguration) - Create or update configuration.
+* [GetConfiguration](docs/sdks/configuration/README.md#getconfiguration) - Retrieve config preferences set for a company
+* [SetConfiguration](docs/sdks/configuration/README.md#setconfiguration) - Create or update configuration
 
 ### [Connections](docs/sdks/connections/README.md)
 
@@ -185,7 +179,7 @@ func main() {
 ### [Integrations](docs/sdks/integrations/README.md)
 
 * [GetIntegrationBranding](docs/sdks/integrations/README.md#getintegrationbranding) - Get branding for an integration
-* [ListIntegrations](docs/sdks/integrations/README.md#listintegrations) - List information on Codat's supported integrations
+* [ListIntegrations](docs/sdks/integrations/README.md#listintegrations) - List integrations
 
 ### [PushData](docs/sdks/pushdata/README.md)
 
@@ -208,10 +202,42 @@ func main() {
 
 ### [SyncFlowPreferences](docs/sdks/syncflowpreferences/README.md)
 
-* [GetConfigTextSyncFlow](docs/sdks/syncflowpreferences/README.md#getconfigtextsyncflow) - Retrieve preferences for text fields on Sync Flow
+* [GetConfigTextSyncFlow](docs/sdks/syncflowpreferences/README.md#getconfigtextsyncflow) - Retrieve preferences for text fields on sync flow
 * [GetSyncFlowURL](docs/sdks/syncflowpreferences/README.md#getsyncflowurl) - Retrieve sync flow url
 * [GetVisibleAccounts](docs/sdks/syncflowpreferences/README.md#getvisibleaccounts) - List visible accounts
 * [UpdateConfigTextSyncFlow](docs/sdks/syncflowpreferences/README.md#updateconfigtextsyncflow) - Update preferences for text fields on sync flow
-* [UpdateVisibleAccountsSyncFlow](docs/sdks/syncflowpreferences/README.md#updatevisibleaccountssyncflow) - Update the visible accounts on Sync Flow
+* [UpdateVisibleAccountsSyncFlow](docs/sdks/syncflowpreferences/README.md#updatevisibleaccountssyncflow) - Update the visible accounts on sync flow
 <!-- End SDK Available Operations -->
+
+
+
+<!-- Start Dev Containers -->
+
+
+
+<!-- End Dev Containers -->
+
+
+
+<!-- Start Pagination -->
+# Pagination
+
+Some of the endpoints in this SDK support pagination. To use pagination, you make your SDK calls as usual, but the
+returned response object will have a `Next` method that can be called to pull down the next group of results. If the
+return value of `Next` is `nil`, then there are no more pages to be fetched.
+
+Here's an example of one such pagination call:
+
+
+<!-- End Pagination -->
+
+
+
+<!-- Start Go Types -->
+
+<!-- End Go Types -->
+
+<!-- Placeholder for Future Speakeasy SDK Sections -->
+
+
 ### Library generated by [Speakeasy](https://docs.speakeasyapi.dev/docs/using-speakeasy/client-sdks)

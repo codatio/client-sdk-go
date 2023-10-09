@@ -3,6 +3,7 @@
 package shared
 
 type Localization struct {
+	// `True` if required.
 	Required *bool `json:"required,omitempty"`
 	// Value of the property.
 	Text *string `json:"text,omitempty"`

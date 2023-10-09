@@ -2,7 +2,12 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/utils"
+)
+
 type AccountOption struct {
+	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// Classification of the type of G/L account.
 	Classification *string `json:"classification,omitempty"`
 	// Identifier for the account, unique for the company.
@@ -11,6 +16,24 @@ type AccountOption struct {
 	Name *string `json:"name,omitempty"`
 	// Reference given to each nominal account for a business. It ensures money is allocated to the correct account. This code isn't a unique identifier in the Codat system.
 	NominalCode *string `json:"nominalCode,omitempty"`
+}
+
+func (a AccountOption) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AccountOption) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *AccountOption) GetAdditionalProperties() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 func (o *AccountOption) GetClassification() *string {
