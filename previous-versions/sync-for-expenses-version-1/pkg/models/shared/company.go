@@ -27,7 +27,8 @@ type Company struct {
 	// >
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	Created           *string      `json:"created,omitempty"`
+	Created *string `json:"created,omitempty"`
+	// Name of user that created the company in Codat.
 	CreatedByUserName *string      `json:"createdByUserName,omitempty"`
 	DataConnections   []Connection `json:"dataConnections,omitempty"`
 	// Additional information about the company. This can be used to store foreign IDs, references, etc.
@@ -56,6 +57,8 @@ type Company struct {
 	LastSync *string `json:"lastSync,omitempty"`
 	// The name of the company
 	Name string `json:"name"`
+	// `platformKeys` name used when creating the company.
+	//
 	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	Platform *string `json:"platform,omitempty"`
 	// The `redirect` [Link URL](https://docs.codat.io/auth-flow/authorize-hosted-link) enabling the customer to start their auth flow journey for the company.

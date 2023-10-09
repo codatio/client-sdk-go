@@ -2,15 +2,38 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1/pkg/utils"
+)
+
 type TransactionMetadata struct {
+	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// Type of transaction that has been processed e.g. Expense or Bank Feed.
-	IntegrationType *IntegrationType `json:"integrationType,omitempty"`
+	IntegrationType *IntegrationType `default:"expenses" json:"integrationType"`
 	// Metadata such as validation errors or the resulting record created in the accounting software.
 	Message *string `json:"message,omitempty"`
 	// Status of the transaction.
 	Status *TransactionStatus `json:"status,omitempty"`
 	// Your unique idenfier of the transaction.
 	TransactionID *string `json:"transactionId,omitempty"`
+}
+
+func (t TransactionMetadata) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
+}
+
+func (t *TransactionMetadata) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *TransactionMetadata) GetAdditionalProperties() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 func (o *TransactionMetadata) GetIntegrationType() *IntegrationType {

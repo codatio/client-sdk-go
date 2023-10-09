@@ -2,7 +2,12 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1/pkg/utils"
+)
+
 type MappingOptions struct {
+	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// Array of available accounts for mapping.
 	Accounts []AccountMappingInfo `json:"accounts,omitempty"`
 	// Name of the expense integration.
@@ -11,6 +16,24 @@ type MappingOptions struct {
 	TaxRates []TaxRateMappingInfo `json:"taxRates,omitempty"`
 	// Array of available tracking categories for mapping.
 	TrackingCategories []TrackingCategoryMappingInfo `json:"trackingCategories,omitempty"`
+}
+
+func (m MappingOptions) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(m, "", false)
+}
+
+func (m *MappingOptions) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &m, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *MappingOptions) GetAdditionalProperties() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 func (o *MappingOptions) GetAccounts() []AccountMappingInfo {
