@@ -21,7 +21,7 @@ import (
 //   - Withdrawing money from a bank account
 //   - Writing a cheque
 //
-// Direct costs is a child data type of [account transactions](https://docs.codat.io/accounting-api#/schemas/AccountTransaction).
+// Direct costs is a child data type of [account transactions](https://docs.codat.io/lending-api#/schemas/AccountTransaction).
 type AccountingDirectCost struct {
 	// The customer or supplier for the transfer, if available.
 	ContactRef *ContactRef `json:"contactRef,omitempty"`

@@ -8,6 +8,7 @@ import (
 )
 
 type PaymentLineLink struct {
+	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// Amount by which the balance of the linked entity is altered, in the currency of the linked entity.
 	// A negative link amount _reduces_ the outstanding amount on the accounts receivable account.
 	// A positive link amount _increases_ the outstanding amount on the accounts receivable account.
@@ -63,6 +64,13 @@ func (p *PaymentLineLink) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (o *PaymentLineLink) GetAdditionalProperties() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 func (o *PaymentLineLink) GetAmount() *decimal.Big {

@@ -9,8 +9,9 @@ import (
 
 // ProductInventory - Information about the total inventory as well as the locations inventory is in.
 type ProductInventory struct {
-	Locations     []ProductInventoryLocation `json:"locations,omitempty"`
-	TotalQuantity *decimal.Big               `decimal:"number" json:"totalQuantity,omitempty"`
+	Locations []ProductInventoryLocation `json:"locations,omitempty"`
+	// The total quantity of stock remaining across locations.
+	TotalQuantity *decimal.Big `decimal:"number" json:"totalQuantity,omitempty"`
 }
 
 func (p ProductInventory) MarshalJSON() ([]byte, error) {

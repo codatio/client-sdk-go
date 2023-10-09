@@ -4,12 +4,32 @@ package operations
 
 import (
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/utils"
 	"net/http"
 )
 
 type UnlinkConnectionUpdateConnection struct {
+	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// The current authorization status of the data connection.
 	Status *shared.DataConnectionStatus `json:"status,omitempty"`
+}
+
+func (u UnlinkConnectionUpdateConnection) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UnlinkConnectionUpdateConnection) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *UnlinkConnectionUpdateConnection) GetAdditionalProperties() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 func (o *UnlinkConnectionUpdateConnection) GetStatus() *shared.DataConnectionStatus {
@@ -20,9 +40,11 @@ func (o *UnlinkConnectionUpdateConnection) GetStatus() *shared.DataConnectionSta
 }
 
 type UnlinkConnectionRequest struct {
-	RequestBody  *UnlinkConnectionUpdateConnection `request:"mediaType=application/json"`
-	CompanyID    string                            `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID string                            `pathParam:"style=simple,explode=false,name=connectionId"`
+	RequestBody *UnlinkConnectionUpdateConnection `request:"mediaType=application/json"`
+	// Unique identifier for a company.
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a connection.
+	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
 func (o *UnlinkConnectionRequest) GetRequestBody() *UnlinkConnectionUpdateConnection {
@@ -48,12 +70,15 @@ func (o *UnlinkConnectionRequest) GetConnectionID() string {
 
 type UnlinkConnectionResponse struct {
 	// OK
-	Connection  *shared.Connection
+	Connection *shared.Connection
+	// HTTP response content type for this operation
 	ContentType string
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
-	StatusCode   int
-	RawResponse  *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *UnlinkConnectionResponse) GetConnection() *shared.Connection {

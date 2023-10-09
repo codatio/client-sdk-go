@@ -8,9 +8,12 @@ import (
 )
 
 type GetAccountingTransferRequest struct {
-	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a company.
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a connection.
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
-	TransferID   string `pathParam:"style=simple,explode=false,name=transferId"`
+	// Unique identifier for a transfer.
+	TransferID string `pathParam:"style=simple,explode=false,name=transferId"`
 }
 
 func (o *GetAccountingTransferRequest) GetCompanyID() string {
@@ -37,11 +40,14 @@ func (o *GetAccountingTransferRequest) GetTransferID() string {
 type GetAccountingTransferResponse struct {
 	// Success
 	AccountingTransfer *shared.AccountingTransfer
-	ContentType        string
+	// HTTP response content type for this operation
+	ContentType string
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
-	StatusCode   int
-	RawResponse  *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *GetAccountingTransferResponse) GetAccountingTransfer() *shared.AccountingTransfer {
