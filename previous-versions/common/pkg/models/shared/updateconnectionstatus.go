@@ -2,9 +2,32 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/utils"
+)
+
 type UpdateConnectionStatus struct {
+	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// The current authorization status of the data connection.
 	Status *DataConnectionStatus `json:"status,omitempty"`
+}
+
+func (u UpdateConnectionStatus) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateConnectionStatus) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *UpdateConnectionStatus) GetAdditionalProperties() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 func (o *UpdateConnectionStatus) GetStatus() *DataConnectionStatus {

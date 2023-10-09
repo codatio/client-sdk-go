@@ -2,7 +2,7 @@
 
 package shared
 
-// Connection - A connection represents a [company's](https://docs.codat.io/codat-api#/schemas/Company) connection to a data source and allows you to synchronize data (pull and/or push) with that source.
+// Connection - A connection represents a [company's](https://docs.codat.io/platform-api#/schemas/Company) connection to a data source and allows you to synchronize data (pull and/or push) with that source.
 //
 // A company can have multiple data connections depending on the type of data source it is connecting to. For example, a single company can link to:
 //
@@ -61,9 +61,11 @@ type Connection struct {
 	// >
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	LastSync     *string `json:"lastSync,omitempty"`
-	LinkURL      string  `json:"linkUrl"`
-	PlatformName string  `json:"platformName"`
+	LastSync *string `json:"lastSync,omitempty"`
+	// The link URL your customers can use to authorize access to their business application.
+	LinkURL string `json:"linkUrl"`
+	// Name of integration connected to company.
+	PlatformName string `json:"platformName"`
 	// A source-specific ID used to distinguish between different sources originating from the same data connection. In general, a data connection is a single data source. However, for TrueLayer, `sourceId` is associated with a specific bank and has a many-to-one relationship with the `integrationId`.
 	SourceID string `json:"sourceId"`
 	// The type of platform of the connection.

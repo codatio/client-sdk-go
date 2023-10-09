@@ -7,6 +7,7 @@ import (
 	"fmt"
 )
 
+// FeatureType - The type of feature.
 type FeatureType string
 
 const (

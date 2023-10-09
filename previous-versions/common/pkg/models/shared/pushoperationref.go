@@ -2,10 +2,34 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/utils"
+)
+
 type PushOperationRef struct {
+	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// Available Data types
 	DataType *DataType `json:"dataType,omitempty"`
-	ID       *string   `json:"id,omitempty"`
+	// Unique identifier for a push operation.
+	ID *string `json:"id,omitempty"`
+}
+
+func (p PushOperationRef) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PushOperationRef) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *PushOperationRef) GetAdditionalProperties() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 func (o *PushOperationRef) GetDataType() *DataType {
