@@ -8,7 +8,9 @@ import (
 )
 
 type GetOrderRequest struct {
-	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a company.
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a connection.
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 	// Unique identifier for an order.
 	OrderID string `pathParam:"style=simple,explode=false,name=orderId"`
@@ -36,12 +38,15 @@ func (o *GetOrderRequest) GetOrderID() string {
 }
 
 type GetOrderResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
 	// OK
-	Order       *shared.Order
-	StatusCode  int
+	Order *shared.Order
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 }
 

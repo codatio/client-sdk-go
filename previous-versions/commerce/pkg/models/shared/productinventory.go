@@ -3,13 +3,26 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/types"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 // ProductInventory - Information about the total inventory as well as the locations inventory is in.
 type ProductInventory struct {
-	Locations     []ProductInventoryLocation `json:"locations,omitempty"`
-	TotalQuantity *types.Decimal             `json:"totalQuantity,omitempty"`
+	Locations []ProductInventoryLocation `json:"locations,omitempty"`
+	// The total quantity of stock remaining across locations.
+	TotalQuantity *decimal.Big `decimal:"number" json:"totalQuantity,omitempty"`
+}
+
+func (p ProductInventory) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *ProductInventory) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ProductInventory) GetLocations() []ProductInventoryLocation {
@@ -19,7 +32,7 @@ func (o *ProductInventory) GetLocations() []ProductInventoryLocation {
 	return o.Locations
 }
 
-func (o *ProductInventory) GetTotalQuantity() *types.Decimal {
+func (o *ProductInventory) GetTotalQuantity() *decimal.Big {
 	if o == nil {
 		return nil
 	}

@@ -6,14 +6,14 @@ package shared
 //
 // Explore our [data coverage](https://knowledge.codat.io/supported-features/commerce?view=tab-by-data-type&dataType=commerce-products) for this data type.
 type Product struct {
-	// Retail category that the product is assigned to
+	// Retail category that the product is assigned to e.g. `Hardware`.
 	Categorization *string `json:"categorization,omitempty"`
 	// Description of the product recorded in the commerce or point of sale platform.
 	Description *string `json:"description,omitempty"`
 	// A unique, persistent identifier for this record
 	ID string `json:"id"`
 	// Whether the product represents a gift card or voucher that
-	// can be redeemed in the commerce or POS platform
+	// can be redeemed in the commerce or POS platform.
 	//
 	IsGiftCard *bool `json:"isGiftCard,omitempty"`
 	// Name of the product in the commerce or POS system
