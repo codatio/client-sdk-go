@@ -2,11 +2,34 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/utils"
+)
+
 type Configuration struct {
-	Fees        *Fees        `json:"fees,omitempty"`
-	NewPayments *NewPayments `json:"newPayments,omitempty"`
-	Payments    *Payments    `json:"payments,omitempty"`
-	Sales       *Sales       `json:"sales,omitempty"`
+	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
+	Fees                 *Fees                  `json:"fees,omitempty"`
+	NewPayments          *NewPayments           `json:"newPayments,omitempty"`
+	Payments             *Payments              `json:"payments,omitempty"`
+	Sales                *Sales                 `json:"sales,omitempty"`
+}
+
+func (c Configuration) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *Configuration) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *Configuration) GetAdditionalProperties() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 func (o *Configuration) GetFees() *Fees {

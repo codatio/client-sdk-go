@@ -2,10 +2,33 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/utils"
+)
+
 type NewPayments struct {
-	Accounts map[string]ConfigAccount `json:"accounts,omitempty"`
+	AdditionalProperties map[string]interface{}   `additionalProperties:"true" json:"-"`
+	Accounts             map[string]ConfigAccount `json:"accounts,omitempty"`
 	// Boolean indicator for syncing payments.
 	SyncPayments *bool `json:"syncPayments,omitempty"`
+}
+
+func (n NewPayments) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(n, "", false)
+}
+
+func (n *NewPayments) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &n, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *NewPayments) GetAdditionalProperties() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 func (o *NewPayments) GetAccounts() map[string]ConfigAccount {

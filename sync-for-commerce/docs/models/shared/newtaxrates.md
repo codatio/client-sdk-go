@@ -5,6 +5,7 @@
 
 | Field                                                     | Type                                                      | Required                                                  | Description                                               |
 | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
+| `AdditionalProperties`                                    | map[string]*interface{}*                                  | :heavy_minus_sign:                                        | N/A                                                       |
 | `AccountingTaxRateOptions`                                | [][Option](../../models/shared/option.md)                 | :heavy_minus_sign:                                        | Array of accounting tax rate options.                     |
 | `CommerceTaxRateOptions`                                  | [][Option](../../models/shared/option.md)                 | :heavy_minus_sign:                                        | Array of tax component options.                           |
 | `DefaultZeroTaxRateOptions`                               | [][Option](../../models/shared/option.md)                 | :heavy_minus_sign:                                        | Default zero tax rate selected for sync.                  |

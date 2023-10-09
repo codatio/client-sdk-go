@@ -2,15 +2,38 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/utils"
+)
+
 type Sales struct {
-	Accounts      map[string]ConfigAccount `json:"accounts,omitempty"`
-	Grouping      *Grouping                `json:"grouping,omitempty"`
-	InvoiceStatus *InvoiceStatus           `json:"invoiceStatus,omitempty"`
-	NewTaxRates   *NewTaxRates             `json:"newTaxRates,omitempty"`
-	SalesCustomer *Customer                `json:"salesCustomer,omitempty"`
+	AdditionalProperties map[string]interface{}   `additionalProperties:"true" json:"-"`
+	Accounts             map[string]ConfigAccount `json:"accounts,omitempty"`
+	Grouping             *Grouping                `json:"grouping,omitempty"`
+	InvoiceStatus        *InvoiceStatus           `json:"invoiceStatus,omitempty"`
+	NewTaxRates          *NewTaxRates             `json:"newTaxRates,omitempty"`
+	SalesCustomer        *Customer                `json:"salesCustomer,omitempty"`
 	// Boolean indicator for syncing sales.
 	SyncSales *bool                    `json:"syncSales,omitempty"`
 	TaxRates  map[string]TaxRateAmount `json:"taxRates,omitempty"`
+}
+
+func (s Sales) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *Sales) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *Sales) GetAdditionalProperties() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 func (o *Sales) GetAccounts() map[string]ConfigAccount {

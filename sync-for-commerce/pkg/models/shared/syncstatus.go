@@ -2,8 +2,13 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/utils"
+)
+
 // SyncStatus - The status of syncing for a company and its connections.
 type SyncStatus struct {
+	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// Unique identifier for the sync in Codat.
 	CommerceSyncID *string     `json:"commerceSyncId,omitempty"`
 	CompanyID      interface{} `json:"companyId,omitempty"`
@@ -41,6 +46,24 @@ type SyncStatus struct {
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	SyncUtc *string `json:"syncUtc,omitempty"`
+}
+
+func (s SyncStatus) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SyncStatus) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *SyncStatus) GetAdditionalProperties() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 func (o *SyncStatus) GetCommerceSyncID() *string {
