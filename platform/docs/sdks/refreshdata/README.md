@@ -1,4 +1,5 @@
 # RefreshData
+(*RefreshData*)
 
 ## Overview
 
@@ -34,8 +35,8 @@ import(
 )
 
 func main() {
-    s := codatplatform.New(
-        codatplatform.WithSecurity(shared.Security{
+    s := platform.New(
+        platform.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
@@ -88,8 +89,8 @@ import(
 )
 
 func main() {
-    s := codatplatform.New(
-        codatplatform.WithSecurity(shared.Security{
+    s := platform.New(
+        platform.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
@@ -97,7 +98,6 @@ func main() {
     ctx := context.Background()
     res, err := s.RefreshData.ByDataType(ctx, operations.RefreshDataTypeRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ConnectionID: codatplatform.String("df7cc78c-a1ba-4928-bc81-6742cb739205"),
         DataType: shared.DataTypeInvoices,
     })
     if err != nil {
@@ -142,8 +142,8 @@ import(
 )
 
 func main() {
-    s := codatplatform.New(
-        codatplatform.WithSecurity(shared.Security{
+    s := platform.New(
+        platform.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
@@ -194,8 +194,8 @@ import(
 )
 
 func main() {
-    s := codatplatform.New(
-        codatplatform.WithSecurity(shared.Security{
+    s := platform.New(
+        platform.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
@@ -203,7 +203,7 @@ func main() {
     ctx := context.Background()
     res, err := s.RefreshData.GetPullOperation(ctx, operations.GetPullOperationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        DatasetID: "eaed9f0f-e77b-4bc9-a58f-ab8b4b99ab18",
+        DatasetID: "7911a54a-c808-4f4b-b87e-b195f52b4da5",
     })
     if err != nil {
         log.Fatal(err)
@@ -247,8 +247,8 @@ import(
 )
 
 func main() {
-    s := codatplatform.New(
-        codatplatform.WithSecurity(shared.Security{
+    s := platform.New(
+        platform.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
@@ -256,10 +256,9 @@ func main() {
     ctx := context.Background()
     res, err := s.RefreshData.ListPullOperations(ctx, operations.ListPullOperationsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        OrderBy: codatplatform.String("-modifiedDate"),
-        Page: codatplatform.Int(1),
-        PageSize: codatplatform.Int(100),
-        Query: codatplatform.String("natus"),
+        OrderBy: platform.String("-modifiedDate"),
+        Page: platform.Int(1),
+        PageSize: platform.Int(100),
     })
     if err != nil {
         log.Fatal(err)

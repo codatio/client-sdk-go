@@ -3,8 +3,10 @@
 package shared
 
 type SupportedFeature struct {
+	// The current release state of the feature.
 	FeatureState FeatureState `json:"featureState"`
-	FeatureType  FeatureType  `json:"featureType"`
+	// The type of feature.
+	FeatureType FeatureType `json:"featureType"`
 }
 
 func (o *SupportedFeature) GetFeatureState() FeatureState {

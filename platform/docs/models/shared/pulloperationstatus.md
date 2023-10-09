@@ -1,5 +1,7 @@
 # PullOperationStatus
 
+The current status of the pull operation.
+
 
 ## Values
 

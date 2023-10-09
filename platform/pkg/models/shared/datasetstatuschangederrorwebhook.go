@@ -2,49 +2,25 @@
 
 package shared
 
-type DatasetStatusChangedErrorWebhookData struct {
-	// Data type the sync completed for.
-	DataType *string `json:"dataType,omitempty"`
-	// Unique identifier for the dataset that completed its sync.
-	DatasetID *string `json:"datasetId,omitempty"`
-	// The current status of the dataset's sync.
-	DatasetStatus *string `json:"datasetStatus,omitempty"`
-}
-
-func (o *DatasetStatusChangedErrorWebhookData) GetDataType() *string {
-	if o == nil {
-		return nil
-	}
-	return o.DataType
-}
-
-func (o *DatasetStatusChangedErrorWebhookData) GetDatasetID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.DatasetID
-}
-
-func (o *DatasetStatusChangedErrorWebhookData) GetDatasetStatus() *string {
-	if o == nil {
-		return nil
-	}
-	return o.DatasetStatus
-}
-
 // DatasetStatusChangedErrorWebhook - Webhook request body to notify that a data synchronization has completed.
 type DatasetStatusChangedErrorWebhook struct {
 	// Unique identifier of the webhook event.
 	AlertID *string `json:"AlertId,omitempty"`
+	// Unique identifier for your client in Codat.
+	ClientID *string `json:"ClientId,omitempty"`
+	// Name of your client in Codat.
+	ClientName *string `json:"ClientName,omitempty"`
 	// Unique identifier for your SMB in Codat.
 	CompanyID *string                               `json:"CompanyId,omitempty"`
 	Data      *DatasetStatusChangedErrorWebhookData `json:"Data,omitempty"`
+	// Unique identifier for a company's data connection.
+	DataConnectionID *string `json:"DataConnectionId,omitempty"`
 	// A human readable message about the webhook.
 	Message *string `json:"Message,omitempty"`
 	// Unique identifier for the rule.
 	RuleID *string `json:"RuleId,omitempty"`
 	// The type of rule.
-	Type *string `json:"Type,omitempty"`
+	RuleType *string `json:"RuleType,omitempty"`
 }
 
 func (o *DatasetStatusChangedErrorWebhook) GetAlertID() *string {
@@ -52,6 +28,20 @@ func (o *DatasetStatusChangedErrorWebhook) GetAlertID() *string {
 		return nil
 	}
 	return o.AlertID
+}
+
+func (o *DatasetStatusChangedErrorWebhook) GetClientID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ClientID
+}
+
+func (o *DatasetStatusChangedErrorWebhook) GetClientName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ClientName
 }
 
 func (o *DatasetStatusChangedErrorWebhook) GetCompanyID() *string {
@@ -68,6 +58,13 @@ func (o *DatasetStatusChangedErrorWebhook) GetData() *DatasetStatusChangedErrorW
 	return o.Data
 }
 
+func (o *DatasetStatusChangedErrorWebhook) GetDataConnectionID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DataConnectionID
+}
+
 func (o *DatasetStatusChangedErrorWebhook) GetMessage() *string {
 	if o == nil {
 		return nil
@@ -82,9 +79,9 @@ func (o *DatasetStatusChangedErrorWebhook) GetRuleID() *string {
 	return o.RuleID
 }
 
-func (o *DatasetStatusChangedErrorWebhook) GetType() *string {
+func (o *DatasetStatusChangedErrorWebhook) GetRuleType() *string {
 	if o == nil {
 		return nil
 	}
-	return o.Type
+	return o.RuleType
 }
