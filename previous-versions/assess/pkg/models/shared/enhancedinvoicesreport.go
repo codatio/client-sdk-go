@@ -4,7 +4,7 @@ package shared
 
 // EnhancedInvoicesReport - The enhanced invoices report takes the key elements of the Invoices report verifying those marked as paid in the accounting platform have actually been paid by matching with the bank statement.
 type EnhancedInvoicesReport struct {
-	// Report additional information, which is specific to Assess reports
+	// Report additional information, which is specific to Lending API reports.
 	ReportInfo  *ReportInfo                 `json:"reportInfo,omitempty"`
 	ReportItems []EnhancedInvoiceReportItem `json:"reportItems,omitempty"`
 }
