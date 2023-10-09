@@ -87,4 +87,3 @@ func main() {
 * [GetRecurringRevenueMetrics](docs/sdks/reports/README.md#getrecurringrevenuemetrics) - Get key subscription revenue metrics
 * [ListLoanTransactions](docs/sdks/reports/README.md#listloantransactions) - List enhanced loan transactions
 * [RequestRecurringRevenueMetrics](docs/sdks/reports/README.md#requestrecurringrevenuemetrics) - Generate key subscription revenue metrics
-<!-- End SDK Available Operations -->

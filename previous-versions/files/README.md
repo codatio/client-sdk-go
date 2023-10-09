@@ -59,4 +59,3 @@ func main() {
 * [DownloadFiles](docs/sdks/files/README.md#downloadfiles) - Download all files for a company
 * [ListFiles](docs/sdks/files/README.md#listfiles) - List all files uploaded by a company
 * [UploadFiles](docs/sdks/files/README.md#uploadfiles) - Upload files for a company
-<!-- End SDK Available Operations -->

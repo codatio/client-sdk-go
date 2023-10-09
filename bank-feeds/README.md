@@ -94,4 +94,3 @@ func main() {
 * [Create](docs/sdks/transactions/README.md#create) - Create bank transactions
 * [GetCreateOperation](docs/sdks/transactions/README.md#getcreateoperation) - Get create operation
 * [ListCreateOperations](docs/sdks/transactions/README.md#listcreateoperations) - List create operations
-<!-- End SDK Available Operations -->

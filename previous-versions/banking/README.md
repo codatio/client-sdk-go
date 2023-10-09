@@ -77,4 +77,3 @@ func main() {
 * [Get](docs/sdks/transactions/README.md#get) - Get bank transaction
 * [List](docs/sdks/transactions/README.md#list) - List transactions
 * [~~ListBankTransactions~~](docs/sdks/transactions/README.md#listbanktransactions) - List banking transactions :warning: **Deprecated** Use `List` instead.
-<!-- End SDK Available Operations -->

@@ -215,4 +215,3 @@ Here's an example of one such pagination call:
 <!-- End Go Types -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
-
