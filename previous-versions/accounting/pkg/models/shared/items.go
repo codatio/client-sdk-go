@@ -3,7 +3,8 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/types"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 type ItemsAllocation struct {
@@ -60,9 +61,20 @@ type ItemsAllocation struct {
 	// | **GBP**          | £20            | 1.277         | $25.54                     |
 	// | **EUR**          | €20            | 1.134         | $22.68                     |
 	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
-	CurrencyRate *types.Decimal `json:"currencyRate,omitempty"`
+	CurrencyRate *decimal.Big `decimal:"number" json:"currencyRate,omitempty"`
 	// The total amount that has been allocated.
-	TotalAmount *types.Decimal `json:"totalAmount,omitempty"`
+	TotalAmount *decimal.Big `decimal:"number" json:"totalAmount,omitempty"`
+}
+
+func (i ItemsAllocation) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(i, "", false)
+}
+
+func (i *ItemsAllocation) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &i, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ItemsAllocation) GetAllocatedOnDate() *string {
@@ -79,14 +91,14 @@ func (o *ItemsAllocation) GetCurrency() *string {
 	return o.Currency
 }
 
-func (o *ItemsAllocation) GetCurrencyRate() *types.Decimal {
+func (o *ItemsAllocation) GetCurrencyRate() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.CurrencyRate
 }
 
-func (o *ItemsAllocation) GetTotalAmount() *types.Decimal {
+func (o *ItemsAllocation) GetTotalAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}

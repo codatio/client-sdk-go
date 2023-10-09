@@ -1,4 +1,5 @@
 # Payments
+(*Payments*)
 
 ## Overview
 
@@ -35,12 +36,12 @@ import(
 	"github.com/codatio/client-sdk-go/previous-versions/accounting"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
-	"github.com/ericlagergren/decimal"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/types"
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -48,52 +49,40 @@ func main() {
     ctx := context.Background()
     res, err := s.Payments.Create(ctx, operations.CreatePaymentRequest{
         Payment: &shared.Payment{
-            AccountRef: &shared.AccountRef{
-                ID: codataccounting.String("e71f6c48-252d-4777-9e7f-d074009ef8d2"),
-                Name: codataccounting.String("Dr. Levi Volkman"),
-            },
-            Currency: codataccounting.String("USD"),
-            CurrencyRate: types.MustNewDecimalFromString("161.58"),
+            AccountRef: &shared.AccountRef{},
+            Currency: accounting.String("USD"),
             CustomerRef: &shared.AccountingCustomerRef{
-                CompanyName: codataccounting.String("provident"),
-                ID: "7b5da08c-57fa-46c7-8a21-6e19bafeca61",
+                ID: "<ID>",
             },
             Date: "2022-10-23T00:00:00.000Z",
-            ID: codataccounting.String("1498140b-64ff-48ae-970e-f03b5f37e4aa"),
             Lines: []shared.PaymentLine{
                 shared.PaymentLine{
-                    AllocatedOnDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
-                    Amount: *types.MustNewDecimalFromString("3819.74"),
+                    AllocatedOnDate: accounting.String("2022-10-23T00:00:00.000Z"),
+                    Amount: types.MustNewDecimalFromString("8592.13"),
                     Links: []shared.PaymentLineLink{
                         shared.PaymentLineLink{
-                            Amount: types.MustNewDecimalFromString("5576.51"),
-                            CurrencyRate: types.MustNewDecimalFromString("3385.42"),
-                            ID: codataccounting.String("55966732-aa5d-4cb6-a82c-b70f8cfd5fb6"),
+                            AdditionalProperties: map[string]interface{}{
+                                "Money": "blue",
+                            },
                             Type: shared.PaymentLinkTypeDiscount,
                         },
                     },
                 },
             },
-            Metadata: &shared.Metadata{
-                IsDeleted: codataccounting.Bool(false),
-            },
-            ModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
-            Note: codataccounting.String("dicta"),
-            PaymentMethodRef: codataccounting.String("quidem"),
-            Reference: codataccounting.String("omnis"),
-            SourceModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
+            Metadata: &shared.Metadata{},
+            ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            PaymentMethodRef: accounting.String("abnormally"),
+            SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "molestias": map[string]interface{}{
-                        "a": "dignissimos",
+                    "orange": map[string]interface{}{
+                        "Northwest": "fuchsia",
                     },
                 },
             },
-            TotalAmount: types.MustNewDecimalFromString("2883.48"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codataccounting.Int(511054),
     })
     if err != nil {
         log.Fatal(err)
@@ -144,8 +133,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -153,7 +142,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Payments.Get(ctx, operations.GetPaymentRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        PaymentID: "dolore",
+        PaymentID: "Northeast Hatchback Kia",
     })
     if err != nil {
         log.Fatal(err)
@@ -206,8 +195,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -264,8 +253,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -273,10 +262,9 @@ func main() {
     ctx := context.Background()
     res, err := s.Payments.List(ctx, operations.ListPaymentsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        OrderBy: codataccounting.String("-modifiedDate"),
-        Page: codataccounting.Int(1),
-        PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("aliquid"),
+        OrderBy: accounting.String("-modifiedDate"),
+        Page: accounting.Int(1),
+        PageSize: accounting.Int(100),
     })
     if err != nil {
         log.Fatal(err)

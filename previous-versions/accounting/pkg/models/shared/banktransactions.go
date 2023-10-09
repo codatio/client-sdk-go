@@ -3,7 +3,8 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/types"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 // BankTransactionsSourceModifiedDate - > **Accessing Bank Accounts through Banking API**
@@ -23,9 +24,12 @@ import (
 // * Current account balance.
 // * Transaction type, for example, credit, debit, or transfer.
 type BankTransactionsSourceModifiedDate struct {
-	AccountID *string        `json:"accountId,omitempty"`
-	Amount    *types.Decimal `json:"amount,omitempty"`
-	Balance   *types.Decimal `json:"balance,omitempty"`
+	// Unique identifier to the `accountId` the bank transactions originates from.
+	AccountID *string `json:"accountId,omitempty"`
+	// The amount transacted in the bank transaction.
+	Amount *decimal.Big `decimal:"number" json:"amount,omitempty"`
+	// The remaining balance in the account with ID `accountId`.
+	Balance *decimal.Big `decimal:"number" json:"balance,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -45,14 +49,28 @@ type BankTransactionsSourceModifiedDate struct {
 	// >
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	ClearedOnDate      *string `json:"clearedOnDate,omitempty"`
-	Description        *string `json:"description,omitempty"`
-	ID                 *string `json:"id,omitempty"`
-	ModifiedDate       *string `json:"modifiedDate,omitempty"`
+	ClearedOnDate *string `json:"clearedOnDate,omitempty"`
+	// Description of the bank transaction.
+	Description *string `json:"description,omitempty"`
+	// Identifier for the bank transaction, unique to the company in the accounting platform.
+	ID           *string `json:"id,omitempty"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
+	// `True` if the bank transaction has been [reconciled](https://www.xero.com/uk/guides/what-is-bank-reconciliation/) in the accounting platform.
 	Reconciled         *bool   `json:"reconciled,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
-	// Type of transaction for the bank statement line
+	// Type of transaction for the bank statement line.
 	TransactionType *BankTransactionType `json:"transactionType,omitempty"`
+}
+
+func (b BankTransactionsSourceModifiedDate) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(b, "", false)
+}
+
+func (b *BankTransactionsSourceModifiedDate) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &b, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *BankTransactionsSourceModifiedDate) GetAccountID() *string {
@@ -62,14 +80,14 @@ func (o *BankTransactionsSourceModifiedDate) GetAccountID() *string {
 	return o.AccountID
 }
 
-func (o *BankTransactionsSourceModifiedDate) GetAmount() *types.Decimal {
+func (o *BankTransactionsSourceModifiedDate) GetAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.Amount
 }
 
-func (o *BankTransactionsSourceModifiedDate) GetBalance() *types.Decimal {
+func (o *BankTransactionsSourceModifiedDate) GetBalance() *decimal.Big {
 	if o == nil {
 		return nil
 	}
@@ -126,11 +144,14 @@ func (o *BankTransactionsSourceModifiedDate) GetTransactionType() *BankTransacti
 }
 
 type BankTransactions struct {
-	Links        Links                                `json:"_links"`
-	PageNumber   int64                                `json:"pageNumber"`
-	PageSize     int64                                `json:"pageSize"`
-	Results      []BankTransactionsSourceModifiedDate `json:"results,omitempty"`
-	TotalResults int64                                `json:"totalResults"`
+	Links Links `json:"_links"`
+	// Current page number.
+	PageNumber int64 `json:"pageNumber"`
+	// Number of items to return in results array.
+	PageSize int64                                `json:"pageSize"`
+	Results  []BankTransactionsSourceModifiedDate `json:"results,omitempty"`
+	// Total number of items.
+	TotalResults int64 `json:"totalResults"`
 }
 
 func (o *BankTransactions) GetLinks() Links {

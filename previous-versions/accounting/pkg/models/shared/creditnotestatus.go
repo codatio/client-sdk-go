@@ -7,6 +7,7 @@ import (
 	"fmt"
 )
 
+// CreditNoteStatus - Current state of the credit note.
 type CreditNoteStatus string
 
 const (

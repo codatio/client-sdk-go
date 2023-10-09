@@ -1,4 +1,5 @@
 # PurchaseOrders
+(*PurchaseOrders*)
 
 ## Overview
 
@@ -39,8 +40,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -48,80 +49,40 @@ func main() {
     ctx := context.Background()
     res, err := s.PurchaseOrders.Create(ctx, operations.CreatePurchaseOrderRequest{
         PurchaseOrder: &shared.PurchaseOrder{
-            Currency: codataccounting.String("EUR"),
-            CurrencyRate: types.MustNewDecimalFromString("1356.92"),
-            DeliveryDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
-            ExpectedDeliveryDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
-            ID: codataccounting.String("309db053-6d9e-475c-a006-f5392c11a25a"),
-            IssueDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
+            Currency: accounting.String("USD"),
+            DeliveryDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            ExpectedDeliveryDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            IssueDate: accounting.String("2022-10-23T00:00:00.000Z"),
             LineItems: []shared.PurchaseOrderLineItem{
                 shared.PurchaseOrderLineItem{
-                    AccountRef: &shared.AccountRef{
-                        ID: codataccounting.String("bf92f974-28ad-49a9-b8bf-8221125359d9"),
-                        Name: codataccounting.String("Glenn Lebsack"),
-                    },
-                    Description: codataccounting.String("iusto"),
-                    DiscountAmount: types.MustNewDecimalFromString("6339.56"),
-                    DiscountPercentage: types.MustNewDecimalFromString("4531.11"),
+                    AccountRef: &shared.AccountRef{},
                     ItemRef: &shared.ItemRef{
-                        ID: "9cd72cd2-484d-4a21-b29f-2ac41ef5725f",
-                        Name: codataccounting.String("Jean Kemmer"),
+                        ID: "<ID>",
                     },
-                    Quantity: types.MustNewDecimalFromString("7500.75"),
-                    SubTotal: types.MustNewDecimalFromString("944.87"),
-                    TaxAmount: types.MustNewDecimalFromString("9313.93"),
-                    TaxRateRef: &shared.TaxRateRef{
-                        EffectiveTaxRate: types.MustNewDecimalFromString("3062.69"),
-                        ID: codataccounting.String("1d8a23c2-3e34-4f2d-ba4a-197f6de92215"),
-                        Name: codataccounting.String("Ms. Dixie Turner Sr."),
-                    },
-                    TotalAmount: types.MustNewDecimalFromString("309.62"),
+                    TaxRateRef: &shared.TaxRateRef{},
                     TrackingCategoryRefs: []shared.TrackingCategoryRef{
                         shared.TrackingCategoryRef{
-                            ID: "99853e9f-543d-4854-839e-e224460443bc",
-                            Name: codataccounting.String("Ms. Lorraine Gusikowski"),
+                            ID: "<ID>",
                         },
                     },
-                    UnitAmount: types.MustNewDecimalFromString("7911.29"),
                 },
             },
-            Metadata: &shared.Metadata{
-                IsDeleted: codataccounting.Bool(false),
-            },
-            ModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
-            Note: codataccounting.String("asperiores"),
-            PaymentDueDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
-            PurchaseOrderNumber: codataccounting.String("vel"),
+            Metadata: &shared.Metadata{},
+            ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            PaymentDueDate: accounting.String("2022-10-23T00:00:00.000Z"),
             ShipTo: &shared.ShipTo{
                 Address: &shared.Addressesitems{
-                    City: codataccounting.String("Madison"),
-                    Country: codataccounting.String("Guyana"),
-                    Line1: codataccounting.String("at"),
-                    Line2: codataccounting.String("culpa"),
-                    PostalCode: codataccounting.String("52186"),
-                    Region: codataccounting.String("libero"),
-                    Type: shared.AccountingAddressTypeDelivery,
+                    Type: shared.AccountingAddressTypeUnknown,
                 },
-                Contact: &shared.ShipToContact{
-                    Email: codataccounting.String("Augustine.Kuhlman69@yahoo.com"),
-                    Name: codataccounting.String("Miss Meredith Hand"),
-                    Phone: codataccounting.String("790-276-8540 x482"),
-                },
+                Contact: &shared.ShipToContact{},
             },
-            SourceModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
-            Status: shared.PurchaseOrderStatusUnknown.ToPointer(),
-            SubTotal: types.MustNewDecimalFromString("5142.34"),
+            SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
             SupplierRef: &shared.SupplierRef{
-                ID: "2bfbdc41-ff5d-44e2-ae4f-b5cb35d17638",
-                SupplierName: codataccounting.String("delectus"),
+                ID: "<ID>",
             },
-            TotalAmount: types.MustNewDecimalFromString("1230.16"),
-            TotalDiscount: types.MustNewDecimalFromString("9225.93"),
-            TotalTaxAmount: types.MustNewDecimalFromString("8182.73"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codataccounting.Int(716538),
     })
     if err != nil {
         log.Fatal(err)
@@ -172,8 +133,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -181,7 +142,7 @@ func main() {
     ctx := context.Background()
     res, err := s.PurchaseOrders.Get(ctx, operations.GetPurchaseOrderRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        PurchaseOrderID: "ducimus",
+        PurchaseOrderID: "Northeast Hatchback Kia",
     })
     if err != nil {
         log.Fatal(err)
@@ -234,8 +195,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -292,8 +253,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -301,10 +262,9 @@ func main() {
     ctx := context.Background()
     res, err := s.PurchaseOrders.List(ctx, operations.ListPurchaseOrdersRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        OrderBy: codataccounting.String("-modifiedDate"),
-        Page: codataccounting.Int(1),
-        PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("atque"),
+        OrderBy: accounting.String("-modifiedDate"),
+        Page: accounting.Int(1),
+        PageSize: accounting.Int(100),
     })
     if err != nil {
         log.Fatal(err)
@@ -357,8 +317,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -366,82 +326,41 @@ func main() {
     ctx := context.Background()
     res, err := s.PurchaseOrders.Update(ctx, operations.UpdatePurchaseOrderRequest{
         PurchaseOrder: &shared.PurchaseOrder{
-            Currency: codataccounting.String("GBP"),
-            CurrencyRate: types.MustNewDecimalFromString("3670.96"),
-            DeliveryDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
-            ExpectedDeliveryDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
-            ID: codataccounting.String("cc5cb860-f8cd-4580-ba73-810e4fe44472"),
-            IssueDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
+            Currency: accounting.String("EUR"),
+            DeliveryDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            ExpectedDeliveryDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            IssueDate: accounting.String("2022-10-23T00:00:00.000Z"),
             LineItems: []shared.PurchaseOrderLineItem{
                 shared.PurchaseOrderLineItem{
-                    AccountRef: &shared.AccountRef{
-                        ID: codataccounting.String("7cd3b1dd-3bbc-4e24-bb76-84eff50126d7"),
-                        Name: codataccounting.String("Vicky Wolf"),
-                    },
-                    Description: codataccounting.String("facere"),
-                    DiscountAmount: types.MustNewDecimalFromString("113.92"),
-                    DiscountPercentage: types.MustNewDecimalFromString("9309.42"),
+                    AccountRef: &shared.AccountRef{},
                     ItemRef: &shared.ItemRef{
-                        ID: "b74b8421-953b-444b-93c4-3159d33e5953",
-                        Name: codataccounting.String("Mr. Michael Bashirian"),
+                        ID: "<ID>",
                     },
-                    Quantity: types.MustNewDecimalFromString("5784.52"),
-                    SubTotal: types.MustNewDecimalFromString("5525.12"),
-                    TaxAmount: types.MustNewDecimalFromString("3971.12"),
-                    TaxRateRef: &shared.TaxRateRef{
-                        EffectiveTaxRate: types.MustNewDecimalFromString("1930.48"),
-                        ID: codataccounting.String("aa41e6c3-1cc2-4f1f-8b51-c9a41ffbe9cb"),
-                        Name: codataccounting.String("Brad Mraz"),
-                    },
-                    TotalAmount: types.MustNewDecimalFromString("9358"),
+                    TaxRateRef: &shared.TaxRateRef{},
                     TrackingCategoryRefs: []shared.TrackingCategoryRef{
                         shared.TrackingCategoryRef{
-                            ID: "65e076cc-7abf-4616-aa5c-71641934b90f",
-                            Name: codataccounting.String("Rochelle Bailey"),
+                            ID: "<ID>",
                         },
                     },
-                    UnitAmount: types.MustNewDecimalFromString("683"),
                 },
             },
-            Metadata: &shared.Metadata{
-                IsDeleted: codataccounting.Bool(false),
-            },
-            ModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
-            Note: codataccounting.String("possimus"),
-            PaymentDueDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
-            PurchaseOrderNumber: codataccounting.String("a"),
+            Metadata: &shared.Metadata{},
+            ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            PaymentDueDate: accounting.String("2022-10-23T00:00:00.000Z"),
             ShipTo: &shared.ShipTo{
                 Address: &shared.Addressesitems{
-                    City: codataccounting.String("Champlinworth"),
-                    Country: codataccounting.String("Nepal"),
-                    Line1: codataccounting.String("earum"),
-                    Line2: codataccounting.String("fugit"),
-                    PostalCode: codataccounting.String("10352-2752"),
-                    Region: codataccounting.String("enim"),
                     Type: shared.AccountingAddressTypeDelivery,
                 },
-                Contact: &shared.ShipToContact{
-                    Email: codataccounting.String("Dayana.Kilback@gmail.com"),
-                    Name: codataccounting.String("Ms. Nettie McCullough"),
-                    Phone: codataccounting.String("(836) 983-6977 x4324"),
-                },
+                Contact: &shared.ShipToContact{},
             },
-            SourceModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
-            Status: shared.PurchaseOrderStatusVoid.ToPointer(),
-            SubTotal: types.MustNewDecimalFromString("5678.21"),
+            SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
             SupplierRef: &shared.SupplierRef{
-                ID: "222c9ff5-7491-4aab-ba2e-761f0ca4d456",
-                SupplierName: codataccounting.String("vero"),
+                ID: "<ID>",
             },
-            TotalAmount: types.MustNewDecimalFromString("9708.48"),
-            TotalDiscount: types.MustNewDecimalFromString("1170.53"),
-            TotalTaxAmount: types.MustNewDecimalFromString("234.1"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        ForceUpdate: codataccounting.Bool(false),
-        PurchaseOrderID: "adipisci",
-        TimeoutInMinutes: codataccounting.Int(80294),
+        PurchaseOrderID: "Analyst invoice",
     })
     if err != nil {
         log.Fatal(err)

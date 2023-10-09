@@ -8,9 +8,12 @@ import (
 )
 
 type GetTransferRequest struct {
-	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a company.
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a connection.
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
-	TransferID   string `pathParam:"style=simple,explode=false,name=transferId"`
+	// Unique identifier for a transfer.
+	TransferID string `pathParam:"style=simple,explode=false,name=transferId"`
 }
 
 func (o *GetTransferRequest) GetCompanyID() string {
@@ -35,11 +38,14 @@ func (o *GetTransferRequest) GetTransferID() string {
 }
 
 type GetTransferResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
-	StatusCode   int
-	RawResponse  *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 	// Success
 	Transfer *shared.Transfer
 }

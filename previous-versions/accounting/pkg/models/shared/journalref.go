@@ -2,12 +2,35 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/utils"
+)
+
 // JournalRef - Links journal entries to the relevant journal in accounting integrations that use multi-book accounting (multiple journals).
 type JournalRef struct {
+	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// GUID of the underlying journal.
 	ID string `json:"id"`
 	// Name of journal
 	Name *string `json:"name,omitempty"`
+}
+
+func (j JournalRef) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(j, "", false)
+}
+
+func (j *JournalRef) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &j, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *JournalRef) GetAdditionalProperties() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 func (o *JournalRef) GetID() string {

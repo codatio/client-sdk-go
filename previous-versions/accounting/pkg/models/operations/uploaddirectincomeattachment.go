@@ -27,10 +27,13 @@ func (o *UploadDirectIncomeAttachmentRequestBody) GetRequestBody() string {
 }
 
 type UploadDirectIncomeAttachmentRequest struct {
-	RequestBody    *UploadDirectIncomeAttachmentRequestBody `multipartForm:"file" request:"mediaType=multipart/form-data"`
-	CompanyID      string                                   `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID   string                                   `pathParam:"style=simple,explode=false,name=connectionId"`
-	DirectIncomeID string                                   `pathParam:"style=simple,explode=false,name=directIncomeId"`
+	RequestBody *UploadDirectIncomeAttachmentRequestBody `multipartForm:"file" request:"mediaType=multipart/form-data"`
+	// Unique identifier for a company.
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a connection.
+	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
+	// Unique identifier for a direct income.
+	DirectIncomeID string `pathParam:"style=simple,explode=false,name=directIncomeId"`
 }
 
 func (o *UploadDirectIncomeAttachmentRequest) GetRequestBody() *UploadDirectIncomeAttachmentRequestBody {
@@ -62,11 +65,14 @@ func (o *UploadDirectIncomeAttachmentRequest) GetDirectIncomeID() string {
 }
 
 type UploadDirectIncomeAttachmentResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
-	StatusCode   int
-	RawResponse  *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *UploadDirectIncomeAttachmentResponse) GetContentType() string {

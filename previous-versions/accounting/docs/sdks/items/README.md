@@ -1,4 +1,5 @@
 # Items
+(*Items*)
 
 ## Overview
 
@@ -38,8 +39,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -48,47 +49,23 @@ func main() {
     res, err := s.Items.Create(ctx, operations.CreateItemRequest{
         Item: &shared.Item{
             BillItem: &shared.BillItem{
-                AccountRef: &shared.AccountRef{
-                    ID: codataccounting.String("33e66bd8-fe5d-400b-979e-f20387320590"),
-                    Name: codataccounting.String("Mr. Forrest Ryan"),
-                },
-                Description: codataccounting.String("ea"),
-                TaxRateRef: &shared.TaxRateRef{
-                    EffectiveTaxRate: types.MustNewDecimalFromString("2622.31"),
-                    ID: codataccounting.String("00313b3e-5044-4f65-be72-dc4077d0cc3f"),
-                    Name: codataccounting.String("Carol Lowe"),
-                },
-                UnitPrice: types.MustNewDecimalFromString("7738.54"),
+                AccountRef: &shared.AccountRef{},
+                TaxRateRef: &shared.TaxRateRef{},
             },
-            Code: codataccounting.String("dicta"),
-            ID: codataccounting.String("5ceb4d6e-1eae-40f7-9aed-f2acab58b991"),
             InvoiceItem: &shared.InvoiceItem{
-                AccountRef: &shared.AccountRef{
-                    ID: codataccounting.String("c926ddb5-8946-41e7-821c-be6d9502f0ea"),
-                    Name: codataccounting.String("Sean Auer"),
-                },
-                Description: codataccounting.String("sint"),
-                TaxRateRef: &shared.TaxRateRef{
-                    EffectiveTaxRate: types.MustNewDecimalFromString("9787.97"),
-                    ID: codataccounting.String("7ac2f72f-8850-4090-8911-608207888ec6"),
-                    Name: codataccounting.String("Teresa Lueilwitz"),
-                },
-                UnitPrice: types.MustNewDecimalFromString("9454.09"),
+                AccountRef: &shared.AccountRef{},
+                TaxRateRef: &shared.TaxRateRef{},
             },
             IsBillItem: false,
             IsInvoiceItem: false,
-            ItemStatus: shared.ItemStatusArchived,
-            Metadata: &shared.Metadata{
-                IsDeleted: codataccounting.Bool(false),
-            },
-            ModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
-            Name: codataccounting.String("Marion Mills"),
-            SourceModifiedDate: codataccounting.String("2022-10-23T00:00:00.000Z"),
-            Type: shared.ItemTypeUnknown,
+            ItemStatus: shared.ItemStatusActive,
+            Metadata: &shared.Metadata{},
+            ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            Type: shared.ItemTypeService,
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codataccounting.Int(881095),
     })
     if err != nil {
         log.Fatal(err)
@@ -139,8 +116,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -148,7 +125,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Items.Get(ctx, operations.GetItemRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ItemID: "quod",
+        ItemID: "Northeast Hatchback Kia",
     })
     if err != nil {
         log.Fatal(err)
@@ -201,8 +178,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -259,8 +236,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -268,10 +245,9 @@ func main() {
     ctx := context.Background()
     res, err := s.Items.List(ctx, operations.ListItemsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        OrderBy: codataccounting.String("-modifiedDate"),
-        Page: codataccounting.Int(1),
-        PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("sunt"),
+        OrderBy: accounting.String("-modifiedDate"),
+        Page: accounting.Int(1),
+        PageSize: accounting.Int(100),
     })
     if err != nil {
         log.Fatal(err)

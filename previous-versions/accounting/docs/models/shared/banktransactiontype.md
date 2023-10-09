@@ -1,6 +1,6 @@
 # BankTransactionType
 
-Type of transaction for the bank statement line
+Type of transaction for the bank statement line.
 
 
 ## Values

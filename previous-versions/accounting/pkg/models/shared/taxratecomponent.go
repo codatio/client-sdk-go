@@ -3,17 +3,37 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/types"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 // TaxRateComponent - A tax rate can be made up of multiple sub taxes, often called components of the tax.
 type TaxRateComponent struct {
+	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// A flag to indicate with the tax is calculated using the principle of compounding.
 	IsCompound bool `json:"isCompound"`
 	// Name of the tax rate component.
 	Name *string `json:"name,omitempty"`
 	// The rate of the tax rate component, usually a percentage.
-	Rate *types.Decimal `json:"rate,omitempty"`
+	Rate *decimal.Big `decimal:"number" json:"rate,omitempty"`
+}
+
+func (t TaxRateComponent) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
+}
+
+func (t *TaxRateComponent) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *TaxRateComponent) GetAdditionalProperties() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 func (o *TaxRateComponent) GetIsCompound() bool {
@@ -30,7 +50,7 @@ func (o *TaxRateComponent) GetName() *string {
 	return o.Name
 }
 
-func (o *TaxRateComponent) GetRate() *types.Decimal {
+func (o *TaxRateComponent) GetRate() *decimal.Big {
 	if o == nil {
 		return nil
 	}

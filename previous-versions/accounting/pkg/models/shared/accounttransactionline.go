@@ -3,12 +3,13 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/types"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 type AccountTransactionLine struct {
 	// Amount in the bill payment currency.
-	Amount *types.Decimal `json:"amount,omitempty"`
+	Amount *decimal.Big `decimal:"number" json:"amount,omitempty"`
 	// Description of the account transaction.
 	Description *string `json:"description,omitempty"`
 	// Links the current record to the underlying record or data type that created it.
@@ -17,7 +18,18 @@ type AccountTransactionLine struct {
 	RecordRef *InvoiceTo `json:"recordRef,omitempty"`
 }
 
-func (o *AccountTransactionLine) GetAmount() *types.Decimal {
+func (a AccountTransactionLine) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AccountTransactionLine) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *AccountTransactionLine) GetAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}

@@ -8,10 +8,13 @@ import (
 )
 
 type CreateSupplierRequest struct {
-	Supplier         *shared.Supplier `request:"mediaType=application/json"`
-	CompanyID        string           `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID     string           `pathParam:"style=simple,explode=false,name=connectionId"`
-	TimeoutInMinutes *int             `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
+	Supplier *shared.Supplier `request:"mediaType=application/json"`
+	// Unique identifier for a company.
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a connection.
+	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
+	// Time limit for the push operation to complete before it is timed out.
+	TimeoutInMinutes *int `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
 }
 
 func (o *CreateSupplierRequest) GetSupplier() *shared.Supplier {
@@ -43,13 +46,16 @@ func (o *CreateSupplierRequest) GetTimeoutInMinutes() *int {
 }
 
 type CreateSupplierResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// Success
 	CreateSupplierResponse *shared.CreateSupplierResponse
 	// The request made is not valid.
 	ErrorMessage *shared.ErrorMessage
-	StatusCode   int
-	RawResponse  *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *CreateSupplierResponse) GetContentType() string {

@@ -13,15 +13,15 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
     ctx := context.Background()
     res, err := s.AccountTransactions.Get(ctx, operations.GetAccountTransactionRequest{
-        AccountTransactionID: "corrupti",
+        AccountTransactionID: "Northeast Hatchback Kia",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
