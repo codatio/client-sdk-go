@@ -2,8 +2,13 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/utils"
+)
+
 // BankFeedMapping - A bank feed connection between a source account and a target account, including potential target accounts.
 type BankFeedMapping struct {
+	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -40,13 +45,32 @@ type BankFeedMapping struct {
 	//
 	// There are only a very small number of edge cases where this currency code is returned by the Codat system.
 	SourceCurrency *string `json:"sourceCurrency,omitempty"`
-	Status         *string `json:"status,omitempty"`
+	// The status.
+	Status *string `json:"status,omitempty"`
 	// Unique ID for the target account in the accounting platform.
 	TargetAccountID *string `json:"targetAccountId,omitempty"`
 	// Name for the target account in the accounting platform.
 	TargetAccountName *string `json:"targetAccountName,omitempty"`
 	// An array of potential target accounts.
 	TargetAccountOptions []TargetAccountOption `json:"targetAccountOptions,omitempty"`
+}
+
+func (b BankFeedMapping) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(b, "", false)
+}
+
+func (b *BankFeedMapping) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &b, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *BankFeedMapping) GetAdditionalProperties() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 func (o *BankFeedMapping) GetFeedStartDate() *string {

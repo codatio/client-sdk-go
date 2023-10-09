@@ -4,17 +4,33 @@ package operations
 
 import (
 	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/utils"
 	"net/http"
 )
 
 type CreateBankTransactionsRequest struct {
 	CreateBankTransactions *shared.CreateBankTransactions `request:"mediaType=application/json"`
-	// Unique identifier for an account
-	AccountID               string `pathParam:"style=simple,explode=false,name=accountId"`
-	AllowSyncOnPushComplete *bool  `queryParam:"style=form,explode=true,name=allowSyncOnPushComplete"`
-	CompanyID               string `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID            string `pathParam:"style=simple,explode=false,name=connectionId"`
-	TimeoutInMinutes        *int   `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
+	// Unique identifier for an account.
+	AccountID string `pathParam:"style=simple,explode=false,name=accountId"`
+	// Allow a sync upon push completion.
+	AllowSyncOnPushComplete *bool `default:"true" queryParam:"style=form,explode=true,name=allowSyncOnPushComplete"`
+	// Unique identifier for a company.
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a connection.
+	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
+	// Time limit for the push operation to complete before it is timed out.
+	TimeoutInMinutes *int `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
+}
+
+func (c CreateBankTransactionsRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CreateBankTransactionsRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *CreateBankTransactionsRequest) GetCreateBankTransactions() *shared.CreateBankTransactions {
@@ -60,13 +76,16 @@ func (o *CreateBankTransactionsRequest) GetTimeoutInMinutes() *int {
 }
 
 type CreateBankTransactionsResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// Success
 	CreateBankTransactionsResponse *shared.CreateBankTransactionsResponse
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
-	StatusCode   int
-	RawResponse  *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *CreateBankTransactionsResponse) GetContentType() string {

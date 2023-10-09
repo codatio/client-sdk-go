@@ -2,8 +2,13 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/utils"
+)
+
 // BankFeedAccountMappingResponse - The result from POSTing a Bank Account mapping.
 type BankFeedAccountMappingResponse struct {
+	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// Error returned during the post request
 	Error *string `json:"Error,omitempty"`
 	// Status of the POST request.
@@ -12,6 +17,24 @@ type BankFeedAccountMappingResponse struct {
 	SourceAccountID *string `json:"sourceAccountId,omitempty"`
 	// Unique ID for the target account.
 	TargetAccountID *string `json:"targetAccountId,omitempty"`
+}
+
+func (b BankFeedAccountMappingResponse) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(b, "", false)
+}
+
+func (b *BankFeedAccountMappingResponse) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &b, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *BankFeedAccountMappingResponse) GetAdditionalProperties() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 func (o *BankFeedAccountMappingResponse) GetError() *string {
