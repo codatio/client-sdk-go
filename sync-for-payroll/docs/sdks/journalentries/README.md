@@ -1,4 +1,5 @@
 # JournalEntries
+(*JournalEntries*)
 
 ## Overview
 
@@ -33,15 +34,15 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payroll"
+	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/operations"
-	"github.com/ericlagergren/decimal"
+	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/types"
 )
 
 func main() {
-    s := codatsyncpayroll.New(
-        codatsyncpayroll.WithSecurity(shared.Security{
+    s := syncforpayroll.New(
+        syncforpayroll.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -49,54 +50,44 @@ func main() {
     ctx := context.Background()
     res, err := s.JournalEntries.Create(ctx, operations.CreateJournalEntryRequest{
         JournalEntry: &shared.JournalEntry{
-            CreatedOn: codatsyncpayroll.String("2022-10-23T00:00:00.000Z"),
-            Description: codatsyncpayroll.String("placeat"),
-            ID: codatsyncpayroll.String("8796ed15-1a05-4dfc-addf-7cc78ca1ba92"),
+            CreatedOn: syncforpayroll.String("2022-10-23T00:00:00.000Z"),
             JournalLines: []shared.JournalLine{
                 shared.JournalLine{
-                    AccountRef: &shared.AccountRef{
-                        ID: codatsyncpayroll.String("8fc81674-2cb7-4392-8592-9396fea7596e"),
-                        Name: codatsyncpayroll.String("Roger Beier"),
-                    },
-                    Currency: codatsyncpayroll.String("mollitia"),
-                    Description: codatsyncpayroll.String("laborum"),
-                    NetAmount: *types.MustNewDecimalFromString("1709.09"),
+                    AccountRef: &shared.AccountRef{},
+                    NetAmount: types.MustNewDecimalFromString("4893.82"),
                     Tracking: &shared.JournalLineTracking{
                         RecordRefs: []shared.RecordRef{
                             shared.RecordRef{
-                                DataType: codatsyncpayroll.String("journalEntry"),
-                                ID: codatsyncpayroll.String("52c59559-07af-4f1a-ba2f-a9467739251a"),
+                                DataType: syncforpayroll.String("accountTransaction"),
                             },
                         },
                     },
                 },
             },
             JournalRef: &shared.JournalRef{
-                ID: "a52c3f5a-d019-4da1-bfe7-8f097b0074f1",
-                Name: codatsyncpayroll.String("Miss Valerie Kshlerin"),
+                AdditionalProperties: map[string]interface{}{
+                    "Extended": "South",
+                },
+                ID: "<ID>",
             },
-            Metadata: &shared.Metadata{
-                IsDeleted: codatsyncpayroll.Bool(false),
-            },
-            ModifiedDate: codatsyncpayroll.String("2022-10-23T00:00:00.000Z"),
-            PostedOn: codatsyncpayroll.String("2022-10-23T00:00:00.000Z"),
+            Metadata: &shared.Metadata{},
+            ModifiedDate: syncforpayroll.String("2022-10-23T00:00:00.000Z"),
+            PostedOn: syncforpayroll.String("2022-10-23T00:00:00.000Z"),
             RecordRef: &shared.JournalEntryRecordReference{
-                DataType: codatsyncpayroll.String("transfer"),
-                ID: codatsyncpayroll.String("13b99d48-8e1e-491e-850a-d2abd4426980"),
+                DataType: syncforpayroll.String("invoice"),
             },
-            SourceModifiedDate: codatsyncpayroll.String("2022-10-23T00:00:00.000Z"),
+            SourceModifiedDate: syncforpayroll.String("2022-10-23T00:00:00.000Z"),
             SupplementalData: &shared.JournalEntrySupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "assumenda": map[string]interface{}{
-                        "ipsam": "alias",
+                    "abnormally": map[string]interface{}{
+                        "deposit": "evolve",
                     },
                 },
             },
-            UpdatedOn: codatsyncpayroll.String("2022-10-23T00:00:00.000Z"),
+            UpdatedOn: syncforpayroll.String("2022-10-23T00:00:00.000Z"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codatsyncpayroll.Int(677817),
     })
     if err != nil {
         log.Fatal(err)
@@ -163,14 +154,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payroll"
+	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncpayroll.New(
-        codatsyncpayroll.WithSecurity(shared.Security{
+    s := syncforpayroll.New(
+        syncforpayroll.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -178,7 +169,8 @@ func main() {
     ctx := context.Background()
     res, err := s.JournalEntries.Delete(ctx, operations.DeleteJournalEntryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        JournalEntryID: "excepturi",
+        ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
+        JournalEntryID: "Van complexity",
     })
     if err != nil {
         log.Fatal(err)
@@ -223,14 +215,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payroll"
+	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncpayroll.New(
-        codatsyncpayroll.WithSecurity(shared.Security{
+    s := syncforpayroll.New(
+        syncforpayroll.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -238,7 +230,7 @@ func main() {
     ctx := context.Background()
     res, err := s.JournalEntries.Get(ctx, operations.GetJournalEntryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        JournalEntryID: "tempora",
+        JournalEntryID: "Northeast Hatchback Kia",
     })
     if err != nil {
         log.Fatal(err)
@@ -285,14 +277,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payroll"
+	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncpayroll.New(
-        codatsyncpayroll.WithSecurity(shared.Security{
+    s := syncforpayroll.New(
+        syncforpayroll.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -343,14 +335,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/sync-for-payroll"
+	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncpayroll.New(
-        codatsyncpayroll.WithSecurity(shared.Security{
+    s := syncforpayroll.New(
+        syncforpayroll.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -358,10 +350,9 @@ func main() {
     ctx := context.Background()
     res, err := s.JournalEntries.List(ctx, operations.ListJournalEntriesRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        OrderBy: codatsyncpayroll.String("-modifiedDate"),
-        Page: codatsyncpayroll.Int(1),
-        PageSize: codatsyncpayroll.Int(100),
-        Query: codatsyncpayroll.String("facilis"),
+        OrderBy: syncforpayroll.String("-modifiedDate"),
+        Page: syncforpayroll.Int(1),
+        PageSize: syncforpayroll.Int(100),
     })
     if err != nil {
         log.Fatal(err)
