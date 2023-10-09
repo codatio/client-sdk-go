@@ -1,5 +1,6 @@
 # CodatFiles SDK
 
+
 ## Overview
 
 Files API: A flexible API for pulling accounting data, normalized and aggregated from 20 accounting integrations.
