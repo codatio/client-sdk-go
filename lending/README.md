@@ -361,4 +361,3 @@ func main() {
 ### [Transactions.Transfers](docs/sdks/transactionstransfers/README.md)
 
 * [Get](docs/sdks/transactionstransfers/README.md#get) - Get transfer
-* [List](docs/sdks/transactionstransfers/README.md#list) - List transfers

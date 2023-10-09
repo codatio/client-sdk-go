@@ -257,4 +257,3 @@ func main() {
 * [Get](docs/sdks/transfers/README.md#get) - Get transfer
 * [GetCreateModel](docs/sdks/transfers/README.md#getcreatemodel) - Get create transfer model
 * [List](docs/sdks/transfers/README.md#list) - List transfers
-* [UploadAttachment](docs/sdks/transfers/README.md#uploadattachment) - Push invoice attachment

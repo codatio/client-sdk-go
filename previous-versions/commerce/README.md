@@ -102,4 +102,3 @@ func main() {
 ### [Transactions](docs/sdks/transactions/README.md)
 
 * [Get](docs/sdks/transactions/README.md#get) - Get transaction
-* [List](docs/sdks/transactions/README.md#list) - List transactions
