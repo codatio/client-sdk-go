@@ -32,6 +32,7 @@ pkg/utils/requestbody.go
 pkg/utils/retries.go
 pkg/utils/security.go
 pkg/utils/utils.go
+tests/helpers.go
 pkg/models/operations/createaccount.go
 pkg/models/operations/getaccount.go
 pkg/models/operations/getcreateaccountmodel.go
@@ -378,6 +379,8 @@ docs/models/shared/billsupplementaldata.md
 docs/models/shared/billwithholdingtax.md
 docs/models/shared/bill.md
 docs/models/shared/billstatus.md
+docs/models/shared/billlineitemrecordlinereferencedatatype.md
+docs/models/shared/billlineitemrecordlinereference.md
 docs/models/shared/billlineitem.md
 docs/models/shared/trackingcustomerref.md
 docs/models/shared/trackingprojectreference.md
@@ -413,6 +416,7 @@ docs/models/shared/createjournalresponse.md
 docs/models/shared/journal.md
 docs/models/shared/journalstatus.md
 docs/models/shared/journals.md
+docs/models/shared/datastatusdatatypes.md
 docs/models/shared/datastatus.md
 docs/models/shared/pulloperationstatus.md
 docs/models/shared/pulloperation.md

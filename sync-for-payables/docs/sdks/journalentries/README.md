@@ -1,4 +1,5 @@
 # JournalEntries
+(*JournalEntries*)
 
 ## Overview
 
@@ -47,45 +48,36 @@ func main() {
     res, err := s.JournalEntries.Create(ctx, operations.CreateJournalEntryRequest{
         JournalEntry: &shared.JournalEntry{
             CreatedOn: syncforpayables.String("2022-10-23T00:00:00.000Z"),
-            Description: syncforpayables.String("saepe"),
-            ID: syncforpayables.String("189dbb30-fcb3-43ea-855b-197cd44e2f52"),
             JournalLines: []shared.JournalLine{
                 shared.JournalLine{
-                    AccountRef: &shared.AccountRef{
-                        ID: syncforpayables.String("d82d3513-bb6f-448b-a56b-cdb35ff2e4b2"),
-                        Name: syncforpayables.String("Audrey Durgan"),
-                    },
-                    Currency: syncforpayables.String("rem"),
-                    Description: syncforpayables.String("eligendi"),
-                    NetAmount: types.MustNewDecimalFromString("8536.06"),
+                    AccountRef: &shared.AccountRef{},
+                    NetAmount: types.MustNewDecimalFromString("4893.82"),
                     Tracking: &shared.JournalLineTracking{
                         RecordRefs: []shared.RecordRef{
                             shared.RecordRef{
                                 DataType: syncforpayables.String("accountTransaction"),
-                                ID: syncforpayables.String("e7319c17-7d52-45f7-bb11-4eeb52ff785f"),
                             },
                         },
                     },
                 },
             },
             JournalRef: &shared.JournalRef{
-                ID: "c37814d4-c98e-40c2-bb89-eb75dad636c6",
-                Name: syncforpayables.String("Mrs. Donna Hand"),
+                AdditionalProperties: map[string]interface{}{
+                    "Extended": "South",
+                },
+                ID: "<ID>",
             },
-            Metadata: &shared.Metadata{
-                IsDeleted: syncforpayables.Bool(false),
-            },
+            Metadata: &shared.Metadata{},
             ModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
             PostedOn: syncforpayables.String("2022-10-23T00:00:00.000Z"),
             RecordRef: &shared.JournalEntryRecordReference{
-                DataType: syncforpayables.String("accountTransaction"),
-                ID: syncforpayables.String("31180f73-9ae9-4e05-beb8-09e2810331f3"),
+                DataType: syncforpayables.String("invoice"),
             },
             SourceModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "atque": map[string]interface{}{
-                        "beatae": "at",
+                    "abnormally": map[string]interface{}{
+                        "deposit": "evolve",
                     },
                 },
             },
@@ -93,7 +85,6 @@ func main() {
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: syncforpayables.Int(794988),
     })
     if err != nil {
         log.Fatal(err)

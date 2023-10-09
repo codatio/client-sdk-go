@@ -8,8 +8,10 @@ import (
 )
 
 type DeleteBillPaymentRequest struct {
+	// Unique identifier for a bill payment.
 	BillPaymentID string `pathParam:"style=simple,explode=false,name=billPaymentId"`
-	CompanyID     string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a company.
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
 func (o *DeleteBillPaymentRequest) GetBillPaymentID() string {
@@ -27,13 +29,16 @@ func (o *DeleteBillPaymentRequest) GetCompanyID() string {
 }
 
 type DeleteBillPaymentResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
 	// OK
 	PushOperation *shared.PushOperation
-	StatusCode    int
-	RawResponse   *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *DeleteBillPaymentResponse) GetContentType() string {

@@ -27,12 +27,9 @@ func main() {
             CurrentBalance: types.MustNewDecimalFromString("0"),
             Description: syncforpayables.String("Invoices the business has issued but has not yet collected payment on."),
             FullyQualifiedCategory: syncforpayables.String("Asset.Current"),
-            FullyQualifiedName: syncforpayables.String("Fixed Asset"),
+            FullyQualifiedName: syncforpayables.String("Cash On Hand"),
             ID: syncforpayables.String("1b6266d1-1e44-46c5-8eb5-a8f98e03124e"),
-            IsBankAccount: syncforpayables.Bool(false),
-            Metadata: &shared.Metadata{
-                IsDeleted: syncforpayables.Bool(false),
-            },
+            Metadata: &shared.Metadata{},
             ModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
             Name: syncforpayables.String("Accounts Receivable"),
             NominalCode: syncforpayables.String("610"),
@@ -42,15 +39,13 @@ func main() {
             ValidDatatypeLinks: []shared.AccountValidDataTypeLinks{
                 shared.AccountValidDataTypeLinks{
                     Links: []string{
-                        "unde",
+                        "Money",
                     },
-                    Property: syncforpayables.String("nulla"),
                 },
             },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: syncforpayables.Int(544883),
     })
     if err != nil {
         log.Fatal(err)

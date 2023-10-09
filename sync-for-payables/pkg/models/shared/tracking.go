@@ -24,7 +24,9 @@ func (o *TrackingCustomerRef) GetID() string {
 }
 
 type TrackingProjectReference struct {
-	ID   string  `json:"id"`
+	// Unique identifier to the project reference.
+	ID string `json:"id"`
+	// The project's name.
 	Name *string `json:"name,omitempty"`
 }
 
@@ -44,9 +46,11 @@ func (o *TrackingProjectReference) GetName() *string {
 
 // Tracking - Categories, and a project and customer, against which the item is tracked.
 type Tracking struct {
-	CategoryRefs []TrackingCategoryRef     `json:"categoryRefs"`
-	CustomerRef  *TrackingCustomerRef      `json:"customerRef,omitempty"`
-	IsBilledTo   BilledToType              `json:"isBilledTo"`
+	CategoryRefs []TrackingCategoryRef `json:"categoryRefs"`
+	CustomerRef  *TrackingCustomerRef  `json:"customerRef,omitempty"`
+	// Defines if the invoice or credit note is billed/rebilled to a project or customer.
+	IsBilledTo BilledToType `json:"isBilledTo"`
+	// Defines if the invoice or credit note is billed/rebilled to a project or customer.
 	IsRebilledTo BilledToType              `json:"isRebilledTo"`
 	ProjectRef   *TrackingProjectReference `json:"projectRef,omitempty"`
 }

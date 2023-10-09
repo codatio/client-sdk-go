@@ -1,4 +1,5 @@
 # Companies
+(*Companies*)
 
 ## Overview
 
@@ -40,7 +41,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Companies.Create(ctx, shared.CompanyRequestBody{
+    res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
         Description: syncforpayables.String("Requested early access to the new financing scheme."),
         Name: "Bank of Dave",
     })
@@ -202,7 +203,6 @@ func main() {
         OrderBy: syncforpayables.String("-modifiedDate"),
         Page: syncforpayables.Int(1),
         PageSize: syncforpayables.Int(100),
-        Query: syncforpayables.String("quas"),
     })
     if err != nil {
         log.Fatal(err)

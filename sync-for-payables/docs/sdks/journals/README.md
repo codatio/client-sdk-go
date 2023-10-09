@@ -1,4 +1,5 @@
 # Journals
+(*Journals*)
 
 ## Overview
 
@@ -48,22 +49,12 @@ func main() {
     res, err := s.Journals.Create(ctx, operations.CreateJournalRequest{
         Journal: &shared.Journal{
             CreatedOn: syncforpayables.String("2022-10-23T00:00:00.000Z"),
-            HasChildren: syncforpayables.Bool(false),
-            ID: syncforpayables.String("00b607f3-c93c-473b-9da3-f2ceda7e23f2"),
-            JournalCode: syncforpayables.String("explicabo"),
-            Metadata: &shared.Metadata{
-                IsDeleted: syncforpayables.Bool(false),
-            },
+            Metadata: &shared.Metadata{},
             ModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
-            Name: syncforpayables.String("Dr. Elaine Bernhard"),
-            ParentID: syncforpayables.String("delectus"),
             SourceModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
-            Status: shared.JournalStatusArchived.ToPointer(),
-            Type: syncforpayables.String("in"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: syncforpayables.Int(349993),
     })
     if err != nil {
         log.Fatal(err)
@@ -123,7 +114,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Journals.Get(ctx, operations.GetJournalRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        JournalID: "labore",
+        JournalID: "Northeast Hatchback Kia",
     })
     if err != nil {
         log.Fatal(err)
@@ -246,7 +237,6 @@ func main() {
         OrderBy: syncforpayables.String("-modifiedDate"),
         Page: syncforpayables.Int(1),
         PageSize: syncforpayables.Int(100),
-        Query: syncforpayables.String("numquam"),
     })
     if err != nil {
         log.Fatal(err)
