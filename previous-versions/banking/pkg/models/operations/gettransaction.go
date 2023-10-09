@@ -8,7 +8,9 @@ import (
 )
 
 type GetTransactionRequest struct {
-	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a company.
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a connection.
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 	// The unique identifier for a transaction
 	TransactionID string `pathParam:"style=simple,explode=false,name=transactionId"`
@@ -36,8 +38,11 @@ func (o *GetTransactionRequest) GetTransactionID() string {
 }
 
 type GetTransactionResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
-	StatusCode  int
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Success
 	Transaction *shared.Transaction

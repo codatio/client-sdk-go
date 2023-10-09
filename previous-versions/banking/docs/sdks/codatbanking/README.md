@@ -1,5 +1,6 @@
 # CodatBanking SDK
 
+
 ## Overview
 
 Codat's Banking API allows you to access standardised data from over bank accounts via third party providers.
