@@ -2,32 +2,9 @@
 
 package shared
 
-import (
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/utils"
-)
-
 type PushValidationInfo struct {
-	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
-	Information          []PushFieldValidation  `json:"information,omitempty"`
-	Warnings             []PushFieldValidation  `json:"warnings,omitempty"`
-}
-
-func (p PushValidationInfo) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(p, "", false)
-}
-
-func (p *PushValidationInfo) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *PushValidationInfo) GetAdditionalProperties() map[string]interface{} {
-	if o == nil {
-		return nil
-	}
-	return o.AdditionalProperties
+	Information []PushFieldValidation `json:"information,omitempty"`
+	Warnings    []PushFieldValidation `json:"warnings,omitempty"`
 }
 
 func (o *PushValidationInfo) GetInformation() []PushFieldValidation {

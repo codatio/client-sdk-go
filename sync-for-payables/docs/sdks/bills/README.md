@@ -107,31 +107,27 @@ func main() {
                 },
             },
             PurchaseOrderRefs: []shared.BillPurchaseOrderReference{
-                shared.BillPurchaseOrderReference{
-                    AdditionalProperties: map[string]interface{}{
-                        "technology": "East",
-                    },
-                },
+                shared.BillPurchaseOrderReference{},
             },
             SourceModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
-            Status: shared.BillStatusOpen,
-            SubTotal: types.MustNewDecimalFromString("899.64"),
+            Status: shared.BillStatusDraft,
+            SubTotal: types.MustNewDecimalFromString("0.86"),
             SupplementalData: &shared.BillSupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "male": map[string]interface{}{
-                        "SUV": "quantify",
+                    "deposit": map[string]interface{}{
+                        "evolve": "male",
                     },
                 },
             },
             SupplierRef: &shared.SupplierRef{
                 ID: "<ID>",
             },
-            TaxAmount: types.MustNewDecimalFromString("8275.63"),
-            TotalAmount: types.MustNewDecimalFromString("7524.38"),
+            TaxAmount: types.MustNewDecimalFromString("8559.52"),
+            TotalAmount: types.MustNewDecimalFromString("8165.88"),
             WithholdingTax: []shared.BillWithholdingTax{
                 shared.BillWithholdingTax{
-                    Amount: types.MustNewDecimalFromString("4915.7"),
-                    Name: "National Durham after",
+                    Amount: types.MustNewDecimalFromString("5519.29"),
+                    Name: "Polestar mobile",
                 },
             },
         },
@@ -767,35 +763,31 @@ func main() {
                 },
             },
             PurchaseOrderRefs: []shared.BillPurchaseOrderReference{
-                shared.BillPurchaseOrderReference{
-                    AdditionalProperties: map[string]interface{}{
-                        "cheater": "Islands",
-                    },
-                },
+                shared.BillPurchaseOrderReference{},
             },
             SourceModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
-            Status: shared.BillStatusPartiallyPaid,
-            SubTotal: types.MustNewDecimalFromString("3691.82"),
+            Status: shared.BillStatusUnknown,
+            SubTotal: types.MustNewDecimalFromString("540.62"),
             SupplementalData: &shared.BillSupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "extend": map[string]interface{}{
-                        "Plastic": "Carolina",
+                    "Cotton": map[string]interface{}{
+                        "extend": "Plastic",
                     },
                 },
             },
             SupplierRef: &shared.SupplierRef{
                 ID: "<ID>",
             },
-            TaxAmount: types.MustNewDecimalFromString("9936.8"),
-            TotalAmount: types.MustNewDecimalFromString("8898.38"),
+            TaxAmount: types.MustNewDecimalFromString("1395.79"),
+            TotalAmount: types.MustNewDecimalFromString("6447.13"),
             WithholdingTax: []shared.BillWithholdingTax{
                 shared.BillWithholdingTax{
-                    Amount: types.MustNewDecimalFromString("3451.87"),
-                    Name: "East",
+                    Amount: types.MustNewDecimalFromString("7892.75"),
+                    Name: "immediately implement JBOD",
                 },
             },
         },
-        BillID: "9wg4lep4ush5cxs79pl8sozmsndbaukll3ind4g7buqbm1h2",
+        BillID: "EILBDVJVNUAGVKRQ",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
