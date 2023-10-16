@@ -2,35 +2,12 @@
 
 package shared
 
-import (
-	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/utils"
-)
-
 // AccountingJournalEntryJournalReference - Links journal entries to the relevant journal in accounting integrations that use multi-book accounting (multiple journals).
 type AccountingJournalEntryJournalReference struct {
-	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// GUID of the underlying journal.
 	ID string `json:"id"`
 	// Name of journal
 	Name *string `json:"name,omitempty"`
-}
-
-func (a AccountingJournalEntryJournalReference) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(a, "", false)
-}
-
-func (a *AccountingJournalEntryJournalReference) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *AccountingJournalEntryJournalReference) GetAdditionalProperties() map[string]interface{} {
-	if o == nil {
-		return nil
-	}
-	return o.AdditionalProperties
 }
 
 func (o *AccountingJournalEntryJournalReference) GetID() string {

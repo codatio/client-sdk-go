@@ -2,34 +2,11 @@
 
 package shared
 
-import (
-	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/utils"
-)
-
 type FeesSupplier struct {
-	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// Selected supplier id from the list of supplier records on the accounting software.
 	SelectedSupplierID *string `json:"selectedSupplierId,omitempty"`
 	// List of supplier options from the list of supplier records on the accounting software.
 	SupplierOptions []Option `json:"supplierOptions,omitempty"`
-}
-
-func (f FeesSupplier) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(f, "", false)
-}
-
-func (f *FeesSupplier) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &f, "", false, false); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *FeesSupplier) GetAdditionalProperties() map[string]interface{} {
-	if o == nil {
-		return nil
-	}
-	return o.AdditionalProperties
 }
 
 func (o *FeesSupplier) GetSelectedSupplierID() *string {

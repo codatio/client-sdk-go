@@ -2,32 +2,9 @@
 
 package shared
 
-import (
-	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/utils"
-)
-
 type GroupingLevels struct {
-	AdditionalProperties map[string]interface{}     `additionalProperties:"true" json:"-"`
-	InvoiceLevel         *InvoiceLevelSelection     `json:"invoiceLevel,omitempty"`
-	InvoiceLineLevel     *InvoiceLineLevelSelection `json:"invoiceLineLevel,omitempty"`
-}
-
-func (g GroupingLevels) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(g, "", false)
-}
-
-func (g *GroupingLevels) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *GroupingLevels) GetAdditionalProperties() map[string]interface{} {
-	if o == nil {
-		return nil
-	}
-	return o.AdditionalProperties
+	InvoiceLevel     *InvoiceLevelSelection     `json:"invoiceLevel,omitempty"`
+	InvoiceLineLevel *InvoiceLineLevelSelection `json:"invoiceLineLevel,omitempty"`
 }
 
 func (o *GroupingLevels) GetInvoiceLevel() *InvoiceLevelSelection {

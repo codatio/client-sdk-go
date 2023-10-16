@@ -58,22 +58,21 @@ func main() {
                     Amount: types.MustNewDecimalFromString("9211.94"),
                     Links: []shared.PaymentLineLink{
                         shared.PaymentLineLink{
-                            AdditionalProperties: map[string]interface{}{
-                                "Romaguera": "property",
-                            },
-                            Type: shared.PaymentLinkTypeInvoice,
+                            Type: shared.PaymentLinkTypeUnlinked,
                         },
                     },
                 },
             },
             Metadata: &shared.Metadata{},
             ModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
-            PaymentMethodRef: syncforcommerceversion1.String("Reduced"),
+            PaymentMethodRef: &shared.PaymentMethodRef{
+                ID: "<ID>",
+            },
             SourceModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "polymerize": map[string]interface{}{
-                        "Terbium": "East",
+                    "Diesel": map[string]interface{}{
+                        "property": "Reduced",
                     },
                 },
             },

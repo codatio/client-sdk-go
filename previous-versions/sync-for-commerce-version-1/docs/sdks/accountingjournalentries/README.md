@@ -61,22 +61,19 @@ func main() {
                 },
             },
             JournalRef: &shared.AccountingJournalEntryJournalReference{
-                AdditionalProperties: map[string]interface{}{
-                    "Tungsten": "Northwest",
-                },
                 ID: "<ID>",
             },
             Metadata: &shared.Metadata{},
             ModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
             PostedOn: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
             RecordRef: &shared.AccountingJournalEntryRecordReference{
-                DataType: syncforcommerceversion1.String("accountTransaction"),
+                DataType: syncforcommerceversion1.String("journalEntry"),
             },
             SourceModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "Investor": map[string]interface{}{
-                        "jell": "Fiona",
+                    "Minivan": map[string]interface{}{
+                        "bypassing": "Investor",
                     },
                 },
             },
