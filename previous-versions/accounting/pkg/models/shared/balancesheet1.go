@@ -2,10 +2,6 @@
 
 package shared
 
-import (
-	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/utils"
-)
-
 // BalanceSheet1 - > View the coverage for balance sheet in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=balanceSheet" target="_blank">Data coverage explorer</a>.
 //
 // ## Overview
@@ -25,7 +21,6 @@ import (
 // **Want to pull this in a standardised structure?**
 // Our [Enhanced Financials](https://docs.codat.io/assess/enhanced-financials/overview) endpoints provide the same report under standardized headings, allowing you to pull it in the same format for all of your business customers.
 type BalanceSheet1 struct {
-	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code, e.g. _GBP_.
 	//
 	// ## Unknown currencies
@@ -76,24 +71,6 @@ type BalanceSheet1 struct {
 	MostRecentAvailableMonth *string `json:"mostRecentAvailableMonth,omitempty"`
 	// An array of balance sheet reports.
 	Reports []BalanceSheet `json:"reports"`
-}
-
-func (b BalanceSheet1) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(b, "", false)
-}
-
-func (b *BalanceSheet1) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &b, "", false, false); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *BalanceSheet1) GetAdditionalProperties() map[string]interface{} {
-	if o == nil {
-		return nil
-	}
-	return o.AdditionalProperties
 }
 
 func (o *BalanceSheet1) GetCurrency() string {

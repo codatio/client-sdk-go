@@ -68,12 +68,14 @@ func main() {
             Metadata: &shared.Metadata{},
             ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
             Note: accounting.String("Bill Payment against bill c13e37b6-dfaa-4894-b3be-9fe97bda9f44"),
-            PaymentMethodRef: accounting.String("South"),
+            PaymentMethodRef: &shared.PaymentMethodRef{
+                ID: "<ID>",
+            },
             SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "grey": map[string]interface{}{
-                        "technology": "East",
+                    "blue": map[string]interface{}{
+                        "shred": "abnormally",
                     },
                 },
             },

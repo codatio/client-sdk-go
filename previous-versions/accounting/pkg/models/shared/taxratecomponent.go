@@ -9,7 +9,6 @@ import (
 
 // TaxRateComponent - A tax rate can be made up of multiple sub taxes, often called components of the tax.
 type TaxRateComponent struct {
-	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// A flag to indicate with the tax is calculated using the principle of compounding.
 	IsCompound bool `json:"isCompound"`
 	// Name of the tax rate component.
@@ -27,13 +26,6 @@ func (t *TaxRateComponent) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
-}
-
-func (o *TaxRateComponent) GetAdditionalProperties() map[string]interface{} {
-	if o == nil {
-		return nil
-	}
-	return o.AdditionalProperties
 }
 
 func (o *TaxRateComponent) GetIsCompound() bool {

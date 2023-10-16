@@ -61,22 +61,21 @@ func main() {
                     Amount: types.MustNewDecimalFromString("8592.13"),
                     Links: []shared.PaymentLineLink{
                         shared.PaymentLineLink{
-                            AdditionalProperties: map[string]interface{}{
-                                "Money": "blue",
-                            },
-                            Type: shared.PaymentLinkTypeDiscount,
+                            Type: shared.PaymentLinkTypeOther,
                         },
                     },
                 },
             },
             Metadata: &shared.Metadata{},
             ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
-            PaymentMethodRef: accounting.String("abnormally"),
+            PaymentMethodRef: &shared.PaymentMethodRef{
+                ID: "<ID>",
+            },
             SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "orange": map[string]interface{}{
-                        "Northwest": "fuchsia",
+                    "blue": map[string]interface{}{
+                        "shred": "abnormally",
                     },
                 },
             },
