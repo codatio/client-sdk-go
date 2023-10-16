@@ -82,8 +82,8 @@ pkg/models/shared/locationref.go
 pkg/models/shared/commercecustomerref.go
 pkg/models/shared/orders.go
 pkg/models/shared/payment.go
+pkg/models/shared/paymentmethodref.go
 pkg/models/shared/paymentmethod.go
-pkg/models/shared/paymentmethodstatus.go
 pkg/models/shared/payments.go
 pkg/models/shared/paymentmethods.go
 pkg/models/shared/product.go
@@ -182,8 +182,9 @@ docs/models/shared/locationref.md
 docs/models/shared/commercecustomerref.md
 docs/models/shared/orders.md
 docs/models/shared/payment.md
-docs/models/shared/paymentmethod.md
+docs/models/shared/paymentmethodref.md
 docs/models/shared/paymentmethodstatus.md
+docs/models/shared/paymentmethod.md
 docs/models/shared/payments.md
 docs/models/shared/paymentmethods.md
 docs/models/shared/product.md

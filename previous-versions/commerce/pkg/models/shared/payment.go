@@ -66,9 +66,10 @@ type Payment struct {
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	DueDate *string `json:"dueDate,omitempty"`
 	// A unique, persistent identifier for this record
-	ID               string      `json:"id"`
-	ModifiedDate     *string     `json:"modifiedDate,omitempty"`
-	PaymentMethodRef interface{} `json:"paymentMethodRef,omitempty"`
+	ID           string  `json:"id"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
+	// The payment method the record is linked to in the accounting or commerce platform.
+	PaymentMethodRef *PaymentMethodRef `json:"paymentMethodRef,omitempty"`
 	// Service provider of the payment, if applicable.
 	PaymentProvider    *string `json:"paymentProvider,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
@@ -129,7 +130,7 @@ func (o *Payment) GetModifiedDate() *string {
 	return o.ModifiedDate
 }
 
-func (o *Payment) GetPaymentMethodRef() interface{} {
+func (o *Payment) GetPaymentMethodRef() *PaymentMethodRef {
 	if o == nil {
 		return nil
 	}

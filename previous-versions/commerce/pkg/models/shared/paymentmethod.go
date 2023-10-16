@@ -2,6 +2,42 @@
 
 package shared
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
+// PaymentMethodStatus - Status of the Payment Method.
+type PaymentMethodStatus string
+
+const (
+	PaymentMethodStatusUnknown  PaymentMethodStatus = "Unknown"
+	PaymentMethodStatusActive   PaymentMethodStatus = "Active"
+	PaymentMethodStatusArchived PaymentMethodStatus = "Archived"
+)
+
+func (e PaymentMethodStatus) ToPointer() *PaymentMethodStatus {
+	return &e
+}
+
+func (e *PaymentMethodStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Unknown":
+		fallthrough
+	case "Active":
+		fallthrough
+	case "Archived":
+		*e = PaymentMethodStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentMethodStatus: %v", v)
+	}
+}
+
 // PaymentMethod - A Payment Method represents the payment method(s) used to make payments.
 //
 // Explore our [data coverage](https://knowledge.codat.io/supported-features/commerce?view=tab-by-data-type&dataType=commerce-paymentMethods) for this data type.
@@ -12,7 +48,7 @@ type PaymentMethod struct {
 	// The name of the PaymentMethod
 	Name               *string `json:"name,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
-	// Status of the Payment Method
+	// Status of the Payment Method.
 	Status *PaymentMethodStatus `json:"status,omitempty"`
 }
 
