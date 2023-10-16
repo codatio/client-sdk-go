@@ -65,9 +65,6 @@ func main() {
                 },
             },
             JournalRef: &shared.JournalRef{
-                AdditionalProperties: map[string]interface{}{
-                    "Extended": "South",
-                },
                 ID: "<ID>",
             },
             Metadata: &shared.Metadata{},
@@ -79,8 +76,8 @@ func main() {
             SourceModifiedDate: syncforpayroll.String("2022-10-23T00:00:00.000Z"),
             SupplementalData: &shared.JournalEntrySupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "abnormally": map[string]interface{}{
-                        "deposit": "evolve",
+                    "blue": map[string]interface{}{
+                        "shred": "abnormally",
                     },
                 },
             },
