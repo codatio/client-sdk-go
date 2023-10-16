@@ -97,5 +97,3 @@ func main() {
 * [ListSyncs](docs/sdks/syncstatus/README.md#listsyncs) - List sync statuses
 
 ### [TransactionStatus](docs/sdks/transactionstatus/README.md)
-
-* [GetSyncTransaction](docs/sdks/transactionstatus/README.md#getsynctransaction) - Get Sync Transaction

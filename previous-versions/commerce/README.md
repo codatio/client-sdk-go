@@ -100,5 +100,3 @@ func main() {
 * [List](docs/sdks/taxcomponents/README.md#list) - List tax components
 
 ### [Transactions](docs/sdks/transactions/README.md)
-
-* [Get](docs/sdks/transactions/README.md#get) - Get transaction

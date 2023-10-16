@@ -134,5 +134,3 @@ func main() {
 * [RefreshDataType](docs/sdks/managedata/README.md#refreshdatatype) - Refresh data type
 
 ### [TrackingCategories](docs/sdks/trackingcategories/README.md)
-
-* [Get](docs/sdks/trackingcategories/README.md#get) - Get tracking categories

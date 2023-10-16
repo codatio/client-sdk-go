@@ -108,4 +108,3 @@ func main() {
 ### [Webhooks](docs/sdks/webhooks/README.md)
 
 * [Create](docs/sdks/webhooks/README.md#create) - Create webhook
-* [Get](docs/sdks/webhooks/README.md#get) - Get webhook

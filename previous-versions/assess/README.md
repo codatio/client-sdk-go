@@ -85,4 +85,3 @@ func main() {
 * [GetEnhancedInvoicesReport](docs/sdks/reports/README.md#getenhancedinvoicesreport) - Get enhanced invoices report
 * [GetLoanSummary](docs/sdks/reports/README.md#getloansummary) - Get enhanced loan summaries
 * [GetRecurringRevenueMetrics](docs/sdks/reports/README.md#getrecurringrevenuemetrics) - Get key subscription revenue metrics
-* [ListLoanTransactions](docs/sdks/reports/README.md#listloantransactions) - List enhanced loan transactions
