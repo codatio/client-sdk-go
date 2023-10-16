@@ -61,17 +61,6 @@ func main() {
     ctx := context.Background()
     res, err := s.SourceAccounts.Create(ctx, operations.CreateSourceAccountRequest{
         SourceAccount: &shared.SourceAccount{
-            AdditionalProperties: map[string]interface{}{
-                "accountName": "bluetooth",
-                "sortCode": "Extended",
-                "accountType": "South",
-                "currency": "shred",
-                "status": "abnormally",
-                "id": "deposit",
-                "accountNumber": "evolve",
-                "balance": "male",
-                "modifiedDate": "SUV",
-            },
             Currency: bankfeeds.String("USD"),
             FeedStartDate: bankfeeds.String("2022-10-23T00:00:00.000Z"),
             ID: "<ID>",
@@ -357,17 +346,6 @@ func main() {
     ctx := context.Background()
     res, err := s.SourceAccounts.Update(ctx, operations.UpdateSourceAccountRequest{
         SourceAccount: &shared.SourceAccount{
-            AdditionalProperties: map[string]interface{}{
-                "accountName": "New",
-                "balance": "Reactive",
-                "modifiedDate": "dock",
-                "status": "Quality",
-                "id": "redundant",
-                "sortCode": "cheater",
-                "accountType": "Islands",
-                "accountNumber": "online",
-                "currency": "dynamic",
-            },
             Currency: bankfeeds.String("EUR"),
             FeedStartDate: bankfeeds.String("2022-10-23T00:00:00.000Z"),
             ID: "<ID>",

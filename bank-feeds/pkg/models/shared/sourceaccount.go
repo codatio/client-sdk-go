@@ -9,7 +9,6 @@ import (
 
 // SourceAccount - The target bank account in a supported accounting package for ingestion into a bank feed.
 type SourceAccount struct {
-	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// The bank account name.
 	AccountName *string `json:"accountName,omitempty"`
 	// The account number.
@@ -83,13 +82,6 @@ func (s *SourceAccount) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
-}
-
-func (o *SourceAccount) GetAdditionalProperties() map[string]interface{} {
-	if o == nil {
-		return nil
-	}
-	return o.AdditionalProperties
 }
 
 func (o *SourceAccount) GetAccountName() *string {

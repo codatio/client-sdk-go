@@ -4,13 +4,11 @@ package operations
 
 import (
 	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/utils"
 	"net/http"
 )
 
 // CreateBankAccountMappingBankFeedAccountMapping - A bank feed connection between a source account and a target account.
 type CreateBankAccountMappingBankFeedAccountMapping struct {
-	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -35,24 +33,6 @@ type CreateBankAccountMappingBankFeedAccountMapping struct {
 	SourceAccountID *string `json:"sourceAccountId,omitempty"`
 	// Unique ID for the target account
 	TargetAccountID *string `json:"targetAccountId,omitempty"`
-}
-
-func (c CreateBankAccountMappingBankFeedAccountMapping) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(c, "", false)
-}
-
-func (c *CreateBankAccountMappingBankFeedAccountMapping) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *CreateBankAccountMappingBankFeedAccountMapping) GetAdditionalProperties() map[string]interface{} {
-	if o == nil {
-		return nil
-	}
-	return o.AdditionalProperties
 }
 
 func (o *CreateBankAccountMappingBankFeedAccountMapping) GetFeedStartDate() *string {
