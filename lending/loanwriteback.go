@@ -8,6 +8,7 @@ type loanWriteback struct {
 	BankTransactions *loanWritebackBankTransactions
 	CreateOperations *loanWritebackCreateOperations
 	DirectCosts      *loanWritebackDirectCosts
+	Payments         *loanWritebackPayments
 	Suppliers        *loanWritebackSuppliers
 	Transfers        *loanWritebackTransfers
 
@@ -22,6 +23,7 @@ func newLoanWriteback(sdkConfig sdkConfiguration) *loanWriteback {
 		BankTransactions: newLoanWritebackBankTransactions(sdkConfig),
 		CreateOperations: newLoanWritebackCreateOperations(sdkConfig),
 		DirectCosts:      newLoanWritebackDirectCosts(sdkConfig),
+		Payments:         newLoanWritebackPayments(sdkConfig),
 		Suppliers:        newLoanWritebackSuppliers(sdkConfig),
 		Transfers:        newLoanWritebackTransfers(sdkConfig),
 	}

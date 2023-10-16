@@ -58,15 +58,12 @@ func main() {
                     Quantity: types.MustNewDecimalFromString("6384.24"),
                     TaxRateRef: &shared.TaxRateRef{},
                     Tracking: &shared.Tracking{
-                        AdditionalProperties: map[string]interface{}{
-                            "Extended": "South",
-                        },
                         InvoiceTo: &shared.RecordRef{
                             DataType: lending.String("transfer"),
                         },
                         RecordRefs: []shared.RecordRef{
                             shared.RecordRef{
-                                DataType: lending.String("transfer"),
+                                DataType: lending.String("invoice"),
                             },
                         },
                     },
@@ -75,7 +72,7 @@ func main() {
                             ID: "<ID>",
                         },
                     },
-                    UnitAmount: types.MustNewDecimalFromString("3768.44"),
+                    UnitAmount: types.MustNewDecimalFromString("2884.08"),
                 },
             },
             Metadata: &shared.Metadata{},
@@ -88,22 +85,22 @@ func main() {
                     },
                     Payment: shared.PaymentAllocationPayment{
                         AccountRef: &shared.AccountRef{},
-                        Currency: lending.String("USD"),
+                        Currency: lending.String("EUR"),
                         PaidOnDate: lending.String("2022-10-23T00:00:00.000Z"),
                     },
                 },
             },
             SourceModifiedDate: lending.String("2022-10-23T00:00:00.000Z"),
-            SubTotal: types.MustNewDecimalFromString("899.64"),
+            SubTotal: types.MustNewDecimalFromString("9510.62"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "male": map[string]interface{}{
-                        "SUV": "quantify",
+                    "abnormally": map[string]interface{}{
+                        "deposit": "evolve",
                     },
                 },
             },
-            TaxAmount: types.MustNewDecimalFromString("8275.63"),
-            TotalAmount: types.MustNewDecimalFromString("7524.38"),
+            TaxAmount: types.MustNewDecimalFromString("7150.4"),
+            TotalAmount: types.MustNewDecimalFromString("7926.2"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",

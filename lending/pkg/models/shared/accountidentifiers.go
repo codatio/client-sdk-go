@@ -2,13 +2,8 @@
 
 package shared
 
-import (
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/utils"
-)
-
 // AccountIdentifiers - An object containing bank account identification information.
 type AccountIdentifiers struct {
-	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// The local (usually national) routing number for the account.
 	//
 	// This is known by different names in different countries:
@@ -28,24 +23,6 @@ type AccountIdentifiers struct {
 	Subtype *string `json:"subtype,omitempty"`
 	// Type of account
 	Type AccountIdentifierType `json:"type"`
-}
-
-func (a AccountIdentifiers) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(a, "", false)
-}
-
-func (a *AccountIdentifiers) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *AccountIdentifiers) GetAdditionalProperties() map[string]interface{} {
-	if o == nil {
-		return nil
-	}
-	return o.AdditionalProperties
 }
 
 func (o *AccountIdentifiers) GetBankCode() *string {

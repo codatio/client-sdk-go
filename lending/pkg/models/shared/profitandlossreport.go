@@ -8,9 +8,8 @@ import (
 )
 
 type ProfitAndLossReport struct {
-	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
-	CostOfSales          *ReportLine            `json:"costOfSales,omitempty"`
-	Expenses             *ReportLine            `json:"expenses,omitempty"`
+	CostOfSales *ReportLine `json:"costOfSales,omitempty"`
+	Expenses    *ReportLine `json:"expenses,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -73,13 +72,6 @@ func (p *ProfitAndLossReport) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
-}
-
-func (o *ProfitAndLossReport) GetAdditionalProperties() map[string]interface{} {
-	if o == nil {
-		return nil
-	}
-	return o.AdditionalProperties
 }
 
 func (o *ProfitAndLossReport) GetCostOfSales() *ReportLine {

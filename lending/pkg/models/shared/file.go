@@ -2,12 +2,7 @@
 
 package shared
 
-import (
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/utils"
-)
-
 type File struct {
-	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// An optional display name for the file.
 	DisplayName *string `json:"displayName,omitempty"`
 	// The file's name.
@@ -34,24 +29,6 @@ type File struct {
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	Uploaded *string `json:"uploaded,omitempty"`
-}
-
-func (f File) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(f, "", false)
-}
-
-func (f *File) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &f, "", false, false); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *File) GetAdditionalProperties() map[string]interface{} {
-	if o == nil {
-		return nil
-	}
-	return o.AdditionalProperties
 }
 
 func (o *File) GetDisplayName() *string {

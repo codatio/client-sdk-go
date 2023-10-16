@@ -2,35 +2,12 @@
 
 package shared
 
-import (
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/utils"
-)
-
 type Tracking struct {
-	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// Links the current record to the underlying record or data type that created it.
 	//
 	// For example, if a journal entry is generated based on an invoice, this property allows you to connect the journal entry to the underlying invoice in our data model.
 	InvoiceTo  *RecordRef  `json:"invoiceTo,omitempty"`
 	RecordRefs []RecordRef `json:"recordRefs"`
-}
-
-func (t Tracking) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(t, "", false)
-}
-
-func (t *Tracking) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &t, "", false, false); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *Tracking) GetAdditionalProperties() map[string]interface{} {
-	if o == nil {
-		return nil
-	}
-	return o.AdditionalProperties
 }
 
 func (o *Tracking) GetInvoiceTo() *RecordRef {

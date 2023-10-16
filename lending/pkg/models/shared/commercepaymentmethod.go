@@ -2,6 +2,42 @@
 
 package shared
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
+// CommercePaymentMethodStatus - Status of the Payment Method.
+type CommercePaymentMethodStatus string
+
+const (
+	CommercePaymentMethodStatusUnknown  CommercePaymentMethodStatus = "Unknown"
+	CommercePaymentMethodStatusActive   CommercePaymentMethodStatus = "Active"
+	CommercePaymentMethodStatusArchived CommercePaymentMethodStatus = "Archived"
+)
+
+func (e CommercePaymentMethodStatus) ToPointer() *CommercePaymentMethodStatus {
+	return &e
+}
+
+func (e *CommercePaymentMethodStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Unknown":
+		fallthrough
+	case "Active":
+		fallthrough
+	case "Archived":
+		*e = CommercePaymentMethodStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CommercePaymentMethodStatus: %v", v)
+	}
+}
+
 // CommercePaymentMethod - A Payment Method represents the payment method(s) used to make payments.
 //
 // Explore our [data coverage](https://knowledge.codat.io/supported-features/commerce?view=tab-by-data-type&dataType=commerce-paymentMethods) for this data type.
@@ -12,8 +48,8 @@ type CommercePaymentMethod struct {
 	// The name of the PaymentMethod
 	Name               *string `json:"name,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
-	// Status of the Payment Method
-	Status *PaymentMethodStatus `json:"status,omitempty"`
+	// Status of the Payment Method.
+	Status *CommercePaymentMethodStatus `json:"status,omitempty"`
 }
 
 func (o *CommercePaymentMethod) GetID() string {
@@ -44,7 +80,7 @@ func (o *CommercePaymentMethod) GetSourceModifiedDate() *string {
 	return o.SourceModifiedDate
 }
 
-func (o *CommercePaymentMethod) GetStatus() *PaymentMethodStatus {
+func (o *CommercePaymentMethod) GetStatus() *CommercePaymentMethodStatus {
 	if o == nil {
 		return nil
 	}

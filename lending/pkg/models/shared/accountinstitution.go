@@ -2,35 +2,12 @@
 
 package shared
 
-import (
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/utils"
-)
-
 // AccountInstitution - The bank or other financial institution providing the account.
 type AccountInstitution struct {
-	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// The institution's ID, according to the provider.
 	ID *string `json:"id,omitempty"`
 	// The institution's name, according to the underlying provider.
 	Name *string `json:"name,omitempty"`
-}
-
-func (a AccountInstitution) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(a, "", false)
-}
-
-func (a *AccountInstitution) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *AccountInstitution) GetAdditionalProperties() map[string]interface{} {
-	if o == nil {
-		return nil
-	}
-	return o.AdditionalProperties
 }
 
 func (o *AccountInstitution) GetID() *string {

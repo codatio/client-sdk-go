@@ -35,6 +35,7 @@ loanwritebackbankaccounts.go
 loanwritebackbanktransactions.go
 loanwritebackcreateoperations.go
 loanwritebackdirectcosts.go
+loanwritebackpayments.go
 loanwritebacksuppliers.go
 loanwritebacktransfers.go
 loanwriteback.go
@@ -171,6 +172,8 @@ pkg/models/operations/getcreateoperation.go
 pkg/models/operations/listcreateoperations.go
 pkg/models/operations/createdirectcost.go
 pkg/models/operations/getcreatedirectcostsmodel.go
+pkg/models/operations/createpayment.go
+pkg/models/operations/getcreatepaymentsmodel.go
 pkg/models/operations/createsupplier.go
 pkg/models/operations/getcreateupdatesuppliersmodel.go
 pkg/models/operations/createtransfer.go
@@ -288,6 +291,7 @@ pkg/models/shared/billedtotype.go
 pkg/models/shared/accountingcustomerref.go
 pkg/models/shared/accountingbillcreditnotes.go
 pkg/models/shared/accountingbillpayment.go
+pkg/models/shared/paymentmethodref.go
 pkg/models/shared/billpaymentline.go
 pkg/models/shared/billpaymentlinelink.go
 pkg/models/shared/billpaymentlinelinktype.go
@@ -403,6 +407,7 @@ pkg/models/shared/accountingdirectcost.go
 pkg/models/shared/directcostlineitem.go
 pkg/models/shared/tracking.go
 pkg/models/shared/recordref.go
+pkg/models/shared/accountingcreatepaymentresponse.go
 pkg/models/shared/accountingcreatesupplierresponse.go
 pkg/models/shared/accountingcreatetransferresponse.go
 pkg/models/shared/accountingtransfer.go
@@ -442,7 +447,6 @@ pkg/models/shared/locationref.go
 pkg/models/shared/commercecustomerref.go
 pkg/models/shared/commerceorders.go
 pkg/models/shared/commercepaymentmethod.go
-pkg/models/shared/paymentmethodstatus.go
 pkg/models/shared/commercepaymentmethods.go
 pkg/models/shared/commercepayment.go
 pkg/models/shared/commercepayments.go
@@ -674,6 +678,10 @@ docs/models/operations/createdirectcostrequest.md
 docs/models/operations/createdirectcostresponse.md
 docs/models/operations/getcreatedirectcostsmodelrequest.md
 docs/models/operations/getcreatedirectcostsmodelresponse.md
+docs/models/operations/createpaymentrequest.md
+docs/models/operations/createpaymentresponse.md
+docs/models/operations/getcreatepaymentsmodelrequest.md
+docs/models/operations/getcreatepaymentsmodelresponse.md
 docs/models/operations/createsupplierrequest.md
 docs/models/operations/createsupplierresponse.md
 docs/models/operations/getcreateupdatesuppliersmodelrequest.md
@@ -842,6 +850,7 @@ docs/models/shared/billedtotype.md
 docs/models/shared/accountingcustomerref.md
 docs/models/shared/accountingbillcreditnotes.md
 docs/models/shared/accountingbillpayment.md
+docs/models/shared/paymentmethodref.md
 docs/models/shared/billpaymentline.md
 docs/models/shared/billpaymentlinelink.md
 docs/models/shared/billpaymentlinelinktype.md
@@ -965,6 +974,7 @@ docs/models/shared/accountingdirectcost.md
 docs/models/shared/directcostlineitem.md
 docs/models/shared/tracking.md
 docs/models/shared/recordref.md
+docs/models/shared/accountingcreatepaymentresponse.md
 docs/models/shared/accountingcreatesupplierresponse.md
 docs/models/shared/accountingcreatetransferresponse.md
 docs/models/shared/accountingtransfercontactref.md
@@ -1008,8 +1018,8 @@ docs/models/shared/orderdiscountallocation.md
 docs/models/shared/locationref.md
 docs/models/shared/commercecustomerref.md
 docs/models/shared/commerceorders.md
+docs/models/shared/commercepaymentmethodstatus.md
 docs/models/shared/commercepaymentmethod.md
-docs/models/shared/paymentmethodstatus.md
 docs/models/shared/commercepaymentmethods.md
 docs/models/shared/commercepayment.md
 docs/models/shared/commercepayments.md
@@ -1091,6 +1101,7 @@ docs/sdks/loanwritebackbankaccounts/README.md
 docs/sdks/loanwritebackbanktransactions/README.md
 docs/sdks/loanwritebackcreateoperations/README.md
 docs/sdks/loanwritebackdirectcosts/README.md
+docs/sdks/loanwritebackpayments/README.md
 docs/sdks/loanwritebacksuppliers/README.md
 docs/sdks/loanwritebacktransfers/README.md
 docs/sdks/managedata/README.md

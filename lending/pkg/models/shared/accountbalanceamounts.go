@@ -9,7 +9,6 @@ import (
 
 // AccountBalanceAmounts - Depending on the data provided by the underlying bank, not all balances are always available.
 type AccountBalanceAmounts struct {
-	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// The balance available in the account, including any pending transactions. This doesn't include additional funds available from any overdrafts.
 	Available *decimal.Big `decimal:"number" json:"available,omitempty"`
 	// The balance of the account only including cleared transactions.
@@ -27,13 +26,6 @@ func (a *AccountBalanceAmounts) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
-}
-
-func (o *AccountBalanceAmounts) GetAdditionalProperties() map[string]interface{} {
-	if o == nil {
-		return nil
-	}
-	return o.AdditionalProperties
 }
 
 func (o *AccountBalanceAmounts) GetAvailable() *decimal.Big {

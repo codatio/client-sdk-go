@@ -195,8 +195,8 @@ type AccountingBillPayment struct {
 	Metadata     *Metadata         `json:"metadata,omitempty"`
 	ModifiedDate *string           `json:"modifiedDate,omitempty"`
 	// Additional information associated with the payment.
-	Note             *string     `json:"note,omitempty"`
-	PaymentMethodRef interface{} `json:"paymentMethodRef,omitempty"`
+	Note             *string           `json:"note,omitempty"`
+	PaymentMethodRef *PaymentMethodRef `json:"paymentMethodRef,omitempty"`
 	// Additional information associated with the payment.
 	Reference          *string `json:"reference,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
@@ -283,7 +283,7 @@ func (o *AccountingBillPayment) GetNote() *string {
 	return o.Note
 }
 
-func (o *AccountingBillPayment) GetPaymentMethodRef() interface{} {
+func (o *AccountingBillPayment) GetPaymentMethodRef() *PaymentMethodRef {
 	if o == nil {
 		return nil
 	}
