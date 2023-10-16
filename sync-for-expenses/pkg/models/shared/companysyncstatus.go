@@ -2,12 +2,7 @@
 
 package shared
 
-import (
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/utils"
-)
-
 type CompanySyncStatus struct {
-	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// Unique identifier for your SMB in Codat.
 	CompanyID *string `json:"companyId,omitempty"`
 	// Boolean of whether the sync resulted in data being pushed.
@@ -42,24 +37,6 @@ type CompanySyncStatus struct {
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	SyncUtc *string `json:"syncUtc,omitempty"`
-}
-
-func (c CompanySyncStatus) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(c, "", false)
-}
-
-func (c *CompanySyncStatus) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *CompanySyncStatus) GetAdditionalProperties() map[string]interface{} {
-	if o == nil {
-		return nil
-	}
-	return o.AdditionalProperties
 }
 
 func (o *CompanySyncStatus) GetCompanyID() *string {

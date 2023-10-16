@@ -5,7 +5,6 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/utils"
 )
 
 // AccountMappingInfoAccountType - Type of the account.
@@ -91,7 +90,6 @@ func (e *AccountMappingInfoValidTransactionTypes) UnmarshalJSON(data []byte) err
 }
 
 type AccountMappingInfo struct {
-	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// Type of the account.
 	AccountType *AccountMappingInfoAccountType `json:"accountType,omitempty"`
 	// Currency of the account.
@@ -102,24 +100,6 @@ type AccountMappingInfo struct {
 	Name *string `json:"name,omitempty"`
 	// Supported transaction types for the account.
 	ValidTransactionTypes []AccountMappingInfoValidTransactionTypes `json:"validTransactionTypes,omitempty"`
-}
-
-func (a AccountMappingInfo) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(a, "", false)
-}
-
-func (a *AccountMappingInfo) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *AccountMappingInfo) GetAdditionalProperties() map[string]interface{} {
-	if o == nil {
-		return nil
-	}
-	return o.AdditionalProperties
 }
 
 func (o *AccountMappingInfo) GetAccountType() *AccountMappingInfoAccountType {

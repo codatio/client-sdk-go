@@ -35,9 +35,7 @@ import(
 
 func main() {
     s := syncforexpenses.New(
-        syncforexpenses.WithSecurity(shared.Security{
-            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
-        }),
+        syncforexpenses.WithSecurity("Basic BASE_64_ENCODED(API_KEY)"),
     )
 
     ctx := context.Background()
@@ -89,9 +87,7 @@ import(
 
 func main() {
     s := syncforexpenses.New(
-        syncforexpenses.WithSecurity(shared.Security{
-            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
-        }),
+        syncforexpenses.WithSecurity("Basic BASE_64_ENCODED(API_KEY)"),
     )
 
     ctx := context.Background()
@@ -141,9 +137,7 @@ import(
 
 func main() {
     s := syncforexpenses.New(
-        syncforexpenses.WithSecurity(shared.Security{
-            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
-        }),
+        syncforexpenses.WithSecurity("Basic BASE_64_ENCODED(API_KEY)"),
     )
 
     ctx := context.Background()
@@ -193,9 +187,7 @@ import(
 
 func main() {
     s := syncforexpenses.New(
-        syncforexpenses.WithSecurity(shared.Security{
-            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
-        }),
+        syncforexpenses.WithSecurity("Basic BASE_64_ENCODED(API_KEY)"),
     )
 
     ctx := context.Background()
@@ -247,9 +239,7 @@ import(
 
 func main() {
     s := syncforexpenses.New(
-        syncforexpenses.WithSecurity(shared.Security{
-            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
-        }),
+        syncforexpenses.WithSecurity("Basic BASE_64_ENCODED(API_KEY)"),
     )
 
     ctx := context.Background()

@@ -55,7 +55,6 @@ func (e *TaxRateMappingInfoValidTransactionTypes) UnmarshalJSON(data []byte) err
 }
 
 type TaxRateMappingInfo struct {
-	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// Code for the tax rate from the accounting platform.
 	Code *string `json:"code,omitempty"`
 	// Effective tax rate.
@@ -79,13 +78,6 @@ func (t *TaxRateMappingInfo) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
-}
-
-func (o *TaxRateMappingInfo) GetAdditionalProperties() map[string]interface{} {
-	if o == nil {
-		return nil
-	}
-	return o.AdditionalProperties
 }
 
 func (o *TaxRateMappingInfo) GetCode() *string {

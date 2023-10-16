@@ -7,7 +7,6 @@ import (
 )
 
 type Transaction struct {
-	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// Type of transaction that has been processed e.g. Expense or Bank Feed.
 	IntegrationType *IntegrationType `default:"expenses" json:"integrationType"`
 	// Metadata such as validation errors or the resulting record created in the accounting software.
@@ -27,13 +26,6 @@ func (t *Transaction) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
-}
-
-func (o *Transaction) GetAdditionalProperties() map[string]interface{} {
-	if o == nil {
-		return nil
-	}
-	return o.AdditionalProperties
 }
 
 func (o *Transaction) GetIntegrationType() *IntegrationType {
