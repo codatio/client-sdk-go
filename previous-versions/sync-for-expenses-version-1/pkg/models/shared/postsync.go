@@ -2,31 +2,8 @@
 
 package shared
 
-import (
-	"github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1/pkg/utils"
-)
-
 type PostSync struct {
-	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
-	DatasetIds           []string               `json:"datasetIds,omitempty"`
-}
-
-func (p PostSync) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(p, "", false)
-}
-
-func (p *PostSync) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *PostSync) GetAdditionalProperties() map[string]interface{} {
-	if o == nil {
-		return nil
-	}
-	return o.AdditionalProperties
+	DatasetIds []string `json:"datasetIds,omitempty"`
 }
 
 func (o *PostSync) GetDatasetIds() []string {
