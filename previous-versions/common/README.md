@@ -17,33 +17,34 @@ go get github.com/codatio/client-sdk-go/previous-versions/common
 ```go
 package main
 
-import(
+import (
 	"context"
-	"log"
 	"github.com/codatio/client-sdk-go/previous-versions/common"
 	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
+	"log"
 )
 
 func main() {
-    s := common.New(
-        common.WithSecurity(shared.Security{
-            AuthHeader: "",
-        }),
-    )
+	s := common.New(
+		common.WithSecurity(shared.Security{
+			AuthHeader: "",
+		}),
+	)
 
-    ctx := context.Background()
-    res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
-        Description: common.String("Requested early access to the new financing scheme."),
-        Name: "Bank of Dave",
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
+	ctx := context.Background()
+	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
+		Description: common.String("Requested early access to the new financing scheme."),
+		Name:        "Bank of Dave",
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
 
-    if res.Company != nil {
-        // handle response
-    }
+	if res.Company != nil {
+		// handle response
+	}
 }
+
 ```
 <!-- End SDK Example Usage -->
 
@@ -113,8 +114,6 @@ func main() {
 
 
 <!-- Start Dev Containers -->
-
-
 
 <!-- End Dev Containers -->
 
