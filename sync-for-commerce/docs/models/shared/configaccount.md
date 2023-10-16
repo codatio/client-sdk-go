@@ -7,7 +7,6 @@ G/L account object for configuration.
 
 | Field                                                    | Type                                                     | Required                                                 | Description                                              |
 | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| `AdditionalProperties`                                   | map[string]*interface{}*                                 | :heavy_minus_sign:                                       | N/A                                                      |
 | `AccountOptions`                                         | [][AccountOption](../../models/shared/accountoption.md)  | :heavy_minus_sign:                                       | Object containing account options.                       |
 | `DescriptionText`                                        | **string*                                                | :heavy_minus_sign:                                       | Descriprtive text for sales configuration section.       |
 | `LabelText`                                              | **string*                                                | :heavy_minus_sign:                                       | Label text for sales configuration section.              |

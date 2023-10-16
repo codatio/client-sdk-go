@@ -2,12 +2,7 @@
 
 package shared
 
-import (
-	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/utils"
-)
-
 type NewTaxRates struct {
-	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// Array of accounting tax rate options.
 	AccountingTaxRateOptions []Option `json:"accountingTaxRateOptions,omitempty"`
 	// Array of tax component options.
@@ -18,24 +13,6 @@ type NewTaxRates struct {
 	SelectedDefaultZeroTaxRateID *string `json:"selectedDefaultZeroTaxRateId,omitempty"`
 	// Array of tax component to rate mapppings.
 	TaxRateMappings []TaxRateMapping `json:"taxRateMappings,omitempty"`
-}
-
-func (n NewTaxRates) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(n, "", false)
-}
-
-func (n *NewTaxRates) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &n, "", false, false); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *NewTaxRates) GetAdditionalProperties() map[string]interface{} {
-	if o == nil {
-		return nil
-	}
-	return o.AdditionalProperties
 }
 
 func (o *NewTaxRates) GetAccountingTaxRateOptions() []Option {

@@ -2,12 +2,7 @@
 
 package shared
 
-import (
-	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/utils"
-)
-
 type SyncSummarySyncDateRangeUtc struct {
-	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -50,24 +45,6 @@ type SyncSummarySyncDateRangeUtc struct {
 	Start *string `json:"start,omitempty"`
 }
 
-func (s SyncSummarySyncDateRangeUtc) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(s, "", false)
-}
-
-func (s *SyncSummarySyncDateRangeUtc) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *SyncSummarySyncDateRangeUtc) GetAdditionalProperties() map[string]interface{} {
-	if o == nil {
-		return nil
-	}
-	return o.AdditionalProperties
-}
-
 func (o *SyncSummarySyncDateRangeUtc) GetFinish() *string {
 	if o == nil {
 		return nil
@@ -83,7 +60,6 @@ func (o *SyncSummarySyncDateRangeUtc) GetStart() *string {
 }
 
 type SyncSummary struct {
-	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// Unique identifier for the sync in Codat.
 	CommerceSyncID *string `json:"commerceSyncId,omitempty"`
 	// Unique identifier for your SMB in Codat.
@@ -121,24 +97,6 @@ type SyncSummary struct {
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	SyncUtc *string `json:"syncUtc,omitempty"`
-}
-
-func (s SyncSummary) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(s, "", false)
-}
-
-func (s *SyncSummary) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *SyncSummary) GetAdditionalProperties() map[string]interface{} {
-	if o == nil {
-		return nil
-	}
-	return o.AdditionalProperties
 }
 
 func (o *SyncSummary) GetCommerceSyncID() *string {
