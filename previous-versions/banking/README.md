@@ -73,5 +73,3 @@ func main() {
 * [List](docs/sdks/transactioncategories/README.md#list) - List transaction categories
 
 ### [Transactions](docs/sdks/transactions/README.md)
-
-* [Get](docs/sdks/transactions/README.md#get) - Get bank transaction

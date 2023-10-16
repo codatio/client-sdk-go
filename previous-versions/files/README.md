@@ -55,5 +55,3 @@ func main() {
 
 
 ### [Files](docs/sdks/files/README.md)
-
-* [DownloadFiles](docs/sdks/files/README.md#downloadfiles) - Download all files for a company

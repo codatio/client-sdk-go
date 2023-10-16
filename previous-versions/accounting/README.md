@@ -255,4 +255,3 @@ func main() {
 
 * [Create](docs/sdks/transfers/README.md#create) - Create transfer
 * [Get](docs/sdks/transfers/README.md#get) - Get transfer
-* [GetCreateModel](docs/sdks/transfers/README.md#getcreatemodel) - Get create transfer model
