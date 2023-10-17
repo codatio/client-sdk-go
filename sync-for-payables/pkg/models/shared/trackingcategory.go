@@ -135,14 +135,15 @@ package shared
 //
 // If a tracking category has a parent category, the ID of that parent category is displayed. There is also a `hasChildren` field that shows whether there are child subcategories nested beneath.
 type TrackingCategory struct {
-	// Boolean value indicating whether this category has SubCategories
+	// Boolean value indicating whether this category has SubCategories.
 	HasChildren *bool `json:"hasChildren,omitempty"`
-	// The identifier for the item, unique per tracking category
-	ID           *string `json:"id,omitempty"`
-	ModifiedDate *string `json:"modifiedDate,omitempty"`
-	// The name of the tracking category
+	// The identifier for the item, unique per tracking category.
+	ID           *string   `json:"id,omitempty"`
+	Metadata     *Metadata `json:"metadata,omitempty"`
+	ModifiedDate *string   `json:"modifiedDate,omitempty"`
+	// The name of the tracking category.
 	Name *string `json:"name,omitempty"`
-	// The identifier for this item's immediate parent
+	// The identifier for this item's immediate parent.
 	ParentID           *string `json:"parentId,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Current state of the tracking category.
@@ -161,6 +162,13 @@ func (o *TrackingCategory) GetID() *string {
 		return nil
 	}
 	return o.ID
+}
+
+func (o *TrackingCategory) GetMetadata() *Metadata {
+	if o == nil {
+		return nil
+	}
+	return o.Metadata
 }
 
 func (o *TrackingCategory) GetModifiedDate() *string {

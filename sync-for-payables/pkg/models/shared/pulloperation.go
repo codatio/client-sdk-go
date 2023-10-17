@@ -7,6 +7,7 @@ import (
 	"fmt"
 )
 
+// PullOperationStatus - The current status of the pull operation.
 type PullOperationStatus string
 
 const (
@@ -100,13 +101,8 @@ func (e *PullOperationStatus) UnmarshalJSON(data []byte) error {
 // PullOperation - Information about a queued, in progress or completed pull operation.
 // *Formally called `dataset`*
 type PullOperation struct {
-	CompanyID    string `json:"companyId"`
-	ConnectionID string `json:"connectionId"`
-	DataType     string `json:"dataType"`
-	ID           string `json:"id"`
-	IsCompleted  bool   `json:"isCompleted"`
-	IsErrored    bool   `json:"isErrored"`
-	Progress     int64  `json:"progress"`
+	// Unique identifier of the company associated to this pull operation.
+	CompanyID string `json:"companyId"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -126,8 +122,43 @@ type PullOperation struct {
 	// >
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	Requested string              `json:"requested"`
-	Status    PullOperationStatus `json:"status"`
+	Completed *string `json:"completed,omitempty"`
+	// Unique identifier of the connection associated to this pull operation.
+	ConnectionID string `json:"connectionId"`
+	// Available Data types
+	DataType DataType `json:"dataType"`
+	// A message about a transient or persistent error.
+	ErrorMessage *string `json:"errorMessage,omitempty"`
+	// Unique identifier of the pull operation.
+	ID string `json:"id"`
+	// `True` if the pull operation completed successfully.
+	IsCompleted bool `json:"isCompleted"`
+	// `True` if the pull operation entered an error state.
+	IsErrored bool `json:"isErrored"`
+	// An integer signifying the progress of the pull operation.
+	Progress int64 `json:"progress"`
+	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
+	//
+	// ```
+	// 2020-10-08T22:40:50Z
+	// 2021-01-01T00:00:00
+	// ```
+	//
+	//
+	//
+	// When syncing data that contains `DateTime` fields from Codat, make sure you support the following cases when reading time information:
+	//
+	// - Coordinated Universal Time (UTC): `2021-11-15T06:00:00Z`
+	// - Unqualified local time: `2021-11-15T01:00:00`
+	// - UTC time offsets: `2021-11-15T01:00:00-05:00`
+	//
+	// > Time zones
+	// >
+	// > Not all dates from Codat will contain information about time zones.
+	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
+	Requested string `json:"requested"`
+	// The current status of the pull operation.
+	Status PullOperationStatus `json:"status"`
 }
 
 func (o *PullOperation) GetCompanyID() string {
@@ -137,6 +168,13 @@ func (o *PullOperation) GetCompanyID() string {
 	return o.CompanyID
 }
 
+func (o *PullOperation) GetCompleted() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Completed
+}
+
 func (o *PullOperation) GetConnectionID() string {
 	if o == nil {
 		return ""
@@ -144,11 +182,18 @@ func (o *PullOperation) GetConnectionID() string {
 	return o.ConnectionID
 }
 
-func (o *PullOperation) GetDataType() string {
+func (o *PullOperation) GetDataType() DataType {
 	if o == nil {
-		return ""
+		return DataType("")
 	}
 	return o.DataType
+}
+
+func (o *PullOperation) GetErrorMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *PullOperation) GetID() string {

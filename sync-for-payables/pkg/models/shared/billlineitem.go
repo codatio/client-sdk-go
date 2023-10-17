@@ -3,9 +3,67 @@
 package shared
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
+
+// BillLineItemRecordLineReferenceDataType - Allowed name of the 'dataType'.
+type BillLineItemRecordLineReferenceDataType string
+
+const (
+	BillLineItemRecordLineReferenceDataTypePurchaseOrders BillLineItemRecordLineReferenceDataType = "purchaseOrders"
+)
+
+func (e BillLineItemRecordLineReferenceDataType) ToPointer() *BillLineItemRecordLineReferenceDataType {
+	return &e
+}
+
+func (e *BillLineItemRecordLineReferenceDataType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "purchaseOrders":
+		*e = BillLineItemRecordLineReferenceDataType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for BillLineItemRecordLineReferenceDataType: %v", v)
+	}
+}
+
+// BillLineItemRecordLineReference - Reference to the purchase order line this line was generated from.
+type BillLineItemRecordLineReference struct {
+	// Allowed name of the 'dataType'.
+	DataType *BillLineItemRecordLineReferenceDataType `json:"dataType,omitempty"`
+	// 'id' of the underlying record.
+	ID *string `json:"id,omitempty"`
+	// Line number of the underlying record.
+	LineNumber *string `json:"lineNumber,omitempty"`
+}
+
+func (o *BillLineItemRecordLineReference) GetDataType() *BillLineItemRecordLineReferenceDataType {
+	if o == nil {
+		return nil
+	}
+	return o.DataType
+}
+
+func (o *BillLineItemRecordLineReference) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *BillLineItemRecordLineReference) GetLineNumber() *string {
+	if o == nil {
+		return nil
+	}
+	return o.LineNumber
+}
 
 type BillLineItem struct {
 	// Data types that reference an account, for example bill and invoice line items, use an accountRef that includes the ID and name of the linked account.
@@ -15,11 +73,17 @@ type BillLineItem struct {
 	// Numerical value of any discounts applied.
 	//
 	// Do not use to apply discounts in Oracle NetSuite—see Oracle NetSuite integration reference.
-	DiscountAmount     *decimal.Big `decimal:"number" json:"discountAmount,omitempty"`
+	DiscountAmount *decimal.Big `decimal:"number" json:"discountAmount,omitempty"`
+	// Percentage rate of any discount applied to the bill.
 	DiscountPercentage *decimal.Big `decimal:"number" json:"discountPercentage,omitempty"`
-	IsDirectCost       *bool        `json:"isDirectCost,omitempty"`
+	// The bill is a direct cost if `True`.
+	IsDirectCost *bool `json:"isDirectCost,omitempty"`
 	// Reference to the item the line is linked to.
 	ItemRef *ItemRef `json:"itemRef,omitempty"`
+	// The bill line's number.
+	LineNumber *string `json:"lineNumber,omitempty"`
+	// Reference to the purchase order line this line was generated from.
+	PurchaseOrderLineRef *BillLineItemRecordLineReference `json:"purchaseOrderLineRef,omitempty"`
 	// Number of units of goods or services received.
 	Quantity *decimal.Big `decimal:"number" json:"quantity"`
 	// Amount of the line, inclusive of discounts but exclusive of tax.
@@ -98,6 +162,20 @@ func (o *BillLineItem) GetItemRef() *ItemRef {
 		return nil
 	}
 	return o.ItemRef
+}
+
+func (o *BillLineItem) GetLineNumber() *string {
+	if o == nil {
+		return nil
+	}
+	return o.LineNumber
+}
+
+func (o *BillLineItem) GetPurchaseOrderLineRef() *BillLineItemRecordLineReference {
+	if o == nil {
+		return nil
+	}
+	return o.PurchaseOrderLineRef
 }
 
 func (o *BillLineItem) GetQuantity() *decimal.Big {

@@ -45,6 +45,10 @@ type TaxRate struct {
 	// - `Archived` - A tax rate that has been archived or is inactive in the accounting platform.
 	// - `Unknown` - Where the status of the tax rate cannot be determined from the underlying platform.
 	Status *TaxRateStatus `json:"status,omitempty"`
+	// Supplemental data is additional data you can include in our standard data types.
+	//
+	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
+	SupplementalData *SupplementalData `json:"supplementalData,omitempty"`
 	// Total (not compounded) sum of the components of a tax rate.
 	TotalTaxRate       *decimal.Big              `decimal:"number" json:"totalTaxRate,omitempty"`
 	ValidDatatypeLinks []ValidDatatypeLinksitems `json:"validDatatypeLinks,omitempty"`
@@ -122,6 +126,13 @@ func (o *TaxRate) GetStatus() *TaxRateStatus {
 		return nil
 	}
 	return o.Status
+}
+
+func (o *TaxRate) GetSupplementalData() *SupplementalData {
+	if o == nil {
+		return nil
+	}
+	return o.SupplementalData
 }
 
 func (o *TaxRate) GetTotalTaxRate() *decimal.Big {

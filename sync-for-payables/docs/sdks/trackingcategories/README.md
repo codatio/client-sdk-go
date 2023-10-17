@@ -1,4 +1,5 @@
 # TrackingCategories
+(*TrackingCategories*)
 
 ## Overview
 
@@ -43,7 +44,7 @@ func main() {
     ctx := context.Background()
     res, err := s.TrackingCategories.Get(ctx, operations.GetTrackingCategoryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        TrackingCategoryID: "debitis",
+        TrackingCategoryID: "Northeast Hatchback Kia",
     })
     if err != nil {
         log.Fatal(err)
@@ -104,7 +105,6 @@ func main() {
         OrderBy: syncforpayables.String("-modifiedDate"),
         Page: syncforpayables.Int(1),
         PageSize: syncforpayables.Int(100),
-        Query: syncforpayables.String("officia"),
     })
     if err != nil {
         log.Fatal(err)

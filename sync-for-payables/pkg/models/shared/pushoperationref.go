@@ -5,7 +5,8 @@ package shared
 type PushOperationRef struct {
 	// Available Data types
 	DataType *DataType `json:"dataType,omitempty"`
-	ID       *string   `json:"id,omitempty"`
+	// Unique identifier for a push operation.
+	ID *string `json:"id,omitempty"`
 }
 
 func (o *PushOperationRef) GetDataType() *DataType {

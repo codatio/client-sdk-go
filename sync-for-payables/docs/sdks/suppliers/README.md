@@ -1,4 +1,5 @@
 # Suppliers
+(*Suppliers*)
 
 ## Overview
 
@@ -50,40 +51,24 @@ func main() {
         Supplier: &shared.Supplier{
             Addresses: []shared.Address{
                 shared.Address{
-                    City: syncforpayables.String("North Tadshire"),
-                    Country: syncforpayables.String("Anguilla"),
-                    Line1: syncforpayables.String("incidunt"),
-                    Line2: syncforpayables.String("qui"),
-                    PostalCode: syncforpayables.String("86113"),
-                    Region: syncforpayables.String("modi"),
-                    Type: shared.AccountingAddressTypeDelivery,
+                    Type: shared.AccountingAddressTypeBilling,
                 },
             },
-            ContactName: syncforpayables.String("voluptatibus"),
-            DefaultCurrency: syncforpayables.String("molestias"),
-            EmailAddress: syncforpayables.String("officia"),
-            ID: syncforpayables.String("b8366c72-3ffd-4a9e-86be-e4825c1fc0e1"),
-            Metadata: &shared.Metadata{
-                IsDeleted: syncforpayables.Bool(false),
-            },
+            Metadata: &shared.Metadata{},
             ModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
-            Phone: syncforpayables.String("+44 25691 154789"),
-            RegistrationNumber: syncforpayables.String("optio"),
+            Phone: syncforpayables.String("(877) 492-8687"),
             SourceModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
-            Status: shared.SupplierStatusUnknown,
+            Status: shared.SupplierStatusActive,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "facilis": map[string]interface{}{
-                        "reiciendis": "a",
+                    "innovative": map[string]interface{}{
+                        "blue": "shred",
                     },
                 },
             },
-            SupplierName: syncforpayables.String("iste"),
-            TaxNumber: syncforpayables.String("dicta"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: syncforpayables.Int(552439),
     })
     if err != nil {
         log.Fatal(err)
@@ -143,7 +128,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Suppliers.Get(ctx, operations.GetSupplierRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        SupplierID: "ullam",
+        SupplierID: "Northeast Hatchback Kia",
     })
     if err != nil {
         log.Fatal(err)
@@ -266,7 +251,6 @@ func main() {
         OrderBy: syncforpayables.String("-modifiedDate"),
         Page: syncforpayables.Int(1),
         PageSize: syncforpayables.Int(100),
-        Query: syncforpayables.String("dolore"),
     })
     if err != nil {
         log.Fatal(err)
@@ -330,42 +314,25 @@ func main() {
         Supplier: &shared.Supplier{
             Addresses: []shared.Address{
                 shared.Address{
-                    City: syncforpayables.String("Fort Rafael"),
-                    Country: syncforpayables.String("Eritrea"),
-                    Line1: syncforpayables.String("consequuntur"),
-                    Line2: syncforpayables.String("assumenda"),
-                    PostalCode: syncforpayables.String("97785-9054"),
-                    Region: syncforpayables.String("esse"),
-                    Type: shared.AccountingAddressTypeBilling,
+                    Type: shared.AccountingAddressTypeDelivery,
                 },
             },
-            ContactName: syncforpayables.String("odio"),
-            DefaultCurrency: syncforpayables.String("nesciunt"),
-            EmailAddress: syncforpayables.String("debitis"),
-            ID: syncforpayables.String("63562a7b-408f-405e-bd48-fdaf313a1f5f"),
-            Metadata: &shared.Metadata{
-                IsDeleted: syncforpayables.Bool(false),
-            },
+            Metadata: &shared.Metadata{},
             ModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
             Phone: syncforpayables.String("(877) 492-8687"),
-            RegistrationNumber: syncforpayables.String("incidunt"),
             SourceModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
             Status: shared.SupplierStatusActive,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "cupiditate": map[string]interface{}{
-                        "optio": "alias",
+                    "male": map[string]interface{}{
+                        "Metal": "cheater",
                     },
                 },
             },
-            SupplierName: syncforpayables.String("quidem"),
-            TaxNumber: syncforpayables.String("nesciunt"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        ForceUpdate: syncforpayables.Bool(false),
-        SupplierID: "commodi",
-        TimeoutInMinutes: syncforpayables.Int(956124),
+        SupplierID: "Cotton",
     })
     if err != nil {
         log.Fatal(err)
