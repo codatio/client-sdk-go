@@ -8,9 +8,11 @@ import (
 )
 
 type DeleteSourceAccountRequest struct {
-	// Unique identifier for an account
-	AccountID    string `pathParam:"style=simple,explode=false,name=accountId"`
-	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for an account.
+	AccountID string `pathParam:"style=simple,explode=false,name=accountId"`
+	// Unique identifier for a company.
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a connection.
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
@@ -36,11 +38,14 @@ func (o *DeleteSourceAccountRequest) GetConnectionID() string {
 }
 
 type DeleteSourceAccountResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
-	StatusCode   int
-	RawResponse  *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *DeleteSourceAccountResponse) GetContentType() string {
