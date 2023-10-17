@@ -1,4 +1,5 @@
 # Connections
+(*Connections*)
 
 ## Overview
 
@@ -17,7 +18,7 @@ Manage your companies' data connections.
 
 ﻿Creates a connection for the company by providing a valid `platformKey`. 
 
-Use the [List Integrations](https://docs.codat.io/codat-api#/operations/list-integrations) endpoint to access valid platform keys. 
+Use the [List Integrations](https://docs.codat.io/platform-api#/operations/list-integrations) endpoint to access valid platform keys. 
 
 ### Example Usage
 
@@ -33,8 +34,8 @@ import(
 )
 
 func main() {
-    s := codatcommon.New(
-        codatcommon.WithSecurity(shared.Security{
+    s := common.New(
+        common.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
@@ -42,7 +43,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Connections.Create(ctx, operations.CreateConnectionRequest{
         RequestBody: &operations.CreateConnectionRequestBody{
-            PlatformKey: codatcommon.String("provident"),
+            PlatformKey: common.String("gbol"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
@@ -89,8 +90,8 @@ import(
 )
 
 func main() {
-    s := codatcommon.New(
-        codatcommon.WithSecurity(shared.Security{
+    s := common.New(
+        common.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
@@ -142,8 +143,8 @@ import(
 )
 
 func main() {
-    s := codatcommon.New(
-        codatcommon.WithSecurity(shared.Security{
+    s := common.New(
+        common.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
@@ -195,8 +196,8 @@ import(
 )
 
 func main() {
-    s := codatcommon.New(
-        codatcommon.WithSecurity(shared.Security{
+    s := common.New(
+        common.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
@@ -204,10 +205,9 @@ func main() {
     ctx := context.Background()
     res, err := s.Connections.List(ctx, operations.ListConnectionsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        OrderBy: codatcommon.String("-modifiedDate"),
-        Page: codatcommon.Int(1),
-        PageSize: codatcommon.Int(100),
-        Query: codatcommon.String("distinctio"),
+        OrderBy: common.String("-modifiedDate"),
+        Page: common.Int(1),
+        PageSize: common.Int(100),
     })
     if err != nil {
         log.Fatal(err)
@@ -251,17 +251,15 @@ import(
 )
 
 func main() {
-    s := codatcommon.New(
-        codatcommon.WithSecurity(shared.Security{
+    s := common.New(
+        common.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
 
     ctx := context.Background()
     res, err := s.Connections.Unlink(ctx, operations.UnlinkConnectionRequest{
-        UpdateConnectionStatus: &shared.UpdateConnectionStatus{
-            Status: shared.DataConnectionStatusDeauthorized.ToPointer(),
-        },
+        UpdateConnectionStatus: &shared.UpdateConnectionStatus{},
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -307,8 +305,8 @@ import(
 )
 
 func main() {
-    s := codatcommon.New(
-        codatcommon.WithSecurity(shared.Security{
+    s := common.New(
+        common.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
@@ -316,7 +314,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Connections.UpdateAuthorization(ctx, operations.UpdateConnectionAuthorizationRequest{
         RequestBody: map[string]string{
-            "unde": "nulla",
+            "Neptunium": "Books",
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",

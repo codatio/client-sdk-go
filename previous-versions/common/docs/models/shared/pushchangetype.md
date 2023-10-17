@@ -1,5 +1,7 @@
 # PushChangeType
 
+Type of change being applied to record in third party platform.
+
 
 ## Values
 

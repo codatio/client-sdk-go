@@ -1,4 +1,5 @@
 # Settings
+(*Settings*)
 
 ## Overview
 
@@ -7,7 +8,7 @@ Manage your Codat instance.
 ### Available Operations
 
 * [CreateAPIKey](#createapikey) - Create API key
-* [DeleteAPIKey](#deleteapikey) - Delete api key
+* [DeleteAPIKey](#deleteapikey) - Delete API key
 * [~~GetProfile~~](#getprofile) - Get profile :warning: **Deprecated**
 * [GetSyncSettings](#getsyncsettings) - Get sync settings
 * [ListAPIKeys](#listapikeys) - List API keys
@@ -18,7 +19,7 @@ Manage your Codat instance.
 
 Use the *Create API keys* endpoint to generate a new API key for your client.
 
-[API keys](https://docs.codat.io/codat-api#/schemas/apiKeys) are tokens used to control access to the API. Include this token in the `Authorization` header parameter when making API calls, following the word "Basic" and a space with your API key.
+[API keys](https://docs.codat.io/platform-api#/schemas/apiKeys) are tokens used to control access to the API. Include this token in the `Authorization` header parameter when making API calls, following the word "Basic" and a space with your API key.
 
 You can [read more](https://docs.codat.io/using-the-api/authentication) about authentication at Codat and managing API keys via the Portal UI or API.
 
@@ -41,15 +42,15 @@ import(
 )
 
 func main() {
-    s := codatcommon.New(
-        codatcommon.WithSecurity(shared.Security{
+    s := common.New(
+        common.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
 
     ctx := context.Background()
-    res, err := s.Settings.CreateAPIKey(ctx, shared.CreateAPIKey{
-        Name: codatcommon.String("azure-invoice-finance-processor"),
+    res, err := s.Settings.CreateAPIKey(ctx, &shared.CreateAPIKey{
+        Name: common.String("azure-invoice-finance-processor"),
     })
     if err != nil {
         log.Fatal(err)
@@ -79,7 +80,7 @@ func main() {
 
 Use the *Delete API keys* endpoint to delete an existing API key, providing its valid `id` as a parameter. Note that this operation is not reversible.
 
-[API keys](https://docs.codat.io/accounting-api#/schemas/apiKeys) are tokens used to control access to the API. Include this token in the `Authorization` header parameter when making API calls, following the word "Basic" and a space with your API key.
+[API keys](https://docs.codat.io/platform-api#/schemas/apiKeys) are tokens used to control access to the API. Include this token in the `Authorization` header parameter when making API calls, following the word "Basic" and a space with your API key.
 
 You can [read more](https://docs.codat.io/using-the-api/authentication) about authentication at Codat and managing API keys via the Portal UI or API.
 
@@ -102,8 +103,8 @@ import(
 )
 
 func main() {
-    s := codatcommon.New(
-        codatcommon.WithSecurity(shared.Security{
+    s := common.New(
+        common.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
@@ -155,8 +156,8 @@ import(
 )
 
 func main() {
-    s := codatcommon.New(
-        codatcommon.WithSecurity(shared.Security{
+    s := common.New(
+        common.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
@@ -188,7 +189,7 @@ func main() {
 
 ## GetSyncSettings
 
-Retrieve the sync settings for your client. This includes how often data types should be queued to be updated, and how much history should be fetched.
+Retrieve the [sync settings](https://docs.codat.io/knowledge-base/advanced-sync-settings) for your client. This includes how often data types should be queued to be updated, and how much history should be fetched.
 
 ### Example Usage
 
@@ -203,8 +204,8 @@ import(
 )
 
 func main() {
-    s := codatcommon.New(
-        codatcommon.WithSecurity(shared.Security{
+    s := common.New(
+        common.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
@@ -238,7 +239,7 @@ func main() {
 
 Use the *List API keys* endpoint to return a list of all API keys that currently exist for your client. This includes keys created via the Portal UI or the *Create API keys* endpoint.
 
-[API keys](https://docs.codat.io/accounting-api#/schemas/apiKeys) are tokens used to control access to the API. Include this token in the `Authorization` header parameter when making API calls, following the word "Basic" and a space with your API key.
+[API keys](https://docs.codat.io/platform-api#/schemas/apiKeys) are tokens used to control access to the API. Include this token in the `Authorization` header parameter when making API calls, following the word "Basic" and a space with your API key.
 
 You can [read more](https://docs.codat.io/using-the-api/authentication) about authentication at Codat and managing API keys via the Portal UI or API.
 
@@ -255,8 +256,8 @@ import(
 )
 
 func main() {
-    s := codatcommon.New(
-        codatcommon.WithSecurity(shared.Security{
+    s := common.New(
+        common.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
@@ -303,23 +304,45 @@ import(
 )
 
 func main() {
-    s := codatcommon.New(
-        codatcommon.WithSecurity(shared.Security{
+    s := common.New(
+        common.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
 
     ctx := context.Background()
-    res, err := s.Settings.UpdateProfile(ctx, shared.Profile{
-        AlertAuthHeader: codatcommon.String("Bearer tXEiHiRK7XCtI8TNHbpGs1LI1pumdb4Cl1QIo7B2"),
-        APIKey: codatcommon.String("sartANTjHAkLdbyDfaynoTQb7pkmj6hXHmnQKMrB"),
-        ConfirmCompanyName: codatcommon.Bool(false),
-        IconURL: codatcommon.String("https://client-images.codat.io/icon/042399f5-d104-4f38-9ce8-cac3524f4e88_3f5623af-d992-4c22-bc08-e58c520a8526.ico"),
-        LogoURL: codatcommon.String("https://client-images.codat.io/logo/042399f5-d104-4f38-9ce8-cac3524f4e88_5806cb1f-7342-4c0e-a0a8-99bfbc47b0ff.png"),
+    res, err := s.Settings.UpdateProfile(ctx, &shared.Profile{
+        AlertAuthHeader: common.String("Bearer tXEiHiRK7XCtI8TNHbpGs1LI1pumdb4Cl1QIo7B2"),
+        APIKey: common.String("sartANTjHAkLdbyDfaynoTQb7pkmj6hXHmnQKMrB"),
+        IconURL: common.String("https://client-images.codat.io/icon/042399f5-d104-4f38-9ce8-cac3524f4e88_3f5623af-d992-4c22-bc08-e58c520a8526.ico"),
+        LogoURL: common.String("https://client-images.codat.io/logo/042399f5-d104-4f38-9ce8-cac3524f4e88_5806cb1f-7342-4c0e-a0a8-99bfbc47b0ff.png"),
         Name: "Bob's Burgers",
         RedirectURL: "https://bobs-burgers.{countrySuffix}/{companyId}",
         WhiteListUrls: []string{
-            "https://bobs-burgers.com",
+            "h",
+            "t",
+            "t",
+            "p",
+            "s",
+            ":",
+            "/",
+            "/",
+            "b",
+            "o",
+            "b",
+            "s",
+            "-",
+            "b",
+            "u",
+            "r",
+            "g",
+            "e",
+            "r",
+            "s",
+            ".",
+            "c",
+            "o",
+            "m",
         },
     })
     if err != nil {
@@ -364,25 +387,23 @@ import(
 )
 
 func main() {
-    s := codatcommon.New(
-        codatcommon.WithSecurity(shared.Security{
+    s := common.New(
+        common.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
 
     ctx := context.Background()
-    res, err := s.Settings.UpdateSyncSettings(ctx, operations.UpdateProfileSyncSettingsRequestBody{
-        ClientID: "367f7975-267b-439b-90c6-a6040ee680f3",
-        OverridesDefaults: false,
+    res, err := s.Settings.UpdateSyncSettings(ctx, &operations.UpdateProfileSyncSettingsRequestBody{
+        ClientID: "ce429104-79f0-4085-a720-e2d40fcc800f",
         Settings: []shared.SyncSetting{
             shared.SyncSetting{
-                DataType: shared.SyncSettingDataTypesInvoices,
+                DataType: shared.DataTypeInvoices,
                 FetchOnFirstLink: false,
-                IsLocked: codatcommon.Bool(false),
-                MonthsToSync: codatcommon.Int64(24),
-                SyncFromUtc: codatcommon.String("2022-10-23T00:00:00.000Z"),
-                SyncFromWindow: codatcommon.Int64(24),
-                SyncOrder: 612096,
+                MonthsToSync: common.Int64(24),
+                SyncFromUtc: common.String("2022-10-23T00:00:00.000Z"),
+                SyncFromWindow: common.Int64(24),
+                SyncOrder: 334238,
                 SyncSchedule: 24,
             },
         },

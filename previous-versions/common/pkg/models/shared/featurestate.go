@@ -7,6 +7,7 @@ import (
 	"fmt"
 )
 
+// FeatureState - The current release state of the feature.
 type FeatureState string
 
 const (

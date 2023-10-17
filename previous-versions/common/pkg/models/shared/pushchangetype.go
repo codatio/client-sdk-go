@@ -7,6 +7,7 @@ import (
 	"fmt"
 )
 
+// PushChangeType - Type of change being applied to record in third party platform.
 type PushChangeType string
 
 const (
