@@ -1,4 +1,5 @@
 # BankAccountTransactions
+(*BankAccountTransactions*)
 
 ## Overview
 
@@ -37,8 +38,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -46,22 +47,16 @@ func main() {
     ctx := context.Background()
     res, err := s.BankAccountTransactions.Create(ctx, operations.CreateBankTransactionsRequest{
         CreateBankTransactions: &shared.CreateBankTransactions{
-            AccountID: codataccounting.String("iure"),
+            AccountID: accounting.String("7110701885"),
             Transactions: []shared.CreateBankAccountTransaction{
                 shared.CreateBankAccountTransaction{
-                    Amount: types.MustNewDecimalFromString("2975.34"),
-                    Balance: types.MustNewDecimalFromString("8917.73"),
-                    Date: codataccounting.String("2022-10-23T00:00:00.000Z"),
-                    Description: codataccounting.String("delectus"),
-                    ID: codataccounting.String("467cc879-6ed1-451a-85df-c2ddf7cc78ca"),
+                    Date: accounting.String("2022-10-23T00:00:00.000Z"),
                 },
             },
         },
-        AccountID: "dicta",
-        AllowSyncOnPushComplete: codataccounting.Bool(false),
+        AccountID: "Extended South",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: codataccounting.Int(720633),
     })
     if err != nil {
         log.Fatal(err)
@@ -114,15 +109,15 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
     ctx := context.Background()
     res, err := s.BankAccountTransactions.GetCreateModel(ctx, operations.GetCreateBankTransactionsModelRequest{
-        AccountID: "officia",
+        AccountID: "Northwest",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -175,21 +170,20 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
     ctx := context.Background()
     res, err := s.BankAccountTransactions.List(ctx, operations.ListBankAccountTransactionsRequest{
-        AccountID: "occaecati",
+        AccountID: "Northeast Metal Canada",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        OrderBy: codataccounting.String("-modifiedDate"),
-        Page: codataccounting.Int(1),
-        PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("fugit"),
+        OrderBy: accounting.String("-modifiedDate"),
+        Page: accounting.Int(1),
+        PageSize: accounting.Int(100),
     })
     if err != nil {
         log.Fatal(err)

@@ -5,10 +5,12 @@ package operations
 import (
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/types"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/utils"
 	"net/http"
 )
 
 type GetAgedDebtorsReportRequest struct {
+	// Unique identifier for a company.
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	// Number of periods to include in the report.
 	NumberOfPeriods *int `queryParam:"style=form,explode=true,name=numberOfPeriods"`
@@ -16,6 +18,17 @@ type GetAgedDebtorsReportRequest struct {
 	PeriodLengthDays *int `queryParam:"style=form,explode=true,name=periodLengthDays"`
 	// Date the report is generated up to.
 	ReportDate *types.Date `queryParam:"style=form,explode=true,name=reportDate"`
+}
+
+func (g GetAgedDebtorsReportRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetAgedDebtorsReportRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *GetAgedDebtorsReportRequest) GetCompanyID() string {
@@ -49,11 +62,14 @@ func (o *GetAgedDebtorsReportRequest) GetReportDate() *types.Date {
 type GetAgedDebtorsReportResponse struct {
 	// OK
 	AgedDebtorReport *shared.AgedDebtorReport
-	ContentType      string
+	// HTTP response content type for this operation
+	ContentType string
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
-	StatusCode   int
-	RawResponse  *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *GetAgedDebtorsReportResponse) GetAgedDebtorReport() *shared.AgedDebtorReport {

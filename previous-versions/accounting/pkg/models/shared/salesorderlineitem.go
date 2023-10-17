@@ -3,7 +3,8 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/types"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 type SalesOrderLineItemTracking struct {
@@ -23,16 +24,16 @@ type SalesOrderLineItem struct {
 	// Description of the goods or services that have been ordered.
 	Description *string `json:"description,omitempty"`
 	// Value of any discounts applied.
-	DiscountAmount *types.Decimal `json:"discountAmount,omitempty"`
+	DiscountAmount *decimal.Big `decimal:"number" json:"discountAmount,omitempty"`
 	// Percentage rate (from 0 to 100) of any discounts applied to the unit amount.
-	DiscountPercentage *types.Decimal `json:"discountPercentage,omitempty"`
-	ItemRef            *ItemRef       `json:"itemRef,omitempty"`
+	DiscountPercentage *decimal.Big `decimal:"number" json:"discountPercentage,omitempty"`
+	ItemRef            *ItemRef     `json:"itemRef,omitempty"`
 	// Number of units that have been ordered.
-	Quantity *types.Decimal `json:"quantity,omitempty"`
+	Quantity *decimal.Big `decimal:"number" json:"quantity,omitempty"`
 	// Amount of the line, inclusive of discounts but exclusive of tax.
-	SubTotal *types.Decimal `json:"subTotal,omitempty"`
+	SubTotal *decimal.Big `decimal:"number" json:"subTotal,omitempty"`
 	// Amount of tax for the line.
-	TaxAmount *types.Decimal `json:"taxAmount,omitempty"`
+	TaxAmount *decimal.Big `decimal:"number" json:"taxAmount,omitempty"`
 	// Data types that reference a tax rate, for example invoice and bill line items, use a taxRateRef that includes the ID and name of the linked tax rate.
 	//
 	// Found on:
@@ -45,10 +46,21 @@ type SalesOrderLineItem struct {
 	// - Items
 	TaxRateRef *TaxRateRef `json:"taxRateRef,omitempty"`
 	// Total amount of the line, inclusive of discounts and tax.
-	TotalAmount *types.Decimal              `json:"totalAmount,omitempty"`
+	TotalAmount *decimal.Big                `decimal:"number" json:"totalAmount,omitempty"`
 	Tracking    *SalesOrderLineItemTracking `json:"tracking,omitempty"`
 	// Price of each unit.
-	UnitAmount *types.Decimal `json:"unitAmount,omitempty"`
+	UnitAmount *decimal.Big `decimal:"number" json:"unitAmount,omitempty"`
+}
+
+func (s SalesOrderLineItem) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SalesOrderLineItem) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *SalesOrderLineItem) GetAccountRef() *AccountRef {
@@ -65,14 +77,14 @@ func (o *SalesOrderLineItem) GetDescription() *string {
 	return o.Description
 }
 
-func (o *SalesOrderLineItem) GetDiscountAmount() *types.Decimal {
+func (o *SalesOrderLineItem) GetDiscountAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.DiscountAmount
 }
 
-func (o *SalesOrderLineItem) GetDiscountPercentage() *types.Decimal {
+func (o *SalesOrderLineItem) GetDiscountPercentage() *decimal.Big {
 	if o == nil {
 		return nil
 	}
@@ -86,21 +98,21 @@ func (o *SalesOrderLineItem) GetItemRef() *ItemRef {
 	return o.ItemRef
 }
 
-func (o *SalesOrderLineItem) GetQuantity() *types.Decimal {
+func (o *SalesOrderLineItem) GetQuantity() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.Quantity
 }
 
-func (o *SalesOrderLineItem) GetSubTotal() *types.Decimal {
+func (o *SalesOrderLineItem) GetSubTotal() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.SubTotal
 }
 
-func (o *SalesOrderLineItem) GetTaxAmount() *types.Decimal {
+func (o *SalesOrderLineItem) GetTaxAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}
@@ -114,7 +126,7 @@ func (o *SalesOrderLineItem) GetTaxRateRef() *TaxRateRef {
 	return o.TaxRateRef
 }
 
-func (o *SalesOrderLineItem) GetTotalAmount() *types.Decimal {
+func (o *SalesOrderLineItem) GetTotalAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}
@@ -128,7 +140,7 @@ func (o *SalesOrderLineItem) GetTracking() *SalesOrderLineItemTracking {
 	return o.Tracking
 }
 
-func (o *SalesOrderLineItem) GetUnitAmount() *types.Decimal {
+func (o *SalesOrderLineItem) GetUnitAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}

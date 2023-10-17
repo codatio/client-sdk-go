@@ -8,9 +8,12 @@ import (
 )
 
 type ListCustomerAttachmentsRequest struct {
-	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a company.
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a connection.
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
-	CustomerID   string `pathParam:"style=simple,explode=false,name=customerId"`
+	// Unique identifier for a customer.
+	CustomerID string `pathParam:"style=simple,explode=false,name=customerId"`
 }
 
 func (o *ListCustomerAttachmentsRequest) GetCompanyID() string {
@@ -37,11 +40,14 @@ func (o *ListCustomerAttachmentsRequest) GetCustomerID() string {
 type ListCustomerAttachmentsResponse struct {
 	// Success
 	AttachmentsDataset *shared.AttachmentsDataset
-	ContentType        string
+	// HTTP response content type for this operation
+	ContentType string
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
-	StatusCode   int
-	RawResponse  *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *ListCustomerAttachmentsResponse) GetAttachmentsDataset() *shared.AttachmentsDataset {
