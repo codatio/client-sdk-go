@@ -8,7 +8,9 @@ import (
 )
 
 type GetAccountingCreditNoteRequest struct {
-	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a company.
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a credit note.
 	CreditNoteID string `pathParam:"style=simple,explode=false,name=creditNoteId"`
 }
 
@@ -29,11 +31,14 @@ func (o *GetAccountingCreditNoteRequest) GetCreditNoteID() string {
 type GetAccountingCreditNoteResponse struct {
 	// Success
 	AccountingCreditNote *shared.AccountingCreditNote
-	ContentType          string
+	// HTTP response content type for this operation
+	ContentType string
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
-	StatusCode   int
-	RawResponse  *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *GetAccountingCreditNoteResponse) GetAccountingCreditNote() *shared.AccountingCreditNote {

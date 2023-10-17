@@ -10,7 +10,7 @@ import (
 type OrderDiscountAllocation struct {
 	// Name of the discount in the commerce or point of sale platform.
 	Name *string `json:"name,omitempty"`
-	// Total amount of discount applied.
+	// Total amount of discount applied, excluding tax. This is typically positive (for discounts which decrease the amount of the order line), but can also be negative (for discounts which increase the amount of the order line).
 	TotalAmount *decimal.Big `decimal:"number" json:"totalAmount,omitempty"`
 }
 

@@ -1,25 +1,27 @@
 configVersion: 1.0.0
 management:
-  docChecksum: 0add1e087e1653186370d8ee74641f07
+  docChecksum: 49794ddbb09eb6f879edbfdbcf289538
   docVersion: 3.0.0
-  speakeasyVersion: 1.88.1
-  generationVersion: 2.122.1
+  speakeasyVersion: 1.100.2
+  generationVersion: 2.159.2
 generation:
   sdkClassName: CodatLending
   singleTagPerOp: false
   telemetryEnabled: true
 features:
   go:
-    constsAndDefaults: 0.1.0
-    core: 2.88.3
+    constsAndDefaults: 0.1.1
+    core: 2.91.5
     deprecations: 2.81.1
+    downloadStreams: 0.1.0
     examples: 2.81.2
-    globalSecurity: 2.81.1
+    globalSecurity: 2.82.2
     globalServerURLs: 2.82.0
-    groups: 2.81.1
+    groups: 2.81.2
     nameOverrides: 2.81.1
     retries: 2.82.1
 go:
-  version: 4.2.0
+  version: 4.3.0
+  flattenGlobalSecurity: false
   maxMethodParams: 0
   packageName: github.com/codatio/client-sdk-go/lending

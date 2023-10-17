@@ -1,4 +1,5 @@
-# LoanWriteback.BankTransactions
+# LoanWritebackBankTransactions
+(*LoanWriteback.BankTransactions*)
 
 ### Available Operations
 
@@ -7,13 +8,13 @@
 
 ## Create
 
-The *Create bank account transactions* endpoint creates new [bank account transactions](https://docs.codat.io/accounting-api#/schemas/BankTransactions) for a given company's connection.
+The *Create bank account transactions* endpoint creates new [bank account transactions](https://docs.codat.io/lending-api#/schemas/BankTransactions) for a given company's connection.
 
-[Bank account transactions](https://docs.codat.io/accounting-api#/schemas/BankTransactions) are records of money that has moved in and out of an SMB's bank account.
+[Bank account transactions](https://docs.codat.io/lending-api#/schemas/BankTransactions) are records of money that has moved in and out of an SMB's bank account.
 
 **Integration-specific behaviour**
 
-Required data may vary by integration. To see what data to post, first call [Get create bank transaction model](https://docs.codat.io/accounting-api#/operations/get-create-bankTransactions-model).
+Required data may vary by integration. To see what data to post, first call [Get create bank transaction model](https://docs.codat.io/lending-api#/operations/get-create-bankTransactions-model).
 
 Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankTransactions) for integrations that support creating a bank account transactions.
 
@@ -26,10 +27,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v4"
+	lending "github.com/codatio/client-sdk-go/lending/v4"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/types"
 )
 
 func main() {
@@ -42,23 +42,16 @@ func main() {
     ctx := context.Background()
     res, err := s.LoanWriteback.BankTransactions.Create(ctx, operations.CreateBankTransactionsRequest{
         AccountingCreateBankTransactions: &shared.AccountingCreateBankTransactions{
-            AccountID: lending.String("vitae"),
+            AccountID: lending.String("7110701885"),
             Transactions: []shared.CreateBankAccountTransaction{
                 shared.CreateBankAccountTransaction{
-                    Amount: types.MustNewDecimalFromString("6747.52"),
-                    Balance: types.MustNewDecimalFromString("6563.3"),
                     Date: lending.String("2022-10-23T00:00:00.000Z"),
-                    Description: lending.String("odit"),
-                    ID: lending.String("c3f5ad01-9da1-4ffe-b8f0-97b0074f1547"),
                 },
             },
         },
-        AccountID: "dicta",
-        AllowSyncOnPushComplete: lending.Bool(false),
+        AccountID: "Extended South",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        ForceUpdate: lending.Bool(false),
-        TimeoutInMinutes: lending.Int(688661),
     })
     if err != nil {
         log.Fatal(err)
@@ -86,9 +79,9 @@ func main() {
 
 ## GetCreateModel
 
-The *Get create bank account transactions model* endpoint returns the expected data for the request payload when creating [bank account transactions](https://docs.codat.io/accounting-api#/schemas/BankTransactions) for a given company and integration.
+The *Get create bank account transactions model* endpoint returns the expected data for the request payload when creating [bank account transactions](https://docs.codat.io/lending-api#/schemas/BankTransactions) for a given company and integration.
 
-[Bank account transactions](https://docs.codat.io/accounting-api#/schemas/BankTransactions) are records of money that has moved in and out of an SMB's bank account.
+[Bank account transactions](https://docs.codat.io/lending-api#/schemas/BankTransactions) are records of money that has moved in and out of an SMB's bank account.
 
 **Integration-specific behaviour**
 
@@ -105,7 +98,7 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v4"
+	lending "github.com/codatio/client-sdk-go/lending/v4"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )
@@ -119,7 +112,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.LoanWriteback.BankTransactions.GetCreateModel(ctx, operations.GetCreateBankTransactionsModelRequest{
-        AccountID: "enim",
+        AccountID: "Northwest",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })

@@ -103,9 +103,11 @@ type Connection struct {
 	// >
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	LastSync     *string `json:"lastSync,omitempty"`
-	LinkURL      string  `json:"linkUrl"`
-	PlatformName string  `json:"platformName"`
+	LastSync *string `json:"lastSync,omitempty"`
+	// The link URL your customers can use to authorize access to their business application.
+	LinkURL string `json:"linkUrl"`
+	// Name of integration connected to company.
+	PlatformName string `json:"platformName"`
 	// A source-specific ID used to distinguish between different sources originating from the same data connection. In general, a data connection is a single data source. However, for TrueLayer, `sourceId` is associated with a specific bank and has a many-to-one relationship with the `integrationId`.
 	SourceID string `json:"sourceId"`
 	// The type of platform of the connection.

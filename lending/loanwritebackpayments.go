@@ -14,27 +14,27 @@ import (
 	"net/http"
 )
 
-type loanWritebackBankAccounts struct {
+type loanWritebackPayments struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newLoanWritebackBankAccounts(sdkConfig sdkConfiguration) *loanWritebackBankAccounts {
-	return &loanWritebackBankAccounts{
+func newLoanWritebackPayments(sdkConfig sdkConfiguration) *loanWritebackPayments {
+	return &loanWritebackPayments{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
-// Create bank account
-// The *Create bank account* endpoint creates a new [bank account](https://docs.codat.io/accounting-api#/schemas/BankAccount) for a given company's connection.
+// Create payment
+// The *Create payment* endpoint creates a new [payment](https://docs.codat.io/lending-api#/schemas/Payment) for a given company's connection.
 //
-// [Bank accounts](https://docs.codat.io/accounting-api#/schemas/BankAccount) are financial accounts maintained by a bank or other financial institution.
+// [Payments](https://docs.codat.io/lending-api#/schemas/Payment) represent an allocation of money within any customer accounts receivable account.
 //
 // **Integration-specific behaviour**
 //
-// Required data may vary by integration. To see what data to post, first call [Get create/update bank account model](https://docs.codat.io/accounting-api#/operations/get-create-update-bankAccounts-model).
+// Required data may vary by integration. To see what data to post, first call [Get create payment model](https://docs.codat.io/lending-api#/operations/get-create-payments-model).
 //
-// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankAccounts) for integrations that support creating an account.
-func (s *loanWritebackBankAccounts) Create(ctx context.Context, request operations.CreateBankAccountRequest, opts ...operations.Option) (*operations.CreateBankAccountResponse, error) {
+// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=payments) for integrations that support creating an account.
+func (s *loanWritebackPayments) Create(ctx context.Context, request operations.CreatePaymentRequest, opts ...operations.Option) (*operations.CreatePaymentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -46,12 +46,12 @@ func (s *loanWritebackBankAccounts) Create(ctx context.Context, request operatio
 		}
 	}
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/bankAccounts", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/push/payments", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, true, true, "AccountingBankAccount", "json", `request:"mediaType=application/json"`)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, true, true, "AccountingPayment", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -61,7 +61,7 @@ func (s *loanWritebackBankAccounts) Create(ctx context.Context, request operatio
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
+	req.Header.Set("user-agent", s.sdkConfiguration.UserAgent)
 
 	req.Header.Set("Content-Type", reqContentType)
 
@@ -107,30 +107,30 @@ func (s *loanWritebackBankAccounts) Create(ctx context.Context, request operatio
 		return nil, fmt.Errorf("error sending request: no response")
 	}
 
+	contentType := httpRes.Header.Get("Content-Type")
+
+	res := &operations.CreatePaymentResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: contentType,
+		RawResponse: httpRes,
+	}
+
 	rawBody, err := io.ReadAll(httpRes.Body)
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
 	}
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
-	contentType := httpRes.Header.Get("Content-Type")
-
-	res := &operations.CreateBankAccountResponse{
-		StatusCode:  httpRes.StatusCode,
-		ContentType: contentType,
-		RawResponse: httpRes,
-	}
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.AccountingCreateBankAccountResponse
+			var out shared.AccountingCreatePaymentResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.AccountingCreateBankAccountResponse = &out
+			res.AccountingCreatePaymentResponse = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -157,17 +157,17 @@ func (s *loanWritebackBankAccounts) Create(ctx context.Context, request operatio
 	return res, nil
 }
 
-// GetCreateUpdateModel - Get create/update bank account model
-// The *Get create/update bank account model* endpoint returns the expected data for the request payload when creating and updating a [bank account](https://docs.codat.io/accounting-api#/schemas/BankAccount) for a given company and integration.
+// GetCreateModel - Get create payment model
+// The *Get create payment model* endpoint returns the expected data for the request payload when creating a [payment](https://docs.codat.io/lending-api#/schemas/Payment) for a given company and integration.
 //
-// [Bank accounts](https://docs.codat.io/accounting-api#/schemas/BankAccount) are financial accounts maintained by a bank or other financial institution.
+// [Payments](https://docs.codat.io/lending-api#/schemas/Payment) represent an allocation of money within any customer accounts receivable account.
 //
 // **Integration-specific behaviour**
 //
 // See the *response examples* for integration-specific indicative models.
 //
-// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankAccounts) for integrations that support creating and updating a bank account.
-func (s *loanWritebackBankAccounts) GetCreateUpdateModel(ctx context.Context, request operations.GetCreateUpdateBankAccountsModelRequest, opts ...operations.Option) (*operations.GetCreateUpdateBankAccountsModelResponse, error) {
+// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=payments) for integrations that support creating a payment.
+func (s *loanWritebackPayments) GetCreateModel(ctx context.Context, request operations.GetCreatePaymentsModelRequest, opts ...operations.Option) (*operations.GetCreatePaymentsModelResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -179,7 +179,7 @@ func (s *loanWritebackBankAccounts) GetCreateUpdateModel(ctx context.Context, re
 		}
 	}
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/bankAccounts", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/options/payments", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -189,7 +189,7 @@ func (s *loanWritebackBankAccounts) GetCreateUpdateModel(ctx context.Context, re
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
+	req.Header.Set("user-agent", s.sdkConfiguration.UserAgent)
 
 	client := s.sdkConfiguration.SecurityClient
 
@@ -229,20 +229,20 @@ func (s *loanWritebackBankAccounts) GetCreateUpdateModel(ctx context.Context, re
 		return nil, fmt.Errorf("error sending request: no response")
 	}
 
+	contentType := httpRes.Header.Get("Content-Type")
+
+	res := &operations.GetCreatePaymentsModelResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: contentType,
+		RawResponse: httpRes,
+	}
+
 	rawBody, err := io.ReadAll(httpRes.Body)
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
 	}
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
-	contentType := httpRes.Header.Get("Content-Type")
-
-	res := &operations.GetCreateUpdateBankAccountsModelResponse{
-		StatusCode:  httpRes.StatusCode,
-		ContentType: contentType,
-		RawResponse: httpRes,
-	}
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {

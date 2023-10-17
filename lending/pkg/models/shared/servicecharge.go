@@ -18,7 +18,7 @@ type ServiceCharge struct {
 	TaxPercentage *decimal.Big `decimal:"number" json:"taxPercentage,omitempty"`
 	// Taxes breakdown as applied to service charges.
 	Taxes []TaxComponentAllocation `json:"taxes,omitempty"`
-	// Total service charge, including taxes.
+	// Total amount of the service charge, including tax.
 	TotalAmount *decimal.Big `decimal:"number" json:"totalAmount,omitempty"`
 	// The type of the service charge.
 	Type *ServiceChargeType `json:"type,omitempty"`

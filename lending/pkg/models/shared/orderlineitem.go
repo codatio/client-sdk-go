@@ -16,18 +16,18 @@ type OrderLineItem struct {
 	// Reference that links the line item to the specific version of product that has been ordered.
 	ProductVariantRef *ProductVariantRef `json:"productVariantRef,omitempty"`
 	// Number of units of the product sold.
-	// For refunds, quantity is a negative value.
+	// For refunds, quantity is negative.
 	//
 	Quantity *decimal.Big `decimal:"number" json:"quantity,omitempty"`
-	// Percentage rate (from 0 to 100) of any sale tax applied to the unit amount.
+	// Percentage rate (from 0 to 100) of any sales tax applied to the unit price.
 	TaxPercentage *decimal.Big `decimal:"number" json:"taxPercentage,omitempty"`
 	// Taxes breakdown as applied to order lines.
 	Taxes []TaxComponentAllocation `json:"taxes,omitempty"`
-	// Total price of the line item, including discounts, tax and minus any refunds.
+	// Total amount of the line item, including discounts and tax.
 	TotalAmount *decimal.Big `decimal:"number" json:"totalAmount,omitempty"`
-	// Total amount of tax applied to the line item.
+	// Total amount of tax applied to the line item, factoring in any discounts.
 	TotalTaxAmount *decimal.Big `decimal:"number" json:"totalTaxAmount,omitempty"`
-	// Price per unit of goods or service.
+	// Price per unit of goods or services, excluding discounts and tax.
 	UnitPrice *decimal.Big `decimal:"number" json:"unitPrice,omitempty"`
 }
 

@@ -27,9 +27,11 @@ func (o *UploadFilesRequestBody) GetRequestBody() string {
 }
 
 type UploadFilesRequest struct {
-	RequestBody  *UploadFilesRequestBody `multipartForm:"file" request:"mediaType=multipart/form-data"`
-	CompanyID    string                  `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID string                  `pathParam:"style=simple,explode=false,name=connectionId"`
+	RequestBody *UploadFilesRequestBody `multipartForm:"file" request:"mediaType=multipart/form-data"`
+	// Unique identifier for a company.
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a connection.
+	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
 func (o *UploadFilesRequest) GetRequestBody() *UploadFilesRequestBody {
@@ -54,11 +56,14 @@ func (o *UploadFilesRequest) GetConnectionID() string {
 }
 
 type UploadFilesResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// The request made is not valid.
 	ErrorMessage *shared.ErrorMessage
-	StatusCode   int
-	RawResponse  *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *UploadFilesResponse) GetContentType() string {

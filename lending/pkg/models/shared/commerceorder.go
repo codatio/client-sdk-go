@@ -7,20 +7,6 @@ import (
 	"github.com/ericlagergren/decimal"
 )
 
-// CommerceOrderSupplementalData - Supplemental data is additional data you can include in our standard data types.
-//
-// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
-type CommerceOrderSupplementalData struct {
-	Content map[string]map[string]interface{} `json:"content,omitempty"`
-}
-
-func (o *CommerceOrderSupplementalData) GetContent() map[string]map[string]interface{} {
-	if o == nil {
-		return nil
-	}
-	return o.Content
-}
-
 // CommerceOrder - Orders contain the transaction details for all products sold by the company, and include details of any payments, service charges, or refunds related to each order. You can use data from the Orders endpoints to calculate key metrics, such as gross sales values and monthly recurring revenue (MRR).
 //
 // Explore our [data coverage](https://knowledge.codat.io/supported-features/commerce?view=tab-by-data-type&dataType=commerce-orders) for this data type.
@@ -88,14 +74,14 @@ type CommerceOrder struct {
 	// Supplemental data is additional data you can include in our standard data types.
 	//
 	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
-	SupplementalData *CommerceOrderSupplementalData `json:"supplementalData,omitempty"`
-	// Total amount of the order, including tax, net of any discounts and refunds.
+	SupplementalData *SupplementalData `json:"supplementalData,omitempty"`
+	// Total amount of the order, including discounts, refunds, and tax, but excluding gratuities.
 	TotalAmount *decimal.Big `decimal:"number" json:"totalAmount,omitempty"`
-	// Total amount of discount applied to the order.
+	// Total amount of any discounts applied to the order, excluding tax. This is typically positive (for discounts which decrease the amount of the order), but can also be negative (for discounts which increase the amount of the order).
 	TotalDiscount *decimal.Big `decimal:"number" json:"totalDiscount,omitempty"`
-	// Extra amount added to a bill.
+	// Extra amount added to the order.
 	TotalGratuity *decimal.Big `decimal:"number" json:"totalGratuity,omitempty"`
-	// Total amount refunded issued by a merchant on an order (always a negative value).
+	// Total amount of any refunds issued on the order, including discounts and tax, but excluding gratuities. This is always negative.
 	TotalRefund *decimal.Big `decimal:"number" json:"totalRefund,omitempty"`
 	// Total amount of tax applied to the order.
 	TotalTaxAmount *decimal.Big `decimal:"number" json:"totalTaxAmount,omitempty"`
@@ -203,7 +189,7 @@ func (o *CommerceOrder) GetSourceModifiedDate() *string {
 	return o.SourceModifiedDate
 }
 
-func (o *CommerceOrder) GetSupplementalData() *CommerceOrderSupplementalData {
+func (o *CommerceOrder) GetSupplementalData() *SupplementalData {
 	if o == nil {
 		return nil
 	}

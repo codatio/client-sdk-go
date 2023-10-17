@@ -8,6 +8,7 @@ import (
 )
 
 type Payment struct {
+	// Payment amount.
 	Amount                 *decimal.Big            `decimal:"number" json:"amount,omitempty"`
 	BankingTransactionRefs []BankingTransactionRef `json:"bankingTransactionRefs,omitempty"`
 	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code, e.g. _GBP_.
@@ -64,8 +65,9 @@ type Payment struct {
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	Date *string `json:"date,omitempty"`
-	// ID of the invoice, which may be a GUID but it may be something else depending on the accounting platform
-	ID          *string `json:"id,omitempty"`
+	// ID of the invoice, which may be a GUID but it may be something else depending on the accounting platform.
+	ID *string `json:"id,omitempty"`
+	// The type of payment.
 	PaymentType *string `json:"paymentType,omitempty"`
 }
 

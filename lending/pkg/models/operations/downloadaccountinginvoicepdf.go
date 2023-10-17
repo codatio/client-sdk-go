@@ -3,12 +3,14 @@
 package operations
 
 import (
+	"io"
 	"net/http"
 )
 
 type DownloadAccountingInvoicePdfRequest struct {
+	// Unique identifier for a company.
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
-	// Unique identifier for an invoice
+	// Unique identifier for an invoice.
 	InvoiceID string `pathParam:"style=simple,explode=false,name=invoiceId"`
 }
 
@@ -27,10 +29,14 @@ func (o *DownloadAccountingInvoicePdfRequest) GetInvoiceID() string {
 }
 
 type DownloadAccountingInvoicePdfResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// Success
-	Data        []byte
-	StatusCode  int
+	// The Close method must be called on this field, even if it is not used, to prevent resource leaks.
+	Data io.ReadCloser
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 }
 
@@ -41,7 +47,7 @@ func (o *DownloadAccountingInvoicePdfResponse) GetContentType() string {
 	return o.ContentType
 }
 
-func (o *DownloadAccountingInvoicePdfResponse) GetData() []byte {
+func (o *DownloadAccountingInvoicePdfResponse) GetData() io.ReadCloser {
 	if o == nil {
 		return nil
 	}
