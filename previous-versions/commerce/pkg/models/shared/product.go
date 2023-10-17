@@ -6,19 +6,23 @@ package shared
 //
 // Explore our [data coverage](https://knowledge.codat.io/supported-features/commerce?view=tab-by-data-type&dataType=commerce-products) for this data type.
 type Product struct {
-	// Retail category that the product is assigned to
+	// Retail category that the product is assigned to e.g. `Hardware`.
 	Categorization *string `json:"categorization,omitempty"`
 	// Description of the product recorded in the commerce or point of sale platform.
 	Description *string `json:"description,omitempty"`
 	// A unique, persistent identifier for this record
 	ID string `json:"id"`
 	// Whether the product represents a gift card or voucher that
-	// can be redeemed in the commerce or POS platform
+	// can be redeemed in the commerce or POS platform.
 	//
 	IsGiftCard *bool `json:"isGiftCard,omitempty"`
 	// Name of the product in the commerce or POS system
-	Name     *string          `json:"name,omitempty"`
-	Variants []ProductVariant `json:"variants,omitempty"`
+	Name *string `json:"name,omitempty"`
+	// Supplemental data is additional data you can include in our standard data types.
+	//
+	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
+	SupplementalData *SupplementalData `json:"supplementalData,omitempty"`
+	Variants         []ProductVariant  `json:"variants,omitempty"`
 }
 
 func (o *Product) GetCategorization() *string {
@@ -54,6 +58,13 @@ func (o *Product) GetName() *string {
 		return nil
 	}
 	return o.Name
+}
+
+func (o *Product) GetSupplementalData() *SupplementalData {
+	if o == nil {
+		return nil
+	}
+	return o.SupplementalData
 }
 
 func (o *Product) GetVariants() []ProductVariant {

@@ -3,7 +3,8 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/types"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 type ServiceCharge struct {
@@ -12,15 +13,26 @@ type ServiceCharge struct {
 	// The number of times the charge is charged.
 	Quantity *int64 `json:"quantity,omitempty"`
 	// Amount of the service charge that is tax.
-	TaxAmount *types.Decimal `json:"taxAmount,omitempty"`
+	TaxAmount *decimal.Big `decimal:"number" json:"taxAmount,omitempty"`
 	// Percentage rate (from 0 to 100) of any tax applied to the service charge.
-	TaxPercentage *types.Decimal `json:"taxPercentage,omitempty"`
+	TaxPercentage *decimal.Big `decimal:"number" json:"taxPercentage,omitempty"`
 	// Taxes breakdown as applied to service charges.
 	Taxes []TaxComponentAllocation `json:"taxes,omitempty"`
-	// Total service charge, including taxes.
-	TotalAmount *types.Decimal `json:"totalAmount,omitempty"`
+	// Total amount of the service charge, including tax.
+	TotalAmount *decimal.Big `decimal:"number" json:"totalAmount,omitempty"`
 	// The type of the service charge.
 	Type *ServiceChargeType `json:"type,omitempty"`
+}
+
+func (s ServiceCharge) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *ServiceCharge) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ServiceCharge) GetDescription() *string {
@@ -37,14 +49,14 @@ func (o *ServiceCharge) GetQuantity() *int64 {
 	return o.Quantity
 }
 
-func (o *ServiceCharge) GetTaxAmount() *types.Decimal {
+func (o *ServiceCharge) GetTaxAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.TaxAmount
 }
 
-func (o *ServiceCharge) GetTaxPercentage() *types.Decimal {
+func (o *ServiceCharge) GetTaxPercentage() *decimal.Big {
 	if o == nil {
 		return nil
 	}
@@ -58,7 +70,7 @@ func (o *ServiceCharge) GetTaxes() []TaxComponentAllocation {
 	return o.Taxes
 }
 
-func (o *ServiceCharge) GetTotalAmount() *types.Decimal {
+func (o *ServiceCharge) GetTotalAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}
