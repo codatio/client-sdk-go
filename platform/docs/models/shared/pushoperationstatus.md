@@ -1,6 +1,6 @@
 # PushOperationStatus
 
-The status of the push operation.
+The current status of the push operation.
 
 
 ## Values

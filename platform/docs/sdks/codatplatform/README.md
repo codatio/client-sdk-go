@@ -1,5 +1,6 @@
 # CodatPlatform SDK
 
+
 ## Overview
 
 An API for the common components of all of Codat's products.

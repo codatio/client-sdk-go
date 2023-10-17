@@ -3,13 +3,17 @@
 package shared
 
 type PushOption struct {
-	Description *string                       `json:"description,omitempty"`
+	// A description of the property.
+	Description *string `json:"description,omitempty"`
+	// The property's display name.
 	DisplayName string                        `json:"displayName"`
 	Options     []PushOptionChoice            `json:"options,omitempty"`
 	Properties  map[string]PushOptionProperty `json:"properties,omitempty"`
-	Required    bool                          `json:"required"`
-	Type        PushOptionType                `json:"type"`
-	Validation  *PushValidationInfo           `json:"validation,omitempty"`
+	// The property is required if `True`.
+	Required bool `json:"required"`
+	// The option type.
+	Type       PushOptionType      `json:"type"`
+	Validation *PushValidationInfo `json:"validation,omitempty"`
 }
 
 func (o *PushOption) GetDescription() *string {

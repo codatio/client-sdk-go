@@ -2,31 +2,15 @@
 
 package shared
 
-type WebhookNotifiers struct {
-	Emails  []string `json:"emails,omitempty"`
-	Webhook *string  `json:"webhook,omitempty"`
-}
-
-func (o *WebhookNotifiers) GetEmails() []string {
-	if o == nil {
-		return nil
-	}
-	return o.Emails
-}
-
-func (o *WebhookNotifiers) GetWebhook() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Webhook
-}
-
 // Webhook - Create an event notification to a URL or list of email addresses based on the given type or condition.
 type Webhook struct {
-	CompanyID *string          `json:"companyId,omitempty"`
-	ID        *string          `json:"id,omitempty"`
-	Notifiers WebhookNotifiers `json:"notifiers"`
-	Type      string           `json:"type"`
+	// Unique identifier for your SMB in Codat.
+	CompanyID *string `json:"companyId,omitempty"`
+	// Unique identifier for the configured notification.
+	ID        *string         `json:"id,omitempty"`
+	Notifiers WebhookNotifier `json:"notifiers"`
+	// The type of webhook.
+	Type string `json:"type"`
 }
 
 func (o *Webhook) GetCompanyID() *string {
@@ -43,9 +27,9 @@ func (o *Webhook) GetID() *string {
 	return o.ID
 }
 
-func (o *Webhook) GetNotifiers() WebhookNotifiers {
+func (o *Webhook) GetNotifiers() WebhookNotifier {
 	if o == nil {
-		return WebhookNotifiers{}
+		return WebhookNotifier{}
 	}
 	return o.Notifiers
 }

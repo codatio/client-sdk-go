@@ -3,7 +3,9 @@
 package shared
 
 type SyncSettings struct {
-	ClientID          *string       `json:"clientId,omitempty"`
+	// Unique identifier for your client in Codat.
+	ClientID *string `json:"clientId,omitempty"`
+	// Set to `True` if you want to override the default [sync settings](https://docs.codat.io/knowledge-base/advanced-sync-settings).
 	OverridesDefaults *bool         `json:"overridesDefaults,omitempty"`
 	Settings          []SyncSetting `json:"settings,omitempty"`
 }
