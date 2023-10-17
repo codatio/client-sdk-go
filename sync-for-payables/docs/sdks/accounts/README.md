@@ -1,4 +1,5 @@
 # Accounts
+(*Accounts*)
 
 ## Overview
 
@@ -48,34 +49,36 @@ func main() {
     ctx := context.Background()
     res, err := s.Accounts.Create(ctx, operations.CreateAccountRequest{
         Account: &shared.Account{
-            Currency: syncforpayables.String("EUR"),
+            Currency: syncforpayables.String("USD"),
             CurrentBalance: types.MustNewDecimalFromString("0"),
             Description: syncforpayables.String("Invoices the business has issued but has not yet collected payment on."),
             FullyQualifiedCategory: syncforpayables.String("Asset.Current"),
             FullyQualifiedName: syncforpayables.String("Cash On Hand"),
             ID: syncforpayables.String("1b6266d1-1e44-46c5-8eb5-a8f98e03124e"),
-            IsBankAccount: syncforpayables.Bool(false),
-            Metadata: &shared.Metadata{
-                IsDeleted: syncforpayables.Bool(false),
-            },
+            Metadata: &shared.Metadata{},
             ModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
             Name: syncforpayables.String("Accounts Receivable"),
             NominalCode: syncforpayables.String("610"),
             SourceModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
             Status: shared.AccountStatusActive.ToPointer(),
+            SupplementalData: &shared.SupplementalData{
+                Content: map[string]map[string]interface{}{
+                    "Money": map[string]interface{}{
+                        "blue": "shred",
+                    },
+                },
+            },
             Type: shared.AccountTypeAsset.ToPointer(),
             ValidDatatypeLinks: []shared.AccountValidDataTypeLinks{
                 shared.AccountValidDataTypeLinks{
                     Links: []string{
-                        "suscipit",
+                        "abnormally",
                     },
-                    Property: syncforpayables.String("molestiae"),
                 },
             },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: syncforpayables.Int(791725),
     })
     if err != nil {
         log.Fatal(err)
@@ -134,7 +137,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Accounts.Get(ctx, operations.GetAccountRequest{
-        AccountID: "placeat",
+        AccountID: "Northeast Hatchback Kia",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -257,7 +260,6 @@ func main() {
         OrderBy: syncforpayables.String("-modifiedDate"),
         Page: syncforpayables.Int(1),
         PageSize: syncforpayables.Int(100),
-        Query: syncforpayables.String("voluptatum"),
     })
     if err != nil {
         log.Fatal(err)

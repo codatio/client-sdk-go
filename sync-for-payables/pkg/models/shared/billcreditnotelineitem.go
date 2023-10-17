@@ -51,7 +51,9 @@ func (o *BillCreditNoteLineItemTrackingCustomerRef) GetID() string {
 }
 
 type BillCreditNoteLineItemTrackingProjectReference struct {
-	ID   string  `json:"id"`
+	// Unique identifier to the project reference.
+	ID string `json:"id"`
+	// The project's name.
 	Name *string `json:"name,omitempty"`
 }
 
@@ -71,9 +73,11 @@ func (o *BillCreditNoteLineItemTrackingProjectReference) GetName() *string {
 
 // BillCreditNoteLineItemTracking - Categories, and a project and customer, against which the item is tracked.
 type BillCreditNoteLineItemTracking struct {
-	CategoryRefs []TrackingCategoryRef                           `json:"categoryRefs"`
-	CustomerRef  *BillCreditNoteLineItemTrackingCustomerRef      `json:"customerRef,omitempty"`
-	IsBilledTo   BilledToType                                    `json:"isBilledTo"`
+	CategoryRefs []TrackingCategoryRef                      `json:"categoryRefs"`
+	CustomerRef  *BillCreditNoteLineItemTrackingCustomerRef `json:"customerRef,omitempty"`
+	// Defines if the invoice or credit note is billed/rebilled to a project or customer.
+	IsBilledTo BilledToType `json:"isBilledTo"`
+	// Defines if the invoice or credit note is billed/rebilled to a project or customer.
 	IsRebilledTo BilledToType                                    `json:"isRebilledTo"`
 	ProjectRef   *BillCreditNoteLineItemTrackingProjectReference `json:"projectRef,omitempty"`
 }

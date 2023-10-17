@@ -145,23 +145,11 @@ func (o *BillPurchaseOrderReference) GetPurchaseOrderNumber() *string {
 	return o.PurchaseOrderNumber
 }
 
-// BillSupplementalData - Supplemental data is additional data you can include in our standard data types.
-//
-// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
-type BillSupplementalData struct {
-	Content map[string]map[string]interface{} `json:"content,omitempty"`
-}
-
-func (o *BillSupplementalData) GetContent() map[string]map[string]interface{} {
-	if o == nil {
-		return nil
-	}
-	return o.Content
-}
-
 type BillWithholdingTax struct {
+	// Amount of tax withheld.
 	Amount *decimal.Big `decimal:"number" json:"amount"`
-	Name   string       `json:"name"`
+	// Name assigned to withheld tax.
+	Name string `json:"name"`
 }
 
 func (b BillWithholdingTax) MarshalJSON() ([]byte, error) {
@@ -193,7 +181,7 @@ func (o *BillWithholdingTax) GetName() string {
 // >
 // > We distinguish between invoices where the company *owes money* vs. *is owed money*. If the company has received an invoice, and owes money to someone else (accounts payable) we call this a Bill.
 // >
-// > See [Invoices](https://docs.codat.io/accounting-api#/schemas/Invoice) for the accounts receivable equivalent of bills.
+// > See [Invoices](https://docs.codat.io/sync-for-payables-api#/schemas/Invoice) for the accounts receivable equivalent of bills.
 //
 // View the coverage for bills in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bills" target="_blank">Data coverage explorer</a>.
 //
@@ -207,7 +195,7 @@ func (o *BillWithholdingTax) GetName() string {
 //
 // Some accounting platforms give a separate name to purchases where the payment is made immediately, such as something bought with a credit card or online payment. One example of this would be QuickBooks Online's *expenses*.
 //
-// You can find these types of transactions in our [Direct costs](https://docs.codat.io/accounting-api#/schemas/DirectCost) data model.
+// You can find these types of transactions in our [Direct costs](https://docs.codat.io/sync-for-payables-api#/schemas/DirectCost) data model.
 type Bill struct {
 	// Amount outstanding on the bill.
 	AmountDue *decimal.Big `decimal:"number" json:"amountDue,omitempty"`
@@ -268,7 +256,7 @@ type Bill struct {
 	// Supplemental data is additional data you can include in our standard data types.
 	//
 	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
-	SupplementalData *BillSupplementalData `json:"supplementalData,omitempty"`
+	SupplementalData *SupplementalData `json:"supplementalData,omitempty"`
 	// Reference to the supplier the record relates to.
 	SupplierRef *SupplierRef `json:"supplierRef,omitempty"`
 	// Amount of tax on the bill.
@@ -401,7 +389,7 @@ func (o *Bill) GetSubTotal() *decimal.Big {
 	return o.SubTotal
 }
 
-func (o *Bill) GetSupplementalData() *BillSupplementalData {
+func (o *Bill) GetSupplementalData() *SupplementalData {
 	if o == nil {
 		return nil
 	}
