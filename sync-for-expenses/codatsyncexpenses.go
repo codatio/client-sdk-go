@@ -136,6 +136,7 @@ func WithClient(client HTTPClient) SDKOption {
 		sdk.sdkConfiguration.DefaultClient = client
 	}
 }
+
 func withSecurity(security interface{}) func(context.Context) (interface{}, error) {
 	return func(context.Context) (interface{}, error) {
 		return &security, nil
@@ -143,18 +144,11 @@ func withSecurity(security interface{}) func(context.Context) (interface{}, erro
 }
 
 // WithSecurity configures the SDK to use the provided security details
-func WithSecurity(security shared.Security) SDKOption {
-	return func(sdk *CodatSyncExpenses) {
-		sdk.sdkConfiguration.Security = withSecurity(security)
-	}
-}
 
-// WithSecuritySource configures the SDK to invoke the Security Source function on each method call to determine authentication
-func WithSecuritySource(security func(context.Context) (shared.Security, error)) SDKOption {
+func WithSecurity(authHeader string) SDKOption {
 	return func(sdk *CodatSyncExpenses) {
-		sdk.sdkConfiguration.Security = func(ctx context.Context) (interface{}, error) {
-			return security(ctx)
-		}
+		security := shared.Security{AuthHeader: authHeader}
+		sdk.sdkConfiguration.Security = withSecurity(&security)
 	}
 }
 
@@ -170,9 +164,9 @@ func New(opts ...SDKOption) *CodatSyncExpenses {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "prealpha",
-			SDKVersion:        "3.1.0",
-			GenVersion:        "2.146.1",
-			UserAgent:         "speakeasy-sdk/go 3.1.0 2.146.1 prealpha github.com/codatio/client-sdk-go/sync-for-expenses",
+			SDKVersion:        "3.2.0",
+			GenVersion:        "2.159.2",
+			UserAgent:         "speakeasy-sdk/go 3.2.0 2.159.2 prealpha github.com/codatio/client-sdk-go/sync-for-expenses",
 		},
 	}
 	for _, opt := range opts {

@@ -31,9 +31,7 @@ import(
 
 func main() {
     s := syncforexpenses.New(
-        syncforexpenses.WithSecurity(shared.Security{
-            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
-        }),
+        syncforexpenses.WithSecurity("Basic BASE_64_ENCODED(API_KEY)"),
     )
 
     ctx := context.Background()
@@ -49,7 +47,6 @@ func main() {
                         Type: shared.ContactRefTypeSupplier.ToPointer(),
                     },
                     Currency: "GBP",
-                    CurrencyRate: types.MustNewDecimalFromString("4865.89"),
                     ID: "4d7c6929-7770-412b-91bb-44d3bc71d111",
                     IssueDate: "2022-10-23T00:00:00.000Z",
                     Lines: []shared.ExpenseTransactionLine{
@@ -121,9 +118,7 @@ import(
 
 func main() {
     s := syncforexpenses.New(
-        syncforexpenses.WithSecurity(shared.Security{
-            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
-        }),
+        syncforexpenses.WithSecurity("Basic BASE_64_ENCODED(API_KEY)"),
     )
 
     ctx := context.Background()
@@ -137,7 +132,6 @@ func main() {
                 Type: shared.ContactRefTypeSupplier.ToPointer(),
             },
             Currency: syncforexpenses.String("GBP"),
-            CurrencyRate: types.MustNewDecimalFromString("8574.78"),
             IssueDate: "2022-06-28T00:00:00.000Z",
             Lines: []shared.ExpenseTransactionLine{
                 shared.ExpenseTransactionLine{
@@ -158,7 +152,7 @@ func main() {
             },
             MerchantName: syncforexpenses.String("Amazon UK"),
             Notes: syncforexpenses.String("APPLE.COM/BILL - 09001077498 - Card Ending: 4590"),
-            Type: "New",
+            Type: "Van",
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         TransactionID: "336694d8-2dca-4cb5-a28d-3ccb83e55eee",
@@ -206,9 +200,7 @@ import(
 
 func main() {
     s := syncforexpenses.New(
-        syncforexpenses.WithSecurity(shared.Security{
-            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
-        }),
+        syncforexpenses.WithSecurity("Basic BASE_64_ENCODED(API_KEY)"),
     )
 
     ctx := context.Background()

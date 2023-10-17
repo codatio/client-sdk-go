@@ -40,9 +40,7 @@ import(
 
 func main() {
     s := syncforexpenses.New(
-        syncforexpenses.WithSecurity(shared.Security{
-            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
-        }),
+        syncforexpenses.WithSecurity("Basic BASE_64_ENCODED(API_KEY)"),
     )
 
     ctx := context.Background()
@@ -50,64 +48,39 @@ func main() {
         Customer: &shared.Customer{
             Addresses: []shared.Items{
                 shared.Items{
-                    City: syncforexpenses.String("Jenafurt"),
-                    Country: syncforexpenses.String("Sweden"),
-                    Line1: syncforexpenses.String("innovative blue"),
-                    Line2: syncforexpenses.String("grey technology East"),
-                    PostalCode: syncforexpenses.String("30778"),
-                    Region: syncforexpenses.String("quantify Polestar mobile"),
                     Type: shared.AccountingAddressTypeBilling,
                 },
             },
-            ContactName: syncforexpenses.String("Durham after"),
             Contacts: []shared.Contact{
                 shared.Contact{
                     Address: &shared.Items{
-                        City: syncforexpenses.String("Darenberg"),
-                        Country: syncforexpenses.String("Cote d'Ivoire"),
-                        Line1: syncforexpenses.String("Buckinghamshire functionalities Grocery"),
-                        Line2: syncforexpenses.String("Metal"),
-                        PostalCode: syncforexpenses.String("61380"),
-                        Region: syncforexpenses.String("Interactions Senior Mouse"),
-                        Type: shared.AccountingAddressTypeUnknown,
+                        Type: shared.AccountingAddressTypeBilling,
                     },
-                    Email: syncforexpenses.String("Judd27@hotmail.com"),
                     ModifiedDate: syncforexpenses.String("2022-10-23T00:00:00.000Z"),
-                    Name: syncforexpenses.String("transmit likewise"),
                     Phone: []shared.ContactPhone{
                         shared.ContactPhone{
-                            Number: "(877) 492-8687",
-                            Type: shared.PhoneNumberTypeFax,
+                            Number: "01224 658 999",
+                            Type: shared.PhoneNumberTypeMobile,
                         },
                     },
-                    Status: shared.CustomerStatusActive,
+                    Status: shared.CustomerStatusUnknown,
                 },
             },
-            CustomerName: syncforexpenses.String("Rubber silver Indiana"),
-            DefaultCurrency: syncforexpenses.String("EUR"),
-            EmailAddress: syncforexpenses.String("Thea_Ritchie76@hotmail.com"),
-            ID: syncforexpenses.String("<ID>"),
-            Metadata: &shared.Metadata{
-                IsDeleted: syncforexpenses.Bool(false),
-            },
+            DefaultCurrency: syncforexpenses.String("GBP"),
+            Metadata: &shared.Metadata{},
             ModifiedDate: syncforexpenses.String("2022-10-23T00:00:00.000Z"),
-            Phone: syncforexpenses.String("948.595.2034"),
-            RegistrationNumber: syncforexpenses.String("digital"),
             SourceModifiedDate: syncforexpenses.String("2022-10-23T00:00:00.000Z"),
-            Status: shared.CustomerStatusUnknown,
+            Status: shared.CustomerStatusArchived,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "recusandae": map[string]interface{}{
-                        "maiores": "Mongolia",
+                    "grey": map[string]interface{}{
+                        "technology": "East",
                     },
                 },
             },
-            TaxNumber: syncforexpenses.String("discrete"),
         },
-        AllowSyncOnPushComplete: syncforexpenses.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: syncforexpenses.Int(522311),
     })
     if err != nil {
         log.Fatal(err)
@@ -159,9 +132,7 @@ import(
 
 func main() {
     s := syncforexpenses.New(
-        syncforexpenses.WithSecurity(shared.Security{
-            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
-        }),
+        syncforexpenses.WithSecurity("Basic BASE_64_ENCODED(API_KEY)"),
     )
 
     ctx := context.Background()
@@ -217,9 +188,7 @@ import(
 
 func main() {
     s := syncforexpenses.New(
-        syncforexpenses.WithSecurity(shared.Security{
-            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
-        }),
+        syncforexpenses.WithSecurity("Basic BASE_64_ENCODED(API_KEY)"),
     )
 
     ctx := context.Background()
@@ -228,7 +197,6 @@ func main() {
         OrderBy: syncforexpenses.String("-modifiedDate"),
         Page: syncforexpenses.Int(1),
         PageSize: syncforexpenses.Int(100),
-        Query: syncforexpenses.String("Northeast Metal Canada"),
     })
     if err != nil {
         log.Fatal(err)
@@ -282,9 +250,7 @@ import(
 
 func main() {
     s := syncforexpenses.New(
-        syncforexpenses.WithSecurity(shared.Security{
-            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
-        }),
+        syncforexpenses.WithSecurity("Basic BASE_64_ENCODED(API_KEY)"),
     )
 
     ctx := context.Background()
@@ -292,66 +258,40 @@ func main() {
         Customer: &shared.Customer{
             Addresses: []shared.Items{
                 shared.Items{
-                    City: syncforexpenses.String("Ann Arbor"),
-                    Country: syncforexpenses.String("Montserrat"),
-                    Line1: syncforexpenses.String("Reactive"),
-                    Line2: syncforexpenses.String("Metal cheater Islands"),
-                    PostalCode: syncforexpenses.String("43372"),
-                    Region: syncforexpenses.String("Carolina syndicate"),
-                    Type: shared.AccountingAddressTypeBilling,
+                    Type: shared.AccountingAddressTypeDelivery,
                 },
             },
-            ContactName: syncforexpenses.String("East"),
             Contacts: []shared.Contact{
                 shared.Contact{
                     Address: &shared.Items{
-                        City: syncforexpenses.String("Olenfurt"),
-                        Country: syncforexpenses.String("Paraguay"),
-                        Line1: syncforexpenses.String("Home users Sharable"),
-                        Line2: syncforexpenses.String("Lev Wooden"),
-                        PostalCode: syncforexpenses.String("36848"),
-                        Region: syncforexpenses.String("brightly"),
-                        Type: shared.AccountingAddressTypeDelivery,
+                        Type: shared.AccountingAddressTypeUnknown,
                     },
-                    Email: syncforexpenses.String("Josie49@yahoo.com"),
                     ModifiedDate: syncforexpenses.String("2022-10-23T00:00:00.000Z"),
-                    Name: syncforexpenses.String("possimus navigating Diesel"),
                     Phone: []shared.ContactPhone{
                         shared.ContactPhone{
                             Number: "+44 25691 154789",
-                            Type: shared.PhoneNumberTypePrimary,
+                            Type: shared.PhoneNumberTypeLandline,
                         },
                     },
-                    Status: shared.CustomerStatusUnknown,
+                    Status: shared.CustomerStatusArchived,
                 },
             },
-            CustomerName: syncforexpenses.String("Reactive Global Northeast"),
-            DefaultCurrency: syncforexpenses.String("USD"),
-            EmailAddress: syncforexpenses.String("Abe.Bogan@hotmail.com"),
-            ID: syncforexpenses.String("<ID>"),
-            Metadata: &shared.Metadata{
-                IsDeleted: syncforexpenses.Bool(false),
-            },
+            DefaultCurrency: syncforexpenses.String("EUR"),
+            Metadata: &shared.Metadata{},
             ModifiedDate: syncforexpenses.String("2022-10-23T00:00:00.000Z"),
-            Phone: syncforexpenses.String("(883) 732-4217 x6499"),
-            RegistrationNumber: syncforexpenses.String("redundant ew"),
             SourceModifiedDate: syncforexpenses.String("2022-10-23T00:00:00.000Z"),
-            Status: shared.CustomerStatusActive,
+            Status: shared.CustomerStatusArchived,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "asperiores": map[string]interface{}{
-                        "quibusdam": "Omnigender",
+                    "redundant": map[string]interface{}{
+                        "cheater": "Islands",
                     },
                 },
             },
-            TaxNumber: syncforexpenses.String("Volkswagen Specialist Bacon"),
         },
-        AllowSyncOnPushComplete: syncforexpenses.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        CustomerID: "Copper port East",
-        ForceUpdate: syncforexpenses.Bool(false),
-        TimeoutInMinutes: syncforexpenses.Int(373959),
+        CustomerID: "withdrawal extend",
     })
     if err != nil {
         log.Fatal(err)

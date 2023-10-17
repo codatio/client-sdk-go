@@ -32,9 +32,7 @@ import(
 
 func main() {
     s := syncforexpenses.New(
-        syncforexpenses.WithSecurity(shared.Security{
-            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
-        }),
+        syncforexpenses.WithSecurity("Basic BASE_64_ENCODED(API_KEY)"),
     )
 
     ctx := context.Background()
@@ -84,9 +82,7 @@ import(
 
 func main() {
     s := syncforexpenses.New(
-        syncforexpenses.WithSecurity(shared.Security{
-            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
-        }),
+        syncforexpenses.WithSecurity("Basic BASE_64_ENCODED(API_KEY)"),
     )
 
     ctx := context.Background()
@@ -137,9 +133,7 @@ import(
 
 func main() {
     s := syncforexpenses.New(
-        syncforexpenses.WithSecurity(shared.Security{
-            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
-        }),
+        syncforexpenses.WithSecurity("Basic BASE_64_ENCODED(API_KEY)"),
     )
 
     ctx := context.Background()
@@ -148,7 +142,6 @@ func main() {
         OrderBy: syncforexpenses.String("-modifiedDate"),
         Page: syncforexpenses.Int(1),
         PageSize: syncforexpenses.Int(100),
-        Query: syncforexpenses.String("Dock Elegant Buckinghamshire"),
     })
     if err != nil {
         log.Fatal(err)
@@ -197,9 +190,7 @@ import(
 
 func main() {
     s := syncforexpenses.New(
-        syncforexpenses.WithSecurity(shared.Security{
-            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
-        }),
+        syncforexpenses.WithSecurity("Basic BASE_64_ENCODED(API_KEY)"),
     )
 
     ctx := context.Background()
@@ -251,15 +242,12 @@ import(
 
 func main() {
     s := syncforexpenses.New(
-        syncforexpenses.WithSecurity(shared.Security{
-            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
-        }),
+        syncforexpenses.WithSecurity("Basic BASE_64_ENCODED(API_KEY)"),
     )
 
     ctx := context.Background()
     res, err := s.ManageData.RefreshDataType(ctx, operations.RefreshDataTypeRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ConnectionID: syncforexpenses.String("d6258093-be98-4f60-90e1-ca6bcd49fb9a"),
         DataType: shared.DataTypeInvoices,
     })
     if err != nil {

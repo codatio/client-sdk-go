@@ -39,9 +39,7 @@ import(
 
 func main() {
     s := syncforexpenses.New(
-        syncforexpenses.WithSecurity(shared.Security{
-            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
-        }),
+        syncforexpenses.WithSecurity("Basic BASE_64_ENCODED(API_KEY)"),
     )
 
     ctx := context.Background()
@@ -53,29 +51,30 @@ func main() {
             FullyQualifiedCategory: syncforexpenses.String("Asset.Current"),
             FullyQualifiedName: syncforexpenses.String("Cash On Hand"),
             ID: syncforexpenses.String("1b6266d1-1e44-46c5-8eb5-a8f98e03124e"),
-            IsBankAccount: syncforexpenses.Bool(false),
-            Metadata: &shared.AccountMetadata{
-                IsDeleted: syncforexpenses.Bool(false),
-            },
+            Metadata: &shared.AccountMetadata{},
             ModifiedDate: syncforexpenses.String("2022-10-23T00:00:00.000Z"),
             Name: syncforexpenses.String("Accounts Receivable"),
             NominalCode: syncforexpenses.String("610"),
             SourceModifiedDate: syncforexpenses.String("2022-10-23T00:00:00.000Z"),
             Status: shared.AccountStatusActive.ToPointer(),
+            SupplementalData: &shared.SupplementalData{
+                Content: map[string]map[string]interface{}{
+                    "Money": map[string]interface{}{
+                        "blue": "shred",
+                    },
+                },
+            },
             Type: shared.AccountTypeAsset.ToPointer(),
             ValidDatatypeLinks: []shared.AccountValidDataTypeLinks{
                 shared.AccountValidDataTypeLinks{
                     Links: []string{
-                        "Money",
+                        "abnormally",
                     },
-                    Property: syncforexpenses.String("Cambridgeshire grey technology"),
                 },
             },
         },
-        AllowSyncOnPushComplete: syncforexpenses.Bool(false),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TimeoutInMinutes: syncforexpenses.Int(86),
     })
     if err != nil {
         log.Fatal(err)
@@ -129,9 +128,7 @@ import(
 
 func main() {
     s := syncforexpenses.New(
-        syncforexpenses.WithSecurity(shared.Security{
-            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
-        }),
+        syncforexpenses.WithSecurity("Basic BASE_64_ENCODED(API_KEY)"),
     )
 
     ctx := context.Background()
