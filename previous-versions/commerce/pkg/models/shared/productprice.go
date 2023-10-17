@@ -3,7 +3,8 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/types"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 type ProductPrice struct {
@@ -14,8 +15,20 @@ type ProductPrice struct {
 	// In line with the ISO 4217 specification, the code _XXX_ is used when the data source does not return a currency for a transaction.
 	//
 	// There are only a very small number of edge cases where this currency code is returned by the Codat system.
-	Currency  *string        `json:"currency,omitempty"`
-	UnitPrice *types.Decimal `json:"unitPrice,omitempty"`
+	Currency *string `json:"currency,omitempty"`
+	// The product variant's unit price.
+	UnitPrice *decimal.Big `decimal:"number" json:"unitPrice,omitempty"`
+}
+
+func (p ProductPrice) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *ProductPrice) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ProductPrice) GetCurrency() *string {
@@ -25,7 +38,7 @@ func (o *ProductPrice) GetCurrency() *string {
 	return o.Currency
 }
 
-func (o *ProductPrice) GetUnitPrice() *types.Decimal {
+func (o *ProductPrice) GetUnitPrice() *decimal.Big {
 	if o == nil {
 		return nil
 	}

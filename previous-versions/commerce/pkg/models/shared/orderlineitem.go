@@ -3,7 +3,8 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/types"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 type OrderLineItem struct {
@@ -15,19 +16,30 @@ type OrderLineItem struct {
 	// Reference that links the line item to the specific version of product that has been ordered.
 	ProductVariantRef *ProductVariantRef `json:"productVariantRef,omitempty"`
 	// Number of units of the product sold.
-	// For refunds, quantity is a negative value.
+	// For refunds, quantity is negative.
 	//
-	Quantity *types.Decimal `json:"quantity,omitempty"`
-	// Percentage rate (from 0 to 100) of any sale tax applied to the unit amount.
-	TaxPercentage *types.Decimal `json:"taxPercentage,omitempty"`
+	Quantity *decimal.Big `decimal:"number" json:"quantity,omitempty"`
+	// Percentage rate (from 0 to 100) of any sales tax applied to the unit price.
+	TaxPercentage *decimal.Big `decimal:"number" json:"taxPercentage,omitempty"`
 	// Taxes breakdown as applied to order lines.
 	Taxes []TaxComponentAllocation `json:"taxes,omitempty"`
-	// Total price of the line item, including discounts, tax and minus any refunds.
-	TotalAmount *types.Decimal `json:"totalAmount,omitempty"`
-	// Total amount of tax applied to the line item.
-	TotalTaxAmount *types.Decimal `json:"totalTaxAmount,omitempty"`
-	// Price per unit of goods or service.
-	UnitPrice *types.Decimal `json:"unitPrice,omitempty"`
+	// Total amount of the line item, including discounts and tax.
+	TotalAmount *decimal.Big `decimal:"number" json:"totalAmount,omitempty"`
+	// Total amount of tax applied to the line item, factoring in any discounts.
+	TotalTaxAmount *decimal.Big `decimal:"number" json:"totalTaxAmount,omitempty"`
+	// Price per unit of goods or services, excluding discounts and tax.
+	UnitPrice *decimal.Big `decimal:"number" json:"unitPrice,omitempty"`
+}
+
+func (o OrderLineItem) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(o, "", false)
+}
+
+func (o *OrderLineItem) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &o, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *OrderLineItem) GetDiscountAllocations() []OrderDiscountAllocation {
@@ -58,14 +70,14 @@ func (o *OrderLineItem) GetProductVariantRef() *ProductVariantRef {
 	return o.ProductVariantRef
 }
 
-func (o *OrderLineItem) GetQuantity() *types.Decimal {
+func (o *OrderLineItem) GetQuantity() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.Quantity
 }
 
-func (o *OrderLineItem) GetTaxPercentage() *types.Decimal {
+func (o *OrderLineItem) GetTaxPercentage() *decimal.Big {
 	if o == nil {
 		return nil
 	}
@@ -79,21 +91,21 @@ func (o *OrderLineItem) GetTaxes() []TaxComponentAllocation {
 	return o.Taxes
 }
 
-func (o *OrderLineItem) GetTotalAmount() *types.Decimal {
+func (o *OrderLineItem) GetTotalAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.TotalAmount
 }
 
-func (o *OrderLineItem) GetTotalTaxAmount() *types.Decimal {
+func (o *OrderLineItem) GetTotalTaxAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.TotalTaxAmount
 }
 
-func (o *OrderLineItem) GetUnitPrice() *types.Decimal {
+func (o *OrderLineItem) GetUnitPrice() *decimal.Big {
 	if o == nil {
 		return nil
 	}

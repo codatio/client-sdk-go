@@ -4,7 +4,7 @@ package shared
 
 // ProductRef - Reference that links the line item to the correct product details.
 type ProductRef struct {
-	// The unique identitifer of the product being referenced.
+	// The unique identifier of the product being referenced.
 	ID string `json:"id"`
 	// Name of the product being referenced.
 	Name *string `json:"name,omitempty"`
