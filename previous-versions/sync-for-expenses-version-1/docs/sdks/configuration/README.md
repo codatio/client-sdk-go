@@ -1,4 +1,5 @@
 # Configuration
+(*Configuration*)
 
 ## Overview
 
@@ -21,14 +22,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1"
+	syncforexpensesversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncexpenses.New(
-        codatsyncexpenses.WithSecurity(shared.Security{
+    s := syncforexpensesversion1.New(
+        syncforexpensesversion1.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -73,14 +74,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1"
+	syncforexpensesversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1/pkg/models/operations"
 )
 
 func main() {
-    s := codatsyncexpenses.New(
-        codatsyncexpenses.WithSecurity(shared.Security{
+    s := syncforexpensesversion1.New(
+        syncforexpensesversion1.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -89,13 +90,13 @@ func main() {
     res, err := s.Configuration.SaveCompanyConfiguration(ctx, operations.SaveCompanyConfigurationRequest{
         CompanyConfiguration: &shared.CompanyConfiguration{
             BankAccount: shared.BankAccount{
-                ID: codatsyncexpenses.String("32"),
+                ID: syncforexpensesversion1.String("32"),
             },
             Customer: shared.Customer{
-                ID: codatsyncexpenses.String("142"),
+                ID: syncforexpensesversion1.String("142"),
             },
             Supplier: shared.Supplier{
-                ID: codatsyncexpenses.String("124"),
+                ID: syncforexpensesversion1.String("124"),
             },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",

@@ -5,7 +5,8 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1/pkg/types"
+	"github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 // ExpenseTransactionType - The type of transaction.
@@ -83,7 +84,7 @@ type ExpenseTransaction struct {
 	// | **GBP**          | £20            | 1.277         | $25.54                     |
 	// | **EUR**          | €20            | 1.134         | $22.68                     |
 	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
-	CurrencyRate *types.Decimal `json:"currencyRate,omitempty"`
+	CurrencyRate *decimal.Big `decimal:"number" json:"currencyRate,omitempty"`
 	// Your unique identifier for the transaction.
 	ID string `json:"id"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
@@ -116,6 +117,17 @@ type ExpenseTransaction struct {
 	Type ExpenseTransactionType `json:"type"`
 }
 
+func (e ExpenseTransaction) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *ExpenseTransaction) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (o *ExpenseTransaction) GetContactRef() *ContactRef {
 	if o == nil {
 		return nil
@@ -130,7 +142,7 @@ func (o *ExpenseTransaction) GetCurrency() string {
 	return o.Currency
 }
 
-func (o *ExpenseTransaction) GetCurrencyRate() *types.Decimal {
+func (o *ExpenseTransaction) GetCurrencyRate() *decimal.Big {
 	if o == nil {
 		return nil
 	}
