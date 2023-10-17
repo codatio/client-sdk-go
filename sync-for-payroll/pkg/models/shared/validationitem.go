@@ -3,8 +3,11 @@
 package shared
 
 type ValidationItem struct {
-	ItemID        *string `json:"itemId,omitempty"`
-	Message       *string `json:"message,omitempty"`
+	// Unique identifier for a validation item.
+	ItemID *string `json:"itemId,omitempty"`
+	// A message outlining validation item's issue.
+	Message *string `json:"message,omitempty"`
+	// Name of validator.
 	ValidatorName *string `json:"validatorName,omitempty"`
 }
 

@@ -3,9 +3,11 @@
 package shared
 
 type PushOperationChange struct {
+	// Unique identifier for the attachment created otherwise null.
 	AttachmentID *string           `json:"attachmentId,omitempty"`
 	RecordRef    *PushOperationRef `json:"recordRef,omitempty"`
-	Type         *PushChangeType   `json:"type,omitempty"`
+	// Type of change being applied to record in third party platform.
+	Type *PushChangeType `json:"type,omitempty"`
 }
 
 func (o *PushOperationChange) GetAttachmentID() *string {
