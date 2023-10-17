@@ -8,11 +8,12 @@ import (
 )
 
 type GetCategorizedProfitAndLossStatementRequest struct {
+	// Unique identifier for a company.
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	// The number of periods to return. If not provided, 12 periods will be used as the default value.
 	NumberOfPeriods *int64 `queryParam:"style=form,explode=true,name=numberOfPeriods"`
 	// The date in which the report is created up to. Users must specify a specific date, however the response will be provided for the full month.
-	ReportDate string `queryParam:"style=form,explode=true,name=reportDate"`
+	ReportDate *string `queryParam:"style=form,explode=true,name=reportDate"`
 }
 
 func (o *GetCategorizedProfitAndLossStatementRequest) GetCompanyID() string {
@@ -29,21 +30,24 @@ func (o *GetCategorizedProfitAndLossStatementRequest) GetNumberOfPeriods() *int6
 	return o.NumberOfPeriods
 }
 
-func (o *GetCategorizedProfitAndLossStatementRequest) GetReportDate() string {
+func (o *GetCategorizedProfitAndLossStatementRequest) GetReportDate() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ReportDate
 }
 
 type GetCategorizedProfitAndLossStatementResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// OK
 	EnhancedFinancialReport *shared.EnhancedFinancialReport
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
-	StatusCode   int
-	RawResponse  *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *GetCategorizedProfitAndLossStatementResponse) GetContentType() string {

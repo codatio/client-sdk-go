@@ -3,10 +3,14 @@
 package shared
 
 type CommerceReportMeasure struct {
+	// The measure's display name.
 	DisplayName *string `json:"displayName,omitempty"`
-	Index       *int64  `json:"index,omitempty"`
-	Type        *string `json:"type,omitempty"`
-	Units       *string `json:"units,omitempty"`
+	// The measure's index.
+	Index *int64 `json:"index,omitempty"`
+	// The measure's type.
+	Type *string `json:"type,omitempty"`
+	// The measure's units e.g. percentage (%).
+	Units *string `json:"units,omitempty"`
 }
 
 func (o *CommerceReportMeasure) GetDisplayName() *string {

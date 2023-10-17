@@ -4,10 +4,10 @@ package lending
 
 type loanWriteback struct {
 	Accounts         *loanWritebackAccounts
-	BankAccounts     *loanWritebackBankAccounts
 	BankTransactions *loanWritebackBankTransactions
 	CreateOperations *loanWritebackCreateOperations
 	DirectCosts      *loanWritebackDirectCosts
+	Payments         *loanWritebackPayments
 	Suppliers        *loanWritebackSuppliers
 	Transfers        *loanWritebackTransfers
 
@@ -18,10 +18,10 @@ func newLoanWriteback(sdkConfig sdkConfiguration) *loanWriteback {
 	return &loanWriteback{
 		sdkConfiguration: sdkConfig,
 		Accounts:         newLoanWritebackAccounts(sdkConfig),
-		BankAccounts:     newLoanWritebackBankAccounts(sdkConfig),
 		BankTransactions: newLoanWritebackBankTransactions(sdkConfig),
 		CreateOperations: newLoanWritebackCreateOperations(sdkConfig),
 		DirectCosts:      newLoanWritebackDirectCosts(sdkConfig),
+		Payments:         newLoanWritebackPayments(sdkConfig),
 		Suppliers:        newLoanWritebackSuppliers(sdkConfig),
 		Transfers:        newLoanWritebackTransfers(sdkConfig),
 	}

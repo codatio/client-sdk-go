@@ -16,7 +16,8 @@ type CreditNoteLineItem struct {
 	DiscountAmount *decimal.Big `decimal:"number" json:"discountAmount,omitempty"`
 	// Percentage rate of any discount applied to the line item.
 	DiscountPercentage *decimal.Big `decimal:"number" json:"discountPercentage,omitempty"`
-	IsDirectIncome     *bool        `json:"isDirectIncome,omitempty"`
+	// The credit note is a direct income if `True`.
+	IsDirectIncome *bool `json:"isDirectIncome,omitempty"`
 	// Reference to the item the line is linked to.
 	ItemRef *ItemRef `json:"itemRef,omitempty"`
 	// Number of units of the goods or service for which credit has been issued.

@@ -72,6 +72,10 @@ type CommerceTransaction struct {
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Non-standardised transaction type data from the commerce platform
 	SubType *string `json:"subType,omitempty"`
+	// Supplemental data is additional data you can include in our standard data types.
+	//
+	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
+	SupplementalData *SupplementalData `json:"supplementalData,omitempty"`
 	// The total transaction amount
 	TotalAmount *decimal.Big `decimal:"number" json:"totalAmount,omitempty"`
 	// Link to the source event which triggered this transaction
@@ -146,6 +150,13 @@ func (o *CommerceTransaction) GetSubType() *string {
 		return nil
 	}
 	return o.SubType
+}
+
+func (o *CommerceTransaction) GetSupplementalData() *SupplementalData {
+	if o == nil {
+		return nil
+	}
+	return o.SupplementalData
 }
 
 func (o *CommerceTransaction) GetTotalAmount() *decimal.Big {

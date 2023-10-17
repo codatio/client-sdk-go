@@ -1,4 +1,5 @@
-# Banking.CategorizedStatement
+# BankingCategorizedStatement
+(*Banking.CategorizedStatement*)
 
 ### Available Operations
 
@@ -6,8 +7,8 @@
 
 ## Get
 
-> **Categorization engine**
-> 
+﻿> **Categorization engine**
+>
 > The categorization engine uses machine learning and has been fully trained against Plaid and TrueLayer banking data sources. It is not fully trained against the Basiq banking data source.
 
 The _Get categorized bank statement_ endpoint provides a fully categorized list of banking transactions for a company. Accounts and transaction data are obtained from the company's banking data sources.
@@ -20,7 +21,7 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/lending/v4"
+	lending "github.com/codatio/client-sdk-go/lending/v4"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )
@@ -37,7 +38,6 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         Page: lending.Int(1),
         PageSize: lending.Int(100),
-        Query: lending.String("commodi"),
     })
     if err != nil {
         log.Fatal(err)

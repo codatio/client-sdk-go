@@ -4,15 +4,18 @@ package operations
 
 import (
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
+	"io"
 	"net/http"
 )
 
 type DownloadAccountingSupplierAttachmentRequest struct {
-	// Unique identifier for an attachment
+	// Unique identifier for an attachment.
 	AttachmentID string `pathParam:"style=simple,explode=false,name=attachmentId"`
-	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a company.
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a connection.
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
-	// Unique identifier for a supplier
+	// Unique identifier for a supplier.
 	SupplierID string `pathParam:"style=simple,explode=false,name=supplierId"`
 }
 
@@ -45,13 +48,17 @@ func (o *DownloadAccountingSupplierAttachmentRequest) GetSupplierID() string {
 }
 
 type DownloadAccountingSupplierAttachmentResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// Success
-	Data []byte
+	// The Close method must be called on this field, even if it is not used, to prevent resource leaks.
+	Data io.ReadCloser
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
-	StatusCode   int
-	RawResponse  *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *DownloadAccountingSupplierAttachmentResponse) GetContentType() string {
@@ -61,7 +68,7 @@ func (o *DownloadAccountingSupplierAttachmentResponse) GetContentType() string {
 	return o.ContentType
 }
 
-func (o *DownloadAccountingSupplierAttachmentResponse) GetData() []byte {
+func (o *DownloadAccountingSupplierAttachmentResponse) GetData() io.ReadCloser {
 	if o == nil {
 		return nil
 	}

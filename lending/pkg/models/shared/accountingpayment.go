@@ -9,13 +9,13 @@ import (
 
 // AccountingPayment - > **Payments or bill payments?**
 // >
-// >  In Codat, payments represent accounts receivable only. For accounts payable, see [bill payments](https://docs.codat.io/accounting-api#/schemas/BillPayment). These include [bills](https://docs.codat.io/accounting-api#/schemas/Bill) and credit notes against bills.
+// >  In Codat, payments represent accounts receivable only. For accounts payable, see [bill payments](https://docs.codat.io/lending-api#/schemas/BillPayment). These include [bills](https://docs.codat.io/lending-api#/schemas/Bill) and credit notes against bills.
 //
 // > View the coverage for payments in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=payments" target="_blank">Data coverage explorer</a>.
 //
 // ## Overview
 //
-// Payments include all accounts receivable transaction data. This includes [invoices](https://docs.codat.io/accounting-api#/schemas/Invoice) and [credit notes](https://docs.codat.io/accounting-api#/schemas/CreditNote).
+// Payments include all accounts receivable transaction data. This includes [invoices](https://docs.codat.io/lending-api#/schemas/Invoice) and [credit notes](https://docs.codat.io/lending-api#/schemas/CreditNote).
 //
 // A payment in Codat usually represents an allocation of money within any customer accounts receivable account. This includes, but is not strictly limited to:
 //
@@ -33,7 +33,7 @@ import (
 // - The payment method used.
 // - The breakdown of the types of payments – the _line items_.
 //
-// Payments is a child data type of [account transactions](https://docs.codat.io/accounting-api#/schemas/AccountTransaction).
+// Payments is a child data type of [account transactions](https://docs.codat.io/lending-api#/schemas/AccountTransaction).
 //
 // ## Payment types
 //
@@ -754,8 +754,9 @@ type AccountingPayment struct {
 	Metadata     *Metadata     `json:"metadata,omitempty"`
 	ModifiedDate *string       `json:"modifiedDate,omitempty"`
 	// Any additional information associated with the payment.
-	Note             *string     `json:"note,omitempty"`
-	PaymentMethodRef interface{} `json:"paymentMethodRef,omitempty"`
+	Note *string `json:"note,omitempty"`
+	// The payment method the record is linked to in the accounting or commerce platform.
+	PaymentMethodRef *PaymentMethodRef `json:"paymentMethodRef,omitempty"`
 	// Friendly reference for the payment.
 	Reference          *string `json:"reference,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
@@ -848,7 +849,7 @@ func (o *AccountingPayment) GetNote() *string {
 	return o.Note
 }
 
-func (o *AccountingPayment) GetPaymentMethodRef() interface{} {
+func (o *AccountingPayment) GetPaymentMethodRef() *PaymentMethodRef {
 	if o == nil {
 		return nil
 	}

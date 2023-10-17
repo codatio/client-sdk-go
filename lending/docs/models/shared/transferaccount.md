@@ -1,5 +1,7 @@
 # TransferAccount
 
+Account details of the account sending or receiving the transfer.
+
 
 ## Fields
 

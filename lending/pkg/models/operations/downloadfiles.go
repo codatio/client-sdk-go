@@ -4,10 +4,12 @@ package operations
 
 import (
 	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
+	"io"
 	"net/http"
 )
 
 type DownloadFilesRequest struct {
+	// Unique identifier for a company.
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	// Only download files uploaded on this date.
 	Date *string `queryParam:"style=form,explode=true,name=date"`
@@ -28,13 +30,17 @@ func (o *DownloadFilesRequest) GetDate() *string {
 }
 
 type DownloadFilesResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// Success
-	Data []byte
+	// The Close method must be called on this field, even if it is not used, to prevent resource leaks.
+	Data io.ReadCloser
 	// The request made is not valid.
 	ErrorMessage *shared.ErrorMessage
-	StatusCode   int
-	RawResponse  *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *DownloadFilesResponse) GetContentType() string {
@@ -44,7 +50,7 @@ func (o *DownloadFilesResponse) GetContentType() string {
 	return o.ContentType
 }
 
-func (o *DownloadFilesResponse) GetData() []byte {
+func (o *DownloadFilesResponse) GetData() io.ReadCloser {
 	if o == nil {
 		return nil
 	}

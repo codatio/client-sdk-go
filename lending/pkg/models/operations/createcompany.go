@@ -9,12 +9,15 @@ import (
 
 type CreateCompanyResponse struct {
 	// OK
-	Company     *shared.Company
+	Company *shared.Company
+	// HTTP response content type for this operation
 	ContentType string
 	// The request made is not valid.
 	ErrorMessage *shared.ErrorMessage
-	StatusCode   int
-	RawResponse  *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *CreateCompanyResponse) GetCompany() *shared.Company {

@@ -66,14 +66,19 @@ type CommercePayment struct {
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	DueDate *string `json:"dueDate,omitempty"`
 	// A unique, persistent identifier for this record
-	ID               string      `json:"id"`
-	ModifiedDate     *string     `json:"modifiedDate,omitempty"`
-	PaymentMethodRef interface{} `json:"paymentMethodRef,omitempty"`
+	ID           string  `json:"id"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
+	// The payment method the record is linked to in the accounting or commerce platform.
+	PaymentMethodRef *PaymentMethodRef `json:"paymentMethodRef,omitempty"`
 	// Service provider of the payment, if applicable.
 	PaymentProvider    *string `json:"paymentProvider,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Status of the payment.
 	Status *PaymentStatus `json:"status,omitempty"`
+	// Supplemental data is additional data you can include in our standard data types.
+	//
+	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
+	SupplementalData *SupplementalData `json:"supplementalData,omitempty"`
 }
 
 func (c CommercePayment) MarshalJSON() ([]byte, error) {
@@ -129,7 +134,7 @@ func (o *CommercePayment) GetModifiedDate() *string {
 	return o.ModifiedDate
 }
 
-func (o *CommercePayment) GetPaymentMethodRef() interface{} {
+func (o *CommercePayment) GetPaymentMethodRef() *PaymentMethodRef {
 	if o == nil {
 		return nil
 	}
@@ -155,4 +160,11 @@ func (o *CommercePayment) GetStatus() *PaymentStatus {
 		return nil
 	}
 	return o.Status
+}
+
+func (o *CommercePayment) GetSupplementalData() *SupplementalData {
+	if o == nil {
+		return nil
+	}
+	return o.SupplementalData
 }

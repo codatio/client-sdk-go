@@ -13,14 +13,16 @@ import (
 //
 // Think of a credit note as a voucher issued to a customer. It is a reduction that can be applied against one or multiple invoices. A credit note can either reduce the amount owed or cancel out an invoice entirely.
 //
-// In the Codat system a credit note is issued to a [customer's](https://docs.codat.io/accounting-api#/schemas/Customer) accounts receivable.
+// In the Codat system a credit note is issued to a [customer's](https://docs.codat.io/lending-api#/schemas/Customer) accounts receivable.
 //
 // It contains details of:
 // * The amount of credit remaining and its status.
 // * Payment allocations against the payments type, in this case an invoice.
 // * Which customers the credit notes have been issued to.
 type AccountingCreditNote struct {
-	AdditionalTaxAmount     *decimal.Big `decimal:"number" json:"additionalTaxAmount,omitempty"`
+	// Additional tax amount applied to credit note.
+	AdditionalTaxAmount *decimal.Big `decimal:"number" json:"additionalTaxAmount,omitempty"`
+	// Percentage rate of any additional tax applied to the credit note.
 	AdditionalTaxPercentage *decimal.Big `decimal:"number" json:"additionalTaxPercentage,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
@@ -111,9 +113,10 @@ type AccountingCreditNote struct {
 	// An array of payment allocations.
 	PaymentAllocations []AccountingPaymentAllocation `json:"paymentAllocations,omitempty"`
 	// Unused balance of totalAmount originally raised.
-	RemainingCredit    *decimal.Big     `decimal:"number" json:"remainingCredit"`
-	SourceModifiedDate *string          `json:"sourceModifiedDate,omitempty"`
-	Status             CreditNoteStatus `json:"status"`
+	RemainingCredit    *decimal.Big `decimal:"number" json:"remainingCredit"`
+	SourceModifiedDate *string      `json:"sourceModifiedDate,omitempty"`
+	// Current state of the credit note.
+	Status CreditNoteStatus `json:"status"`
 	// Value of the credit note, including discounts and excluding tax.
 	SubTotal *decimal.Big `decimal:"number" json:"subTotal"`
 	// Supplemental data is additional data you can include in our standard data types.

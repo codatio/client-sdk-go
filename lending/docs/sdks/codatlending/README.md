@@ -1,5 +1,6 @@
 # CodatLending SDK
 
+
 ## Overview
 
 Lending API: Our Lending API helps you make smarter credit decisions on small businesses by enabling you to pull your customers' latest data from accounting, banking, and commerce platforms they are already using. It also includes features to help providers verify the accuracy of data and process it more efficiently.

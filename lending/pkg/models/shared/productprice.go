@@ -15,7 +15,8 @@ type ProductPrice struct {
 	// In line with the ISO 4217 specification, the code _XXX_ is used when the data source does not return a currency for a transaction.
 	//
 	// There are only a very small number of edge cases where this currency code is returned by the Codat system.
-	Currency  *string      `json:"currency,omitempty"`
+	Currency *string `json:"currency,omitempty"`
+	// The product variant's unit price.
 	UnitPrice *decimal.Big `decimal:"number" json:"unitPrice,omitempty"`
 }
 

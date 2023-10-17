@@ -9,6 +9,7 @@ import (
 	"github.com/ericlagergren/decimal"
 )
 
+// ReportItemsLoanTransactionType - The type of loan transaction.
 type ReportItemsLoanTransactionType string
 
 const (
@@ -64,9 +65,12 @@ type ReportItems struct {
 	// >
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	Date                *string                         `json:"date,omitempty"`
-	ItemRef             *DefinitionsitemRef             `json:"itemRef,omitempty"`
-	LoanRef             *LoanRef                        `json:"loanRef,omitempty"`
+	Date    *string             `json:"date,omitempty"`
+	ItemRef *DefinitionsitemRef `json:"itemRef,omitempty"`
+	// The name of lender providing the loan.
+	LenderName *string  `json:"lenderName,omitempty"`
+	LoanRef    *LoanRef `json:"loanRef,omitempty"`
+	// The type of loan transaction.
 	LoanTransactionType *ReportItemsLoanTransactionType `json:"loanTransactionType,omitempty"`
 }
 
@@ -100,6 +104,13 @@ func (o *ReportItems) GetItemRef() *DefinitionsitemRef {
 		return nil
 	}
 	return o.ItemRef
+}
+
+func (o *ReportItems) GetLenderName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.LenderName
 }
 
 func (o *ReportItems) GetLoanRef() *LoanRef {

@@ -6,7 +6,7 @@ Responses are paged, so you should provide `page` and `pageSize` query parameter
 
 > **How often should I pull Account Balances?**
 >
-> Because these balances are closing balances, we recommend you pull Account Balance no more frequently than daily. If you require a live intraday balance, this can be found for each account on the [Account](https://docs.codat.io/banking-api#/schemas/Account) data type.
+> Because these balances are closing balances, we recommend you pull Account Balance no more frequently than daily. If you require a live intraday balance, this can be found for each account on the [Account](https://docs.codat.io/lending-api#/schemas/Account) data type.
 > 
 > Whilst you can choose to sync hourly, this may incur usage charges from Plaid or TrueLayer.
 

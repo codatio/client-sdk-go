@@ -88,7 +88,7 @@ func (o *AccountingAccountValidDataTypeLinks) GetProperty() *string {
 // At the same time, each integration may have its own requirements to the categories. For example, a Paypal account in Xero is of the `Asset.Bank` category and therefore requires additional properties to be provided.
 //
 // To determine the list of allowed categories for a specific integration, you can:
-// - Follow our [Create, update, delete data](https://docs.codat.io/using-the-api/push) guide and use the [Get create account model](https://docs.codat.io/accounting-api#/operations/get-create-chartOfAccounts-model).
+// - Follow our [Create, update, delete data](https://docs.codat.io/using-the-api/push) guide and use the [Get create account model](https://docs.codat.io/lending-api#/operations/get-create-chartOfAccounts-model).
 // - Refer to the integration's own documentation.
 //
 // > **Accounts with no category**
@@ -131,9 +131,13 @@ type AccountingAccount struct {
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Status of the account
 	Status *AccountStatus `json:"status,omitempty"`
+	// Supplemental data is additional data you can include in our standard data types.
+	//
+	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
+	SupplementalData *SupplementalData `json:"supplementalData,omitempty"`
 	// Type of account
 	Type *AccountType `json:"type,omitempty"`
-	// The validDatatypeLinks can be used to determine whether an account can be correctly mapped to another object; for example, accounts with a `type` of `income` might only support being used on an Invoice and Direct Income. For more information, see [Valid Data Type Links](/accounting-api#/schemas/ValidDataTypeLinks).
+	// The validDatatypeLinks can be used to determine whether an account can be correctly mapped to another object; for example, accounts with a `type` of `income` might only support being used on an Invoice and Direct Income. For more information, see [Valid Data Type Links](/lending-api#/schemas/ValidDataTypeLinks).
 	ValidDatatypeLinks []AccountingAccountValidDataTypeLinks `json:"validDatatypeLinks,omitempty"`
 }
 
@@ -237,6 +241,13 @@ func (o *AccountingAccount) GetStatus() *AccountStatus {
 		return nil
 	}
 	return o.Status
+}
+
+func (o *AccountingAccount) GetSupplementalData() *SupplementalData {
+	if o == nil {
+		return nil
+	}
+	return o.SupplementalData
 }
 
 func (o *AccountingAccount) GetType() *AccountType {
