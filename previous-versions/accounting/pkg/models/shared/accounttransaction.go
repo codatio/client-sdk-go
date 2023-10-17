@@ -5,7 +5,8 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/types"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 // AccountTransactionStatus - The status of the account transaction.
@@ -95,7 +96,7 @@ type AccountTransaction struct {
 	// | **GBP**          | £20            | 1.277         | $25.54                     |
 	// | **EUR**          | €20            | 1.134         | $22.68                     |
 	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
-	CurrencyRate *types.Decimal `json:"currencyRate,omitempty"`
+	CurrencyRate *decimal.Big `decimal:"number" json:"currencyRate,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -128,9 +129,20 @@ type AccountTransaction struct {
 	// The status of the account transaction.
 	Status *AccountTransactionStatus `json:"status,omitempty"`
 	// Total amount of the account transactions, inclusive of tax.
-	TotalAmount *types.Decimal `json:"totalAmount,omitempty"`
+	TotalAmount *decimal.Big `decimal:"number" json:"totalAmount,omitempty"`
 	// Identifier of the transaction (unique to the company).
 	TransactionID *string `json:"transactionId,omitempty"`
+}
+
+func (a AccountTransaction) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AccountTransaction) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *AccountTransaction) GetBankAccountRef() *BankAccountRef {
@@ -147,7 +159,7 @@ func (o *AccountTransaction) GetCurrency() *string {
 	return o.Currency
 }
 
-func (o *AccountTransaction) GetCurrencyRate() *types.Decimal {
+func (o *AccountTransaction) GetCurrencyRate() *decimal.Big {
 	if o == nil {
 		return nil
 	}
@@ -210,7 +222,7 @@ func (o *AccountTransaction) GetStatus() *AccountTransactionStatus {
 	return o.Status
 }
 
-func (o *AccountTransaction) GetTotalAmount() *types.Decimal {
+func (o *AccountTransaction) GetTotalAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}

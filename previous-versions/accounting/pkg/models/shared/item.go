@@ -33,6 +33,10 @@ type Item struct {
 	// Name of the item in the accounting platform.
 	Name               *string `json:"name,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
+	// Supplemental data is additional data you can include in our standard data types.
+	//
+	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
+	SupplementalData *SupplementalData `json:"supplementalData,omitempty"`
 	// Type of the item.
 	Type ItemType `json:"type"`
 }
@@ -112,6 +116,13 @@ func (o *Item) GetSourceModifiedDate() *string {
 		return nil
 	}
 	return o.SourceModifiedDate
+}
+
+func (o *Item) GetSupplementalData() *SupplementalData {
+	if o == nil {
+		return nil
+	}
+	return o.SupplementalData
 }
 
 func (o *Item) GetType() ItemType {

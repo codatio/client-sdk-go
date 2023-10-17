@@ -3,9 +3,67 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/types"
+	"encoding/json"
+	"fmt"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
+
+// BillLineItemRecordLineReferenceDataType - Allowed name of the 'dataType'.
+type BillLineItemRecordLineReferenceDataType string
+
+const (
+	BillLineItemRecordLineReferenceDataTypePurchaseOrders BillLineItemRecordLineReferenceDataType = "purchaseOrders"
+)
+
+func (e BillLineItemRecordLineReferenceDataType) ToPointer() *BillLineItemRecordLineReferenceDataType {
+	return &e
+}
+
+func (e *BillLineItemRecordLineReferenceDataType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "purchaseOrders":
+		*e = BillLineItemRecordLineReferenceDataType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for BillLineItemRecordLineReferenceDataType: %v", v)
+	}
+}
+
+// BillLineItemRecordLineReference - Reference to the purchase order line this line was generated from.
+type BillLineItemRecordLineReference struct {
+	// Allowed name of the 'dataType'.
+	DataType *BillLineItemRecordLineReferenceDataType `json:"dataType,omitempty"`
+	// 'id' of the underlying record.
+	ID *string `json:"id,omitempty"`
+	// Line number of the underlying record.
+	LineNumber *string `json:"lineNumber,omitempty"`
+}
+
+func (o *BillLineItemRecordLineReference) GetDataType() *BillLineItemRecordLineReferenceDataType {
+	if o == nil {
+		return nil
+	}
+	return o.DataType
+}
+
+func (o *BillLineItemRecordLineReference) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *BillLineItemRecordLineReference) GetLineNumber() *string {
+	if o == nil {
+		return nil
+	}
+	return o.LineNumber
+}
 
 type BillLineItem struct {
 	// Data types that reference an account, for example bill and invoice line items, use an accountRef that includes the ID and name of the linked account.
@@ -15,16 +73,22 @@ type BillLineItem struct {
 	// Numerical value of any discounts applied.
 	//
 	// Do not use to apply discounts in Oracle NetSuite—see Oracle NetSuite integration reference.
-	DiscountAmount     *types.Decimal `json:"discountAmount,omitempty"`
-	DiscountPercentage *types.Decimal `json:"discountPercentage,omitempty"`
-	IsDirectCost       *bool          `json:"isDirectCost,omitempty"`
-	ItemRef            *ItemRef       `json:"itemRef,omitempty"`
+	DiscountAmount *decimal.Big `decimal:"number" json:"discountAmount,omitempty"`
+	// Percentage rate of any discount applied to the bill.
+	DiscountPercentage *decimal.Big `decimal:"number" json:"discountPercentage,omitempty"`
+	// The bill is a direct cost if `True`.
+	IsDirectCost *bool    `json:"isDirectCost,omitempty"`
+	ItemRef      *ItemRef `json:"itemRef,omitempty"`
+	// The bill line's number.
+	LineNumber *string `json:"lineNumber,omitempty"`
+	// Reference to the purchase order line this line was generated from.
+	PurchaseOrderLineRef *BillLineItemRecordLineReference `json:"purchaseOrderLineRef,omitempty"`
 	// Number of units of goods or services received.
-	Quantity types.Decimal `json:"quantity"`
+	Quantity *decimal.Big `decimal:"number" json:"quantity"`
 	// Amount of the line, inclusive of discounts but exclusive of tax.
-	SubTotal *types.Decimal `json:"subTotal,omitempty"`
+	SubTotal *decimal.Big `decimal:"number" json:"subTotal,omitempty"`
 	// Amount of tax for the line.
-	TaxAmount *types.Decimal `json:"taxAmount,omitempty"`
+	TaxAmount *decimal.Big `decimal:"number" json:"taxAmount,omitempty"`
 	// Data types that reference a tax rate, for example invoice and bill line items, use a taxRateRef that includes the ID and name of the linked tax rate.
 	//
 	// Found on:
@@ -37,13 +101,24 @@ type BillLineItem struct {
 	// - Items
 	TaxRateRef *TaxRateRef `json:"taxRateRef,omitempty"`
 	// Total amount of the line, including tax.
-	TotalAmount *types.Decimal `json:"totalAmount,omitempty"`
+	TotalAmount *decimal.Big `decimal:"number" json:"totalAmount,omitempty"`
 	// Categories, and a project and customer, against which the item is tracked.
 	Tracking *Propertiestracking `json:"tracking,omitempty"`
 	// Collection of categories against which this item is tracked.
 	TrackingCategoryRefs []TrackingCategoryRef `json:"trackingCategoryRefs,omitempty"`
 	// Price of each unit of goods or services.
-	UnitAmount types.Decimal `json:"unitAmount"`
+	UnitAmount *decimal.Big `decimal:"number" json:"unitAmount"`
+}
+
+func (b BillLineItem) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(b, "", false)
+}
+
+func (b *BillLineItem) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &b, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *BillLineItem) GetAccountRef() *AccountRef {
@@ -60,14 +135,14 @@ func (o *BillLineItem) GetDescription() *string {
 	return o.Description
 }
 
-func (o *BillLineItem) GetDiscountAmount() *types.Decimal {
+func (o *BillLineItem) GetDiscountAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.DiscountAmount
 }
 
-func (o *BillLineItem) GetDiscountPercentage() *types.Decimal {
+func (o *BillLineItem) GetDiscountPercentage() *decimal.Big {
 	if o == nil {
 		return nil
 	}
@@ -88,21 +163,35 @@ func (o *BillLineItem) GetItemRef() *ItemRef {
 	return o.ItemRef
 }
 
-func (o *BillLineItem) GetQuantity() types.Decimal {
+func (o *BillLineItem) GetLineNumber() *string {
 	if o == nil {
-		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
+		return nil
+	}
+	return o.LineNumber
+}
+
+func (o *BillLineItem) GetPurchaseOrderLineRef() *BillLineItemRecordLineReference {
+	if o == nil {
+		return nil
+	}
+	return o.PurchaseOrderLineRef
+}
+
+func (o *BillLineItem) GetQuantity() *decimal.Big {
+	if o == nil {
+		return new(decimal.Big).SetFloat64(0.0)
 	}
 	return o.Quantity
 }
 
-func (o *BillLineItem) GetSubTotal() *types.Decimal {
+func (o *BillLineItem) GetSubTotal() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.SubTotal
 }
 
-func (o *BillLineItem) GetTaxAmount() *types.Decimal {
+func (o *BillLineItem) GetTaxAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}
@@ -116,7 +205,7 @@ func (o *BillLineItem) GetTaxRateRef() *TaxRateRef {
 	return o.TaxRateRef
 }
 
-func (o *BillLineItem) GetTotalAmount() *types.Decimal {
+func (o *BillLineItem) GetTotalAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}
@@ -137,9 +226,9 @@ func (o *BillLineItem) GetTrackingCategoryRefs() []TrackingCategoryRef {
 	return o.TrackingCategoryRefs
 }
 
-func (o *BillLineItem) GetUnitAmount() types.Decimal {
+func (o *BillLineItem) GetUnitAmount() *decimal.Big {
 	if o == nil {
-		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
+		return new(decimal.Big).SetFloat64(0.0)
 	}
 	return o.UnitAmount
 }

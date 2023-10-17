@@ -3,7 +3,8 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/types"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 // Payment - > **Payments or bill payments?**
@@ -724,7 +725,7 @@ type Payment struct {
 	// | **GBP**          | £20            | 1.277         | $25.54                     |
 	// | **EUR**          | €20            | 1.134         | $22.68                     |
 	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
-	CurrencyRate *types.Decimal         `json:"currencyRate,omitempty"`
+	CurrencyRate *decimal.Big           `decimal:"number" json:"currencyRate,omitempty"`
 	CustomerRef  *AccountingCustomerRef `json:"customerRef,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
@@ -753,8 +754,9 @@ type Payment struct {
 	Metadata     *Metadata     `json:"metadata,omitempty"`
 	ModifiedDate *string       `json:"modifiedDate,omitempty"`
 	// Any additional information associated with the payment.
-	Note             *string     `json:"note,omitempty"`
-	PaymentMethodRef interface{} `json:"paymentMethodRef,omitempty"`
+	Note *string `json:"note,omitempty"`
+	// The payment method the record is linked to in the accounting or commerce platform.
+	PaymentMethodRef *PaymentMethodRef `json:"paymentMethodRef,omitempty"`
 	// Friendly reference for the payment.
 	Reference          *string `json:"reference,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
@@ -763,7 +765,18 @@ type Payment struct {
 	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
 	SupplementalData *SupplementalData `json:"supplementalData,omitempty"`
 	// Amount of the payment in the payment currency. This value should never change and represents the amount of money paid into the customer's account.
-	TotalAmount *types.Decimal `json:"totalAmount,omitempty"`
+	TotalAmount *decimal.Big `decimal:"number" json:"totalAmount,omitempty"`
+}
+
+func (p Payment) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *Payment) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *Payment) GetAccountRef() *AccountRef {
@@ -780,7 +793,7 @@ func (o *Payment) GetCurrency() *string {
 	return o.Currency
 }
 
-func (o *Payment) GetCurrencyRate() *types.Decimal {
+func (o *Payment) GetCurrencyRate() *decimal.Big {
 	if o == nil {
 		return nil
 	}
@@ -836,7 +849,7 @@ func (o *Payment) GetNote() *string {
 	return o.Note
 }
 
-func (o *Payment) GetPaymentMethodRef() interface{} {
+func (o *Payment) GetPaymentMethodRef() *PaymentMethodRef {
 	if o == nil {
 		return nil
 	}
@@ -864,7 +877,7 @@ func (o *Payment) GetSupplementalData() *SupplementalData {
 	return o.SupplementalData
 }
 
-func (o *Payment) GetTotalAmount() *types.Decimal {
+func (o *Payment) GetTotalAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}

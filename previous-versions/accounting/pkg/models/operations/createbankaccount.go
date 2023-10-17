@@ -4,15 +4,31 @@ package operations
 
 import (
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/utils"
 	"net/http"
 )
 
 type CreateBankAccountRequest struct {
-	BankAccount             *shared.BankAccount `request:"mediaType=application/json"`
-	AllowSyncOnPushComplete *bool               `queryParam:"style=form,explode=true,name=allowSyncOnPushComplete"`
-	CompanyID               string              `pathParam:"style=simple,explode=false,name=companyId"`
-	ConnectionID            string              `pathParam:"style=simple,explode=false,name=connectionId"`
-	TimeoutInMinutes        *int                `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
+	BankAccount *shared.BankAccount `request:"mediaType=application/json"`
+	// Allow a sync upon push completion.
+	AllowSyncOnPushComplete *bool `default:"true" queryParam:"style=form,explode=true,name=allowSyncOnPushComplete"`
+	// Unique identifier for a company.
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a connection.
+	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
+	// Time limit for the push operation to complete before it is timed out.
+	TimeoutInMinutes *int `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
+}
+
+func (c CreateBankAccountRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CreateBankAccountRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *CreateBankAccountRequest) GetBankAccount() *shared.BankAccount {
@@ -51,13 +67,16 @@ func (o *CreateBankAccountRequest) GetTimeoutInMinutes() *int {
 }
 
 type CreateBankAccountResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// Success
 	CreateBankAccountResponse *shared.CreateBankAccountResponse
 	// The request made is not valid.
 	ErrorMessage *shared.ErrorMessage
-	StatusCode   int
-	RawResponse  *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *CreateBankAccountResponse) GetContentType() string {

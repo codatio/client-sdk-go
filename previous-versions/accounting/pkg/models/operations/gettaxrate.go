@@ -8,7 +8,9 @@ import (
 )
 
 type GetTaxRateRequest struct {
+	// Unique identifier for a company.
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a tax rate.
 	TaxRateID string `pathParam:"style=simple,explode=false,name=taxRateId"`
 }
 
@@ -27,11 +29,14 @@ func (o *GetTaxRateRequest) GetTaxRateID() string {
 }
 
 type GetTaxRateResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
-	StatusCode   int
-	RawResponse  *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 	// Success
 	TaxRate *shared.TaxRate
 }

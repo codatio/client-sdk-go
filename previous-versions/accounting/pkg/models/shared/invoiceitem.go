@@ -3,7 +3,8 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/types"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 // InvoiceItem - Item details that are only for bills.
@@ -24,7 +25,18 @@ type InvoiceItem struct {
 	// - Items
 	TaxRateRef *TaxRateRef `json:"taxRateRef,omitempty"`
 	// Unit price of the product or service.
-	UnitPrice *types.Decimal `json:"unitPrice,omitempty"`
+	UnitPrice *decimal.Big `decimal:"number" json:"unitPrice,omitempty"`
+}
+
+func (i InvoiceItem) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(i, "", false)
+}
+
+func (i *InvoiceItem) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &i, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *InvoiceItem) GetAccountRef() *AccountRef {
@@ -48,7 +60,7 @@ func (o *InvoiceItem) GetTaxRateRef() *TaxRateRef {
 	return o.TaxRateRef
 }
 
-func (o *InvoiceItem) GetUnitPrice() *types.Decimal {
+func (o *InvoiceItem) GetUnitPrice() *decimal.Big {
 	if o == nil {
 		return nil
 	}

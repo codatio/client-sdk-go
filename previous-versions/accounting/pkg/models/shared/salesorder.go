@@ -3,7 +3,8 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/types"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 // SalesOrderShipToContact - Details of the named contact at the delivery address.
@@ -99,7 +100,7 @@ type SalesOrder struct {
 	// | **GBP**          | £20            | 1.277         | $25.54                     |
 	// | **EUR**          | €20            | 1.134         | $22.68                     |
 	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
-	CurrencyRate *types.Decimal `json:"currencyRate,omitempty"`
+	CurrencyRate *decimal.Big `decimal:"number" json:"currencyRate,omitempty"`
 	// A customer-supplied identifier for the purchase order in the customer's system.
 	CustomerPurchaseOrderNumber *string                `json:"customerPurchaseOrderNumber,omitempty"`
 	CustomerRef                 *AccountingCustomerRef `json:"customerRef,omitempty"`
@@ -161,14 +162,24 @@ type SalesOrder struct {
 	// Current state of the sales order.
 	Status *SalesOrderStatus `json:"status,omitempty"`
 	// Total amount of the sales order, including discounts but excluding tax.
-	SubTotal *types.Decimal `json:"subTotal,omitempty"`
+	SubTotal *decimal.Big `decimal:"number" json:"subTotal,omitempty"`
 	// Total amount of the sales order, including discounts and tax.
-	TotalAmount *types.Decimal `json:"totalAmount,omitempty"`
-	//
+	TotalAmount *decimal.Big `decimal:"number" json:"totalAmount,omitempty"`
 	// Total value of any discounts applied to the sales order.
-	TotalDiscount *types.Decimal `json:"totalDiscount,omitempty"`
+	TotalDiscount *decimal.Big `decimal:"number" json:"totalDiscount,omitempty"`
 	// Total amount of tax included in the sales order.
-	TotalTaxAmount *types.Decimal `json:"totalTaxAmount,omitempty"`
+	TotalTaxAmount *decimal.Big `decimal:"number" json:"totalTaxAmount,omitempty"`
+}
+
+func (s SalesOrder) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SalesOrder) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *SalesOrder) GetCurrency() *string {
@@ -178,7 +189,7 @@ func (o *SalesOrder) GetCurrency() *string {
 	return o.Currency
 }
 
-func (o *SalesOrder) GetCurrencyRate() *types.Decimal {
+func (o *SalesOrder) GetCurrencyRate() *decimal.Big {
 	if o == nil {
 		return nil
 	}
@@ -283,28 +294,28 @@ func (o *SalesOrder) GetStatus() *SalesOrderStatus {
 	return o.Status
 }
 
-func (o *SalesOrder) GetSubTotal() *types.Decimal {
+func (o *SalesOrder) GetSubTotal() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.SubTotal
 }
 
-func (o *SalesOrder) GetTotalAmount() *types.Decimal {
+func (o *SalesOrder) GetTotalAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.TotalAmount
 }
 
-func (o *SalesOrder) GetTotalDiscount() *types.Decimal {
+func (o *SalesOrder) GetTotalDiscount() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.TotalDiscount
 }
 
-func (o *SalesOrder) GetTotalTaxAmount() *types.Decimal {
+func (o *SalesOrder) GetTotalTaxAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}

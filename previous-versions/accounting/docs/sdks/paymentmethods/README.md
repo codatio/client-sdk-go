@@ -1,4 +1,5 @@
 # PaymentMethods
+(*PaymentMethods*)
 
 ## Overview
 
@@ -34,8 +35,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -43,7 +44,7 @@ func main() {
     ctx := context.Background()
     res, err := s.PaymentMethods.Get(ctx, operations.GetPaymentMethodRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        PaymentMethodID: "totam",
+        PaymentMethodID: "Northeast Hatchback Kia",
     })
     if err != nil {
         log.Fatal(err)
@@ -92,8 +93,8 @@ import(
 )
 
 func main() {
-    s := codataccounting.New(
-        codataccounting.WithSecurity(shared.Security{
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -101,10 +102,9 @@ func main() {
     ctx := context.Background()
     res, err := s.PaymentMethods.List(ctx, operations.ListPaymentMethodsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        OrderBy: codataccounting.String("-modifiedDate"),
-        Page: codataccounting.Int(1),
-        PageSize: codataccounting.Int(100),
-        Query: codataccounting.String("praesentium"),
+        OrderBy: accounting.String("-modifiedDate"),
+        Page: accounting.Int(1),
+        PageSize: accounting.Int(100),
     })
     if err != nil {
         log.Fatal(err)

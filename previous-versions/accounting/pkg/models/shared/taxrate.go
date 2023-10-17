@@ -3,7 +3,8 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/types"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 // TaxRate - > View the coverage for tax rates in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=taxRates" target="_blank">Data coverage explorer</a>.
@@ -31,7 +32,7 @@ type TaxRate struct {
 	Code       *string            `json:"code,omitempty"`
 	Components []TaxRateComponent `json:"components,omitempty"`
 	// See Effective tax rates description.
-	EffectiveTaxRate *types.Decimal `json:"effectiveTaxRate,omitempty"`
+	EffectiveTaxRate *decimal.Big `decimal:"number" json:"effectiveTaxRate,omitempty"`
 	// Identifier for the tax rate, unique for the company in the accounting platform.
 	ID           *string   `json:"id,omitempty"`
 	Metadata     *Metadata `json:"metadata,omitempty"`
@@ -44,9 +45,24 @@ type TaxRate struct {
 	// - `Archived` - A tax rate that has been archived or is inactive in the accounting platform.
 	// - `Unknown` - Where the status of the tax rate cannot be determined from the underlying platform.
 	Status *TaxRateStatus `json:"status,omitempty"`
+	// Supplemental data is additional data you can include in our standard data types.
+	//
+	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
+	SupplementalData *SupplementalData `json:"supplementalData,omitempty"`
 	// Total (not compounded) sum of the components of a tax rate.
-	TotalTaxRate       *types.Decimal       `json:"totalTaxRate,omitempty"`
+	TotalTaxRate       *decimal.Big         `decimal:"number" json:"totalTaxRate,omitempty"`
 	ValidDatatypeLinks []ValidDataTypeLinks `json:"validDatatypeLinks,omitempty"`
+}
+
+func (t TaxRate) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
+}
+
+func (t *TaxRate) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *TaxRate) GetCode() *string {
@@ -63,7 +79,7 @@ func (o *TaxRate) GetComponents() []TaxRateComponent {
 	return o.Components
 }
 
-func (o *TaxRate) GetEffectiveTaxRate() *types.Decimal {
+func (o *TaxRate) GetEffectiveTaxRate() *decimal.Big {
 	if o == nil {
 		return nil
 	}
@@ -112,7 +128,14 @@ func (o *TaxRate) GetStatus() *TaxRateStatus {
 	return o.Status
 }
 
-func (o *TaxRate) GetTotalTaxRate() *types.Decimal {
+func (o *TaxRate) GetSupplementalData() *SupplementalData {
+	if o == nil {
+		return nil
+	}
+	return o.SupplementalData
+}
+
+func (o *TaxRate) GetTotalTaxRate() *decimal.Big {
 	if o == nil {
 		return nil
 	}

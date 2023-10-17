@@ -3,7 +3,8 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/types"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 // PurchaseOrder - > View the coverage for purchase orders in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=purchaseOrders" target="_blank">Data coverage explorer</a>.
@@ -47,7 +48,7 @@ type PurchaseOrder struct {
 	// | **GBP**          | £20            | 1.277         | $25.54                     |
 	// | **EUR**          | €20            | 1.134         | $22.68                     |
 	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
-	CurrencyRate *types.Decimal `json:"currencyRate,omitempty"`
+	CurrencyRate *decimal.Big `decimal:"number" json:"currencyRate,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -144,16 +145,27 @@ type PurchaseOrder struct {
 	// Current state of the purchase order
 	Status *PurchaseOrderStatus `json:"status,omitempty"`
 	// Total amount of the purchase order, including discounts but excluding tax.
-	SubTotal *types.Decimal `json:"subTotal,omitempty"`
+	SubTotal *decimal.Big `decimal:"number" json:"subTotal,omitempty"`
 	// Reference to the supplier the record relates to.
 	SupplierRef *SupplierRef `json:"supplierRef,omitempty"`
 	// Total amount of the purchase order, including discounts and tax.
-	TotalAmount *types.Decimal `json:"totalAmount,omitempty"`
+	TotalAmount *decimal.Big `decimal:"number" json:"totalAmount,omitempty"`
 	// Total value of any discounts applied to the purchase order.
-	TotalDiscount *types.Decimal `json:"totalDiscount,omitempty"`
+	TotalDiscount *decimal.Big `decimal:"number" json:"totalDiscount,omitempty"`
 	//
 	// Total amount of tax included in the purchase order.
-	TotalTaxAmount *types.Decimal `json:"totalTaxAmount,omitempty"`
+	TotalTaxAmount *decimal.Big `decimal:"number" json:"totalTaxAmount,omitempty"`
+}
+
+func (p PurchaseOrder) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PurchaseOrder) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *PurchaseOrder) GetCurrency() *string {
@@ -163,7 +175,7 @@ func (o *PurchaseOrder) GetCurrency() *string {
 	return o.Currency
 }
 
-func (o *PurchaseOrder) GetCurrencyRate() *types.Decimal {
+func (o *PurchaseOrder) GetCurrencyRate() *decimal.Big {
 	if o == nil {
 		return nil
 	}
@@ -261,7 +273,7 @@ func (o *PurchaseOrder) GetStatus() *PurchaseOrderStatus {
 	return o.Status
 }
 
-func (o *PurchaseOrder) GetSubTotal() *types.Decimal {
+func (o *PurchaseOrder) GetSubTotal() *decimal.Big {
 	if o == nil {
 		return nil
 	}
@@ -275,21 +287,21 @@ func (o *PurchaseOrder) GetSupplierRef() *SupplierRef {
 	return o.SupplierRef
 }
 
-func (o *PurchaseOrder) GetTotalAmount() *types.Decimal {
+func (o *PurchaseOrder) GetTotalAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.TotalAmount
 }
 
-func (o *PurchaseOrder) GetTotalDiscount() *types.Decimal {
+func (o *PurchaseOrder) GetTotalDiscount() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.TotalDiscount
 }
 
-func (o *PurchaseOrder) GetTotalTaxAmount() *types.Decimal {
+func (o *PurchaseOrder) GetTotalTaxAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}

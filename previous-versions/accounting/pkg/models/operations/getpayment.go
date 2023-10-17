@@ -8,7 +8,9 @@ import (
 )
 
 type GetPaymentRequest struct {
+	// Unique identifier for a company.
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a payment.
 	PaymentID string `pathParam:"style=simple,explode=false,name=paymentId"`
 }
 
@@ -27,12 +29,15 @@ func (o *GetPaymentRequest) GetPaymentID() string {
 }
 
 type GetPaymentResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
 	// Success
-	Payment     *shared.Payment
-	StatusCode  int
+	Payment *shared.Payment
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 }
 

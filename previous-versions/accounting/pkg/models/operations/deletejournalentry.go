@@ -8,9 +8,11 @@ import (
 )
 
 type DeleteJournalEntryRequest struct {
-	CompanyID    string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a company.
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a connection.
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
-	// Unique identifier for a journal entry
+	// Unique identifier for a journal entry.
 	JournalEntryID string `pathParam:"style=simple,explode=false,name=journalEntryId"`
 }
 
@@ -36,13 +38,16 @@ func (o *DeleteJournalEntryRequest) GetJournalEntryID() string {
 }
 
 type DeleteJournalEntryResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
 	// OK
 	PushOperationSummary *shared.PushOperationSummary
-	StatusCode           int
-	RawResponse          *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *DeleteJournalEntryResponse) GetContentType() string {
