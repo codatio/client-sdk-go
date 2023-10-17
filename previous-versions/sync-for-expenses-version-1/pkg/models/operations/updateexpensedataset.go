@@ -9,7 +9,8 @@ import (
 
 type UpdateExpenseDatasetRequest struct {
 	UpdateExpenseRequest *shared.UpdateExpenseRequest `request:"mediaType=application/json"`
-	CompanyID            string                       `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a company.
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	// The unique identifier for your SMB's transaction.
 	TransactionID string `pathParam:"style=simple,explode=false,name=transactionId"`
 }
@@ -37,6 +38,7 @@ func (o *UpdateExpenseDatasetRequest) GetTransactionID() string {
 
 // UpdateExpenseDataset202ApplicationJSON - Accepted
 type UpdateExpenseDataset202ApplicationJSON struct {
+	// Unique identifier for the updated sync.
 	SyncID *string `json:"syncId,omitempty"`
 }
 
@@ -48,11 +50,14 @@ func (o *UpdateExpenseDataset202ApplicationJSON) GetSyncID() *string {
 }
 
 type UpdateExpenseDatasetResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// The request made is not valid.
 	ErrorMessage *shared.ErrorMessage
-	StatusCode   int
-	RawResponse  *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 	// Accepted
 	UpdateExpenseDataset202ApplicationJSONObject *UpdateExpenseDataset202ApplicationJSON
 }

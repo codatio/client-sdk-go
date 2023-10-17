@@ -9,7 +9,8 @@ import (
 
 type CreateExpenseDatasetRequest struct {
 	CreateExpenseRequest *shared.CreateExpenseRequest `request:"mediaType=application/json"`
-	CompanyID            string                       `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a company.
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
 func (o *CreateExpenseDatasetRequest) GetCreateExpenseRequest() *shared.CreateExpenseRequest {
@@ -27,13 +28,16 @@ func (o *CreateExpenseDatasetRequest) GetCompanyID() string {
 }
 
 type CreateExpenseDatasetResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// OK
 	CreateExpenseResponse *shared.CreateExpenseResponse
 	// The request made is not valid.
 	ErrorMessage *shared.ErrorMessage
-	StatusCode   int
-	RawResponse  *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *CreateExpenseDatasetResponse) GetContentType() string {
