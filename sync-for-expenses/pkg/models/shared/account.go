@@ -143,6 +143,10 @@ type Account struct {
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Status of the account
 	Status *AccountStatus `json:"status,omitempty"`
+	// Supplemental data is additional data you can include in our standard data types.
+	//
+	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
+	SupplementalData *SupplementalData `json:"supplementalData,omitempty"`
 	// Type of account
 	Type *AccountType `json:"type,omitempty"`
 	// The validDatatypeLinks can be used to determine whether an account can be correctly mapped to another object; for example, accounts with a `type` of `income` might only support being used on an Invoice and Direct Income. For more information, see [Valid Data Type Links](/sync-for-expenses-api#/schemas/ValidDataTypeLinks).
@@ -249,6 +253,13 @@ func (o *Account) GetStatus() *AccountStatus {
 		return nil
 	}
 	return o.Status
+}
+
+func (o *Account) GetSupplementalData() *SupplementalData {
+	if o == nil {
+		return nil
+	}
+	return o.SupplementalData
 }
 
 func (o *Account) GetType() *AccountType {

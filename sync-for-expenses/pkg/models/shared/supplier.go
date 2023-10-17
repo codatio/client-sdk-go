@@ -68,20 +68,6 @@ func (o *SupplierAccountingAddress) GetType() AccountingAddressType {
 	return o.Type
 }
 
-// SupplierSupplementalData - Supplemental data is additional data you can include in our standard data types.
-//
-// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
-type SupplierSupplementalData struct {
-	Content map[string]map[string]interface{} `json:"content,omitempty"`
-}
-
-func (o *SupplierSupplementalData) GetContent() map[string]map[string]interface{} {
-	if o == nil {
-		return nil
-	}
-	return o.Content
-}
-
 // Supplier - > View the coverage for suppliers in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=suppliers" target="_blank">Data coverage explorer</a>.
 //
 // ## Overview
@@ -110,7 +96,7 @@ type Supplier struct {
 	// Supplemental data is additional data you can include in our standard data types.
 	//
 	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
-	SupplementalData *SupplierSupplementalData `json:"supplementalData,omitempty"`
+	SupplementalData *SupplementalData `json:"supplementalData,omitempty"`
 	// Name of the supplier as recorded in the accounting system, typically the company name.
 	SupplierName *string `json:"supplierName,omitempty"`
 	// Supplier's company tax number.
@@ -194,7 +180,7 @@ func (o *Supplier) GetStatus() SupplierStatus {
 	return o.Status
 }
 
-func (o *Supplier) GetSupplementalData() *SupplierSupplementalData {
+func (o *Supplier) GetSupplementalData() *SupplementalData {
 	if o == nil {
 		return nil
 	}

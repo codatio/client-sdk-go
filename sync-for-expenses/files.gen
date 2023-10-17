@@ -28,6 +28,7 @@ pkg/utils/requestbody.go
 pkg/utils/retries.go
 pkg/utils/security.go
 pkg/utils/utils.go
+tests/helpers.go
 pkg/models/operations/createaccount.go
 pkg/models/operations/getcreatechartofaccountsmodel.go
 pkg/models/operations/createcompany.go
@@ -77,6 +78,7 @@ pkg/models/shared/pushoperationstatus.go
 pkg/models/shared/datatype.go
 pkg/models/shared/account.go
 pkg/models/shared/accounttype.go
+pkg/models/shared/supplementaldata.go
 pkg/models/shared/accountstatus.go
 pkg/models/shared/pushoperationchange.go
 pkg/models/shared/pushchangetype.go
@@ -106,7 +108,6 @@ pkg/models/shared/accountmappinginfo.go
 pkg/models/shared/connections.go
 pkg/models/shared/createcustomerresponse.go
 pkg/models/shared/customer.go
-pkg/models/shared/supplementaldata.go
 pkg/models/shared/customerstatus.go
 pkg/models/shared/metadata.go
 pkg/models/shared/contact.go
@@ -251,6 +252,7 @@ docs/models/shared/accountmetadata.md
 docs/models/shared/accountvaliddatatypelinks.md
 docs/models/shared/account.md
 docs/models/shared/accounttype.md
+docs/models/shared/supplementaldata.md
 docs/models/shared/accountstatus.md
 docs/models/shared/pushoperationchange.md
 docs/models/shared/pushchangetype.md
@@ -284,7 +286,6 @@ docs/models/shared/accountmappinginfo.md
 docs/models/shared/connections.md
 docs/models/shared/createcustomerresponse.md
 docs/models/shared/customer.md
-docs/models/shared/supplementaldata.md
 docs/models/shared/customerstatus.md
 docs/models/shared/metadata.md
 docs/models/shared/contactphone.md
@@ -316,7 +317,6 @@ docs/models/shared/pushoperation.md
 docs/models/shared/pushoperations.md
 docs/models/shared/createsupplierresponse.md
 docs/models/shared/supplieraccountingaddress.md
-docs/models/shared/suppliersupplementaldata.md
 docs/models/shared/supplier.md
 docs/models/shared/supplierstatus.md
 docs/models/shared/suppliers.md
