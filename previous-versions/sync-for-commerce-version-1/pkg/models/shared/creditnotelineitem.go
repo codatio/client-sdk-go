@@ -3,12 +3,14 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/types"
+	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
 type CreditNoteLineItemTrackingProjectReference struct {
-	ID   string  `json:"id"`
+	// Unique identifier to the project reference.
+	ID string `json:"id"`
+	// The project's name.
 	Name *string `json:"name,omitempty"`
 }
 
@@ -28,9 +30,11 @@ func (o *CreditNoteLineItemTrackingProjectReference) GetName() *string {
 
 // CreditNoteLineItemTracking - Categories, and a project and customer, against which the item is tracked.
 type CreditNoteLineItemTracking struct {
-	CategoryRefs []TrackingCategoryRefsitems                 `json:"categoryRefs"`
-	CustomerRef  *AccountingCustomerRef                      `json:"customerRef,omitempty"`
-	IsBilledTo   BilledToType                                `json:"isBilledTo"`
+	CategoryRefs []TrackingCategoryRefsitems `json:"categoryRefs"`
+	CustomerRef  *AccountingCustomerRef      `json:"customerRef,omitempty"`
+	// Defines if the bill or bill credit note is billed/rebilled to a project.
+	IsBilledTo BilledToType `json:"isBilledTo"`
+	// Defines if the bill or bill credit note is billed/rebilled to a project.
 	IsRebilledTo BilledToType                                `json:"isRebilledTo"`
 	ProjectRef   *CreditNoteLineItemTrackingProjectReference `json:"projectRef,omitempty"`
 	// Links the current record to the underlying record or data type that created it.
@@ -87,22 +91,23 @@ type CreditNoteLineItem struct {
 	// Friendly name of each line item. For example, the goods or service for which credit has been issued.
 	Description *string `json:"description,omitempty"`
 	// Value of any discounts applied.
-	DiscountAmount *types.Decimal `json:"discountAmount,omitempty"`
+	DiscountAmount *decimal.Big `decimal:"number" json:"discountAmount,omitempty"`
 	// Percentage rate of any discount applied to the line item.
-	DiscountPercentage *types.Decimal `json:"discountPercentage,omitempty"`
-	IsDirectIncome     *bool          `json:"isDirectIncome,omitempty"`
+	DiscountPercentage *decimal.Big `decimal:"number" json:"discountPercentage,omitempty"`
+	// The credit note is a direct income if `True`.
+	IsDirectIncome *bool `json:"isDirectIncome,omitempty"`
 	// Reference to the product, service type, or inventory item to which the direct cost is linked.
 	ItemRef *ItemRef `json:"itemRef,omitempty"`
 	// Number of units of the goods or service for which credit has been issued.
-	Quantity types.Decimal `json:"quantity"`
+	Quantity *decimal.Big `decimal:"number" json:"quantity"`
 	// Amount of credit associated with the line item, including discounts but excluding tax.
-	SubTotal *types.Decimal `json:"subTotal,omitempty"`
+	SubTotal *decimal.Big `decimal:"number" json:"subTotal,omitempty"`
 	// Amount of tax associated with the line item.
-	TaxAmount *types.Decimal `json:"taxAmount,omitempty"`
+	TaxAmount *decimal.Big `decimal:"number" json:"taxAmount,omitempty"`
 	// Reference to the tax rate to which the line item is linked.
 	TaxRateRef *TaxRateRef `json:"taxRateRef,omitempty"`
 	// Total amount of the line item, including discounts and tax.
-	TotalAmount *types.Decimal `json:"totalAmount,omitempty"`
+	TotalAmount *decimal.Big `decimal:"number" json:"totalAmount,omitempty"`
 	// Categories, and a project and customer, against which the item is tracked.
 	Tracking *CreditNoteLineItemTracking `json:"tracking,omitempty"`
 	// Reference to the tracking categories to which the line item is linked.
@@ -110,7 +115,18 @@ type CreditNoteLineItem struct {
 	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	TrackingCategoryRefs []TrackingCategoryRefsitems `json:"trackingCategoryRefs,omitempty"`
 	// Unit price of the goods or service.
-	UnitAmount types.Decimal `json:"unitAmount"`
+	UnitAmount *decimal.Big `decimal:"number" json:"unitAmount"`
+}
+
+func (c CreditNoteLineItem) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CreditNoteLineItem) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *CreditNoteLineItem) GetAccountRef() *AccountRef {
@@ -127,14 +143,14 @@ func (o *CreditNoteLineItem) GetDescription() *string {
 	return o.Description
 }
 
-func (o *CreditNoteLineItem) GetDiscountAmount() *types.Decimal {
+func (o *CreditNoteLineItem) GetDiscountAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.DiscountAmount
 }
 
-func (o *CreditNoteLineItem) GetDiscountPercentage() *types.Decimal {
+func (o *CreditNoteLineItem) GetDiscountPercentage() *decimal.Big {
 	if o == nil {
 		return nil
 	}
@@ -155,21 +171,21 @@ func (o *CreditNoteLineItem) GetItemRef() *ItemRef {
 	return o.ItemRef
 }
 
-func (o *CreditNoteLineItem) GetQuantity() types.Decimal {
+func (o *CreditNoteLineItem) GetQuantity() *decimal.Big {
 	if o == nil {
-		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
+		return new(decimal.Big).SetFloat64(0.0)
 	}
 	return o.Quantity
 }
 
-func (o *CreditNoteLineItem) GetSubTotal() *types.Decimal {
+func (o *CreditNoteLineItem) GetSubTotal() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.SubTotal
 }
 
-func (o *CreditNoteLineItem) GetTaxAmount() *types.Decimal {
+func (o *CreditNoteLineItem) GetTaxAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}
@@ -183,7 +199,7 @@ func (o *CreditNoteLineItem) GetTaxRateRef() *TaxRateRef {
 	return o.TaxRateRef
 }
 
-func (o *CreditNoteLineItem) GetTotalAmount() *types.Decimal {
+func (o *CreditNoteLineItem) GetTotalAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}
@@ -204,9 +220,9 @@ func (o *CreditNoteLineItem) GetTrackingCategoryRefs() []TrackingCategoryRefsite
 	return o.TrackingCategoryRefs
 }
 
-func (o *CreditNoteLineItem) GetUnitAmount() types.Decimal {
+func (o *CreditNoteLineItem) GetUnitAmount() *decimal.Big {
 	if o == nil {
-		return types.Decimal{Big: *(new(decimal.Big).SetFloat64(0.0))}
+		return new(decimal.Big).SetFloat64(0.0)
 	}
 	return o.UnitAmount
 }

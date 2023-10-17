@@ -3,7 +3,9 @@
 package shared
 
 type TrackingProjectReference struct {
-	ID   string  `json:"id"`
+	// Unique identifier to the project reference.
+	ID string `json:"id"`
+	// The project's name.
 	Name *string `json:"name,omitempty"`
 }
 
@@ -25,9 +27,11 @@ func (o *TrackingProjectReference) GetName() *string {
 type Tracking struct {
 	CategoryRefs []TrackingCategoryRefsitems `json:"categoryRefs"`
 	CustomerRef  *AccountingCustomerRef      `json:"customerRef,omitempty"`
-	IsBilledTo   BilledToType                `json:"isBilledTo"`
-	IsRebilledTo BilledToType                `json:"isRebilledTo"`
-	ProjectRef   *TrackingProjectReference   `json:"projectRef,omitempty"`
+	// Defines if the bill or bill credit note is billed/rebilled to a project.
+	IsBilledTo BilledToType `json:"isBilledTo"`
+	// Defines if the bill or bill credit note is billed/rebilled to a project.
+	IsRebilledTo BilledToType              `json:"isRebilledTo"`
+	ProjectRef   *TrackingProjectReference `json:"projectRef,omitempty"`
 	// Links the current record to the underlying record or data type that created it.
 	//
 	// For example, if a journal entry is generated based on an invoice, this property allows you to connect the journal entry to the underlying invoice in our data model.

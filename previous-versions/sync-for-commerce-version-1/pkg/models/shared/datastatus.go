@@ -4,8 +4,10 @@ package shared
 
 // DataStatus - Describes the state of data in the Codat cache for a company and data type
 type DataStatus struct {
+	// The current status of the dataset in Codat's cache.
 	CurrentStatus string `json:"currentStatus"`
-	DataType      string `json:"dataType"`
+	// Available Data types
+	DataType DataType `json:"dataType"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -25,9 +27,11 @@ type DataStatus struct {
 	// >
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	LastSuccessfulSync     string  `json:"lastSuccessfulSync"`
+	LastSuccessfulSync string `json:"lastSuccessfulSync"`
+	// Unique identifier for the most recent successful sync of data type.
 	LatestSuccessfulSyncID *string `json:"latestSuccessfulSyncId,omitempty"`
-	LatestSyncID           *string `json:"latestSyncId,omitempty"`
+	// Unique identifier for most recent sync of data type.
+	LatestSyncID *string `json:"latestSyncId,omitempty"`
 }
 
 func (o *DataStatus) GetCurrentStatus() string {
@@ -37,9 +41,9 @@ func (o *DataStatus) GetCurrentStatus() string {
 	return o.CurrentStatus
 }
 
-func (o *DataStatus) GetDataType() string {
+func (o *DataStatus) GetDataType() DataType {
 	if o == nil {
-		return ""
+		return DataType("")
 	}
 	return o.DataType
 }

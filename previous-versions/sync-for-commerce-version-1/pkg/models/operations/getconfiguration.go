@@ -8,6 +8,7 @@ import (
 )
 
 type GetConfigurationRequest struct {
+	// Unique identifier for a company.
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
@@ -21,9 +22,12 @@ func (o *GetConfigurationRequest) GetCompanyID() string {
 type GetConfigurationResponse struct {
 	// Success
 	Configuration *shared.Configuration
-	ContentType   string
-	StatusCode    int
-	RawResponse   *http.Response
+	// HTTP response content type for this operation
+	ContentType string
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *GetConfigurationResponse) GetConfiguration() *shared.Configuration {

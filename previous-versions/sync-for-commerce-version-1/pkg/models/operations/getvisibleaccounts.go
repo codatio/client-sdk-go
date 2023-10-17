@@ -8,7 +8,9 @@ import (
 )
 
 type GetVisibleAccountsRequest struct {
-	ClientID    string `pathParam:"style=simple,explode=false,name=clientId"`
+	// Unique identifier for your client in Codat.
+	ClientID string `pathParam:"style=simple,explode=false,name=clientId"`
+	// A unique 4-letter key to represent a platform in each integration. View [accounting](https://docs.codat.io/integrations/accounting/overview#platform-keys), [banking](https://docs.codat.io/integrations/banking/overview#platform-keys), and [commerce](https://docs.codat.io/integrations/commerce/overview#platform-keys) platform keys.
 	PlatformKey string `pathParam:"style=simple,explode=false,name=platformKey"`
 }
 
@@ -27,8 +29,11 @@ func (o *GetVisibleAccountsRequest) GetPlatformKey() string {
 }
 
 type GetVisibleAccountsResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
-	StatusCode  int
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Success
 	VisibleAccounts *shared.VisibleAccounts

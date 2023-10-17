@@ -7,91 +7,156 @@ import (
 	"fmt"
 )
 
-type DatasetStatus string
+// DatasetDataTypes - Available Data types
+type DatasetDataTypes string
 
 const (
-	DatasetStatusInitial            DatasetStatus = "Initial"
-	DatasetStatusQueued             DatasetStatus = "Queued"
-	DatasetStatusFetching           DatasetStatus = "Fetching"
-	DatasetStatusMapQueued          DatasetStatus = "MapQueued"
-	DatasetStatusMapping            DatasetStatus = "Mapping"
-	DatasetStatusComplete           DatasetStatus = "Complete"
-	DatasetStatusFetchError         DatasetStatus = "FetchError"
-	DatasetStatusMapError           DatasetStatus = "MapError"
-	DatasetStatusInternalError      DatasetStatus = "InternalError"
-	DatasetStatusProcessingQueued   DatasetStatus = "ProcessingQueued"
-	DatasetStatusProcessing         DatasetStatus = "Processing"
-	DatasetStatusProcessingError    DatasetStatus = "ProcessingError"
-	DatasetStatusValidationQueued   DatasetStatus = "ValidationQueued"
-	DatasetStatusValidating         DatasetStatus = "Validating"
-	DatasetStatusValidationError    DatasetStatus = "ValidationError"
-	DatasetStatusAuthError          DatasetStatus = "AuthError"
-	DatasetStatusCancelled          DatasetStatus = "Cancelled"
-	DatasetStatusNotSupported       DatasetStatus = "NotSupported"
-	DatasetStatusRateLimitError     DatasetStatus = "RateLimitError"
-	DatasetStatusPermissionsError   DatasetStatus = "PermissionsError"
-	DatasetStatusPrerequisiteNotMet DatasetStatus = "PrerequisiteNotMet"
+	DatasetDataTypesAccountTransactions          DatasetDataTypes = "accountTransactions"
+	DatasetDataTypesBalanceSheet                 DatasetDataTypes = "balanceSheet"
+	DatasetDataTypesBankAccounts                 DatasetDataTypes = "bankAccounts"
+	DatasetDataTypesBankTransactions             DatasetDataTypes = "bankTransactions"
+	DatasetDataTypesBillCreditNotes              DatasetDataTypes = "billCreditNotes"
+	DatasetDataTypesBillPayments                 DatasetDataTypes = "billPayments"
+	DatasetDataTypesBills                        DatasetDataTypes = "bills"
+	DatasetDataTypesCashFlowStatement            DatasetDataTypes = "cashFlowStatement"
+	DatasetDataTypesChartOfAccounts              DatasetDataTypes = "chartOfAccounts"
+	DatasetDataTypesCompany                      DatasetDataTypes = "company"
+	DatasetDataTypesCreditNotes                  DatasetDataTypes = "creditNotes"
+	DatasetDataTypesCustomers                    DatasetDataTypes = "customers"
+	DatasetDataTypesDirectCosts                  DatasetDataTypes = "directCosts"
+	DatasetDataTypesDirectIncomes                DatasetDataTypes = "directIncomes"
+	DatasetDataTypesInvoices                     DatasetDataTypes = "invoices"
+	DatasetDataTypesItems                        DatasetDataTypes = "items"
+	DatasetDataTypesJournalEntries               DatasetDataTypes = "journalEntries"
+	DatasetDataTypesJournals                     DatasetDataTypes = "journals"
+	DatasetDataTypesPaymentMethods               DatasetDataTypes = "paymentMethods"
+	DatasetDataTypesPayments                     DatasetDataTypes = "payments"
+	DatasetDataTypesProfitAndLoss                DatasetDataTypes = "profitAndLoss"
+	DatasetDataTypesPurchaseOrders               DatasetDataTypes = "purchaseOrders"
+	DatasetDataTypesSalesOrders                  DatasetDataTypes = "salesOrders"
+	DatasetDataTypesSuppliers                    DatasetDataTypes = "suppliers"
+	DatasetDataTypesTaxRates                     DatasetDataTypes = "taxRates"
+	DatasetDataTypesTrackingCategories           DatasetDataTypes = "trackingCategories"
+	DatasetDataTypesTransfers                    DatasetDataTypes = "transfers"
+	DatasetDataTypesBankingAccountBalances       DatasetDataTypes = "banking-accountBalances"
+	DatasetDataTypesBankingAccounts              DatasetDataTypes = "banking-accounts"
+	DatasetDataTypesBankingTransactionCategories DatasetDataTypes = "banking-transactionCategories"
+	DatasetDataTypesBankingTransactions          DatasetDataTypes = "banking-transactions"
+	DatasetDataTypesCommerceCompanyInfo          DatasetDataTypes = "commerce-companyInfo"
+	DatasetDataTypesCommerceCustomers            DatasetDataTypes = "commerce-customers"
+	DatasetDataTypesCommerceDisputes             DatasetDataTypes = "commerce-disputes"
+	DatasetDataTypesCommerceLocations            DatasetDataTypes = "commerce-locations"
+	DatasetDataTypesCommerceOrders               DatasetDataTypes = "commerce-orders"
+	DatasetDataTypesCommercePaymentMethods       DatasetDataTypes = "commerce-paymentMethods"
+	DatasetDataTypesCommercePayments             DatasetDataTypes = "commerce-payments"
+	DatasetDataTypesCommerceProductCategories    DatasetDataTypes = "commerce-productCategories"
+	DatasetDataTypesCommerceProducts             DatasetDataTypes = "commerce-products"
+	DatasetDataTypesCommerceTaxComponents        DatasetDataTypes = "commerce-taxComponents"
+	DatasetDataTypesCommerceTransactions         DatasetDataTypes = "commerce-transactions"
 )
 
-func (e DatasetStatus) ToPointer() *DatasetStatus {
+func (e DatasetDataTypes) ToPointer() *DatasetDataTypes {
 	return &e
 }
 
-func (e *DatasetStatus) UnmarshalJSON(data []byte) error {
+func (e *DatasetDataTypes) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
-	case "Initial":
+	case "accountTransactions":
 		fallthrough
-	case "Queued":
+	case "balanceSheet":
 		fallthrough
-	case "Fetching":
+	case "bankAccounts":
 		fallthrough
-	case "MapQueued":
+	case "bankTransactions":
 		fallthrough
-	case "Mapping":
+	case "billCreditNotes":
 		fallthrough
-	case "Complete":
+	case "billPayments":
 		fallthrough
-	case "FetchError":
+	case "bills":
 		fallthrough
-	case "MapError":
+	case "cashFlowStatement":
 		fallthrough
-	case "InternalError":
+	case "chartOfAccounts":
 		fallthrough
-	case "ProcessingQueued":
+	case "company":
 		fallthrough
-	case "Processing":
+	case "creditNotes":
 		fallthrough
-	case "ProcessingError":
+	case "customers":
 		fallthrough
-	case "ValidationQueued":
+	case "directCosts":
 		fallthrough
-	case "Validating":
+	case "directIncomes":
 		fallthrough
-	case "ValidationError":
+	case "invoices":
 		fallthrough
-	case "AuthError":
+	case "items":
 		fallthrough
-	case "Cancelled":
+	case "journalEntries":
 		fallthrough
-	case "NotSupported":
+	case "journals":
 		fallthrough
-	case "RateLimitError":
+	case "paymentMethods":
 		fallthrough
-	case "PermissionsError":
+	case "payments":
 		fallthrough
-	case "PrerequisiteNotMet":
-		*e = DatasetStatus(v)
+	case "profitAndLoss":
+		fallthrough
+	case "purchaseOrders":
+		fallthrough
+	case "salesOrders":
+		fallthrough
+	case "suppliers":
+		fallthrough
+	case "taxRates":
+		fallthrough
+	case "trackingCategories":
+		fallthrough
+	case "transfers":
+		fallthrough
+	case "banking-accountBalances":
+		fallthrough
+	case "banking-accounts":
+		fallthrough
+	case "banking-transactionCategories":
+		fallthrough
+	case "banking-transactions":
+		fallthrough
+	case "commerce-companyInfo":
+		fallthrough
+	case "commerce-customers":
+		fallthrough
+	case "commerce-disputes":
+		fallthrough
+	case "commerce-locations":
+		fallthrough
+	case "commerce-orders":
+		fallthrough
+	case "commerce-paymentMethods":
+		fallthrough
+	case "commerce-payments":
+		fallthrough
+	case "commerce-productCategories":
+		fallthrough
+	case "commerce-products":
+		fallthrough
+	case "commerce-taxComponents":
+		fallthrough
+	case "commerce-transactions":
+		*e = DatasetDataTypes(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for DatasetStatus: %v", v)
+		return fmt.Errorf("invalid value for DatasetDataTypes: %v", v)
 	}
 }
 
 type Dataset struct {
+	// Unique identifier for your SMB in Codat.
 	CompanyID string `json:"companyId"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
@@ -112,15 +177,23 @@ type Dataset struct {
 	// >
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	Completed      *string `json:"completed,omitempty"`
-	ConnectionID   string  `json:"connectionId"`
-	DataType       *string `json:"dataType,omitempty"`
+	Completed *string `json:"completed,omitempty"`
+	// Unique identifier for a company's data connection.
+	ConnectionID string `json:"connectionId"`
+	// Available Data types
+	DataType *DatasetDataTypes `json:"dataType,omitempty"`
+	// URI to the dataset's logs.
 	DatasetLogsURL *string `json:"datasetLogsUrl,omitempty"`
-	ErrorMessage   *string `json:"errorMessage,omitempty"`
-	ID             string  `json:"id"`
-	IsCompleted    bool    `json:"isCompleted"`
-	IsErrored      bool    `json:"isErrored"`
-	Progress       int     `json:"progress"`
+	// A brief message about the error.
+	ErrorMessage *string `json:"errorMessage,omitempty"`
+	// Identifier for the dataset.
+	ID string `json:"id"`
+	// `True` if the dataset completed successfully.
+	IsCompleted bool `json:"isCompleted"`
+	// `True` if the dataset entered an error state.
+	IsErrored bool `json:"isErrored"`
+	// An integer signifying the progress of the dataset.
+	Progress int `json:"progress"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -140,9 +213,11 @@ type Dataset struct {
 	// >
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	Requested                string        `json:"requested"`
-	Status                   DatasetStatus `json:"status"`
-	ValidationInformationURL *string       `json:"validationInformationUrl,omitempty"`
+	Requested string `json:"requested"`
+	// The current status of the dataset.
+	Status DatasetStatus `json:"status"`
+	// URI to the dataset's validation information.
+	ValidationInformationURL *string `json:"validationInformationUrl,omitempty"`
 }
 
 func (o *Dataset) GetCompanyID() string {
@@ -166,7 +241,7 @@ func (o *Dataset) GetConnectionID() string {
 	return o.ConnectionID
 }
 
-func (o *Dataset) GetDataType() *string {
+func (o *Dataset) GetDataType() *DatasetDataTypes {
 	if o == nil {
 		return nil
 	}
