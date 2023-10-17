@@ -2,27 +2,6 @@
 
 package shared
 
-type DataSyncCompletedWebhookData struct {
-	// Data type the sync completed for.
-	DataType *string `json:"dataType,omitempty"`
-	// Unique identifier for the dataset that completed its sync.
-	DatasetID *string `json:"datasetId,omitempty"`
-}
-
-func (o *DataSyncCompletedWebhookData) GetDataType() *string {
-	if o == nil {
-		return nil
-	}
-	return o.DataType
-}
-
-func (o *DataSyncCompletedWebhookData) GetDatasetID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.DatasetID
-}
-
 // DataSyncCompletedWebhook - Webhook request body to notify the completion of a data sync.
 type DataSyncCompletedWebhook struct {
 	// Unique identifier of the webhook event.
@@ -41,7 +20,7 @@ type DataSyncCompletedWebhook struct {
 	// Unique identifier for the rule.
 	RuleID *string `json:"RuleId,omitempty"`
 	// The type of rule.
-	Type *string `json:"Type,omitempty"`
+	RuleType *string `json:"RuleType,omitempty"`
 }
 
 func (o *DataSyncCompletedWebhook) GetAlertID() *string {
@@ -100,9 +79,9 @@ func (o *DataSyncCompletedWebhook) GetRuleID() *string {
 	return o.RuleID
 }
 
-func (o *DataSyncCompletedWebhook) GetType() *string {
+func (o *DataSyncCompletedWebhook) GetRuleType() *string {
 	if o == nil {
 		return nil
 	}
-	return o.Type
+	return o.RuleType
 }

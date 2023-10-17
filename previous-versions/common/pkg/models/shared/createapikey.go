@@ -2,7 +2,7 @@
 
 package shared
 
-// CreateAPIKey - Details of the API key.
+// CreateAPIKey - Details about the newly created API key.
 type CreateAPIKey struct {
 	// A meaningful name assigned to the API key.
 	Name *string `json:"name,omitempty"`

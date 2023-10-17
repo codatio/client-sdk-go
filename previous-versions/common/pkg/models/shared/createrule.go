@@ -2,30 +2,13 @@
 
 package shared
 
-type CreateRuleNotifiers struct {
-	Emails  []string `json:"emails,omitempty"`
-	Webhook *string  `json:"webhook,omitempty"`
-}
-
-func (o *CreateRuleNotifiers) GetEmails() []string {
-	if o == nil {
-		return nil
-	}
-	return o.Emails
-}
-
-func (o *CreateRuleNotifiers) GetWebhook() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Webhook
-}
-
 // CreateRule - Create an event notification to a URL or list of email addresses based on the given type or condition.
 type CreateRule struct {
-	CompanyID *string             `json:"companyId,omitempty"`
-	Notifiers CreateRuleNotifiers `json:"notifiers"`
-	Type      string              `json:"type"`
+	// Unique identifier for your SMB in Codat.
+	CompanyID *string         `json:"companyId,omitempty"`
+	Notifiers WebhookNotifier `json:"notifiers"`
+	// The type of webhook.
+	Type string `json:"type"`
 }
 
 func (o *CreateRule) GetCompanyID() *string {
@@ -35,9 +18,9 @@ func (o *CreateRule) GetCompanyID() *string {
 	return o.CompanyID
 }
 
-func (o *CreateRule) GetNotifiers() CreateRuleNotifiers {
+func (o *CreateRule) GetNotifiers() WebhookNotifier {
 	if o == nil {
-		return CreateRuleNotifiers{}
+		return WebhookNotifier{}
 	}
 	return o.Notifiers
 }

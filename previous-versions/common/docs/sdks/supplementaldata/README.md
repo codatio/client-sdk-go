@@ -1,4 +1,5 @@
 # SupplementalData
+(*SupplementalData*)
 
 ## Overview
 
@@ -32,8 +33,8 @@ import(
 )
 
 func main() {
-    s := codatcommon.New(
-        codatcommon.WithSecurity(shared.Security{
+    s := common.New(
+        common.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
@@ -42,19 +43,18 @@ func main() {
     res, err := s.SupplementalData.Configure(ctx, operations.ConfigureSupplementalDataRequest{
         SupplementalDataConfiguration: &shared.SupplementalDataConfiguration{
             SupplementalDataConfig: map[string]shared.SupplementalDataConfigurationSupplementalDataSourceConfiguration{
-                "dolor": shared.SupplementalDataConfigurationSupplementalDataSourceConfiguration{
-                    DataSource: codatcommon.String("natus"),
+                "Cutler": shared.SupplementalDataConfigurationSupplementalDataSourceConfiguration{
                     PullData: map[string]string{
-                        "laboriosam": "hic",
+                        "North": "transmitter",
                     },
                     PushData: map[string]string{
-                        "saepe": "fuga",
+                        "infrastructure": "Northeast",
                     },
                 },
             },
         },
         DataType: operations.ConfigureSupplementalDataDataTypeInvoices,
-        PlatformKey: "in",
+        PlatformKey: "gbol",
     })
     if err != nil {
         log.Fatal(err)
@@ -100,8 +100,8 @@ import(
 )
 
 func main() {
-    s := codatcommon.New(
-        codatcommon.WithSecurity(shared.Security{
+    s := common.New(
+        common.WithSecurity(shared.Security{
             AuthHeader: "",
         }),
     )
@@ -109,7 +109,7 @@ func main() {
     ctx := context.Background()
     res, err := s.SupplementalData.GetConfiguration(ctx, operations.GetSupplementalDataConfigurationRequest{
         DataType: operations.GetSupplementalDataConfigurationDataTypeInvoices,
-        PlatformKey: "corporis",
+        PlatformKey: "gbol",
     })
     if err != nil {
         log.Fatal(err)
