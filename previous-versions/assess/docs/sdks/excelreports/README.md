@@ -1,4 +1,5 @@
 # ExcelReports
+(*ExcelReports*)
 
 ## Overview
 
@@ -29,8 +30,8 @@ import(
 )
 
 func main() {
-    s := codatassess.New(
-        codatassess.WithSecurity(shared.Security{
+    s := assess.New(
+        assess.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -84,8 +85,8 @@ import(
 )
 
 func main() {
-    s := codatassess.New(
-        codatassess.WithSecurity(shared.Security{
+    s := assess.New(
+        assess.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -94,12 +95,10 @@ func main() {
     res, err := s.ExcelReports.GetAccountingMarketingMetrics(ctx, operations.GetAccountingMarketingMetricsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        IncludeDisplayNames: codatassess.Bool(false),
-        NumberOfPeriods: 602763,
-        PeriodLength: 857946,
-        PeriodUnit: shared.PeriodUnitMonth,
+        NumberOfPeriods: 644039,
+        PeriodLength: 244044,
+        PeriodUnit: shared.PeriodUnitWeek,
         ReportDate: "29-09-2020",
-        ShowInputValues: codatassess.Bool(false),
     })
     if err != nil {
         log.Fatal(err)
@@ -143,8 +142,8 @@ import(
 )
 
 func main() {
-    s := codatassess.New(
-        codatassess.WithSecurity(shared.Security{
+    s := assess.New(
+        assess.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -196,8 +195,8 @@ import(
 )
 
 func main() {
-    s := codatassess.New(
-        codatassess.WithSecurity(shared.Security{
+    s := assess.New(
+        assess.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
@@ -205,7 +204,7 @@ func main() {
     ctx := context.Background()
     res, err := s.ExcelReports.GetExcelReportGenerationStatus(ctx, operations.GetExcelReportGenerationStatusRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ReportType: shared.ExcelReportTypeEnhancedFinancials,
+        ReportType: shared.ExcelReportTypeEnhancedInvoices,
     })
     if err != nil {
         log.Fatal(err)

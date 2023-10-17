@@ -3,15 +3,18 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/types"
+	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 type LoanSummaryReportItem struct {
 	// The loan outstanding balance.  This may not equal totalDrawdowns - totalRepayments due to interest which has been accrued.
-	Balance *types.Decimal `json:"balance,omitempty"`
+	Balance *decimal.Big `decimal:"number" json:"balance,omitempty"`
 	// The description of the object being referred to. E.g. the account.
-	Description *string               `json:"description,omitempty"`
-	RecordRef   *LoanSummaryRecordRef `json:"recordRef,omitempty"`
+	Description *string `json:"description,omitempty"`
+	// The name of lender providing the loan.
+	LenderName *string               `json:"lenderName,omitempty"`
+	RecordRef  *LoanSummaryRecordRef `json:"recordRef,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -33,12 +36,23 @@ type LoanSummaryReportItem struct {
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	StartDate *string `json:"startDate,omitempty"`
 	// The total loan drawdowns.
-	TotalDrawdowns *types.Decimal `json:"totalDrawdowns,omitempty"`
+	TotalDrawdowns *decimal.Big `decimal:"number" json:"totalDrawdowns,omitempty"`
 	// The total loan repayments which includes capital plus any interest.
-	TotalRepayments *types.Decimal `json:"totalRepayments,omitempty"`
+	TotalRepayments *decimal.Big `decimal:"number" json:"totalRepayments,omitempty"`
 }
 
-func (o *LoanSummaryReportItem) GetBalance() *types.Decimal {
+func (l LoanSummaryReportItem) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *LoanSummaryReportItem) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *LoanSummaryReportItem) GetBalance() *decimal.Big {
 	if o == nil {
 		return nil
 	}
@@ -50,6 +64,13 @@ func (o *LoanSummaryReportItem) GetDescription() *string {
 		return nil
 	}
 	return o.Description
+}
+
+func (o *LoanSummaryReportItem) GetLenderName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.LenderName
 }
 
 func (o *LoanSummaryReportItem) GetRecordRef() *LoanSummaryRecordRef {
@@ -66,14 +87,14 @@ func (o *LoanSummaryReportItem) GetStartDate() *string {
 	return o.StartDate
 }
 
-func (o *LoanSummaryReportItem) GetTotalDrawdowns() *types.Decimal {
+func (o *LoanSummaryReportItem) GetTotalDrawdowns() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.TotalDrawdowns
 }
 
-func (o *LoanSummaryReportItem) GetTotalRepayments() *types.Decimal {
+func (o *LoanSummaryReportItem) GetTotalRepayments() *decimal.Big {
 	if o == nil {
 		return nil
 	}

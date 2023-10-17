@@ -9,7 +9,7 @@ package shared
 // The Enhanced Cash Flow Transactions endpoint provides a fully categorized list of banking transactions for a company. Accounts and transaction data are obtained from the company's banking data sources.
 type EnhancedCashFlowTransactions struct {
 	DataSources []DataSource `json:"dataSources,omitempty"`
-	// Report additional information, which is specific to Assess reports
+	// Report additional information, which is specific to Lending API reports.
 	ReportInfo  *ReportInfo            `json:"reportInfo,omitempty"`
 	ReportItems []EnhancedCashFlowItem `json:"reportItems,omitempty"`
 }

@@ -3,12 +3,13 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/types"
+	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 type DataIntegrityDetails struct {
 	// The transaction value.
-	Amount *types.Decimal `json:"amount,omitempty"`
+	Amount *decimal.Big `decimal:"number" json:"amount,omitempty"`
 	// ID GUID representing the connection of the accounting or banking platform.
 	ConnectionID *string `json:"connectionId,omitempty"`
 	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code, e.g. _GBP_.
@@ -48,7 +49,18 @@ type DataIntegrityDetails struct {
 	Type *string `json:"type,omitempty"`
 }
 
-func (o *DataIntegrityDetails) GetAmount() *types.Decimal {
+func (d DataIntegrityDetails) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DataIntegrityDetails) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *DataIntegrityDetails) GetAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}
