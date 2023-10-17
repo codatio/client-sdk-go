@@ -3,22 +3,9 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/types"
+	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
-
-// CommerceOrderSupplementalData - Supplemental data is additional data you can include in our standard data types.
-//
-// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
-type CommerceOrderSupplementalData struct {
-	Content map[string]map[string]interface{} `json:"content,omitempty"`
-}
-
-func (o *CommerceOrderSupplementalData) GetContent() map[string]map[string]interface{} {
-	if o == nil {
-		return nil
-	}
-	return o.Content
-}
 
 // CommerceOrder - Orders contain the transaction details for all products sold by the company, and include details of any payments, service charges, or refunds related to each order. You can use data from the Orders endpoints to calculate key metrics, such as gross sales values and monthly recurring revenue (MRR).
 //
@@ -87,17 +74,28 @@ type CommerceOrder struct {
 	// Supplemental data is additional data you can include in our standard data types.
 	//
 	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
-	SupplementalData *CommerceOrderSupplementalData `json:"supplementalData,omitempty"`
-	// Total amount of the order, including tax, net of any discounts and refunds.
-	TotalAmount *types.Decimal `json:"totalAmount,omitempty"`
-	// Total amount of discount applied to the order.
-	TotalDiscount *types.Decimal `json:"totalDiscount,omitempty"`
-	// Extra amount added to a bill.
-	TotalGratuity *types.Decimal `json:"totalGratuity,omitempty"`
-	// Total amount refunded issued by a merchant on an order (always a negative value).
-	TotalRefund *types.Decimal `json:"totalRefund,omitempty"`
+	SupplementalData *SupplementalData `json:"supplementalData,omitempty"`
+	// Total amount of the order, including discounts, refunds, and tax, but excluding gratuities.
+	TotalAmount *decimal.Big `decimal:"number" json:"totalAmount,omitempty"`
+	// Total amount of any discounts applied to the order, excluding tax. This is typically positive (for discounts which decrease the amount of the order), but can also be negative (for discounts which increase the amount of the order).
+	TotalDiscount *decimal.Big `decimal:"number" json:"totalDiscount,omitempty"`
+	// Extra amount added to the order.
+	TotalGratuity *decimal.Big `decimal:"number" json:"totalGratuity,omitempty"`
+	// Total amount of any refunds issued on the order, including discounts and tax, but excluding gratuities. This is always negative.
+	TotalRefund *decimal.Big `decimal:"number" json:"totalRefund,omitempty"`
 	// Total amount of tax applied to the order.
-	TotalTaxAmount *types.Decimal `json:"totalTaxAmount,omitempty"`
+	TotalTaxAmount *decimal.Big `decimal:"number" json:"totalTaxAmount,omitempty"`
+}
+
+func (c CommerceOrder) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CommerceOrder) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *CommerceOrder) GetClosedDate() *string {
@@ -191,42 +189,42 @@ func (o *CommerceOrder) GetSourceModifiedDate() *string {
 	return o.SourceModifiedDate
 }
 
-func (o *CommerceOrder) GetSupplementalData() *CommerceOrderSupplementalData {
+func (o *CommerceOrder) GetSupplementalData() *SupplementalData {
 	if o == nil {
 		return nil
 	}
 	return o.SupplementalData
 }
 
-func (o *CommerceOrder) GetTotalAmount() *types.Decimal {
+func (o *CommerceOrder) GetTotalAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.TotalAmount
 }
 
-func (o *CommerceOrder) GetTotalDiscount() *types.Decimal {
+func (o *CommerceOrder) GetTotalDiscount() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.TotalDiscount
 }
 
-func (o *CommerceOrder) GetTotalGratuity() *types.Decimal {
+func (o *CommerceOrder) GetTotalGratuity() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.TotalGratuity
 }
 
-func (o *CommerceOrder) GetTotalRefund() *types.Decimal {
+func (o *CommerceOrder) GetTotalRefund() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.TotalRefund
 }
 
-func (o *CommerceOrder) GetTotalTaxAmount() *types.Decimal {
+func (o *CommerceOrder) GetTotalTaxAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}

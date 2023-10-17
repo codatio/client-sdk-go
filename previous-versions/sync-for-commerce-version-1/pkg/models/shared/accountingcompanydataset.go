@@ -233,6 +233,10 @@ type AccountingCompanyDataset struct {
 	//
 	// For example, for Xero integrations two URLs are returned. These have many potential use cases, such as [deep linking](https://developer.xero.com/documentation/api-guides/deep-link-xero).
 	SourceUrls map[string]string `json:"sourceUrls,omitempty"`
+	// Supplemental data is additional data you can include in our standard data types.
+	//
+	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
+	SupplementalData *SupplementalData `json:"supplementalData,omitempty"`
 	// Company tax number.
 	TaxNumber *string `json:"taxNumber,omitempty"`
 	// An array of weblinks.
@@ -314,6 +318,13 @@ func (o *AccountingCompanyDataset) GetSourceUrls() map[string]string {
 		return nil
 	}
 	return o.SourceUrls
+}
+
+func (o *AccountingCompanyDataset) GetSupplementalData() *SupplementalData {
+	if o == nil {
+		return nil
+	}
+	return o.SupplementalData
 }
 
 func (o *AccountingCompanyDataset) GetTaxNumber() *string {

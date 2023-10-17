@@ -3,7 +3,8 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/types"
+	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 // ItemsTaxComponentRef - Taxes rates reference object depending on the rates being available on source commerce package.
@@ -30,12 +31,23 @@ func (o *ItemsTaxComponentRef) GetName() string {
 
 type Taxesitems struct {
 	// Tax amount on order line sale as available from source commerce platform.
-	Rate *types.Decimal `json:"rate,omitempty"`
+	Rate *decimal.Big `decimal:"number" json:"rate,omitempty"`
 	// Taxes rates reference object depending on the rates being available on source commerce package.
 	TaxComponentRef *ItemsTaxComponentRef `json:"taxComponentRef,omitempty"`
 }
 
-func (o *Taxesitems) GetRate() *types.Decimal {
+func (t Taxesitems) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
+}
+
+func (t *Taxesitems) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *Taxesitems) GetRate() *decimal.Big {
 	if o == nil {
 		return nil
 	}

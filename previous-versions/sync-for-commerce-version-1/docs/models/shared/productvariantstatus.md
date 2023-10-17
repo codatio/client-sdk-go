@@ -1,5 +1,7 @@
 # ProductVariantStatus
 
+The status of the product variant.
+
 
 ## Values
 

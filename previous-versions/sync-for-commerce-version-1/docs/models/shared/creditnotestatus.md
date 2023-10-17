@@ -1,5 +1,7 @@
 # CreditNoteStatus
 
+Current state of the credit note.
+
 
 ## Values
 

@@ -3,7 +3,8 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/types"
+	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 // CommercePayment - Payments contain details of all payments made by customers to a company, including: amounts, currency used, payment method, payment provider, and payment status.
@@ -15,7 +16,7 @@ import (
 // Explore our [data coverage](https://knowledge.codat.io/supported-features/commerce?view=tab-by-data-type&dataType=commerce-payments) for this data type.
 type CommercePayment struct {
 	// Payment Amount (including gratuity)
-	Amount *types.Decimal `json:"amount,omitempty"`
+	Amount *decimal.Big `decimal:"number" json:"amount,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -65,17 +66,33 @@ type CommercePayment struct {
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	DueDate *string `json:"dueDate,omitempty"`
 	// A unique, persistent identifier for this record
-	ID               string      `json:"id"`
-	ModifiedDate     *string     `json:"modifiedDate,omitempty"`
-	PaymentMethodRef interface{} `json:"paymentMethodRef,omitempty"`
+	ID           string  `json:"id"`
+	ModifiedDate *string `json:"modifiedDate,omitempty"`
+	// The payment method the record is linked to in the accounting or commerce platform.
+	PaymentMethodRef *PaymentMethodRef `json:"paymentMethodRef,omitempty"`
 	// Service provider of the payment, if applicable.
 	PaymentProvider    *string `json:"paymentProvider,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Status of the payment.
 	Status *PaymentStatus `json:"status,omitempty"`
+	// Supplemental data is additional data you can include in our standard data types.
+	//
+	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
+	SupplementalData *SupplementalData `json:"supplementalData,omitempty"`
 }
 
-func (o *CommercePayment) GetAmount() *types.Decimal {
+func (c CommercePayment) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CommercePayment) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *CommercePayment) GetAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}
@@ -117,7 +134,7 @@ func (o *CommercePayment) GetModifiedDate() *string {
 	return o.ModifiedDate
 }
 
-func (o *CommercePayment) GetPaymentMethodRef() interface{} {
+func (o *CommercePayment) GetPaymentMethodRef() *PaymentMethodRef {
 	if o == nil {
 		return nil
 	}
@@ -143,4 +160,11 @@ func (o *CommercePayment) GetStatus() *PaymentStatus {
 		return nil
 	}
 	return o.Status
+}
+
+func (o *CommercePayment) GetSupplementalData() *SupplementalData {
+	if o == nil {
+		return nil
+	}
+	return o.SupplementalData
 }
