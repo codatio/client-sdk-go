@@ -3,6 +3,7 @@
 package shared
 
 type DataConnectionError struct {
+	// A brief message about the error.
 	ErrorMessage *string `json:"errorMessage,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
@@ -24,8 +25,10 @@ type DataConnectionError struct {
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	ErroredOnUtc *string `json:"erroredOnUtc,omitempty"`
-	StatusCode   *string `json:"statusCode,omitempty"`
-	StatusText   *string `json:"statusText,omitempty"`
+	// The HTTP status code returned by the error.
+	StatusCode *string `json:"statusCode,omitempty"`
+	// A non-numeric status code/text.
+	StatusText *string `json:"statusText,omitempty"`
 }
 
 func (o *DataConnectionError) GetErrorMessage() *string {

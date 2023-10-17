@@ -26,27 +26,13 @@ func (o *JournalEntryRecordReference) GetID() *string {
 	return o.ID
 }
 
-// JournalEntrySupplementalData - Supplemental data is additional data you can include in our standard data types.
-//
-// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
-type JournalEntrySupplementalData struct {
-	Content map[string]map[string]interface{} `json:"content,omitempty"`
-}
-
-func (o *JournalEntrySupplementalData) GetContent() map[string]map[string]interface{} {
-	if o == nil {
-		return nil
-	}
-	return o.Content
-}
-
-// JournalEntry - > **Language tip:** For the top-level record of a company's financial transactions, refer to the [Journals](https://docs.codat.io/accounting-api#/schemas/Journal) data type
+// JournalEntry - > **Language tip:** For the top-level record of a company's financial transactions, refer to the [Journals](https://docs.codat.io/sync-for-payroll-api#/schemas/Journal) data type
 //
 // > View the coverage for journal entries in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journalEntries" target="_blank">Data coverage explorer</a>.
 //
 // ## Overview
 //
-// A journal entry report shows the entries made in a company's general ledger, or [accounts](https://docs.codat.io/accounting-api#/schemas/Account), when transactions are approved. The journal line items for each journal entry should balance.
+// A journal entry report shows the entries made in a company's general ledger, or [accounts](https://docs.codat.io/sync-for-payroll-api#/schemas/Account), when transactions are approved. The journal line items for each journal entry should balance.
 //
 // A journal entry line item is a single transaction line on the journal entry. For example:
 //
@@ -121,7 +107,7 @@ type JournalEntry struct {
 	// Supplemental data is additional data you can include in our standard data types.
 	//
 	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
-	SupplementalData *JournalEntrySupplementalData `json:"supplementalData,omitempty"`
+	SupplementalData *SupplementalData `json:"supplementalData,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -214,7 +200,7 @@ func (o *JournalEntry) GetSourceModifiedDate() *string {
 	return o.SourceModifiedDate
 }
 
-func (o *JournalEntry) GetSupplementalData() *JournalEntrySupplementalData {
+func (o *JournalEntry) GetSupplementalData() *SupplementalData {
 	if o == nil {
 		return nil
 	}

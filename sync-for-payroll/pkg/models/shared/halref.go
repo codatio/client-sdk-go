@@ -3,6 +3,7 @@
 package shared
 
 type HalRef struct {
+	// Uri hypertext reference.
 	Href *string `json:"href,omitempty"`
 }
 
