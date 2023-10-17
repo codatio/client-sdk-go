@@ -9,7 +9,8 @@ import (
 
 type RequestSyncRequest struct {
 	SyncToLatestArgs *shared.SyncToLatestArgs `request:"mediaType=application/json"`
-	CompanyID        string                   `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a company.
+	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
 func (o *RequestSyncRequest) GetSyncToLatestArgs() *shared.SyncToLatestArgs {
@@ -27,8 +28,11 @@ func (o *RequestSyncRequest) GetCompanyID() string {
 }
 
 type RequestSyncResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
-	StatusCode  int
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Success
 	SyncSummary *shared.SyncSummary

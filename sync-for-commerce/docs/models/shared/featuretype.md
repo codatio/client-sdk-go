@@ -1,5 +1,7 @@
 # FeatureType
 
+The type of feature.
+
 
 ## Values
 
