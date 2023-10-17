@@ -3,20 +3,32 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/types"
+	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/utils"
+	"github.com/ericlagergren/decimal"
 )
 
 type TargetAccountOption struct {
 	// The account number of the account.
 	AccountNumber *string `json:"accountNumber,omitempty"`
 	// The balance of the account.
-	Balance *types.Decimal `json:"balance,omitempty"`
+	Balance *decimal.Big `decimal:"number" json:"balance,omitempty"`
 	// Id of the target account.
 	ID *string `json:"id,omitempty"`
 	// Name of the target account.
 	Name *string `json:"name,omitempty"`
 	// The sort code of the account.
 	SortCode *string `json:"sortCode,omitempty"`
+}
+
+func (t TargetAccountOption) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
+}
+
+func (t *TargetAccountOption) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *TargetAccountOption) GetAccountNumber() *string {
@@ -26,7 +38,7 @@ func (o *TargetAccountOption) GetAccountNumber() *string {
 	return o.AccountNumber
 }
 
-func (o *TargetAccountOption) GetBalance() *types.Decimal {
+func (o *TargetAccountOption) GetBalance() *decimal.Big {
 	if o == nil {
 		return nil
 	}

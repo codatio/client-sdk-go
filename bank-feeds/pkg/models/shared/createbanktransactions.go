@@ -3,8 +3,9 @@
 package shared
 
 type CreateBankTransactions struct {
-	AccountID    *string                 `json:"accountId,omitempty"`
-	Transactions []CreateBankTransaction `json:"transactions,omitempty"`
+	// Unique identifier for a bank account.
+	AccountID    *string            `json:"accountId,omitempty"`
+	Transactions []BankTransactions `json:"transactions,omitempty"`
 }
 
 func (o *CreateBankTransactions) GetAccountID() *string {
@@ -14,7 +15,7 @@ func (o *CreateBankTransactions) GetAccountID() *string {
 	return o.AccountID
 }
 
-func (o *CreateBankTransactions) GetTransactions() []CreateBankTransaction {
+func (o *CreateBankTransactions) GetTransactions() []BankTransactions {
 	if o == nil {
 		return nil
 	}
