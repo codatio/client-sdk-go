@@ -3,9 +3,12 @@
 package shared
 
 type CommerceReportError struct {
+	// Additional details on the error.
 	Details map[string][]string `json:"details,omitempty"`
-	Message *string             `json:"message,omitempty"`
-	Type    *string             `json:"type,omitempty"`
+	// Message returned by error.
+	Message *string `json:"message,omitempty"`
+	// The type of error.
+	Type *string `json:"type,omitempty"`
 }
 
 func (o *CommerceReportError) GetDetails() map[string][]string {

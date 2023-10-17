@@ -3,12 +3,16 @@
 package shared
 
 type CommerceReportComponent struct {
-	Components           []CommerceReportComponent `json:"components,omitempty"`
-	Dimension            *int64                    `json:"dimension,omitempty"`
-	DimensionDisplayName *string                   `json:"dimensionDisplayName,omitempty"`
-	Item                 *int64                    `json:"item,omitempty"`
-	ItemDisplayName      *string                   `json:"itemDisplayName,omitempty"`
-	Measures             []ReportComponentMeasure  `json:"measures,omitempty"`
+	Components []CommerceReportComponent `json:"components,omitempty"`
+	// The component's dimension.
+	Dimension *int64 `json:"dimension,omitempty"`
+	// The component's display name.
+	DimensionDisplayName *string `json:"dimensionDisplayName,omitempty"`
+	// The component's item number.
+	Item *int64 `json:"item,omitempty"`
+	// The component's item display name.
+	ItemDisplayName *string                  `json:"itemDisplayName,omitempty"`
+	Measures        []ReportComponentMeasure `json:"measures,omitempty"`
 }
 
 func (o *CommerceReportComponent) GetComponents() []CommerceReportComponent {
