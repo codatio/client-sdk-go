@@ -2,49 +2,25 @@
 
 package shared
 
-type PushOperationStatusChangedWebhookData struct {
-	// Data type used in the push operation.
-	DataType *string `json:"dataType,omitempty"`
-	// Unique identifier for the push operation.
-	PushOperationKey *string `json:"pushOperationKey,omitempty"`
-	// The current status of the push operation.
-	Status *string `json:"status,omitempty"`
-}
-
-func (o *PushOperationStatusChangedWebhookData) GetDataType() *string {
-	if o == nil {
-		return nil
-	}
-	return o.DataType
-}
-
-func (o *PushOperationStatusChangedWebhookData) GetPushOperationKey() *string {
-	if o == nil {
-		return nil
-	}
-	return o.PushOperationKey
-}
-
-func (o *PushOperationStatusChangedWebhookData) GetStatus() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Status
-}
-
 // PushOperationStatusChangedWebhook - Webhook request body for a push operation status change.
 type PushOperationStatusChangedWebhook struct {
 	// Unique identifier of the webhook event.
 	AlertID *string `json:"AlertId,omitempty"`
+	// Unique identifier for your client in Codat.
+	ClientID *string `json:"ClientId,omitempty"`
+	// Name of your client in Codat.
+	ClientName *string `json:"ClientName,omitempty"`
 	// Unique identifier for your SMB in Codat.
 	CompanyID *string                                `json:"CompanyId,omitempty"`
 	Data      *PushOperationStatusChangedWebhookData `json:"Data,omitempty"`
+	// Unique identifier for a company's data connection.
+	DataConnectionID *string `json:"DataConnectionId,omitempty"`
 	// A human readable message about the webhook.
 	Message *string `json:"Message,omitempty"`
 	// Unique identifier for the rule.
 	RuleID *string `json:"RuleId,omitempty"`
 	// The type of rule.
-	Type *string `json:"Type,omitempty"`
+	RuleType *string `json:"RuleType,omitempty"`
 }
 
 func (o *PushOperationStatusChangedWebhook) GetAlertID() *string {
@@ -52,6 +28,20 @@ func (o *PushOperationStatusChangedWebhook) GetAlertID() *string {
 		return nil
 	}
 	return o.AlertID
+}
+
+func (o *PushOperationStatusChangedWebhook) GetClientID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ClientID
+}
+
+func (o *PushOperationStatusChangedWebhook) GetClientName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ClientName
 }
 
 func (o *PushOperationStatusChangedWebhook) GetCompanyID() *string {
@@ -68,6 +58,13 @@ func (o *PushOperationStatusChangedWebhook) GetData() *PushOperationStatusChange
 	return o.Data
 }
 
+func (o *PushOperationStatusChangedWebhook) GetDataConnectionID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DataConnectionID
+}
+
 func (o *PushOperationStatusChangedWebhook) GetMessage() *string {
 	if o == nil {
 		return nil
@@ -82,9 +79,9 @@ func (o *PushOperationStatusChangedWebhook) GetRuleID() *string {
 	return o.RuleID
 }
 
-func (o *PushOperationStatusChangedWebhook) GetType() *string {
+func (o *PushOperationStatusChangedWebhook) GetRuleType() *string {
 	if o == nil {
 		return nil
 	}
-	return o.Type
+	return o.RuleType
 }

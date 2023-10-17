@@ -6,14 +6,21 @@ package shared
 type NewCompanySynchronizedWebhook struct {
 	// Unique identifier of the webhook event.
 	AlertID *string `json:"AlertId,omitempty"`
+	// Unique identifier for your client in Codat.
+	ClientID *string `json:"ClientId,omitempty"`
+	// Name of your client in Codat.
+	ClientName *string `json:"ClientName,omitempty"`
 	// Unique identifier for your SMB in Codat.
-	CompanyID *string `json:"CompanyId,omitempty"`
+	CompanyID *string                            `json:"CompanyId,omitempty"`
+	Data      *NewCompanySynchronizedWebhookData `json:"Data,omitempty"`
+	// Unique identifier for a company's data connection.
+	DataConnectionID *string `json:"DataConnectionId,omitempty"`
 	// A human readable message about the webhook.
 	Message *string `json:"Message,omitempty"`
 	// Unique identifier for the rule.
 	RuleID *string `json:"RuleId,omitempty"`
 	// The type of rule.
-	Type *string `json:"Type,omitempty"`
+	RuleType *string `json:"RuleType,omitempty"`
 }
 
 func (o *NewCompanySynchronizedWebhook) GetAlertID() *string {
@@ -23,11 +30,39 @@ func (o *NewCompanySynchronizedWebhook) GetAlertID() *string {
 	return o.AlertID
 }
 
+func (o *NewCompanySynchronizedWebhook) GetClientID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ClientID
+}
+
+func (o *NewCompanySynchronizedWebhook) GetClientName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ClientName
+}
+
 func (o *NewCompanySynchronizedWebhook) GetCompanyID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.CompanyID
+}
+
+func (o *NewCompanySynchronizedWebhook) GetData() *NewCompanySynchronizedWebhookData {
+	if o == nil {
+		return nil
+	}
+	return o.Data
+}
+
+func (o *NewCompanySynchronizedWebhook) GetDataConnectionID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DataConnectionID
 }
 
 func (o *NewCompanySynchronizedWebhook) GetMessage() *string {
@@ -44,9 +79,9 @@ func (o *NewCompanySynchronizedWebhook) GetRuleID() *string {
 	return o.RuleID
 }
 
-func (o *NewCompanySynchronizedWebhook) GetType() *string {
+func (o *NewCompanySynchronizedWebhook) GetRuleType() *string {
 	if o == nil {
 		return nil
 	}
-	return o.Type
+	return o.RuleType
 }

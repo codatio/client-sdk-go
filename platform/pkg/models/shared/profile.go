@@ -4,16 +4,26 @@ package shared
 
 // Profile - Describes your Codat client instance
 type Profile struct {
+	// Alert or webhooks authorization header.
 	AlertAuthHeader *string `json:"alertAuthHeader,omitempty"`
+	// The API key for this Codat instance.
+	//
 	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	APIKey *string `json:"apiKey,omitempty"`
+	// `True` if the company name has been confirmed.
+	//
 	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-	ConfirmCompanyName *bool    `json:"confirmCompanyName,omitempty"`
-	IconURL            *string  `json:"iconUrl,omitempty"`
-	LogoURL            *string  `json:"logoUrl,omitempty"`
-	Name               string   `json:"name"`
-	RedirectURL        string   `json:"redirectUrl"`
-	WhiteListUrls      []string `json:"whiteListUrls,omitempty"`
+	ConfirmCompanyName *bool `json:"confirmCompanyName,omitempty"`
+	// Static url to your organization's icon.
+	IconURL *string `json:"iconUrl,omitempty"`
+	// Static url to your organization's logo.
+	LogoURL *string `json:"logoUrl,omitempty"`
+	// The name given to the instance.
+	Name string `json:"name"`
+	// The redirect URL pasted on to the SMB once Codat's [Hosted Link](https://docs.codat.io/auth-flow/authorize-hosted-link) has been completed by the SMB.
+	RedirectURL string `json:"redirectUrl"`
+	// A list of urls that are allowed to communicate with Codat. If empty any url is allowed to communicate with Codat.
+	WhiteListUrls []string `json:"whiteListUrls,omitempty"`
 }
 
 func (o *Profile) GetAlertAuthHeader() *string {
