@@ -119,4 +119,3 @@ func main() {
 <!-- End Go Types -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
-
