@@ -1,6 +1,6 @@
 # PaymentMethodRef
 
-The payment method the record is linked to in the accounting or commerce platform.
+The Payment Method to which the payment is linked in the accounting platform.
 
 
 ## Fields

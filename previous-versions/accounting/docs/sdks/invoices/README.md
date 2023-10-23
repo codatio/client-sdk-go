@@ -122,17 +122,17 @@ func main() {
             Status: shared.InvoiceStatusDraft,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "evolve": map[string]interface{}{
-                        "male": "SUV",
+                    "key": map[string]interface{}{
+                        "key": "string",
                     },
                 },
             },
-            TotalAmount: types.MustNewDecimalFromString("5519.29"),
-            TotalTaxAmount: types.MustNewDecimalFromString("5862.2"),
+            TotalAmount: types.MustNewDecimalFromString("3015.1"),
+            TotalTaxAmount: types.MustNewDecimalFromString("899.64"),
             WithholdingTax: []shared.WithholdingTaxitems{
                 shared.WithholdingTaxitems{
-                    Amount: types.MustNewDecimalFromString("8275.63"),
-                    Name: "mobile National Durham",
+                    Amount: types.MustNewDecimalFromString("7150.4"),
+                    Name: "string",
                 },
             },
         },
@@ -218,7 +218,7 @@ func main() {
     res, err := s.Invoices.Delete(ctx, operations.DeleteInvoiceRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        InvoiceID: "Van complexity",
+        InvoiceID: "string",
     })
     if err != nil {
         log.Fatal(err)
@@ -278,7 +278,7 @@ func main() {
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        InvoiceID: "Dakota Avon specifically",
+        InvoiceID: "string",
     })
     if err != nil {
         log.Fatal(err)
@@ -331,7 +331,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Invoices.DownloadPdf(ctx, operations.DownloadInvoicePdfRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        InvoiceID: "Associate",
+        InvoiceID: "string",
     })
     if err != nil {
         log.Fatal(err)
@@ -390,7 +390,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Invoices.Get(ctx, operations.GetInvoiceRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        InvoiceID: "Northeast Hatchback Kia",
+        InvoiceID: "string",
     })
     if err != nil {
         log.Fatal(err)
@@ -450,7 +450,7 @@ func main() {
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        InvoiceID: "array East along",
+        InvoiceID: "string",
     })
     if err != nil {
         log.Fatal(err)
@@ -637,7 +637,7 @@ func main() {
     res, err := s.Invoices.ListAttachments(ctx, operations.ListInvoiceAttachmentsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        InvoiceID: "intuitive Frozen ouch",
+        InvoiceID: "string",
     })
     if err != nil {
         log.Fatal(err)
@@ -766,23 +766,23 @@ func main() {
             Status: shared.InvoiceStatusVoid,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "online": map[string]interface{}{
-                        "dynamic": "white",
+                    "key": map[string]interface{}{
+                        "key": "string",
                     },
                 },
             },
-            TotalAmount: types.MustNewDecimalFromString("3668.07"),
-            TotalTaxAmount: types.MustNewDecimalFromString("1395.79"),
+            TotalAmount: types.MustNewDecimalFromString("4995.57"),
+            TotalTaxAmount: types.MustNewDecimalFromString("4468.63"),
             WithholdingTax: []shared.WithholdingTaxitems{
                 shared.WithholdingTaxitems{
-                    Amount: types.MustNewDecimalFromString("6447.13"),
-                    Name: "syndicate East Baht",
+                    Amount: types.MustNewDecimalFromString("3691.82"),
+                    Name: "string",
                 },
             },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        InvoiceID: "Representative Home",
+        InvoiceID: "string",
     })
     if err != nil {
         log.Fatal(err)
@@ -845,11 +845,11 @@ func main() {
     res, err := s.Invoices.UploadAttachment(ctx, operations.UploadInvoiceAttachmentRequest{
         RequestBody: &operations.UploadInvoiceAttachmentRequestBody{
             Content: []byte("v/ghW&IC$x"),
-            RequestBody: "Elegant Producer Electric",
+            RequestBody: "string",
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        InvoiceID: "Iowa Bentley",
+        InvoiceID: "string",
     })
     if err != nil {
         log.Fatal(err)

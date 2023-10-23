@@ -8,9 +8,13 @@ Purchase orders
 ### Available Operations
 
 * [Create](#create) - Create purchase order
+* [DownloadAttachment](#downloadattachment) - Download purchase order attachment
+* [DownloadPurchaseOrderPdf](#downloadpurchaseorderpdf) - Download purchase order as PDF
 * [Get](#get) - Get purchase order
+* [GetAttachment](#getattachment) - Get purchase order attachment
 * [GetCreateUpdateModel](#getcreateupdatemodel) - Get create/update purchase order model
 * [List](#list) - List purchase orders
+* [ListAttachments](#listattachments) - List purchase order attachments
 * [Update](#update) - Update purchase order
 
 ## Create
@@ -108,6 +112,123 @@ func main() {
 **[*operations.CreatePurchaseOrderResponse](../../models/operations/createpurchaseorderresponse.md), error**
 
 
+## DownloadAttachment
+
+The *Download purchase order attachment* endpoint downloads a specific attachment for a given `purchaseOrderId` and `attachmentId`.
+
+[Purchase Orders](https://docs.codat.io/accounting-api#/schemas/PurchaseOrder) represent a business's intent to purchase goods or services from a supplier.
+
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=purchaseOrders) for integrations that support downloading a purchase order attachment.
+
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"log"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
+)
+
+func main() {
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
+        }),
+    )
+
+    ctx := context.Background()
+    res, err := s.PurchaseOrders.DownloadAttachment(ctx, operations.DownloadPurchaseOrderAttachmentRequest{
+        AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+        ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
+        PurchaseOrderID: "string",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.Data != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                              | Type                                                                                                                   | Required                                                                                                               | Description                                                                                                            |
+| ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                                  | :heavy_check_mark:                                                                                                     | The context to use for the request.                                                                                    |
+| `request`                                                                                                              | [operations.DownloadPurchaseOrderAttachmentRequest](../../models/operations/downloadpurchaseorderattachmentrequest.md) | :heavy_check_mark:                                                                                                     | The request object to use for the request.                                                                             |
+| `opts`                                                                                                                 | [][operations.Option](../../models/operations/option.md)                                                               | :heavy_minus_sign:                                                                                                     | The options for this request.                                                                                          |
+
+
+### Response
+
+**[*operations.DownloadPurchaseOrderAttachmentResponse](../../models/operations/downloadpurchaseorderattachmentresponse.md), error**
+
+
+## DownloadPurchaseOrderPdf
+
+The *Download purchase order as PDF* endpoint downloads the purchase order as a PDF for a given `purchaseOrderId`.
+
+[Purchase Orders](https://docs.codat.io/accounting-api#/schemas/PurchaseOrder) represent a business's intent to purchase goods or services from a supplier.
+
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=purchaseOrders) for integrations that support getting a purchase order as PDF.
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"log"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
+)
+
+func main() {
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
+        }),
+    )
+
+    ctx := context.Background()
+    res, err := s.PurchaseOrders.DownloadPurchaseOrderPdf(ctx, operations.DownloadPurchaseOrderPdfRequest{
+        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+        PurchaseOrderID: "string",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.Data != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
+| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                                    | :heavy_check_mark:                                                                                       | The context to use for the request.                                                                      |
+| `request`                                                                                                | [operations.DownloadPurchaseOrderPdfRequest](../../models/operations/downloadpurchaseorderpdfrequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
+| `opts`                                                                                                   | [][operations.Option](../../models/operations/option.md)                                                 | :heavy_minus_sign:                                                                                       | The options for this request.                                                                            |
+
+
+### Response
+
+**[*operations.DownloadPurchaseOrderPdfResponse](../../models/operations/downloadpurchaseorderpdfresponse.md), error**
+
+
 ## Get
 
 The *Get purchase order* endpoint returns a single purchase order for a given purchaseOrderId.
@@ -142,7 +263,7 @@ func main() {
     ctx := context.Background()
     res, err := s.PurchaseOrders.Get(ctx, operations.GetPurchaseOrderRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        PurchaseOrderID: "Northeast Hatchback Kia",
+        PurchaseOrderID: "string",
     })
     if err != nil {
         log.Fatal(err)
@@ -166,6 +287,66 @@ func main() {
 ### Response
 
 **[*operations.GetPurchaseOrderResponse](../../models/operations/getpurchaseorderresponse.md), error**
+
+
+## GetAttachment
+
+The *Get purchase order attachment* endpoint returns a specific attachment for a given `purchaseOrderId` and `attachmentId`.
+
+[Purchase Orders](https://docs.codat.io/accounting-api#/schemas/PurchaseOrder) represent a business's intent to purchase goods or services from a supplier.
+
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=purchaseOrders) for integrations that support getting a purchase order attachment.
+
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"log"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
+)
+
+func main() {
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
+        }),
+    )
+
+    ctx := context.Background()
+    res, err := s.PurchaseOrders.GetAttachment(ctx, operations.GetPurchaseOrderAttachmentRequest{
+        AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+        ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
+        PurchaseOrderID: "string",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.Attachment != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                    | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                                        | :heavy_check_mark:                                                                                           | The context to use for the request.                                                                          |
+| `request`                                                                                                    | [operations.GetPurchaseOrderAttachmentRequest](../../models/operations/getpurchaseorderattachmentrequest.md) | :heavy_check_mark:                                                                                           | The request object to use for the request.                                                                   |
+| `opts`                                                                                                       | [][operations.Option](../../models/operations/option.md)                                                     | :heavy_minus_sign:                                                                                           | The options for this request.                                                                                |
+
+
+### Response
+
+**[*operations.GetPurchaseOrderAttachmentResponse](../../models/operations/getpurchaseorderattachmentresponse.md), error**
 
 
 ## GetCreateUpdateModel
@@ -290,6 +471,65 @@ func main() {
 **[*operations.ListPurchaseOrdersResponse](../../models/operations/listpurchaseordersresponse.md), error**
 
 
+## ListAttachments
+
+The *List purchase order attachments* endpoint returns a list of attachments available to download for a given `purchaseOrderId`.
+
+[Purchase Orders](https://docs.codat.io/accounting-api#/schemas/PurchaseOrder) represent a business's intent to purchase goods or services from a supplier.
+
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=purchaseOrders) for integrations that support listing purchase order attachments.
+
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"log"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
+)
+
+func main() {
+    s := accounting.New(
+        accounting.WithSecurity(shared.Security{
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
+        }),
+    )
+
+    ctx := context.Background()
+    res, err := s.PurchaseOrders.ListAttachments(ctx, operations.ListPurchaseOrderAttachmentsRequest{
+        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+        ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
+        PurchaseOrderID: "string",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.AttachmentsDataset != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                        | Type                                                                                                             | Required                                                                                                         | Description                                                                                                      |
+| ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                                            | :heavy_check_mark:                                                                                               | The context to use for the request.                                                                              |
+| `request`                                                                                                        | [operations.ListPurchaseOrderAttachmentsRequest](../../models/operations/listpurchaseorderattachmentsrequest.md) | :heavy_check_mark:                                                                                               | The request object to use for the request.                                                                       |
+| `opts`                                                                                                           | [][operations.Option](../../models/operations/option.md)                                                         | :heavy_minus_sign:                                                                                               | The options for this request.                                                                                    |
+
+
+### Response
+
+**[*operations.ListPurchaseOrderAttachmentsResponse](../../models/operations/listpurchaseorderattachmentsresponse.md), error**
+
+
 ## Update
 
 The *Update purchase order* endpoint updates an existing [purchase order](https://docs.codat.io/accounting-api#/schemas/PurchaseOrder) for a given company's connection.
@@ -360,7 +600,7 @@ func main() {
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        PurchaseOrderID: "Analyst invoice",
+        PurchaseOrderID: "string",
     })
     if err != nil {
         log.Fatal(err)

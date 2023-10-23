@@ -36,7 +36,7 @@ func main() {
 
 	ctx := context.Background()
 	res, err := s.AccountTransactions.Get(ctx, operations.GetAccountTransactionRequest{
-		AccountTransactionID: "Northeast Hatchback Kia",
+		AccountTransactionID: "string",
 		CompanyID:            "8a210b68-6988-11ed-a1eb-0242ac120002",
 		ConnectionID:         "2e9d2c44-f675-40ba-8049-353bfcb5e171",
 	})
@@ -209,9 +209,13 @@ func main() {
 ### [PurchaseOrders](docs/sdks/purchaseorders/README.md)
 
 * [Create](docs/sdks/purchaseorders/README.md#create) - Create purchase order
+* [DownloadAttachment](docs/sdks/purchaseorders/README.md#downloadattachment) - Download purchase order attachment
+* [DownloadPurchaseOrderPdf](docs/sdks/purchaseorders/README.md#downloadpurchaseorderpdf) - Download purchase order as PDF
 * [Get](docs/sdks/purchaseorders/README.md#get) - Get purchase order
+* [GetAttachment](docs/sdks/purchaseorders/README.md#getattachment) - Get purchase order attachment
 * [GetCreateUpdateModel](docs/sdks/purchaseorders/README.md#getcreateupdatemodel) - Get create/update purchase order model
 * [List](docs/sdks/purchaseorders/README.md#list) - List purchase orders
+* [ListAttachments](docs/sdks/purchaseorders/README.md#listattachments) - List purchase order attachments
 * [Update](docs/sdks/purchaseorders/README.md#update) - Update purchase order
 
 ### [Reports](docs/sdks/reports/README.md)
@@ -262,8 +266,6 @@ func main() {
 
 
 <!-- Start Dev Containers -->
-
-
 
 <!-- End Dev Containers -->
 

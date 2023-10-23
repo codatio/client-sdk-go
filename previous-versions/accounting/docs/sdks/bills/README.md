@@ -113,20 +113,20 @@ func main() {
             SubTotal: types.MustNewDecimalFromString("0.86"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "deposit": map[string]interface{}{
-                        "evolve": "male",
+                    "key": map[string]interface{}{
+                        "key": "string",
                     },
                 },
             },
             SupplierRef: &shared.SupplierRef{
                 ID: "<ID>",
             },
-            TaxAmount: types.MustNewDecimalFromString("8559.52"),
-            TotalAmount: types.MustNewDecimalFromString("8165.88"),
+            TaxAmount: types.MustNewDecimalFromString("4552.22"),
+            TotalAmount: types.MustNewDecimalFromString("1697.27"),
             WithholdingTax: []shared.BillWithholdingTax{
                 shared.BillWithholdingTax{
-                    Amount: types.MustNewDecimalFromString("5519.29"),
-                    Name: "Polestar mobile",
+                    Amount: types.MustNewDecimalFromString("3015.1"),
+                    Name: "string",
                 },
             },
         },
@@ -694,24 +694,24 @@ func main() {
             SubTotal: types.MustNewDecimalFromString("540.62"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "Cotton": map[string]interface{}{
-                        "extend": "Plastic",
+                    "key": map[string]interface{}{
+                        "key": "string",
                     },
                 },
             },
             SupplierRef: &shared.SupplierRef{
                 ID: "<ID>",
             },
-            TaxAmount: types.MustNewDecimalFromString("1395.79"),
-            TotalAmount: types.MustNewDecimalFromString("6447.13"),
+            TaxAmount: types.MustNewDecimalFromString("2782.81"),
+            TotalAmount: types.MustNewDecimalFromString("8965.01"),
             WithholdingTax: []shared.BillWithholdingTax{
                 shared.BillWithholdingTax{
-                    Amount: types.MustNewDecimalFromString("7892.75"),
-                    Name: "immediately implement JBOD",
+                    Amount: types.MustNewDecimalFromString("4995.57"),
+                    Name: "string",
                 },
             },
         },
-        BillID: "EILBDVJVNUAGVKRQ",
+        BillID: "9wg4lep4ush5cxs79pl8sozmsndbaukll3ind4g7buqbm1h2",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -776,9 +776,9 @@ func main() {
     res, err := s.Bills.UploadAttachment(ctx, operations.UploadBillAttachmentRequest{
         RequestBody: &operations.UploadBillAttachmentRequestBody{
             Content: []byte("v/ghW&IC$x"),
-            RequestBody: "Elegant Producer Electric",
+            RequestBody: "string",
         },
-        BillID: "9wg4lep4ush5cxs79pl8sozmsndbaukll3ind4g7buqbm1h2",
+        BillID: "7110701885",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })

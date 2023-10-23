@@ -44,7 +44,7 @@ func main() {
     ctx := context.Background()
     res, err := s.SalesOrders.Get(ctx, operations.GetSalesOrderRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        SalesOrderID: "Northeast Hatchback Kia",
+        SalesOrderID: "string",
     })
     if err != nil {
         log.Fatal(err)

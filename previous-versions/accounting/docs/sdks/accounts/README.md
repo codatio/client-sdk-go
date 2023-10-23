@@ -63,8 +63,8 @@ func main() {
             Status: shared.AccountStatusActive.ToPointer(),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "Money": map[string]interface{}{
-                        "blue": "shred",
+                    "key": map[string]interface{}{
+                        "key": "string",
                     },
                 },
             },
@@ -72,7 +72,7 @@ func main() {
             ValidDatatypeLinks: []shared.ValidDataTypeLinks{
                 shared.ValidDataTypeLinks{
                     Links: []string{
-                        "abnormally",
+                        "string",
                     },
                 },
             },
@@ -137,7 +137,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Accounts.Get(ctx, operations.GetAccountRequest{
-        AccountID: "Northeast Hatchback Kia",
+        AccountID: "string",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
