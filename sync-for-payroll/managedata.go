@@ -480,7 +480,13 @@ func (s *manageData) List(ctx context.Context, request operations.ListPushOperat
 }
 
 // ListPullOperations - List pull operations
-// Gets the pull operation history (datasets) for a given company.
+// The *List pull operations* endpoint returns a list of [pull operations](https://docs.codat.io/sync-for-payroll-api#/schemas/PullOperation) made by your client.
+//
+// A [pull operation](https://docs.codat.io/sync-for-payroll-api#/schemas/PullOperation) is a request to retrieve a specific data type from an integration.
+//
+// ### Tips and traps
+//
+// - The *List pull operations* endpoint does not support querying the `isCompleted` property. You can filter failed pull operations by querying `status!=Complete&&status!=NotSupported` instead.
 func (s *manageData) ListPullOperations(ctx context.Context, request operations.ListPullOperationsRequest, opts ...operations.Option) (*operations.ListPullOperationsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

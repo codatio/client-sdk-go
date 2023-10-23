@@ -50,8 +50,8 @@ func main() {
 			Status:                 shared.AccountStatusActive.ToPointer(),
 			SupplementalData: &shared.SupplementalData{
 				Content: map[string]map[string]interface{}{
-					"Money": map[string]interface{}{
-						"blue": "shred",
+					"key": map[string]interface{}{
+						"key": "string",
 					},
 				},
 			},
@@ -59,7 +59,7 @@ func main() {
 			ValidDatatypeLinks: []shared.AccountValidDataTypeLinks{
 				shared.AccountValidDataTypeLinks{
 					Links: []string{
-						"abnormally",
+						"string",
 					},
 				},
 			},
@@ -144,8 +144,6 @@ func main() {
 
 
 <!-- Start Dev Containers -->
-
-
 
 <!-- End Dev Containers -->
 

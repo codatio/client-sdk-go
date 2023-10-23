@@ -39,3 +39,13 @@ Based on:
 - [go v1.2.0] sync-for-payroll
 ### Releases
 - [Go v1.2.0] https://github.com/codatio/client-sdk-go/releases/tag/sync-for-payroll/v1.2.0 - sync-for-payroll
+
+## 2023-10-23 01:27:40
+### Changes
+Based on:
+- OpenAPI Doc 3.0.0 https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Sync-Payroll.yaml
+- Speakeasy CLI 1.104.0 (2.169.0) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [go v1.3.0] sync-for-payroll
+### Releases
+- [Go v1.3.0] https://github.com/codatio/client-sdk-go/releases/tag/sync-for-payroll/v1.3.0 - sync-for-payroll
