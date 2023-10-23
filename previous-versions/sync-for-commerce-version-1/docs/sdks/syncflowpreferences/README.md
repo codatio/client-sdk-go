@@ -87,8 +87,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.SyncFlowPreferences.GetSyncFlowURL(ctx, operations.GetSyncFlowURLRequest{
-        AccountingKey: "Manager",
-        CommerceKey: "payment",
+        AccountingKey: "string",
+        CommerceKey: "string",
     })
     if err != nil {
         log.Fatal(err)
@@ -192,7 +192,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.SyncFlowPreferences.UpdateConfigTextSyncFlow(ctx, &map[string]shared.Localization{
-        "West": shared.Localization{},
+        "key": shared.Localization{},
     })
     if err != nil {
         log.Fatal(err)
@@ -246,7 +246,7 @@ func main() {
     res, err := s.SyncFlowPreferences.UpdateVisibleAccountsSyncFlow(ctx, operations.UpdateVisibleAccountsSyncFlowRequest{
         VisibleAccounts: &shared.VisibleAccounts{
             VisibleAccounts: []string{
-                "Coordinator",
+                "string",
             },
         },
         PlatformKey: "gbol",

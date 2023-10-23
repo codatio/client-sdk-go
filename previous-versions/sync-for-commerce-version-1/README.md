@@ -50,8 +50,8 @@ func main() {
 			Status:                 shared.AccountStatusActive.ToPointer(),
 			SupplementalData: &shared.SupplementalData{
 				Content: map[string]map[string]interface{}{
-					"Gasoline": map[string]interface{}{
-						"Wall": "Oriental",
+					"key": map[string]interface{}{
+						"key": "string",
 					},
 				},
 			},
@@ -59,7 +59,7 @@ func main() {
 			ValidDatatypeLinks: []shared.AccountingAccountValidDataTypeLinks{
 				shared.AccountingAccountValidDataTypeLinks{
 					Links: []string{
-						"Intranet",
+						"string",
 					},
 				},
 			},
@@ -220,8 +220,6 @@ func main() {
 
 
 <!-- Start Dev Containers -->
-
-
 
 <!-- End Dev Containers -->
 

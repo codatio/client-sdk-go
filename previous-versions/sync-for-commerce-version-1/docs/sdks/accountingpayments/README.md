@@ -71,8 +71,8 @@ func main() {
             SourceModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "Diesel": map[string]interface{}{
-                        "property": "Reduced",
+                    "key": map[string]interface{}{
+                        "key": "string",
                     },
                 },
             },

@@ -72,8 +72,8 @@ func main() {
             Status: shared.CustomerStatusUnknown,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "California": map[string]interface{}{
-                        "systems": "North",
+                    "key": map[string]interface{}{
+                        "key": "string",
                     },
                 },
             },

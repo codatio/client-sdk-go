@@ -112,17 +112,17 @@ func main() {
             Status: shared.InvoiceStatusPartiallyPaid,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "Beier": map[string]interface{}{
-                        "boo": "Regional",
+                    "key": map[string]interface{}{
+                        "key": "string",
                     },
                 },
             },
-            TotalAmount: types.MustNewDecimalFromString("1895.83"),
-            TotalTaxAmount: types.MustNewDecimalFromString("7283.9"),
+            TotalAmount: types.MustNewDecimalFromString("1416.23"),
+            TotalTaxAmount: types.MustNewDecimalFromString("9069.87"),
             WithholdingTax: []shared.AccountingInvoiceWithholdingTax{
                 shared.AccountingInvoiceWithholdingTax{
-                    Amount: types.MustNewDecimalFromString("1357.13"),
-                    Name: "Gasoline Interactions Cisgender",
+                    Amount: types.MustNewDecimalFromString("598.23"),
+                    Name: "string",
                 },
             },
         },

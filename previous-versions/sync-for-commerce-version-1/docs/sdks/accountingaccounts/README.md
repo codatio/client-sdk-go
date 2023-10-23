@@ -62,8 +62,8 @@ func main() {
             Status: shared.AccountStatusActive.ToPointer(),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "Gasoline": map[string]interface{}{
-                        "Wall": "Oriental",
+                    "key": map[string]interface{}{
+                        "key": "string",
                     },
                 },
             },
@@ -71,7 +71,7 @@ func main() {
             ValidDatatypeLinks: []shared.AccountingAccountValidDataTypeLinks{
                 shared.AccountingAccountValidDataTypeLinks{
                     Links: []string{
-                        "Intranet",
+                        "string",
                     },
                 },
             },
@@ -136,7 +136,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.AccountingAccounts.GetAccountingAccount(ctx, operations.GetAccountingAccountRequest{
-        AccountID: "Officer steer whoa",
+        AccountID: "string",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
