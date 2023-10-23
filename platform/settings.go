@@ -266,8 +266,6 @@ func (s *settings) DeleteAPIKey(ctx context.Context, request operations.DeleteAP
 
 // GetProfile - Get profile
 // Fetch your Codat profile.
-//
-// Deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
 func (s *settings) GetProfile(ctx context.Context, opts ...operations.Option) (*operations.GetProfileResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

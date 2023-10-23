@@ -43,12 +43,12 @@ func main() {
     res, err := s.SupplementalData.Configure(ctx, operations.ConfigureSupplementalDataRequest{
         SupplementalDataConfiguration: &shared.SupplementalDataConfiguration{
             SupplementalDataConfig: map[string]shared.SupplementalDataConfigurationSupplementalDataSourceConfiguration{
-                "Cutler": shared.SupplementalDataConfigurationSupplementalDataSourceConfiguration{
+                "key": shared.SupplementalDataConfigurationSupplementalDataSourceConfiguration{
                     PullData: map[string]string{
-                        "North": "transmitter",
+                        "key": "string",
                     },
                     PushData: map[string]string{
-                        "infrastructure": "Northeast",
+                        "key": "string",
                     },
                 },
             },
