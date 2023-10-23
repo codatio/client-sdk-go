@@ -138,7 +138,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.SyncFlowSettings.UpdateConfigTextSyncFlow(ctx, &map[string]shared.Localization{
-        "West": shared.Localization{},
+        "key": shared.Localization{},
     })
     if err != nil {
         log.Fatal(err)
@@ -192,7 +192,7 @@ func main() {
     res, err := s.SyncFlowSettings.UpdateVisibleAccountsSyncFlow(ctx, operations.UpdateVisibleAccountsSyncFlowRequest{
         VisibleAccounts: &shared.VisibleAccounts{
             VisibleAccounts: []string{
-                "Coordinator",
+                "string",
             },
         },
         PlatformKey: "gbol",
