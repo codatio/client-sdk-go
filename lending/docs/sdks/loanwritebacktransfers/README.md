@@ -61,14 +61,14 @@ func main() {
             SourceModifiedDate: lending.String("2022-10-23T00:00:00.000Z"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "innovative": map[string]interface{}{
-                        "blue": "shred",
+                    "key": map[string]interface{}{
+                        "key": "string",
                     },
                 },
             },
             To: &shared.TransferAccount{
                 AccountRef: &shared.AccountRef{},
-                Currency: lending.String("USD"),
+                Currency: lending.String("GBP"),
             },
             TrackingCategoryRefs: []shared.TrackingCategoryRef{
                 shared.TrackingCategoryRef{

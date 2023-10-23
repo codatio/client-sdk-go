@@ -39,7 +39,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.AccountsPayable.BillPayments.Get(ctx, operations.GetAccountingBillPaymentRequest{
-        BillPaymentID: "Northeast Hatchback Kia",
+        BillPaymentID: "string",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {

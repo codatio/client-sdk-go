@@ -68,8 +68,8 @@ func main() {
             SourceModifiedDate: lending.String("2022-10-23T00:00:00.000Z"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "blue": map[string]interface{}{
-                        "shred": "abnormally",
+                    "key": map[string]interface{}{
+                        "key": "string",
                     },
                 },
             },

@@ -40,7 +40,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Transactions.JournalEntries.Get(ctx, operations.GetAccountingJournalEntryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        JournalEntryID: "Northeast Hatchback Kia",
+        JournalEntryID: "string",
     })
     if err != nil {
         log.Fatal(err)

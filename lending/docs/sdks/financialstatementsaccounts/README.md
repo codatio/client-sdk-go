@@ -39,7 +39,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.FinancialStatements.Accounts.Get(ctx, operations.GetAccountingAccountRequest{
-        AccountID: "Northeast Hatchback Kia",
+        AccountID: "string",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {

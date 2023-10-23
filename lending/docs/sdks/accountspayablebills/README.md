@@ -41,7 +41,7 @@ func main() {
     ctx := context.Background()
     res, err := s.AccountsPayable.Bills.DownloadAttachment(ctx, operations.DownloadAccountingBillAttachmentRequest{
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        BillID: "Dakota Avon specifically",
+        BillID: "string",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -102,7 +102,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.AccountsPayable.Bills.Get(ctx, operations.GetAccountingBillRequest{
-        BillID: "Northeast Hatchback Kia",
+        BillID: "string",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -161,7 +161,7 @@ func main() {
     ctx := context.Background()
     res, err := s.AccountsPayable.Bills.GetAttachment(ctx, operations.GetAccountingBillAttachmentRequest{
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        BillID: "array East along",
+        BillID: "string",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -280,7 +280,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.AccountsPayable.Bills.ListAttachments(ctx, operations.ListAccountingBillAttachmentsRequest{
-        BillID: "intuitive Frozen ouch",
+        BillID: "string",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })

@@ -39,7 +39,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.AccountsPayable.BillCreditNotes.Get(ctx, operations.GetAccountingBillCreditNoteRequest{
-        BillCreditNoteID: "Northeast Hatchback Kia",
+        BillCreditNoteID: "string",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {

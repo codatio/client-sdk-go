@@ -94,13 +94,13 @@ func main() {
             SubTotal: types.MustNewDecimalFromString("9510.62"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "abnormally": map[string]interface{}{
-                        "deposit": "evolve",
+                    "key": map[string]interface{}{
+                        "key": "string",
                     },
                 },
             },
-            TaxAmount: types.MustNewDecimalFromString("7150.4"),
-            TotalAmount: types.MustNewDecimalFromString("7926.2"),
+            TaxAmount: types.MustNewDecimalFromString("8915.1"),
+            TotalAmount: types.MustNewDecimalFromString("0.86"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",

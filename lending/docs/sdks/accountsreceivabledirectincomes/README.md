@@ -43,7 +43,7 @@ func main() {
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        DirectIncomeID: "Dakota Avon specifically",
+        DirectIncomeID: "string",
     })
     if err != nil {
         log.Fatal(err)
@@ -104,7 +104,7 @@ func main() {
     res, err := s.AccountsReceivable.DirectIncomes.Get(ctx, operations.GetAccountingDirectIncomeRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        DirectIncomeID: "Northeast Hatchback Kia",
+        DirectIncomeID: "string",
     })
     if err != nil {
         log.Fatal(err)
@@ -164,7 +164,7 @@ func main() {
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        DirectIncomeID: "array East along",
+        DirectIncomeID: "string",
     })
     if err != nil {
         log.Fatal(err)
@@ -284,7 +284,7 @@ func main() {
     res, err := s.AccountsReceivable.DirectIncomes.ListAttachments(ctx, operations.ListAccountingDirectIncomeAttachmentsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        DirectIncomeID: "intuitive Frozen ouch",
+        DirectIncomeID: "string",
     })
     if err != nil {
         log.Fatal(err)
