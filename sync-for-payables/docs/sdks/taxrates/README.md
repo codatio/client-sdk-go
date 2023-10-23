@@ -44,7 +44,7 @@ func main() {
     ctx := context.Background()
     res, err := s.TaxRates.Get(ctx, operations.GetTaxRateRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        TaxRateID: "Northeast Hatchback Kia",
+        TaxRateID: "string",
     })
     if err != nil {
         log.Fatal(err)

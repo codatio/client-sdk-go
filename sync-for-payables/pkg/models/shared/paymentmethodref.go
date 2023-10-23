@@ -2,7 +2,7 @@
 
 package shared
 
-// PaymentMethodRef - The payment method the record is linked to in the accounting or commerce platform.
+// PaymentMethodRef - The Payment Method to which the payment is linked in the accounting platform.
 type PaymentMethodRef struct {
 	// The unique identifier of the location being referenced.
 	ID string `json:"id"`

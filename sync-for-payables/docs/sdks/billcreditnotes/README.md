@@ -109,8 +109,8 @@ func main() {
             SubTotal: types.MustNewDecimalFromString("805.78"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "abnormally": map[string]interface{}{
-                        "deposit": "evolve",
+                    "key": map[string]interface{}{
+                        "key": "string",
                     },
                 },
             },
@@ -122,8 +122,8 @@ func main() {
             TotalTaxAmount: types.MustNewDecimalFromString("0"),
             WithholdingTax: []shared.WithholdingTaxitems{
                 shared.WithholdingTaxitems{
-                    Amount: types.MustNewDecimalFromString("7150.4"),
-                    Name: "SUV quantify Polestar",
+                    Amount: types.MustNewDecimalFromString("8915.1"),
+                    Name: "string",
                 },
             },
         },
@@ -187,7 +187,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.BillCreditNotes.Get(ctx, operations.GetBillCreditNoteRequest{
-        BillCreditNoteID: "Northeast Hatchback Kia",
+        BillCreditNoteID: "string",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -432,8 +432,8 @@ func main() {
             SubTotal: types.MustNewDecimalFromString("805.78"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "Arizona": map[string]interface{}{
-                        "Cotton": "extend",
+                    "key": map[string]interface{}{
+                        "key": "string",
                     },
                 },
             },
@@ -445,12 +445,12 @@ func main() {
             TotalTaxAmount: types.MustNewDecimalFromString("0"),
             WithholdingTax: []shared.WithholdingTaxitems{
                 shared.WithholdingTaxitems{
-                    Amount: types.MustNewDecimalFromString("2494.4"),
-                    Name: "Carolina syndicate",
+                    Amount: types.MustNewDecimalFromString("1341.51"),
+                    Name: "string",
                 },
             },
         },
-        BillCreditNoteID: "implement JBOD",
+        BillCreditNoteID: "string",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
