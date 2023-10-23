@@ -149,9 +149,9 @@ func New(opts ...SDKOption) *CodatFiles {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "0.24.0",
-			GenVersion:        "2.159.2",
-			UserAgent:         "speakeasy-sdk/go 0.24.0 2.159.2 3.0.0 github.com/codatio/client-sdk-go/previous-versions/files",
+			SDKVersion:        "0.25.0",
+			GenVersion:        "2.169.0",
+			UserAgent:         "speakeasy-sdk/go 0.25.0 2.169.0 3.0.0 github.com/codatio/client-sdk-go/previous-versions/files",
 		},
 	}
 	for _, opt := range opts {
