@@ -47,7 +47,7 @@ func main() {
     res, err := s.Products.Get(ctx, operations.GetProductRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        ProductID: "Northeast Hatchback Kia",
+        ProductID: "string",
     })
     if err != nil {
         log.Fatal(err)
@@ -108,7 +108,7 @@ func main() {
     res, err := s.Products.GetCategory(ctx, operations.GetProductCategoryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        ProductID: "personalise contingency",
+        ProductID: "string",
     })
     if err != nil {
         log.Fatal(err)
