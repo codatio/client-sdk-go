@@ -58,8 +58,8 @@ func main() {
             Status: shared.SupplierStatusActive,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "innovative": map[string]interface{}{
-                        "blue": "shred",
+                    "key": map[string]interface{}{
+                        "key": "string",
                     },
                 },
             },
@@ -253,15 +253,15 @@ func main() {
             Status: shared.SupplierStatusActive,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "male": map[string]interface{}{
-                        "Metal": "cheater",
+                    "key": map[string]interface{}{
+                        "key": "string",
                     },
                 },
             },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        SupplierID: "13d946f0-c5d5-42bc-b092-97ece17923ab",
+        SupplierID: "7110701885",
     })
     if err != nil {
         log.Fatal(err)
