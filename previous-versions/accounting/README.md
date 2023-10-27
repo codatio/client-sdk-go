@@ -292,4 +292,3 @@ d4, err := types.DateFromString("2019-01-01") // returns types.Date, error
 d5 := types.MustNewDateFromString("2019-01-01") // returns *types.Date and panics on error
 
 d6 := types.MustDateFromString("2019-01-01") // returns types.Date and panics on error
-```
