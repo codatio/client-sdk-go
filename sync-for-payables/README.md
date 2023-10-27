@@ -212,5 +212,3 @@ Here's an example of one such pagination call:
 
 
 <!-- Start Go Types -->
-
-<!-- End Go Types -->

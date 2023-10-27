@@ -228,5 +228,3 @@ func main() {
 
 
 <!-- Start Go Types -->
-
-<!-- End Go Types -->
