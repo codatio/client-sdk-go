@@ -31,7 +31,7 @@ func (o *ListLocationsRequest) GetConnectionID() string {
 type ListLocationsResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Your `query` parameter was not correctly formed
+	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
 	// OK
 	Locations *shared.Locations

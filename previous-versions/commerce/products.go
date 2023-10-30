@@ -26,13 +26,6 @@ func newProducts(sdkConfig sdkConfiguration) *products {
 }
 
 // Get product
-// The *Get product* endpoint returns a single product for a given productId.
-//
-// [Products](https://docs.codat.io/commerce-api#/schemas/Product) are items in the company's inventory that are available for sale.
-//
-// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/commerce?view=tab-by-data-type&dataType=commerce-products) for integrations that support getting a specific product.
-//
-// Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
 func (s *products) Get(ctx context.Context, request operations.GetProductRequest, opts ...operations.Option) (*operations.GetProductResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -124,11 +117,19 @@ func (s *products) Get(ctx context.Context, request operations.GetProductRequest
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 409:
 		fallthrough
 	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out shared.ErrorMessage
@@ -244,11 +245,19 @@ func (s *products) GetCategory(ctx context.Context, request operations.GetProduc
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 409:
 		fallthrough
 	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out shared.ErrorMessage
@@ -368,11 +377,19 @@ func (s *products) List(ctx context.Context, request operations.ListProductsRequ
 		fallthrough
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 409:
 		fallthrough
 	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out shared.ErrorMessage
@@ -492,11 +509,19 @@ func (s *products) ListCategories(ctx context.Context, request operations.ListPr
 		fallthrough
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 409:
 		fallthrough
 	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out shared.ErrorMessage

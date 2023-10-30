@@ -14,14 +14,7 @@ Retrieve standardized data from linked commerce platforms.
 
 ## Get
 
-The *Get product* endpoint returns a single product for a given productId.
-
-[Products](https://docs.codat.io/commerce-api#/schemas/Product) are items in the company's inventory that are available for sale.
-
-Check out our [coverage explorer](https://knowledge.codat.io/supported-features/commerce?view=tab-by-data-type&dataType=commerce-products) for integrations that support getting a specific product.
-
-Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
-
+Get product
 
 ### Example Usage
 
