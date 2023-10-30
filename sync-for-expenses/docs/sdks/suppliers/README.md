@@ -46,8 +46,8 @@ func main() {
     ctx := context.Background()
     res, err := s.Suppliers.Create(ctx, operations.CreateSupplierRequest{
         Supplier: &shared.Supplier{
-            Addresses: []shared.SupplierAccountingAddress{
-                shared.SupplierAccountingAddress{
+            Addresses: []shared.Items{
+                shared.Items{
                     Type: shared.AccountingAddressTypeBilling,
                 },
             },
@@ -241,8 +241,8 @@ func main() {
     ctx := context.Background()
     res, err := s.Suppliers.Update(ctx, operations.UpdateSupplierRequest{
         Supplier: &shared.Supplier{
-            Addresses: []shared.SupplierAccountingAddress{
-                shared.SupplierAccountingAddress{
+            Addresses: []shared.Items{
+                shared.Items{
                     Type: shared.AccountingAddressTypeDelivery,
                 },
             },

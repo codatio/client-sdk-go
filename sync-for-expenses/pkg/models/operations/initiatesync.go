@@ -30,7 +30,7 @@ func (o *InitiateSyncRequest) GetCompanyID() string {
 type InitiateSyncResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// If model is incorrect
+	// The request made is not valid.
 	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
