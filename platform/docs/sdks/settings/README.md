@@ -117,7 +117,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.StatusCode == http.StatusOK {
+    if res.ErrorMessage != nil {
         // handle response
     }
 }

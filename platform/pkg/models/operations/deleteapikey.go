@@ -22,7 +22,7 @@ func (o *DeleteAPIKeyRequest) GetAPIKeyID() string {
 type DeleteAPIKeyResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Your API request was not properly authorized.
+	// Too many requests were made in a given amount of time. Wait a short period and then try again.
 	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
