@@ -64,7 +64,7 @@ func (o *ListLoanTransactionsRequest) GetSourceType() ListLoanTransactionsSource
 type ListLoanTransactionsResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Your API request was not properly authorized.
+	// The request made is not valid.
 	ErrorMessage *shared.ErrorMessage
 	// OK
 	LoanTransactions *shared.LoanTransactions

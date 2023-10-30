@@ -31,6 +31,7 @@ financialstatementscashflow.go
 financialstatementsprofitandloss.go
 financialstatements.go
 loanwritebackaccounts.go
+loanwritebackbankaccounts.go
 loanwritebackbanktransactions.go
 loanwritebackcreateoperations.go
 loanwritebackdirectcosts.go
@@ -163,6 +164,8 @@ pkg/models/operations/getaccountingprofitandloss.go
 pkg/models/operations/getcategorizedprofitandlossstatement.go
 pkg/models/operations/createaccount.go
 pkg/models/operations/getcreatechartofaccountsmodel.go
+pkg/models/operations/createbankaccount.go
+pkg/models/operations/getcreateupdatebankaccountsmodel.go
 pkg/models/operations/createbanktransactions.go
 pkg/models/operations/getcreatebanktransactionsmodel.go
 pkg/models/operations/getcreateoperation.go
@@ -170,7 +173,7 @@ pkg/models/operations/listcreateoperations.go
 pkg/models/operations/createdirectcost.go
 pkg/models/operations/getcreatedirectcostsmodel.go
 pkg/models/operations/createpayment.go
-pkg/models/operations/getcreatepaymentsmodel.go
+pkg/models/operations/getcreatepaymentmodel.go
 pkg/models/operations/createsupplier.go
 pkg/models/operations/getcreateupdatesuppliersmodel.go
 pkg/models/operations/createtransfer.go
@@ -393,6 +396,7 @@ pkg/models/shared/pushfieldvalidation.go
 pkg/models/shared/pushoptiontype.go
 pkg/models/shared/pushoptionproperty.go
 pkg/models/shared/pushoptionchoice.go
+pkg/models/shared/accountingcreatebankaccountresponse.go
 pkg/models/shared/accountingcreatebanktransactionsresponse.go
 pkg/models/shared/accountingcreatebanktransactions.go
 pkg/models/shared/createbankaccounttransaction.go
@@ -658,6 +662,10 @@ docs/models/operations/createaccountrequest.md
 docs/models/operations/createaccountresponse.md
 docs/models/operations/getcreatechartofaccountsmodelrequest.md
 docs/models/operations/getcreatechartofaccountsmodelresponse.md
+docs/models/operations/createbankaccountrequest.md
+docs/models/operations/createbankaccountresponse.md
+docs/models/operations/getcreateupdatebankaccountsmodelrequest.md
+docs/models/operations/getcreateupdatebankaccountsmodelresponse.md
 docs/models/operations/createbanktransactionsrequest.md
 docs/models/operations/createbanktransactionsresponse.md
 docs/models/operations/getcreatebanktransactionsmodelrequest.md
@@ -672,8 +680,8 @@ docs/models/operations/getcreatedirectcostsmodelrequest.md
 docs/models/operations/getcreatedirectcostsmodelresponse.md
 docs/models/operations/createpaymentrequest.md
 docs/models/operations/createpaymentresponse.md
-docs/models/operations/getcreatepaymentsmodelrequest.md
-docs/models/operations/getcreatepaymentsmodelresponse.md
+docs/models/operations/getcreatepaymentmodelrequest.md
+docs/models/operations/getcreatepaymentmodelresponse.md
 docs/models/operations/createsupplierrequest.md
 docs/models/operations/createsupplierresponse.md
 docs/models/operations/getcreateupdatesuppliersmodelrequest.md
@@ -955,6 +963,7 @@ docs/models/shared/pushfieldvalidation.md
 docs/models/shared/pushoptiontype.md
 docs/models/shared/pushoptionproperty.md
 docs/models/shared/pushoptionchoice.md
+docs/models/shared/accountingcreatebankaccountresponse.md
 docs/models/shared/accountingcreatebanktransactionsresponse.md
 docs/models/shared/accountingcreatebanktransactions.md
 docs/models/shared/createbankaccounttransaction.md
@@ -1087,6 +1096,7 @@ docs/sdks/financialstatementscashflow/README.md
 docs/sdks/financialstatementsprofitandloss/README.md
 docs/sdks/loanwriteback/README.md
 docs/sdks/loanwritebackaccounts/README.md
+docs/sdks/loanwritebackbankaccounts/README.md
 docs/sdks/loanwritebackbanktransactions/README.md
 docs/sdks/loanwritebackcreateoperations/README.md
 docs/sdks/loanwritebackdirectcosts/README.md

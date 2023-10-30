@@ -63,7 +63,7 @@ type GetCategorizedBankStatementResponse struct {
 	ContentType string
 	// OK
 	EnhancedCashFlowTransactions *shared.EnhancedCashFlowTransactions
-	// Your API request was not properly authorized.
+	// Your `query` parameter was not correctly formed
 	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int

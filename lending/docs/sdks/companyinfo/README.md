@@ -64,9 +64,11 @@ func main() {
 
 ## GetCommerceProfile
 
-Retrieve information about the company, as seen in the commerce platform.
+Retrieve information about the company, as seen in the commerce
+platform.
 
-This may include information like addresses, tax registration details and social media or website information.
+This may include information like addresses, tax registration details and
+social media or website information."
 
 ### Example Usage
 

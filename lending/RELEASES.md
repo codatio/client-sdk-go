@@ -69,3 +69,13 @@ Based on:
 - [go v4.4.0] lending
 ### Releases
 - [Go v4.4.0] https://github.com/codatio/client-sdk-go/releases/tag/lending/v4.4.0 - lending
+
+## 2023-10-30 01:24:29
+### Changes
+Based on:
+- OpenAPI Doc 3.0.0 https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Lending.yaml
+- Speakeasy CLI 1.109.0 (2.173.0) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [go v4.4.1] lending
+### Releases
+- [Go v4.4.1] https://github.com/codatio/client-sdk-go/releases/tag/lending/v4.4.1 - lending

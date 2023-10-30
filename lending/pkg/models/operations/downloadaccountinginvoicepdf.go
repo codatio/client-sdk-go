@@ -3,6 +3,7 @@
 package operations
 
 import (
+	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"io"
 	"net/http"
 )
@@ -34,6 +35,8 @@ type DownloadAccountingInvoicePdfResponse struct {
 	// Success
 	// The Close method must be called on this field, even if it is not used, to prevent resource leaks.
 	Data io.ReadCloser
+	// Your API request was not properly authorized.
+	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -52,6 +55,13 @@ func (o *DownloadAccountingInvoicePdfResponse) GetData() io.ReadCloser {
 		return nil
 	}
 	return o.Data
+}
+
+func (o *DownloadAccountingInvoicePdfResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *DownloadAccountingInvoicePdfResponse) GetStatusCode() int {
