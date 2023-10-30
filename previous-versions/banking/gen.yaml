@@ -1,9 +1,9 @@
 configVersion: 1.0.0
 management:
-  docChecksum: c566cee435f28c1ad4a204ebc469f625
+  docChecksum: aa203fbf9ad5cffbde9599f604629a16
   docVersion: 3.0.0
-  speakeasyVersion: 1.104.0
-  generationVersion: 2.169.0
+  speakeasyVersion: 1.109.0
+  generationVersion: 2.173.0
 generation:
   repoURL: https://github.com/codatio/client-sdk-go.git
   sdkClassName: CodatBanking
@@ -20,7 +20,7 @@ features:
     nameOverrides: 2.81.1
     retries: 2.82.1
 go:
-  version: 0.24.0
+  version: 0.24.1
   flattenGlobalSecurity: false
   installationURL: https://github.com/codatio/client-sdk-go/previous-versions/banking
   maxMethodParams: 0
