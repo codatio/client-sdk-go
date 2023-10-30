@@ -1,9 +1,9 @@
 configVersion: 1.0.0
 management:
-  docChecksum: a39b1f5db51997cb874bda0442dbd4b1
+  docChecksum: 4c2f1a3243c66ed8be94e0912145778f
   docVersion: 3.0.0
-  speakeasyVersion: 1.104.0
-  generationVersion: 2.169.0
+  speakeasyVersion: 1.109.0
+  generationVersion: 2.173.0
 generation:
   repoURL: https://github.com/codatio/client-sdk-go.git
   sdkClassName: CodatSyncPayroll
@@ -20,7 +20,7 @@ features:
     nameOverrides: 2.81.1
     retries: 2.82.1
 go:
-  version: 1.3.0
+  version: 1.3.1
   flattenGlobalSecurity: false
   installationURL: https://github.com/codatio/client-sdk-go/sync-for-payroll
   maxMethodParams: 0
