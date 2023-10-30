@@ -1,9 +1,9 @@
 configVersion: 1.0.0
 management:
-  docChecksum: 3587546469097cf9dbd69a3d007b3d1c
+  docChecksum: df0de0c746476d35ec072e3b6911c937
   docVersion: 3.0.0
-  speakeasyVersion: 1.104.0
-  generationVersion: 2.169.0
+  speakeasyVersion: 1.109.0
+  generationVersion: 2.173.0
 generation:
   repoURL: https://github.com/codatio/client-sdk-go.git
   sdkClassName: CodatCommon
@@ -20,7 +20,7 @@ features:
     nameOverrides: 2.81.1
     retries: 2.82.1
 go:
-  version: 0.28.0
+  version: 0.28.1
   flattenGlobalSecurity: false
   installationURL: https://github.com/codatio/client-sdk-go/previous-versions/common
   maxMethodParams: 0
