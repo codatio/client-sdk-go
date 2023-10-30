@@ -92,9 +92,9 @@ func main() {
             },
             Metadata: &shared.Metadata{},
             ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
-            PaymentAllocations: []shared.BillPaymentAllocation{
-                shared.BillPaymentAllocation{
-                    Allocation: shared.BillPaymentAllocationAllocation{
+            PaymentAllocations: []shared.BillAccountingPaymentAllocation{
+                shared.BillAccountingPaymentAllocation{
+                    Allocation: shared.BillAccountingPaymentAllocationAllocation{
                         AllocatedOnDate: accounting.String("2022-10-23T00:00:00.000Z"),
                         Currency: accounting.String("EUR"),
                     },
@@ -673,9 +673,9 @@ func main() {
             },
             Metadata: &shared.Metadata{},
             ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
-            PaymentAllocations: []shared.BillPaymentAllocation{
-                shared.BillPaymentAllocation{
-                    Allocation: shared.BillPaymentAllocationAllocation{
+            PaymentAllocations: []shared.BillAccountingPaymentAllocation{
+                shared.BillAccountingPaymentAllocation{
+                    Allocation: shared.BillAccountingPaymentAllocationAllocation{
                         AllocatedOnDate: accounting.String("2022-10-23T00:00:00.000Z"),
                         Currency: accounting.String("EUR"),
                     },

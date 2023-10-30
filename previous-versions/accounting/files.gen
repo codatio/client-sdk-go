@@ -696,8 +696,8 @@ docs/models/shared/billpaymentlinelinktype.md
 docs/models/shared/pushoperationsummary.md
 docs/models/shared/billpayments.md
 docs/models/shared/createbillresponse.md
-docs/models/shared/billpaymentallocationallocation.md
-docs/models/shared/billpaymentallocation.md
+docs/models/shared/billaccountingpaymentallocationallocation.md
+docs/models/shared/billaccountingpaymentallocation.md
 docs/models/shared/billwithholdingtax.md
 docs/models/shared/bill.md
 docs/models/shared/billstatus.md
@@ -790,7 +790,7 @@ docs/models/shared/purchaseorderlineitem.md
 docs/models/shared/purchaseorders.md
 docs/models/shared/updatepurchaseorderresponse.md
 docs/models/shared/agedcreditorreport.md
-docs/models/shared/agedcreditoragedcurrencyoutstanding.md
+docs/models/shared/agedcreditoraccountingagedcurrencyoutstanding.md
 docs/models/shared/agedcreditor.md
 docs/models/shared/agedoutstandingamount.md
 docs/models/shared/agedoutstandingamountdetail.md

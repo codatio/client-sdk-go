@@ -1,9 +1,9 @@
 configVersion: 1.0.0
 management:
-  docChecksum: 2c365f212fb133408f0b67a9ab0876c3
+  docChecksum: e80b87f0707d82a1facabdbcadaed7ad
   docVersion: 3.0.0
-  speakeasyVersion: 1.104.0
-  generationVersion: 2.169.0
+  speakeasyVersion: 1.109.0
+  generationVersion: 2.173.0
 generation:
   repoURL: https://github.com/codatio/client-sdk-go.git
   sdkClassName: CodatAccounting
@@ -21,7 +21,7 @@ features:
     nameOverrides: 2.81.1
     retries: 2.82.1
 go:
-  version: 0.28.0
+  version: 0.28.1
   flattenGlobalSecurity: false
   installationURL: https://github.com/codatio/client-sdk-go/previous-versions/accounting
   maxMethodParams: 0

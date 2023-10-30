@@ -1,4 +1,4 @@
-# AgedCreditorAgedCurrencyOutstanding
+# AgedCreditorAccountingAgedCurrencyOutstanding
 
 
 ## Fields

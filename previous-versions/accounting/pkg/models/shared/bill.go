@@ -7,7 +7,7 @@ import (
 	"github.com/ericlagergren/decimal"
 )
 
-type BillPaymentAllocationAllocation struct {
+type BillAccountingPaymentAllocationAllocation struct {
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -66,58 +66,58 @@ type BillPaymentAllocationAllocation struct {
 	TotalAmount *decimal.Big `decimal:"number" json:"totalAmount,omitempty"`
 }
 
-func (b BillPaymentAllocationAllocation) MarshalJSON() ([]byte, error) {
+func (b BillAccountingPaymentAllocationAllocation) MarshalJSON() ([]byte, error) {
 	return utils.MarshalJSON(b, "", false)
 }
 
-func (b *BillPaymentAllocationAllocation) UnmarshalJSON(data []byte) error {
+func (b *BillAccountingPaymentAllocationAllocation) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &b, "", false, false); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *BillPaymentAllocationAllocation) GetAllocatedOnDate() *string {
+func (o *BillAccountingPaymentAllocationAllocation) GetAllocatedOnDate() *string {
 	if o == nil {
 		return nil
 	}
 	return o.AllocatedOnDate
 }
 
-func (o *BillPaymentAllocationAllocation) GetCurrency() *string {
+func (o *BillAccountingPaymentAllocationAllocation) GetCurrency() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Currency
 }
 
-func (o *BillPaymentAllocationAllocation) GetCurrencyRate() *decimal.Big {
+func (o *BillAccountingPaymentAllocationAllocation) GetCurrencyRate() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.CurrencyRate
 }
 
-func (o *BillPaymentAllocationAllocation) GetTotalAmount() *decimal.Big {
+func (o *BillAccountingPaymentAllocationAllocation) GetTotalAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.TotalAmount
 }
 
-type BillPaymentAllocation struct {
-	Allocation BillPaymentAllocationAllocation `json:"allocation"`
-	Payment    PaymentAllocationPayment        `json:"payment"`
+type BillAccountingPaymentAllocation struct {
+	Allocation BillAccountingPaymentAllocationAllocation `json:"allocation"`
+	Payment    PaymentAllocationPayment                  `json:"payment"`
 }
 
-func (o *BillPaymentAllocation) GetAllocation() BillPaymentAllocationAllocation {
+func (o *BillAccountingPaymentAllocation) GetAllocation() BillAccountingPaymentAllocationAllocation {
 	if o == nil {
-		return BillPaymentAllocationAllocation{}
+		return BillAccountingPaymentAllocationAllocation{}
 	}
 	return o.Allocation
 }
 
-func (o *BillPaymentAllocation) GetPayment() PaymentAllocationPayment {
+func (o *BillAccountingPaymentAllocation) GetPayment() PaymentAllocationPayment {
 	if o == nil {
 		return PaymentAllocationPayment{}
 	}
@@ -223,8 +223,8 @@ type Bill struct {
 	// Any private, company notes about the bill, such as payment information.
 	Note *string `json:"note,omitempty"`
 	// An array of payment allocations.
-	PaymentAllocations []BillPaymentAllocation `json:"paymentAllocations,omitempty"`
-	PurchaseOrderRefs  []PurchaseOrderRef      `json:"purchaseOrderRefs,omitempty"`
+	PaymentAllocations []BillAccountingPaymentAllocation `json:"paymentAllocations,omitempty"`
+	PurchaseOrderRefs  []PurchaseOrderRef                `json:"purchaseOrderRefs,omitempty"`
 	// User-friendly reference for the bill.
 	Reference          *string `json:"reference,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
@@ -326,7 +326,7 @@ func (o *Bill) GetNote() *string {
 	return o.Note
 }
 
-func (o *Bill) GetPaymentAllocations() []BillPaymentAllocation {
+func (o *Bill) GetPaymentAllocations() []BillAccountingPaymentAllocation {
 	if o == nil {
 		return nil
 	}
