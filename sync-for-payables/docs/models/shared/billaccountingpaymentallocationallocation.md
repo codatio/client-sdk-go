@@ -1,4 +1,4 @@
-# BillPaymentAllocationAllocation
+# BillAccountingPaymentAllocationAllocation
 
 
 ## Fields

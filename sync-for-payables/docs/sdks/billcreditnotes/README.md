@@ -75,7 +75,7 @@ func main() {
                         },
                         IsBilledTo: shared.BilledToTypeNotApplicable,
                         IsRebilledTo: shared.BilledToTypeNotApplicable,
-                        ProjectRef: &shared.BillCreditNoteLineItemTrackingProjectReference{
+                        ProjectRef: &shared.BillCreditNoteLineItemTrackingAccountingProjectReference{
                             ID: "<ID>",
                         },
                     },
@@ -398,7 +398,7 @@ func main() {
                         },
                         IsBilledTo: shared.BilledToTypeNotApplicable,
                         IsRebilledTo: shared.BilledToTypeCustomer,
-                        ProjectRef: &shared.BillCreditNoteLineItemTrackingProjectReference{
+                        ProjectRef: &shared.BillCreditNoteLineItemTrackingAccountingProjectReference{
                             ID: "<ID>",
                         },
                     },

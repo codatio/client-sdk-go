@@ -139,9 +139,17 @@ func (s *bills) Create(ctx context.Context, request operations.CreateBillRequest
 		fallthrough
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out shared.ErrorMessage
@@ -281,9 +289,17 @@ func (s *bills) Delete(ctx context.Context, request operations.DeleteBillRequest
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out shared.ErrorMessage
@@ -413,9 +429,17 @@ func (s *bills) DeleteAttachment(ctx context.Context, request operations.DeleteB
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out shared.ErrorMessage
@@ -534,9 +558,17 @@ func (s *bills) DownloadAttachment(ctx context.Context, request operations.Downl
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out shared.ErrorMessage
@@ -652,11 +684,19 @@ func (s *bills) Get(ctx context.Context, request operations.GetBillRequest, opts
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 409:
 		fallthrough
 	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out shared.ErrorMessage
@@ -770,9 +810,17 @@ func (s *bills) GetAttachment(ctx context.Context, request operations.GetBillAtt
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out shared.ErrorMessage
@@ -890,9 +938,17 @@ func (s *bills) GetCreateUpdateModel(ctx context.Context, request operations.Get
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out shared.ErrorMessage
@@ -1012,9 +1068,19 @@ func (s *bills) List(ctx context.Context, request operations.ListBillsRequest, o
 		fallthrough
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 409:
+		fallthrough
+	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out shared.ErrorMessage
@@ -1128,9 +1194,19 @@ func (s *bills) ListAttachments(ctx context.Context, request operations.ListBill
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
 		fallthrough
+	case httpRes.StatusCode == 409:
+		fallthrough
 	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out shared.ErrorMessage
@@ -1261,9 +1337,17 @@ func (s *bills) Update(ctx context.Context, request operations.UpdateBillRequest
 		fallthrough
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out shared.ErrorMessage
@@ -1375,11 +1459,21 @@ func (s *bills) UploadAttachment(ctx context.Context, request operations.UploadB
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
 	case httpRes.StatusCode == 200:
+	case httpRes.StatusCode == 400:
+		fallthrough
 	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
 		fallthrough
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out shared.ErrorMessage

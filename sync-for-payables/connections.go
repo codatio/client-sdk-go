@@ -127,9 +127,17 @@ func (s *connections) Create(ctx context.Context, request operations.CreateConne
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out shared.ErrorMessage
@@ -229,9 +237,17 @@ func (s *connections) Delete(ctx context.Context, request operations.DeleteConne
 	case httpRes.StatusCode == 200:
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out shared.ErrorMessage
@@ -341,9 +357,17 @@ func (s *connections) Get(ctx context.Context, request operations.GetConnectionR
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out shared.ErrorMessage
@@ -459,9 +483,17 @@ func (s *connections) List(ctx context.Context, request operations.ListConnectio
 		fallthrough
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out shared.ErrorMessage
@@ -578,9 +610,17 @@ func (s *connections) Unlink(ctx context.Context, request operations.UnlinkConne
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out shared.ErrorMessage

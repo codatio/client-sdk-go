@@ -79,7 +79,7 @@ func main() {
                         },
                         IsBilledTo: shared.BilledToTypeNotApplicable,
                         IsRebilledTo: shared.BilledToTypeNotApplicable,
-                        ProjectRef: &shared.TrackingProjectReference{
+                        ProjectRef: &shared.TrackingAccountingProjectReference{
                             ID: "<ID>",
                         },
                     },
@@ -93,9 +93,9 @@ func main() {
             },
             Metadata: &shared.Metadata{},
             ModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
-            PaymentAllocations: []shared.BillPaymentAllocation{
-                shared.BillPaymentAllocation{
-                    Allocation: shared.BillPaymentAllocationAllocation{
+            PaymentAllocations: []shared.BillAccountingPaymentAllocation{
+                shared.BillAccountingPaymentAllocation{
+                    Allocation: shared.BillAccountingPaymentAllocationAllocation{
                         AllocatedOnDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
                         Currency: syncforpayables.String("EUR"),
                     },
@@ -735,7 +735,7 @@ func main() {
                         },
                         IsBilledTo: shared.BilledToTypeNotApplicable,
                         IsRebilledTo: shared.BilledToTypeCustomer,
-                        ProjectRef: &shared.TrackingProjectReference{
+                        ProjectRef: &shared.TrackingAccountingProjectReference{
                             ID: "<ID>",
                         },
                     },
@@ -749,9 +749,9 @@ func main() {
             },
             Metadata: &shared.Metadata{},
             ModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
-            PaymentAllocations: []shared.BillPaymentAllocation{
-                shared.BillPaymentAllocation{
-                    Allocation: shared.BillPaymentAllocationAllocation{
+            PaymentAllocations: []shared.BillAccountingPaymentAllocation{
+                shared.BillAccountingPaymentAllocation{
+                    Allocation: shared.BillAccountingPaymentAllocationAllocation{
                         AllocatedOnDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
                         Currency: syncforpayables.String("EUR"),
                     },
