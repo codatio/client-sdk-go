@@ -72,7 +72,7 @@ func main() {
                         },
                         IsBilledTo: shared.BilledToTypeUnknown,
                         IsRebilledTo: shared.BilledToTypeProject,
-                        ProjectRef: &shared.TrackingProjectReference{
+                        ProjectRef: &shared.TrackingAccountingProjectReference{
                             ID: "<ID>",
                         },
                         RecordRef: &shared.RecordRef{
@@ -90,9 +90,9 @@ func main() {
             Metadata: &shared.Metadata{},
             ModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
             PaidOnDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
-            PaymentAllocations: []shared.AccountingInvoicePaymentAllocation{
-                shared.AccountingInvoicePaymentAllocation{
-                    Allocation: shared.AccountingInvoicePaymentAllocationAllocation{
+            PaymentAllocations: []shared.AccountingInvoiceAccountingPaymentAllocation{
+                shared.AccountingInvoiceAccountingPaymentAllocation{
+                    Allocation: shared.AccountingInvoiceAccountingPaymentAllocationAllocation{
                         AllocatedOnDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
                         Currency: syncforcommerceversion1.String("USD"),
                     },

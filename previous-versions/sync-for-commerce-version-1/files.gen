@@ -407,7 +407,7 @@ docs/models/shared/itemsallocation.md
 docs/models/shared/paymentallocationsitems.md
 docs/models/shared/paymentallocationpayment.md
 docs/models/shared/accountref.md
-docs/models/shared/creditnotelineitemtrackingprojectreference.md
+docs/models/shared/creditnotelineitemtrackingaccountingprojectreference.md
 docs/models/shared/creditnotelineitemtracking.md
 docs/models/shared/creditnotelineitem.md
 docs/models/shared/trackingcategoryrefsitems.md
@@ -430,14 +430,14 @@ docs/models/shared/directincomelineitemtaxratereference.md
 docs/models/shared/directincomelineitemtrackingcategoryrefs.md
 docs/models/shared/directincomelineitem.md
 docs/models/shared/accountingcreateinvoiceresponse.md
-docs/models/shared/accountinginvoicepaymentallocationallocation.md
-docs/models/shared/accountinginvoicepaymentallocation.md
+docs/models/shared/accountinginvoiceaccountingpaymentallocationallocation.md
+docs/models/shared/accountinginvoiceaccountingpaymentallocation.md
 docs/models/shared/accountinginvoicesalesorderreference.md
 docs/models/shared/accountinginvoicewithholdingtax.md
 docs/models/shared/accountinginvoice.md
 docs/models/shared/invoicestatus.md
 docs/models/shared/invoicelineitem.md
-docs/models/shared/trackingprojectreference.md
+docs/models/shared/trackingaccountingprojectreference.md
 docs/models/shared/tracking.md
 docs/models/shared/accountingcreatejournalentryresponse.md
 docs/models/shared/accountingjournalentryjournalreference.md
@@ -457,7 +457,7 @@ docs/models/shared/weblinksitems.md
 docs/models/shared/items.md
 docs/models/shared/commerceaddresstype.md
 docs/models/shared/accountbalance.md
-docs/models/shared/commercecustomeraddress.md
+docs/models/shared/commercecustomercommerceaddress.md
 docs/models/shared/commercecustomer.md
 docs/models/shared/commercecustomers.md
 docs/models/shared/commercelocation.md

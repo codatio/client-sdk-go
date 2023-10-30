@@ -1,4 +1,4 @@
-# AccountingInvoicePaymentAllocationAllocation
+# AccountingInvoiceAccountingPaymentAllocationAllocation
 
 
 ## Fields

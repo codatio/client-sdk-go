@@ -72,7 +72,7 @@ func main() {
                         },
                         IsBilledTo: shared.BilledToTypeProject,
                         IsRebilledTo: shared.BilledToTypeProject,
-                        ProjectRef: &shared.CreditNoteLineItemTrackingProjectReference{
+                        ProjectRef: &shared.CreditNoteLineItemTrackingAccountingProjectReference{
                             ID: "<ID>",
                         },
                         RecordRef: &shared.RecordRef{

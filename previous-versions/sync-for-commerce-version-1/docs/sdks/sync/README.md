@@ -43,7 +43,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.StatusCode == http.StatusOK {
+    if res.SyncSummary != nil {
         // handle response
     }
 }
