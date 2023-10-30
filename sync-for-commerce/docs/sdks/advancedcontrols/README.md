@@ -14,7 +14,7 @@ Advanced company management and sync preferences.
 
 ## CreateCompany
 
-Creates a Codat company..
+Creates a Codat company
 
 ### Example Usage
 

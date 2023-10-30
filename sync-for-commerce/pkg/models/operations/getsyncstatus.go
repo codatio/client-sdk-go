@@ -20,25 +20,16 @@ func (o *GetSyncStatusRequest) GetCompanyID() string {
 }
 
 type GetSyncStatusResponse struct {
-	// Bad Request
-	BadRequest interface{}
 	// HTTP response content type for this operation
 	ContentType string
-	// Not Found
-	NotFound interface{}
+	// Your API request was not properly authorized.
+	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Success
 	SyncStatus *shared.SyncStatus
-}
-
-func (o *GetSyncStatusResponse) GetBadRequest() interface{} {
-	if o == nil {
-		return nil
-	}
-	return o.BadRequest
 }
 
 func (o *GetSyncStatusResponse) GetContentType() string {
@@ -48,11 +39,11 @@ func (o *GetSyncStatusResponse) GetContentType() string {
 	return o.ContentType
 }
 
-func (o *GetSyncStatusResponse) GetNotFound() interface{} {
+func (o *GetSyncStatusResponse) GetErrorMessage() *shared.ErrorMessage {
 	if o == nil {
 		return nil
 	}
-	return o.NotFound
+	return o.ErrorMessage
 }
 
 func (o *GetSyncStatusResponse) GetStatusCode() int {

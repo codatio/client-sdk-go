@@ -45,6 +45,7 @@ pkg/models/operations/getconfigtextsyncflow.go
 pkg/models/operations/getvisibleaccounts.go
 pkg/models/operations/updateconfigtextsyncflow.go
 pkg/models/operations/updatevisibleaccountssyncflow.go
+pkg/models/shared/errormessage.go
 pkg/models/shared/company.go
 pkg/models/shared/connection.go
 pkg/models/shared/dataconnectionstatus.go
@@ -72,7 +73,6 @@ pkg/models/shared/feessupplier.go
 pkg/models/shared/companies.go
 pkg/models/shared/links.go
 pkg/models/shared/halref.go
-pkg/models/shared/errormessage.go
 pkg/models/shared/syncflowurl.go
 pkg/models/shared/connections.go
 pkg/models/shared/updateconnection.go
@@ -141,6 +141,7 @@ docs/models/operations/getvisibleaccountsresponse.md
 docs/models/operations/updateconfigtextsyncflowresponse.md
 docs/models/operations/updatevisibleaccountssyncflowrequest.md
 docs/models/operations/updatevisibleaccountssyncflowresponse.md
+docs/models/shared/errormessage.md
 docs/models/shared/company.md
 docs/models/shared/connectionsourcetype.md
 docs/models/shared/connection.md
@@ -169,7 +170,6 @@ docs/models/shared/feessupplier.md
 docs/models/shared/companies.md
 docs/models/shared/links.md
 docs/models/shared/halref.md
-docs/models/shared/errormessage.md
 docs/models/shared/syncflowurl.md
 docs/models/shared/connections.md
 docs/models/shared/updateconnection.md
