@@ -1,4 +1,4 @@
-# CreateBankAccountMappingBankFeedAccountMapping
+# Zero
 
 A bank feed connection between a source account and a target account.
 

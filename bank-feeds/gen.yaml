@@ -1,25 +1,29 @@
 configVersion: 1.0.0
 management:
-  docChecksum: d9b2a1016a2f9fa886f638661a6c9a2b
+  docChecksum: c708af58ebe5f997de760a4ac042bd53
   docVersion: 3.0.0
-  speakeasyVersion: 1.100.2
-  generationVersion: 2.159.2
+  speakeasyVersion: 1.109.0
+  generationVersion: 2.173.0
 generation:
+  repoURL: https://github.com/codatio/client-sdk-go.git
   sdkClassName: CodatBankFeeds
   singleTagPerOp: false
   telemetryEnabled: true
 features:
   go:
     constsAndDefaults: 0.1.1
-    core: 2.91.5
+    core: 2.94.0
     deprecations: 2.81.1
-    examples: 2.81.2
+    examples: 2.81.3
     globalSecurity: 2.82.2
     globalServerURLs: 2.82.0
     nameOverrides: 2.81.1
     retries: 2.82.1
 go:
-  version: 3.2.0
+  version: 3.3.0
   flattenGlobalSecurity: false
+  installationURL: https://github.com/codatio/client-sdk-go/bank-feeds
   maxMethodParams: 0
   packageName: github.com/codatio/client-sdk-go/bank-feeds
+  published: true
+  repoSubDirectory: bank-feeds
