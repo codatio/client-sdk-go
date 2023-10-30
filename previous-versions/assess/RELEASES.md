@@ -381,3 +381,13 @@ Based on:
 - [go v0.26.0] previous-versions/assess
 ### Releases
 - [Go v0.26.0] https://github.com/codatio/client-sdk-go/releases/tag/previous-versions/assess/v0.26.0 - previous-versions/assess
+
+## 2023-10-30 01:26:32
+### Changes
+Based on:
+- OpenAPI Doc 1.0 https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Assess.yaml
+- Speakeasy CLI 1.109.0 (2.173.0) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [go v0.27.0] previous-versions/assess
+### Releases
+- [Go v0.27.0] https://github.com/codatio/client-sdk-go/releases/tag/previous-versions/assess/v0.27.0 - previous-versions/assess

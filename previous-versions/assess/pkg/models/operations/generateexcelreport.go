@@ -31,7 +31,7 @@ func (o *GenerateExcelReportRequest) GetReportType() shared.ExcelReportType {
 type GenerateExcelReportResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Your API request was not properly authorized.
+	// The request made is not valid.
 	ErrorMessage *shared.ErrorMessage
 	// OK
 	ExcelStatus *shared.ExcelStatus

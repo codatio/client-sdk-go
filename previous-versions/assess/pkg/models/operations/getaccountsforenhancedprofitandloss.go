@@ -42,7 +42,7 @@ type GetAccountsForEnhancedProfitAndLossResponse struct {
 	ContentType string
 	// OK
 	EnhancedReport *shared.EnhancedReport
-	// Your API request was not properly authorized.
+	// The request made is not valid.
 	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int

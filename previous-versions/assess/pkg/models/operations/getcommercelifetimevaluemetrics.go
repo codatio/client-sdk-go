@@ -76,7 +76,7 @@ func (o *GetCommerceLifetimeValueMetricsRequest) GetReportDate() string {
 type GetCommerceLifetimeValueMetricsResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Your API request was not properly authorized.
+	// The request made is not valid.
 	ErrorMessage *shared.ErrorMessage
 	// OK
 	Report *shared.Report
