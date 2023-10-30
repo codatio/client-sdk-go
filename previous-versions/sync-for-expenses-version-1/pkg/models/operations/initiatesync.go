@@ -30,14 +30,12 @@ func (o *InitiateSyncRequest) GetCompanyID() string {
 type InitiateSyncResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// If model is incorrect
+	// The request made is not valid.
 	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Returns the newly created SyncId
-	SyncInitiated *shared.SyncInitiated
 }
 
 func (o *InitiateSyncResponse) GetContentType() string {
@@ -66,11 +64,4 @@ func (o *InitiateSyncResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *InitiateSyncResponse) GetSyncInitiated() *shared.SyncInitiated {
-	if o == nil {
-		return nil
-	}
-	return o.SyncInitiated
 }

@@ -46,7 +46,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.SyncInitiated != nil {
+    if res.StatusCode == http.StatusOK {
         // handle response
     }
 }
