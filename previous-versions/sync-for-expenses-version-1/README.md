@@ -110,5 +110,3 @@ func main() {
 <!-- End Dev Containers -->
 
 
-
-<!-- Start Go Types -->
