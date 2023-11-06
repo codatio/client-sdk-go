@@ -44,6 +44,7 @@ pkg/models/operations/updatesourceaccount.go
 pkg/models/operations/createbanktransactions.go
 pkg/models/operations/getcreateoperation.go
 pkg/models/operations/listcreateoperations.go
+pkg/models/shared/zero.go
 pkg/models/shared/errormessage.go
 pkg/models/shared/bankfeedaccountmappingresponse.go
 pkg/models/shared/bankfeedmapping.go
@@ -79,7 +80,6 @@ pkg/models/shared/clientratelimitresetwebhookdata.go
 pkg/models/webhooks/clientratelimitreached.go
 pkg/models/webhooks/clientratelimitreset.go
 USAGE.md
-docs/models/operations/createbankaccountmappingbankfeedaccountmapping.md
 docs/models/operations/createbankaccountmappingrequest.md
 docs/models/operations/createbankaccountmappingresponse.md
 docs/models/operations/getbankaccountmappingrequest.md
@@ -123,6 +123,7 @@ docs/models/operations/getcreateoperationrequest.md
 docs/models/operations/getcreateoperationresponse.md
 docs/models/operations/listcreateoperationsrequest.md
 docs/models/operations/listcreateoperationsresponse.md
+docs/models/shared/zero.md
 docs/models/shared/errormessage.md
 docs/models/shared/bankfeedaccountmappingresponse.md
 docs/models/shared/bankfeedmapping.md
