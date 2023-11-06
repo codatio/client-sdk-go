@@ -1,25 +1,28 @@
 configVersion: 1.0.0
 management:
-  docChecksum: 35ac670434daf488eed514ae049facc3
+  docChecksum: 60655be50c3edc13b0c907e437dcb213
   docVersion: 3.0.0
-  speakeasyVersion: 1.100.2
-  generationVersion: 2.159.2
+  speakeasyVersion: 1.112.1
+  generationVersion: 2.173.0
 generation:
+  comments: {}
   sdkClassName: CodatPlatform
-  singleTagPerOp: false
-  telemetryEnabled: true
+  repoURL: https://github.com/codatio/client-sdk-go.git
 features:
   go:
     constsAndDefaults: 0.1.1
-    core: 2.91.5
+    core: 2.94.0
     deprecations: 2.81.1
-    examples: 2.81.2
+    examples: 2.81.3
     globalSecurity: 2.82.2
     globalServerURLs: 2.82.0
     nameOverrides: 2.81.1
     retries: 2.82.1
 go:
-  version: 1.2.0
+  version: 1.3.0
   flattenGlobalSecurity: false
+  installationURL: https://github.com/codatio/client-sdk-go/platform
   maxMethodParams: 0
   packageName: github.com/codatio/client-sdk-go/platform
+  published: true
+  repoSubDirectory: platform
