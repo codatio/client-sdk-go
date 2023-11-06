@@ -54,8 +54,8 @@ func main() {
             Status: shared.SupplierStatusActive,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "innovative": map[string]interface{}{
-                        "blue": "shred",
+                    "key": map[string]interface{}{
+                        "key": "string",
                     },
                 },
             },

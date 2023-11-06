@@ -81,7 +81,7 @@ type ListDataIntegrityDetailsResponse struct {
 	ContentType string
 	// OK
 	DataIntegrityDetails *shared.DataIntegrityDetails
-	// Your API request was not properly authorized.
+	// Your `query` parameter was not correctly formed
 	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int

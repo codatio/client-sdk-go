@@ -32,7 +32,7 @@ type DownloadExcelReportResponse struct {
 	Body []byte
 	// HTTP response content type for this operation
 	ContentType string
-	// Your API request was not properly authorized.
+	// The request made is not valid.
 	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int

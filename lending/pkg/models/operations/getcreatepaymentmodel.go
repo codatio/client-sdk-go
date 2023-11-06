@@ -7,28 +7,28 @@ import (
 	"net/http"
 )
 
-type GetCreatePaymentsModelRequest struct {
+type GetCreatePaymentModelRequest struct {
 	// Unique identifier for a company.
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	// Unique identifier for a connection.
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
-func (o *GetCreatePaymentsModelRequest) GetCompanyID() string {
+func (o *GetCreatePaymentModelRequest) GetCompanyID() string {
 	if o == nil {
 		return ""
 	}
 	return o.CompanyID
 }
 
-func (o *GetCreatePaymentsModelRequest) GetConnectionID() string {
+func (o *GetCreatePaymentModelRequest) GetConnectionID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ConnectionID
 }
 
-type GetCreatePaymentsModelResponse struct {
+type GetCreatePaymentModelResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
 	// Your API request was not properly authorized.
@@ -41,35 +41,35 @@ type GetCreatePaymentsModelResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *GetCreatePaymentsModelResponse) GetContentType() string {
+func (o *GetCreatePaymentModelResponse) GetContentType() string {
 	if o == nil {
 		return ""
 	}
 	return o.ContentType
 }
 
-func (o *GetCreatePaymentsModelResponse) GetErrorMessage() *shared.ErrorMessage {
+func (o *GetCreatePaymentModelResponse) GetErrorMessage() *shared.ErrorMessage {
 	if o == nil {
 		return nil
 	}
 	return o.ErrorMessage
 }
 
-func (o *GetCreatePaymentsModelResponse) GetPushOption() *shared.PushOption {
+func (o *GetCreatePaymentModelResponse) GetPushOption() *shared.PushOption {
 	if o == nil {
 		return nil
 	}
 	return o.PushOption
 }
 
-func (o *GetCreatePaymentsModelResponse) GetStatusCode() int {
+func (o *GetCreatePaymentModelResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
 	}
 	return o.StatusCode
 }
 
-func (o *GetCreatePaymentsModelResponse) GetRawResponse() *http.Response {
+func (o *GetCreatePaymentModelResponse) GetRawResponse() *http.Response {
 	if o == nil {
 		return nil
 	}

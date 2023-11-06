@@ -1,4 +1,4 @@
-# GetCreatePaymentsModelResponse
+# GetCreatePaymentModelResponse
 
 
 ## Fields

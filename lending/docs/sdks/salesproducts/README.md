@@ -41,7 +41,7 @@ func main() {
     res, err := s.Sales.Products.Get(ctx, operations.GetCommerceProductRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        ProductID: "Northeast Hatchback Kia",
+        ProductID: "string",
     })
     if err != nil {
         log.Fatal(err)

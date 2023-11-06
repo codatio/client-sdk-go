@@ -138,9 +138,17 @@ func (s *loanWritebackPayments) Create(ctx context.Context, request operations.C
 		fallthrough
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out shared.ErrorMessage
@@ -167,7 +175,7 @@ func (s *loanWritebackPayments) Create(ctx context.Context, request operations.C
 // See the *response examples* for integration-specific indicative models.
 //
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=payments) for integrations that support creating a payment.
-func (s *loanWritebackPayments) GetCreateModel(ctx context.Context, request operations.GetCreatePaymentsModelRequest, opts ...operations.Option) (*operations.GetCreatePaymentsModelResponse, error) {
+func (s *loanWritebackPayments) GetCreateModel(ctx context.Context, request operations.GetCreatePaymentModelRequest, opts ...operations.Option) (*operations.GetCreatePaymentModelResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -231,7 +239,7 @@ func (s *loanWritebackPayments) GetCreateModel(ctx context.Context, request oper
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetCreatePaymentsModelResponse{
+	res := &operations.GetCreatePaymentModelResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -258,9 +266,17 @@ func (s *loanWritebackPayments) GetCreateModel(ctx context.Context, request oper
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out shared.ErrorMessage
