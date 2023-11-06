@@ -356,7 +356,7 @@ docs/models/shared/paymentallocationpayment.md
 docs/models/shared/accountref.md
 docs/models/shared/billcreditnotelineitemitemreference.md
 docs/models/shared/billcreditnotelineitemtrackingcustomerref.md
-docs/models/shared/billcreditnotelineitemtrackingprojectreference.md
+docs/models/shared/billcreditnotelineitemtrackingaccountingprojectreference.md
 docs/models/shared/billcreditnotelineitemtracking.md
 docs/models/shared/billcreditnotelineitem.md
 docs/models/shared/trackingcategoryref.md
@@ -373,8 +373,8 @@ docs/models/shared/billpaymentlinelinktype.md
 docs/models/shared/pushoperation.md
 docs/models/shared/billpayments.md
 docs/models/shared/createbillresponse.md
-docs/models/shared/billpaymentallocationallocation.md
-docs/models/shared/billpaymentallocation.md
+docs/models/shared/billaccountingpaymentallocationallocation.md
+docs/models/shared/billaccountingpaymentallocation.md
 docs/models/shared/billpurchaseorderreference.md
 docs/models/shared/billwithholdingtax.md
 docs/models/shared/bill.md
@@ -383,7 +383,7 @@ docs/models/shared/billlineitemrecordlinereferencedatatype.md
 docs/models/shared/billlineitemrecordlinereference.md
 docs/models/shared/billlineitem.md
 docs/models/shared/trackingcustomerref.md
-docs/models/shared/trackingprojectreference.md
+docs/models/shared/trackingaccountingprojectreference.md
 docs/models/shared/tracking.md
 docs/models/shared/itemref.md
 docs/models/shared/attachment.md

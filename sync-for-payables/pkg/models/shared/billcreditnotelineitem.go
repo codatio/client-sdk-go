@@ -50,21 +50,21 @@ func (o *BillCreditNoteLineItemTrackingCustomerRef) GetID() string {
 	return o.ID
 }
 
-type BillCreditNoteLineItemTrackingProjectReference struct {
+type BillCreditNoteLineItemTrackingAccountingProjectReference struct {
 	// Unique identifier to the project reference.
 	ID string `json:"id"`
 	// The project's name.
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *BillCreditNoteLineItemTrackingProjectReference) GetID() string {
+func (o *BillCreditNoteLineItemTrackingAccountingProjectReference) GetID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ID
 }
 
-func (o *BillCreditNoteLineItemTrackingProjectReference) GetName() *string {
+func (o *BillCreditNoteLineItemTrackingAccountingProjectReference) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -78,8 +78,8 @@ type BillCreditNoteLineItemTracking struct {
 	// Defines if the invoice or credit note is billed/rebilled to a project or customer.
 	IsBilledTo BilledToType `json:"isBilledTo"`
 	// Defines if the invoice or credit note is billed/rebilled to a project or customer.
-	IsRebilledTo BilledToType                                    `json:"isRebilledTo"`
-	ProjectRef   *BillCreditNoteLineItemTrackingProjectReference `json:"projectRef,omitempty"`
+	IsRebilledTo BilledToType                                              `json:"isRebilledTo"`
+	ProjectRef   *BillCreditNoteLineItemTrackingAccountingProjectReference `json:"projectRef,omitempty"`
 }
 
 func (o *BillCreditNoteLineItemTracking) GetCategoryRefs() []TrackingCategoryRef {
@@ -110,7 +110,7 @@ func (o *BillCreditNoteLineItemTracking) GetIsRebilledTo() BilledToType {
 	return o.IsRebilledTo
 }
 
-func (o *BillCreditNoteLineItemTracking) GetProjectRef() *BillCreditNoteLineItemTrackingProjectReference {
+func (o *BillCreditNoteLineItemTracking) GetProjectRef() *BillCreditNoteLineItemTrackingAccountingProjectReference {
 	if o == nil {
 		return nil
 	}

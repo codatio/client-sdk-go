@@ -61,8 +61,8 @@ func main() {
             Status: shared.SupplierStatusActive,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "innovative": map[string]interface{}{
-                        "blue": "shred",
+                    "key": map[string]interface{}{
+                        "key": "string",
                     },
                 },
             },
@@ -128,7 +128,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Suppliers.Get(ctx, operations.GetSupplierRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        SupplierID: "Northeast Hatchback Kia",
+        SupplierID: "string",
     })
     if err != nil {
         log.Fatal(err)
@@ -324,15 +324,15 @@ func main() {
             Status: shared.SupplierStatusActive,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "male": map[string]interface{}{
-                        "Metal": "cheater",
+                    "key": map[string]interface{}{
+                        "key": "string",
                     },
                 },
             },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        SupplierID: "Cotton",
+        SupplierID: "string",
     })
     if err != nil {
         log.Fatal(err)

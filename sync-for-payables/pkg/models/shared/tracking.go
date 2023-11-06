@@ -23,21 +23,21 @@ func (o *TrackingCustomerRef) GetID() string {
 	return o.ID
 }
 
-type TrackingProjectReference struct {
+type TrackingAccountingProjectReference struct {
 	// Unique identifier to the project reference.
 	ID string `json:"id"`
 	// The project's name.
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *TrackingProjectReference) GetID() string {
+func (o *TrackingAccountingProjectReference) GetID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ID
 }
 
-func (o *TrackingProjectReference) GetName() *string {
+func (o *TrackingAccountingProjectReference) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -51,8 +51,8 @@ type Tracking struct {
 	// Defines if the invoice or credit note is billed/rebilled to a project or customer.
 	IsBilledTo BilledToType `json:"isBilledTo"`
 	// Defines if the invoice or credit note is billed/rebilled to a project or customer.
-	IsRebilledTo BilledToType              `json:"isRebilledTo"`
-	ProjectRef   *TrackingProjectReference `json:"projectRef,omitempty"`
+	IsRebilledTo BilledToType                        `json:"isRebilledTo"`
+	ProjectRef   *TrackingAccountingProjectReference `json:"projectRef,omitempty"`
 }
 
 func (o *Tracking) GetCategoryRefs() []TrackingCategoryRef {
@@ -83,7 +83,7 @@ func (o *Tracking) GetIsRebilledTo() BilledToType {
 	return o.IsRebilledTo
 }
 
-func (o *Tracking) GetProjectRef() *TrackingProjectReference {
+func (o *Tracking) GetProjectRef() *TrackingAccountingProjectReference {
 	if o == nil {
 		return nil
 	}

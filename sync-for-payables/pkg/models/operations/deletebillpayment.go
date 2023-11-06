@@ -12,6 +12,8 @@ type DeleteBillPaymentRequest struct {
 	BillPaymentID string `pathParam:"style=simple,explode=false,name=billPaymentId"`
 	// Unique identifier for a company.
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a connection.
+	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
 func (o *DeleteBillPaymentRequest) GetBillPaymentID() string {
@@ -26,6 +28,13 @@ func (o *DeleteBillPaymentRequest) GetCompanyID() string {
 		return ""
 	}
 	return o.CompanyID
+}
+
+func (o *DeleteBillPaymentRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
 }
 
 type DeleteBillPaymentResponse struct {
