@@ -76,7 +76,6 @@ pkg/models/shared/mappingoptions.go
 pkg/models/shared/trackingcategorymappinginfo.go
 pkg/models/shared/taxratemappinginfo.go
 pkg/models/shared/accountmappinginfo.go
-pkg/models/shared/syncinitiated.go
 pkg/models/shared/postsync.go
 pkg/models/shared/companysyncstatus.go
 pkg/models/shared/transactionmetadata.go
@@ -176,7 +175,6 @@ docs/models/shared/taxratemappinginfo.md
 docs/models/shared/accountmappinginfoaccounttype.md
 docs/models/shared/accountmappinginfovalidtransactiontypes.md
 docs/models/shared/accountmappinginfo.md
-docs/models/shared/syncinitiated.md
 docs/models/shared/postsync.md
 docs/models/shared/companysyncstatus.md
 docs/models/shared/transactionmetadata.md
