@@ -285,6 +285,7 @@ docs/models/shared/accountmappinginfovalidtransactiontypes.md
 docs/models/shared/accountmappinginfo.md
 docs/models/shared/connections.md
 docs/models/shared/createcustomerresponse.md
+docs/models/shared/customeraccountingaddress.md
 docs/models/shared/customer.md
 docs/models/shared/customerstatus.md
 docs/models/shared/metadata.md
@@ -316,7 +317,6 @@ docs/models/shared/pulloperations.md
 docs/models/shared/pushoperation.md
 docs/models/shared/pushoperations.md
 docs/models/shared/createsupplierresponse.md
-docs/models/shared/supplieraccountingaddress.md
 docs/models/shared/supplier.md
 docs/models/shared/supplierstatus.md
 docs/models/shared/suppliers.md

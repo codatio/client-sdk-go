@@ -43,7 +43,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.DataStatusResponse != nil {
+    if res.DataStatuses != nil {
         // handle response
     }
 }

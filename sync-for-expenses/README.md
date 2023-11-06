@@ -48,8 +48,8 @@ func main() {
 			Status:                 shared.AccountStatusActive.ToPointer(),
 			SupplementalData: &shared.SupplementalData{
 				Content: map[string]map[string]interface{}{
-					"Money": map[string]interface{}{
-						"blue": "shred",
+					"key": map[string]interface{}{
+						"key": "string",
 					},
 				},
 			},
@@ -57,7 +57,7 @@ func main() {
 			ValidDatatypeLinks: []shared.AccountValidDataTypeLinks{
 				shared.AccountValidDataTypeLinks{
 					Links: []string{
-						"abnormally",
+						"string",
 					},
 				},
 			},
@@ -179,6 +179,196 @@ Here's an example of one such pagination call:
 <!-- Start Go Types -->
 
 <!-- End Go Types -->
+
+
+
+<!-- Start Error Handling -->
+# Error Handling
+
+Handling errors in your SDK should largely match your expectations.  All operations return a response object or an error, they will never return both.  When specified by the OpenAPI spec document, the SDK will return the appropriate subclass.
+
+
+<!-- End Error Handling -->
+
+
+
+<!-- Start Server Selection -->
+# Server Selection
+
+## Select Server by Index
+
+You can override the default server globally using the `WithServerIndex` option when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
+
+| # | Server | Variables |
+| - | ------ | --------- |
+| 0 | `https://api.codat.io` | None |
+
+For example:
+
+
+```go
+package main
+
+import (
+	"context"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v3"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/types"
+	"log"
+)
+
+func main() {
+	s := syncforexpenses.New(
+		syncforexpenses.WithSecurity("Basic BASE_64_ENCODED(API_KEY)"),
+		syncforexpenses.WithServerIndex(0),
+	)
+
+	ctx := context.Background()
+	res, err := s.Accounts.Create(ctx, operations.CreateAccountRequest{
+		Account: &shared.Account{
+			Currency:               syncforexpenses.String("USD"),
+			CurrentBalance:         types.MustNewDecimalFromString("0"),
+			Description:            syncforexpenses.String("Invoices the business has issued but has not yet collected payment on."),
+			FullyQualifiedCategory: syncforexpenses.String("Asset.Current"),
+			FullyQualifiedName:     syncforexpenses.String("Cash On Hand"),
+			ID:                     syncforexpenses.String("1b6266d1-1e44-46c5-8eb5-a8f98e03124e"),
+			Metadata:               &shared.AccountMetadata{},
+			ModifiedDate:           syncforexpenses.String("2022-10-23T00:00:00.000Z"),
+			Name:                   syncforexpenses.String("Accounts Receivable"),
+			NominalCode:            syncforexpenses.String("610"),
+			SourceModifiedDate:     syncforexpenses.String("2022-10-23T00:00:00.000Z"),
+			Status:                 shared.AccountStatusActive.ToPointer(),
+			SupplementalData: &shared.SupplementalData{
+				Content: map[string]map[string]interface{}{
+					"key": map[string]interface{}{
+						"key": "string",
+					},
+				},
+			},
+			Type: shared.AccountTypeAsset.ToPointer(),
+			ValidDatatypeLinks: []shared.AccountValidDataTypeLinks{
+				shared.AccountValidDataTypeLinks{
+					Links: []string{
+						"string",
+					},
+				},
+			},
+		},
+		CompanyID:    "8a210b68-6988-11ed-a1eb-0242ac120002",
+		ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	if res.CreateAccountResponse != nil {
+		// handle response
+	}
+}
+
+```
+
+
+## Override Server URL Per-Client
+
+The default server can also be overridden globally using the `WithServerURL` option when initializing the SDK client instance. For example:
+
+
+```go
+package main
+
+import (
+	"context"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v3"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/types"
+	"log"
+)
+
+func main() {
+	s := syncforexpenses.New(
+		syncforexpenses.WithSecurity("Basic BASE_64_ENCODED(API_KEY)"),
+		syncforexpenses.WithServerURL("https://api.codat.io"),
+	)
+
+	ctx := context.Background()
+	res, err := s.Accounts.Create(ctx, operations.CreateAccountRequest{
+		Account: &shared.Account{
+			Currency:               syncforexpenses.String("USD"),
+			CurrentBalance:         types.MustNewDecimalFromString("0"),
+			Description:            syncforexpenses.String("Invoices the business has issued but has not yet collected payment on."),
+			FullyQualifiedCategory: syncforexpenses.String("Asset.Current"),
+			FullyQualifiedName:     syncforexpenses.String("Cash On Hand"),
+			ID:                     syncforexpenses.String("1b6266d1-1e44-46c5-8eb5-a8f98e03124e"),
+			Metadata:               &shared.AccountMetadata{},
+			ModifiedDate:           syncforexpenses.String("2022-10-23T00:00:00.000Z"),
+			Name:                   syncforexpenses.String("Accounts Receivable"),
+			NominalCode:            syncforexpenses.String("610"),
+			SourceModifiedDate:     syncforexpenses.String("2022-10-23T00:00:00.000Z"),
+			Status:                 shared.AccountStatusActive.ToPointer(),
+			SupplementalData: &shared.SupplementalData{
+				Content: map[string]map[string]interface{}{
+					"key": map[string]interface{}{
+						"key": "string",
+					},
+				},
+			},
+			Type: shared.AccountTypeAsset.ToPointer(),
+			ValidDatatypeLinks: []shared.AccountValidDataTypeLinks{
+				shared.AccountValidDataTypeLinks{
+					Links: []string{
+						"string",
+					},
+				},
+			},
+		},
+		CompanyID:    "8a210b68-6988-11ed-a1eb-0242ac120002",
+		ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	if res.CreateAccountResponse != nil {
+		// handle response
+	}
+}
+
+```
+<!-- End Server Selection -->
+
+
+
+<!-- Start Custom HTTP Client -->
+# Custom HTTP Client
+
+The Go SDK makes API calls that wrap an internal HTTP client. The requirements for the HTTP client are very simple. It must match this interface:
+
+```go
+type HTTPClient interface {
+	Do(req *http.Request) (*http.Response, error)
+}
+```
+
+The built-in `net/http` client satisfies this interface and a default client based on the built-in is provided by default. To replace this default with a client of your own, you can implement this interface yourself or provide your own client configured as desired. Here's a simple example, which adds a client with a 30 second timeout.
+
+```go
+import (
+	"net/http"
+	"time"
+	"github.com/myorg/your-go-sdk"
+)
+
+var (
+	httpClient = &http.Client{Timeout: 30 * time.Second}
+	sdkClient  = sdk.New(sdk.WithClient(httpClient))
+)
+```
+
+This can be a convenient way to configure timeouts, cookies, proxies, custom headers, and other low-level configuration.
+<!-- End Custom HTTP Client -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

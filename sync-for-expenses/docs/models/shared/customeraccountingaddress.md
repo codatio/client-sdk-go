@@ -1,4 +1,4 @@
-# SupplierAccountingAddress
+# CustomerAccountingAddress
 
 
 ## Fields
