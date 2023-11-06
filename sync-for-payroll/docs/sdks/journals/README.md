@@ -114,7 +114,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Journals.Get(ctx, operations.GetJournalRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        JournalID: "Northeast Hatchback Kia",
+        JournalID: "string",
     })
     if err != nil {
         log.Fatal(err)
