@@ -57,7 +57,7 @@ func main() {
             },
             Webhook: common.String("https://webhook.client.com"),
         },
-        Type: "bluetooth Extended",
+        Type: "string",
     })
     if err != nil {
         log.Fatal(err)
