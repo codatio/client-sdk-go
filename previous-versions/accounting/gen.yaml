@@ -1,26 +1,29 @@
 configVersion: 1.0.0
 management:
-  docChecksum: 6c5f30eae3b86f04b1bf80b1c83f60ae
+  docChecksum: a60c245b040ecf608dee4f95db6db0c9
   docVersion: 3.0.0
-  speakeasyVersion: 1.100.2
-  generationVersion: 2.159.2
+  speakeasyVersion: 1.112.1
+  generationVersion: 2.173.0
 generation:
+  comments: {}
   sdkClassName: CodatAccounting
-  singleTagPerOp: false
-  telemetryEnabled: true
+  repoURL: https://github.com/codatio/client-sdk-go.git
 features:
   go:
     constsAndDefaults: 0.1.1
-    core: 2.91.5
+    core: 2.94.0
     deprecations: 2.81.1
-    downloadStreams: 0.1.0
-    examples: 2.81.2
+    downloadStreams: 0.1.1
+    examples: 2.81.3
     globalSecurity: 2.82.2
     globalServerURLs: 2.82.0
     nameOverrides: 2.81.1
     retries: 2.82.1
 go:
-  version: 0.27.0
+  version: 0.28.0
   flattenGlobalSecurity: false
+  installationURL: https://github.com/codatio/client-sdk-go/previous-versions/accounting
   maxMethodParams: 0
   packageName: github.com/codatio/client-sdk-go/previous-versions/accounting
+  published: true
+  repoSubDirectory: previous-versions/accounting

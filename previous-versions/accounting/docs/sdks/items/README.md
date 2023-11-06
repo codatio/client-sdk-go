@@ -64,12 +64,12 @@ func main() {
             SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "Extended": map[string]interface{}{
-                        "South": "shred",
+                    "key": map[string]interface{}{
+                        "key": "string",
                     },
                 },
             },
-            Type: shared.ItemTypeInventory,
+            Type: shared.ItemTypeService,
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -132,7 +132,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Items.Get(ctx, operations.GetItemRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ItemID: "Northeast Hatchback Kia",
+        ItemID: "string",
     })
     if err != nil {
         log.Fatal(err)

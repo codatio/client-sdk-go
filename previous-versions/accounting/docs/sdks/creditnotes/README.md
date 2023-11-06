@@ -112,18 +112,18 @@ func main() {
             SubTotal: types.MustNewDecimalFromString("3015.1"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "Northwest": map[string]interface{}{
-                        "fuchsia": "Gasoline",
+                    "key": map[string]interface{}{
+                        "key": "string",
                     },
                 },
             },
-            TotalAmount: types.MustNewDecimalFromString("5862.2"),
-            TotalDiscount: types.MustNewDecimalFromString("8275.63"),
-            TotalTaxAmount: types.MustNewDecimalFromString("7524.38"),
+            TotalAmount: types.MustNewDecimalFromString("899.64"),
+            TotalDiscount: types.MustNewDecimalFromString("7150.4"),
+            TotalTaxAmount: types.MustNewDecimalFromString("7926.2"),
             WithholdingTax: []shared.WithholdingTaxitems{
                 shared.WithholdingTaxitems{
-                    Amount: types.MustNewDecimalFromString("4915.7"),
-                    Name: "National Durham after",
+                    Amount: types.MustNewDecimalFromString("8559.52"),
+                    Name: "string",
                 },
             },
         },
@@ -188,7 +188,7 @@ func main() {
     ctx := context.Background()
     res, err := s.CreditNotes.Get(ctx, operations.GetCreditNoteRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        CreditNoteID: "Northeast Hatchback Kia",
+        CreditNoteID: "string",
     })
     if err != nil {
         log.Fatal(err)
@@ -435,24 +435,24 @@ func main() {
             SubTotal: types.MustNewDecimalFromString("4995.57"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "withdrawal": map[string]interface{}{
-                        "extend": "Plastic",
+                    "key": map[string]interface{}{
+                        "key": "string",
                     },
                 },
             },
-            TotalAmount: types.MustNewDecimalFromString("1395.79"),
-            TotalDiscount: types.MustNewDecimalFromString("6447.13"),
-            TotalTaxAmount: types.MustNewDecimalFromString("7892.75"),
+            TotalAmount: types.MustNewDecimalFromString("4468.63"),
+            TotalDiscount: types.MustNewDecimalFromString("3691.82"),
+            TotalTaxAmount: types.MustNewDecimalFromString("3115.07"),
             WithholdingTax: []shared.WithholdingTaxitems{
                 shared.WithholdingTaxitems{
-                    Amount: types.MustNewDecimalFromString("9936.8"),
-                    Name: "East Baht Quality",
+                    Amount: types.MustNewDecimalFromString("7884.4"),
+                    Name: "string",
                 },
             },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        CreditNoteID: "Home users Sharable",
+        CreditNoteID: "string",
     })
     if err != nil {
         log.Fatal(err)

@@ -54,8 +54,8 @@ func main() {
             SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "Extended": map[string]interface{}{
-                        "South": "shred",
+                    "key": map[string]interface{}{
+                        "key": "string",
                     },
                 },
             },
@@ -120,7 +120,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.BankAccounts.Get(ctx, operations.GetBankAccountRequest{
-        AccountID: "Northeast Hatchback Kia",
+        AccountID: "string",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -313,13 +313,13 @@ func main() {
             SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "East": map[string]interface{}{
-                        "male": "Metal",
+                    "key": map[string]interface{}{
+                        "key": "string",
                     },
                 },
             },
         },
-        BankAccountID: "Checking 0202",
+        BankAccountID: "13d946f0-c5d5-42bc-b092-97ece17923ab",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })

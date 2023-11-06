@@ -76,8 +76,8 @@ func main() {
             SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "blue": map[string]interface{}{
-                        "shred": "abnormally",
+                    "key": map[string]interface{}{
+                        "key": "string",
                     },
                 },
             },
@@ -170,7 +170,7 @@ func main() {
     res, err := s.JournalEntries.Delete(ctx, operations.DeleteJournalEntryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        JournalEntryID: "Van complexity",
+        JournalEntryID: "string",
     })
     if err != nil {
         log.Fatal(err)
@@ -230,7 +230,7 @@ func main() {
     ctx := context.Background()
     res, err := s.JournalEntries.Get(ctx, operations.GetJournalEntryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        JournalEntryID: "Northeast Hatchback Kia",
+        JournalEntryID: "string",
     })
     if err != nil {
         log.Fatal(err)

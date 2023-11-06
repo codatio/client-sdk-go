@@ -74,8 +74,8 @@ func main() {
             SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "blue": map[string]interface{}{
-                        "shred": "abnormally",
+                    "key": map[string]interface{}{
+                        "key": "string",
                     },
                 },
             },
@@ -141,7 +141,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Payments.Get(ctx, operations.GetPaymentRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        PaymentID: "Northeast Hatchback Kia",
+        PaymentID: "string",
     })
     if err != nil {
         log.Fatal(err)

@@ -44,7 +44,7 @@ func main() {
     ctx := context.Background()
     res, err := s.PaymentMethods.Get(ctx, operations.GetPaymentMethodRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        PaymentMethodID: "Northeast Hatchback Kia",
+        PaymentMethodID: "string",
     })
     if err != nil {
         log.Fatal(err)

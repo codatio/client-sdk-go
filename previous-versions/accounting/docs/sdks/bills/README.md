@@ -92,9 +92,9 @@ func main() {
             },
             Metadata: &shared.Metadata{},
             ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
-            PaymentAllocations: []shared.BillPaymentAllocation{
-                shared.BillPaymentAllocation{
-                    Allocation: shared.BillPaymentAllocationAllocation{
+            PaymentAllocations: []shared.BillAccountingPaymentAllocation{
+                shared.BillAccountingPaymentAllocation{
+                    Allocation: shared.BillAccountingPaymentAllocationAllocation{
                         AllocatedOnDate: accounting.String("2022-10-23T00:00:00.000Z"),
                         Currency: accounting.String("EUR"),
                     },
@@ -113,20 +113,20 @@ func main() {
             SubTotal: types.MustNewDecimalFromString("0.86"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "deposit": map[string]interface{}{
-                        "evolve": "male",
+                    "key": map[string]interface{}{
+                        "key": "string",
                     },
                 },
             },
             SupplierRef: &shared.SupplierRef{
                 ID: "<ID>",
             },
-            TaxAmount: types.MustNewDecimalFromString("8559.52"),
-            TotalAmount: types.MustNewDecimalFromString("8165.88"),
+            TaxAmount: types.MustNewDecimalFromString("4552.22"),
+            TotalAmount: types.MustNewDecimalFromString("1697.27"),
             WithholdingTax: []shared.BillWithholdingTax{
                 shared.BillWithholdingTax{
-                    Amount: types.MustNewDecimalFromString("5519.29"),
-                    Name: "Polestar mobile",
+                    Amount: types.MustNewDecimalFromString("3015.1"),
+                    Name: "string",
                 },
             },
         },
@@ -165,7 +165,7 @@ The *Delete bill* endpoint allows you to delete a specified bill from an account
 
 ### Process 
 1. Pass the `{billId}` to the *Delete bill* endpoint and store the `pushOperationKey` returned.
-2. Check the status of the delete operation by checking the status of push operation either via
+2. Check the status of the delete operation by checking the status of the push operation either via
     1. [Push operation webhook](https://docs.codat.io/introduction/webhooks/core-rules-types#push-operation-status-has-changed) (advised),
     2. [Push operation status endpoint](https://docs.codat.io/codat-api#/operations/get-push-operation).
 
@@ -182,11 +182,12 @@ Integrations that support soft delete do not permanently delete the object in th
 | Integration | Soft Delete | Details                                                                                                      |  
 |-------------|-------------|--------------------------------------------------------------------------------------------------------------|
 | QuickBooks Online | No          | -                                                                                                            |
-| Oracle NetSuite   | No          | When deleting a bill that's already linked to a bill payment, you must delete the linked bill payment first. |
+| Oracle NetSuite   | No          | When deleting a bill that's already linked to a bill payment, you must delete the linked bill payment first. |                                                                                                      |
+| Sage Intacct   | No          | When deleting a bill that's already linked to a bill payment, you must delete the linked bill payment first. |
 
 > **Supported Integrations**
 > 
-> This functionality is currently supported for our QuickBooks Online, Xero and Oracle NetSuite integrations.
+> This functionality is currently supported for our QuickBooks Online, Xero, Oracle NetSuite and Sage Intacct integrations.
 
 ### Example Usage
 
@@ -673,9 +674,9 @@ func main() {
             },
             Metadata: &shared.Metadata{},
             ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
-            PaymentAllocations: []shared.BillPaymentAllocation{
-                shared.BillPaymentAllocation{
-                    Allocation: shared.BillPaymentAllocationAllocation{
+            PaymentAllocations: []shared.BillAccountingPaymentAllocation{
+                shared.BillAccountingPaymentAllocation{
+                    Allocation: shared.BillAccountingPaymentAllocationAllocation{
                         AllocatedOnDate: accounting.String("2022-10-23T00:00:00.000Z"),
                         Currency: accounting.String("EUR"),
                     },
@@ -694,24 +695,24 @@ func main() {
             SubTotal: types.MustNewDecimalFromString("540.62"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "Cotton": map[string]interface{}{
-                        "extend": "Plastic",
+                    "key": map[string]interface{}{
+                        "key": "string",
                     },
                 },
             },
             SupplierRef: &shared.SupplierRef{
                 ID: "<ID>",
             },
-            TaxAmount: types.MustNewDecimalFromString("1395.79"),
-            TotalAmount: types.MustNewDecimalFromString("6447.13"),
+            TaxAmount: types.MustNewDecimalFromString("2782.81"),
+            TotalAmount: types.MustNewDecimalFromString("8965.01"),
             WithholdingTax: []shared.BillWithholdingTax{
                 shared.BillWithholdingTax{
-                    Amount: types.MustNewDecimalFromString("7892.75"),
-                    Name: "immediately implement JBOD",
+                    Amount: types.MustNewDecimalFromString("4995.57"),
+                    Name: "string",
                 },
             },
         },
-        BillID: "EILBDVJVNUAGVKRQ",
+        BillID: "9wg4lep4ush5cxs79pl8sozmsndbaukll3ind4g7buqbm1h2",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -776,9 +777,9 @@ func main() {
     res, err := s.Bills.UploadAttachment(ctx, operations.UploadBillAttachmentRequest{
         RequestBody: &operations.UploadBillAttachmentRequestBody{
             Content: []byte("v/ghW&IC$x"),
-            RequestBody: "Elegant Producer Electric",
+            RequestBody: "string",
         },
-        BillID: "9wg4lep4ush5cxs79pl8sozmsndbaukll3ind4g7buqbm1h2",
+        BillID: "7110701885",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
