@@ -31,6 +31,8 @@ func (o *GetVisibleAccountsRequest) GetPlatformKey() string {
 type GetVisibleAccountsResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
+	// Your API request was not properly authorized.
+	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -44,6 +46,13 @@ func (o *GetVisibleAccountsResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *GetVisibleAccountsResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *GetVisibleAccountsResponse) GetStatusCode() int {

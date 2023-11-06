@@ -10,6 +10,8 @@ import (
 type GetConfigTextSyncFlowResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
+	// Your API request was not properly authorized.
+	ErrorMessage *shared.ErrorMessage
 	// Success
 	LocalizationInfo map[string]shared.Localization
 	// HTTP response status code for this operation
@@ -23,6 +25,13 @@ func (o *GetConfigTextSyncFlowResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *GetConfigTextSyncFlowResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *GetConfigTextSyncFlowResponse) GetLocalizationInfo() map[string]shared.Localization {

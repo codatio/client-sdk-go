@@ -33,7 +33,7 @@ type ListCommerceLocationsResponse struct {
 	CommerceLocations *shared.CommerceLocations
 	// HTTP response content type for this operation
 	ContentType string
-	// Your `query` parameter was not correctly formed
+	// Your API request was not properly authorized.
 	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int

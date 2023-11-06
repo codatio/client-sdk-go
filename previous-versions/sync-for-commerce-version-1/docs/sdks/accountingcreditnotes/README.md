@@ -72,7 +72,7 @@ func main() {
                         },
                         IsBilledTo: shared.BilledToTypeProject,
                         IsRebilledTo: shared.BilledToTypeProject,
-                        ProjectRef: &shared.CreditNoteLineItemTrackingProjectReference{
+                        ProjectRef: &shared.CreditNoteLineItemTrackingAccountingProjectReference{
                             ID: "<ID>",
                         },
                         RecordRef: &shared.RecordRef{
@@ -108,18 +108,18 @@ func main() {
             SubTotal: types.MustNewDecimalFromString("1915.04"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "Metal": map[string]interface{}{
-                        "policy": "although",
+                    "key": map[string]interface{}{
+                        "key": "string",
                     },
                 },
             },
-            TotalAmount: types.MustNewDecimalFromString("6437.49"),
-            TotalDiscount: types.MustNewDecimalFromString("6593.55"),
-            TotalTaxAmount: types.MustNewDecimalFromString("3629.12"),
+            TotalAmount: types.MustNewDecimalFromString("5893.9"),
+            TotalDiscount: types.MustNewDecimalFromString("579.23"),
+            TotalTaxAmount: types.MustNewDecimalFromString("3881.42"),
             WithholdingTax: []shared.WithholdingTaxitems{
                 shared.WithholdingTaxitems{
-                    Amount: types.MustNewDecimalFromString("5655.86"),
-                    Name: "however",
+                    Amount: types.MustNewDecimalFromString("7369.44"),
+                    Name: "string",
                 },
             },
         },

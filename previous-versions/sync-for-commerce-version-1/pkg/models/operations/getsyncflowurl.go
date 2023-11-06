@@ -40,6 +40,8 @@ func (o *GetSyncFlowURLRequest) GetMerchantIdentifier() *string {
 type GetSyncFlowURLResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
+	// The request made is not valid.
+	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -53,6 +55,13 @@ func (o *GetSyncFlowURLResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *GetSyncFlowURLResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *GetSyncFlowURLResponse) GetStatusCode() int {

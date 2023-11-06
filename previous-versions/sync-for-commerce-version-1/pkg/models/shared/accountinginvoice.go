@@ -7,7 +7,7 @@ import (
 	"github.com/ericlagergren/decimal"
 )
 
-type AccountingInvoicePaymentAllocationAllocation struct {
+type AccountingInvoiceAccountingPaymentAllocationAllocation struct {
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -66,58 +66,58 @@ type AccountingInvoicePaymentAllocationAllocation struct {
 	TotalAmount *decimal.Big `decimal:"number" json:"totalAmount,omitempty"`
 }
 
-func (a AccountingInvoicePaymentAllocationAllocation) MarshalJSON() ([]byte, error) {
+func (a AccountingInvoiceAccountingPaymentAllocationAllocation) MarshalJSON() ([]byte, error) {
 	return utils.MarshalJSON(a, "", false)
 }
 
-func (a *AccountingInvoicePaymentAllocationAllocation) UnmarshalJSON(data []byte) error {
+func (a *AccountingInvoiceAccountingPaymentAllocationAllocation) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AccountingInvoicePaymentAllocationAllocation) GetAllocatedOnDate() *string {
+func (o *AccountingInvoiceAccountingPaymentAllocationAllocation) GetAllocatedOnDate() *string {
 	if o == nil {
 		return nil
 	}
 	return o.AllocatedOnDate
 }
 
-func (o *AccountingInvoicePaymentAllocationAllocation) GetCurrency() *string {
+func (o *AccountingInvoiceAccountingPaymentAllocationAllocation) GetCurrency() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Currency
 }
 
-func (o *AccountingInvoicePaymentAllocationAllocation) GetCurrencyRate() *decimal.Big {
+func (o *AccountingInvoiceAccountingPaymentAllocationAllocation) GetCurrencyRate() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.CurrencyRate
 }
 
-func (o *AccountingInvoicePaymentAllocationAllocation) GetTotalAmount() *decimal.Big {
+func (o *AccountingInvoiceAccountingPaymentAllocationAllocation) GetTotalAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.TotalAmount
 }
 
-type AccountingInvoicePaymentAllocation struct {
-	Allocation AccountingInvoicePaymentAllocationAllocation `json:"allocation"`
-	Payment    PaymentAllocationPayment                     `json:"payment"`
+type AccountingInvoiceAccountingPaymentAllocation struct {
+	Allocation AccountingInvoiceAccountingPaymentAllocationAllocation `json:"allocation"`
+	Payment    PaymentAllocationPayment                               `json:"payment"`
 }
 
-func (o *AccountingInvoicePaymentAllocation) GetAllocation() AccountingInvoicePaymentAllocationAllocation {
+func (o *AccountingInvoiceAccountingPaymentAllocation) GetAllocation() AccountingInvoiceAccountingPaymentAllocationAllocation {
 	if o == nil {
-		return AccountingInvoicePaymentAllocationAllocation{}
+		return AccountingInvoiceAccountingPaymentAllocationAllocation{}
 	}
 	return o.Allocation
 }
 
-func (o *AccountingInvoicePaymentAllocation) GetPayment() PaymentAllocationPayment {
+func (o *AccountingInvoiceAccountingPaymentAllocation) GetPayment() PaymentAllocationPayment {
 	if o == nil {
 		return PaymentAllocationPayment{}
 	}
@@ -321,7 +321,7 @@ type AccountingInvoice struct {
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	PaidOnDate *string `json:"paidOnDate,omitempty"`
 	// An array of payment allocations.
-	PaymentAllocations []AccountingInvoicePaymentAllocation `json:"paymentAllocations,omitempty"`
+	PaymentAllocations []AccountingInvoiceAccountingPaymentAllocation `json:"paymentAllocations,omitempty"`
 	// List of references to related Sales orders.
 	SalesOrderRefs     []AccountingInvoiceSalesOrderReference `json:"salesOrderRefs,omitempty"`
 	SourceModifiedDate *string                                `json:"sourceModifiedDate,omitempty"`
@@ -471,7 +471,7 @@ func (o *AccountingInvoice) GetPaidOnDate() *string {
 	return o.PaidOnDate
 }
 
-func (o *AccountingInvoice) GetPaymentAllocations() []AccountingInvoicePaymentAllocation {
+func (o *AccountingInvoice) GetPaymentAllocations() []AccountingInvoiceAccountingPaymentAllocation {
 	if o == nil {
 		return nil
 	}

@@ -7,21 +7,21 @@ import (
 	"github.com/ericlagergren/decimal"
 )
 
-type CreditNoteLineItemTrackingProjectReference struct {
+type CreditNoteLineItemTrackingAccountingProjectReference struct {
 	// Unique identifier to the project reference.
 	ID string `json:"id"`
 	// The project's name.
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreditNoteLineItemTrackingProjectReference) GetID() string {
+func (o *CreditNoteLineItemTrackingAccountingProjectReference) GetID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ID
 }
 
-func (o *CreditNoteLineItemTrackingProjectReference) GetName() *string {
+func (o *CreditNoteLineItemTrackingAccountingProjectReference) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -35,8 +35,8 @@ type CreditNoteLineItemTracking struct {
 	// Defines if the bill or bill credit note is billed/rebilled to a project.
 	IsBilledTo BilledToType `json:"isBilledTo"`
 	// Defines if the bill or bill credit note is billed/rebilled to a project.
-	IsRebilledTo BilledToType                                `json:"isRebilledTo"`
-	ProjectRef   *CreditNoteLineItemTrackingProjectReference `json:"projectRef,omitempty"`
+	IsRebilledTo BilledToType                                          `json:"isRebilledTo"`
+	ProjectRef   *CreditNoteLineItemTrackingAccountingProjectReference `json:"projectRef,omitempty"`
 	// Links the current record to the underlying record or data type that created it.
 	//
 	// For example, if a journal entry is generated based on an invoice, this property allows you to connect the journal entry to the underlying invoice in our data model.
@@ -71,7 +71,7 @@ func (o *CreditNoteLineItemTracking) GetIsRebilledTo() BilledToType {
 	return o.IsRebilledTo
 }
 
-func (o *CreditNoteLineItemTracking) GetProjectRef() *CreditNoteLineItemTrackingProjectReference {
+func (o *CreditNoteLineItemTracking) GetProjectRef() *CreditNoteLineItemTrackingAccountingProjectReference {
 	if o == nil {
 		return nil
 	}

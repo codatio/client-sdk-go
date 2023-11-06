@@ -1,4 +1,4 @@
-# CommerceCustomerAddress
+# CommerceCustomerCommerceAddress
 
 
 ## Fields

@@ -61,6 +61,8 @@ func (o *ListIntegrationsRequest) GetQuery() *string {
 type ListIntegrationsResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
+	// Your `query` parameter was not correctly formed
+	ErrorMessage *shared.ErrorMessage
 	// Success
 	Integrations *shared.Integrations
 	// HTTP response status code for this operation
@@ -74,6 +76,13 @@ func (o *ListIntegrationsResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *ListIntegrationsResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *ListIntegrationsResponse) GetIntegrations() *shared.Integrations {

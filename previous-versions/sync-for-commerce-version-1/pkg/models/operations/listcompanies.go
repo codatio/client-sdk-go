@@ -63,6 +63,8 @@ type ListCompaniesResponse struct {
 	Companies *shared.Companies
 	// HTTP response content type for this operation
 	ContentType string
+	// Your `query` parameter was not correctly formed
+	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -81,6 +83,13 @@ func (o *ListCompaniesResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
+}
+
+func (o *ListCompaniesResponse) GetErrorMessage() *shared.ErrorMessage {
+	if o == nil {
+		return nil
+	}
+	return o.ErrorMessage
 }
 
 func (o *ListCompaniesResponse) GetStatusCode() int {
