@@ -14,14 +14,7 @@ Retrieve standardized data from linked commerce platforms.
 
 ## Get
 
-The *Get product* endpoint returns a single product for a given productId.
-
-[Products](https://docs.codat.io/commerce-api#/schemas/Product) are items in the company's inventory that are available for sale.
-
-Check out our [coverage explorer](https://knowledge.codat.io/supported-features/commerce?view=tab-by-data-type&dataType=commerce-products) for integrations that support getting a specific product.
-
-Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
-
+Get product
 
 ### Example Usage
 
@@ -47,7 +40,7 @@ func main() {
     res, err := s.Products.Get(ctx, operations.GetProductRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        ProductID: "Northeast Hatchback Kia",
+        ProductID: "string",
     })
     if err != nil {
         log.Fatal(err)
@@ -108,7 +101,7 @@ func main() {
     res, err := s.Products.GetCategory(ctx, operations.GetProductCategoryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        ProductID: "personalise contingency",
+        ProductID: "string",
     })
     if err != nil {
         log.Fatal(err)
