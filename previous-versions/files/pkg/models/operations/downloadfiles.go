@@ -29,8 +29,7 @@ func (o *DownloadFilesRequest) GetDate() *string {
 	return o.Date
 }
 
-// DownloadFilesErrorMessage - One or more of the resources you referenced could not be found.
-// This might be because your company or data connection id is wrong, or was already deleted.
+// DownloadFilesErrorMessage - You are using an outdated API key or a key not associated with that resource.
 type DownloadFilesErrorMessage struct {
 	// `True` if the error occurred transiently and can be retried.
 	CanBeRetried *string `json:"canBeRetried,omitempty"`
@@ -94,8 +93,7 @@ type DownloadFilesResponse struct {
 	// Success
 	// The Close method must be called on this field, even if it is not used, to prevent resource leaks.
 	Data io.ReadCloser
-	// One or more of the resources you referenced could not be found.
-	// This might be because your company or data connection id is wrong, or was already deleted.
+	// You are using an outdated API key or a key not associated with that resource.
 	ErrorMessage *DownloadFilesErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int

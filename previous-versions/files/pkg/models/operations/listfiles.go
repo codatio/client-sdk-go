@@ -19,8 +19,7 @@ func (o *ListFilesRequest) GetCompanyID() string {
 	return o.CompanyID
 }
 
-// ListFilesErrorMessage - One or more of the resources you referenced could not be found.
-// This might be because your company or data connection id is wrong, or was already deleted.
+// ListFilesErrorMessage - You are using an outdated API key or a key not associated with that resource.
 type ListFilesErrorMessage struct {
 	// `True` if the error occurred transiently and can be retried.
 	CanBeRetried *string `json:"canBeRetried,omitempty"`
@@ -81,8 +80,7 @@ func (o *ListFilesErrorMessage) GetStatusCode() *int64 {
 type ListFilesResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// One or more of the resources you referenced could not be found.
-	// This might be because your company or data connection id is wrong, or was already deleted.
+	// You are using an outdated API key or a key not associated with that resource.
 	ErrorMessage *ListFilesErrorMessage
 	// Success
 	Files []shared.File

@@ -55,8 +55,7 @@ func (o *UploadFilesRequest) GetConnectionID() string {
 	return o.ConnectionID
 }
 
-// UploadFilesErrorMessage - One or more of the resources you referenced could not be found.
-// This might be because your company or data connection id is wrong, or was already deleted.
+// UploadFilesErrorMessage - You are using an outdated API key or a key not associated with that resource.
 type UploadFilesErrorMessage struct {
 	// `True` if the error occurred transiently and can be retried.
 	CanBeRetried *string `json:"canBeRetried,omitempty"`
@@ -117,8 +116,7 @@ func (o *UploadFilesErrorMessage) GetStatusCode() *int64 {
 type UploadFilesResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// One or more of the resources you referenced could not be found.
-	// This might be because your company or data connection id is wrong, or was already deleted.
+	// You are using an outdated API key or a key not associated with that resource.
 	ErrorMessage *UploadFilesErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int

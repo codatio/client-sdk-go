@@ -1,7 +1,6 @@
 # UploadFilesErrorMessage
 
-One or more of the resources you referenced could not be found.
-This might be because your company or data connection id is wrong, or was already deleted.
+You are using an outdated API key or a key not associated with that resource.
 
 
 ## Fields
