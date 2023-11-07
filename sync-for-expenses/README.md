@@ -173,4 +173,3 @@ Here's an example of one such pagination call:
 
 
 <!-- End Pagination -->
-
