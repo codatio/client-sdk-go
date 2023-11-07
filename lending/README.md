@@ -391,5 +391,3 @@ d1 := types.NewDate(time.Now()) // returns *types.Date
 d2 := types.DateFromTime(time.Now()) // returns types.Date
 
 d3, err := types.NewDateFromString("2019-01-01") // returns *types.Date, error
-
-d4, err := types.DateFromString("2019-01-01") // returns types.Date, error
