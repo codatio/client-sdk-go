@@ -40,8 +40,6 @@ func (o *GetTransactionCategoryRequest) GetTransactionCategoryID() string {
 type GetTransactionCategoryResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -55,13 +53,6 @@ func (o *GetTransactionCategoryResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *GetTransactionCategoryResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *GetTransactionCategoryResponse) GetStatusCode() int {

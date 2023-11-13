@@ -14,13 +14,13 @@ import (
 	"net/http"
 )
 
-// transactionCategories - Hierarchical categories associated with a transaction for greater contextual meaning to transaction activity.
-type transactionCategories struct {
+// TransactionCategories - Hierarchical categories associated with a transaction for greater contextual meaning to transaction activity.
+type TransactionCategories struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newTransactionCategories(sdkConfig sdkConfiguration) *transactionCategories {
-	return &transactionCategories{
+func newTransactionCategories(sdkConfig sdkConfiguration) *TransactionCategories {
+	return &TransactionCategories{
 		sdkConfiguration: sdkConfig,
 	}
 }
@@ -33,7 +33,7 @@ func newTransactionCategories(sdkConfig sdkConfiguration) *transactionCategories
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/banking?view=tab-by-data-type&dataType=banking-transactionCategories) for integrations that support getting a specific transaction category.
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
-func (s *transactionCategories) Get(ctx context.Context, request operations.GetTransactionCategoryRequest, opts ...operations.Option) (*operations.GetTransactionCategoryResponse, error) {
+func (s *TransactionCategories) Get(ctx context.Context, request operations.GetTransactionCategoryRequest, opts ...operations.Option) (*operations.GetTransactionCategoryResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -139,15 +139,18 @@ func (s *transactionCategories) Get(ctx context.Context, request operations.GetT
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -159,7 +162,7 @@ func (s *transactionCategories) Get(ctx context.Context, request operations.GetT
 // [Transaction categories](https://docs.codat.io/banking-api#/schemas/TransactionCategory) are associated with a transaction to provide greater contextual meaning to transaction activity.
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
-func (s *transactionCategories) List(ctx context.Context, request operations.ListTransactionCategoriesRequest, opts ...operations.Option) (*operations.ListTransactionCategoriesResponse, error) {
+func (s *TransactionCategories) List(ctx context.Context, request operations.ListTransactionCategoriesRequest, opts ...operations.Option) (*operations.ListTransactionCategoriesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -271,15 +274,18 @@ func (s *transactionCategories) List(ctx context.Context, request operations.Lis
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

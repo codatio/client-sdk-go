@@ -14,13 +14,13 @@ import (
 	"net/http"
 )
 
-// accountBalances - Balances for a bank account including end-of-day batch balance or running balances per transaction.
-type accountBalances struct {
+// AccountBalances - Balances for a bank account including end-of-day batch balance or running balances per transaction.
+type AccountBalances struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newAccountBalances(sdkConfig sdkConfiguration) *accountBalances {
-	return &accountBalances{
+func newAccountBalances(sdkConfig sdkConfiguration) *AccountBalances {
+	return &AccountBalances{
 		sdkConfiguration: sdkConfig,
 	}
 }
@@ -31,7 +31,7 @@ func newAccountBalances(sdkConfig sdkConfiguration) *accountBalances {
 // [Account balances](https://docs.codat.io/banking-api#/schemas/AccountBalance) are balances for a bank account, including end-of-day batch balance or running balances per transaction.
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
-func (s *accountBalances) List(ctx context.Context, request operations.ListAccountBalancesRequest, opts ...operations.Option) (*operations.ListAccountBalancesResponse, error) {
+func (s *AccountBalances) List(ctx context.Context, request operations.ListAccountBalancesRequest, opts ...operations.Option) (*operations.ListAccountBalancesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -143,15 +143,18 @@ func (s *accountBalances) List(ctx context.Context, request operations.ListAccou
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
