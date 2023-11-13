@@ -7,59 +7,59 @@ import (
 	"fmt"
 )
 
-// DataTypeFeatureDataTypes - Available Data types
-type DataTypeFeatureDataTypes string
+// DataTypes - Available Data types
+type DataTypes string
 
 const (
-	DataTypeFeatureDataTypesAccountTransactions          DataTypeFeatureDataTypes = "accountTransactions"
-	DataTypeFeatureDataTypesBalanceSheet                 DataTypeFeatureDataTypes = "balanceSheet"
-	DataTypeFeatureDataTypesBankAccounts                 DataTypeFeatureDataTypes = "bankAccounts"
-	DataTypeFeatureDataTypesBankTransactions             DataTypeFeatureDataTypes = "bankTransactions"
-	DataTypeFeatureDataTypesBillCreditNotes              DataTypeFeatureDataTypes = "billCreditNotes"
-	DataTypeFeatureDataTypesBillPayments                 DataTypeFeatureDataTypes = "billPayments"
-	DataTypeFeatureDataTypesBills                        DataTypeFeatureDataTypes = "bills"
-	DataTypeFeatureDataTypesCashFlowStatement            DataTypeFeatureDataTypes = "cashFlowStatement"
-	DataTypeFeatureDataTypesChartOfAccounts              DataTypeFeatureDataTypes = "chartOfAccounts"
-	DataTypeFeatureDataTypesCompany                      DataTypeFeatureDataTypes = "company"
-	DataTypeFeatureDataTypesCreditNotes                  DataTypeFeatureDataTypes = "creditNotes"
-	DataTypeFeatureDataTypesCustomers                    DataTypeFeatureDataTypes = "customers"
-	DataTypeFeatureDataTypesDirectCosts                  DataTypeFeatureDataTypes = "directCosts"
-	DataTypeFeatureDataTypesDirectIncomes                DataTypeFeatureDataTypes = "directIncomes"
-	DataTypeFeatureDataTypesInvoices                     DataTypeFeatureDataTypes = "invoices"
-	DataTypeFeatureDataTypesItems                        DataTypeFeatureDataTypes = "items"
-	DataTypeFeatureDataTypesJournalEntries               DataTypeFeatureDataTypes = "journalEntries"
-	DataTypeFeatureDataTypesJournals                     DataTypeFeatureDataTypes = "journals"
-	DataTypeFeatureDataTypesPaymentMethods               DataTypeFeatureDataTypes = "paymentMethods"
-	DataTypeFeatureDataTypesPayments                     DataTypeFeatureDataTypes = "payments"
-	DataTypeFeatureDataTypesProfitAndLoss                DataTypeFeatureDataTypes = "profitAndLoss"
-	DataTypeFeatureDataTypesPurchaseOrders               DataTypeFeatureDataTypes = "purchaseOrders"
-	DataTypeFeatureDataTypesSalesOrders                  DataTypeFeatureDataTypes = "salesOrders"
-	DataTypeFeatureDataTypesSuppliers                    DataTypeFeatureDataTypes = "suppliers"
-	DataTypeFeatureDataTypesTaxRates                     DataTypeFeatureDataTypes = "taxRates"
-	DataTypeFeatureDataTypesTrackingCategories           DataTypeFeatureDataTypes = "trackingCategories"
-	DataTypeFeatureDataTypesTransfers                    DataTypeFeatureDataTypes = "transfers"
-	DataTypeFeatureDataTypesBankingAccountBalances       DataTypeFeatureDataTypes = "banking-accountBalances"
-	DataTypeFeatureDataTypesBankingAccounts              DataTypeFeatureDataTypes = "banking-accounts"
-	DataTypeFeatureDataTypesBankingTransactionCategories DataTypeFeatureDataTypes = "banking-transactionCategories"
-	DataTypeFeatureDataTypesBankingTransactions          DataTypeFeatureDataTypes = "banking-transactions"
-	DataTypeFeatureDataTypesCommerceCompanyInfo          DataTypeFeatureDataTypes = "commerce-companyInfo"
-	DataTypeFeatureDataTypesCommerceCustomers            DataTypeFeatureDataTypes = "commerce-customers"
-	DataTypeFeatureDataTypesCommerceDisputes             DataTypeFeatureDataTypes = "commerce-disputes"
-	DataTypeFeatureDataTypesCommerceLocations            DataTypeFeatureDataTypes = "commerce-locations"
-	DataTypeFeatureDataTypesCommerceOrders               DataTypeFeatureDataTypes = "commerce-orders"
-	DataTypeFeatureDataTypesCommercePaymentMethods       DataTypeFeatureDataTypes = "commerce-paymentMethods"
-	DataTypeFeatureDataTypesCommercePayments             DataTypeFeatureDataTypes = "commerce-payments"
-	DataTypeFeatureDataTypesCommerceProductCategories    DataTypeFeatureDataTypes = "commerce-productCategories"
-	DataTypeFeatureDataTypesCommerceProducts             DataTypeFeatureDataTypes = "commerce-products"
-	DataTypeFeatureDataTypesCommerceTaxComponents        DataTypeFeatureDataTypes = "commerce-taxComponents"
-	DataTypeFeatureDataTypesCommerceTransactions         DataTypeFeatureDataTypes = "commerce-transactions"
+	DataTypesAccountTransactions          DataTypes = "accountTransactions"
+	DataTypesBalanceSheet                 DataTypes = "balanceSheet"
+	DataTypesBankAccounts                 DataTypes = "bankAccounts"
+	DataTypesBankTransactions             DataTypes = "bankTransactions"
+	DataTypesBillCreditNotes              DataTypes = "billCreditNotes"
+	DataTypesBillPayments                 DataTypes = "billPayments"
+	DataTypesBills                        DataTypes = "bills"
+	DataTypesCashFlowStatement            DataTypes = "cashFlowStatement"
+	DataTypesChartOfAccounts              DataTypes = "chartOfAccounts"
+	DataTypesCompany                      DataTypes = "company"
+	DataTypesCreditNotes                  DataTypes = "creditNotes"
+	DataTypesCustomers                    DataTypes = "customers"
+	DataTypesDirectCosts                  DataTypes = "directCosts"
+	DataTypesDirectIncomes                DataTypes = "directIncomes"
+	DataTypesInvoices                     DataTypes = "invoices"
+	DataTypesItems                        DataTypes = "items"
+	DataTypesJournalEntries               DataTypes = "journalEntries"
+	DataTypesJournals                     DataTypes = "journals"
+	DataTypesPaymentMethods               DataTypes = "paymentMethods"
+	DataTypesPayments                     DataTypes = "payments"
+	DataTypesProfitAndLoss                DataTypes = "profitAndLoss"
+	DataTypesPurchaseOrders               DataTypes = "purchaseOrders"
+	DataTypesSalesOrders                  DataTypes = "salesOrders"
+	DataTypesSuppliers                    DataTypes = "suppliers"
+	DataTypesTaxRates                     DataTypes = "taxRates"
+	DataTypesTrackingCategories           DataTypes = "trackingCategories"
+	DataTypesTransfers                    DataTypes = "transfers"
+	DataTypesBankingAccountBalances       DataTypes = "banking-accountBalances"
+	DataTypesBankingAccounts              DataTypes = "banking-accounts"
+	DataTypesBankingTransactionCategories DataTypes = "banking-transactionCategories"
+	DataTypesBankingTransactions          DataTypes = "banking-transactions"
+	DataTypesCommerceCompanyInfo          DataTypes = "commerce-companyInfo"
+	DataTypesCommerceCustomers            DataTypes = "commerce-customers"
+	DataTypesCommerceDisputes             DataTypes = "commerce-disputes"
+	DataTypesCommerceLocations            DataTypes = "commerce-locations"
+	DataTypesCommerceOrders               DataTypes = "commerce-orders"
+	DataTypesCommercePaymentMethods       DataTypes = "commerce-paymentMethods"
+	DataTypesCommercePayments             DataTypes = "commerce-payments"
+	DataTypesCommerceProductCategories    DataTypes = "commerce-productCategories"
+	DataTypesCommerceProducts             DataTypes = "commerce-products"
+	DataTypesCommerceTaxComponents        DataTypes = "commerce-taxComponents"
+	DataTypesCommerceTransactions         DataTypes = "commerce-transactions"
 )
 
-func (e DataTypeFeatureDataTypes) ToPointer() *DataTypeFeatureDataTypes {
+func (e DataTypes) ToPointer() *DataTypes {
 	return &e
 }
 
-func (e *DataTypeFeatureDataTypes) UnmarshalJSON(data []byte) error {
+func (e *DataTypes) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -148,21 +148,21 @@ func (e *DataTypeFeatureDataTypes) UnmarshalJSON(data []byte) error {
 	case "commerce-taxComponents":
 		fallthrough
 	case "commerce-transactions":
-		*e = DataTypeFeatureDataTypes(v)
+		*e = DataTypes(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for DataTypeFeatureDataTypes: %v", v)
+		return fmt.Errorf("invalid value for DataTypes: %v", v)
 	}
 }
 
 // DataTypeFeature - Describes support for a given datatype and associated operations
 type DataTypeFeature struct {
 	// Available Data types
-	DataType          *DataTypeFeatureDataTypes `json:"dataType,omitempty"`
-	SupportedFeatures []SupportedFeature        `json:"supportedFeatures"`
+	DataType          *DataTypes         `json:"dataType,omitempty"`
+	SupportedFeatures []SupportedFeature `json:"supportedFeatures"`
 }
 
-func (o *DataTypeFeature) GetDataType() *DataTypeFeatureDataTypes {
+func (o *DataTypeFeature) GetDataType() *DataTypes {
 	if o == nil {
 		return nil
 	}

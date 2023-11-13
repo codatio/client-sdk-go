@@ -5,8 +5,8 @@ package syncforcommerce
 import (
 	"context"
 	"fmt"
-	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/utils"
 	"net/http"
 	"time"
 )
@@ -70,16 +70,16 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 //
 // Not seeing the endpoints you're expecting? We've [reorganized our products](https://docs.codat.io/updates/230901-new-products), and you may be using a [different version of Sync for Commerce](https://docs.codat.io/sync-for-commerce-v1-api#/).
 type CodatSyncCommerce struct {
-	// Advanced company management and sync preferences.
-	AdvancedControls *advancedControls
-	// Create new and manage existing Sync for Commerce connections using the Sync flow UI.
-	Connections *connections
-	// View useful information about codat's integrations.
-	Integrations *integrations
-	// Initiate and monitor the sync of company data into accounting software.
-	Sync *sync
 	// Configure preferences for any given Sync for Commerce company using sync flow.
-	SyncFlowSettings *syncFlowSettings
+	SyncFlowSettings *SyncFlowSettings
+	// Advanced company management and sync preferences.
+	AdvancedControls *AdvancedControls
+	// Create new and manage existing Sync for Commerce connections using the Sync flow UI.
+	Connections *Connections
+	// Initiate and monitor the sync of company data into accounting software.
+	Sync *Sync
+	// View useful information about codat's integrations.
+	Integrations *Integrations
 
 	sdkConfiguration sdkConfiguration
 }
@@ -157,9 +157,9 @@ func New(opts ...SDKOption) *CodatSyncCommerce {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.1",
-			SDKVersion:        "2.2.0",
-			GenVersion:        "2.159.2",
-			UserAgent:         "speakeasy-sdk/go 2.2.0 2.159.2 1.1 github.com/codatio/client-sdk-go/sync-for-commerce",
+			SDKVersion:        "3.0.0",
+			GenVersion:        "2.188.1",
+			UserAgent:         "speakeasy-sdk/go 3.0.0 2.188.1 1.1 github.com/codatio/client-sdk-go/sync-for-commerce",
 		},
 	}
 	for _, opt := range opts {
@@ -178,15 +178,15 @@ func New(opts ...SDKOption) *CodatSyncCommerce {
 		}
 	}
 
+	sdk.SyncFlowSettings = newSyncFlowSettings(sdk.sdkConfiguration)
+
 	sdk.AdvancedControls = newAdvancedControls(sdk.sdkConfiguration)
 
 	sdk.Connections = newConnections(sdk.sdkConfiguration)
 
-	sdk.Integrations = newIntegrations(sdk.sdkConfiguration)
-
 	sdk.Sync = newSync(sdk.sdkConfiguration)
 
-	sdk.SyncFlowSettings = newSyncFlowSettings(sdk.sdkConfiguration)
+	sdk.Integrations = newIntegrations(sdk.sdkConfiguration)
 
 	return sdk
 }
