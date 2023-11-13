@@ -37,8 +37,8 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/platform"
-	"github.com/codatio/client-sdk-go/platform/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v2"
+	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
 )
 
 func main() {
@@ -64,17 +64,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                  | Type                                                       | Required                                                   | Description                                                |
-| ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
-| `ctx`                                                      | [context.Context](https://pkg.go.dev/context#Context)      | :heavy_check_mark:                                         | The context to use for the request.                        |
-| `request`                                                  | [shared.CreateAPIKey](../../models/shared/createapikey.md) | :heavy_check_mark:                                         | The request object to use for the request.                 |
-| `opts`                                                     | [][operations.Option](../../models/operations/option.md)   | :heavy_minus_sign:                                         | The options for this request.                              |
+| Parameter                                                      | Type                                                           | Required                                                       | Description                                                    |
+| -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
+| `ctx`                                                          | [context.Context](https://pkg.go.dev/context#Context)          | :heavy_check_mark:                                             | The context to use for the request.                            |
+| `request`                                                      | [shared.CreateAPIKey](../../pkg/models/shared/createapikey.md) | :heavy_check_mark:                                             | The request object to use for the request.                     |
+| `opts`                                                         | [][operations.Option](../../pkg/models/operations/option.md)   | :heavy_minus_sign:                                             | The options for this request.                                  |
 
 
 ### Response
 
-**[*operations.CreateAPIKeyResponse](../../models/operations/createapikeyresponse.md), error**
-
+**[*operations.CreateAPIKeyResponse](../../pkg/models/operations/createapikeyresponse.md), error**
+| Error Object                    | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| sdkerrors.ErrorMessage          | 400,401,402,403,409,429,500,503 | application/json                |
+| sdkerrors.SDKError              | 400-600                         | */*                             |
 
 ## DeleteAPIKey
 
@@ -97,9 +100,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/platform"
-	"github.com/codatio/client-sdk-go/platform/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/platform/pkg/models/operations"
+	platform "github.com/codatio/client-sdk-go/platform/v2"
+	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/operations"
 )
 
 func main() {
@@ -125,17 +128,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
-| `request`                                                                        | [operations.DeleteAPIKeyRequest](../../models/operations/deleteapikeyrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
-| `opts`                                                                           | [][operations.Option](../../models/operations/option.md)                         | :heavy_minus_sign:                                                               | The options for this request.                                                    |
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
+| `request`                                                                            | [operations.DeleteAPIKeyRequest](../../pkg/models/operations/deleteapikeyrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| `opts`                                                                               | [][operations.Option](../../pkg/models/operations/option.md)                         | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
 
 
 ### Response
 
-**[*operations.DeleteAPIKeyResponse](../../models/operations/deleteapikeyresponse.md), error**
-
+**[*operations.DeleteAPIKeyResponse](../../pkg/models/operations/deleteapikeyresponse.md), error**
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
+| sdkerrors.SDKError          | 400-600                     | */*                         |
 
 ## GetProfile
 
@@ -149,8 +155,8 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/platform"
-	"github.com/codatio/client-sdk-go/platform/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v2"
+	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
 )
 
 func main() {
@@ -174,16 +180,19 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
-| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `ctx`                                                        | [context.Context](https://pkg.go.dev/context#Context)        | :heavy_check_mark:                                           | The context to use for the request.                          |
+| `opts`                                                       | [][operations.Option](../../pkg/models/operations/option.md) | :heavy_minus_sign:                                           | The options for this request.                                |
 
 
 ### Response
 
-**[*operations.GetProfileResponse](../../models/operations/getprofileresponse.md), error**
-
+**[*operations.GetProfileResponse](../../pkg/models/operations/getprofileresponse.md), error**
+| Error Object            | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| sdkerrors.ErrorMessage  | 401,402,403,429,500,503 | application/json        |
+| sdkerrors.SDKError      | 400-600                 | */*                     |
 
 ## GetSyncSettings
 
@@ -197,8 +206,8 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/platform"
-	"github.com/codatio/client-sdk-go/platform/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v2"
+	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
 )
 
 func main() {
@@ -222,16 +231,19 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
-| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `ctx`                                                        | [context.Context](https://pkg.go.dev/context#Context)        | :heavy_check_mark:                                           | The context to use for the request.                          |
+| `opts`                                                       | [][operations.Option](../../pkg/models/operations/option.md) | :heavy_minus_sign:                                           | The options for this request.                                |
 
 
 ### Response
 
-**[*operations.GetProfileSyncSettingsResponse](../../models/operations/getprofilesyncsettingsresponse.md), error**
-
+**[*operations.GetProfileSyncSettingsResponse](../../pkg/models/operations/getprofilesyncsettingsresponse.md), error**
+| Error Object            | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| sdkerrors.ErrorMessage  | 401,402,403,429,500,503 | application/json        |
+| sdkerrors.SDKError      | 400-600                 | */*                     |
 
 ## ListAPIKeys
 
@@ -249,8 +261,8 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/platform"
-	"github.com/codatio/client-sdk-go/platform/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v2"
+	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
 )
 
 func main() {
@@ -274,16 +286,19 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
-| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `ctx`                                                        | [context.Context](https://pkg.go.dev/context#Context)        | :heavy_check_mark:                                           | The context to use for the request.                          |
+| `opts`                                                       | [][operations.Option](../../pkg/models/operations/option.md) | :heavy_minus_sign:                                           | The options for this request.                                |
 
 
 ### Response
 
-**[*operations.ListAPIKeysResponse](../../models/operations/listapikeysresponse.md), error**
-
+**[*operations.ListAPIKeysResponse](../../pkg/models/operations/listapikeysresponse.md), error**
+| Error Object            | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| sdkerrors.ErrorMessage  | 401,402,403,429,500,503 | application/json        |
+| sdkerrors.SDKError      | 400-600                 | */*                     |
 
 ## UpdateProfile
 
@@ -297,8 +312,8 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/platform"
-	"github.com/codatio/client-sdk-go/platform/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v2"
+	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
 )
 
 func main() {
@@ -355,17 +370,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
-| `request`                                                | [shared.Profile](../../models/shared/profile.md)         | :heavy_check_mark:                                       | The request object to use for the request.               |
-| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `ctx`                                                        | [context.Context](https://pkg.go.dev/context#Context)        | :heavy_check_mark:                                           | The context to use for the request.                          |
+| `request`                                                    | [shared.Profile](../../pkg/models/shared/profile.md)         | :heavy_check_mark:                                           | The request object to use for the request.                   |
+| `opts`                                                       | [][operations.Option](../../pkg/models/operations/option.md) | :heavy_minus_sign:                                           | The options for this request.                                |
 
 
 ### Response
 
-**[*operations.UpdateProfileResponse](../../models/operations/updateprofileresponse.md), error**
-
+**[*operations.UpdateProfileResponse](../../pkg/models/operations/updateprofileresponse.md), error**
+| Error Object            | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| sdkerrors.ErrorMessage  | 401,402,403,429,500,503 | application/json        |
+| sdkerrors.SDKError      | 400-600                 | */*                     |
 
 ## UpdateSyncSettings
 
@@ -379,9 +397,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/platform"
-	"github.com/codatio/client-sdk-go/platform/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/platform/pkg/models/operations"
+	platform "github.com/codatio/client-sdk-go/platform/v2"
+	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/operations"
 )
 
 func main() {
@@ -418,14 +436,17 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                          | Type                                                                                                               | Required                                                                                                           | Description                                                                                                        |
-| ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                                              | :heavy_check_mark:                                                                                                 | The context to use for the request.                                                                                |
-| `request`                                                                                                          | [operations.UpdateProfileSyncSettingsRequestBody](../../models/operations/updateprofilesyncsettingsrequestbody.md) | :heavy_check_mark:                                                                                                 | The request object to use for the request.                                                                         |
-| `opts`                                                                                                             | [][operations.Option](../../models/operations/option.md)                                                           | :heavy_minus_sign:                                                                                                 | The options for this request.                                                                                      |
+| Parameter                                                                                                              | Type                                                                                                                   | Required                                                                                                               | Description                                                                                                            |
+| ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                                  | :heavy_check_mark:                                                                                                     | The context to use for the request.                                                                                    |
+| `request`                                                                                                              | [operations.UpdateProfileSyncSettingsRequestBody](../../pkg/models/operations/updateprofilesyncsettingsrequestbody.md) | :heavy_check_mark:                                                                                                     | The request object to use for the request.                                                                             |
+| `opts`                                                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                                                           | :heavy_minus_sign:                                                                                                     | The options for this request.                                                                                          |
 
 
 ### Response
 
-**[*operations.UpdateProfileSyncSettingsResponse](../../models/operations/updateprofilesyncsettingsresponse.md), error**
-
+**[*operations.UpdateProfileSyncSettingsResponse](../../pkg/models/operations/updateprofilesyncsettingsresponse.md), error**
+| Error Object            | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| sdkerrors.ErrorMessage  | 401,402,403,429,500,503 | application/json        |
+| sdkerrors.SDKError      | 400-600                 | */*                     |

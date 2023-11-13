@@ -29,9 +29,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/platform"
-	"github.com/codatio/client-sdk-go/platform/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/platform/pkg/models/operations"
+	platform "github.com/codatio/client-sdk-go/platform/v2"
+	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/operations"
 )
 
 func main() {
@@ -57,17 +57,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
-| `request`                                                                                    | [operations.RefreshCompanyDataRequest](../../models/operations/refreshcompanydatarequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
-| `opts`                                                                                       | [][operations.Option](../../models/operations/option.md)                                     | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
+| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
+| `request`                                                                                        | [operations.RefreshCompanyDataRequest](../../pkg/models/operations/refreshcompanydatarequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
+| `opts`                                                                                           | [][operations.Option](../../pkg/models/operations/option.md)                                     | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
 
 
 ### Response
 
-**[*operations.RefreshCompanyDataResponse](../../models/operations/refreshcompanydataresponse.md), error**
-
+**[*operations.RefreshCompanyDataResponse](../../pkg/models/operations/refreshcompanydataresponse.md), error**
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
+| sdkerrors.SDKError          | 400-600                     | */*                         |
 
 ## ByDataType
 
@@ -83,9 +86,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/platform"
-	"github.com/codatio/client-sdk-go/platform/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/platform/pkg/models/operations"
+	platform "github.com/codatio/client-sdk-go/platform/v2"
+	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/operations"
 )
 
 func main() {
@@ -98,7 +101,7 @@ func main() {
     ctx := context.Background()
     res, err := s.RefreshData.ByDataType(ctx, operations.RefreshDataTypeRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        DataType: shared.DataTypeInvoices,
+        DataType: shared.SchemaDataTypeInvoices,
     })
     if err != nil {
         log.Fatal(err)
@@ -112,17 +115,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
-| `request`                                                                              | [operations.RefreshDataTypeRequest](../../models/operations/refreshdatatyperequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
-| `opts`                                                                                 | [][operations.Option](../../models/operations/option.md)                               | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
+| `request`                                                                                  | [operations.RefreshDataTypeRequest](../../pkg/models/operations/refreshdatatyperequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+| `opts`                                                                                     | [][operations.Option](../../pkg/models/operations/option.md)                               | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
 
 
 ### Response
 
-**[*operations.RefreshDataTypeResponse](../../models/operations/refreshdatatyperesponse.md), error**
-
+**[*operations.RefreshDataTypeResponse](../../pkg/models/operations/refreshdatatyperesponse.md), error**
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
+| sdkerrors.SDKError          | 400-600                     | */*                         |
 
 ## Get
 
@@ -136,9 +142,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/platform"
-	"github.com/codatio/client-sdk-go/platform/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/platform/pkg/models/operations"
+	platform "github.com/codatio/client-sdk-go/platform/v2"
+	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/operations"
 )
 
 func main() {
@@ -164,17 +170,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
-| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
-| `request`                                                                                        | [operations.GetCompanyDataStatusRequest](../../models/operations/getcompanydatastatusrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
-| `opts`                                                                                           | [][operations.Option](../../models/operations/option.md)                                         | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
+| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                                | :heavy_check_mark:                                                                                   | The context to use for the request.                                                                  |
+| `request`                                                                                            | [operations.GetCompanyDataStatusRequest](../../pkg/models/operations/getcompanydatastatusrequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
+| `opts`                                                                                               | [][operations.Option](../../pkg/models/operations/option.md)                                         | :heavy_minus_sign:                                                                                   | The options for this request.                                                                        |
 
 
 ### Response
 
-**[*operations.GetCompanyDataStatusResponse](../../models/operations/getcompanydatastatusresponse.md), error**
-
+**[*operations.GetCompanyDataStatusResponse](../../pkg/models/operations/getcompanydatastatusresponse.md), error**
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
+| sdkerrors.SDKError          | 400-600                     | */*                         |
 
 ## GetPullOperation
 
@@ -188,9 +197,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/platform"
-	"github.com/codatio/client-sdk-go/platform/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/platform/pkg/models/operations"
+	platform "github.com/codatio/client-sdk-go/platform/v2"
+	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/operations"
 )
 
 func main() {
@@ -217,17 +226,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
-| `request`                                                                                | [operations.GetPullOperationRequest](../../models/operations/getpulloperationrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
-| `opts`                                                                                   | [][operations.Option](../../models/operations/option.md)                                 | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
+| `request`                                                                                    | [operations.GetPullOperationRequest](../../pkg/models/operations/getpulloperationrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `opts`                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                 | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
 
 
 ### Response
 
-**[*operations.GetPullOperationResponse](../../models/operations/getpulloperationresponse.md), error**
-
+**[*operations.GetPullOperationResponse](../../pkg/models/operations/getpulloperationresponse.md), error**
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
+| sdkerrors.SDKError          | 400-600                     | */*                         |
 
 ## ListPullOperations
 
@@ -241,9 +253,9 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/platform"
-	"github.com/codatio/client-sdk-go/platform/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/platform/pkg/models/operations"
+	platform "github.com/codatio/client-sdk-go/platform/v2"
+	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/operations"
 )
 
 func main() {
@@ -272,14 +284,17 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
-| `request`                                                                                    | [operations.ListPullOperationsRequest](../../models/operations/listpulloperationsrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
-| `opts`                                                                                       | [][operations.Option](../../models/operations/option.md)                                     | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
+| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
+| `request`                                                                                        | [operations.ListPullOperationsRequest](../../pkg/models/operations/listpulloperationsrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
+| `opts`                                                                                           | [][operations.Option](../../pkg/models/operations/option.md)                                     | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
 
 
 ### Response
 
-**[*operations.ListPullOperationsResponse](../../models/operations/listpulloperationsresponse.md), error**
-
+**[*operations.ListPullOperationsResponse](../../pkg/models/operations/listpulloperationsresponse.md), error**
+| Error Object                    | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
+| sdkerrors.SDKError              | 400-600                         | */*                             |

@@ -6,29 +6,29 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/codatio/client-sdk-go/platform/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/platform/pkg/models/sdkerrors"
-	"github.com/codatio/client-sdk-go/platform/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/platform/pkg/utils"
+	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/platform/v2/pkg/utils"
 	"io"
 	"net/http"
 	"strings"
 )
 
-// webhooks - Manage webhooks, rules, and events.
-type webhooks struct {
+// Webhooks - Manage webhooks, rules, and events.
+type Webhooks struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newWebhooks(sdkConfig sdkConfiguration) *webhooks {
-	return &webhooks{
+func newWebhooks(sdkConfig sdkConfiguration) *Webhooks {
+	return &Webhooks{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // Create webhook
 // Create a new webhook configuration
-func (s *webhooks) Create(ctx context.Context, request *shared.CreateRule, opts ...operations.Option) (*operations.CreateRuleResponse, error) {
+func (s *Webhooks) Create(ctx context.Context, request *shared.CreateRule, opts ...operations.Option) (*operations.CreateRuleResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -134,15 +134,18 @@ func (s *webhooks) Create(ctx context.Context, request *shared.CreateRule, opts 
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -150,7 +153,7 @@ func (s *webhooks) Create(ctx context.Context, request *shared.CreateRule, opts 
 
 // Get webhook
 // Get a single webhook
-func (s *webhooks) Get(ctx context.Context, request operations.GetWebhookRequest, opts ...operations.Option) (*operations.GetWebhookResponse, error) {
+func (s *Webhooks) Get(ctx context.Context, request operations.GetWebhookRequest, opts ...operations.Option) (*operations.GetWebhookResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -254,15 +257,18 @@ func (s *webhooks) Get(ctx context.Context, request operations.GetWebhookRequest
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -270,7 +276,7 @@ func (s *webhooks) Get(ctx context.Context, request operations.GetWebhookRequest
 
 // List webhooks
 // List webhooks that you are subscribed to.
-func (s *webhooks) List(ctx context.Context, request operations.ListRulesRequest, opts ...operations.Option) (*operations.ListRulesResponse, error) {
+func (s *Webhooks) List(ctx context.Context, request operations.ListRulesRequest, opts ...operations.Option) (*operations.ListRulesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -377,15 +383,18 @@ func (s *webhooks) List(ctx context.Context, request operations.ListRulesRequest
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

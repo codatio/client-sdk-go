@@ -6,29 +6,29 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/codatio/client-sdk-go/platform/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/platform/pkg/models/sdkerrors"
-	"github.com/codatio/client-sdk-go/platform/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/platform/pkg/utils"
+	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/platform/v2/pkg/utils"
 	"io"
 	"net/http"
 	"strings"
 )
 
-// integrations - View and manage your available integrations in Codat.
-type integrations struct {
+// Integrations - View and manage your available integrations in Codat.
+type Integrations struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newIntegrations(sdkConfig sdkConfiguration) *integrations {
-	return &integrations{
+func newIntegrations(sdkConfig sdkConfiguration) *Integrations {
+	return &Integrations{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // Get integration
 // Get single integration, by platformKey
-func (s *integrations) Get(ctx context.Context, request operations.GetIntegrationRequest, opts ...operations.Option) (*operations.GetIntegrationResponse, error) {
+func (s *Integrations) Get(ctx context.Context, request operations.GetIntegrationRequest, opts ...operations.Option) (*operations.GetIntegrationResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -132,15 +132,18 @@ func (s *integrations) Get(ctx context.Context, request operations.GetIntegratio
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -148,7 +151,7 @@ func (s *integrations) Get(ctx context.Context, request operations.GetIntegratio
 
 // GetBranding - Get branding
 // Get branding for platform.
-func (s *integrations) GetBranding(ctx context.Context, request operations.GetIntegrationsBrandingRequest, opts ...operations.Option) (*operations.GetIntegrationsBrandingResponse, error) {
+func (s *Integrations) GetBranding(ctx context.Context, request operations.GetIntegrationsBrandingRequest, opts ...operations.Option) (*operations.GetIntegrationsBrandingResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -252,15 +255,18 @@ func (s *integrations) GetBranding(ctx context.Context, request operations.GetIn
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -268,7 +274,7 @@ func (s *integrations) GetBranding(ctx context.Context, request operations.GetIn
 
 // List integrations
 // List your available integrations
-func (s *integrations) List(ctx context.Context, request operations.ListIntegrationsRequest, opts ...operations.Option) (*operations.ListIntegrationsResponse, error) {
+func (s *Integrations) List(ctx context.Context, request operations.ListIntegrationsRequest, opts ...operations.Option) (*operations.ListIntegrationsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -373,15 +379,18 @@ func (s *integrations) List(ctx context.Context, request operations.ListIntegrat
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
