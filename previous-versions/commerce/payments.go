@@ -14,13 +14,13 @@ import (
 	"net/http"
 )
 
-// payments - Retrieve standardized data from linked commerce platforms.
-type payments struct {
+// Payments - Retrieve standardized data from linked commerce platforms.
+type Payments struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newPayments(sdkConfig sdkConfiguration) *payments {
-	return &payments{
+func newPayments(sdkConfig sdkConfiguration) *Payments {
+	return &Payments{
 		sdkConfiguration: sdkConfig,
 	}
 }
@@ -33,7 +33,7 @@ func newPayments(sdkConfig sdkConfiguration) *payments {
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/commerce?view=tab-by-data-type&dataType=commerce-payments) for integrations that support getting a specific payment.
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
-func (s *payments) Get(ctx context.Context, request operations.GetPaymentRequest, opts ...operations.Option) (*operations.GetPaymentResponse, error) {
+func (s *Payments) Get(ctx context.Context, request operations.GetPaymentRequest, opts ...operations.Option) (*operations.GetPaymentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -139,15 +139,18 @@ func (s *payments) Get(ctx context.Context, request operations.GetPaymentRequest
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -161,7 +164,7 @@ func (s *payments) Get(ctx context.Context, request operations.GetPaymentRequest
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/commerce?view=tab-by-data-type&dataType=commerce-paymentMethods) for integrations that support getting a specific payment method.
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
-func (s *payments) GetMethod(ctx context.Context, request operations.GetPaymentMethodRequest, opts ...operations.Option) (*operations.GetPaymentMethodResponse, error) {
+func (s *Payments) GetMethod(ctx context.Context, request operations.GetPaymentMethodRequest, opts ...operations.Option) (*operations.GetPaymentMethodResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -267,15 +270,18 @@ func (s *payments) GetMethod(ctx context.Context, request operations.GetPaymentM
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -287,7 +293,7 @@ func (s *payments) GetMethod(ctx context.Context, request operations.GetPaymentM
 // [Payments](https://docs.codat.io/commerce-api#/schemas/Payment) contain details of all payments made by customers to the company.
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
-func (s *payments) List(ctx context.Context, request operations.ListPaymentsRequest, opts ...operations.Option) (*operations.ListPaymentsResponse, error) {
+func (s *Payments) List(ctx context.Context, request operations.ListPaymentsRequest, opts ...operations.Option) (*operations.ListPaymentsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -399,15 +405,18 @@ func (s *payments) List(ctx context.Context, request operations.ListPaymentsRequ
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -419,7 +428,7 @@ func (s *payments) List(ctx context.Context, request operations.ListPaymentsRequ
 // [Payment methods](https://docs.codat.io/commerce-api#/schemas/PaymentMethod) represent the payment method(s) used to make payments.
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
-func (s *payments) ListMethods(ctx context.Context, request operations.ListPaymentMethodsRequest, opts ...operations.Option) (*operations.ListPaymentMethodsResponse, error) {
+func (s *Payments) ListMethods(ctx context.Context, request operations.ListPaymentMethodsRequest, opts ...operations.Option) (*operations.ListPaymentMethodsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -531,15 +540,18 @@ func (s *payments) ListMethods(ctx context.Context, request operations.ListPayme
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

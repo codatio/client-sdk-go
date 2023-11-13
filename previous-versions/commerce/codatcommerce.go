@@ -72,23 +72,23 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 // [See our OpenAPI spec](https://github.com/codatio/oas)
 type CodatCommerce struct {
 	// Retrieve standardized data from linked commerce platforms.
-	CompanyInfo *companyInfo
+	Customers *Customers
 	// Retrieve standardized data from linked commerce platforms.
-	Customers *customers
+	Disputes *Disputes
 	// Retrieve standardized data from linked commerce platforms.
-	Disputes *disputes
+	CompanyInfo *CompanyInfo
 	// Retrieve standardized data from linked commerce platforms.
-	Locations *locations
+	Locations *Locations
 	// Retrieve standardized data from linked commerce platforms.
-	Orders *orders
+	Orders *Orders
 	// Retrieve standardized data from linked commerce platforms.
-	Payments *payments
+	Payments *Payments
 	// Retrieve standardized data from linked commerce platforms.
-	Products *products
+	Products *Products
 	// Retrieve standardized data from linked commerce platforms.
-	TaxComponents *taxComponents
+	TaxComponents *TaxComponents
 	// Retrieve standardized data from linked commerce platforms.
-	Transactions *transactions
+	Transactions *Transactions
 
 	sdkConfiguration sdkConfiguration
 }
@@ -166,9 +166,9 @@ func New(opts ...SDKOption) *CodatCommerce {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "0.26.0",
-			GenVersion:        "2.173.0",
-			UserAgent:         "speakeasy-sdk/go 0.26.0 2.173.0 3.0.0 github.com/codatio/client-sdk-go/previous-versions/commerce",
+			SDKVersion:        "0.27.0",
+			GenVersion:        "2.188.1",
+			UserAgent:         "speakeasy-sdk/go 0.27.0 2.188.1 3.0.0 github.com/codatio/client-sdk-go/previous-versions/commerce",
 		},
 	}
 	for _, opt := range opts {
@@ -187,11 +187,11 @@ func New(opts ...SDKOption) *CodatCommerce {
 		}
 	}
 
-	sdk.CompanyInfo = newCompanyInfo(sdk.sdkConfiguration)
-
 	sdk.Customers = newCustomers(sdk.sdkConfiguration)
 
 	sdk.Disputes = newDisputes(sdk.sdkConfiguration)
+
+	sdk.CompanyInfo = newCompanyInfo(sdk.sdkConfiguration)
 
 	sdk.Locations = newLocations(sdk.sdkConfiguration)
 

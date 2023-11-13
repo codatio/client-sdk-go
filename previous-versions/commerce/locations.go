@@ -14,13 +14,13 @@ import (
 	"net/http"
 )
 
-// locations - Retrieve standardized data from linked commerce platforms.
-type locations struct {
+// Locations - Retrieve standardized data from linked commerce platforms.
+type Locations struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newLocations(sdkConfig sdkConfiguration) *locations {
-	return &locations{
+func newLocations(sdkConfig sdkConfiguration) *Locations {
+	return &Locations{
 		sdkConfiguration: sdkConfig,
 	}
 }
@@ -33,7 +33,7 @@ func newLocations(sdkConfig sdkConfiguration) *locations {
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/commerce?view=tab-by-data-type&dataType=commerce-locations) for integrations that support getting a specific location.
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
-func (s *locations) Get(ctx context.Context, request operations.GetLocationRequest, opts ...operations.Option) (*operations.GetLocationResponse, error) {
+func (s *Locations) Get(ctx context.Context, request operations.GetLocationRequest, opts ...operations.Option) (*operations.GetLocationResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -139,15 +139,18 @@ func (s *locations) Get(ctx context.Context, request operations.GetLocationReque
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -159,7 +162,7 @@ func (s *locations) Get(ctx context.Context, request operations.GetLocationReque
 // [Locations](https://docs.codat.io/commerce-api#/schemas/Location) hold information on the geographic location at which stocks of [products](https://docs.codat.io/commerce-api#/schemas/Product) may be held or where [orders](https://docs.codat.io/commerce-api#/schemas/Order) were placed.
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
-func (s *locations) List(ctx context.Context, request operations.ListLocationsRequest, opts ...operations.Option) (*operations.ListLocationsResponse, error) {
+func (s *Locations) List(ctx context.Context, request operations.ListLocationsRequest, opts ...operations.Option) (*operations.ListLocationsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -265,15 +268,18 @@ func (s *locations) List(ctx context.Context, request operations.ListLocationsRe
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

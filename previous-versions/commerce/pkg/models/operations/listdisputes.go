@@ -81,8 +81,6 @@ type ListDisputesResponse struct {
 	ContentType string
 	// OK
 	Disputes *shared.Disputes
-	// Your `query` parameter was not correctly formed
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -101,13 +99,6 @@ func (o *ListDisputesResponse) GetDisputes() *shared.Disputes {
 		return nil
 	}
 	return o.Disputes
-}
-
-func (o *ListDisputesResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *ListDisputesResponse) GetStatusCode() int {
