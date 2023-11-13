@@ -33,9 +33,9 @@ package main
 import(
 	"context"
 	"log"
-	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll"
-	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/operations"
+	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll/v2"
+	"github.com/codatio/client-sdk-go/sync-for-payroll/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payroll/v2/pkg/models/operations"
 )
 
 func main() {
@@ -47,14 +47,11 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Journals.Create(ctx, operations.CreateJournalRequest{
-        Journal: &shared.Journal{
-            CreatedOn: syncforpayroll.String("2022-10-23T00:00:00.000Z"),
-            Metadata: &shared.Metadata{},
-            ModifiedDate: syncforpayroll.String("2022-10-23T00:00:00.000Z"),
-            SourceModifiedDate: syncforpayroll.String("2022-10-23T00:00:00.000Z"),
-        },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
+        JournalPrototype: &shared.JournalPrototype{
+            CreatedOn: syncforpayroll.String("2022-10-23T00:00:00.000Z"),
+        },
     })
     if err != nil {
         log.Fatal(err)
@@ -68,17 +65,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
-| `request`                                                                          | [operations.CreateJournalRequest](../../models/operations/createjournalrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
-| `opts`                                                                             | [][operations.Option](../../models/operations/option.md)                           | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
+| `request`                                                                              | [operations.CreateJournalRequest](../../pkg/models/operations/createjournalrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `opts`                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
 
 ### Response
 
-**[*operations.CreateJournalResponse](../../models/operations/createjournalresponse.md), error**
-
+**[*operations.CreateJournalResponse](../../pkg/models/operations/createjournalresponse.md), error**
+| Error Object                    | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
+| sdkerrors.SDKError              | 400-600                         | */*                             |
 
 ## Get
 
@@ -99,9 +99,9 @@ package main
 import(
 	"context"
 	"log"
-	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll"
-	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/operations"
+	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll/v2"
+	"github.com/codatio/client-sdk-go/sync-for-payroll/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payroll/v2/pkg/models/operations"
 )
 
 func main() {
@@ -128,17 +128,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `ctx`                                                                        | [context.Context](https://pkg.go.dev/context#Context)                        | :heavy_check_mark:                                                           | The context to use for the request.                                          |
-| `request`                                                                    | [operations.GetJournalRequest](../../models/operations/getjournalrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
-| `opts`                                                                       | [][operations.Option](../../models/operations/option.md)                     | :heavy_minus_sign:                                                           | The options for this request.                                                |
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
+| `request`                                                                        | [operations.GetJournalRequest](../../pkg/models/operations/getjournalrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `opts`                                                                           | [][operations.Option](../../pkg/models/operations/option.md)                     | :heavy_minus_sign:                                                               | The options for this request.                                                    |
 
 
 ### Response
 
-**[*operations.GetJournalResponse](../../models/operations/getjournalresponse.md), error**
-
+**[*operations.GetJournalResponse](../../pkg/models/operations/getjournalresponse.md), error**
+| Error Object                    | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| sdkerrors.ErrorMessage          | 401,402,403,404,409,429,500,503 | application/json                |
+| sdkerrors.SDKError              | 400-600                         | */*                             |
 
 ## GetCreateModel
 
@@ -161,9 +164,9 @@ package main
 import(
 	"context"
 	"log"
-	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll"
-	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/operations"
+	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll/v2"
+	"github.com/codatio/client-sdk-go/sync-for-payroll/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payroll/v2/pkg/models/operations"
 )
 
 func main() {
@@ -190,17 +193,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
-| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                              | :heavy_check_mark:                                                                                 | The context to use for the request.                                                                |
-| `request`                                                                                          | [operations.GetCreateJournalModelRequest](../../models/operations/getcreatejournalmodelrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
-| `opts`                                                                                             | [][operations.Option](../../models/operations/option.md)                                           | :heavy_minus_sign:                                                                                 | The options for this request.                                                                      |
+| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                  | :heavy_check_mark:                                                                                     | The context to use for the request.                                                                    |
+| `request`                                                                                              | [operations.GetCreateJournalModelRequest](../../pkg/models/operations/getcreatejournalmodelrequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
+| `opts`                                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                                           | :heavy_minus_sign:                                                                                     | The options for this request.                                                                          |
 
 
 ### Response
 
-**[*operations.GetCreateJournalModelResponse](../../models/operations/getcreatejournalmodelresponse.md), error**
-
+**[*operations.GetCreateJournalModelResponse](../../pkg/models/operations/getcreatejournalmodelresponse.md), error**
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
+| sdkerrors.SDKError          | 400-600                     | */*                         |
 
 ## List
 
@@ -219,9 +225,9 @@ package main
 import(
 	"context"
 	"log"
-	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll"
-	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/operations"
+	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll/v2"
+	"github.com/codatio/client-sdk-go/sync-for-payroll/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payroll/v2/pkg/models/operations"
 )
 
 func main() {
@@ -250,14 +256,17 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
-| `request`                                                                        | [operations.ListJournalsRequest](../../models/operations/listjournalsrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
-| `opts`                                                                           | [][operations.Option](../../models/operations/option.md)                         | :heavy_minus_sign:                                                               | The options for this request.                                                    |
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
+| `request`                                                                            | [operations.ListJournalsRequest](../../pkg/models/operations/listjournalsrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| `opts`                                                                               | [][operations.Option](../../pkg/models/operations/option.md)                         | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
 
 
 ### Response
 
-**[*operations.ListJournalsResponse](../../models/operations/listjournalsresponse.md), error**
-
+**[*operations.ListJournalsResponse](../../pkg/models/operations/listjournalsresponse.md), error**
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| sdkerrors.ErrorMessage              | 400,401,402,403,404,409,429,500,503 | application/json                    |
+| sdkerrors.SDKError                  | 400-600                             | */*                                 |

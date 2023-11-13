@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payroll/v2/pkg/models/shared"
 	"net/http"
 )
 
@@ -31,8 +31,6 @@ func (o *GetJournalEntryRequest) GetJournalEntryID() string {
 type GetJournalEntryResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// Success
 	JournalEntry *shared.JournalEntry
 	// HTTP response status code for this operation
@@ -46,13 +44,6 @@ func (o *GetJournalEntryResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *GetJournalEntryResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *GetJournalEntryResponse) GetJournalEntry() *shared.JournalEntry {
