@@ -14,20 +14,20 @@ import (
 	"net/http"
 )
 
-// configuration - Companies sync configuration.
-type configuration struct {
+// Configuration - Companies sync configuration.
+type Configuration struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newConfiguration(sdkConfig sdkConfiguration) *configuration {
-	return &configuration{
+func newConfiguration(sdkConfig sdkConfiguration) *Configuration {
+	return &Configuration{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // GetCompanyConfiguration - Get company configuration
 // Gets a companies expense sync configuration
-func (s *configuration) GetCompanyConfiguration(ctx context.Context, request operations.GetCompanyConfigurationRequest, opts ...operations.Option) (*operations.GetCompanyConfigurationResponse, error) {
+func (s *Configuration) GetCompanyConfiguration(ctx context.Context, request operations.GetCompanyConfigurationRequest, opts ...operations.Option) (*operations.GetCompanyConfigurationResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -131,15 +131,18 @@ func (s *configuration) GetCompanyConfiguration(ctx context.Context, request ope
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -147,7 +150,7 @@ func (s *configuration) GetCompanyConfiguration(ctx context.Context, request ope
 
 // SaveCompanyConfiguration - Set company configuration
 // Sets a companies expense sync configuration
-func (s *configuration) SaveCompanyConfiguration(ctx context.Context, request operations.SaveCompanyConfigurationRequest, opts ...operations.Option) (*operations.SaveCompanyConfigurationResponse, error) {
+func (s *Configuration) SaveCompanyConfiguration(ctx context.Context, request operations.SaveCompanyConfigurationRequest, opts ...operations.Option) (*operations.SaveCompanyConfigurationResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -260,15 +263,18 @@ func (s *configuration) SaveCompanyConfiguration(ctx context.Context, request op
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

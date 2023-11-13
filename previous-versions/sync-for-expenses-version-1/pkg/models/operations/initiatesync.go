@@ -30,8 +30,6 @@ func (o *InitiateSyncRequest) GetCompanyID() string {
 type InitiateSyncResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// The request made is not valid.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -43,13 +41,6 @@ func (o *InitiateSyncResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *InitiateSyncResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *InitiateSyncResponse) GetStatusCode() int {

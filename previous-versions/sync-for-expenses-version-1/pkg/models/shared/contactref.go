@@ -7,39 +7,39 @@ import (
 	"fmt"
 )
 
-// ContactRefContactType - The type of contact.
-type ContactRefContactType string
+// ContactType - The type of contact.
+type ContactType string
 
 const (
-	ContactRefContactTypeSupplier ContactRefContactType = "Supplier"
+	ContactTypeSupplier ContactType = "Supplier"
 )
 
-func (e ContactRefContactType) ToPointer() *ContactRefContactType {
+func (e ContactType) ToPointer() *ContactType {
 	return &e
 }
 
-func (e *ContactRefContactType) UnmarshalJSON(data []byte) error {
+func (e *ContactType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "Supplier":
-		*e = ContactRefContactType(v)
+		*e = ContactType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ContactRefContactType: %v", v)
+		return fmt.Errorf("invalid value for ContactType: %v", v)
 	}
 }
 
 type ContactRef struct {
 	// The type of contact.
-	ContactType *ContactRefContactType `json:"contactType,omitempty"`
+	ContactType *ContactType `json:"contactType,omitempty"`
 	// Identifier of supplier or customer.
 	ID *string `json:"id,omitempty"`
 }
 
-func (o *ContactRef) GetContactType() *ContactRefContactType {
+func (o *ContactRef) GetContactType() *ContactType {
 	if o == nil {
 		return nil
 	}
