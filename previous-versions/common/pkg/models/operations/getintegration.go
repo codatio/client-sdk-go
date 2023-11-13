@@ -22,8 +22,6 @@ func (o *GetIntegrationRequest) GetPlatformKey() string {
 type GetIntegrationResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// OK
 	Integration *shared.Integration
 	// HTTP response status code for this operation
@@ -37,13 +35,6 @@ func (o *GetIntegrationResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *GetIntegrationResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *GetIntegrationResponse) GetIntegration() *shared.Integration {

@@ -70,8 +70,6 @@ func (o *GetCompanyPushHistoryRequest) GetQuery() *string {
 type GetCompanyPushHistoryResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Your `query` parameter was not correctly formed
-	ErrorMessage *shared.ErrorMessage
 	// OK
 	PushOperations *shared.PushOperations
 	// HTTP response status code for this operation
@@ -85,13 +83,6 @@ func (o *GetCompanyPushHistoryResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *GetCompanyPushHistoryResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *GetCompanyPushHistoryResponse) GetPushOperations() *shared.PushOperations {

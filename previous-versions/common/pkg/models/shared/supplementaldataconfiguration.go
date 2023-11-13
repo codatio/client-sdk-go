@@ -2,8 +2,8 @@
 
 package shared
 
-// SupplementalDataConfigurationSupplementalDataSourceConfiguration - The client's defined name for the object.
-type SupplementalDataConfigurationSupplementalDataSourceConfiguration struct {
+// SupplementalDataSourceConfiguration - The client's defined name for the object.
+type SupplementalDataSourceConfiguration struct {
 	// The underlying endpoint of the source system which the configuration is targeting.
 	DataSource *string `json:"dataSource,omitempty"`
 	// The additional properties that are required when pulling records.
@@ -12,21 +12,21 @@ type SupplementalDataConfigurationSupplementalDataSourceConfiguration struct {
 	PushData map[string]string `json:"pushData,omitempty"`
 }
 
-func (o *SupplementalDataConfigurationSupplementalDataSourceConfiguration) GetDataSource() *string {
+func (o *SupplementalDataSourceConfiguration) GetDataSource() *string {
 	if o == nil {
 		return nil
 	}
 	return o.DataSource
 }
 
-func (o *SupplementalDataConfigurationSupplementalDataSourceConfiguration) GetPullData() map[string]string {
+func (o *SupplementalDataSourceConfiguration) GetPullData() map[string]string {
 	if o == nil {
 		return nil
 	}
 	return o.PullData
 }
 
-func (o *SupplementalDataConfigurationSupplementalDataSourceConfiguration) GetPushData() map[string]string {
+func (o *SupplementalDataSourceConfiguration) GetPushData() map[string]string {
 	if o == nil {
 		return nil
 	}
@@ -34,10 +34,10 @@ func (o *SupplementalDataConfigurationSupplementalDataSourceConfiguration) GetPu
 }
 
 type SupplementalDataConfiguration struct {
-	SupplementalDataConfig map[string]SupplementalDataConfigurationSupplementalDataSourceConfiguration `json:"supplementalDataConfig,omitempty"`
+	SupplementalDataConfig map[string]SupplementalDataSourceConfiguration `json:"supplementalDataConfig,omitempty"`
 }
 
-func (o *SupplementalDataConfiguration) GetSupplementalDataConfig() map[string]SupplementalDataConfigurationSupplementalDataSourceConfiguration {
+func (o *SupplementalDataConfiguration) GetSupplementalDataConfig() map[string]SupplementalDataSourceConfiguration {
 	if o == nil {
 		return nil
 	}

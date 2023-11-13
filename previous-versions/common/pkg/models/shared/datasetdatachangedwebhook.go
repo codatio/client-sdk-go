@@ -2,21 +2,21 @@
 
 package shared
 
-type DatasetDataChangedWebhookDatasetDataChangedWebhookData struct {
+type DatasetDataChangedWebhookData struct {
 	// Available Data types
 	DataType *DataType `json:"dataType,omitempty"`
 	// Unique identifier for the dataset that completed its sync.
 	DatasetID *string `json:"datasetId,omitempty"`
 }
 
-func (o *DatasetDataChangedWebhookDatasetDataChangedWebhookData) GetDataType() *DataType {
+func (o *DatasetDataChangedWebhookData) GetDataType() *DataType {
 	if o == nil {
 		return nil
 	}
 	return o.DataType
 }
 
-func (o *DatasetDataChangedWebhookDatasetDataChangedWebhookData) GetDatasetID() *string {
+func (o *DatasetDataChangedWebhookData) GetDatasetID() *string {
 	if o == nil {
 		return nil
 	}
@@ -32,8 +32,8 @@ type DatasetDataChangedWebhook struct {
 	// Name of your client in Codat.
 	ClientName *string `json:"ClientName,omitempty"`
 	// Unique identifier for your SMB in Codat.
-	CompanyID *string                                                 `json:"CompanyId,omitempty"`
-	Data      *DatasetDataChangedWebhookDatasetDataChangedWebhookData `json:"Data,omitempty"`
+	CompanyID *string                        `json:"CompanyId,omitempty"`
+	Data      *DatasetDataChangedWebhookData `json:"Data,omitempty"`
 	// Unique identifier for a company's data connection.
 	DataConnectionID *string `json:"DataConnectionId,omitempty"`
 	// A human readable message about the webhook.
@@ -72,7 +72,7 @@ func (o *DatasetDataChangedWebhook) GetCompanyID() *string {
 	return o.CompanyID
 }
 
-func (o *DatasetDataChangedWebhook) GetData() *DatasetDataChangedWebhookDatasetDataChangedWebhookData {
+func (o *DatasetDataChangedWebhook) GetData() *DatasetDataChangedWebhookData {
 	if o == nil {
 		return nil
 	}

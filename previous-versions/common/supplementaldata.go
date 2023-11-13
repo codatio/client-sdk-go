@@ -14,13 +14,13 @@ import (
 	"net/http"
 )
 
-// supplementalData - View and configure supplemental data for supported data types.
-type supplementalData struct {
+// SupplementalData - View and configure supplemental data for supported data types.
+type SupplementalData struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newSupplementalData(sdkConfig sdkConfiguration) *supplementalData {
-	return &supplementalData{
+func newSupplementalData(sdkConfig sdkConfiguration) *SupplementalData {
+	return &SupplementalData{
 		sdkConfiguration: sdkConfig,
 	}
 }
@@ -32,7 +32,7 @@ func newSupplementalData(sdkConfig sdkConfiguration) *supplementalData {
 //
 // **Integration-specific behaviour**
 // See the *examples* for integration-specific frequently requested properties.
-func (s *supplementalData) Configure(ctx context.Context, request operations.ConfigureSupplementalDataRequest, opts ...operations.Option) (*operations.ConfigureSupplementalDataResponse, error) {
+func (s *SupplementalData) Configure(ctx context.Context, request operations.ConfigureSupplementalDataRequest, opts ...operations.Option) (*operations.ConfigureSupplementalDataResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -132,15 +132,18 @@ func (s *supplementalData) Configure(ctx context.Context, request operations.Con
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -150,7 +153,7 @@ func (s *supplementalData) Configure(ctx context.Context, request operations.Con
 // The *Get configuration* endpoint returns supplemental data configuration previously created for each integration and data type combination.
 //
 // [Supplemental data](https://docs.codat.io/using-the-api/additional-data) is additional data you can include in Codat's standard data types.
-func (s *supplementalData) GetConfiguration(ctx context.Context, request operations.GetSupplementalDataConfigurationRequest, opts ...operations.Option) (*operations.GetSupplementalDataConfigurationResponse, error) {
+func (s *SupplementalData) GetConfiguration(ctx context.Context, request operations.GetSupplementalDataConfigurationRequest, opts ...operations.Option) (*operations.GetSupplementalDataConfigurationResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -254,15 +257,18 @@ func (s *supplementalData) GetConfiguration(ctx context.Context, request operati
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
