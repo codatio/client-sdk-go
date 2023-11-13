@@ -29,9 +29,9 @@ package main
 import(
 	"context"
 	"log"
-	lending "github.com/codatio/client-sdk-go/lending/v4"
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
+	lending "github.com/codatio/client-sdk-go/lending/v5"
+	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/operations"
 )
 
 func main() {
@@ -44,7 +44,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Liabilities.GenerateLoanSummary(ctx, operations.GenerateLoanSummaryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        SourceType: operations.GenerateLoanSummarySourceTypeAccounting,
+        SourceType: operations.SourceTypeAccounting,
     })
     if err != nil {
         log.Fatal(err)
@@ -58,17 +58,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
-| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                          | :heavy_check_mark:                                                                             | The context to use for the request.                                                            |
-| `request`                                                                                      | [operations.GenerateLoanSummaryRequest](../../models/operations/generateloansummaryrequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
-| `opts`                                                                                         | [][operations.Option](../../models/operations/option.md)                                       | :heavy_minus_sign:                                                                             | The options for this request.                                                                  |
+| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                              | :heavy_check_mark:                                                                                 | The context to use for the request.                                                                |
+| `request`                                                                                          | [operations.GenerateLoanSummaryRequest](../../pkg/models/operations/generateloansummaryrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
+| `opts`                                                                                             | [][operations.Option](../../pkg/models/operations/option.md)                                       | :heavy_minus_sign:                                                                                 | The options for this request.                                                                      |
 
 
 ### Response
 
-**[*operations.GenerateLoanSummaryResponse](../../models/operations/generateloansummaryresponse.md), error**
-
+**[*operations.GenerateLoanSummaryResponse](../../pkg/models/operations/generateloansummaryresponse.md), error**
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
+| sdkerrors.SDKError          | 400-600                     | */*                         |
 
 ## GenerateLoanTransactions
 
@@ -87,9 +90,9 @@ package main
 import(
 	"context"
 	"log"
-	lending "github.com/codatio/client-sdk-go/lending/v4"
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
+	lending "github.com/codatio/client-sdk-go/lending/v5"
+	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/operations"
 )
 
 func main() {
@@ -102,7 +105,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Liabilities.GenerateLoanTransactions(ctx, operations.GenerateLoanTransactionsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        SourceType: operations.GenerateLoanTransactionsSourceTypeAccounting,
+        SourceType: operations.QueryParamSourceTypeAccounting,
     })
     if err != nil {
         log.Fatal(err)
@@ -116,17 +119,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
-| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                                    | :heavy_check_mark:                                                                                       | The context to use for the request.                                                                      |
-| `request`                                                                                                | [operations.GenerateLoanTransactionsRequest](../../models/operations/generateloantransactionsrequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
-| `opts`                                                                                                   | [][operations.Option](../../models/operations/option.md)                                                 | :heavy_minus_sign:                                                                                       | The options for this request.                                                                            |
+| Parameter                                                                                                    | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                                        | :heavy_check_mark:                                                                                           | The context to use for the request.                                                                          |
+| `request`                                                                                                    | [operations.GenerateLoanTransactionsRequest](../../pkg/models/operations/generateloantransactionsrequest.md) | :heavy_check_mark:                                                                                           | The request object to use for the request.                                                                   |
+| `opts`                                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                                 | :heavy_minus_sign:                                                                                           | The options for this request.                                                                                |
 
 
 ### Response
 
-**[*operations.GenerateLoanTransactionsResponse](../../models/operations/generateloantransactionsresponse.md), error**
-
+**[*operations.GenerateLoanTransactionsResponse](../../pkg/models/operations/generateloantransactionsresponse.md), error**
+| Error Object                    | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
+| sdkerrors.SDKError              | 400-600                         | */*                             |
 
 ## GetLoanSummary
 
@@ -145,9 +151,9 @@ package main
 import(
 	"context"
 	"log"
-	lending "github.com/codatio/client-sdk-go/lending/v4"
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
+	lending "github.com/codatio/client-sdk-go/lending/v5"
+	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/operations"
 )
 
 func main() {
@@ -160,7 +166,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Liabilities.GetLoanSummary(ctx, operations.GetLoanSummaryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        SourceType: operations.GetLoanSummarySourceTypeBanking,
+        SourceType: operations.GetLoanSummaryQueryParamSourceTypeBanking,
     })
     if err != nil {
         log.Fatal(err)
@@ -174,17 +180,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
-| `request`                                                                            | [operations.GetLoanSummaryRequest](../../models/operations/getloansummaryrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
-| `opts`                                                                               | [][operations.Option](../../models/operations/option.md)                             | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
+| `request`                                                                                | [operations.GetLoanSummaryRequest](../../pkg/models/operations/getloansummaryrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `opts`                                                                                   | [][operations.Option](../../pkg/models/operations/option.md)                             | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
 
 
 ### Response
 
-**[*operations.GetLoanSummaryResponse](../../models/operations/getloansummaryresponse.md), error**
-
+**[*operations.GetLoanSummaryResponse](../../pkg/models/operations/getloansummaryresponse.md), error**
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
+| sdkerrors.SDKError          | 400-600                     | */*                         |
 
 ## ListLoanTransactions
 
@@ -203,9 +212,9 @@ package main
 import(
 	"context"
 	"log"
-	lending "github.com/codatio/client-sdk-go/lending/v4"
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
+	lending "github.com/codatio/client-sdk-go/lending/v5"
+	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/operations"
 )
 
 func main() {
@@ -218,7 +227,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Liabilities.ListLoanTransactions(ctx, operations.ListLoanTransactionsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        SourceType: operations.ListLoanTransactionsSourceTypeCommerce,
+        SourceType: operations.ListLoanTransactionsQueryParamSourceTypeCommerce,
     })
     if err != nil {
         log.Fatal(err)
@@ -232,14 +241,17 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
-| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
-| `request`                                                                                        | [operations.ListLoanTransactionsRequest](../../models/operations/listloantransactionsrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
-| `opts`                                                                                           | [][operations.Option](../../models/operations/option.md)                                         | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
+| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                                | :heavy_check_mark:                                                                                   | The context to use for the request.                                                                  |
+| `request`                                                                                            | [operations.ListLoanTransactionsRequest](../../pkg/models/operations/listloantransactionsrequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
+| `opts`                                                                                               | [][operations.Option](../../pkg/models/operations/option.md)                                         | :heavy_minus_sign:                                                                                   | The options for this request.                                                                        |
 
 
 ### Response
 
-**[*operations.ListLoanTransactionsResponse](../../models/operations/listloantransactionsresponse.md), error**
-
+**[*operations.ListLoanTransactionsResponse](../../pkg/models/operations/listloantransactionsresponse.md), error**
+| Error Object                    | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
+| sdkerrors.SDKError              | 400-600                         | */*                             |

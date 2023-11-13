@@ -3,11 +3,11 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/utils"
+	"github.com/codatio/client-sdk-go/lending/v5/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
-type EnhancedFinancialReportReportItem struct {
+type ReportItem struct {
 	AccountCategory *EnhancedReportAccountCategory `json:"accountCategory,omitempty"`
 	// The unique account ID.
 	AccountID *string `json:"accountId,omitempty"`
@@ -37,46 +37,46 @@ type EnhancedFinancialReportReportItem struct {
 	Date *string `json:"date,omitempty"`
 }
 
-func (e EnhancedFinancialReportReportItem) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(e, "", false)
+func (r ReportItem) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
 }
 
-func (e *EnhancedFinancialReportReportItem) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, false); err != nil {
+func (r *ReportItem) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, false); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *EnhancedFinancialReportReportItem) GetAccountCategory() *EnhancedReportAccountCategory {
+func (o *ReportItem) GetAccountCategory() *EnhancedReportAccountCategory {
 	if o == nil {
 		return nil
 	}
 	return o.AccountCategory
 }
 
-func (o *EnhancedFinancialReportReportItem) GetAccountID() *string {
+func (o *ReportItem) GetAccountID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.AccountID
 }
 
-func (o *EnhancedFinancialReportReportItem) GetAccountName() *string {
+func (o *ReportItem) GetAccountName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.AccountName
 }
 
-func (o *EnhancedFinancialReportReportItem) GetBalance() *decimal.Big {
+func (o *ReportItem) GetBalance() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.Balance
 }
 
-func (o *EnhancedFinancialReportReportItem) GetDate() *string {
+func (o *ReportItem) GetDate() *string {
 	if o == nil {
 		return nil
 	}
@@ -86,7 +86,7 @@ func (o *EnhancedFinancialReportReportItem) GetDate() *string {
 type EnhancedFinancialReport struct {
 	ReportInfo *EnhancedReportInfo `json:"reportInfo,omitempty"`
 	// An array of report items.
-	ReportItems []EnhancedFinancialReportReportItem `json:"reportItems,omitempty"`
+	ReportItems []ReportItem `json:"reportItems,omitempty"`
 }
 
 func (o *EnhancedFinancialReport) GetReportInfo() *EnhancedReportInfo {
@@ -96,7 +96,7 @@ func (o *EnhancedFinancialReport) GetReportInfo() *EnhancedReportInfo {
 	return o.ReportInfo
 }
 
-func (o *EnhancedFinancialReport) GetReportItems() []EnhancedFinancialReportReportItem {
+func (o *EnhancedFinancialReport) GetReportItems() []ReportItem {
 	if o == nil {
 		return nil
 	}

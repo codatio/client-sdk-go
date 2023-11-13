@@ -7,22 +7,22 @@ import (
 	"fmt"
 )
 
-// ConnectionSourceType - The type of platform of the connection.
-type ConnectionSourceType string
+// SourceType - The type of platform of the connection.
+type SourceType string
 
 const (
-	ConnectionSourceTypeAccounting ConnectionSourceType = "Accounting"
-	ConnectionSourceTypeBanking    ConnectionSourceType = "Banking"
-	ConnectionSourceTypeCommerce   ConnectionSourceType = "Commerce"
-	ConnectionSourceTypeOther      ConnectionSourceType = "Other"
-	ConnectionSourceTypeUnknown    ConnectionSourceType = "Unknown"
+	SourceTypeAccounting SourceType = "Accounting"
+	SourceTypeBanking    SourceType = "Banking"
+	SourceTypeCommerce   SourceType = "Commerce"
+	SourceTypeOther      SourceType = "Other"
+	SourceTypeUnknown    SourceType = "Unknown"
 )
 
-func (e ConnectionSourceType) ToPointer() *ConnectionSourceType {
+func (e SourceType) ToPointer() *SourceType {
 	return &e
 }
 
-func (e *ConnectionSourceType) UnmarshalJSON(data []byte) error {
+func (e *SourceType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -37,10 +37,10 @@ func (e *ConnectionSourceType) UnmarshalJSON(data []byte) error {
 	case "Other":
 		fallthrough
 	case "Unknown":
-		*e = ConnectionSourceType(v)
+		*e = SourceType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ConnectionSourceType: %v", v)
+		return fmt.Errorf("invalid value for SourceType: %v", v)
 	}
 }
 
@@ -111,7 +111,7 @@ type Connection struct {
 	// A source-specific ID used to distinguish between different sources originating from the same data connection. In general, a data connection is a single data source. However, for TrueLayer, `sourceId` is associated with a specific bank and has a many-to-one relationship with the `integrationId`.
 	SourceID string `json:"sourceId"`
 	// The type of platform of the connection.
-	SourceType ConnectionSourceType `json:"sourceType"`
+	SourceType SourceType `json:"sourceType"`
 	// The current authorization status of the data connection.
 	Status DataConnectionStatus `json:"status"`
 }
@@ -193,9 +193,9 @@ func (o *Connection) GetSourceID() string {
 	return o.SourceID
 }
 
-func (o *Connection) GetSourceType() ConnectionSourceType {
+func (o *Connection) GetSourceType() SourceType {
 	if o == nil {
-		return ConnectionSourceType("")
+		return SourceType("")
 	}
 	return o.SourceType
 }

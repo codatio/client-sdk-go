@@ -6,21 +6,21 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/sdkerrors"
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/utils"
+	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v5/pkg/utils"
 	"io"
 	"net/http"
 )
 
-// excelReports - Download reports in Excel format.
-type excelReports struct {
+// ExcelReports - Download reports in Excel format.
+type ExcelReports struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newExcelReports(sdkConfig sdkConfiguration) *excelReports {
-	return &excelReports{
+func newExcelReports(sdkConfig sdkConfiguration) *ExcelReports {
+	return &ExcelReports{
 		sdkConfiguration: sdkConfig,
 	}
 }
@@ -31,7 +31,7 @@ func newExcelReports(sdkConfig sdkConfiguration) *excelReports {
 // The downloadable Excel file is returned in the response. You can save it to your local machine.
 //
 // You can [learn more](https://docs.codat.io/lending/excel/overview) about valid Excel report types.
-func (s *excelReports) Download(ctx context.Context, request operations.DownloadExcelReportRequest, opts ...operations.Option) (*operations.DownloadExcelReportResponse, error) {
+func (s *ExcelReports) Download(ctx context.Context, request operations.DownloadExcelReportRequest, opts ...operations.Option) (*operations.DownloadExcelReportResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -142,15 +142,18 @@ func (s *excelReports) Download(ctx context.Context, request operations.Download
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -171,7 +174,7 @@ func (s *excelReports) Download(ctx context.Context, request operations.Download
 // | [enhancedInvoices](https://docs.codat.io/lending/excel/enhanced-invoices-report)     | Helps verify that payments have been made against historic invoices. Great for invoice finance lenders.                                       |
 //
 // [Learn more](https://docs.codat.io/lending/excel/overview) about valid Excel report types.
-func (s *excelReports) Generate(ctx context.Context, request operations.GenerateExcelReportRequest, opts ...operations.Option) (*operations.GenerateExcelReportResponse, error) {
+func (s *ExcelReports) Generate(ctx context.Context, request operations.GenerateExcelReportRequest, opts ...operations.Option) (*operations.GenerateExcelReportResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -281,15 +284,18 @@ func (s *excelReports) Generate(ctx context.Context, request operations.Generate
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -301,7 +307,7 @@ func (s *excelReports) Generate(ctx context.Context, request operations.Generate
 // Poll this endpoint to check the progress of the report once you have requested its generation. This will not affect the generation of the report.
 //
 // When the report generation completes successfully, the `inProgress` property will be marked as `false` and the `success` field will be marked as `true`.
-func (s *excelReports) GetStatus(ctx context.Context, request operations.GetExcelReportGenerationStatusRequest, opts ...operations.Option) (*operations.GetExcelReportGenerationStatusResponse, error) {
+func (s *ExcelReports) GetStatus(ctx context.Context, request operations.GetExcelReportGenerationStatusRequest, opts ...operations.Option) (*operations.GetExcelReportGenerationStatusResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -411,15 +417,18 @@ func (s *excelReports) GetStatus(ctx context.Context, request operations.GetExce
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

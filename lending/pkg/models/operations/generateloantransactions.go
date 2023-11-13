@@ -5,24 +5,23 @@ package operations
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"net/http"
 )
 
-// GenerateLoanTransactionsSourceType - Data source type.
-type GenerateLoanTransactionsSourceType string
+// QueryParamSourceType - Data source type.
+type QueryParamSourceType string
 
 const (
-	GenerateLoanTransactionsSourceTypeBanking    GenerateLoanTransactionsSourceType = "banking"
-	GenerateLoanTransactionsSourceTypeCommerce   GenerateLoanTransactionsSourceType = "commerce"
-	GenerateLoanTransactionsSourceTypeAccounting GenerateLoanTransactionsSourceType = "accounting"
+	QueryParamSourceTypeBanking    QueryParamSourceType = "banking"
+	QueryParamSourceTypeCommerce   QueryParamSourceType = "commerce"
+	QueryParamSourceTypeAccounting QueryParamSourceType = "accounting"
 )
 
-func (e GenerateLoanTransactionsSourceType) ToPointer() *GenerateLoanTransactionsSourceType {
+func (e QueryParamSourceType) ToPointer() *QueryParamSourceType {
 	return &e
 }
 
-func (e *GenerateLoanTransactionsSourceType) UnmarshalJSON(data []byte) error {
+func (e *QueryParamSourceType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -33,10 +32,10 @@ func (e *GenerateLoanTransactionsSourceType) UnmarshalJSON(data []byte) error {
 	case "commerce":
 		fallthrough
 	case "accounting":
-		*e = GenerateLoanTransactionsSourceType(v)
+		*e = QueryParamSourceType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for GenerateLoanTransactionsSourceType: %v", v)
+		return fmt.Errorf("invalid value for QueryParamSourceType: %v", v)
 	}
 }
 
@@ -44,7 +43,7 @@ type GenerateLoanTransactionsRequest struct {
 	// Unique identifier for a company.
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	// Data source type.
-	SourceType GenerateLoanTransactionsSourceType `queryParam:"style=form,explode=true,name=sourceType"`
+	SourceType QueryParamSourceType `queryParam:"style=form,explode=true,name=sourceType"`
 }
 
 func (o *GenerateLoanTransactionsRequest) GetCompanyID() string {
@@ -54,9 +53,9 @@ func (o *GenerateLoanTransactionsRequest) GetCompanyID() string {
 	return o.CompanyID
 }
 
-func (o *GenerateLoanTransactionsRequest) GetSourceType() GenerateLoanTransactionsSourceType {
+func (o *GenerateLoanTransactionsRequest) GetSourceType() QueryParamSourceType {
 	if o == nil {
-		return GenerateLoanTransactionsSourceType("")
+		return QueryParamSourceType("")
 	}
 	return o.SourceType
 }
@@ -64,8 +63,6 @@ func (o *GenerateLoanTransactionsRequest) GetSourceType() GenerateLoanTransactio
 type GenerateLoanTransactionsResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// The request made is not valid.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -77,13 +74,6 @@ func (o *GenerateLoanTransactionsResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *GenerateLoanTransactionsResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *GenerateLoanTransactionsResponse) GetStatusCode() int {

@@ -3,9 +3,9 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/types"
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/utils"
+	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v5/pkg/types"
+	"github.com/codatio/client-sdk-go/lending/v5/pkg/utils"
 	"net/http"
 )
 
@@ -64,8 +64,6 @@ type GetAccountingAgedCreditorsReportResponse struct {
 	AccountingAgedCreditorReport *shared.AccountingAgedCreditorReport
 	// HTTP response content type for this operation
 	ContentType string
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -84,13 +82,6 @@ func (o *GetAccountingAgedCreditorsReportResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *GetAccountingAgedCreditorsReportResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *GetAccountingAgedCreditorsReportResponse) GetStatusCode() int {

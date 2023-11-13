@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/utils"
+	"github.com/codatio/client-sdk-go/lending/v5/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
@@ -19,7 +19,7 @@ type CreditNoteLineItem struct {
 	// The credit note is a direct income if `True`.
 	IsDirectIncome *bool `json:"isDirectIncome,omitempty"`
 	// Reference to the item the line is linked to.
-	ItemRef *ItemRef `json:"itemRef,omitempty"`
+	ItemRef *PropertieItemRef `json:"itemRef,omitempty"`
 	// Number of units of the goods or service for which credit has been issued.
 	Quantity *decimal.Big `decimal:"number" json:"quantity"`
 	// Amount of credit associated with the line item, including discounts but excluding tax.
@@ -95,7 +95,7 @@ func (o *CreditNoteLineItem) GetIsDirectIncome() *bool {
 	return o.IsDirectIncome
 }
 
-func (o *CreditNoteLineItem) GetItemRef() *ItemRef {
+func (o *CreditNoteLineItem) GetItemRef() *PropertieItemRef {
 	if o == nil {
 		return nil
 	}

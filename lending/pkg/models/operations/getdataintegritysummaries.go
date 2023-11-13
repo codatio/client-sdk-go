@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/shared"
 	"net/http"
 )
 
@@ -42,8 +42,6 @@ type GetDataIntegritySummariesResponse struct {
 	ContentType string
 	// OK
 	DataIntegritySummaries *shared.DataIntegritySummaries
-	// Your `query` parameter was not correctly formed
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -62,13 +60,6 @@ func (o *GetDataIntegritySummariesResponse) GetDataIntegritySummaries() *shared.
 		return nil
 	}
 	return o.DataIntegritySummaries
-}
-
-func (o *GetDataIntegritySummariesResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *GetDataIntegritySummariesResponse) GetStatusCode() int {

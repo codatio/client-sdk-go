@@ -2,23 +2,23 @@
 
 package lending
 
-type banking struct {
-	AccountBalances       *bankingAccountBalances
-	Accounts              *bankingAccounts
-	CategorizedStatement  *bankingCategorizedStatement
-	TransactionCategories *bankingTransactionCategories
-	Transactions          *bankingTransactions
+type Banking struct {
+	AccountBalances       *AccountBalances
+	Accounts              *CodatLendingAccounts
+	TransactionCategories *TransactionCategories
+	Transactions          *CodatLendingBankingTransactions
+	CategorizedStatement  *CategorizedStatement
 
 	sdkConfiguration sdkConfiguration
 }
 
-func newBanking(sdkConfig sdkConfiguration) *banking {
-	return &banking{
+func newBanking(sdkConfig sdkConfiguration) *Banking {
+	return &Banking{
 		sdkConfiguration:      sdkConfig,
-		AccountBalances:       newBankingAccountBalances(sdkConfig),
-		Accounts:              newBankingAccounts(sdkConfig),
-		CategorizedStatement:  newBankingCategorizedStatement(sdkConfig),
-		TransactionCategories: newBankingTransactionCategories(sdkConfig),
-		Transactions:          newBankingTransactions(sdkConfig),
+		AccountBalances:       newAccountBalances(sdkConfig),
+		Accounts:              newCodatLendingAccounts(sdkConfig),
+		TransactionCategories: newTransactionCategories(sdkConfig),
+		Transactions:          newCodatLendingBankingTransactions(sdkConfig),
+		CategorizedStatement:  newCategorizedStatement(sdkConfig),
 	}
 }

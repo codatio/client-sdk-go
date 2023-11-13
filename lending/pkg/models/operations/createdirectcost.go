@@ -3,19 +3,19 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/utils"
+	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v5/pkg/utils"
 	"net/http"
 )
 
 type CreateDirectCostRequest struct {
-	AccountingDirectCost *shared.AccountingDirectCost `request:"mediaType=application/json"`
 	// Allow a sync upon push completion.
 	AllowSyncOnPushComplete *bool `default:"true" queryParam:"style=form,explode=true,name=allowSyncOnPushComplete"`
 	// Unique identifier for a company.
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	// Unique identifier for a connection.
-	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
+	ConnectionID        string                      `pathParam:"style=simple,explode=false,name=connectionId"`
+	DirectCostPrototype *shared.DirectCostPrototype `request:"mediaType=application/json"`
 	// Time limit for the push operation to complete before it is timed out.
 	TimeoutInMinutes *int `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
 }
@@ -29,13 +29,6 @@ func (c *CreateDirectCostRequest) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
-}
-
-func (o *CreateDirectCostRequest) GetAccountingDirectCost() *shared.AccountingDirectCost {
-	if o == nil {
-		return nil
-	}
-	return o.AccountingDirectCost
 }
 
 func (o *CreateDirectCostRequest) GetAllowSyncOnPushComplete() *bool {
@@ -59,6 +52,13 @@ func (o *CreateDirectCostRequest) GetConnectionID() string {
 	return o.ConnectionID
 }
 
+func (o *CreateDirectCostRequest) GetDirectCostPrototype() *shared.DirectCostPrototype {
+	if o == nil {
+		return nil
+	}
+	return o.DirectCostPrototype
+}
+
 func (o *CreateDirectCostRequest) GetTimeoutInMinutes() *int {
 	if o == nil {
 		return nil
@@ -71,8 +71,6 @@ type CreateDirectCostResponse struct {
 	AccountingCreateDirectCostResponse *shared.AccountingCreateDirectCostResponse
 	// HTTP response content type for this operation
 	ContentType string
-	// The request made is not valid.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -91,13 +89,6 @@ func (o *CreateDirectCostResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *CreateDirectCostResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *CreateDirectCostResponse) GetStatusCode() int {

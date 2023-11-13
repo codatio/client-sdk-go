@@ -2,24 +2,24 @@
 
 package shared
 
-// AccountsReceivableTrackingRecordReference - Links the current record to the underlying record or data type that created it.
+// RecordReference - Links the current record to the underlying record or data type that created it.
 //
 // For example, if a journal entry is generated based on an invoice, this property allows you to connect the journal entry to the underlying invoice in our data model.
-type AccountsReceivableTrackingRecordReference struct {
+type RecordReference struct {
 	// Allowed name of the 'dataType'.
 	DataType *string `json:"dataType,omitempty"`
 	// 'id' of the underlying record or data type.
 	ID *string `json:"id,omitempty"`
 }
 
-func (o *AccountsReceivableTrackingRecordReference) GetDataType() *string {
+func (o *RecordReference) GetDataType() *string {
 	if o == nil {
 		return nil
 	}
 	return o.DataType
 }
 
-func (o *AccountsReceivableTrackingRecordReference) GetID() *string {
+func (o *RecordReference) GetID() *string {
 	if o == nil {
 		return nil
 	}
@@ -38,7 +38,7 @@ type AccountsReceivableTracking struct {
 	// Links the current record to the underlying record or data type that created it.
 	//
 	// For example, if a journal entry is generated based on an invoice, this property allows you to connect the journal entry to the underlying invoice in our data model.
-	RecordRef *AccountsReceivableTrackingRecordReference `json:"recordRef,omitempty"`
+	RecordRef *RecordReference `json:"recordRef,omitempty"`
 }
 
 func (o *AccountsReceivableTracking) GetCategoryRefs() []TrackingCategoryRef {
@@ -76,7 +76,7 @@ func (o *AccountsReceivableTracking) GetProjectRef() *ProjectRef {
 	return o.ProjectRef
 }
 
-func (o *AccountsReceivableTracking) GetRecordRef() *AccountsReceivableTrackingRecordReference {
+func (o *AccountsReceivableTracking) GetRecordRef() *RecordReference {
 	if o == nil {
 		return nil
 	}
