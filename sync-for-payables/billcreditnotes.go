@@ -6,21 +6,21 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/sdkerrors"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/utils"
 	"io"
 	"net/http"
 )
 
-// billCreditNotes - Bill credit notes
-type billCreditNotes struct {
+// BillCreditNotes - Bill credit notes
+type BillCreditNotes struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newBillCreditNotes(sdkConfig sdkConfiguration) *billCreditNotes {
-	return &billCreditNotes{
+func newBillCreditNotes(sdkConfig sdkConfiguration) *BillCreditNotes {
+	return &BillCreditNotes{
 		sdkConfiguration: sdkConfig,
 	}
 }
@@ -35,7 +35,7 @@ func newBillCreditNotes(sdkConfig sdkConfiguration) *billCreditNotes {
 // Required data may vary by integration. To see what data to post, first call [Get create/update bill credit note model](https://docs.codat.io/sync-for-payables-api#/operations/get-create-update-billCreditNotes-model).
 //
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=billCreditNotes) for integrations that support creating a bill credit note.
-func (s *billCreditNotes) Create(ctx context.Context, request operations.CreateBillCreditNoteRequest, opts ...operations.Option) (*operations.CreateBillCreditNoteResponse, error) {
+func (s *BillCreditNotes) Create(ctx context.Context, request operations.CreateBillCreditNoteRequest, opts ...operations.Option) (*operations.CreateBillCreditNoteResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -152,15 +152,18 @@ func (s *billCreditNotes) Create(ctx context.Context, request operations.CreateB
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -174,7 +177,7 @@ func (s *billCreditNotes) Create(ctx context.Context, request operations.CreateB
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=billCreditNotes) for integrations that support getting a specific bill credit note.
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/sync-for-payables-api#/operations/refresh-company-data).
-func (s *billCreditNotes) Get(ctx context.Context, request operations.GetBillCreditNoteRequest, opts ...operations.Option) (*operations.GetBillCreditNoteResponse, error) {
+func (s *BillCreditNotes) Get(ctx context.Context, request operations.GetBillCreditNoteRequest, opts ...operations.Option) (*operations.GetBillCreditNoteResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -280,15 +283,18 @@ func (s *billCreditNotes) Get(ctx context.Context, request operations.GetBillCre
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -304,7 +310,7 @@ func (s *billCreditNotes) Get(ctx context.Context, request operations.GetBillCre
 // See the *response examples* for integration-specific indicative models.
 //
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=billCreditNotes) for integrations that support creating and updating a bill credit note.
-func (s *billCreditNotes) GetCreateUpdateModel(ctx context.Context, request operations.GetCreateUpdateBillCreditNoteModelRequest, opts ...operations.Option) (*operations.GetCreateUpdateBillCreditNoteModelResponse, error) {
+func (s *BillCreditNotes) GetCreateUpdateModel(ctx context.Context, request operations.GetCreateUpdateBillCreditNoteModelRequest, opts ...operations.Option) (*operations.GetCreateUpdateBillCreditNoteModelResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -408,15 +414,18 @@ func (s *billCreditNotes) GetCreateUpdateModel(ctx context.Context, request oper
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -428,7 +437,7 @@ func (s *billCreditNotes) GetCreateUpdateModel(ctx context.Context, request oper
 // [Bill credit notes](https://docs.codat.io/sync-for-payables-api#/schemas/BillCreditNote) are issued by a supplier for the purpose of recording credit.
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/sync-for-payables-api#/operations/refresh-company-data).
-func (s *billCreditNotes) List(ctx context.Context, request operations.ListBillCreditNotesRequest, opts ...operations.Option) (*operations.ListBillCreditNotesResponse, error) {
+func (s *BillCreditNotes) List(ctx context.Context, request operations.ListBillCreditNotesRequest, opts ...operations.Option) (*operations.ListBillCreditNotesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -540,15 +549,18 @@ func (s *billCreditNotes) List(ctx context.Context, request operations.ListBillC
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -564,7 +576,7 @@ func (s *billCreditNotes) List(ctx context.Context, request operations.ListBillC
 // Required data may vary by integration. To see what data to post, first call [Get create/update bill credit note model](https://docs.codat.io/sync-for-payables-api#/operations/get-create-update-billCreditNotes-model).
 //
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=billCreditNotes) for integrations that support creating a bill credit note.
-func (s *billCreditNotes) Update(ctx context.Context, request operations.UpdateBillCreditNoteRequest, opts ...operations.Option) (*operations.UpdateBillCreditNoteResponse, error) {
+func (s *BillCreditNotes) Update(ctx context.Context, request operations.UpdateBillCreditNoteRequest, opts ...operations.Option) (*operations.UpdateBillCreditNoteResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -681,15 +693,18 @@ func (s *billCreditNotes) Update(ctx context.Context, request operations.UpdateB
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

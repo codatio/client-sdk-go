@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
 	"net/http"
 )
 
@@ -49,8 +49,6 @@ func (o *DeleteBillAttachmentRequest) GetConnectionID() string {
 type DeleteBillAttachmentResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// OK
 	PushOperation *shared.PushOperation
 	// HTTP response status code for this operation
@@ -64,13 +62,6 @@ func (o *DeleteBillAttachmentResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *DeleteBillAttachmentResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *DeleteBillAttachmentResponse) GetPushOperation() *shared.PushOperation {

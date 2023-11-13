@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
@@ -131,7 +131,7 @@ type BillCreditNote struct {
 	TotalDiscount *decimal.Big `decimal:"number" json:"totalDiscount"`
 	// Amount of tax included in the bill credit note.
 	TotalTaxAmount *decimal.Big          `decimal:"number" json:"totalTaxAmount"`
-	WithholdingTax []WithholdingTaxitems `json:"withholdingTax,omitempty"`
+	WithholdingTax []WithholdingTaxItems `json:"withholdingTax,omitempty"`
 }
 
 func (b BillCreditNote) MarshalJSON() ([]byte, error) {
@@ -292,7 +292,7 @@ func (o *BillCreditNote) GetTotalTaxAmount() *decimal.Big {
 	return o.TotalTaxAmount
 }
 
-func (o *BillCreditNote) GetWithholdingTax() []WithholdingTaxitems {
+func (o *BillCreditNote) GetWithholdingTax() []WithholdingTaxItems {
 	if o == nil {
 		return nil
 	}

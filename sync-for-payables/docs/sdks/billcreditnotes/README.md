@@ -34,10 +34,10 @@ package main
 import(
 	"context"
 	"log"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/types"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/types"
 )
 
 func main() {
@@ -59,7 +59,7 @@ func main() {
             LineItems: []shared.BillCreditNoteLineItem{
                 shared.BillCreditNoteLineItem{
                     AccountRef: &shared.AccountRef{},
-                    ItemRef: &shared.BillCreditNoteLineItemItemReference{
+                    ItemRef: &shared.ItemReference{
                         ID: "<ID>",
                     },
                     Quantity: types.MustNewDecimalFromString("8592.13"),
@@ -70,12 +70,12 @@ func main() {
                                 ID: "<ID>",
                             },
                         },
-                        CustomerRef: &shared.BillCreditNoteLineItemTrackingCustomerRef{
+                        CustomerRef: &shared.BillCreditNoteLineItemCustomerRef{
                             ID: "<ID>",
                         },
                         IsBilledTo: shared.BilledToTypeNotApplicable,
                         IsRebilledTo: shared.BilledToTypeNotApplicable,
-                        ProjectRef: &shared.BillCreditNoteLineItemTrackingAccountingProjectReference{
+                        ProjectRef: &shared.BillCreditNoteLineItemAccountingProjectReference{
                             ID: "<ID>",
                         },
                     },
@@ -92,7 +92,7 @@ func main() {
             Note: syncforpayables.String("Bill Credit Note with 1 line items, totaling 805.78"),
             PaymentAllocations: []shared.Items{
                 shared.Items{
-                    Allocation: shared.ItemsAllocation{
+                    Allocation: shared.Allocation{
                         AllocatedOnDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
                         Currency: syncforpayables.String("EUR"),
                     },
@@ -120,8 +120,8 @@ func main() {
             TotalAmount: types.MustNewDecimalFromString("805.78"),
             TotalDiscount: types.MustNewDecimalFromString("0"),
             TotalTaxAmount: types.MustNewDecimalFromString("0"),
-            WithholdingTax: []shared.WithholdingTaxitems{
-                shared.WithholdingTaxitems{
+            WithholdingTax: []shared.WithholdingTaxItems{
+                shared.WithholdingTaxItems{
                     Amount: types.MustNewDecimalFromString("8915.1"),
                     Name: "string",
                 },
@@ -142,17 +142,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
-| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
-| `request`                                                                                        | [operations.CreateBillCreditNoteRequest](../../models/operations/createbillcreditnoterequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
-| `opts`                                                                                           | [][operations.Option](../../models/operations/option.md)                                         | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
+| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                                | :heavy_check_mark:                                                                                   | The context to use for the request.                                                                  |
+| `request`                                                                                            | [operations.CreateBillCreditNoteRequest](../../pkg/models/operations/createbillcreditnoterequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
+| `opts`                                                                                               | [][operations.Option](../../pkg/models/operations/option.md)                                         | :heavy_minus_sign:                                                                                   | The options for this request.                                                                        |
 
 
 ### Response
 
-**[*operations.CreateBillCreditNoteResponse](../../models/operations/createbillcreditnoteresponse.md), error**
-
+**[*operations.CreateBillCreditNoteResponse](../../pkg/models/operations/createbillcreditnoteresponse.md), error**
+| Error Object                    | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
+| sdkerrors.SDKError              | 400-600                         | */*                             |
 
 ## Get
 
@@ -173,9 +176,9 @@ package main
 import(
 	"context"
 	"log"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
 )
 
 func main() {
@@ -202,17 +205,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
-| `request`                                                                                  | [operations.GetBillCreditNoteRequest](../../models/operations/getbillcreditnoterequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
-| `opts`                                                                                     | [][operations.Option](../../models/operations/option.md)                                   | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
+| Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                          | :heavy_check_mark:                                                                             | The context to use for the request.                                                            |
+| `request`                                                                                      | [operations.GetBillCreditNoteRequest](../../pkg/models/operations/getbillcreditnoterequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
+| `opts`                                                                                         | [][operations.Option](../../pkg/models/operations/option.md)                                   | :heavy_minus_sign:                                                                             | The options for this request.                                                                  |
 
 
 ### Response
 
-**[*operations.GetBillCreditNoteResponse](../../models/operations/getbillcreditnoteresponse.md), error**
-
+**[*operations.GetBillCreditNoteResponse](../../pkg/models/operations/getbillcreditnoteresponse.md), error**
+| Error Object                    | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| sdkerrors.ErrorMessage          | 401,402,403,404,409,429,500,503 | application/json                |
+| sdkerrors.SDKError              | 400-600                         | */*                             |
 
 ## GetCreateUpdateModel
 
@@ -235,9 +241,9 @@ package main
 import(
 	"context"
 	"log"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
 )
 
 func main() {
@@ -264,17 +270,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                                    | Type                                                                                                                         | Required                                                                                                                     | Description                                                                                                                  |
-| ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                                                        | :heavy_check_mark:                                                                                                           | The context to use for the request.                                                                                          |
-| `request`                                                                                                                    | [operations.GetCreateUpdateBillCreditNoteModelRequest](../../models/operations/getcreateupdatebillcreditnotemodelrequest.md) | :heavy_check_mark:                                                                                                           | The request object to use for the request.                                                                                   |
-| `opts`                                                                                                                       | [][operations.Option](../../models/operations/option.md)                                                                     | :heavy_minus_sign:                                                                                                           | The options for this request.                                                                                                |
+| Parameter                                                                                                                        | Type                                                                                                                             | Required                                                                                                                         | Description                                                                                                                      |
+| -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                                                            | :heavy_check_mark:                                                                                                               | The context to use for the request.                                                                                              |
+| `request`                                                                                                                        | [operations.GetCreateUpdateBillCreditNoteModelRequest](../../pkg/models/operations/getcreateupdatebillcreditnotemodelrequest.md) | :heavy_check_mark:                                                                                                               | The request object to use for the request.                                                                                       |
+| `opts`                                                                                                                           | [][operations.Option](../../pkg/models/operations/option.md)                                                                     | :heavy_minus_sign:                                                                                                               | The options for this request.                                                                                                    |
 
 
 ### Response
 
-**[*operations.GetCreateUpdateBillCreditNoteModelResponse](../../models/operations/getcreateupdatebillcreditnotemodelresponse.md), error**
-
+**[*operations.GetCreateUpdateBillCreditNoteModelResponse](../../pkg/models/operations/getcreateupdatebillcreditnotemodelresponse.md), error**
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
+| sdkerrors.SDKError          | 400-600                     | */*                         |
 
 ## List
 
@@ -293,9 +302,9 @@ package main
 import(
 	"context"
 	"log"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
 )
 
 func main() {
@@ -324,17 +333,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
-| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                          | :heavy_check_mark:                                                                             | The context to use for the request.                                                            |
-| `request`                                                                                      | [operations.ListBillCreditNotesRequest](../../models/operations/listbillcreditnotesrequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
-| `opts`                                                                                         | [][operations.Option](../../models/operations/option.md)                                       | :heavy_minus_sign:                                                                             | The options for this request.                                                                  |
+| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                              | :heavy_check_mark:                                                                                 | The context to use for the request.                                                                |
+| `request`                                                                                          | [operations.ListBillCreditNotesRequest](../../pkg/models/operations/listbillcreditnotesrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
+| `opts`                                                                                             | [][operations.Option](../../pkg/models/operations/option.md)                                       | :heavy_minus_sign:                                                                                 | The options for this request.                                                                      |
 
 
 ### Response
 
-**[*operations.ListBillCreditNotesResponse](../../models/operations/listbillcreditnotesresponse.md), error**
-
+**[*operations.ListBillCreditNotesResponse](../../pkg/models/operations/listbillcreditnotesresponse.md), error**
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| sdkerrors.ErrorMessage              | 400,401,402,403,404,409,429,500,503 | application/json                    |
+| sdkerrors.SDKError                  | 400-600                             | */*                                 |
 
 ## Update
 
@@ -357,10 +369,10 @@ package main
 import(
 	"context"
 	"log"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/types"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/types"
 )
 
 func main() {
@@ -382,7 +394,7 @@ func main() {
             LineItems: []shared.BillCreditNoteLineItem{
                 shared.BillCreditNoteLineItem{
                     AccountRef: &shared.AccountRef{},
-                    ItemRef: &shared.BillCreditNoteLineItemItemReference{
+                    ItemRef: &shared.ItemReference{
                         ID: "<ID>",
                     },
                     Quantity: types.MustNewDecimalFromString("156.52"),
@@ -393,12 +405,12 @@ func main() {
                                 ID: "<ID>",
                             },
                         },
-                        CustomerRef: &shared.BillCreditNoteLineItemTrackingCustomerRef{
+                        CustomerRef: &shared.BillCreditNoteLineItemCustomerRef{
                             ID: "<ID>",
                         },
                         IsBilledTo: shared.BilledToTypeNotApplicable,
                         IsRebilledTo: shared.BilledToTypeCustomer,
-                        ProjectRef: &shared.BillCreditNoteLineItemTrackingAccountingProjectReference{
+                        ProjectRef: &shared.BillCreditNoteLineItemAccountingProjectReference{
                             ID: "<ID>",
                         },
                     },
@@ -415,7 +427,7 @@ func main() {
             Note: syncforpayables.String("Bill Credit Note with 1 line items, totaling 805.78"),
             PaymentAllocations: []shared.Items{
                 shared.Items{
-                    Allocation: shared.ItemsAllocation{
+                    Allocation: shared.Allocation{
                         AllocatedOnDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
                         Currency: syncforpayables.String("EUR"),
                     },
@@ -443,8 +455,8 @@ func main() {
             TotalAmount: types.MustNewDecimalFromString("805.78"),
             TotalDiscount: types.MustNewDecimalFromString("0"),
             TotalTaxAmount: types.MustNewDecimalFromString("0"),
-            WithholdingTax: []shared.WithholdingTaxitems{
-                shared.WithholdingTaxitems{
+            WithholdingTax: []shared.WithholdingTaxItems{
+                shared.WithholdingTaxItems{
                     Amount: types.MustNewDecimalFromString("1341.51"),
                     Name: "string",
                 },
@@ -466,14 +478,17 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
-| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
-| `request`                                                                                        | [operations.UpdateBillCreditNoteRequest](../../models/operations/updatebillcreditnoterequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
-| `opts`                                                                                           | [][operations.Option](../../models/operations/option.md)                                         | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
+| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                                | :heavy_check_mark:                                                                                   | The context to use for the request.                                                                  |
+| `request`                                                                                            | [operations.UpdateBillCreditNoteRequest](../../pkg/models/operations/updatebillcreditnoterequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
+| `opts`                                                                                               | [][operations.Option](../../pkg/models/operations/option.md)                                         | :heavy_minus_sign:                                                                                   | The options for this request.                                                                        |
 
 
 ### Response
 
-**[*operations.UpdateBillCreditNoteResponse](../../models/operations/updatebillcreditnoteresponse.md), error**
-
+**[*operations.UpdateBillCreditNoteResponse](../../pkg/models/operations/updatebillcreditnoteresponse.md), error**
+| Error Object                    | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
+| sdkerrors.SDKError              | 400-600                         | */*                             |

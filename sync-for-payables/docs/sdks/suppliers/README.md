@@ -34,9 +34,9 @@ package main
 import(
 	"context"
 	"log"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
 )
 
 func main() {
@@ -82,17 +82,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
-| `request`                                                                            | [operations.CreateSupplierRequest](../../models/operations/createsupplierrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
-| `opts`                                                                               | [][operations.Option](../../models/operations/option.md)                             | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
+| `request`                                                                                | [operations.CreateSupplierRequest](../../pkg/models/operations/createsupplierrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `opts`                                                                                   | [][operations.Option](../../pkg/models/operations/option.md)                             | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
 
 
 ### Response
 
-**[*operations.CreateSupplierResponse](../../models/operations/createsupplierresponse.md), error**
-
+**[*operations.CreateSupplierResponse](../../pkg/models/operations/createsupplierresponse.md), error**
+| Error Object                    | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
+| sdkerrors.SDKError              | 400-600                         | */*                             |
 
 ## Get
 
@@ -113,9 +116,9 @@ package main
 import(
 	"context"
 	"log"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
 )
 
 func main() {
@@ -142,17 +145,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
-| `request`                                                                      | [operations.GetSupplierRequest](../../models/operations/getsupplierrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
-| `opts`                                                                         | [][operations.Option](../../models/operations/option.md)                       | :heavy_minus_sign:                                                             | The options for this request.                                                  |
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
+| `request`                                                                          | [operations.GetSupplierRequest](../../pkg/models/operations/getsupplierrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `opts`                                                                             | [][operations.Option](../../pkg/models/operations/option.md)                       | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
 
 
 ### Response
 
-**[*operations.GetSupplierResponse](../../models/operations/getsupplierresponse.md), error**
-
+**[*operations.GetSupplierResponse](../../pkg/models/operations/getsupplierresponse.md), error**
+| Error Object                    | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| sdkerrors.ErrorMessage          | 401,402,403,404,409,429,500,503 | application/json                |
+| sdkerrors.SDKError              | 400-600                         | */*                             |
 
 ## GetCreateUpdateModel
 
@@ -175,9 +181,9 @@ package main
 import(
 	"context"
 	"log"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
 )
 
 func main() {
@@ -204,17 +210,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                        | Type                                                                                                             | Required                                                                                                         | Description                                                                                                      |
-| ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                                            | :heavy_check_mark:                                                                                               | The context to use for the request.                                                                              |
-| `request`                                                                                                        | [operations.GetCreateUpdateSupplierModelRequest](../../models/operations/getcreateupdatesuppliermodelrequest.md) | :heavy_check_mark:                                                                                               | The request object to use for the request.                                                                       |
-| `opts`                                                                                                           | [][operations.Option](../../models/operations/option.md)                                                         | :heavy_minus_sign:                                                                                               | The options for this request.                                                                                    |
+| Parameter                                                                                                            | Type                                                                                                                 | Required                                                                                                             | Description                                                                                                          |
+| -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                                                | :heavy_check_mark:                                                                                                   | The context to use for the request.                                                                                  |
+| `request`                                                                                                            | [operations.GetCreateUpdateSupplierModelRequest](../../pkg/models/operations/getcreateupdatesuppliermodelrequest.md) | :heavy_check_mark:                                                                                                   | The request object to use for the request.                                                                           |
+| `opts`                                                                                                               | [][operations.Option](../../pkg/models/operations/option.md)                                                         | :heavy_minus_sign:                                                                                                   | The options for this request.                                                                                        |
 
 
 ### Response
 
-**[*operations.GetCreateUpdateSupplierModelResponse](../../models/operations/getcreateupdatesuppliermodelresponse.md), error**
-
+**[*operations.GetCreateUpdateSupplierModelResponse](../../pkg/models/operations/getcreateupdatesuppliermodelresponse.md), error**
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
+| sdkerrors.SDKError          | 400-600                     | */*                         |
 
 ## List
 
@@ -233,9 +242,9 @@ package main
 import(
 	"context"
 	"log"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
 )
 
 func main() {
@@ -264,17 +273,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
-| `request`                                                                          | [operations.ListSuppliersRequest](../../models/operations/listsuppliersrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
-| `opts`                                                                             | [][operations.Option](../../models/operations/option.md)                           | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
+| `request`                                                                              | [operations.ListSuppliersRequest](../../pkg/models/operations/listsuppliersrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `opts`                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
 
 ### Response
 
-**[*operations.ListSuppliersResponse](../../models/operations/listsuppliersresponse.md), error**
-
+**[*operations.ListSuppliersResponse](../../pkg/models/operations/listsuppliersresponse.md), error**
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| sdkerrors.ErrorMessage              | 400,401,402,403,404,409,429,500,503 | application/json                    |
+| sdkerrors.SDKError                  | 400-600                             | */*                                 |
 
 ## Update
 
@@ -297,9 +309,9 @@ package main
 import(
 	"context"
 	"log"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
 )
 
 func main() {
@@ -346,14 +358,17 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
-| `request`                                                                            | [operations.UpdateSupplierRequest](../../models/operations/updatesupplierrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
-| `opts`                                                                               | [][operations.Option](../../models/operations/option.md)                             | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
+| `request`                                                                                | [operations.UpdateSupplierRequest](../../pkg/models/operations/updatesupplierrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `opts`                                                                                   | [][operations.Option](../../pkg/models/operations/option.md)                             | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
 
 
 ### Response
 
-**[*operations.UpdateSupplierResponse](../../models/operations/updatesupplierresponse.md), error**
-
+**[*operations.UpdateSupplierResponse](../../pkg/models/operations/updatesupplierresponse.md), error**
+| Error Object                    | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
+| sdkerrors.SDKError              | 400-600                         | */*                             |

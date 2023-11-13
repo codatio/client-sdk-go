@@ -3,8 +3,8 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/utils"
 	"net/http"
 )
 
@@ -70,8 +70,6 @@ func (o *ListJournalsRequest) GetQuery() *string {
 type ListJournalsResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Your `query` parameter was not correctly formed
-	ErrorMessage *shared.ErrorMessage
 	// Success
 	Journals *shared.Journals
 	// HTTP response status code for this operation
@@ -85,13 +83,6 @@ func (o *ListJournalsResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *ListJournalsResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *ListJournalsResponse) GetJournals() *shared.Journals {

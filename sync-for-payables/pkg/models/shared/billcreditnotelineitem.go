@@ -3,68 +3,68 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
-// BillCreditNoteLineItemItemReference - Reference to the item the line is linked to.
-type BillCreditNoteLineItemItemReference struct {
+// ItemReference - Reference to the item the line is linked to.
+type ItemReference struct {
 	// Unique identifier for the item in the accounting platform.
 	ID string `json:"id"`
 	// Name of the item in the accounting platform.
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *BillCreditNoteLineItemItemReference) GetID() string {
+func (o *ItemReference) GetID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ID
 }
 
-func (o *BillCreditNoteLineItemItemReference) GetName() *string {
+func (o *ItemReference) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-type BillCreditNoteLineItemTrackingCustomerRef struct {
+type BillCreditNoteLineItemCustomerRef struct {
 	// `customerName` from the Customer data type
 	CompanyName *string `json:"companyName,omitempty"`
 	// `id` from the Customers data type
 	ID string `json:"id"`
 }
 
-func (o *BillCreditNoteLineItemTrackingCustomerRef) GetCompanyName() *string {
+func (o *BillCreditNoteLineItemCustomerRef) GetCompanyName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.CompanyName
 }
 
-func (o *BillCreditNoteLineItemTrackingCustomerRef) GetID() string {
+func (o *BillCreditNoteLineItemCustomerRef) GetID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ID
 }
 
-type BillCreditNoteLineItemTrackingAccountingProjectReference struct {
+type BillCreditNoteLineItemAccountingProjectReference struct {
 	// Unique identifier to the project reference.
 	ID string `json:"id"`
 	// The project's name.
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *BillCreditNoteLineItemTrackingAccountingProjectReference) GetID() string {
+func (o *BillCreditNoteLineItemAccountingProjectReference) GetID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ID
 }
 
-func (o *BillCreditNoteLineItemTrackingAccountingProjectReference) GetName() *string {
+func (o *BillCreditNoteLineItemAccountingProjectReference) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -73,13 +73,13 @@ func (o *BillCreditNoteLineItemTrackingAccountingProjectReference) GetName() *st
 
 // BillCreditNoteLineItemTracking - Categories, and a project and customer, against which the item is tracked.
 type BillCreditNoteLineItemTracking struct {
-	CategoryRefs []TrackingCategoryRef                      `json:"categoryRefs"`
-	CustomerRef  *BillCreditNoteLineItemTrackingCustomerRef `json:"customerRef,omitempty"`
+	CategoryRefs []TrackingCategoryRef              `json:"categoryRefs"`
+	CustomerRef  *BillCreditNoteLineItemCustomerRef `json:"customerRef,omitempty"`
 	// Defines if the invoice or credit note is billed/rebilled to a project or customer.
 	IsBilledTo BilledToType `json:"isBilledTo"`
 	// Defines if the invoice or credit note is billed/rebilled to a project or customer.
-	IsRebilledTo BilledToType                                              `json:"isRebilledTo"`
-	ProjectRef   *BillCreditNoteLineItemTrackingAccountingProjectReference `json:"projectRef,omitempty"`
+	IsRebilledTo BilledToType                                      `json:"isRebilledTo"`
+	ProjectRef   *BillCreditNoteLineItemAccountingProjectReference `json:"projectRef,omitempty"`
 }
 
 func (o *BillCreditNoteLineItemTracking) GetCategoryRefs() []TrackingCategoryRef {
@@ -89,7 +89,7 @@ func (o *BillCreditNoteLineItemTracking) GetCategoryRefs() []TrackingCategoryRef
 	return o.CategoryRefs
 }
 
-func (o *BillCreditNoteLineItemTracking) GetCustomerRef() *BillCreditNoteLineItemTrackingCustomerRef {
+func (o *BillCreditNoteLineItemTracking) GetCustomerRef() *BillCreditNoteLineItemCustomerRef {
 	if o == nil {
 		return nil
 	}
@@ -110,7 +110,7 @@ func (o *BillCreditNoteLineItemTracking) GetIsRebilledTo() BilledToType {
 	return o.IsRebilledTo
 }
 
-func (o *BillCreditNoteLineItemTracking) GetProjectRef() *BillCreditNoteLineItemTrackingAccountingProjectReference {
+func (o *BillCreditNoteLineItemTracking) GetProjectRef() *BillCreditNoteLineItemAccountingProjectReference {
 	if o == nil {
 		return nil
 	}
@@ -127,7 +127,7 @@ type BillCreditNoteLineItem struct {
 	// Percentage rate of any discount applied to the line item.
 	DiscountPercentage *decimal.Big `decimal:"number" json:"discountPercentage,omitempty"`
 	// Reference to the item the line is linked to.
-	ItemRef *BillCreditNoteLineItemItemReference `json:"itemRef,omitempty"`
+	ItemRef *ItemReference `json:"itemRef,omitempty"`
 	// Number of units of the goods or service for which credit has been received.
 	Quantity *decimal.Big `decimal:"number" json:"quantity"`
 	// Amount of credit associated with the line item, including discounts but excluding tax.
@@ -196,7 +196,7 @@ func (o *BillCreditNoteLineItem) GetDiscountPercentage() *decimal.Big {
 	return o.DiscountPercentage
 }
 
-func (o *BillCreditNoteLineItem) GetItemRef() *BillCreditNoteLineItemItemReference {
+func (o *BillCreditNoteLineItem) GetItemRef() *ItemReference {
 	if o == nil {
 		return nil
 	}

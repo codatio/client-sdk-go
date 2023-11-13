@@ -6,28 +6,28 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/sdkerrors"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/utils"
 	"io"
 	"net/http"
 )
 
-// manageData - Asynchronously retrieve data from an integration to refresh data in Codat.
-type manageData struct {
+// ManageData - Asynchronously retrieve data from an integration to refresh data in Codat.
+type ManageData struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newManageData(sdkConfig sdkConfiguration) *manageData {
-	return &manageData{
+func newManageData(sdkConfig sdkConfiguration) *ManageData {
+	return &ManageData{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // Get data status
 // Get the state of each data type for a company
-func (s *manageData) Get(ctx context.Context, request operations.GetDataStatusRequest, opts ...operations.Option) (*operations.GetDataStatusResponse, error) {
+func (s *ManageData) Get(ctx context.Context, request operations.GetDataStatusRequest, opts ...operations.Option) (*operations.GetDataStatusResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -131,15 +131,18 @@ func (s *manageData) Get(ctx context.Context, request operations.GetDataStatusRe
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -147,7 +150,7 @@ func (s *manageData) Get(ctx context.Context, request operations.GetDataStatusRe
 
 // GetPullOperation - Get pull operation
 // Retrieve information about a single dataset or pull operation.
-func (s *manageData) GetPullOperation(ctx context.Context, request operations.GetPullOperationRequest, opts ...operations.Option) (*operations.GetPullOperationResponse, error) {
+func (s *ManageData) GetPullOperation(ctx context.Context, request operations.GetPullOperationRequest, opts ...operations.Option) (*operations.GetPullOperationResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -251,15 +254,18 @@ func (s *manageData) GetPullOperation(ctx context.Context, request operations.Ge
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -267,7 +273,7 @@ func (s *manageData) GetPullOperation(ctx context.Context, request operations.Ge
 
 // ListPullOperations - List pull operations
 // Gets the pull operation history (datasets) for a given company.
-func (s *manageData) ListPullOperations(ctx context.Context, request operations.ListPullOperationsRequest, opts ...operations.Option) (*operations.ListPullOperationsResponse, error) {
+func (s *ManageData) ListPullOperations(ctx context.Context, request operations.ListPullOperationsRequest, opts ...operations.Option) (*operations.ListPullOperationsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -377,15 +383,18 @@ func (s *manageData) ListPullOperations(ctx context.Context, request operations.
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -397,7 +406,7 @@ func (s *manageData) ListPullOperations(ctx context.Context, request operations.
 // This is an asynchronous operation, and will bring updated data into Codat from the linked integration for you to view.
 //
 // [Read more](https://docs.codat.io/core-concepts/data-type-settings) about data type settings and `fetch on first link`.
-func (s *manageData) RefreshAllDataTypes(ctx context.Context, request operations.RefreshAllDataTypesRequest, opts ...operations.Option) (*operations.RefreshAllDataTypesResponse, error) {
+func (s *ManageData) RefreshAllDataTypes(ctx context.Context, request operations.RefreshAllDataTypesRequest, opts ...operations.Option) (*operations.RefreshAllDataTypesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -490,15 +499,18 @@ func (s *manageData) RefreshAllDataTypes(ctx context.Context, request operations
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -508,7 +520,7 @@ func (s *manageData) RefreshAllDataTypes(ctx context.Context, request operations
 // Refreshes a given data type for a given company.
 //
 // This is an asynchronous operation, and will bring updated data into Codat from the linked integration for you to view.
-func (s *manageData) RefreshDataType(ctx context.Context, request operations.RefreshDataTypeRequest, opts ...operations.Option) (*operations.RefreshDataTypeResponse, error) {
+func (s *ManageData) RefreshDataType(ctx context.Context, request operations.RefreshDataTypeRequest, opts ...operations.Option) (*operations.RefreshDataTypeResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -616,15 +628,18 @@ func (s *manageData) RefreshDataType(ctx context.Context, request operations.Ref
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

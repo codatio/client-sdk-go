@@ -5,8 +5,8 @@ package syncforpayables
 import (
 	"context"
 	"fmt"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/utils"
 	"net/http"
 	"time"
 )
@@ -90,36 +90,36 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 // | Company info         | View company profile from the source platform.                                                             |
 // | Manage data          | Control how data is retrieved from an integration.                                                         |
 type CodatSyncPayables struct {
-	// Accounts
-	Accounts *accounts
-	// Bill credit notes
-	BillCreditNotes *billCreditNotes
-	// Bill payments
-	BillPayments *billPayments
-	// Bills
-	Bills *bills
 	// Create and manage your Codat companies.
-	Companies *companies
-	// View company information fetched from the source platform.
-	CompanyInfo *companyInfo
+	Companies *Companies
 	// Manage your companies' data connections.
-	Connections *connections
+	Connections *Connections
+	// Bills
+	Bills *Bills
+	// Bill credit notes
+	BillCreditNotes *BillCreditNotes
+	// Bill payments
+	BillPayments *BillPayments
+	// Accounts
+	Accounts *Accounts
 	// Journal entries
-	JournalEntries *journalEntries
+	JournalEntries *JournalEntries
 	// Journals
-	Journals *journals
-	// Asynchronously retrieve data from an integration to refresh data in Codat.
-	ManageData *manageData
-	// Payment methods
-	PaymentMethods *paymentMethods
-	// Access create, update and delete operations made to an SMB's data connection.
-	PushOperations *pushOperations
+	Journals *Journals
 	// Suppliers
-	Suppliers *suppliers
+	Suppliers *Suppliers
+	// Asynchronously retrieve data from an integration to refresh data in Codat.
+	ManageData *ManageData
+	// View company information fetched from the source platform.
+	CompanyInfo *CompanyInfo
+	// Payment methods
+	PaymentMethods *PaymentMethods
 	// Tax rates
-	TaxRates *taxRates
+	TaxRates *TaxRates
 	// Tracking categories
-	TrackingCategories *trackingCategories
+	TrackingCategories *TrackingCategories
+	// Access create, update and delete operations made to an SMB's data connection.
+	PushOperations *PushOperations
 
 	sdkConfiguration sdkConfiguration
 }
@@ -197,9 +197,9 @@ func New(opts ...SDKOption) *CodatSyncPayables {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "2.3.0",
-			GenVersion:        "2.173.0",
-			UserAgent:         "speakeasy-sdk/go 2.3.0 2.173.0 3.0.0 github.com/codatio/client-sdk-go/sync-for-payables",
+			SDKVersion:        "3.0.0",
+			GenVersion:        "2.188.1",
+			UserAgent:         "speakeasy-sdk/go 3.0.0 2.188.1 3.0.0 github.com/codatio/client-sdk-go/sync-for-payables",
 		},
 	}
 	for _, opt := range opts {
@@ -218,35 +218,35 @@ func New(opts ...SDKOption) *CodatSyncPayables {
 		}
 	}
 
-	sdk.Accounts = newAccounts(sdk.sdkConfiguration)
+	sdk.Companies = newCompanies(sdk.sdkConfiguration)
+
+	sdk.Connections = newConnections(sdk.sdkConfiguration)
+
+	sdk.Bills = newBills(sdk.sdkConfiguration)
 
 	sdk.BillCreditNotes = newBillCreditNotes(sdk.sdkConfiguration)
 
 	sdk.BillPayments = newBillPayments(sdk.sdkConfiguration)
 
-	sdk.Bills = newBills(sdk.sdkConfiguration)
-
-	sdk.Companies = newCompanies(sdk.sdkConfiguration)
-
-	sdk.CompanyInfo = newCompanyInfo(sdk.sdkConfiguration)
-
-	sdk.Connections = newConnections(sdk.sdkConfiguration)
+	sdk.Accounts = newAccounts(sdk.sdkConfiguration)
 
 	sdk.JournalEntries = newJournalEntries(sdk.sdkConfiguration)
 
 	sdk.Journals = newJournals(sdk.sdkConfiguration)
 
+	sdk.Suppliers = newSuppliers(sdk.sdkConfiguration)
+
 	sdk.ManageData = newManageData(sdk.sdkConfiguration)
 
+	sdk.CompanyInfo = newCompanyInfo(sdk.sdkConfiguration)
+
 	sdk.PaymentMethods = newPaymentMethods(sdk.sdkConfiguration)
-
-	sdk.PushOperations = newPushOperations(sdk.sdkConfiguration)
-
-	sdk.Suppliers = newSuppliers(sdk.sdkConfiguration)
 
 	sdk.TaxRates = newTaxRates(sdk.sdkConfiguration)
 
 	sdk.TrackingCategories = newTrackingCategories(sdk.sdkConfiguration)
+
+	sdk.PushOperations = newPushOperations(sdk.sdkConfiguration)
 
 	return sdk
 }

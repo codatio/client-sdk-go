@@ -14,15 +14,15 @@ go get github.com/codatio/client-sdk-go/sync-for-payables
 
 ## Example Usage
 <!-- Start SDK Example Usage -->
+### Example
+
 ```go
 package main
 
 import (
 	"context"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/types"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
 	"log"
 )
 
@@ -34,44 +34,15 @@ func main() {
 	)
 
 	ctx := context.Background()
-	res, err := s.Accounts.Create(ctx, operations.CreateAccountRequest{
-		Account: &shared.Account{
-			Currency:               syncforpayables.String("USD"),
-			CurrentBalance:         types.MustNewDecimalFromString("0"),
-			Description:            syncforpayables.String("Invoices the business has issued but has not yet collected payment on."),
-			FullyQualifiedCategory: syncforpayables.String("Asset.Current"),
-			FullyQualifiedName:     syncforpayables.String("Cash On Hand"),
-			ID:                     syncforpayables.String("1b6266d1-1e44-46c5-8eb5-a8f98e03124e"),
-			Metadata:               &shared.Metadata{},
-			ModifiedDate:           syncforpayables.String("2022-10-23T00:00:00.000Z"),
-			Name:                   syncforpayables.String("Accounts Receivable"),
-			NominalCode:            syncforpayables.String("610"),
-			SourceModifiedDate:     syncforpayables.String("2022-10-23T00:00:00.000Z"),
-			Status:                 shared.AccountStatusActive.ToPointer(),
-			SupplementalData: &shared.SupplementalData{
-				Content: map[string]map[string]interface{}{
-					"key": map[string]interface{}{
-						"key": "string",
-					},
-				},
-			},
-			Type: shared.AccountTypeAsset.ToPointer(),
-			ValidDatatypeLinks: []shared.AccountValidDataTypeLinks{
-				shared.AccountValidDataTypeLinks{
-					Links: []string{
-						"string",
-					},
-				},
-			},
-		},
-		CompanyID:    "8a210b68-6988-11ed-a1eb-0242ac120002",
-		ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
+	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
+		Description: syncforpayables.String("Requested early access to the new financing scheme."),
+		Name:        "Bank of Dave",
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	if res.CreateAccountResponse != nil {
+	if res.Company != nil {
 		// handle response
 	}
 }
@@ -83,12 +54,35 @@ func main() {
 ## Available Resources and Operations
 
 
-### [Accounts](docs/sdks/accounts/README.md)
+### [Companies](docs/sdks/companies/README.md)
 
-* [Create](docs/sdks/accounts/README.md#create) - Create account
-* [Get](docs/sdks/accounts/README.md#get) - Get account
-* [GetCreateModel](docs/sdks/accounts/README.md#getcreatemodel) - Get create account model
-* [List](docs/sdks/accounts/README.md#list) - List accounts
+* [Create](docs/sdks/companies/README.md#create) - Create company
+* [Delete](docs/sdks/companies/README.md#delete) - Delete a company
+* [Get](docs/sdks/companies/README.md#get) - Get company
+* [List](docs/sdks/companies/README.md#list) - List companies
+* [Update](docs/sdks/companies/README.md#update) - Update company
+
+### [Connections](docs/sdks/connections/README.md)
+
+* [Create](docs/sdks/connections/README.md#create) - Create connection
+* [Delete](docs/sdks/connections/README.md#delete) - Delete connection
+* [Get](docs/sdks/connections/README.md#get) - Get connection
+* [List](docs/sdks/connections/README.md#list) - List connections
+* [Unlink](docs/sdks/connections/README.md#unlink) - Unlink connection
+
+### [Bills](docs/sdks/bills/README.md)
+
+* [Create](docs/sdks/bills/README.md#create) - Create bill
+* [Delete](docs/sdks/bills/README.md#delete) - Delete bill
+* [DeleteAttachment](docs/sdks/bills/README.md#deleteattachment) - Delete bill attachment
+* [DownloadAttachment](docs/sdks/bills/README.md#downloadattachment) - Download bill attachment
+* [Get](docs/sdks/bills/README.md#get) - Get bill
+* [GetAttachment](docs/sdks/bills/README.md#getattachment) - Get bill attachment
+* [GetCreateUpdateModel](docs/sdks/bills/README.md#getcreateupdatemodel) - Get create/update bill model
+* [List](docs/sdks/bills/README.md#list) - List bills
+* [ListAttachments](docs/sdks/bills/README.md#listattachments) - List bill attachments
+* [Update](docs/sdks/bills/README.md#update) - Update bill
+* [UploadAttachment](docs/sdks/bills/README.md#uploadattachment) - Upload bill attachment
 
 ### [BillCreditNotes](docs/sdks/billcreditnotes/README.md)
 
@@ -106,39 +100,12 @@ func main() {
 * [GetCreateModel](docs/sdks/billpayments/README.md#getcreatemodel) - Get create bill payment model
 * [List](docs/sdks/billpayments/README.md#list) - List bill payments
 
-### [Bills](docs/sdks/bills/README.md)
+### [Accounts](docs/sdks/accounts/README.md)
 
-* [Create](docs/sdks/bills/README.md#create) - Create bill
-* [Delete](docs/sdks/bills/README.md#delete) - Delete bill
-* [DeleteAttachment](docs/sdks/bills/README.md#deleteattachment) - Delete bill attachment
-* [DownloadAttachment](docs/sdks/bills/README.md#downloadattachment) - Download bill attachment
-* [Get](docs/sdks/bills/README.md#get) - Get bill
-* [GetAttachment](docs/sdks/bills/README.md#getattachment) - Get bill attachment
-* [GetCreateUpdateModel](docs/sdks/bills/README.md#getcreateupdatemodel) - Get create/update bill model
-* [List](docs/sdks/bills/README.md#list) - List bills
-* [ListAttachments](docs/sdks/bills/README.md#listattachments) - List bill attachments
-* [Update](docs/sdks/bills/README.md#update) - Update bill
-* [UploadAttachment](docs/sdks/bills/README.md#uploadattachment) - Upload bill attachment
-
-### [Companies](docs/sdks/companies/README.md)
-
-* [Create](docs/sdks/companies/README.md#create) - Create company
-* [Delete](docs/sdks/companies/README.md#delete) - Delete a company
-* [Get](docs/sdks/companies/README.md#get) - Get company
-* [List](docs/sdks/companies/README.md#list) - List companies
-* [Update](docs/sdks/companies/README.md#update) - Update company
-
-### [CompanyInfo](docs/sdks/companyinfo/README.md)
-
-* [GetAccountingProfile](docs/sdks/companyinfo/README.md#getaccountingprofile) - Get company accounting profile
-
-### [Connections](docs/sdks/connections/README.md)
-
-* [Create](docs/sdks/connections/README.md#create) - Create connection
-* [Delete](docs/sdks/connections/README.md#delete) - Delete connection
-* [Get](docs/sdks/connections/README.md#get) - Get connection
-* [List](docs/sdks/connections/README.md#list) - List connections
-* [Unlink](docs/sdks/connections/README.md#unlink) - Unlink connection
+* [Create](docs/sdks/accounts/README.md#create) - Create account
+* [Get](docs/sdks/accounts/README.md#get) - Get account
+* [GetCreateModel](docs/sdks/accounts/README.md#getcreatemodel) - Get create account model
+* [List](docs/sdks/accounts/README.md#list) - List accounts
 
 ### [JournalEntries](docs/sdks/journalentries/README.md)
 
@@ -152,6 +119,14 @@ func main() {
 * [GetCreateModel](docs/sdks/journals/README.md#getcreatemodel) - Get create journal model
 * [List](docs/sdks/journals/README.md#list) - List journals
 
+### [Suppliers](docs/sdks/suppliers/README.md)
+
+* [Create](docs/sdks/suppliers/README.md#create) - Create supplier
+* [Get](docs/sdks/suppliers/README.md#get) - Get supplier
+* [GetCreateUpdateModel](docs/sdks/suppliers/README.md#getcreateupdatemodel) - Get create/update supplier model
+* [List](docs/sdks/suppliers/README.md#list) - List suppliers
+* [Update](docs/sdks/suppliers/README.md#update) - Update supplier
+
 ### [ManageData](docs/sdks/managedata/README.md)
 
 * [Get](docs/sdks/managedata/README.md#get) - Get data status
@@ -160,23 +135,14 @@ func main() {
 * [RefreshAllDataTypes](docs/sdks/managedata/README.md#refreshalldatatypes) - Refresh all data
 * [RefreshDataType](docs/sdks/managedata/README.md#refreshdatatype) - Refresh data type
 
+### [CompanyInfo](docs/sdks/companyinfo/README.md)
+
+* [GetAccountingProfile](docs/sdks/companyinfo/README.md#getaccountingprofile) - Get company accounting profile
+
 ### [PaymentMethods](docs/sdks/paymentmethods/README.md)
 
 * [Get](docs/sdks/paymentmethods/README.md#get) - Get payment method
 * [List](docs/sdks/paymentmethods/README.md#list) - List payment methods
-
-### [PushOperations](docs/sdks/pushoperations/README.md)
-
-* [Get](docs/sdks/pushoperations/README.md#get) - Get push operation
-* [List](docs/sdks/pushoperations/README.md#list) - List push operations
-
-### [Suppliers](docs/sdks/suppliers/README.md)
-
-* [Create](docs/sdks/suppliers/README.md#create) - Create supplier
-* [Get](docs/sdks/suppliers/README.md#get) - Get supplier
-* [GetCreateUpdateModel](docs/sdks/suppliers/README.md#getcreateupdatemodel) - Get create/update supplier model
-* [List](docs/sdks/suppliers/README.md#list) - List suppliers
-* [Update](docs/sdks/suppliers/README.md#update) - Update supplier
 
 ### [TaxRates](docs/sdks/taxrates/README.md)
 
@@ -187,6 +153,11 @@ func main() {
 
 * [Get](docs/sdks/trackingcategories/README.md#get) - Get tracking categories
 * [List](docs/sdks/trackingcategories/README.md#list) - List tracking categories
+
+### [PushOperations](docs/sdks/pushoperations/README.md)
+
+* [Get](docs/sdks/pushoperations/README.md#get) - Get push operation
+* [List](docs/sdks/pushoperations/README.md#list) - List push operations
 <!-- End SDK Available Operations -->
 
 
@@ -218,19 +189,64 @@ Here's an example of one such pagination call:
 
 
 <!-- Start Error Handling -->
-# Error Handling
+## Error Handling
 
-Handling errors in your SDK should largely match your expectations.  All operations return a response object or an error, they will never return both.  When specified by the OpenAPI spec document, the SDK will return the appropriate subclass.
+Handling errors in this SDK should largely match your expectations.  All operations return a response object or an error, they will never return both.  When specified by the OpenAPI spec document, the SDK will return the appropriate subclass.
 
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.ErrorMessage      | 400,401,402,403,429,500,503 | application/json            |
+| sdkerrors.SDKError          | 400-600                     | */*                         |
 
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
+	"log"
+)
+
+func main() {
+	s := syncforpayables.New(
+		syncforpayables.WithSecurity(shared.Security{
+			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
+		}),
+	)
+
+	ctx := context.Background()
+	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
+		Description: syncforpayables.String("Requested early access to the new financing scheme."),
+		Name:        "Bank of Dave",
+	})
+	if err != nil {
+
+		var e *sdkerrors.ErrorMessage
+		if errors.As(err, &e) {
+			// handle error
+			log.Fatal(e.Error())
+		}
+
+		var e *sdkerrors.SDKError
+		if errors.As(err, &e) {
+			// handle error
+			log.Fatal(e.Error())
+		}
+	}
+}
+
+```
 <!-- End Error Handling -->
 
 
 
 <!-- Start Server Selection -->
-# Server Selection
+## Server Selection
 
-## Select Server by Index
+### Select Server by Index
 
 You can override the default server globally using the `WithServerIndex` option when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
 
@@ -238,68 +254,36 @@ You can override the default server globally using the `WithServerIndex` option 
 | - | ------ | --------- |
 | 0 | `https://api.codat.io` | None |
 
-For example:
-
+#### Example
 
 ```go
 package main
 
 import (
 	"context"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/types"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
 	"log"
 )
 
 func main() {
 	s := syncforpayables.New(
+		syncforpayables.WithServerIndex(0),
 		syncforpayables.WithSecurity(shared.Security{
 			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
 		}),
-		syncforpayables.WithServerIndex(0),
 	)
 
 	ctx := context.Background()
-	res, err := s.Accounts.Create(ctx, operations.CreateAccountRequest{
-		Account: &shared.Account{
-			Currency:               syncforpayables.String("USD"),
-			CurrentBalance:         types.MustNewDecimalFromString("0"),
-			Description:            syncforpayables.String("Invoices the business has issued but has not yet collected payment on."),
-			FullyQualifiedCategory: syncforpayables.String("Asset.Current"),
-			FullyQualifiedName:     syncforpayables.String("Cash On Hand"),
-			ID:                     syncforpayables.String("1b6266d1-1e44-46c5-8eb5-a8f98e03124e"),
-			Metadata:               &shared.Metadata{},
-			ModifiedDate:           syncforpayables.String("2022-10-23T00:00:00.000Z"),
-			Name:                   syncforpayables.String("Accounts Receivable"),
-			NominalCode:            syncforpayables.String("610"),
-			SourceModifiedDate:     syncforpayables.String("2022-10-23T00:00:00.000Z"),
-			Status:                 shared.AccountStatusActive.ToPointer(),
-			SupplementalData: &shared.SupplementalData{
-				Content: map[string]map[string]interface{}{
-					"key": map[string]interface{}{
-						"key": "string",
-					},
-				},
-			},
-			Type: shared.AccountTypeAsset.ToPointer(),
-			ValidDatatypeLinks: []shared.AccountValidDataTypeLinks{
-				shared.AccountValidDataTypeLinks{
-					Links: []string{
-						"string",
-					},
-				},
-			},
-		},
-		CompanyID:    "8a210b68-6988-11ed-a1eb-0242ac120002",
-		ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
+	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
+		Description: syncforpayables.String("Requested early access to the new financing scheme."),
+		Name:        "Bank of Dave",
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	if res.CreateAccountResponse != nil {
+	if res.Company != nil {
 		// handle response
 	}
 }
@@ -307,70 +291,37 @@ func main() {
 ```
 
 
-## Override Server URL Per-Client
+### Override Server URL Per-Client
 
 The default server can also be overridden globally using the `WithServerURL` option when initializing the SDK client instance. For example:
-
-
 ```go
 package main
 
 import (
 	"context"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/types"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
 	"log"
 )
 
 func main() {
 	s := syncforpayables.New(
+		syncforpayables.WithServerURL("https://api.codat.io"),
 		syncforpayables.WithSecurity(shared.Security{
 			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
 		}),
-		syncforpayables.WithServerURL("https://api.codat.io"),
 	)
 
 	ctx := context.Background()
-	res, err := s.Accounts.Create(ctx, operations.CreateAccountRequest{
-		Account: &shared.Account{
-			Currency:               syncforpayables.String("USD"),
-			CurrentBalance:         types.MustNewDecimalFromString("0"),
-			Description:            syncforpayables.String("Invoices the business has issued but has not yet collected payment on."),
-			FullyQualifiedCategory: syncforpayables.String("Asset.Current"),
-			FullyQualifiedName:     syncforpayables.String("Cash On Hand"),
-			ID:                     syncforpayables.String("1b6266d1-1e44-46c5-8eb5-a8f98e03124e"),
-			Metadata:               &shared.Metadata{},
-			ModifiedDate:           syncforpayables.String("2022-10-23T00:00:00.000Z"),
-			Name:                   syncforpayables.String("Accounts Receivable"),
-			NominalCode:            syncforpayables.String("610"),
-			SourceModifiedDate:     syncforpayables.String("2022-10-23T00:00:00.000Z"),
-			Status:                 shared.AccountStatusActive.ToPointer(),
-			SupplementalData: &shared.SupplementalData{
-				Content: map[string]map[string]interface{}{
-					"key": map[string]interface{}{
-						"key": "string",
-					},
-				},
-			},
-			Type: shared.AccountTypeAsset.ToPointer(),
-			ValidDatatypeLinks: []shared.AccountValidDataTypeLinks{
-				shared.AccountValidDataTypeLinks{
-					Links: []string{
-						"string",
-					},
-				},
-			},
-		},
-		CompanyID:    "8a210b68-6988-11ed-a1eb-0242ac120002",
-		ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
+	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
+		Description: syncforpayables.String("Requested early access to the new financing scheme."),
+		Name:        "Bank of Dave",
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	if res.CreateAccountResponse != nil {
+	if res.Company != nil {
 		// handle response
 	}
 }
@@ -381,7 +332,7 @@ func main() {
 
 
 <!-- Start Custom HTTP Client -->
-# Custom HTTP Client
+## Custom HTTP Client
 
 The Go SDK makes API calls that wrap an internal HTTP client. The requirements for the HTTP client are very simple. It must match this interface:
 
@@ -408,6 +359,156 @@ var (
 
 This can be a convenient way to configure timeouts, cookies, proxies, custom headers, and other low-level configuration.
 <!-- End Custom HTTP Client -->
+
+
+
+<!-- Start Retries -->
+## Retries
+
+Some of the endpoints in this SDK support retries.  If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API.  However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
+
+To change the default retry strategy for a single API call, simply provide a retryConfig object to the call:
+```go
+package main
+
+import (
+	"context"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
+	"log"
+	"pkg/models/operations"
+	"pkg/utils"
+)
+
+func main() {
+	s := syncforpayables.New(
+		syncforpayables.WithSecurity(shared.Security{
+			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
+		}),
+	)
+
+	ctx := context.Background()
+	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
+		Description: syncforpayables.String("Requested early access to the new financing scheme."),
+		Name:        "Bank of Dave",
+	}, operations.WithRetries(utils.RetryConfig{
+		Strategy: "backoff",
+		Backoff: &utils.BackoffStrategy{
+			InitialInterval: 1,
+			MaxInterval:     50,
+			Exponent:        1.1,
+			MaxElapsedTime:  100,
+		},
+		RetryConnectionErrors: false,
+	}))
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	if res.Company != nil {
+		// handle response
+	}
+}
+
+```
+
+If you'd like to override the default retry strategy for all operations that support retries, you can provide a retryConfig at SDK initialization:
+```go
+package main
+
+import (
+	"context"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
+	"log"
+	"pkg/models/operations"
+	"pkg/utils"
+)
+
+func main() {
+	s := syncforpayables.New(
+		syncforpayables.WithRetryConfig(utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 1,
+				MaxInterval:     50,
+				Exponent:        1.1,
+				MaxElapsedTime:  100,
+			},
+			RetryConnectionErrors: false,
+		}),
+		syncforpayables.WithSecurity(shared.Security{
+			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
+		}),
+	)
+
+	ctx := context.Background()
+	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
+		Description: syncforpayables.String("Requested early access to the new financing scheme."),
+		Name:        "Bank of Dave",
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	if res.Company != nil {
+		// handle response
+	}
+}
+
+```
+
+
+<!-- End Retries -->
+
+
+
+<!-- Start Authentication -->
+
+## Authentication
+
+### Per-Client Security Schemes
+
+This SDK supports the following security scheme globally:
+
+| Name         | Type         | Scheme       |
+| ------------ | ------------ | ------------ |
+| `AuthHeader` | apiKey       | API key      |
+
+You can configure it using the `WithSecurity` option when initializing the SDK client instance. For example:
+```go
+package main
+
+import (
+	"context"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
+	"log"
+)
+
+func main() {
+	s := syncforpayables.New(
+		syncforpayables.WithSecurity(shared.Security{
+			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
+		}),
+	)
+
+	ctx := context.Background()
+	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
+		Description: syncforpayables.String("Requested early access to the new financing scheme."),
+		Name:        "Bank of Dave",
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	if res.Company != nil {
+		// handle response
+	}
+}
+
+```
+<!-- End Authentication -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

@@ -3,11 +3,11 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
-type ItemsAllocation struct {
+type Allocation struct {
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -66,39 +66,39 @@ type ItemsAllocation struct {
 	TotalAmount *decimal.Big `decimal:"number" json:"totalAmount,omitempty"`
 }
 
-func (i ItemsAllocation) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(i, "", false)
+func (a Allocation) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
 }
 
-func (i *ItemsAllocation) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &i, "", false, false); err != nil {
+func (a *Allocation) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *ItemsAllocation) GetAllocatedOnDate() *string {
+func (o *Allocation) GetAllocatedOnDate() *string {
 	if o == nil {
 		return nil
 	}
 	return o.AllocatedOnDate
 }
 
-func (o *ItemsAllocation) GetCurrency() *string {
+func (o *Allocation) GetCurrency() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Currency
 }
 
-func (o *ItemsAllocation) GetCurrencyRate() *decimal.Big {
+func (o *Allocation) GetCurrencyRate() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.CurrencyRate
 }
 
-func (o *ItemsAllocation) GetTotalAmount() *decimal.Big {
+func (o *Allocation) GetTotalAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}
@@ -106,13 +106,13 @@ func (o *ItemsAllocation) GetTotalAmount() *decimal.Big {
 }
 
 type Items struct {
-	Allocation ItemsAllocation          `json:"allocation"`
+	Allocation Allocation               `json:"allocation"`
 	Payment    PaymentAllocationPayment `json:"payment"`
 }
 
-func (o *Items) GetAllocation() ItemsAllocation {
+func (o *Items) GetAllocation() Allocation {
 	if o == nil {
-		return ItemsAllocation{}
+		return Allocation{}
 	}
 	return o.Allocation
 }

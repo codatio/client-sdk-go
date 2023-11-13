@@ -6,21 +6,21 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/sdkerrors"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/utils"
 	"io"
 	"net/http"
 )
 
-// paymentMethods - Payment methods
-type paymentMethods struct {
+// PaymentMethods - Payment methods
+type PaymentMethods struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newPaymentMethods(sdkConfig sdkConfiguration) *paymentMethods {
-	return &paymentMethods{
+func newPaymentMethods(sdkConfig sdkConfiguration) *PaymentMethods {
+	return &PaymentMethods{
 		sdkConfiguration: sdkConfig,
 	}
 }
@@ -33,7 +33,7 @@ func newPaymentMethods(sdkConfig sdkConfiguration) *paymentMethods {
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=paymentMethods) for integrations that support getting a specific payment method.
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/sync-for-payables-api#/operations/refresh-company-data).
-func (s *paymentMethods) Get(ctx context.Context, request operations.GetPaymentMethodRequest, opts ...operations.Option) (*operations.GetPaymentMethodResponse, error) {
+func (s *PaymentMethods) Get(ctx context.Context, request operations.GetPaymentMethodRequest, opts ...operations.Option) (*operations.GetPaymentMethodResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -139,15 +139,18 @@ func (s *paymentMethods) Get(ctx context.Context, request operations.GetPaymentM
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -159,7 +162,7 @@ func (s *paymentMethods) Get(ctx context.Context, request operations.GetPaymentM
 // [Payment methods](https://docs.codat.io/sync-for-payables-api#/schemas/PaymentMethod) are used to pay a Bill. Payment Methods are referenced on [Bill Payments](https://docs.codat.io/sync-for-payables-api#/schemas/BillPayment) and [Payments](https://docs.codat.io/sync-for-payables-api#/schemas/Payment).
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/sync-for-payables-api#/operations/refresh-company-data).
-func (s *paymentMethods) List(ctx context.Context, request operations.ListPaymentMethodsRequest, opts ...operations.Option) (*operations.ListPaymentMethodsResponse, error) {
+func (s *PaymentMethods) List(ctx context.Context, request operations.ListPaymentMethodsRequest, opts ...operations.Option) (*operations.ListPaymentMethodsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -271,15 +274,18 @@ func (s *paymentMethods) List(ctx context.Context, request operations.ListPaymen
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

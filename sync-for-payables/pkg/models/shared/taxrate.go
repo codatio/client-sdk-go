@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
@@ -50,8 +50,8 @@ type TaxRate struct {
 	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
 	SupplementalData *SupplementalData `json:"supplementalData,omitempty"`
 	// Total (not compounded) sum of the components of a tax rate.
-	TotalTaxRate       *decimal.Big              `decimal:"number" json:"totalTaxRate,omitempty"`
-	ValidDatatypeLinks []ValidDatatypeLinksitems `json:"validDatatypeLinks,omitempty"`
+	TotalTaxRate       *decimal.Big             `decimal:"number" json:"totalTaxRate,omitempty"`
+	ValidDatatypeLinks []ValidDatatypeLinkItems `json:"validDatatypeLinks,omitempty"`
 }
 
 func (t TaxRate) MarshalJSON() ([]byte, error) {
@@ -142,7 +142,7 @@ func (o *TaxRate) GetTotalTaxRate() *decimal.Big {
 	return o.TotalTaxRate
 }
 
-func (o *TaxRate) GetValidDatatypeLinks() []ValidDatatypeLinksitems {
+func (o *TaxRate) GetValidDatatypeLinks() []ValidDatatypeLinkItems {
 	if o == nil {
 		return nil
 	}
