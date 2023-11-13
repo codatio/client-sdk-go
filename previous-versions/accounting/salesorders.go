@@ -14,13 +14,13 @@ import (
 	"net/http"
 )
 
-// salesOrders - Sales orders
-type salesOrders struct {
+// SalesOrders - Sales orders
+type SalesOrders struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newSalesOrders(sdkConfig sdkConfiguration) *salesOrders {
-	return &salesOrders{
+func newSalesOrders(sdkConfig sdkConfiguration) *SalesOrders {
+	return &SalesOrders{
 		sdkConfiguration: sdkConfig,
 	}
 }
@@ -33,7 +33,7 @@ func newSalesOrders(sdkConfig sdkConfiguration) *salesOrders {
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=salesOrders) for integrations that support getting a specific sales order.
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
-func (s *salesOrders) Get(ctx context.Context, request operations.GetSalesOrderRequest, opts ...operations.Option) (*operations.GetSalesOrderResponse, error) {
+func (s *SalesOrders) Get(ctx context.Context, request operations.GetSalesOrderRequest, opts ...operations.Option) (*operations.GetSalesOrderResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -139,15 +139,18 @@ func (s *salesOrders) Get(ctx context.Context, request operations.GetSalesOrderR
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -159,7 +162,7 @@ func (s *salesOrders) Get(ctx context.Context, request operations.GetSalesOrderR
 // [Sales orders](https://docs.codat.io/accounting-api#/schemas/SalesOrder) represent a customer's intention to purchase goods or services from the SMB.
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
-func (s *salesOrders) List(ctx context.Context, request operations.ListSalesOrdersRequest, opts ...operations.Option) (*operations.ListSalesOrdersResponse, error) {
+func (s *SalesOrders) List(ctx context.Context, request operations.ListSalesOrdersRequest, opts ...operations.Option) (*operations.ListSalesOrdersResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -271,15 +274,18 @@ func (s *salesOrders) List(ctx context.Context, request operations.ListSalesOrde
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

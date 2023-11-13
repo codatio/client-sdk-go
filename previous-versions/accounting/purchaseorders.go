@@ -14,13 +14,13 @@ import (
 	"net/http"
 )
 
-// purchaseOrders - Purchase orders
-type purchaseOrders struct {
+// PurchaseOrders - Purchase orders
+type PurchaseOrders struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newPurchaseOrders(sdkConfig sdkConfiguration) *purchaseOrders {
-	return &purchaseOrders{
+func newPurchaseOrders(sdkConfig sdkConfiguration) *PurchaseOrders {
+	return &PurchaseOrders{
 		sdkConfiguration: sdkConfig,
 	}
 }
@@ -35,7 +35,7 @@ func newPurchaseOrders(sdkConfig sdkConfiguration) *purchaseOrders {
 // Required data may vary by integration. To see what data to post, first call [Get create/update purchase order model](https://docs.codat.io/accounting-api#/operations/get-create-update-purchaseOrders-model).
 //
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=purchaseOrders) for integrations that support creating an account.
-func (s *purchaseOrders) Create(ctx context.Context, request operations.CreatePurchaseOrderRequest, opts ...operations.Option) (*operations.CreatePurchaseOrderResponse, error) {
+func (s *PurchaseOrders) Create(ctx context.Context, request operations.CreatePurchaseOrderRequest, opts ...operations.Option) (*operations.CreatePurchaseOrderResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -152,15 +152,18 @@ func (s *purchaseOrders) Create(ctx context.Context, request operations.CreatePu
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -172,7 +175,7 @@ func (s *purchaseOrders) Create(ctx context.Context, request operations.CreatePu
 // [Purchase Orders](https://docs.codat.io/accounting-api#/schemas/PurchaseOrder) represent a business's intent to purchase goods or services from a supplier.
 //
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=purchaseOrders) for integrations that support downloading a purchase order attachment.
-func (s *purchaseOrders) DownloadAttachment(ctx context.Context, request operations.DownloadPurchaseOrderAttachmentRequest, opts ...operations.Option) (*operations.DownloadPurchaseOrderAttachmentResponse, error) {
+func (s *PurchaseOrders) DownloadAttachment(ctx context.Context, request operations.DownloadPurchaseOrderAttachmentRequest, opts ...operations.Option) (*operations.DownloadPurchaseOrderAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -281,15 +284,18 @@ func (s *purchaseOrders) DownloadAttachment(ctx context.Context, request operati
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -301,7 +307,7 @@ func (s *purchaseOrders) DownloadAttachment(ctx context.Context, request operati
 // [Purchase Orders](https://docs.codat.io/accounting-api#/schemas/PurchaseOrder) represent a business's intent to purchase goods or services from a supplier.
 //
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=purchaseOrders) for integrations that support getting a purchase order as PDF.
-func (s *purchaseOrders) DownloadPurchaseOrderPdf(ctx context.Context, request operations.DownloadPurchaseOrderPdfRequest, opts ...operations.Option) (*operations.DownloadPurchaseOrderPdfResponse, error) {
+func (s *PurchaseOrders) DownloadPurchaseOrderPdf(ctx context.Context, request operations.DownloadPurchaseOrderPdfRequest, opts ...operations.Option) (*operations.DownloadPurchaseOrderPdfResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -410,15 +416,18 @@ func (s *purchaseOrders) DownloadPurchaseOrderPdf(ctx context.Context, request o
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -432,7 +441,7 @@ func (s *purchaseOrders) DownloadPurchaseOrderPdf(ctx context.Context, request o
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=purchaseOrders) for integrations that support getting a specific purchase order.
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
-func (s *purchaseOrders) Get(ctx context.Context, request operations.GetPurchaseOrderRequest, opts ...operations.Option) (*operations.GetPurchaseOrderResponse, error) {
+func (s *PurchaseOrders) Get(ctx context.Context, request operations.GetPurchaseOrderRequest, opts ...operations.Option) (*operations.GetPurchaseOrderResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -538,15 +547,18 @@ func (s *purchaseOrders) Get(ctx context.Context, request operations.GetPurchase
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -558,7 +570,7 @@ func (s *purchaseOrders) Get(ctx context.Context, request operations.GetPurchase
 // [Purchase Orders](https://docs.codat.io/accounting-api#/schemas/PurchaseOrder) represent a business's intent to purchase goods or services from a supplier.
 //
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=purchaseOrders) for integrations that support getting a purchase order attachment.
-func (s *purchaseOrders) GetAttachment(ctx context.Context, request operations.GetPurchaseOrderAttachmentRequest, opts ...operations.Option) (*operations.GetPurchaseOrderAttachmentResponse, error) {
+func (s *PurchaseOrders) GetAttachment(ctx context.Context, request operations.GetPurchaseOrderAttachmentRequest, opts ...operations.Option) (*operations.GetPurchaseOrderAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -662,15 +674,18 @@ func (s *purchaseOrders) GetAttachment(ctx context.Context, request operations.G
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -686,7 +701,7 @@ func (s *purchaseOrders) GetAttachment(ctx context.Context, request operations.G
 // See the *response examples* for integration-specific indicative models.
 //
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=purchaseOrders) for integrations that support creating and updating a purchase order.
-func (s *purchaseOrders) GetCreateUpdateModel(ctx context.Context, request operations.GetCreateUpdatePurchaseOrdersModelRequest, opts ...operations.Option) (*operations.GetCreateUpdatePurchaseOrdersModelResponse, error) {
+func (s *PurchaseOrders) GetCreateUpdateModel(ctx context.Context, request operations.GetCreateUpdatePurchaseOrdersModelRequest, opts ...operations.Option) (*operations.GetCreateUpdatePurchaseOrdersModelResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -790,15 +805,18 @@ func (s *purchaseOrders) GetCreateUpdateModel(ctx context.Context, request opera
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -810,7 +828,7 @@ func (s *purchaseOrders) GetCreateUpdateModel(ctx context.Context, request opera
 // [Purchase orders](https://docs.codat.io/accounting-api#/schemas/PurchaseOrder) represent a business's intent to purchase goods or services from a supplier.
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
-func (s *purchaseOrders) List(ctx context.Context, request operations.ListPurchaseOrdersRequest, opts ...operations.Option) (*operations.ListPurchaseOrdersResponse, error) {
+func (s *PurchaseOrders) List(ctx context.Context, request operations.ListPurchaseOrdersRequest, opts ...operations.Option) (*operations.ListPurchaseOrdersResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -922,15 +940,18 @@ func (s *purchaseOrders) List(ctx context.Context, request operations.ListPurcha
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -942,7 +963,7 @@ func (s *purchaseOrders) List(ctx context.Context, request operations.ListPurcha
 // [Purchase Orders](https://docs.codat.io/accounting-api#/schemas/PurchaseOrder) represent a business's intent to purchase goods or services from a supplier.
 //
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=purchaseOrders) for integrations that support listing purchase order attachments.
-func (s *purchaseOrders) ListAttachments(ctx context.Context, request operations.ListPurchaseOrderAttachmentsRequest, opts ...operations.Option) (*operations.ListPurchaseOrderAttachmentsResponse, error) {
+func (s *PurchaseOrders) ListAttachments(ctx context.Context, request operations.ListPurchaseOrderAttachmentsRequest, opts ...operations.Option) (*operations.ListPurchaseOrderAttachmentsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1046,15 +1067,18 @@ func (s *purchaseOrders) ListAttachments(ctx context.Context, request operations
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -1070,7 +1094,7 @@ func (s *purchaseOrders) ListAttachments(ctx context.Context, request operations
 // Required data may vary by integration. To see what data to post, first call [Get create/update purchase order model](https://docs.codat.io/accounting-api#/operations/get-create-update-purchaseOrders-model).
 //
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=purchaseOrders) for integrations that support creating an account.
-func (s *purchaseOrders) Update(ctx context.Context, request operations.UpdatePurchaseOrderRequest, opts ...operations.Option) (*operations.UpdatePurchaseOrderResponse, error) {
+func (s *PurchaseOrders) Update(ctx context.Context, request operations.UpdatePurchaseOrderRequest, opts ...operations.Option) (*operations.UpdatePurchaseOrderResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1187,15 +1211,18 @@ func (s *purchaseOrders) Update(ctx context.Context, request operations.UpdatePu
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

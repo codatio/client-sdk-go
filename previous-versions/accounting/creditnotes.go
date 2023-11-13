@@ -14,13 +14,13 @@ import (
 	"net/http"
 )
 
-// creditNotes - Credit notes
-type creditNotes struct {
+// CreditNotes - Credit notes
+type CreditNotes struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newCreditNotes(sdkConfig sdkConfiguration) *creditNotes {
-	return &creditNotes{
+func newCreditNotes(sdkConfig sdkConfiguration) *CreditNotes {
+	return &CreditNotes{
 		sdkConfiguration: sdkConfig,
 	}
 }
@@ -35,7 +35,7 @@ func newCreditNotes(sdkConfig sdkConfiguration) *creditNotes {
 // Required data may vary by integration. To see what data to post, first call [Get create/update credit note model](https://docs.codat.io/accounting-api#/operations/get-create-update-creditNotes-model).
 //
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=creditNotes) for integrations that support creating an account.
-func (s *creditNotes) Create(ctx context.Context, request operations.CreateCreditNoteRequest, opts ...operations.Option) (*operations.CreateCreditNoteResponse, error) {
+func (s *CreditNotes) Create(ctx context.Context, request operations.CreateCreditNoteRequest, opts ...operations.Option) (*operations.CreateCreditNoteResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -152,15 +152,18 @@ func (s *creditNotes) Create(ctx context.Context, request operations.CreateCredi
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -174,7 +177,7 @@ func (s *creditNotes) Create(ctx context.Context, request operations.CreateCredi
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=creditNotes) for integrations that support getting a specific credit note.
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
-func (s *creditNotes) Get(ctx context.Context, request operations.GetCreditNoteRequest, opts ...operations.Option) (*operations.GetCreditNoteResponse, error) {
+func (s *CreditNotes) Get(ctx context.Context, request operations.GetCreditNoteRequest, opts ...operations.Option) (*operations.GetCreditNoteResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -280,15 +283,18 @@ func (s *creditNotes) Get(ctx context.Context, request operations.GetCreditNoteR
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -304,7 +310,7 @@ func (s *creditNotes) Get(ctx context.Context, request operations.GetCreditNoteR
 // See the *response examples* for integration-specific indicative models.
 //
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=creditNotes) for integrations that support creating and updating a credit note.
-func (s *creditNotes) GetCreateUpdateModel(ctx context.Context, request operations.GetCreateUpdateCreditNotesModelRequest, opts ...operations.Option) (*operations.GetCreateUpdateCreditNotesModelResponse, error) {
+func (s *CreditNotes) GetCreateUpdateModel(ctx context.Context, request operations.GetCreateUpdateCreditNotesModelRequest, opts ...operations.Option) (*operations.GetCreateUpdateCreditNotesModelResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -408,15 +414,18 @@ func (s *creditNotes) GetCreateUpdateModel(ctx context.Context, request operatio
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -428,7 +437,7 @@ func (s *creditNotes) GetCreateUpdateModel(ctx context.Context, request operatio
 // [Credit notes](https://docs.codat.io/accounting-api#/schemas/CreditNote) are issued to a customer to indicate debt, typically with reference to a previously issued invoice and/or purchase.
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
-func (s *creditNotes) List(ctx context.Context, request operations.ListCreditNotesRequest, opts ...operations.Option) (*operations.ListCreditNotesResponse, error) {
+func (s *CreditNotes) List(ctx context.Context, request operations.ListCreditNotesRequest, opts ...operations.Option) (*operations.ListCreditNotesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -540,15 +549,18 @@ func (s *creditNotes) List(ctx context.Context, request operations.ListCreditNot
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -564,7 +576,7 @@ func (s *creditNotes) List(ctx context.Context, request operations.ListCreditNot
 // Required data may vary by integration. To see what data to post, first call [Get create/update credit note model](https://docs.codat.io/accounting-api#/operations/get-create-update-creditNotes-model).
 //
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=creditNotes) for integrations that support creating an account.
-func (s *creditNotes) Update(ctx context.Context, request operations.UpdateCreditNoteRequest, opts ...operations.Option) (*operations.UpdateCreditNoteResponse, error) {
+func (s *CreditNotes) Update(ctx context.Context, request operations.UpdateCreditNoteRequest, opts ...operations.Option) (*operations.UpdateCreditNoteResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -681,15 +693,18 @@ func (s *creditNotes) Update(ctx context.Context, request operations.UpdateCredi
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

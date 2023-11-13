@@ -71,8 +71,6 @@ type CreateBankAccountResponse struct {
 	ContentType string
 	// Success
 	CreateBankAccountResponse *shared.CreateBankAccountResponse
-	// The request made is not valid.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -91,13 +89,6 @@ func (o *CreateBankAccountResponse) GetCreateBankAccountResponse() *shared.Creat
 		return nil
 	}
 	return o.CreateBankAccountResponse
-}
-
-func (o *CreateBankAccountResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *CreateBankAccountResponse) GetStatusCode() int {

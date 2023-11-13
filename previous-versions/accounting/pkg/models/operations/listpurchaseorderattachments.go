@@ -42,8 +42,6 @@ type ListPurchaseOrderAttachmentsResponse struct {
 	AttachmentsDataset *shared.AttachmentsDataset
 	// HTTP response content type for this operation
 	ContentType string
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -62,13 +60,6 @@ func (o *ListPurchaseOrderAttachmentsResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *ListPurchaseOrderAttachmentsResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *ListPurchaseOrderAttachmentsResponse) GetStatusCode() int {

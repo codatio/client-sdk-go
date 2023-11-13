@@ -7,149 +7,32 @@ import (
 	"github.com/ericlagergren/decimal"
 )
 
-type BillAccountingPaymentAllocationAllocation struct {
-	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
-	//
-	// ```
-	// 2020-10-08T22:40:50Z
-	// 2021-01-01T00:00:00
-	// ```
-	//
-	//
-	//
-	// When syncing data that contains `DateTime` fields from Codat, make sure you support the following cases when reading time information:
-	//
-	// - Coordinated Universal Time (UTC): `2021-11-15T06:00:00Z`
-	// - Unqualified local time: `2021-11-15T01:00:00`
-	// - UTC time offsets: `2021-11-15T01:00:00-05:00`
-	//
-	// > Time zones
-	// >
-	// > Not all dates from Codat will contain information about time zones.
-	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	AllocatedOnDate *string `json:"allocatedOnDate,omitempty"`
-	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code, e.g. _GBP_.
-	//
-	// ## Unknown currencies
-	//
-	// In line with the ISO 4217 specification, the code _XXX_ is used when the data source does not return a currency for a transaction.
-	//
-	// There are only a very small number of edge cases where this currency code is returned by the Codat system.
-	Currency *string `json:"currency,omitempty"`
-	// Rate to convert the total amount of the payment into the base currency for the company at the time of the payment.
-	//
-	// Currency rates in Codat are implemented as the multiple of foreign currency units to each base currency unit.
-	//
-	// It is not possible to perform the currency conversion with two or more non-base currencies participating in the transaction. For example, if a company's base currency is USD, and it has a bill issued in EUR, then the bill payment must happen in USD or EUR.
-	//
-	// Where the currency rate is provided by the underlying accounting platform, it will be available from Codat with the same precision (up to a maximum of 9 decimal places).
-	//
-	// For accounting platforms which do not provide an explicit currency rate, it is calculated as `baseCurrency / foreignCurrency` and will be returned to 9 decimal places.
-	//
-	// ## Examples with base currency of GBP
-	//
-	// | Foreign Currency | Foreign Amount | Currency Rate | Base Currency Amount (GBP) |
-	// | :--------------- | :------------- | :------------ | :------------------------- |
-	// | **USD**          | $20            | 0.781         | £15.62                     |
-	// | **EUR**          | €20            | 0.885         | £17.70                     |
-	// | **RUB**          | ₽20            | 0.011         | £0.22                      |
-	//
-	// ## Examples with base currency of USD
-	//
-	// | Foreign Currency | Foreign Amount | Currency Rate | Base Currency Amount (USD) |
-	// | :--------------- | :------------- | :------------ | :------------------------- |
-	// | **GBP**          | £20            | 1.277         | $25.54                     |
-	// | **EUR**          | €20            | 1.134         | $22.68                     |
-	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
-	CurrencyRate *decimal.Big `decimal:"number" json:"currencyRate,omitempty"`
-	// The total amount that has been allocated.
-	TotalAmount *decimal.Big `decimal:"number" json:"totalAmount,omitempty"`
-}
-
-func (b BillAccountingPaymentAllocationAllocation) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(b, "", false)
-}
-
-func (b *BillAccountingPaymentAllocationAllocation) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &b, "", false, false); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *BillAccountingPaymentAllocationAllocation) GetAllocatedOnDate() *string {
-	if o == nil {
-		return nil
-	}
-	return o.AllocatedOnDate
-}
-
-func (o *BillAccountingPaymentAllocationAllocation) GetCurrency() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Currency
-}
-
-func (o *BillAccountingPaymentAllocationAllocation) GetCurrencyRate() *decimal.Big {
-	if o == nil {
-		return nil
-	}
-	return o.CurrencyRate
-}
-
-func (o *BillAccountingPaymentAllocationAllocation) GetTotalAmount() *decimal.Big {
-	if o == nil {
-		return nil
-	}
-	return o.TotalAmount
-}
-
-type BillAccountingPaymentAllocation struct {
-	Allocation BillAccountingPaymentAllocationAllocation `json:"allocation"`
-	Payment    PaymentAllocationPayment                  `json:"payment"`
-}
-
-func (o *BillAccountingPaymentAllocation) GetAllocation() BillAccountingPaymentAllocationAllocation {
-	if o == nil {
-		return BillAccountingPaymentAllocationAllocation{}
-	}
-	return o.Allocation
-}
-
-func (o *BillAccountingPaymentAllocation) GetPayment() PaymentAllocationPayment {
-	if o == nil {
-		return PaymentAllocationPayment{}
-	}
-	return o.Payment
-}
-
-type BillWithholdingTax struct {
+type WithholdingTax struct {
 	// Amount of tax withheld.
 	Amount *decimal.Big `decimal:"number" json:"amount"`
 	// Name assigned to withheld tax.
 	Name string `json:"name"`
 }
 
-func (b BillWithholdingTax) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(b, "", false)
+func (w WithholdingTax) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(w, "", false)
 }
 
-func (b *BillWithholdingTax) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &b, "", false, false); err != nil {
+func (w *WithholdingTax) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &w, "", false, false); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *BillWithholdingTax) GetAmount() *decimal.Big {
+func (o *WithholdingTax) GetAmount() *decimal.Big {
 	if o == nil {
 		return new(decimal.Big).SetFloat64(0.0)
 	}
 	return o.Amount
 }
 
-func (o *BillWithholdingTax) GetName() string {
+func (o *WithholdingTax) GetName() string {
 	if o == nil {
 		return ""
 	}
@@ -223,8 +106,8 @@ type Bill struct {
 	// Any private, company notes about the bill, such as payment information.
 	Note *string `json:"note,omitempty"`
 	// An array of payment allocations.
-	PaymentAllocations []BillAccountingPaymentAllocation `json:"paymentAllocations,omitempty"`
-	PurchaseOrderRefs  []PurchaseOrderRef                `json:"purchaseOrderRefs,omitempty"`
+	PaymentAllocations []PaymentAllocationItems `json:"paymentAllocations,omitempty"`
+	PurchaseOrderRefs  []PurchaseOrderRef       `json:"purchaseOrderRefs,omitempty"`
 	// User-friendly reference for the bill.
 	Reference          *string `json:"reference,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
@@ -241,8 +124,8 @@ type Bill struct {
 	// Amount of tax on the bill.
 	TaxAmount *decimal.Big `decimal:"number" json:"taxAmount"`
 	// Amount of the bill, including tax.
-	TotalAmount    *decimal.Big         `decimal:"number" json:"totalAmount"`
-	WithholdingTax []BillWithholdingTax `json:"withholdingTax,omitempty"`
+	TotalAmount    *decimal.Big     `decimal:"number" json:"totalAmount"`
+	WithholdingTax []WithholdingTax `json:"withholdingTax,omitempty"`
 }
 
 func (b Bill) MarshalJSON() ([]byte, error) {
@@ -326,7 +209,7 @@ func (o *Bill) GetNote() *string {
 	return o.Note
 }
 
-func (o *Bill) GetPaymentAllocations() []BillAccountingPaymentAllocation {
+func (o *Bill) GetPaymentAllocations() []PaymentAllocationItems {
 	if o == nil {
 		return nil
 	}
@@ -396,7 +279,7 @@ func (o *Bill) GetTotalAmount() *decimal.Big {
 	return o.TotalAmount
 }
 
-func (o *Bill) GetWithholdingTax() []BillWithholdingTax {
+func (o *Bill) GetWithholdingTax() []WithholdingTax {
 	if o == nil {
 		return nil
 	}

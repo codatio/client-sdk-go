@@ -2,34 +2,12 @@
 
 package shared
 
-// TransferContactRef - The customer or supplier for the transfer, if available.
-type TransferContactRef struct {
-	// Available Data types
-	DataType *DataType `json:"dataType,omitempty"`
-	// Unique identifier for a customer or supplier.
-	ID string `json:"id"`
-}
-
-func (o *TransferContactRef) GetDataType() *DataType {
-	if o == nil {
-		return nil
-	}
-	return o.DataType
-}
-
-func (o *TransferContactRef) GetID() string {
-	if o == nil {
-		return ""
-	}
-	return o.ID
-}
-
 // Transfer - > View the coverage for transfers in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=transfers" target="_blank">Data coverage explorer</a>.
 //
 // A transfer records the movement of money between two bank accounts, or between a bank account and a nominal account. It is a child data type of [account transactions](https://docs.codat.io/accounting-api#/schemas/AccountTransaction).
 type Transfer struct {
-	// The customer or supplier for the transfer, if available.
-	ContactRef *TransferContactRef `json:"contactRef,omitempty"`
+	// A customer or supplier associated with the direct cost.
+	ContactRef *ContactRef `json:"contactRef,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -71,7 +49,7 @@ type Transfer struct {
 	TrackingCategoryRefs []TrackingCategoryRef `json:"trackingCategoryRefs,omitempty"`
 }
 
-func (o *Transfer) GetContactRef() *TransferContactRef {
+func (o *Transfer) GetContactRef() *ContactRef {
 	if o == nil {
 		return nil
 	}

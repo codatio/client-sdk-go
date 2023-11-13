@@ -8,8 +8,8 @@ import (
 )
 
 type ProfitAndLossReport struct {
-	CostOfSales *ReportLine `json:"costOfSales,omitempty"`
-	Expenses    *ReportLine `json:"expenses,omitempty"`
+	CostOfSales *ReportLineInput `json:"costOfSales,omitempty"`
+	Expenses    *ReportLineInput `json:"expenses,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -31,16 +31,16 @@ type ProfitAndLossReport struct {
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	FromDate *string `json:"fromDate,omitempty"`
 	// Gross profit of the company in the given date range.
-	GrossProfit *decimal.Big `decimal:"number" json:"grossProfit"`
-	Income      *ReportLine  `json:"income,omitempty"`
+	GrossProfit *decimal.Big     `decimal:"number" json:"grossProfit"`
+	Income      *ReportLineInput `json:"income,omitempty"`
 	// Net operating profit of the company in the given date range.
 	NetOperatingProfit *decimal.Big `decimal:"number" json:"netOperatingProfit"`
 	// Net other income of the company in the given date range.
 	NetOtherIncome *decimal.Big `decimal:"number" json:"netOtherIncome"`
 	// Net profit of the company in the given date range.
-	NetProfit     *decimal.Big `decimal:"number" json:"netProfit"`
-	OtherExpenses *ReportLine  `json:"otherExpenses,omitempty"`
-	OtherIncome   *ReportLine  `json:"otherIncome,omitempty"`
+	NetProfit     *decimal.Big     `decimal:"number" json:"netProfit"`
+	OtherExpenses *ReportLineInput `json:"otherExpenses,omitempty"`
+	OtherIncome   *ReportLineInput `json:"otherIncome,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -74,14 +74,14 @@ func (p *ProfitAndLossReport) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *ProfitAndLossReport) GetCostOfSales() *ReportLine {
+func (o *ProfitAndLossReport) GetCostOfSales() *ReportLineInput {
 	if o == nil {
 		return nil
 	}
 	return o.CostOfSales
 }
 
-func (o *ProfitAndLossReport) GetExpenses() *ReportLine {
+func (o *ProfitAndLossReport) GetExpenses() *ReportLineInput {
 	if o == nil {
 		return nil
 	}
@@ -102,7 +102,7 @@ func (o *ProfitAndLossReport) GetGrossProfit() *decimal.Big {
 	return o.GrossProfit
 }
 
-func (o *ProfitAndLossReport) GetIncome() *ReportLine {
+func (o *ProfitAndLossReport) GetIncome() *ReportLineInput {
 	if o == nil {
 		return nil
 	}
@@ -130,14 +130,14 @@ func (o *ProfitAndLossReport) GetNetProfit() *decimal.Big {
 	return o.NetProfit
 }
 
-func (o *ProfitAndLossReport) GetOtherExpenses() *ReportLine {
+func (o *ProfitAndLossReport) GetOtherExpenses() *ReportLineInput {
 	if o == nil {
 		return nil
 	}
 	return o.OtherExpenses
 }
 
-func (o *ProfitAndLossReport) GetOtherIncome() *ReportLine {
+func (o *ProfitAndLossReport) GetOtherIncome() *ReportLineInput {
 	if o == nil {
 		return nil
 	}

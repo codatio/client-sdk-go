@@ -81,8 +81,6 @@ type ListDirectIncomesResponse struct {
 	ContentType string
 	// Success
 	DirectIncomes *shared.DirectIncomes
-	// Your `query` parameter was not correctly formed
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -101,13 +99,6 @@ func (o *ListDirectIncomesResponse) GetDirectIncomes() *shared.DirectIncomes {
 		return nil
 	}
 	return o.DirectIncomes
-}
-
-func (o *ListDirectIncomesResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *ListDirectIncomesResponse) GetStatusCode() int {

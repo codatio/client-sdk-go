@@ -111,7 +111,7 @@ type CreditNote struct {
 	// Any additional information about the credit note. Where possible, Codat links to a data field in the accounting platform that is publicly available. This means that the contents of the note field are included when a credit note is emailed from the accounting platform to the customer.
 	Note *string `json:"note,omitempty"`
 	// An array of payment allocations.
-	PaymentAllocations []Items `json:"paymentAllocations,omitempty"`
+	PaymentAllocations []PaymentAllocationItems `json:"paymentAllocations,omitempty"`
 	// Unused balance of totalAmount originally raised.
 	RemainingCredit    *decimal.Big `decimal:"number" json:"remainingCredit"`
 	SourceModifiedDate *string      `json:"sourceModifiedDate,omitempty"`
@@ -129,7 +129,7 @@ type CreditNote struct {
 	TotalDiscount *decimal.Big `decimal:"number" json:"totalDiscount"`
 	// Any tax applied to the credit note amount.
 	TotalTaxAmount *decimal.Big          `decimal:"number" json:"totalTaxAmount"`
-	WithholdingTax []WithholdingTaxitems `json:"withholdingTax,omitempty"`
+	WithholdingTax []WithholdingTaxItems `json:"withholdingTax,omitempty"`
 }
 
 func (c CreditNote) MarshalJSON() ([]byte, error) {
@@ -241,7 +241,7 @@ func (o *CreditNote) GetNote() *string {
 	return o.Note
 }
 
-func (o *CreditNote) GetPaymentAllocations() []Items {
+func (o *CreditNote) GetPaymentAllocations() []PaymentAllocationItems {
 	if o == nil {
 		return nil
 	}
@@ -304,7 +304,7 @@ func (o *CreditNote) GetTotalTaxAmount() *decimal.Big {
 	return o.TotalTaxAmount
 }
 
-func (o *CreditNote) GetWithholdingTax() []WithholdingTaxitems {
+func (o *CreditNote) GetWithholdingTax() []WithholdingTaxItems {
 	if o == nil {
 		return nil
 	}

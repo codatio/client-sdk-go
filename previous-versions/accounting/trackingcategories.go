@@ -14,13 +14,13 @@ import (
 	"net/http"
 )
 
-// trackingCategories - Tracking categories
-type trackingCategories struct {
+// TrackingCategories - Tracking categories
+type TrackingCategories struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newTrackingCategories(sdkConfig sdkConfiguration) *trackingCategories {
-	return &trackingCategories{
+func newTrackingCategories(sdkConfig sdkConfiguration) *TrackingCategories {
+	return &TrackingCategories{
 		sdkConfiguration: sdkConfig,
 	}
 }
@@ -33,7 +33,7 @@ func newTrackingCategories(sdkConfig sdkConfiguration) *trackingCategories {
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=trackingCategories) for integrations that support getting a specific tracking category.
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
-func (s *trackingCategories) Get(ctx context.Context, request operations.GetTrackingCategoryRequest, opts ...operations.Option) (*operations.GetTrackingCategoryResponse, error) {
+func (s *TrackingCategories) Get(ctx context.Context, request operations.GetTrackingCategoryRequest, opts ...operations.Option) (*operations.GetTrackingCategoryResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -139,15 +139,18 @@ func (s *trackingCategories) Get(ctx context.Context, request operations.GetTrac
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -159,7 +162,7 @@ func (s *trackingCategories) Get(ctx context.Context, request operations.GetTrac
 // [Tracking categories](https://docs.codat.io/accounting-api#/schemas/TrackingCategory) are used to monitor cost centres and control budgets that sit outside the standard set of accounts.
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
-func (s *trackingCategories) List(ctx context.Context, request operations.ListTrackingCategoriesRequest, opts ...operations.Option) (*operations.ListTrackingCategoriesResponse, error) {
+func (s *TrackingCategories) List(ctx context.Context, request operations.ListTrackingCategoriesRequest, opts ...operations.Option) (*operations.ListTrackingCategoriesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -271,15 +274,18 @@ func (s *trackingCategories) List(ctx context.Context, request operations.ListTr
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

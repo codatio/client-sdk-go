@@ -50,8 +50,6 @@ type CreateItemResponse struct {
 	ContentType string
 	// Success
 	CreateItemResponse *shared.CreateItemResponse
-	// The request made is not valid.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -70,13 +68,6 @@ func (o *CreateItemResponse) GetCreateItemResponse() *shared.CreateItemResponse 
 		return nil
 	}
 	return o.CreateItemResponse
-}
-
-func (o *CreateItemResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *CreateItemResponse) GetStatusCode() int {

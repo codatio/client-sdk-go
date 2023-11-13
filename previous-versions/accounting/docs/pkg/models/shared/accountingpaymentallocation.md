@@ -1,0 +1,9 @@
+# AccountingPaymentAllocation
+
+
+## Fields
+
+| Field                                                                                               | Type                                                                                                | Required                                                                                            | Description                                                                                         |
+| --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `Allocation`                                                                                        | [shared.DirectCostPrototypeAllocation](../../../pkg/models/shared/directcostprototypeallocation.md) | :heavy_check_mark:                                                                                  | N/A                                                                                                 |
+| `Payment`                                                                                           | [shared.PaymentAllocationPayment](../../../pkg/models/shared/paymentallocationpayment.md)           | :heavy_check_mark:                                                                                  | N/A                                                                                                 |

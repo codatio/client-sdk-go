@@ -14,13 +14,13 @@ import (
 	"net/http"
 )
 
-// bankAccounts - Bank accounts
-type bankAccounts struct {
+// BankAccounts - Bank accounts
+type BankAccounts struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newBankAccounts(sdkConfig sdkConfiguration) *bankAccounts {
-	return &bankAccounts{
+func newBankAccounts(sdkConfig sdkConfiguration) *BankAccounts {
+	return &BankAccounts{
 		sdkConfiguration: sdkConfig,
 	}
 }
@@ -35,7 +35,7 @@ func newBankAccounts(sdkConfig sdkConfiguration) *bankAccounts {
 // Required data may vary by integration. To see what data to post, first call [Get create/update bank account model](https://docs.codat.io/accounting-api#/operations/get-create-update-bankAccounts-model).
 //
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankAccounts) for integrations that support creating an account.
-func (s *bankAccounts) Create(ctx context.Context, request operations.CreateBankAccountRequest, opts ...operations.Option) (*operations.CreateBankAccountResponse, error) {
+func (s *BankAccounts) Create(ctx context.Context, request operations.CreateBankAccountRequest, opts ...operations.Option) (*operations.CreateBankAccountResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -152,15 +152,18 @@ func (s *bankAccounts) Create(ctx context.Context, request operations.CreateBank
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -174,7 +177,7 @@ func (s *bankAccounts) Create(ctx context.Context, request operations.CreateBank
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankAccounts) for integrations that support getting a specific bank account.
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
-func (s *bankAccounts) Get(ctx context.Context, request operations.GetBankAccountRequest, opts ...operations.Option) (*operations.GetBankAccountResponse, error) {
+func (s *BankAccounts) Get(ctx context.Context, request operations.GetBankAccountRequest, opts ...operations.Option) (*operations.GetBankAccountResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -280,15 +283,18 @@ func (s *bankAccounts) Get(ctx context.Context, request operations.GetBankAccoun
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -304,7 +310,7 @@ func (s *bankAccounts) Get(ctx context.Context, request operations.GetBankAccoun
 // See the *response examples* for integration-specific indicative models.
 //
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankAccounts) for integrations that support creating and updating a bank account.
-func (s *bankAccounts) GetCreateUpdateModel(ctx context.Context, request operations.GetCreateUpdateBankAccountsModelRequest, opts ...operations.Option) (*operations.GetCreateUpdateBankAccountsModelResponse, error) {
+func (s *BankAccounts) GetCreateUpdateModel(ctx context.Context, request operations.GetCreateUpdateBankAccountsModelRequest, opts ...operations.Option) (*operations.GetCreateUpdateBankAccountsModelResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -408,15 +414,18 @@ func (s *bankAccounts) GetCreateUpdateModel(ctx context.Context, request operati
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -428,7 +437,7 @@ func (s *bankAccounts) GetCreateUpdateModel(ctx context.Context, request operati
 // [Bank accounts](https://docs.codat.io/accounting-api#/schemas/BankAccount) are financial accounts maintained by a bank or other financial institution.
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
-func (s *bankAccounts) List(ctx context.Context, request operations.ListBankAccountsRequest, opts ...operations.Option) (*operations.ListBankAccountsResponse, error) {
+func (s *BankAccounts) List(ctx context.Context, request operations.ListBankAccountsRequest, opts ...operations.Option) (*operations.ListBankAccountsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -540,15 +549,18 @@ func (s *bankAccounts) List(ctx context.Context, request operations.ListBankAcco
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -564,7 +576,7 @@ func (s *bankAccounts) List(ctx context.Context, request operations.ListBankAcco
 // Required data may vary by integration. To see what data to post, first call [Get create/update bank account model](https://docs.codat.io/accounting-api#/operations/get-create-update-bankAccounts-model).
 //
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankAccounts) for integrations that support creating an account.
-func (s *bankAccounts) Update(ctx context.Context, request operations.UpdateBankAccountRequest, opts ...operations.Option) (*operations.UpdateBankAccountResponse, error) {
+func (s *BankAccounts) Update(ctx context.Context, request operations.UpdateBankAccountRequest, opts ...operations.Option) (*operations.UpdateBankAccountResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -681,15 +693,18 @@ func (s *bankAccounts) Update(ctx context.Context, request operations.UpdateBank
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

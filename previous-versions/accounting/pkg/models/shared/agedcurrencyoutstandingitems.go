@@ -2,7 +2,7 @@
 
 package shared
 
-type AgedCurrencyOutstandingitems struct {
+type AgedCurrencyOutstandingItems struct {
 	// Array of outstanding amounts by period.
 	AgedOutstandingAmounts []AgedOutstandingAmount `json:"agedOutstandingAmounts,omitempty"`
 	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code, e.g. _GBP_.
@@ -15,14 +15,14 @@ type AgedCurrencyOutstandingitems struct {
 	Currency *string `json:"currency,omitempty"`
 }
 
-func (o *AgedCurrencyOutstandingitems) GetAgedOutstandingAmounts() []AgedOutstandingAmount {
+func (o *AgedCurrencyOutstandingItems) GetAgedOutstandingAmounts() []AgedOutstandingAmount {
 	if o == nil {
 		return nil
 	}
 	return o.AgedOutstandingAmounts
 }
 
-func (o *AgedCurrencyOutstandingitems) GetCurrency() *string {
+func (o *AgedCurrencyOutstandingItems) GetCurrency() *string {
 	if o == nil {
 		return nil
 	}

@@ -40,8 +40,6 @@ func (o *DeleteBillPaymentRequest) GetConnectionID() string {
 type DeleteBillPaymentResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// OK
 	PushOperationSummary *shared.PushOperationSummary
 	// HTTP response status code for this operation
@@ -55,13 +53,6 @@ func (o *DeleteBillPaymentResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *DeleteBillPaymentResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *DeleteBillPaymentResponse) GetPushOperationSummary() *shared.PushOperationSummary {

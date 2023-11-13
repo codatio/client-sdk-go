@@ -3,13 +3,12 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
 	"net/http"
 )
 
 type UploadBillCreditNoteAttachmentRequestBody struct {
-	Content     []byte `multipartForm:"content"`
-	RequestBody string `multipartForm:"name=requestBody"`
+	Content  []byte `multipartForm:"content"`
+	FileName string `multipartForm:"name=fileName"`
 }
 
 func (o *UploadBillCreditNoteAttachmentRequestBody) GetContent() []byte {
@@ -19,11 +18,11 @@ func (o *UploadBillCreditNoteAttachmentRequestBody) GetContent() []byte {
 	return o.Content
 }
 
-func (o *UploadBillCreditNoteAttachmentRequestBody) GetRequestBody() string {
+func (o *UploadBillCreditNoteAttachmentRequestBody) GetFileName() string {
 	if o == nil {
 		return ""
 	}
-	return o.RequestBody
+	return o.FileName
 }
 
 type UploadBillCreditNoteAttachmentRequest struct {
@@ -67,8 +66,6 @@ func (o *UploadBillCreditNoteAttachmentRequest) GetConnectionID() string {
 type UploadBillCreditNoteAttachmentResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// The request made is not valid.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -80,13 +77,6 @@ func (o *UploadBillCreditNoteAttachmentResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *UploadBillCreditNoteAttachmentResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *UploadBillCreditNoteAttachmentResponse) GetStatusCode() int {

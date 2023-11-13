@@ -15,8 +15,8 @@ type JournalLine struct {
 	// Description of the journal line item.
 	Description *string `json:"description,omitempty"`
 	// Amount for the journal line. Debit entries are considered positive, and credit entries are considered negative.
-	NetAmount *decimal.Big         `decimal:"number" json:"netAmount"`
-	Tracking  *Propertiestracking2 `json:"tracking,omitempty"`
+	NetAmount *decimal.Big        `decimal:"number" json:"netAmount"`
+	Tracking  *PropertieTracking2 `json:"tracking,omitempty"`
 }
 
 func (j JournalLine) MarshalJSON() ([]byte, error) {
@@ -58,7 +58,7 @@ func (o *JournalLine) GetNetAmount() *decimal.Big {
 	return o.NetAmount
 }
 
-func (o *JournalLine) GetTracking() *Propertiestracking2 {
+func (o *JournalLine) GetTracking() *PropertieTracking2 {
 	if o == nil {
 		return nil
 	}

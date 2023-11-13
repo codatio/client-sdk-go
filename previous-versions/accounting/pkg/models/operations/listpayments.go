@@ -70,8 +70,6 @@ func (o *ListPaymentsRequest) GetQuery() *string {
 type ListPaymentsResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Your `query` parameter was not correctly formed
-	ErrorMessage *shared.ErrorMessage
 	// Success
 	Payments *shared.Payments
 	// HTTP response status code for this operation
@@ -85,13 +83,6 @@ func (o *ListPaymentsResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *ListPaymentsResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *ListPaymentsResponse) GetPayments() *shared.Payments {

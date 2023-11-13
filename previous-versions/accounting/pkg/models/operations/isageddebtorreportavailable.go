@@ -3,7 +3,6 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
 	"net/http"
 )
 
@@ -22,14 +21,12 @@ func (o *IsAgedDebtorReportAvailableRequest) GetCompanyID() string {
 type IsAgedDebtorReportAvailableResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// OK
-	IsAgedDebtorReportAvailable200ApplicationJSONBoolean *bool
+	Boolean *bool
 }
 
 func (o *IsAgedDebtorReportAvailableResponse) GetContentType() string {
@@ -37,13 +34,6 @@ func (o *IsAgedDebtorReportAvailableResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *IsAgedDebtorReportAvailableResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *IsAgedDebtorReportAvailableResponse) GetStatusCode() int {
@@ -60,9 +50,9 @@ func (o *IsAgedDebtorReportAvailableResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *IsAgedDebtorReportAvailableResponse) GetIsAgedDebtorReportAvailable200ApplicationJSONBoolean() *bool {
+func (o *IsAgedDebtorReportAvailableResponse) GetBoolean() *bool {
 	if o == nil {
 		return nil
 	}
-	return o.IsAgedDebtorReportAvailable200ApplicationJSONBoolean
+	return o.Boolean
 }

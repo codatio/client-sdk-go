@@ -151,7 +151,7 @@ type Invoice struct {
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	PaidOnDate *string `json:"paidOnDate,omitempty"`
 	// An array of payment allocations.
-	PaymentAllocations []Items `json:"paymentAllocations,omitempty"`
+	PaymentAllocations []PaymentAllocationItems `json:"paymentAllocations,omitempty"`
 	// List of references to related Sales orders.
 	SalesOrderRefs     []SalesOrderRef `json:"salesOrderRefs,omitempty"`
 	SourceModifiedDate *string         `json:"sourceModifiedDate,omitempty"`
@@ -175,7 +175,7 @@ type Invoice struct {
 	TotalDiscount *decimal.Big `decimal:"number" json:"totalDiscount,omitempty"`
 	// Amount of tax on the invoice.
 	TotalTaxAmount *decimal.Big          `decimal:"number" json:"totalTaxAmount"`
-	WithholdingTax []WithholdingTaxitems `json:"withholdingTax,omitempty"`
+	WithholdingTax []WithholdingTaxItems `json:"withholdingTax,omitempty"`
 }
 
 func (i Invoice) MarshalJSON() ([]byte, error) {
@@ -301,7 +301,7 @@ func (o *Invoice) GetPaidOnDate() *string {
 	return o.PaidOnDate
 }
 
-func (o *Invoice) GetPaymentAllocations() []Items {
+func (o *Invoice) GetPaymentAllocations() []PaymentAllocationItems {
 	if o == nil {
 		return nil
 	}
@@ -364,7 +364,7 @@ func (o *Invoice) GetTotalTaxAmount() *decimal.Big {
 	return o.TotalTaxAmount
 }
 
-func (o *Invoice) GetWithholdingTax() []WithholdingTaxitems {
+func (o *Invoice) GetWithholdingTax() []WithholdingTaxItems {
 	if o == nil {
 		return nil
 	}

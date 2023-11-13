@@ -70,10 +70,8 @@ func (o *ListItemsRequest) GetQuery() *string {
 type ListItemsResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Your `query` parameter was not correctly formed
-	ErrorMessage *shared.ErrorMessage
 	// Success
-	Items *shared.Items1
+	Items *shared.SchemaItems
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -87,14 +85,7 @@ func (o *ListItemsResponse) GetContentType() string {
 	return o.ContentType
 }
 
-func (o *ListItemsResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
-}
-
-func (o *ListItemsResponse) GetItems() *shared.Items1 {
+func (o *ListItemsResponse) GetItems() *shared.SchemaItems {
 	if o == nil {
 		return nil
 	}

@@ -14,20 +14,20 @@ import (
 	"net/http"
 )
 
-// reports - Reports
-type reports struct {
+// Reports
+type Reports struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newReports(sdkConfig sdkConfiguration) *reports {
-	return &reports{
+func newReports(sdkConfig sdkConfiguration) *Reports {
+	return &Reports{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // GetAgedCreditorsReport - Aged creditors report
 // Returns aged creditors report for company that shows the total balance owed by a business to its suppliers over time.
-func (s *reports) GetAgedCreditorsReport(ctx context.Context, request operations.GetAgedCreditorsReportRequest, opts ...operations.Option) (*operations.GetAgedCreditorsReportResponse, error) {
+func (s *Reports) GetAgedCreditorsReport(ctx context.Context, request operations.GetAgedCreditorsReportRequest, opts ...operations.Option) (*operations.GetAgedCreditorsReportResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -135,15 +135,18 @@ func (s *reports) GetAgedCreditorsReport(ctx context.Context, request operations
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -151,7 +154,7 @@ func (s *reports) GetAgedCreditorsReport(ctx context.Context, request operations
 
 // GetAgedDebtorsReport - Aged debtors report
 // Returns aged debtors report for company that shows the total outstanding balance due from customers to the business over time.
-func (s *reports) GetAgedDebtorsReport(ctx context.Context, request operations.GetAgedDebtorsReportRequest, opts ...operations.Option) (*operations.GetAgedDebtorsReportResponse, error) {
+func (s *Reports) GetAgedDebtorsReport(ctx context.Context, request operations.GetAgedDebtorsReportRequest, opts ...operations.Option) (*operations.GetAgedDebtorsReportResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -259,15 +262,18 @@ func (s *reports) GetAgedDebtorsReport(ctx context.Context, request operations.G
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -275,7 +281,7 @@ func (s *reports) GetAgedDebtorsReport(ctx context.Context, request operations.G
 
 // GetBalanceSheet - Get balance sheet
 // Gets the latest balance sheet for a company.
-func (s *reports) GetBalanceSheet(ctx context.Context, request operations.GetBalanceSheetRequest, opts ...operations.Option) (*operations.GetBalanceSheetResponse, error) {
+func (s *Reports) GetBalanceSheet(ctx context.Context, request operations.GetBalanceSheetRequest, opts ...operations.Option) (*operations.GetBalanceSheetResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -359,7 +365,7 @@ func (s *reports) GetBalanceSheet(ctx context.Context, request operations.GetBal
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.BalanceSheet1
+			var out shared.BalanceSheetInput
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -385,15 +391,18 @@ func (s *reports) GetBalanceSheet(ctx context.Context, request operations.GetBal
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -401,7 +410,7 @@ func (s *reports) GetBalanceSheet(ctx context.Context, request operations.GetBal
 
 // GetCashFlowStatement - Get cash flow statement
 // Gets the latest cash flow statement for a company.
-func (s *reports) GetCashFlowStatement(ctx context.Context, request operations.GetCashFlowStatementRequest, opts ...operations.Option) (*operations.GetCashFlowStatementResponse, error) {
+func (s *Reports) GetCashFlowStatement(ctx context.Context, request operations.GetCashFlowStatementRequest, opts ...operations.Option) (*operations.GetCashFlowStatementResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -485,7 +494,7 @@ func (s *reports) GetCashFlowStatement(ctx context.Context, request operations.G
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.CashFlowStatement1
+			var out shared.CashFlowStatementInput
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -511,15 +520,18 @@ func (s *reports) GetCashFlowStatement(ctx context.Context, request operations.G
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -527,7 +539,7 @@ func (s *reports) GetCashFlowStatement(ctx context.Context, request operations.G
 
 // GetProfitAndLoss - Get profit and loss
 // Gets the latest profit and loss for a company.
-func (s *reports) GetProfitAndLoss(ctx context.Context, request operations.GetProfitAndLossRequest, opts ...operations.Option) (*operations.GetProfitAndLossResponse, error) {
+func (s *Reports) GetProfitAndLoss(ctx context.Context, request operations.GetProfitAndLossRequest, opts ...operations.Option) (*operations.GetProfitAndLossResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -611,7 +623,7 @@ func (s *reports) GetProfitAndLoss(ctx context.Context, request operations.GetPr
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ProfitAndLossReport1
+			var out shared.ProfitAndLossReportInput
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -637,15 +649,18 @@ func (s *reports) GetProfitAndLoss(ctx context.Context, request operations.GetPr
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -653,7 +668,7 @@ func (s *reports) GetProfitAndLoss(ctx context.Context, request operations.GetPr
 
 // IsAgedCreditorsReportAvailable - Aged creditors report available
 // Indicates whether the aged creditor report is available for the company.
-func (s *reports) IsAgedCreditorsReportAvailable(ctx context.Context, request operations.IsAgedCreditorsReportAvailableRequest, opts ...operations.Option) (*operations.IsAgedCreditorsReportAvailableResponse, error) {
+func (s *Reports) IsAgedCreditorsReportAvailable(ctx context.Context, request operations.IsAgedCreditorsReportAvailableRequest, opts ...operations.Option) (*operations.IsAgedCreditorsReportAvailableResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -738,7 +753,7 @@ func (s *reports) IsAgedCreditorsReportAvailable(ctx context.Context, request op
 				return nil, err
 			}
 
-			res.IsAgedCreditorsReportAvailable200ApplicationJSONBoolean = &out
+			res.Boolean = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -757,15 +772,18 @@ func (s *reports) IsAgedCreditorsReportAvailable(ctx context.Context, request op
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -773,7 +791,7 @@ func (s *reports) IsAgedCreditorsReportAvailable(ctx context.Context, request op
 
 // IsAgedDebtorReportAvailable - Aged debtors report available
 // Indicates whether the aged debtor report is available for the company.
-func (s *reports) IsAgedDebtorReportAvailable(ctx context.Context, request operations.IsAgedDebtorReportAvailableRequest, opts ...operations.Option) (*operations.IsAgedDebtorReportAvailableResponse, error) {
+func (s *Reports) IsAgedDebtorReportAvailable(ctx context.Context, request operations.IsAgedDebtorReportAvailableRequest, opts ...operations.Option) (*operations.IsAgedDebtorReportAvailableResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -858,7 +876,7 @@ func (s *reports) IsAgedDebtorReportAvailable(ctx context.Context, request opera
 				return nil, err
 			}
 
-			res.IsAgedDebtorReportAvailable200ApplicationJSONBoolean = &out
+			res.Boolean = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -877,15 +895,18 @@ func (s *reports) IsAgedDebtorReportAvailable(ctx context.Context, request opera
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

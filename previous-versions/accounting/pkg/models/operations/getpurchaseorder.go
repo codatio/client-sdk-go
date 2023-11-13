@@ -31,8 +31,6 @@ func (o *GetPurchaseOrderRequest) GetPurchaseOrderID() string {
 type GetPurchaseOrderResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// Success
 	PurchaseOrder *shared.PurchaseOrder
 	// HTTP response status code for this operation
@@ -46,13 +44,6 @@ func (o *GetPurchaseOrderResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *GetPurchaseOrderResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *GetPurchaseOrderResponse) GetPurchaseOrder() *shared.PurchaseOrder {

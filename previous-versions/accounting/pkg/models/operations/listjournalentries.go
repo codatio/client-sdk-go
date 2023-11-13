@@ -70,8 +70,6 @@ func (o *ListJournalEntriesRequest) GetQuery() *string {
 type ListJournalEntriesResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Your `query` parameter was not correctly formed
-	ErrorMessage *shared.ErrorMessage
 	// Success
 	JournalEntries *shared.JournalEntries
 	// HTTP response status code for this operation
@@ -85,13 +83,6 @@ func (o *ListJournalEntriesResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *ListJournalEntriesResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *ListJournalEntriesResponse) GetJournalEntries() *shared.JournalEntries {

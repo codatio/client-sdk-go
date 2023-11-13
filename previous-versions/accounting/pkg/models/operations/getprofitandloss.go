@@ -49,10 +49,8 @@ func (o *GetProfitAndLossRequest) GetStartMonth() *string {
 type GetProfitAndLossResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// Success
-	ProfitAndLossReport *shared.ProfitAndLossReport1
+	ProfitAndLossReport *shared.ProfitAndLossReportInput
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -66,14 +64,7 @@ func (o *GetProfitAndLossResponse) GetContentType() string {
 	return o.ContentType
 }
 
-func (o *GetProfitAndLossResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
-}
-
-func (o *GetProfitAndLossResponse) GetProfitAndLossReport() *shared.ProfitAndLossReport1 {
+func (o *GetProfitAndLossResponse) GetProfitAndLossReport() *shared.ProfitAndLossReportInput {
 	if o == nil {
 		return nil
 	}

@@ -23,7 +23,7 @@ import (
 //
 // Direct incomes is a child data type of [account transactions](https://docs.codat.io/accounting-api#/schemas/AccountTransaction).
 type DirectIncome struct {
-	// The customer or supplier for the transfer, if available.
+	// A customer or supplier associated with the direct cost.
 	ContactRef *ContactRef `json:"contactRef,omitempty"`
 	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code, e.g. _GBP_.
 	//
@@ -86,8 +86,8 @@ type DirectIncome struct {
 	Metadata     *Metadata              `json:"metadata,omitempty"`
 	ModifiedDate *string                `json:"modifiedDate,omitempty"`
 	// An optional note on the direct income that can be used to assign the direct income with a reference ID in your application.
-	Note               *string `json:"note,omitempty"`
-	PaymentAllocations []Items `json:"paymentAllocations"`
+	Note               *string                  `json:"note,omitempty"`
+	PaymentAllocations []PaymentAllocationItems `json:"paymentAllocations"`
 	// User-friendly reference for the direct income.
 	Reference          *string `json:"reference,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
@@ -177,9 +177,9 @@ func (o *DirectIncome) GetNote() *string {
 	return o.Note
 }
 
-func (o *DirectIncome) GetPaymentAllocations() []Items {
+func (o *DirectIncome) GetPaymentAllocations() []PaymentAllocationItems {
 	if o == nil {
-		return []Items{}
+		return []PaymentAllocationItems{}
 	}
 	return o.PaymentAllocations
 }

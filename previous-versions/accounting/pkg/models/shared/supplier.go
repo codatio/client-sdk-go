@@ -9,7 +9,7 @@ package shared
 // From the **Suppliers** endpoints, you can retrieve a list of [all the suppliers for a company](https://docs.codat.io/accounting-api#/operations/list-suppliers). Suppliers' data links to accounts payable [bills](https://docs.codat.io/accounting-api#/schemas/Bill).
 type Supplier struct {
 	// An array of Addresses.
-	Addresses []Addressesitems `json:"addresses,omitempty"`
+	Addresses []Items `json:"addresses,omitempty"`
 	// Name of the main contact for the supplier.
 	ContactName *string `json:"contactName,omitempty"`
 	// Default currency the supplier's transactional data is recorded in.
@@ -37,7 +37,7 @@ type Supplier struct {
 	TaxNumber *string `json:"taxNumber,omitempty"`
 }
 
-func (o *Supplier) GetAddresses() []Addressesitems {
+func (o *Supplier) GetAddresses() []Items {
 	if o == nil {
 		return nil
 	}
