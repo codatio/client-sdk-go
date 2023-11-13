@@ -10,8 +10,6 @@ import (
 type UpdateConfigTextSyncFlowResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// The request made is not valid.
-	ErrorMessage *shared.ErrorMessage
 	// Success
 	LocalizationInfo map[string]shared.Localization
 	// HTTP response status code for this operation
@@ -25,13 +23,6 @@ func (o *UpdateConfigTextSyncFlowResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *UpdateConfigTextSyncFlowResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *UpdateConfigTextSyncFlowResponse) GetLocalizationInfo() map[string]shared.Localization {

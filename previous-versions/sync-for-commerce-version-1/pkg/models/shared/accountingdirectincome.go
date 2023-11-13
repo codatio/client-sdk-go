@@ -7,22 +7,22 @@ import (
 	"github.com/ericlagergren/decimal"
 )
 
-// AccountingDirectIncomeContactRef - A customer or supplier associated with the direct income.
-type AccountingDirectIncomeContactRef struct {
+// ContactRef - A customer or supplier associated with the direct income.
+type ContactRef struct {
 	// Available Data types
 	DataType *DataType `json:"dataType,omitempty"`
 	// Unique identifier for a customer or supplier.
 	ID string `json:"id"`
 }
 
-func (o *AccountingDirectIncomeContactRef) GetDataType() *DataType {
+func (o *ContactRef) GetDataType() *DataType {
 	if o == nil {
 		return nil
 	}
 	return o.DataType
 }
 
-func (o *AccountingDirectIncomeContactRef) GetID() string {
+func (o *ContactRef) GetID() string {
 	if o == nil {
 		return ""
 	}
@@ -46,7 +46,7 @@ func (o *AccountingDirectIncomeContactRef) GetID() string {
 // Direct incomes is a child data type of [account transactions](https://docs.codat.io/accounting-api#/schemas/AccountTransaction).
 type AccountingDirectIncome struct {
 	// A customer or supplier associated with the direct income.
-	ContactRef *AccountingDirectIncomeContactRef `json:"contactRef,omitempty"`
+	ContactRef *ContactRef `json:"contactRef,omitempty"`
 	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code, e.g. _GBP_.
 	//
 	// ## Unknown currencies
@@ -108,8 +108,8 @@ type AccountingDirectIncome struct {
 	Metadata     *Metadata              `json:"metadata,omitempty"`
 	ModifiedDate *string                `json:"modifiedDate,omitempty"`
 	// An optional note on the direct income that can be used to assign the direct income with a reference ID in your application.
-	Note               *string                   `json:"note,omitempty"`
-	PaymentAllocations []PaymentAllocationsitems `json:"paymentAllocations"`
+	Note               *string                  `json:"note,omitempty"`
+	PaymentAllocations []PaymentAllocationItems `json:"paymentAllocations"`
 	// User-friendly reference for the direct income.
 	Reference          *string `json:"reference,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
@@ -136,7 +136,7 @@ func (a *AccountingDirectIncome) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *AccountingDirectIncome) GetContactRef() *AccountingDirectIncomeContactRef {
+func (o *AccountingDirectIncome) GetContactRef() *ContactRef {
 	if o == nil {
 		return nil
 	}
@@ -199,9 +199,9 @@ func (o *AccountingDirectIncome) GetNote() *string {
 	return o.Note
 }
 
-func (o *AccountingDirectIncome) GetPaymentAllocations() []PaymentAllocationsitems {
+func (o *AccountingDirectIncome) GetPaymentAllocations() []PaymentAllocationItems {
 	if o == nil {
-		return []PaymentAllocationsitems{}
+		return []PaymentAllocationItems{}
 	}
 	return o.PaymentAllocations
 }

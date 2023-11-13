@@ -14,13 +14,13 @@ import (
 	"net/http"
 )
 
-// accountingCreditNotes - Credit notes
-type accountingCreditNotes struct {
+// AccountingCreditNotes - Credit notes
+type AccountingCreditNotes struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newAccountingCreditNotes(sdkConfig sdkConfiguration) *accountingCreditNotes {
-	return &accountingCreditNotes{
+func newAccountingCreditNotes(sdkConfig sdkConfiguration) *AccountingCreditNotes {
+	return &AccountingCreditNotes{
 		sdkConfiguration: sdkConfig,
 	}
 }
@@ -35,7 +35,7 @@ func newAccountingCreditNotes(sdkConfig sdkConfiguration) *accountingCreditNotes
 // Required data may vary by integration. To see what data to post, first call [Get create/update credit note model](https://docs.codat.io/accounting-api#/operations/get-create-update-creditNotes-model).
 //
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=creditNotes) for integrations that support creating an account.
-func (s *accountingCreditNotes) CreateAccountingCreditNote(ctx context.Context, request operations.CreateAccountingCreditNoteRequest, opts ...operations.Option) (*operations.CreateAccountingCreditNoteResponse, error) {
+func (s *AccountingCreditNotes) CreateAccountingCreditNote(ctx context.Context, request operations.CreateAccountingCreditNoteRequest, opts ...operations.Option) (*operations.CreateAccountingCreditNoteResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -152,15 +152,18 @@ func (s *accountingCreditNotes) CreateAccountingCreditNote(ctx context.Context, 
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

@@ -7,59 +7,59 @@ import (
 	"fmt"
 )
 
-// DatasetDataTypes - Available Data types
-type DatasetDataTypes string
+// DataTypes - Available Data types
+type DataTypes string
 
 const (
-	DatasetDataTypesAccountTransactions          DatasetDataTypes = "accountTransactions"
-	DatasetDataTypesBalanceSheet                 DatasetDataTypes = "balanceSheet"
-	DatasetDataTypesBankAccounts                 DatasetDataTypes = "bankAccounts"
-	DatasetDataTypesBankTransactions             DatasetDataTypes = "bankTransactions"
-	DatasetDataTypesBillCreditNotes              DatasetDataTypes = "billCreditNotes"
-	DatasetDataTypesBillPayments                 DatasetDataTypes = "billPayments"
-	DatasetDataTypesBills                        DatasetDataTypes = "bills"
-	DatasetDataTypesCashFlowStatement            DatasetDataTypes = "cashFlowStatement"
-	DatasetDataTypesChartOfAccounts              DatasetDataTypes = "chartOfAccounts"
-	DatasetDataTypesCompany                      DatasetDataTypes = "company"
-	DatasetDataTypesCreditNotes                  DatasetDataTypes = "creditNotes"
-	DatasetDataTypesCustomers                    DatasetDataTypes = "customers"
-	DatasetDataTypesDirectCosts                  DatasetDataTypes = "directCosts"
-	DatasetDataTypesDirectIncomes                DatasetDataTypes = "directIncomes"
-	DatasetDataTypesInvoices                     DatasetDataTypes = "invoices"
-	DatasetDataTypesItems                        DatasetDataTypes = "items"
-	DatasetDataTypesJournalEntries               DatasetDataTypes = "journalEntries"
-	DatasetDataTypesJournals                     DatasetDataTypes = "journals"
-	DatasetDataTypesPaymentMethods               DatasetDataTypes = "paymentMethods"
-	DatasetDataTypesPayments                     DatasetDataTypes = "payments"
-	DatasetDataTypesProfitAndLoss                DatasetDataTypes = "profitAndLoss"
-	DatasetDataTypesPurchaseOrders               DatasetDataTypes = "purchaseOrders"
-	DatasetDataTypesSalesOrders                  DatasetDataTypes = "salesOrders"
-	DatasetDataTypesSuppliers                    DatasetDataTypes = "suppliers"
-	DatasetDataTypesTaxRates                     DatasetDataTypes = "taxRates"
-	DatasetDataTypesTrackingCategories           DatasetDataTypes = "trackingCategories"
-	DatasetDataTypesTransfers                    DatasetDataTypes = "transfers"
-	DatasetDataTypesBankingAccountBalances       DatasetDataTypes = "banking-accountBalances"
-	DatasetDataTypesBankingAccounts              DatasetDataTypes = "banking-accounts"
-	DatasetDataTypesBankingTransactionCategories DatasetDataTypes = "banking-transactionCategories"
-	DatasetDataTypesBankingTransactions          DatasetDataTypes = "banking-transactions"
-	DatasetDataTypesCommerceCompanyInfo          DatasetDataTypes = "commerce-companyInfo"
-	DatasetDataTypesCommerceCustomers            DatasetDataTypes = "commerce-customers"
-	DatasetDataTypesCommerceDisputes             DatasetDataTypes = "commerce-disputes"
-	DatasetDataTypesCommerceLocations            DatasetDataTypes = "commerce-locations"
-	DatasetDataTypesCommerceOrders               DatasetDataTypes = "commerce-orders"
-	DatasetDataTypesCommercePaymentMethods       DatasetDataTypes = "commerce-paymentMethods"
-	DatasetDataTypesCommercePayments             DatasetDataTypes = "commerce-payments"
-	DatasetDataTypesCommerceProductCategories    DatasetDataTypes = "commerce-productCategories"
-	DatasetDataTypesCommerceProducts             DatasetDataTypes = "commerce-products"
-	DatasetDataTypesCommerceTaxComponents        DatasetDataTypes = "commerce-taxComponents"
-	DatasetDataTypesCommerceTransactions         DatasetDataTypes = "commerce-transactions"
+	DataTypesAccountTransactions          DataTypes = "accountTransactions"
+	DataTypesBalanceSheet                 DataTypes = "balanceSheet"
+	DataTypesBankAccounts                 DataTypes = "bankAccounts"
+	DataTypesBankTransactions             DataTypes = "bankTransactions"
+	DataTypesBillCreditNotes              DataTypes = "billCreditNotes"
+	DataTypesBillPayments                 DataTypes = "billPayments"
+	DataTypesBills                        DataTypes = "bills"
+	DataTypesCashFlowStatement            DataTypes = "cashFlowStatement"
+	DataTypesChartOfAccounts              DataTypes = "chartOfAccounts"
+	DataTypesCompany                      DataTypes = "company"
+	DataTypesCreditNotes                  DataTypes = "creditNotes"
+	DataTypesCustomers                    DataTypes = "customers"
+	DataTypesDirectCosts                  DataTypes = "directCosts"
+	DataTypesDirectIncomes                DataTypes = "directIncomes"
+	DataTypesInvoices                     DataTypes = "invoices"
+	DataTypesItems                        DataTypes = "items"
+	DataTypesJournalEntries               DataTypes = "journalEntries"
+	DataTypesJournals                     DataTypes = "journals"
+	DataTypesPaymentMethods               DataTypes = "paymentMethods"
+	DataTypesPayments                     DataTypes = "payments"
+	DataTypesProfitAndLoss                DataTypes = "profitAndLoss"
+	DataTypesPurchaseOrders               DataTypes = "purchaseOrders"
+	DataTypesSalesOrders                  DataTypes = "salesOrders"
+	DataTypesSuppliers                    DataTypes = "suppliers"
+	DataTypesTaxRates                     DataTypes = "taxRates"
+	DataTypesTrackingCategories           DataTypes = "trackingCategories"
+	DataTypesTransfers                    DataTypes = "transfers"
+	DataTypesBankingAccountBalances       DataTypes = "banking-accountBalances"
+	DataTypesBankingAccounts              DataTypes = "banking-accounts"
+	DataTypesBankingTransactionCategories DataTypes = "banking-transactionCategories"
+	DataTypesBankingTransactions          DataTypes = "banking-transactions"
+	DataTypesCommerceCompanyInfo          DataTypes = "commerce-companyInfo"
+	DataTypesCommerceCustomers            DataTypes = "commerce-customers"
+	DataTypesCommerceDisputes             DataTypes = "commerce-disputes"
+	DataTypesCommerceLocations            DataTypes = "commerce-locations"
+	DataTypesCommerceOrders               DataTypes = "commerce-orders"
+	DataTypesCommercePaymentMethods       DataTypes = "commerce-paymentMethods"
+	DataTypesCommercePayments             DataTypes = "commerce-payments"
+	DataTypesCommerceProductCategories    DataTypes = "commerce-productCategories"
+	DataTypesCommerceProducts             DataTypes = "commerce-products"
+	DataTypesCommerceTaxComponents        DataTypes = "commerce-taxComponents"
+	DataTypesCommerceTransactions         DataTypes = "commerce-transactions"
 )
 
-func (e DatasetDataTypes) ToPointer() *DatasetDataTypes {
+func (e DataTypes) ToPointer() *DataTypes {
 	return &e
 }
 
-func (e *DatasetDataTypes) UnmarshalJSON(data []byte) error {
+func (e *DataTypes) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -148,10 +148,10 @@ func (e *DatasetDataTypes) UnmarshalJSON(data []byte) error {
 	case "commerce-taxComponents":
 		fallthrough
 	case "commerce-transactions":
-		*e = DatasetDataTypes(v)
+		*e = DataTypes(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for DatasetDataTypes: %v", v)
+		return fmt.Errorf("invalid value for DataTypes: %v", v)
 	}
 }
 
@@ -181,7 +181,7 @@ type Dataset struct {
 	// Unique identifier for a company's data connection.
 	ConnectionID string `json:"connectionId"`
 	// Available Data types
-	DataType *DatasetDataTypes `json:"dataType,omitempty"`
+	DataType *DataTypes `json:"dataType,omitempty"`
 	// URI to the dataset's logs.
 	DatasetLogsURL *string `json:"datasetLogsUrl,omitempty"`
 	// A brief message about the error.
@@ -241,7 +241,7 @@ func (o *Dataset) GetConnectionID() string {
 	return o.ConnectionID
 }
 
-func (o *Dataset) GetDataType() *DatasetDataTypes {
+func (o *Dataset) GetDataType() *DataTypes {
 	if o == nil {
 		return nil
 	}

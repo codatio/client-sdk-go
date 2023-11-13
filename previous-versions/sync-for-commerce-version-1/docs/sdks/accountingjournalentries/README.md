@@ -60,13 +60,13 @@ func main() {
                     },
                 },
             },
-            JournalRef: &shared.AccountingJournalEntryJournalReference{
+            JournalRef: &shared.JournalReference{
                 ID: "<ID>",
             },
             Metadata: &shared.Metadata{},
             ModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
             PostedOn: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
-            RecordRef: &shared.AccountingJournalEntryRecordReference{
+            RecordRef: &shared.RecordReference{
                 DataType: syncforcommerceversion1.String("journalEntry"),
             },
             SourceModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
@@ -94,14 +94,17 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                        | Type                                                                                                             | Required                                                                                                         | Description                                                                                                      |
-| ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                                            | :heavy_check_mark:                                                                                               | The context to use for the request.                                                                              |
-| `request`                                                                                                        | [operations.CreateAccountingJournalEntryRequest](../../models/operations/createaccountingjournalentryrequest.md) | :heavy_check_mark:                                                                                               | The request object to use for the request.                                                                       |
-| `opts`                                                                                                           | [][operations.Option](../../models/operations/option.md)                                                         | :heavy_minus_sign:                                                                                               | The options for this request.                                                                                    |
+| Parameter                                                                                                            | Type                                                                                                                 | Required                                                                                                             | Description                                                                                                          |
+| -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                                                | :heavy_check_mark:                                                                                                   | The context to use for the request.                                                                                  |
+| `request`                                                                                                            | [operations.CreateAccountingJournalEntryRequest](../../pkg/models/operations/createaccountingjournalentryrequest.md) | :heavy_check_mark:                                                                                                   | The request object to use for the request.                                                                           |
+| `opts`                                                                                                               | [][operations.Option](../../pkg/models/operations/option.md)                                                         | :heavy_minus_sign:                                                                                                   | The options for this request.                                                                                        |
 
 
 ### Response
 
-**[*operations.CreateAccountingJournalEntryResponse](../../models/operations/createaccountingjournalentryresponse.md), error**
-
+**[*operations.CreateAccountingJournalEntryResponse](../../pkg/models/operations/createaccountingjournalentryresponse.md), error**
+| Error Object                    | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
+| sdkerrors.SDKError              | 400-600                         | */*                             |

@@ -14,20 +14,20 @@ import (
 	"net/http"
 )
 
-// pushData - View push options and get push statuses.
-type pushData struct {
+// PushData - View push options and get push statuses.
+type PushData struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newPushData(sdkConfig sdkConfiguration) *pushData {
-	return &pushData{
+func newPushData(sdkConfig sdkConfiguration) *PushData {
+	return &PushData{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // GetOperation - Get push operation
 // Retrieve push operation.
-func (s *pushData) GetOperation(ctx context.Context, request operations.GetPushOperationRequest, opts ...operations.Option) (*operations.GetPushOperationResponse, error) {
+func (s *PushData) GetOperation(ctx context.Context, request operations.GetPushOperationRequest, opts ...operations.Option) (*operations.GetPushOperationResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -131,15 +131,18 @@ func (s *pushData) GetOperation(ctx context.Context, request operations.GetPushO
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -147,7 +150,7 @@ func (s *pushData) GetOperation(ctx context.Context, request operations.GetPushO
 
 // ListOperations - List push operations
 // List push operation records.
-func (s *pushData) ListOperations(ctx context.Context, request operations.GetCompanyPushHistoryRequest, opts ...operations.Option) (*operations.GetCompanyPushHistoryResponse, error) {
+func (s *PushData) ListOperations(ctx context.Context, request operations.GetCompanyPushHistoryRequest, opts ...operations.Option) (*operations.GetCompanyPushHistoryResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -257,15 +260,18 @@ func (s *pushData) ListOperations(ctx context.Context, request operations.GetCom
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

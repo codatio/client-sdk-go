@@ -14,13 +14,13 @@ import (
 	"net/http"
 )
 
-// companies - Create and manage your Codat companies.
-type companies struct {
+// Companies - Create and manage your Codat companies.
+type Companies struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newCompanies(sdkConfig sdkConfiguration) *companies {
-	return &companies{
+func newCompanies(sdkConfig sdkConfiguration) *Companies {
+	return &Companies{
 		sdkConfiguration: sdkConfig,
 	}
 }
@@ -28,7 +28,7 @@ func newCompanies(sdkConfig sdkConfiguration) *companies {
 // DeleteCompany - Delete a company
 //
 // Permanently deletes a company, its connections and any cached data. This operation is irreversible. If the company ID does not exist an error is returned.
-func (s *companies) DeleteCompany(ctx context.Context, request operations.DeleteCompanyRequest, opts ...operations.Option) (*operations.DeleteCompanyResponse, error) {
+func (s *Companies) DeleteCompany(ctx context.Context, request operations.DeleteCompanyRequest, opts ...operations.Option) (*operations.DeleteCompanyResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -121,15 +121,18 @@ func (s *companies) DeleteCompany(ctx context.Context, request operations.Delete
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -137,7 +140,7 @@ func (s *companies) DeleteCompany(ctx context.Context, request operations.Delete
 
 // GetCompany - Get company
 // Returns the company for a valid identifier. If the identifier is for a deleted company, a not found response is returned.
-func (s *companies) GetCompany(ctx context.Context, request operations.GetCompanyRequest, opts ...operations.Option) (*operations.GetCompanyResponse, error) {
+func (s *Companies) GetCompany(ctx context.Context, request operations.GetCompanyRequest, opts ...operations.Option) (*operations.GetCompanyResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -241,15 +244,18 @@ func (s *companies) GetCompany(ctx context.Context, request operations.GetCompan
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -257,7 +263,7 @@ func (s *companies) GetCompany(ctx context.Context, request operations.GetCompan
 
 // UpdateCompany - Update company
 // Updates both the name and description of the company.
-func (s *companies) UpdateCompany(ctx context.Context, request operations.UpdateCompanyRequest, opts ...operations.Option) (*operations.UpdateCompanyResponse, error) {
+func (s *Companies) UpdateCompany(ctx context.Context, request operations.UpdateCompanyRequest, opts ...operations.Option) (*operations.UpdateCompanyResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -368,15 +374,18 @@ func (s *companies) UpdateCompany(ctx context.Context, request operations.Update
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

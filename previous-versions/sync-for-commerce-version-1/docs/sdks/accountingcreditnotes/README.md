@@ -62,8 +62,8 @@ func main() {
                     Quantity: types.MustNewDecimalFromString("1740.95"),
                     TaxRateRef: &shared.TaxRateRef{},
                     Tracking: &shared.CreditNoteLineItemTracking{
-                        CategoryRefs: []shared.TrackingCategoryRefsitems{
-                            shared.TrackingCategoryRefsitems{
+                        CategoryRefs: []shared.TrackingCategoryRefItems{
+                            shared.TrackingCategoryRefItems{
                                 ID: "<ID>",
                             },
                         },
@@ -72,15 +72,15 @@ func main() {
                         },
                         IsBilledTo: shared.BilledToTypeProject,
                         IsRebilledTo: shared.BilledToTypeProject,
-                        ProjectRef: &shared.CreditNoteLineItemTrackingAccountingProjectReference{
+                        ProjectRef: &shared.CreditNoteLineItemAccountingProjectReference{
                             ID: "<ID>",
                         },
                         RecordRef: &shared.RecordRef{
                             DataType: syncforcommerceversion1.String("accountTransaction"),
                         },
                     },
-                    TrackingCategoryRefs: []shared.TrackingCategoryRefsitems{
-                        shared.TrackingCategoryRefsitems{
+                    TrackingCategoryRefs: []shared.TrackingCategoryRefItems{
+                        shared.TrackingCategoryRefItems{
                             ID: "<ID>",
                         },
                     },
@@ -89,9 +89,9 @@ func main() {
             },
             Metadata: &shared.Metadata{},
             ModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
-            PaymentAllocations: []shared.PaymentAllocationsitems{
-                shared.PaymentAllocationsitems{
-                    Allocation: shared.ItemsAllocation{
+            PaymentAllocations: []shared.PaymentAllocationItems{
+                shared.PaymentAllocationItems{
+                    Allocation: shared.Allocation{
                         AllocatedOnDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
                         Currency: syncforcommerceversion1.String("EUR"),
                     },
@@ -116,8 +116,8 @@ func main() {
             TotalAmount: types.MustNewDecimalFromString("5893.9"),
             TotalDiscount: types.MustNewDecimalFromString("579.23"),
             TotalTaxAmount: types.MustNewDecimalFromString("3881.42"),
-            WithholdingTax: []shared.WithholdingTaxitems{
-                shared.WithholdingTaxitems{
+            WithholdingTax: []shared.WithholdingTaxItems{
+                shared.WithholdingTaxItems{
                     Amount: types.MustNewDecimalFromString("7369.44"),
                     Name: "string",
                 },
@@ -138,14 +138,17 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                    | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
-| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                                        | :heavy_check_mark:                                                                                           | The context to use for the request.                                                                          |
-| `request`                                                                                                    | [operations.CreateAccountingCreditNoteRequest](../../models/operations/createaccountingcreditnoterequest.md) | :heavy_check_mark:                                                                                           | The request object to use for the request.                                                                   |
-| `opts`                                                                                                       | [][operations.Option](../../models/operations/option.md)                                                     | :heavy_minus_sign:                                                                                           | The options for this request.                                                                                |
+| Parameter                                                                                                        | Type                                                                                                             | Required                                                                                                         | Description                                                                                                      |
+| ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                                            | :heavy_check_mark:                                                                                               | The context to use for the request.                                                                              |
+| `request`                                                                                                        | [operations.CreateAccountingCreditNoteRequest](../../pkg/models/operations/createaccountingcreditnoterequest.md) | :heavy_check_mark:                                                                                               | The request object to use for the request.                                                                       |
+| `opts`                                                                                                           | [][operations.Option](../../pkg/models/operations/option.md)                                                     | :heavy_minus_sign:                                                                                               | The options for this request.                                                                                    |
 
 
 ### Response
 
-**[*operations.CreateAccountingCreditNoteResponse](../../models/operations/createaccountingcreditnoteresponse.md), error**
-
+**[*operations.CreateAccountingCreditNoteResponse](../../pkg/models/operations/createaccountingcreditnoteresponse.md), error**
+| Error Object                    | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
+| sdkerrors.SDKError              | 400-600                         | */*                             |

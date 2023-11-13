@@ -14,13 +14,13 @@ import (
 	"net/http"
 )
 
-// commerceCompanyInfo - Retrieve standardized data from linked commerce platforms.
-type commerceCompanyInfo struct {
+// CommerceCompanyInfo - Retrieve standardized data from linked commerce platforms.
+type CommerceCompanyInfo struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newCommerceCompanyInfo(sdkConfig sdkConfiguration) *commerceCompanyInfo {
-	return &commerceCompanyInfo{
+func newCommerceCompanyInfo(sdkConfig sdkConfiguration) *CommerceCompanyInfo {
+	return &CommerceCompanyInfo{
 		sdkConfiguration: sdkConfig,
 	}
 }
@@ -29,7 +29,7 @@ func newCommerceCompanyInfo(sdkConfig sdkConfiguration) *commerceCompanyInfo {
 // Retrieve information about the company, as seen in the commerce platform.
 //
 // This may include information like addresses, tax registration details and social media or website information.
-func (s *commerceCompanyInfo) GetCommerceCompanyInfo(ctx context.Context, request operations.GetCommerceCompanyInfoRequest, opts ...operations.Option) (*operations.GetCommerceCompanyInfoResponse, error) {
+func (s *CommerceCompanyInfo) GetCommerceCompanyInfo(ctx context.Context, request operations.GetCommerceCompanyInfoRequest, opts ...operations.Option) (*operations.GetCommerceCompanyInfoResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -135,15 +135,18 @@ func (s *commerceCompanyInfo) GetCommerceCompanyInfo(ctx context.Context, reques
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

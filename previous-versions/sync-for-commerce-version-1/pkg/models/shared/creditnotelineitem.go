@@ -7,21 +7,21 @@ import (
 	"github.com/ericlagergren/decimal"
 )
 
-type CreditNoteLineItemTrackingAccountingProjectReference struct {
+type CreditNoteLineItemAccountingProjectReference struct {
 	// Unique identifier to the project reference.
 	ID string `json:"id"`
 	// The project's name.
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreditNoteLineItemTrackingAccountingProjectReference) GetID() string {
+func (o *CreditNoteLineItemAccountingProjectReference) GetID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ID
 }
 
-func (o *CreditNoteLineItemTrackingAccountingProjectReference) GetName() *string {
+func (o *CreditNoteLineItemAccountingProjectReference) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -30,22 +30,22 @@ func (o *CreditNoteLineItemTrackingAccountingProjectReference) GetName() *string
 
 // CreditNoteLineItemTracking - Categories, and a project and customer, against which the item is tracked.
 type CreditNoteLineItemTracking struct {
-	CategoryRefs []TrackingCategoryRefsitems `json:"categoryRefs"`
-	CustomerRef  *AccountingCustomerRef      `json:"customerRef,omitempty"`
+	CategoryRefs []TrackingCategoryRefItems `json:"categoryRefs"`
+	CustomerRef  *AccountingCustomerRef     `json:"customerRef,omitempty"`
 	// Defines if the bill or bill credit note is billed/rebilled to a project.
 	IsBilledTo BilledToType `json:"isBilledTo"`
 	// Defines if the bill or bill credit note is billed/rebilled to a project.
-	IsRebilledTo BilledToType                                          `json:"isRebilledTo"`
-	ProjectRef   *CreditNoteLineItemTrackingAccountingProjectReference `json:"projectRef,omitempty"`
+	IsRebilledTo BilledToType                                  `json:"isRebilledTo"`
+	ProjectRef   *CreditNoteLineItemAccountingProjectReference `json:"projectRef,omitempty"`
 	// Links the current record to the underlying record or data type that created it.
 	//
 	// For example, if a journal entry is generated based on an invoice, this property allows you to connect the journal entry to the underlying invoice in our data model.
 	RecordRef *RecordRef `json:"recordRef,omitempty"`
 }
 
-func (o *CreditNoteLineItemTracking) GetCategoryRefs() []TrackingCategoryRefsitems {
+func (o *CreditNoteLineItemTracking) GetCategoryRefs() []TrackingCategoryRefItems {
 	if o == nil {
-		return []TrackingCategoryRefsitems{}
+		return []TrackingCategoryRefItems{}
 	}
 	return o.CategoryRefs
 }
@@ -71,7 +71,7 @@ func (o *CreditNoteLineItemTracking) GetIsRebilledTo() BilledToType {
 	return o.IsRebilledTo
 }
 
-func (o *CreditNoteLineItemTracking) GetProjectRef() *CreditNoteLineItemTrackingAccountingProjectReference {
+func (o *CreditNoteLineItemTracking) GetProjectRef() *CreditNoteLineItemAccountingProjectReference {
 	if o == nil {
 		return nil
 	}
@@ -113,7 +113,7 @@ type CreditNoteLineItem struct {
 	// Reference to the tracking categories to which the line item is linked.
 	//
 	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-	TrackingCategoryRefs []TrackingCategoryRefsitems `json:"trackingCategoryRefs,omitempty"`
+	TrackingCategoryRefs []TrackingCategoryRefItems `json:"trackingCategoryRefs,omitempty"`
 	// Unit price of the goods or service.
 	UnitAmount *decimal.Big `decimal:"number" json:"unitAmount"`
 }
@@ -213,7 +213,7 @@ func (o *CreditNoteLineItem) GetTracking() *CreditNoteLineItemTracking {
 	return o.Tracking
 }
 
-func (o *CreditNoteLineItem) GetTrackingCategoryRefs() []TrackingCategoryRefsitems {
+func (o *CreditNoteLineItem) GetTrackingCategoryRefs() []TrackingCategoryRefItems {
 	if o == nil {
 		return nil
 	}

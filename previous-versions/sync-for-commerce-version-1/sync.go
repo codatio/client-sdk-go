@@ -14,20 +14,20 @@ import (
 	"net/http"
 )
 
-// sync - Initiate a sync of Sync for Commerce company data into their respective accounting software.
-type sync struct {
+// Sync - Initiate a sync of Sync for Commerce company data into their respective accounting software.
+type Sync struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newSync(sdkConfig sdkConfiguration) *sync {
-	return &sync{
+func newSync(sdkConfig sdkConfiguration) *Sync {
+	return &Sync{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // GetSyncStatus - Get status for a company's syncs
 // Check the sync history and sync status for a company.
-func (s *sync) GetSyncStatus(ctx context.Context, request operations.GetSyncStatusRequest, opts ...operations.Option) (*operations.GetSyncStatusResponse, error) {
+func (s *Sync) GetSyncStatus(ctx context.Context, request operations.GetSyncStatusRequest, opts ...operations.Option) (*operations.GetSyncStatusResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -131,15 +131,18 @@ func (s *sync) GetSyncStatus(ctx context.Context, request operations.GetSyncStat
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -148,7 +151,7 @@ func (s *sync) GetSyncStatus(ctx context.Context, request operations.GetSyncStat
 // RequestSync - Sync new
 // Run a Commerce sync from the last successful sync up to the date provided (optional), otherwise UtcNow is used.
 // If there was no previously successful sync, the start date in the config is used.
-func (s *sync) RequestSync(ctx context.Context, request operations.RequestSyncRequest, opts ...operations.Option) (*operations.RequestSyncResponse, error) {
+func (s *Sync) RequestSync(ctx context.Context, request operations.RequestSyncRequest, opts ...operations.Option) (*operations.RequestSyncResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -261,15 +264,18 @@ func (s *sync) RequestSync(ctx context.Context, request operations.RequestSyncRe
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -277,7 +283,7 @@ func (s *sync) RequestSync(ctx context.Context, request operations.RequestSyncRe
 
 // RequestSyncForDateRange - Sync range
 // Run a Commerce sync from the specified start date to the specified finish date in the request payload.
-func (s *sync) RequestSyncForDateRange(ctx context.Context, request operations.RequestSyncForDateRangeRequest, opts ...operations.Option) (*operations.RequestSyncForDateRangeResponse, error) {
+func (s *Sync) RequestSyncForDateRange(ctx context.Context, request operations.RequestSyncForDateRangeRequest, opts ...operations.Option) (*operations.RequestSyncForDateRangeResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -390,15 +396,18 @@ func (s *sync) RequestSyncForDateRange(ctx context.Context, request operations.R
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

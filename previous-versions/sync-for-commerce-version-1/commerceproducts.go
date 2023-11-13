@@ -14,13 +14,13 @@ import (
 	"net/http"
 )
 
-// commerceProducts - Retrieve standardized data from linked commerce platforms.
-type commerceProducts struct {
+// CommerceProducts - Retrieve standardized data from linked commerce platforms.
+type CommerceProducts struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newCommerceProducts(sdkConfig sdkConfiguration) *commerceProducts {
-	return &commerceProducts{
+func newCommerceProducts(sdkConfig sdkConfiguration) *CommerceProducts {
+	return &CommerceProducts{
 		sdkConfiguration: sdkConfig,
 	}
 }
@@ -33,7 +33,7 @@ func newCommerceProducts(sdkConfig sdkConfiguration) *commerceProducts {
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/commerce?view=tab-by-data-type&dataType=commerce-products) for integrations that support getting a specific product.
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/sync-for-commerce-v1-api#/operations/refresh-company-data).
-func (s *commerceProducts) GetCommerceProduct(ctx context.Context, request operations.GetCommerceProductRequest, opts ...operations.Option) (*operations.GetCommerceProductResponse, error) {
+func (s *CommerceProducts) GetCommerceProduct(ctx context.Context, request operations.GetCommerceProductRequest, opts ...operations.Option) (*operations.GetCommerceProductResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -139,15 +139,18 @@ func (s *commerceProducts) GetCommerceProduct(ctx context.Context, request opera
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -159,7 +162,7 @@ func (s *commerceProducts) GetCommerceProduct(ctx context.Context, request opera
 // [Products](https://docs.codat.io/commerce-api#/schemas/Product) are items in the company's inventory that are available for sale.
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/sync-for-commerce-v1-api#/operations/refresh-company-data).
-func (s *commerceProducts) ListCommerceProducts(ctx context.Context, request operations.ListCommerceProductsRequest, opts ...operations.Option) (*operations.ListCommerceProductsResponse, error) {
+func (s *CommerceProducts) ListCommerceProducts(ctx context.Context, request operations.ListCommerceProductsRequest, opts ...operations.Option) (*operations.ListCommerceProductsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -271,15 +274,18 @@ func (s *commerceProducts) ListCommerceProducts(ctx context.Context, request ope
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

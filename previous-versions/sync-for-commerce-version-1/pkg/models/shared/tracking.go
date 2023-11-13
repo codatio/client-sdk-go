@@ -2,21 +2,21 @@
 
 package shared
 
-type TrackingAccountingProjectReference struct {
+type AccountingProjectReference struct {
 	// Unique identifier to the project reference.
 	ID string `json:"id"`
 	// The project's name.
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *TrackingAccountingProjectReference) GetID() string {
+func (o *AccountingProjectReference) GetID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ID
 }
 
-func (o *TrackingAccountingProjectReference) GetName() *string {
+func (o *AccountingProjectReference) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -25,22 +25,22 @@ func (o *TrackingAccountingProjectReference) GetName() *string {
 
 // Tracking - Categories, and a project and customer, against which the item is tracked.
 type Tracking struct {
-	CategoryRefs []TrackingCategoryRefsitems `json:"categoryRefs"`
-	CustomerRef  *AccountingCustomerRef      `json:"customerRef,omitempty"`
+	CategoryRefs []TrackingCategoryRefItems `json:"categoryRefs"`
+	CustomerRef  *AccountingCustomerRef     `json:"customerRef,omitempty"`
 	// Defines if the bill or bill credit note is billed/rebilled to a project.
 	IsBilledTo BilledToType `json:"isBilledTo"`
 	// Defines if the bill or bill credit note is billed/rebilled to a project.
-	IsRebilledTo BilledToType                        `json:"isRebilledTo"`
-	ProjectRef   *TrackingAccountingProjectReference `json:"projectRef,omitempty"`
+	IsRebilledTo BilledToType                `json:"isRebilledTo"`
+	ProjectRef   *AccountingProjectReference `json:"projectRef,omitempty"`
 	// Links the current record to the underlying record or data type that created it.
 	//
 	// For example, if a journal entry is generated based on an invoice, this property allows you to connect the journal entry to the underlying invoice in our data model.
 	RecordRef *RecordRef `json:"recordRef,omitempty"`
 }
 
-func (o *Tracking) GetCategoryRefs() []TrackingCategoryRefsitems {
+func (o *Tracking) GetCategoryRefs() []TrackingCategoryRefItems {
 	if o == nil {
-		return []TrackingCategoryRefsitems{}
+		return []TrackingCategoryRefItems{}
 	}
 	return o.CategoryRefs
 }
@@ -66,7 +66,7 @@ func (o *Tracking) GetIsRebilledTo() BilledToType {
 	return o.IsRebilledTo
 }
 
-func (o *Tracking) GetProjectRef() *TrackingAccountingProjectReference {
+func (o *Tracking) GetProjectRef() *AccountingProjectReference {
 	if o == nil {
 		return nil
 	}

@@ -7,54 +7,54 @@ import (
 	"github.com/ericlagergren/decimal"
 )
 
-// ServiceChargeTaxComponentAllocationTaxComponentRef - Taxes rates reference object depending on the rates being available on source commerce package.
-type ServiceChargeTaxComponentAllocationTaxComponentRef struct {
+// ServiceChargeTaxComponentRef - Taxes rates reference object depending on the rates being available on source commerce package.
+type ServiceChargeTaxComponentRef struct {
 	// The unique identitifer of the tax component being referenced.
 	ID string `json:"id"`
 	// Name of the tax component being referenced.
 	Name string `json:"name"`
 }
 
-func (o *ServiceChargeTaxComponentAllocationTaxComponentRef) GetID() string {
+func (o *ServiceChargeTaxComponentRef) GetID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ID
 }
 
-func (o *ServiceChargeTaxComponentAllocationTaxComponentRef) GetName() string {
+func (o *ServiceChargeTaxComponentRef) GetName() string {
 	if o == nil {
 		return ""
 	}
 	return o.Name
 }
 
-type ServiceChargeTaxComponentAllocation struct {
+type TaxComponentAllocation struct {
 	// Tax amount on order line sale as available from source commerce platform.
 	Rate *decimal.Big `decimal:"number" json:"rate,omitempty"`
 	// Taxes rates reference object depending on the rates being available on source commerce package.
-	TaxComponentRef *ServiceChargeTaxComponentAllocationTaxComponentRef `json:"taxComponentRef,omitempty"`
+	TaxComponentRef *ServiceChargeTaxComponentRef `json:"taxComponentRef,omitempty"`
 }
 
-func (s ServiceChargeTaxComponentAllocation) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(s, "", false)
+func (t TaxComponentAllocation) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
 }
 
-func (s *ServiceChargeTaxComponentAllocation) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
+func (t *TaxComponentAllocation) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, false); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *ServiceChargeTaxComponentAllocation) GetRate() *decimal.Big {
+func (o *TaxComponentAllocation) GetRate() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.Rate
 }
 
-func (o *ServiceChargeTaxComponentAllocation) GetTaxComponentRef() *ServiceChargeTaxComponentAllocationTaxComponentRef {
+func (o *TaxComponentAllocation) GetTaxComponentRef() *ServiceChargeTaxComponentRef {
 	if o == nil {
 		return nil
 	}
@@ -71,7 +71,7 @@ type ServiceCharge struct {
 	// Percentage rate (from 0 to 100) of any tax applied to the service charge.
 	TaxPercentage *decimal.Big `decimal:"number" json:"taxPercentage,omitempty"`
 	// Taxes breakdown as applied to service charges.
-	Taxes []ServiceChargeTaxComponentAllocation `json:"taxes,omitempty"`
+	Taxes []TaxComponentAllocation `json:"taxes,omitempty"`
 	// Total amount of the service charge, including tax.
 	TotalAmount *decimal.Big `decimal:"number" json:"totalAmount,omitempty"`
 	// The type of the service charge.
@@ -117,7 +117,7 @@ func (o *ServiceCharge) GetTaxPercentage() *decimal.Big {
 	return o.TaxPercentage
 }
 
-func (o *ServiceCharge) GetTaxes() []ServiceChargeTaxComponentAllocation {
+func (o *ServiceCharge) GetTaxes() []TaxComponentAllocation {
 	if o == nil {
 		return nil
 	}

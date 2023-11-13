@@ -63,9 +63,9 @@ type AccountingCreatePaymentResponse struct {
 	//
 	// - An _amount_ that indicates the amount of the invoice that was paid. This is always positive.
 	// - A **links** array containing one element with the following properties:
-	//   - A **type** that indicates the type of **link**, in this case an `Invoice`.
-	//   - An **id** that contains the ID of the invoice that was paid.
-	//   - An **amount** for the link. The sum of the **line.amount** and the **links.amount** must equal `0`.
+	//     - A **type** that indicates the type of **link**, in this case an `Invoice`.
+	//     - An **id** that contains the ID of the invoice that was paid.
+	//     - An **amount** for the link. The sum of the **line.amount** and the **links.amount** must equal `0`.
 	//
 	// The **amount** field on the **line** equals the **totalAmount** on the payment.
 	//
@@ -96,12 +96,12 @@ type AccountingCreatePaymentResponse struct {
 	//
 	// - An **amount** that indicates the amount of money moved, which in this case is `0`, as the credit note and invoice allocation must balance each other.
 	// - A **links** array containing two elements:
-	//   - The first **link** has:
-	//     - A **type** that indicates the type of **link**, in this case an `Invoice`.
-	//     - An **id** that contains the ID of the invoice that was paid.
-	//   - The second **link** has:
-	//     - A **type** that indicates the type of **link**, in this case a `CreditNote`.
-	//     - An **id** that contains the ID of the credit note used by this payment.
+	//     - The first **link** has:
+	//         - A **type** that indicates the type of **link**, in this case an `Invoice`.
+	//         - An **id** that contains the ID of the invoice that was paid.
+	//     - The second **link** has:
+	//         - A **type** that indicates the type of **link**, in this case a `CreditNote`.
+	//         - An **id** that contains the ID of the credit note used by this payment.
 	//
 	// The **amount** field on the **line** equals the **totalAmount** on the payment.
 	//
@@ -111,8 +111,8 @@ type AccountingCreatePaymentResponse struct {
 	//
 	// - An **amount** that indicates the amount of the credit note that was refunded. This is always negative for a refund.
 	// - A **links** array that contains one element with the following properties:
-	//   - A **type** that indicates the type of **link**, in this case a `CreditNote`.
-	//   - An **id** that contains the ID of the credit note that was refunded.
+	//     - A **type** that indicates the type of **link**, in this case a `CreditNote`.
+	//     - An **id** that contains the ID of the credit note that was refunded.
 	//
 	// The **totalAmount** field on the payment equals the **amount** field of the **line**. These are both negative, as this is money leaving accounts receivable.
 	//
@@ -127,8 +127,8 @@ type AccountingCreatePaymentResponse struct {
 	//
 	// - An **amount** that indicates the amount that was refunded. This is always negative.
 	// - A **links** array that contains one element with the following properties:
-	//   - A **type** that indicates the type of **link**, in this case a `Payment`.
-	//   - An **id** that contains the ID of the payment that was refunded.
+	//     - A **type** that indicates the type of **link**, in this case a `Payment`.
+	//     - An **id** that contains the ID of the payment that was refunded.
 	//
 	// The **amount** field on the **line** equals the **totalAmount** on the payment and is negative, as this is money leaving accounts receivable.
 	//
@@ -143,8 +143,8 @@ type AccountingCreatePaymentResponse struct {
 	//
 	// - An **amount** that indicates the amount that was refunded. This is positive as its money that was added to accounts receivable. It's balanced out by the negative amount of the refund.
 	// - A **links** array containing one element with the following properties:
-	//   - A **type** that indicates the type of **link**, in this case a `Refund`.
-	//   - An **id** that contains the ID of the payment that refunded this line.
+	//     - A **type** that indicates the type of **link**, in this case a `Refund`.
+	//     - An **id** that contains the ID of the payment that refunded this line.
 	//
 	// > **Support for linked payments**
 	// >
@@ -169,27 +169,27 @@ type AccountingCreatePaymentResponse struct {
 	// - The base currency for the accounts receivable account.
 	// - The currency of the item.
 	//
-	// ```json title="Currency rate example"
-	// {
-	//     "id": "123",
-	//     "note": ""
-	//     "totalAmount": 99.99,
-	//     "currency": "GBP",
-	//     "lines": [
-	//         {
-	//             "amount": 99.99,
-	//             "links": [
-	//                 {
-	//                     "type": "Invoice",
-	//                     "id": "178",
-	//                     "amount": -50,
-	//                     "currencyRate":  1.9998,
-	//                 }
-	//             ]
-	//         }
-	//     ]
-	// }
-	// ```
+	//   ```json title="Currency rate example"
+	//   {
+	//       "id": "123",
+	//       "note": "",
+	//       "totalAmount": 99.99,
+	//       "currency": "GBP",
+	//       "lines": [
+	//           {
+	//               "amount": 99.99,
+	//               "links": [
+	//                   {
+	//                       "type": "Invoice",
+	//                       "id": "178",
+	//                       "amount": -50,
+	//                       "currencyRate":  1.9998
+	//                   }
+	//               ]
+	//           }
+	//       ]
+	//   }
+	//   ```
 	//
 	//
 	//
@@ -201,510 +201,510 @@ type AccountingCreatePaymentResponse struct {
 	//
 	// ## Simple examples
 	//
-	// ```json title="Payment for invoice"
-	// {
-	//     "totalAmount": 1000,
-	//     "lines": [
-	//         {
-	//             "amount" : 1000,
-	//             "links" : [
-	//                 {
-	//                     "type" : "Invoice",
-	//                     "id" : "x",
-	//                     "amount" : -1000
-	//                 }
-	//             ]
-	//         }
-	//     ]
-	// }
-	// ```
+	//   ```json title="Payment for invoice"
+	//   {
+	//       "totalAmount": 1000,
+	//       "lines": [
+	//           {
+	//               "amount" : 1000,
+	//               "links" : [
+	//                   {
+	//                       "type" : "Invoice",
+	//                       "id" : "x",
+	//                       "amount" : -1000
+	//                   }
+	//               ]
+	//           }
+	//       ]
+	//   }
+	//   ```
 	//
 	//
 	//
-	// ```json title="Allocation of credit note"
-	// {
-	//     "totalAmount": 0,
-	//     "lines": [
-	//         {
-	//             "amount" : 0,
-	//             "links" : [
-	//                 {
-	//                     "type" : "Invoice",
-	//                     "id" : "x",
-	//                     "amount" : -1000
-	//                 },
-	//                 {
-	//                     "type" : "CreditNote",
-	//                     "id" : "y",
-	//                     "amount" : 1000
-	//                 }
-	//             ]
-	//         }
-	//     ]
-	// }
-	// ```
+	//   ```json title="Allocation of credit note"
+	//   {
+	//       "totalAmount": 0,
+	//       "lines": [
+	//           {
+	//               "amount" : 0,
+	//               "links" : [
+	//                   {
+	//                       "type" : "Invoice",
+	//                       "id" : "x",
+	//                       "amount" : -1000
+	//                   },
+	//                   {
+	//                       "type" : "CreditNote",
+	//                       "id" : "y",
+	//                       "amount" : 1000
+	//                   }
+	//               ]
+	//           }
+	//       ]
+	//   }
+	//   ```
 	//
 	//
 	//
-	// ```json title="Payment of invoice and payment on account"
-	// {
-	//     "totalAmount": 2000,
-	//     "lines": [
-	//         {
-	//             "amount" : 1000,
-	//             "links" : [
-	//                 {
-	//                     "type" : "Invoice",
-	//                     "id" : "x",
-	//                     "amount" : -1000
-	//                 }
-	//             ]
-	//         },
-	//         {
-	//             "amount" : 1000,
-	//             "links" : [
-	//                 {
-	//                     "type" : "PaymentOnAccount",
-	//                     "id" : "y",
-	//                     "amount" : -1000
-	//                 }
-	//             ]
-	//         }
-	//     ]
-	// }
-	// ```
+	//   ```json title="Payment of invoice and payment on account"
+	//   {
+	//       "totalAmount": 2000,
+	//       "lines": [
+	//           {
+	//               "amount" : 1000,
+	//               "links" : [
+	//                   {
+	//                       "type" : "Invoice",
+	//                       "id" : "x",
+	//                       "amount" : -1000
+	//                   }
+	//               ]
+	//           },
+	//           {
+	//               "amount" : 1000,
+	//               "links" : [
+	//                   {
+	//                       "type" : "PaymentOnAccount",
+	//                       "id" : "y",
+	//                       "amount" : -1000
+	//                   }
+	//               ]
+	//           }
+	//       ]
+	//   }
+	//   ```
 	//
 	//
 	//
-	// ```json title="Refund of credit note"
-	// {
-	//     "totalAmount": -1000,
-	//     "lines": [
-	//         {
-	//             "amount" : -1000,
-	//             "links" : [
-	//                 {
-	//                     "type" : "CreditNote",
-	//                     "id" : "y",
-	//                     "amount" : 1000
-	//                 }
-	//             ]
-	//         }
-	//     ]
-	// }
-	// ```
+	//   ```json title="Refund of credit note"
+	//   {
+	//       "totalAmount": -1000,
+	//       "lines": [
+	//           {
+	//               "amount" : -1000,
+	//               "links" : [
+	//                   {
+	//                       "type" : "CreditNote",
+	//                       "id" : "y",
+	//                       "amount" : 1000
+	//                   }
+	//               ]
+	//           }
+	//       ]
+	//   }
+	//   ```
 	//
 	//
 	//
-	// ```json title="Refund on accounts receivable account"
-	// {
-	//     "totalAmount": -1000,
-	//     "lines": [
-	//         {
-	//             "amount" : -1000,
-	//             "links" : [
-	//                 {
-	//                     "type" : "PaymentOnAccount",
-	//                     "id" : "y",
-	//                     "amount" : 1000
-	//                 }
-	//             ]
-	//         }
-	//     ]
-	// }
-	// ```
+	//   ```json title="Refund on accounts receivable account"
+	//   {
+	//       "totalAmount": -1000,
+	//       "lines": [
+	//           {
+	//               "amount" : -1000,
+	//               "links" : [
+	//                   {
+	//                       "type" : "PaymentOnAccount",
+	//                       "id" : "y",
+	//                       "amount" : 1000
+	//                   }
+	//               ]
+	//           }
+	//       ]
+	//   }
+	//   ```
 	//
 	//
 	//
-	// ```json title="Linked refund on accounts receivable account"
-	// {
-	//     "id" : "payment-001",
-	//     "totalAmount": 1000,
-	//     "lines": [
-	//         {
-	//             "amount" : 1000,
-	//             "links" : [
-	//                 {
-	//                     "type" : "Refund",
-	//                     "id" : "refund-001",
-	//                     "amount" : -1000
-	//                 }
-	//             ]
-	//         }
-	//     ]
-	// }
-	// {
-	//     "id" : "refund-001",
-	//     "totalAmount": -1000,
-	//     "lines": [
-	//         {
-	//             "amount" : -1000,
-	//             "links" : [
-	//                 {
-	//                     "type" : "Payment",
-	//                     "id" : "payment-001",
-	//                     "amount" : 1000
-	//                 }
-	//             ]
-	//         }
-	//     ]
-	// }
-	// ```
+	//   ```json title="Linked refund on accounts receivable account"
+	//   {
+	//       "id" : "payment-001",
+	//       "totalAmount": 1000,
+	//       "lines": [
+	//           {
+	//               "amount" : 1000,
+	//               "links" : [
+	//                   {
+	//                       "type" : "Refund",
+	//                       "id" : "refund-001",
+	//                       "amount" : -1000
+	//                   }
+	//               ]
+	//           }
+	//       ]
+	//   }
+	//   {
+	//       "id" : "refund-001",
+	//       "totalAmount": -1000,
+	//       "lines": [
+	//           {
+	//               "amount" : -1000,
+	//               "links" : [
+	//                   {
+	//                       "type" : "Payment",
+	//                       "id" : "payment-001",
+	//                       "amount" : 1000
+	//                   }
+	//               ]
+	//           }
+	//       ]
+	//   }
+	//   ```
 	//
 	//
 	//
-	// ```json title="Using a credit note and cash to pay an invoice"
-	// {
-	//     "totalAmount": 250,
-	//     "lines": [
-	//         {
-	//             "amount": 0,
-	//             "links": [
-	//                 {
-	//                     "type": "Invoice",
-	//                     "id": "x",
-	//                     "amount": -750
-	//                 },
-	//                 {
-	//                     "type": "CreditNote",
-	//                     "id": "y",
-	//                     "amount": 750
-	//                 }
-	//             ]
-	//         },
-	//         {
-	//             "amount": 250,
-	//             "links": [
-	//                 {
-	//                     "type": "Invoice",
-	//                     "id": "x",
-	//                     "amount": -250
-	//                 }
-	//             ]
-	//         }
-	//     ]
-	// }
-	// ```
+	//   ```json title="Using a credit note and cash to pay an invoice"
+	//   {
+	//       "totalAmount": 250,
+	//       "lines": [
+	//           {
+	//               "amount": 0,
+	//               "links": [
+	//                   {
+	//                       "type": "Invoice",
+	//                       "id": "x",
+	//                       "amount": -750
+	//                   },
+	//                   {
+	//                       "type": "CreditNote",
+	//                       "id": "y",
+	//                       "amount": 750
+	//                   }
+	//               ]
+	//           },
+	//           {
+	//               "amount": 250,
+	//               "links": [
+	//                   {
+	//                       "type": "Invoice",
+	//                       "id": "x",
+	//                       "amount": -250
+	//                   }
+	//               ]
+	//           }
+	//       ]
+	//   }
+	//   ```
 	//
 	//
 	//
 	// ## Complex examples
 	//
-	// ```json title="Use two credit notes and 1000 in to "bank" (cash, cheque etc.) to pay invoice"
-	// {
-	//     "totalAmount": 1000,
-	//     "lines": [
-	//         {
-	//             "amount" : 0,
-	//             "links" : [
-	//                 {
-	//                     "type" : "Invoice",
-	//                     "id" : "x",
-	//                     "amount" : -1000
-	//                 },
-	//                 {
-	//                     "type" : "CreditNote",
-	//                     "id" : "y",
-	//                     "amount" : 1000
-	//                 }
-	//             ]
-	//         },
-	//         {
-	//             "amount" : 0,
-	//             "links" : [
-	//                 {
-	//                     "type" : "Invoice",
-	//                     "id" : "x",
-	//                     "amount" : -1000
-	//                 },
-	//                 {
-	//                     "type" : "CreditNote",
-	//                     "id" : "z",
-	//                     "amount" : 1000
-	//                 }
-	//             ]
-	//         },
-	//         {
-	//             "amount" : 1000,
-	//             "links" : [
-	//                 {
-	//                     "type" : "Invoice",
-	//                     "id" : "x",
-	//                     "amount" : -1000
-	//                 }
-	//             ]
-	//         }
-	//     ]
-	// }
-	// ```
+	//   ```json title="Use two credit notes and 1000 in to "bank" (cash, cheque etc.) to pay invoice"
+	//   {
+	//       "totalAmount": 1000,
+	//       "lines": [
+	//           {
+	//               "amount" : 0,
+	//               "links" : [
+	//                   {
+	//                       "type" : "Invoice",
+	//                       "id" : "x",
+	//                       "amount" : -1000
+	//                   },
+	//                   {
+	//                       "type" : "CreditNote",
+	//                       "id" : "y",
+	//                       "amount" : 1000
+	//                   }
+	//               ]
+	//           },
+	//           {
+	//               "amount" : 0,
+	//               "links" : [
+	//                   {
+	//                       "type" : "Invoice",
+	//                       "id" : "x",
+	//                       "amount" : -1000
+	//                   },
+	//                   {
+	//                       "type" : "CreditNote",
+	//                       "id" : "z",
+	//                       "amount" : 1000
+	//                   }
+	//               ]
+	//           },
+	//           {
+	//               "amount" : 1000,
+	//               "links" : [
+	//                   {
+	//                       "type" : "Invoice",
+	//                       "id" : "x",
+	//                       "amount" : -1000
+	//                   }
+	//               ]
+	//           }
+	//       ]
+	//   }
+	//   ```
 	//
 	//
 	//
-	// ```json title="Pay an invoice with two credit notes and cash, with 1000 left 'on account'"
-	// {
-	//     "totalAmount": 2000,
-	//     "lines": [
-	//         {
-	//             "amount" : 0,
-	//             "links" : [
-	//                 {
-	//                     "type" : "Invoice",
-	//                     "id" : "x",
-	//                     "amount" : -1000
-	//                 },
-	//                 {
-	//                     "type" : "CreditNote",
-	//                     "id" : "y",
-	//                     "amount" : 1000
-	//                 }
-	//             ]
-	//         },
-	//         {
-	//             "amount" : 0,
-	//             "links" : [
-	//                 {
-	//                     "type" : "Invoice",
-	//                     "id" : "x",
-	//                     "amount" : -1000
-	//                 },
-	//                 {
-	//                     "type" : "CreditNote",
-	//                     "id" : "z",
-	//                     "amount" : 1000
-	//                 }
-	//             ]
-	//         },
-	//         {
-	//             "amount" : 1000,
-	//             "links" : [
-	//                 {
-	//                     "type" : "Invoice",
-	//                     "id" : "x",
-	//                     "amount" : -1000
-	//                 }
-	//             ]
-	//         },
-	//         {
-	//             "amount" : 1000,
-	//             "links" : [
-	//                 {
-	//                     "type" : "PaymentOnAccount",
-	//                     "id" : "customer-001",
-	//                     "amount" : -1000
-	//                 }
-	//             ]
-	//         }
-	//     ]
-	// }
-	// ```
+	//   ```json title="Pay an invoice with two credit notes and cash, with 1000 left 'on account'"
+	//   {
+	//       "totalAmount": 2000,
+	//       "lines": [
+	//           {
+	//               "amount" : 0,
+	//               "links" : [
+	//                   {
+	//                       "type" : "Invoice",
+	//                       "id" : "x",
+	//                       "amount" : -1000
+	//                   },
+	//                   {
+	//                       "type" : "CreditNote",
+	//                       "id" : "y",
+	//                       "amount" : 1000
+	//                   }
+	//               ]
+	//           },
+	//           {
+	//               "amount" : 0,
+	//               "links" : [
+	//                   {
+	//                       "type" : "Invoice",
+	//                       "id" : "x",
+	//                       "amount" : -1000
+	//                   },
+	//                   {
+	//                       "type" : "CreditNote",
+	//                       "id" : "z",
+	//                       "amount" : 1000
+	//                   }
+	//               ]
+	//           },
+	//           {
+	//               "amount" : 1000,
+	//               "links" : [
+	//                   {
+	//                       "type" : "Invoice",
+	//                       "id" : "x",
+	//                       "amount" : -1000
+	//                   }
+	//               ]
+	//           },
+	//           {
+	//               "amount" : 1000,
+	//               "links" : [
+	//                   {
+	//                       "type" : "PaymentOnAccount",
+	//                       "id" : "customer-001",
+	//                       "amount" : -1000
+	//                   }
+	//               ]
+	//           }
+	//       ]
+	//   }
+	//   ```
 	//
 	//
 	//
-	// ```json title="Two credit notes pay two invoices with no allocation amount specified"
-	// {
-	//     "totalAmount": 0,
-	//     "lines": [
-	//         {
-	//             "amount" : 0,
-	//             "links" : [
-	//                 {
-	//                     "type" : "Invoice",
-	//                     "id" : "w",
-	//                     "amount" : -1000
-	//                 },
-	//                 {
-	//                     "type" : "Invoice",
-	//                     "id" : "x",
-	//                     "amount" : -1000
-	//                 },
-	//                 {
-	//                     "type" : "CreditNote",
-	//                     "id" : "y",
-	//                     "amount" : 1000
-	//                 },
-	//                 {
-	//                     "type" : "CreditNote",
-	//                     "id" : "z",
-	//                     "amount" : 1000
-	//                 }
-	//             ]
-	//         }
-	//     ]
-	// }
-	// ```
+	//   ```json title="Two credit notes pay two invoices with no allocation amount specified"
+	//   {
+	//       "totalAmount": 0,
+	//       "lines": [
+	//           {
+	//               "amount" : 0,
+	//               "links" : [
+	//                   {
+	//                       "type" : "Invoice",
+	//                       "id" : "w",
+	//                       "amount" : -1000
+	//                   },
+	//                   {
+	//                       "type" : "Invoice",
+	//                       "id" : "x",
+	//                       "amount" : -1000
+	//                   },
+	//                   {
+	//                       "type" : "CreditNote",
+	//                       "id" : "y",
+	//                       "amount" : 1000
+	//                   },
+	//                   {
+	//                       "type" : "CreditNote",
+	//                       "id" : "z",
+	//                       "amount" : 1000
+	//                   }
+	//               ]
+	//           }
+	//       ]
+	//   }
+	//   ```
 	//
 	//
 	//
-	// ```json title="Two credit notes and cash pay three invoices with no allocation amount specified, and refund cash"
-	// {
-	//     "totalAmount": 2000,
-	//     "lines": [
-	//         {
-	//             "amount" : 1000,
-	//             "links" : [
-	//                 {
-	//                     "type" : "Invoice",
-	//                     "id" : "w",
-	//                     "amount" : -1000
-	//                 },
-	//                 {
-	//                     "type" : "Invoice",
-	//                     "id" : "x",
-	//                     "amount" : -1000
-	//                 },
-	//                 {
-	//                     "type" : "Invoice",
-	//                     "id" : "u",
-	//                     "amount" : -1000
-	//                 },
-	//                 {
-	//                     "type" : "CreditNote",
-	//                     "id" : "y",
-	//                     "amount" : 1000
-	//                 },
-	//                 {
-	//                     "type" : "CreditNote",
-	//                     "id" : "z",
-	//                     "amount" : 1000
-	//                 }
-	//             ]
-	//         },
-	//         {
-	//             "amount" : 1000,
-	//             "links" : [
-	//                 {
-	//                     "type" : "Refund",
-	//                     "id" : "refund-001",
-	//                     "amount" : -1000
-	//                 }
-	//             ]
-	//         }
-	//     ]
-	// }
-	// {
-	//     "id" : "refund-001",
-	//     "totalAmount": -1000,
-	//     "lines": [
-	//         {
-	//             "amount" : -1000,
-	//             "links" : [
-	//                 {
-	//                     "type" : "Payment",
-	//                     "id" : "payment-001",
-	//                     "amount" : 1000
-	//                 }
-	//             ]
-	//         }
-	//     ]
-	// }
-	// ```
+	//   ```json title="Two credit notes and cash pay three invoices with no allocation amount specified, and refund cash"
+	//   {
+	//       "totalAmount": 2000,
+	//       "lines": [
+	//           {
+	//               "amount" : 1000,
+	//               "links" : [
+	//                   {
+	//                       "type" : "Invoice",
+	//                       "id" : "w",
+	//                       "amount" : -1000
+	//                   },
+	//                   {
+	//                       "type" : "Invoice",
+	//                       "id" : "x",
+	//                       "amount" : -1000
+	//                   },
+	//                   {
+	//                       "type" : "Invoice",
+	//                       "id" : "u",
+	//                       "amount" : -1000
+	//                   },
+	//                   {
+	//                       "type" : "CreditNote",
+	//                       "id" : "y",
+	//                       "amount" : 1000
+	//                   },
+	//                   {
+	//                       "type" : "CreditNote",
+	//                       "id" : "z",
+	//                       "amount" : 1000
+	//                   }
+	//               ]
+	//           },
+	//           {
+	//               "amount" : 1000,
+	//               "links" : [
+	//                   {
+	//                       "type" : "Refund",
+	//                       "id" : "refund-001",
+	//                       "amount" : -1000
+	//                   }
+	//               ]
+	//           }
+	//       ]
+	//   }
+	//   {
+	//       "id" : "refund-001",
+	//       "totalAmount": -1000,
+	//       "lines": [
+	//           {
+	//               "amount" : -1000,
+	//               "links" : [
+	//                   {
+	//                       "type" : "Payment",
+	//                       "id" : "payment-001",
+	//                       "amount" : 1000
+	//                   }
+	//               ]
+	//           }
+	//       ]
+	//   }
+	//   ```
 	//
 	//
 	//
 	// In this example, a payment on account is used to pay the same invoice in January and again in February.
 	//
-	// ```json title="January"
-	// {
-	//     "id": "001",
-	//     "totalAmount": 5000,
-	//     "date" : "1901-01-01",
-	//     "lines": [
-	//         {
-	//             "amount" : 1000,
-	//             "links" : [
-	//                 {
-	//                     "type" : "Invoice",
-	//                     "id" : "Invoice-x",
-	//                     "amount" : -1000
-	//                 }
-	//             ]
-	//         },
-	//         {
-	//             "amount" : 4000,
-	//             "links" : [
-	//                 {
-	//                     "type" : "PaymentOnAccount",
-	//                     "id" : "PaymentOnAccount-y",
-	//                     "amount" : -4000
-	//                 }
-	//             ]
-	//         }
-	//     ]
-	// }
-	// ```
+	//   ```json title="January"
+	//   {
+	//       "id": "001",
+	//       "totalAmount": 5000,
+	//       "date" : "1901-01-01",
+	//       "lines": [
+	//           {
+	//               "amount" : 1000,
+	//               "links" : [
+	//                   {
+	//                       "type" : "Invoice",
+	//                       "id" : "Invoice-x",
+	//                       "amount" : -1000
+	//                   }
+	//               ]
+	//           },
+	//           {
+	//               "amount" : 4000,
+	//               "links" : [
+	//                   {
+	//                       "type" : "PaymentOnAccount",
+	//                       "id" : "PaymentOnAccount-y",
+	//                       "amount" : -4000
+	//                   }
+	//               ]
+	//           }
+	//       ]
+	//   }
+	//   ```
 	//
 	//
 	//
-	// ```json title="February"
-	// {
-	//     "id": "001",
-	//     "totalAmount": 5000,
-	//     "date" : "1901-02-01",
-	//     "lines": [
-	//         {
-	//             "amount" : 1000,
-	//             "links" : [
-	//                 {
-	//                     "type" : "Invoice",
-	//                     "id" : "Invoice-x",
-	//                     "amount" : -1000
-	//                 }
-	//             ]
-	//         },
-	//         {
-	//             "amount" : 1000,
-	//             "links" : [
-	//                 {
-	//                     "type" : "Invoice",
-	//                     "id" : "Invoice-y",
-	//                     "amount" : -1000
-	//                 }
-	//             ]
-	//         },
-	//         {
-	//             "amount" : 3000,
-	//             "links" : [
-	//                 {
-	//                     "type" : "PaymentOnAccount",
-	//                     "id" : "PaymentOnAccount-y",
-	//                     "amount" : -3000
-	//                 }
-	//             ]
-	//         }
-	//     ]
-	// }
-	// ```
+	//   ```json title="February"
+	//   {
+	//       "id": "001",
+	//       "totalAmount": 5000,
+	//       "date" : "1901-02-01",
+	//       "lines": [
+	//           {
+	//               "amount" : 1000,
+	//               "links" : [
+	//                   {
+	//                       "type" : "Invoice",
+	//                       "id" : "Invoice-x",
+	//                       "amount" : -1000
+	//                   }
+	//               ]
+	//           },
+	//           {
+	//               "amount" : 1000,
+	//               "links" : [
+	//                   {
+	//                       "type" : "Invoice",
+	//                       "id" : "Invoice-y",
+	//                       "amount" : -1000
+	//                   }
+	//               ]
+	//           },
+	//           {
+	//               "amount" : 3000,
+	//               "links" : [
+	//                   {
+	//                       "type" : "PaymentOnAccount",
+	//                       "id" : "PaymentOnAccount-y",
+	//                       "amount" : -3000
+	//                   }
+	//               ]
+	//           }
+	//       ]
+	//   }
+	//   ```
 	//
 	//
 	//
-	// ```json title="Two credit notes and some cash pay two invoices with no allocations specified"
-	// {
-	//     "totalAmount": 500,
-	//     "lines": [
-	//         {
-	//             "amount": 500,
-	//             "links": [{
-	//                     "type": "Invoice",
-	//                     "id": "a",
-	//                     "amount": -1000
-	//                 }, {
-	//                     "type": "Invoice",
-	//                     "id": "b",
-	//                     "amount": -1000
-	//                 }, {
-	//                     "type": "CreditNote",
-	//                     "id": "y",
-	//                     "amount": 750
-	//                 },{
-	//                     "type": "CreditNote",
-	//                     "id": "z",
-	//                     "amount": 750
-	//                 }
-	//             ]
-	//         }
-	//     ]
-	// }
-	// ```
+	//   ```json title="Two credit notes and some cash pay two invoices with no allocations specified"
+	//   {
+	//       "totalAmount": 500,
+	//       "lines": [
+	//           {
+	//               "amount": 500,
+	//               "links": [{
+	//                       "type": "Invoice",
+	//                       "id": "a",
+	//                       "amount": -1000
+	//                   }, {
+	//                       "type": "Invoice",
+	//                       "id": "b",
+	//                       "amount": -1000
+	//                   }, {
+	//                       "type": "CreditNote",
+	//                       "id": "y",
+	//                       "amount": 750
+	//                   },{
+	//                       "type": "CreditNote",
+	//                       "id": "z",
+	//                       "amount": 750
+	//                   }
+	//               ]
+	//           }
+	//       ]
+	//   }
+	//   ```
 	Data *AccountingPayment `json:"data,omitempty"`
 	// Unique identifier for a company's data connection.
 	DataConnectionKey string `json:"dataConnectionKey"`

@@ -7,30 +7,30 @@ import (
 	"github.com/ericlagergren/decimal"
 )
 
-// DirectIncomeLineItemItemReference - Reference to the product, service type, or inventory item to which the direct cost is linked.
-type DirectIncomeLineItemItemReference struct {
+// ItemReference - Reference to the product, service type, or inventory item to which the direct cost is linked.
+type ItemReference struct {
 	// Unique identifier for the item in the accounting platform.
 	ID string `json:"id"`
 	// Name of the item in the accounting platform.
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *DirectIncomeLineItemItemReference) GetID() string {
+func (o *ItemReference) GetID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ID
 }
 
-func (o *DirectIncomeLineItemItemReference) GetName() *string {
+func (o *ItemReference) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// DirectIncomeLineItemTaxRateReference - Reference to the tax rate to which the line item is linked.
-type DirectIncomeLineItemTaxRateReference struct {
+// TaxRateReference - Reference to the tax rate to which the line item is linked.
+type TaxRateReference struct {
 	// Applicable tax rate.
 	EffectiveTaxRate *decimal.Big `decimal:"number" json:"effectiveTaxRate,omitempty"`
 	// Unique identifier for the tax rate in the accounting platform.
@@ -39,56 +39,56 @@ type DirectIncomeLineItemTaxRateReference struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (d DirectIncomeLineItemTaxRateReference) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(d, "", false)
+func (t TaxRateReference) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
 }
 
-func (d *DirectIncomeLineItemTaxRateReference) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &d, "", false, false); err != nil {
+func (t *TaxRateReference) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, false); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *DirectIncomeLineItemTaxRateReference) GetEffectiveTaxRate() *decimal.Big {
+func (o *TaxRateReference) GetEffectiveTaxRate() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.EffectiveTaxRate
 }
 
-func (o *DirectIncomeLineItemTaxRateReference) GetID() *string {
+func (o *TaxRateReference) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *DirectIncomeLineItemTaxRateReference) GetName() *string {
+func (o *TaxRateReference) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// DirectIncomeLineItemTrackingCategoryRefs - References a category against which the item is tracked.
+// TrackingCategoryRefs - References a category against which the item is tracked.
 //
 // Deprecated type: This will be removed in a future release, please migrate away from it as soon as possible.
-type DirectIncomeLineItemTrackingCategoryRefs struct {
+type TrackingCategoryRefs struct {
 	// Unique identifier to the tracking category.
 	ID string `json:"id"`
 	// Name of tracking category.
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *DirectIncomeLineItemTrackingCategoryRefs) GetID() string {
+func (o *TrackingCategoryRefs) GetID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ID
 }
 
-func (o *DirectIncomeLineItemTrackingCategoryRefs) GetName() *string {
+func (o *TrackingCategoryRefs) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -105,7 +105,7 @@ type DirectIncomeLineItem struct {
 	// Discount percentage for the line before tax.
 	DiscountPercentage *decimal.Big `decimal:"number" json:"discountPercentage,omitempty"`
 	// Reference to the product, service type, or inventory item to which the direct cost is linked.
-	ItemRef *DirectIncomeLineItemItemReference `json:"itemRef,omitempty"`
+	ItemRef *ItemReference `json:"itemRef,omitempty"`
 	// The number of units of goods or services received.
 	//
 	// Note: If the platform does not provide this information, the quantity will be mapped as 1.
@@ -116,11 +116,11 @@ type DirectIncomeLineItem struct {
 	// Note: If the platform does not provide this information, the quantity will be mapped as 0.00.
 	TaxAmount *decimal.Big `decimal:"number" json:"taxAmount,omitempty"`
 	// Reference to the tax rate to which the line item is linked.
-	TaxRateRef *DirectIncomeLineItemTaxRateReference `json:"taxRateRef,omitempty"`
+	TaxRateRef *TaxRateReference `json:"taxRateRef,omitempty"`
 	// The total amount of the line, including tax.
 	TotalAmount *decimal.Big `decimal:"number" json:"totalAmount,omitempty"`
 	// An array of categories against which this direct cost is tracked.
-	TrackingCategoryRefs []DirectIncomeLineItemTrackingCategoryRefs `json:"trackingCategoryRefs,omitempty"`
+	TrackingCategoryRefs []TrackingCategoryRefs `json:"trackingCategoryRefs,omitempty"`
 	// The price of each unit of goods or services.
 	// Note: If the platform does not provide this information, the unit amount will be mapped to the total amount.
 	UnitAmount *decimal.Big `decimal:"number" json:"unitAmount"`
@@ -165,7 +165,7 @@ func (o *DirectIncomeLineItem) GetDiscountPercentage() *decimal.Big {
 	return o.DiscountPercentage
 }
 
-func (o *DirectIncomeLineItem) GetItemRef() *DirectIncomeLineItemItemReference {
+func (o *DirectIncomeLineItem) GetItemRef() *ItemReference {
 	if o == nil {
 		return nil
 	}
@@ -193,7 +193,7 @@ func (o *DirectIncomeLineItem) GetTaxAmount() *decimal.Big {
 	return o.TaxAmount
 }
 
-func (o *DirectIncomeLineItem) GetTaxRateRef() *DirectIncomeLineItemTaxRateReference {
+func (o *DirectIncomeLineItem) GetTaxRateRef() *TaxRateReference {
 	if o == nil {
 		return nil
 	}
@@ -207,7 +207,7 @@ func (o *DirectIncomeLineItem) GetTotalAmount() *decimal.Big {
 	return o.TotalAmount
 }
 
-func (o *DirectIncomeLineItem) GetTrackingCategoryRefs() []DirectIncomeLineItemTrackingCategoryRefs {
+func (o *DirectIncomeLineItem) GetTrackingCategoryRefs() []TrackingCategoryRefs {
 	if o == nil {
 		return nil
 	}
