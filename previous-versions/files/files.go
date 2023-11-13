@@ -14,20 +14,20 @@ import (
 	"net/http"
 )
 
-// files - Endpoints to manage uploaded files.
-type files struct {
+// Files - Endpoints to manage uploaded files.
+type Files struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newFiles(sdkConfig sdkConfiguration) *files {
-	return &files{
+func newFiles(sdkConfig sdkConfiguration) *Files {
+	return &Files{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // DownloadFiles - Download all files for a company
 // The *Download files* endpoint downloads all files that have  been uploaded by to SMB to Codat. A `date` may be specified to download any files uploaded on the date provided.
-func (s *files) DownloadFiles(ctx context.Context, request operations.DownloadFilesRequest, opts ...operations.Option) (*operations.DownloadFilesResponse, error) {
+func (s *Files) DownloadFiles(ctx context.Context, request operations.DownloadFilesRequest, opts ...operations.Option) (*operations.DownloadFilesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -140,27 +140,31 @@ func (s *files) DownloadFiles(ctx context.Context, request operations.DownloadFi
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.Schema
+			var out sdkerrors.Schema
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.Schema = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.DownloadFilesErrorMessage
+			var out sdkerrors.DownloadFilesErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
+			out.RawResponse = httpRes
 
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -168,7 +172,7 @@ func (s *files) DownloadFiles(ctx context.Context, request operations.DownloadFi
 
 // ListFiles - List all files uploaded by a company
 // The *List files* endpoint returns a list of all files uploaded to Codat by the SMB.
-func (s *files) ListFiles(ctx context.Context, request operations.ListFilesRequest, opts ...operations.Option) (*operations.ListFilesResponse, error) {
+func (s *Files) ListFiles(ctx context.Context, request operations.ListFilesRequest, opts ...operations.Option) (*operations.ListFilesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -270,27 +274,31 @@ func (s *files) ListFiles(ctx context.Context, request operations.ListFilesReque
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.Schema
+			var out sdkerrors.Schema
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.Schema = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ListFilesErrorMessage
+			var out sdkerrors.ListFilesErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
+			out.RawResponse = httpRes
 
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -304,7 +312,7 @@ func (s *files) ListFiles(ctx context.Context, request operations.ListFilesReque
 // - Up to 20 files can be uploaded at a time.
 // - PDF, XLS, XLSX, XLSB, CSV, DOC, DOCX, PPT, PPTX, JPEG, JPG, and PNG files can be uploaded.
 // - Each file can be up to 10MB in size.
-func (s *files) UploadFiles(ctx context.Context, request operations.UploadFilesRequest, opts ...operations.Option) (*operations.UploadFilesResponse, error) {
+func (s *Files) UploadFiles(ctx context.Context, request operations.UploadFilesRequest, opts ...operations.Option) (*operations.UploadFilesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -404,27 +412,31 @@ func (s *files) UploadFiles(ctx context.Context, request operations.UploadFilesR
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.Schema
+			var out sdkerrors.Schema
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.Schema = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UploadFilesErrorMessage
+			var out sdkerrors.UploadFilesErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
+			out.RawResponse = httpRes
 
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

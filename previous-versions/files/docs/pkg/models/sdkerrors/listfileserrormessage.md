@@ -1,4 +1,4 @@
-# UploadFilesErrorMessage
+# ListFilesErrorMessage
 
 You are using an outdated API key or a key not associated with that resource.
 
@@ -7,6 +7,7 @@ You are using an outdated API key or a key not associated with that resource.
 
 | Field                                                                                                 | Type                                                                                                  | Required                                                                                              | Description                                                                                           |
 | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| `RawResponse`                                                                                         | [*http.Response](https://pkg.go.dev/net/http#Response)                                                | :heavy_minus_sign:                                                                                    | Raw HTTP response; suitable for custom response parsing                                               |
 | `CanBeRetried`                                                                                        | **string*                                                                                             | :heavy_minus_sign:                                                                                    | `True` if the error occurred transiently and can be retried.                                          |
 | `CorrelationID`                                                                                       | **string*                                                                                             | :heavy_minus_sign:                                                                                    | Unique identifier used to propagate to all downstream services and determine the source of the error. |
 | `DetailedErrorCode`                                                                                   | **int64*                                                                                              | :heavy_minus_sign:                                                                                    | Machine readable error code used to automate processes based on the code returned.                    |

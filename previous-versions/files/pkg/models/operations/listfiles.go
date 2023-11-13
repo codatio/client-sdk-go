@@ -19,77 +19,15 @@ func (o *ListFilesRequest) GetCompanyID() string {
 	return o.CompanyID
 }
 
-// ListFilesErrorMessage - You are using an outdated API key or a key not associated with that resource.
-type ListFilesErrorMessage struct {
-	// `True` if the error occurred transiently and can be retried.
-	CanBeRetried *string `json:"canBeRetried,omitempty"`
-	// Unique identifier used to propagate to all downstream services and determine the source of the error.
-	CorrelationID *string `json:"correlationId,omitempty"`
-	// Machine readable error code used to automate processes based on the code returned.
-	DetailedErrorCode *int64 `json:"detailedErrorCode,omitempty"`
-	// A brief description of the error.
-	Error *string `json:"error,omitempty"`
-	// Codat's service the returned the error.
-	Service *string `json:"service,omitempty"`
-	// The HTTP status code returned by the error.
-	StatusCode *int64 `json:"statusCode,omitempty"`
-}
-
-func (o *ListFilesErrorMessage) GetCanBeRetried() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CanBeRetried
-}
-
-func (o *ListFilesErrorMessage) GetCorrelationID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CorrelationID
-}
-
-func (o *ListFilesErrorMessage) GetDetailedErrorCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.DetailedErrorCode
-}
-
-func (o *ListFilesErrorMessage) GetError() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Error
-}
-
-func (o *ListFilesErrorMessage) GetService() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Service
-}
-
-func (o *ListFilesErrorMessage) GetStatusCode() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.StatusCode
-}
-
 type ListFilesResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// You are using an outdated API key or a key not associated with that resource.
-	ErrorMessage *ListFilesErrorMessage
 	// Success
 	Files []shared.File
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Your API request was not properly authorized.
-	Schema *shared.Schema
 }
 
 func (o *ListFilesResponse) GetContentType() string {
@@ -97,13 +35,6 @@ func (o *ListFilesResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *ListFilesResponse) GetErrorMessage() *ListFilesErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *ListFilesResponse) GetFiles() []shared.File {
@@ -125,11 +56,4 @@ func (o *ListFilesResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *ListFilesResponse) GetSchema() *shared.Schema {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
 }

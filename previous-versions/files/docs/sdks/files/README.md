@@ -52,17 +52,21 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
-| `request`                                                                          | [operations.DownloadFilesRequest](../../models/operations/downloadfilesrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
-| `opts`                                                                             | [][operations.Option](../../models/operations/option.md)                           | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
+| `request`                                                                              | [operations.DownloadFilesRequest](../../pkg/models/operations/downloadfilesrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `opts`                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
 
 ### Response
 
-**[*operations.DownloadFilesResponse](../../models/operations/downloadfilesresponse.md), error**
-
+**[*operations.DownloadFilesResponse](../../pkg/models/operations/downloadfilesresponse.md), error**
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| sdkerrors.Schema                    | 400,401,402,404,429,500,503         | application/json                    |
+| sdkerrors.DownloadFilesErrorMessage | 403                                 | application/json                    |
+| sdkerrors.SDKError                  | 400-600                             | */*                                 |
 
 ## ListFiles
 
@@ -104,17 +108,21 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
-| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| `ctx`                                                                      | [context.Context](https://pkg.go.dev/context#Context)                      | :heavy_check_mark:                                                         | The context to use for the request.                                        |
-| `request`                                                                  | [operations.ListFilesRequest](../../models/operations/listfilesrequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
-| `opts`                                                                     | [][operations.Option](../../models/operations/option.md)                   | :heavy_minus_sign:                                                         | The options for this request.                                              |
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
+| `request`                                                                      | [operations.ListFilesRequest](../../pkg/models/operations/listfilesrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| `opts`                                                                         | [][operations.Option](../../pkg/models/operations/option.md)                   | :heavy_minus_sign:                                                             | The options for this request.                                                  |
 
 
 ### Response
 
-**[*operations.ListFilesResponse](../../models/operations/listfilesresponse.md), error**
-
+**[*operations.ListFilesResponse](../../pkg/models/operations/listfilesresponse.md), error**
+| Error Object                    | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| sdkerrors.Schema                | 401,402,404,429,500,503         | application/json                |
+| sdkerrors.ListFilesErrorMessage | 403                             | application/json                |
+| sdkerrors.SDKError              | 400-600                         | */*                             |
 
 ## UploadFiles
 
@@ -149,8 +157,8 @@ func main() {
     ctx := context.Background()
     res, err := s.Files.UploadFiles(ctx, operations.UploadFilesRequest{
         RequestBody: &operations.UploadFilesRequestBody{
-            Content: []byte(";*>'Oq[l/G"),
-            RequestBody: "string",
+            Content: []byte("0x6261bDdB39"),
+            FileName: "syndicate_central_defect.wav",
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -167,14 +175,18 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
-| `request`                                                                      | [operations.UploadFilesRequest](../../models/operations/uploadfilesrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
-| `opts`                                                                         | [][operations.Option](../../models/operations/option.md)                       | :heavy_minus_sign:                                                             | The options for this request.                                                  |
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
+| `request`                                                                          | [operations.UploadFilesRequest](../../pkg/models/operations/uploadfilesrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `opts`                                                                             | [][operations.Option](../../pkg/models/operations/option.md)                       | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
 
 
 ### Response
 
-**[*operations.UploadFilesResponse](../../models/operations/uploadfilesresponse.md), error**
-
+**[*operations.UploadFilesResponse](../../pkg/models/operations/uploadfilesresponse.md), error**
+| Error Object                      | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| sdkerrors.Schema                  | 400,401,402,404,429,500,503       | application/json                  |
+| sdkerrors.UploadFilesErrorMessage | 403                               | application/json                  |
+| sdkerrors.SDKError                | 400-600                           | */*                               |
