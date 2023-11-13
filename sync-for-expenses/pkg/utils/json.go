@@ -12,7 +12,7 @@ import (
 	"time"
 	"unsafe"
 
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/types"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/types"
 
 	"github.com/ericlagergren/decimal"
 )

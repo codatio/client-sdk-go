@@ -25,9 +25,9 @@ package main
 import(
 	"context"
 	"log"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v3"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/operations"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
 )
 
 func main() {
@@ -52,17 +52,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
-| `request`                                                                      | [operations.GetSyncByIDRequest](../../models/operations/getsyncbyidrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
-| `opts`                                                                         | [][operations.Option](../../models/operations/option.md)                       | :heavy_minus_sign:                                                             | The options for this request.                                                  |
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
+| `request`                                                                          | [operations.GetSyncByIDRequest](../../pkg/models/operations/getsyncbyidrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `opts`                                                                             | [][operations.Option](../../pkg/models/operations/option.md)                       | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
 
 
 ### Response
 
-**[*operations.GetSyncByIDResponse](../../models/operations/getsyncbyidresponse.md), error**
-
+**[*operations.GetSyncByIDResponse](../../pkg/models/operations/getsyncbyidresponse.md), error**
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
+| sdkerrors.SDKError          | 400-600                     | */*                         |
 
 ## GetLastSuccessfulSync
 
@@ -76,9 +79,9 @@ package main
 import(
 	"context"
 	"log"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v3"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/operations"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
 )
 
 func main() {
@@ -102,17 +105,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
-| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                              | :heavy_check_mark:                                                                                 | The context to use for the request.                                                                |
-| `request`                                                                                          | [operations.GetLastSuccessfulSyncRequest](../../models/operations/getlastsuccessfulsyncrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
-| `opts`                                                                                             | [][operations.Option](../../models/operations/option.md)                                           | :heavy_minus_sign:                                                                                 | The options for this request.                                                                      |
+| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                  | :heavy_check_mark:                                                                                     | The context to use for the request.                                                                    |
+| `request`                                                                                              | [operations.GetLastSuccessfulSyncRequest](../../pkg/models/operations/getlastsuccessfulsyncrequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
+| `opts`                                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                                           | :heavy_minus_sign:                                                                                     | The options for this request.                                                                          |
 
 
 ### Response
 
-**[*operations.GetLastSuccessfulSyncResponse](../../models/operations/getlastsuccessfulsyncresponse.md), error**
-
+**[*operations.GetLastSuccessfulSyncResponse](../../pkg/models/operations/getlastsuccessfulsyncresponse.md), error**
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
+| sdkerrors.SDKError          | 400-600                     | */*                         |
 
 ## GetLatestSync
 
@@ -126,9 +132,9 @@ package main
 import(
 	"context"
 	"log"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v3"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/operations"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
 )
 
 func main() {
@@ -152,17 +158,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
-| `request`                                                                          | [operations.GetLatestSyncRequest](../../models/operations/getlatestsyncrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
-| `opts`                                                                             | [][operations.Option](../../models/operations/option.md)                           | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
+| `request`                                                                              | [operations.GetLatestSyncRequest](../../pkg/models/operations/getlatestsyncrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `opts`                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
 
 ### Response
 
-**[*operations.GetLatestSyncResponse](../../models/operations/getlatestsyncresponse.md), error**
-
+**[*operations.GetLatestSyncResponse](../../pkg/models/operations/getlatestsyncresponse.md), error**
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
+| sdkerrors.SDKError          | 400-600                     | */*                         |
 
 ## InitiateSync
 
@@ -176,9 +185,9 @@ package main
 import(
 	"context"
 	"log"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v3"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/operations"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
 )
 
 func main() {
@@ -207,17 +216,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
-| `request`                                                                        | [operations.InitiateSyncRequest](../../models/operations/initiatesyncrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
-| `opts`                                                                           | [][operations.Option](../../models/operations/option.md)                         | :heavy_minus_sign:                                                               | The options for this request.                                                    |
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
+| `request`                                                                            | [operations.InitiateSyncRequest](../../pkg/models/operations/initiatesyncrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| `opts`                                                                               | [][operations.Option](../../pkg/models/operations/option.md)                         | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
 
 
 ### Response
 
-**[*operations.InitiateSyncResponse](../../models/operations/initiatesyncresponse.md), error**
-
+**[*operations.InitiateSyncResponse](../../pkg/models/operations/initiatesyncresponse.md), error**
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| sdkerrors.ErrorMessage              | 400,401,402,403,404,422,429,500,503 | application/json                    |
+| sdkerrors.SDKError                  | 400-600                             | */*                                 |
 
 ## List
 
@@ -231,9 +243,9 @@ package main
 import(
 	"context"
 	"log"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v3"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/operations"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
 )
 
 func main() {
@@ -249,7 +261,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.CompanySyncStatuses != nil {
+    if res.Classes != nil {
         // handle response
     }
 }
@@ -257,14 +269,17 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
-| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| `ctx`                                                                      | [context.Context](https://pkg.go.dev/context#Context)                      | :heavy_check_mark:                                                         | The context to use for the request.                                        |
-| `request`                                                                  | [operations.ListSyncsRequest](../../models/operations/listsyncsrequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
-| `opts`                                                                     | [][operations.Option](../../models/operations/option.md)                   | :heavy_minus_sign:                                                         | The options for this request.                                              |
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
+| `request`                                                                      | [operations.ListSyncsRequest](../../pkg/models/operations/listsyncsrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| `opts`                                                                         | [][operations.Option](../../pkg/models/operations/option.md)                   | :heavy_minus_sign:                                                             | The options for this request.                                                  |
 
 
 ### Response
 
-**[*operations.ListSyncsResponse](../../models/operations/listsyncsresponse.md), error**
-
+**[*operations.ListSyncsResponse](../../pkg/models/operations/listsyncsresponse.md), error**
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
+| sdkerrors.SDKError          | 400-600                     | */*                         |

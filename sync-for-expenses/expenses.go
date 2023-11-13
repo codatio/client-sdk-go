@@ -6,28 +6,28 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/sdkerrors"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/utils"
 	"io"
 	"net/http"
 )
 
-// expenses - Create expense datasets and upload receipts.
-type expenses struct {
+// Expenses - Create expense datasets and upload receipts.
+type Expenses struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newExpenses(sdkConfig sdkConfiguration) *expenses {
-	return &expenses{
+func newExpenses(sdkConfig sdkConfiguration) *Expenses {
+	return &Expenses{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // Create expense transaction
 // Create an expense transaction
-func (s *expenses) Create(ctx context.Context, request operations.CreateExpenseTransactionRequest, opts ...operations.Option) (*operations.CreateExpenseTransactionResponse, error) {
+func (s *Expenses) Create(ctx context.Context, request operations.CreateExpenseTransactionRequest, opts ...operations.Option) (*operations.CreateExpenseTransactionResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -140,15 +140,18 @@ func (s *expenses) Create(ctx context.Context, request operations.CreateExpenseT
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -156,7 +159,7 @@ func (s *expenses) Create(ctx context.Context, request operations.CreateExpenseT
 
 // Update expense-transactions
 // Update an expense transaction
-func (s *expenses) Update(ctx context.Context, request operations.UpdateExpenseTransactionRequest, opts ...operations.Option) (*operations.UpdateExpenseTransactionResponse, error) {
+func (s *Expenses) Update(ctx context.Context, request operations.UpdateExpenseTransactionRequest, opts ...operations.Option) (*operations.UpdateExpenseTransactionResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -271,15 +274,18 @@ func (s *expenses) Update(ctx context.Context, request operations.UpdateExpenseT
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -287,7 +293,7 @@ func (s *expenses) Update(ctx context.Context, request operations.UpdateExpenseT
 
 // UploadAttachment - Upload attachment
 // Creates an attachment in the accounting software against the given transactionId
-func (s *expenses) UploadAttachment(ctx context.Context, request operations.UploadExpenseAttachmentRequest, opts ...operations.Option) (*operations.UploadExpenseAttachmentResponse, error) {
+func (s *Expenses) UploadAttachment(ctx context.Context, request operations.UploadExpenseAttachmentRequest, opts ...operations.Option) (*operations.UploadExpenseAttachmentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -400,15 +406,18 @@ func (s *expenses) UploadAttachment(ctx context.Context, request operations.Uplo
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

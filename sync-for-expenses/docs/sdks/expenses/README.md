@@ -23,10 +23,10 @@ package main
 import(
 	"context"
 	"log"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v3"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/types"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/types"
 )
 
 func main() {
@@ -39,12 +39,12 @@ func main() {
         CreateExpenseRequest: &shared.CreateExpenseRequest{
             Items: []shared.ExpenseTransaction{
                 shared.ExpenseTransaction{
-                    BankAccountRef: &shared.ExpenseTransactionBankAccountReference{
+                    BankAccountRef: &shared.BankAccountReference{
                         ID: syncforexpenses.String("787dfb37-5707-4dc0-8a86-8d74e4cc78ea"),
                     },
                     ContactRef: &shared.ContactRef{
                         ID: syncforexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                        Type: shared.ContactRefTypeSupplier.ToPointer(),
+                        Type: shared.TypeSupplier.ToPointer(),
                     },
                     Currency: "GBP",
                     ID: "4d7c6929-7770-412b-91bb-44d3bc71d111",
@@ -86,17 +86,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
-| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                                    | :heavy_check_mark:                                                                                       | The context to use for the request.                                                                      |
-| `request`                                                                                                | [operations.CreateExpenseTransactionRequest](../../models/operations/createexpensetransactionrequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
-| `opts`                                                                                                   | [][operations.Option](../../models/operations/option.md)                                                 | :heavy_minus_sign:                                                                                       | The options for this request.                                                                            |
+| Parameter                                                                                                    | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                                        | :heavy_check_mark:                                                                                           | The context to use for the request.                                                                          |
+| `request`                                                                                                    | [operations.CreateExpenseTransactionRequest](../../pkg/models/operations/createexpensetransactionrequest.md) | :heavy_check_mark:                                                                                           | The request object to use for the request.                                                                   |
+| `opts`                                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                                 | :heavy_minus_sign:                                                                                           | The options for this request.                                                                                |
 
 
 ### Response
 
-**[*operations.CreateExpenseTransactionResponse](../../models/operations/createexpensetransactionresponse.md), error**
-
+**[*operations.CreateExpenseTransactionResponse](../../pkg/models/operations/createexpensetransactionresponse.md), error**
+| Error Object                    | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
+| sdkerrors.SDKError              | 400-600                         | */*                             |
 
 ## Update
 
@@ -110,10 +113,10 @@ package main
 import(
 	"context"
 	"log"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v3"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/types"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/types"
 )
 
 func main() {
@@ -129,7 +132,7 @@ func main() {
             },
             ContactRef: &shared.ContactRef{
                 ID: syncforexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                Type: shared.ContactRefTypeSupplier.ToPointer(),
+                Type: shared.TypeSupplier.ToPointer(),
             },
             Currency: syncforexpenses.String("GBP"),
             IssueDate: "2022-06-28T00:00:00.000Z",
@@ -169,17 +172,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
-| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                                    | :heavy_check_mark:                                                                                       | The context to use for the request.                                                                      |
-| `request`                                                                                                | [operations.UpdateExpenseTransactionRequest](../../models/operations/updateexpensetransactionrequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
-| `opts`                                                                                                   | [][operations.Option](../../models/operations/option.md)                                                 | :heavy_minus_sign:                                                                                       | The options for this request.                                                                            |
+| Parameter                                                                                                    | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                                        | :heavy_check_mark:                                                                                           | The context to use for the request.                                                                          |
+| `request`                                                                                                    | [operations.UpdateExpenseTransactionRequest](../../pkg/models/operations/updateexpensetransactionrequest.md) | :heavy_check_mark:                                                                                           | The request object to use for the request.                                                                   |
+| `opts`                                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                                 | :heavy_minus_sign:                                                                                           | The options for this request.                                                                                |
 
 
 ### Response
 
-**[*operations.UpdateExpenseTransactionResponse](../../models/operations/updateexpensetransactionresponse.md), error**
-
+**[*operations.UpdateExpenseTransactionResponse](../../pkg/models/operations/updateexpensetransactionresponse.md), error**
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| sdkerrors.ErrorMessage              | 400,401,402,403,404,422,429,500,503 | application/json                    |
+| sdkerrors.SDKError                  | 400-600                             | */*                                 |
 
 ## UploadAttachment
 
@@ -193,9 +199,9 @@ package main
 import(
 	"context"
 	"log"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v3"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/operations"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
 )
 
 func main() {
@@ -206,8 +212,8 @@ func main() {
     ctx := context.Background()
     res, err := s.Expenses.UploadAttachment(ctx, operations.UploadExpenseAttachmentRequest{
         RequestBody: &operations.UploadExpenseAttachmentRequestBody{
-            Content: []byte("v/ghW&IC$x"),
-            RequestBody: "string",
+            Content: []byte("0xE3ABc1980E"),
+            FileName: "elegant_producer_electric.jpeg",
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         SyncID: "6fb40d5e-b13e-11ed-afa1-0242ac120002",
@@ -225,14 +231,17 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
-| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                  | :heavy_check_mark:                                                                                     | The context to use for the request.                                                                    |
-| `request`                                                                                              | [operations.UploadExpenseAttachmentRequest](../../models/operations/uploadexpenseattachmentrequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
-| `opts`                                                                                                 | [][operations.Option](../../models/operations/option.md)                                               | :heavy_minus_sign:                                                                                     | The options for this request.                                                                          |
+| Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                                      | :heavy_check_mark:                                                                                         | The context to use for the request.                                                                        |
+| `request`                                                                                                  | [operations.UploadExpenseAttachmentRequest](../../pkg/models/operations/uploadexpenseattachmentrequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
+| `opts`                                                                                                     | [][operations.Option](../../pkg/models/operations/option.md)                                               | :heavy_minus_sign:                                                                                         | The options for this request.                                                                              |
 
 
 ### Response
 
-**[*operations.UploadExpenseAttachmentResponse](../../models/operations/uploadexpenseattachmentresponse.md), error**
-
+**[*operations.UploadExpenseAttachmentResponse](../../pkg/models/operations/uploadexpenseattachmentresponse.md), error**
+| Error Object                    | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
+| sdkerrors.SDKError              | 400-600                         | */*                             |

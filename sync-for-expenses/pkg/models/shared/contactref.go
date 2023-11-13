@@ -5,31 +5,31 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/utils"
 )
 
-// ContactRefType - The type of contact.
-type ContactRefType string
+// Type - The type of contact.
+type Type string
 
 const (
-	ContactRefTypeSupplier ContactRefType = "Supplier"
+	TypeSupplier Type = "Supplier"
 )
 
-func (e ContactRefType) ToPointer() *ContactRefType {
+func (e Type) ToPointer() *Type {
 	return &e
 }
 
-func (e *ContactRefType) UnmarshalJSON(data []byte) error {
+func (e *Type) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "Supplier":
-		*e = ContactRefType(v)
+		*e = Type(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ContactRefType: %v", v)
+		return fmt.Errorf("invalid value for Type: %v", v)
 	}
 }
 
@@ -37,7 +37,7 @@ type ContactRef struct {
 	// Identifier of supplier or customer.
 	ID *string `json:"id,omitempty"`
 	// The type of contact.
-	Type *ContactRefType `default:"Supplier" json:"type"`
+	Type *Type `default:"Supplier" json:"type"`
 }
 
 func (c ContactRef) MarshalJSON() ([]byte, error) {
@@ -58,7 +58,7 @@ func (o *ContactRef) GetID() *string {
 	return o.ID
 }
 
-func (o *ContactRef) GetType() *ContactRefType {
+func (o *ContactRef) GetType() *Type {
 	if o == nil {
 		return nil
 	}

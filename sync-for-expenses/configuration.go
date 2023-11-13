@@ -6,28 +6,28 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/sdkerrors"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/utils"
 	"io"
 	"net/http"
 )
 
-// configuration - Manage mapping options and sync configuration.
-type configuration struct {
+// Configuration - Manage mapping options and sync configuration.
+type Configuration struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newConfiguration(sdkConfig sdkConfiguration) *configuration {
-	return &configuration{
+func newConfiguration(sdkConfig sdkConfiguration) *Configuration {
+	return &Configuration{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // Get company configuration
 // Gets a companies expense sync configuration
-func (s *configuration) Get(ctx context.Context, request operations.GetCompanyConfigurationRequest, opts ...operations.Option) (*operations.GetCompanyConfigurationResponse, error) {
+func (s *Configuration) Get(ctx context.Context, request operations.GetCompanyConfigurationRequest, opts ...operations.Option) (*operations.GetCompanyConfigurationResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -131,15 +131,18 @@ func (s *configuration) Get(ctx context.Context, request operations.GetCompanyCo
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -147,7 +150,7 @@ func (s *configuration) Get(ctx context.Context, request operations.GetCompanyCo
 
 // GetMappingOptions - Mapping options
 // Gets the expense mapping options for a companies accounting software
-func (s *configuration) GetMappingOptions(ctx context.Context, request operations.GetMappingOptionsRequest, opts ...operations.Option) (*operations.GetMappingOptionsResponse, error) {
+func (s *Configuration) GetMappingOptions(ctx context.Context, request operations.GetMappingOptionsRequest, opts ...operations.Option) (*operations.GetMappingOptionsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -251,15 +254,18 @@ func (s *configuration) GetMappingOptions(ctx context.Context, request operation
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -267,7 +273,7 @@ func (s *configuration) GetMappingOptions(ctx context.Context, request operation
 
 // Set company configuration
 // Sets a companies expense sync configuration
-func (s *configuration) Set(ctx context.Context, request operations.SetCompanyConfigurationRequest, opts ...operations.Option) (*operations.SetCompanyConfigurationResponse, error) {
+func (s *Configuration) Set(ctx context.Context, request operations.SetCompanyConfigurationRequest, opts ...operations.Option) (*operations.SetCompanyConfigurationResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -380,15 +386,18 @@ func (s *configuration) Set(ctx context.Context, request operations.SetCompanyCo
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

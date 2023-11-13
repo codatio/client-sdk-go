@@ -29,8 +29,8 @@ package main
 import(
 	"context"
 	"log"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v3"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/shared"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
 )
 
 func main() {
@@ -55,17 +55,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            |
-| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| `ctx`                                                                  | [context.Context](https://pkg.go.dev/context#Context)                  | :heavy_check_mark:                                                     | The context to use for the request.                                    |
-| `request`                                                              | [shared.CompanyRequestBody](../../models/shared/companyrequestbody.md) | :heavy_check_mark:                                                     | The request object to use for the request.                             |
-| `opts`                                                                 | [][operations.Option](../../models/operations/option.md)               | :heavy_minus_sign:                                                     | The options for this request.                                          |
+| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `ctx`                                                                      | [context.Context](https://pkg.go.dev/context#Context)                      | :heavy_check_mark:                                                         | The context to use for the request.                                        |
+| `request`                                                                  | [shared.CompanyRequestBody](../../pkg/models/shared/companyrequestbody.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
+| `opts`                                                                     | [][operations.Option](../../pkg/models/operations/option.md)               | :heavy_minus_sign:                                                         | The options for this request.                                              |
 
 
 ### Response
 
-**[*operations.CreateCompanyResponse](../../models/operations/createcompanyresponse.md), error**
-
+**[*operations.CreateCompanyResponse](../../pkg/models/operations/createcompanyresponse.md), error**
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.ErrorMessage      | 400,401,402,403,429,500,503 | application/json            |
+| sdkerrors.SDKError          | 400-600                     | */*                         |
 
 ## Delete
 
@@ -80,9 +83,9 @@ package main
 import(
 	"context"
 	"log"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v3"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/operations"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
 )
 
 func main() {
@@ -106,17 +109,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
-| `request`                                                                          | [operations.DeleteCompanyRequest](../../models/operations/deletecompanyrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
-| `opts`                                                                             | [][operations.Option](../../models/operations/option.md)                           | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
+| `request`                                                                              | [operations.DeleteCompanyRequest](../../pkg/models/operations/deletecompanyrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `opts`                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
 
 ### Response
 
-**[*operations.DeleteCompanyResponse](../../models/operations/deletecompanyresponse.md), error**
-
+**[*operations.DeleteCompanyResponse](../../pkg/models/operations/deletecompanyresponse.md), error**
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
+| sdkerrors.SDKError          | 400-600                     | */*                         |
 
 ## Get
 
@@ -130,9 +136,9 @@ package main
 import(
 	"context"
 	"log"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v3"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/operations"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
 )
 
 func main() {
@@ -156,17 +162,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `ctx`                                                                        | [context.Context](https://pkg.go.dev/context#Context)                        | :heavy_check_mark:                                                           | The context to use for the request.                                          |
-| `request`                                                                    | [operations.GetCompanyRequest](../../models/operations/getcompanyrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
-| `opts`                                                                       | [][operations.Option](../../models/operations/option.md)                     | :heavy_minus_sign:                                                           | The options for this request.                                                |
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
+| `request`                                                                        | [operations.GetCompanyRequest](../../pkg/models/operations/getcompanyrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `opts`                                                                           | [][operations.Option](../../pkg/models/operations/option.md)                     | :heavy_minus_sign:                                                               | The options for this request.                                                    |
 
 
 ### Response
 
-**[*operations.GetCompanyResponse](../../models/operations/getcompanyresponse.md), error**
-
+**[*operations.GetCompanyResponse](../../pkg/models/operations/getcompanyresponse.md), error**
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
+| sdkerrors.SDKError          | 400-600                     | */*                         |
 
 ## List
 
@@ -180,9 +189,9 @@ package main
 import(
 	"context"
 	"log"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v3"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/operations"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
 )
 
 func main() {
@@ -208,17 +217,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
-| `request`                                                                          | [operations.ListCompaniesRequest](../../models/operations/listcompaniesrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
-| `opts`                                                                             | [][operations.Option](../../models/operations/option.md)                           | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
+| `request`                                                                              | [operations.ListCompaniesRequest](../../pkg/models/operations/listcompaniesrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `opts`                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
 
 ### Response
 
-**[*operations.ListCompaniesResponse](../../models/operations/listcompaniesresponse.md), error**
-
+**[*operations.ListCompaniesResponse](../../pkg/models/operations/listcompaniesresponse.md), error**
+| Error Object                    | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
+| sdkerrors.SDKError              | 400-600                         | */*                             |
 
 ## Update
 
@@ -232,9 +244,9 @@ package main
 import(
 	"context"
 	"log"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v3"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/operations"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
 )
 
 func main() {
@@ -262,14 +274,17 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
-| `request`                                                                          | [operations.UpdateCompanyRequest](../../models/operations/updatecompanyrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
-| `opts`                                                                             | [][operations.Option](../../models/operations/option.md)                           | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
+| `request`                                                                              | [operations.UpdateCompanyRequest](../../pkg/models/operations/updatecompanyrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `opts`                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
 
 ### Response
 
-**[*operations.UpdateCompanyResponse](../../models/operations/updatecompanyresponse.md), error**
-
+**[*operations.UpdateCompanyResponse](../../pkg/models/operations/updatecompanyresponse.md), error**
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
+| sdkerrors.SDKError          | 400-600                     | */*                         |

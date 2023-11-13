@@ -2,7 +2,7 @@
 
 package shared
 
-type CustomerAccountingAddress struct {
+type AccountingAddress struct {
 	// City of the customer address.
 	City *string `json:"city,omitempty"`
 	// Country of the customer address.
@@ -19,49 +19,49 @@ type CustomerAccountingAddress struct {
 	Type AccountingAddressType `json:"type"`
 }
 
-func (o *CustomerAccountingAddress) GetCity() *string {
+func (o *AccountingAddress) GetCity() *string {
 	if o == nil {
 		return nil
 	}
 	return o.City
 }
 
-func (o *CustomerAccountingAddress) GetCountry() *string {
+func (o *AccountingAddress) GetCountry() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Country
 }
 
-func (o *CustomerAccountingAddress) GetLine1() *string {
+func (o *AccountingAddress) GetLine1() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Line1
 }
 
-func (o *CustomerAccountingAddress) GetLine2() *string {
+func (o *AccountingAddress) GetLine2() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Line2
 }
 
-func (o *CustomerAccountingAddress) GetPostalCode() *string {
+func (o *AccountingAddress) GetPostalCode() *string {
 	if o == nil {
 		return nil
 	}
 	return o.PostalCode
 }
 
-func (o *CustomerAccountingAddress) GetRegion() *string {
+func (o *AccountingAddress) GetRegion() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Region
 }
 
-func (o *CustomerAccountingAddress) GetType() AccountingAddressType {
+func (o *AccountingAddress) GetType() AccountingAddressType {
 	if o == nil {
 		return AccountingAddressType("")
 	}
@@ -77,7 +77,7 @@ func (o *CustomerAccountingAddress) GetType() AccountingAddressType {
 // Customers' data links to accounts receivable [invoices](https://docs.codat.io/sync-for-expenses-api#/schemas/Invoice).
 type Customer struct {
 	// An array of Addresses.
-	Addresses []CustomerAccountingAddress `json:"addresses,omitempty"`
+	Addresses []AccountingAddress `json:"addresses,omitempty"`
 	// Name of the main contact for the identified customer.
 	ContactName *string `json:"contactName,omitempty"`
 	// An array of Contacts.
@@ -113,7 +113,7 @@ type Customer struct {
 	TaxNumber *string `json:"taxNumber,omitempty"`
 }
 
-func (o *Customer) GetAddresses() []CustomerAccountingAddress {
+func (o *Customer) GetAddresses() []AccountingAddress {
 	if o == nil {
 		return nil
 	}

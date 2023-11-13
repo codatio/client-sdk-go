@@ -393,3 +393,13 @@ Based on:
 - [go v3.3.0] sync-for-expenses
 ### Releases
 - [Go v3.3.0] https://github.com/codatio/client-sdk-go/releases/tag/sync-for-expenses/v3.3.0 - sync-for-expenses
+
+## 2023-11-13 01:24:51
+### Changes
+Based on:
+- OpenAPI Doc prealpha https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Sync-Expenses.yaml
+- Speakeasy CLI 1.119.0 (2.188.1) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [go v4.0.0] sync-for-expenses
+### Releases
+- [Go v4.0.0] https://github.com/codatio/client-sdk-go/releases/tag/sync-for-expenses/v4.0.0 - sync-for-expenses

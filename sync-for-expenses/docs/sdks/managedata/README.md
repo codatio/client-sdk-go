@@ -25,9 +25,9 @@ package main
 import(
 	"context"
 	"log"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v3"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/operations"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
 )
 
 func main() {
@@ -51,17 +51,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
-| `request`                                                                          | [operations.GetDataStatusRequest](../../models/operations/getdatastatusrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
-| `opts`                                                                             | [][operations.Option](../../models/operations/option.md)                           | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
+| `request`                                                                              | [operations.GetDataStatusRequest](../../pkg/models/operations/getdatastatusrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `opts`                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
 
 ### Response
 
-**[*operations.GetDataStatusResponse](../../models/operations/getdatastatusresponse.md), error**
-
+**[*operations.GetDataStatusResponse](../../pkg/models/operations/getdatastatusresponse.md), error**
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
+| sdkerrors.SDKError          | 400-600                     | */*                         |
 
 ## GetPullOperation
 
@@ -75,9 +78,9 @@ package main
 import(
 	"context"
 	"log"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v3"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/operations"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
 )
 
 func main() {
@@ -102,17 +105,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
-| `request`                                                                                | [operations.GetPullOperationRequest](../../models/operations/getpulloperationrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
-| `opts`                                                                                   | [][operations.Option](../../models/operations/option.md)                                 | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
+| `request`                                                                                    | [operations.GetPullOperationRequest](../../pkg/models/operations/getpulloperationrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `opts`                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                 | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
 
 
 ### Response
 
-**[*operations.GetPullOperationResponse](../../models/operations/getpulloperationresponse.md), error**
-
+**[*operations.GetPullOperationResponse](../../pkg/models/operations/getpulloperationresponse.md), error**
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
+| sdkerrors.SDKError          | 400-600                     | */*                         |
 
 ## ListPullOperations
 
@@ -126,9 +132,9 @@ package main
 import(
 	"context"
 	"log"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v3"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/operations"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
 )
 
 func main() {
@@ -155,17 +161,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
-| `request`                                                                                    | [operations.ListPullOperationsRequest](../../models/operations/listpulloperationsrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
-| `opts`                                                                                       | [][operations.Option](../../models/operations/option.md)                                     | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
+| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
+| `request`                                                                                        | [operations.ListPullOperationsRequest](../../pkg/models/operations/listpulloperationsrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
+| `opts`                                                                                           | [][operations.Option](../../pkg/models/operations/option.md)                                     | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
 
 
 ### Response
 
-**[*operations.ListPullOperationsResponse](../../models/operations/listpulloperationsresponse.md), error**
-
+**[*operations.ListPullOperationsResponse](../../pkg/models/operations/listpulloperationsresponse.md), error**
+| Error Object                    | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
+| sdkerrors.SDKError              | 400-600                         | */*                             |
 
 ## RefreshAllDataTypes
 
@@ -183,9 +192,9 @@ package main
 import(
 	"context"
 	"log"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v3"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/operations"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
 )
 
 func main() {
@@ -209,17 +218,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
-| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                          | :heavy_check_mark:                                                                             | The context to use for the request.                                                            |
-| `request`                                                                                      | [operations.RefreshAllDataTypesRequest](../../models/operations/refreshalldatatypesrequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
-| `opts`                                                                                         | [][operations.Option](../../models/operations/option.md)                                       | :heavy_minus_sign:                                                                             | The options for this request.                                                                  |
+| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                              | :heavy_check_mark:                                                                                 | The context to use for the request.                                                                |
+| `request`                                                                                          | [operations.RefreshAllDataTypesRequest](../../pkg/models/operations/refreshalldatatypesrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
+| `opts`                                                                                             | [][operations.Option](../../pkg/models/operations/option.md)                                       | :heavy_minus_sign:                                                                                 | The options for this request.                                                                      |
 
 
 ### Response
 
-**[*operations.RefreshAllDataTypesResponse](../../models/operations/refreshalldatatypesresponse.md), error**
-
+**[*operations.RefreshAllDataTypesResponse](../../pkg/models/operations/refreshalldatatypesresponse.md), error**
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
+| sdkerrors.SDKError          | 400-600                     | */*                         |
 
 ## RefreshDataType
 
@@ -235,9 +247,9 @@ package main
 import(
 	"context"
 	"log"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v3"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/operations"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
 )
 
 func main() {
@@ -248,7 +260,7 @@ func main() {
     ctx := context.Background()
     res, err := s.ManageData.RefreshDataType(ctx, operations.RefreshDataTypeRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        DataType: shared.DataTypeInvoices,
+        DataType: shared.SchemaDataTypeInvoices,
     })
     if err != nil {
         log.Fatal(err)
@@ -262,14 +274,17 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
-| `request`                                                                              | [operations.RefreshDataTypeRequest](../../models/operations/refreshdatatyperequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
-| `opts`                                                                                 | [][operations.Option](../../models/operations/option.md)                               | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
+| `request`                                                                                  | [operations.RefreshDataTypeRequest](../../pkg/models/operations/refreshdatatyperequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+| `opts`                                                                                     | [][operations.Option](../../pkg/models/operations/option.md)                               | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
 
 
 ### Response
 
-**[*operations.RefreshDataTypeResponse](../../models/operations/refreshdatatyperesponse.md), error**
-
+**[*operations.RefreshDataTypeResponse](../../pkg/models/operations/refreshdatatyperesponse.md), error**
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
+| sdkerrors.SDKError          | 400-600                     | */*                         |
