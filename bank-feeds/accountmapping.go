@@ -6,21 +6,21 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/sdkerrors"
-	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/utils"
+	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/utils"
 	"io"
 	"net/http"
 )
 
-// accountMapping - Bank feed bank account mapping.
-type accountMapping struct {
+// AccountMapping - Bank feed bank account mapping.
+type AccountMapping struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newAccountMapping(sdkConfig sdkConfiguration) *accountMapping {
-	return &accountMapping{
+func newAccountMapping(sdkConfig sdkConfiguration) *AccountMapping {
+	return &AccountMapping{
 		sdkConfiguration: sdkConfig,
 	}
 }
@@ -33,7 +33,7 @@ func newAccountMapping(sdkConfig sdkConfiguration) *accountMapping {
 // To find valid target account options, first call list bank feed account mappings.
 //
 // This endpoint is only needed if building an account management UI.
-func (s *accountMapping) Create(ctx context.Context, request operations.CreateBankAccountMappingRequest, opts ...operations.Option) (*operations.CreateBankAccountMappingResponse, error) {
+func (s *AccountMapping) Create(ctx context.Context, request operations.CreateBankAccountMappingRequest, opts ...operations.Option) (*operations.CreateBankAccountMappingResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -146,15 +146,18 @@ func (s *accountMapping) Create(ctx context.Context, request operations.CreateBa
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -166,7 +169,7 @@ func (s *accountMapping) Create(ctx context.Context, request operations.CreateBa
 // A bank feed account mapping is a specified link between the source account (provided by the Codat user) and the target account (the end users account in the underlying platform).
 //
 // This endpoint is only needed if building an account management UI.
-func (s *accountMapping) Get(ctx context.Context, request operations.GetBankAccountMappingRequest, opts ...operations.Option) (*operations.GetBankAccountMappingResponse, error) {
+func (s *AccountMapping) Get(ctx context.Context, request operations.GetBankAccountMappingRequest, opts ...operations.Option) (*operations.GetBankAccountMappingResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -270,15 +273,18 @@ func (s *accountMapping) Get(ctx context.Context, request operations.GetBankAcco
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

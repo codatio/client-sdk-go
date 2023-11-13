@@ -14,14 +14,15 @@ go get github.com/codatio/client-sdk-go/bank-feeds
 
 ## Example Usage
 <!-- Start SDK Example Usage -->
+### Example
+
 ```go
 package main
 
 import (
 	"context"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v3"
-	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/shared"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
+	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
 	"log"
 )
 
@@ -33,18 +34,15 @@ func main() {
 	)
 
 	ctx := context.Background()
-	res, err := s.AccountMapping.Create(ctx, operations.CreateBankAccountMappingRequest{
-		Zero: &shared.Zero{
-			FeedStartDate: bankfeeds.String("2022-10-23T00:00:00.000Z"),
-		},
-		CompanyID:    "8a210b68-6988-11ed-a1eb-0242ac120002",
-		ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
+	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
+		Description: bankfeeds.String("Requested early access to the new financing scheme."),
+		Name:        "Bank of Dave",
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	if res.BankFeedAccountMappingResponse != nil {
+	if res.Company != nil {
 		// handle response
 	}
 }
@@ -55,11 +53,6 @@ func main() {
 <!-- Start SDK Available Operations -->
 ## Available Resources and Operations
 
-
-### [AccountMapping](docs/sdks/accountmapping/README.md)
-
-* [Create](docs/sdks/accountmapping/README.md#create) - Create bank feed account mapping
-* [Get](docs/sdks/accountmapping/README.md#get) - List bank feed account mappings
 
 ### [Companies](docs/sdks/companies/README.md)
 
@@ -76,6 +69,11 @@ func main() {
 * [Get](docs/sdks/connections/README.md#get) - Get connection
 * [List](docs/sdks/connections/README.md#list) - List connections
 * [Unlink](docs/sdks/connections/README.md#unlink) - Unlink connection
+
+### [AccountMapping](docs/sdks/accountmapping/README.md)
+
+* [Create](docs/sdks/accountmapping/README.md#create) - Create bank feed account mapping
+* [Get](docs/sdks/accountmapping/README.md#get) - List bank feed account mappings
 
 ### [SourceAccounts](docs/sdks/sourceaccounts/README.md)
 
@@ -108,19 +106,64 @@ func main() {
 
 
 <!-- Start Error Handling -->
-# Error Handling
+## Error Handling
 
-Handling errors in your SDK should largely match your expectations.  All operations return a response object or an error, they will never return both.  When specified by the OpenAPI spec document, the SDK will return the appropriate subclass.
+Handling errors in this SDK should largely match your expectations.  All operations return a response object or an error, they will never return both.  When specified by the OpenAPI spec document, the SDK will return the appropriate subclass.
 
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.ErrorMessage      | 400,401,402,403,429,500,503 | application/json            |
+| sdkerrors.SDKError          | 400-600                     | */*                         |
 
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
+	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
+	"log"
+)
+
+func main() {
+	s := bankfeeds.New(
+		bankfeeds.WithSecurity(shared.Security{
+			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
+		}),
+	)
+
+	ctx := context.Background()
+	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
+		Description: bankfeeds.String("Requested early access to the new financing scheme."),
+		Name:        "Bank of Dave",
+	})
+	if err != nil {
+
+		var e *sdkerrors.ErrorMessage
+		if errors.As(err, &e) {
+			// handle error
+			log.Fatal(e.Error())
+		}
+
+		var e *sdkerrors.SDKError
+		if errors.As(err, &e) {
+			// handle error
+			log.Fatal(e.Error())
+		}
+	}
+}
+
+```
 <!-- End Error Handling -->
 
 
 
 <!-- Start Server Selection -->
-# Server Selection
+## Server Selection
 
-## Select Server by Index
+### Select Server by Index
 
 You can override the default server globally using the `WithServerIndex` option when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
 
@@ -128,41 +171,36 @@ You can override the default server globally using the `WithServerIndex` option 
 | - | ------ | --------- |
 | 0 | `https://api.codat.io` | None |
 
-For example:
-
+#### Example
 
 ```go
 package main
 
 import (
 	"context"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v3"
-	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/shared"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
+	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
 	"log"
 )
 
 func main() {
 	s := bankfeeds.New(
+		bankfeeds.WithServerIndex(0),
 		bankfeeds.WithSecurity(shared.Security{
 			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
 		}),
-		bankfeeds.WithServerIndex(0),
 	)
 
 	ctx := context.Background()
-	res, err := s.AccountMapping.Create(ctx, operations.CreateBankAccountMappingRequest{
-		Zero: &shared.Zero{
-			FeedStartDate: bankfeeds.String("2022-10-23T00:00:00.000Z"),
-		},
-		CompanyID:    "8a210b68-6988-11ed-a1eb-0242ac120002",
-		ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
+	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
+		Description: bankfeeds.String("Requested early access to the new financing scheme."),
+		Name:        "Bank of Dave",
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	if res.BankFeedAccountMappingResponse != nil {
+	if res.Company != nil {
 		// handle response
 	}
 }
@@ -170,43 +208,37 @@ func main() {
 ```
 
 
-## Override Server URL Per-Client
+### Override Server URL Per-Client
 
 The default server can also be overridden globally using the `WithServerURL` option when initializing the SDK client instance. For example:
-
-
 ```go
 package main
 
 import (
 	"context"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v3"
-	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/shared"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
+	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
 	"log"
 )
 
 func main() {
 	s := bankfeeds.New(
+		bankfeeds.WithServerURL("https://api.codat.io"),
 		bankfeeds.WithSecurity(shared.Security{
 			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
 		}),
-		bankfeeds.WithServerURL("https://api.codat.io"),
 	)
 
 	ctx := context.Background()
-	res, err := s.AccountMapping.Create(ctx, operations.CreateBankAccountMappingRequest{
-		Zero: &shared.Zero{
-			FeedStartDate: bankfeeds.String("2022-10-23T00:00:00.000Z"),
-		},
-		CompanyID:    "8a210b68-6988-11ed-a1eb-0242ac120002",
-		ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
+	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
+		Description: bankfeeds.String("Requested early access to the new financing scheme."),
+		Name:        "Bank of Dave",
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	if res.BankFeedAccountMappingResponse != nil {
+	if res.Company != nil {
 		// handle response
 	}
 }
@@ -217,7 +249,7 @@ func main() {
 
 
 <!-- Start Custom HTTP Client -->
-# Custom HTTP Client
+## Custom HTTP Client
 
 The Go SDK makes API calls that wrap an internal HTTP client. The requirements for the HTTP client are very simple. It must match this interface:
 
@@ -244,6 +276,156 @@ var (
 
 This can be a convenient way to configure timeouts, cookies, proxies, custom headers, and other low-level configuration.
 <!-- End Custom HTTP Client -->
+
+
+
+<!-- Start Retries -->
+## Retries
+
+Some of the endpoints in this SDK support retries.  If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API.  However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
+
+To change the default retry strategy for a single API call, simply provide a retryConfig object to the call:
+```go
+package main
+
+import (
+	"context"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
+	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
+	"log"
+	"pkg/models/operations"
+	"pkg/utils"
+)
+
+func main() {
+	s := bankfeeds.New(
+		bankfeeds.WithSecurity(shared.Security{
+			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
+		}),
+	)
+
+	ctx := context.Background()
+	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
+		Description: bankfeeds.String("Requested early access to the new financing scheme."),
+		Name:        "Bank of Dave",
+	}, operations.WithRetries(utils.RetryConfig{
+		Strategy: "backoff",
+		Backoff: &utils.BackoffStrategy{
+			InitialInterval: 1,
+			MaxInterval:     50,
+			Exponent:        1.1,
+			MaxElapsedTime:  100,
+		},
+		RetryConnectionErrors: false,
+	}))
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	if res.Company != nil {
+		// handle response
+	}
+}
+
+```
+
+If you'd like to override the default retry strategy for all operations that support retries, you can provide a retryConfig at SDK initialization:
+```go
+package main
+
+import (
+	"context"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
+	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
+	"log"
+	"pkg/models/operations"
+	"pkg/utils"
+)
+
+func main() {
+	s := bankfeeds.New(
+		bankfeeds.WithRetryConfig(utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 1,
+				MaxInterval:     50,
+				Exponent:        1.1,
+				MaxElapsedTime:  100,
+			},
+			RetryConnectionErrors: false,
+		}),
+		bankfeeds.WithSecurity(shared.Security{
+			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
+		}),
+	)
+
+	ctx := context.Background()
+	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
+		Description: bankfeeds.String("Requested early access to the new financing scheme."),
+		Name:        "Bank of Dave",
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	if res.Company != nil {
+		// handle response
+	}
+}
+
+```
+
+
+<!-- End Retries -->
+
+
+
+<!-- Start Authentication -->
+
+## Authentication
+
+### Per-Client Security Schemes
+
+This SDK supports the following security scheme globally:
+
+| Name         | Type         | Scheme       |
+| ------------ | ------------ | ------------ |
+| `AuthHeader` | apiKey       | API key      |
+
+You can configure it using the `WithSecurity` option when initializing the SDK client instance. For example:
+```go
+package main
+
+import (
+	"context"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
+	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
+	"log"
+)
+
+func main() {
+	s := bankfeeds.New(
+		bankfeeds.WithSecurity(shared.Security{
+			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
+		}),
+	)
+
+	ctx := context.Background()
+	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
+		Description: bankfeeds.String("Requested early access to the new financing scheme."),
+		Name:        "Bank of Dave",
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	if res.Company != nil {
+		// handle response
+	}
+}
+
+```
+<!-- End Authentication -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

@@ -46,9 +46,9 @@ package main
 import(
 	"context"
 	"log"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v3"
-	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/operations"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
+	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/operations"
 )
 
 func main() {
@@ -81,17 +81,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
-| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                          | :heavy_check_mark:                                                                             | The context to use for the request.                                                            |
-| `request`                                                                                      | [operations.CreateSourceAccountRequest](../../models/operations/createsourceaccountrequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
-| `opts`                                                                                         | [][operations.Option](../../models/operations/option.md)                                       | :heavy_minus_sign:                                                                             | The options for this request.                                                                  |
+| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                              | :heavy_check_mark:                                                                                 | The context to use for the request.                                                                |
+| `request`                                                                                          | [operations.CreateSourceAccountRequest](../../pkg/models/operations/createsourceaccountrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
+| `opts`                                                                                             | [][operations.Option](../../pkg/models/operations/option.md)                                       | :heavy_minus_sign:                                                                                 | The options for this request.                                                                      |
 
 
 ### Response
 
-**[*operations.CreateSourceAccountResponse](../../models/operations/createsourceaccountresponse.md), error**
-
+**[*operations.CreateSourceAccountResponse](../../pkg/models/operations/createsourceaccountresponse.md), error**
+| Error Object                    | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
+| sdkerrors.SDKError              | 400-600                         | */*                             |
 
 ## Delete
 
@@ -108,9 +111,9 @@ package main
 import(
 	"context"
 	"log"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v3"
-	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/operations"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
+	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/operations"
 )
 
 func main() {
@@ -138,17 +141,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
-| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                          | :heavy_check_mark:                                                                             | The context to use for the request.                                                            |
-| `request`                                                                                      | [operations.DeleteSourceAccountRequest](../../models/operations/deletesourceaccountrequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
-| `opts`                                                                                         | [][operations.Option](../../models/operations/option.md)                                       | :heavy_minus_sign:                                                                             | The options for this request.                                                                  |
+| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                              | :heavy_check_mark:                                                                                 | The context to use for the request.                                                                |
+| `request`                                                                                          | [operations.DeleteSourceAccountRequest](../../pkg/models/operations/deletesourceaccountrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
+| `opts`                                                                                             | [][operations.Option](../../pkg/models/operations/option.md)                                       | :heavy_minus_sign:                                                                                 | The options for this request.                                                                      |
 
 
 ### Response
 
-**[*operations.DeleteSourceAccountResponse](../../models/operations/deletesourceaccountresponse.md), error**
-
+**[*operations.DeleteSourceAccountResponse](../../pkg/models/operations/deletesourceaccountresponse.md), error**
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
+| sdkerrors.SDKError          | 400-600                     | */*                         |
 
 ## DeleteCredentials
 
@@ -164,9 +170,9 @@ package main
 import(
 	"context"
 	"log"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v3"
-	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/operations"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
+	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/operations"
 )
 
 func main() {
@@ -193,17 +199,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
-| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                                      | :heavy_check_mark:                                                                                         | The context to use for the request.                                                                        |
-| `request`                                                                                                  | [operations.DeleteBankFeedCredentialsRequest](../../models/operations/deletebankfeedcredentialsrequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
-| `opts`                                                                                                     | [][operations.Option](../../models/operations/option.md)                                                   | :heavy_minus_sign:                                                                                         | The options for this request.                                                                              |
+| Parameter                                                                                                      | Type                                                                                                           | Required                                                                                                       | Description                                                                                                    |
+| -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                                          | :heavy_check_mark:                                                                                             | The context to use for the request.                                                                            |
+| `request`                                                                                                      | [operations.DeleteBankFeedCredentialsRequest](../../pkg/models/operations/deletebankfeedcredentialsrequest.md) | :heavy_check_mark:                                                                                             | The request object to use for the request.                                                                     |
+| `opts`                                                                                                         | [][operations.Option](../../pkg/models/operations/option.md)                                                   | :heavy_minus_sign:                                                                                             | The options for this request.                                                                                  |
 
 
 ### Response
 
-**[*operations.DeleteBankFeedCredentialsResponse](../../models/operations/deletebankfeedcredentialsresponse.md), error**
-
+**[*operations.DeleteBankFeedCredentialsResponse](../../pkg/models/operations/deletebankfeedcredentialsresponse.md), error**
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
+| sdkerrors.SDKError          | 400-600                     | */*                         |
 
 ## GenerateCredentials
 
@@ -220,9 +229,9 @@ package main
 import(
 	"context"
 	"log"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v3"
-	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/operations"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
+	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/operations"
 )
 
 func main() {
@@ -234,7 +243,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.SourceAccounts.GenerateCredentials(ctx, operations.GenerateCredentialsRequest{
-        RequestBody: []byte("^upd|k\]Iy"),
+        RequestBody: []byte("0xeDCfFBde9E"),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -250,17 +259,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
-| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                          | :heavy_check_mark:                                                                             | The context to use for the request.                                                            |
-| `request`                                                                                      | [operations.GenerateCredentialsRequest](../../models/operations/generatecredentialsrequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
-| `opts`                                                                                         | [][operations.Option](../../models/operations/option.md)                                       | :heavy_minus_sign:                                                                             | The options for this request.                                                                  |
+| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                              | :heavy_check_mark:                                                                                 | The context to use for the request.                                                                |
+| `request`                                                                                          | [operations.GenerateCredentialsRequest](../../pkg/models/operations/generatecredentialsrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
+| `opts`                                                                                             | [][operations.Option](../../pkg/models/operations/option.md)                                       | :heavy_minus_sign:                                                                                 | The options for this request.                                                                      |
 
 
 ### Response
 
-**[*operations.GenerateCredentialsResponse](../../models/operations/generatecredentialsresponse.md), error**
-
+**[*operations.GenerateCredentialsResponse](../../pkg/models/operations/generatecredentialsresponse.md), error**
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
+| sdkerrors.SDKError          | 400-600                     | */*                         |
 
 ## List
 
@@ -277,9 +289,9 @@ package main
 import(
 	"context"
 	"log"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v3"
-	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/operations"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
+	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/operations"
 )
 
 func main() {
@@ -306,17 +318,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
-| `request`                                                                                    | [operations.ListSourceAccountsRequest](../../models/operations/listsourceaccountsrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
-| `opts`                                                                                       | [][operations.Option](../../models/operations/option.md)                                     | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
+| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
+| `request`                                                                                        | [operations.ListSourceAccountsRequest](../../pkg/models/operations/listsourceaccountsrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
+| `opts`                                                                                           | [][operations.Option](../../pkg/models/operations/option.md)                                     | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
 
 
 ### Response
 
-**[*operations.ListSourceAccountsResponse](../../models/operations/listsourceaccountsresponse.md), error**
-
+**[*operations.ListSourceAccountsResponse](../../pkg/models/operations/listsourceaccountsresponse.md), error**
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
+| sdkerrors.SDKError          | 400-600                     | */*                         |
 
 ## Update
 
@@ -331,9 +346,9 @@ package main
 import(
 	"context"
 	"log"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v3"
-	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/operations"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
+	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/operations"
 )
 
 func main() {
@@ -367,14 +382,17 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
-| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                          | :heavy_check_mark:                                                                             | The context to use for the request.                                                            |
-| `request`                                                                                      | [operations.UpdateSourceAccountRequest](../../models/operations/updatesourceaccountrequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
-| `opts`                                                                                         | [][operations.Option](../../models/operations/option.md)                                       | :heavy_minus_sign:                                                                             | The options for this request.                                                                  |
+| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                              | :heavy_check_mark:                                                                                 | The context to use for the request.                                                                |
+| `request`                                                                                          | [operations.UpdateSourceAccountRequest](../../pkg/models/operations/updatesourceaccountrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
+| `opts`                                                                                             | [][operations.Option](../../pkg/models/operations/option.md)                                       | :heavy_minus_sign:                                                                                 | The options for this request.                                                                      |
 
 
 ### Response
 
-**[*operations.UpdateSourceAccountResponse](../../models/operations/updatesourceaccountresponse.md), error**
-
+**[*operations.UpdateSourceAccountResponse](../../pkg/models/operations/updatesourceaccountresponse.md), error**
+| Error Object                    | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
+| sdkerrors.SDKError              | 400-600                         | */*                             |

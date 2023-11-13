@@ -1,14 +1,11 @@
 <!-- Start SDK Example Usage -->
-
-
 ```go
 package main
 
 import (
 	"context"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v3"
-	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/shared"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
+	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
 	"log"
 )
 
@@ -20,18 +17,15 @@ func main() {
 	)
 
 	ctx := context.Background()
-	res, err := s.AccountMapping.Create(ctx, operations.CreateBankAccountMappingRequest{
-		Zero: &shared.Zero{
-			FeedStartDate: bankfeeds.String("2022-10-23T00:00:00.000Z"),
-		},
-		CompanyID:    "8a210b68-6988-11ed-a1eb-0242ac120002",
-		ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
+	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
+		Description: bankfeeds.String("Requested early access to the new financing scheme."),
+		Name:        "Bank of Dave",
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	if res.BankFeedAccountMappingResponse != nil {
+	if res.Company != nil {
 		// handle response
 	}
 }

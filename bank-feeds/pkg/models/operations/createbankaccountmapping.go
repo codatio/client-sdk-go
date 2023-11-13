@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
 	"net/http"
 )
 
@@ -41,8 +41,6 @@ type CreateBankAccountMappingResponse struct {
 	BankFeedAccountMappingResponse *shared.BankFeedAccountMappingResponse
 	// HTTP response content type for this operation
 	ContentType string
-	// The request made is not valid.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -61,13 +59,6 @@ func (o *CreateBankAccountMappingResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *CreateBankAccountMappingResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *CreateBankAccountMappingResponse) GetStatusCode() int {

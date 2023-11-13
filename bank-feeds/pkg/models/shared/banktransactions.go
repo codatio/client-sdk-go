@@ -5,39 +5,39 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/utils"
+	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
-// BankTransactionsBankTransactionType - Type of transaction for the bank statement line.
-type BankTransactionsBankTransactionType string
+// BankTransactionType - Type of transaction for the bank statement line.
+type BankTransactionType string
 
 const (
-	BankTransactionsBankTransactionTypeUnknown     BankTransactionsBankTransactionType = "Unknown"
-	BankTransactionsBankTransactionTypeCredit      BankTransactionsBankTransactionType = "Credit"
-	BankTransactionsBankTransactionTypeDebit       BankTransactionsBankTransactionType = "Debit"
-	BankTransactionsBankTransactionTypeInt         BankTransactionsBankTransactionType = "Int"
-	BankTransactionsBankTransactionTypeDiv         BankTransactionsBankTransactionType = "Div"
-	BankTransactionsBankTransactionTypeFee         BankTransactionsBankTransactionType = "Fee"
-	BankTransactionsBankTransactionTypeSerChg      BankTransactionsBankTransactionType = "SerChg"
-	BankTransactionsBankTransactionTypeDep         BankTransactionsBankTransactionType = "Dep"
-	BankTransactionsBankTransactionTypeAtm         BankTransactionsBankTransactionType = "Atm"
-	BankTransactionsBankTransactionTypePos         BankTransactionsBankTransactionType = "Pos"
-	BankTransactionsBankTransactionTypeXfer        BankTransactionsBankTransactionType = "Xfer"
-	BankTransactionsBankTransactionTypeCheck       BankTransactionsBankTransactionType = "Check"
-	BankTransactionsBankTransactionTypePayment     BankTransactionsBankTransactionType = "Payment"
-	BankTransactionsBankTransactionTypeCash        BankTransactionsBankTransactionType = "Cash"
-	BankTransactionsBankTransactionTypeDirectDep   BankTransactionsBankTransactionType = "DirectDep"
-	BankTransactionsBankTransactionTypeDirectDebit BankTransactionsBankTransactionType = "DirectDebit"
-	BankTransactionsBankTransactionTypeRepeatPmt   BankTransactionsBankTransactionType = "RepeatPmt"
-	BankTransactionsBankTransactionTypeOther       BankTransactionsBankTransactionType = "Other"
+	BankTransactionTypeUnknown     BankTransactionType = "Unknown"
+	BankTransactionTypeCredit      BankTransactionType = "Credit"
+	BankTransactionTypeDebit       BankTransactionType = "Debit"
+	BankTransactionTypeInt         BankTransactionType = "Int"
+	BankTransactionTypeDiv         BankTransactionType = "Div"
+	BankTransactionTypeFee         BankTransactionType = "Fee"
+	BankTransactionTypeSerChg      BankTransactionType = "SerChg"
+	BankTransactionTypeDep         BankTransactionType = "Dep"
+	BankTransactionTypeAtm         BankTransactionType = "Atm"
+	BankTransactionTypePos         BankTransactionType = "Pos"
+	BankTransactionTypeXfer        BankTransactionType = "Xfer"
+	BankTransactionTypeCheck       BankTransactionType = "Check"
+	BankTransactionTypePayment     BankTransactionType = "Payment"
+	BankTransactionTypeCash        BankTransactionType = "Cash"
+	BankTransactionTypeDirectDep   BankTransactionType = "DirectDep"
+	BankTransactionTypeDirectDebit BankTransactionType = "DirectDebit"
+	BankTransactionTypeRepeatPmt   BankTransactionType = "RepeatPmt"
+	BankTransactionTypeOther       BankTransactionType = "Other"
 )
 
-func (e BankTransactionsBankTransactionType) ToPointer() *BankTransactionsBankTransactionType {
+func (e BankTransactionType) ToPointer() *BankTransactionType {
 	return &e
 }
 
-func (e *BankTransactionsBankTransactionType) UnmarshalJSON(data []byte) error {
+func (e *BankTransactionType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -78,10 +78,10 @@ func (e *BankTransactionsBankTransactionType) UnmarshalJSON(data []byte) error {
 	case "RepeatPmt":
 		fallthrough
 	case "Other":
-		*e = BankTransactionsBankTransactionType(v)
+		*e = BankTransactionType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for BankTransactionsBankTransactionType: %v", v)
+		return fmt.Errorf("invalid value for BankTransactionType: %v", v)
 	}
 }
 
@@ -121,7 +121,7 @@ type BankTransactions struct {
 	// An optional reference to the bank transaction.
 	Reference *string `json:"reference,omitempty"`
 	// Type of transaction for the bank statement line.
-	TransactionType *BankTransactionsBankTransactionType `json:"transactionType,omitempty"`
+	TransactionType *BankTransactionType `json:"transactionType,omitempty"`
 }
 
 func (b BankTransactions) MarshalJSON() ([]byte, error) {
@@ -191,7 +191,7 @@ func (o *BankTransactions) GetReference() *string {
 	return o.Reference
 }
 
-func (o *BankTransactions) GetTransactionType() *BankTransactionsBankTransactionType {
+func (o *BankTransactions) GetTransactionType() *BankTransactionType {
 	if o == nil {
 		return nil
 	}

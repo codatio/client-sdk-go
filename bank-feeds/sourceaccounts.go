@@ -6,21 +6,21 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/sdkerrors"
-	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/utils"
+	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/utils"
 	"io"
 	"net/http"
 )
 
-// sourceAccounts - Source accounts act as a bridge to bank accounts in accounting software.
-type sourceAccounts struct {
+// SourceAccounts - Source accounts act as a bridge to bank accounts in accounting software.
+type SourceAccounts struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newSourceAccounts(sdkConfig sdkConfiguration) *sourceAccounts {
-	return &sourceAccounts{
+func newSourceAccounts(sdkConfig sdkConfiguration) *SourceAccounts {
+	return &SourceAccounts{
 		sdkConfiguration: sdkConfig,
 	}
 }
@@ -46,7 +46,7 @@ func newSourceAccounts(sdkConfig sdkConfiguration) *sourceAccounts {
 // | FreeAgent             | ✅          | ✅               |                             |
 // | QuickBooks Online     |             |                  | ✅                          |
 // | Sage                  |             |                  | ✅                          |
-func (s *sourceAccounts) Create(ctx context.Context, request operations.CreateSourceAccountRequest, opts ...operations.Option) (*operations.CreateSourceAccountResponse, error) {
+func (s *SourceAccounts) Create(ctx context.Context, request operations.CreateSourceAccountRequest, opts ...operations.Option) (*operations.CreateSourceAccountResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -159,15 +159,18 @@ func (s *sourceAccounts) Create(ctx context.Context, request operations.CreateSo
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -177,7 +180,7 @@ func (s *sourceAccounts) Create(ctx context.Context, request operations.CreateSo
 // The _Delete source account_ endpoint enables you to remove a source account.
 //
 // Removing a source account will also remove any mapping between the source bank feed bank accounts and the target bankfeed bank account.
-func (s *sourceAccounts) Delete(ctx context.Context, request operations.DeleteSourceAccountRequest, opts ...operations.Option) (*operations.DeleteSourceAccountResponse, error) {
+func (s *SourceAccounts) Delete(ctx context.Context, request operations.DeleteSourceAccountRequest, opts ...operations.Option) (*operations.DeleteSourceAccountResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -270,15 +273,18 @@ func (s *sourceAccounts) Delete(ctx context.Context, request operations.DeleteSo
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -288,7 +294,7 @@ func (s *sourceAccounts) Delete(ctx context.Context, request operations.DeleteSo
 // The _Delete Bank Account Credentials_ endpoint serves as a comprehensive mechanism for revoking all existing authorization credentials that a company employs to establish its Bank Feed connection.
 //
 // In cases where multiple credential sets have been generated, a single API call to this endpoint revokes all of them.
-func (s *sourceAccounts) DeleteCredentials(ctx context.Context, request operations.DeleteBankFeedCredentialsRequest, opts ...operations.Option) (*operations.DeleteBankFeedCredentialsResponse, error) {
+func (s *SourceAccounts) DeleteCredentials(ctx context.Context, request operations.DeleteBankFeedCredentialsRequest, opts ...operations.Option) (*operations.DeleteBankFeedCredentialsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -381,15 +387,18 @@ func (s *sourceAccounts) DeleteCredentials(ctx context.Context, request operatio
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -399,7 +408,7 @@ func (s *sourceAccounts) DeleteCredentials(ctx context.Context, request operatio
 // The _Generate Bank Account Credentials_ endpoint can be used to generate credentials for QuickBooks Online to use for authentication of the Bank Feed in their portal, each time this is used a new set of credentials will be generated.
 //
 // The old credentials will still be valid until the revoke credentials endpoint is used, which will revoke all credentials associated to the data connection.
-func (s *sourceAccounts) GenerateCredentials(ctx context.Context, request operations.GenerateCredentialsRequest, opts ...operations.Option) (*operations.GenerateCredentialsResponse, error) {
+func (s *SourceAccounts) GenerateCredentials(ctx context.Context, request operations.GenerateCredentialsRequest, opts ...operations.Option) (*operations.GenerateCredentialsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -513,15 +522,18 @@ func (s *sourceAccounts) GenerateCredentials(ctx context.Context, request operat
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -531,7 +543,7 @@ func (s *sourceAccounts) GenerateCredentials(ctx context.Context, request operat
 // The _List source accounts_ endpoint returns a list of [source accounts](https://docs.codat.io/bank-feeds-api#/schemas/BankFeedAccount) for a given company's connection.
 //
 // [source accounts](https://docs.codat.io/bank-feeds-api#/schemas/BankFeedAccount) are the bank's bank account within Codat's domain from which transactions are synced into the accounting platform.
-func (s *sourceAccounts) List(ctx context.Context, request operations.ListSourceAccountsRequest, opts ...operations.Option) (*operations.ListSourceAccountsResponse, error) {
+func (s *SourceAccounts) List(ctx context.Context, request operations.ListSourceAccountsRequest, opts ...operations.Option) (*operations.ListSourceAccountsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -635,15 +647,18 @@ func (s *sourceAccounts) List(ctx context.Context, request operations.ListSource
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -651,7 +666,7 @@ func (s *sourceAccounts) List(ctx context.Context, request operations.ListSource
 
 // Update source account
 // The _Update source account_ endpoint updates a single source account for a single data connection connected to a single company.
-func (s *sourceAccounts) Update(ctx context.Context, request operations.UpdateSourceAccountRequest, opts ...operations.Option) (*operations.UpdateSourceAccountResponse, error) {
+func (s *SourceAccounts) Update(ctx context.Context, request operations.UpdateSourceAccountRequest, opts ...operations.Option) (*operations.UpdateSourceAccountResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -764,15 +779,18 @@ func (s *sourceAccounts) Update(ctx context.Context, request operations.UpdateSo
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
