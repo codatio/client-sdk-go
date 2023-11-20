@@ -25,11 +25,11 @@ Use the [List Integrations](https://docs.codat.io/sync-for-sync-for-commerce-api
 package main
 
 import(
-	"context"
-	"log"
-	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v3"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/shared"
+	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v3"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -83,11 +83,11 @@ Create a new company and connections. Get a URL for Sync Flow, including a one t
 package main
 
 import(
-	"context"
-	"log"
-	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v3"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/shared"
+	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v3"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -139,11 +139,11 @@ func main() {
 package main
 
 import(
-	"context"
-	"log"
-	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v3"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/shared"
+	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v3"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -197,11 +197,11 @@ Update data connection's authorization.
 package main
 
 import(
-	"context"
-	"log"
-	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v3"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/shared"
+	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v3"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -256,11 +256,11 @@ Update a data connection
 package main
 
 import(
-	"context"
-	"log"
-	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v3"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/shared"
+	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v3"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/operations"
+	"log"
 )
 
 func main() {

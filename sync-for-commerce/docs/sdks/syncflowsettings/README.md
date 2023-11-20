@@ -22,10 +22,10 @@ Return preferences set for the text fields on sync flow.
 package main
 
 import(
+	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/shared"
+	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v3"
 	"context"
 	"log"
-	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v3"
-	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/shared"
 )
 
 func main() {
@@ -73,11 +73,11 @@ Return accounts which are visible on sync flow.
 package main
 
 import(
-	"context"
-	"log"
-	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v3"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/shared"
+	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v3"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -129,10 +129,10 @@ Set preferences for the text fields on sync flow.
 package main
 
 import(
+	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/shared"
+	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v3"
 	"context"
 	"log"
-	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v3"
-	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/shared"
 )
 
 func main() {
@@ -183,11 +183,11 @@ Update which accounts are visible on sync flow.
 package main
 
 import(
-	"context"
-	"log"
-	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v3"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/shared"
+	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v3"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/operations"
+	"log"
 )
 
 func main() {

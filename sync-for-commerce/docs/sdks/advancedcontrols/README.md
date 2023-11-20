@@ -22,10 +22,10 @@ Creates a Codat company
 package main
 
 import(
+	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/shared"
+	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v3"
 	"context"
 	"log"
-	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v3"
-	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/shared"
 )
 
 func main() {
@@ -77,11 +77,11 @@ Returns a company's commerce sync configuration'.
 package main
 
 import(
-	"context"
-	"log"
-	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v3"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/shared"
+	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v3"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -132,11 +132,11 @@ Returns a list of companies.
 package main
 
 import(
-	"context"
-	"log"
-	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v3"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/shared"
+	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v3"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -189,11 +189,11 @@ Sets a company's commerce sync configuration.
 package main
 
 import(
-	"context"
-	"log"
-	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v3"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/shared"
+	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v3"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/operations"
+	"log"
 )
 
 func main() {

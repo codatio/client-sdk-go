@@ -20,11 +20,11 @@ Retrieve Integration branding assets.
 package main
 
 import(
-	"context"
-	"log"
-	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v3"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/shared"
+	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v3"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -75,11 +75,11 @@ Retrieve a list of available integrations support by data type and state of rele
 package main
 
 import(
-	"context"
-	"log"
-	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v3"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/shared"
+	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v3"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/operations"
+	"log"
 )
 
 func main() {

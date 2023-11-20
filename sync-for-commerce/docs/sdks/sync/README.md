@@ -25,11 +25,11 @@ Get the sync status for a specified sync
 package main
 
 import(
-	"context"
-	"log"
-	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v3"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/shared"
+	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v3"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -81,11 +81,11 @@ Gets the status of the last successful sync
 package main
 
 import(
-	"context"
-	"log"
-	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v3"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/shared"
+	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v3"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -136,11 +136,11 @@ Gets the latest sync status
 package main
 
 import(
-	"context"
-	"log"
-	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v3"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/shared"
+	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v3"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -191,11 +191,11 @@ Gets a list of sync statuses.
 package main
 
 import(
-	"context"
-	"log"
-	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v3"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/shared"
+	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v3"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -246,11 +246,11 @@ Gets a list of sync statuses
 package main
 
 import(
-	"context"
-	"log"
-	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v3"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/shared"
+	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v3"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -301,11 +301,11 @@ Run a Commerce sync from the last successful sync up to the date provided (optio
 package main
 
 import(
-	"context"
-	"log"
-	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v3"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/shared"
+	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v3"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -359,11 +359,11 @@ Initiate a sync for the specified start date to the specified finish date in the
 package main
 
 import(
-	"context"
-	"log"
-	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v3"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/shared"
+	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v3"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/operations"
+	"log"
 )
 
 func main() {
