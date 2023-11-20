@@ -21,11 +21,11 @@ This may include information like addresses, tax registration details and social
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce"
 	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/operations"
+	"log"
 )
 
 func main() {

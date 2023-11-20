@@ -166,9 +166,9 @@ func New(opts ...SDKOption) *CodatCommerce {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "0.27.0",
-			GenVersion:        "2.188.1",
-			UserAgent:         "speakeasy-sdk/go 0.27.0 2.188.1 3.0.0 github.com/codatio/client-sdk-go/previous-versions/commerce",
+			SDKVersion:        "0.27.1",
+			GenVersion:        "2.194.1",
+			UserAgent:         "speakeasy-sdk/go 0.27.1 2.194.1 3.0.0 github.com/codatio/client-sdk-go/previous-versions/commerce",
 		},
 	}
 	for _, opt := range opts {

@@ -29,11 +29,11 @@ Before using this endpoint, you must have [retrieved data for the company](https
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce"
 	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -93,11 +93,11 @@ Before using this endpoint, you must have [retrieved data for the company](https
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce"
 	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -155,11 +155,11 @@ Before using this endpoint, you must have [retrieved data for the company](https
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce"
 	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -219,11 +219,11 @@ Before using this endpoint, you must have [retrieved data for the company](https
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce"
 	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/operations"
+	"log"
 )
 
 func main() {

@@ -2,8 +2,8 @@ configVersion: 1.0.0
 management:
   docChecksum: 3e5960645aef0e4cdbb3c6b9bc15c08b
   docVersion: 3.0.0
-  speakeasyVersion: 1.119.0
-  generationVersion: 2.188.1
+  speakeasyVersion: 1.121.1
+  generationVersion: 2.194.1
 generation:
   comments: {}
   sdkClassName: CodatCommerce
@@ -13,14 +13,14 @@ generation:
 features:
   go:
     constsAndDefaults: 0.1.1
-    core: 3.1.4
+    core: 3.1.5
     examples: 2.81.3
     globalSecurity: 2.82.2
-    globalServerURLs: 2.82.0
+    globalServerURLs: 2.82.1
     nameOverrides: 2.81.1
     retries: 2.82.1
 go:
-  version: 0.27.0
+  version: 0.27.1
   clientServerStatusCodesAsErrors: true
   flattenGlobalSecurity: false
   imports:
