@@ -21,11 +21,11 @@ Get single integration, by platformKey
 package main
 
 import(
-	"context"
-	"log"
-	platform "github.com/codatio/client-sdk-go/platform/v2"
 	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v2"
+	"context"
 	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -76,11 +76,11 @@ Get branding for platform.
 package main
 
 import(
-	"context"
-	"log"
-	platform "github.com/codatio/client-sdk-go/platform/v2"
 	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v2"
+	"context"
 	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -131,11 +131,11 @@ List your available integrations
 package main
 
 import(
-	"context"
-	"log"
-	platform "github.com/codatio/client-sdk-go/platform/v2"
 	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v2"
+	"context"
 	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/operations"
+	"log"
 )
 
 func main() {

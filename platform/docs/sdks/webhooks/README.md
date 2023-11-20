@@ -21,10 +21,10 @@ Create a new webhook configuration
 package main
 
 import(
+	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v2"
 	"context"
 	"log"
-	platform "github.com/codatio/client-sdk-go/platform/v2"
-	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
 )
 
 func main() {
@@ -96,11 +96,11 @@ Get a single webhook
 package main
 
 import(
-	"context"
-	"log"
-	platform "github.com/codatio/client-sdk-go/platform/v2"
 	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v2"
+	"context"
 	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -151,11 +151,11 @@ List webhooks that you are subscribed to.
 package main
 
 import(
-	"context"
-	"log"
-	platform "github.com/codatio/client-sdk-go/platform/v2"
 	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v2"
+	"context"
 	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/operations"
+	"log"
 )
 
 func main() {

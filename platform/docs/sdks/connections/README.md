@@ -26,11 +26,11 @@ Use the [List Integrations](https://docs.codat.io/platform-api#/operations/list-
 package main
 
 import(
-	"context"
-	"log"
-	platform "github.com/codatio/client-sdk-go/platform/v2"
 	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v2"
+	"context"
 	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -85,11 +85,12 @@ This operation is not reversible. The end user would need to reauthorize a new d
 package main
 
 import(
-	"context"
-	"log"
-	platform "github.com/codatio/client-sdk-go/platform/v2"
 	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v2"
+	"context"
 	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/operations"
+	"log"
+	"net/http"
 )
 
 func main() {
@@ -141,11 +142,11 @@ func main() {
 package main
 
 import(
-	"context"
-	"log"
-	platform "github.com/codatio/client-sdk-go/platform/v2"
 	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v2"
+	"context"
 	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -197,11 +198,11 @@ func main() {
 package main
 
 import(
-	"context"
-	"log"
-	platform "github.com/codatio/client-sdk-go/platform/v2"
 	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v2"
+	"context"
 	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -255,11 +256,11 @@ func main() {
 package main
 
 import(
-	"context"
-	"log"
-	platform "github.com/codatio/client-sdk-go/platform/v2"
 	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v2"
+	"context"
 	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -312,11 +313,11 @@ Update data connection's authorization.
 package main
 
 import(
-	"context"
-	"log"
-	platform "github.com/codatio/client-sdk-go/platform/v2"
 	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v2"
+	"context"
 	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/operations"
+	"log"
 )
 
 func main() {
