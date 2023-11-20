@@ -1,5 +1,7 @@
 # ErrorMessage
 
+Bad Request
+
 
 ## Fields
 

@@ -21,11 +21,11 @@ Get single integration, by platformKey
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/common"
 	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -76,11 +76,11 @@ Get branding for platform.
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/common"
 	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -131,11 +131,11 @@ List your available integrations
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/common"
 	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/operations"
+	"log"
 )
 
 func main() {

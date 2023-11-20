@@ -256,7 +256,7 @@ func (s *Settings) DeleteAPIKey(ctx context.Context, request operations.DeleteAP
 	case httpRes.StatusCode == 204:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

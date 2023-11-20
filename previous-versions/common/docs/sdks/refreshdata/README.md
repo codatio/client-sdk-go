@@ -27,11 +27,12 @@ This is an asynchronous operation, and will bring updated data into Codat from t
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/common"
 	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/operations"
+	"log"
+	"net/http"
 )
 
 func main() {
@@ -84,11 +85,11 @@ This is an asynchronous operation, and will bring updated data into Codat from t
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/common"
 	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -140,11 +141,11 @@ Get the state of each data type for a company
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/common"
 	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -195,11 +196,11 @@ Retrieve information about a single dataset or pull operation.
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/common"
 	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -251,11 +252,11 @@ Gets the pull operation history (datasets) for a given company.
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/common"
 	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/operations"
+	"log"
 )
 
 func main() {

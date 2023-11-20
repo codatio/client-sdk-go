@@ -35,10 +35,10 @@ You can [read more](https://docs.codat.io/using-the-api/authentication) about au
 package main
 
 import(
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common"
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/common"
-	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
 )
 
 func main() {
@@ -98,11 +98,11 @@ You can [read more](https://docs.codat.io/using-the-api/authentication) about au
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/common"
 	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -153,10 +153,10 @@ Fetch your Codat profile.
 package main
 
 import(
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common"
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/common"
-	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
 )
 
 func main() {
@@ -204,10 +204,10 @@ Retrieve the [sync settings](https://docs.codat.io/knowledge-base/advanced-sync-
 package main
 
 import(
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common"
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/common"
-	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
 )
 
 func main() {
@@ -259,10 +259,10 @@ You can [read more](https://docs.codat.io/using-the-api/authentication) about au
 package main
 
 import(
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common"
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/common"
-	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
 )
 
 func main() {
@@ -310,10 +310,10 @@ Update your Codat profile
 package main
 
 import(
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common"
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/common"
-	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
 )
 
 func main() {
@@ -395,11 +395,12 @@ Update sync settings for all data types.
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/common"
 	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/operations"
+	"log"
+	"net/http"
 )
 
 func main() {

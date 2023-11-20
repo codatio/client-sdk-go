@@ -62,7 +62,6 @@ pkg/utils/utils.go
 /pkg/models/operations/listrules.go
 /pkg/models/shared/apikeydetails.go
 /pkg/models/shared/createapikey.go
-/pkg/models/shared/errormessage.go
 /pkg/models/shared/profile.go
 /pkg/models/shared/syncsettings.go
 /pkg/models/shared/syncsetting.go
@@ -208,7 +207,6 @@ docs/pkg/models/operations/listrulesrequest.md
 docs/pkg/models/operations/listrulesresponse.md
 docs/pkg/models/shared/apikeydetails.md
 docs/pkg/models/shared/createapikey.md
-docs/pkg/models/shared/errormessage.md
 docs/pkg/models/shared/profile.md
 docs/pkg/models/shared/syncsettings.md
 docs/pkg/models/shared/syncsetting.md

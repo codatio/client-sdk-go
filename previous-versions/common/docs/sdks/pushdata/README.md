@@ -30,11 +30,11 @@ Codat tries not to limit users to pushing to a very limited number of standard c
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/common"
 	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -87,11 +87,11 @@ Retrieve push operation.
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/common"
 	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -143,11 +143,11 @@ List push operation records.
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/common"
 	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/operations"
+	"log"
 )
 
 func main() {
