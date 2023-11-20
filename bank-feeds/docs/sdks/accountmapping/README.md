@@ -26,11 +26,11 @@ This endpoint is only needed if building an account management UI.
 package main
 
 import(
-	"context"
-	"log"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
 	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
+	"context"
 	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -89,11 +89,11 @@ This endpoint is only needed if building an account management UI.
 package main
 
 import(
-	"context"
-	"log"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
 	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
+	"context"
 	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/operations"
+	"log"
 )
 
 func main() {

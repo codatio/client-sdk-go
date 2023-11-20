@@ -44,11 +44,11 @@ The method of mapping the source account to the target account varies depending 
 package main
 
 import(
-	"context"
-	"log"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
 	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
+	"context"
 	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -109,11 +109,12 @@ Removing a source account will also remove any mapping between the source bank f
 package main
 
 import(
-	"context"
-	"log"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
 	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
+	"context"
 	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/operations"
+	"log"
+	"net/http"
 )
 
 func main() {
@@ -168,11 +169,12 @@ In cases where multiple credential sets have been generated, a single API call t
 package main
 
 import(
-	"context"
-	"log"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
 	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
+	"context"
 	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/operations"
+	"log"
+	"net/http"
 )
 
 func main() {
@@ -227,11 +229,11 @@ The old credentials will still be valid until the revoke credentials endpoint is
 package main
 
 import(
-	"context"
-	"log"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
 	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
+	"context"
 	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -287,11 +289,11 @@ func main() {
 package main
 
 import(
-	"context"
-	"log"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
 	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
+	"context"
 	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -344,11 +346,11 @@ func main() {
 package main
 
 import(
-	"context"
-	"log"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
 	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
+	"context"
 	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/operations"
+	"log"
 )
 
 func main() {

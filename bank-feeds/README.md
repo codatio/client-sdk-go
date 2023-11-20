@@ -122,7 +122,9 @@ package main
 
 import (
 	"context"
+	"errors"
 	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
+	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/sdkerrors"
 	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
 	"log"
 )
@@ -292,9 +294,9 @@ import (
 	"context"
 	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
 	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/utils"
 	"log"
 	"pkg/models/operations"
-	"pkg/utils"
 )
 
 func main() {
@@ -308,16 +310,17 @@ func main() {
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: bankfeeds.String("Requested early access to the new financing scheme."),
 		Name:        "Bank of Dave",
-	}, operations.WithRetries(utils.RetryConfig{
-		Strategy: "backoff",
-		Backoff: &utils.BackoffStrategy{
-			InitialInterval: 1,
-			MaxInterval:     50,
-			Exponent:        1.1,
-			MaxElapsedTime:  100,
-		},
-		RetryConnectionErrors: false,
-	}))
+	}, operations.WithRetries(
+		utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 1,
+				MaxInterval:     50,
+				Exponent:        1.1,
+				MaxElapsedTime:  100,
+			},
+			RetryConnectionErrors: false,
+		}))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -337,23 +340,23 @@ import (
 	"context"
 	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
 	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/utils"
 	"log"
-	"pkg/models/operations"
-	"pkg/utils"
 )
 
 func main() {
 	s := bankfeeds.New(
-		bankfeeds.WithRetryConfig(utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 1,
-				MaxInterval:     50,
-				Exponent:        1.1,
-				MaxElapsedTime:  100,
-			},
-			RetryConnectionErrors: false,
-		}),
+		bankfeeds.WithRetryConfig(
+			utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 1,
+					MaxInterval:     50,
+					Exponent:        1.1,
+					MaxElapsedTime:  100,
+				},
+				RetryConnectionErrors: false,
+			}),
 		bankfeeds.WithSecurity(shared.Security{
 			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
 		}),
@@ -374,14 +377,11 @@ func main() {
 }
 
 ```
-
-
 <!-- End Retries -->
 
 
 
 <!-- Start Authentication -->
-
 ## Authentication
 
 ### Per-Client Security Schemes

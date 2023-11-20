@@ -30,12 +30,12 @@ Check out our [coverage explorer](https://knowledge.codat.io/supported-features/
 package main
 
 import(
-	"context"
-	"log"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
 	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/operations"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
+	"context"
 	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/types"
+	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -103,11 +103,11 @@ Retrieve push operation.
 package main
 
 import(
-	"context"
-	"log"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
 	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
+	"context"
 	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -159,11 +159,11 @@ List create operations.
 package main
 
 import(
-	"context"
-	"log"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
 	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
+	"context"
 	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/operations"
+	"log"
 )
 
 func main() {
