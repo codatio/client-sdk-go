@@ -27,10 +27,10 @@ If forbidden characters (see `name` pattern) are present in the request, a compa
 package main
 
 import(
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
 	"context"
 	"log"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
 )
 
 func main() {
@@ -81,11 +81,12 @@ Permanently deletes a company, its connections and any cached data. This operati
 package main
 
 import(
-	"context"
-	"log"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
+	"log"
+	"net/http"
 )
 
 func main() {
@@ -134,11 +135,11 @@ func main() {
 package main
 
 import(
-	"context"
-	"log"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -187,11 +188,11 @@ func main() {
 package main
 
 import(
-	"context"
-	"log"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -242,11 +243,11 @@ func main() {
 package main
 
 import(
-	"context"
-	"log"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
+	"log"
 )
 
 func main() {

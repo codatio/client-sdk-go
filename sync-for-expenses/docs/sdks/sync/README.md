@@ -23,11 +23,11 @@ Get the sync status for a specified sync
 package main
 
 import(
-	"context"
-	"log"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -77,11 +77,11 @@ Gets the status of the last successful sync
 package main
 
 import(
-	"context"
-	"log"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -130,11 +130,11 @@ Gets the latest sync status
 package main
 
 import(
-	"context"
-	"log"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -183,11 +183,11 @@ Initiate sync of pending transactions.
 package main
 
 import(
-	"context"
-	"log"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -241,11 +241,11 @@ Gets a list of sync statuses
 package main
 
 import(
-	"context"
-	"log"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
+	"log"
 )
 
 func main() {

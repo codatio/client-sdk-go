@@ -31,11 +31,11 @@ Check out our [coverage explorer](https://knowledge.codat.io/supported-features/
 package main
 
 import(
-	"context"
-	"log"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -126,11 +126,11 @@ Before using this endpoint, you must have [retrieved data for the company](https
 package main
 
 import(
-	"context"
-	"log"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -185,11 +185,11 @@ Before using this endpoint, you must have [retrieved data for the company](https
 package main
 
 import(
-	"context"
-	"log"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -250,11 +250,11 @@ Check out our [coverage explorer](https://knowledge.codat.io/supported-features/
 package main
 
 import(
-	"context"
-	"log"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
+	"log"
 )
 
 func main() {

@@ -21,11 +21,11 @@ Gets a companies expense sync configuration
 package main
 
 import(
-	"context"
-	"log"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -74,11 +74,11 @@ Gets the expense mapping options for a companies accounting software
 package main
 
 import(
-	"context"
-	"log"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -127,11 +127,11 @@ Sets a companies expense sync configuration
 package main
 
 import(
-	"context"
-	"log"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
+	"log"
 )
 
 func main() {

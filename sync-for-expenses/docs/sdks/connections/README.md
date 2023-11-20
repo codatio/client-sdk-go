@@ -26,11 +26,11 @@ Use the [List Integrations](https://docs.codat.io/sync-for-expenses-api#/operati
 package main
 
 import(
-	"context"
-	"log"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -82,11 +82,11 @@ Creates a partner expense data connection
 package main
 
 import(
-	"context"
-	"log"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -136,11 +136,12 @@ This operation is not reversible. The end user would need to reauthorize a new d
 package main
 
 import(
-	"context"
-	"log"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
+	"log"
+	"net/http"
 )
 
 func main() {
@@ -190,11 +191,11 @@ func main() {
 package main
 
 import(
-	"context"
-	"log"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -244,11 +245,11 @@ func main() {
 package main
 
 import(
-	"context"
-	"log"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -300,11 +301,11 @@ func main() {
 package main
 
 import(
-	"context"
-	"log"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
+	"log"
 )
 
 func main() {
