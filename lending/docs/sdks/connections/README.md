@@ -25,11 +25,11 @@ Use the [List Integrations](https://docs.codat.io/lending-api#/operations/list-i
 package main
 
 import(
-	"context"
-	"log"
-	lending "github.com/codatio/client-sdk-go/lending/v5"
 	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v5"
+	"context"
 	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -84,11 +84,12 @@ This operation is not reversible. The end user would need to reauthorize a new d
 package main
 
 import(
-	"context"
-	"log"
-	lending "github.com/codatio/client-sdk-go/lending/v5"
 	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v5"
+	"context"
 	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/operations"
+	"log"
+	"net/http"
 )
 
 func main() {
@@ -140,11 +141,11 @@ func main() {
 package main
 
 import(
-	"context"
-	"log"
-	lending "github.com/codatio/client-sdk-go/lending/v5"
 	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v5"
+	"context"
 	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -196,11 +197,11 @@ func main() {
 package main
 
 import(
-	"context"
-	"log"
-	lending "github.com/codatio/client-sdk-go/lending/v5"
 	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v5"
+	"context"
 	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -254,11 +255,11 @@ func main() {
 package main
 
 import(
-	"context"
-	"log"
-	lending "github.com/codatio/client-sdk-go/lending/v5"
 	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v5"
+	"context"
 	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/operations"
+	"log"
 )
 
 func main() {

@@ -20,11 +20,11 @@ Gets the latest basic info for a company.
 package main
 
 import(
-	"context"
-	"log"
-	lending "github.com/codatio/client-sdk-go/lending/v5"
 	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v5"
+	"context"
 	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -79,11 +79,11 @@ social media or website information."
 package main
 
 import(
-	"context"
-	"log"
-	lending "github.com/codatio/client-sdk-go/lending/v5"
 	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v5"
+	"context"
 	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/operations"
+	"log"
 )
 
 func main() {

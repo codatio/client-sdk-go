@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 )
 
+// ErrorMessage - The request made is not valid.
 type ErrorMessage struct {
 	// `True` if the error occurred transiently and can be retried.
 	CanBeRetried *string `json:"canBeRetried,omitempty"`

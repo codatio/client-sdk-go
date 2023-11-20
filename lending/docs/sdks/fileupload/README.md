@@ -21,11 +21,11 @@ The *Download files* endpoint downloads all files that have  been uploaded by to
 package main
 
 import(
-	"context"
-	"log"
-	lending "github.com/codatio/client-sdk-go/lending/v5"
 	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v5"
+	"context"
 	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -77,11 +77,11 @@ func main() {
 package main
 
 import(
-	"context"
-	"log"
-	lending "github.com/codatio/client-sdk-go/lending/v5"
 	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v5"
+	"context"
 	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -138,11 +138,12 @@ Uploaded files must meet the following requirements:
 package main
 
 import(
-	"context"
-	"log"
-	lending "github.com/codatio/client-sdk-go/lending/v5"
 	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v5"
+	"context"
 	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/operations"
+	"log"
+	"net/http"
 )
 
 func main() {

@@ -20,11 +20,12 @@ This is an asynchronous operation, and will bring updated data into Codat from t
 package main
 
 import(
-	"context"
-	"log"
-	lending "github.com/codatio/client-sdk-go/lending/v5"
 	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v5"
+	"context"
 	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/operations"
+	"log"
+	"net/http"
 )
 
 func main() {
@@ -77,11 +78,11 @@ This is an asynchronous operation, and will bring updated data into Codat from t
 package main
 
 import(
-	"context"
-	"log"
-	lending "github.com/codatio/client-sdk-go/lending/v5"
 	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v5"
+	"context"
 	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/operations"
+	"log"
 )
 
 func main() {
