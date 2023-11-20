@@ -8,6 +8,7 @@ import (
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/shared"
 	"log"
+	"net/http"
 )
 
 func main() {

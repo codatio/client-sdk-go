@@ -26,6 +26,7 @@ import (
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/shared"
 	"log"
+	"net/http"
 )
 
 func main() {
@@ -118,9 +119,10 @@ import (
 	"github.com/codatio/client-sdk-go/previous-versions/assess"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/utils"
 	"log"
+	"net/http"
 	"pkg/models/operations"
-	"pkg/utils"
 )
 
 func main() {
@@ -134,16 +136,17 @@ func main() {
 	res, err := s.Reports.GenerateLoanSummary(ctx, operations.GenerateLoanSummaryRequest{
 		CompanyID:  "8a210b68-6988-11ed-a1eb-0242ac120002",
 		SourceType: operations.SourceTypeAccounting,
-	}, operations.WithRetries(utils.RetryConfig{
-		Strategy: "backoff",
-		Backoff: &utils.BackoffStrategy{
-			InitialInterval: 1,
-			MaxInterval:     50,
-			Exponent:        1.1,
-			MaxElapsedTime:  100,
-		},
-		RetryConnectionErrors: false,
-	}))
+	}, operations.WithRetries(
+		utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 1,
+				MaxInterval:     50,
+				Exponent:        1.1,
+				MaxElapsedTime:  100,
+			},
+			RetryConnectionErrors: false,
+		}))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -164,23 +167,24 @@ import (
 	"github.com/codatio/client-sdk-go/previous-versions/assess"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/utils"
 	"log"
-	"pkg/models/operations"
-	"pkg/utils"
+	"net/http"
 )
 
 func main() {
 	s := assess.New(
-		assess.WithRetryConfig(utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 1,
-				MaxInterval:     50,
-				Exponent:        1.1,
-				MaxElapsedTime:  100,
-			},
-			RetryConnectionErrors: false,
-		}),
+		assess.WithRetryConfig(
+			utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 1,
+					MaxInterval:     50,
+					Exponent:        1.1,
+					MaxElapsedTime:  100,
+				},
+				RetryConnectionErrors: false,
+			}),
 		assess.WithSecurity(shared.Security{
 			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
 		}),
@@ -201,8 +205,6 @@ func main() {
 }
 
 ```
-
-
 <!-- End Retries -->
 
 
@@ -224,8 +226,10 @@ package main
 
 import (
 	"context"
+	"errors"
 	"github.com/codatio/client-sdk-go/previous-versions/assess"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/sdkerrors"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/shared"
 	"log"
 )
@@ -259,7 +263,6 @@ func main() {
 }
 
 ```
-
 <!-- End Error Handling -->
 
 
@@ -286,6 +289,7 @@ import (
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/shared"
 	"log"
+	"net/http"
 )
 
 func main() {
@@ -325,6 +329,7 @@ import (
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/shared"
 	"log"
+	"net/http"
 )
 
 func main() {
@@ -386,7 +391,6 @@ This can be a convenient way to configure timeouts, cookies, proxies, custom hea
 
 
 <!-- Start Authentication -->
-
 ## Authentication
 
 ### Per-Client Security Schemes
@@ -407,6 +411,7 @@ import (
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/shared"
 	"log"
+	"net/http"
 )
 
 func main() {

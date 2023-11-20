@@ -38,11 +38,12 @@ Make sure you have [synced a company](https://docs.codat.io/codat-api#/operation
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/assess"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/assess"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/operations"
+	"log"
+	"net/http"
 )
 
 func main() {
@@ -99,11 +100,12 @@ Make sure you have [synced a company](https://docs.codat.io/codat-api#/operation
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/assess"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/assess"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/operations"
+	"log"
+	"net/http"
 )
 
 func main() {
@@ -157,11 +159,11 @@ Codat suggests a category for each account automatically, but you can [change it
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/assess"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/assess"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -215,11 +217,11 @@ Codat suggests a category for each account automatically, but you can [change it
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/assess"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/assess"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -271,11 +273,11 @@ Gets the customer retention metrics for a specific company connection, over one 
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/assess"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/assess"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -331,11 +333,11 @@ Gets the lifetime value metric for a specific company connection, over one or mo
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/assess"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/assess"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -391,11 +393,11 @@ Gets the order information for a specific company connection, over one or more p
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/assess"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/assess"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -451,11 +453,11 @@ Gets the refunds information for a specific company connection, over one or more
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/assess"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/assess"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -511,11 +513,11 @@ Get the revenue and revenue growth for a specific company connection, over one o
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/assess"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/assess"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -575,11 +577,11 @@ The Enhanced Cash Flow Transactions endpoint provides a fully categorized list o
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/assess"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/assess"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -632,11 +634,11 @@ Gets a list of invoices linked to the corresponding banking transaction
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/assess"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/assess"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -694,11 +696,11 @@ Make sure you have [synced a company](https://docs.codat.io/codat-api#/operation
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/assess"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/assess"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -750,11 +752,11 @@ Gets key metrics for subscription revenue.
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/assess"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/assess"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -811,11 +813,11 @@ Make sure you have [synced a company](https://docs.codat.io/codat-api#/operation
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/assess"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/assess"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -867,11 +869,11 @@ Requests production of key subscription revenue metrics.
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/assess"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/assess"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/operations"
+	"log"
 )
 
 func main() {

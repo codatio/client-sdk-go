@@ -21,11 +21,11 @@ Gets record-by-record match results for a given company and datatype, optionally
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/assess"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/assess"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -80,11 +80,11 @@ Gets match status for a given company and datatype.
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/assess"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/assess"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -136,11 +136,11 @@ Gets match summary for a given company and datatype, optionally restricted by a 
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/assess"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/assess"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/operations"
+	"log"
 )
 
 func main() {

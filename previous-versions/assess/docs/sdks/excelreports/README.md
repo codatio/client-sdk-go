@@ -22,11 +22,11 @@ Generate an Excel report which can subsequently be downloaded.
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/assess"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/assess"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -80,11 +80,11 @@ Request an Excel report for download.
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/assess"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/assess"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -140,11 +140,11 @@ Download the previously generated Excel report to a local drive.
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/assess"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/assess"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -196,11 +196,11 @@ Returns the status of the latest report requested.
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/assess"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/assess"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/operations"
+	"log"
 )
 
 func main() {
