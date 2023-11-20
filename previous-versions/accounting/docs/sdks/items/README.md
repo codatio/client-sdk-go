@@ -31,11 +31,11 @@ Check out our [coverage explorer](https://knowledge.codat.io/supported-features/
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/accounting"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -118,11 +118,11 @@ Before using this endpoint, you must have [retrieved data for the company](https
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/accounting"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -183,11 +183,11 @@ Check out our [coverage explorer](https://knowledge.codat.io/supported-features/
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/accounting"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -244,11 +244,11 @@ Before using this endpoint, you must have [retrieved data for the company](https
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/accounting"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
+	"log"
 )
 
 func main() {

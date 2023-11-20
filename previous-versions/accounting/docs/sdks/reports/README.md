@@ -25,12 +25,12 @@ Returns aged creditors report for company that shows the total balance owed by a
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/accounting"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/types"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -84,12 +84,12 @@ Returns aged debtors report for company that shows the total outstanding balance
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/accounting"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/types"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -143,11 +143,11 @@ Gets the latest balance sheet for a company.
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/accounting"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -201,11 +201,11 @@ Gets the latest cash flow statement for a company.
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/accounting"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -259,11 +259,11 @@ Gets the latest profit and loss for a company.
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/accounting"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -317,11 +317,11 @@ Indicates whether the aged creditor report is available for the company.
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/accounting"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -372,11 +372,11 @@ Indicates whether the aged debtor report is available for the company.
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/accounting"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
+	"log"
 )
 
 func main() {

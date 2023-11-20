@@ -20,11 +20,11 @@ Gets the latest basic info for a company.
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/accounting"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -75,11 +75,11 @@ Initiates the process of synchronising basic info for a company
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/accounting"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
+	"log"
 )
 
 func main() {
