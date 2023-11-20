@@ -166,9 +166,9 @@ func New(opts ...SDKOption) *CodatSyncExpenses {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "prealpha",
-			SDKVersion:        "0.27.0",
-			GenVersion:        "2.188.1",
-			UserAgent:         "speakeasy-sdk/go 0.27.0 2.188.1 prealpha github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1",
+			SDKVersion:        "0.27.1",
+			GenVersion:        "2.194.1",
+			UserAgent:         "speakeasy-sdk/go 0.27.1 2.194.1 prealpha github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1",
 		},
 	}
 	for _, opt := range opts {

@@ -21,12 +21,12 @@ Create an expense transaction
 package main
 
 import(
-	"context"
-	"log"
-	syncforexpensesversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1/pkg/models/operations"
+	syncforexpensesversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1/pkg/types"
+	"github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -110,12 +110,12 @@ Update an expense transaction
 package main
 
 import(
-	"context"
-	"log"
-	syncforexpensesversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1/pkg/models/operations"
+	syncforexpensesversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1/pkg/types"
+	"github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -195,11 +195,11 @@ Creates an attachment in the accounting software against the given transactionId
 package main
 
 import(
-	"context"
-	"log"
-	syncforexpensesversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1/pkg/models/shared"
+	syncforexpensesversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1/pkg/models/operations"
+	"log"
 )
 
 func main() {

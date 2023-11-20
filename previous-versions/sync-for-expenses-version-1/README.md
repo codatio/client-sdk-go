@@ -134,7 +134,9 @@ package main
 
 import (
 	"context"
+	"errors"
 	syncforexpensesversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1"
+	"github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1/pkg/models/sdkerrors"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1/pkg/models/shared"
 	"log"
 )
@@ -304,9 +306,9 @@ import (
 	"context"
 	syncforexpensesversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1/pkg/utils"
 	"log"
 	"pkg/models/operations"
-	"pkg/utils"
 )
 
 func main() {
@@ -320,16 +322,17 @@ func main() {
 	res, err := s.Companies.CreateCompany(ctx, &shared.CompanyRequestBody{
 		Description: syncforexpensesversion1.String("Requested early access to the new financing scheme."),
 		Name:        "Bank of Dave",
-	}, operations.WithRetries(utils.RetryConfig{
-		Strategy: "backoff",
-		Backoff: &utils.BackoffStrategy{
-			InitialInterval: 1,
-			MaxInterval:     50,
-			Exponent:        1.1,
-			MaxElapsedTime:  100,
-		},
-		RetryConnectionErrors: false,
-	}))
+	}, operations.WithRetries(
+		utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 1,
+				MaxInterval:     50,
+				Exponent:        1.1,
+				MaxElapsedTime:  100,
+			},
+			RetryConnectionErrors: false,
+		}))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -349,23 +352,23 @@ import (
 	"context"
 	syncforexpensesversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1/pkg/utils"
 	"log"
-	"pkg/models/operations"
-	"pkg/utils"
 )
 
 func main() {
 	s := syncforexpensesversion1.New(
-		syncforexpensesversion1.WithRetryConfig(utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 1,
-				MaxInterval:     50,
-				Exponent:        1.1,
-				MaxElapsedTime:  100,
-			},
-			RetryConnectionErrors: false,
-		}),
+		syncforexpensesversion1.WithRetryConfig(
+			utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 1,
+					MaxInterval:     50,
+					Exponent:        1.1,
+					MaxElapsedTime:  100,
+				},
+				RetryConnectionErrors: false,
+			}),
 		syncforexpensesversion1.WithSecurity(shared.Security{
 			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
 		}),
@@ -386,14 +389,11 @@ func main() {
 }
 
 ```
-
-
 <!-- End Retries -->
 
 
 
 <!-- Start Authentication -->
-
 ## Authentication
 
 ### Per-Client Security Schemes
