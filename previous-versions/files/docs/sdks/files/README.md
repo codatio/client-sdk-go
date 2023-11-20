@@ -21,11 +21,11 @@ The *Download files* endpoint downloads all files that have  been uploaded by to
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/files"
 	"github.com/codatio/client-sdk-go/previous-versions/files/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/files"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/files/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -78,11 +78,11 @@ func main() {
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/files"
 	"github.com/codatio/client-sdk-go/previous-versions/files/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/files"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/files/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -140,11 +140,12 @@ Uploaded files must meet the following requirements:
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/files"
 	"github.com/codatio/client-sdk-go/previous-versions/files/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/files"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/files/pkg/models/operations"
+	"log"
+	"net/http"
 )
 
 func main() {
