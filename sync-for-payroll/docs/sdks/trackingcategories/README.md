@@ -27,11 +27,11 @@ Before using this endpoint, you must have [retrieved data for the company](https
 package main
 
 import(
-	"context"
-	"log"
-	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll/v2"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/v2/pkg/models/shared"
+	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll/v2"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/v2/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -88,11 +88,11 @@ Before using this endpoint, you must have [retrieved data for the company](https
 package main
 
 import(
-	"context"
-	"log"
-	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll/v2"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/v2/pkg/models/shared"
+	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll/v2"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/v2/pkg/models/operations"
+	"log"
 )
 
 func main() {

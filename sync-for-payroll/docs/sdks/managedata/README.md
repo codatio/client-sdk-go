@@ -25,11 +25,11 @@ Get the state of each data type for a company
 package main
 
 import(
-	"context"
-	"log"
-	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll/v2"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/v2/pkg/models/shared"
+	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll/v2"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/v2/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -80,11 +80,11 @@ Retrieve information about a single dataset or pull operation.
 package main
 
 import(
-	"context"
-	"log"
-	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll/v2"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/v2/pkg/models/shared"
+	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll/v2"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/v2/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -136,11 +136,11 @@ Retrieve push operation.
 package main
 
 import(
-	"context"
-	"log"
-	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll/v2"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/v2/pkg/models/shared"
+	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll/v2"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/v2/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -192,11 +192,11 @@ List push operation records.
 package main
 
 import(
-	"context"
-	"log"
-	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll/v2"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/v2/pkg/models/shared"
+	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll/v2"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/v2/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -250,11 +250,11 @@ Gets the pull operation history (datasets) for a given company.
 package main
 
 import(
-	"context"
-	"log"
-	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll/v2"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/v2/pkg/models/shared"
+	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll/v2"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/v2/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -312,11 +312,12 @@ This is an asynchronous operation, and will bring updated data into Codat from t
 package main
 
 import(
-	"context"
-	"log"
-	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll/v2"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/v2/pkg/models/shared"
+	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll/v2"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/v2/pkg/models/operations"
+	"log"
+	"net/http"
 )
 
 func main() {
@@ -369,11 +370,11 @@ This is an asynchronous operation, and will bring updated data into Codat from t
 package main
 
 import(
-	"context"
-	"log"
-	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll/v2"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/v2/pkg/models/shared"
+	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll/v2"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/v2/pkg/models/operations"
+	"log"
 )
 
 func main() {

@@ -27,10 +27,10 @@ If forbidden characters (see `name` pattern) are present in the request, a compa
 package main
 
 import(
+	"github.com/codatio/client-sdk-go/sync-for-payroll/v2/pkg/models/shared"
+	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll/v2"
 	"context"
 	"log"
-	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll/v2"
-	"github.com/codatio/client-sdk-go/sync-for-payroll/v2/pkg/models/shared"
 )
 
 func main() {
@@ -83,11 +83,12 @@ Permanently deletes a company, its connections and any cached data. This operati
 package main
 
 import(
-	"context"
-	"log"
-	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll/v2"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/v2/pkg/models/shared"
+	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll/v2"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/v2/pkg/models/operations"
+	"log"
+	"net/http"
 )
 
 func main() {
@@ -138,11 +139,11 @@ func main() {
 package main
 
 import(
-	"context"
-	"log"
-	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll/v2"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/v2/pkg/models/shared"
+	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll/v2"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/v2/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -193,11 +194,11 @@ func main() {
 package main
 
 import(
-	"context"
-	"log"
-	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll/v2"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/v2/pkg/models/shared"
+	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll/v2"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/v2/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -250,11 +251,11 @@ func main() {
 package main
 
 import(
-	"context"
-	"log"
-	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll/v2"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/v2/pkg/models/shared"
+	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll/v2"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/v2/pkg/models/operations"
+	"log"
 )
 
 func main() {
