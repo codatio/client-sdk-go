@@ -203,5 +203,3 @@ func main() {
 Some of the endpoints in this SDK support pagination. To use pagination, you make your SDK calls as usual, but the
 returned response object will have a `Next` method that can be called to pull down the next group of results. If the
 return value of `Next` is `nil`, then there are no more pages to be fetched.
-
-Here's an example of one such pagination call:
