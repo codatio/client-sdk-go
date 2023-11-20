@@ -284,5 +284,3 @@ This SDK defines the following custom types to assist with marshalling and unmar
 d1 := types.NewDate(time.Now()) // returns *types.Date
 
 d2 := types.DateFromTime(time.Now()) // returns types.Date
-
-d3, err := types.NewDateFromString("2019-01-01") // returns *types.Date, error
