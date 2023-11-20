@@ -49,3 +49,13 @@ Based on:
 - [go v0.23.0] previous-versions/sync-for-commerce-version-1
 ### Releases
 - [Go v0.23.0] https://github.com/codatio/client-sdk-go/releases/tag/previous-versions/sync-for-commerce-version-1/v0.23.0 - previous-versions/sync-for-commerce-version-1
+
+## 2023-11-20 01:26:52
+### Changes
+Based on:
+- OpenAPI Doc 1.1 https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Sync-Commerce-v1.yaml
+- Speakeasy CLI 1.121.1 (2.194.1) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [go v0.23.1] previous-versions/sync-for-commerce-version-1
+### Releases
+- [Go v0.23.1] https://github.com/codatio/client-sdk-go/releases/tag/previous-versions/sync-for-commerce-version-1/v0.23.1 - previous-versions/sync-for-commerce-version-1

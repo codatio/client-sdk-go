@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 )
 
+// ErrorMessage - Your API request was not properly authorized.
 type ErrorMessage struct {
 	// `True` if the error occurred transiently and can be retried.
 	CanBeRetried *string `json:"canBeRetried,omitempty"`
