@@ -24,11 +24,11 @@ Before using this endpoint, you must have [retrieved data for the company](https
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/banking"
 	"github.com/codatio/client-sdk-go/previous-versions/banking/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/banking"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/banking/pkg/models/operations"
+	"log"
 )
 
 func main() {

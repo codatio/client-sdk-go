@@ -110,8 +110,10 @@ package main
 
 import (
 	"context"
+	"errors"
 	"github.com/codatio/client-sdk-go/previous-versions/banking"
 	"github.com/codatio/client-sdk-go/previous-versions/banking/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/banking/pkg/models/sdkerrors"
 	"github.com/codatio/client-sdk-go/previous-versions/banking/pkg/models/shared"
 	"log"
 )
@@ -293,9 +295,9 @@ import (
 	"github.com/codatio/client-sdk-go/previous-versions/banking"
 	"github.com/codatio/client-sdk-go/previous-versions/banking/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/previous-versions/banking/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/banking/pkg/utils"
 	"log"
 	"pkg/models/operations"
-	"pkg/utils"
 )
 
 func main() {
@@ -312,16 +314,17 @@ func main() {
 		OrderBy:      banking.String("-modifiedDate"),
 		Page:         banking.Int(1),
 		PageSize:     banking.Int(100),
-	}, operations.WithRetries(utils.RetryConfig{
-		Strategy: "backoff",
-		Backoff: &utils.BackoffStrategy{
-			InitialInterval: 1,
-			MaxInterval:     50,
-			Exponent:        1.1,
-			MaxElapsedTime:  100,
-		},
-		RetryConnectionErrors: false,
-	}))
+	}, operations.WithRetries(
+		utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 1,
+				MaxInterval:     50,
+				Exponent:        1.1,
+				MaxElapsedTime:  100,
+			},
+			RetryConnectionErrors: false,
+		}))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -342,23 +345,23 @@ import (
 	"github.com/codatio/client-sdk-go/previous-versions/banking"
 	"github.com/codatio/client-sdk-go/previous-versions/banking/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/previous-versions/banking/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/banking/pkg/utils"
 	"log"
-	"pkg/models/operations"
-	"pkg/utils"
 )
 
 func main() {
 	s := banking.New(
-		banking.WithRetryConfig(utils.RetryConfig{
-			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
-				InitialInterval: 1,
-				MaxInterval:     50,
-				Exponent:        1.1,
-				MaxElapsedTime:  100,
-			},
-			RetryConnectionErrors: false,
-		}),
+		banking.WithRetryConfig(
+			utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 1,
+					MaxInterval:     50,
+					Exponent:        1.1,
+					MaxElapsedTime:  100,
+				},
+				RetryConnectionErrors: false,
+			}),
 		banking.WithSecurity(shared.Security{
 			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
 		}),
@@ -382,14 +385,11 @@ func main() {
 }
 
 ```
-
-
 <!-- End Retries -->
 
 
 
 <!-- Start Authentication -->
-
 ## Authentication
 
 ### Per-Client Security Schemes

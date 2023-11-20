@@ -156,9 +156,9 @@ func New(opts ...SDKOption) *CodatBanking {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "0.25.0",
-			GenVersion:        "2.188.1",
-			UserAgent:         "speakeasy-sdk/go 0.25.0 2.188.1 3.0.0 github.com/codatio/client-sdk-go/previous-versions/banking",
+			SDKVersion:        "0.25.1",
+			GenVersion:        "2.194.1",
+			UserAgent:         "speakeasy-sdk/go 0.25.1 2.194.1 3.0.0 github.com/codatio/client-sdk-go/previous-versions/banking",
 		},
 	}
 	for _, opt := range opts {
