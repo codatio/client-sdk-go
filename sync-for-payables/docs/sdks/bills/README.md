@@ -38,12 +38,12 @@ Check out our [coverage explorer](https://knowledge.codat.io/supported-features/
 package main
 
 import(
-	"context"
-	"log"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
 	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/types"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -199,11 +199,11 @@ Integrations that support soft delete do not permanently delete the object in th
 package main
 
 import(
-	"context"
-	"log"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
 	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -276,11 +276,11 @@ purchase of goods or services.
 package main
 
 import(
-	"context"
-	"log"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
 	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -339,11 +339,11 @@ Check out our [coverage explorer](https://knowledge.codat.io/supported-features/
 package main
 
 import(
-	"context"
-	"log"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
 	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -404,11 +404,11 @@ Before using this endpoint, you must have [retrieved data for the company](https
 package main
 
 import(
-	"context"
-	"log"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
 	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -465,11 +465,11 @@ Check out our [coverage explorer](https://knowledge.codat.io/supported-features/
 package main
 
 import(
-	"context"
-	"log"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
 	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -532,11 +532,11 @@ Check out our [coverage explorer](https://knowledge.codat.io/supported-features/
 package main
 
 import(
-	"context"
-	"log"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
 	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -593,11 +593,11 @@ Before using this endpoint, you must have [retrieved data for the company](https
 package main
 
 import(
-	"context"
-	"log"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
 	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -656,11 +656,11 @@ Check out our [coverage explorer](https://knowledge.codat.io/supported-features/
 package main
 
 import(
-	"context"
-	"log"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
 	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -722,12 +722,12 @@ Check out our [coverage explorer](https://knowledge.codat.io/supported-features/
 package main
 
 import(
-	"context"
-	"log"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
 	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/types"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -865,11 +865,12 @@ Check out our [coverage explorer](https://knowledge.codat.io/supported-features/
 package main
 
 import(
-	"context"
-	"log"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
 	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
+	"log"
+	"net/http"
 )
 
 func main() {

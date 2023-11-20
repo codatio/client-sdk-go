@@ -20,11 +20,11 @@ Retrieve push operation.
 package main
 
 import(
-	"context"
-	"log"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
 	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -76,11 +76,11 @@ List push operation records.
 package main
 
 import(
-	"context"
-	"log"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
 	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
+	"log"
 )
 
 func main() {

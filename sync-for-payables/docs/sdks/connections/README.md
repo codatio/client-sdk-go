@@ -25,11 +25,11 @@ Use the [List Integrations](https://docs.codat.io/sync-for-payables-api#/operati
 package main
 
 import(
-	"context"
-	"log"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
 	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -84,11 +84,12 @@ This operation is not reversible. The end user would need to reauthorize a new d
 package main
 
 import(
-	"context"
-	"log"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
 	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
+	"log"
+	"net/http"
 )
 
 func main() {
@@ -140,11 +141,11 @@ func main() {
 package main
 
 import(
-	"context"
-	"log"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
 	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -196,11 +197,11 @@ func main() {
 package main
 
 import(
-	"context"
-	"log"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
 	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -254,11 +255,11 @@ func main() {
 package main
 
 import(
-	"context"
-	"log"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
 	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
+	"log"
 )
 
 func main() {

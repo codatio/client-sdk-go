@@ -19,11 +19,11 @@ Gets the latest basic info for a company.
 package main
 
 import(
-	"context"
-	"log"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
 	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
+	"log"
 )
 
 func main() {

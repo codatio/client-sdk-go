@@ -69,3 +69,13 @@ Based on:
 - [go v3.0.0] sync-for-payables
 ### Releases
 - [Go v3.0.0] https://github.com/codatio/client-sdk-go/releases/tag/sync-for-payables/v3.0.0 - sync-for-payables
+
+## 2023-11-20 01:29:55
+### Changes
+Based on:
+- OpenAPI Doc 3.0.0 https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Sync-Payables.yaml
+- Speakeasy CLI 1.121.1 (2.194.1) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [go v3.0.1] sync-for-payables
+### Releases
+- [Go v3.0.1] https://github.com/codatio/client-sdk-go/releases/tag/sync-for-payables/v3.0.1 - sync-for-payables
