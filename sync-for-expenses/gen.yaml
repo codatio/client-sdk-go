@@ -20,6 +20,5 @@ features:
     retries: 2.82.1
 go:
   version: 3.2.0
-  flattenGlobalSecurity: true
   maxMethodParams: 0
   packageName: github.com/codatio/client-sdk-go/sync-for-expenses

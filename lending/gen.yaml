@@ -22,6 +22,5 @@ features:
     retries: 2.82.1
 go:
   version: 4.3.0
-  flattenGlobalSecurity: false
   maxMethodParams: 0
   packageName: github.com/codatio/client-sdk-go/lending
