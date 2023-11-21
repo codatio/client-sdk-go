@@ -6,21 +6,21 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/sdkerrors"
-	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/utils"
+	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/utils"
 	"io"
 	"net/http"
 )
 
-// transactions - Transactions represent debits and credits from a source account.
-type transactions struct {
+// Transactions represent debits and credits from a source account.
+type Transactions struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newTransactions(sdkConfig sdkConfiguration) *transactions {
-	return &transactions{
+func newTransactions(sdkConfig sdkConfiguration) *Transactions {
+	return &Transactions{
 		sdkConfiguration: sdkConfig,
 	}
 }
@@ -35,7 +35,7 @@ func newTransactions(sdkConfig sdkConfiguration) *transactions {
 // Required data may vary by integration. To see what data to post, first call [Get create bank transaction model](https://docs.codat.io/bank-feeds-api#/operations/get-create-bankTransactions-model).
 //
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankTransactions) for integrations that support creating a bank account transactions.
-func (s *transactions) Create(ctx context.Context, request operations.CreateBankTransactionsRequest, opts ...operations.Option) (*operations.CreateBankTransactionsResponse, error) {
+func (s *Transactions) Create(ctx context.Context, request operations.CreateBankTransactionsRequest, opts ...operations.Option) (*operations.CreateBankTransactionsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -135,22 +135,35 @@ func (s *transactions) Create(ctx context.Context, request operations.CreateBank
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode == 400:
+		fallthrough
 	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
 		fallthrough
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -158,7 +171,7 @@ func (s *transactions) Create(ctx context.Context, request operations.CreateBank
 
 // GetCreateOperation - Get create operation
 // Retrieve push operation.
-func (s *transactions) GetCreateOperation(ctx context.Context, request operations.GetCreateOperationRequest, opts ...operations.Option) (*operations.GetCreateOperationResponse, error) {
+func (s *Transactions) GetCreateOperation(ctx context.Context, request operations.GetCreateOperationRequest, opts ...operations.Option) (*operations.GetCreateOperationResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -249,20 +262,31 @@ func (s *transactions) GetCreateOperation(ctx context.Context, request operation
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -270,7 +294,7 @@ func (s *transactions) GetCreateOperation(ctx context.Context, request operation
 
 // ListCreateOperations - List create operations
 // List create operations.
-func (s *transactions) ListCreateOperations(ctx context.Context, request operations.ListCreateOperationsRequest, opts ...operations.Option) (*operations.ListCreateOperationsResponse, error) {
+func (s *Transactions) ListCreateOperations(ctx context.Context, request operations.ListCreateOperationsRequest, opts ...operations.Option) (*operations.ListCreateOperationsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -367,20 +391,31 @@ func (s *transactions) ListCreateOperations(ctx context.Context, request operati
 		fallthrough
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

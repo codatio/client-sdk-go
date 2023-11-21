@@ -5,8 +5,8 @@ package bankfeeds
 import (
 	"context"
 	"fmt"
-	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/utils"
+	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/utils"
 	"net/http"
 	"time"
 )
@@ -80,16 +80,16 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 // | Transactions | Create new bank account transactions for a company's connections, and see previous operations. |
 // | Account mapping | Extra functionality for building an account management UI |
 type CodatBankFeeds struct {
-	// Bank feed bank account mapping.
-	AccountMapping *accountMapping
 	// Create and manage your Codat companies.
-	Companies *companies
+	Companies *Companies
 	// Manage your companies' data connections.
-	Connections *connections
+	Connections *Connections
+	// Bank feed bank account mapping.
+	AccountMapping *AccountMapping
 	// Source accounts act as a bridge to bank accounts in accounting software.
-	SourceAccounts *sourceAccounts
+	SourceAccounts *SourceAccounts
 	// Transactions represent debits and credits from a source account.
-	Transactions *transactions
+	Transactions *Transactions
 
 	sdkConfiguration sdkConfiguration
 }
@@ -167,9 +167,9 @@ func New(opts ...SDKOption) *CodatBankFeeds {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "3.2.0",
-			GenVersion:        "2.159.2",
-			UserAgent:         "speakeasy-sdk/go 3.2.0 2.159.2 3.0.0 github.com/codatio/client-sdk-go/bank-feeds",
+			SDKVersion:        "4.0.0",
+			GenVersion:        "2.195.2",
+			UserAgent:         "speakeasy-sdk/go 4.0.0 2.195.2 3.0.0 github.com/codatio/client-sdk-go/bank-feeds",
 		},
 	}
 	for _, opt := range opts {
@@ -188,11 +188,11 @@ func New(opts ...SDKOption) *CodatBankFeeds {
 		}
 	}
 
-	sdk.AccountMapping = newAccountMapping(sdk.sdkConfiguration)
-
 	sdk.Companies = newCompanies(sdk.sdkConfiguration)
 
 	sdk.Connections = newConnections(sdk.sdkConfiguration)
+
+	sdk.AccountMapping = newAccountMapping(sdk.sdkConfiguration)
 
 	sdk.SourceAccounts = newSourceAccounts(sdk.sdkConfiguration)
 

@@ -1,0 +1,9 @@
+# CreateBankTransactions
+
+
+## Fields
+
+| Field                                                                       | Type                                                                        | Required                                                                    | Description                                                                 | Example                                                                     |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `AccountID`                                                                 | **string*                                                                   | :heavy_minus_sign:                                                          | Unique identifier for a bank account.                                       | 13d946f0-c5d5-42bc-b092-97ece17923ab                                        |
+| `Transactions`                                                              | [][shared.BankTransactions](../../../pkg/models/shared/banktransactions.md) | :heavy_minus_sign:                                                          | N/A                                                                         |                                                                             |
