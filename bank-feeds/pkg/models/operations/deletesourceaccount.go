@@ -3,7 +3,6 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/models/shared"
 	"net/http"
 )
 
@@ -40,8 +39,6 @@ func (o *DeleteSourceAccountRequest) GetConnectionID() string {
 type DeleteSourceAccountResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -53,13 +50,6 @@ func (o *DeleteSourceAccountResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *DeleteSourceAccountResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *DeleteSourceAccountResponse) GetStatusCode() int {

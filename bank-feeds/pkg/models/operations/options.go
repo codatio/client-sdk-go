@@ -4,7 +4,7 @@ package operations
 
 import (
 	"errors"
-	"github.com/codatio/client-sdk-go/bank-feeds/v3/pkg/utils"
+	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/utils"
 )
 
 var ErrUnsupportedOption = errors.New("unsupported option")
