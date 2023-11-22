@@ -296,4 +296,3 @@ d6 := types.MustDateFromString("2019-01-01") // returns types.Date and panics on
 <!-- End Go Types -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
-

@@ -434,4 +434,3 @@ func main() {
 <!-- End Authentication -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
-
