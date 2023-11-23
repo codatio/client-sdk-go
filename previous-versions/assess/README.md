@@ -102,5 +102,3 @@ func main() {
 <!-- Start Go Types -->
 
 <!-- End Go Types -->
-
-<!-- Placeholder for Future Speakeasy SDK Sections -->

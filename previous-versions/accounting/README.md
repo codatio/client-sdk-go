@@ -294,5 +294,3 @@ d5 := types.MustNewDateFromString("2019-01-01") // returns *types.Date and panic
 d6 := types.MustDateFromString("2019-01-01") // returns types.Date and panics on error
 ```
 <!-- End Go Types -->
-
-<!-- Placeholder for Future Speakeasy SDK Sections -->
