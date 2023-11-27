@@ -1,5 +1,7 @@
 # ErrorMessage
 
+Your `query` parameter was not correctly formed
+
 
 ## Fields
 

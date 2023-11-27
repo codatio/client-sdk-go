@@ -72,13 +72,13 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 // [See our OpenAPI spec](https://github.com/codatio/oas)
 type CodatBanking struct {
 	// Balances for a bank account including end-of-day batch balance or running balances per transaction.
-	AccountBalances *accountBalances
+	AccountBalances *AccountBalances
 	// Where payments are made or received, and bank transactions are recorded.
-	Accounts *accounts
+	Accounts *Accounts
 	// Hierarchical categories associated with a transaction for greater contextual meaning to transaction activity.
-	TransactionCategories *transactionCategories
+	TransactionCategories *TransactionCategories
 	// An immutable source of up-to-date information on income and expenditure.
-	Transactions *transactions
+	Transactions *Transactions
 
 	sdkConfiguration sdkConfiguration
 }
@@ -156,9 +156,9 @@ func New(opts ...SDKOption) *CodatBanking {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "0.23.0",
-			GenVersion:        "2.159.2",
-			UserAgent:         "speakeasy-sdk/go 0.23.0 2.159.2 3.0.0 github.com/codatio/client-sdk-go/previous-versions/banking",
+			SDKVersion:        "0.24.0",
+			GenVersion:        "2.195.2",
+			UserAgent:         "speakeasy-sdk/go 0.24.0 2.195.2 3.0.0 github.com/codatio/client-sdk-go/previous-versions/banking",
 		},
 	}
 	for _, opt := range opts {
