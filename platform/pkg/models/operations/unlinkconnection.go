@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/platform/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
 	"net/http"
 )
 
@@ -41,8 +41,6 @@ type UnlinkConnectionResponse struct {
 	Connection *shared.Connection
 	// HTTP response content type for this operation
 	ContentType string
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -61,13 +59,6 @@ func (o *UnlinkConnectionResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *UnlinkConnectionResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *UnlinkConnectionResponse) GetStatusCode() int {

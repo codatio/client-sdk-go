@@ -1,13 +1,11 @@
 <!-- Start SDK Example Usage -->
-
-
 ```go
 package main
 
 import (
 	"context"
-	"github.com/codatio/client-sdk-go/platform"
-	"github.com/codatio/client-sdk-go/platform/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v2"
+	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
 	"log"
 )
 
@@ -19,15 +17,14 @@ func main() {
 	)
 
 	ctx := context.Background()
-	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
-		Description: platform.String("Requested early access to the new financing scheme."),
-		Name:        "Bank of Dave",
+	res, err := s.Settings.CreateAPIKey(ctx, &shared.CreateAPIKey{
+		Name: platform.String("azure-invoice-finance-processor"),
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	if res.Company != nil {
+	if res.APIKeyDetails != nil {
 		// handle response
 	}
 }

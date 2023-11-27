@@ -25,11 +25,12 @@ See the *examples* for integration-specific frequently requested properties.
 package main
 
 import(
+	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v2"
 	"context"
+	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/operations"
 	"log"
-	"github.com/codatio/client-sdk-go/platform"
-	"github.com/codatio/client-sdk-go/platform/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/platform/pkg/models/operations"
+	"net/http"
 )
 
 func main() {
@@ -42,18 +43,18 @@ func main() {
     ctx := context.Background()
     res, err := s.SupplementalData.Configure(ctx, operations.ConfigureSupplementalDataRequest{
         SupplementalDataConfiguration: &shared.SupplementalDataConfiguration{
-            SupplementalDataConfig: map[string]shared.SupplementalDataConfigurationSupplementalDataSourceConfiguration{
-                "Cutler": shared.SupplementalDataConfigurationSupplementalDataSourceConfiguration{
+            SupplementalDataConfig: map[string]shared.SupplementalDataSourceConfiguration{
+                "key": shared.SupplementalDataSourceConfiguration{
                     PullData: map[string]string{
-                        "North": "transmitter",
+                        "key": "string",
                     },
                     PushData: map[string]string{
-                        "infrastructure": "Northeast",
+                        "key": "string",
                     },
                 },
             },
         },
-        DataType: operations.ConfigureSupplementalDataDataTypeInvoices,
+        DataType: operations.DataTypeInvoices,
         PlatformKey: "gbol",
     })
     if err != nil {
@@ -68,17 +69,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
-| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                                      | :heavy_check_mark:                                                                                         | The context to use for the request.                                                                        |
-| `request`                                                                                                  | [operations.ConfigureSupplementalDataRequest](../../models/operations/configuresupplementaldatarequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
-| `opts`                                                                                                     | [][operations.Option](../../models/operations/option.md)                                                   | :heavy_minus_sign:                                                                                         | The options for this request.                                                                              |
+| Parameter                                                                                                      | Type                                                                                                           | Required                                                                                                       | Description                                                                                                    |
+| -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                                          | :heavy_check_mark:                                                                                             | The context to use for the request.                                                                            |
+| `request`                                                                                                      | [operations.ConfigureSupplementalDataRequest](../../pkg/models/operations/configuresupplementaldatarequest.md) | :heavy_check_mark:                                                                                             | The request object to use for the request.                                                                     |
+| `opts`                                                                                                         | [][operations.Option](../../pkg/models/operations/option.md)                                                   | :heavy_minus_sign:                                                                                             | The options for this request.                                                                                  |
 
 
 ### Response
 
-**[*operations.ConfigureSupplementalDataResponse](../../models/operations/configuresupplementaldataresponse.md), error**
-
+**[*operations.ConfigureSupplementalDataResponse](../../pkg/models/operations/configuresupplementaldataresponse.md), error**
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
+| sdkerrors.SDKError          | 400-600                     | */*                         |
 
 ## GetConfiguration
 
@@ -92,11 +96,11 @@ The *Get configuration* endpoint returns supplemental data configuration previou
 package main
 
 import(
+	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v2"
 	"context"
+	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/operations"
 	"log"
-	"github.com/codatio/client-sdk-go/platform"
-	"github.com/codatio/client-sdk-go/platform/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/platform/pkg/models/operations"
 )
 
 func main() {
@@ -108,7 +112,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.SupplementalData.GetConfiguration(ctx, operations.GetSupplementalDataConfigurationRequest{
-        DataType: operations.GetSupplementalDataConfigurationDataTypeInvoices,
+        DataType: operations.PathParamDataTypeInvoices,
         PlatformKey: "gbol",
     })
     if err != nil {
@@ -123,14 +127,17 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                                                    | :heavy_check_mark:                                                                                                       | The context to use for the request.                                                                                      |
-| `request`                                                                                                                | [operations.GetSupplementalDataConfigurationRequest](../../models/operations/getsupplementaldataconfigurationrequest.md) | :heavy_check_mark:                                                                                                       | The request object to use for the request.                                                                               |
-| `opts`                                                                                                                   | [][operations.Option](../../models/operations/option.md)                                                                 | :heavy_minus_sign:                                                                                                       | The options for this request.                                                                                            |
+| Parameter                                                                                                                    | Type                                                                                                                         | Required                                                                                                                     | Description                                                                                                                  |
+| ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                                                        | :heavy_check_mark:                                                                                                           | The context to use for the request.                                                                                          |
+| `request`                                                                                                                    | [operations.GetSupplementalDataConfigurationRequest](../../pkg/models/operations/getsupplementaldataconfigurationrequest.md) | :heavy_check_mark:                                                                                                           | The request object to use for the request.                                                                                   |
+| `opts`                                                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                                                 | :heavy_minus_sign:                                                                                                           | The options for this request.                                                                                                |
 
 
 ### Response
 
-**[*operations.GetSupplementalDataConfigurationResponse](../../models/operations/getsupplementaldataconfigurationresponse.md), error**
-
+**[*operations.GetSupplementalDataConfigurationResponse](../../pkg/models/operations/getsupplementaldataconfigurationresponse.md), error**
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
+| sdkerrors.SDKError          | 400-600                     | */*                         |
