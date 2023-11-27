@@ -22,7 +22,7 @@ type OrderLineItem struct {
 	// Percentage rate (from 0 to 100) of any sales tax applied to the unit price.
 	TaxPercentage *decimal.Big `decimal:"number" json:"taxPercentage,omitempty"`
 	// Taxes breakdown as applied to order lines.
-	Taxes []Taxesitems `json:"taxes,omitempty"`
+	Taxes []TaxeItems `json:"taxes,omitempty"`
 	// Total amount of the line item, including discounts and tax.
 	TotalAmount *decimal.Big `decimal:"number" json:"totalAmount,omitempty"`
 	// Total amount of tax applied to the line item, factoring in any discounts.
@@ -84,7 +84,7 @@ func (o *OrderLineItem) GetTaxPercentage() *decimal.Big {
 	return o.TaxPercentage
 }
 
-func (o *OrderLineItem) GetTaxes() []Taxesitems {
+func (o *OrderLineItem) GetTaxes() []TaxeItems {
 	if o == nil {
 		return nil
 	}

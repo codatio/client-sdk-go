@@ -8,7 +8,7 @@ import (
 )
 
 type CreateAccountingAccountRequest struct {
-	AccountingAccount *shared.AccountingAccount `request:"mediaType=application/json"`
+	AccountPrototype *shared.AccountPrototype `request:"mediaType=application/json"`
 	// Unique identifier for a company.
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	// Unique identifier for a connection.
@@ -17,11 +17,11 @@ type CreateAccountingAccountRequest struct {
 	TimeoutInMinutes *int `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
 }
 
-func (o *CreateAccountingAccountRequest) GetAccountingAccount() *shared.AccountingAccount {
+func (o *CreateAccountingAccountRequest) GetAccountPrototype() *shared.AccountPrototype {
 	if o == nil {
 		return nil
 	}
-	return o.AccountingAccount
+	return o.AccountPrototype
 }
 
 func (o *CreateAccountingAccountRequest) GetCompanyID() string {
@@ -50,8 +50,6 @@ type CreateAccountingAccountResponse struct {
 	AccountingCreateAccountResponse *shared.AccountingCreateAccountResponse
 	// HTTP response content type for this operation
 	ContentType string
-	// The request made is not valid.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -70,13 +68,6 @@ func (o *CreateAccountingAccountResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *CreateAccountingAccountResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *CreateAccountingAccountResponse) GetStatusCode() int {

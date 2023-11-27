@@ -15,20 +15,20 @@ import (
 	"strings"
 )
 
-// syncFlowPreferences - Configure preferences for any given Sync for Commerce company using sync flow.
-type syncFlowPreferences struct {
+// SyncFlowPreferences - Configure preferences for any given Sync for Commerce company using sync flow.
+type SyncFlowPreferences struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newSyncFlowPreferences(sdkConfig sdkConfiguration) *syncFlowPreferences {
-	return &syncFlowPreferences{
+func newSyncFlowPreferences(sdkConfig sdkConfiguration) *SyncFlowPreferences {
+	return &SyncFlowPreferences{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // GetConfigTextSyncFlow - Retrieve preferences for text fields on sync flow
 // To enable retrieval of preferences set for the text fields on Sync Flow.
-func (s *syncFlowPreferences) GetConfigTextSyncFlow(ctx context.Context, opts ...operations.Option) (*operations.GetConfigTextSyncFlowResponse, error) {
+func (s *SyncFlowPreferences) GetConfigTextSyncFlow(ctx context.Context, opts ...operations.Option) (*operations.GetConfigTextSyncFlowResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -114,6 +114,31 @@ func (s *syncFlowPreferences) GetConfigTextSyncFlow(ctx context.Context, opts ..
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
+	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out sdkerrors.ErrorMessage
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+			return nil, &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -121,7 +146,7 @@ func (s *syncFlowPreferences) GetConfigTextSyncFlow(ctx context.Context, opts ..
 
 // GetSyncFlowURL - Retrieve sync flow url
 // Get a URL for Sync Flow including a one time passcode.
-func (s *syncFlowPreferences) GetSyncFlowURL(ctx context.Context, request operations.GetSyncFlowURLRequest, opts ...operations.Option) (*operations.GetSyncFlowURLResponse, error) {
+func (s *SyncFlowPreferences) GetSyncFlowURL(ctx context.Context, request operations.GetSyncFlowURLRequest, opts ...operations.Option) (*operations.GetSyncFlowURLResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -214,6 +239,35 @@ func (s *syncFlowPreferences) GetSyncFlowURL(ctx context.Context, request operat
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode == 400:
+		fallthrough
+	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
+	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out sdkerrors.ErrorMessage
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+			return nil, &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -221,7 +275,7 @@ func (s *syncFlowPreferences) GetSyncFlowURL(ctx context.Context, request operat
 
 // GetVisibleAccounts - List visible accounts
 // Enable retrieval for accounts which are visible on sync flow.
-func (s *syncFlowPreferences) GetVisibleAccounts(ctx context.Context, request operations.GetVisibleAccountsRequest, opts ...operations.Option) (*operations.GetVisibleAccountsResponse, error) {
+func (s *SyncFlowPreferences) GetVisibleAccounts(ctx context.Context, request operations.GetVisibleAccountsRequest, opts ...operations.Option) (*operations.GetVisibleAccountsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -310,6 +364,33 @@ func (s *syncFlowPreferences) GetVisibleAccounts(ctx context.Context, request op
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
+	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out sdkerrors.ErrorMessage
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+			return nil, &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -317,7 +398,7 @@ func (s *syncFlowPreferences) GetVisibleAccounts(ctx context.Context, request op
 
 // UpdateConfigTextSyncFlow - Update preferences for text fields on sync flow
 // To enable update of preferences set for the text fields on sync flow.
-func (s *syncFlowPreferences) UpdateConfigTextSyncFlow(ctx context.Context, request map[string]shared.Localization, opts ...operations.Option) (*operations.UpdateConfigTextSyncFlowResponse, error) {
+func (s *SyncFlowPreferences) UpdateConfigTextSyncFlow(ctx context.Context, request map[string]shared.Localization, opts ...operations.Option) (*operations.UpdateConfigTextSyncFlowResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -410,6 +491,33 @@ func (s *syncFlowPreferences) UpdateConfigTextSyncFlow(ctx context.Context, requ
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode == 400:
+		fallthrough
+	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
+	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out sdkerrors.ErrorMessage
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+			return nil, &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -417,7 +525,7 @@ func (s *syncFlowPreferences) UpdateConfigTextSyncFlow(ctx context.Context, requ
 
 // UpdateVisibleAccountsSyncFlow - Update the visible accounts on sync flow
 // To enable update of accounts visible preferences set on Sync Flow.
-func (s *syncFlowPreferences) UpdateVisibleAccountsSyncFlow(ctx context.Context, request operations.UpdateVisibleAccountsSyncFlowRequest, opts ...operations.Option) (*operations.UpdateVisibleAccountsSyncFlowResponse, error) {
+func (s *SyncFlowPreferences) UpdateVisibleAccountsSyncFlow(ctx context.Context, request operations.UpdateVisibleAccountsSyncFlowRequest, opts ...operations.Option) (*operations.UpdateVisibleAccountsSyncFlowResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -513,6 +621,35 @@ func (s *syncFlowPreferences) UpdateVisibleAccountsSyncFlow(ctx context.Context,
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode == 400:
+		fallthrough
+	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
+	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out sdkerrors.ErrorMessage
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+			return nil, &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

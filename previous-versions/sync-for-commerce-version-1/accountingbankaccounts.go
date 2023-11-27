@@ -14,13 +14,13 @@ import (
 	"net/http"
 )
 
-// accountingBankAccounts - Bank accounts
-type accountingBankAccounts struct {
+// AccountingBankAccounts - Bank accounts
+type AccountingBankAccounts struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newAccountingBankAccounts(sdkConfig sdkConfiguration) *accountingBankAccounts {
-	return &accountingBankAccounts{
+func newAccountingBankAccounts(sdkConfig sdkConfiguration) *AccountingBankAccounts {
+	return &AccountingBankAccounts{
 		sdkConfiguration: sdkConfig,
 	}
 }
@@ -33,7 +33,7 @@ func newAccountingBankAccounts(sdkConfig sdkConfiguration) *accountingBankAccoun
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankAccounts) for integrations that support getting a specific bank account.
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/sync-for-commerce-v1-api#/operations/refresh-company-data).
-func (s *accountingBankAccounts) GetAccountingBankAccount(ctx context.Context, request operations.GetAccountingBankAccountRequest, opts ...operations.Option) (*operations.GetAccountingBankAccountResponse, error) {
+func (s *AccountingBankAccounts) GetAccountingBankAccount(ctx context.Context, request operations.GetAccountingBankAccountRequest, opts ...operations.Option) (*operations.GetAccountingBankAccountResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -124,22 +124,33 @@ func (s *accountingBankAccounts) GetAccountingBankAccount(ctx context.Context, r
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 409:
 		fallthrough
 	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -151,7 +162,7 @@ func (s *accountingBankAccounts) GetAccountingBankAccount(ctx context.Context, r
 // [Bank accounts](https://docs.codat.io/accounting-api#/schemas/BankAccount) are financial accounts maintained by a bank or other financial institution.
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/sync-for-commerce-v1-api#/operations/refresh-company-data).
-func (s *accountingBankAccounts) ListAccountingBankAccounts(ctx context.Context, request operations.ListAccountingBankAccountsRequest, opts ...operations.Option) (*operations.ListAccountingBankAccountsResponse, error) {
+func (s *AccountingBankAccounts) ListAccountingBankAccounts(ctx context.Context, request operations.ListAccountingBankAccountsRequest, opts ...operations.Option) (*operations.ListAccountingBankAccountsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -248,20 +259,33 @@ func (s *accountingBankAccounts) ListAccountingBankAccounts(ctx context.Context,
 		fallthrough
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 409:
+		fallthrough
+	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

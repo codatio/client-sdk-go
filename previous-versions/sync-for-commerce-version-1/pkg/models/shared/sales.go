@@ -5,7 +5,7 @@ package shared
 type Sales struct {
 	Accounts      map[string]ConfigAccount `json:"accounts,omitempty"`
 	Grouping      *Grouping                `json:"grouping,omitempty"`
-	InvoiceStatus *InvoiceStatus1          `json:"invoiceStatus,omitempty"`
+	InvoiceStatus *SchemaInvoiceStatus     `json:"invoiceStatus,omitempty"`
 	NewTaxRates   *NewTaxRates             `json:"newTaxRates,omitempty"`
 	SalesCustomer *Customer                `json:"salesCustomer,omitempty"`
 	// Boolean indicator for syncing sales.
@@ -27,7 +27,7 @@ func (o *Sales) GetGrouping() *Grouping {
 	return o.Grouping
 }
 
-func (o *Sales) GetInvoiceStatus() *InvoiceStatus1 {
+func (o *Sales) GetInvoiceStatus() *SchemaInvoiceStatus {
 	if o == nil {
 		return nil
 	}

@@ -27,11 +27,11 @@ Before using this endpoint, you must have [retrieved data for the company](https
 package main
 
 import(
-	"context"
-	"log"
-	syncforcommerceversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/shared"
+	syncforcommerceversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -45,7 +45,7 @@ func main() {
     res, err := s.CommerceTransactions.GetCommerceTransaction(ctx, operations.GetCommerceTransactionRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TransactionID: "West Infrastructure",
+        TransactionID: "string",
     })
     if err != nil {
         log.Fatal(err)
@@ -59,17 +59,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
-| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                                | :heavy_check_mark:                                                                                   | The context to use for the request.                                                                  |
-| `request`                                                                                            | [operations.GetCommerceTransactionRequest](../../models/operations/getcommercetransactionrequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
-| `opts`                                                                                               | [][operations.Option](../../models/operations/option.md)                                             | :heavy_minus_sign:                                                                                   | The options for this request.                                                                        |
+| Parameter                                                                                                | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
+| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                                    | :heavy_check_mark:                                                                                       | The context to use for the request.                                                                      |
+| `request`                                                                                                | [operations.GetCommerceTransactionRequest](../../pkg/models/operations/getcommercetransactionrequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
+| `opts`                                                                                                   | [][operations.Option](../../pkg/models/operations/option.md)                                             | :heavy_minus_sign:                                                                                       | The options for this request.                                                                            |
 
 
 ### Response
 
-**[*operations.GetCommerceTransactionResponse](../../models/operations/getcommercetransactionresponse.md), error**
-
+**[*operations.GetCommerceTransactionResponse](../../pkg/models/operations/getcommercetransactionresponse.md), error**
+| Error Object                    | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| sdkerrors.ErrorMessage          | 401,402,403,404,409,429,500,503 | application/json                |
+| sdkerrors.SDKError              | 400-600                         | */*                             |
 
 ## ListCommerceTransactions
 
@@ -86,11 +89,11 @@ Before using this endpoint, you must have [retrieved data for the company](https
 package main
 
 import(
-	"context"
-	"log"
-	syncforcommerceversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/shared"
+	syncforcommerceversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -120,14 +123,17 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
-| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                                    | :heavy_check_mark:                                                                                       | The context to use for the request.                                                                      |
-| `request`                                                                                                | [operations.ListCommerceTransactionsRequest](../../models/operations/listcommercetransactionsrequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
-| `opts`                                                                                                   | [][operations.Option](../../models/operations/option.md)                                                 | :heavy_minus_sign:                                                                                       | The options for this request.                                                                            |
+| Parameter                                                                                                    | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                                        | :heavy_check_mark:                                                                                           | The context to use for the request.                                                                          |
+| `request`                                                                                                    | [operations.ListCommerceTransactionsRequest](../../pkg/models/operations/listcommercetransactionsrequest.md) | :heavy_check_mark:                                                                                           | The request object to use for the request.                                                                   |
+| `opts`                                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                                 | :heavy_minus_sign:                                                                                           | The options for this request.                                                                                |
 
 
 ### Response
 
-**[*operations.ListCommerceTransactionsResponse](../../models/operations/listcommercetransactionsresponse.md), error**
-
+**[*operations.ListCommerceTransactionsResponse](../../pkg/models/operations/listcommercetransactionsresponse.md), error**
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| sdkerrors.ErrorMessage              | 400,401,402,403,404,409,429,500,503 | application/json                    |
+| sdkerrors.SDKError                  | 400-600                             | */*                                 |
