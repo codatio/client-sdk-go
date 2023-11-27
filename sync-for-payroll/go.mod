@@ -1,4 +1,4 @@
-module github.com/codatio/client-sdk-go/sync-for-payroll
+module github.com/codatio/client-sdk-go/sync-for-payroll/v2
 
 go 1.14
 

@@ -12,7 +12,7 @@ import (
 	"time"
 	"unsafe"
 
-	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/types"
+	"github.com/codatio/client-sdk-go/sync-for-payroll/v2/pkg/types"
 
 	"github.com/ericlagergren/decimal"
 )

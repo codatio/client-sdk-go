@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payroll/v2/pkg/models/shared"
 	"net/http"
 )
 
@@ -33,8 +33,6 @@ type GetAccountResponse struct {
 	Account *shared.Account
 	// HTTP response content type for this operation
 	ContentType string
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -53,13 +51,6 @@ func (o *GetAccountResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *GetAccountResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *GetAccountResponse) GetStatusCode() int {
