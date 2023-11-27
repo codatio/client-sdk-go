@@ -36,13 +36,13 @@ func (o *UpdateExpenseDatasetRequest) GetTransactionID() string {
 	return o.TransactionID
 }
 
-// UpdateExpenseDataset202ApplicationJSON - Accepted
-type UpdateExpenseDataset202ApplicationJSON struct {
+// UpdateExpenseDatasetResponseBody - Accepted
+type UpdateExpenseDatasetResponseBody struct {
 	// Unique identifier for the updated sync.
 	SyncID *string `json:"syncId,omitempty"`
 }
 
-func (o *UpdateExpenseDataset202ApplicationJSON) GetSyncID() *string {
+func (o *UpdateExpenseDatasetResponseBody) GetSyncID() *string {
 	if o == nil {
 		return nil
 	}
@@ -52,14 +52,12 @@ func (o *UpdateExpenseDataset202ApplicationJSON) GetSyncID() *string {
 type UpdateExpenseDatasetResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// The request made is not valid.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Accepted
-	UpdateExpenseDataset202ApplicationJSONObject *UpdateExpenseDataset202ApplicationJSON
+	Object *UpdateExpenseDatasetResponseBody
 }
 
 func (o *UpdateExpenseDatasetResponse) GetContentType() string {
@@ -67,13 +65,6 @@ func (o *UpdateExpenseDatasetResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *UpdateExpenseDatasetResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *UpdateExpenseDatasetResponse) GetStatusCode() int {
@@ -90,9 +81,9 @@ func (o *UpdateExpenseDatasetResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *UpdateExpenseDatasetResponse) GetUpdateExpenseDataset202ApplicationJSONObject() *UpdateExpenseDataset202ApplicationJSON {
+func (o *UpdateExpenseDatasetResponse) GetObject() *UpdateExpenseDatasetResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.UpdateExpenseDataset202ApplicationJSONObject
+	return o.Object
 }

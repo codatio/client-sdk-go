@@ -22,8 +22,6 @@ func (o *GetMappingOptionsRequest) GetCompanyID() string {
 type GetMappingOptionsResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// Success
 	MappingOptions *shared.MappingOptions
 	// HTTP response status code for this operation
@@ -37,13 +35,6 @@ func (o *GetMappingOptionsResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *GetMappingOptionsResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *GetMappingOptionsResponse) GetMappingOptions() *shared.MappingOptions {

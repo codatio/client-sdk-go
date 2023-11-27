@@ -9,25 +9,25 @@ import (
 	"github.com/ericlagergren/decimal"
 )
 
-// ExpenseTransactionType - The type of transaction.
-type ExpenseTransactionType string
+// Type - The type of transaction.
+type Type string
 
 const (
-	ExpenseTransactionTypePayment       ExpenseTransactionType = "Payment"
-	ExpenseTransactionTypeRefund        ExpenseTransactionType = "Refund"
-	ExpenseTransactionTypeReward        ExpenseTransactionType = "Reward"
-	ExpenseTransactionTypeChargeback    ExpenseTransactionType = "Chargeback"
-	ExpenseTransactionTypeTransferIn    ExpenseTransactionType = "TransferIn"
-	ExpenseTransactionTypeTransferOut   ExpenseTransactionType = "TransferOut"
-	ExpenseTransactionTypeAdjustmentIn  ExpenseTransactionType = "AdjustmentIn"
-	ExpenseTransactionTypeAdjustmentOut ExpenseTransactionType = "AdjustmentOut"
+	TypePayment       Type = "Payment"
+	TypeRefund        Type = "Refund"
+	TypeReward        Type = "Reward"
+	TypeChargeback    Type = "Chargeback"
+	TypeTransferIn    Type = "TransferIn"
+	TypeTransferOut   Type = "TransferOut"
+	TypeAdjustmentIn  Type = "AdjustmentIn"
+	TypeAdjustmentOut Type = "AdjustmentOut"
 )
 
-func (e ExpenseTransactionType) ToPointer() *ExpenseTransactionType {
+func (e Type) ToPointer() *Type {
 	return &e
 }
 
-func (e *ExpenseTransactionType) UnmarshalJSON(data []byte) error {
+func (e *Type) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -48,10 +48,10 @@ func (e *ExpenseTransactionType) UnmarshalJSON(data []byte) error {
 	case "AdjustmentIn":
 		fallthrough
 	case "AdjustmentOut":
-		*e = ExpenseTransactionType(v)
+		*e = Type(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ExpenseTransactionType: %v", v)
+		return fmt.Errorf("invalid value for Type: %v", v)
 	}
 }
 
@@ -114,7 +114,7 @@ type ExpenseTransaction struct {
 	// Any private, company notes about the transaction.
 	Notes *string `json:"notes,omitempty"`
 	// The type of transaction.
-	Type ExpenseTransactionType `json:"type"`
+	Type Type `json:"type"`
 }
 
 func (e ExpenseTransaction) MarshalJSON() ([]byte, error) {
@@ -184,9 +184,9 @@ func (o *ExpenseTransaction) GetNotes() *string {
 	return o.Notes
 }
 
-func (o *ExpenseTransaction) GetType() ExpenseTransactionType {
+func (o *ExpenseTransaction) GetType() Type {
 	if o == nil {
-		return ExpenseTransactionType("")
+		return Type("")
 	}
 	return o.Type
 }
