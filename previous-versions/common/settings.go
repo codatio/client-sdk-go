@@ -15,13 +15,13 @@ import (
 	"strings"
 )
 
-// settings - Manage your Codat instance.
-type settings struct {
+// Settings - Manage your Codat instance.
+type Settings struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newSettings(sdkConfig sdkConfiguration) *settings {
-	return &settings{
+func newSettings(sdkConfig sdkConfiguration) *Settings {
+	return &Settings{
 		sdkConfiguration: sdkConfig,
 	}
 }
@@ -38,7 +38,7 @@ func newSettings(sdkConfig sdkConfiguration) *settings {
 // * Your first API key is created for you. Access this key via [Codat's Portal](https://app.codat.io/developers/api-keys).
 // * If you require multiple API keys, perform multiple calls to the *Create API keys* endpoint.
 // * The number of API keys is limited to 10. If you have reached the maximum amount of keys, use the *Delete API key* endpoint to delete an unused key first.
-func (s *settings) CreateAPIKey(ctx context.Context, request *shared.CreateAPIKey, opts ...operations.Option) (*operations.CreateAPIKeyResponse, error) {
+func (s *Settings) CreateAPIKey(ctx context.Context, request *shared.CreateAPIKey, opts ...operations.Option) (*operations.CreateAPIKeyResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -135,20 +135,31 @@ func (s *settings) CreateAPIKey(ctx context.Context, request *shared.CreateAPIKe
 		fallthrough
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 409:
 		fallthrough
 	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -165,7 +176,7 @@ func (s *settings) CreateAPIKey(ctx context.Context, request *shared.CreateAPIKe
 //
 // * It is possible to delete the last remaining API key. If this happens, a new key can be created via the [API key management page](https://app.codat.io/developers/api-keys) of the Portal.
 // * It is possible to delete the API key used to authenticate the *Delete API key* request.
-func (s *settings) DeleteAPIKey(ctx context.Context, request operations.DeleteAPIKeyRequest, opts ...operations.Option) (*operations.DeleteAPIKeyResponse, error) {
+func (s *Settings) DeleteAPIKey(ctx context.Context, request operations.DeleteAPIKeyRequest, opts ...operations.Option) (*operations.DeleteAPIKeyResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -243,14 +254,9 @@ func (s *settings) DeleteAPIKey(ctx context.Context, request operations.DeleteAP
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
 	case httpRes.StatusCode == 204:
-	case httpRes.StatusCode == 401:
-		fallthrough
-	case httpRes.StatusCode == 404:
-		fallthrough
-	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -259,6 +265,33 @@ func (s *settings) DeleteAPIKey(ctx context.Context, request operations.DeleteAP
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
+	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out sdkerrors.ErrorMessage
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+			return nil, &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -266,9 +299,7 @@ func (s *settings) DeleteAPIKey(ctx context.Context, request operations.DeleteAP
 
 // GetProfile - Get profile
 // Fetch your Codat profile.
-//
-// Deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
-func (s *settings) GetProfile(ctx context.Context, opts ...operations.Option) (*operations.GetProfileResponse, error) {
+func (s *Settings) GetProfile(ctx context.Context, opts ...operations.Option) (*operations.GetProfileResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -356,18 +387,29 @@ func (s *settings) GetProfile(ctx context.Context, opts ...operations.Option) (*
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -375,7 +417,7 @@ func (s *settings) GetProfile(ctx context.Context, opts ...operations.Option) (*
 
 // GetSyncSettings - Get sync settings
 // Retrieve the [sync settings](https://docs.codat.io/knowledge-base/advanced-sync-settings) for your client. This includes how often data types should be queued to be updated, and how much history should be fetched.
-func (s *settings) GetSyncSettings(ctx context.Context, opts ...operations.Option) (*operations.GetProfileSyncSettingsResponse, error) {
+func (s *Settings) GetSyncSettings(ctx context.Context, opts ...operations.Option) (*operations.GetProfileSyncSettingsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -463,18 +505,29 @@ func (s *settings) GetSyncSettings(ctx context.Context, opts ...operations.Optio
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -486,7 +539,7 @@ func (s *settings) GetSyncSettings(ctx context.Context, opts ...operations.Optio
 // [API keys](https://docs.codat.io/platform-api#/schemas/apiKeys) are tokens used to control access to the API. Include this token in the `Authorization` header parameter when making API calls, following the word "Basic" and a space with your API key.
 //
 // You can [read more](https://docs.codat.io/using-the-api/authentication) about authentication at Codat and managing API keys via the Portal UI or API.
-func (s *settings) ListAPIKeys(ctx context.Context, opts ...operations.Option) (*operations.ListAPIKeysResponse, error) {
+func (s *Settings) ListAPIKeys(ctx context.Context, opts ...operations.Option) (*operations.ListAPIKeysResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -574,18 +627,29 @@ func (s *settings) ListAPIKeys(ctx context.Context, opts ...operations.Option) (
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -593,7 +657,7 @@ func (s *settings) ListAPIKeys(ctx context.Context, opts ...operations.Option) (
 
 // UpdateProfile - Update profile
 // Update your Codat profile
-func (s *settings) UpdateProfile(ctx context.Context, request *shared.Profile, opts ...operations.Option) (*operations.UpdateProfileResponse, error) {
+func (s *Settings) UpdateProfile(ctx context.Context, request *shared.Profile, opts ...operations.Option) (*operations.UpdateProfileResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -688,18 +752,29 @@ func (s *settings) UpdateProfile(ctx context.Context, request *shared.Profile, o
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -707,7 +782,7 @@ func (s *settings) UpdateProfile(ctx context.Context, request *shared.Profile, o
 
 // UpdateSyncSettings - Update all sync settings
 // Update sync settings for all data types.
-func (s *settings) UpdateSyncSettings(ctx context.Context, request *operations.UpdateProfileSyncSettingsRequestBody, opts ...operations.Option) (*operations.UpdateProfileSyncSettingsResponse, error) {
+func (s *Settings) UpdateSyncSettings(ctx context.Context, request *operations.UpdateProfileSyncSettingsRequestBody, opts ...operations.Option) (*operations.UpdateProfileSyncSettingsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -791,18 +866,29 @@ func (s *settings) UpdateSyncSettings(ctx context.Context, request *operations.U
 	case httpRes.StatusCode == 204:
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
