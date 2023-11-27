@@ -42,8 +42,6 @@ type GetDisputeResponse struct {
 	ContentType string
 	// OK
 	Dispute *shared.Dispute
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -62,13 +60,6 @@ func (o *GetDisputeResponse) GetDispute() *shared.Dispute {
 		return nil
 	}
 	return o.Dispute
-}
-
-func (o *GetDisputeResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *GetDisputeResponse) GetStatusCode() int {

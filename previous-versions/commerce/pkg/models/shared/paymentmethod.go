@@ -7,20 +7,20 @@ import (
 	"fmt"
 )
 
-// PaymentMethodStatus - Status of the Payment Method.
-type PaymentMethodStatus string
+// Status of the Payment Method.
+type Status string
 
 const (
-	PaymentMethodStatusUnknown  PaymentMethodStatus = "Unknown"
-	PaymentMethodStatusActive   PaymentMethodStatus = "Active"
-	PaymentMethodStatusArchived PaymentMethodStatus = "Archived"
+	StatusUnknown  Status = "Unknown"
+	StatusActive   Status = "Active"
+	StatusArchived Status = "Archived"
 )
 
-func (e PaymentMethodStatus) ToPointer() *PaymentMethodStatus {
+func (e Status) ToPointer() *Status {
 	return &e
 }
 
-func (e *PaymentMethodStatus) UnmarshalJSON(data []byte) error {
+func (e *Status) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -31,10 +31,10 @@ func (e *PaymentMethodStatus) UnmarshalJSON(data []byte) error {
 	case "Active":
 		fallthrough
 	case "Archived":
-		*e = PaymentMethodStatus(v)
+		*e = Status(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for PaymentMethodStatus: %v", v)
+		return fmt.Errorf("invalid value for Status: %v", v)
 	}
 }
 
@@ -49,7 +49,7 @@ type PaymentMethod struct {
 	Name               *string `json:"name,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Status of the Payment Method.
-	Status *PaymentMethodStatus `json:"status,omitempty"`
+	Status *Status `json:"status,omitempty"`
 }
 
 func (o *PaymentMethod) GetID() string {
@@ -80,7 +80,7 @@ func (o *PaymentMethod) GetSourceModifiedDate() *string {
 	return o.SourceModifiedDate
 }
 
-func (o *PaymentMethod) GetStatus() *PaymentMethodStatus {
+func (o *PaymentMethod) GetStatus() *Status {
 	if o == nil {
 		return nil
 	}

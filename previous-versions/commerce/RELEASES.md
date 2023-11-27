@@ -341,3 +341,13 @@ Based on:
 - [go v0.25.0] previous-versions/commerce
 ### Releases
 - [Go v0.25.0] https://github.com/codatio/client-sdk-go/releases/tag/previous-versions/commerce/v0.25.0 - previous-versions/commerce
+
+## 2023-11-27 01:30:00
+### Changes
+Based on:
+- OpenAPI Doc 3.0.0 https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Commerce.yaml
+- Speakeasy CLI 1.122.0 (2.195.2) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [go v0.26.0] previous-versions/commerce
+### Releases
+- [Go v0.26.0] https://github.com/codatio/client-sdk-go/releases/tag/previous-versions/commerce/v0.26.0 - previous-versions/commerce

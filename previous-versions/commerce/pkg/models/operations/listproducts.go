@@ -79,8 +79,6 @@ func (o *ListProductsRequest) GetQuery() *string {
 type ListProductsResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Your `query` parameter was not correctly formed
-	ErrorMessage *shared.ErrorMessage
 	// OK
 	Products *shared.Products
 	// HTTP response status code for this operation
@@ -94,13 +92,6 @@ func (o *ListProductsResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *ListProductsResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *ListProductsResponse) GetProducts() *shared.Products {

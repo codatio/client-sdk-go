@@ -1,24 +1,41 @@
 configVersion: 1.0.0
 management:
-  docChecksum: 640f5d08c51ea84e84a6d38fbe2231e6
+  docChecksum: 3e5960645aef0e4cdbb3c6b9bc15c08b
   docVersion: 3.0.0
-  speakeasyVersion: 1.100.2
-  generationVersion: 2.159.2
+  speakeasyVersion: 1.122.0
+  generationVersion: 2.195.2
 generation:
+  comments: {}
   sdkClassName: CodatCommerce
-  singleTagPerOp: false
+  repoURL: https://github.com/codatio/client-sdk-go.git
+  usageSnippets:
+    optionalPropertyRendering: withExample
   telemetryEnabled: true
 features:
   go:
     constsAndDefaults: 0.1.1
-    core: 2.91.5
-    examples: 2.81.2
+    core: 3.1.5
+    examples: 2.81.3
     globalSecurity: 2.82.2
-    globalServerURLs: 2.82.0
+    globalServerURLs: 2.82.1
     nameOverrides: 2.81.1
     retries: 2.82.1
 go:
-  version: 0.25.0
+  version: 0.26.0
+  clientServerStatusCodesAsErrors: true
   flattenGlobalSecurity: false
+  imports:
+    option: openapi
+    paths:
+      callbacks: pkg/models/callbacks
+      errors: pkg/models/sdkerrors
+      operations: pkg/models/operations
+      shared: pkg/models/shared
+      webhooks: pkg/models/webhooks
+  inputModelSuffix: input
+  installationURL: https://github.com/codatio/client-sdk-go/previous-versions/commerce
   maxMethodParams: 0
+  outputModelSuffix: output
   packageName: github.com/codatio/client-sdk-go/previous-versions/commerce
+  published: true
+  repoSubDirectory: previous-versions/commerce

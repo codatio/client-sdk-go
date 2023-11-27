@@ -81,8 +81,6 @@ type ListCustomersResponse struct {
 	ContentType string
 	// OK
 	Customers *shared.Customers
-	// Your `query` parameter was not correctly formed
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -101,13 +99,6 @@ func (o *ListCustomersResponse) GetCustomers() *shared.Customers {
 		return nil
 	}
 	return o.Customers
-}
-
-func (o *ListCustomersResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *ListCustomersResponse) GetStatusCode() int {
