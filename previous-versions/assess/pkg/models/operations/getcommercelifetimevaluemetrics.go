@@ -76,8 +76,6 @@ func (o *GetCommerceLifetimeValueMetricsRequest) GetReportDate() string {
 type GetCommerceLifetimeValueMetricsResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// OK
 	Report *shared.Report
 	// HTTP response status code for this operation
@@ -91,13 +89,6 @@ func (o *GetCommerceLifetimeValueMetricsResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *GetCommerceLifetimeValueMetricsResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *GetCommerceLifetimeValueMetricsResponse) GetReport() *shared.Report {

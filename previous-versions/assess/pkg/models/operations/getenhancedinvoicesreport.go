@@ -63,8 +63,6 @@ type GetEnhancedInvoicesReportResponse struct {
 	ContentType string
 	// OK
 	EnhancedInvoicesReport *shared.EnhancedInvoicesReport
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -83,13 +81,6 @@ func (o *GetEnhancedInvoicesReportResponse) GetEnhancedInvoicesReport() *shared.
 		return nil
 	}
 	return o.EnhancedInvoicesReport
-}
-
-func (o *GetEnhancedInvoicesReportResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *GetEnhancedInvoicesReportResponse) GetStatusCode() int {

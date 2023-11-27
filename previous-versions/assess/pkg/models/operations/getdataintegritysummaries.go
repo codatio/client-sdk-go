@@ -40,8 +40,6 @@ func (o *GetDataIntegritySummariesRequest) GetQuery() *string {
 type GetDataIntegritySummariesResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -55,13 +53,6 @@ func (o *GetDataIntegritySummariesResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *GetDataIntegritySummariesResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *GetDataIntegritySummariesResponse) GetStatusCode() int {
