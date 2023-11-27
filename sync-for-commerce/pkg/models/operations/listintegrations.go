@@ -3,8 +3,8 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/utils"
 	"net/http"
 )
 
