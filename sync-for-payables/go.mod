@@ -1,4 +1,4 @@
-module github.com/codatio/client-sdk-go/sync-for-payables/v2
+module github.com/codatio/client-sdk-go/sync-for-payables/v3
 
 go 1.14
 

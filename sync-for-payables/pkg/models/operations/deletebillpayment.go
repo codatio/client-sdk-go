@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
 	"net/http"
 )
 
@@ -12,6 +12,8 @@ type DeleteBillPaymentRequest struct {
 	BillPaymentID string `pathParam:"style=simple,explode=false,name=billPaymentId"`
 	// Unique identifier for a company.
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
+	// Unique identifier for a connection.
+	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
 func (o *DeleteBillPaymentRequest) GetBillPaymentID() string {
@@ -28,11 +30,16 @@ func (o *DeleteBillPaymentRequest) GetCompanyID() string {
 	return o.CompanyID
 }
 
+func (o *DeleteBillPaymentRequest) GetConnectionID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ConnectionID
+}
+
 type DeleteBillPaymentResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// OK
 	PushOperation *shared.PushOperation
 	// HTTP response status code for this operation
@@ -46,13 +53,6 @@ func (o *DeleteBillPaymentResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *DeleteBillPaymentResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *DeleteBillPaymentResponse) GetPushOperation() *shared.PushOperation {

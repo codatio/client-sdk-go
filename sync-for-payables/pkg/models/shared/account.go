@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
@@ -77,11 +77,11 @@ func (o *AccountValidDataTypeLinks) GetProperty() *string {
 // Accounts are the categories a business uses to record accounting transactions. From the Accounts endpoints, you can retrieve a list of all accounts for a specified company.
 //
 // The categories for an account include:
-//   - Asset
-//   - Expense
-//   - Income
-//   - Liability
-//   - Equity.
+// * Asset
+// * Expense
+// * Income
+// * Liability
+// * Equity.
 //
 // The same account may have a different category based on the integration it is used in. For example, a current account (known as checking in the US) should be categorized as `Asset.Current` for Xero, and `Asset.Bank.Checking` for QuickBooks Online.
 //

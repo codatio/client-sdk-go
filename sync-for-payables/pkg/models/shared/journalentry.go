@@ -2,24 +2,24 @@
 
 package shared
 
-// JournalEntryRecordReference - Links the current record to the underlying record or data type that created it.
+// RecordReference - Links the current record to the underlying record or data type that created it.
 //
 // For example, if a journal entry is generated based on an invoice, this property allows you to connect the journal entry to the underlying invoice in our data model.
-type JournalEntryRecordReference struct {
+type RecordReference struct {
 	// Allowed name of the 'dataType'.
 	DataType *string `json:"dataType,omitempty"`
 	// 'id' of the underlying record or data type.
 	ID *string `json:"id,omitempty"`
 }
 
-func (o *JournalEntryRecordReference) GetDataType() *string {
+func (o *RecordReference) GetDataType() *string {
 	if o == nil {
 		return nil
 	}
 	return o.DataType
 }
 
-func (o *JournalEntryRecordReference) GetID() *string {
+func (o *RecordReference) GetID() *string {
 	if o == nil {
 		return nil
 	}
@@ -102,8 +102,8 @@ type JournalEntry struct {
 	// Links the current record to the underlying record or data type that created it.
 	//
 	// For example, if a journal entry is generated based on an invoice, this property allows you to connect the journal entry to the underlying invoice in our data model.
-	RecordRef          *JournalEntryRecordReference `json:"recordRef,omitempty"`
-	SourceModifiedDate *string                      `json:"sourceModifiedDate,omitempty"`
+	RecordRef          *RecordReference `json:"recordRef,omitempty"`
+	SourceModifiedDate *string          `json:"sourceModifiedDate,omitempty"`
 	// Supplemental data is additional data you can include in our standard data types.
 	//
 	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
@@ -186,7 +186,7 @@ func (o *JournalEntry) GetPostedOn() *string {
 	return o.PostedOn
 }
 
-func (o *JournalEntry) GetRecordRef() *JournalEntryRecordReference {
+func (o *JournalEntry) GetRecordRef() *RecordReference {
 	if o == nil {
 		return nil
 	}

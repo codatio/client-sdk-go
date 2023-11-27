@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
 	"net/http"
 )
 
@@ -50,8 +50,6 @@ type CreateBillResponse struct {
 	ContentType string
 	// Success
 	CreateBillResponse *shared.CreateBillResponse
-	// The request made is not valid.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -70,13 +68,6 @@ func (o *CreateBillResponse) GetCreateBillResponse() *shared.CreateBillResponse 
 		return nil
 	}
 	return o.CreateBillResponse
-}
-
-func (o *CreateBillResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *CreateBillResponse) GetStatusCode() int {
