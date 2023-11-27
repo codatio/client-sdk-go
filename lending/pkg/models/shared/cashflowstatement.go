@@ -3,8 +3,8 @@
 package shared
 
 type CashFlowStatement struct {
-	CashPayments *ReportLine `json:"cashPayments,omitempty"`
-	CashReceipts *ReportLine `json:"cashReceipts,omitempty"`
+	CashPayments *ReportLineInput `json:"cashPayments,omitempty"`
+	CashReceipts *ReportLineInput `json:"cashReceipts,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -47,14 +47,14 @@ type CashFlowStatement struct {
 	ToDate *string `json:"toDate,omitempty"`
 }
 
-func (o *CashFlowStatement) GetCashPayments() *ReportLine {
+func (o *CashFlowStatement) GetCashPayments() *ReportLineInput {
 	if o == nil {
 		return nil
 	}
 	return o.CashPayments
 }
 
-func (o *CashFlowStatement) GetCashReceipts() *ReportLine {
+func (o *CashFlowStatement) GetCashReceipts() *ReportLineInput {
 	if o == nil {
 		return nil
 	}

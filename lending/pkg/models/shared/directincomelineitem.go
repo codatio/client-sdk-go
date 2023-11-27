@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/utils"
+	"github.com/codatio/client-sdk-go/lending/v5/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
@@ -17,7 +17,7 @@ type DirectIncomeLineItem struct {
 	// Discount percentage for the line before tax.
 	DiscountPercentage *decimal.Big `decimal:"number" json:"discountPercentage,omitempty"`
 	// Reference to the item the line is linked to.
-	ItemRef *ItemRef `json:"itemRef,omitempty"`
+	ItemRef *PropertieItemRef `json:"itemRef,omitempty"`
 	// The number of units of goods or services received.
 	//
 	// Note: If the platform does not provide this information, the quantity will be mapped as 1.
@@ -86,7 +86,7 @@ func (o *DirectIncomeLineItem) GetDiscountPercentage() *decimal.Big {
 	return o.DiscountPercentage
 }
 
-func (o *DirectIncomeLineItem) GetItemRef() *ItemRef {
+func (o *DirectIncomeLineItem) GetItemRef() *PropertieItemRef {
 	if o == nil {
 		return nil
 	}

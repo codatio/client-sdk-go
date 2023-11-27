@@ -2,35 +2,35 @@
 
 package lending
 
-type sales struct {
-	Customers         *salesCustomers
-	Disputes          *salesDisputes
-	Locations         *salesLocations
-	Metrics           *salesMetrics
-	Orders            *salesOrders
-	PaymentMethods    *salesPaymentMethods
-	Payments          *salesPayments
-	ProductCategories *salesProductCategories
-	Products          *salesProducts
-	Reports           *salesReports
-	Transactions      *salesTransactions
+type Sales struct {
+	Customers         *CodatLendingCustomers
+	Disputes          *Disputes
+	Locations         *Locations
+	Orders            *Orders
+	PaymentMethods    *PaymentMethods
+	Payments          *CodatLendingSalesPayments
+	ProductCategories *ProductCategories
+	Products          *Products
+	Transactions      *CodatLendingTransactions
+	Metrics           *Metrics
+	Reports           *CodatLendingReports
 
 	sdkConfiguration sdkConfiguration
 }
 
-func newSales(sdkConfig sdkConfiguration) *sales {
-	return &sales{
+func newSales(sdkConfig sdkConfiguration) *Sales {
+	return &Sales{
 		sdkConfiguration:  sdkConfig,
-		Customers:         newSalesCustomers(sdkConfig),
-		Disputes:          newSalesDisputes(sdkConfig),
-		Locations:         newSalesLocations(sdkConfig),
-		Metrics:           newSalesMetrics(sdkConfig),
-		Orders:            newSalesOrders(sdkConfig),
-		PaymentMethods:    newSalesPaymentMethods(sdkConfig),
-		Payments:          newSalesPayments(sdkConfig),
-		ProductCategories: newSalesProductCategories(sdkConfig),
-		Products:          newSalesProducts(sdkConfig),
-		Reports:           newSalesReports(sdkConfig),
-		Transactions:      newSalesTransactions(sdkConfig),
+		Customers:         newCodatLendingCustomers(sdkConfig),
+		Disputes:          newDisputes(sdkConfig),
+		Locations:         newLocations(sdkConfig),
+		Orders:            newOrders(sdkConfig),
+		PaymentMethods:    newPaymentMethods(sdkConfig),
+		Payments:          newCodatLendingSalesPayments(sdkConfig),
+		ProductCategories: newProductCategories(sdkConfig),
+		Products:          newProducts(sdkConfig),
+		Transactions:      newCodatLendingTransactions(sdkConfig),
+		Metrics:           newMetrics(sdkConfig),
+		Reports:           newCodatLendingReports(sdkConfig),
 	}
 }

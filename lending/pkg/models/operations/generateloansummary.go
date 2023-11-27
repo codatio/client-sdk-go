@@ -5,24 +5,23 @@ package operations
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
 	"net/http"
 )
 
-// GenerateLoanSummarySourceType - Data source type.
-type GenerateLoanSummarySourceType string
+// SourceType - Data source type.
+type SourceType string
 
 const (
-	GenerateLoanSummarySourceTypeBanking    GenerateLoanSummarySourceType = "banking"
-	GenerateLoanSummarySourceTypeCommerce   GenerateLoanSummarySourceType = "commerce"
-	GenerateLoanSummarySourceTypeAccounting GenerateLoanSummarySourceType = "accounting"
+	SourceTypeBanking    SourceType = "banking"
+	SourceTypeCommerce   SourceType = "commerce"
+	SourceTypeAccounting SourceType = "accounting"
 )
 
-func (e GenerateLoanSummarySourceType) ToPointer() *GenerateLoanSummarySourceType {
+func (e SourceType) ToPointer() *SourceType {
 	return &e
 }
 
-func (e *GenerateLoanSummarySourceType) UnmarshalJSON(data []byte) error {
+func (e *SourceType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -33,10 +32,10 @@ func (e *GenerateLoanSummarySourceType) UnmarshalJSON(data []byte) error {
 	case "commerce":
 		fallthrough
 	case "accounting":
-		*e = GenerateLoanSummarySourceType(v)
+		*e = SourceType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for GenerateLoanSummarySourceType: %v", v)
+		return fmt.Errorf("invalid value for SourceType: %v", v)
 	}
 }
 
@@ -44,7 +43,7 @@ type GenerateLoanSummaryRequest struct {
 	// Unique identifier for a company.
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	// Data source type.
-	SourceType GenerateLoanSummarySourceType `queryParam:"style=form,explode=true,name=sourceType"`
+	SourceType SourceType `queryParam:"style=form,explode=true,name=sourceType"`
 }
 
 func (o *GenerateLoanSummaryRequest) GetCompanyID() string {
@@ -54,9 +53,9 @@ func (o *GenerateLoanSummaryRequest) GetCompanyID() string {
 	return o.CompanyID
 }
 
-func (o *GenerateLoanSummaryRequest) GetSourceType() GenerateLoanSummarySourceType {
+func (o *GenerateLoanSummaryRequest) GetSourceType() SourceType {
 	if o == nil {
-		return GenerateLoanSummarySourceType("")
+		return SourceType("")
 	}
 	return o.SourceType
 }
@@ -64,8 +63,6 @@ func (o *GenerateLoanSummaryRequest) GetSourceType() GenerateLoanSummarySourceTy
 type GenerateLoanSummaryResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -77,13 +74,6 @@ func (o *GenerateLoanSummaryResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *GenerateLoanSummaryResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *GenerateLoanSummaryResponse) GetStatusCode() int {

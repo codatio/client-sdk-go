@@ -2,27 +2,29 @@
 
 package lending
 
-type loanWriteback struct {
-	Accounts         *loanWritebackAccounts
-	BankTransactions *loanWritebackBankTransactions
-	CreateOperations *loanWritebackCreateOperations
-	DirectCosts      *loanWritebackDirectCosts
-	Payments         *loanWritebackPayments
-	Suppliers        *loanWritebackSuppliers
-	Transfers        *loanWritebackTransfers
+type LoanWriteback struct {
+	BankAccounts     *BankAccounts
+	BankTransactions *BankTransactions
+	Accounts         *CodatLendingLoanWritebackAccounts
+	DirectCosts      *DirectCosts
+	Payments         *CodatLendingPayments
+	Suppliers        *CodatLendingSuppliers
+	Transfers        *Transfers
+	CreateOperations *CreateOperations
 
 	sdkConfiguration sdkConfiguration
 }
 
-func newLoanWriteback(sdkConfig sdkConfiguration) *loanWriteback {
-	return &loanWriteback{
+func newLoanWriteback(sdkConfig sdkConfiguration) *LoanWriteback {
+	return &LoanWriteback{
 		sdkConfiguration: sdkConfig,
-		Accounts:         newLoanWritebackAccounts(sdkConfig),
-		BankTransactions: newLoanWritebackBankTransactions(sdkConfig),
-		CreateOperations: newLoanWritebackCreateOperations(sdkConfig),
-		DirectCosts:      newLoanWritebackDirectCosts(sdkConfig),
-		Payments:         newLoanWritebackPayments(sdkConfig),
-		Suppliers:        newLoanWritebackSuppliers(sdkConfig),
-		Transfers:        newLoanWritebackTransfers(sdkConfig),
+		BankAccounts:     newBankAccounts(sdkConfig),
+		BankTransactions: newBankTransactions(sdkConfig),
+		Accounts:         newCodatLendingLoanWritebackAccounts(sdkConfig),
+		DirectCosts:      newDirectCosts(sdkConfig),
+		Payments:         newCodatLendingPayments(sdkConfig),
+		Suppliers:        newCodatLendingSuppliers(sdkConfig),
+		Transfers:        newTransfers(sdkConfig),
+		CreateOperations: newCreateOperations(sdkConfig),
 	}
 }

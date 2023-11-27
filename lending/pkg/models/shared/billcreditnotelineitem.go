@@ -3,33 +3,33 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/utils"
+	"github.com/codatio/client-sdk-go/lending/v5/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
-// BillCreditNoteLineItemItemReference - Reference to the item the line is linked to.
-type BillCreditNoteLineItemItemReference struct {
+// ItemReference - Reference to the item the line is linked to.
+type ItemReference struct {
 	// Unique identifier for the item in the accounting platform.
 	ID string `json:"id"`
 	// Name of the item in the accounting platform.
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *BillCreditNoteLineItemItemReference) GetID() string {
+func (o *ItemReference) GetID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ID
 }
 
-func (o *BillCreditNoteLineItemItemReference) GetName() *string {
+func (o *ItemReference) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// BillCreditNoteLineItemTaxRateReference - Data types that reference a tax rate, for example invoice and bill line items, use a taxRateRef that includes the ID and name of the linked tax rate.
+// TaxRateReference - Data types that reference a tax rate, for example invoice and bill line items, use a taxRateRef that includes the ID and name of the linked tax rate.
 //
 // Found on:
 //
@@ -39,7 +39,7 @@ func (o *BillCreditNoteLineItemItemReference) GetName() *string {
 // - Direct incomes line items
 // - Invoice line items
 // - Items
-type BillCreditNoteLineItemTaxRateReference struct {
+type TaxRateReference struct {
 	// Applicable tax rate.
 	EffectiveTaxRate *decimal.Big `decimal:"number" json:"effectiveTaxRate,omitempty"`
 	// Unique identifier for the tax rate in the accounting platform.
@@ -48,32 +48,32 @@ type BillCreditNoteLineItemTaxRateReference struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (b BillCreditNoteLineItemTaxRateReference) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(b, "", false)
+func (t TaxRateReference) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
 }
 
-func (b *BillCreditNoteLineItemTaxRateReference) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &b, "", false, false); err != nil {
+func (t *TaxRateReference) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, false); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *BillCreditNoteLineItemTaxRateReference) GetEffectiveTaxRate() *decimal.Big {
+func (o *TaxRateReference) GetEffectiveTaxRate() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.EffectiveTaxRate
 }
 
-func (o *BillCreditNoteLineItemTaxRateReference) GetID() *string {
+func (o *TaxRateReference) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *BillCreditNoteLineItemTaxRateReference) GetName() *string {
+func (o *TaxRateReference) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -90,7 +90,7 @@ type BillCreditNoteLineItem struct {
 	// Percentage rate of any discount applied to the line item.
 	DiscountPercentage *decimal.Big `decimal:"number" json:"discountPercentage,omitempty"`
 	// Reference to the item the line is linked to.
-	ItemRef *BillCreditNoteLineItemItemReference `json:"itemRef,omitempty"`
+	ItemRef *ItemReference `json:"itemRef,omitempty"`
 	// Number of units of the goods or service for which credit has been received.
 	Quantity *decimal.Big `decimal:"number" json:"quantity"`
 	// Amount of credit associated with the line item, including discounts but excluding tax.
@@ -107,7 +107,7 @@ type BillCreditNoteLineItem struct {
 	// - Direct incomes line items
 	// - Invoice line items
 	// - Items
-	TaxRateRef *BillCreditNoteLineItemTaxRateReference `json:"taxRateRef,omitempty"`
+	TaxRateRef *TaxRateReference `json:"taxRateRef,omitempty"`
 	// Total amount of the line item, including discounts and tax.
 	TotalAmount *decimal.Big `decimal:"number" json:"totalAmount,omitempty"`
 	// Categories, and a project and customer, against which the item is tracked.
@@ -159,7 +159,7 @@ func (o *BillCreditNoteLineItem) GetDiscountPercentage() *decimal.Big {
 	return o.DiscountPercentage
 }
 
-func (o *BillCreditNoteLineItem) GetItemRef() *BillCreditNoteLineItemItemReference {
+func (o *BillCreditNoteLineItem) GetItemRef() *ItemReference {
 	if o == nil {
 		return nil
 	}
@@ -187,7 +187,7 @@ func (o *BillCreditNoteLineItem) GetTaxAmount() *decimal.Big {
 	return o.TaxAmount
 }
 
-func (o *BillCreditNoteLineItem) GetTaxRateRef() *BillCreditNoteLineItemTaxRateReference {
+func (o *BillCreditNoteLineItem) GetTaxRateRef() *TaxRateReference {
 	if o == nil {
 		return nil
 	}

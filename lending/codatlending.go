@@ -5,8 +5,8 @@ package lending
 import (
 	"context"
 	"fmt"
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/utils"
+	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v5/pkg/utils"
 	"net/http"
 	"time"
 )
@@ -90,30 +90,30 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 // | Manage data          | Control how data is retrieved from an integration.                                                         |
 // | File upload          | Endpoints to manage uploaded files.                                                                        |
 type CodatLending struct {
-	// Access bank transactions from an accounting platform.
-	AccountingBankData *accountingBankData
 	// Create and manage your Codat companies.
-	Companies *companies
-	// View company information fetched from the source platform.
-	CompanyInfo *companyInfo
+	Companies *Companies
 	// Manage your companies' data connections.
-	Connections *connections
-	// Match mutable accounting data with immutable banking data to increase confidence in financial data.
-	DataIntegrity *dataIntegrity
-	// Download reports in Excel format.
-	ExcelReports *excelReports
+	Connections  *Connections
+	Transactions *Transactions
+	// Access bank transactions from an accounting platform.
+	AccountingBankData *CodatLendingAccountingBankData
+	Banking            *Banking
+	AccountsPayable    *AccountsPayable
+	Sales              *Sales
+	// View company information fetched from the source platform.
+	CompanyInfo        *CompanyInfo
+	AccountsReceivable *AccountsReceivable
 	// Endpoints to manage uploaded files.
-	FileUpload *fileUpload
+	FileUpload          *FileUpload
+	LoanWriteback       *LoanWriteback
+	FinancialStatements *FinancialStatements
+	ManageData          *ManageData
 	// Debt and other liabilities.
-	Liabilities         *liabilities
-	AccountsPayable     *accountsPayable
-	AccountsReceivable  *accountsReceivable
-	Banking             *banking
-	FinancialStatements *financialStatements
-	LoanWriteback       *loanWriteback
-	ManageData          *manageData
-	Sales               *sales
-	Transactions        *transactions
+	Liabilities *Liabilities
+	// Match mutable accounting data with immutable banking data to increase confidence in financial data.
+	DataIntegrity *DataIntegrity
+	// Download reports in Excel format.
+	ExcelReports *ExcelReports
 
 	sdkConfiguration sdkConfiguration
 }
@@ -191,9 +191,9 @@ func New(opts ...SDKOption) *CodatLending {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "4.3.0",
-			GenVersion:        "2.159.2",
-			UserAgent:         "speakeasy-sdk/go 4.3.0 2.159.2 3.0.0 github.com/codatio/client-sdk-go/lending",
+			SDKVersion:        "5.0.0",
+			GenVersion:        "2.195.2",
+			UserAgent:         "speakeasy-sdk/go 5.0.0 2.195.2 3.0.0 github.com/codatio/client-sdk-go/lending",
 		},
 	}
 	for _, opt := range opts {
@@ -212,37 +212,37 @@ func New(opts ...SDKOption) *CodatLending {
 		}
 	}
 
-	sdk.AccountingBankData = newAccountingBankData(sdk.sdkConfiguration)
-
 	sdk.Companies = newCompanies(sdk.sdkConfiguration)
+
+	sdk.Connections = newConnections(sdk.sdkConfiguration)
+
+	sdk.Transactions = newTransactions(sdk.sdkConfiguration)
+
+	sdk.AccountingBankData = newCodatLendingAccountingBankData(sdk.sdkConfiguration)
+
+	sdk.Banking = newBanking(sdk.sdkConfiguration)
+
+	sdk.AccountsPayable = newAccountsPayable(sdk.sdkConfiguration)
+
+	sdk.Sales = newSales(sdk.sdkConfiguration)
 
 	sdk.CompanyInfo = newCompanyInfo(sdk.sdkConfiguration)
 
-	sdk.Connections = newConnections(sdk.sdkConfiguration)
+	sdk.AccountsReceivable = newAccountsReceivable(sdk.sdkConfiguration)
+
+	sdk.FileUpload = newFileUpload(sdk.sdkConfiguration)
+
+	sdk.LoanWriteback = newLoanWriteback(sdk.sdkConfiguration)
+
+	sdk.FinancialStatements = newFinancialStatements(sdk.sdkConfiguration)
+
+	sdk.ManageData = newManageData(sdk.sdkConfiguration)
+
+	sdk.Liabilities = newLiabilities(sdk.sdkConfiguration)
 
 	sdk.DataIntegrity = newDataIntegrity(sdk.sdkConfiguration)
 
 	sdk.ExcelReports = newExcelReports(sdk.sdkConfiguration)
-
-	sdk.FileUpload = newFileUpload(sdk.sdkConfiguration)
-
-	sdk.Liabilities = newLiabilities(sdk.sdkConfiguration)
-
-	sdk.AccountsPayable = newAccountsPayable(sdk.sdkConfiguration)
-
-	sdk.AccountsReceivable = newAccountsReceivable(sdk.sdkConfiguration)
-
-	sdk.Banking = newBanking(sdk.sdkConfiguration)
-
-	sdk.FinancialStatements = newFinancialStatements(sdk.sdkConfiguration)
-
-	sdk.LoanWriteback = newLoanWriteback(sdk.sdkConfiguration)
-
-	sdk.ManageData = newManageData(sdk.sdkConfiguration)
-
-	sdk.Sales = newSales(sdk.sdkConfiguration)
-
-	sdk.Transactions = newTransactions(sdk.sdkConfiguration)
 
 	return sdk
 }
