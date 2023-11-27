@@ -29,12 +29,12 @@ Check out our [coverage explorer](https://knowledge.codat.io/supported-features/
 package main
 
 import(
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
 	"context"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/types"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
 	"log"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v3"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/types"
 )
 
 func main() {
@@ -44,31 +44,27 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Accounts.Create(ctx, operations.CreateAccountRequest{
-        Account: &shared.Account{
+        AccountPrototype: &shared.AccountPrototype{
             Currency: syncforexpenses.String("USD"),
             CurrentBalance: types.MustNewDecimalFromString("0"),
             Description: syncforexpenses.String("Invoices the business has issued but has not yet collected payment on."),
             FullyQualifiedCategory: syncforexpenses.String("Asset.Current"),
             FullyQualifiedName: syncforexpenses.String("Cash On Hand"),
-            ID: syncforexpenses.String("1b6266d1-1e44-46c5-8eb5-a8f98e03124e"),
-            Metadata: &shared.AccountMetadata{},
-            ModifiedDate: syncforexpenses.String("2022-10-23T00:00:00.000Z"),
             Name: syncforexpenses.String("Accounts Receivable"),
             NominalCode: syncforexpenses.String("610"),
-            SourceModifiedDate: syncforexpenses.String("2022-10-23T00:00:00.000Z"),
             Status: shared.AccountStatusActive.ToPointer(),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "Money": map[string]interface{}{
-                        "blue": "shred",
+                    "key": map[string]interface{}{
+                        "key": "string",
                     },
                 },
             },
             Type: shared.AccountTypeAsset.ToPointer(),
-            ValidDatatypeLinks: []shared.AccountValidDataTypeLinks{
-                shared.AccountValidDataTypeLinks{
+            ValidDatatypeLinks: []shared.ValidDataTypeLinks{
+                shared.ValidDataTypeLinks{
                     Links: []string{
-                        "abnormally",
+                        "string",
                     },
                 },
             },
@@ -88,17 +84,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
-| `request`                                                                          | [operations.CreateAccountRequest](../../models/operations/createaccountrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
-| `opts`                                                                             | [][operations.Option](../../models/operations/option.md)                           | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
+| `request`                                                                              | [operations.CreateAccountRequest](../../pkg/models/operations/createaccountrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `opts`                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
 
 ### Response
 
-**[*operations.CreateAccountResponse](../../models/operations/createaccountresponse.md), error**
-
+**[*operations.CreateAccountResponse](../../pkg/models/operations/createaccountresponse.md), error**
+| Error Object                    | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
+| sdkerrors.SDKError              | 400-600                         | */*                             |
 
 ## GetCreateModel
 
@@ -119,11 +118,11 @@ Check out our [coverage explorer](https://knowledge.codat.io/supported-features/
 package main
 
 import(
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
 	"context"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
 	"log"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v3"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/operations"
 )
 
 func main() {
@@ -148,14 +147,17 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                          | Type                                                                                                               | Required                                                                                                           | Description                                                                                                        |
-| ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                                              | :heavy_check_mark:                                                                                                 | The context to use for the request.                                                                                |
-| `request`                                                                                                          | [operations.GetCreateChartOfAccountsModelRequest](../../models/operations/getcreatechartofaccountsmodelrequest.md) | :heavy_check_mark:                                                                                                 | The request object to use for the request.                                                                         |
-| `opts`                                                                                                             | [][operations.Option](../../models/operations/option.md)                                                           | :heavy_minus_sign:                                                                                                 | The options for this request.                                                                                      |
+| Parameter                                                                                                              | Type                                                                                                                   | Required                                                                                                               | Description                                                                                                            |
+| ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                                  | :heavy_check_mark:                                                                                                     | The context to use for the request.                                                                                    |
+| `request`                                                                                                              | [operations.GetCreateChartOfAccountsModelRequest](../../pkg/models/operations/getcreatechartofaccountsmodelrequest.md) | :heavy_check_mark:                                                                                                     | The request object to use for the request.                                                                             |
+| `opts`                                                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                                                           | :heavy_minus_sign:                                                                                                     | The options for this request.                                                                                          |
 
 
 ### Response
 
-**[*operations.GetCreateChartOfAccountsModelResponse](../../models/operations/getcreatechartofaccountsmodelresponse.md), error**
-
+**[*operations.GetCreateChartOfAccountsModelResponse](../../pkg/models/operations/getcreatechartofaccountsmodelresponse.md), error**
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
+| sdkerrors.SDKError          | 400-600                     | */*                         |

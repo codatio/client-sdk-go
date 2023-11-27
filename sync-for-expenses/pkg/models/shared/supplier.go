@@ -2,72 +2,6 @@
 
 package shared
 
-type SupplierAccountingAddress struct {
-	// City of the customer address.
-	City *string `json:"city,omitempty"`
-	// Country of the customer address.
-	Country *string `json:"country,omitempty"`
-	// Line 1 of the customer address.
-	Line1 *string `json:"line1,omitempty"`
-	// Line 2 of the customer address.
-	Line2 *string `json:"line2,omitempty"`
-	// Postal code or zip code.
-	PostalCode *string `json:"postalCode,omitempty"`
-	// Region of the customer address.
-	Region *string `json:"region,omitempty"`
-	// The type of the address
-	Type AccountingAddressType `json:"type"`
-}
-
-func (o *SupplierAccountingAddress) GetCity() *string {
-	if o == nil {
-		return nil
-	}
-	return o.City
-}
-
-func (o *SupplierAccountingAddress) GetCountry() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Country
-}
-
-func (o *SupplierAccountingAddress) GetLine1() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Line1
-}
-
-func (o *SupplierAccountingAddress) GetLine2() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Line2
-}
-
-func (o *SupplierAccountingAddress) GetPostalCode() *string {
-	if o == nil {
-		return nil
-	}
-	return o.PostalCode
-}
-
-func (o *SupplierAccountingAddress) GetRegion() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Region
-}
-
-func (o *SupplierAccountingAddress) GetType() AccountingAddressType {
-	if o == nil {
-		return AccountingAddressType("")
-	}
-	return o.Type
-}
-
 // Supplier - > View the coverage for suppliers in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=suppliers" target="_blank">Data coverage explorer</a>.
 //
 // ## Overview
@@ -75,7 +9,7 @@ func (o *SupplierAccountingAddress) GetType() AccountingAddressType {
 // From the **Suppliers** endpoints, you can retrieve a list of [all the suppliers for a company](https://docs.codat.io/sync-for-expenses-api#/operations/list-suppliers). Suppliers' data links to accounts payable [bills](https://docs.codat.io/sync-for-expenses-api#/schemas/Bill).
 type Supplier struct {
 	// An array of Addresses.
-	Addresses []SupplierAccountingAddress `json:"addresses,omitempty"`
+	Addresses []Items `json:"addresses,omitempty"`
 	// Name of the main contact for the supplier.
 	ContactName *string `json:"contactName,omitempty"`
 	// Default currency the supplier's transactional data is recorded in.
@@ -103,7 +37,7 @@ type Supplier struct {
 	TaxNumber *string `json:"taxNumber,omitempty"`
 }
 
-func (o *Supplier) GetAddresses() []SupplierAccountingAddress {
+func (o *Supplier) GetAddresses() []Items {
 	if o == nil {
 		return nil
 	}
