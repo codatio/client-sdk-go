@@ -31,8 +31,6 @@ func (o *GetCreatePaymentsModelRequest) GetConnectionID() string {
 type GetCreatePaymentsModelResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// OK
 	PushOption *shared.PushOption
 	// HTTP response status code for this operation
@@ -46,13 +44,6 @@ func (o *GetCreatePaymentsModelResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *GetCreatePaymentsModelResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *GetCreatePaymentsModelResponse) GetPushOption() *shared.PushOption {

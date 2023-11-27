@@ -9,22 +9,22 @@ import (
 	"github.com/ericlagergren/decimal"
 )
 
-// BankAccountBankAccountType - The type of transactions and balances on the account.
+// BankAccountType - The type of transactions and balances on the account.
 // For Credit accounts, positive balances are liabilities, and positive transactions **reduce** liabilities.
 // For Debit accounts, positive balances are assets, and positive transactions **increase** assets.
-type BankAccountBankAccountType string
+type BankAccountType string
 
 const (
-	BankAccountBankAccountTypeUnknown BankAccountBankAccountType = "Unknown"
-	BankAccountBankAccountTypeCredit  BankAccountBankAccountType = "Credit"
-	BankAccountBankAccountTypeDebit   BankAccountBankAccountType = "Debit"
+	BankAccountTypeUnknown BankAccountType = "Unknown"
+	BankAccountTypeCredit  BankAccountType = "Credit"
+	BankAccountTypeDebit   BankAccountType = "Debit"
 )
 
-func (e BankAccountBankAccountType) ToPointer() *BankAccountBankAccountType {
+func (e BankAccountType) ToPointer() *BankAccountType {
 	return &e
 }
 
-func (e *BankAccountBankAccountType) UnmarshalJSON(data []byte) error {
+func (e *BankAccountType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -35,10 +35,10 @@ func (e *BankAccountBankAccountType) UnmarshalJSON(data []byte) error {
 	case "Credit":
 		fallthrough
 	case "Debit":
-		*e = BankAccountBankAccountType(v)
+		*e = BankAccountType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for BankAccountBankAccountType: %v", v)
+		return fmt.Errorf("invalid value for BankAccountType: %v", v)
 	}
 }
 
@@ -72,7 +72,7 @@ type BankAccount struct {
 	// The type of transactions and balances on the account.
 	// For Credit accounts, positive balances are liabilities, and positive transactions **reduce** liabilities.
 	// For Debit accounts, positive balances are assets, and positive transactions **increase** assets.
-	AccountType *BankAccountBankAccountType `json:"accountType,omitempty"`
+	AccountType *BankAccountType `json:"accountType,omitempty"`
 	// Total available balance of the bank account as reported by the underlying data source. This may take into account overdrafts or pending transactions for example.
 	AvailableBalance *decimal.Big `decimal:"number" json:"availableBalance,omitempty"`
 	// Balance of the bank account.
@@ -136,7 +136,7 @@ func (o *BankAccount) GetAccountNumber() *string {
 	return o.AccountNumber
 }
 
-func (o *BankAccount) GetAccountType() *BankAccountBankAccountType {
+func (o *BankAccount) GetAccountType() *BankAccountType {
 	if o == nil {
 		return nil
 	}

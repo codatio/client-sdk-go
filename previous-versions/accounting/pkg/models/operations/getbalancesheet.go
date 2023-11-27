@@ -48,18 +48,16 @@ func (o *GetBalanceSheetRequest) GetStartMonth() *string {
 
 type GetBalanceSheetResponse struct {
 	// Success
-	BalanceSheet *shared.BalanceSheet1
+	BalanceSheet *shared.BalanceSheetInput
 	// HTTP response content type for this operation
 	ContentType string
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 }
 
-func (o *GetBalanceSheetResponse) GetBalanceSheet() *shared.BalanceSheet1 {
+func (o *GetBalanceSheetResponse) GetBalanceSheet() *shared.BalanceSheetInput {
 	if o == nil {
 		return nil
 	}
@@ -71,13 +69,6 @@ func (o *GetBalanceSheetResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *GetBalanceSheetResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *GetBalanceSheetResponse) GetStatusCode() int {

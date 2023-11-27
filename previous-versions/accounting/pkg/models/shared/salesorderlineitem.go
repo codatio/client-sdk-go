@@ -7,17 +7,6 @@ import (
 	"github.com/ericlagergren/decimal"
 )
 
-type SalesOrderLineItemTracking struct {
-	RecordRefs []InvoiceTo `json:"recordRefs,omitempty"`
-}
-
-func (o *SalesOrderLineItemTracking) GetRecordRefs() []InvoiceTo {
-	if o == nil {
-		return nil
-	}
-	return o.RecordRefs
-}
-
 type SalesOrderLineItem struct {
 	// Data types that reference an account, for example bill and invoice line items, use an accountRef that includes the ID and name of the linked account.
 	AccountRef *AccountRef `json:"accountRef,omitempty"`
@@ -46,8 +35,8 @@ type SalesOrderLineItem struct {
 	// - Items
 	TaxRateRef *TaxRateRef `json:"taxRateRef,omitempty"`
 	// Total amount of the line, inclusive of discounts and tax.
-	TotalAmount *decimal.Big                `decimal:"number" json:"totalAmount,omitempty"`
-	Tracking    *SalesOrderLineItemTracking `json:"tracking,omitempty"`
+	TotalAmount *decimal.Big        `decimal:"number" json:"totalAmount,omitempty"`
+	Tracking    *PropertieTracking2 `json:"tracking,omitempty"`
 	// Price of each unit.
 	UnitAmount *decimal.Big `decimal:"number" json:"unitAmount,omitempty"`
 }
@@ -133,7 +122,7 @@ func (o *SalesOrderLineItem) GetTotalAmount() *decimal.Big {
 	return o.TotalAmount
 }
 
-func (o *SalesOrderLineItem) GetTracking() *SalesOrderLineItemTracking {
+func (o *SalesOrderLineItem) GetTracking() *PropertieTracking2 {
 	if o == nil {
 		return nil
 	}

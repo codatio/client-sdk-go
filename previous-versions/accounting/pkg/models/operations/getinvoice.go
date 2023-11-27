@@ -31,8 +31,6 @@ func (o *GetInvoiceRequest) GetInvoiceID() string {
 type GetInvoiceResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// Success
 	Invoice *shared.Invoice
 	// HTTP response status code for this operation
@@ -46,13 +44,6 @@ func (o *GetInvoiceResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *GetInvoiceResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *GetInvoiceResponse) GetInvoice() *shared.Invoice {

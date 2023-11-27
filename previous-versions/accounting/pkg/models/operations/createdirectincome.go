@@ -50,8 +50,6 @@ type CreateDirectIncomeResponse struct {
 	ContentType string
 	// Success
 	CreateDirectIncomeResponse *shared.CreateDirectIncomeResponse
-	// The request made is not valid.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -70,13 +68,6 @@ func (o *CreateDirectIncomeResponse) GetCreateDirectIncomeResponse() *shared.Cre
 		return nil
 	}
 	return o.CreateDirectIncomeResponse
-}
-
-func (o *CreateDirectIncomeResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *CreateDirectIncomeResponse) GetStatusCode() int {

@@ -26,7 +26,7 @@ type IsAgedCreditorsReportAvailableResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// OK
-	IsAgedCreditorsReportAvailable200ApplicationJSONBoolean *bool
+	Boolean *bool
 }
 
 func (o *IsAgedCreditorsReportAvailableResponse) GetContentType() string {
@@ -50,9 +50,9 @@ func (o *IsAgedCreditorsReportAvailableResponse) GetRawResponse() *http.Response
 	return o.RawResponse
 }
 
-func (o *IsAgedCreditorsReportAvailableResponse) GetIsAgedCreditorsReportAvailable200ApplicationJSONBoolean() *bool {
+func (o *IsAgedCreditorsReportAvailableResponse) GetBoolean() *bool {
 	if o == nil {
 		return nil
 	}
-	return o.IsAgedCreditorsReportAvailable200ApplicationJSONBoolean
+	return o.Boolean
 }

@@ -3,67 +3,9 @@
 package shared
 
 import (
-	"encoding/json"
-	"fmt"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
-
-// BillLineItemRecordLineReferenceDataType - Allowed name of the 'dataType'.
-type BillLineItemRecordLineReferenceDataType string
-
-const (
-	BillLineItemRecordLineReferenceDataTypePurchaseOrders BillLineItemRecordLineReferenceDataType = "purchaseOrders"
-)
-
-func (e BillLineItemRecordLineReferenceDataType) ToPointer() *BillLineItemRecordLineReferenceDataType {
-	return &e
-}
-
-func (e *BillLineItemRecordLineReferenceDataType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "purchaseOrders":
-		*e = BillLineItemRecordLineReferenceDataType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for BillLineItemRecordLineReferenceDataType: %v", v)
-	}
-}
-
-// BillLineItemRecordLineReference - Reference to the purchase order line this line was generated from.
-type BillLineItemRecordLineReference struct {
-	// Allowed name of the 'dataType'.
-	DataType *BillLineItemRecordLineReferenceDataType `json:"dataType,omitempty"`
-	// 'id' of the underlying record.
-	ID *string `json:"id,omitempty"`
-	// Line number of the underlying record.
-	LineNumber *string `json:"lineNumber,omitempty"`
-}
-
-func (o *BillLineItemRecordLineReference) GetDataType() *BillLineItemRecordLineReferenceDataType {
-	if o == nil {
-		return nil
-	}
-	return o.DataType
-}
-
-func (o *BillLineItemRecordLineReference) GetID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ID
-}
-
-func (o *BillLineItemRecordLineReference) GetLineNumber() *string {
-	if o == nil {
-		return nil
-	}
-	return o.LineNumber
-}
 
 type BillLineItem struct {
 	// Data types that reference an account, for example bill and invoice line items, use an accountRef that includes the ID and name of the linked account.
@@ -80,9 +22,8 @@ type BillLineItem struct {
 	IsDirectCost *bool    `json:"isDirectCost,omitempty"`
 	ItemRef      *ItemRef `json:"itemRef,omitempty"`
 	// The bill line's number.
-	LineNumber *string `json:"lineNumber,omitempty"`
-	// Reference to the purchase order line this line was generated from.
-	PurchaseOrderLineRef *BillLineItemRecordLineReference `json:"purchaseOrderLineRef,omitempty"`
+	LineNumber           *string `json:"lineNumber,omitempty"`
+	PurchaseOrderLineRef *Zero   `json:"purchaseOrderLineRef,omitempty"`
 	// Number of units of goods or services received.
 	Quantity *decimal.Big `decimal:"number" json:"quantity"`
 	// Amount of the line, inclusive of discounts but exclusive of tax.
@@ -103,11 +44,13 @@ type BillLineItem struct {
 	// Total amount of the line, including tax.
 	TotalAmount *decimal.Big `decimal:"number" json:"totalAmount,omitempty"`
 	// Categories, and a project and customer, against which the item is tracked.
-	Tracking *Propertiestracking `json:"tracking,omitempty"`
+	Tracking *PropertieTracking `json:"tracking,omitempty"`
 	// Collection of categories against which this item is tracked.
 	TrackingCategoryRefs []TrackingCategoryRef `json:"trackingCategoryRefs,omitempty"`
 	// Price of each unit of goods or services.
 	UnitAmount *decimal.Big `decimal:"number" json:"unitAmount"`
+	// The measurement which defines a unit for this item (e.g. 'kilogram', 'litre').
+	UnitOfMeasurement *string `json:"unitOfMeasurement,omitempty"`
 }
 
 func (b BillLineItem) MarshalJSON() ([]byte, error) {
@@ -170,7 +113,7 @@ func (o *BillLineItem) GetLineNumber() *string {
 	return o.LineNumber
 }
 
-func (o *BillLineItem) GetPurchaseOrderLineRef() *BillLineItemRecordLineReference {
+func (o *BillLineItem) GetPurchaseOrderLineRef() *Zero {
 	if o == nil {
 		return nil
 	}
@@ -212,7 +155,7 @@ func (o *BillLineItem) GetTotalAmount() *decimal.Big {
 	return o.TotalAmount
 }
 
-func (o *BillLineItem) GetTracking() *Propertiestracking {
+func (o *BillLineItem) GetTracking() *PropertieTracking {
 	if o == nil {
 		return nil
 	}
@@ -231,4 +174,11 @@ func (o *BillLineItem) GetUnitAmount() *decimal.Big {
 		return new(decimal.Big).SetFloat64(0.0)
 	}
 	return o.UnitAmount
+}
+
+func (o *BillLineItem) GetUnitOfMeasurement() *string {
+	if o == nil {
+		return nil
+	}
+	return o.UnitOfMeasurement
 }
