@@ -1,9 +1,9 @@
 configVersion: 1.0.0
 management:
-  docChecksum: a678ff917388ffdb2d43ab7a20286b09
+  docChecksum: 887637c5e22544d33f0159ab8b915756
   docVersion: 3.0.0
-  speakeasyVersion: 1.122.0
-  generationVersion: 2.195.2
+  speakeasyVersion: 1.125.0
+  generationVersion: 2.209.0
 generation:
   comments: {}
   sdkClassName: CodatSyncPayables
@@ -24,7 +24,7 @@ features:
     nameOverrides: 2.81.1
     retries: 2.82.1
 go:
-  version: 3.0.0
+  version: 3.0.1
   clientServerStatusCodesAsErrors: true
   flattenGlobalSecurity: false
   imports:
