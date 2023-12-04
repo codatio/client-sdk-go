@@ -1,9 +1,9 @@
 configVersion: 1.0.0
 management:
-  docChecksum: fd531713c7ae8a4871727f961a9be351
+  docChecksum: 831aa99f87c051010278969ac7465d64
   docVersion: "1.1"
-  speakeasyVersion: 1.122.0
-  generationVersion: 2.195.2
+  speakeasyVersion: 1.125.0
+  generationVersion: 2.209.0
 generation:
   comments: {}
   sdkClassName: CodatSyncCommerce
@@ -22,7 +22,7 @@ features:
     nameOverrides: 2.81.1
     retries: 2.82.1
 go:
-  version: 0.22.0
+  version: 0.22.1
   clientServerStatusCodesAsErrors: true
   flattenGlobalSecurity: false
   imports:

@@ -255,7 +255,6 @@ pkg/utils/utils.go
 /pkg/models/shared/connections.go
 /pkg/models/shared/security.go
 /pkg/models/sdkerrors/errormessage.go
-USAGE.md
 docs/pkg/models/operations/getconfigtextsyncflowresponse.md
 docs/pkg/models/operations/getsyncflowurlrequest.md
 docs/pkg/models/operations/getsyncflowurlresponse.md
@@ -583,5 +582,6 @@ docs/sdks/sync/README.md
 docs/sdks/configuration/README.md
 docs/sdks/integrations/README.md
 docs/sdks/companymanagement/README.md
+USAGE.md
 pkg/models/operations/options.go
 .gitattributes
