@@ -1,9 +1,9 @@
 configVersion: 1.0.0
 management:
-  docChecksum: 3639688bc9869b815775245fd3ed2f8a
+  docChecksum: 8f6716fdecbca7df2dc2b3678c81bc1e
   docVersion: prealpha
-  speakeasyVersion: 1.122.0
-  generationVersion: 2.195.2
+  speakeasyVersion: 1.125.0
+  generationVersion: 2.209.0
 generation:
   comments: {}
   sdkClassName: CodatSyncExpenses
@@ -23,7 +23,7 @@ features:
     nameOverrides: 2.81.1
     retries: 2.82.1
 go:
-  version: 4.0.0
+  version: 4.0.1
   clientServerStatusCodesAsErrors: true
   flattenGlobalSecurity: true
   imports:

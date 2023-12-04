@@ -159,7 +159,6 @@ pkg/utils/utils.go
 /pkg/models/webhooks/synccomplete.go
 /pkg/models/webhooks/syncfailed.go
 /pkg/models/webhooks/syncstarted.go
-USAGE.md
 docs/pkg/models/operations/createcompanyresponse.md
 docs/pkg/models/operations/deletecompanyrequest.md
 docs/pkg/models/operations/deletecompanyresponse.md
@@ -362,5 +361,6 @@ docs/sdks/configuration/README.md
 docs/sdks/expenses/README.md
 docs/sdks/sync/README.md
 docs/sdks/transactionstatus/README.md
+USAGE.md
 pkg/models/operations/options.go
 .gitattributes

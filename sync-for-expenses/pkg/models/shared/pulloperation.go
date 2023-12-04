@@ -125,8 +125,8 @@ type PullOperation struct {
 	Completed *string `json:"completed,omitempty"`
 	// Unique identifier of the connection associated to this pull operation.
 	ConnectionID string `json:"connectionId"`
-	// Available Data types
-	DataType DataType `json:"dataType"`
+	// The data type you are requesting in a pull operation.
+	DataType string `json:"dataType"`
 	// A message about a transient or persistent error.
 	ErrorMessage *string `json:"errorMessage,omitempty"`
 	// Unique identifier of the pull operation.
@@ -184,9 +184,9 @@ func (o *PullOperation) GetConnectionID() string {
 	return o.ConnectionID
 }
 
-func (o *PullOperation) GetDataType() DataType {
+func (o *PullOperation) GetDataType() string {
 	if o == nil {
-		return DataType("")
+		return ""
 	}
 	return o.DataType
 }
