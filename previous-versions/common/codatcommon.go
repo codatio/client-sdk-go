@@ -77,6 +77,8 @@ type CodatCommon struct {
 	Companies *Companies
 	// Manage your companies' data connections.
 	Connections *Connections
+	// View and configure custom data types for supported integrations.
+	CustomDataType *CustomDataType
 	// View push options and get push statuses.
 	PushData *PushData
 	// Asynchronously retrieve data from an integration to refresh data in Codat.
@@ -164,9 +166,9 @@ func New(opts ...SDKOption) *CodatCommon {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "0.28.0",
-			GenVersion:        "2.195.2",
-			UserAgent:         "speakeasy-sdk/go 0.28.0 2.195.2 3.0.0 github.com/codatio/client-sdk-go/previous-versions/common",
+			SDKVersion:        "0.28.1",
+			GenVersion:        "2.209.0",
+			UserAgent:         "speakeasy-sdk/go 0.28.1 2.209.0 3.0.0 github.com/codatio/client-sdk-go/previous-versions/common",
 		},
 	}
 	for _, opt := range opts {
@@ -190,6 +192,8 @@ func New(opts ...SDKOption) *CodatCommon {
 	sdk.Companies = newCompanies(sdk.sdkConfiguration)
 
 	sdk.Connections = newConnections(sdk.sdkConfiguration)
+
+	sdk.CustomDataType = newCustomDataType(sdk.sdkConfiguration)
 
 	sdk.PushData = newPushData(sdk.sdkConfiguration)
 

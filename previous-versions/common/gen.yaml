@@ -1,9 +1,9 @@
 configVersion: 1.0.0
 management:
-  docChecksum: 0471b9e09aa90b09230cb68050b70fbd
+  docChecksum: 8315e164f2985dae57a25c41f6944aac
   docVersion: 3.0.0
-  speakeasyVersion: 1.122.0
-  generationVersion: 2.195.2
+  speakeasyVersion: 1.125.0
+  generationVersion: 2.209.0
 generation:
   comments: {}
   sdkClassName: CodatCommon
@@ -23,7 +23,7 @@ features:
     nameOverrides: 2.81.1
     retries: 2.82.1
 go:
-  version: 0.28.0
+  version: 0.28.1
   clientServerStatusCodesAsErrors: true
   flattenGlobalSecurity: false
   imports:

@@ -1,0 +1,10 @@
+# CustomDataTypeRecord
+
+
+## Fields
+
+| Field                                                                                           | Type                                                                                            | Required                                                                                        | Description                                                                                     |
+| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `Content`                                                                                       | map[string][shared.Content](../../../pkg/models/shared/content.md)                              | :heavy_minus_sign:                                                                              | Values from the source system for the properties defined in the custom data type configuration. |
+| `ID`                                                                                            | **string*                                                                                       | :heavy_minus_sign:                                                                              | Unique identifier of the record.                                                                |
+| `ModifiedDate`                                                                                  | [*shared.ModifiedDate](../../../pkg/models/shared/modifieddate.md)                              | :heavy_minus_sign:                                                                              | N/A                                                                                             |
