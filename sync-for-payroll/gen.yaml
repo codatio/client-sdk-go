@@ -1,9 +1,9 @@
 configVersion: 1.0.0
 management:
-  docChecksum: b58ebc4727264c3ba0be3cadcc864898
+  docChecksum: 288a5d782d04f521caf3c3f5abf4699f
   docVersion: 3.0.0
-  speakeasyVersion: 1.122.0
-  generationVersion: 2.195.2
+  speakeasyVersion: 1.125.0
+  generationVersion: 2.209.0
 generation:
   comments: {}
   sdkClassName: CodatSyncPayroll
@@ -23,7 +23,7 @@ features:
     nameOverrides: 2.81.1
     retries: 2.82.1
 go:
-  version: 2.0.0
+  version: 2.0.1
   clientServerStatusCodesAsErrors: true
   flattenGlobalSecurity: false
   imports:

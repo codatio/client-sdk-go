@@ -125,7 +125,6 @@ pkg/utils/utils.go
 /pkg/models/sdkerrors/errormessage.go
 /pkg/models/webhooks/clientratelimitreached.go
 /pkg/models/webhooks/clientratelimitreset.go
-USAGE.md
 docs/pkg/models/operations/createcompanyresponse.md
 docs/pkg/models/operations/deletecompanyrequest.md
 docs/pkg/models/operations/deletecompanyresponse.md
@@ -278,5 +277,6 @@ docs/sdks/journals/README.md
 docs/sdks/managedata/README.md
 docs/sdks/companyinfo/README.md
 docs/sdks/trackingcategories/README.md
+USAGE.md
 pkg/models/operations/options.go
 .gitattributes
