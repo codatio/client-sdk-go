@@ -44,7 +44,7 @@ func (s *SupplementalData) Configure(ctx context.Context, request operations.Con
 		}
 	}
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	url, err := utils.GenerateURL(ctx, baseURL, "/integrations/{platformKey}/datatypes/{dataType}/supplementalDataConfig", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/integrations/{platformKey}/dataTypes/{dataType}/supplementalDataConfig", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -165,7 +165,7 @@ func (s *SupplementalData) GetConfiguration(ctx context.Context, request operati
 		}
 	}
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	url, err := utils.GenerateURL(ctx, baseURL, "/integrations/{platformKey}/datatypes/{dataType}/supplementalDataConfig", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/integrations/{platformKey}/dataTypes/{dataType}/supplementalDataConfig", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

@@ -1,6 +1,7 @@
 settings.go
 companies.go
 connections.go
+customdatatype.go
 pushdata.go
 refreshdata.go
 integrations.go
@@ -44,6 +45,10 @@ pkg/utils/utils.go
 /pkg/models/operations/listconnections.go
 /pkg/models/operations/unlinkconnection.go
 /pkg/models/operations/updateconnectionauthorization.go
+/pkg/models/operations/configurecustomdatatype.go
+/pkg/models/operations/getcustomdatatypeconfiguration.go
+/pkg/models/operations/listcustomdatatyperecords.go
+/pkg/models/operations/refreshcustomdatatype.go
 /pkg/models/operations/getcreateupdatemodeloptionsbydatatype.go
 /pkg/models/operations/getpushoperation.go
 /pkg/models/operations/getcompanypushhistory.go
@@ -78,6 +83,10 @@ pkg/utils/utils.go
 /pkg/models/shared/halref.go
 /pkg/models/shared/connections.go
 /pkg/models/shared/updateconnectionstatus.go
+/pkg/models/shared/customdatatypeconfiguration.go
+/pkg/models/shared/customdatatyperecords.go
+/pkg/models/shared/customdatatyperecord.go
+/pkg/models/shared/pulloperation.go
 /pkg/models/shared/pushoption.go
 /pkg/models/shared/pushvalidationinfo.go
 /pkg/models/shared/pushfieldvalidation.go
@@ -93,7 +102,6 @@ pkg/utils/utils.go
 /pkg/models/shared/pushchangetype.go
 /pkg/models/shared/pushoperationref.go
 /pkg/models/shared/pushoperations.go
-/pkg/models/shared/pulloperation.go
 /pkg/models/shared/datastatus.go
 /pkg/models/shared/pulloperations.go
 /pkg/models/shared/integration.go
@@ -140,7 +148,6 @@ pkg/utils/utils.go
 /pkg/models/webhooks/newcompanysynchronized.go
 /pkg/models/webhooks/pushoperationhastimedout.go
 /pkg/models/webhooks/pushoperationstatushaschanged.go
-USAGE.md
 docs/pkg/models/operations/createapikeyresponse.md
 docs/pkg/models/operations/deleteapikeyrequest.md
 docs/pkg/models/operations/deleteapikeyresponse.md
@@ -172,6 +179,14 @@ docs/pkg/models/operations/unlinkconnectionrequest.md
 docs/pkg/models/operations/unlinkconnectionresponse.md
 docs/pkg/models/operations/updateconnectionauthorizationrequest.md
 docs/pkg/models/operations/updateconnectionauthorizationresponse.md
+docs/pkg/models/operations/configurecustomdatatyperequest.md
+docs/pkg/models/operations/configurecustomdatatyperesponse.md
+docs/pkg/models/operations/getcustomdatatypeconfigurationrequest.md
+docs/pkg/models/operations/getcustomdatatypeconfigurationresponse.md
+docs/pkg/models/operations/listcustomdatatyperecordsrequest.md
+docs/pkg/models/operations/listcustomdatatyperecordsresponse.md
+docs/pkg/models/operations/refreshcustomdatatyperequest.md
+docs/pkg/models/operations/refreshcustomdatatyperesponse.md
 docs/pkg/models/operations/getcreateupdatemodeloptionsbydatatyperequest.md
 docs/pkg/models/operations/getcreateupdatemodeloptionsbydatatyperesponse.md
 docs/pkg/models/operations/getpushoperationrequest.md
@@ -223,6 +238,13 @@ docs/pkg/models/shared/links.md
 docs/pkg/models/shared/halref.md
 docs/pkg/models/shared/connections.md
 docs/pkg/models/shared/updateconnectionstatus.md
+docs/pkg/models/shared/customdatatypeconfiguration.md
+docs/pkg/models/shared/customdatatyperecords.md
+docs/pkg/models/shared/content.md
+docs/pkg/models/shared/modifieddate.md
+docs/pkg/models/shared/customdatatyperecord.md
+docs/pkg/models/shared/status.md
+docs/pkg/models/shared/pulloperation.md
 docs/pkg/models/shared/pushoption.md
 docs/pkg/models/shared/pushvalidationinfo.md
 docs/pkg/models/shared/pushfieldvalidation.md
@@ -238,8 +260,6 @@ docs/pkg/models/shared/pushoperationchange.md
 docs/pkg/models/shared/pushchangetype.md
 docs/pkg/models/shared/pushoperationref.md
 docs/pkg/models/shared/pushoperations.md
-docs/pkg/models/shared/status.md
-docs/pkg/models/shared/pulloperation.md
 docs/pkg/models/shared/datatypes.md
 docs/pkg/models/shared/datastatus.md
 docs/pkg/models/shared/pulloperations.md
@@ -294,10 +314,12 @@ docs/pkg/models/operations/option.md
 docs/sdks/settings/README.md
 docs/sdks/companies/README.md
 docs/sdks/connections/README.md
+docs/sdks/customdatatype/README.md
 docs/sdks/pushdata/README.md
 docs/sdks/refreshdata/README.md
 docs/sdks/integrations/README.md
 docs/sdks/supplementaldata/README.md
 docs/sdks/webhooks/README.md
+USAGE.md
 pkg/models/operations/options.go
 .gitattributes
