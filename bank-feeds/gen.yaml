@@ -1,9 +1,9 @@
 configVersion: 1.0.0
 management:
-  docChecksum: 3883df86e260290925331dc16726311d
+  docChecksum: f50ee80e97dd1445b5dfa941c2fbfd2a
   docVersion: 3.0.0
-  speakeasyVersion: 1.121.3
-  generationVersion: 2.195.2
+  speakeasyVersion: 1.125.0
+  generationVersion: 2.209.0
 generation:
   comments: {}
   sdkClassName: CodatBankFeeds
@@ -22,7 +22,7 @@ features:
     nameOverrides: 2.81.1
     retries: 2.82.1
 go:
-  version: 4.0.0
+  version: 4.0.1
   clientServerStatusCodesAsErrors: true
   flattenGlobalSecurity: false
   imports:
