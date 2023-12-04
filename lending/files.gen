@@ -490,7 +490,6 @@ pkg/utils/utils.go
 /pkg/models/webhooks/accountcategoriesupdated.go
 /pkg/models/webhooks/clientratelimitreached.go
 /pkg/models/webhooks/clientratelimitreset.go
-USAGE.md
 docs/pkg/models/operations/createcompanyresponse.md
 docs/pkg/models/operations/deletecompanyrequest.md
 docs/pkg/models/operations/deletecompanyresponse.md
@@ -1134,5 +1133,6 @@ docs/sdks/pulloperations/README.md
 docs/sdks/liabilities/README.md
 docs/sdks/dataintegrity/README.md
 docs/sdks/excelreports/README.md
+USAGE.md
 pkg/models/operations/options.go
 .gitattributes
