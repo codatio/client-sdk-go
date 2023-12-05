@@ -429,5 +429,3 @@ func main() {
 		// handle response
 	}
 }
-
-```
