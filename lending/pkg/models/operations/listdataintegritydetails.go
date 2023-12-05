@@ -3,8 +3,8 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/utils"
+	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v5/pkg/utils"
 	"net/http"
 )
 
@@ -81,8 +81,6 @@ type ListDataIntegrityDetailsResponse struct {
 	ContentType string
 	// OK
 	DataIntegrityDetails *shared.DataIntegrityDetails
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -101,13 +99,6 @@ func (o *ListDataIntegrityDetailsResponse) GetDataIntegrityDetails() *shared.Dat
 		return nil
 	}
 	return o.DataIntegrityDetails
-}
-
-func (o *ListDataIntegrityDetailsResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *ListDataIntegrityDetailsResponse) GetStatusCode() int {

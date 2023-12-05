@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/utils"
+	"github.com/codatio/client-sdk-go/lending/v5/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
@@ -28,9 +28,9 @@ type BalanceSheet struct {
 	// >
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	Date        *string     `json:"date,omitempty"`
-	Equity      *ReportLine `json:"equity,omitempty"`
-	Liabilities *ReportLine `json:"liabilities,omitempty"`
+	Date        *string          `json:"date,omitempty"`
+	Equity      *ReportLineInput `json:"equity,omitempty"`
+	Liabilities *ReportLineInput `json:"liabilities,omitempty"`
 	// Value of net assets for a company in their base currency.
 	NetAssets *decimal.Big `decimal:"number" json:"netAssets"`
 }
@@ -60,14 +60,14 @@ func (o *BalanceSheet) GetDate() *string {
 	return o.Date
 }
 
-func (o *BalanceSheet) GetEquity() *ReportLine {
+func (o *BalanceSheet) GetEquity() *ReportLineInput {
 	if o == nil {
 		return nil
 	}
 	return o.Equity
 }
 
-func (o *BalanceSheet) GetLiabilities() *ReportLine {
+func (o *BalanceSheet) GetLiabilities() *ReportLineInput {
 	if o == nil {
 		return nil
 	}

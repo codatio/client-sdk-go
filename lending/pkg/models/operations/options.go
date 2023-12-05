@@ -4,7 +4,7 @@ package operations
 
 import (
 	"errors"
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/utils"
+	"github.com/codatio/client-sdk-go/lending/v5/pkg/utils"
 )
 
 var ErrUnsupportedOption = errors.New("unsupported option")
@@ -20,6 +20,7 @@ type AcceptHeaderEnum string
 const (
 	AcceptHeaderEnumApplicationJson        AcceptHeaderEnum = "application/json"
 	AcceptHeaderEnumApplicationOctetStream AcceptHeaderEnum = "application/octet-stream"
+	AcceptHeaderEnumApplicationPdf         AcceptHeaderEnum = "application/pdf"
 )
 
 func (e AcceptHeaderEnum) ToPointer() *AcceptHeaderEnum {

@@ -3,8 +3,8 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/utils"
+	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v5/pkg/utils"
 	"net/http"
 )
 
@@ -63,8 +63,6 @@ type GetCategorizedBankStatementResponse struct {
 	ContentType string
 	// OK
 	EnhancedCashFlowTransactions *shared.EnhancedCashFlowTransactions
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -83,13 +81,6 @@ func (o *GetCategorizedBankStatementResponse) GetEnhancedCashFlowTransactions() 
 		return nil
 	}
 	return o.EnhancedCashFlowTransactions
-}
-
-func (o *GetCategorizedBankStatementResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *GetCategorizedBankStatementResponse) GetStatusCode() int {

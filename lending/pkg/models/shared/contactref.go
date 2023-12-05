@@ -2,7 +2,7 @@
 
 package shared
 
-// ContactRef - The customer or supplier for the transfer, if available.
+// ContactRef - A customer or supplier associated with the direct cost.
 type ContactRef struct {
 	// Available Data types
 	DataType *DataType `json:"dataType,omitempty"`

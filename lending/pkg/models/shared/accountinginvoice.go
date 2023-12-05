@@ -3,25 +3,25 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/utils"
+	"github.com/codatio/client-sdk-go/lending/v5/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
-type AccountingInvoiceSalesOrderReference struct {
+type SalesOrderReference struct {
 	// Available Data types
 	DataType *DataType `json:"dataType,omitempty"`
 	// Unique identifier to a record in `dataType`.
 	ID *string `json:"id,omitempty"`
 }
 
-func (o *AccountingInvoiceSalesOrderReference) GetDataType() *DataType {
+func (o *SalesOrderReference) GetDataType() *DataType {
 	if o == nil {
 		return nil
 	}
 	return o.DataType
 }
 
-func (o *AccountingInvoiceSalesOrderReference) GetID() *string {
+func (o *SalesOrderReference) GetID() *string {
 	if o == nil {
 		return nil
 	}
@@ -174,8 +174,8 @@ type AccountingInvoice struct {
 	// An array of payment allocations.
 	PaymentAllocations []AccountingPaymentAllocation `json:"paymentAllocations,omitempty"`
 	// List of references to related Sales orders.
-	SalesOrderRefs     []AccountingInvoiceSalesOrderReference `json:"salesOrderRefs,omitempty"`
-	SourceModifiedDate *string                                `json:"sourceModifiedDate,omitempty"`
+	SalesOrderRefs     []SalesOrderReference `json:"salesOrderRefs,omitempty"`
+	SourceModifiedDate *string               `json:"sourceModifiedDate,omitempty"`
 	// Current state of the invoice:
 	//
 	// - `Draft` - Invoice hasn't been submitted to the supplier. It may be in a pending state or is scheduled for future submission, for example by email.
@@ -329,7 +329,7 @@ func (o *AccountingInvoice) GetPaymentAllocations() []AccountingPaymentAllocatio
 	return o.PaymentAllocations
 }
 
-func (o *AccountingInvoice) GetSalesOrderRefs() []AccountingInvoiceSalesOrderReference {
+func (o *AccountingInvoice) GetSalesOrderRefs() []SalesOrderReference {
 	if o == nil {
 		return nil
 	}

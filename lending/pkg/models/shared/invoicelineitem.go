@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/utils"
+	"github.com/codatio/client-sdk-go/lending/v5/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
@@ -19,7 +19,7 @@ type InvoiceLineItem struct {
 	// The invoice is a direct income if `True`.
 	IsDirectIncome *bool `json:"isDirectIncome,omitempty"`
 	// Reference to the item the line is linked to.
-	ItemRef *ItemRef `json:"itemRef,omitempty"`
+	ItemRef *PropertieItemRef `json:"itemRef,omitempty"`
 	// Number of units of goods or services provided.
 	Quantity *decimal.Big `decimal:"number" json:"quantity"`
 	// Amount of the line, inclusive of discounts but exclusive of tax.
@@ -95,7 +95,7 @@ func (o *InvoiceLineItem) GetIsDirectIncome() *bool {
 	return o.IsDirectIncome
 }
 
-func (o *InvoiceLineItem) GetItemRef() *ItemRef {
+func (o *InvoiceLineItem) GetItemRef() *PropertieItemRef {
 	if o == nil {
 		return nil
 	}

@@ -3,11 +3,11 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/utils"
+	"github.com/codatio/client-sdk-go/lending/v5/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
-type AccountingPaymentAllocationAllocation struct {
+type Allocation struct {
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -66,39 +66,39 @@ type AccountingPaymentAllocationAllocation struct {
 	TotalAmount *decimal.Big `decimal:"number" json:"totalAmount,omitempty"`
 }
 
-func (a AccountingPaymentAllocationAllocation) MarshalJSON() ([]byte, error) {
+func (a Allocation) MarshalJSON() ([]byte, error) {
 	return utils.MarshalJSON(a, "", false)
 }
 
-func (a *AccountingPaymentAllocationAllocation) UnmarshalJSON(data []byte) error {
+func (a *Allocation) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AccountingPaymentAllocationAllocation) GetAllocatedOnDate() *string {
+func (o *Allocation) GetAllocatedOnDate() *string {
 	if o == nil {
 		return nil
 	}
 	return o.AllocatedOnDate
 }
 
-func (o *AccountingPaymentAllocationAllocation) GetCurrency() *string {
+func (o *Allocation) GetCurrency() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Currency
 }
 
-func (o *AccountingPaymentAllocationAllocation) GetCurrencyRate() *decimal.Big {
+func (o *Allocation) GetCurrencyRate() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.CurrencyRate
 }
 
-func (o *AccountingPaymentAllocationAllocation) GetTotalAmount() *decimal.Big {
+func (o *Allocation) GetTotalAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}
@@ -106,13 +106,13 @@ func (o *AccountingPaymentAllocationAllocation) GetTotalAmount() *decimal.Big {
 }
 
 type AccountingPaymentAllocation struct {
-	Allocation AccountingPaymentAllocationAllocation `json:"allocation"`
-	Payment    PaymentAllocationPayment              `json:"payment"`
+	Allocation Allocation               `json:"allocation"`
+	Payment    PaymentAllocationPayment `json:"payment"`
 }
 
-func (o *AccountingPaymentAllocation) GetAllocation() AccountingPaymentAllocationAllocation {
+func (o *AccountingPaymentAllocation) GetAllocation() Allocation {
 	if o == nil {
-		return AccountingPaymentAllocationAllocation{}
+		return Allocation{}
 	}
 	return o.Allocation
 }

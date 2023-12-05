@@ -2,24 +2,32 @@
 
 package shared
 
-// ItemRef - Reference to the item the line is linked to.
 type ItemRef struct {
-	// Unique identifier for the item in the accounting platform.
-	ID string `json:"id"`
-	// Name of the item in the accounting platform.
-	Name *string `json:"name,omitempty"`
+	// The data connection id being referenced.
+	DataConnectionID *string `json:"dataConnectionId,omitempty"`
+	// The id of the object, e.g. the Journal entry.
+	ID *string `json:"id,omitempty"`
+	// The data type the loan transaction entry was extracted from.
+	Type *string `json:"type,omitempty"`
 }
 
-func (o *ItemRef) GetID() string {
+func (o *ItemRef) GetDataConnectionID() *string {
 	if o == nil {
-		return ""
+		return nil
+	}
+	return o.DataConnectionID
+}
+
+func (o *ItemRef) GetID() *string {
+	if o == nil {
+		return nil
 	}
 	return o.ID
 }
 
-func (o *ItemRef) GetName() *string {
+func (o *ItemRef) GetType() *string {
 	if o == nil {
 		return nil
 	}
-	return o.Name
+	return o.Type
 }
