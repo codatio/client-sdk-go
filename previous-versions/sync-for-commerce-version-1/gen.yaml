@@ -1,7 +1,7 @@
 configVersion: 1.0.0
 management:
   docChecksum: 9938cd355530f05f03544bec6a6ce2e5
-  docVersion: "1.1"
+  docVersion: '1.1'
   speakeasyVersion: 1.100.2
   generationVersion: 2.159.2
 generation:
@@ -20,6 +20,5 @@ features:
     retries: 2.82.1
 go:
   version: 0.21.0
-  flattenGlobalSecurity: false
   maxMethodParams: 0
   packageName: github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1
