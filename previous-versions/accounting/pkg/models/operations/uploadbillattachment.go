@@ -3,13 +3,12 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
 	"net/http"
 )
 
 type UploadBillAttachmentRequestBody struct {
-	Content     []byte `multipartForm:"content"`
-	RequestBody string `multipartForm:"name=requestBody"`
+	Content  []byte `multipartForm:"content"`
+	FileName string `multipartForm:"name=fileName"`
 }
 
 func (o *UploadBillAttachmentRequestBody) GetContent() []byte {
@@ -19,11 +18,11 @@ func (o *UploadBillAttachmentRequestBody) GetContent() []byte {
 	return o.Content
 }
 
-func (o *UploadBillAttachmentRequestBody) GetRequestBody() string {
+func (o *UploadBillAttachmentRequestBody) GetFileName() string {
 	if o == nil {
 		return ""
 	}
-	return o.RequestBody
+	return o.FileName
 }
 
 type UploadBillAttachmentRequest struct {
@@ -67,8 +66,6 @@ func (o *UploadBillAttachmentRequest) GetConnectionID() string {
 type UploadBillAttachmentResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -80,13 +77,6 @@ func (o *UploadBillAttachmentResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *UploadBillAttachmentResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *UploadBillAttachmentResponse) GetStatusCode() int {

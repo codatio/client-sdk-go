@@ -50,8 +50,6 @@ type CreatePurchaseOrderResponse struct {
 	ContentType string
 	// Success
 	CreatePurchaseOrderResponse *shared.CreatePurchaseOrderResponse
-	// The request made is not valid.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -70,13 +68,6 @@ func (o *CreatePurchaseOrderResponse) GetCreatePurchaseOrderResponse() *shared.C
 		return nil
 	}
 	return o.CreatePurchaseOrderResponse
-}
-
-func (o *CreatePurchaseOrderResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *CreatePurchaseOrderResponse) GetStatusCode() int {

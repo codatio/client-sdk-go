@@ -48,18 +48,16 @@ func (o *GetCashFlowStatementRequest) GetStartMonth() *string {
 
 type GetCashFlowStatementResponse struct {
 	// Success
-	CashFlowStatement *shared.CashFlowStatement1
+	CashFlowStatement *shared.CashFlowStatementInput
 	// HTTP response content type for this operation
 	ContentType string
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 }
 
-func (o *GetCashFlowStatementResponse) GetCashFlowStatement() *shared.CashFlowStatement1 {
+func (o *GetCashFlowStatementResponse) GetCashFlowStatement() *shared.CashFlowStatementInput {
 	if o == nil {
 		return nil
 	}
@@ -71,13 +69,6 @@ func (o *GetCashFlowStatementResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *GetCashFlowStatementResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *GetCashFlowStatementResponse) GetStatusCode() int {

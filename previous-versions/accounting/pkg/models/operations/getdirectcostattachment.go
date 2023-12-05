@@ -51,8 +51,6 @@ type GetDirectCostAttachmentResponse struct {
 	Attachment *shared.Attachment
 	// HTTP response content type for this operation
 	ContentType string
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -71,13 +69,6 @@ func (o *GetDirectCostAttachmentResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *GetDirectCostAttachmentResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *GetDirectCostAttachmentResponse) GetStatusCode() int {

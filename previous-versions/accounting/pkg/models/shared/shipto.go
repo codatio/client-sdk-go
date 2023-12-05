@@ -35,12 +35,12 @@ func (o *ShipToContact) GetPhone() *string {
 
 // ShipTo - Delivery details for any goods that have been ordered.
 type ShipTo struct {
-	Address *Addressesitems `json:"address,omitempty"`
+	Address *Items `json:"address,omitempty"`
 	// Details of the named contact at the delivery address.
 	Contact *ShipToContact `json:"contact,omitempty"`
 }
 
-func (o *ShipTo) GetAddress() *Addressesitems {
+func (o *ShipTo) GetAddress() *Items {
 	if o == nil {
 		return nil
 	}

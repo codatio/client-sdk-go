@@ -50,8 +50,6 @@ type CreateBillPaymentResponse struct {
 	ContentType string
 	// Success
 	CreateBillPaymentResponse *shared.CreateBillPaymentResponse
-	// The request made is not valid.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -70,13 +68,6 @@ func (o *CreateBillPaymentResponse) GetCreateBillPaymentResponse() *shared.Creat
 		return nil
 	}
 	return o.CreateBillPaymentResponse
-}
-
-func (o *CreateBillPaymentResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *CreateBillPaymentResponse) GetStatusCode() int {

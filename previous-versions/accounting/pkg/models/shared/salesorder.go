@@ -7,8 +7,8 @@ import (
 	"github.com/ericlagergren/decimal"
 )
 
-// SalesOrderShipToContact - Details of the named contact at the delivery address.
-type SalesOrderShipToContact struct {
+// SalesOrderContact - Details of the named contact at the delivery address.
+type SalesOrderContact struct {
 	// Email address of the contact at the delivery address.
 	Email *string `json:"email,omitempty"`
 	// Name of the contact at the delivery address.
@@ -17,21 +17,21 @@ type SalesOrderShipToContact struct {
 	Phone *string `json:"phone,omitempty"`
 }
 
-func (o *SalesOrderShipToContact) GetEmail() *string {
+func (o *SalesOrderContact) GetEmail() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Email
 }
 
-func (o *SalesOrderShipToContact) GetName() *string {
+func (o *SalesOrderContact) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *SalesOrderShipToContact) GetPhone() *string {
+func (o *SalesOrderContact) GetPhone() *string {
 	if o == nil {
 		return nil
 	}
@@ -40,19 +40,19 @@ func (o *SalesOrderShipToContact) GetPhone() *string {
 
 // SalesOrderShipTo - Delivery details for any goods that have been ordered.
 type SalesOrderShipTo struct {
-	Address *Addressesitems `json:"address,omitempty"`
+	Address *Items `json:"address,omitempty"`
 	// Details of the named contact at the delivery address.
-	Contact *SalesOrderShipToContact `json:"contact,omitempty"`
+	Contact *SalesOrderContact `json:"contact,omitempty"`
 }
 
-func (o *SalesOrderShipTo) GetAddress() *Addressesitems {
+func (o *SalesOrderShipTo) GetAddress() *Items {
 	if o == nil {
 		return nil
 	}
 	return o.Address
 }
 
-func (o *SalesOrderShipTo) GetContact() *SalesOrderShipToContact {
+func (o *SalesOrderShipTo) GetContact() *SalesOrderContact {
 	if o == nil {
 		return nil
 	}

@@ -11,7 +11,7 @@ package shared
 // Customers' data links to accounts receivable [invoices](https://docs.codat.io/accounting-api#/schemas/Invoice).
 type Customer struct {
 	// An array of Addresses.
-	Addresses []Addressesitems `json:"addresses,omitempty"`
+	Addresses []Items `json:"addresses,omitempty"`
 	// Name of the main contact for the identified customer.
 	ContactName *string `json:"contactName,omitempty"`
 	// An array of Contacts.
@@ -47,7 +47,7 @@ type Customer struct {
 	TaxNumber *string `json:"taxNumber,omitempty"`
 }
 
-func (o *Customer) GetAddresses() []Addressesitems {
+func (o *Customer) GetAddresses() []Items {
 	if o == nil {
 		return nil
 	}

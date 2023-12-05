@@ -7,7 +7,7 @@ import (
 	"fmt"
 )
 
-type CompanyDatasetAccountingAddress struct {
+type AccountingAddress struct {
 	// City of the customer address.
 	City *string `json:"city,omitempty"`
 	// Country of the customer address.
@@ -24,90 +24,90 @@ type CompanyDatasetAccountingAddress struct {
 	Type AccountingAddressType `json:"type"`
 }
 
-func (o *CompanyDatasetAccountingAddress) GetCity() *string {
+func (o *AccountingAddress) GetCity() *string {
 	if o == nil {
 		return nil
 	}
 	return o.City
 }
 
-func (o *CompanyDatasetAccountingAddress) GetCountry() *string {
+func (o *AccountingAddress) GetCountry() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Country
 }
 
-func (o *CompanyDatasetAccountingAddress) GetLine1() *string {
+func (o *AccountingAddress) GetLine1() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Line1
 }
 
-func (o *CompanyDatasetAccountingAddress) GetLine2() *string {
+func (o *AccountingAddress) GetLine2() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Line2
 }
 
-func (o *CompanyDatasetAccountingAddress) GetPostalCode() *string {
+func (o *AccountingAddress) GetPostalCode() *string {
 	if o == nil {
 		return nil
 	}
 	return o.PostalCode
 }
 
-func (o *CompanyDatasetAccountingAddress) GetRegion() *string {
+func (o *AccountingAddress) GetRegion() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Region
 }
 
-func (o *CompanyDatasetAccountingAddress) GetType() AccountingAddressType {
+func (o *AccountingAddress) GetType() AccountingAddressType {
 	if o == nil {
 		return AccountingAddressType("")
 	}
 	return o.Type
 }
 
-type CompanyDatasetPhone struct {
+type Phone struct {
 	// A phone number.
 	Number *string `json:"number"`
 	// The type of phone number
 	Type PhoneNumberType `json:"type"`
 }
 
-func (o *CompanyDatasetPhone) GetNumber() *string {
+func (o *Phone) GetNumber() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Number
 }
 
-func (o *CompanyDatasetPhone) GetType() PhoneNumberType {
+func (o *Phone) GetType() PhoneNumberType {
 	if o == nil {
 		return PhoneNumberType("")
 	}
 	return o.Type
 }
 
-// CompanyDatasetWeblinkType - The type of the weblink.
-type CompanyDatasetWeblinkType string
+// Type - The type of the weblink.
+type Type string
 
 const (
-	CompanyDatasetWeblinkTypeWebsite CompanyDatasetWeblinkType = "Website"
-	CompanyDatasetWeblinkTypeSocial  CompanyDatasetWeblinkType = "Social"
-	CompanyDatasetWeblinkTypeUnknown CompanyDatasetWeblinkType = "Unknown"
+	TypeWebsite Type = "Website"
+	TypeSocial  Type = "Social"
+	TypeUnknown Type = "Unknown"
 )
 
-func (e CompanyDatasetWeblinkType) ToPointer() *CompanyDatasetWeblinkType {
+func (e Type) ToPointer() *Type {
 	return &e
 }
 
-func (e *CompanyDatasetWeblinkType) UnmarshalJSON(data []byte) error {
+func (e *Type) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -118,47 +118,47 @@ func (e *CompanyDatasetWeblinkType) UnmarshalJSON(data []byte) error {
 	case "Social":
 		fallthrough
 	case "Unknown":
-		*e = CompanyDatasetWeblinkType(v)
+		*e = Type(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for CompanyDatasetWeblinkType: %v", v)
+		return fmt.Errorf("invalid value for Type: %v", v)
 	}
 }
 
-// CompanyDatasetWeblink - Weblink associated with the company.
-type CompanyDatasetWeblink struct {
+// Weblink associated with the company.
+type Weblink struct {
 	// The type of the weblink.
-	Type *CompanyDatasetWeblinkType `json:"type,omitempty"`
+	Type *Type `json:"type,omitempty"`
 	// The full URL for the weblink.
 	URL *string `json:"url,omitempty"`
 }
 
-func (o *CompanyDatasetWeblink) GetType() *CompanyDatasetWeblinkType {
+func (o *Weblink) GetType() *Type {
 	if o == nil {
 		return nil
 	}
 	return o.Type
 }
 
-func (o *CompanyDatasetWeblink) GetURL() *string {
+func (o *Weblink) GetURL() *string {
 	if o == nil {
 		return nil
 	}
 	return o.URL
 }
 
-// CompanyDataset - > View the coverage for company info in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=cashFlowStatement" target="_blank">Data coverage explorer</a>.
+// CompanyDataset - > View the coverage for company profile in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=cashFlowStatement" target="_blank">Data coverage explorer</a>.
 //
 // Company info provides standard details about a linked company such as their address, phone number, and company registration.
 //
 // > **Company information or companies?**
 // >
-// > Company information is standard information that is held in the accounting platform about a company. `Companies` is an endpoint that lists businesses in the Codat system that have linked and shared their data sources.
+// > Company profile is standard information that is held in the accounting platform about a company. `Companies` is an endpoint that lists businesses in the Codat system that have linked and shared their data sources.
 type CompanyDataset struct {
 	// Identifier or reference for the company in the accounting platform.
 	AccountingPlatformRef *string `json:"accountingPlatformRef,omitempty"`
 	// An array of Addresses.
-	Addresses []CompanyDatasetAccountingAddress `json:"addresses,omitempty"`
+	Addresses []AccountingAddress `json:"addresses,omitempty"`
 	// Currency set in the accounting platform of the linked company. Used by the currency rate.
 	BaseCurrency *string `json:"baseCurrency,omitempty"`
 	// Registered legal name of the linked company.
@@ -226,7 +226,7 @@ type CompanyDataset struct {
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	LedgerLockDate *string `json:"ledgerLockDate,omitempty"`
 	// An array of phone numbers.
-	PhoneNumbers []CompanyDatasetPhone `json:"phoneNumbers,omitempty"`
+	PhoneNumbers []Phone `json:"phoneNumbers,omitempty"`
 	// Registration number given to the linked company by the companies authority in the country of origin. In the UK this is Companies House.
 	RegistrationNumber *string `json:"registrationNumber,omitempty"`
 	// URL addresses for the accounting source.
@@ -240,7 +240,7 @@ type CompanyDataset struct {
 	// Company tax number.
 	TaxNumber *string `json:"taxNumber,omitempty"`
 	// An array of weblinks.
-	WebLinks []CompanyDatasetWeblink `json:"webLinks,omitempty"`
+	WebLinks []Weblink `json:"webLinks,omitempty"`
 }
 
 func (o *CompanyDataset) GetAccountingPlatformRef() *string {
@@ -250,7 +250,7 @@ func (o *CompanyDataset) GetAccountingPlatformRef() *string {
 	return o.AccountingPlatformRef
 }
 
-func (o *CompanyDataset) GetAddresses() []CompanyDatasetAccountingAddress {
+func (o *CompanyDataset) GetAddresses() []AccountingAddress {
 	if o == nil {
 		return nil
 	}
@@ -299,7 +299,7 @@ func (o *CompanyDataset) GetLedgerLockDate() *string {
 	return o.LedgerLockDate
 }
 
-func (o *CompanyDataset) GetPhoneNumbers() []CompanyDatasetPhone {
+func (o *CompanyDataset) GetPhoneNumbers() []Phone {
 	if o == nil {
 		return nil
 	}
@@ -334,7 +334,7 @@ func (o *CompanyDataset) GetTaxNumber() *string {
 	return o.TaxNumber
 }
 
-func (o *CompanyDataset) GetWebLinks() []CompanyDatasetWeblink {
+func (o *CompanyDataset) GetWebLinks() []Weblink {
 	if o == nil {
 		return nil
 	}

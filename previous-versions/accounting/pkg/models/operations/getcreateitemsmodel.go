@@ -31,8 +31,6 @@ func (o *GetCreateItemsModelRequest) GetConnectionID() string {
 type GetCreateItemsModelResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// OK
 	PushOption *shared.PushOption
 	// HTTP response status code for this operation
@@ -46,13 +44,6 @@ func (o *GetCreateItemsModelResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *GetCreateItemsModelResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *GetCreateItemsModelResponse) GetPushOption() *shared.PushOption {

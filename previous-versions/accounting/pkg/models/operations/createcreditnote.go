@@ -50,8 +50,6 @@ type CreateCreditNoteResponse struct {
 	ContentType string
 	// Success
 	CreateCreditNoteResponse *shared.CreateCreditNoteResponse
-	// The request made is not valid.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -70,13 +68,6 @@ func (o *CreateCreditNoteResponse) GetCreateCreditNoteResponse() *shared.CreateC
 		return nil
 	}
 	return o.CreateCreditNoteResponse
-}
-
-func (o *CreateCreditNoteResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *CreateCreditNoteResponse) GetStatusCode() int {

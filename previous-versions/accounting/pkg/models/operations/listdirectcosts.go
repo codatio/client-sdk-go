@@ -81,8 +81,6 @@ type ListDirectCostsResponse struct {
 	ContentType string
 	// Success
 	DirectCosts *shared.DirectCosts
-	// Your `query` parameter was not correctly formed
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -101,13 +99,6 @@ func (o *ListDirectCostsResponse) GetDirectCosts() *shared.DirectCosts {
 		return nil
 	}
 	return o.DirectCosts
-}
-
-func (o *ListDirectCostsResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *ListDirectCostsResponse) GetStatusCode() int {
