@@ -42,8 +42,6 @@ type GetDirectIncomeResponse struct {
 	ContentType string
 	// Success
 	DirectIncome *shared.DirectIncome
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -62,13 +60,6 @@ func (o *GetDirectIncomeResponse) GetDirectIncome() *shared.DirectIncome {
 		return nil
 	}
 	return o.DirectIncome
-}
-
-func (o *GetDirectIncomeResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *GetDirectIncomeResponse) GetStatusCode() int {

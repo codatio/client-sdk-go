@@ -42,6 +42,8 @@ type PurchaseOrderLineItem struct {
 	TrackingCategoryRefs []TrackingCategoryRef `json:"trackingCategoryRefs,omitempty"`
 	// Price of each unit.
 	UnitAmount *decimal.Big `decimal:"number" json:"unitAmount,omitempty"`
+	// The measurement which defines a unit for this item (e.g. 'kilogram', 'litre').
+	UnitOfMeasurement *string `json:"unitOfMeasurement,omitempty"`
 }
 
 func (p PurchaseOrderLineItem) MarshalJSON() ([]byte, error) {
@@ -144,4 +146,11 @@ func (o *PurchaseOrderLineItem) GetUnitAmount() *decimal.Big {
 		return nil
 	}
 	return o.UnitAmount
+}
+
+func (o *PurchaseOrderLineItem) GetUnitOfMeasurement() *string {
+	if o == nil {
+		return nil
+	}
+	return o.UnitOfMeasurement
 }

@@ -2,24 +2,24 @@
 
 package shared
 
-// TrackingRecordReference - Links the current record to the underlying record or data type that created it.
+// RecordReference - Links the current record to the underlying record or data type that created it.
 //
 // For example, if a journal entry is generated based on an invoice, this property allows you to connect the journal entry to the underlying invoice in our data model.
-type TrackingRecordReference struct {
+type RecordReference struct {
 	// Allowed name of the 'dataType'.
 	DataType *string `json:"dataType,omitempty"`
 	// 'id' of the underlying record or data type.
 	ID *string `json:"id,omitempty"`
 }
 
-func (o *TrackingRecordReference) GetDataType() *string {
+func (o *RecordReference) GetDataType() *string {
 	if o == nil {
 		return nil
 	}
 	return o.DataType
 }
 
-func (o *TrackingRecordReference) GetID() *string {
+func (o *RecordReference) GetID() *string {
 	if o == nil {
 		return nil
 	}
@@ -30,11 +30,11 @@ type Tracking struct {
 	// Links the current record to the underlying record or data type that created it.
 	//
 	// For example, if a journal entry is generated based on an invoice, this property allows you to connect the journal entry to the underlying invoice in our data model.
-	InvoiceTo  *TrackingRecordReference `json:"invoiceTo,omitempty"`
-	RecordRefs []InvoiceTo              `json:"recordRefs"`
+	InvoiceTo  *RecordReference `json:"invoiceTo,omitempty"`
+	RecordRefs []InvoiceTo      `json:"recordRefs"`
 }
 
-func (o *Tracking) GetInvoiceTo() *TrackingRecordReference {
+func (o *Tracking) GetInvoiceTo() *RecordReference {
 	if o == nil {
 		return nil
 	}

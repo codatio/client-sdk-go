@@ -42,8 +42,6 @@ type GetDirectCostResponse struct {
 	ContentType string
 	// Success
 	DirectCost *shared.DirectCost
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -62,13 +60,6 @@ func (o *GetDirectCostResponse) GetDirectCost() *shared.DirectCost {
 		return nil
 	}
 	return o.DirectCost
-}
-
-func (o *GetDirectCostResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *GetDirectCostResponse) GetStatusCode() int {

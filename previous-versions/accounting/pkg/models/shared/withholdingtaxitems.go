@@ -7,32 +7,32 @@ import (
 	"github.com/ericlagergren/decimal"
 )
 
-type WithholdingTaxitems struct {
+type WithholdingTaxItems struct {
 	// Amount of tax withheld.
 	Amount *decimal.Big `decimal:"number" json:"amount"`
 	// Name assigned to withheld tax.
 	Name string `json:"name"`
 }
 
-func (w WithholdingTaxitems) MarshalJSON() ([]byte, error) {
+func (w WithholdingTaxItems) MarshalJSON() ([]byte, error) {
 	return utils.MarshalJSON(w, "", false)
 }
 
-func (w *WithholdingTaxitems) UnmarshalJSON(data []byte) error {
+func (w *WithholdingTaxItems) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &w, "", false, false); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *WithholdingTaxitems) GetAmount() *decimal.Big {
+func (o *WithholdingTaxItems) GetAmount() *decimal.Big {
 	if o == nil {
 		return new(decimal.Big).SetFloat64(0.0)
 	}
 	return o.Amount
 }
 
-func (o *WithholdingTaxitems) GetName() string {
+func (o *WithholdingTaxItems) GetName() string {
 	if o == nil {
 		return ""
 	}

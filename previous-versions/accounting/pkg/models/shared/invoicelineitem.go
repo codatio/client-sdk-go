@@ -39,7 +39,7 @@ type InvoiceLineItem struct {
 	// Total amount of the line, including tax. When pushing invoices to Xero, the total amount is exclusive of tax to allow automatic calculations if a tax rate or tax amount is not specified.
 	TotalAmount *decimal.Big `decimal:"number" json:"totalAmount,omitempty"`
 	// Categories, and a project and customer, against which the item is tracked.
-	Tracking *Propertiestracking1 `json:"tracking,omitempty"`
+	Tracking *PropertieTracking1 `json:"tracking,omitempty"`
 	// Reference to the tracking categories to which the line item is linked.
 	//
 	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -136,7 +136,7 @@ func (o *InvoiceLineItem) GetTotalAmount() *decimal.Big {
 	return o.TotalAmount
 }
 
-func (o *InvoiceLineItem) GetTracking() *Propertiestracking1 {
+func (o *InvoiceLineItem) GetTracking() *PropertieTracking1 {
 	if o == nil {
 		return nil
 	}

@@ -3,13 +3,12 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
 	"net/http"
 )
 
 type UploadDirectIncomeAttachmentRequestBody struct {
-	Content     []byte `multipartForm:"content"`
-	RequestBody string `multipartForm:"name=requestBody"`
+	Content  []byte `multipartForm:"content"`
+	FileName string `multipartForm:"name=fileName"`
 }
 
 func (o *UploadDirectIncomeAttachmentRequestBody) GetContent() []byte {
@@ -19,11 +18,11 @@ func (o *UploadDirectIncomeAttachmentRequestBody) GetContent() []byte {
 	return o.Content
 }
 
-func (o *UploadDirectIncomeAttachmentRequestBody) GetRequestBody() string {
+func (o *UploadDirectIncomeAttachmentRequestBody) GetFileName() string {
 	if o == nil {
 		return ""
 	}
-	return o.RequestBody
+	return o.FileName
 }
 
 type UploadDirectIncomeAttachmentRequest struct {
@@ -67,8 +66,6 @@ func (o *UploadDirectIncomeAttachmentRequest) GetDirectIncomeID() string {
 type UploadDirectIncomeAttachmentResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -80,13 +77,6 @@ func (o *UploadDirectIncomeAttachmentResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *UploadDirectIncomeAttachmentResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *UploadDirectIncomeAttachmentResponse) GetStatusCode() int {

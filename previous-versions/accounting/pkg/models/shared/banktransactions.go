@@ -7,7 +7,7 @@ import (
 	"github.com/ericlagergren/decimal"
 )
 
-// BankTransactionsSourceModifiedDate - > **Accessing Bank Accounts through Banking API**
+// SourceModifiedDate - > **Accessing Bank Accounts through Banking API**
 // >
 // > This datatype was originally used for accessing bank account data both in accounting integrations and open banking aggregators.
 // >
@@ -23,7 +23,7 @@ import (
 // * Amount of the transaction.
 // * Current account balance.
 // * Transaction type, for example, credit, debit, or transfer.
-type BankTransactionsSourceModifiedDate struct {
+type SourceModifiedDate struct {
 	// Unique identifier to the `accountId` the bank transactions originates from.
 	AccountID *string `json:"accountId,omitempty"`
 	// The amount transacted in the bank transaction.
@@ -62,81 +62,81 @@ type BankTransactionsSourceModifiedDate struct {
 	TransactionType *BankTransactionType `json:"transactionType,omitempty"`
 }
 
-func (b BankTransactionsSourceModifiedDate) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(b, "", false)
+func (s SourceModifiedDate) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
 }
 
-func (b *BankTransactionsSourceModifiedDate) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &b, "", false, false); err != nil {
+func (s *SourceModifiedDate) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *BankTransactionsSourceModifiedDate) GetAccountID() *string {
+func (o *SourceModifiedDate) GetAccountID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.AccountID
 }
 
-func (o *BankTransactionsSourceModifiedDate) GetAmount() *decimal.Big {
+func (o *SourceModifiedDate) GetAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.Amount
 }
 
-func (o *BankTransactionsSourceModifiedDate) GetBalance() *decimal.Big {
+func (o *SourceModifiedDate) GetBalance() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.Balance
 }
 
-func (o *BankTransactionsSourceModifiedDate) GetClearedOnDate() *string {
+func (o *SourceModifiedDate) GetClearedOnDate() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ClearedOnDate
 }
 
-func (o *BankTransactionsSourceModifiedDate) GetDescription() *string {
+func (o *SourceModifiedDate) GetDescription() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Description
 }
 
-func (o *BankTransactionsSourceModifiedDate) GetID() *string {
+func (o *SourceModifiedDate) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *BankTransactionsSourceModifiedDate) GetModifiedDate() *string {
+func (o *SourceModifiedDate) GetModifiedDate() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ModifiedDate
 }
 
-func (o *BankTransactionsSourceModifiedDate) GetReconciled() *bool {
+func (o *SourceModifiedDate) GetReconciled() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Reconciled
 }
 
-func (o *BankTransactionsSourceModifiedDate) GetSourceModifiedDate() *string {
+func (o *SourceModifiedDate) GetSourceModifiedDate() *string {
 	if o == nil {
 		return nil
 	}
 	return o.SourceModifiedDate
 }
 
-func (o *BankTransactionsSourceModifiedDate) GetTransactionType() *BankTransactionType {
+func (o *SourceModifiedDate) GetTransactionType() *BankTransactionType {
 	if o == nil {
 		return nil
 	}
@@ -148,8 +148,8 @@ type BankTransactions struct {
 	// Current page number.
 	PageNumber int64 `json:"pageNumber"`
 	// Number of items to return in results array.
-	PageSize int64                                `json:"pageSize"`
-	Results  []BankTransactionsSourceModifiedDate `json:"results,omitempty"`
+	PageSize int64                `json:"pageSize"`
+	Results  []SourceModifiedDate `json:"results,omitempty"`
 	// Total number of items.
 	TotalResults int64 `json:"totalResults"`
 }
@@ -175,7 +175,7 @@ func (o *BankTransactions) GetPageSize() int64 {
 	return o.PageSize
 }
 
-func (o *BankTransactions) GetResults() []BankTransactionsSourceModifiedDate {
+func (o *BankTransactions) GetResults() []SourceModifiedDate {
 	if o == nil {
 		return nil
 	}

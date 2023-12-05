@@ -14,13 +14,13 @@ import (
 	"net/http"
 )
 
-// billPayments - Bill payments
-type billPayments struct {
+// BillPayments - Bill payments
+type BillPayments struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newBillPayments(sdkConfig sdkConfiguration) *billPayments {
-	return &billPayments{
+func newBillPayments(sdkConfig sdkConfiguration) *BillPayments {
+	return &BillPayments{
 		sdkConfiguration: sdkConfig,
 	}
 }
@@ -35,7 +35,7 @@ func newBillPayments(sdkConfig sdkConfiguration) *billPayments {
 // Required data may vary by integration. To see what data to post, first call [Get create bill payment model](https://docs.codat.io/accounting-api#/operations/get-create-billPayments-model).
 //
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=billPayments) for integrations that support creating an account.
-func (s *billPayments) Create(ctx context.Context, request operations.CreateBillPaymentRequest, opts ...operations.Option) (*operations.CreateBillPaymentResponse, error) {
+func (s *BillPayments) Create(ctx context.Context, request operations.CreateBillPaymentRequest, opts ...operations.Option) (*operations.CreateBillPaymentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -139,20 +139,31 @@ func (s *billPayments) Create(ctx context.Context, request operations.CreateBill
 		fallthrough
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -161,11 +172,11 @@ func (s *billPayments) Create(ctx context.Context, request operations.CreateBill
 // Delete bill payment
 // The *Delete bill payment* endpoint allows you to delete a specified bill payment from an accounting platform.
 //
-// [Bill payments](https://docs.codat.io/accounting-api#/schemas/BillPayment) are an allocation of money within any customer accounts payable account.
+// [Bill payments](https://docs.codat.io/codat-api#/schemas/BillPayment) are an allocation of money within any customer accounts payable account.
 //
 // ### Process
 // 1. Pass the `{billPaymentId}` to the *Delete bill payment* endpoint and store the `pushOperationKey` returned.
-// 2. Check the status of the delete operation by checking the status of push operation either via
+// 2. Check the status of the delete operation by checking the status of the push operation either via
 //
 //  1. [Push operation webhook](https://docs.codat.io/introduction/webhooks/core-rules-types#push-operation-status-has-changed) (advised),
 //
@@ -181,15 +192,17 @@ func (s *billPayments) Create(ctx context.Context, request operations.CreateBill
 // ## Integration specifics
 // Integrations that support soft delete do not permanently delete the object in the accounting platform.
 //
-// | Integration | Soft Delete | Details                                                                                                      |
-// |-------------|-------------|--------------------------------------------------------------------------------------------------------------|
-// | QuickBooks Online | No          | -
-// | Oracle NetSuite   | No          | See [here](/integrations/accounting/netsuite/how-deleting-bill-payments-works) to learn more. |
+// | Integration | Soft Delete | Details |
+// |-------------|-------------|------------------------------------------------------------------------------------------------------|
+// | QuickBooks Online | No   | -
+// | Oracle NetSuite   | No   | See [here](/integrations/accounting/netsuite/accounting-netsuite-how-deleting-bill-payments-works) to learn more.
+// | Xero              | Yes  | -
+// | Sage Intacct      | No   | Some bill payments in Sage Intacct can only be deleted, whilst others can only be voided. Codat have applied logic to handle this complexity.
 //
-// > **Supported Integrations**
+// > **Supported integrations**
 // >
-// > This functionality is currently only supported for our QuickBooks Online and Oracle NetSuite integrations.
-func (s *billPayments) Delete(ctx context.Context, request operations.DeleteBillPaymentRequest, opts ...operations.Option) (*operations.DeleteBillPaymentResponse, error) {
+// > This functionality is currently supported for our QuickBooks Online, Oracle NetSuite, Xero and Sage Intacct integrations.
+func (s *BillPayments) Delete(ctx context.Context, request operations.DeleteBillPaymentRequest, opts ...operations.Option) (*operations.DeleteBillPaymentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -280,20 +293,31 @@ func (s *billPayments) Delete(ctx context.Context, request operations.DeleteBill
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -307,7 +331,7 @@ func (s *billPayments) Delete(ctx context.Context, request operations.DeleteBill
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=billPayments) for integrations that support getting a specific bill payment.
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
-func (s *billPayments) Get(ctx context.Context, request operations.GetBillPaymentsRequest, opts ...operations.Option) (*operations.GetBillPaymentsResponse, error) {
+func (s *BillPayments) Get(ctx context.Context, request operations.GetBillPaymentsRequest, opts ...operations.Option) (*operations.GetBillPaymentsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -398,22 +422,33 @@ func (s *billPayments) Get(ctx context.Context, request operations.GetBillPaymen
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 409:
 		fallthrough
 	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -429,7 +464,7 @@ func (s *billPayments) Get(ctx context.Context, request operations.GetBillPaymen
 // See the *response examples* for integration-specific indicative models.
 //
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=billPayments) for integrations that support creating a bill payment.
-func (s *billPayments) GetCreateModel(ctx context.Context, request operations.GetCreateBillPaymentsModelRequest, opts ...operations.Option) (*operations.GetCreateBillPaymentsModelResponse, error) {
+func (s *BillPayments) GetCreateModel(ctx context.Context, request operations.GetCreateBillPaymentsModelRequest, opts ...operations.Option) (*operations.GetCreateBillPaymentsModelResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -520,20 +555,31 @@ func (s *billPayments) GetCreateModel(ctx context.Context, request operations.Ge
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -545,7 +591,7 @@ func (s *billPayments) GetCreateModel(ctx context.Context, request operations.Ge
 // [Bill payments](https://docs.codat.io/accounting-api#/schemas/BillPayment) are an allocation of money within any customer accounts payable account.
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
-func (s *billPayments) List(ctx context.Context, request operations.ListBillPaymentsRequest, opts ...operations.Option) (*operations.ListBillPaymentsResponse, error) {
+func (s *BillPayments) List(ctx context.Context, request operations.ListBillPaymentsRequest, opts ...operations.Option) (*operations.ListBillPaymentsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -642,20 +688,33 @@ func (s *billPayments) List(ctx context.Context, request operations.ListBillPaym
 		fallthrough
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 409:
+		fallthrough
+	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

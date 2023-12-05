@@ -4,14 +4,14 @@ package shared
 
 type AgedDebtor struct {
 	// Array of aged debtors by currency.
-	AgedCurrencyOutstanding []AgedCurrencyOutstandingitems `json:"agedCurrencyOutstanding,omitempty"`
+	AgedCurrencyOutstanding []AgedCurrencyOutstandingItems `json:"agedCurrencyOutstanding,omitempty"`
 	// Customer ID of the aged debtor.
 	CustomerID *string `json:"customerId,omitempty"`
 	// Customer name of the aged debtor.
 	CustomerName *string `json:"customerName,omitempty"`
 }
 
-func (o *AgedDebtor) GetAgedCurrencyOutstanding() []AgedCurrencyOutstandingitems {
+func (o *AgedDebtor) GetAgedCurrencyOutstanding() []AgedCurrencyOutstandingItems {
 	if o == nil {
 		return nil
 	}

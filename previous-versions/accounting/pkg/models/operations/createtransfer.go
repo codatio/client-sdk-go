@@ -41,8 +41,6 @@ type CreateTransferResponse struct {
 	ContentType string
 	// Success
 	CreateTransferResponse *shared.CreateTransferResponse
-	// The request made is not valid.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -61,13 +59,6 @@ func (o *CreateTransferResponse) GetCreateTransferResponse() *shared.CreateTrans
 		return nil
 	}
 	return o.CreateTransferResponse
-}
-
-func (o *CreateTransferResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *CreateTransferResponse) GetStatusCode() int {

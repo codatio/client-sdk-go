@@ -2,7 +2,7 @@
 
 package shared
 
-type AgedCreditorAgedCurrencyOutstanding struct {
+type AccountingAgedCurrencyOutstanding struct {
 	// Array of outstanding amounts by period.
 	AgedOutstandingAmounts []AgedOutstandingAmount `json:"agedOutstandingAmounts,omitempty"`
 	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code, e.g. _GBP_.
@@ -15,14 +15,14 @@ type AgedCreditorAgedCurrencyOutstanding struct {
 	Currency *string `json:"currency,omitempty"`
 }
 
-func (o *AgedCreditorAgedCurrencyOutstanding) GetAgedOutstandingAmounts() []AgedOutstandingAmount {
+func (o *AccountingAgedCurrencyOutstanding) GetAgedOutstandingAmounts() []AgedOutstandingAmount {
 	if o == nil {
 		return nil
 	}
 	return o.AgedOutstandingAmounts
 }
 
-func (o *AgedCreditorAgedCurrencyOutstanding) GetCurrency() *string {
+func (o *AccountingAgedCurrencyOutstanding) GetCurrency() *string {
 	if o == nil {
 		return nil
 	}
@@ -31,14 +31,14 @@ func (o *AgedCreditorAgedCurrencyOutstanding) GetCurrency() *string {
 
 type AgedCreditor struct {
 	// Array of aged creditors by currency.
-	AgedCurrencyOutstanding []AgedCreditorAgedCurrencyOutstanding `json:"agedCurrencyOutstanding,omitempty"`
+	AgedCurrencyOutstanding []AccountingAgedCurrencyOutstanding `json:"agedCurrencyOutstanding,omitempty"`
 	// Supplier ID of the aged creditor.
 	SupplierID *string `json:"supplierId,omitempty"`
 	// Supplier name of the aged creditor.
 	SupplierName *string `json:"supplierName,omitempty"`
 }
 
-func (o *AgedCreditor) GetAgedCurrencyOutstanding() []AgedCreditorAgedCurrencyOutstanding {
+func (o *AgedCreditor) GetAgedCurrencyOutstanding() []AccountingAgedCurrencyOutstanding {
 	if o == nil {
 		return nil
 	}

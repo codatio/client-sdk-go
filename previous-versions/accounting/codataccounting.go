@@ -71,55 +71,57 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 // [See our OpenAPI spec](https://github.com/codatio/oas)
 type CodatAccounting struct {
 	// Account transactions
-	AccountTransactions *accountTransactions
-	// Accounts
-	Accounts *accounts
-	// Bank transactions for bank accounts
-	BankAccountTransactions *bankAccountTransactions
+	AccountTransactions *AccountTransactions
 	// Bank accounts
-	BankAccounts *bankAccounts
-	// Bill credit notes
-	BillCreditNotes *billCreditNotes
-	// Bill payments
-	BillPayments *billPayments
+	BankAccounts *BankAccounts
+	// Bank transactions for bank accounts
+	BankAccountTransactions *BankAccountTransactions
 	// Bills
-	Bills *bills
-	// Company info
-	CompanyInfo *companyInfo
-	// Credit notes
-	CreditNotes *creditNotes
+	Bills *Bills
 	// Customers
-	Customers *customers
+	Customers *Customers
 	// Direct costs
-	DirectCosts *directCosts
+	DirectCosts *DirectCosts
 	// Direct incomes
-	DirectIncomes *directIncomes
+	DirectIncomes *DirectIncomes
 	// Invoices
-	Invoices *invoices
-	// Items
-	Items *items
-	// Journal entries
-	JournalEntries *journalEntries
-	// Journals
-	Journals *journals
-	// Payment methods
-	PaymentMethods *paymentMethods
-	// Payments
-	Payments *payments
+	Invoices *Invoices
+	// Item receipts
+	ItemReceipts *ItemReceipts
 	// Purchase orders
-	PurchaseOrders *purchaseOrders
-	// Reports
-	Reports *reports
-	// Sales orders
-	SalesOrders *salesOrders
+	PurchaseOrders *PurchaseOrders
 	// Suppliers
-	Suppliers *suppliers
-	// Tax rates
-	TaxRates *taxRates
-	// Tracking categories
-	TrackingCategories *trackingCategories
+	Suppliers *Suppliers
 	// Transfers
-	Transfers *transfers
+	Transfers *Transfers
+	// Bill credit notes
+	BillCreditNotes *BillCreditNotes
+	// Bill payments
+	BillPayments *BillPayments
+	// Accounts
+	Accounts *Accounts
+	// Credit notes
+	CreditNotes *CreditNotes
+	// Items
+	Items *Items
+	// Journal entries
+	JournalEntries *JournalEntries
+	// Journals
+	Journals *Journals
+	// Payments
+	Payments *Payments
+	// Reports
+	Reports *Reports
+	// Company info
+	CompanyInfo *CompanyInfo
+	// Payment methods
+	PaymentMethods *PaymentMethods
+	// Sales orders
+	SalesOrders *SalesOrders
+	// Tax rates
+	TaxRates *TaxRates
+	// Tracking categories
+	TrackingCategories *TrackingCategories
 
 	sdkConfiguration sdkConfiguration
 }
@@ -197,9 +199,9 @@ func New(opts ...SDKOption) *CodatAccounting {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "0.27.0",
-			GenVersion:        "2.159.2",
-			UserAgent:         "speakeasy-sdk/go 0.27.0 2.159.2 3.0.0 github.com/codatio/client-sdk-go/previous-versions/accounting",
+			SDKVersion:        "0.28.0",
+			GenVersion:        "2.210.3",
+			UserAgent:         "speakeasy-sdk/go 0.28.0 2.210.3 3.0.0 github.com/codatio/client-sdk-go/previous-versions/accounting",
 		},
 	}
 	for _, opt := range opts {
@@ -220,21 +222,11 @@ func New(opts ...SDKOption) *CodatAccounting {
 
 	sdk.AccountTransactions = newAccountTransactions(sdk.sdkConfiguration)
 
-	sdk.Accounts = newAccounts(sdk.sdkConfiguration)
+	sdk.BankAccounts = newBankAccounts(sdk.sdkConfiguration)
 
 	sdk.BankAccountTransactions = newBankAccountTransactions(sdk.sdkConfiguration)
 
-	sdk.BankAccounts = newBankAccounts(sdk.sdkConfiguration)
-
-	sdk.BillCreditNotes = newBillCreditNotes(sdk.sdkConfiguration)
-
-	sdk.BillPayments = newBillPayments(sdk.sdkConfiguration)
-
 	sdk.Bills = newBills(sdk.sdkConfiguration)
-
-	sdk.CompanyInfo = newCompanyInfo(sdk.sdkConfiguration)
-
-	sdk.CreditNotes = newCreditNotes(sdk.sdkConfiguration)
 
 	sdk.Customers = newCustomers(sdk.sdkConfiguration)
 
@@ -244,29 +236,41 @@ func New(opts ...SDKOption) *CodatAccounting {
 
 	sdk.Invoices = newInvoices(sdk.sdkConfiguration)
 
+	sdk.ItemReceipts = newItemReceipts(sdk.sdkConfiguration)
+
+	sdk.PurchaseOrders = newPurchaseOrders(sdk.sdkConfiguration)
+
+	sdk.Suppliers = newSuppliers(sdk.sdkConfiguration)
+
+	sdk.Transfers = newTransfers(sdk.sdkConfiguration)
+
+	sdk.BillCreditNotes = newBillCreditNotes(sdk.sdkConfiguration)
+
+	sdk.BillPayments = newBillPayments(sdk.sdkConfiguration)
+
+	sdk.Accounts = newAccounts(sdk.sdkConfiguration)
+
+	sdk.CreditNotes = newCreditNotes(sdk.sdkConfiguration)
+
 	sdk.Items = newItems(sdk.sdkConfiguration)
 
 	sdk.JournalEntries = newJournalEntries(sdk.sdkConfiguration)
 
 	sdk.Journals = newJournals(sdk.sdkConfiguration)
 
-	sdk.PaymentMethods = newPaymentMethods(sdk.sdkConfiguration)
-
 	sdk.Payments = newPayments(sdk.sdkConfiguration)
-
-	sdk.PurchaseOrders = newPurchaseOrders(sdk.sdkConfiguration)
 
 	sdk.Reports = newReports(sdk.sdkConfiguration)
 
-	sdk.SalesOrders = newSalesOrders(sdk.sdkConfiguration)
+	sdk.CompanyInfo = newCompanyInfo(sdk.sdkConfiguration)
 
-	sdk.Suppliers = newSuppliers(sdk.sdkConfiguration)
+	sdk.PaymentMethods = newPaymentMethods(sdk.sdkConfiguration)
+
+	sdk.SalesOrders = newSalesOrders(sdk.sdkConfiguration)
 
 	sdk.TaxRates = newTaxRates(sdk.sdkConfiguration)
 
 	sdk.TrackingCategories = newTrackingCategories(sdk.sdkConfiguration)
-
-	sdk.Transfers = newTransfers(sdk.sdkConfiguration)
 
 	return sdk
 }

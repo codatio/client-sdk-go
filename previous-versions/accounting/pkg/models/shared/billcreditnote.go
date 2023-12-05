@@ -111,7 +111,7 @@ type BillCreditNote struct {
 	// Any additional information about the bill credit note.
 	Note *string `json:"note,omitempty"`
 	// An array of payment allocations.
-	PaymentAllocations []Items `json:"paymentAllocations,omitempty"`
+	PaymentAllocations []PaymentAllocationItems `json:"paymentAllocations,omitempty"`
 	// Amount of the bill credit note that is still outstanding.
 	RemainingCredit    *decimal.Big `decimal:"number" json:"remainingCredit,omitempty"`
 	SourceModifiedDate *string      `json:"sourceModifiedDate,omitempty"`
@@ -131,7 +131,7 @@ type BillCreditNote struct {
 	TotalDiscount *decimal.Big `decimal:"number" json:"totalDiscount"`
 	// Amount of tax included in the bill credit note.
 	TotalTaxAmount *decimal.Big          `decimal:"number" json:"totalTaxAmount"`
-	WithholdingTax []WithholdingTaxitems `json:"withholdingTax,omitempty"`
+	WithholdingTax []WithholdingTaxItems `json:"withholdingTax,omitempty"`
 }
 
 func (b BillCreditNote) MarshalJSON() ([]byte, error) {
@@ -222,7 +222,7 @@ func (o *BillCreditNote) GetNote() *string {
 	return o.Note
 }
 
-func (o *BillCreditNote) GetPaymentAllocations() []Items {
+func (o *BillCreditNote) GetPaymentAllocations() []PaymentAllocationItems {
 	if o == nil {
 		return nil
 	}
@@ -292,7 +292,7 @@ func (o *BillCreditNote) GetTotalTaxAmount() *decimal.Big {
 	return o.TotalTaxAmount
 }
 
-func (o *BillCreditNote) GetWithholdingTax() []WithholdingTaxitems {
+func (o *BillCreditNote) GetWithholdingTax() []WithholdingTaxItems {
 	if o == nil {
 		return nil
 	}
