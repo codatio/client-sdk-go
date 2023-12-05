@@ -7,20 +7,20 @@ import (
 	"fmt"
 )
 
-// WebLinkType - The type of the weblink.
-type WebLinkType string
+// Type - The type of the weblink.
+type Type string
 
 const (
-	WebLinkTypeWebsite WebLinkType = "Website"
-	WebLinkTypeSocial  WebLinkType = "Social"
-	WebLinkTypeUnknown WebLinkType = "Unknown"
+	TypeWebsite Type = "Website"
+	TypeSocial  Type = "Social"
+	TypeUnknown Type = "Unknown"
 )
 
-func (e WebLinkType) ToPointer() *WebLinkType {
+func (e Type) ToPointer() *Type {
 	return &e
 }
 
-func (e *WebLinkType) UnmarshalJSON(data []byte) error {
+func (e *Type) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -31,22 +31,22 @@ func (e *WebLinkType) UnmarshalJSON(data []byte) error {
 	case "Social":
 		fallthrough
 	case "Unknown":
-		*e = WebLinkType(v)
+		*e = Type(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for WebLinkType: %v", v)
+		return fmt.Errorf("invalid value for Type: %v", v)
 	}
 }
 
 // WebLink - Weblink associated with the company.
 type WebLink struct {
 	// The type of the weblink.
-	Type *WebLinkType `json:"type,omitempty"`
+	Type *Type `json:"type,omitempty"`
 	// The full URL for the weblink.
 	URL *string `json:"url,omitempty"`
 }
 
-func (o *WebLink) GetType() *WebLinkType {
+func (o *WebLink) GetType() *Type {
 	if o == nil {
 		return nil
 	}

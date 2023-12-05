@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/shared"
 	"net/http"
 )
 
@@ -31,8 +31,6 @@ func (o *GetCreateOperationRequest) GetPushOperationKey() string {
 type GetCreateOperationResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// OK
 	PushOperation *shared.PushOperation
 	// HTTP response status code for this operation
@@ -46,13 +44,6 @@ func (o *GetCreateOperationResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *GetCreateOperationResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *GetCreateOperationResponse) GetPushOperation() *shared.PushOperation {

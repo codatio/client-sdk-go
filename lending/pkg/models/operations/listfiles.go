@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/shared"
 	"net/http"
 )
 
@@ -22,8 +22,6 @@ func (o *ListFilesRequest) GetCompanyID() string {
 type ListFilesResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// Success
 	Files []shared.File
 	// HTTP response status code for this operation
@@ -37,13 +35,6 @@ func (o *ListFilesResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *ListFilesResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *ListFilesResponse) GetFiles() []shared.File {

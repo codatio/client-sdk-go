@@ -20,11 +20,11 @@ Gets the latest basic info for a company.
 package main
 
 import(
+	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v5"
 	"context"
+	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/operations"
 	"log"
-	lending "github.com/codatio/client-sdk-go/lending/v4"
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )
 
 func main() {
@@ -50,23 +50,28 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
-| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
-| `request`                                                                                        | [operations.GetAccountingProfileRequest](../../models/operations/getaccountingprofilerequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
-| `opts`                                                                                           | [][operations.Option](../../models/operations/option.md)                                         | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
+| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                                | :heavy_check_mark:                                                                                   | The context to use for the request.                                                                  |
+| `request`                                                                                            | [operations.GetAccountingProfileRequest](../../pkg/models/operations/getaccountingprofilerequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
+| `opts`                                                                                               | [][operations.Option](../../pkg/models/operations/option.md)                                         | :heavy_minus_sign:                                                                                   | The options for this request.                                                                        |
 
 
 ### Response
 
-**[*operations.GetAccountingProfileResponse](../../models/operations/getaccountingprofileresponse.md), error**
-
+**[*operations.GetAccountingProfileResponse](../../pkg/models/operations/getaccountingprofileresponse.md), error**
+| Error Object                    | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| sdkerrors.ErrorMessage          | 401,402,403,404,409,429,500,503 | application/json                |
+| sdkerrors.SDKError              | 400-600                         | */*                             |
 
 ## GetCommerceProfile
 
-Retrieve information about the company, as seen in the commerce platform.
+Retrieve information about the company, as seen in the commerce
+platform.
 
-This may include information like addresses, tax registration details and social media or website information.
+This may include information like addresses, tax registration details and
+social media or website information."
 
 ### Example Usage
 
@@ -74,11 +79,11 @@ This may include information like addresses, tax registration details and social
 package main
 
 import(
+	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v5"
 	"context"
+	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/operations"
 	"log"
-	lending "github.com/codatio/client-sdk-go/lending/v4"
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/operations"
 )
 
 func main() {
@@ -105,14 +110,17 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
-| `request`                                                                                    | [operations.GetCommerceProfileRequest](../../models/operations/getcommerceprofilerequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
-| `opts`                                                                                       | [][operations.Option](../../models/operations/option.md)                                     | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
+| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
+| `request`                                                                                        | [operations.GetCommerceProfileRequest](../../pkg/models/operations/getcommerceprofilerequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
+| `opts`                                                                                           | [][operations.Option](../../pkg/models/operations/option.md)                                     | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
 
 
 ### Response
 
-**[*operations.GetCommerceProfileResponse](../../models/operations/getcommerceprofileresponse.md), error**
-
+**[*operations.GetCommerceProfileResponse](../../pkg/models/operations/getcommerceprofileresponse.md), error**
+| Error Object                    | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| sdkerrors.ErrorMessage          | 401,402,403,404,409,429,500,503 | application/json                |
+| sdkerrors.SDKError              | 400-600                         | */*                             |

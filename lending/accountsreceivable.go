@@ -2,25 +2,25 @@
 
 package lending
 
-type accountsReceivable struct {
-	CreditNotes   *accountsReceivableCreditNotes
-	Customers     *accountsReceivableCustomers
-	DirectIncomes *accountsReceivableDirectIncomes
-	Invoices      *accountsReceivableInvoices
-	Payments      *accountsReceivablePayments
-	Reports       *accountsReceivableReports
+type AccountsReceivable struct {
+	Customers     *Customers
+	DirectIncomes *DirectIncomes
+	Invoices      *Invoices
+	CreditNotes   *CreditNotes
+	Payments      *Payments
+	Reports       *Reports
 
 	sdkConfiguration sdkConfiguration
 }
 
-func newAccountsReceivable(sdkConfig sdkConfiguration) *accountsReceivable {
-	return &accountsReceivable{
+func newAccountsReceivable(sdkConfig sdkConfiguration) *AccountsReceivable {
+	return &AccountsReceivable{
 		sdkConfiguration: sdkConfig,
-		CreditNotes:      newAccountsReceivableCreditNotes(sdkConfig),
-		Customers:        newAccountsReceivableCustomers(sdkConfig),
-		DirectIncomes:    newAccountsReceivableDirectIncomes(sdkConfig),
-		Invoices:         newAccountsReceivableInvoices(sdkConfig),
-		Payments:         newAccountsReceivablePayments(sdkConfig),
-		Reports:          newAccountsReceivableReports(sdkConfig),
+		Customers:        newCustomers(sdkConfig),
+		DirectIncomes:    newDirectIncomes(sdkConfig),
+		Invoices:         newInvoices(sdkConfig),
+		CreditNotes:      newCreditNotes(sdkConfig),
+		Payments:         newPayments(sdkConfig),
+		Reports:          newReports(sdkConfig),
 	}
 }

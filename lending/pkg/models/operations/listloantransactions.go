@@ -5,24 +5,24 @@ package operations
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/shared"
 	"net/http"
 )
 
-// ListLoanTransactionsSourceType - Data source type.
-type ListLoanTransactionsSourceType string
+// ListLoanTransactionsQueryParamSourceType - Data source type.
+type ListLoanTransactionsQueryParamSourceType string
 
 const (
-	ListLoanTransactionsSourceTypeBanking    ListLoanTransactionsSourceType = "banking"
-	ListLoanTransactionsSourceTypeCommerce   ListLoanTransactionsSourceType = "commerce"
-	ListLoanTransactionsSourceTypeAccounting ListLoanTransactionsSourceType = "accounting"
+	ListLoanTransactionsQueryParamSourceTypeBanking    ListLoanTransactionsQueryParamSourceType = "banking"
+	ListLoanTransactionsQueryParamSourceTypeCommerce   ListLoanTransactionsQueryParamSourceType = "commerce"
+	ListLoanTransactionsQueryParamSourceTypeAccounting ListLoanTransactionsQueryParamSourceType = "accounting"
 )
 
-func (e ListLoanTransactionsSourceType) ToPointer() *ListLoanTransactionsSourceType {
+func (e ListLoanTransactionsQueryParamSourceType) ToPointer() *ListLoanTransactionsQueryParamSourceType {
 	return &e
 }
 
-func (e *ListLoanTransactionsSourceType) UnmarshalJSON(data []byte) error {
+func (e *ListLoanTransactionsQueryParamSourceType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -33,10 +33,10 @@ func (e *ListLoanTransactionsSourceType) UnmarshalJSON(data []byte) error {
 	case "commerce":
 		fallthrough
 	case "accounting":
-		*e = ListLoanTransactionsSourceType(v)
+		*e = ListLoanTransactionsQueryParamSourceType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ListLoanTransactionsSourceType: %v", v)
+		return fmt.Errorf("invalid value for ListLoanTransactionsQueryParamSourceType: %v", v)
 	}
 }
 
@@ -44,7 +44,7 @@ type ListLoanTransactionsRequest struct {
 	// Unique identifier for a company.
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	// Data source type.
-	SourceType ListLoanTransactionsSourceType `queryParam:"style=form,explode=true,name=sourceType"`
+	SourceType ListLoanTransactionsQueryParamSourceType `queryParam:"style=form,explode=true,name=sourceType"`
 }
 
 func (o *ListLoanTransactionsRequest) GetCompanyID() string {
@@ -54,9 +54,9 @@ func (o *ListLoanTransactionsRequest) GetCompanyID() string {
 	return o.CompanyID
 }
 
-func (o *ListLoanTransactionsRequest) GetSourceType() ListLoanTransactionsSourceType {
+func (o *ListLoanTransactionsRequest) GetSourceType() ListLoanTransactionsQueryParamSourceType {
 	if o == nil {
-		return ListLoanTransactionsSourceType("")
+		return ListLoanTransactionsQueryParamSourceType("")
 	}
 	return o.SourceType
 }
@@ -64,8 +64,6 @@ func (o *ListLoanTransactionsRequest) GetSourceType() ListLoanTransactionsSource
 type ListLoanTransactionsResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// OK
 	LoanTransactions *shared.LoanTransactions
 	// HTTP response status code for this operation
@@ -79,13 +77,6 @@ func (o *ListLoanTransactionsResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *ListLoanTransactionsResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *ListLoanTransactionsResponse) GetLoanTransactions() *shared.LoanTransactions {

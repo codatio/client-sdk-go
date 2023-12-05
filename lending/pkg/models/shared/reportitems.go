@@ -5,25 +5,25 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/utils"
+	"github.com/codatio/client-sdk-go/lending/v5/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
-// ReportItemsLoanTransactionType - The type of loan transaction.
-type ReportItemsLoanTransactionType string
+// LoanTransactionType - The type of loan transaction.
+type LoanTransactionType string
 
 const (
-	ReportItemsLoanTransactionTypeInvestment      ReportItemsLoanTransactionType = "Investment"
-	ReportItemsLoanTransactionTypeRepayment       ReportItemsLoanTransactionType = "Repayment"
-	ReportItemsLoanTransactionTypeInterest        ReportItemsLoanTransactionType = "Interest"
-	ReportItemsLoanTransactionTypeAccuredInterest ReportItemsLoanTransactionType = "AccuredInterest"
+	LoanTransactionTypeInvestment      LoanTransactionType = "Investment"
+	LoanTransactionTypeRepayment       LoanTransactionType = "Repayment"
+	LoanTransactionTypeInterest        LoanTransactionType = "Interest"
+	LoanTransactionTypeAccuredInterest LoanTransactionType = "AccuredInterest"
 )
 
-func (e ReportItemsLoanTransactionType) ToPointer() *ReportItemsLoanTransactionType {
+func (e LoanTransactionType) ToPointer() *LoanTransactionType {
 	return &e
 }
 
-func (e *ReportItemsLoanTransactionType) UnmarshalJSON(data []byte) error {
+func (e *LoanTransactionType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -36,10 +36,10 @@ func (e *ReportItemsLoanTransactionType) UnmarshalJSON(data []byte) error {
 	case "Interest":
 		fallthrough
 	case "AccuredInterest":
-		*e = ReportItemsLoanTransactionType(v)
+		*e = LoanTransactionType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ReportItemsLoanTransactionType: %v", v)
+		return fmt.Errorf("invalid value for LoanTransactionType: %v", v)
 	}
 }
 
@@ -65,13 +65,13 @@ type ReportItems struct {
 	// >
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	Date    *string             `json:"date,omitempty"`
-	ItemRef *DefinitionsitemRef `json:"itemRef,omitempty"`
+	Date    *string  `json:"date,omitempty"`
+	ItemRef *ItemRef `json:"itemRef,omitempty"`
 	// The name of lender providing the loan.
 	LenderName *string  `json:"lenderName,omitempty"`
 	LoanRef    *LoanRef `json:"loanRef,omitempty"`
 	// The type of loan transaction.
-	LoanTransactionType *ReportItemsLoanTransactionType `json:"loanTransactionType,omitempty"`
+	LoanTransactionType *LoanTransactionType `json:"loanTransactionType,omitempty"`
 }
 
 func (r ReportItems) MarshalJSON() ([]byte, error) {
@@ -99,7 +99,7 @@ func (o *ReportItems) GetDate() *string {
 	return o.Date
 }
 
-func (o *ReportItems) GetItemRef() *DefinitionsitemRef {
+func (o *ReportItems) GetItemRef() *ItemRef {
 	if o == nil {
 		return nil
 	}
@@ -120,7 +120,7 @@ func (o *ReportItems) GetLoanRef() *LoanRef {
 	return o.LoanRef
 }
 
-func (o *ReportItems) GetLoanTransactionType() *ReportItemsLoanTransactionType {
+func (o *ReportItems) GetLoanTransactionType() *LoanTransactionType {
 	if o == nil {
 		return nil
 	}

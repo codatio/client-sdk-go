@@ -2,21 +2,21 @@
 
 package lending
 
-type financialStatements struct {
-	Accounts      *financialStatementsAccounts
-	BalanceSheet  *financialStatementsBalanceSheet
-	CashFlow      *financialStatementsCashFlow
-	ProfitAndLoss *financialStatementsProfitAndLoss
+type FinancialStatements struct {
+	Accounts      *CodatLendingFinancialStatementsAccounts
+	BalanceSheet  *BalanceSheet
+	CashFlow      *CashFlow
+	ProfitAndLoss *ProfitAndLoss
 
 	sdkConfiguration sdkConfiguration
 }
 
-func newFinancialStatements(sdkConfig sdkConfiguration) *financialStatements {
-	return &financialStatements{
+func newFinancialStatements(sdkConfig sdkConfiguration) *FinancialStatements {
+	return &FinancialStatements{
 		sdkConfiguration: sdkConfig,
-		Accounts:         newFinancialStatementsAccounts(sdkConfig),
-		BalanceSheet:     newFinancialStatementsBalanceSheet(sdkConfig),
-		CashFlow:         newFinancialStatementsCashFlow(sdkConfig),
-		ProfitAndLoss:    newFinancialStatementsProfitAndLoss(sdkConfig),
+		Accounts:         newCodatLendingFinancialStatementsAccounts(sdkConfig),
+		BalanceSheet:     newBalanceSheet(sdkConfig),
+		CashFlow:         newCashFlow(sdkConfig),
+		ProfitAndLoss:    newProfitAndLoss(sdkConfig),
 	}
 }

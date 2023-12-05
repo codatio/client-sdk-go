@@ -3,8 +3,8 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/utils"
+	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v5/pkg/utils"
 	"net/http"
 )
 
@@ -72,8 +72,6 @@ type ListAccountingBillsResponse struct {
 	AccountingBills *shared.AccountingBills
 	// HTTP response content type for this operation
 	ContentType string
-	// Your `query` parameter was not correctly formed
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -92,13 +90,6 @@ func (o *ListAccountingBillsResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *ListAccountingBillsResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *ListAccountingBillsResponse) GetStatusCode() int {

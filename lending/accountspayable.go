@@ -2,21 +2,21 @@
 
 package lending
 
-type accountsPayable struct {
-	BillCreditNotes *accountsPayableBillCreditNotes
-	BillPayments    *accountsPayableBillPayments
-	Bills           *accountsPayableBills
-	Suppliers       *accountsPayableSuppliers
+type AccountsPayable struct {
+	Bills           *Bills
+	Suppliers       *Suppliers
+	BillCreditNotes *BillCreditNotes
+	BillPayments    *BillPayments
 
 	sdkConfiguration sdkConfiguration
 }
 
-func newAccountsPayable(sdkConfig sdkConfiguration) *accountsPayable {
-	return &accountsPayable{
+func newAccountsPayable(sdkConfig sdkConfiguration) *AccountsPayable {
+	return &AccountsPayable{
 		sdkConfiguration: sdkConfig,
-		BillCreditNotes:  newAccountsPayableBillCreditNotes(sdkConfig),
-		BillPayments:     newAccountsPayableBillPayments(sdkConfig),
-		Bills:            newAccountsPayableBills(sdkConfig),
-		Suppliers:        newAccountsPayableSuppliers(sdkConfig),
+		Bills:            newBills(sdkConfig),
+		Suppliers:        newSuppliers(sdkConfig),
+		BillCreditNotes:  newBillCreditNotes(sdkConfig),
+		BillPayments:     newBillPayments(sdkConfig),
 	}
 }

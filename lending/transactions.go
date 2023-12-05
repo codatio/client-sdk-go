@@ -2,23 +2,23 @@
 
 package lending
 
-type transactions struct {
-	AccountTransactions *transactionsAccountTransactions
-	DirectCosts         *transactionsDirectCosts
-	JournalEntries      *transactionsJournalEntries
-	Journals            *transactionsJournals
-	Transfers           *transactionsTransfers
+type Transactions struct {
+	AccountTransactions *AccountTransactions
+	DirectCosts         *CodatLendingDirectCosts
+	Transfers           *CodatLendingTransfers
+	JournalEntries      *JournalEntries
+	Journals            *Journals
 
 	sdkConfiguration sdkConfiguration
 }
 
-func newTransactions(sdkConfig sdkConfiguration) *transactions {
-	return &transactions{
+func newTransactions(sdkConfig sdkConfiguration) *Transactions {
+	return &Transactions{
 		sdkConfiguration:    sdkConfig,
-		AccountTransactions: newTransactionsAccountTransactions(sdkConfig),
-		DirectCosts:         newTransactionsDirectCosts(sdkConfig),
-		JournalEntries:      newTransactionsJournalEntries(sdkConfig),
-		Journals:            newTransactionsJournals(sdkConfig),
-		Transfers:           newTransactionsTransfers(sdkConfig),
+		AccountTransactions: newAccountTransactions(sdkConfig),
+		DirectCosts:         newCodatLendingDirectCosts(sdkConfig),
+		Transfers:           newCodatLendingTransfers(sdkConfig),
+		JournalEntries:      newJournalEntries(sdkConfig),
+		Journals:            newJournals(sdkConfig),
 	}
 }

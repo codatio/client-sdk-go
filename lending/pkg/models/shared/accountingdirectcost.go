@@ -3,9 +3,31 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v4/pkg/utils"
+	"github.com/codatio/client-sdk-go/lending/v5/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
+
+// AccountingDirectCostContactRef - A customer or supplier associated with the direct cost.
+type AccountingDirectCostContactRef struct {
+	// Available Data types
+	DataType *DataType `json:"dataType,omitempty"`
+	// Unique identifier for a customer or supplier.
+	ID string `json:"id"`
+}
+
+func (o *AccountingDirectCostContactRef) GetDataType() *DataType {
+	if o == nil {
+		return nil
+	}
+	return o.DataType
+}
+
+func (o *AccountingDirectCostContactRef) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
 
 // AccountingDirectCost - > **Language tip:** Direct costs may also be referred to as **Spend transactions**, **Spend money transactions**, or **Payments** in various accounting platforms.
 //
@@ -23,8 +45,8 @@ import (
 //
 // Direct costs is a child data type of [account transactions](https://docs.codat.io/lending-api#/schemas/AccountTransaction).
 type AccountingDirectCost struct {
-	// The customer or supplier for the transfer, if available.
-	ContactRef *ContactRef `json:"contactRef,omitempty"`
+	// A customer or supplier associated with the direct cost.
+	ContactRef *AccountingDirectCostContactRef `json:"contactRef,omitempty"`
 	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code, e.g. _GBP_.
 	//
 	// ## Unknown currencies
@@ -115,7 +137,7 @@ func (a *AccountingDirectCost) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *AccountingDirectCost) GetContactRef() *ContactRef {
+func (o *AccountingDirectCost) GetContactRef() *AccountingDirectCostContactRef {
 	if o == nil {
 		return nil
 	}
