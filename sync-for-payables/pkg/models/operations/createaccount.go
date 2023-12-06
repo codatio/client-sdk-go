@@ -3,12 +3,12 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
 	"net/http"
 )
 
 type CreateAccountRequest struct {
-	Account *shared.Account `request:"mediaType=application/json"`
+	AccountPrototype *shared.AccountPrototype `request:"mediaType=application/json"`
 	// Unique identifier for a company.
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	// Unique identifier for a connection.
@@ -17,11 +17,11 @@ type CreateAccountRequest struct {
 	TimeoutInMinutes *int `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
 }
 
-func (o *CreateAccountRequest) GetAccount() *shared.Account {
+func (o *CreateAccountRequest) GetAccountPrototype() *shared.AccountPrototype {
 	if o == nil {
 		return nil
 	}
-	return o.Account
+	return o.AccountPrototype
 }
 
 func (o *CreateAccountRequest) GetCompanyID() string {
@@ -50,8 +50,6 @@ type CreateAccountResponse struct {
 	ContentType string
 	// Success
 	CreateAccountResponse *shared.CreateAccountResponse
-	// The request made is not valid.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -70,13 +68,6 @@ func (o *CreateAccountResponse) GetCreateAccountResponse() *shared.CreateAccount
 		return nil
 	}
 	return o.CreateAccountResponse
-}
-
-func (o *CreateAccountResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *CreateAccountResponse) GetStatusCode() int {

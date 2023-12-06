@@ -3,31 +3,12 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
 	"net/http"
 )
 
-type UploadBillAttachmentRequestBody struct {
-	Content     []byte `multipartForm:"content"`
-	RequestBody string `multipartForm:"name=requestBody"`
-}
-
-func (o *UploadBillAttachmentRequestBody) GetContent() []byte {
-	if o == nil {
-		return []byte{}
-	}
-	return o.Content
-}
-
-func (o *UploadBillAttachmentRequestBody) GetRequestBody() string {
-	if o == nil {
-		return ""
-	}
-	return o.RequestBody
-}
-
 type UploadBillAttachmentRequest struct {
-	RequestBody *UploadBillAttachmentRequestBody `multipartForm:"file" request:"mediaType=multipart/form-data"`
+	AttachmentUpload *shared.AttachmentUpload `request:"mediaType=multipart/form-data"`
 	// Unique identifier for a bill.
 	BillID string `pathParam:"style=simple,explode=false,name=billId"`
 	// Unique identifier for a company.
@@ -36,11 +17,11 @@ type UploadBillAttachmentRequest struct {
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
-func (o *UploadBillAttachmentRequest) GetRequestBody() *UploadBillAttachmentRequestBody {
+func (o *UploadBillAttachmentRequest) GetAttachmentUpload() *shared.AttachmentUpload {
 	if o == nil {
 		return nil
 	}
-	return o.RequestBody
+	return o.AttachmentUpload
 }
 
 func (o *UploadBillAttachmentRequest) GetBillID() string {
@@ -67,8 +48,6 @@ func (o *UploadBillAttachmentRequest) GetConnectionID() string {
 type UploadBillAttachmentResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -80,13 +59,6 @@ func (o *UploadBillAttachmentResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *UploadBillAttachmentResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *UploadBillAttachmentResponse) GetStatusCode() int {

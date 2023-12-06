@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
 	"net/http"
 )
 
@@ -31,8 +31,6 @@ func (o *GetPaymentMethodRequest) GetPaymentMethodID() string {
 type GetPaymentMethodResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// Success
 	PaymentMethod *shared.PaymentMethod
 	// HTTP response status code for this operation
@@ -46,13 +44,6 @@ func (o *GetPaymentMethodResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *GetPaymentMethodResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *GetPaymentMethodResponse) GetPaymentMethod() *shared.PaymentMethod {
