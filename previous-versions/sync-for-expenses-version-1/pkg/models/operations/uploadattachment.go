@@ -7,27 +7,8 @@ import (
 	"net/http"
 )
 
-type UploadAttachmentRequestBody struct {
-	Content     []byte `multipartForm:"content"`
-	RequestBody string `multipartForm:"name=requestBody"`
-}
-
-func (o *UploadAttachmentRequestBody) GetContent() []byte {
-	if o == nil {
-		return []byte{}
-	}
-	return o.Content
-}
-
-func (o *UploadAttachmentRequestBody) GetRequestBody() string {
-	if o == nil {
-		return ""
-	}
-	return o.RequestBody
-}
-
 type UploadAttachmentRequest struct {
-	RequestBody *UploadAttachmentRequestBody `multipartForm:"file" request:"mediaType=multipart/form-data"`
+	AttachmentUpload *shared.AttachmentUpload `request:"mediaType=multipart/form-data"`
 	// Unique identifier for a company.
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	// Unique identifier for a sync.
@@ -36,11 +17,11 @@ type UploadAttachmentRequest struct {
 	TransactionID string `pathParam:"style=simple,explode=false,name=transactionId"`
 }
 
-func (o *UploadAttachmentRequest) GetRequestBody() *UploadAttachmentRequestBody {
+func (o *UploadAttachmentRequest) GetAttachmentUpload() *shared.AttachmentUpload {
 	if o == nil {
 		return nil
 	}
-	return o.RequestBody
+	return o.AttachmentUpload
 }
 
 func (o *UploadAttachmentRequest) GetCompanyID() string {
@@ -69,8 +50,6 @@ type UploadAttachmentResponse struct {
 	Attachment *shared.Attachment
 	// HTTP response content type for this operation
 	ContentType string
-	// The request made is not valid.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -89,13 +68,6 @@ func (o *UploadAttachmentResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *UploadAttachmentResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *UploadAttachmentResponse) GetStatusCode() int {

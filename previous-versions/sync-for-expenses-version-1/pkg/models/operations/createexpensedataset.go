@@ -32,8 +32,6 @@ type CreateExpenseDatasetResponse struct {
 	ContentType string
 	// OK
 	CreateExpenseResponse *shared.CreateExpenseResponse
-	// The request made is not valid.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -52,13 +50,6 @@ func (o *CreateExpenseDatasetResponse) GetCreateExpenseResponse() *shared.Create
 		return nil
 	}
 	return o.CreateExpenseResponse
-}
-
-func (o *CreateExpenseDatasetResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *CreateExpenseDatasetResponse) GetStatusCode() int {
