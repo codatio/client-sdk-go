@@ -230,6 +230,8 @@ pkg/utils/utils.go
 /pkg/models/shared/bills.go
 /pkg/models/shared/attachmentsdataset.go
 /pkg/models/shared/updatebillresponse.go
+/pkg/models/shared/attachmentupload.go
+/pkg/models/shared/codatfile.go
 /pkg/models/shared/createcustomerresponse.go
 /pkg/models/shared/customer.go
 /pkg/models/shared/customerstatus.go
@@ -407,7 +409,6 @@ docs/pkg/models/operations/listbillattachmentsrequest.md
 docs/pkg/models/operations/listbillattachmentsresponse.md
 docs/pkg/models/operations/updatebillrequest.md
 docs/pkg/models/operations/updatebillresponse.md
-docs/pkg/models/operations/uploadbillattachmentrequestbody.md
 docs/pkg/models/operations/uploadbillattachmentrequest.md
 docs/pkg/models/operations/uploadbillattachmentresponse.md
 docs/pkg/models/operations/createcustomerrequest.md
@@ -440,7 +441,6 @@ docs/pkg/models/operations/listdirectcostsrequest.md
 docs/pkg/models/operations/listdirectcostsresponse.md
 docs/pkg/models/operations/listdirectcostattachmentsrequest.md
 docs/pkg/models/operations/listdirectcostattachmentsresponse.md
-docs/pkg/models/operations/uploaddirectcostattachmentrequestbody.md
 docs/pkg/models/operations/uploaddirectcostattachmentrequest.md
 docs/pkg/models/operations/uploaddirectcostattachmentresponse.md
 docs/pkg/models/operations/createdirectincomerequest.md
@@ -701,6 +701,8 @@ docs/pkg/models/shared/attachment.md
 docs/pkg/models/shared/bills.md
 docs/pkg/models/shared/attachmentsdataset.md
 docs/pkg/models/shared/updatebillresponse.md
+docs/pkg/models/shared/attachmentupload.md
+docs/pkg/models/shared/codatfile.md
 docs/pkg/models/shared/createcustomerresponse.md
 docs/pkg/models/shared/customer.md
 docs/pkg/models/shared/customerstatus.md

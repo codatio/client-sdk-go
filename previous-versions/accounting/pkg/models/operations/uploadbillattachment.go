@@ -3,30 +3,12 @@
 package operations
 
 import (
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
 	"net/http"
 )
 
-type UploadBillAttachmentRequestBody struct {
-	Content  []byte `multipartForm:"content"`
-	FileName string `multipartForm:"name=fileName"`
-}
-
-func (o *UploadBillAttachmentRequestBody) GetContent() []byte {
-	if o == nil {
-		return []byte{}
-	}
-	return o.Content
-}
-
-func (o *UploadBillAttachmentRequestBody) GetFileName() string {
-	if o == nil {
-		return ""
-	}
-	return o.FileName
-}
-
 type UploadBillAttachmentRequest struct {
-	RequestBody *UploadBillAttachmentRequestBody `multipartForm:"file" request:"mediaType=multipart/form-data"`
+	AttachmentUpload *shared.AttachmentUpload `request:"mediaType=multipart/form-data"`
 	// Unique identifier for a bill.
 	BillID string `pathParam:"style=simple,explode=false,name=billId"`
 	// Unique identifier for a company.
@@ -35,11 +17,11 @@ type UploadBillAttachmentRequest struct {
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
-func (o *UploadBillAttachmentRequest) GetRequestBody() *UploadBillAttachmentRequestBody {
+func (o *UploadBillAttachmentRequest) GetAttachmentUpload() *shared.AttachmentUpload {
 	if o == nil {
 		return nil
 	}
-	return o.RequestBody
+	return o.AttachmentUpload
 }
 
 func (o *UploadBillAttachmentRequest) GetBillID() string {

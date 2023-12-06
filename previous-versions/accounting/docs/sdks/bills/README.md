@@ -803,9 +803,11 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Bills.UploadAttachment(ctx, operations.UploadBillAttachmentRequest{
-        RequestBody: &operations.UploadBillAttachmentRequestBody{
-            Content: []byte("0xE3ABc1980E"),
-            FileName: "elegant_producer_electric.jpeg",
+        AttachmentUpload: &shared.AttachmentUpload{
+            File: shared.CodatFile{
+                Content: []byte("0xE3ABc1980E"),
+                FileName: "elegant_producer_electric.jpeg",
+            },
         },
         BillID: "9wg4lep4ush5cxs79pl8sozmsndbaukll3ind4g7buqbm1h2",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",

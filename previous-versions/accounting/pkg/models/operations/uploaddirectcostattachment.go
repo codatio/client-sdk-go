@@ -3,30 +3,12 @@
 package operations
 
 import (
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
 	"net/http"
 )
 
-type UploadDirectCostAttachmentRequestBody struct {
-	Content  []byte `multipartForm:"content"`
-	FileName string `multipartForm:"name=fileName"`
-}
-
-func (o *UploadDirectCostAttachmentRequestBody) GetContent() []byte {
-	if o == nil {
-		return []byte{}
-	}
-	return o.Content
-}
-
-func (o *UploadDirectCostAttachmentRequestBody) GetFileName() string {
-	if o == nil {
-		return ""
-	}
-	return o.FileName
-}
-
 type UploadDirectCostAttachmentRequest struct {
-	RequestBody *UploadDirectCostAttachmentRequestBody `multipartForm:"file" request:"mediaType=multipart/form-data"`
+	AttachmentUpload *shared.AttachmentUpload `request:"mediaType=multipart/form-data"`
 	// Unique identifier for a company.
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	// Unique identifier for a connection.
@@ -35,11 +17,11 @@ type UploadDirectCostAttachmentRequest struct {
 	DirectCostID string `pathParam:"style=simple,explode=false,name=directCostId"`
 }
 
-func (o *UploadDirectCostAttachmentRequest) GetRequestBody() *UploadDirectCostAttachmentRequestBody {
+func (o *UploadDirectCostAttachmentRequest) GetAttachmentUpload() *shared.AttachmentUpload {
 	if o == nil {
 		return nil
 	}
-	return o.RequestBody
+	return o.AttachmentUpload
 }
 
 func (o *UploadDirectCostAttachmentRequest) GetCompanyID() string {
