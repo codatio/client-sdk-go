@@ -5,11 +5,8 @@ management:
   speakeasyVersion: 1.125.2
   generationVersion: 2.210.6
 generation:
-  comments: {}
   sdkClassName: CodatSyncPayables
-  repoURL: https://github.com/codatio/client-sdk-go.git
-  usageSnippets:
-    optionalPropertyRendering: withExample
+  singleTagPerOp: false
   telemetryEnabled: true
 features:
   go:
@@ -25,20 +22,5 @@ features:
     retries: 2.82.1
 go:
   version: 3.0.0
-  clientServerStatusCodesAsErrors: true
-  flattenGlobalSecurity: false
-  imports:
-    option: openapi
-    paths:
-      callbacks: pkg/models/callbacks
-      errors: pkg/models/sdkerrors
-      operations: pkg/models/operations
-      shared: pkg/models/shared
-      webhooks: pkg/models/webhooks
-  inputModelSuffix: input
-  installationURL: https://github.com/codatio/client-sdk-go/sync-for-payables
   maxMethodParams: 0
-  outputModelSuffix: output
   packageName: github.com/codatio/client-sdk-go/sync-for-payables
-  published: true
-  repoSubDirectory: sync-for-payables
