@@ -71,24 +71,24 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 //
 // [See our OpenAPI spec](https://github.com/codatio/oas)
 //
-// Not seeing what you expect? [See the main Sync for Commerce API](https://docs.codat.io/sync-for-commerce-api).
+// Not seeing what you expect? [See the main Sync for Expenses API](https://docs.codat.io/sync-for-expenses-api).
 type CodatSyncExpenses struct {
 	// Create and manage your Codat companies.
-	Companies *companies
-	// Companies sync configuration.
-	Configuration *configuration
+	Companies *Companies
 	// Create and manage partner expense connection.
-	Connections *connections
+	Connections *Connections
+	// Companies sync configuration.
+	Configuration *Configuration
 	// Create expense datasets and upload receipts.
-	Expenses *expenses
+	Expenses *Expenses
 	// Mapping options for a companies expenses.
-	MappingOptions *mappingOptions
+	MappingOptions *MappingOptions
 	// Triggering a new sync of expenses to accounting software.
-	Sync *sync
+	Sync *Sync
 	// Check the status of ongoing or previous expense syncs.
-	SyncStatus *syncStatus
+	SyncStatus *SyncStatus
 	// Retrieve the status of transactions within a sync.
-	TransactionStatus *transactionStatus
+	TransactionStatus *TransactionStatus
 
 	sdkConfiguration sdkConfiguration
 }
@@ -166,9 +166,9 @@ func New(opts ...SDKOption) *CodatSyncExpenses {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "prealpha",
-			SDKVersion:        "0.25.0",
-			GenVersion:        "2.159.2",
-			UserAgent:         "speakeasy-sdk/go 0.25.0 2.159.2 prealpha github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1",
+			SDKVersion:        "0.26.0",
+			GenVersion:        "2.210.6",
+			UserAgent:         "speakeasy-sdk/go 0.26.0 2.210.6 prealpha github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1",
 		},
 	}
 	for _, opt := range opts {
@@ -189,9 +189,9 @@ func New(opts ...SDKOption) *CodatSyncExpenses {
 
 	sdk.Companies = newCompanies(sdk.sdkConfiguration)
 
-	sdk.Configuration = newConfiguration(sdk.sdkConfiguration)
-
 	sdk.Connections = newConnections(sdk.sdkConfiguration)
+
+	sdk.Configuration = newConfiguration(sdk.sdkConfiguration)
 
 	sdk.Expenses = newExpenses(sdk.sdkConfiguration)
 

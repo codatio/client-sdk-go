@@ -7,22 +7,22 @@ import (
 	"fmt"
 )
 
-// AccountMappingInfoAccountType - Type of the account.
-type AccountMappingInfoAccountType string
+// AccountType - Type of the account.
+type AccountType string
 
 const (
-	AccountMappingInfoAccountTypeAsset     AccountMappingInfoAccountType = "Asset"
-	AccountMappingInfoAccountTypeLiability AccountMappingInfoAccountType = "Liability"
-	AccountMappingInfoAccountTypeIncome    AccountMappingInfoAccountType = "Income"
-	AccountMappingInfoAccountTypeExpense   AccountMappingInfoAccountType = "Expense"
-	AccountMappingInfoAccountTypeEquity    AccountMappingInfoAccountType = "Equity"
+	AccountTypeAsset     AccountType = "Asset"
+	AccountTypeLiability AccountType = "Liability"
+	AccountTypeIncome    AccountType = "Income"
+	AccountTypeExpense   AccountType = "Expense"
+	AccountTypeEquity    AccountType = "Equity"
 )
 
-func (e AccountMappingInfoAccountType) ToPointer() *AccountMappingInfoAccountType {
+func (e AccountType) ToPointer() *AccountType {
 	return &e
 }
 
-func (e *AccountMappingInfoAccountType) UnmarshalJSON(data []byte) error {
+func (e *AccountType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -37,31 +37,31 @@ func (e *AccountMappingInfoAccountType) UnmarshalJSON(data []byte) error {
 	case "Expense":
 		fallthrough
 	case "Equity":
-		*e = AccountMappingInfoAccountType(v)
+		*e = AccountType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for AccountMappingInfoAccountType: %v", v)
+		return fmt.Errorf("invalid value for AccountType: %v", v)
 	}
 }
 
-type AccountMappingInfoValidTransactionTypes string
+type ValidTransactionTypes string
 
 const (
-	AccountMappingInfoValidTransactionTypesPayment       AccountMappingInfoValidTransactionTypes = "Payment"
-	AccountMappingInfoValidTransactionTypesRefund        AccountMappingInfoValidTransactionTypes = "Refund"
-	AccountMappingInfoValidTransactionTypesReward        AccountMappingInfoValidTransactionTypes = "Reward"
-	AccountMappingInfoValidTransactionTypesChargeback    AccountMappingInfoValidTransactionTypes = "Chargeback"
-	AccountMappingInfoValidTransactionTypesTransferIn    AccountMappingInfoValidTransactionTypes = "TransferIn"
-	AccountMappingInfoValidTransactionTypesTransferOut   AccountMappingInfoValidTransactionTypes = "TransferOut"
-	AccountMappingInfoValidTransactionTypesAdjustmentIn  AccountMappingInfoValidTransactionTypes = "AdjustmentIn"
-	AccountMappingInfoValidTransactionTypesAdjustmentOut AccountMappingInfoValidTransactionTypes = "AdjustmentOut"
+	ValidTransactionTypesPayment       ValidTransactionTypes = "Payment"
+	ValidTransactionTypesRefund        ValidTransactionTypes = "Refund"
+	ValidTransactionTypesReward        ValidTransactionTypes = "Reward"
+	ValidTransactionTypesChargeback    ValidTransactionTypes = "Chargeback"
+	ValidTransactionTypesTransferIn    ValidTransactionTypes = "TransferIn"
+	ValidTransactionTypesTransferOut   ValidTransactionTypes = "TransferOut"
+	ValidTransactionTypesAdjustmentIn  ValidTransactionTypes = "AdjustmentIn"
+	ValidTransactionTypesAdjustmentOut ValidTransactionTypes = "AdjustmentOut"
 )
 
-func (e AccountMappingInfoValidTransactionTypes) ToPointer() *AccountMappingInfoValidTransactionTypes {
+func (e ValidTransactionTypes) ToPointer() *ValidTransactionTypes {
 	return &e
 }
 
-func (e *AccountMappingInfoValidTransactionTypes) UnmarshalJSON(data []byte) error {
+func (e *ValidTransactionTypes) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -82,16 +82,16 @@ func (e *AccountMappingInfoValidTransactionTypes) UnmarshalJSON(data []byte) err
 	case "AdjustmentIn":
 		fallthrough
 	case "AdjustmentOut":
-		*e = AccountMappingInfoValidTransactionTypes(v)
+		*e = ValidTransactionTypes(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for AccountMappingInfoValidTransactionTypes: %v", v)
+		return fmt.Errorf("invalid value for ValidTransactionTypes: %v", v)
 	}
 }
 
 type AccountMappingInfo struct {
 	// Type of the account.
-	AccountType *AccountMappingInfoAccountType `json:"accountType,omitempty"`
+	AccountType *AccountType `json:"accountType,omitempty"`
 	// Currency of the account.
 	Currency *string `json:"currency,omitempty"`
 	// Unique identifier of account.
@@ -99,10 +99,10 @@ type AccountMappingInfo struct {
 	// Name of the account as it appears in the companies accounting software.
 	Name *string `json:"name,omitempty"`
 	// Supported transaction types for the account.
-	ValidTransactionTypes []AccountMappingInfoValidTransactionTypes `json:"validTransactionTypes,omitempty"`
+	ValidTransactionTypes []ValidTransactionTypes `json:"validTransactionTypes,omitempty"`
 }
 
-func (o *AccountMappingInfo) GetAccountType() *AccountMappingInfoAccountType {
+func (o *AccountMappingInfo) GetAccountType() *AccountType {
 	if o == nil {
 		return nil
 	}
@@ -130,7 +130,7 @@ func (o *AccountMappingInfo) GetName() *string {
 	return o.Name
 }
 
-func (o *AccountMappingInfo) GetValidTransactionTypes() []AccountMappingInfoValidTransactionTypes {
+func (o *AccountMappingInfo) GetValidTransactionTypes() []ValidTransactionTypes {
 	if o == nil {
 		return nil
 	}
