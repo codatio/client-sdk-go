@@ -11,6 +11,7 @@ generation:
   usageSnippets:
     optionalPropertyRendering: withExample
   telemetryEnabled: true
+  singleTagPerOp: false
 features:
   go:
     constsAndDefaults: 0.1.1
