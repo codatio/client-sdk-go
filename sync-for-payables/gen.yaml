@@ -1,6 +1,6 @@
 configVersion: 1.0.0
 management:
-  docChecksum: c0f1cee560742982fad6b2e5ebe1e3a2
+  docChecksum: 35b0674efb4dd82654d5b280edf76b64
   docVersion: 3.0.0
   speakeasyVersion: 1.125.2
   generationVersion: 2.210.6
@@ -11,7 +11,6 @@ generation:
   usageSnippets:
     optionalPropertyRendering: withExample
   telemetryEnabled: true
-  singleTagPerOp: false
 features:
   go:
     constsAndDefaults: 0.1.2
@@ -25,7 +24,7 @@ features:
     nameOverrides: 2.81.1
     retries: 2.82.1
 go:
-  version: 3.0.0
+  version: 3.0.1
   clientServerStatusCodesAsErrors: true
   flattenGlobalSecurity: false
   imports:
