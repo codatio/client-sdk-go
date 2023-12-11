@@ -40,8 +40,6 @@ func (o *GetProductCategoryRequest) GetProductID() string {
 type GetProductCategoryResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// OK
 	ProductCategory *shared.ProductCategory
 	// HTTP response status code for this operation
@@ -55,13 +53,6 @@ func (o *GetProductCategoryResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *GetProductCategoryResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *GetProductCategoryResponse) GetProductCategory() *shared.ProductCategory {

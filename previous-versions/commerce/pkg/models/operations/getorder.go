@@ -40,8 +40,6 @@ func (o *GetOrderRequest) GetOrderID() string {
 type GetOrderResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// OK
 	Order *shared.Order
 	// HTTP response status code for this operation
@@ -55,13 +53,6 @@ func (o *GetOrderResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *GetOrderResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *GetOrderResponse) GetOrder() *shared.Order {
