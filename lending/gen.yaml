@@ -1,9 +1,9 @@
 configVersion: 1.0.0
 management:
-  docChecksum: 12e40076647cc13ceba5ae79e163f014
+  docChecksum: 17cfcc733c36dd94fd043f61b2595a5d
   docVersion: 3.0.0
-  speakeasyVersion: 1.125.1
-  generationVersion: 2.210.3
+  speakeasyVersion: 1.125.2
+  generationVersion: 2.210.6
 generation:
   comments: {}
   sdkClassName: CodatLending
@@ -11,7 +11,6 @@ generation:
   usageSnippets:
     optionalPropertyRendering: withExample
   telemetryEnabled: true
-  singleTagPerOp: false
 features:
   go:
     constsAndDefaults: 0.1.2
@@ -26,7 +25,7 @@ features:
     nameOverrides: 2.81.1
     retries: 2.82.1
 go:
-  version: 5.0.0
+  version: 5.0.1
   clientServerStatusCodesAsErrors: true
   flattenGlobalSecurity: false
   imports:
