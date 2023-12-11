@@ -1,7 +1,6 @@
-# DownloadFilesErrorMessage
+# Schema
 
-One or more of the resources you referenced could not be found.
-This might be because your company or data connection id is wrong, or was already deleted.
+Your API request was not properly authorized.
 
 
 ## Fields
