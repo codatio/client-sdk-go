@@ -9,38 +9,38 @@ import (
 	"net/http"
 )
 
-// GetSupplementalDataConfigurationDataType - Data types that support supplemental data
-type GetSupplementalDataConfigurationDataType string
+// PathParamDataType - Data types that support supplemental data
+type PathParamDataType string
 
 const (
-	GetSupplementalDataConfigurationDataTypeChartOfAccounts           GetSupplementalDataConfigurationDataType = "chartOfAccounts"
-	GetSupplementalDataConfigurationDataTypeBills                     GetSupplementalDataConfigurationDataType = "bills"
-	GetSupplementalDataConfigurationDataTypeCompany                   GetSupplementalDataConfigurationDataType = "company"
-	GetSupplementalDataConfigurationDataTypeCreditNotes               GetSupplementalDataConfigurationDataType = "creditNotes"
-	GetSupplementalDataConfigurationDataTypeCustomers                 GetSupplementalDataConfigurationDataType = "customers"
-	GetSupplementalDataConfigurationDataTypeInvoices                  GetSupplementalDataConfigurationDataType = "invoices"
-	GetSupplementalDataConfigurationDataTypeItems                     GetSupplementalDataConfigurationDataType = "items"
-	GetSupplementalDataConfigurationDataTypeJournalEntries            GetSupplementalDataConfigurationDataType = "journalEntries"
-	GetSupplementalDataConfigurationDataTypeSuppliers                 GetSupplementalDataConfigurationDataType = "suppliers"
-	GetSupplementalDataConfigurationDataTypeTaxRates                  GetSupplementalDataConfigurationDataType = "taxRates"
-	GetSupplementalDataConfigurationDataTypeCommerceCompanyInfo       GetSupplementalDataConfigurationDataType = "commerce-companyInfo"
-	GetSupplementalDataConfigurationDataTypeCommerceCustomers         GetSupplementalDataConfigurationDataType = "commerce-customers"
-	GetSupplementalDataConfigurationDataTypeCommerceDisputes          GetSupplementalDataConfigurationDataType = "commerce-disputes"
-	GetSupplementalDataConfigurationDataTypeCommerceLocations         GetSupplementalDataConfigurationDataType = "commerce-locations"
-	GetSupplementalDataConfigurationDataTypeCommerceOrders            GetSupplementalDataConfigurationDataType = "commerce-orders"
-	GetSupplementalDataConfigurationDataTypeCommercePayments          GetSupplementalDataConfigurationDataType = "commerce-payments"
-	GetSupplementalDataConfigurationDataTypeCommercePaymentMethods    GetSupplementalDataConfigurationDataType = "commerce-paymentMethods"
-	GetSupplementalDataConfigurationDataTypeCommerceProducts          GetSupplementalDataConfigurationDataType = "commerce-products"
-	GetSupplementalDataConfigurationDataTypeCommerceProductCategories GetSupplementalDataConfigurationDataType = "commerce-productCategories"
-	GetSupplementalDataConfigurationDataTypeCommerceTaxComponents     GetSupplementalDataConfigurationDataType = "commerce-taxComponents"
-	GetSupplementalDataConfigurationDataTypeCommerceTransactions      GetSupplementalDataConfigurationDataType = "commerce-transactions"
+	PathParamDataTypeChartOfAccounts           PathParamDataType = "chartOfAccounts"
+	PathParamDataTypeBills                     PathParamDataType = "bills"
+	PathParamDataTypeCompany                   PathParamDataType = "company"
+	PathParamDataTypeCreditNotes               PathParamDataType = "creditNotes"
+	PathParamDataTypeCustomers                 PathParamDataType = "customers"
+	PathParamDataTypeInvoices                  PathParamDataType = "invoices"
+	PathParamDataTypeItems                     PathParamDataType = "items"
+	PathParamDataTypeJournalEntries            PathParamDataType = "journalEntries"
+	PathParamDataTypeSuppliers                 PathParamDataType = "suppliers"
+	PathParamDataTypeTaxRates                  PathParamDataType = "taxRates"
+	PathParamDataTypeCommerceCompanyInfo       PathParamDataType = "commerce-companyInfo"
+	PathParamDataTypeCommerceCustomers         PathParamDataType = "commerce-customers"
+	PathParamDataTypeCommerceDisputes          PathParamDataType = "commerce-disputes"
+	PathParamDataTypeCommerceLocations         PathParamDataType = "commerce-locations"
+	PathParamDataTypeCommerceOrders            PathParamDataType = "commerce-orders"
+	PathParamDataTypeCommercePayments          PathParamDataType = "commerce-payments"
+	PathParamDataTypeCommercePaymentMethods    PathParamDataType = "commerce-paymentMethods"
+	PathParamDataTypeCommerceProducts          PathParamDataType = "commerce-products"
+	PathParamDataTypeCommerceProductCategories PathParamDataType = "commerce-productCategories"
+	PathParamDataTypeCommerceTaxComponents     PathParamDataType = "commerce-taxComponents"
+	PathParamDataTypeCommerceTransactions      PathParamDataType = "commerce-transactions"
 )
 
-func (e GetSupplementalDataConfigurationDataType) ToPointer() *GetSupplementalDataConfigurationDataType {
+func (e PathParamDataType) ToPointer() *PathParamDataType {
 	return &e
 }
 
-func (e *GetSupplementalDataConfigurationDataType) UnmarshalJSON(data []byte) error {
+func (e *PathParamDataType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -87,23 +87,23 @@ func (e *GetSupplementalDataConfigurationDataType) UnmarshalJSON(data []byte) er
 	case "commerce-taxComponents":
 		fallthrough
 	case "commerce-transactions":
-		*e = GetSupplementalDataConfigurationDataType(v)
+		*e = PathParamDataType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for GetSupplementalDataConfigurationDataType: %v", v)
+		return fmt.Errorf("invalid value for PathParamDataType: %v", v)
 	}
 }
 
 type GetSupplementalDataConfigurationRequest struct {
 	// Supported supplemental data data type.
-	DataType GetSupplementalDataConfigurationDataType `pathParam:"style=simple,explode=false,name=dataType"`
+	DataType PathParamDataType `pathParam:"style=simple,explode=false,name=dataType"`
 	// A unique 4-letter key to represent a platform in each integration. View [accounting](https://docs.codat.io/integrations/accounting/overview#platform-keys), [banking](https://docs.codat.io/integrations/banking/overview#platform-keys), and [commerce](https://docs.codat.io/integrations/commerce/overview#platform-keys) platform keys.
 	PlatformKey string `pathParam:"style=simple,explode=false,name=platformKey"`
 }
 
-func (o *GetSupplementalDataConfigurationRequest) GetDataType() GetSupplementalDataConfigurationDataType {
+func (o *GetSupplementalDataConfigurationRequest) GetDataType() PathParamDataType {
 	if o == nil {
-		return GetSupplementalDataConfigurationDataType("")
+		return PathParamDataType("")
 	}
 	return o.DataType
 }
@@ -118,8 +118,6 @@ func (o *GetSupplementalDataConfigurationRequest) GetPlatformKey() string {
 type GetSupplementalDataConfigurationResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -133,13 +131,6 @@ func (o *GetSupplementalDataConfigurationResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *GetSupplementalDataConfigurationResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *GetSupplementalDataConfigurationResponse) GetStatusCode() int {

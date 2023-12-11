@@ -1,6 +1,4 @@
-<!-- Start SDK Example Usage -->
-
-
+<!-- Start SDK Example Usage [usage] -->
 ```go
 package main
 
@@ -19,18 +17,17 @@ func main() {
 	)
 
 	ctx := context.Background()
-	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
-		Description: common.String("Requested early access to the new financing scheme."),
-		Name:        "Bank of Dave",
+	res, err := s.Settings.CreateAPIKey(ctx, &shared.CreateAPIKey{
+		Name: common.String("azure-invoice-finance-processor"),
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	if res.Company != nil {
+	if res.APIKeyDetails != nil {
 		// handle response
 	}
 }
 
 ```
-<!-- End SDK Example Usage -->
+<!-- End SDK Example Usage [usage] -->
