@@ -3,13 +3,13 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-payroll/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payroll/v2/pkg/utils"
 	"net/http"
 )
 
 type CreateAccountRequest struct {
-	Account *shared.Account `request:"mediaType=application/json"`
+	AccountPrototype *shared.AccountPrototype `request:"mediaType=application/json"`
 	// Allow a sync upon push completion.
 	AllowSyncOnPushComplete *bool `default:"true" queryParam:"style=form,explode=true,name=allowSyncOnPushComplete"`
 	// Unique identifier for a company.
@@ -31,11 +31,11 @@ func (c *CreateAccountRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *CreateAccountRequest) GetAccount() *shared.Account {
+func (o *CreateAccountRequest) GetAccountPrototype() *shared.AccountPrototype {
 	if o == nil {
 		return nil
 	}
-	return o.Account
+	return o.AccountPrototype
 }
 
 func (o *CreateAccountRequest) GetAllowSyncOnPushComplete() *bool {
@@ -71,8 +71,6 @@ type CreateAccountResponse struct {
 	ContentType string
 	// Success
 	CreateAccountResponse *shared.CreateAccountResponse
-	// The request made is not valid.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -91,13 +89,6 @@ func (o *CreateAccountResponse) GetCreateAccountResponse() *shared.CreateAccount
 		return nil
 	}
 	return o.CreateAccountResponse
-}
-
-func (o *CreateAccountResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *CreateAccountResponse) GetStatusCode() int {

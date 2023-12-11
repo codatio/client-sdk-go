@@ -5,8 +5,8 @@ package syncforpayroll
 import (
 	"context"
 	"fmt"
-	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-payroll/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payroll/v2/pkg/utils"
 	"net/http"
 	"time"
 )
@@ -83,22 +83,22 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 // | Company info         | View company profile from the source platform.                                                             |
 // | Manage data          | Control how data is retrieved from an integration.                                                         |
 type CodatSyncPayroll struct {
-	// Accounts
-	Accounts *accounts
 	// Create and manage your Codat companies.
-	Companies *companies
-	// View company information fetched from the source platform.
-	CompanyInfo *companyInfo
+	Companies *Companies
 	// Manage your companies' data connections.
-	Connections *connections
+	Connections *Connections
+	// Accounts
+	Accounts *Accounts
 	// Journal entries
-	JournalEntries *journalEntries
+	JournalEntries *JournalEntries
 	// Journals
-	Journals *journals
+	Journals *Journals
 	// Asynchronously retrieve data from an integration to refresh data in Codat.
-	ManageData *manageData
+	ManageData *ManageData
+	// View company information fetched from the source platform.
+	CompanyInfo *CompanyInfo
 	// Tracking categories
-	TrackingCategories *trackingCategories
+	TrackingCategories *TrackingCategories
 
 	sdkConfiguration sdkConfiguration
 }
@@ -176,9 +176,9 @@ func New(opts ...SDKOption) *CodatSyncPayroll {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "1.2.0",
-			GenVersion:        "2.159.2",
-			UserAgent:         "speakeasy-sdk/go 1.2.0 2.159.2 3.0.0 github.com/codatio/client-sdk-go/sync-for-payroll",
+			SDKVersion:        "2.0.0",
+			GenVersion:        "2.210.6",
+			UserAgent:         "speakeasy-sdk/go 2.0.0 2.210.6 3.0.0 github.com/codatio/client-sdk-go/sync-for-payroll",
 		},
 	}
 	for _, opt := range opts {
@@ -197,19 +197,19 @@ func New(opts ...SDKOption) *CodatSyncPayroll {
 		}
 	}
 
-	sdk.Accounts = newAccounts(sdk.sdkConfiguration)
-
 	sdk.Companies = newCompanies(sdk.sdkConfiguration)
 
-	sdk.CompanyInfo = newCompanyInfo(sdk.sdkConfiguration)
-
 	sdk.Connections = newConnections(sdk.sdkConfiguration)
+
+	sdk.Accounts = newAccounts(sdk.sdkConfiguration)
 
 	sdk.JournalEntries = newJournalEntries(sdk.sdkConfiguration)
 
 	sdk.Journals = newJournals(sdk.sdkConfiguration)
 
 	sdk.ManageData = newManageData(sdk.sdkConfiguration)
+
+	sdk.CompanyInfo = newCompanyInfo(sdk.sdkConfiguration)
 
 	sdk.TrackingCategories = newTrackingCategories(sdk.sdkConfiguration)
 

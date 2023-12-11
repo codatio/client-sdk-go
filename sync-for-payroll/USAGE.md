@@ -1,15 +1,11 @@
-<!-- Start SDK Example Usage -->
-
-
+<!-- Start SDK Example Usage [usage] -->
 ```go
 package main
 
 import (
 	"context"
-	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll"
-	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/types"
+	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll/v2"
+	"github.com/codatio/client-sdk-go/sync-for-payroll/v2/pkg/models/shared"
 	"log"
 )
 
@@ -21,47 +17,18 @@ func main() {
 	)
 
 	ctx := context.Background()
-	res, err := s.Accounts.Create(ctx, operations.CreateAccountRequest{
-		Account: &shared.Account{
-			Currency:               syncforpayroll.String("USD"),
-			CurrentBalance:         types.MustNewDecimalFromString("0"),
-			Description:            syncforpayroll.String("Invoices the business has issued but has not yet collected payment on."),
-			FullyQualifiedCategory: syncforpayroll.String("Asset.Current"),
-			FullyQualifiedName:     syncforpayroll.String("Cash On Hand"),
-			ID:                     syncforpayroll.String("1b6266d1-1e44-46c5-8eb5-a8f98e03124e"),
-			Metadata:               &shared.AccountMetadata{},
-			ModifiedDate:           syncforpayroll.String("2022-10-23T00:00:00.000Z"),
-			Name:                   syncforpayroll.String("Accounts Receivable"),
-			NominalCode:            syncforpayroll.String("610"),
-			SourceModifiedDate:     syncforpayroll.String("2022-10-23T00:00:00.000Z"),
-			Status:                 shared.AccountStatusActive.ToPointer(),
-			SupplementalData: &shared.SupplementalData{
-				Content: map[string]map[string]interface{}{
-					"Money": map[string]interface{}{
-						"blue": "shred",
-					},
-				},
-			},
-			Type: shared.AccountTypeAsset.ToPointer(),
-			ValidDatatypeLinks: []shared.AccountValidDataTypeLinks{
-				shared.AccountValidDataTypeLinks{
-					Links: []string{
-						"abnormally",
-					},
-				},
-			},
-		},
-		CompanyID:    "8a210b68-6988-11ed-a1eb-0242ac120002",
-		ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
+	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
+		Description: syncforpayroll.String("Requested early access to the new financing scheme."),
+		Name:        "Bank of Dave",
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	if res.CreateAccountResponse != nil {
+	if res.Company != nil {
 		// handle response
 	}
 }
 
 ```
-<!-- End SDK Example Usage -->
+<!-- End SDK Example Usage [usage] -->

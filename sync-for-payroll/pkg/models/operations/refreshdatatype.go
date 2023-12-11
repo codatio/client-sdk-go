@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payroll/v2/pkg/models/shared"
 	"net/http"
 )
 
@@ -13,7 +13,7 @@ type RefreshDataTypeRequest struct {
 	// Optionally, provide a data connection id to only queue pull operations on that connection.
 	ConnectionID *string `queryParam:"style=form,explode=true,name=connectionId"`
 	// The key of a Codat data type
-	DataType shared.DataType `pathParam:"style=simple,explode=false,name=dataType"`
+	DataType shared.SchemaDataType `pathParam:"style=simple,explode=false,name=dataType"`
 }
 
 func (o *RefreshDataTypeRequest) GetCompanyID() string {
@@ -30,9 +30,9 @@ func (o *RefreshDataTypeRequest) GetConnectionID() *string {
 	return o.ConnectionID
 }
 
-func (o *RefreshDataTypeRequest) GetDataType() shared.DataType {
+func (o *RefreshDataTypeRequest) GetDataType() shared.SchemaDataType {
 	if o == nil {
-		return shared.DataType("")
+		return shared.SchemaDataType("")
 	}
 	return o.DataType
 }
@@ -40,8 +40,6 @@ func (o *RefreshDataTypeRequest) GetDataType() shared.DataType {
 type RefreshDataTypeResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// OK
 	PullOperation *shared.PullOperation
 	// HTTP response status code for this operation
@@ -55,13 +53,6 @@ func (o *RefreshDataTypeResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *RefreshDataTypeResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *RefreshDataTypeResponse) GetPullOperation() *shared.PullOperation {

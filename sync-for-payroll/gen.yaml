@@ -1,25 +1,43 @@
 configVersion: 1.0.0
 management:
-  docChecksum: 0cb071c94180a189d108f01c6aba1865
+  docChecksum: 288a5d782d04f521caf3c3f5abf4699f
   docVersion: 3.0.0
-  speakeasyVersion: 1.100.2
-  generationVersion: 2.159.2
+  speakeasyVersion: 1.125.2
+  generationVersion: 2.210.6
 generation:
+  comments: {}
   sdkClassName: CodatSyncPayroll
-  singleTagPerOp: false
+  repoURL: https://github.com/codatio/client-sdk-go.git
+  usageSnippets:
+    optionalPropertyRendering: withExample
   telemetryEnabled: true
 features:
   go:
-    constsAndDefaults: 0.1.1
-    core: 2.91.5
+    constsAndDefaults: 0.1.2
+    core: 3.1.5
     deprecations: 2.81.1
-    examples: 2.81.2
+    examples: 2.81.3
     globalSecurity: 2.82.2
-    globalServerURLs: 2.82.0
+    globalServerURLs: 2.82.1
+    inputOutputModels: 2.82.0
     nameOverrides: 2.81.1
     retries: 2.82.1
 go:
-  version: 1.2.0
+  version: 2.0.0
+  clientServerStatusCodesAsErrors: true
   flattenGlobalSecurity: false
+  imports:
+    option: openapi
+    paths:
+      callbacks: pkg/models/callbacks
+      errors: pkg/models/sdkerrors
+      operations: pkg/models/operations
+      shared: pkg/models/shared
+      webhooks: pkg/models/webhooks
+  inputModelSuffix: input
+  installationURL: https://github.com/codatio/client-sdk-go/sync-for-payroll
   maxMethodParams: 0
+  outputModelSuffix: output
   packageName: github.com/codatio/client-sdk-go/sync-for-payroll
+  published: true
+  repoSubDirectory: sync-for-payroll

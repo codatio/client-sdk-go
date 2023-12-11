@@ -125,13 +125,13 @@ type PullOperation struct {
 	Completed *string `json:"completed,omitempty"`
 	// Unique identifier of the connection associated to this pull operation.
 	ConnectionID string `json:"connectionId"`
-	// Available Data types
-	DataType DataType `json:"dataType"`
+	// The data type you are requesting in a pull operation.
+	DataType string `json:"dataType"`
 	// A message about a transient or persistent error.
 	ErrorMessage *string `json:"errorMessage,omitempty"`
 	// Unique identifier of the pull operation.
 	ID string `json:"id"`
-	// `True` if the pull operation completed successfully.
+	// `True` if the pull operation is completed successfully. The `isCompleted` property is not queryable. To filter failed pull operations, query by `status!=Complete&&status!=NotSupported` instead.
 	IsCompleted bool `json:"isCompleted"`
 	// `True` if the pull operation entered an error state.
 	IsErrored bool `json:"isErrored"`
@@ -159,6 +159,8 @@ type PullOperation struct {
 	Requested string `json:"requested"`
 	// The current status of the pull operation.
 	Status PullOperationStatus `json:"status"`
+	// Additional information about the dataset status.
+	StatusDescription *string `json:"statusDescription,omitempty"`
 }
 
 func (o *PullOperation) GetCompanyID() string {
@@ -182,9 +184,9 @@ func (o *PullOperation) GetConnectionID() string {
 	return o.ConnectionID
 }
 
-func (o *PullOperation) GetDataType() DataType {
+func (o *PullOperation) GetDataType() string {
 	if o == nil {
-		return DataType("")
+		return ""
 	}
 	return o.DataType
 }
@@ -236,4 +238,11 @@ func (o *PullOperation) GetStatus() PullOperationStatus {
 		return PullOperationStatus("")
 	}
 	return o.Status
+}
+
+func (o *PullOperation) GetStatusDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.StatusDescription
 }
