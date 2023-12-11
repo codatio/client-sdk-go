@@ -1,13 +1,12 @@
-<!-- Start SDK Example Usage -->
-
-
+<!-- Start SDK Example Usage [usage] -->
 ```go
 package main
 
 import (
 	"context"
-	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v2"
-	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
+	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v3"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/shared"
 	"log"
 )
 
@@ -19,18 +18,17 @@ func main() {
 	)
 
 	ctx := context.Background()
-	res, err := s.AdvancedControls.CreateCompany(ctx, &shared.CreateCompany{
-		Description: syncforcommerce.String("Requested early access to the new financing scheme."),
-		Name:        "Bank of Dave",
+	res, err := s.SyncFlowSettings.GetConfigTextSyncFlow(ctx, operations.GetConfigTextSyncFlowRequest{
+		Locale: shared.LocaleEnUs,
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	if res.Company != nil {
+	if res.LocalizationInfo != nil {
 		// handle response
 	}
 }
 
 ```
-<!-- End SDK Example Usage -->
+<!-- End SDK Example Usage [usage] -->

@@ -2,7 +2,7 @@
 
 package shared
 
-type SyncSummarySyncDateRangeUtc struct {
+type SyncDateRangeUtc struct {
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -45,14 +45,14 @@ type SyncSummarySyncDateRangeUtc struct {
 	Start *string `json:"start,omitempty"`
 }
 
-func (o *SyncSummarySyncDateRangeUtc) GetFinish() *string {
+func (o *SyncDateRangeUtc) GetFinish() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Finish
 }
 
-func (o *SyncSummarySyncDateRangeUtc) GetStart() *string {
+func (o *SyncDateRangeUtc) GetStart() *string {
 	if o == nil {
 		return nil
 	}
@@ -69,8 +69,8 @@ type SyncSummary struct {
 	// Boolean indicator for data being pushed during a sync operation.
 	DataPushed *bool `json:"dataPushed,omitempty"`
 	// Friendly error message for the sync operation.
-	ErrorMessage     *string                      `json:"errorMessage,omitempty"`
-	SyncDateRangeUtc *SyncSummarySyncDateRangeUtc `json:"syncDateRangeUtc,omitempty"`
+	ErrorMessage     *string           `json:"errorMessage,omitempty"`
+	SyncDateRangeUtc *SyncDateRangeUtc `json:"syncDateRangeUtc,omitempty"`
 	// Exception message for the sync operation.
 	SyncExceptionMessage *string `json:"syncExceptionMessage,omitempty"`
 	// Status of the sync of the company data. This is linked to status code.
@@ -134,7 +134,7 @@ func (o *SyncSummary) GetErrorMessage() *string {
 	return o.ErrorMessage
 }
 
-func (o *SyncSummary) GetSyncDateRangeUtc() *SyncSummarySyncDateRangeUtc {
+func (o *SyncSummary) GetSyncDateRangeUtc() *SyncDateRangeUtc {
 	if o == nil {
 		return nil
 	}

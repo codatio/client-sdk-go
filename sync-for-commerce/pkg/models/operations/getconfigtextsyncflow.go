@@ -3,9 +3,21 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/v3/pkg/models/shared"
 	"net/http"
 )
+
+type GetConfigTextSyncFlowRequest struct {
+	// Localization identifier for English (US) or French.
+	Locale shared.Locale `queryParam:"style=form,explode=true,name=locale"`
+}
+
+func (o *GetConfigTextSyncFlowRequest) GetLocale() shared.Locale {
+	if o == nil {
+		return shared.Locale("")
+	}
+	return o.Locale
+}
 
 type GetConfigTextSyncFlowResponse struct {
 	// HTTP response content type for this operation
