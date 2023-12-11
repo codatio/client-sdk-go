@@ -14,13 +14,13 @@ import (
 	"net/http"
 )
 
-// Enriched reports and analyses of financial data
-type reports struct {
+// Reports - Enriched reports and analyses of financial data
+type Reports struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newReports(sdkConfig sdkConfiguration) *reports {
-	return &reports{
+func newReports(sdkConfig sdkConfiguration) *Reports {
+	return &Reports{
 		sdkConfiguration: sdkConfig,
 	}
 }
@@ -31,7 +31,7 @@ func newReports(sdkConfig sdkConfiguration) *reports {
 // Learn more about Codat's liabilities feature [here](https://docs.codat.io/lending/features/liabilities-overview).
 //
 // Make sure you have [synced a company](https://docs.codat.io/codat-api#/operations/refresh-company-data) recently before calling the endpoint.
-func (s *reports) GenerateLoanSummary(ctx context.Context, request operations.GenerateLoanSummaryRequest, opts ...operations.Option) (*operations.GenerateLoanSummaryResponse, error) {
+func (s *Reports) GenerateLoanSummary(ctx context.Context, request operations.GenerateLoanSummaryRequest, opts ...operations.Option) (*operations.GenerateLoanSummaryResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -115,18 +115,31 @@ func (s *reports) GenerateLoanSummary(ctx context.Context, request operations.Ge
 	case httpRes.StatusCode == 202:
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -138,7 +151,7 @@ func (s *reports) GenerateLoanSummary(ctx context.Context, request operations.Ge
 // Learn more about Codat's liabilities feature [here](https://docs.codat.io/lending/features/liabilities-overview).
 //
 // Make sure you have [synced a company](https://docs.codat.io/codat-api#/operations/refresh-company-data) recently before calling the endpoint.
-func (s *reports) GenerateLoanTransactions(ctx context.Context, request operations.GenerateLoanTransactionsRequest, opts ...operations.Option) (*operations.GenerateLoanTransactionsResponse, error) {
+func (s *Reports) GenerateLoanTransactions(ctx context.Context, request operations.GenerateLoanTransactionsRequest, opts ...operations.Option) (*operations.GenerateLoanTransactionsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -220,20 +233,35 @@ func (s *reports) GenerateLoanTransactions(ctx context.Context, request operatio
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
 	case httpRes.StatusCode == 202:
+	case httpRes.StatusCode == 400:
+		fallthrough
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -243,7 +271,7 @@ func (s *reports) GenerateLoanTransactions(ctx context.Context, request operatio
 // The Enhanced Balance Sheet Accounts endpoint returns a list of categorized accounts that appear on a company’s Balance Sheet along with a balance per financial statement date.
 //
 // Codat suggests a category for each account automatically, but you can [change it](/docs/assess-categorizing-accounts-ecommerce-lending) to a more suitable one.
-func (s *reports) GetAccountsForEnhancedBalanceSheet(ctx context.Context, request operations.GetAccountsForEnhancedBalanceSheetRequest, opts ...operations.Option) (*operations.GetAccountsForEnhancedBalanceSheetResponse, error) {
+func (s *Reports) GetAccountsForEnhancedBalanceSheet(ctx context.Context, request operations.GetAccountsForEnhancedBalanceSheetRequest, opts ...operations.Option) (*operations.GetAccountsForEnhancedBalanceSheetResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -336,20 +364,35 @@ func (s *reports) GetAccountsForEnhancedBalanceSheet(ctx context.Context, reques
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode == 400:
+		fallthrough
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -359,7 +402,7 @@ func (s *reports) GetAccountsForEnhancedBalanceSheet(ctx context.Context, reques
 // The Enhanced Profit and Loss Accounts endpoint returns a list of categorized accounts that appear on a company’s Profit and Loss. It also includes a balance per the financial statement date.
 //
 // Codat suggests a category for each account automatically, but you can [change it](/docs/assess-categorizing-accounts-ecommerce-lending) to a more suitable one.
-func (s *reports) GetAccountsForEnhancedProfitAndLoss(ctx context.Context, request operations.GetAccountsForEnhancedProfitAndLossRequest, opts ...operations.Option) (*operations.GetAccountsForEnhancedProfitAndLossResponse, error) {
+func (s *Reports) GetAccountsForEnhancedProfitAndLoss(ctx context.Context, request operations.GetAccountsForEnhancedProfitAndLossRequest, opts ...operations.Option) (*operations.GetAccountsForEnhancedProfitAndLossResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -452,20 +495,35 @@ func (s *reports) GetAccountsForEnhancedProfitAndLoss(ctx context.Context, reque
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode == 400:
+		fallthrough
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -473,7 +531,7 @@ func (s *reports) GetAccountsForEnhancedProfitAndLoss(ctx context.Context, reque
 
 // GetCommerceCustomerRetentionMetrics - Get customer retention metrics
 // Gets the customer retention metrics for a specific company connection, over one or more periods of time.
-func (s *reports) GetCommerceCustomerRetentionMetrics(ctx context.Context, request operations.GetCommerceCustomerRetentionMetricsRequest, opts ...operations.Option) (*operations.GetCommerceCustomerRetentionMetricsResponse, error) {
+func (s *Reports) GetCommerceCustomerRetentionMetrics(ctx context.Context, request operations.GetCommerceCustomerRetentionMetricsRequest, opts ...operations.Option) (*operations.GetCommerceCustomerRetentionMetricsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -566,20 +624,35 @@ func (s *reports) GetCommerceCustomerRetentionMetrics(ctx context.Context, reque
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode == 400:
+		fallthrough
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -587,7 +660,7 @@ func (s *reports) GetCommerceCustomerRetentionMetrics(ctx context.Context, reque
 
 // GetCommerceLifetimeValueMetrics - Get lifetime value metric
 // Gets the lifetime value metric for a specific company connection, over one or more periods of time.
-func (s *reports) GetCommerceLifetimeValueMetrics(ctx context.Context, request operations.GetCommerceLifetimeValueMetricsRequest, opts ...operations.Option) (*operations.GetCommerceLifetimeValueMetricsResponse, error) {
+func (s *Reports) GetCommerceLifetimeValueMetrics(ctx context.Context, request operations.GetCommerceLifetimeValueMetricsRequest, opts ...operations.Option) (*operations.GetCommerceLifetimeValueMetricsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -680,20 +753,35 @@ func (s *reports) GetCommerceLifetimeValueMetrics(ctx context.Context, request o
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode == 400:
+		fallthrough
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -701,7 +789,7 @@ func (s *reports) GetCommerceLifetimeValueMetrics(ctx context.Context, request o
 
 // GetCommerceOrdersMetrics - Get orders report
 // Gets the order information for a specific company connection, over one or more periods of time.
-func (s *reports) GetCommerceOrdersMetrics(ctx context.Context, request operations.GetCommerceOrdersMetricsRequest, opts ...operations.Option) (*operations.GetCommerceOrdersMetricsResponse, error) {
+func (s *Reports) GetCommerceOrdersMetrics(ctx context.Context, request operations.GetCommerceOrdersMetricsRequest, opts ...operations.Option) (*operations.GetCommerceOrdersMetricsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -794,20 +882,35 @@ func (s *reports) GetCommerceOrdersMetrics(ctx context.Context, request operatio
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode == 400:
+		fallthrough
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -815,7 +918,7 @@ func (s *reports) GetCommerceOrdersMetrics(ctx context.Context, request operatio
 
 // GetCommerceRefundsMetrics - Get refunds report
 // Gets the refunds information for a specific company connection, over one or more periods of time.
-func (s *reports) GetCommerceRefundsMetrics(ctx context.Context, request operations.GetCommerceRefundsMetricsRequest, opts ...operations.Option) (*operations.GetCommerceRefundsMetricsResponse, error) {
+func (s *Reports) GetCommerceRefundsMetrics(ctx context.Context, request operations.GetCommerceRefundsMetricsRequest, opts ...operations.Option) (*operations.GetCommerceRefundsMetricsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -908,20 +1011,35 @@ func (s *reports) GetCommerceRefundsMetrics(ctx context.Context, request operati
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode == 400:
+		fallthrough
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -929,7 +1047,7 @@ func (s *reports) GetCommerceRefundsMetrics(ctx context.Context, request operati
 
 // GetCommerceRevenueMetrics - Get commerce revenue metrics
 // Get the revenue and revenue growth for a specific company connection, over one or more periods of time.
-func (s *reports) GetCommerceRevenueMetrics(ctx context.Context, request operations.GetCommerceRevenueMetricsRequest, opts ...operations.Option) (*operations.GetCommerceRevenueMetricsResponse, error) {
+func (s *Reports) GetCommerceRevenueMetrics(ctx context.Context, request operations.GetCommerceRevenueMetricsRequest, opts ...operations.Option) (*operations.GetCommerceRevenueMetricsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1022,20 +1140,35 @@ func (s *reports) GetCommerceRevenueMetrics(ctx context.Context, request operati
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode == 400:
+		fallthrough
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -1047,7 +1180,7 @@ func (s *reports) GetCommerceRevenueMetrics(ctx context.Context, request operati
 // > The categorization engine uses machine learning and has been fully trained against Plaid and TrueLayer banking data sources. It is not fully trained against the Basiq banking data source.
 //
 // The Enhanced Cash Flow Transactions endpoint provides a fully categorized list of banking transactions for a company. Accounts and transaction data are obtained from the company's banking data sources.
-func (s *reports) GetEnhancedCashFlowTransactions(ctx context.Context, request operations.GetEnhancedCashFlowTransactionsRequest, opts ...operations.Option) (*operations.GetEnhancedCashFlowTransactionsResponse, error) {
+func (s *Reports) GetEnhancedCashFlowTransactions(ctx context.Context, request operations.GetEnhancedCashFlowTransactionsRequest, opts ...operations.Option) (*operations.GetEnhancedCashFlowTransactionsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1140,20 +1273,35 @@ func (s *reports) GetEnhancedCashFlowTransactions(ctx context.Context, request o
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode == 400:
+		fallthrough
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -1161,7 +1309,7 @@ func (s *reports) GetEnhancedCashFlowTransactions(ctx context.Context, request o
 
 // GetEnhancedInvoicesReport - Get enhanced invoices report
 // Gets a list of invoices linked to the corresponding banking transaction
-func (s *reports) GetEnhancedInvoicesReport(ctx context.Context, request operations.GetEnhancedInvoicesReportRequest, opts ...operations.Option) (*operations.GetEnhancedInvoicesReportResponse, error) {
+func (s *Reports) GetEnhancedInvoicesReport(ctx context.Context, request operations.GetEnhancedInvoicesReportRequest, opts ...operations.Option) (*operations.GetEnhancedInvoicesReportResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1254,20 +1402,35 @@ func (s *reports) GetEnhancedInvoicesReport(ctx context.Context, request operati
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode == 400:
+		fallthrough
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -1279,7 +1442,7 @@ func (s *reports) GetEnhancedInvoicesReport(ctx context.Context, request operati
 // The endpoint returns a list of a company's [loan summaries](https://docs.codat.io/codat-api#/schemas/LoanSummary) for each valid data connection.
 //
 // Make sure you have [synced a company](https://docs.codat.io/codat-api#/operations/refresh-company-data) recently before calling the endpoint.
-func (s *reports) GetLoanSummary(ctx context.Context, request operations.GetLoanSummaryRequest, opts ...operations.Option) (*operations.GetLoanSummaryResponse, error) {
+func (s *Reports) GetLoanSummary(ctx context.Context, request operations.GetLoanSummaryRequest, opts ...operations.Option) (*operations.GetLoanSummaryResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1374,18 +1537,31 @@ func (s *reports) GetLoanSummary(ctx context.Context, request operations.GetLoan
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -1393,7 +1569,7 @@ func (s *reports) GetLoanSummary(ctx context.Context, request operations.GetLoan
 
 // GetRecurringRevenueMetrics - Get key subscription revenue metrics
 // Gets key metrics for subscription revenue.
-func (s *reports) GetRecurringRevenueMetrics(ctx context.Context, request operations.GetRecurringRevenueMetricsRequest, opts ...operations.Option) (*operations.GetRecurringRevenueMetricsResponse, error) {
+func (s *Reports) GetRecurringRevenueMetrics(ctx context.Context, request operations.GetRecurringRevenueMetricsRequest, opts ...operations.Option) (*operations.GetRecurringRevenueMetricsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1484,18 +1660,31 @@ func (s *reports) GetRecurringRevenueMetrics(ctx context.Context, request operat
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -1507,7 +1696,7 @@ func (s *reports) GetRecurringRevenueMetrics(ctx context.Context, request operat
 // This detail gives analysts a better idea of the loan obligations a company may have.
 //
 // Make sure you have [synced a company](https://docs.codat.io/codat-api#/operations/refresh-company-data) recently before calling the endpoint.
-func (s *reports) ListLoanTransactions(ctx context.Context, request operations.ListLoanTransactionsRequest, opts ...operations.Option) (*operations.ListLoanTransactionsResponse, error) {
+func (s *Reports) ListLoanTransactions(ctx context.Context, request operations.ListLoanTransactionsRequest, opts ...operations.Option) (*operations.ListLoanTransactionsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1600,20 +1789,35 @@ func (s *reports) ListLoanTransactions(ctx context.Context, request operations.L
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode == 400:
+		fallthrough
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -1621,7 +1825,7 @@ func (s *reports) ListLoanTransactions(ctx context.Context, request operations.L
 
 // RequestRecurringRevenueMetrics - Generate key subscription revenue metrics
 // Requests production of key subscription revenue metrics.
-func (s *reports) RequestRecurringRevenueMetrics(ctx context.Context, request operations.RequestRecurringRevenueMetricsRequest, opts ...operations.Option) (*operations.RequestRecurringRevenueMetricsResponse, error) {
+func (s *Reports) RequestRecurringRevenueMetrics(ctx context.Context, request operations.RequestRecurringRevenueMetricsRequest, opts ...operations.Option) (*operations.RequestRecurringRevenueMetricsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1712,18 +1916,31 @@ func (s *reports) RequestRecurringRevenueMetrics(ctx context.Context, request op
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
