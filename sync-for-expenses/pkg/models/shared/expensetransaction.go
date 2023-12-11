@@ -5,16 +5,16 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
-type ExpenseTransactionBankAccountReference struct {
+type BankAccountReference struct {
 	// Identifier of the bank account.
 	ID *string `json:"id,omitempty"`
 }
 
-func (o *ExpenseTransactionBankAccountReference) GetID() *string {
+func (o *BankAccountReference) GetID() *string {
 	if o == nil {
 		return nil
 	}
@@ -68,8 +68,8 @@ func (e *ExpenseTransactionType) UnmarshalJSON(data []byte) error {
 }
 
 type ExpenseTransaction struct {
-	BankAccountRef *ExpenseTransactionBankAccountReference `json:"bankAccountRef,omitempty"`
-	ContactRef     *ContactRef                             `json:"contactRef,omitempty"`
+	BankAccountRef *BankAccountReference `json:"bankAccountRef,omitempty"`
+	ContactRef     *ContactRef           `json:"contactRef,omitempty"`
 	// Currency the transaction was recorded in.
 	Currency string `json:"currency"`
 	// Rate to convert the total amount of the payment into the base currency for the company at the time of the payment.
@@ -126,6 +126,8 @@ type ExpenseTransaction struct {
 	MerchantName *string `json:"merchantName,omitempty"`
 	// Any private, company notes about the transaction.
 	Notes *string `json:"notes,omitempty"`
+	// For supported accouting platforms, setting this optional property to true will post the transaction to a drafted state.
+	PostAsDraft *bool `json:"postAsDraft,omitempty"`
 	// The type of transaction.
 	Type ExpenseTransactionType `json:"type"`
 }
@@ -141,7 +143,7 @@ func (e *ExpenseTransaction) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *ExpenseTransaction) GetBankAccountRef() *ExpenseTransactionBankAccountReference {
+func (o *ExpenseTransaction) GetBankAccountRef() *BankAccountReference {
 	if o == nil {
 		return nil
 	}
@@ -202,6 +204,13 @@ func (o *ExpenseTransaction) GetNotes() *string {
 		return nil
 	}
 	return o.Notes
+}
+
+func (o *ExpenseTransaction) GetPostAsDraft() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.PostAsDraft
 }
 
 func (o *ExpenseTransaction) GetType() ExpenseTransactionType {
