@@ -29,7 +29,7 @@ type Contact struct {
 	// Name of a contact for a customer.
 	Name *string `json:"name,omitempty"`
 	// An array of Phone numbers.
-	Phone []PhoneNumbersitems `json:"phone,omitempty"`
+	Phone []PhoneNumberItems `json:"phone,omitempty"`
 	// Status of customer.
 	Status CustomerStatus `json:"status"`
 }
@@ -62,7 +62,7 @@ func (o *Contact) GetName() *string {
 	return o.Name
 }
 
-func (o *Contact) GetPhone() []PhoneNumbersitems {
+func (o *Contact) GetPhone() []PhoneNumberItems {
 	if o == nil {
 		return nil
 	}

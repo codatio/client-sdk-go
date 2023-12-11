@@ -1,9 +1,0 @@
-# Taxesitems
-
-
-## Fields
-
-| Field                                                                                           | Type                                                                                            | Required                                                                                        | Description                                                                                     |
-| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| `Rate`                                                                                          | [*decimal.Big](https://pkg.go.dev/github.com/ericlagergren/decimal#Big)                         | :heavy_minus_sign:                                                                              | Tax amount on order line sale as available from source commerce platform.                       |
-| `TaxComponentRef`                                                                               | [*ItemsTaxComponentRef](../../models/shared/itemstaxcomponentref.md)                            | :heavy_minus_sign:                                                                              | Taxes rates reference object depending on the rates being available on source commerce package. |

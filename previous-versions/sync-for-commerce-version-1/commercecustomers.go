@@ -14,13 +14,13 @@ import (
 	"net/http"
 )
 
-// commerceCustomers - Retrieve standardized data from linked commerce platforms.
-type commerceCustomers struct {
+// CommerceCustomers - Retrieve standardized data from linked commerce platforms.
+type CommerceCustomers struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newCommerceCustomers(sdkConfig sdkConfiguration) *commerceCustomers {
-	return &commerceCustomers{
+func newCommerceCustomers(sdkConfig sdkConfiguration) *CommerceCustomers {
+	return &CommerceCustomers{
 		sdkConfiguration: sdkConfig,
 	}
 }
@@ -33,7 +33,7 @@ func newCommerceCustomers(sdkConfig sdkConfiguration) *commerceCustomers {
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/commerce?view=tab-by-data-type&dataType=commerce-customers) for integrations that support getting a specific customer.
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/sync-for-commerce-v1-api#/operations/refresh-company-data).
-func (s *commerceCustomers) GetCommerceCustomer(ctx context.Context, request operations.GetCommerceCustomerRequest, opts ...operations.Option) (*operations.GetCommerceCustomerResponse, error) {
+func (s *CommerceCustomers) GetCommerceCustomer(ctx context.Context, request operations.GetCommerceCustomerRequest, opts ...operations.Option) (*operations.GetCommerceCustomerResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -124,22 +124,33 @@ func (s *commerceCustomers) GetCommerceCustomer(ctx context.Context, request ope
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 409:
 		fallthrough
 	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -151,7 +162,7 @@ func (s *commerceCustomers) GetCommerceCustomer(ctx context.Context, request ope
 // [Customers](https://docs.codat.io/commerce-api#/schemas/Customer) are people or organizations that place orders, make payments and recieve goods and/or services from the SMB.
 //
 // Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/sync-for-commerce-v1-api#/operations/refresh-company-data).
-func (s *commerceCustomers) ListCommerceCustomers(ctx context.Context, request operations.ListCommerceCustomersRequest, opts ...operations.Option) (*operations.ListCommerceCustomersResponse, error) {
+func (s *CommerceCustomers) ListCommerceCustomers(ctx context.Context, request operations.ListCommerceCustomersRequest, opts ...operations.Option) (*operations.ListCommerceCustomersResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -248,22 +259,33 @@ func (s *commerceCustomers) ListCommerceCustomers(ctx context.Context, request o
 		fallthrough
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 409:
 		fallthrough
 	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

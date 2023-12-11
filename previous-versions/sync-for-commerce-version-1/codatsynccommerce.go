@@ -70,56 +70,56 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 //
 // Not seeing what you expect? [See the main Sync for Commerce API](https://docs.codat.io/sync-for-commerce-api).
 type CodatSyncCommerce struct {
-	// Accounts
-	AccountingAccounts *accountingAccounts
-	// Bank accounts
-	AccountingBankAccounts *accountingBankAccounts
-	// Company info
-	AccountingCompanyInfo *accountingCompanyInfo
-	// Credit notes
-	AccountingCreditNotes *accountingCreditNotes
-	// Customers
-	AccountingCustomers *accountingCustomers
-	// Direct incomes
-	AccountingDirectIncomes *accountingDirectIncomes
-	// Invoices
-	AccountingInvoices *accountingInvoices
-	// Journal entries
-	AccountingJournalEntries *accountingJournalEntries
-	// Payments
-	AccountingPayments *accountingPayments
-	// Retrieve standardized data from linked commerce platforms.
-	CommerceCompanyInfo *commerceCompanyInfo
-	// Retrieve standardized data from linked commerce platforms.
-	CommerceCustomers *commerceCustomers
-	// Retrieve standardized data from linked commerce platforms.
-	CommerceLocations *commerceLocations
-	// Retrieve standardized data from linked commerce platforms.
-	CommerceOrders *commerceOrders
-	// Retrieve standardized data from linked commerce platforms.
-	CommercePayments *commercePayments
-	// Retrieve standardized data from linked commerce platforms.
-	CommerceProducts *commerceProducts
-	// Retrieve standardized data from linked commerce platforms.
-	CommerceTransactions *commerceTransactions
-	// Create and manage your Codat companies.
-	Companies *companies
-	// Create new and manage existing Sync for Commerce companies.
-	CompanyManagement *companyManagement
-	// Expressively configure preferences for any given Sync for Commerce company.
-	Configuration *configuration
-	// Manage your companies' data connections.
-	Connections *connections
-	// View useful information about codat's integrations.
-	Integrations *integrations
-	// View push options and get push statuses.
-	PushData *pushData
-	// Asynchronously retrieve data from an integration to refresh data in Codat.
-	RefreshData *refreshData
-	// Initiate a sync of Sync for Commerce company data into their respective accounting software.
-	Sync *sync
 	// Configure preferences for any given Sync for Commerce company using sync flow.
-	SyncFlowPreferences *syncFlowPreferences
+	SyncFlowPreferences *SyncFlowPreferences
+	// Create and manage your Codat companies.
+	Companies *Companies
+	// Manage your companies' data connections.
+	Connections *Connections
+	// Bank accounts
+	AccountingBankAccounts *AccountingBankAccounts
+	// Retrieve standardized data from linked commerce platforms.
+	CommerceCustomers *CommerceCustomers
+	// Retrieve standardized data from linked commerce platforms.
+	CommerceCompanyInfo *CommerceCompanyInfo
+	// Retrieve standardized data from linked commerce platforms.
+	CommerceLocations *CommerceLocations
+	// Retrieve standardized data from linked commerce platforms.
+	CommerceOrders *CommerceOrders
+	// Retrieve standardized data from linked commerce platforms.
+	CommercePayments *CommercePayments
+	// Retrieve standardized data from linked commerce platforms.
+	CommerceProducts *CommerceProducts
+	// Retrieve standardized data from linked commerce platforms.
+	CommerceTransactions *CommerceTransactions
+	// Accounts
+	AccountingAccounts *AccountingAccounts
+	// Credit notes
+	AccountingCreditNotes *AccountingCreditNotes
+	// Customers
+	AccountingCustomers *AccountingCustomers
+	// Direct incomes
+	AccountingDirectIncomes *AccountingDirectIncomes
+	// Invoices
+	AccountingInvoices *AccountingInvoices
+	// Journal entries
+	AccountingJournalEntries *AccountingJournalEntries
+	// Payments
+	AccountingPayments *AccountingPayments
+	// Asynchronously retrieve data from an integration to refresh data in Codat.
+	RefreshData *RefreshData
+	// Company info
+	AccountingCompanyInfo *AccountingCompanyInfo
+	// View push options and get push statuses.
+	PushData *PushData
+	// Initiate a sync of Sync for Commerce company data into their respective accounting software.
+	Sync *Sync
+	// Expressively configure preferences for any given Sync for Commerce company.
+	Configuration *Configuration
+	// View useful information about codat's integrations.
+	Integrations *Integrations
+	// Create new and manage existing Sync for Commerce companies.
+	CompanyManagement *CompanyManagement
 
 	sdkConfiguration sdkConfiguration
 }
@@ -197,9 +197,9 @@ func New(opts ...SDKOption) *CodatSyncCommerce {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.1",
-			SDKVersion:        "0.21.0",
-			GenVersion:        "2.159.2",
-			UserAgent:         "speakeasy-sdk/go 0.21.0 2.159.2 1.1 github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1",
+			SDKVersion:        "0.22.0",
+			GenVersion:        "2.210.6",
+			UserAgent:         "speakeasy-sdk/go 0.22.0 2.210.6 1.1 github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1",
 		},
 	}
 	for _, opt := range opts {
@@ -218,11 +218,29 @@ func New(opts ...SDKOption) *CodatSyncCommerce {
 		}
 	}
 
-	sdk.AccountingAccounts = newAccountingAccounts(sdk.sdkConfiguration)
+	sdk.SyncFlowPreferences = newSyncFlowPreferences(sdk.sdkConfiguration)
+
+	sdk.Companies = newCompanies(sdk.sdkConfiguration)
+
+	sdk.Connections = newConnections(sdk.sdkConfiguration)
 
 	sdk.AccountingBankAccounts = newAccountingBankAccounts(sdk.sdkConfiguration)
 
-	sdk.AccountingCompanyInfo = newAccountingCompanyInfo(sdk.sdkConfiguration)
+	sdk.CommerceCustomers = newCommerceCustomers(sdk.sdkConfiguration)
+
+	sdk.CommerceCompanyInfo = newCommerceCompanyInfo(sdk.sdkConfiguration)
+
+	sdk.CommerceLocations = newCommerceLocations(sdk.sdkConfiguration)
+
+	sdk.CommerceOrders = newCommerceOrders(sdk.sdkConfiguration)
+
+	sdk.CommercePayments = newCommercePayments(sdk.sdkConfiguration)
+
+	sdk.CommerceProducts = newCommerceProducts(sdk.sdkConfiguration)
+
+	sdk.CommerceTransactions = newCommerceTransactions(sdk.sdkConfiguration)
+
+	sdk.AccountingAccounts = newAccountingAccounts(sdk.sdkConfiguration)
 
 	sdk.AccountingCreditNotes = newAccountingCreditNotes(sdk.sdkConfiguration)
 
@@ -236,37 +254,19 @@ func New(opts ...SDKOption) *CodatSyncCommerce {
 
 	sdk.AccountingPayments = newAccountingPayments(sdk.sdkConfiguration)
 
-	sdk.CommerceCompanyInfo = newCommerceCompanyInfo(sdk.sdkConfiguration)
+	sdk.RefreshData = newRefreshData(sdk.sdkConfiguration)
 
-	sdk.CommerceCustomers = newCommerceCustomers(sdk.sdkConfiguration)
-
-	sdk.CommerceLocations = newCommerceLocations(sdk.sdkConfiguration)
-
-	sdk.CommerceOrders = newCommerceOrders(sdk.sdkConfiguration)
-
-	sdk.CommercePayments = newCommercePayments(sdk.sdkConfiguration)
-
-	sdk.CommerceProducts = newCommerceProducts(sdk.sdkConfiguration)
-
-	sdk.CommerceTransactions = newCommerceTransactions(sdk.sdkConfiguration)
-
-	sdk.Companies = newCompanies(sdk.sdkConfiguration)
-
-	sdk.CompanyManagement = newCompanyManagement(sdk.sdkConfiguration)
-
-	sdk.Configuration = newConfiguration(sdk.sdkConfiguration)
-
-	sdk.Connections = newConnections(sdk.sdkConfiguration)
-
-	sdk.Integrations = newIntegrations(sdk.sdkConfiguration)
+	sdk.AccountingCompanyInfo = newAccountingCompanyInfo(sdk.sdkConfiguration)
 
 	sdk.PushData = newPushData(sdk.sdkConfiguration)
 
-	sdk.RefreshData = newRefreshData(sdk.sdkConfiguration)
-
 	sdk.Sync = newSync(sdk.sdkConfiguration)
 
-	sdk.SyncFlowPreferences = newSyncFlowPreferences(sdk.sdkConfiguration)
+	sdk.Configuration = newConfiguration(sdk.sdkConfiguration)
+
+	sdk.Integrations = newIntegrations(sdk.sdkConfiguration)
+
+	sdk.CompanyManagement = newCompanyManagement(sdk.sdkConfiguration)
 
 	return sdk
 }

@@ -14,13 +14,13 @@ import (
 	"net/http"
 )
 
-// accountingDirectIncomes - Direct incomes
-type accountingDirectIncomes struct {
+// AccountingDirectIncomes - Direct incomes
+type AccountingDirectIncomes struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newAccountingDirectIncomes(sdkConfig sdkConfiguration) *accountingDirectIncomes {
-	return &accountingDirectIncomes{
+func newAccountingDirectIncomes(sdkConfig sdkConfiguration) *AccountingDirectIncomes {
+	return &AccountingDirectIncomes{
 		sdkConfiguration: sdkConfig,
 	}
 }
@@ -35,7 +35,7 @@ func newAccountingDirectIncomes(sdkConfig sdkConfiguration) *accountingDirectInc
 // Required data may vary by integration. To see what data to post, first call [Get create direct income model](https://docs.codat.io/accounting-api#/operations/get-create-directIncomes-model).
 //
 // Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=directIncomes) for integrations that support creating an account.
-func (s *accountingDirectIncomes) CreateAccountingDirectIncome(ctx context.Context, request operations.CreateAccountingDirectIncomeRequest, opts ...operations.Option) (*operations.CreateAccountingDirectIncomeResponse, error) {
+func (s *AccountingDirectIncomes) CreateAccountingDirectIncome(ctx context.Context, request operations.CreateAccountingDirectIncomeRequest, opts ...operations.Option) (*operations.CreateAccountingDirectIncomeResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -139,20 +139,31 @@ func (s *accountingDirectIncomes) CreateAccountingDirectIncome(ctx context.Conte
 		fallthrough
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

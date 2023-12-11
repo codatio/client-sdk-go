@@ -14,20 +14,20 @@ import (
 	"net/http"
 )
 
-// accountingCompanyInfo - Company info
-type accountingCompanyInfo struct {
+// AccountingCompanyInfo - Company info
+type AccountingCompanyInfo struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newAccountingCompanyInfo(sdkConfig sdkConfiguration) *accountingCompanyInfo {
-	return &accountingCompanyInfo{
+func newAccountingCompanyInfo(sdkConfig sdkConfiguration) *AccountingCompanyInfo {
+	return &AccountingCompanyInfo{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // GetAccountingCompanyInfo - Get company info
 // Gets the latest basic info for a company.
-func (s *accountingCompanyInfo) GetAccountingCompanyInfo(ctx context.Context, request operations.GetAccountingCompanyInfoRequest, opts ...operations.Option) (*operations.GetAccountingCompanyInfoResponse, error) {
+func (s *AccountingCompanyInfo) GetAccountingCompanyInfo(ctx context.Context, request operations.GetAccountingCompanyInfoRequest, opts ...operations.Option) (*operations.GetAccountingCompanyInfoResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -118,22 +118,33 @@ func (s *accountingCompanyInfo) GetAccountingCompanyInfo(ctx context.Context, re
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 409:
 		fallthrough
 	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -141,7 +152,7 @@ func (s *accountingCompanyInfo) GetAccountingCompanyInfo(ctx context.Context, re
 
 // Refresh company info
 // Initiates the process of synchronising basic info for a company
-func (s *accountingCompanyInfo) Refresh(ctx context.Context, request operations.RefreshCompanyInfoRequest, opts ...operations.Option) (*operations.RefreshCompanyInfoResponse, error) {
+func (s *AccountingCompanyInfo) Refresh(ctx context.Context, request operations.RefreshCompanyInfoRequest, opts ...operations.Option) (*operations.RefreshCompanyInfoResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -232,20 +243,31 @@ func (s *accountingCompanyInfo) Refresh(ctx context.Context, request operations.
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

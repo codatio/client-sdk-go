@@ -2,7 +2,7 @@
 
 package shared
 
-// CommerceCompanyInfo - In the Codat system, company information includes standard commercial details about
+// CommerceCompanyInfo - In the Codat system, company profile includes standard commercial details about
 // a linked company, such as their address, phone number, and company registration.
 //
 // Explore our [data coverage](https://knowledge.codat.io/supported-features/commerce?view=tab-by-data-type&dataType=companyInfo) for this data type.
@@ -47,14 +47,14 @@ type CommerceCompanyInfo struct {
 	CreatedDate  *string `json:"createdDate,omitempty"`
 	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Phone numbers associated with the company
-	PhoneNumbers []PhoneNumbersitems `json:"phoneNumbers,omitempty"`
+	PhoneNumbers []PhoneNumberItems `json:"phoneNumbers,omitempty"`
 	// The registration number of the company
 	RegistrationNumber *string `json:"registrationNumber,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// URL addresses for the originating system. For example, potential use cases include 'deeplinking' to the originating system
 	SourceUrls map[string]string `json:"sourceUrls,omitempty"`
 	// Weblinks associated with the company
-	WebLinks []WebLinksitems `json:"webLinks,omitempty"`
+	WebLinks []WebLinkItems `json:"webLinks,omitempty"`
 }
 
 func (o *CommerceCompanyInfo) GetAccountBalances() []AccountBalance {
@@ -113,7 +113,7 @@ func (o *CommerceCompanyInfo) GetModifiedDate() *string {
 	return o.ModifiedDate
 }
 
-func (o *CommerceCompanyInfo) GetPhoneNumbers() []PhoneNumbersitems {
+func (o *CommerceCompanyInfo) GetPhoneNumbers() []PhoneNumberItems {
 	if o == nil {
 		return nil
 	}
@@ -141,7 +141,7 @@ func (o *CommerceCompanyInfo) GetSourceUrls() map[string]string {
 	return o.SourceUrls
 }
 
-func (o *CommerceCompanyInfo) GetWebLinks() []WebLinksitems {
+func (o *CommerceCompanyInfo) GetWebLinks() []WebLinkItems {
 	if o == nil {
 		return nil
 	}
