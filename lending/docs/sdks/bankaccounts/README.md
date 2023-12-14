@@ -43,8 +43,8 @@ func main() {
         AccountingBankAccount: &shared.AccountingBankAccount{
             Currency: lending.String("USD"),
             Metadata: &shared.Metadata{},
-            ModifiedDate: lending.String("2022-10-23T00:00:00.000Z"),
-            SourceModifiedDate: lending.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: lending.String("2022-10-23T00:00:00Z"),
+            SourceModifiedDate: lending.String("2022-10-23T00:00:00Z"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
                     "key": map[string]interface{}{

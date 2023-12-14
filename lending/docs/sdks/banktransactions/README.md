@@ -45,7 +45,7 @@ func main() {
             AccountID: lending.String("7110701885"),
             Transactions: []shared.CreateBankAccountTransaction{
                 shared.CreateBankAccountTransaction{
-                    Date: lending.String("2022-10-23T00:00:00.000Z"),
+                    Date: lending.String("2022-10-23T00:00:00Z"),
                 },
             },
         },

@@ -48,10 +48,10 @@ func main() {
             CustomerRef: &shared.AccountingCustomerRef{
                 ID: "<ID>",
             },
-            Date: "2022-10-23T00:00:00.000Z",
+            Date: "2022-10-23T00:00:00Z",
             Lines: []shared.PaymentLine{
                 shared.PaymentLine{
-                    AllocatedOnDate: lending.String("2022-10-23T00:00:00.000Z"),
+                    AllocatedOnDate: lending.String("2022-10-23T00:00:00Z"),
                     Amount: types.MustNewDecimalFromString("8592.13"),
                     Links: []shared.PaymentLineLink{
                         shared.PaymentLineLink{
@@ -61,11 +61,11 @@ func main() {
                 },
             },
             Metadata: &shared.Metadata{},
-            ModifiedDate: lending.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: lending.String("2022-10-23T00:00:00Z"),
             PaymentMethodRef: &shared.PaymentMethodRef{
                 ID: "<ID>",
             },
-            SourceModifiedDate: lending.String("2022-10-23T00:00:00.000Z"),
+            SourceModifiedDate: lending.String("2022-10-23T00:00:00Z"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
                     "key": map[string]interface{}{

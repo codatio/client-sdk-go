@@ -38,7 +38,7 @@ func main() {
     ctx := context.Background()
     res, err := s.FileUpload.Download(ctx, operations.DownloadFilesRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        Date: lending.String("2022-10-23T00:00:00.000Z"),
+        Date: lending.String("2022-10-23T00:00:00Z"),
     })
     if err != nil {
         log.Fatal(err)
