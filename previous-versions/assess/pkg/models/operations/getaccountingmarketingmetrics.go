@@ -85,8 +85,6 @@ func (o *GetAccountingMarketingMetricsRequest) GetShowInputValues() *bool {
 type GetAccountingMarketingMetricsResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// OK
 	Report *shared.Report
 	// HTTP response status code for this operation
@@ -100,13 +98,6 @@ func (o *GetAccountingMarketingMetricsResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *GetAccountingMarketingMetricsResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *GetAccountingMarketingMetricsResponse) GetReport() *shared.Report {

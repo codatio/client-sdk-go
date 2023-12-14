@@ -81,8 +81,6 @@ type ListDataTypeDataIntegrityDetailsResponse struct {
 	ContentType string
 	// OK
 	Details *shared.Details
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -101,13 +99,6 @@ func (o *ListDataTypeDataIntegrityDetailsResponse) GetDetails() *shared.Details 
 		return nil
 	}
 	return o.Details
-}
-
-func (o *ListDataTypeDataIntegrityDetailsResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *ListDataTypeDataIntegrityDetailsResponse) GetStatusCode() int {

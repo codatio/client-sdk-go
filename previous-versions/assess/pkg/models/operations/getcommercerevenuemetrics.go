@@ -76,8 +76,6 @@ func (o *GetCommerceRevenueMetricsRequest) GetReportDate() string {
 type GetCommerceRevenueMetricsResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// OK
 	Report *shared.Report
 	// HTTP response status code for this operation
@@ -91,13 +89,6 @@ func (o *GetCommerceRevenueMetricsResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *GetCommerceRevenueMetricsResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *GetCommerceRevenueMetricsResponse) GetReport() *shared.Report {

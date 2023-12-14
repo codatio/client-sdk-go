@@ -69,12 +69,12 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 //
 // [See our OpenAPI spec](https://github.com/codatio/oas)
 type CodatAssess struct {
-	// Match mutable accounting data with immutable banking data to increase confidence in financial data
-	DataIntegrity *dataIntegrity
-	// Downloadable reports
-	ExcelReports *excelReports
 	// Enriched reports and analyses of financial data
-	Reports *reports
+	Reports *Reports
+	// Match mutable accounting data with immutable banking data to increase confidence in financial data
+	DataIntegrity *DataIntegrity
+	// Downloadable reports
+	ExcelReports *ExcelReports
 
 	sdkConfiguration sdkConfiguration
 }
@@ -124,7 +124,6 @@ func withSecurity(security interface{}) func(context.Context) (interface{}, erro
 }
 
 // WithSecurity configures the SDK to use the provided security details
-
 func WithSecurity(security shared.Security) SDKOption {
 	return func(sdk *CodatAssess) {
 		sdk.sdkConfiguration.Security = withSecurity(security)
@@ -152,9 +151,9 @@ func New(opts ...SDKOption) *CodatAssess {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0",
-			SDKVersion:        "0.26.0",
-			GenVersion:        "2.159.2",
-			UserAgent:         "speakeasy-sdk/go 0.26.0 2.159.2 1.0 github.com/codatio/client-sdk-go/previous-versions/assess",
+			SDKVersion:        "0.27.0",
+			GenVersion:        "2.214.3",
+			UserAgent:         "speakeasy-sdk/go 0.27.0 2.214.3 1.0 github.com/codatio/client-sdk-go/previous-versions/assess",
 		},
 	}
 	for _, opt := range opts {
@@ -173,11 +172,11 @@ func New(opts ...SDKOption) *CodatAssess {
 		}
 	}
 
+	sdk.Reports = newReports(sdk.sdkConfiguration)
+
 	sdk.DataIntegrity = newDataIntegrity(sdk.sdkConfiguration)
 
 	sdk.ExcelReports = newExcelReports(sdk.sdkConfiguration)
-
-	sdk.Reports = newReports(sdk.sdkConfiguration)
 
 	return sdk
 }

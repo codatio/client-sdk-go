@@ -28,16 +28,14 @@ func (o *GetExcelReportRequest) GetReportType() shared.ExcelReportType {
 	return o.ReportType
 }
 
-// GetExcelReport200ApplicationOctetStream - OK
-type GetExcelReport200ApplicationOctetStream struct {
+// GetExcelReportResponseBody - OK
+type GetExcelReportResponseBody struct {
 }
 
 type GetExcelReportResponse struct {
 	Body []byte
 	// HTTP response content type for this operation
 	ContentType string
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -56,13 +54,6 @@ func (o *GetExcelReportResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *GetExcelReportResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *GetExcelReportResponse) GetStatusCode() int {

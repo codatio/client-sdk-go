@@ -2,12 +2,12 @@
 
 package shared
 
-type CommerceReportDimensionItems struct {
+type Items struct {
 	// The dimension's items index.
 	Index *int64 `json:"index,omitempty"`
 }
 
-func (o *CommerceReportDimensionItems) GetIndex() *int64 {
+func (o *Items) GetIndex() *int64 {
 	if o == nil {
 		return nil
 	}
@@ -18,8 +18,8 @@ type CommerceReportDimension struct {
 	// The dimension's display name.
 	DisplayName *string `json:"displayName,omitempty"`
 	// The dimension's index.
-	Index *int64                         `json:"index,omitempty"`
-	Items []CommerceReportDimensionItems `json:"items,omitempty"`
+	Index *int64  `json:"index,omitempty"`
+	Items []Items `json:"items,omitempty"`
 	// The dimension's type.
 	Type *string `json:"type,omitempty"`
 }
@@ -38,7 +38,7 @@ func (o *CommerceReportDimension) GetIndex() *int64 {
 	return o.Index
 }
 
-func (o *CommerceReportDimension) GetItems() []CommerceReportDimensionItems {
+func (o *CommerceReportDimension) GetItems() []Items {
 	if o == nil {
 		return nil
 	}
