@@ -53,7 +53,7 @@ func main() {
                 DataType: shared.DataTypeInvoices.ToPointer(),
                 ID: "<ID>",
             },
-            Date: accounting.String("2022-10-23T00:00:00.000Z"),
+            Date: accounting.String("2022-10-23T00:00:00Z"),
             DepositedRecordRefs: []shared.InvoiceTo{
                 shared.InvoiceTo{
                     DataType: accounting.String("invoice"),
@@ -64,8 +64,8 @@ func main() {
                 Currency: accounting.String("USD"),
             },
             Metadata: &shared.Metadata{},
-            ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
-            SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
+            SourceModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
                     "key": map[string]interface{}{

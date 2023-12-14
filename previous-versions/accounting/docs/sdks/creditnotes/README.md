@@ -50,13 +50,13 @@ func main() {
     ctx := context.Background()
     res, err := s.CreditNotes.Create(ctx, operations.CreateCreditNoteRequest{
         CreditNote: &shared.CreditNote{
-            AllocatedOnDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            AllocatedOnDate: accounting.String("2022-10-23T00:00:00Z"),
             Currency: accounting.String("USD"),
             CustomerRef: &shared.AccountingCustomerRef{
                 ID: "<ID>",
             },
             DiscountPercentage: types.MustNewDecimalFromString("6384.24"),
-            IssueDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            IssueDate: accounting.String("2022-10-23T00:00:00Z"),
             LineItems: []shared.CreditNoteLineItem{
                 shared.CreditNoteLineItem{
                     AccountRef: &shared.AccountRef{},
@@ -92,22 +92,22 @@ func main() {
                 },
             },
             Metadata: &shared.Metadata{},
-            ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
             PaymentAllocations: []shared.PaymentAllocationItems{
                 shared.PaymentAllocationItems{
                     Allocation: shared.Allocation{
-                        AllocatedOnDate: accounting.String("2022-10-23T00:00:00.000Z"),
+                        AllocatedOnDate: accounting.String("2022-10-23T00:00:00Z"),
                         Currency: accounting.String("USD"),
                     },
                     Payment: shared.PaymentAllocationPayment{
                         AccountRef: &shared.AccountRef{},
                         Currency: accounting.String("EUR"),
-                        PaidOnDate: accounting.String("2022-10-23T00:00:00.000Z"),
+                        PaidOnDate: accounting.String("2022-10-23T00:00:00Z"),
                     },
                 },
             },
             RemainingCredit: types.MustNewDecimalFromString("0.86"),
-            SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            SourceModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
             Status: shared.CreditNoteStatusDraft,
             SubTotal: types.MustNewDecimalFromString("3015.1"),
             SupplementalData: &shared.SupplementalData{
@@ -385,13 +385,13 @@ func main() {
     ctx := context.Background()
     res, err := s.CreditNotes.Update(ctx, operations.UpdateCreditNoteRequest{
         CreditNote: &shared.CreditNote{
-            AllocatedOnDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            AllocatedOnDate: accounting.String("2022-10-23T00:00:00Z"),
             Currency: accounting.String("GBP"),
             CustomerRef: &shared.AccountingCustomerRef{
                 ID: "<ID>",
             },
             DiscountPercentage: types.MustNewDecimalFromString("5971.29"),
-            IssueDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            IssueDate: accounting.String("2022-10-23T00:00:00Z"),
             LineItems: []shared.CreditNoteLineItem{
                 shared.CreditNoteLineItem{
                     AccountRef: &shared.AccountRef{},
@@ -427,22 +427,22 @@ func main() {
                 },
             },
             Metadata: &shared.Metadata{},
-            ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
             PaymentAllocations: []shared.PaymentAllocationItems{
                 shared.PaymentAllocationItems{
                     Allocation: shared.Allocation{
-                        AllocatedOnDate: accounting.String("2022-10-23T00:00:00.000Z"),
+                        AllocatedOnDate: accounting.String("2022-10-23T00:00:00Z"),
                         Currency: accounting.String("USD"),
                     },
                     Payment: shared.PaymentAllocationPayment{
                         AccountRef: &shared.AccountRef{},
                         Currency: accounting.String("EUR"),
-                        PaidOnDate: accounting.String("2022-10-23T00:00:00.000Z"),
+                        PaidOnDate: accounting.String("2022-10-23T00:00:00Z"),
                     },
                 },
             },
             RemainingCredit: types.MustNewDecimalFromString("540.62"),
-            SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            SourceModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
             Status: shared.CreditNoteStatusPartiallyPaid,
             SubTotal: types.MustNewDecimalFromString("4995.57"),
             SupplementalData: &shared.SupplementalData{

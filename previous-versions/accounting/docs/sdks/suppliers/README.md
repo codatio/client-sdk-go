@@ -58,9 +58,9 @@ func main() {
                 },
             },
             Metadata: &shared.Metadata{},
-            ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
             Phone: accounting.String("(877) 492-8687"),
-            SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            SourceModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
             Status: shared.SupplierStatusActive,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
@@ -521,9 +521,9 @@ func main() {
                 },
             },
             Metadata: &shared.Metadata{},
-            ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
             Phone: accounting.String("(877) 492-8687"),
-            SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            SourceModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
             Status: shared.SupplierStatusActive,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{

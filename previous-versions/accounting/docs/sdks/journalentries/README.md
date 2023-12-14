@@ -50,7 +50,7 @@ func main() {
     ctx := context.Background()
     res, err := s.JournalEntries.Create(ctx, operations.CreateJournalEntryRequest{
         JournalEntry: &shared.JournalEntry{
-            CreatedOn: accounting.String("2022-10-23T00:00:00.000Z"),
+            CreatedOn: accounting.String("2022-10-23T00:00:00Z"),
             JournalLines: []shared.JournalLine{
                 shared.JournalLine{
                     AccountRef: &shared.AccountRef{},
@@ -68,12 +68,12 @@ func main() {
                 ID: "<ID>",
             },
             Metadata: &shared.Metadata{},
-            ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
-            PostedOn: accounting.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
+            PostedOn: accounting.String("2022-10-23T00:00:00Z"),
             RecordRef: &shared.InvoiceTo{
                 DataType: accounting.String("invoice"),
             },
-            SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            SourceModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
                     "key": map[string]interface{}{
@@ -81,7 +81,7 @@ func main() {
                     },
                 },
             },
-            UpdatedOn: accounting.String("2022-10-23T00:00:00.000Z"),
+            UpdatedOn: accounting.String("2022-10-23T00:00:00Z"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",

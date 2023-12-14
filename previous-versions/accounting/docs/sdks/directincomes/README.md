@@ -58,7 +58,7 @@ func main() {
                 ID: "<ID>",
             },
             Currency: "USD",
-            IssueDate: "2022-10-23T00:00:00.000Z",
+            IssueDate: "2022-10-23T00:00:00Z",
             LineItems: []shared.DirectIncomeLineItem{
                 shared.DirectIncomeLineItem{
                     AccountRef: &shared.AccountRef{},
@@ -76,21 +76,21 @@ func main() {
                 },
             },
             Metadata: &shared.Metadata{},
-            ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
             PaymentAllocations: []shared.PaymentAllocationItems{
                 shared.PaymentAllocationItems{
                     Allocation: shared.Allocation{
-                        AllocatedOnDate: accounting.String("2022-10-23T00:00:00.000Z"),
+                        AllocatedOnDate: accounting.String("2022-10-23T00:00:00Z"),
                         Currency: accounting.String("GBP"),
                     },
                     Payment: shared.PaymentAllocationPayment{
                         AccountRef: &shared.AccountRef{},
                         Currency: accounting.String("EUR"),
-                        PaidOnDate: accounting.String("2022-10-23T00:00:00.000Z"),
+                        PaidOnDate: accounting.String("2022-10-23T00:00:00Z"),
                     },
                 },
             },
-            SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            SourceModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
             SubTotal: types.MustNewDecimalFromString("7964.74"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{

@@ -46,6 +46,13 @@ type ItemReceipt struct {
 	// | **GBP**          | £20            | 1.277         | $25.54                     |
 	// | **EUR**          | €20            | 1.134         | $22.68                     |
 	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
+	//
+	//
+	// ### Integration-specific details
+	//
+	// | Integration       | Scenario                                        | System behavior                                                                                                                                                      |
+	// |-------------------|-------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+	// | QuickBooks Online | Transaction currency differs from base currency | If currency rate value is left `null`, a rate of 1 will be used by QBO by default. To override this, include the required currency rate in the expense transaction.  |
 	CurrencyRate *decimal.Big `decimal:"number" json:"currencyRate,omitempty"`
 	// Identifier for the item receipt, unique for the company in the accounting platform.
 	ID *string `json:"id,omitempty"`

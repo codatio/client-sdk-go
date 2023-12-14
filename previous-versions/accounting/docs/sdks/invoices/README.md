@@ -61,8 +61,8 @@ func main() {
             CustomerRef: &shared.AccountingCustomerRef{
                 ID: "<ID>",
             },
-            DueDate: accounting.String("2022-10-23T00:00:00.000Z"),
-            IssueDate: "2022-10-23T00:00:00.000Z",
+            DueDate: accounting.String("2022-10-23T00:00:00Z"),
+            IssueDate: "2022-10-23T00:00:00Z",
             LineItems: []shared.InvoiceLineItem{
                 shared.InvoiceLineItem{
                     AccountRef: &shared.AccountRef{},
@@ -98,18 +98,18 @@ func main() {
                 },
             },
             Metadata: &shared.Metadata{},
-            ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
-            PaidOnDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
+            PaidOnDate: accounting.String("2022-10-23T00:00:00Z"),
             PaymentAllocations: []shared.PaymentAllocationItems{
                 shared.PaymentAllocationItems{
                     Allocation: shared.Allocation{
-                        AllocatedOnDate: accounting.String("2022-10-23T00:00:00.000Z"),
+                        AllocatedOnDate: accounting.String("2022-10-23T00:00:00Z"),
                         Currency: accounting.String("EUR"),
                     },
                     Payment: shared.PaymentAllocationPayment{
                         AccountRef: &shared.AccountRef{},
                         Currency: accounting.String("EUR"),
-                        PaidOnDate: accounting.String("2022-10-23T00:00:00.000Z"),
+                        PaidOnDate: accounting.String("2022-10-23T00:00:00Z"),
                     },
                 },
             },
@@ -118,7 +118,7 @@ func main() {
                     DataType: shared.DataTypeInvoices.ToPointer(),
                 },
             },
-            SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            SourceModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
             Status: shared.InvoiceStatusDraft,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
@@ -732,8 +732,8 @@ func main() {
             CustomerRef: &shared.AccountingCustomerRef{
                 ID: "<ID>",
             },
-            DueDate: accounting.String("2022-10-23T00:00:00.000Z"),
-            IssueDate: "2022-10-23T00:00:00.000Z",
+            DueDate: accounting.String("2022-10-23T00:00:00Z"),
+            IssueDate: "2022-10-23T00:00:00Z",
             LineItems: []shared.InvoiceLineItem{
                 shared.InvoiceLineItem{
                     AccountRef: &shared.AccountRef{},
@@ -769,18 +769,18 @@ func main() {
                 },
             },
             Metadata: &shared.Metadata{},
-            ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
-            PaidOnDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
+            PaidOnDate: accounting.String("2022-10-23T00:00:00Z"),
             PaymentAllocations: []shared.PaymentAllocationItems{
                 shared.PaymentAllocationItems{
                     Allocation: shared.Allocation{
-                        AllocatedOnDate: accounting.String("2022-10-23T00:00:00.000Z"),
+                        AllocatedOnDate: accounting.String("2022-10-23T00:00:00Z"),
                         Currency: accounting.String("EUR"),
                     },
                     Payment: shared.PaymentAllocationPayment{
                         AccountRef: &shared.AccountRef{},
                         Currency: accounting.String("GBP"),
-                        PaidOnDate: accounting.String("2022-10-23T00:00:00.000Z"),
+                        PaidOnDate: accounting.String("2022-10-23T00:00:00Z"),
                     },
                 },
             },
@@ -789,7 +789,7 @@ func main() {
                     DataType: shared.DataTypeInvoices.ToPointer(),
                 },
             },
-            SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            SourceModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
             Status: shared.InvoiceStatusVoid,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{

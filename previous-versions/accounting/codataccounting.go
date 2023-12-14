@@ -171,7 +171,6 @@ func withSecurity(security interface{}) func(context.Context) (interface{}, erro
 }
 
 // WithSecurity configures the SDK to use the provided security details
-
 func WithSecurity(security shared.Security) SDKOption {
 	return func(sdk *CodatAccounting) {
 		sdk.sdkConfiguration.Security = withSecurity(security)
@@ -199,9 +198,9 @@ func New(opts ...SDKOption) *CodatAccounting {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "0.29.0",
-			GenVersion:        "2.210.6",
-			UserAgent:         "speakeasy-sdk/go 0.29.0 2.210.6 3.0.0 github.com/codatio/client-sdk-go/previous-versions/accounting",
+			SDKVersion:        "0.30.0",
+			GenVersion:        "2.214.3",
+			UserAgent:         "speakeasy-sdk/go 0.30.0 2.214.3 3.0.0 github.com/codatio/client-sdk-go/previous-versions/accounting",
 		},
 	}
 	for _, opt := range opts {

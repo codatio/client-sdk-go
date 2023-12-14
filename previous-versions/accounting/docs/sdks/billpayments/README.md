@@ -52,11 +52,11 @@ func main() {
         BillPayment: &shared.BillPayment{
             AccountRef: &shared.AccountRef{},
             Currency: accounting.String("USD"),
-            Date: "2022-10-23T00:00:00.000Z",
+            Date: "2022-10-23T00:00:00Z",
             ID: accounting.String("3d5a8e00-d108-4045-8823-7f342676cffa"),
             Lines: []shared.BillPaymentLine{
                 shared.BillPaymentLine{
-                    AllocatedOnDate: accounting.String("2022-10-23T00:00:00.000Z"),
+                    AllocatedOnDate: accounting.String("2022-10-23T00:00:00Z"),
                     Amount: types.MustNewDecimalFromString("8592.13"),
                     Links: []shared.BillPaymentLineLink{
                         shared.BillPaymentLineLink{
@@ -66,12 +66,12 @@ func main() {
                 },
             },
             Metadata: &shared.Metadata{},
-            ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
             Note: accounting.String("Bill Payment against bill c13e37b6-dfaa-4894-b3be-9fe97bda9f44"),
             PaymentMethodRef: &shared.PaymentMethodRef{
                 ID: "<ID>",
             },
-            SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            SourceModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
                     "key": map[string]interface{}{
