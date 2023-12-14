@@ -62,7 +62,7 @@ func main() {
                     Address: &shared.Items{
                         Type: shared.AccountingAddressTypeBilling,
                     },
-                    ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
+                    ModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
                     Phone: []shared.PhoneNumberItems{
                         shared.PhoneNumberItems{
                             Number: "01224 658 999",
@@ -74,8 +74,8 @@ func main() {
             },
             DefaultCurrency: accounting.String("GBP"),
             Metadata: &shared.Metadata{},
-            ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
-            SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
+            SourceModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
             Status: shared.CustomerStatusArchived,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
@@ -540,7 +540,7 @@ func main() {
                     Address: &shared.Items{
                         Type: shared.AccountingAddressTypeUnknown,
                     },
-                    ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
+                    ModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
                     Phone: []shared.PhoneNumberItems{
                         shared.PhoneNumberItems{
                             Number: "+44 25691 154789",
@@ -552,8 +552,8 @@ func main() {
             },
             DefaultCurrency: accounting.String("EUR"),
             Metadata: &shared.Metadata{},
-            ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
-            SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
+            SourceModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
             Status: shared.CustomerStatusArchived,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{

@@ -56,8 +56,8 @@ func main() {
     res, err := s.Bills.Create(ctx, operations.CreateBillRequest{
         Bill: &shared.Bill{
             Currency: accounting.String("USD"),
-            DueDate: accounting.String("2022-10-23T00:00:00.000Z"),
-            IssueDate: "2022-10-23T00:00:00.000Z",
+            DueDate: accounting.String("2022-10-23T00:00:00Z"),
+            IssueDate: "2022-10-23T00:00:00Z",
             LineItems: []shared.BillLineItem{
                 shared.BillLineItem{
                     AccountRef: &shared.AccountRef{},
@@ -91,24 +91,24 @@ func main() {
                 },
             },
             Metadata: &shared.Metadata{},
-            ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
             PaymentAllocations: []shared.PaymentAllocationItems{
                 shared.PaymentAllocationItems{
                     Allocation: shared.Allocation{
-                        AllocatedOnDate: accounting.String("2022-10-23T00:00:00.000Z"),
+                        AllocatedOnDate: accounting.String("2022-10-23T00:00:00Z"),
                         Currency: accounting.String("EUR"),
                     },
                     Payment: shared.PaymentAllocationPayment{
                         AccountRef: &shared.AccountRef{},
                         Currency: accounting.String("EUR"),
-                        PaidOnDate: accounting.String("2022-10-23T00:00:00.000Z"),
+                        PaidOnDate: accounting.String("2022-10-23T00:00:00Z"),
                     },
                 },
             },
             PurchaseOrderRefs: []shared.PurchaseOrderRef{
                 shared.PurchaseOrderRef{},
             },
-            SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            SourceModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
             Status: shared.BillStatusDraft,
             SubTotal: types.MustNewDecimalFromString("0.86"),
             SupplementalData: &shared.SupplementalData{
@@ -662,8 +662,8 @@ func main() {
     res, err := s.Bills.Update(ctx, operations.UpdateBillRequest{
         Bill: &shared.Bill{
             Currency: accounting.String("EUR"),
-            DueDate: accounting.String("2022-10-23T00:00:00.000Z"),
-            IssueDate: "2022-10-23T00:00:00.000Z",
+            DueDate: accounting.String("2022-10-23T00:00:00Z"),
+            IssueDate: "2022-10-23T00:00:00Z",
             LineItems: []shared.BillLineItem{
                 shared.BillLineItem{
                     AccountRef: &shared.AccountRef{},
@@ -697,24 +697,24 @@ func main() {
                 },
             },
             Metadata: &shared.Metadata{},
-            ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
             PaymentAllocations: []shared.PaymentAllocationItems{
                 shared.PaymentAllocationItems{
                     Allocation: shared.Allocation{
-                        AllocatedOnDate: accounting.String("2022-10-23T00:00:00.000Z"),
+                        AllocatedOnDate: accounting.String("2022-10-23T00:00:00Z"),
                         Currency: accounting.String("EUR"),
                     },
                     Payment: shared.PaymentAllocationPayment{
                         AccountRef: &shared.AccountRef{},
                         Currency: accounting.String("USD"),
-                        PaidOnDate: accounting.String("2022-10-23T00:00:00.000Z"),
+                        PaidOnDate: accounting.String("2022-10-23T00:00:00Z"),
                     },
                 },
             },
             PurchaseOrderRefs: []shared.PurchaseOrderRef{
                 shared.PurchaseOrderRef{},
             },
-            SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            SourceModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
             Status: shared.BillStatusUnknown,
             SubTotal: types.MustNewDecimalFromString("540.62"),
             SupplementalData: &shared.SupplementalData{

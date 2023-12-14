@@ -54,9 +54,9 @@ func main() {
     res, err := s.PurchaseOrders.Create(ctx, operations.CreatePurchaseOrderRequest{
         PurchaseOrder: &shared.PurchaseOrder{
             Currency: accounting.String("USD"),
-            DeliveryDate: accounting.String("2022-10-23T00:00:00.000Z"),
-            ExpectedDeliveryDate: accounting.String("2022-10-23T00:00:00.000Z"),
-            IssueDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            DeliveryDate: accounting.String("2022-10-23T00:00:00Z"),
+            ExpectedDeliveryDate: accounting.String("2022-10-23T00:00:00Z"),
+            IssueDate: accounting.String("2022-10-23T00:00:00Z"),
             LineItems: []shared.PurchaseOrderLineItem{
                 shared.PurchaseOrderLineItem{
                     AccountRef: &shared.AccountRef{},
@@ -72,15 +72,15 @@ func main() {
                 },
             },
             Metadata: &shared.Metadata{},
-            ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
-            PaymentDueDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
+            PaymentDueDate: accounting.String("2022-10-23T00:00:00Z"),
             ShipTo: &shared.ShipTo{
                 Address: &shared.Items{
                     Type: shared.AccountingAddressTypeUnknown,
                 },
                 Contact: &shared.ShipToContact{},
             },
-            SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            SourceModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
             SupplierRef: &shared.SupplierRef{
                 ID: "<ID>",
             },
@@ -591,9 +591,9 @@ func main() {
     res, err := s.PurchaseOrders.Update(ctx, operations.UpdatePurchaseOrderRequest{
         PurchaseOrder: &shared.PurchaseOrder{
             Currency: accounting.String("EUR"),
-            DeliveryDate: accounting.String("2022-10-23T00:00:00.000Z"),
-            ExpectedDeliveryDate: accounting.String("2022-10-23T00:00:00.000Z"),
-            IssueDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            DeliveryDate: accounting.String("2022-10-23T00:00:00Z"),
+            ExpectedDeliveryDate: accounting.String("2022-10-23T00:00:00Z"),
+            IssueDate: accounting.String("2022-10-23T00:00:00Z"),
             LineItems: []shared.PurchaseOrderLineItem{
                 shared.PurchaseOrderLineItem{
                     AccountRef: &shared.AccountRef{},
@@ -609,15 +609,15 @@ func main() {
                 },
             },
             Metadata: &shared.Metadata{},
-            ModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
-            PaymentDueDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
+            PaymentDueDate: accounting.String("2022-10-23T00:00:00Z"),
             ShipTo: &shared.ShipTo{
                 Address: &shared.Items{
                     Type: shared.AccountingAddressTypeDelivery,
                 },
                 Contact: &shared.ShipToContact{},
             },
-            SourceModifiedDate: accounting.String("2022-10-23T00:00:00.000Z"),
+            SourceModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
             SupplierRef: &shared.SupplierRef{
                 ID: "<ID>",
             },
