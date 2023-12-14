@@ -14,20 +14,20 @@ import (
 	"net/http"
 )
 
-// dataIntegrity - Match mutable accounting data with immutable banking data to increase confidence in financial data
-type dataIntegrity struct {
+// DataIntegrity - Match mutable accounting data with immutable banking data to increase confidence in financial data
+type DataIntegrity struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newDataIntegrity(sdkConfig sdkConfiguration) *dataIntegrity {
-	return &dataIntegrity{
+func newDataIntegrity(sdkConfig sdkConfiguration) *DataIntegrity {
+	return &DataIntegrity{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // Details - List data type data integrity
 // Gets record-by-record match results for a given company and datatype, optionally restricted by a Codat query string.
-func (s *dataIntegrity) Details(ctx context.Context, request operations.ListDataTypeDataIntegrityDetailsRequest, opts ...operations.Option) (*operations.ListDataTypeDataIntegrityDetailsResponse, error) {
+func (s *DataIntegrity) Details(ctx context.Context, request operations.ListDataTypeDataIntegrityDetailsRequest, opts ...operations.Option) (*operations.ListDataTypeDataIntegrityDetailsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -120,20 +120,35 @@ func (s *dataIntegrity) Details(ctx context.Context, request operations.ListData
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode == 400:
+		fallthrough
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -141,7 +156,7 @@ func (s *dataIntegrity) Details(ctx context.Context, request operations.ListData
 
 // Status - Get data integrity status
 // Gets match status for a given company and datatype.
-func (s *dataIntegrity) Status(ctx context.Context, request operations.GetDataIntegrityStatusRequest, opts ...operations.Option) (*operations.GetDataIntegrityStatusResponse, error) {
+func (s *DataIntegrity) Status(ctx context.Context, request operations.GetDataIntegrityStatusRequest, opts ...operations.Option) (*operations.GetDataIntegrityStatusResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -232,18 +247,31 @@ func (s *dataIntegrity) Status(ctx context.Context, request operations.GetDataIn
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -251,7 +279,7 @@ func (s *dataIntegrity) Status(ctx context.Context, request operations.GetDataIn
 
 // Summary - Get data integrity summary
 // Gets match summary for a given company and datatype, optionally restricted by a Codat query string.
-func (s *dataIntegrity) Summary(ctx context.Context, request operations.GetDataIntegritySummariesRequest, opts ...operations.Option) (*operations.GetDataIntegritySummariesResponse, error) {
+func (s *DataIntegrity) Summary(ctx context.Context, request operations.GetDataIntegritySummariesRequest, opts ...operations.Option) (*operations.GetDataIntegritySummariesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -344,20 +372,35 @@ func (s *dataIntegrity) Summary(ctx context.Context, request operations.GetDataI
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode == 400:
+		fallthrough
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

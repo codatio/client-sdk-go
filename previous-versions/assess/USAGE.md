@@ -1,6 +1,4 @@
-<!-- Start SDK Example Usage -->
-
-
+<!-- Start SDK Example Usage [usage] -->
 ```go
 package main
 
@@ -10,6 +8,7 @@ import (
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/shared"
 	"log"
+	"net/http"
 )
 
 func main() {
@@ -20,21 +19,18 @@ func main() {
 	)
 
 	ctx := context.Background()
-	res, err := s.DataIntegrity.Details(ctx, operations.ListDataTypeDataIntegrityDetailsRequest{
-		CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-		DataType:  shared.DataIntegrityDataTypeBankingAccounts,
-		OrderBy:   assess.String("-modifiedDate"),
-		Page:      assess.Int(1),
-		PageSize:  assess.Int(100),
+	res, err := s.Reports.GenerateLoanSummary(ctx, operations.GenerateLoanSummaryRequest{
+		CompanyID:  "8a210b68-6988-11ed-a1eb-0242ac120002",
+		SourceType: operations.SourceTypeAccounting,
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	if res.Details != nil {
+	if res.StatusCode == http.StatusOK {
 		// handle response
 	}
 }
 
 ```
-<!-- End SDK Example Usage -->
+<!-- End SDK Example Usage [usage] -->

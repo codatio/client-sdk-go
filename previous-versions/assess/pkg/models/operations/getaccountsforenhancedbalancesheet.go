@@ -42,8 +42,6 @@ type GetAccountsForEnhancedBalanceSheetResponse struct {
 	ContentType string
 	// OK
 	EnhancedReport *shared.EnhancedReport
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -62,13 +60,6 @@ func (o *GetAccountsForEnhancedBalanceSheetResponse) GetEnhancedReport() *shared
 		return nil
 	}
 	return o.EnhancedReport
-}
-
-func (o *GetAccountsForEnhancedBalanceSheetResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *GetAccountsForEnhancedBalanceSheetResponse) GetStatusCode() int {
