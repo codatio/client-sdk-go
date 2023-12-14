@@ -28,12 +28,12 @@ Check out our [coverage explorer](https://knowledge.codat.io/supported-features/
 package main
 
 import(
-	"context"
-	"log"
-	syncforcommerceversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/operations"
+	syncforcommerceversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/types"
+	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -46,13 +46,13 @@ func main() {
     ctx := context.Background()
     res, err := s.AccountingCreditNotes.CreateAccountingCreditNote(ctx, operations.CreateAccountingCreditNoteRequest{
         AccountingCreditNote: &shared.AccountingCreditNote{
-            AllocatedOnDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
+            AllocatedOnDate: syncforcommerceversion1.String("2022-10-23T00:00:00Z"),
             Currency: syncforcommerceversion1.String("GBP"),
             CustomerRef: &shared.AccountingCustomerRef{
                 ID: "<ID>",
             },
             DiscountPercentage: types.MustNewDecimalFromString("3961.39"),
-            IssueDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
+            IssueDate: syncforcommerceversion1.String("2022-10-23T00:00:00Z"),
             LineItems: []shared.CreditNoteLineItem{
                 shared.CreditNoteLineItem{
                     AccountRef: &shared.AccountRef{},
@@ -62,8 +62,8 @@ func main() {
                     Quantity: types.MustNewDecimalFromString("1740.95"),
                     TaxRateRef: &shared.TaxRateRef{},
                     Tracking: &shared.CreditNoteLineItemTracking{
-                        CategoryRefs: []shared.TrackingCategoryRefsitems{
-                            shared.TrackingCategoryRefsitems{
+                        CategoryRefs: []shared.TrackingCategoryRefItems{
+                            shared.TrackingCategoryRefItems{
                                 ID: "<ID>",
                             },
                         },
@@ -72,15 +72,15 @@ func main() {
                         },
                         IsBilledTo: shared.BilledToTypeProject,
                         IsRebilledTo: shared.BilledToTypeProject,
-                        ProjectRef: &shared.CreditNoteLineItemTrackingProjectReference{
+                        ProjectRef: &shared.CreditNoteLineItemAccountingProjectReference{
                             ID: "<ID>",
                         },
                         RecordRef: &shared.RecordRef{
                             DataType: syncforcommerceversion1.String("accountTransaction"),
                         },
                     },
-                    TrackingCategoryRefs: []shared.TrackingCategoryRefsitems{
-                        shared.TrackingCategoryRefsitems{
+                    TrackingCategoryRefs: []shared.TrackingCategoryRefItems{
+                        shared.TrackingCategoryRefItems{
                             ID: "<ID>",
                         },
                     },
@@ -88,38 +88,38 @@ func main() {
                 },
             },
             Metadata: &shared.Metadata{},
-            ModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
-            PaymentAllocations: []shared.PaymentAllocationsitems{
-                shared.PaymentAllocationsitems{
-                    Allocation: shared.ItemsAllocation{
-                        AllocatedOnDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00Z"),
+            PaymentAllocations: []shared.PaymentAllocationItems{
+                shared.PaymentAllocationItems{
+                    Allocation: shared.Allocation{
+                        AllocatedOnDate: syncforcommerceversion1.String("2022-10-23T00:00:00Z"),
                         Currency: syncforcommerceversion1.String("EUR"),
                     },
                     Payment: shared.PaymentAllocationPayment{
                         AccountRef: &shared.AccountRef{},
                         Currency: syncforcommerceversion1.String("USD"),
-                        PaidOnDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
+                        PaidOnDate: syncforcommerceversion1.String("2022-10-23T00:00:00Z"),
                     },
                 },
             },
             RemainingCredit: types.MustNewDecimalFromString("3693.65"),
-            SourceModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
+            SourceModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00Z"),
             Status: shared.CreditNoteStatusVoid,
             SubTotal: types.MustNewDecimalFromString("1915.04"),
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "Metal": map[string]interface{}{
-                        "policy": "although",
+                    "key": map[string]interface{}{
+                        "key": "string",
                     },
                 },
             },
-            TotalAmount: types.MustNewDecimalFromString("6437.49"),
-            TotalDiscount: types.MustNewDecimalFromString("6593.55"),
-            TotalTaxAmount: types.MustNewDecimalFromString("3629.12"),
-            WithholdingTax: []shared.WithholdingTaxitems{
-                shared.WithholdingTaxitems{
-                    Amount: types.MustNewDecimalFromString("5655.86"),
-                    Name: "however",
+            TotalAmount: types.MustNewDecimalFromString("5893.9"),
+            TotalDiscount: types.MustNewDecimalFromString("579.23"),
+            TotalTaxAmount: types.MustNewDecimalFromString("3881.42"),
+            WithholdingTax: []shared.WithholdingTaxItems{
+                shared.WithholdingTaxItems{
+                    Amount: types.MustNewDecimalFromString("7369.44"),
+                    Name: "string",
                 },
             },
         },
@@ -138,14 +138,17 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                    | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
-| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                                        | :heavy_check_mark:                                                                                           | The context to use for the request.                                                                          |
-| `request`                                                                                                    | [operations.CreateAccountingCreditNoteRequest](../../models/operations/createaccountingcreditnoterequest.md) | :heavy_check_mark:                                                                                           | The request object to use for the request.                                                                   |
-| `opts`                                                                                                       | [][operations.Option](../../models/operations/option.md)                                                     | :heavy_minus_sign:                                                                                           | The options for this request.                                                                                |
+| Parameter                                                                                                        | Type                                                                                                             | Required                                                                                                         | Description                                                                                                      |
+| ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                                            | :heavy_check_mark:                                                                                               | The context to use for the request.                                                                              |
+| `request`                                                                                                        | [operations.CreateAccountingCreditNoteRequest](../../pkg/models/operations/createaccountingcreditnoterequest.md) | :heavy_check_mark:                                                                                               | The request object to use for the request.                                                                       |
+| `opts`                                                                                                           | [][operations.Option](../../pkg/models/operations/option.md)                                                     | :heavy_minus_sign:                                                                                               | The options for this request.                                                                                    |
 
 
 ### Response
 
-**[*operations.CreateAccountingCreditNoteResponse](../../models/operations/createaccountingcreditnoteresponse.md), error**
-
+**[*operations.CreateAccountingCreditNoteResponse](../../pkg/models/operations/createaccountingcreditnoteresponse.md), error**
+| Error Object                    | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
+| sdkerrors.SDKError              | 400-600                         | */*                             |

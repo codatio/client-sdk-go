@@ -3,6 +3,7 @@
 package operations
 
 import (
+	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/shared"
 	"net/http"
 )
 
@@ -25,6 +26,8 @@ type GetSyncStatusResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
+	// Success
+	SyncSummary *shared.SyncSummary
 }
 
 func (o *GetSyncStatusResponse) GetContentType() string {
@@ -46,4 +49,11 @@ func (o *GetSyncStatusResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
+}
+
+func (o *GetSyncStatusResponse) GetSyncSummary() *shared.SyncSummary {
+	if o == nil {
+		return nil
+	}
+	return o.SyncSummary
 }

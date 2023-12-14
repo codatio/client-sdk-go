@@ -7,7 +7,7 @@ import (
 	"github.com/ericlagergren/decimal"
 )
 
-type AccountingInvoicePaymentAllocationAllocation struct {
+type AccountingInvoiceAllocation struct {
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -61,116 +61,123 @@ type AccountingInvoicePaymentAllocationAllocation struct {
 	// | **GBP**          | £20            | 1.277         | $25.54                     |
 	// | **EUR**          | €20            | 1.134         | $22.68                     |
 	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
+	//
+	//
+	// ### Integration-specific details
+	//
+	// | Integration       | Scenario                                        | System behavior                                                                                                                                                      |
+	// |-------------------|-------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+	// | QuickBooks Online | Transaction currency differs from base currency | If currency rate value is left `null`, a rate of 1 will be used by QBO by default. To override this, include the required currency rate in the expense transaction.  |
 	CurrencyRate *decimal.Big `decimal:"number" json:"currencyRate,omitempty"`
 	// The total amount that has been allocated.
 	TotalAmount *decimal.Big `decimal:"number" json:"totalAmount,omitempty"`
 }
 
-func (a AccountingInvoicePaymentAllocationAllocation) MarshalJSON() ([]byte, error) {
+func (a AccountingInvoiceAllocation) MarshalJSON() ([]byte, error) {
 	return utils.MarshalJSON(a, "", false)
 }
 
-func (a *AccountingInvoicePaymentAllocationAllocation) UnmarshalJSON(data []byte) error {
+func (a *AccountingInvoiceAllocation) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AccountingInvoicePaymentAllocationAllocation) GetAllocatedOnDate() *string {
+func (o *AccountingInvoiceAllocation) GetAllocatedOnDate() *string {
 	if o == nil {
 		return nil
 	}
 	return o.AllocatedOnDate
 }
 
-func (o *AccountingInvoicePaymentAllocationAllocation) GetCurrency() *string {
+func (o *AccountingInvoiceAllocation) GetCurrency() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Currency
 }
 
-func (o *AccountingInvoicePaymentAllocationAllocation) GetCurrencyRate() *decimal.Big {
+func (o *AccountingInvoiceAllocation) GetCurrencyRate() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.CurrencyRate
 }
 
-func (o *AccountingInvoicePaymentAllocationAllocation) GetTotalAmount() *decimal.Big {
+func (o *AccountingInvoiceAllocation) GetTotalAmount() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.TotalAmount
 }
 
-type AccountingInvoicePaymentAllocation struct {
-	Allocation AccountingInvoicePaymentAllocationAllocation `json:"allocation"`
-	Payment    PaymentAllocationPayment                     `json:"payment"`
+type AccountingPaymentAllocation struct {
+	Allocation AccountingInvoiceAllocation `json:"allocation"`
+	Payment    PaymentAllocationPayment    `json:"payment"`
 }
 
-func (o *AccountingInvoicePaymentAllocation) GetAllocation() AccountingInvoicePaymentAllocationAllocation {
+func (o *AccountingPaymentAllocation) GetAllocation() AccountingInvoiceAllocation {
 	if o == nil {
-		return AccountingInvoicePaymentAllocationAllocation{}
+		return AccountingInvoiceAllocation{}
 	}
 	return o.Allocation
 }
 
-func (o *AccountingInvoicePaymentAllocation) GetPayment() PaymentAllocationPayment {
+func (o *AccountingPaymentAllocation) GetPayment() PaymentAllocationPayment {
 	if o == nil {
 		return PaymentAllocationPayment{}
 	}
 	return o.Payment
 }
 
-type AccountingInvoiceSalesOrderReference struct {
+type SalesOrderReference struct {
 	// Available Data types
 	DataType *DataType `json:"dataType,omitempty"`
 	// Unique identifier to a record in `dataType`.
 	ID *string `json:"id,omitempty"`
 }
 
-func (o *AccountingInvoiceSalesOrderReference) GetDataType() *DataType {
+func (o *SalesOrderReference) GetDataType() *DataType {
 	if o == nil {
 		return nil
 	}
 	return o.DataType
 }
 
-func (o *AccountingInvoiceSalesOrderReference) GetID() *string {
+func (o *SalesOrderReference) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-type AccountingInvoiceWithholdingTax struct {
+type WithholdingTax struct {
 	// Amount of tax withheld.
 	Amount *decimal.Big `decimal:"number" json:"amount"`
 	// Name assigned to withheld tax.
 	Name string `json:"name"`
 }
 
-func (a AccountingInvoiceWithholdingTax) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(a, "", false)
+func (w WithholdingTax) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(w, "", false)
 }
 
-func (a *AccountingInvoiceWithholdingTax) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+func (w *WithholdingTax) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &w, "", false, false); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AccountingInvoiceWithholdingTax) GetAmount() *decimal.Big {
+func (o *WithholdingTax) GetAmount() *decimal.Big {
 	if o == nil {
 		return new(decimal.Big).SetFloat64(0.0)
 	}
 	return o.Amount
 }
 
-func (o *AccountingInvoiceWithholdingTax) GetName() string {
+func (o *WithholdingTax) GetName() string {
 	if o == nil {
 		return ""
 	}
@@ -246,6 +253,13 @@ type AccountingInvoice struct {
 	// | **GBP**          | £20            | 1.277         | $25.54                     |
 	// | **EUR**          | €20            | 1.134         | $22.68                     |
 	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
+	//
+	//
+	// ### Integration-specific details
+	//
+	// | Integration       | Scenario                                        | System behavior                                                                                                                                                      |
+	// |-------------------|-------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+	// | QuickBooks Online | Transaction currency differs from base currency | If currency rate value is left `null`, a rate of 1 will be used by QBO by default. To override this, include the required currency rate in the expense transaction.  |
 	CurrencyRate *decimal.Big           `decimal:"number" json:"currencyRate,omitempty"`
 	CustomerRef  *AccountingCustomerRef `json:"customerRef,omitempty"`
 	// Percentage rate (from 0 to 100) of discounts applied to the invoice. For example: A 5% discount will return a value of `5`, not `0.05`.
@@ -321,10 +335,10 @@ type AccountingInvoice struct {
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	PaidOnDate *string `json:"paidOnDate,omitempty"`
 	// An array of payment allocations.
-	PaymentAllocations []AccountingInvoicePaymentAllocation `json:"paymentAllocations,omitempty"`
+	PaymentAllocations []AccountingPaymentAllocation `json:"paymentAllocations,omitempty"`
 	// List of references to related Sales orders.
-	SalesOrderRefs     []AccountingInvoiceSalesOrderReference `json:"salesOrderRefs,omitempty"`
-	SourceModifiedDate *string                                `json:"sourceModifiedDate,omitempty"`
+	SalesOrderRefs     []SalesOrderReference `json:"salesOrderRefs,omitempty"`
+	SourceModifiedDate *string               `json:"sourceModifiedDate,omitempty"`
 	// Current state of the invoice:
 	//
 	// - `Draft` - Invoice hasn't been submitted to the supplier. It may be in a pending state or is scheduled for future submission, for example by email.
@@ -344,8 +358,8 @@ type AccountingInvoice struct {
 	// Numerical value of discounts applied to the invoice.
 	TotalDiscount *decimal.Big `decimal:"number" json:"totalDiscount,omitempty"`
 	// Amount of tax on the invoice.
-	TotalTaxAmount *decimal.Big                      `decimal:"number" json:"totalTaxAmount"`
-	WithholdingTax []AccountingInvoiceWithholdingTax `json:"withholdingTax,omitempty"`
+	TotalTaxAmount *decimal.Big     `decimal:"number" json:"totalTaxAmount"`
+	WithholdingTax []WithholdingTax `json:"withholdingTax,omitempty"`
 }
 
 func (a AccountingInvoice) MarshalJSON() ([]byte, error) {
@@ -471,14 +485,14 @@ func (o *AccountingInvoice) GetPaidOnDate() *string {
 	return o.PaidOnDate
 }
 
-func (o *AccountingInvoice) GetPaymentAllocations() []AccountingInvoicePaymentAllocation {
+func (o *AccountingInvoice) GetPaymentAllocations() []AccountingPaymentAllocation {
 	if o == nil {
 		return nil
 	}
 	return o.PaymentAllocations
 }
 
-func (o *AccountingInvoice) GetSalesOrderRefs() []AccountingInvoiceSalesOrderReference {
+func (o *AccountingInvoice) GetSalesOrderRefs() []SalesOrderReference {
 	if o == nil {
 		return nil
 	}
@@ -534,7 +548,7 @@ func (o *AccountingInvoice) GetTotalTaxAmount() *decimal.Big {
 	return o.TotalTaxAmount
 }
 
-func (o *AccountingInvoice) GetWithholdingTax() []AccountingInvoiceWithholdingTax {
+func (o *AccountingInvoice) GetWithholdingTax() []WithholdingTax {
 	if o == nil {
 		return nil
 	}

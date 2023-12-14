@@ -2,46 +2,46 @@
 
 package shared
 
-// AccountingJournalEntryJournalReference - Links journal entries to the relevant journal in accounting integrations that use multi-book accounting (multiple journals).
-type AccountingJournalEntryJournalReference struct {
+// JournalReference - Links journal entries to the relevant journal in accounting integrations that use multi-book accounting (multiple journals).
+type JournalReference struct {
 	// GUID of the underlying journal.
 	ID string `json:"id"`
 	// Name of journal
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *AccountingJournalEntryJournalReference) GetID() string {
+func (o *JournalReference) GetID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ID
 }
 
-func (o *AccountingJournalEntryJournalReference) GetName() *string {
+func (o *JournalReference) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// AccountingJournalEntryRecordReference - Links the current record to the underlying record or data type that created it.
+// RecordReference - Links the current record to the underlying record or data type that created it.
 //
 // For example, if a journal entry is generated based on an invoice, this property allows you to connect the journal entry to the underlying invoice in our data model.
-type AccountingJournalEntryRecordReference struct {
+type RecordReference struct {
 	// Allowed name of the 'dataType'.
 	DataType *string `json:"dataType,omitempty"`
 	// 'id' of the underlying record or data type.
 	ID *string `json:"id,omitempty"`
 }
 
-func (o *AccountingJournalEntryRecordReference) GetDataType() *string {
+func (o *RecordReference) GetDataType() *string {
 	if o == nil {
 		return nil
 	}
 	return o.DataType
 }
 
-func (o *AccountingJournalEntryRecordReference) GetID() *string {
+func (o *RecordReference) GetID() *string {
 	if o == nil {
 		return nil
 	}
@@ -98,9 +98,9 @@ type AccountingJournalEntry struct {
 	// An array of journal lines.
 	JournalLines []JournalLine `json:"journalLines,omitempty"`
 	// Links journal entries to the relevant journal in accounting integrations that use multi-book accounting (multiple journals).
-	JournalRef   *AccountingJournalEntryJournalReference `json:"journalRef,omitempty"`
-	Metadata     *Metadata                               `json:"metadata,omitempty"`
-	ModifiedDate *string                                 `json:"modifiedDate,omitempty"`
+	JournalRef   *JournalReference `json:"journalRef,omitempty"`
+	Metadata     *Metadata         `json:"metadata,omitempty"`
+	ModifiedDate *string           `json:"modifiedDate,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -124,8 +124,8 @@ type AccountingJournalEntry struct {
 	// Links the current record to the underlying record or data type that created it.
 	//
 	// For example, if a journal entry is generated based on an invoice, this property allows you to connect the journal entry to the underlying invoice in our data model.
-	RecordRef          *AccountingJournalEntryRecordReference `json:"recordRef,omitempty"`
-	SourceModifiedDate *string                                `json:"sourceModifiedDate,omitempty"`
+	RecordRef          *RecordReference `json:"recordRef,omitempty"`
+	SourceModifiedDate *string          `json:"sourceModifiedDate,omitempty"`
 	// Supplemental data is additional data you can include in our standard data types.
 	//
 	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
@@ -180,7 +180,7 @@ func (o *AccountingJournalEntry) GetJournalLines() []JournalLine {
 	return o.JournalLines
 }
 
-func (o *AccountingJournalEntry) GetJournalRef() *AccountingJournalEntryJournalReference {
+func (o *AccountingJournalEntry) GetJournalRef() *JournalReference {
 	if o == nil {
 		return nil
 	}
@@ -208,7 +208,7 @@ func (o *AccountingJournalEntry) GetPostedOn() *string {
 	return o.PostedOn
 }
 
-func (o *AccountingJournalEntry) GetRecordRef() *AccountingJournalEntryRecordReference {
+func (o *AccountingJournalEntry) GetRecordRef() *RecordReference {
 	if o == nil {
 		return nil
 	}

@@ -2,7 +2,7 @@
 
 package shared
 
-type CommerceCustomerAddress struct {
+type CommerceAddress struct {
 	// The third line of the address, or city
 	City *string `json:"city,omitempty"`
 	// The country for the address
@@ -19,49 +19,49 @@ type CommerceCustomerAddress struct {
 	Type *CommerceAddressType `json:"type,omitempty"`
 }
 
-func (o *CommerceCustomerAddress) GetCity() *string {
+func (o *CommerceAddress) GetCity() *string {
 	if o == nil {
 		return nil
 	}
 	return o.City
 }
 
-func (o *CommerceCustomerAddress) GetCountry() *string {
+func (o *CommerceAddress) GetCountry() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Country
 }
 
-func (o *CommerceCustomerAddress) GetLine1() *string {
+func (o *CommerceAddress) GetLine1() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Line1
 }
 
-func (o *CommerceCustomerAddress) GetLine2() *string {
+func (o *CommerceAddress) GetLine2() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Line2
 }
 
-func (o *CommerceCustomerAddress) GetPostalCode() *string {
+func (o *CommerceAddress) GetPostalCode() *string {
 	if o == nil {
 		return nil
 	}
 	return o.PostalCode
 }
 
-func (o *CommerceCustomerAddress) GetRegion() *string {
+func (o *CommerceAddress) GetRegion() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Region
 }
 
-func (o *CommerceCustomerAddress) GetType() *CommerceAddressType {
+func (o *CommerceAddress) GetType() *CommerceAddressType {
 	if o == nil {
 		return nil
 	}
@@ -73,7 +73,7 @@ func (o *CommerceCustomerAddress) GetType() *CommerceAddressType {
 // Explore our [data coverage](https://knowledge.codat.io/supported-features/commerce?view=tab-by-data-type&dataType=commerce-customers) for this data type.
 type CommerceCustomer struct {
 	// Addresses of the customer
-	Addresses []CommerceCustomerAddress `json:"addresses,omitempty"`
+	Addresses []CommerceAddress `json:"addresses,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -109,7 +109,7 @@ type CommerceCustomer struct {
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 }
 
-func (o *CommerceCustomer) GetAddresses() []CommerceCustomerAddress {
+func (o *CommerceCustomer) GetAddresses() []CommerceAddress {
 	if o == nil {
 		return nil
 	}

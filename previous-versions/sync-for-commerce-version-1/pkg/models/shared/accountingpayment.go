@@ -149,11 +149,10 @@ import (
 // - The base currency for the accounts receivable account.
 // - The currency of the item.
 //
-// ```json title="Currency rate example"
-//
+//	```json title="Currency rate example"
 //	{
 //	    "id": "123",
-//	    "note": ""
+//	    "note": "",
 //	    "totalAmount": 99.99,
 //	    "currency": "GBP",
 //	    "lines": [
@@ -164,14 +163,13 @@ import (
 //	                    "type": "Invoice",
 //	                    "id": "178",
 //	                    "amount": -50,
-//	                    "currencyRate":  1.9998,
+//	                    "currencyRate":  1.9998
 //	                }
 //	            ]
 //	        }
 //	    ]
 //	}
-//
-// ```
+//	```
 //
 // ## Example data
 //
@@ -181,8 +179,7 @@ import (
 //
 // ## Simple examples
 //
-// ```json title="Payment for invoice"
-//
+//	```json title="Payment for invoice"
 //	{
 //	    "totalAmount": 1000,
 //	    "lines": [
@@ -198,11 +195,11 @@ import (
 //	        }
 //	    ]
 //	}
+//	```
 //
-// ```
 //
-// ```json title="Allocation of credit note"
 //
+//	```json title="Allocation of credit note"
 //	{
 //	    "totalAmount": 0,
 //	    "lines": [
@@ -223,11 +220,11 @@ import (
 //	        }
 //	    ]
 //	}
+//	```
 //
-// ```
 //
-// ```json title="Payment of invoice and payment on account"
 //
+//	```json title="Payment of invoice and payment on account"
 //	{
 //	    "totalAmount": 2000,
 //	    "lines": [
@@ -253,11 +250,11 @@ import (
 //	        }
 //	    ]
 //	}
+//	```
 //
-// ```
 //
-// ```json title="Refund of credit note"
 //
+//	```json title="Refund of credit note"
 //	{
 //	    "totalAmount": -1000,
 //	    "lines": [
@@ -273,11 +270,11 @@ import (
 //	        }
 //	    ]
 //	}
+//	```
 //
-// ```
 //
-// ```json title="Refund on accounts receivable account"
 //
+//	```json title="Refund on accounts receivable account"
 //	{
 //	    "totalAmount": -1000,
 //	    "lines": [
@@ -293,11 +290,11 @@ import (
 //	        }
 //	    ]
 //	}
+//	```
 //
-// ```
 //
-// ```json title="Linked refund on accounts receivable account"
 //
+//	```json title="Linked refund on accounts receivable account"
 //	{
 //	    "id" : "payment-001",
 //	    "totalAmount": 1000,
@@ -314,7 +311,6 @@ import (
 //	        }
 //	    ]
 //	}
-//
 //	{
 //	    "id" : "refund-001",
 //	    "totalAmount": -1000,
@@ -331,11 +327,11 @@ import (
 //	        }
 //	    ]
 //	}
+//	```
 //
-// ```
 //
-// ```json title="Using a credit note and cash to pay an invoice"
 //
+//	```json title="Using a credit note and cash to pay an invoice"
 //	{
 //	    "totalAmount": 250,
 //	    "lines": [
@@ -366,13 +362,11 @@ import (
 //	        }
 //	    ]
 //	}
-//
-// ```
+//	```
 //
 // ## Complex examples
 //
-// ```json title="Use two credit notes and 1000 in to "bank" (cash, cheque etc.) to pay invoice"
-//
+//	```json title="Use two credit notes and 1000 in to "bank" (cash, cheque etc.) to pay invoice"
 //	{
 //	    "totalAmount": 1000,
 //	    "lines": [
@@ -418,11 +412,11 @@ import (
 //	        }
 //	    ]
 //	}
+//	```
 //
-// ```
 //
-// ```json title="Pay an invoice with two credit notes and cash, with 1000 left 'on account'"
 //
+//	```json title="Pay an invoice with two credit notes and cash, with 1000 left 'on account'"
 //	{
 //	    "totalAmount": 2000,
 //	    "lines": [
@@ -478,11 +472,11 @@ import (
 //	        }
 //	    ]
 //	}
+//	```
 //
-// ```
 //
-// ```json title="Two credit notes pay two invoices with no allocation amount specified"
 //
+//	```json title="Two credit notes pay two invoices with no allocation amount specified"
 //	{
 //	    "totalAmount": 0,
 //	    "lines": [
@@ -513,11 +507,11 @@ import (
 //	        }
 //	    ]
 //	}
+//	```
 //
-// ```
 //
-// ```json title="Two credit notes and cash pay three invoices with no allocation amount specified, and refund cash"
 //
+//	```json title="Two credit notes and cash pay three invoices with no allocation amount specified, and refund cash"
 //	{
 //	    "totalAmount": 2000,
 //	    "lines": [
@@ -563,7 +557,6 @@ import (
 //	        }
 //	    ]
 //	}
-//
 //	{
 //	    "id" : "refund-001",
 //	    "totalAmount": -1000,
@@ -580,13 +573,11 @@ import (
 //	        }
 //	    ]
 //	}
-//
-// ```
+//	```
 //
 // In this example, a payment on account is used to pay the same invoice in January and again in February.
 //
-// ```json title="January"
-//
+//	```json title="January"
 //	{
 //	    "id": "001",
 //	    "totalAmount": 5000,
@@ -614,11 +605,11 @@ import (
 //	        }
 //	    ]
 //	}
+//	```
 //
-// ```
 //
-// ```json title="February"
 //
+//	```json title="February"
 //	{
 //	    "id": "001",
 //	    "totalAmount": 5000,
@@ -656,11 +647,11 @@ import (
 //	        }
 //	    ]
 //	}
+//	```
 //
-// ```
 //
-// ```json title="Two credit notes and some cash pay two invoices with no allocations specified"
 //
+//	```json title="Two credit notes and some cash pay two invoices with no allocations specified"
 //	{
 //	    "totalAmount": 500,
 //	    "lines": [
@@ -687,8 +678,7 @@ import (
 //	        }
 //	    ]
 //	}
-//
-// ```
+//	```
 type AccountingPayment struct {
 	// Data types that reference an account, for example bill and invoice line items, use an accountRef that includes the ID and name of the linked account.
 	AccountRef *AccountRef `json:"accountRef,omitempty"`
@@ -725,6 +715,13 @@ type AccountingPayment struct {
 	// | **GBP**          | £20            | 1.277         | $25.54                     |
 	// | **EUR**          | €20            | 1.134         | $22.68                     |
 	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
+	//
+	//
+	// ### Integration-specific details
+	//
+	// | Integration       | Scenario                                        | System behavior                                                                                                                                                      |
+	// |-------------------|-------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+	// | QuickBooks Online | Transaction currency differs from base currency | If currency rate value is left `null`, a rate of 1 will be used by QBO by default. To override this, include the required currency rate in the expense transaction.  |
 	CurrencyRate *decimal.Big           `decimal:"number" json:"currencyRate,omitempty"`
 	CustomerRef  *AccountingCustomerRef `json:"customerRef,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:

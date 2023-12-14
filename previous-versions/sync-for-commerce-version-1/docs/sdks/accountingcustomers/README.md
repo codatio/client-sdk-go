@@ -28,11 +28,11 @@ Check out our [coverage explorer](https://knowledge.codat.io/supported-features/
 package main
 
 import(
-	"context"
-	"log"
-	syncforcommerceversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/shared"
+	syncforcommerceversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -55,9 +55,9 @@ func main() {
                     Address: &shared.Items1{
                         Type: shared.AccountingAddressTypeUnknown,
                     },
-                    ModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
-                    Phone: []shared.PhoneNumbersitems{
-                        shared.PhoneNumbersitems{
+                    ModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00Z"),
+                    Phone: []shared.PhoneNumberItems{
+                        shared.PhoneNumberItems{
                             Number: "+44 25691 154789",
                             Type: shared.PhoneNumberTypePrimary,
                         },
@@ -67,13 +67,13 @@ func main() {
             },
             DefaultCurrency: syncforcommerceversion1.String("GBP"),
             Metadata: &shared.Metadata{},
-            ModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
-            SourceModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00Z"),
+            SourceModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00Z"),
             Status: shared.CustomerStatusUnknown,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "California": map[string]interface{}{
-                        "systems": "North",
+                    "key": map[string]interface{}{
+                        "key": "string",
                     },
                 },
             },
@@ -93,14 +93,17 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
-| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                                    | :heavy_check_mark:                                                                                       | The context to use for the request.                                                                      |
-| `request`                                                                                                | [operations.CreateAccountingCustomerRequest](../../models/operations/createaccountingcustomerrequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
-| `opts`                                                                                                   | [][operations.Option](../../models/operations/option.md)                                                 | :heavy_minus_sign:                                                                                       | The options for this request.                                                                            |
+| Parameter                                                                                                    | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                                        | :heavy_check_mark:                                                                                           | The context to use for the request.                                                                          |
+| `request`                                                                                                    | [operations.CreateAccountingCustomerRequest](../../pkg/models/operations/createaccountingcustomerrequest.md) | :heavy_check_mark:                                                                                           | The request object to use for the request.                                                                   |
+| `opts`                                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                                 | :heavy_minus_sign:                                                                                           | The options for this request.                                                                                |
 
 
 ### Response
 
-**[*operations.CreateAccountingCustomerResponse](../../models/operations/createaccountingcustomerresponse.md), error**
-
+**[*operations.CreateAccountingCustomerResponse](../../pkg/models/operations/createaccountingcustomerresponse.md), error**
+| Error Object                    | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
+| sdkerrors.SDKError              | 400-600                         | */*                             |
