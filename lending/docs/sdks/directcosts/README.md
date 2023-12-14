@@ -50,7 +50,7 @@ func main() {
                 ID: "<ID>",
             },
             Currency: "USD",
-            IssueDate: "2022-10-23T00:00:00.000Z",
+            IssueDate: "2022-10-23T00:00:00Z",
             LineItems: []shared.DirectCostLineItem{
                 shared.DirectCostLineItem{
                     AccountRef: &shared.AccountRef{},
@@ -80,13 +80,13 @@ func main() {
             PaymentAllocations: []shared.AccountingPaymentAllocation{
                 shared.AccountingPaymentAllocation{
                     Allocation: shared.Allocation{
-                        AllocatedOnDate: lending.String("2022-10-23T00:00:00.000Z"),
+                        AllocatedOnDate: lending.String("2022-10-23T00:00:00Z"),
                         Currency: lending.String("EUR"),
                     },
                     Payment: shared.PaymentAllocationPayment{
                         AccountRef: &shared.AccountRef{},
                         Currency: lending.String("GBP"),
-                        PaidOnDate: lending.String("2022-10-23T00:00:00.000Z"),
+                        PaidOnDate: lending.String("2022-10-23T00:00:00Z"),
                     },
                 },
             },
