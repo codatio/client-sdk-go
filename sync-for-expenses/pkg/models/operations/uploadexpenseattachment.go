@@ -3,31 +3,12 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
 	"net/http"
 )
 
-type UploadExpenseAttachmentRequestBody struct {
-	Content     []byte `multipartForm:"content"`
-	RequestBody string `multipartForm:"name=requestBody"`
-}
-
-func (o *UploadExpenseAttachmentRequestBody) GetContent() []byte {
-	if o == nil {
-		return []byte{}
-	}
-	return o.Content
-}
-
-func (o *UploadExpenseAttachmentRequestBody) GetRequestBody() string {
-	if o == nil {
-		return ""
-	}
-	return o.RequestBody
-}
-
 type UploadExpenseAttachmentRequest struct {
-	RequestBody *UploadExpenseAttachmentRequestBody `multipartForm:"file" request:"mediaType=multipart/form-data"`
+	AttachmentUpload *shared.AttachmentUpload `request:"mediaType=multipart/form-data"`
 	// Unique identifier for a company.
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	// Unique identifier for a sync.
@@ -36,11 +17,11 @@ type UploadExpenseAttachmentRequest struct {
 	TransactionID string `pathParam:"style=simple,explode=false,name=transactionId"`
 }
 
-func (o *UploadExpenseAttachmentRequest) GetRequestBody() *UploadExpenseAttachmentRequestBody {
+func (o *UploadExpenseAttachmentRequest) GetAttachmentUpload() *shared.AttachmentUpload {
 	if o == nil {
 		return nil
 	}
-	return o.RequestBody
+	return o.AttachmentUpload
 }
 
 func (o *UploadExpenseAttachmentRequest) GetCompanyID() string {
@@ -69,8 +50,6 @@ type UploadExpenseAttachmentResponse struct {
 	Attachment *shared.Attachment
 	// HTTP response content type for this operation
 	ContentType string
-	// The request made is not valid.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -89,13 +68,6 @@ func (o *UploadExpenseAttachmentResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *UploadExpenseAttachmentResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *UploadExpenseAttachmentResponse) GetStatusCode() int {

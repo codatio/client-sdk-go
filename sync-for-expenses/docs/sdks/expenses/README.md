@@ -13,7 +13,21 @@ Create expense datasets and upload receipts.
 
 ## Create
 
-Create an expense transaction
+The *Create expense* endpoint creates an [expense transaction](https://docs.codat.io/sync-for-expenses-api#/schemas/ExpenseTransaction) in the accounting platform for a given company's connection. 
+
+[Expense transactions](https://docs.codat.io/sync-for-expenses-api#/schemas/ExpenseTransaction) represent transactions made with a company debit or credit card. 
+
+
+**Integration-specific behaviour**
+
+Some accounting platforms support the option of pushing transactions to a draft state. This can be done by setting the postAsDraft property on the transaction to true. For platforms without this feature, the postAsDraft property should be ignored or set to false.
+
+| Integration | Draft State | Details                                                                                                      |  
+|-------------|-------------|--------------------------------------------------------------------------------------------------------------|
+| Dynamics 365 Business Central | Yes   | Setting postAsDraft to true will push the transactions to a drafted state rather than posting directly to the ledger. For transactions in a draft state, they can then be approved and posted within the accounting platform. |
+| Quickbooks Online | No | -  |
+| Xero | No | - |
+| NetSuite | No | - |
 
 ### Example Usage
 
@@ -21,12 +35,12 @@ Create an expense transaction
 package main
 
 import(
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
 	"context"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/types"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
 	"log"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v3"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/types"
 )
 
 func main() {
@@ -39,29 +53,31 @@ func main() {
         CreateExpenseRequest: &shared.CreateExpenseRequest{
             Items: []shared.ExpenseTransaction{
                 shared.ExpenseTransaction{
-                    BankAccountRef: &shared.ExpenseTransactionBankAccountReference{
+                    BankAccountRef: &shared.BankAccountReference{
                         ID: syncforexpenses.String("787dfb37-5707-4dc0-8a86-8d74e4cc78ea"),
                     },
                     ContactRef: &shared.ContactRef{
                         ID: syncforexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                        Type: shared.ContactRefTypeSupplier.ToPointer(),
+                        Type: shared.TypeSupplier.ToPointer(),
                     },
                     Currency: "GBP",
                     ID: "4d7c6929-7770-412b-91bb-44d3bc71d111",
-                    IssueDate: "2022-10-23T00:00:00.000Z",
+                    IssueDate: "2022-10-23T00:00:00Z",
                     Lines: []shared.ExpenseTransactionLine{
                         shared.ExpenseTransactionLine{
                             AccountRef: shared.RecordRef{
                                 ID: syncforexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
                             },
+                            InvoiceTo: &shared.InvoiceTo{},
                             NetAmount: types.MustNewDecimalFromString("110.42"),
                             TaxAmount: types.MustNewDecimalFromString("14.43"),
                             TaxRateRef: &shared.RecordRef{
                                 ID: syncforexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
                             },
-                            TrackingRefs: []shared.RecordRef{
-                                shared.RecordRef{
-                                    ID: syncforexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
+                            TrackingRefs: []shared.TrackingRef{
+                                shared.TrackingRef{
+                                    DataType: shared.TrackingRefDataTypeTrackingCategories.ToPointer(),
+                                    ID: syncforexpenses.String("e9a1b63d-9ff0-40e7-8038-016354b987e6"),
                                 },
                             },
                         },
@@ -86,21 +102,31 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
-| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                                    | :heavy_check_mark:                                                                                       | The context to use for the request.                                                                      |
-| `request`                                                                                                | [operations.CreateExpenseTransactionRequest](../../models/operations/createexpensetransactionrequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
-| `opts`                                                                                                   | [][operations.Option](../../models/operations/option.md)                                                 | :heavy_minus_sign:                                                                                       | The options for this request.                                                                            |
+| Parameter                                                                                                    | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                                        | :heavy_check_mark:                                                                                           | The context to use for the request.                                                                          |
+| `request`                                                                                                    | [operations.CreateExpenseTransactionRequest](../../pkg/models/operations/createexpensetransactionrequest.md) | :heavy_check_mark:                                                                                           | The request object to use for the request.                                                                   |
+| `opts`                                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                                 | :heavy_minus_sign:                                                                                           | The options for this request.                                                                                |
 
 
 ### Response
 
-**[*operations.CreateExpenseTransactionResponse](../../models/operations/createexpensetransactionresponse.md), error**
-
+**[*operations.CreateExpenseTransactionResponse](../../pkg/models/operations/createexpensetransactionresponse.md), error**
+| Error Object                    | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
+| sdkerrors.SDKError              | 400-600                         | */*                             |
 
 ## Update
 
-Update an expense transaction
+The *Update expense* endpoint updates an existing [expense transaction](https://docs.codat.io/sync-for-expenses-api#/schemas/ExpenseTransaction) in the accounting platform for a given company's connection. 
+
+[Expense transactions](https://docs.codat.io/sync-for-expenses-api#/schemas/ExpenseTransaction) represent transactions made with a company debit or credit card. 
+
+
+**Integration-specific behaviour**
+
+At the moment you can update expenses only for Xero ([Payment](https://docs.codat.io/expenses/sync-process/expense-transactions#transaction-types) transaction type only).
 
 ### Example Usage
 
@@ -108,12 +134,12 @@ Update an expense transaction
 package main
 
 import(
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
 	"context"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/types"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
 	"log"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v3"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/types"
 )
 
 func main() {
@@ -129,7 +155,7 @@ func main() {
             },
             ContactRef: &shared.ContactRef{
                 ID: syncforexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                Type: shared.ContactRefTypeSupplier.ToPointer(),
+                Type: shared.TypeSupplier.ToPointer(),
             },
             Currency: syncforexpenses.String("GBP"),
             IssueDate: "2022-06-28T00:00:00.000Z",
@@ -138,21 +164,23 @@ func main() {
                     AccountRef: shared.RecordRef{
                         ID: syncforexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
                     },
+                    InvoiceTo: &shared.InvoiceTo{},
                     NetAmount: types.MustNewDecimalFromString("110.42"),
                     TaxAmount: types.MustNewDecimalFromString("14.43"),
                     TaxRateRef: &shared.RecordRef{
                         ID: syncforexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
                     },
-                    TrackingRefs: []shared.RecordRef{
-                        shared.RecordRef{
-                            ID: syncforexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
+                    TrackingRefs: []shared.TrackingRef{
+                        shared.TrackingRef{
+                            DataType: shared.TrackingRefDataTypeTrackingCategories.ToPointer(),
+                            ID: syncforexpenses.String("e9a1b63d-9ff0-40e7-8038-016354b987e6"),
                         },
                     },
                 },
             },
             MerchantName: syncforexpenses.String("Amazon UK"),
             Notes: syncforexpenses.String("APPLE.COM/BILL - 09001077498 - Card Ending: 4590"),
-            Type: "Van",
+            Type: "string",
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         TransactionID: "336694d8-2dca-4cb5-a28d-3ccb83e55eee",
@@ -169,21 +197,37 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
-| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                                    | :heavy_check_mark:                                                                                       | The context to use for the request.                                                                      |
-| `request`                                                                                                | [operations.UpdateExpenseTransactionRequest](../../models/operations/updateexpensetransactionrequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
-| `opts`                                                                                                   | [][operations.Option](../../models/operations/option.md)                                                 | :heavy_minus_sign:                                                                                       | The options for this request.                                                                            |
+| Parameter                                                                                                    | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                                        | :heavy_check_mark:                                                                                           | The context to use for the request.                                                                          |
+| `request`                                                                                                    | [operations.UpdateExpenseTransactionRequest](../../pkg/models/operations/updateexpensetransactionrequest.md) | :heavy_check_mark:                                                                                           | The request object to use for the request.                                                                   |
+| `opts`                                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                                 | :heavy_minus_sign:                                                                                           | The options for this request.                                                                                |
 
 
 ### Response
 
-**[*operations.UpdateExpenseTransactionResponse](../../models/operations/updateexpensetransactionresponse.md), error**
-
+**[*operations.UpdateExpenseTransactionResponse](../../pkg/models/operations/updateexpensetransactionresponse.md), error**
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| sdkerrors.ErrorMessage              | 400,401,402,403,404,422,429,500,503 | application/json                    |
+| sdkerrors.SDKError                  | 400-600                             | */*                                 |
 
 ## UploadAttachment
 
-Creates an attachment in the accounting software against the given transactionId
+The *Upload attachment* endpoint uploads an attachment in the accounting software against the given transactionId. 
+
+[Expense transactions](https://docs.codat.io/sync-for-expenses-api#/schemas/ExpenseTransaction) represent transactions made with a company debit or credit card. 
+
+**Integration-specific behaviour**
+
+Each accounting software supports different file formats and sizes.
+
+| Integration | File Size | File Extension                                                                                                      |  
+|-------------|-------------|--------------------------------------------------------------------------------------------------------------|
+| Xero | 4MB  | 7Z, BMP, CSV, DOC, DOCX, EML, GIF, JPEG, JPG, KEYNOTE, MSG, NUMBERS, ODF, ODS, ODT, PAGES, PDF, PNG, PPT, PPTX, RAR, RTF, TIF, TIFF, TXT, XLS, XLSX, ZIP |
+| QuickBooks Online | 100MB | AI, CSV, DOC, DOCX, EPS, GIF, JPEG, JPG, ODS, PAGES, PDF, PNG, RTF, TIF, TXT, XLS, XLSX, XML  |
+| NetSuite | 100MB | BMP, CSV, XLS, XLSX, JSON, PDF, PJPG, PJPEG, PNG, TXT, SVG, TIF, TIFF, DOC, DOCX, ZIP |
+| Dynamics 365 Business Central | 350 MB | Dynamics do not explicitly outline which file types are supported but they do state <a className="external" href="https://learn.microsoft.com/en-gb/dynamics365/business-central/ui-how-add-link-to-record#to-attach-a-file-to-a-purchase-invoice" target="_blank">here</a> that "You can attach any type of file, such as text, image, or video files". |
 
 ### Example Usage
 
@@ -191,11 +235,11 @@ Creates an attachment in the accounting software against the given transactionId
 package main
 
 import(
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
 	"context"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
 	"log"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v3"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/operations"
 )
 
 func main() {
@@ -205,9 +249,11 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Expenses.UploadAttachment(ctx, operations.UploadExpenseAttachmentRequest{
-        RequestBody: &operations.UploadExpenseAttachmentRequestBody{
-            Content: []byte("v/ghW&IC$x"),
-            RequestBody: "Elegant Producer Electric",
+        AttachmentUpload: &shared.AttachmentUpload{
+            File: shared.CodatFile{
+                Content: []byte("0xE3ABc1980E"),
+                FileName: "elegant_producer_electric.jpeg",
+            },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         SyncID: "6fb40d5e-b13e-11ed-afa1-0242ac120002",
@@ -225,14 +271,17 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
-| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                  | :heavy_check_mark:                                                                                     | The context to use for the request.                                                                    |
-| `request`                                                                                              | [operations.UploadExpenseAttachmentRequest](../../models/operations/uploadexpenseattachmentrequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
-| `opts`                                                                                                 | [][operations.Option](../../models/operations/option.md)                                               | :heavy_minus_sign:                                                                                     | The options for this request.                                                                          |
+| Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                                      | :heavy_check_mark:                                                                                         | The context to use for the request.                                                                        |
+| `request`                                                                                                  | [operations.UploadExpenseAttachmentRequest](../../pkg/models/operations/uploadexpenseattachmentrequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
+| `opts`                                                                                                     | [][operations.Option](../../pkg/models/operations/option.md)                                               | :heavy_minus_sign:                                                                                         | The options for this request.                                                                              |
 
 
 ### Response
 
-**[*operations.UploadExpenseAttachmentResponse](../../models/operations/uploadexpenseattachmentresponse.md), error**
-
+**[*operations.UploadExpenseAttachmentResponse](../../pkg/models/operations/uploadexpenseattachmentresponse.md), error**
+| Error Object                    | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
+| sdkerrors.SDKError              | 400-600                         | */*                             |

@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
 	"net/http"
 )
 
@@ -39,8 +39,6 @@ func (o *UpdateExpenseTransactionRequest) GetTransactionID() string {
 type UpdateExpenseTransactionResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// The request made is not valid.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -54,13 +52,6 @@ func (o *UpdateExpenseTransactionResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *UpdateExpenseTransactionResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *UpdateExpenseTransactionResponse) GetStatusCode() int {

@@ -7,59 +7,60 @@ import (
 	"fmt"
 )
 
-// DataStatusDataTypes - Available Data types
-type DataStatusDataTypes string
+// DataTypes - Available Data types
+type DataTypes string
 
 const (
-	DataStatusDataTypesAccountTransactions          DataStatusDataTypes = "accountTransactions"
-	DataStatusDataTypesBalanceSheet                 DataStatusDataTypes = "balanceSheet"
-	DataStatusDataTypesBankAccounts                 DataStatusDataTypes = "bankAccounts"
-	DataStatusDataTypesBankTransactions             DataStatusDataTypes = "bankTransactions"
-	DataStatusDataTypesBillCreditNotes              DataStatusDataTypes = "billCreditNotes"
-	DataStatusDataTypesBillPayments                 DataStatusDataTypes = "billPayments"
-	DataStatusDataTypesBills                        DataStatusDataTypes = "bills"
-	DataStatusDataTypesCashFlowStatement            DataStatusDataTypes = "cashFlowStatement"
-	DataStatusDataTypesChartOfAccounts              DataStatusDataTypes = "chartOfAccounts"
-	DataStatusDataTypesCompany                      DataStatusDataTypes = "company"
-	DataStatusDataTypesCreditNotes                  DataStatusDataTypes = "creditNotes"
-	DataStatusDataTypesCustomers                    DataStatusDataTypes = "customers"
-	DataStatusDataTypesDirectCosts                  DataStatusDataTypes = "directCosts"
-	DataStatusDataTypesDirectIncomes                DataStatusDataTypes = "directIncomes"
-	DataStatusDataTypesInvoices                     DataStatusDataTypes = "invoices"
-	DataStatusDataTypesItems                        DataStatusDataTypes = "items"
-	DataStatusDataTypesJournalEntries               DataStatusDataTypes = "journalEntries"
-	DataStatusDataTypesJournals                     DataStatusDataTypes = "journals"
-	DataStatusDataTypesPaymentMethods               DataStatusDataTypes = "paymentMethods"
-	DataStatusDataTypesPayments                     DataStatusDataTypes = "payments"
-	DataStatusDataTypesProfitAndLoss                DataStatusDataTypes = "profitAndLoss"
-	DataStatusDataTypesPurchaseOrders               DataStatusDataTypes = "purchaseOrders"
-	DataStatusDataTypesSalesOrders                  DataStatusDataTypes = "salesOrders"
-	DataStatusDataTypesSuppliers                    DataStatusDataTypes = "suppliers"
-	DataStatusDataTypesTaxRates                     DataStatusDataTypes = "taxRates"
-	DataStatusDataTypesTrackingCategories           DataStatusDataTypes = "trackingCategories"
-	DataStatusDataTypesTransfers                    DataStatusDataTypes = "transfers"
-	DataStatusDataTypesBankingAccountBalances       DataStatusDataTypes = "banking-accountBalances"
-	DataStatusDataTypesBankingAccounts              DataStatusDataTypes = "banking-accounts"
-	DataStatusDataTypesBankingTransactionCategories DataStatusDataTypes = "banking-transactionCategories"
-	DataStatusDataTypesBankingTransactions          DataStatusDataTypes = "banking-transactions"
-	DataStatusDataTypesCommerceCompanyInfo          DataStatusDataTypes = "commerce-companyInfo"
-	DataStatusDataTypesCommerceCustomers            DataStatusDataTypes = "commerce-customers"
-	DataStatusDataTypesCommerceDisputes             DataStatusDataTypes = "commerce-disputes"
-	DataStatusDataTypesCommerceLocations            DataStatusDataTypes = "commerce-locations"
-	DataStatusDataTypesCommerceOrders               DataStatusDataTypes = "commerce-orders"
-	DataStatusDataTypesCommercePaymentMethods       DataStatusDataTypes = "commerce-paymentMethods"
-	DataStatusDataTypesCommercePayments             DataStatusDataTypes = "commerce-payments"
-	DataStatusDataTypesCommerceProductCategories    DataStatusDataTypes = "commerce-productCategories"
-	DataStatusDataTypesCommerceProducts             DataStatusDataTypes = "commerce-products"
-	DataStatusDataTypesCommerceTaxComponents        DataStatusDataTypes = "commerce-taxComponents"
-	DataStatusDataTypesCommerceTransactions         DataStatusDataTypes = "commerce-transactions"
+	DataTypesAccountTransactions          DataTypes = "accountTransactions"
+	DataTypesBalanceSheet                 DataTypes = "balanceSheet"
+	DataTypesBankAccounts                 DataTypes = "bankAccounts"
+	DataTypesBankTransactions             DataTypes = "bankTransactions"
+	DataTypesBillCreditNotes              DataTypes = "billCreditNotes"
+	DataTypesBillPayments                 DataTypes = "billPayments"
+	DataTypesBills                        DataTypes = "bills"
+	DataTypesCashFlowStatement            DataTypes = "cashFlowStatement"
+	DataTypesChartOfAccounts              DataTypes = "chartOfAccounts"
+	DataTypesCompany                      DataTypes = "company"
+	DataTypesCreditNotes                  DataTypes = "creditNotes"
+	DataTypesCustomers                    DataTypes = "customers"
+	DataTypesDirectCosts                  DataTypes = "directCosts"
+	DataTypesDirectIncomes                DataTypes = "directIncomes"
+	DataTypesInvoices                     DataTypes = "invoices"
+	DataTypesItemReceipts                 DataTypes = "itemReceipts"
+	DataTypesItems                        DataTypes = "items"
+	DataTypesJournalEntries               DataTypes = "journalEntries"
+	DataTypesJournals                     DataTypes = "journals"
+	DataTypesPaymentMethods               DataTypes = "paymentMethods"
+	DataTypesPayments                     DataTypes = "payments"
+	DataTypesProfitAndLoss                DataTypes = "profitAndLoss"
+	DataTypesPurchaseOrders               DataTypes = "purchaseOrders"
+	DataTypesSalesOrders                  DataTypes = "salesOrders"
+	DataTypesSuppliers                    DataTypes = "suppliers"
+	DataTypesTaxRates                     DataTypes = "taxRates"
+	DataTypesTrackingCategories           DataTypes = "trackingCategories"
+	DataTypesTransfers                    DataTypes = "transfers"
+	DataTypesBankingAccountBalances       DataTypes = "banking-accountBalances"
+	DataTypesBankingAccounts              DataTypes = "banking-accounts"
+	DataTypesBankingTransactionCategories DataTypes = "banking-transactionCategories"
+	DataTypesBankingTransactions          DataTypes = "banking-transactions"
+	DataTypesCommerceCompanyInfo          DataTypes = "commerce-companyInfo"
+	DataTypesCommerceCustomers            DataTypes = "commerce-customers"
+	DataTypesCommerceDisputes             DataTypes = "commerce-disputes"
+	DataTypesCommerceLocations            DataTypes = "commerce-locations"
+	DataTypesCommerceOrders               DataTypes = "commerce-orders"
+	DataTypesCommercePaymentMethods       DataTypes = "commerce-paymentMethods"
+	DataTypesCommercePayments             DataTypes = "commerce-payments"
+	DataTypesCommerceProductCategories    DataTypes = "commerce-productCategories"
+	DataTypesCommerceProducts             DataTypes = "commerce-products"
+	DataTypesCommerceTaxComponents        DataTypes = "commerce-taxComponents"
+	DataTypesCommerceTransactions         DataTypes = "commerce-transactions"
 )
 
-func (e DataStatusDataTypes) ToPointer() *DataStatusDataTypes {
+func (e DataTypes) ToPointer() *DataTypes {
 	return &e
 }
 
-func (e *DataStatusDataTypes) UnmarshalJSON(data []byte) error {
+func (e *DataTypes) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -94,6 +95,8 @@ func (e *DataStatusDataTypes) UnmarshalJSON(data []byte) error {
 	case "directIncomes":
 		fallthrough
 	case "invoices":
+		fallthrough
+	case "itemReceipts":
 		fallthrough
 	case "items":
 		fallthrough
@@ -148,10 +151,10 @@ func (e *DataStatusDataTypes) UnmarshalJSON(data []byte) error {
 	case "commerce-taxComponents":
 		fallthrough
 	case "commerce-transactions":
-		*e = DataStatusDataTypes(v)
+		*e = DataTypes(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for DataStatusDataTypes: %v", v)
+		return fmt.Errorf("invalid value for DataTypes: %v", v)
 	}
 }
 
@@ -160,7 +163,7 @@ type DataStatus struct {
 	// The current status of the dataset in Codat's cache.
 	CurrentStatus string `json:"currentStatus"`
 	// Available Data types
-	DataType DataStatusDataTypes `json:"dataType"`
+	DataType DataTypes `json:"dataType"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -194,9 +197,9 @@ func (o *DataStatus) GetCurrentStatus() string {
 	return o.CurrentStatus
 }
 
-func (o *DataStatus) GetDataType() DataStatusDataTypes {
+func (o *DataStatus) GetDataType() DataTypes {
 	if o == nil {
-		return DataStatusDataTypes("")
+		return DataTypes("")
 	}
 	return o.DataType
 }

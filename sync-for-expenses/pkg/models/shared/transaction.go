@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/utils"
 )
 
 type Transaction struct {

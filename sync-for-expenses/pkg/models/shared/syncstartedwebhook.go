@@ -2,7 +2,7 @@
 
 package shared
 
-type SyncStartedWebhookData struct {
+type Data struct {
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -49,28 +49,28 @@ type SyncStartedWebhookData struct {
 	SyncType *string `json:"syncType,omitempty"`
 }
 
-func (o *SyncStartedWebhookData) GetSyncDateRangeFinishUtc() *string {
+func (o *Data) GetSyncDateRangeFinishUtc() *string {
 	if o == nil {
 		return nil
 	}
 	return o.SyncDateRangeFinishUtc
 }
 
-func (o *SyncStartedWebhookData) GetSyncDateRangeStartUtc() *string {
+func (o *Data) GetSyncDateRangeStartUtc() *string {
 	if o == nil {
 		return nil
 	}
 	return o.SyncDateRangeStartUtc
 }
 
-func (o *SyncStartedWebhookData) GetSyncID() *string {
+func (o *Data) GetSyncID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.SyncID
 }
 
-func (o *SyncStartedWebhookData) GetSyncType() *string {
+func (o *Data) GetSyncType() *string {
 	if o == nil {
 		return nil
 	}
@@ -86,8 +86,8 @@ type SyncStartedWebhook struct {
 	// Name of your client in Codat.
 	ClientName *string `json:"ClientName,omitempty"`
 	// Unique identifier for your SMB in Codat.
-	CompanyID *string                 `json:"CompanyId,omitempty"`
-	Data      *SyncStartedWebhookData `json:"Data,omitempty"`
+	CompanyID *string `json:"CompanyId,omitempty"`
+	Data      *Data   `json:"Data,omitempty"`
 	// A human readable message about the webhook.
 	Message *string `json:"Message,omitempty"`
 	// Unique identifier for the rule.
@@ -124,7 +124,7 @@ func (o *SyncStartedWebhook) GetCompanyID() *string {
 	return o.CompanyID
 }
 
-func (o *SyncStartedWebhook) GetData() *SyncStartedWebhookData {
+func (o *SyncStartedWebhook) GetData() *Data {
 	if o == nil {
 		return nil
 	}
