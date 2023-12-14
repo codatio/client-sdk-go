@@ -1,9 +1,9 @@
 configVersion: 1.0.0
 management:
-  docChecksum: 3883df86e260290925331dc16726311d
+  docChecksum: a19e6e4f901ace72e0fa1bb907ccb71c
   docVersion: 3.0.0
-  speakeasyVersion: 1.121.3
-  generationVersion: 2.195.2
+  speakeasyVersion: 1.126.3
+  generationVersion: 2.214.3
 generation:
   comments: {}
   sdkClassName: CodatBankFeeds
@@ -11,19 +11,18 @@ generation:
   usageSnippets:
     optionalPropertyRendering: withExample
   telemetryEnabled: true
-  singleTagPerOp: false
 features:
   go:
-    constsAndDefaults: 0.1.1
-    core: 3.1.5
+    constsAndDefaults: 0.1.2
+    core: 3.2.0
     deprecations: 2.81.1
     examples: 2.81.3
-    globalSecurity: 2.82.2
+    globalSecurity: 2.82.3
     globalServerURLs: 2.82.1
     nameOverrides: 2.81.1
     retries: 2.82.1
 go:
-  version: 4.0.0
+  version: 4.1.0
   clientServerStatusCodesAsErrors: true
   flattenGlobalSecurity: false
   imports:

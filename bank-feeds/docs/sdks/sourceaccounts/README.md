@@ -18,25 +18,26 @@ Source accounts act as a bridge to bank accounts in accounting software.
 
 The _Create Source Account_ endpoint allows you to create a representation of a bank account within Codat's domain. The company can then map the source account to an existing or new target account in their accounting software.
 
-#### Account Mapping Variability
+#### Account mapping variability
 
 The method of mapping the source account to the target account varies depending on the accounting package your company uses.
 
-#### Mapping Options:
+#### Mapping options:
 
 1. **API Mapping**: Integrate the mapping journey directly into your application for a seamless user experience.
 2. **Codat UI Mapping**: If you prefer a quicker setup, you can utilize Codat's provided user interface for mapping.
 3. **Accounting Platform Mapping**: For some accounting software, the mapping process must be conducted within the software itself.
 
-### Integration specific behaviour
+### Integration-specific behaviour
 
 | Bank Feed Integration | API Mapping | Codat UI Mapping | Accounting Platform Mapping |
 | --------------------- | ----------- | ---------------- | --------------------------- |
 | Xero                  | ✅          | ✅               |                             |
 | FreeAgent             | ✅          | ✅               |                             |
+| Oracle NetSuite       | ✅          | ✅               |                             |
+| Exact Online (NL)     | ✅          | ✅               |                             |
 | QuickBooks Online     |             |                  | ✅                          |
 | Sage                  |             |                  | ✅                          |
-
 
 ### Example Usage
 
@@ -62,9 +63,9 @@ func main() {
     res, err := s.SourceAccounts.Create(ctx, operations.CreateSourceAccountRequest{
         SourceAccount: &shared.SourceAccount{
             Currency: bankfeeds.String("USD"),
-            FeedStartDate: bankfeeds.String("2022-10-23T00:00:00.000Z"),
+            FeedStartDate: bankfeeds.String("2022-10-23T00:00:00Z"),
             ID: "<ID>",
-            ModifiedDate: bankfeeds.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: bankfeeds.String("2022-10-23T00:00:00Z"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -364,9 +365,9 @@ func main() {
     res, err := s.SourceAccounts.Update(ctx, operations.UpdateSourceAccountRequest{
         SourceAccount: &shared.SourceAccount{
             Currency: bankfeeds.String("EUR"),
-            FeedStartDate: bankfeeds.String("2022-10-23T00:00:00.000Z"),
+            FeedStartDate: bankfeeds.String("2022-10-23T00:00:00Z"),
             ID: "<ID>",
-            ModifiedDate: bankfeeds.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: bankfeeds.String("2022-10-23T00:00:00Z"),
         },
         AccountID: "13d946f0-c5d5-42bc-b092-97ece17923ab",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
