@@ -96,6 +96,8 @@ type CodatSyncPayables struct {
 	Connections *Connections
 	// Bills
 	Bills *Bills
+	// Bank accounts
+	BankAccounts *BankAccounts
 	// Bill credit notes
 	BillCreditNotes *BillCreditNotes
 	// Bill payments
@@ -169,7 +171,6 @@ func withSecurity(security interface{}) func(context.Context) (interface{}, erro
 }
 
 // WithSecurity configures the SDK to use the provided security details
-
 func WithSecurity(security shared.Security) SDKOption {
 	return func(sdk *CodatSyncPayables) {
 		sdk.sdkConfiguration.Security = withSecurity(security)
@@ -197,9 +198,9 @@ func New(opts ...SDKOption) *CodatSyncPayables {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "3.0.0",
-			GenVersion:        "2.210.6",
-			UserAgent:         "speakeasy-sdk/go 3.0.0 2.210.6 3.0.0 github.com/codatio/client-sdk-go/sync-for-payables",
+			SDKVersion:        "3.1.0",
+			GenVersion:        "2.214.3",
+			UserAgent:         "speakeasy-sdk/go 3.1.0 2.214.3 3.0.0 github.com/codatio/client-sdk-go/sync-for-payables",
 		},
 	}
 	for _, opt := range opts {
@@ -223,6 +224,8 @@ func New(opts ...SDKOption) *CodatSyncPayables {
 	sdk.Connections = newConnections(sdk.sdkConfiguration)
 
 	sdk.Bills = newBills(sdk.sdkConfiguration)
+
+	sdk.BankAccounts = newBankAccounts(sdk.sdkConfiguration)
 
 	sdk.BillCreditNotes = newBillCreditNotes(sdk.sdkConfiguration)
 

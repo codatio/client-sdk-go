@@ -57,8 +57,8 @@ func main() {
     res, err := s.Bills.Create(ctx, operations.CreateBillRequest{
         Bill: &shared.Bill{
             Currency: syncforpayables.String("USD"),
-            DueDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
-            IssueDate: "2022-10-23T00:00:00.000Z",
+            DueDate: syncforpayables.String("2022-10-23T00:00:00Z"),
+            IssueDate: "2022-10-23T00:00:00Z",
             LineItems: []shared.BillLineItem{
                 shared.BillLineItem{
                     AccountRef: &shared.AccountRef{},
@@ -92,24 +92,24 @@ func main() {
                 },
             },
             Metadata: &shared.Metadata{},
-            ModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: syncforpayables.String("2022-10-23T00:00:00Z"),
             PaymentAllocations: []shared.AccountingPaymentAllocation{
                 shared.AccountingPaymentAllocation{
                     Allocation: shared.BillAllocation{
-                        AllocatedOnDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
+                        AllocatedOnDate: syncforpayables.String("2022-10-23T00:00:00Z"),
                         Currency: syncforpayables.String("EUR"),
                     },
                     Payment: shared.PaymentAllocationPayment{
                         AccountRef: &shared.AccountRef{},
                         Currency: syncforpayables.String("EUR"),
-                        PaidOnDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
+                        PaidOnDate: syncforpayables.String("2022-10-23T00:00:00Z"),
                     },
                 },
             },
             PurchaseOrderRefs: []shared.PurchaseOrderReference{
                 shared.PurchaseOrderReference{},
             },
-            SourceModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
+            SourceModifiedDate: syncforpayables.String("2022-10-23T00:00:00Z"),
             Status: shared.BillStatusDraft,
             SubTotal: types.MustNewDecimalFromString("0.86"),
             SupplementalData: &shared.SupplementalData{
@@ -741,8 +741,8 @@ func main() {
     res, err := s.Bills.Update(ctx, operations.UpdateBillRequest{
         Bill: &shared.Bill{
             Currency: syncforpayables.String("EUR"),
-            DueDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
-            IssueDate: "2022-10-23T00:00:00.000Z",
+            DueDate: syncforpayables.String("2022-10-23T00:00:00Z"),
+            IssueDate: "2022-10-23T00:00:00Z",
             LineItems: []shared.BillLineItem{
                 shared.BillLineItem{
                     AccountRef: &shared.AccountRef{},
@@ -776,24 +776,24 @@ func main() {
                 },
             },
             Metadata: &shared.Metadata{},
-            ModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: syncforpayables.String("2022-10-23T00:00:00Z"),
             PaymentAllocations: []shared.AccountingPaymentAllocation{
                 shared.AccountingPaymentAllocation{
                     Allocation: shared.BillAllocation{
-                        AllocatedOnDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
+                        AllocatedOnDate: syncforpayables.String("2022-10-23T00:00:00Z"),
                         Currency: syncforpayables.String("EUR"),
                     },
                     Payment: shared.PaymentAllocationPayment{
                         AccountRef: &shared.AccountRef{},
                         Currency: syncforpayables.String("USD"),
-                        PaidOnDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
+                        PaidOnDate: syncforpayables.String("2022-10-23T00:00:00Z"),
                     },
                 },
             },
             PurchaseOrderRefs: []shared.PurchaseOrderReference{
                 shared.PurchaseOrderReference{},
             },
-            SourceModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
+            SourceModifiedDate: syncforpayables.String("2022-10-23T00:00:00Z"),
             Status: shared.BillStatusUnknown,
             SubTotal: types.MustNewDecimalFromString("540.62"),
             SupplementalData: &shared.SupplementalData{

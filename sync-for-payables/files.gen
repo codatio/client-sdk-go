@@ -1,6 +1,7 @@
 companies.go
 connections.go
 bills.go
+bankaccounts.go
 billcreditnotes.go
 billpayments.go
 accounts.go
@@ -54,6 +55,8 @@ pkg/utils/utils.go
 /pkg/models/operations/listbillattachments.go
 /pkg/models/operations/updatebill.go
 /pkg/models/operations/uploadbillattachment.go
+/pkg/models/operations/createbankaccount.go
+/pkg/models/operations/getcreatebankaccountsmodel.go
 /pkg/models/operations/createbillcreditnote.go
 /pkg/models/operations/getbillcreditnote.go
 /pkg/models/operations/getcreateupdatebillcreditnotemodel.go
@@ -136,6 +139,9 @@ pkg/utils/utils.go
 /pkg/models/shared/updatebillresponse.go
 /pkg/models/shared/attachmentupload.go
 /pkg/models/shared/codatfile.go
+/pkg/models/shared/bankaccountcreateresponse.go
+/pkg/models/shared/bankaccount.go
+/pkg/models/shared/bankaccountprototype.go
 /pkg/models/shared/createbillcreditnoteresponse.go
 /pkg/models/shared/billcreditnote.go
 /pkg/models/shared/withholdingtaxitems.go
@@ -246,6 +252,10 @@ docs/pkg/models/operations/updatebillrequest.md
 docs/pkg/models/operations/updatebillresponse.md
 docs/pkg/models/operations/uploadbillattachmentrequest.md
 docs/pkg/models/operations/uploadbillattachmentresponse.md
+docs/pkg/models/operations/createbankaccountrequest.md
+docs/pkg/models/operations/createbankaccountresponse.md
+docs/pkg/models/operations/getcreatebankaccountsmodelrequest.md
+docs/pkg/models/operations/getcreatebankaccountsmodelresponse.md
 docs/pkg/models/operations/createbillcreditnoterequest.md
 docs/pkg/models/operations/createbillcreditnoteresponse.md
 docs/pkg/models/operations/getbillcreditnoterequest.md
@@ -376,6 +386,11 @@ docs/pkg/models/shared/attachments.md
 docs/pkg/models/shared/updatebillresponse.md
 docs/pkg/models/shared/attachmentupload.md
 docs/pkg/models/shared/codatfile.md
+docs/pkg/models/shared/bankaccountcreateresponse.md
+docs/pkg/models/shared/bankaccountbankaccounttype.md
+docs/pkg/models/shared/bankaccount.md
+docs/pkg/models/shared/bankaccounttype.md
+docs/pkg/models/shared/bankaccountprototype.md
 docs/pkg/models/shared/createbillcreditnoteresponse.md
 docs/pkg/models/shared/billcreditnote.md
 docs/pkg/models/shared/withholdingtaxitems.md
@@ -461,6 +476,7 @@ docs/pkg/models/operations/option.md
 docs/sdks/companies/README.md
 docs/sdks/connections/README.md
 docs/sdks/bills/README.md
+docs/sdks/bankaccounts/README.md
 docs/sdks/billcreditnotes/README.md
 docs/sdks/billpayments/README.md
 docs/sdks/accounts/README.md

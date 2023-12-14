@@ -50,12 +50,12 @@ func main() {
     ctx := context.Background()
     res, err := s.BillCreditNotes.Create(ctx, operations.CreateBillCreditNoteRequest{
         BillCreditNote: &shared.BillCreditNote{
-            AllocatedOnDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
+            AllocatedOnDate: syncforpayables.String("2022-10-23T00:00:00Z"),
             BillCreditNoteNumber: syncforpayables.String("91fe2a83-e161-4c21-929d-c5c10c4b07e5"),
             Currency: syncforpayables.String("USD"),
             DiscountPercentage: types.MustNewDecimalFromString("0"),
             ID: syncforpayables.String("1509398f-98e2-436d-8a5d-c042e0c74ffc"),
-            IssueDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
+            IssueDate: syncforpayables.String("2022-10-23T00:00:00Z"),
             LineItems: []shared.BillCreditNoteLineItem{
                 shared.BillCreditNoteLineItem{
                     AccountRef: &shared.AccountRef{},
@@ -88,23 +88,23 @@ func main() {
                 },
             },
             Metadata: &shared.Metadata{},
-            ModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: syncforpayables.String("2022-10-23T00:00:00Z"),
             Note: syncforpayables.String("Bill Credit Note with 1 line items, totaling 805.78"),
             PaymentAllocations: []shared.Items{
                 shared.Items{
                     Allocation: shared.Allocation{
-                        AllocatedOnDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
+                        AllocatedOnDate: syncforpayables.String("2022-10-23T00:00:00Z"),
                         Currency: syncforpayables.String("EUR"),
                     },
                     Payment: shared.PaymentAllocationPayment{
                         AccountRef: &shared.AccountRef{},
                         Currency: syncforpayables.String("EUR"),
-                        PaidOnDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
+                        PaidOnDate: syncforpayables.String("2022-10-23T00:00:00Z"),
                     },
                 },
             },
             RemainingCredit: types.MustNewDecimalFromString("0"),
-            SourceModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
+            SourceModifiedDate: syncforpayables.String("2022-10-23T00:00:00Z"),
             Status: shared.BillCreditNoteStatusPaid,
             SubTotal: types.MustNewDecimalFromString("805.78"),
             SupplementalData: &shared.SupplementalData{
@@ -385,12 +385,12 @@ func main() {
     ctx := context.Background()
     res, err := s.BillCreditNotes.Update(ctx, operations.UpdateBillCreditNoteRequest{
         BillCreditNote: &shared.BillCreditNote{
-            AllocatedOnDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
+            AllocatedOnDate: syncforpayables.String("2022-10-23T00:00:00Z"),
             BillCreditNoteNumber: syncforpayables.String("91fe2a83-e161-4c21-929d-c5c10c4b07e5"),
             Currency: syncforpayables.String("GBP"),
             DiscountPercentage: types.MustNewDecimalFromString("0"),
             ID: syncforpayables.String("1509398f-98e2-436d-8a5d-c042e0c74ffc"),
-            IssueDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
+            IssueDate: syncforpayables.String("2022-10-23T00:00:00Z"),
             LineItems: []shared.BillCreditNoteLineItem{
                 shared.BillCreditNoteLineItem{
                     AccountRef: &shared.AccountRef{},
@@ -423,23 +423,23 @@ func main() {
                 },
             },
             Metadata: &shared.Metadata{},
-            ModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: syncforpayables.String("2022-10-23T00:00:00Z"),
             Note: syncforpayables.String("Bill Credit Note with 1 line items, totaling 805.78"),
             PaymentAllocations: []shared.Items{
                 shared.Items{
                     Allocation: shared.Allocation{
-                        AllocatedOnDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
+                        AllocatedOnDate: syncforpayables.String("2022-10-23T00:00:00Z"),
                         Currency: syncforpayables.String("EUR"),
                     },
                     Payment: shared.PaymentAllocationPayment{
                         AccountRef: &shared.AccountRef{},
                         Currency: syncforpayables.String("USD"),
-                        PaidOnDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
+                        PaidOnDate: syncforpayables.String("2022-10-23T00:00:00Z"),
                     },
                 },
             },
             RemainingCredit: types.MustNewDecimalFromString("0"),
-            SourceModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
+            SourceModifiedDate: syncforpayables.String("2022-10-23T00:00:00Z"),
             Status: shared.BillCreditNoteStatusPaid,
             SubTotal: types.MustNewDecimalFromString("805.78"),
             SupplementalData: &shared.SupplementalData{
