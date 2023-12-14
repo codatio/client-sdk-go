@@ -35,7 +35,7 @@ type InvoiceLineItem struct {
 	// Reference to the tracking categories to which the line item is linked.
 	//
 	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-	TrackingCategoryRefs []TrackingCategoryRefsitems `json:"trackingCategoryRefs,omitempty"`
+	TrackingCategoryRefs []TrackingCategoryRefItems `json:"trackingCategoryRefs,omitempty"`
 	// Price of each unit of goods or services.
 	UnitAmount *decimal.Big `decimal:"number" json:"unitAmount"`
 }
@@ -135,7 +135,7 @@ func (o *InvoiceLineItem) GetTracking() *Tracking {
 	return o.Tracking
 }
 
-func (o *InvoiceLineItem) GetTrackingCategoryRefs() []TrackingCategoryRefsitems {
+func (o *InvoiceLineItem) GetTrackingCategoryRefs() []TrackingCategoryRefItems {
 	if o == nil {
 		return nil
 	}

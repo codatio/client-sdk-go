@@ -1,9 +1,0 @@
-# AccountingInvoicePaymentAllocation
-
-
-## Fields
-
-| Field                                                                                                               | Type                                                                                                                | Required                                                                                                            | Description                                                                                                         |
-| ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `Allocation`                                                                                                        | [AccountingInvoicePaymentAllocationAllocation](../../models/shared/accountinginvoicepaymentallocationallocation.md) | :heavy_check_mark:                                                                                                  | N/A                                                                                                                 |
-| `Payment`                                                                                                           | [PaymentAllocationPayment](../../models/shared/paymentallocationpayment.md)                                         | :heavy_check_mark:                                                                                                  | N/A                                                                                                                 |

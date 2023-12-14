@@ -28,12 +28,12 @@ Check out our [coverage explorer](https://knowledge.codat.io/supported-features/
 package main
 
 import(
-	"context"
-	"log"
-	syncforcommerceversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/operations"
+	syncforcommerceversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/types"
+	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -51,8 +51,8 @@ func main() {
             CustomerRef: &shared.AccountingCustomerRef{
                 ID: "<ID>",
             },
-            DueDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
-            IssueDate: "2022-10-23T00:00:00.000Z",
+            DueDate: syncforcommerceversion1.String("2022-10-23T00:00:00Z"),
+            IssueDate: "2022-10-23T00:00:00Z",
             LineItems: []shared.InvoiceLineItem{
                 shared.InvoiceLineItem{
                     AccountRef: &shared.AccountRef{},
@@ -62,8 +62,8 @@ func main() {
                     Quantity: types.MustNewDecimalFromString("1021.57"),
                     TaxRateRef: &shared.TaxRateRef{},
                     Tracking: &shared.Tracking{
-                        CategoryRefs: []shared.TrackingCategoryRefsitems{
-                            shared.TrackingCategoryRefsitems{
+                        CategoryRefs: []shared.TrackingCategoryRefItems{
+                            shared.TrackingCategoryRefItems{
                                 ID: "<ID>",
                             },
                         },
@@ -72,15 +72,15 @@ func main() {
                         },
                         IsBilledTo: shared.BilledToTypeUnknown,
                         IsRebilledTo: shared.BilledToTypeProject,
-                        ProjectRef: &shared.TrackingProjectReference{
+                        ProjectRef: &shared.AccountingProjectReference{
                             ID: "<ID>",
                         },
                         RecordRef: &shared.RecordRef{
                             DataType: syncforcommerceversion1.String("journalEntry"),
                         },
                     },
-                    TrackingCategoryRefs: []shared.TrackingCategoryRefsitems{
-                        shared.TrackingCategoryRefsitems{
+                    TrackingCategoryRefs: []shared.TrackingCategoryRefItems{
+                        shared.TrackingCategoryRefItems{
                             ID: "<ID>",
                         },
                     },
@@ -88,41 +88,41 @@ func main() {
                 },
             },
             Metadata: &shared.Metadata{},
-            ModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
-            PaidOnDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
-            PaymentAllocations: []shared.AccountingInvoicePaymentAllocation{
-                shared.AccountingInvoicePaymentAllocation{
-                    Allocation: shared.AccountingInvoicePaymentAllocationAllocation{
-                        AllocatedOnDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00Z"),
+            PaidOnDate: syncforcommerceversion1.String("2022-10-23T00:00:00Z"),
+            PaymentAllocations: []shared.AccountingPaymentAllocation{
+                shared.AccountingPaymentAllocation{
+                    Allocation: shared.AccountingInvoiceAllocation{
+                        AllocatedOnDate: syncforcommerceversion1.String("2022-10-23T00:00:00Z"),
                         Currency: syncforcommerceversion1.String("USD"),
                     },
                     Payment: shared.PaymentAllocationPayment{
                         AccountRef: &shared.AccountRef{},
                         Currency: syncforcommerceversion1.String("EUR"),
-                        PaidOnDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
+                        PaidOnDate: syncforcommerceversion1.String("2022-10-23T00:00:00Z"),
                     },
                 },
             },
-            SalesOrderRefs: []shared.AccountingInvoiceSalesOrderReference{
-                shared.AccountingInvoiceSalesOrderReference{
+            SalesOrderRefs: []shared.SalesOrderReference{
+                shared.SalesOrderReference{
                     DataType: shared.DataTypeInvoices.ToPointer(),
                 },
             },
-            SourceModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00.000Z"),
+            SourceModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00Z"),
             Status: shared.InvoiceStatusPartiallyPaid,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "Beier": map[string]interface{}{
-                        "boo": "Regional",
+                    "key": map[string]interface{}{
+                        "key": "string",
                     },
                 },
             },
-            TotalAmount: types.MustNewDecimalFromString("1895.83"),
-            TotalTaxAmount: types.MustNewDecimalFromString("7283.9"),
-            WithholdingTax: []shared.AccountingInvoiceWithholdingTax{
-                shared.AccountingInvoiceWithholdingTax{
-                    Amount: types.MustNewDecimalFromString("1357.13"),
-                    Name: "Gasoline Interactions Cisgender",
+            TotalAmount: types.MustNewDecimalFromString("1416.23"),
+            TotalTaxAmount: types.MustNewDecimalFromString("9069.87"),
+            WithholdingTax: []shared.WithholdingTax{
+                shared.WithholdingTax{
+                    Amount: types.MustNewDecimalFromString("598.23"),
+                    Name: "string",
                 },
             },
         },
@@ -141,14 +141,17 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
-| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                  | :heavy_check_mark:                                                                                     | The context to use for the request.                                                                    |
-| `request`                                                                                              | [operations.CreateAccountingInvoiceRequest](../../models/operations/createaccountinginvoicerequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
-| `opts`                                                                                                 | [][operations.Option](../../models/operations/option.md)                                               | :heavy_minus_sign:                                                                                     | The options for this request.                                                                          |
+| Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                                      | :heavy_check_mark:                                                                                         | The context to use for the request.                                                                        |
+| `request`                                                                                                  | [operations.CreateAccountingInvoiceRequest](../../pkg/models/operations/createaccountinginvoicerequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
+| `opts`                                                                                                     | [][operations.Option](../../pkg/models/operations/option.md)                                               | :heavy_minus_sign:                                                                                         | The options for this request.                                                                              |
 
 
 ### Response
 
-**[*operations.CreateAccountingInvoiceResponse](../../models/operations/createaccountinginvoiceresponse.md), error**
-
+**[*operations.CreateAccountingInvoiceResponse](../../pkg/models/operations/createaccountinginvoiceresponse.md), error**
+| Error Object                    | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
+| sdkerrors.SDKError              | 400-600                         | */*                             |

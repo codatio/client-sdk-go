@@ -23,10 +23,11 @@ To enable retrieval of preferences set for the text fields on Sync Flow.
 package main
 
 import(
-	"context"
-	"log"
-	syncforcommerceversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/shared"
+	syncforcommerceversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
+	"context"
+	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -37,7 +38,9 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.SyncFlowPreferences.GetConfigTextSyncFlow(ctx)
+    res, err := s.SyncFlowPreferences.GetConfigTextSyncFlow(ctx, operations.GetConfigTextSyncFlowRequest{
+        Locale: shared.LocaleEnUs,
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -50,16 +53,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
-| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
+| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                  | :heavy_check_mark:                                                                                     | The context to use for the request.                                                                    |
+| `request`                                                                                              | [operations.GetConfigTextSyncFlowRequest](../../pkg/models/operations/getconfigtextsyncflowrequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
+| `opts`                                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                                           | :heavy_minus_sign:                                                                                     | The options for this request.                                                                          |
 
 
 ### Response
 
-**[*operations.GetConfigTextSyncFlowResponse](../../models/operations/getconfigtextsyncflowresponse.md), error**
-
+**[*operations.GetConfigTextSyncFlowResponse](../../pkg/models/operations/getconfigtextsyncflowresponse.md), error**
+| Error Object            | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| sdkerrors.ErrorMessage  | 401,402,403,429,500,503 | application/json        |
+| sdkerrors.SDKError      | 400-600                 | */*                     |
 
 ## GetSyncFlowURL
 
@@ -71,11 +78,11 @@ Get a URL for Sync Flow including a one time passcode.
 package main
 
 import(
-	"context"
-	"log"
-	syncforcommerceversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/shared"
+	syncforcommerceversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -87,8 +94,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.SyncFlowPreferences.GetSyncFlowURL(ctx, operations.GetSyncFlowURLRequest{
-        AccountingKey: "Manager",
-        CommerceKey: "payment",
+        AccountingKey: "string",
+        CommerceKey: "string",
     })
     if err != nil {
         log.Fatal(err)
@@ -102,17 +109,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
-| `request`                                                                            | [operations.GetSyncFlowURLRequest](../../models/operations/getsyncflowurlrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
-| `opts`                                                                               | [][operations.Option](../../models/operations/option.md)                             | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
+| `request`                                                                                | [operations.GetSyncFlowURLRequest](../../pkg/models/operations/getsyncflowurlrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `opts`                                                                                   | [][operations.Option](../../pkg/models/operations/option.md)                             | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
 
 
 ### Response
 
-**[*operations.GetSyncFlowURLResponse](../../models/operations/getsyncflowurlresponse.md), error**
-
+**[*operations.GetSyncFlowURLResponse](../../pkg/models/operations/getsyncflowurlresponse.md), error**
+| Error Object                    | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
+| sdkerrors.SDKError              | 400-600                         | */*                             |
 
 ## GetVisibleAccounts
 
@@ -124,11 +134,11 @@ Enable retrieval for accounts which are visible on sync flow.
 package main
 
 import(
-	"context"
-	"log"
-	syncforcommerceversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/shared"
+	syncforcommerceversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -155,17 +165,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
-| `request`                                                                                    | [operations.GetVisibleAccountsRequest](../../models/operations/getvisibleaccountsrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
-| `opts`                                                                                       | [][operations.Option](../../models/operations/option.md)                                     | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
+| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
+| `request`                                                                                        | [operations.GetVisibleAccountsRequest](../../pkg/models/operations/getvisibleaccountsrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
+| `opts`                                                                                           | [][operations.Option](../../pkg/models/operations/option.md)                                     | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
 
 
 ### Response
 
-**[*operations.GetVisibleAccountsResponse](../../models/operations/getvisibleaccountsresponse.md), error**
-
+**[*operations.GetVisibleAccountsResponse](../../pkg/models/operations/getvisibleaccountsresponse.md), error**
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
+| sdkerrors.SDKError          | 400-600                     | */*                         |
 
 ## UpdateConfigTextSyncFlow
 
@@ -177,10 +190,11 @@ To enable update of preferences set for the text fields on sync flow.
 package main
 
 import(
-	"context"
-	"log"
-	syncforcommerceversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/shared"
+	syncforcommerceversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
+	"context"
+	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -191,8 +205,11 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.SyncFlowPreferences.UpdateConfigTextSyncFlow(ctx, &map[string]shared.Localization{
-        "West": shared.Localization{},
+    res, err := s.SyncFlowPreferences.UpdateConfigTextSyncFlow(ctx, operations.UpdateConfigTextSyncFlowRequest{
+        RequestBody: map[string]shared.Localization{
+            "key": shared.Localization{},
+        },
+        Locale: shared.LocaleEnUs,
     })
     if err != nil {
         log.Fatal(err)
@@ -206,17 +223,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
-| `request`                                                | [map[string]shared.Localization](../../models//.md)      | :heavy_check_mark:                                       | The request object to use for the request.               |
-| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
+| Parameter                                                                                                    | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                                        | :heavy_check_mark:                                                                                           | The context to use for the request.                                                                          |
+| `request`                                                                                                    | [operations.UpdateConfigTextSyncFlowRequest](../../pkg/models/operations/updateconfigtextsyncflowrequest.md) | :heavy_check_mark:                                                                                           | The request object to use for the request.                                                                   |
+| `opts`                                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                                 | :heavy_minus_sign:                                                                                           | The options for this request.                                                                                |
 
 
 ### Response
 
-**[*operations.UpdateConfigTextSyncFlowResponse](../../models/operations/updateconfigtextsyncflowresponse.md), error**
-
+**[*operations.UpdateConfigTextSyncFlowResponse](../../pkg/models/operations/updateconfigtextsyncflowresponse.md), error**
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.ErrorMessage      | 400,401,402,403,429,500,503 | application/json            |
+| sdkerrors.SDKError          | 400-600                     | */*                         |
 
 ## UpdateVisibleAccountsSyncFlow
 
@@ -228,11 +248,11 @@ To enable update of accounts visible preferences set on Sync Flow.
 package main
 
 import(
-	"context"
-	"log"
-	syncforcommerceversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/shared"
+	syncforcommerceversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -246,7 +266,7 @@ func main() {
     res, err := s.SyncFlowPreferences.UpdateVisibleAccountsSyncFlow(ctx, operations.UpdateVisibleAccountsSyncFlowRequest{
         VisibleAccounts: &shared.VisibleAccounts{
             VisibleAccounts: []string{
-                "Coordinator",
+                "string",
             },
         },
         PlatformKey: "gbol",
@@ -263,14 +283,17 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                          | Type                                                                                                               | Required                                                                                                           | Description                                                                                                        |
-| ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                                              | :heavy_check_mark:                                                                                                 | The context to use for the request.                                                                                |
-| `request`                                                                                                          | [operations.UpdateVisibleAccountsSyncFlowRequest](../../models/operations/updatevisibleaccountssyncflowrequest.md) | :heavy_check_mark:                                                                                                 | The request object to use for the request.                                                                         |
-| `opts`                                                                                                             | [][operations.Option](../../models/operations/option.md)                                                           | :heavy_minus_sign:                                                                                                 | The options for this request.                                                                                      |
+| Parameter                                                                                                              | Type                                                                                                                   | Required                                                                                                               | Description                                                                                                            |
+| ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                                  | :heavy_check_mark:                                                                                                     | The context to use for the request.                                                                                    |
+| `request`                                                                                                              | [operations.UpdateVisibleAccountsSyncFlowRequest](../../pkg/models/operations/updatevisibleaccountssyncflowrequest.md) | :heavy_check_mark:                                                                                                     | The request object to use for the request.                                                                             |
+| `opts`                                                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                                                           | :heavy_minus_sign:                                                                                                     | The options for this request.                                                                                          |
 
 
 ### Response
 
-**[*operations.UpdateVisibleAccountsSyncFlowResponse](../../models/operations/updatevisibleaccountssyncflowresponse.md), error**
-
+**[*operations.UpdateVisibleAccountsSyncFlowResponse](../../pkg/models/operations/updatevisibleaccountssyncflowresponse.md), error**
+| Error Object                    | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
+| sdkerrors.SDKError              | 400-600                         | */*                             |

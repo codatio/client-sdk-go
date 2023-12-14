@@ -7,6 +7,26 @@ import (
 	"net/http"
 )
 
+type UpdateConfigTextSyncFlowRequest struct {
+	RequestBody map[string]shared.Localization `request:"mediaType=application/json"`
+	// Localization identifier for English (US) or French.
+	Locale shared.Locale `queryParam:"style=form,explode=true,name=locale"`
+}
+
+func (o *UpdateConfigTextSyncFlowRequest) GetRequestBody() map[string]shared.Localization {
+	if o == nil {
+		return nil
+	}
+	return o.RequestBody
+}
+
+func (o *UpdateConfigTextSyncFlowRequest) GetLocale() shared.Locale {
+	if o == nil {
+		return shared.Locale("")
+	}
+	return o.Locale
+}
+
 type UpdateConfigTextSyncFlowResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
