@@ -54,7 +54,7 @@ func main() {
                     Amount: types.MustNewDecimalFromString("999.99"),
                     Balance: types.MustNewDecimalFromString("-999.99"),
                     Counterparty: bankfeeds.String("ACME INC"),
-                    Date: bankfeeds.String("2022-10-23T00:00:00.000Z"),
+                    Date: bankfeeds.String("2022-10-23T00:00:00Z"),
                     Description: bankfeeds.String("Debit for Payment Id sdp-1-57379a43-c4b8-49f5-bd7c-699189ee7a60"),
                     ID: bankfeeds.String("716422529"),
                     Reconciled: bankfeeds.Bool(false),
