@@ -85,6 +85,11 @@ func main() {
 * [Update](docs/sdks/bills/README.md#update) - Update bill
 * [UploadAttachment](docs/sdks/bills/README.md#uploadattachment) - Upload bill attachment
 
+### [BankAccounts](docs/sdks/bankaccounts/README.md)
+
+* [Create](docs/sdks/bankaccounts/README.md#create) - Create bank account
+* [GetCreateModel](docs/sdks/bankaccounts/README.md#getcreatemodel) - Get create/update bank account model
+
 ### [BillCreditNotes](docs/sdks/billcreditnotes/README.md)
 
 * [Create](docs/sdks/billcreditnotes/README.md#create) - Create bill credit note

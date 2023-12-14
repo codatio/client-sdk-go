@@ -55,9 +55,9 @@ func main() {
                 },
             },
             Metadata: &shared.Metadata{},
-            ModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: syncforpayables.String("2022-10-23T00:00:00Z"),
             Phone: syncforpayables.String("(877) 492-8687"),
-            SourceModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
+            SourceModifiedDate: syncforpayables.String("2022-10-23T00:00:00Z"),
             Status: shared.SupplierStatusActive,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
@@ -330,9 +330,9 @@ func main() {
                 },
             },
             Metadata: &shared.Metadata{},
-            ModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
+            ModifiedDate: syncforpayables.String("2022-10-23T00:00:00Z"),
             Phone: syncforpayables.String("(877) 492-8687"),
-            SourceModifiedDate: syncforpayables.String("2022-10-23T00:00:00.000Z"),
+            SourceModifiedDate: syncforpayables.String("2022-10-23T00:00:00Z"),
             Status: shared.SupplierStatusActive,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
