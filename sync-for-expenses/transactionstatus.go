@@ -6,28 +6,28 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/sdkerrors"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/utils"
 	"io"
 	"net/http"
 )
 
-// transactionStatus - Retrieve the status of transactions within a sync.
-type transactionStatus struct {
+// TransactionStatus - Retrieve the status of transactions within a sync.
+type TransactionStatus struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newTransactionStatus(sdkConfig sdkConfiguration) *transactionStatus {
-	return &transactionStatus{
+func newTransactionStatus(sdkConfig sdkConfiguration) *TransactionStatus {
+	return &TransactionStatus{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // Get sync transaction
 // Gets the status of a transaction for a sync
-func (s *transactionStatus) Get(ctx context.Context, request operations.GetSyncTransactionRequest, opts ...operations.Option) (*operations.GetSyncTransactionResponse, error) {
+func (s *TransactionStatus) Get(ctx context.Context, request operations.GetSyncTransactionRequest, opts ...operations.Option) (*operations.GetSyncTransactionResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -118,20 +118,31 @@ func (s *transactionStatus) Get(ctx context.Context, request operations.GetSyncT
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -139,7 +150,7 @@ func (s *transactionStatus) Get(ctx context.Context, request operations.GetSyncT
 
 // List sync transactions
 // Gets the transactions and status for a sync
-func (s *transactionStatus) List(ctx context.Context, request operations.ListSyncTransactionsRequest, opts ...operations.Option) (*operations.ListSyncTransactionsResponse, error) {
+func (s *TransactionStatus) List(ctx context.Context, request operations.ListSyncTransactionsRequest, opts ...operations.Option) (*operations.ListSyncTransactionsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -232,22 +243,35 @@ func (s *transactionStatus) List(ctx context.Context, request operations.ListSyn
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode == 400:
+		fallthrough
 	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
 		fallthrough
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

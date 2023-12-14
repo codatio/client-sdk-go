@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
 	"net/http"
 )
 
@@ -33,8 +33,6 @@ type GetCustomerResponse struct {
 	ContentType string
 	// Success
 	Customer *shared.Customer
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -53,13 +51,6 @@ func (o *GetCustomerResponse) GetCustomer() *shared.Customer {
 		return nil
 	}
 	return o.Customer
-}
-
-func (o *GetCustomerResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *GetCustomerResponse) GetStatusCode() int {

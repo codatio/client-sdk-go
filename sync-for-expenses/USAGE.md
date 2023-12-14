@@ -1,15 +1,11 @@
-<!-- Start SDK Example Usage -->
-
-
+<!-- Start SDK Example Usage [usage] -->
 ```go
 package main
 
 import (
 	"context"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v3"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/types"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
 	"log"
 )
 
@@ -19,47 +15,18 @@ func main() {
 	)
 
 	ctx := context.Background()
-	res, err := s.Accounts.Create(ctx, operations.CreateAccountRequest{
-		Account: &shared.Account{
-			Currency:               syncforexpenses.String("USD"),
-			CurrentBalance:         types.MustNewDecimalFromString("0"),
-			Description:            syncforexpenses.String("Invoices the business has issued but has not yet collected payment on."),
-			FullyQualifiedCategory: syncforexpenses.String("Asset.Current"),
-			FullyQualifiedName:     syncforexpenses.String("Cash On Hand"),
-			ID:                     syncforexpenses.String("1b6266d1-1e44-46c5-8eb5-a8f98e03124e"),
-			Metadata:               &shared.AccountMetadata{},
-			ModifiedDate:           syncforexpenses.String("2022-10-23T00:00:00.000Z"),
-			Name:                   syncforexpenses.String("Accounts Receivable"),
-			NominalCode:            syncforexpenses.String("610"),
-			SourceModifiedDate:     syncforexpenses.String("2022-10-23T00:00:00.000Z"),
-			Status:                 shared.AccountStatusActive.ToPointer(),
-			SupplementalData: &shared.SupplementalData{
-				Content: map[string]map[string]interface{}{
-					"Money": map[string]interface{}{
-						"blue": "shred",
-					},
-				},
-			},
-			Type: shared.AccountTypeAsset.ToPointer(),
-			ValidDatatypeLinks: []shared.AccountValidDataTypeLinks{
-				shared.AccountValidDataTypeLinks{
-					Links: []string{
-						"abnormally",
-					},
-				},
-			},
-		},
-		CompanyID:    "8a210b68-6988-11ed-a1eb-0242ac120002",
-		ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
+	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
+		Description: syncforexpenses.String("Requested early access to the new financing scheme."),
+		Name:        "Bank of Dave",
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	if res.CreateAccountResponse != nil {
+	if res.Company != nil {
 		// handle response
 	}
 }
 
 ```
-<!-- End SDK Example Usage -->
+<!-- End SDK Example Usage [usage] -->

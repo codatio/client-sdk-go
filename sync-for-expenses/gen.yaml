@@ -1,25 +1,43 @@
 configVersion: 1.0.0
 management:
-  docChecksum: cd39427322ae650607fb0524405a4f11
+  docChecksum: 99670d69142722af36276697633475ba
   docVersion: prealpha
-  speakeasyVersion: 1.100.2
-  generationVersion: 2.159.2
+  speakeasyVersion: 1.126.3
+  generationVersion: 2.214.3
 generation:
+  comments: {}
   sdkClassName: CodatSyncExpenses
-  singleTagPerOp: false
+  repoURL: https://github.com/codatio/client-sdk-go.git
+  usageSnippets:
+    optionalPropertyRendering: withExample
   telemetryEnabled: true
 features:
   go:
-    constsAndDefaults: 0.1.1
-    core: 2.91.5
+    constsAndDefaults: 0.1.2
+    core: 3.2.0
     deprecations: 2.81.1
-    examples: 2.81.2
-    globalSecurity: 2.82.2
-    globalServerURLs: 2.82.0
+    examples: 2.81.3
+    globalSecurity: 2.82.3
+    globalServerURLs: 2.82.1
+    inputOutputModels: 2.82.0
     nameOverrides: 2.81.1
     retries: 2.82.1
 go:
-  version: 3.2.0
+  version: 4.0.0
+  clientServerStatusCodesAsErrors: true
   flattenGlobalSecurity: true
+  imports:
+    option: openapi
+    paths:
+      callbacks: pkg/models/callbacks
+      errors: pkg/models/sdkerrors
+      operations: pkg/models/operations
+      shared: pkg/models/shared
+      webhooks: pkg/models/webhooks
+  inputModelSuffix: input
+  installationURL: https://github.com/codatio/client-sdk-go/sync-for-expenses
   maxMethodParams: 0
+  outputModelSuffix: output
   packageName: github.com/codatio/client-sdk-go/sync-for-expenses
+  published: true
+  repoSubDirectory: sync-for-expenses

@@ -3,18 +3,20 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v3/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
 type ExpenseTransactionLine struct {
 	AccountRef RecordRef `json:"accountRef"`
+	// Unique identifier of the customer the expense is billable to. The invoiceTo object is currently only supported for QBO.
+	InvoiceTo *InvoiceTo `json:"invoiceTo,omitempty"`
 	// Amount of the line, exclusive of tax.
 	NetAmount *decimal.Big `decimal:"number" json:"netAmount"`
 	// Amount of tax for the line.
-	TaxAmount    *decimal.Big `decimal:"number" json:"taxAmount"`
-	TaxRateRef   *RecordRef   `json:"taxRateRef,omitempty"`
-	TrackingRefs []RecordRef  `json:"trackingRefs,omitempty"`
+	TaxAmount    *decimal.Big  `decimal:"number" json:"taxAmount"`
+	TaxRateRef   *RecordRef    `json:"taxRateRef,omitempty"`
+	TrackingRefs []TrackingRef `json:"trackingRefs,omitempty"`
 }
 
 func (e ExpenseTransactionLine) MarshalJSON() ([]byte, error) {
@@ -33,6 +35,13 @@ func (o *ExpenseTransactionLine) GetAccountRef() RecordRef {
 		return RecordRef{}
 	}
 	return o.AccountRef
+}
+
+func (o *ExpenseTransactionLine) GetInvoiceTo() *InvoiceTo {
+	if o == nil {
+		return nil
+	}
+	return o.InvoiceTo
 }
 
 func (o *ExpenseTransactionLine) GetNetAmount() *decimal.Big {
@@ -56,7 +65,7 @@ func (o *ExpenseTransactionLine) GetTaxRateRef() *RecordRef {
 	return o.TaxRateRef
 }
 
-func (o *ExpenseTransactionLine) GetTrackingRefs() []RecordRef {
+func (o *ExpenseTransactionLine) GetTrackingRefs() []TrackingRef {
 	if o == nil {
 		return nil
 	}
