@@ -404,6 +404,8 @@ pkg/utils/utils.go
 /pkg/models/shared/accountingageddebtorreport.go
 /pkg/models/shared/ageddebtor.go
 /pkg/models/shared/file.go
+/pkg/models/shared/fileupload.go
+/pkg/models/shared/codatfile.go
 /pkg/models/shared/accountingcreatebankaccountresponse.go
 /pkg/models/shared/validation.go
 /pkg/models/shared/validationitem.go
@@ -692,7 +694,6 @@ docs/pkg/models/operations/downloadfilesrequest.md
 docs/pkg/models/operations/downloadfilesresponse.md
 docs/pkg/models/operations/listfilesrequest.md
 docs/pkg/models/operations/listfilesresponse.md
-docs/pkg/models/operations/uploadfilesrequestbody.md
 docs/pkg/models/operations/uploadfilesrequest.md
 docs/pkg/models/operations/uploadfilesresponse.md
 docs/pkg/models/operations/createbankaccountrequest.md
@@ -976,6 +977,8 @@ docs/pkg/models/shared/agedoutstandingamountdetail.md
 docs/pkg/models/shared/accountingageddebtorreport.md
 docs/pkg/models/shared/ageddebtor.md
 docs/pkg/models/shared/file.md
+docs/pkg/models/shared/fileupload.md
+docs/pkg/models/shared/codatfile.md
 docs/pkg/models/shared/accountingcreatebankaccountresponse.md
 docs/pkg/models/shared/validation.md
 docs/pkg/models/shared/validationitem.md

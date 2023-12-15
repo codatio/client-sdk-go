@@ -3,41 +3,23 @@
 package operations
 
 import (
+	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/shared"
 	"net/http"
 )
 
-type UploadFilesRequestBody struct {
-	Content  []byte `multipartForm:"content"`
-	FileName string `multipartForm:"name=fileName"`
-}
-
-func (o *UploadFilesRequestBody) GetContent() []byte {
-	if o == nil {
-		return []byte{}
-	}
-	return o.Content
-}
-
-func (o *UploadFilesRequestBody) GetFileName() string {
-	if o == nil {
-		return ""
-	}
-	return o.FileName
-}
-
 type UploadFilesRequest struct {
-	RequestBody *UploadFilesRequestBody `multipartForm:"file" request:"mediaType=multipart/form-data"`
+	FileUpload *shared.FileUpload `request:"mediaType=multipart/form-data"`
 	// Unique identifier for a company.
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	// Unique identifier for a connection.
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
-func (o *UploadFilesRequest) GetRequestBody() *UploadFilesRequestBody {
+func (o *UploadFilesRequest) GetFileUpload() *shared.FileUpload {
 	if o == nil {
 		return nil
 	}
-	return o.RequestBody
+	return o.FileUpload
 }
 
 func (o *UploadFilesRequest) GetCompanyID() string {
