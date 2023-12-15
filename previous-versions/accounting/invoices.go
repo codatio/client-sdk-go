@@ -1388,7 +1388,7 @@ func (s *Invoices) Update(ctx context.Context, request operations.UpdateInvoiceR
 	return res, nil
 }
 
-// UploadAttachment - Push invoice attachment
+// UploadAttachment - Upload invoice attachment
 // The *Upload invoice attachment* endpoint uploads an attachment and assigns it against a specific `invoiceId`.
 //
 // [Invoices](https://docs.codat.io/accounting-api#/schemas/Invoice) are itemized records of goods sold or services provided to a customer.
@@ -1415,7 +1415,7 @@ func (s *Invoices) UploadAttachment(ctx context.Context, request operations.Uplo
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "multipart", `multipartForm:"file" request:"mediaType=multipart/form-data"`)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "AttachmentUpload", "multipart", `request:"mediaType=multipart/form-data"`)
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}

@@ -534,9 +534,11 @@ func main() {
 
     ctx := context.Background()
     res, err := s.BillCreditNotes.UploadAttachment(ctx, operations.UploadBillCreditNoteAttachmentRequest{
-        RequestBody: &operations.UploadBillCreditNoteAttachmentRequestBody{
-            Content: []byte("0xE3ABc1980E"),
-            FileName: "elegant_producer_electric.jpeg",
+        AttachmentUpload: &shared.AttachmentUpload{
+            File: shared.CodatFile{
+                Content: []byte("0xE3ABc1980E"),
+                FileName: "elegant_producer_electric.jpeg",
+            },
         },
         BillCreditNoteID: "string",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",

@@ -17,7 +17,7 @@ Invoices
 * [List](#list) - List invoices
 * [ListAttachments](#listattachments) - List invoice attachments
 * [Update](#update) - Update invoice
-* [UploadAttachment](#uploadattachment) - Push invoice attachment
+* [UploadAttachment](#uploadattachment) - Upload invoice attachment
 
 ## Create
 
@@ -874,9 +874,11 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Invoices.UploadAttachment(ctx, operations.UploadInvoiceAttachmentRequest{
-        RequestBody: &operations.UploadInvoiceAttachmentRequestBody{
-            Content: []byte("0xE3ABc1980E"),
-            FileName: "elegant_producer_electric.jpeg",
+        AttachmentUpload: &shared.AttachmentUpload{
+            File: shared.CodatFile{
+                Content: []byte("0xE3ABc1980E"),
+                FileName: "elegant_producer_electric.jpeg",
+            },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",

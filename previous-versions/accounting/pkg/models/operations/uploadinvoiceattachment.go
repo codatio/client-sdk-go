@@ -3,30 +3,12 @@
 package operations
 
 import (
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
 	"net/http"
 )
 
-type UploadInvoiceAttachmentRequestBody struct {
-	Content  []byte `multipartForm:"content"`
-	FileName string `multipartForm:"name=fileName"`
-}
-
-func (o *UploadInvoiceAttachmentRequestBody) GetContent() []byte {
-	if o == nil {
-		return []byte{}
-	}
-	return o.Content
-}
-
-func (o *UploadInvoiceAttachmentRequestBody) GetFileName() string {
-	if o == nil {
-		return ""
-	}
-	return o.FileName
-}
-
 type UploadInvoiceAttachmentRequest struct {
-	RequestBody *UploadInvoiceAttachmentRequestBody `multipartForm:"file" request:"mediaType=multipart/form-data"`
+	AttachmentUpload *shared.AttachmentUpload `request:"mediaType=multipart/form-data"`
 	// Unique identifier for a company.
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	// Unique identifier for a connection.
@@ -35,11 +17,11 @@ type UploadInvoiceAttachmentRequest struct {
 	InvoiceID string `pathParam:"style=simple,explode=false,name=invoiceId"`
 }
 
-func (o *UploadInvoiceAttachmentRequest) GetRequestBody() *UploadInvoiceAttachmentRequestBody {
+func (o *UploadInvoiceAttachmentRequest) GetAttachmentUpload() *shared.AttachmentUpload {
 	if o == nil {
 		return nil
 	}
-	return o.RequestBody
+	return o.AttachmentUpload
 }
 
 func (o *UploadInvoiceAttachmentRequest) GetCompanyID() string {

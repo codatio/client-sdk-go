@@ -562,7 +562,7 @@ func (s *Transfers) List(ctx context.Context, request operations.ListTransfersRe
 	return res, nil
 }
 
-// UploadAttachment - Push invoice attachment
+// UploadAttachment - Upload invoice attachment
 // The *Upload transfer attachment* endpoint uploads an attachment and assigns it against a specific `transferId`.
 //
 // [Transfers](https://docs.codat.io/accounting-api#/schemas/Transfer) are issued by a supplier for the purpose of recording transfer.
@@ -589,7 +589,7 @@ func (s *Transfers) UploadAttachment(ctx context.Context, request operations.Upl
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "multipart", `multipartForm:"file" request:"mediaType=multipart/form-data"`)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "AttachmentUpload", "multipart", `request:"mediaType=multipart/form-data"`)
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
