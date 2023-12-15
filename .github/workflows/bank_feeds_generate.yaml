@@ -6,8 +6,6 @@ name: Generate Bank Feeds library
         description: Force generation of SDKs
         type: boolean
         default: false
-  schedule:
-  - cron: 0 1 * * 1
 jobs:
   generate:
     uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-generation.yaml@v14
