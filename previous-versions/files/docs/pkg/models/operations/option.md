@@ -1,6 +1,6 @@
-# Options
+## Options
 
-## WithServerURL
+### WithServerURL
 
 WithServerURL allows providing an alternative server URL.
 
@@ -19,7 +19,7 @@ operations.WithTemplatedServerURL("http://{host}:{port}", map[string]string{
 })
 ```
 
-## WithRetries
+### WithRetries
 
 WithRetries allows customizing the default retry configuration. Only usable with methods that mention they support retries.
 
