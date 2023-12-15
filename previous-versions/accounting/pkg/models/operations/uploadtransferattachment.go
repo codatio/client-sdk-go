@@ -3,30 +3,12 @@
 package operations
 
 import (
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
 	"net/http"
 )
 
-type UploadTransferAttachmentRequestBody struct {
-	Content  []byte `multipartForm:"content"`
-	FileName string `multipartForm:"name=fileName"`
-}
-
-func (o *UploadTransferAttachmentRequestBody) GetContent() []byte {
-	if o == nil {
-		return []byte{}
-	}
-	return o.Content
-}
-
-func (o *UploadTransferAttachmentRequestBody) GetFileName() string {
-	if o == nil {
-		return ""
-	}
-	return o.FileName
-}
-
 type UploadTransferAttachmentRequest struct {
-	RequestBody *UploadTransferAttachmentRequestBody `multipartForm:"file" request:"mediaType=multipart/form-data"`
+	AttachmentUpload *shared.AttachmentUpload `request:"mediaType=multipart/form-data"`
 	// Unique identifier for a company.
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	// Unique identifier for a connection.
@@ -35,11 +17,11 @@ type UploadTransferAttachmentRequest struct {
 	TransferID string `pathParam:"style=simple,explode=false,name=transferId"`
 }
 
-func (o *UploadTransferAttachmentRequest) GetRequestBody() *UploadTransferAttachmentRequestBody {
+func (o *UploadTransferAttachmentRequest) GetAttachmentUpload() *shared.AttachmentUpload {
 	if o == nil {
 		return nil
 	}
-	return o.RequestBody
+	return o.AttachmentUpload
 }
 
 func (o *UploadTransferAttachmentRequest) GetCompanyID() string {

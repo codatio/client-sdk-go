@@ -136,7 +136,7 @@ func main() {
 * [List](docs/sdks/invoices/README.md#list) - List invoices
 * [ListAttachments](docs/sdks/invoices/README.md#listattachments) - List invoice attachments
 * [Update](docs/sdks/invoices/README.md#update) - Update invoice
-* [UploadAttachment](docs/sdks/invoices/README.md#uploadattachment) - Push invoice attachment
+* [UploadAttachment](docs/sdks/invoices/README.md#uploadattachment) - Upload invoice attachment
 
 ### [ItemReceipts](docs/sdks/itemreceipts/README.md)
 
@@ -172,7 +172,7 @@ func main() {
 * [Get](docs/sdks/transfers/README.md#get) - Get transfer
 * [GetCreateModel](docs/sdks/transfers/README.md#getcreatemodel) - Get create transfer model
 * [List](docs/sdks/transfers/README.md#list) - List transfers
-* [UploadAttachment](docs/sdks/transfers/README.md#uploadattachment) - Push invoice attachment
+* [UploadAttachment](docs/sdks/transfers/README.md#uploadattachment) - Upload invoice attachment
 
 ### [BillCreditNotes](docs/sdks/billcreditnotes/README.md)
 

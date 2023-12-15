@@ -3,30 +3,12 @@
 package operations
 
 import (
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
 	"net/http"
 )
 
-type UploadBillCreditNoteAttachmentRequestBody struct {
-	Content  []byte `multipartForm:"content"`
-	FileName string `multipartForm:"name=fileName"`
-}
-
-func (o *UploadBillCreditNoteAttachmentRequestBody) GetContent() []byte {
-	if o == nil {
-		return []byte{}
-	}
-	return o.Content
-}
-
-func (o *UploadBillCreditNoteAttachmentRequestBody) GetFileName() string {
-	if o == nil {
-		return ""
-	}
-	return o.FileName
-}
-
 type UploadBillCreditNoteAttachmentRequest struct {
-	RequestBody *UploadBillCreditNoteAttachmentRequestBody `multipartForm:"file" request:"mediaType=multipart/form-data"`
+	AttachmentUpload *shared.AttachmentUpload `request:"mediaType=multipart/form-data"`
 	// Unique identifier for a bill credit note.
 	BillCreditNoteID string `pathParam:"style=simple,explode=false,name=billCreditNoteId"`
 	// Unique identifier for a company.
@@ -35,11 +17,11 @@ type UploadBillCreditNoteAttachmentRequest struct {
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
 }
 
-func (o *UploadBillCreditNoteAttachmentRequest) GetRequestBody() *UploadBillCreditNoteAttachmentRequestBody {
+func (o *UploadBillCreditNoteAttachmentRequest) GetAttachmentUpload() *shared.AttachmentUpload {
 	if o == nil {
 		return nil
 	}
-	return o.RequestBody
+	return o.AttachmentUpload
 }
 
 func (o *UploadBillCreditNoteAttachmentRequest) GetBillCreditNoteID() string {
