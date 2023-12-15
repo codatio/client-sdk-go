@@ -1,4 +1,4 @@
-# UploadFilesRequestBody
+# CodatFile
 
 
 ## Fields
