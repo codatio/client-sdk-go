@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/platform/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
 	"net/http"
 )
 
@@ -12,8 +12,6 @@ type CreateAPIKeyResponse struct {
 	APIKeyDetails *shared.APIKeyDetails
 	// HTTP response content type for this operation
 	ContentType string
-	// Bad Request
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -32,13 +30,6 @@ func (o *CreateAPIKeyResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *CreateAPIKeyResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *CreateAPIKeyResponse) GetStatusCode() int {

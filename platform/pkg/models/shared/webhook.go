@@ -2,7 +2,7 @@
 
 package shared
 
-// Webhook - Create an event notification to a URL or list of email addresses based on the given type or condition.
+// Webhook - Configuration to provide an event notification to a URL or list of email addresses based on the given type or condition.
 type Webhook struct {
 	// Unique identifier for your SMB in Codat.
 	CompanyID *string `json:"companyId,omitempty"`

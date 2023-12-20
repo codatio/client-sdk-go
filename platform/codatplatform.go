@@ -5,8 +5,8 @@ package platform
 import (
 	"context"
 	"fmt"
-	"github.com/codatio/client-sdk-go/platform/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/platform/pkg/utils"
+	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/platform/v2/pkg/utils"
 	"net/http"
 	"time"
 )
@@ -71,22 +71,26 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 //
 // [See our OpenAPI spec](https://github.com/codatio/oas)
 type CodatPlatform struct {
-	// Create and manage your Codat companies.
-	Companies *companies
-	// Manage your companies' data connections.
-	Connections *connections
-	// View and manage your available integrations in Codat.
-	Integrations *integrations
-	// View push options and get push statuses.
-	PushData *pushData
-	// Asynchronously retrieve data from an integration to refresh data in Codat.
-	RefreshData *refreshData
 	// Manage your Codat instance.
-	Settings *settings
+	Settings *Settings
+	// Create and manage your Codat companies.
+	Companies *Companies
+	// Manage your companies' data connections.
+	Connections *Connections
+	// View and configure custom data types for supported integrations.
+	CustomDataType *CustomDataType
+	// View push options and get push statuses.
+	PushData *PushData
+	// Asynchronously retrieve data from an integration to refresh data in Codat.
+	RefreshData *RefreshData
+	// Create groups and link them to your Codat companies.
+	Groups *Groups
+	// View and manage your available integrations in Codat.
+	Integrations *Integrations
 	// View and configure supplemental data for supported data types.
-	SupplementalData *supplementalData
+	SupplementalData *SupplementalData
 	// Manage webhooks, rules, and events.
-	Webhooks *webhooks
+	Webhooks *Webhooks
 
 	sdkConfiguration sdkConfiguration
 }
@@ -136,7 +140,6 @@ func withSecurity(security interface{}) func(context.Context) (interface{}, erro
 }
 
 // WithSecurity configures the SDK to use the provided security details
-
 func WithSecurity(security shared.Security) SDKOption {
 	return func(sdk *CodatPlatform) {
 		sdk.sdkConfiguration.Security = withSecurity(security)
@@ -164,9 +167,9 @@ func New(opts ...SDKOption) *CodatPlatform {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "1.2.0",
-			GenVersion:        "2.159.2",
-			UserAgent:         "speakeasy-sdk/go 1.2.0 2.159.2 3.0.0 github.com/codatio/client-sdk-go/platform",
+			SDKVersion:        "2.0.0",
+			GenVersion:        "2.221.0",
+			UserAgent:         "speakeasy-sdk/go 2.0.0 2.221.0 3.0.0 github.com/codatio/client-sdk-go/platform",
 		},
 	}
 	for _, opt := range opts {
@@ -185,17 +188,21 @@ func New(opts ...SDKOption) *CodatPlatform {
 		}
 	}
 
+	sdk.Settings = newSettings(sdk.sdkConfiguration)
+
 	sdk.Companies = newCompanies(sdk.sdkConfiguration)
 
 	sdk.Connections = newConnections(sdk.sdkConfiguration)
 
-	sdk.Integrations = newIntegrations(sdk.sdkConfiguration)
+	sdk.CustomDataType = newCustomDataType(sdk.sdkConfiguration)
 
 	sdk.PushData = newPushData(sdk.sdkConfiguration)
 
 	sdk.RefreshData = newRefreshData(sdk.sdkConfiguration)
 
-	sdk.Settings = newSettings(sdk.sdkConfiguration)
+	sdk.Groups = newGroups(sdk.sdkConfiguration)
+
+	sdk.Integrations = newIntegrations(sdk.sdkConfiguration)
 
 	sdk.SupplementalData = newSupplementalData(sdk.sdkConfiguration)
 

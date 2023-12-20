@@ -9,7 +9,7 @@ Manage your Codat instance.
 
 * [CreateAPIKey](#createapikey) - Create API key
 * [DeleteAPIKey](#deleteapikey) - Delete API key
-* [~~GetProfile~~](#getprofile) - Get profile :warning: **Deprecated**
+* [GetProfile](#getprofile) - Get profile
 * [GetSyncSettings](#getsyncsettings) - Get sync settings
 * [ListAPIKeys](#listapikeys) - List API keys
 * [UpdateProfile](#updateprofile) - Update profile
@@ -35,16 +35,16 @@ You can [read more](https://docs.codat.io/using-the-api/authentication) about au
 package main
 
 import(
+	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v2"
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/platform"
-	"github.com/codatio/client-sdk-go/platform/pkg/models/shared"
 )
 
 func main() {
     s := platform.New(
         platform.WithSecurity(shared.Security{
-            AuthHeader: "",
+            AuthHeader: "<YOUR_API_KEY_HERE>",
         }),
     )
 
@@ -64,17 +64,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                  | Type                                                       | Required                                                   | Description                                                |
-| ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
-| `ctx`                                                      | [context.Context](https://pkg.go.dev/context#Context)      | :heavy_check_mark:                                         | The context to use for the request.                        |
-| `request`                                                  | [shared.CreateAPIKey](../../models/shared/createapikey.md) | :heavy_check_mark:                                         | The request object to use for the request.                 |
-| `opts`                                                     | [][operations.Option](../../models/operations/option.md)   | :heavy_minus_sign:                                         | The options for this request.                              |
+| Parameter                                                      | Type                                                           | Required                                                       | Description                                                    |
+| -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
+| `ctx`                                                          | [context.Context](https://pkg.go.dev/context#Context)          | :heavy_check_mark:                                             | The context to use for the request.                            |
+| `request`                                                      | [shared.CreateAPIKey](../../pkg/models/shared/createapikey.md) | :heavy_check_mark:                                             | The request object to use for the request.                     |
+| `opts`                                                         | [][operations.Option](../../pkg/models/operations/option.md)   | :heavy_minus_sign:                                             | The options for this request.                                  |
 
 
 ### Response
 
-**[*operations.CreateAPIKeyResponse](../../models/operations/createapikeyresponse.md), error**
-
+**[*operations.CreateAPIKeyResponse](../../pkg/models/operations/createapikeyresponse.md), error**
+| Error Object                    | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| sdkerrors.ErrorMessage          | 400,401,402,403,409,429,500,503 | application/json                |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
 
 ## DeleteAPIKey
 
@@ -95,17 +98,17 @@ You can [read more](https://docs.codat.io/using-the-api/authentication) about au
 package main
 
 import(
+	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v2"
 	"context"
+	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/operations"
 	"log"
-	"github.com/codatio/client-sdk-go/platform"
-	"github.com/codatio/client-sdk-go/platform/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/platform/pkg/models/operations"
 )
 
 func main() {
     s := platform.New(
         platform.WithSecurity(shared.Security{
-            AuthHeader: "",
+            AuthHeader: "<YOUR_API_KEY_HERE>",
         }),
     )
 
@@ -117,7 +120,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.StatusCode == http.StatusOK {
+    if res.ErrorMessage != nil {
         // handle response
     }
 }
@@ -125,23 +128,24 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
-| `request`                                                                        | [operations.DeleteAPIKeyRequest](../../models/operations/deleteapikeyrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
-| `opts`                                                                           | [][operations.Option](../../models/operations/option.md)                         | :heavy_minus_sign:                                                               | The options for this request.                                                    |
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
+| `request`                                                                            | [operations.DeleteAPIKeyRequest](../../pkg/models/operations/deleteapikeyrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| `opts`                                                                               | [][operations.Option](../../pkg/models/operations/option.md)                         | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
 
 
 ### Response
 
-**[*operations.DeleteAPIKeyResponse](../../models/operations/deleteapikeyresponse.md), error**
+**[*operations.DeleteAPIKeyResponse](../../pkg/models/operations/deleteapikeyresponse.md), error**
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
 
-
-## ~~GetProfile~~
+## GetProfile
 
 Fetch your Codat profile.
-
-> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
@@ -149,16 +153,16 @@ Fetch your Codat profile.
 package main
 
 import(
+	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v2"
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/platform"
-	"github.com/codatio/client-sdk-go/platform/pkg/models/shared"
 )
 
 func main() {
     s := platform.New(
         platform.WithSecurity(shared.Security{
-            AuthHeader: "",
+            AuthHeader: "<YOUR_API_KEY_HERE>",
         }),
     )
 
@@ -176,16 +180,19 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
-| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `ctx`                                                        | [context.Context](https://pkg.go.dev/context#Context)        | :heavy_check_mark:                                           | The context to use for the request.                          |
+| `opts`                                                       | [][operations.Option](../../pkg/models/operations/option.md) | :heavy_minus_sign:                                           | The options for this request.                                |
 
 
 ### Response
 
-**[*operations.GetProfileResponse](../../models/operations/getprofileresponse.md), error**
-
+**[*operations.GetProfileResponse](../../pkg/models/operations/getprofileresponse.md), error**
+| Error Object            | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| sdkerrors.ErrorMessage  | 401,402,403,429,500,503 | application/json        |
+| sdkerrors.SDKError      | 4xx-5xx                 | */*                     |
 
 ## GetSyncSettings
 
@@ -197,16 +204,16 @@ Retrieve the [sync settings](https://docs.codat.io/knowledge-base/advanced-sync-
 package main
 
 import(
+	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v2"
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/platform"
-	"github.com/codatio/client-sdk-go/platform/pkg/models/shared"
 )
 
 func main() {
     s := platform.New(
         platform.WithSecurity(shared.Security{
-            AuthHeader: "",
+            AuthHeader: "<YOUR_API_KEY_HERE>",
         }),
     )
 
@@ -224,16 +231,19 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
-| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `ctx`                                                        | [context.Context](https://pkg.go.dev/context#Context)        | :heavy_check_mark:                                           | The context to use for the request.                          |
+| `opts`                                                       | [][operations.Option](../../pkg/models/operations/option.md) | :heavy_minus_sign:                                           | The options for this request.                                |
 
 
 ### Response
 
-**[*operations.GetProfileSyncSettingsResponse](../../models/operations/getprofilesyncsettingsresponse.md), error**
-
+**[*operations.GetProfileSyncSettingsResponse](../../pkg/models/operations/getprofilesyncsettingsresponse.md), error**
+| Error Object            | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| sdkerrors.ErrorMessage  | 401,402,403,429,500,503 | application/json        |
+| sdkerrors.SDKError      | 4xx-5xx                 | */*                     |
 
 ## ListAPIKeys
 
@@ -249,16 +259,16 @@ You can [read more](https://docs.codat.io/using-the-api/authentication) about au
 package main
 
 import(
+	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v2"
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/platform"
-	"github.com/codatio/client-sdk-go/platform/pkg/models/shared"
 )
 
 func main() {
     s := platform.New(
         platform.WithSecurity(shared.Security{
-            AuthHeader: "",
+            AuthHeader: "<YOUR_API_KEY_HERE>",
         }),
     )
 
@@ -276,16 +286,19 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
-| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `ctx`                                                        | [context.Context](https://pkg.go.dev/context#Context)        | :heavy_check_mark:                                           | The context to use for the request.                          |
+| `opts`                                                       | [][operations.Option](../../pkg/models/operations/option.md) | :heavy_minus_sign:                                           | The options for this request.                                |
 
 
 ### Response
 
-**[*operations.ListAPIKeysResponse](../../models/operations/listapikeysresponse.md), error**
-
+**[*operations.ListAPIKeysResponse](../../pkg/models/operations/listapikeysresponse.md), error**
+| Error Object            | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| sdkerrors.ErrorMessage  | 401,402,403,429,500,503 | application/json        |
+| sdkerrors.SDKError      | 4xx-5xx                 | */*                     |
 
 ## UpdateProfile
 
@@ -297,16 +310,16 @@ Update your Codat profile
 package main
 
 import(
+	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v2"
 	"context"
 	"log"
-	"github.com/codatio/client-sdk-go/platform"
-	"github.com/codatio/client-sdk-go/platform/pkg/models/shared"
 )
 
 func main() {
     s := platform.New(
         platform.WithSecurity(shared.Security{
-            AuthHeader: "",
+            AuthHeader: "<YOUR_API_KEY_HERE>",
         }),
     )
 
@@ -319,30 +332,7 @@ func main() {
         Name: "Bob's Burgers",
         RedirectURL: "https://bobs-burgers.{countrySuffix}/{companyId}",
         WhiteListUrls: []string{
-            "h",
-            "t",
-            "t",
-            "p",
-            "s",
-            ":",
-            "/",
-            "/",
-            "b",
-            "o",
-            "b",
-            "s",
-            "-",
-            "b",
-            "u",
-            "r",
-            "g",
-            "e",
-            "r",
-            "s",
-            ".",
-            "c",
-            "o",
-            "m",
+            "https://bobs-burgers.com",
         },
     })
     if err != nil {
@@ -357,17 +347,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
-| `request`                                                | [shared.Profile](../../models/shared/profile.md)         | :heavy_check_mark:                                       | The request object to use for the request.               |
-| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `ctx`                                                        | [context.Context](https://pkg.go.dev/context#Context)        | :heavy_check_mark:                                           | The context to use for the request.                          |
+| `request`                                                    | [shared.Profile](../../pkg/models/shared/profile.md)         | :heavy_check_mark:                                           | The request object to use for the request.                   |
+| `opts`                                                       | [][operations.Option](../../pkg/models/operations/option.md) | :heavy_minus_sign:                                           | The options for this request.                                |
 
 
 ### Response
 
-**[*operations.UpdateProfileResponse](../../models/operations/updateprofileresponse.md), error**
-
+**[*operations.UpdateProfileResponse](../../pkg/models/operations/updateprofileresponse.md), error**
+| Error Object            | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| sdkerrors.ErrorMessage  | 401,402,403,429,500,503 | application/json        |
+| sdkerrors.SDKError      | 4xx-5xx                 | */*                     |
 
 ## UpdateSyncSettings
 
@@ -379,17 +372,18 @@ Update sync settings for all data types.
 package main
 
 import(
+	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v2"
 	"context"
+	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/operations"
 	"log"
-	"github.com/codatio/client-sdk-go/platform"
-	"github.com/codatio/client-sdk-go/platform/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/platform/pkg/models/operations"
+	"net/http"
 )
 
 func main() {
     s := platform.New(
         platform.WithSecurity(shared.Security{
-            AuthHeader: "",
+            AuthHeader: "<YOUR_API_KEY_HERE>",
         }),
     )
 
@@ -401,7 +395,7 @@ func main() {
                 DataType: shared.DataTypeInvoices,
                 FetchOnFirstLink: false,
                 MonthsToSync: platform.Int64(24),
-                SyncFromUtc: platform.String("2022-10-23T00:00:00.000Z"),
+                SyncFromUtc: platform.String("2022-10-23T00:00:00Z"),
                 SyncFromWindow: platform.Int64(24),
                 SyncOrder: 334238,
                 SyncSchedule: 24,
@@ -420,14 +414,17 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                          | Type                                                                                                               | Required                                                                                                           | Description                                                                                                        |
-| ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                                              | :heavy_check_mark:                                                                                                 | The context to use for the request.                                                                                |
-| `request`                                                                                                          | [operations.UpdateProfileSyncSettingsRequestBody](../../models/operations/updateprofilesyncsettingsrequestbody.md) | :heavy_check_mark:                                                                                                 | The request object to use for the request.                                                                         |
-| `opts`                                                                                                             | [][operations.Option](../../models/operations/option.md)                                                           | :heavy_minus_sign:                                                                                                 | The options for this request.                                                                                      |
+| Parameter                                                                                                              | Type                                                                                                                   | Required                                                                                                               | Description                                                                                                            |
+| ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                                  | :heavy_check_mark:                                                                                                     | The context to use for the request.                                                                                    |
+| `request`                                                                                                              | [operations.UpdateProfileSyncSettingsRequestBody](../../pkg/models/operations/updateprofilesyncsettingsrequestbody.md) | :heavy_check_mark:                                                                                                     | The request object to use for the request.                                                                             |
+| `opts`                                                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                                                           | :heavy_minus_sign:                                                                                                     | The options for this request.                                                                                          |
 
 
 ### Response
 
-**[*operations.UpdateProfileSyncSettingsResponse](../../models/operations/updateprofilesyncsettingsresponse.md), error**
-
+**[*operations.UpdateProfileSyncSettingsResponse](../../pkg/models/operations/updateprofilesyncsettingsresponse.md), error**
+| Error Object            | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| sdkerrors.ErrorMessage  | 401,402,403,429,500,503 | application/json        |
+| sdkerrors.SDKError      | 4xx-5xx                 | */*                     |

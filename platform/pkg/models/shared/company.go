@@ -33,6 +33,8 @@ type Company struct {
 	DataConnections   []Connection `json:"dataConnections,omitempty"`
 	// Additional information about the company. This can be used to store foreign IDs, references, etc.
 	Description *string `json:"description,omitempty"`
+	// An array of groups the company has been assigned to.
+	Groups []GroupRef `json:"groups,omitempty"`
 	// Unique identifier for your SMB in Codat.
 	ID string `json:"id"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
@@ -91,6 +93,13 @@ func (o *Company) GetDescription() *string {
 		return nil
 	}
 	return o.Description
+}
+
+func (o *Company) GetGroups() []GroupRef {
+	if o == nil {
+		return nil
+	}
+	return o.Groups
 }
 
 func (o *Company) GetID() string {
