@@ -2,7 +2,7 @@
 
 package shared
 
-// APIKeyDetails - Datetime in UTC the API key was created. The created date will be null if the API key created before YYYY-MM-DD.
+// APIKeyDetails - Details of the API key.
 type APIKeyDetails struct {
 	// The API key value used to make authenticated http requests.
 	APIKey *string `json:"apiKey,omitempty"`

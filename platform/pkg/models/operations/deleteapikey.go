@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/platform/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/sdkerrors"
 	"net/http"
 )
 
@@ -22,8 +22,8 @@ func (o *DeleteAPIKeyRequest) GetAPIKeyID() string {
 type DeleteAPIKeyResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
+	// Too many requests were made in a given amount of time. Wait a short period and then try again.
+	ErrorMessage *sdkerrors.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -37,7 +37,7 @@ func (o *DeleteAPIKeyResponse) GetContentType() string {
 	return o.ContentType
 }
 
-func (o *DeleteAPIKeyResponse) GetErrorMessage() *shared.ErrorMessage {
+func (o *DeleteAPIKeyResponse) GetErrorMessage() *sdkerrors.ErrorMessage {
 	if o == nil {
 		return nil
 	}

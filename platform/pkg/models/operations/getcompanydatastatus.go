@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/platform/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
 	"net/http"
 )
 
@@ -24,8 +24,6 @@ type GetCompanyDataStatusResponse struct {
 	ContentType string
 	// OK
 	DataStatuses map[string]shared.DataStatus
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -44,13 +42,6 @@ func (o *GetCompanyDataStatusResponse) GetDataStatuses() map[string]shared.DataS
 		return nil
 	}
 	return o.DataStatuses
-}
-
-func (o *GetCompanyDataStatusResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *GetCompanyDataStatusResponse) GetStatusCode() int {
