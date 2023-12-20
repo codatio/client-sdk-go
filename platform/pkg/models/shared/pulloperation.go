@@ -7,40 +7,40 @@ import (
 	"fmt"
 )
 
-// PullOperationStatus - The current status of the pull operation.
-type PullOperationStatus string
+// Status - The current status of the pull operation.
+type Status string
 
 const (
-	PullOperationStatusInitial            PullOperationStatus = "Initial"
-	PullOperationStatusQueued             PullOperationStatus = "Queued"
-	PullOperationStatusFetching           PullOperationStatus = "Fetching"
-	PullOperationStatusMapQueued          PullOperationStatus = "MapQueued"
-	PullOperationStatusMapping            PullOperationStatus = "Mapping"
-	PullOperationStatusComplete           PullOperationStatus = "Complete"
-	PullOperationStatusFetchError         PullOperationStatus = "FetchError"
-	PullOperationStatusMapError           PullOperationStatus = "MapError"
-	PullOperationStatusInternalError      PullOperationStatus = "InternalError"
-	PullOperationStatusProcessingQueued   PullOperationStatus = "ProcessingQueued"
-	PullOperationStatusProcessing         PullOperationStatus = "Processing"
-	PullOperationStatusProcessingError    PullOperationStatus = "ProcessingError"
-	PullOperationStatusValidationQueued   PullOperationStatus = "ValidationQueued"
-	PullOperationStatusValidating         PullOperationStatus = "Validating"
-	PullOperationStatusValidationError    PullOperationStatus = "ValidationError"
-	PullOperationStatusAuthError          PullOperationStatus = "AuthError"
-	PullOperationStatusCancelled          PullOperationStatus = "Cancelled"
-	PullOperationStatusRouting            PullOperationStatus = "Routing"
-	PullOperationStatusRoutingError       PullOperationStatus = "RoutingError"
-	PullOperationStatusNotSupported       PullOperationStatus = "NotSupported"
-	PullOperationStatusRateLimitError     PullOperationStatus = "RateLimitError"
-	PullOperationStatusPermissionsError   PullOperationStatus = "PermissionsError"
-	PullOperationStatusPrerequisiteNotMet PullOperationStatus = "PrerequisiteNotMet"
+	StatusInitial            Status = "Initial"
+	StatusQueued             Status = "Queued"
+	StatusFetching           Status = "Fetching"
+	StatusMapQueued          Status = "MapQueued"
+	StatusMapping            Status = "Mapping"
+	StatusComplete           Status = "Complete"
+	StatusFetchError         Status = "FetchError"
+	StatusMapError           Status = "MapError"
+	StatusInternalError      Status = "InternalError"
+	StatusProcessingQueued   Status = "ProcessingQueued"
+	StatusProcessing         Status = "Processing"
+	StatusProcessingError    Status = "ProcessingError"
+	StatusValidationQueued   Status = "ValidationQueued"
+	StatusValidating         Status = "Validating"
+	StatusValidationError    Status = "ValidationError"
+	StatusAuthError          Status = "AuthError"
+	StatusCancelled          Status = "Cancelled"
+	StatusRouting            Status = "Routing"
+	StatusRoutingError       Status = "RoutingError"
+	StatusNotSupported       Status = "NotSupported"
+	StatusRateLimitError     Status = "RateLimitError"
+	StatusPermissionsError   Status = "PermissionsError"
+	StatusPrerequisiteNotMet Status = "PrerequisiteNotMet"
 )
 
-func (e PullOperationStatus) ToPointer() *PullOperationStatus {
+func (e Status) ToPointer() *Status {
 	return &e
 }
 
-func (e *PullOperationStatus) UnmarshalJSON(data []byte) error {
+func (e *Status) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -91,10 +91,10 @@ func (e *PullOperationStatus) UnmarshalJSON(data []byte) error {
 	case "PermissionsError":
 		fallthrough
 	case "PrerequisiteNotMet":
-		*e = PullOperationStatus(v)
+		*e = Status(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for PullOperationStatus: %v", v)
+		return fmt.Errorf("invalid value for Status: %v", v)
 	}
 }
 
@@ -125,13 +125,13 @@ type PullOperation struct {
 	Completed *string `json:"completed,omitempty"`
 	// Unique identifier of the connection associated to this pull operation.
 	ConnectionID string `json:"connectionId"`
-	// Available Data types
-	DataType DataType `json:"dataType"`
+	// The data type you are requesting in a pull operation.
+	DataType string `json:"dataType"`
 	// A message about a transient or persistent error.
 	ErrorMessage *string `json:"errorMessage,omitempty"`
 	// Unique identifier of the pull operation.
 	ID string `json:"id"`
-	// `True` if the pull operation completed successfully.
+	// `True` if the pull operation is completed successfully. The `isCompleted` property is not queryable. To filter failed pull operations, query by `status!=Complete&&status!=NotSupported` instead.
 	IsCompleted bool `json:"isCompleted"`
 	// `True` if the pull operation entered an error state.
 	IsErrored bool `json:"isErrored"`
@@ -158,7 +158,9 @@ type PullOperation struct {
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	Requested string `json:"requested"`
 	// The current status of the pull operation.
-	Status PullOperationStatus `json:"status"`
+	Status Status `json:"status"`
+	// Additional information about the dataset status.
+	StatusDescription *string `json:"statusDescription,omitempty"`
 }
 
 func (o *PullOperation) GetCompanyID() string {
@@ -182,9 +184,9 @@ func (o *PullOperation) GetConnectionID() string {
 	return o.ConnectionID
 }
 
-func (o *PullOperation) GetDataType() DataType {
+func (o *PullOperation) GetDataType() string {
 	if o == nil {
-		return DataType("")
+		return ""
 	}
 	return o.DataType
 }
@@ -231,9 +233,16 @@ func (o *PullOperation) GetRequested() string {
 	return o.Requested
 }
 
-func (o *PullOperation) GetStatus() PullOperationStatus {
+func (o *PullOperation) GetStatus() Status {
 	if o == nil {
-		return PullOperationStatus("")
+		return Status("")
 	}
 	return o.Status
+}
+
+func (o *PullOperation) GetStatusDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.StatusDescription
 }
