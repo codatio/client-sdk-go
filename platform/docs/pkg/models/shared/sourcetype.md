@@ -10,5 +10,6 @@ The type of platform of the connection.
 | `SourceTypeAccounting` | Accounting             |
 | `SourceTypeBanking`    | Banking                |
 | `SourceTypeCommerce`   | Commerce               |
+| `SourceTypeBankFeed`   | BankFeed               |
 | `SourceTypeOther`      | Other                  |
 | `SourceTypeUnknown`    | Unknown                |
