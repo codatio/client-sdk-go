@@ -1,28 +1,13 @@
-configVersion: 1.0.0
-management:
-  docChecksum: a19e6e4f901ace72e0fa1bb907ccb71c
-  docVersion: 3.0.0
-  speakeasyVersion: 1.126.3
-  generationVersion: 2.214.3
+configVersion: 2.0.0
 generation:
-  comments: {}
   sdkClassName: CodatBankFeeds
-  repoURL: https://github.com/codatio/client-sdk-go.git
   usageSnippets:
     optionalPropertyRendering: withExample
+  fixes:
+    nameResolutionDec2023: false
   telemetryEnabled: true
-features:
-  go:
-    constsAndDefaults: 0.1.2
-    core: 3.2.0
-    deprecations: 2.81.1
-    examples: 2.81.3
-    globalSecurity: 2.82.3
-    globalServerURLs: 2.82.1
-    nameOverrides: 2.81.1
-    retries: 2.82.1
 go:
-  version: 4.1.0
+  version: 5.0.0
   clientServerStatusCodesAsErrors: true
   flattenGlobalSecurity: false
   imports:
@@ -34,9 +19,6 @@ go:
       shared: pkg/models/shared
       webhooks: pkg/models/webhooks
   inputModelSuffix: input
-  installationURL: https://github.com/codatio/client-sdk-go/bank-feeds
   maxMethodParams: 0
   outputModelSuffix: output
   packageName: github.com/codatio/client-sdk-go/bank-feeds
-  published: true
-  repoSubDirectory: bank-feeds

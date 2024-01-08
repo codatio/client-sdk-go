@@ -25,10 +25,10 @@ Use the [List Integrations](https://docs.codat.io/bank-feeds-api#/operations/lis
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
+	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/shared"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v5"
 	"context"
-	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/operations"
 	"log"
 )
 
@@ -71,7 +71,7 @@ func main() {
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
 
 ## Delete
 
@@ -84,10 +84,10 @@ This operation is not reversible. The end user would need to reauthorize a new d
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
+	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/shared"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v5"
 	"context"
-	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/operations"
 	"log"
 	"net/http"
 )
@@ -129,7 +129,7 @@ func main() {
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
 
 ## Get
 
@@ -141,10 +141,10 @@ func main() {
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
+	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/shared"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v5"
 	"context"
-	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/operations"
 	"log"
 )
 
@@ -185,7 +185,7 @@ func main() {
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
 
 ## List
 
@@ -197,10 +197,10 @@ func main() {
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
+	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/shared"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v5"
 	"context"
-	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/operations"
 	"log"
 )
 
@@ -243,7 +243,7 @@ func main() {
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
 
 ## Unlink
 
@@ -255,10 +255,10 @@ func main() {
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
+	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/shared"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v5"
 	"context"
-	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/operations"
 	"log"
 )
 
@@ -300,4 +300,4 @@ func main() {
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
