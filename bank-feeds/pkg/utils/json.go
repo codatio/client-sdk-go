@@ -12,7 +12,7 @@ import (
 	"time"
 	"unsafe"
 
-	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/types"
+	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/types"
 
 	"github.com/ericlagergren/decimal"
 )

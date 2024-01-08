@@ -23,8 +23,8 @@ package main
 
 import (
 	"context"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
-	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v5"
+	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/shared"
 	"log"
 )
 
@@ -38,7 +38,12 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: bankfeeds.String("Requested early access to the new financing scheme."),
-		Name:        "Bank of Dave",
+		Groups: []shared.Items{
+			shared.Items{
+				ID: bankfeeds.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
+			},
+		},
+		Name: "Bank of Dave",
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -115,9 +120,9 @@ package main
 
 import (
 	"context"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
-	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/utils"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v5"
+	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/utils"
 	"log"
 	"pkg/models/operations"
 )
@@ -132,7 +137,12 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: bankfeeds.String("Requested early access to the new financing scheme."),
-		Name:        "Bank of Dave",
+		Groups: []shared.Items{
+			shared.Items{
+				ID: bankfeeds.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
+			},
+		},
+		Name: "Bank of Dave",
 	}, operations.WithRetries(
 		utils.RetryConfig{
 			Strategy: "backoff",
@@ -161,9 +171,9 @@ package main
 
 import (
 	"context"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
-	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/utils"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v5"
+	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/utils"
 	"log"
 )
 
@@ -188,7 +198,12 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: bankfeeds.String("Requested early access to the new financing scheme."),
-		Name:        "Bank of Dave",
+		Groups: []shared.Items{
+			shared.Items{
+				ID: bankfeeds.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
+			},
+		},
+		Name: "Bank of Dave",
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -212,7 +227,7 @@ Handling errors in this SDK should largely match your expectations.  All operati
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 400,401,402,403,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
 
 ### Example
 
@@ -222,9 +237,9 @@ package main
 import (
 	"context"
 	"errors"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
-	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/sdkerrors"
-	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v5"
+	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/shared"
 	"log"
 )
 
@@ -238,7 +253,12 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: bankfeeds.String("Requested early access to the new financing scheme."),
-		Name:        "Bank of Dave",
+		Groups: []shared.Items{
+			shared.Items{
+				ID: bankfeeds.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
+			},
+		},
+		Name: "Bank of Dave",
 	})
 	if err != nil {
 
@@ -279,8 +299,8 @@ package main
 
 import (
 	"context"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
-	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v5"
+	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/shared"
 	"log"
 )
 
@@ -295,7 +315,12 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: bankfeeds.String("Requested early access to the new financing scheme."),
-		Name:        "Bank of Dave",
+		Groups: []shared.Items{
+			shared.Items{
+				ID: bankfeeds.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
+			},
+		},
+		Name: "Bank of Dave",
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -317,8 +342,8 @@ package main
 
 import (
 	"context"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
-	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v5"
+	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/shared"
 	"log"
 )
 
@@ -333,7 +358,12 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: bankfeeds.String("Requested early access to the new financing scheme."),
-		Name:        "Bank of Dave",
+		Groups: []shared.Items{
+			shared.Items{
+				ID: bankfeeds.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
+			},
+		},
+		Name: "Bank of Dave",
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -397,8 +427,8 @@ package main
 
 import (
 	"context"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
-	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v5"
+	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/shared"
 	"log"
 )
 
@@ -412,7 +442,12 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: bankfeeds.String("Requested early access to the new financing scheme."),
-		Name:        "Bank of Dave",
+		Groups: []shared.Items{
+			shared.Items{
+				ID: bankfeeds.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
+			},
+		},
+		Name: "Bank of Dave",
 	})
 	if err != nil {
 		log.Fatal(err)

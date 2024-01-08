@@ -45,10 +45,10 @@ The method of mapping the source account to the target account varies depending 
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
+	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/shared"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v5"
 	"context"
-	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/operations"
 	"log"
 )
 
@@ -95,7 +95,7 @@ func main() {
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
 
 ## Delete
 
@@ -110,10 +110,10 @@ Removing a source account will also remove any mapping between the source bank f
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
+	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/shared"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v5"
 	"context"
-	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/operations"
 	"log"
 	"net/http"
 )
@@ -156,7 +156,7 @@ func main() {
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
 
 ## DeleteCredentials
 
@@ -170,10 +170,10 @@ In cases where multiple credential sets have been generated, a single API call t
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
+	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/shared"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v5"
 	"context"
-	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/operations"
 	"log"
 	"net/http"
 )
@@ -215,7 +215,7 @@ func main() {
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
 
 ## GenerateCredentials
 
@@ -230,10 +230,10 @@ The old credentials will still be valid until the revoke credentials endpoint is
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
+	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/shared"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v5"
 	"context"
-	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/operations"
 	"log"
 )
 
@@ -275,7 +275,7 @@ func main() {
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
 
 ## List
 
@@ -290,10 +290,10 @@ func main() {
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
+	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/shared"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v5"
 	"context"
-	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/operations"
 	"log"
 )
 
@@ -313,7 +313,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.SourceAccount != nil {
+    if res.SourceAccounts != nil {
         // handle response
     }
 }
@@ -334,7 +334,7 @@ func main() {
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
 
 ## Update
 
@@ -347,10 +347,10 @@ func main() {
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/shared"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v4"
+	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/shared"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v5"
 	"context"
-	"github.com/codatio/client-sdk-go/bank-feeds/v4/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/operations"
 	"log"
 )
 
@@ -398,4 +398,4 @@ func main() {
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
