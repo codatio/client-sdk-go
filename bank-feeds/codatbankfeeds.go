@@ -88,8 +88,12 @@ type CodatBankFeeds struct {
 	AccountMapping *AccountMapping
 	// Source accounts act as a bridge to bank accounts in accounting software.
 	SourceAccounts *SourceAccounts
+	// Access bank accounts in an SMBs accounting platform.
+	BankAccounts *BankAccounts
 	// Transactions represent debits and credits from a source account.
 	Transactions *Transactions
+	// Configure bank feeds for a company.
+	Configuration *Configuration
 
 	sdkConfiguration sdkConfiguration
 }
@@ -166,9 +170,9 @@ func New(opts ...SDKOption) *CodatBankFeeds {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "5.0.0",
-			GenVersion:        "2.228.3",
-			UserAgent:         "speakeasy-sdk/go 5.0.0 2.228.3 3.0.0 github.com/codatio/client-sdk-go/bank-feeds",
+			SDKVersion:        "5.0.1",
+			GenVersion:        "2.230.3",
+			UserAgent:         "speakeasy-sdk/go 5.0.1 2.230.3 3.0.0 github.com/codatio/client-sdk-go/bank-feeds",
 		},
 	}
 	for _, opt := range opts {
@@ -195,7 +199,11 @@ func New(opts ...SDKOption) *CodatBankFeeds {
 
 	sdk.SourceAccounts = newSourceAccounts(sdk.sdkConfiguration)
 
+	sdk.BankAccounts = newBankAccounts(sdk.sdkConfiguration)
+
 	sdk.Transactions = newTransactions(sdk.sdkConfiguration)
+
+	sdk.Configuration = newConfiguration(sdk.sdkConfiguration)
 
 	return sdk
 }

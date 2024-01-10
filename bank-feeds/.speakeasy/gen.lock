@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: bdb0eb46-d457-4d7c-bcaf-83814a78f76b
 management:
-  docChecksum: b095b0a347cf654b362ab0929e984eb2
+  docChecksum: 3a0b899f2dc3766b39e4fd3e931ebe0c
   docVersion: 3.0.0
   speakeasyVersion: internal
-  generationVersion: 2.228.3
-  releaseVersion: 5.0.0
-  configChecksum: f4e19902565403263e5ad1e58e6d8ae0
+  generationVersion: 2.230.3
+  releaseVersion: 5.0.1
+  configChecksum: fa00bdf830292fdafa3c9c4c5cc1e0c1
   repoURL: https://github.com/codatio/client-sdk-go.git
   repoSubDirectory: bank-feeds
   installationURL: https://github.com/codatio/client-sdk-go/bank-feeds
@@ -26,7 +26,9 @@ generatedFiles:
   - connections.go
   - accountmapping.go
   - sourceaccounts.go
+  - bankaccounts.go
   - transactions.go
+  - configuration.go
   - codatbankfeeds.go
   - go.mod
   - go.sum
@@ -65,9 +67,12 @@ generatedFiles:
   - /pkg/models/operations/generatecredentials.go
   - /pkg/models/operations/listsourceaccounts.go
   - /pkg/models/operations/updatesourceaccount.go
+  - /pkg/models/operations/listbankaccounts.go
   - /pkg/models/operations/createbanktransactions.go
   - /pkg/models/operations/getcreateoperation.go
   - /pkg/models/operations/listcreateoperations.go
+  - /pkg/models/operations/getconfiguration.go
+  - /pkg/models/operations/setconfiguration.go
   - /pkg/models/shared/zero.go
   - /pkg/models/shared/company.go
   - /pkg/models/shared/connection.go
@@ -84,6 +89,7 @@ generatedFiles:
   - /pkg/models/shared/targetaccountoption.go
   - /pkg/models/shared/sourceaccount.go
   - /pkg/models/shared/bankaccountcredentials.go
+  - /pkg/models/shared/bankaccounts.go
   - /pkg/models/shared/createbanktransactionsresponse.go
   - /pkg/models/shared/validation.go
   - /pkg/models/shared/validationitem.go
@@ -96,6 +102,15 @@ generatedFiles:
   - /pkg/models/shared/pushoperationref.go
   - /pkg/models/shared/pushoperation.go
   - /pkg/models/shared/pushoperations.go
+  - /pkg/models/shared/configuration.go
+  - /pkg/models/shared/configurationschedule.go
+  - /pkg/models/shared/syncconfiguration.go
+  - /pkg/models/shared/syncasexpenses.go
+  - /pkg/models/shared/configurationsupplier.go
+  - /pkg/models/shared/configurationcontactref.go
+  - /pkg/models/shared/configurationcustomer.go
+  - /pkg/models/shared/bankaccountoption.go
+  - /pkg/models/shared/syncasbankfeeds.go
   - /pkg/models/shared/security.go
   - /pkg/models/shared/clientratelimitreachedwebhook.go
   - /pkg/models/shared/clientratelimitreachedwebhookdata.go
@@ -141,12 +156,18 @@ generatedFiles:
   - docs/pkg/models/operations/listsourceaccountsresponse.md
   - docs/pkg/models/operations/updatesourceaccountrequest.md
   - docs/pkg/models/operations/updatesourceaccountresponse.md
+  - docs/pkg/models/operations/listbankaccountsrequest.md
+  - docs/pkg/models/operations/listbankaccountsresponse.md
   - docs/pkg/models/operations/createbanktransactionsrequest.md
   - docs/pkg/models/operations/createbanktransactionsresponse.md
   - docs/pkg/models/operations/getcreateoperationrequest.md
   - docs/pkg/models/operations/getcreateoperationresponse.md
   - docs/pkg/models/operations/listcreateoperationsrequest.md
   - docs/pkg/models/operations/listcreateoperationsresponse.md
+  - docs/pkg/models/operations/getconfigurationrequest.md
+  - docs/pkg/models/operations/getconfigurationresponse.md
+  - docs/pkg/models/operations/setconfigurationrequest.md
+  - docs/pkg/models/operations/setconfigurationresponse.md
   - docs/pkg/models/shared/zero.md
   - docs/pkg/models/shared/groupreference.md
   - docs/pkg/models/shared/company.md
@@ -165,6 +186,11 @@ generatedFiles:
   - docs/pkg/models/shared/targetaccountoption.md
   - docs/pkg/models/shared/sourceaccount.md
   - docs/pkg/models/shared/bankaccountcredentials.md
+  - docs/pkg/models/shared/bankaccounttype.md
+  - docs/pkg/models/shared/metadata.md
+  - docs/pkg/models/shared/supplementaldata.md
+  - docs/pkg/models/shared/accountingbankaccount.md
+  - docs/pkg/models/shared/bankaccounts.md
   - docs/pkg/models/shared/createbanktransactionsresponse.md
   - docs/pkg/models/shared/validation.md
   - docs/pkg/models/shared/validationitem.md
@@ -178,6 +204,15 @@ generatedFiles:
   - docs/pkg/models/shared/pushoperationref.md
   - docs/pkg/models/shared/pushoperation.md
   - docs/pkg/models/shared/pushoperations.md
+  - docs/pkg/models/shared/configuration.md
+  - docs/pkg/models/shared/configurationschedule.md
+  - docs/pkg/models/shared/syncconfiguration.md
+  - docs/pkg/models/shared/syncasexpenses.md
+  - docs/pkg/models/shared/configurationsupplier.md
+  - docs/pkg/models/shared/configurationcontactref.md
+  - docs/pkg/models/shared/configurationcustomer.md
+  - docs/pkg/models/shared/bankaccountoption.md
+  - docs/pkg/models/shared/syncasbankfeeds.md
   - docs/pkg/models/shared/security.md
   - docs/pkg/models/shared/clientratelimitreachedwebhook.md
   - docs/pkg/models/shared/clientratelimitreachedwebhookdata.md
@@ -192,7 +227,9 @@ generatedFiles:
   - docs/sdks/connections/README.md
   - docs/sdks/accountmapping/README.md
   - docs/sdks/sourceaccounts/README.md
+  - docs/sdks/bankaccounts/README.md
   - docs/sdks/transactions/README.md
+  - docs/sdks/configuration/README.md
   - USAGE.md
   - pkg/models/operations/options.go
   - .gitattributes
