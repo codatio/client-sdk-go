@@ -1,0 +1,12 @@
+# SyncAsExpenses
+
+
+## Fields
+
+| Field                                                                                | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `BankAccountOptions`                                                                 | [][shared.BankAccountOption](../../../pkg/models/shared/bankaccountoption.md)        | :heavy_minus_sign:                                                                   | N/A                                                                                  |
+| `Customer`                                                                           | [*shared.ConfigurationCustomer](../../../pkg/models/shared/configurationcustomer.md) | :heavy_minus_sign:                                                                   | N/A                                                                                  |
+| `EnableSync`                                                                         | **bool*                                                                              | :heavy_minus_sign:                                                                   | True if expense sync is enabled.                                                     |
+| `SelectedBankAccountID`                                                              | **string*                                                                            | :heavy_minus_sign:                                                                   | The bank account ID being synced.                                                    |
+| `Supplier`                                                                           | [*shared.ConfigurationSupplier](../../../pkg/models/shared/configurationsupplier.md) | :heavy_minus_sign:                                                                   | N/A                                                                                  |

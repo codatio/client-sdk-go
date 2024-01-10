@@ -90,11 +90,20 @@ func main() {
 * [List](docs/sdks/sourceaccounts/README.md#list) - List source accounts
 * [Update](docs/sdks/sourceaccounts/README.md#update) - Update source account
 
+### [BankAccounts](docs/sdks/bankaccounts/README.md)
+
+* [List](docs/sdks/bankaccounts/README.md#list) - List bank accounts
+
 ### [Transactions](docs/sdks/transactions/README.md)
 
 * [Create](docs/sdks/transactions/README.md#create) - Create bank transactions
 * [GetCreateOperation](docs/sdks/transactions/README.md#getcreateoperation) - Get create operation
 * [ListCreateOperations](docs/sdks/transactions/README.md#listcreateoperations) - List create operations
+
+### [Configuration](docs/sdks/configuration/README.md)
+
+* [Get](docs/sdks/configuration/README.md#get) - Get configuration
+* [SetConfiguration](docs/sdks/configuration/README.md#setconfiguration) - Set configuration
 <!-- End Available Resources and Operations [operations] -->
 
 

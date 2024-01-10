@@ -7,7 +7,7 @@ generation:
     nameResolutionDec2023: false
   telemetryEnabled: true
 go:
-  version: 5.0.0
+  version: 5.0.1
   clientServerStatusCodesAsErrors: true
   flattenGlobalSecurity: false
   imports:
