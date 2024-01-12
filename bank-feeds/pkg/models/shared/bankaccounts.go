@@ -9,22 +9,22 @@ import (
 	"github.com/ericlagergren/decimal"
 )
 
-// BankAccountType - The type of transactions and balances on the account.
+// BankAccountsBankAccountType - The type of transactions and balances on the account.
 // For Credit accounts, positive balances are liabilities, and positive transactions **reduce** liabilities.
 // For Debit accounts, positive balances are assets, and positive transactions **increase** assets.
-type BankAccountType string
+type BankAccountsBankAccountType string
 
 const (
-	BankAccountTypeUnknown BankAccountType = "Unknown"
-	BankAccountTypeCredit  BankAccountType = "Credit"
-	BankAccountTypeDebit   BankAccountType = "Debit"
+	BankAccountsBankAccountTypeUnknown BankAccountsBankAccountType = "Unknown"
+	BankAccountsBankAccountTypeCredit  BankAccountsBankAccountType = "Credit"
+	BankAccountsBankAccountTypeDebit   BankAccountsBankAccountType = "Debit"
 )
 
-func (e BankAccountType) ToPointer() *BankAccountType {
+func (e BankAccountsBankAccountType) ToPointer() *BankAccountsBankAccountType {
 	return &e
 }
 
-func (e *BankAccountType) UnmarshalJSON(data []byte) error {
+func (e *BankAccountsBankAccountType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -35,40 +35,40 @@ func (e *BankAccountType) UnmarshalJSON(data []byte) error {
 	case "Credit":
 		fallthrough
 	case "Debit":
-		*e = BankAccountType(v)
+		*e = BankAccountsBankAccountType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for BankAccountType: %v", v)
+		return fmt.Errorf("invalid value for BankAccountsBankAccountType: %v", v)
 	}
 }
 
-type Metadata struct {
+type BankAccountsMetadata struct {
 	// Indicates whether the record has been deleted in the third-party system this record originated from.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 }
 
-func (o *Metadata) GetIsDeleted() *bool {
+func (o *BankAccountsMetadata) GetIsDeleted() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.IsDeleted
 }
 
-// SupplementalData - Supplemental data is additional data you can include in our standard data types.
+// BankAccountsSupplementalData - Supplemental data is additional data you can include in our standard data types.
 //
 // It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
-type SupplementalData struct {
+type BankAccountsSupplementalData struct {
 	Content map[string]map[string]interface{} `json:"content,omitempty"`
 }
 
-func (o *SupplementalData) GetContent() map[string]map[string]interface{} {
+func (o *BankAccountsSupplementalData) GetContent() map[string]map[string]interface{} {
 	if o == nil {
 		return nil
 	}
 	return o.Content
 }
 
-// AccountingBankAccount - > **Accessing Bank Accounts through Banking API**
+// BankAccountsAccountingBankAccount - > **Accessing Bank Accounts through Banking API**
 // >
 // > This datatype was originally used for accessing bank account data both in accounting integrations and open banking aggregators.
 // >
@@ -84,7 +84,7 @@ func (o *SupplementalData) GetContent() map[string]map[string]interface{} {
 // * The name and ID of the account in the accounting platform.
 // * The currency and balance of the account.
 // * The sort code and account number.
-type AccountingBankAccount struct {
+type BankAccountsAccountingBankAccount struct {
 	// Name of the bank account in the accounting platform.
 	AccountName *string `json:"accountName,omitempty"`
 	// Account number for the bank account.
@@ -98,7 +98,7 @@ type AccountingBankAccount struct {
 	// The type of transactions and balances on the account.
 	// For Credit accounts, positive balances are liabilities, and positive transactions **reduce** liabilities.
 	// For Debit accounts, positive balances are assets, and positive transactions **increase** assets.
-	AccountType *BankAccountType `json:"accountType,omitempty"`
+	AccountType *BankAccountsBankAccountType `json:"accountType,omitempty"`
 	// Total available balance of the bank account as reported by the underlying data source. This may take into account overdrafts or pending transactions for example.
 	AvailableBalance *decimal.Big `decimal:"number" json:"availableBalance,omitempty"`
 	// Balance of the bank account.
@@ -116,9 +116,9 @@ type AccountingBankAccount struct {
 	// Identifier for the account, unique for the company in the accounting platform.
 	ID *string `json:"id,omitempty"`
 	// The institution of the bank account.
-	Institution  *string   `json:"institution,omitempty"`
-	Metadata     *Metadata `json:"metadata,omitempty"`
-	ModifiedDate *string   `json:"modifiedDate,omitempty"`
+	Institution  *string               `json:"institution,omitempty"`
+	Metadata     *BankAccountsMetadata `json:"metadata,omitempty"`
+	ModifiedDate *string               `json:"modifiedDate,omitempty"`
 	// Code used to identify each nominal account for a business.
 	NominalCode *string `json:"nominalCode,omitempty"`
 	// Pre-arranged overdraft limit of the account.
@@ -134,126 +134,126 @@ type AccountingBankAccount struct {
 	// Supplemental data is additional data you can include in our standard data types.
 	//
 	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
-	SupplementalData *SupplementalData `json:"supplementalData,omitempty"`
+	SupplementalData *BankAccountsSupplementalData `json:"supplementalData,omitempty"`
 }
 
-func (a AccountingBankAccount) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(a, "", false)
+func (b BankAccountsAccountingBankAccount) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(b, "", false)
 }
 
-func (a *AccountingBankAccount) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+func (b *BankAccountsAccountingBankAccount) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &b, "", false, false); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AccountingBankAccount) GetAccountName() *string {
+func (o *BankAccountsAccountingBankAccount) GetAccountName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.AccountName
 }
 
-func (o *AccountingBankAccount) GetAccountNumber() *string {
+func (o *BankAccountsAccountingBankAccount) GetAccountNumber() *string {
 	if o == nil {
 		return nil
 	}
 	return o.AccountNumber
 }
 
-func (o *AccountingBankAccount) GetAccountType() *BankAccountType {
+func (o *BankAccountsAccountingBankAccount) GetAccountType() *BankAccountsBankAccountType {
 	if o == nil {
 		return nil
 	}
 	return o.AccountType
 }
 
-func (o *AccountingBankAccount) GetAvailableBalance() *decimal.Big {
+func (o *BankAccountsAccountingBankAccount) GetAvailableBalance() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.AvailableBalance
 }
 
-func (o *AccountingBankAccount) GetBalance() *decimal.Big {
+func (o *BankAccountsAccountingBankAccount) GetBalance() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.Balance
 }
 
-func (o *AccountingBankAccount) GetCurrency() *string {
+func (o *BankAccountsAccountingBankAccount) GetCurrency() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Currency
 }
 
-func (o *AccountingBankAccount) GetIBan() *string {
+func (o *BankAccountsAccountingBankAccount) GetIBan() *string {
 	if o == nil {
 		return nil
 	}
 	return o.IBan
 }
 
-func (o *AccountingBankAccount) GetID() *string {
+func (o *BankAccountsAccountingBankAccount) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *AccountingBankAccount) GetInstitution() *string {
+func (o *BankAccountsAccountingBankAccount) GetInstitution() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Institution
 }
 
-func (o *AccountingBankAccount) GetMetadata() *Metadata {
+func (o *BankAccountsAccountingBankAccount) GetMetadata() *BankAccountsMetadata {
 	if o == nil {
 		return nil
 	}
 	return o.Metadata
 }
 
-func (o *AccountingBankAccount) GetModifiedDate() *string {
+func (o *BankAccountsAccountingBankAccount) GetModifiedDate() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ModifiedDate
 }
 
-func (o *AccountingBankAccount) GetNominalCode() *string {
+func (o *BankAccountsAccountingBankAccount) GetNominalCode() *string {
 	if o == nil {
 		return nil
 	}
 	return o.NominalCode
 }
 
-func (o *AccountingBankAccount) GetOverdraftLimit() *decimal.Big {
+func (o *BankAccountsAccountingBankAccount) GetOverdraftLimit() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.OverdraftLimit
 }
 
-func (o *AccountingBankAccount) GetSortCode() *string {
+func (o *BankAccountsAccountingBankAccount) GetSortCode() *string {
 	if o == nil {
 		return nil
 	}
 	return o.SortCode
 }
 
-func (o *AccountingBankAccount) GetSourceModifiedDate() *string {
+func (o *BankAccountsAccountingBankAccount) GetSourceModifiedDate() *string {
 	if o == nil {
 		return nil
 	}
 	return o.SourceModifiedDate
 }
 
-func (o *AccountingBankAccount) GetSupplementalData() *SupplementalData {
+func (o *BankAccountsAccountingBankAccount) GetSupplementalData() *BankAccountsSupplementalData {
 	if o == nil {
 		return nil
 	}
@@ -265,8 +265,8 @@ type BankAccounts struct {
 	// Current page number.
 	PageNumber int64 `json:"pageNumber"`
 	// Number of items to return in results array.
-	PageSize int64                   `json:"pageSize"`
-	Results  []AccountingBankAccount `json:"results,omitempty"`
+	PageSize int64                               `json:"pageSize"`
+	Results  []BankAccountsAccountingBankAccount `json:"results,omitempty"`
 	// Total number of items.
 	TotalResults int64 `json:"totalResults"`
 }
@@ -292,7 +292,7 @@ func (o *BankAccounts) GetPageSize() int64 {
 	return o.PageSize
 }
 
-func (o *BankAccounts) GetResults() []AccountingBankAccount {
+func (o *BankAccounts) GetResults() []BankAccountsAccountingBankAccount {
 	if o == nil {
 		return nil
 	}

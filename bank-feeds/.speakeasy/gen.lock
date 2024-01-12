@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: bdb0eb46-d457-4d7c-bcaf-83814a78f76b
 management:
-  docChecksum: 3a0b899f2dc3766b39e4fd3e931ebe0c
+  docChecksum: d8a3c846c6e6c943937af494c3623e4f
   docVersion: 3.0.0
   speakeasyVersion: internal
-  generationVersion: 2.230.3
-  releaseVersion: 5.0.1
-  configChecksum: fa00bdf830292fdafa3c9c4c5cc1e0c1
+  generationVersion: 2.231.0
+  releaseVersion: 5.1.0
+  configChecksum: 73f46500e5bf734883ab9030f980106d
   repoURL: https://github.com/codatio/client-sdk-go.git
   repoSubDirectory: bank-feeds
   installationURL: https://github.com/codatio/client-sdk-go/bank-feeds
@@ -19,6 +19,7 @@ features:
     examples: 2.81.3
     globalSecurity: 2.82.3
     globalServerURLs: 2.82.1
+    inputOutputModels: 2.83.0
     nameOverrides: 2.81.1
     retries: 2.82.1
 generatedFiles:
@@ -67,6 +68,8 @@ generatedFiles:
   - /pkg/models/operations/generatecredentials.go
   - /pkg/models/operations/listsourceaccounts.go
   - /pkg/models/operations/updatesourceaccount.go
+  - /pkg/models/operations/createbankaccount.go
+  - /pkg/models/operations/getcreatebankaccountsmodel.go
   - /pkg/models/operations/listbankaccounts.go
   - /pkg/models/operations/createbanktransactions.go
   - /pkg/models/operations/getcreateoperation.go
@@ -89,17 +92,25 @@ generatedFiles:
   - /pkg/models/shared/targetaccountoption.go
   - /pkg/models/shared/sourceaccount.go
   - /pkg/models/shared/bankaccountcredentials.go
-  - /pkg/models/shared/bankaccounts.go
-  - /pkg/models/shared/createbanktransactionsresponse.go
+  - /pkg/models/shared/bankaccountcreateresponse.go
   - /pkg/models/shared/validation.go
   - /pkg/models/shared/validationitem.go
   - /pkg/models/shared/pushoperationstatus.go
   - /pkg/models/shared/datatype.go
-  - /pkg/models/shared/createbanktransactions.go
-  - /pkg/models/shared/banktransactions.go
   - /pkg/models/shared/pushoperationchange.go
   - /pkg/models/shared/pushchangetype.go
   - /pkg/models/shared/pushoperationref.go
+  - /pkg/models/shared/bankaccountprototype.go
+  - /pkg/models/shared/pushoption.go
+  - /pkg/models/shared/pushvalidationinfo.go
+  - /pkg/models/shared/pushfieldvalidation.go
+  - /pkg/models/shared/pushoptiontype.go
+  - /pkg/models/shared/pushoptionproperty.go
+  - /pkg/models/shared/pushoptionchoice.go
+  - /pkg/models/shared/bankaccounts.go
+  - /pkg/models/shared/createbanktransactionsresponse.go
+  - /pkg/models/shared/createbanktransactions.go
+  - /pkg/models/shared/banktransactions.go
   - /pkg/models/shared/pushoperation.go
   - /pkg/models/shared/pushoperations.go
   - /pkg/models/shared/configuration.go
@@ -156,6 +167,10 @@ generatedFiles:
   - docs/pkg/models/operations/listsourceaccountsresponse.md
   - docs/pkg/models/operations/updatesourceaccountrequest.md
   - docs/pkg/models/operations/updatesourceaccountresponse.md
+  - docs/pkg/models/operations/createbankaccountrequest.md
+  - docs/pkg/models/operations/createbankaccountresponse.md
+  - docs/pkg/models/operations/getcreatebankaccountsmodelrequest.md
+  - docs/pkg/models/operations/getcreatebankaccountsmodelresponse.md
   - docs/pkg/models/operations/listbankaccountsrequest.md
   - docs/pkg/models/operations/listbankaccountsresponse.md
   - docs/pkg/models/operations/createbanktransactionsrequest.md
@@ -186,22 +201,35 @@ generatedFiles:
   - docs/pkg/models/shared/targetaccountoption.md
   - docs/pkg/models/shared/sourceaccount.md
   - docs/pkg/models/shared/bankaccountcredentials.md
-  - docs/pkg/models/shared/bankaccounttype.md
+  - docs/pkg/models/shared/bankaccountcreateresponsebankaccounttype.md
   - docs/pkg/models/shared/metadata.md
   - docs/pkg/models/shared/supplementaldata.md
   - docs/pkg/models/shared/accountingbankaccount.md
-  - docs/pkg/models/shared/bankaccounts.md
-  - docs/pkg/models/shared/createbanktransactionsresponse.md
+  - docs/pkg/models/shared/bankaccountcreateresponse.md
   - docs/pkg/models/shared/validation.md
   - docs/pkg/models/shared/validationitem.md
   - docs/pkg/models/shared/pushoperationstatus.md
   - docs/pkg/models/shared/datatype.md
-  - docs/pkg/models/shared/createbanktransactions.md
-  - docs/pkg/models/shared/banktransactiontype.md
-  - docs/pkg/models/shared/banktransactions.md
   - docs/pkg/models/shared/pushoperationchange.md
   - docs/pkg/models/shared/pushchangetype.md
   - docs/pkg/models/shared/pushoperationref.md
+  - docs/pkg/models/shared/bankaccounttype.md
+  - docs/pkg/models/shared/bankaccountprototype.md
+  - docs/pkg/models/shared/pushoption.md
+  - docs/pkg/models/shared/pushvalidationinfo.md
+  - docs/pkg/models/shared/pushfieldvalidation.md
+  - docs/pkg/models/shared/pushoptiontype.md
+  - docs/pkg/models/shared/pushoptionproperty.md
+  - docs/pkg/models/shared/pushoptionchoice.md
+  - docs/pkg/models/shared/bankaccountsbankaccounttype.md
+  - docs/pkg/models/shared/bankaccountsmetadata.md
+  - docs/pkg/models/shared/bankaccountssupplementaldata.md
+  - docs/pkg/models/shared/bankaccountsaccountingbankaccount.md
+  - docs/pkg/models/shared/bankaccounts.md
+  - docs/pkg/models/shared/createbanktransactionsresponse.md
+  - docs/pkg/models/shared/createbanktransactions.md
+  - docs/pkg/models/shared/banktransactiontype.md
+  - docs/pkg/models/shared/banktransactions.md
   - docs/pkg/models/shared/pushoperation.md
   - docs/pkg/models/shared/pushoperations.md
   - docs/pkg/models/shared/configuration.md
