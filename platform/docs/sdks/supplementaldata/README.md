@@ -25,10 +25,10 @@ See the *examples* for integration-specific frequently requested properties.
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v2"
+	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v3"
 	"context"
-	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/operations"
 	"log"
 	"net/http"
 )
@@ -96,10 +96,10 @@ The *Get configuration* endpoint returns supplemental data configuration previou
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v2"
+	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v3"
 	"context"
-	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/operations"
 	"log"
 )
 

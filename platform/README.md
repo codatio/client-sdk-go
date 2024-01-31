@@ -23,8 +23,8 @@ package main
 
 import (
 	"context"
-	platform "github.com/codatio/client-sdk-go/platform/v2"
-	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v3"
+	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
 	"log"
 )
 
@@ -140,17 +140,17 @@ func main() {
 <!-- Start Retries [retries] -->
 ## Retries
 
-Some of the endpoints in this SDK support retries.  If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API.  However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
+Some of the endpoints in this SDK support retries. If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API. However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
 
-To change the default retry strategy for a single API call, simply provide a retryConfig object to the call:
+To change the default retry strategy for a single API call, simply provide a `RetryConfig` object to the call by using the `WithRetries` option:
 ```go
 package main
 
 import (
 	"context"
-	platform "github.com/codatio/client-sdk-go/platform/v2"
-	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/platform/v2/pkg/utils"
+	platform "github.com/codatio/client-sdk-go/platform/v3"
+	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/platform/v3/pkg/utils"
 	"log"
 	"pkg/models/operations"
 )
@@ -187,15 +187,15 @@ func main() {
 
 ```
 
-If you'd like to override the default retry strategy for all operations that support retries, you can provide a retryConfig at SDK initialization:
+If you'd like to override the default retry strategy for all operations that support retries, you can use the `WithRetryConfig` option at SDK initialization:
 ```go
 package main
 
 import (
 	"context"
-	platform "github.com/codatio/client-sdk-go/platform/v2"
-	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/platform/v2/pkg/utils"
+	platform "github.com/codatio/client-sdk-go/platform/v3"
+	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/platform/v3/pkg/utils"
 	"log"
 )
 
@@ -251,9 +251,9 @@ package main
 import (
 	"context"
 	"errors"
-	platform "github.com/codatio/client-sdk-go/platform/v2"
-	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/sdkerrors"
-	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v3"
+	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
 	"log"
 )
 
@@ -305,8 +305,8 @@ package main
 
 import (
 	"context"
-	platform "github.com/codatio/client-sdk-go/platform/v2"
-	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v3"
+	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
 	"log"
 )
 
@@ -342,8 +342,8 @@ package main
 
 import (
 	"context"
-	platform "github.com/codatio/client-sdk-go/platform/v2"
-	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v3"
+	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
 	"log"
 )
 
@@ -417,8 +417,8 @@ package main
 
 import (
 	"context"
-	platform "github.com/codatio/client-sdk-go/platform/v2"
-	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v3"
+	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
 	"log"
 )
 

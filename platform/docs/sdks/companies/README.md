@@ -28,8 +28,8 @@ If forbidden characters (see `name` pattern) are present in the request, a compa
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v2"
+	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v3"
 	"context"
 	"log"
 )
@@ -92,10 +92,10 @@ Each company can have multiple [connections](https://docs.codat.io/platform-api#
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v2"
+	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v3"
 	"context"
-	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/operations"
 	"log"
 	"net/http"
 )
@@ -152,10 +152,10 @@ Each company can have multiple [connections](https://docs.codat.io/platform-api#
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v2"
+	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v3"
 	"context"
-	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/operations"
 	"log"
 )
 
@@ -210,10 +210,10 @@ Each company can have multiple [connections](https://docs.codat.io/platform-api#
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v2"
+	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v3"
 	"context"
-	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/operations"
 	"log"
 )
 
@@ -271,10 +271,10 @@ Each company can have multiple [connections](https://docs.codat.io/platform-api#
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v2"
+	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v3"
 	"context"
-	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/operations"
 	"log"
 )
 

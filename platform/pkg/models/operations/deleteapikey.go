@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/sdkerrors"
 	"net/http"
 )
 

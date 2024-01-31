@@ -35,8 +35,8 @@ You can [read more](https://docs.codat.io/using-the-api/authentication) about au
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v2"
+	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v3"
 	"context"
 	"log"
 )
@@ -98,10 +98,10 @@ You can [read more](https://docs.codat.io/using-the-api/authentication) about au
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v2"
+	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v3"
 	"context"
-	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/operations"
 	"log"
 )
 
@@ -153,8 +153,8 @@ Fetch your Codat profile.
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v2"
+	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v3"
 	"context"
 	"log"
 )
@@ -204,8 +204,8 @@ Retrieve the [sync settings](https://docs.codat.io/knowledge-base/advanced-sync-
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v2"
+	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v3"
 	"context"
 	"log"
 )
@@ -259,8 +259,8 @@ You can [read more](https://docs.codat.io/using-the-api/authentication) about au
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v2"
+	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v3"
 	"context"
 	"log"
 )
@@ -310,8 +310,8 @@ Update your Codat profile
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v2"
+	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v3"
 	"context"
 	"log"
 )
@@ -372,10 +372,10 @@ Update sync settings for all data types.
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v2"
+	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v3"
 	"context"
-	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/operations"
 	"log"
 	"net/http"
 )
