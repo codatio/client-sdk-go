@@ -5,8 +5,8 @@ package platform
 import (
 	"context"
 	"fmt"
-	"github.com/codatio/client-sdk-go/platform/v2/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/platform/v2/pkg/utils"
+	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/platform/v3/pkg/utils"
 	"net/http"
 	"time"
 )
@@ -167,9 +167,9 @@ func New(opts ...SDKOption) *CodatPlatform {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "2.1.0",
-			GenVersion:        "2.223.0",
-			UserAgent:         "speakeasy-sdk/go 2.1.0 2.223.0 3.0.0 github.com/codatio/client-sdk-go/platform",
+			SDKVersion:        "3.0.0",
+			GenVersion:        "2.239.4",
+			UserAgent:         "speakeasy-sdk/go 3.0.0 2.239.4 3.0.0 github.com/codatio/client-sdk-go/platform",
 		},
 	}
 	for _, opt := range opts {

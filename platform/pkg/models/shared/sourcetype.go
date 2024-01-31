@@ -13,8 +13,9 @@ type SourceType string
 const (
 	SourceTypeAccounting SourceType = "Accounting"
 	SourceTypeBanking    SourceType = "Banking"
-	SourceTypeCommerce   SourceType = "Commerce"
 	SourceTypeBankFeed   SourceType = "BankFeed"
+	SourceTypeCommerce   SourceType = "Commerce"
+	SourceTypeExpense    SourceType = "Expense"
 	SourceTypeOther      SourceType = "Other"
 	SourceTypeUnknown    SourceType = "Unknown"
 )
@@ -33,9 +34,11 @@ func (e *SourceType) UnmarshalJSON(data []byte) error {
 		fallthrough
 	case "Banking":
 		fallthrough
+	case "BankFeed":
+		fallthrough
 	case "Commerce":
 		fallthrough
-	case "BankFeed":
+	case "Expense":
 		fallthrough
 	case "Other":
 		fallthrough
