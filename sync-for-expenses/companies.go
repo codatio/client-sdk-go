@@ -27,7 +27,10 @@ func newCompanies(sdkConfig sdkConfiguration) *Companies {
 }
 
 // Create company
-// Creates a new company that can be used to assign connections to.
+// Use the *Create company* endpoint to create a new [company](https://docs.codat.io/sync-for-expenses-api#/schemas/Company) that represents your customer in Codat.
+//
+// A [company](https://docs.codat.io/sync-for-expenses-api#/schemas/Company) represents a business sharing access to their data.
+// Each company can have multiple [connections](https://docs.codat.io/sync-for-expenses-api#/schemas/Connection) to different data sources, such as one connection to Xero for accounting data, two connections to Plaid for two bank accounts, and a connection to Zettle for POS data.
 //
 // If forbidden characters (see `name` pattern) are present in the request, a company will be created with the forbidden characters removed. For example, `Company (Codat[1])` with be created as `Company Codat1`.
 func (s *Companies) Create(ctx context.Context, request *shared.CompanyRequestBody, opts ...operations.Option) (*operations.CreateCompanyResponse, error) {
@@ -156,8 +159,10 @@ func (s *Companies) Create(ctx context.Context, request *shared.CompanyRequestBo
 }
 
 // Delete a company
+// The *Delete company* endpoint permanently deletes a [company](https://docs.codat.io/sync-for-expenses-api#/schemas/Company), its [connections](https://docs.codat.io/sync-for-expenses-api#/schemas/Connection) and any cached data. This operation is irreversible.
 //
-// Permanently deletes a company, its connections and any cached data. This operation is irreversible. If the company ID does not exist an error is returned.
+// A [company](https://docs.codat.io/sync-for-expenses-api#/schemas/Company) represents a business sharing access to their data.
+// Each company can have multiple [connections](https://docs.codat.io/sync-for-expenses-api#/schemas/Connection) to different data sources, such as one connection to Xero for accounting data, two connections to Plaid for two bank accounts, and a connection to Zettle for POS data.
 func (s *Companies) Delete(ctx context.Context, request operations.DeleteCompanyRequest, opts ...operations.Option) (*operations.DeleteCompanyResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -269,7 +274,10 @@ func (s *Companies) Delete(ctx context.Context, request operations.DeleteCompany
 }
 
 // Get company
-// Returns the company for a valid identifier. If the identifier is for a deleted company, a not found response is returned.
+// The *Get company* endpoint returns a single company for a given `companyId`.
+//
+// A [company](https://docs.codat.io/sync-for-expenses-api#/schemas/Company) represents a business sharing access to their data.
+// Each company can have multiple [connections](https://docs.codat.io/sync-for-expenses-api#/schemas/Connection) to different data sources, such as one connection to Xero for accounting data, two connections to Plaid for two bank accounts, and a connection to Zettle for POS data.
 func (s *Companies) Get(ctx context.Context, request operations.GetCompanyRequest, opts ...operations.Option) (*operations.GetCompanyResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -392,7 +400,10 @@ func (s *Companies) Get(ctx context.Context, request operations.GetCompanyReques
 }
 
 // List companies
-// Returns a list of your companies. The company schema contains a list of [connections](https://docs.codat.io/sync-for-expenses-api#/schemas/Connection) related to the company.
+// The *List companies* endpoint returns a list of [companies] associated to your instances.
+//
+// A [company](https://docs.codat.io/sync-for-expenses-api#/schemas/Company) represents a business sharing access to their data.
+// Each company can have multiple [connections](https://docs.codat.io/sync-for-expenses-api#/schemas/Connection) to different data sources, such as one connection to Xero for accounting data, two connections to Plaid for two bank accounts, and a connection to Zettle for POS data.
 func (s *Companies) List(ctx context.Context, request operations.ListCompaniesRequest, opts ...operations.Option) (*operations.ListCompaniesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -518,7 +529,11 @@ func (s *Companies) List(ctx context.Context, request operations.ListCompaniesRe
 }
 
 // Update company
-// Updates both the name and description of the company.
+// Use the *Update company* endpoint to update both the name and description of the company.
+// If you use [groups](https://docs.codat.io/sync-for-expenses-api#/schemas/Group) to manage a set of companies, use the [Add company](https://docs.codat.io/sync-for-expenses-api#/operations/add-company-to-group) or [Remove company](https://docs.codat.io/sync-for-expenses-api#/operations/remove-company-from-group) endpoints to add or remove a company from a group.
+//
+// A [company](https://docs.codat.io/sync-for-expenses-api#/schemas/Company) represents a business sharing access to their data.
+// Each company can have multiple [connections](https://docs.codat.io/sync-for-expenses-api#/schemas/Connection) to different data sources, such as one connection to Xero for accounting data, two connections to Plaid for two bank accounts, and a connection to Zettle for POS data.
 func (s *Companies) Update(ctx context.Context, request operations.UpdateCompanyRequest, opts ...operations.Option) (*operations.UpdateCompanyResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

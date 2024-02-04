@@ -151,6 +151,15 @@ func WithSecurity(authHeader string) SDKOption {
 	}
 }
 
+// WithSecuritySource configures the SDK to invoke the Security Source function on each method call to determine authentication
+func WithSecuritySource(security func(context.Context) (shared.Security, error)) SDKOption {
+	return func(sdk *CodatSyncExpenses) {
+		sdk.sdkConfiguration.Security = func(ctx context.Context) (interface{}, error) {
+			return security(ctx)
+		}
+	}
+}
+
 func WithRetryConfig(retryConfig utils.RetryConfig) SDKOption {
 	return func(sdk *CodatSyncExpenses) {
 		sdk.sdkConfiguration.RetryConfig = &retryConfig
@@ -163,9 +172,9 @@ func New(opts ...SDKOption) *CodatSyncExpenses {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "prealpha",
-			SDKVersion:        "4.0.0",
-			GenVersion:        "2.214.3",
-			UserAgent:         "speakeasy-sdk/go 4.0.0 2.214.3 prealpha github.com/codatio/client-sdk-go/sync-for-expenses",
+			SDKVersion:        "4.1.0",
+			GenVersion:        "2.248.6",
+			UserAgent:         "speakeasy-sdk/go 4.1.0 2.248.6 prealpha github.com/codatio/client-sdk-go/sync-for-expenses",
 		},
 	}
 	for _, opt := range opts {

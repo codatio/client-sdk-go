@@ -1,4 +1,4 @@
-# AccountMetadata
+# CreateAccountResponseMetadata
 
 
 ## Fields

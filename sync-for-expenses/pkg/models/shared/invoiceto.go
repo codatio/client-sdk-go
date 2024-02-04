@@ -2,6 +2,54 @@
 
 package shared
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
+// InvoiceToDataType - The type of contact.
+type InvoiceToDataType string
+
+const (
+	InvoiceToDataTypeCustomers InvoiceToDataType = "customers"
+)
+
+func (e InvoiceToDataType) ToPointer() *InvoiceToDataType {
+	return &e
+}
+
+func (e *InvoiceToDataType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "customers":
+		*e = InvoiceToDataType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for InvoiceToDataType: %v", v)
+	}
+}
+
 // InvoiceTo - Unique identifier of the customer the expense is billable to. The invoiceTo object is currently only supported for QBO.
 type InvoiceTo struct {
+	// The type of contact.
+	DataType *InvoiceToDataType `json:"dataType,omitempty"`
+	// identifier of customer.
+	ID *string `json:"id,omitempty"`
+}
+
+func (o *InvoiceTo) GetDataType() *InvoiceToDataType {
+	if o == nil {
+		return nil
+	}
+	return o.DataType
+}
+
+func (o *InvoiceTo) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }

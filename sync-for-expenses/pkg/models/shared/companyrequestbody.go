@@ -5,6 +5,8 @@ package shared
 type CompanyRequestBody struct {
 	// Additional information about the company. This can be used to store foreign IDs, references, etc.
 	Description *string `json:"description,omitempty"`
+	// Reference to the groups that the company is assigned to.
+	Groups []GroupItems `json:"groups,omitempty"`
 	// Name of company being connected.
 	Name string `json:"name"`
 }
@@ -14,6 +16,13 @@ func (o *CompanyRequestBody) GetDescription() *string {
 		return nil
 	}
 	return o.Description
+}
+
+func (o *CompanyRequestBody) GetGroups() []GroupItems {
+	if o == nil {
+		return nil
+	}
+	return o.Groups
 }
 
 func (o *CompanyRequestBody) GetName() string {
