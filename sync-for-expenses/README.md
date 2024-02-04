@@ -36,7 +36,12 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: syncforexpenses.String("Requested early access to the new financing scheme."),
-		Name:        "Bank of Dave",
+		Groups: []shared.GroupItems{
+			shared.GroupItems{
+				ID: syncforexpenses.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
+			},
+		},
+		Name: "Bank of Dave",
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -141,9 +146,9 @@ func main() {
 <!-- Start Retries [retries] -->
 ## Retries
 
-Some of the endpoints in this SDK support retries.  If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API.  However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
+Some of the endpoints in this SDK support retries. If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API. However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
 
-To change the default retry strategy for a single API call, simply provide a retryConfig object to the call:
+To change the default retry strategy for a single API call, simply provide a `RetryConfig` object to the call by using the `WithRetries` option:
 ```go
 package main
 
@@ -164,7 +169,12 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: syncforexpenses.String("Requested early access to the new financing scheme."),
-		Name:        "Bank of Dave",
+		Groups: []shared.GroupItems{
+			shared.GroupItems{
+				ID: syncforexpenses.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
+			},
+		},
+		Name: "Bank of Dave",
 	}, operations.WithRetries(
 		utils.RetryConfig{
 			Strategy: "backoff",
@@ -187,7 +197,7 @@ func main() {
 
 ```
 
-If you'd like to override the default retry strategy for all operations that support retries, you can provide a retryConfig at SDK initialization:
+If you'd like to override the default retry strategy for all operations that support retries, you can use the `WithRetryConfig` option at SDK initialization:
 ```go
 package main
 
@@ -218,7 +228,12 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: syncforexpenses.String("Requested early access to the new financing scheme."),
-		Name:        "Bank of Dave",
+		Groups: []shared.GroupItems{
+			shared.GroupItems{
+				ID: syncforexpenses.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
+			},
+		},
+		Name: "Bank of Dave",
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -240,7 +255,7 @@ Handling errors in this SDK should largely match your expectations.  All operati
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 400,401,402,403,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
 
 ### Example
 
@@ -264,7 +279,12 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: syncforexpenses.String("Requested early access to the new financing scheme."),
-		Name:        "Bank of Dave",
+		Groups: []shared.GroupItems{
+			shared.GroupItems{
+				ID: syncforexpenses.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
+			},
+		},
+		Name: "Bank of Dave",
 	})
 	if err != nil {
 
@@ -317,7 +337,12 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: syncforexpenses.String("Requested early access to the new financing scheme."),
-		Name:        "Bank of Dave",
+		Groups: []shared.GroupItems{
+			shared.GroupItems{
+				ID: syncforexpenses.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
+			},
+		},
+		Name: "Bank of Dave",
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -353,7 +378,12 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: syncforexpenses.String("Requested early access to the new financing scheme."),
-		Name:        "Bank of Dave",
+		Groups: []shared.GroupItems{
+			shared.GroupItems{
+				ID: syncforexpenses.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
+			},
+		},
+		Name: "Bank of Dave",
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -426,7 +456,12 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: syncforexpenses.String("Requested early access to the new financing scheme."),
-		Name:        "Bank of Dave",
+		Groups: []shared.GroupItems{
+			shared.GroupItems{
+				ID: syncforexpenses.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
+			},
+		},
+		Name: "Bank of Dave",
 	})
 	if err != nil {
 		log.Fatal(err)

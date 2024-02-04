@@ -68,7 +68,10 @@ func main() {
                             AccountRef: shared.RecordRef{
                                 ID: syncforexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
                             },
-                            InvoiceTo: &shared.InvoiceTo{},
+                            InvoiceTo: &shared.InvoiceTo{
+                                DataType: shared.InvoiceToDataTypeCustomers.ToPointer(),
+                                ID: syncforexpenses.String("80000002-1674552702"),
+                            },
                             NetAmount: types.MustNewDecimalFromString("110.42"),
                             TaxAmount: types.MustNewDecimalFromString("14.43"),
                             TaxRateRef: &shared.RecordRef{
@@ -115,7 +118,7 @@ func main() {
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
 
 ## Update
 
@@ -164,7 +167,10 @@ func main() {
                     AccountRef: shared.RecordRef{
                         ID: syncforexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
                     },
-                    InvoiceTo: &shared.InvoiceTo{},
+                    InvoiceTo: &shared.InvoiceTo{
+                        DataType: shared.InvoiceToDataTypeCustomers.ToPointer(),
+                        ID: syncforexpenses.String("80000002-1674552702"),
+                    },
                     NetAmount: types.MustNewDecimalFromString("110.42"),
                     TaxAmount: types.MustNewDecimalFromString("14.43"),
                     TaxRateRef: &shared.RecordRef{
@@ -210,7 +216,7 @@ func main() {
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | sdkerrors.ErrorMessage              | 400,401,402,403,404,422,429,500,503 | application/json                    |
-| sdkerrors.SDKError                  | 400-600                             | */*                                 |
+| sdkerrors.SDKError                  | 4xx-5xx                             | */*                                 |
 
 ## UploadAttachment
 
@@ -284,4 +290,4 @@ func main() {
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |

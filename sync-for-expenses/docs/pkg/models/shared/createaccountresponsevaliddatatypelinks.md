@@ -1,4 +1,4 @@
-# AccountValidDataTypeLinks
+# CreateAccountResponseValidDataTypeLinks
 
 When querying Codat's data model, some data types return `validDatatypeLinks` metadata in the JSON response. This indicates where that object can be used as a reference—a _valid link_—when creating or updating other data.
 
