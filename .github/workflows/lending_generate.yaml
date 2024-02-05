@@ -6,6 +6,12 @@ name: Generate Lending library
         description: Force generation of SDKs
         type: boolean
         default: false
+  workflow_call:
+    inputs:
+      force:
+        description: Force generation of SDKs
+        type: boolean
+        default: false
 jobs:
   generate:
     uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-generation.yaml@v14
