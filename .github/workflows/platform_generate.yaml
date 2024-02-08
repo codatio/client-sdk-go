@@ -12,6 +12,16 @@ name: Generate Platform library
         description: Force generation of SDKs
         type: boolean
         default: false
+      secrets:
+        github_access_token:
+          description: Github Access Token
+          required: true
+        speakeasy_api_key:
+          description: Speakeasy API Key
+          required: true
+        slack_webhook_url:
+          description: Slack Webhook URL
+          required: true
 jobs:
   generate:
     uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-generation.yaml@v14
