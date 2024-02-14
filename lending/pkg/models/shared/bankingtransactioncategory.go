@@ -2,7 +2,9 @@
 
 package shared
 
-// BankingTransactionCategory - Status of the bank transaction category.
+// BankingTransactionCategory - The Banking Transaction Categories data type provides a list of hierarchical categories associated with a transaction for greater contextual meaning to transaction activity.
+//
+// Responses are paged, so you should provide `page` and `pageSize` query parameters in your request.
 type BankingTransactionCategory struct {
 	// A Boolean indicating whether there are other bank transaction categories beneath this one in the hierarchy.
 	HasChildren *bool `json:"hasChildren,omitempty"`

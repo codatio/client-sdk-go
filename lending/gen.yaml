@@ -1,31 +1,15 @@
-configVersion: 1.0.0
-management:
-  docChecksum: 7cb8227cc55b72607e39c0387a4f6937
-  docVersion: 3.0.0
-  speakeasyVersion: 1.126.3
-  generationVersion: 2.214.3
+configVersion: 2.0.0
 generation:
-  comments: {}
   sdkClassName: CodatLending
-  repoURL: https://github.com/codatio/client-sdk-go.git
   usageSnippets:
     optionalPropertyRendering: withExample
+  fixes:
+    nameResolutionDec2023: false
+    parameterOrderingFeb2024: false
+    requestResponseComponentNamesFeb2024: false
   telemetryEnabled: true
-features:
-  go:
-    constsAndDefaults: 0.1.2
-    core: 3.2.0
-    deprecations: 2.81.1
-    downloadStreams: 0.1.1
-    examples: 2.81.3
-    globalSecurity: 2.82.3
-    globalServerURLs: 2.82.1
-    groups: 2.81.2
-    inputOutputModels: 2.82.0
-    nameOverrides: 2.81.1
-    retries: 2.82.1
 go:
-  version: 5.2.0
+  version: 5.3.0
   clientServerStatusCodesAsErrors: true
   flattenGlobalSecurity: false
   imports:
@@ -37,9 +21,6 @@ go:
       shared: pkg/models/shared
       webhooks: pkg/models/webhooks
   inputModelSuffix: input
-  installationURL: https://github.com/codatio/client-sdk-go/lending
   maxMethodParams: 0
   outputModelSuffix: output
   packageName: github.com/codatio/client-sdk-go/lending
-  published: true
-  repoSubDirectory: lending

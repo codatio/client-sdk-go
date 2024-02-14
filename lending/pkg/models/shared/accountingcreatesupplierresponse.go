@@ -2,6 +2,141 @@
 
 package shared
 
+// AccountingCreateSupplierResponseAccountingSupplier - > View the coverage for suppliers in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=suppliers" target="_blank">Data coverage explorer</a>.
+//
+// ## Overview
+//
+// From the **Suppliers** endpoints, you can retrieve a list of [all the suppliers for a company](https://docs.codat.io/lending-api#/operations/list-suppliers). Suppliers' data links to accounts payable [bills](https://docs.codat.io/lending-api#/schemas/Bill).
+//
+// Deprecated type: This will be removed in a future release, please migrate away from it as soon as possible.
+type AccountingCreateSupplierResponseAccountingSupplier struct {
+	// An array of Addresses.
+	Addresses []AccountingAddress `json:"addresses,omitempty"`
+	// Name of the main contact for the supplier.
+	ContactName *string `json:"contactName,omitempty"`
+	// Default currency the supplier's transactional data is recorded in.
+	DefaultCurrency *string `json:"defaultCurrency,omitempty"`
+	// Email address that the supplier may be contacted on.
+	EmailAddress *string `json:"emailAddress,omitempty"`
+	// Identifier for the supplier, unique to the company in the accounting platform.
+	ID           *string   `json:"id,omitempty"`
+	Metadata     *Metadata `json:"metadata,omitempty"`
+	ModifiedDate *string   `json:"modifiedDate,omitempty"`
+	// Phone number that the supplier may be contacted on.
+	Phone *string `json:"phone,omitempty"`
+	// Company number of the supplier. In the UK, this is typically the company registration number issued by Companies House.
+	RegistrationNumber *string `json:"registrationNumber,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
+	// Status of the supplier.
+	Status SupplierStatus `json:"status"`
+	// Supplemental data is additional data you can include in our standard data types.
+	//
+	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
+	SupplementalData *SupplementalData `json:"supplementalData,omitempty"`
+	// Name of the supplier as recorded in the accounting system, typically the company name.
+	SupplierName *string `json:"supplierName,omitempty"`
+	// Supplier's company tax number.
+	TaxNumber *string `json:"taxNumber,omitempty"`
+}
+
+func (o *AccountingCreateSupplierResponseAccountingSupplier) GetAddresses() []AccountingAddress {
+	if o == nil {
+		return nil
+	}
+	return o.Addresses
+}
+
+func (o *AccountingCreateSupplierResponseAccountingSupplier) GetContactName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ContactName
+}
+
+func (o *AccountingCreateSupplierResponseAccountingSupplier) GetDefaultCurrency() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DefaultCurrency
+}
+
+func (o *AccountingCreateSupplierResponseAccountingSupplier) GetEmailAddress() *string {
+	if o == nil {
+		return nil
+	}
+	return o.EmailAddress
+}
+
+func (o *AccountingCreateSupplierResponseAccountingSupplier) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *AccountingCreateSupplierResponseAccountingSupplier) GetMetadata() *Metadata {
+	if o == nil {
+		return nil
+	}
+	return o.Metadata
+}
+
+func (o *AccountingCreateSupplierResponseAccountingSupplier) GetModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ModifiedDate
+}
+
+func (o *AccountingCreateSupplierResponseAccountingSupplier) GetPhone() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Phone
+}
+
+func (o *AccountingCreateSupplierResponseAccountingSupplier) GetRegistrationNumber() *string {
+	if o == nil {
+		return nil
+	}
+	return o.RegistrationNumber
+}
+
+func (o *AccountingCreateSupplierResponseAccountingSupplier) GetSourceModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceModifiedDate
+}
+
+func (o *AccountingCreateSupplierResponseAccountingSupplier) GetStatus() SupplierStatus {
+	if o == nil {
+		return SupplierStatus("")
+	}
+	return o.Status
+}
+
+func (o *AccountingCreateSupplierResponseAccountingSupplier) GetSupplementalData() *SupplementalData {
+	if o == nil {
+		return nil
+	}
+	return o.SupplementalData
+}
+
+func (o *AccountingCreateSupplierResponseAccountingSupplier) GetSupplierName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SupplierName
+}
+
+func (o *AccountingCreateSupplierResponseAccountingSupplier) GetTaxNumber() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TaxNumber
+}
+
 type AccountingCreateSupplierResponse struct {
 	// Contains a single entry that communicates which record has changed and the manner in which it changed.
 	Changes []PushOperationChange `json:"changes,omitempty"`
@@ -26,13 +161,8 @@ type AccountingCreateSupplierResponse struct {
 	// >
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	CompletedOnUtc *string `json:"completedOnUtc,omitempty"`
-	// > View the coverage for suppliers in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=suppliers" target="_blank">Data coverage explorer</a>.
-	//
-	// ## Overview
-	//
-	// From the **Suppliers** endpoints, you can retrieve a list of [all the suppliers for a company](https://docs.codat.io/lending-api#/operations/list-suppliers). Suppliers' data links to accounts payable [bills](https://docs.codat.io/lending-api#/schemas/Bill).
-	Data *AccountingSupplier `json:"data,omitempty"`
+	CompletedOnUtc *string                                             `json:"completedOnUtc,omitempty"`
+	Data           *AccountingCreateSupplierResponseAccountingSupplier `json:"data,omitempty"`
 	// Unique identifier for a company's data connection.
 	DataConnectionKey string `json:"dataConnectionKey"`
 	// Available Data types
@@ -96,7 +226,7 @@ func (o *AccountingCreateSupplierResponse) GetCompletedOnUtc() *string {
 	return o.CompletedOnUtc
 }
 
-func (o *AccountingCreateSupplierResponse) GetData() *AccountingSupplier {
+func (o *AccountingCreateSupplierResponse) GetData() *AccountingCreateSupplierResponseAccountingSupplier {
 	if o == nil {
 		return nil
 	}

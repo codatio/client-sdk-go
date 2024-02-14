@@ -3,18 +3,45 @@
 package shared
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/codatio/client-sdk-go/lending/v5/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
+// AccountingInvoiceDataType - The underlying data type associated to the reference `id`.
+type AccountingInvoiceDataType string
+
+const (
+	AccountingInvoiceDataTypeSalesOrders AccountingInvoiceDataType = "salesOrders"
+)
+
+func (e AccountingInvoiceDataType) ToPointer() *AccountingInvoiceDataType {
+	return &e
+}
+
+func (e *AccountingInvoiceDataType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "salesOrders":
+		*e = AccountingInvoiceDataType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AccountingInvoiceDataType: %v", v)
+	}
+}
+
 type SalesOrderReference struct {
-	// Available Data types
-	DataType *DataType `json:"dataType,omitempty"`
+	// The underlying data type associated to the reference `id`.
+	DataType *AccountingInvoiceDataType `json:"dataType,omitempty"`
 	// Unique identifier to a record in `dataType`.
 	ID *string `json:"id,omitempty"`
 }
 
-func (o *SalesOrderReference) GetDataType() *DataType {
+func (o *SalesOrderReference) GetDataType() *AccountingInvoiceDataType {
 	if o == nil {
 		return nil
 	}
@@ -202,8 +229,8 @@ type AccountingInvoice struct {
 	// Numerical value of discounts applied to the invoice.
 	TotalDiscount *decimal.Big `decimal:"number" json:"totalDiscount,omitempty"`
 	// Amount of tax on the invoice.
-	TotalTaxAmount *decimal.Big `decimal:"number" json:"totalTaxAmount"`
-	WithholdingTax []Items      `json:"withholdingTax,omitempty"`
+	TotalTaxAmount *decimal.Big          `decimal:"number" json:"totalTaxAmount"`
+	WithholdingTax []WithholdingTaxItems `json:"withholdingTax,omitempty"`
 }
 
 func (a AccountingInvoice) MarshalJSON() ([]byte, error) {
@@ -392,7 +419,7 @@ func (o *AccountingInvoice) GetTotalTaxAmount() *decimal.Big {
 	return o.TotalTaxAmount
 }
 
-func (o *AccountingInvoice) GetWithholdingTax() []Items {
+func (o *AccountingInvoice) GetWithholdingTax() []WithholdingTaxItems {
 	if o == nil {
 		return nil
 	}

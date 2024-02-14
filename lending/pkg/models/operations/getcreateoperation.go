@@ -10,7 +10,7 @@ import (
 type GetCreateOperationRequest struct {
 	// Unique identifier for a company.
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
-	// Push operation key.
+	// Unique identifier for the push operation.
 	PushOperationKey string `pathParam:"style=simple,explode=false,name=pushOperationKey"`
 }
 

@@ -3,26 +3,56 @@
 package shared
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/codatio/client-sdk-go/lending/v5/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
-// AccountingDirectCostContactRef - A customer or supplier associated with the direct cost.
-type AccountingDirectCostContactRef struct {
-	// Available Data types
-	DataType *DataType `json:"dataType,omitempty"`
+// AccountingDirectCostDataType - Allowed name of the 'dataType'.
+type AccountingDirectCostDataType string
+
+const (
+	AccountingDirectCostDataTypeCustomers AccountingDirectCostDataType = "customers"
+	AccountingDirectCostDataTypeSuppliers AccountingDirectCostDataType = "suppliers"
+)
+
+func (e AccountingDirectCostDataType) ToPointer() *AccountingDirectCostDataType {
+	return &e
+}
+
+func (e *AccountingDirectCostDataType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "customers":
+		fallthrough
+	case "suppliers":
+		*e = AccountingDirectCostDataType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AccountingDirectCostDataType: %v", v)
+	}
+}
+
+// AccountingDirectCostContactReference - A customer or supplier associated with the direct cost.
+type AccountingDirectCostContactReference struct {
+	// Allowed name of the 'dataType'.
+	DataType *AccountingDirectCostDataType `json:"dataType,omitempty"`
 	// Unique identifier for a customer or supplier.
 	ID string `json:"id"`
 }
 
-func (o *AccountingDirectCostContactRef) GetDataType() *DataType {
+func (o *AccountingDirectCostContactReference) GetDataType() *AccountingDirectCostDataType {
 	if o == nil {
 		return nil
 	}
 	return o.DataType
 }
 
-func (o *AccountingDirectCostContactRef) GetID() string {
+func (o *AccountingDirectCostContactReference) GetID() string {
 	if o == nil {
 		return ""
 	}
@@ -46,7 +76,7 @@ func (o *AccountingDirectCostContactRef) GetID() string {
 // Direct costs is a child data type of [account transactions](https://docs.codat.io/lending-api#/schemas/AccountTransaction).
 type AccountingDirectCost struct {
 	// A customer or supplier associated with the direct cost.
-	ContactRef *AccountingDirectCostContactRef `json:"contactRef,omitempty"`
+	ContactRef *AccountingDirectCostContactReference `json:"contactRef,omitempty"`
 	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code, e.g. _GBP_.
 	//
 	// ## Unknown currencies
@@ -144,7 +174,7 @@ func (a *AccountingDirectCost) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *AccountingDirectCost) GetContactRef() *AccountingDirectCostContactRef {
+func (o *AccountingDirectCost) GetContactRef() *AccountingDirectCostContactReference {
 	if o == nil {
 		return nil
 	}

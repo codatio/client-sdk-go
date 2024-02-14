@@ -2,6 +2,29 @@
 
 package shared
 
+// AccountingCreateBankAccountTransactions
+//
+// Deprecated type: This will be removed in a future release, please migrate away from it as soon as possible.
+type AccountingCreateBankAccountTransactions struct {
+	// Unique identifier for a bank account.
+	AccountID    *string                        `json:"accountId,omitempty"`
+	Transactions []CreateBankAccountTransaction `json:"transactions,omitempty"`
+}
+
+func (o *AccountingCreateBankAccountTransactions) GetAccountID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AccountID
+}
+
+func (o *AccountingCreateBankAccountTransactions) GetTransactions() []CreateBankAccountTransaction {
+	if o == nil {
+		return nil
+	}
+	return o.Transactions
+}
+
 type AccountingCreateBankTransactionsResponse struct {
 	// Contains a single entry that communicates which record has changed and the manner in which it changed.
 	Changes []PushOperationChange `json:"changes,omitempty"`
@@ -26,8 +49,8 @@ type AccountingCreateBankTransactionsResponse struct {
 	// >
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	CompletedOnUtc *string                           `json:"completedOnUtc,omitempty"`
-	Data           *AccountingCreateBankTransactions `json:"data,omitempty"`
+	CompletedOnUtc *string                                  `json:"completedOnUtc,omitempty"`
+	Data           *AccountingCreateBankAccountTransactions `json:"data,omitempty"`
 	// Unique identifier for a company's data connection.
 	DataConnectionKey string `json:"dataConnectionKey"`
 	// Available Data types
@@ -91,7 +114,7 @@ func (o *AccountingCreateBankTransactionsResponse) GetCompletedOnUtc() *string {
 	return o.CompletedOnUtc
 }
 
-func (o *AccountingCreateBankTransactionsResponse) GetData() *AccountingCreateBankTransactions {
+func (o *AccountingCreateBankTransactionsResponse) GetData() *AccountingCreateBankAccountTransactions {
 	if o == nil {
 		return nil
 	}

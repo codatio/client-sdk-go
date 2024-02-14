@@ -2,6 +2,205 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/lending/v5/pkg/utils"
+	"github.com/ericlagergren/decimal"
+)
+
+// AccountingCreateBankAccountResponseAccountingBankAccount - > **Accessing Bank Accounts through Banking API**
+// >
+// > This datatype was originally used for accessing bank account data both in accounting integrations and open banking aggregators.
+// >
+// > To view bank account data through the Banking API, please refer to the new datatype [here](https://docs.codat.io/lending-api#/schemas/Account)
+//
+// > View the coverage for bank accounts in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankAccounts" target="_blank">Data coverage explorer</a>.
+//
+// ## Overview
+//
+// A list of bank accounts associated with a company and a specific data connection.
+//
+// Bank accounts data includes:
+// * The name and ID of the account in the accounting platform.
+// * The currency and balance of the account.
+// * The sort code and account number.
+//
+// Deprecated type: This will be removed in a future release, please migrate away from it as soon as possible.
+type AccountingCreateBankAccountResponseAccountingBankAccount struct {
+	// Name of the bank account in the accounting platform.
+	AccountName *string `json:"accountName,omitempty"`
+	// Account number for the bank account.
+	//
+	// Xero integrations
+	// Only a UK account number shows for bank accounts with GBP currency and a combined total of sort code and account number that equals 14 digits, For non-GBP accounts, the full bank account number is populated.
+	//
+	// FreeAgent integrations
+	// For Credit accounts, only the last four digits are required. For other types, the field is optional.
+	AccountNumber *string `json:"accountNumber,omitempty"`
+	// The type of transactions and balances on the account.
+	// For Credit accounts, positive balances are liabilities, and positive transactions **reduce** liabilities.
+	// For Debit accounts, positive balances are assets, and positive transactions **increase** assets.
+	AccountType *AccountingBankAccountType `json:"accountType,omitempty"`
+	// Total available balance of the bank account as reported by the underlying data source. This may take into account overdrafts or pending transactions for example.
+	AvailableBalance *decimal.Big `decimal:"number" json:"availableBalance,omitempty"`
+	// Balance of the bank account.
+	Balance *decimal.Big `decimal:"number" json:"balance,omitempty"`
+	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code, e.g. _GBP_.
+	//
+	// ## Unknown currencies
+	//
+	// In line with the ISO 4217 specification, the code _XXX_ is used when the data source does not return a currency for a transaction.
+	//
+	// There are only a very small number of edge cases where this currency code is returned by the Codat system.
+	Currency *string `json:"currency,omitempty"`
+	// International bank account number of the account. Often used when making or receiving international payments.
+	IBan *string `json:"iBan,omitempty"`
+	// Identifier for the account, unique for the company in the accounting platform.
+	ID *string `json:"id,omitempty"`
+	// The institution of the bank account.
+	Institution  *string   `json:"institution,omitempty"`
+	Metadata     *Metadata `json:"metadata,omitempty"`
+	ModifiedDate *string   `json:"modifiedDate,omitempty"`
+	// Code used to identify each nominal account for a business.
+	NominalCode *string `json:"nominalCode,omitempty"`
+	// Pre-arranged overdraft limit of the account.
+	//
+	// The value is always positive. For example, an overdraftLimit of `1000` means that the balance of the account can go down to `-1000`.
+	OverdraftLimit *decimal.Big `decimal:"number" json:"overdraftLimit,omitempty"`
+	// Sort code for the bank account.
+	//
+	// Xero integrations
+	// The sort code is only displayed when the currency = GBP and the sort code and account number sum to 14 digits. For non-GBP accounts, this field is not populated.
+	SortCode           *string `json:"sortCode,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
+	// Supplemental data is additional data you can include in our standard data types.
+	//
+	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
+	SupplementalData *SupplementalData `json:"supplementalData,omitempty"`
+}
+
+func (a AccountingCreateBankAccountResponseAccountingBankAccount) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AccountingCreateBankAccountResponseAccountingBankAccount) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *AccountingCreateBankAccountResponseAccountingBankAccount) GetAccountName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AccountName
+}
+
+func (o *AccountingCreateBankAccountResponseAccountingBankAccount) GetAccountNumber() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AccountNumber
+}
+
+func (o *AccountingCreateBankAccountResponseAccountingBankAccount) GetAccountType() *AccountingBankAccountType {
+	if o == nil {
+		return nil
+	}
+	return o.AccountType
+}
+
+func (o *AccountingCreateBankAccountResponseAccountingBankAccount) GetAvailableBalance() *decimal.Big {
+	if o == nil {
+		return nil
+	}
+	return o.AvailableBalance
+}
+
+func (o *AccountingCreateBankAccountResponseAccountingBankAccount) GetBalance() *decimal.Big {
+	if o == nil {
+		return nil
+	}
+	return o.Balance
+}
+
+func (o *AccountingCreateBankAccountResponseAccountingBankAccount) GetCurrency() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Currency
+}
+
+func (o *AccountingCreateBankAccountResponseAccountingBankAccount) GetIBan() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IBan
+}
+
+func (o *AccountingCreateBankAccountResponseAccountingBankAccount) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *AccountingCreateBankAccountResponseAccountingBankAccount) GetInstitution() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Institution
+}
+
+func (o *AccountingCreateBankAccountResponseAccountingBankAccount) GetMetadata() *Metadata {
+	if o == nil {
+		return nil
+	}
+	return o.Metadata
+}
+
+func (o *AccountingCreateBankAccountResponseAccountingBankAccount) GetModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ModifiedDate
+}
+
+func (o *AccountingCreateBankAccountResponseAccountingBankAccount) GetNominalCode() *string {
+	if o == nil {
+		return nil
+	}
+	return o.NominalCode
+}
+
+func (o *AccountingCreateBankAccountResponseAccountingBankAccount) GetOverdraftLimit() *decimal.Big {
+	if o == nil {
+		return nil
+	}
+	return o.OverdraftLimit
+}
+
+func (o *AccountingCreateBankAccountResponseAccountingBankAccount) GetSortCode() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SortCode
+}
+
+func (o *AccountingCreateBankAccountResponseAccountingBankAccount) GetSourceModifiedDate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceModifiedDate
+}
+
+func (o *AccountingCreateBankAccountResponseAccountingBankAccount) GetSupplementalData() *SupplementalData {
+	if o == nil {
+		return nil
+	}
+	return o.SupplementalData
+}
+
 type AccountingCreateBankAccountResponse struct {
 	// Contains a single entry that communicates which record has changed and the manner in which it changed.
 	Changes []PushOperationChange `json:"changes,omitempty"`
@@ -26,24 +225,8 @@ type AccountingCreateBankAccountResponse struct {
 	// >
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	CompletedOnUtc *string `json:"completedOnUtc,omitempty"`
-	// > **Accessing Bank Accounts through Banking API**
-	// >
-	// > This datatype was originally used for accessing bank account data both in accounting integrations and open banking aggregators.
-	// >
-	// > To view bank account data through the Banking API, please refer to the new datatype [here](https://docs.codat.io/lending-api#/schemas/Account)
-	//
-	// > View the coverage for bank accounts in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankAccounts" target="_blank">Data coverage explorer</a>.
-	//
-	// ## Overview
-	//
-	// A list of bank accounts associated with a company and a specific data connection.
-	//
-	// Bank accounts data includes:
-	// * The name and ID of the account in the accounting platform.
-	// * The currency and balance of the account.
-	// * The sort code and account number.
-	Data *AccountingBankAccount `json:"data,omitempty"`
+	CompletedOnUtc *string                                                   `json:"completedOnUtc,omitempty"`
+	Data           *AccountingCreateBankAccountResponseAccountingBankAccount `json:"data,omitempty"`
 	// Unique identifier for a company's data connection.
 	DataConnectionKey string `json:"dataConnectionKey"`
 	// Available Data types
@@ -107,7 +290,7 @@ func (o *AccountingCreateBankAccountResponse) GetCompletedOnUtc() *string {
 	return o.CompletedOnUtc
 }
 
-func (o *AccountingCreateBankAccountResponse) GetData() *AccountingBankAccount {
+func (o *AccountingCreateBankAccountResponse) GetData() *AccountingCreateBankAccountResponseAccountingBankAccount {
 	if o == nil {
 		return nil
 	}

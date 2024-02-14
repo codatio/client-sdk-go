@@ -3,26 +3,56 @@
 package shared
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/codatio/client-sdk-go/lending/v5/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
-// DirectCostPrototypeContactRef - A customer or supplier associated with the direct cost.
-type DirectCostPrototypeContactRef struct {
-	// Available Data types
-	DataType *DataType `json:"dataType,omitempty"`
+// DirectCostPrototypeDataType - Allowed name of the 'dataType'.
+type DirectCostPrototypeDataType string
+
+const (
+	DirectCostPrototypeDataTypeCustomers DirectCostPrototypeDataType = "customers"
+	DirectCostPrototypeDataTypeSuppliers DirectCostPrototypeDataType = "suppliers"
+)
+
+func (e DirectCostPrototypeDataType) ToPointer() *DirectCostPrototypeDataType {
+	return &e
+}
+
+func (e *DirectCostPrototypeDataType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "customers":
+		fallthrough
+	case "suppliers":
+		*e = DirectCostPrototypeDataType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for DirectCostPrototypeDataType: %v", v)
+	}
+}
+
+// ContactReference - A customer or supplier associated with the direct cost.
+type ContactReference struct {
+	// Allowed name of the 'dataType'.
+	DataType *DirectCostPrototypeDataType `json:"dataType,omitempty"`
 	// Unique identifier for a customer or supplier.
 	ID string `json:"id"`
 }
 
-func (o *DirectCostPrototypeContactRef) GetDataType() *DataType {
+func (o *ContactReference) GetDataType() *DirectCostPrototypeDataType {
 	if o == nil {
 		return nil
 	}
 	return o.DataType
 }
 
-func (o *DirectCostPrototypeContactRef) GetID() string {
+func (o *ContactReference) GetID() string {
 	if o == nil {
 		return ""
 	}
@@ -31,7 +61,7 @@ func (o *DirectCostPrototypeContactRef) GetID() string {
 
 type DirectCostPrototype struct {
 	// A customer or supplier associated with the direct cost.
-	ContactRef *DirectCostPrototypeContactRef `json:"contactRef,omitempty"`
+	ContactRef *ContactReference `json:"contactRef,omitempty"`
 	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code, e.g. _GBP_.
 	//
 	// ## Unknown currencies
@@ -124,7 +154,7 @@ func (d *DirectCostPrototype) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *DirectCostPrototype) GetContactRef() *DirectCostPrototypeContactRef {
+func (o *DirectCostPrototype) GetContactRef() *ContactReference {
 	if o == nil {
 		return nil
 	}

@@ -28,7 +28,6 @@ import(
 	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/shared"
 	lending "github.com/codatio/client-sdk-go/lending/v5"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v5/pkg/types"
 	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/operations"
 	"log"
 )
@@ -44,63 +43,6 @@ func main() {
     res, err := s.LoanWriteback.DirectCosts.Create(ctx, operations.CreateDirectCostRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        DirectCostPrototype: &shared.DirectCostPrototype{
-            ContactRef: &shared.DirectCostPrototypeContactRef{
-                DataType: shared.DataTypeInvoices.ToPointer(),
-                ID: "<ID>",
-            },
-            Currency: "USD",
-            IssueDate: "2022-10-23T00:00:00Z",
-            LineItems: []shared.DirectCostLineItem{
-                shared.DirectCostLineItem{
-                    AccountRef: &shared.AccountRef{},
-                    ItemRef: &shared.PropertieItemRef{
-                        ID: "<ID>",
-                    },
-                    Quantity: types.MustNewDecimalFromString("6384.24"),
-                    TaxRateRef: &shared.TaxRateRef{},
-                    Tracking: &shared.Tracking{
-                        InvoiceTo: &shared.RecordRef{
-                            DataType: lending.String("transfer"),
-                        },
-                        RecordRefs: []shared.RecordRef{
-                            shared.RecordRef{
-                                DataType: lending.String("invoice"),
-                            },
-                        },
-                    },
-                    TrackingCategoryRefs: []shared.TrackingCategoryRef{
-                        shared.TrackingCategoryRef{
-                            ID: "<ID>",
-                        },
-                    },
-                    UnitAmount: types.MustNewDecimalFromString("2884.08"),
-                },
-            },
-            PaymentAllocations: []shared.AccountingPaymentAllocation{
-                shared.AccountingPaymentAllocation{
-                    Allocation: shared.Allocation{
-                        AllocatedOnDate: lending.String("2022-10-23T00:00:00Z"),
-                        Currency: lending.String("EUR"),
-                    },
-                    Payment: shared.PaymentAllocationPayment{
-                        AccountRef: &shared.AccountRef{},
-                        Currency: lending.String("GBP"),
-                        PaidOnDate: lending.String("2022-10-23T00:00:00Z"),
-                    },
-                },
-            },
-            SubTotal: types.MustNewDecimalFromString("7964.74"),
-            SupplementalData: &shared.SupplementalData{
-                Content: map[string]map[string]interface{}{
-                    "key": map[string]interface{}{
-                        "key": "string",
-                    },
-                },
-            },
-            TaxAmount: types.MustNewDecimalFromString("3768.44"),
-            TotalAmount: types.MustNewDecimalFromString("9510.62"),
-        },
     })
     if err != nil {
         log.Fatal(err)
@@ -127,7 +69,7 @@ func main() {
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
 
 ## GetCreateModel
 
@@ -192,4 +134,4 @@ func main() {
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |

@@ -12,10 +12,8 @@ type AccountTransactionLine struct {
 	Amount *decimal.Big `decimal:"number" json:"amount,omitempty"`
 	// Description of the account transaction.
 	Description *string `json:"description,omitempty"`
-	// Links the current record to the underlying record or data type that created it.
-	//
-	// For example, if a journal entry is generated based on an invoice, this property allows you to connect the journal entry to the underlying invoice in our data model.
-	RecordRef *RecordRef `json:"recordRef,omitempty"`
+	// Links an account transaction line to the underlying record that created it.
+	RecordRef *AccountTransactionLineRecordRef `json:"recordRef,omitempty"`
 }
 
 func (a AccountTransactionLine) MarshalJSON() ([]byte, error) {
@@ -43,7 +41,7 @@ func (o *AccountTransactionLine) GetDescription() *string {
 	return o.Description
 }
 
-func (o *AccountTransactionLine) GetRecordRef() *RecordRef {
+func (o *AccountTransactionLine) GetRecordRef() *AccountTransactionLineRecordRef {
 	if o == nil {
 		return nil
 	}

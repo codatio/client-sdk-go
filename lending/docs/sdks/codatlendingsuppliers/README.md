@@ -44,21 +44,40 @@ func main() {
         AccountingSupplier: &shared.AccountingSupplier{
             Addresses: []shared.AccountingAddress{
                 shared.AccountingAddress{
+                    City: lending.String("Bakersfield"),
+                    Country: lending.String("USA"),
+                    Line1: lending.String("Unit 51"),
+                    Line2: lending.String("Bakersfield Industrial Estate"),
+                    Region: lending.String("California"),
                     Type: shared.AccountingAddressTypeBilling,
                 },
             },
-            Metadata: &shared.Metadata{},
+            ContactName: lending.String("Kelly's Industrial Supplies"),
+            DefaultCurrency: lending.String("string"),
+            EmailAddress: lending.String("sales@kellysupplies.com"),
+            ID: lending.String("C520FFD4-F6F6-4FC2-A6D2-5D7088B2B14F"),
+            Metadata: &shared.Metadata{
+                IsDeleted: lending.Bool(true),
+            },
             ModifiedDate: lending.String("2022-10-23T00:00:00Z"),
-            Phone: lending.String("(877) 492-8687"),
+            Phone: lending.String("07999 999999"),
+            RegistrationNumber: lending.String("string"),
             SourceModifiedDate: lending.String("2022-10-23T00:00:00Z"),
-            Status: shared.SupplierStatusActive,
+            Status: shared.SupplierStatusUnknown,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "key": map[string]interface{}{
-                        "key": "string",
+                    "property1": map[string]interface{}{
+                        "property1": nil,
+                        "property2": nil,
+                    },
+                    "property2": map[string]interface{}{
+                        "property1": nil,
+                        "property2": nil,
                     },
                 },
             },
+            SupplierName: lending.String("Kelly's Industrial Supplies"),
+            TaxNumber: lending.String("string"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -88,7 +107,7 @@ func main() {
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
 
 ## GetCreateUpdateModel
 
@@ -153,4 +172,4 @@ func main() {
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |

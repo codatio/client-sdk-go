@@ -38,7 +38,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         NumberOfPeriods: lending.Int(12),
         PeriodLengthDays: lending.Int(30),
-        ReportDate: types.MustDateFromString("2022-12-31"),
+        ReportDate: types.MustNewDateFromString("2022-12-31"),
     })
     if err != nil {
         log.Fatal(err)
@@ -65,7 +65,7 @@ func main() {
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
 
 ## GetAgedDebtors
 
@@ -97,7 +97,7 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         NumberOfPeriods: lending.Int(12),
         PeriodLengthDays: lending.Int(30),
-        ReportDate: types.MustDateFromString("2022-12-31"),
+        ReportDate: types.MustNewDateFromString("2022-12-31"),
     })
     if err != nil {
         log.Fatal(err)
@@ -124,7 +124,7 @@ func main() {
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
 
 ## IsAgedCreditorsAvailable
 
@@ -179,7 +179,7 @@ func main() {
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
 
 ## IsAgedDebtorsAvailable
 
@@ -234,4 +234,4 @@ func main() {
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
