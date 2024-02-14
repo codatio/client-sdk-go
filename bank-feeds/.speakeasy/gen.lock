@@ -1,27 +1,27 @@
 lockVersion: 2.0.0
 id: bdb0eb46-d457-4d7c-bcaf-83814a78f76b
 management:
-  docChecksum: d8a3c846c6e6c943937af494c3623e4f
+  docChecksum: 4dc8263ccdcfe623fbd51a2f54a06f5d
   docVersion: 3.0.0
   speakeasyVersion: internal
-  generationVersion: 2.231.0
-  releaseVersion: 5.1.0
-  configChecksum: 73f46500e5bf734883ab9030f980106d
+  generationVersion: 2.253.0
+  releaseVersion: 5.1.1
+  configChecksum: c5c38bc6476ae59abeae878ddf2c4108
   repoURL: https://github.com/codatio/client-sdk-go.git
   repoSubDirectory: bank-feeds
   installationURL: https://github.com/codatio/client-sdk-go/bank-feeds
   published: true
 features:
   go:
-    constsAndDefaults: 0.1.2
-    core: 3.3.0
+    constsAndDefaults: 0.1.3
+    core: 3.3.2
     deprecations: 2.81.1
     examples: 2.81.3
-    globalSecurity: 2.82.3
+    globalSecurity: 2.82.6
     globalServerURLs: 2.82.1
     inputOutputModels: 2.83.0
     nameOverrides: 2.81.1
-    retries: 2.82.1
+    retries: 2.82.2
 generatedFiles:
   - companies.go
   - connections.go
@@ -33,7 +33,6 @@ generatedFiles:
   - codatbankfeeds.go
   - go.mod
   - go.sum
-  - tests/helpers.go
   - pkg/models/sdkerrors/sdkerror.go
   - pkg/types/bigint.go
   - pkg/types/date.go
@@ -81,6 +80,8 @@ generatedFiles:
   - /pkg/models/shared/connection.go
   - /pkg/models/shared/dataconnectionstatus.go
   - /pkg/models/shared/dataconnectionerror.go
+  - /pkg/models/shared/errorvalidation.go
+  - /pkg/models/shared/errorvalidationitem.go
   - /pkg/models/shared/companyrequestbody.go
   - /pkg/models/shared/items.go
   - /pkg/models/shared/companies.go
@@ -190,6 +191,8 @@ generatedFiles:
   - docs/pkg/models/shared/connection.md
   - docs/pkg/models/shared/dataconnectionstatus.md
   - docs/pkg/models/shared/dataconnectionerror.md
+  - docs/pkg/models/shared/errorvalidation.md
+  - docs/pkg/models/shared/errorvalidationitem.md
   - docs/pkg/models/shared/companyrequestbody.md
   - docs/pkg/models/shared/items.md
   - docs/pkg/models/shared/companies.md

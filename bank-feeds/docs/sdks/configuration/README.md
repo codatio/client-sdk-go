@@ -91,36 +91,6 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Configuration.Set(ctx, operations.SetConfigurationRequest{
-        Configuration: &shared.Configuration{
-            CompanyID: bankfeeds.String("8a210b68-6988-11ed-a1eb-0242ac120002"),
-            Configuration: &shared.SyncConfiguration{
-                SyncAsBankFeeds: &shared.SyncAsBankFeeds{
-                    BankAccountOptions: []shared.BankAccountOption{
-                        shared.BankAccountOption{},
-                    },
-                },
-                SyncAsExpenses: &shared.SyncAsExpenses{
-                    BankAccountOptions: []shared.BankAccountOption{
-                        shared.BankAccountOption{},
-                    },
-                    Customer: &shared.ConfigurationCustomer{
-                        CustomerOptions: []shared.ConfigurationContactRef{
-                            shared.ConfigurationContactRef{},
-                        },
-                    },
-                    Supplier: &shared.ConfigurationSupplier{
-                        SupplierOptions: []shared.ConfigurationContactRef{
-                            shared.ConfigurationContactRef{},
-                        },
-                    },
-                },
-            },
-            Schedule: &shared.ConfigurationSchedule{
-                FrequencyOptions: []string{
-                    "string",
-                },
-            },
-        },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {

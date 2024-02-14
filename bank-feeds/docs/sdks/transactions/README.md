@@ -33,7 +33,6 @@ import(
 	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/shared"
 	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v5"
 	"context"
-	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/types"
 	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/operations"
 	"log"
 )
@@ -47,22 +46,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Transactions.Create(ctx, operations.CreateBankTransactionsRequest{
-        CreateBankTransactions: &shared.CreateBankTransactions{
-            AccountID: bankfeeds.String("7110701885"),
-            Transactions: []shared.BankTransactions{
-                shared.BankTransactions{
-                    Amount: types.MustNewDecimalFromString("999.99"),
-                    Balance: types.MustNewDecimalFromString("-999.99"),
-                    Counterparty: bankfeeds.String("ACME INC"),
-                    Date: bankfeeds.String("2022-10-23T00:00:00Z"),
-                    Description: bankfeeds.String("Debit for Payment Id sdp-1-57379a43-c4b8-49f5-bd7c-699189ee7a60"),
-                    ID: bankfeeds.String("716422529"),
-                    Reconciled: bankfeeds.Bool(false),
-                    Reference: bankfeeds.String("reference for transaction"),
-                },
-            },
-        },
-        AccountID: "7110701885",
+        AccountID: "9wg4lep4ush5cxs79pl8sozmsndbaukll3ind4g7buqbm1h2",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })

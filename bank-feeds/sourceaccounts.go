@@ -108,6 +108,13 @@ func (s *SourceAccounts) Create(ctx context.Context, request operations.CreateSo
 			"5XX",
 		},
 	}, func() (*http.Response, error) {
+		if req.Body != nil {
+			copyBody, err := req.GetBody()
+			if err != nil {
+				return nil, err
+			}
+			req.Body = copyBody
+		}
 		return client.Do(req)
 	})
 	if err != nil {
@@ -235,6 +242,13 @@ func (s *SourceAccounts) Delete(ctx context.Context, request operations.DeleteSo
 			"5XX",
 		},
 	}, func() (*http.Response, error) {
+		if req.Body != nil {
+			copyBody, err := req.GetBody()
+			if err != nil {
+				return nil, err
+			}
+			req.Body = copyBody
+		}
 		return client.Do(req)
 	})
 	if err != nil {
@@ -349,6 +363,13 @@ func (s *SourceAccounts) DeleteCredentials(ctx context.Context, request operatio
 			"5XX",
 		},
 	}, func() (*http.Response, error) {
+		if req.Body != nil {
+			copyBody, err := req.GetBody()
+			if err != nil {
+				return nil, err
+			}
+			req.Body = copyBody
+		}
 		return client.Do(req)
 	})
 	if err != nil {
@@ -473,6 +494,13 @@ func (s *SourceAccounts) GenerateCredentials(ctx context.Context, request operat
 			"5XX",
 		},
 	}, func() (*http.Response, error) {
+		if req.Body != nil {
+			copyBody, err := req.GetBody()
+			if err != nil {
+				return nil, err
+			}
+			req.Body = copyBody
+		}
 		return client.Do(req)
 	})
 	if err != nil {
@@ -598,6 +626,13 @@ func (s *SourceAccounts) List(ctx context.Context, request operations.ListSource
 			"5XX",
 		},
 	}, func() (*http.Response, error) {
+		if req.Body != nil {
+			copyBody, err := req.GetBody()
+			if err != nil {
+				return nil, err
+			}
+			req.Body = copyBody
+		}
 		return client.Do(req)
 	})
 	if err != nil {
@@ -728,6 +763,13 @@ func (s *SourceAccounts) Update(ctx context.Context, request operations.UpdateSo
 			"5XX",
 		},
 	}, func() (*http.Response, error) {
+		if req.Body != nil {
+			copyBody, err := req.GetBody()
+			if err != nil {
+				return nil, err
+			}
+			req.Body = copyBody
+		}
 		return client.Do(req)
 	})
 	if err != nil {
