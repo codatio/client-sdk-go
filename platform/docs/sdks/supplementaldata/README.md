@@ -44,12 +44,13 @@ func main() {
     res, err := s.SupplementalData.Configure(ctx, operations.ConfigureSupplementalDataRequest{
         SupplementalDataConfiguration: &shared.SupplementalDataConfiguration{
             SupplementalDataConfig: map[string]shared.SupplementalDataSourceConfiguration{
-                "key": shared.SupplementalDataSourceConfiguration{
+                "orders-supplemental-data": shared.SupplementalDataSourceConfiguration{
+                    DataSource: platform.String("/orders"),
                     PullData: map[string]string{
-                        "key": "string",
+                        "orderNumber": "order_num",
                     },
                     PushData: map[string]string{
-                        "key": "string",
+                        "orderNumber": "order_num",
                     },
                 },
             },

@@ -49,14 +49,21 @@ func main() {
     ctx := context.Background()
     res, err := s.CustomDataType.Configure(ctx, operations.ConfigureCustomDataTypeRequest{
         CustomDataTypeConfiguration: &shared.CustomDataTypeConfiguration{
+            DataSource: platform.String("api/purchaseOrders?$filter=currencyCode eq 'NOK'"),
             KeyBy: []string{
-                "string",
+                "$[*].id",
             },
             RequiredData: map[string]string{
-                "key": "string",
+                "currencyCode": "$[*].currencyCode",
+                "id": "$[*].id",
+                "number": "$[*].number",
+                "orderDate": "$[*].orderDate",
+                "totalAmountExcludingTax": "$[*].totalAmountExcludingTax",
+                "totalTaxAmount": "$[*].totalTaxAmount",
+                "vendorName": "$[*].number",
             },
             SourceModifiedDate: []string{
-                "string",
+                "$[*].lastModifiedDateTime",
             },
         },
         CustomDataIdentifier: "DynamicsPurchaseOrders",

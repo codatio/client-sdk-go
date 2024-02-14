@@ -5,9 +5,11 @@ generation:
     optionalPropertyRendering: withExample
   fixes:
     nameResolutionDec2023: false
+    parameterOrderingFeb2024: false
+    requestResponseComponentNamesFeb2024: false
   telemetryEnabled: true
 go:
-  version: 3.0.0
+  version: 3.0.1
   clientServerStatusCodesAsErrors: true
   flattenGlobalSecurity: false
   imports:

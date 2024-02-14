@@ -40,9 +40,6 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Groups.AddCompany(ctx, operations.AddCompanyToGroupRequest{
-        CompanyGroupAssignment: &shared.CompanyGroupAssignment{
-            GroupID: platform.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
-        },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
