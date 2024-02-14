@@ -4,6 +4,7 @@ package sdkerrors
 
 import (
 	"encoding/json"
+	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/shared"
 )
 
 // ErrorMessage - The request made is not valid.
@@ -20,6 +21,8 @@ type ErrorMessage struct {
 	Service *string `json:"service,omitempty"`
 	// The HTTP status code returned by the error.
 	StatusCode *int64 `json:"statusCode,omitempty"`
+	// A human-readable object describing validation decisions Codat has made. If an operation has failed because of validation errors, they will be detailed here.
+	Validation *shared.ErrorValidation `json:"validation,omitempty"`
 }
 
 var _ error = &ErrorMessage{}

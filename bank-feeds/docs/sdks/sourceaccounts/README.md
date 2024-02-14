@@ -48,6 +48,7 @@ import(
 	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/shared"
 	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v5"
 	"context"
+	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/types"
 	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/operations"
 	"log"
 )
@@ -62,10 +63,16 @@ func main() {
     ctx := context.Background()
     res, err := s.SourceAccounts.Create(ctx, operations.CreateSourceAccountRequest{
         SourceAccount: &shared.SourceAccount{
-            Currency: bankfeeds.String("USD"),
+            AccountName: bankfeeds.String("account-081"),
+            AccountNumber: bankfeeds.String("12345670"),
+            AccountType: bankfeeds.String("Credit"),
+            Balance: types.MustNewDecimalFromString("99.99"),
+            Currency: bankfeeds.String("GBP"),
             FeedStartDate: bankfeeds.String("2022-10-23T00:00:00Z"),
-            ID: "<ID>",
-            ModifiedDate: bankfeeds.String("2022-10-23T00:00:00Z"),
+            ID: "acc-002",
+            ModifiedDate: bankfeeds.String("2023-01-09T14:14:14.1057478Z"),
+            SortCode: bankfeeds.String("123456"),
+            Status: bankfeeds.String("pending"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -350,6 +357,7 @@ import(
 	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/shared"
 	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v5"
 	"context"
+	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/types"
 	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/operations"
 	"log"
 )
@@ -364,12 +372,18 @@ func main() {
     ctx := context.Background()
     res, err := s.SourceAccounts.Update(ctx, operations.UpdateSourceAccountRequest{
         SourceAccount: &shared.SourceAccount{
-            Currency: bankfeeds.String("EUR"),
+            AccountName: bankfeeds.String("account-095"),
+            AccountNumber: bankfeeds.String("12345671"),
+            AccountType: bankfeeds.String("Credit"),
+            Balance: types.MustNewDecimalFromString("0"),
+            Currency: bankfeeds.String("USD"),
             FeedStartDate: bankfeeds.String("2022-10-23T00:00:00Z"),
-            ID: "<ID>",
-            ModifiedDate: bankfeeds.String("2022-10-23T00:00:00Z"),
+            ID: "acc-003",
+            ModifiedDate: bankfeeds.String("2023-01-09T14:14:14.1057478Z"),
+            SortCode: bankfeeds.String("123456"),
+            Status: bankfeeds.String("pending"),
         },
-        AccountID: "13d946f0-c5d5-42bc-b092-97ece17923ab",
+        AccountID: "7110701885",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
