@@ -137,8 +137,8 @@ type AccountingBillCreditNote struct {
 	// Total value of any discounts applied.
 	TotalDiscount *decimal.Big `decimal:"number" json:"totalDiscount"`
 	// Amount of tax included in the bill credit note.
-	TotalTaxAmount *decimal.Big `decimal:"number" json:"totalTaxAmount"`
-	WithholdingTax []Items      `json:"withholdingTax,omitempty"`
+	TotalTaxAmount *decimal.Big          `decimal:"number" json:"totalTaxAmount"`
+	WithholdingTax []WithholdingTaxItems `json:"withholdingTax,omitempty"`
 }
 
 func (a AccountingBillCreditNote) MarshalJSON() ([]byte, error) {
@@ -299,7 +299,7 @@ func (o *AccountingBillCreditNote) GetTotalTaxAmount() *decimal.Big {
 	return o.TotalTaxAmount
 }
 
-func (o *AccountingBillCreditNote) GetWithholdingTax() []Items {
+func (o *AccountingBillCreditNote) GetWithholdingTax() []WithholdingTaxItems {
 	if o == nil {
 		return nil
 	}

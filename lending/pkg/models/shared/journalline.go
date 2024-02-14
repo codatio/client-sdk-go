@@ -9,10 +9,10 @@ import (
 
 // JournalLineTracking - List of record refs associated with the tracking information for the line (eg to a Tracking Category, or customer etc.)
 type JournalLineTracking struct {
-	RecordRefs []RecordRef `json:"recordRefs,omitempty"`
+	RecordRefs []TrackingRecordRef `json:"recordRefs,omitempty"`
 }
 
-func (o *JournalLineTracking) GetRecordRefs() []RecordRef {
+func (o *JournalLineTracking) GetRecordRefs() []TrackingRecordRef {
 	if o == nil {
 		return nil
 	}

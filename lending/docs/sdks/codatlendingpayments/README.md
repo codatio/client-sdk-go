@@ -28,7 +28,6 @@ import(
 	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/shared"
 	lending "github.com/codatio/client-sdk-go/lending/v5"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v5/pkg/types"
 	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/operations"
 	"log"
 )
@@ -42,38 +41,6 @@ func main() {
 
     ctx := context.Background()
     res, err := s.LoanWriteback.Payments.Create(ctx, operations.CreatePaymentRequest{
-        AccountingPayment: &shared.AccountingPayment{
-            AccountRef: &shared.AccountRef{},
-            Currency: lending.String("USD"),
-            CustomerRef: &shared.AccountingCustomerRef{
-                ID: "<ID>",
-            },
-            Date: "2022-10-23T00:00:00Z",
-            Lines: []shared.PaymentLine{
-                shared.PaymentLine{
-                    AllocatedOnDate: lending.String("2022-10-23T00:00:00Z"),
-                    Amount: types.MustNewDecimalFromString("8592.13"),
-                    Links: []shared.PaymentLineLink{
-                        shared.PaymentLineLink{
-                            Type: shared.PaymentLinkTypeOther,
-                        },
-                    },
-                },
-            },
-            Metadata: &shared.Metadata{},
-            ModifiedDate: lending.String("2022-10-23T00:00:00Z"),
-            PaymentMethodRef: &shared.PaymentMethodRef{
-                ID: "<ID>",
-            },
-            SourceModifiedDate: lending.String("2022-10-23T00:00:00Z"),
-            SupplementalData: &shared.SupplementalData{
-                Content: map[string]map[string]interface{}{
-                    "key": map[string]interface{}{
-                        "key": "string",
-                    },
-                },
-            },
-        },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -102,7 +69,7 @@ func main() {
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
 
 ## GetCreateModel
 
@@ -167,4 +134,4 @@ func main() {
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |

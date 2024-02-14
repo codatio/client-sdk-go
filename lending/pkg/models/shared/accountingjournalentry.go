@@ -75,11 +75,9 @@ type AccountingJournalEntry struct {
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	PostedOn *string `json:"postedOn,omitempty"`
-	// Links the current record to the underlying record or data type that created it.
-	//
-	// For example, if a journal entry is generated based on an invoice, this property allows you to connect the journal entry to the underlying invoice in our data model.
-	RecordRef          *RecordRef `json:"recordRef,omitempty"`
-	SourceModifiedDate *string    `json:"sourceModifiedDate,omitempty"`
+	// Links a journal entry to the underlying record that created it.
+	RecordRef          *JournalEntryRecordRef `json:"recordRef,omitempty"`
+	SourceModifiedDate *string                `json:"sourceModifiedDate,omitempty"`
 	// Supplemental data is additional data you can include in our standard data types.
 	//
 	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
@@ -162,7 +160,7 @@ func (o *AccountingJournalEntry) GetPostedOn() *string {
 	return o.PostedOn
 }
 
-func (o *AccountingJournalEntry) GetRecordRef() *RecordRef {
+func (o *AccountingJournalEntry) GetRecordRef() *JournalEntryRecordRef {
 	if o == nil {
 		return nil
 	}

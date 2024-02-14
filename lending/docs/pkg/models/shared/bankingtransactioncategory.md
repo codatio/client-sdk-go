@@ -1,6 +1,8 @@
 # BankingTransactionCategory
 
-Status of the bank transaction category.
+The Banking Transaction Categories data type provides a list of hierarchical categories associated with a transaction for greater contextual meaning to transaction activity.
+
+Responses are paged, so you should provide `page` and `pageSize` query parameters in your request.
 
 
 ## Fields
