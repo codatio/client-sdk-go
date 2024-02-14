@@ -1,27 +1,27 @@
 lockVersion: 2.0.0
 id: f309bed8-ee34-4982-948d-d0a2535e6a36
 management:
-  docChecksum: 75b71118dcdab4fd9f73f141612eaae4
+  docChecksum: 1c413a5d3d57588774d54236c89a147e
   docVersion: 3.0.0
   speakeasyVersion: internal
-  generationVersion: 2.239.4
-  releaseVersion: 3.0.0
-  configChecksum: ba0e431c6f5bacbd9f02afcf582eacdb
+  generationVersion: 2.253.0
+  releaseVersion: 3.0.1
+  configChecksum: d930a327cc8bc7d379e8b41dfaff675d
   repoURL: https://github.com/codatio/client-sdk-go.git
   repoSubDirectory: platform
   installationURL: https://github.com/codatio/client-sdk-go/platform
   published: true
 features:
   go:
-    constsAndDefaults: 0.1.2
-    core: 3.3.1
+    constsAndDefaults: 0.1.3
+    core: 3.3.2
     deprecations: 2.81.1
     examples: 2.81.3
-    globalSecurity: 2.82.4
+    globalSecurity: 2.82.6
     globalServerURLs: 2.82.1
     inputOutputModels: 2.83.0
     nameOverrides: 2.81.1
-    retries: 2.82.1
+    retries: 2.82.2
 generatedFiles:
   - settings.go
   - companies.go
@@ -95,6 +95,8 @@ generatedFiles:
   - /pkg/models/operations/getwebhook.go
   - /pkg/models/operations/listrules.go
   - /pkg/models/shared/apikeydetails.go
+  - /pkg/models/shared/errorvalidation.go
+  - /pkg/models/shared/errorvalidationitem.go
   - /pkg/models/shared/createapikey.go
   - /pkg/models/shared/profile.go
   - /pkg/models/shared/syncsettings.go
@@ -261,6 +263,8 @@ generatedFiles:
   - docs/pkg/models/operations/listrulesrequest.md
   - docs/pkg/models/operations/listrulesresponse.md
   - docs/pkg/models/shared/apikeydetails.md
+  - docs/pkg/models/shared/errorvalidation.md
+  - docs/pkg/models/shared/errorvalidationitem.md
   - docs/pkg/models/shared/createapikey.md
   - docs/pkg/models/shared/profile.md
   - docs/pkg/models/shared/syncsettings.md

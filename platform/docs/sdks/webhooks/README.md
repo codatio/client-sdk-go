@@ -36,14 +36,14 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Webhooks.Create(ctx, &shared.CreateRule{
-        CompanyID: platform.String("8a210b68-6988-11ed-a1eb-0242ac120002"),
+        CompanyID: platform.String("39b73b17-cc2e-429e-915d-71654e9dcd1e"),
         Notifiers: shared.WebhookNotifier{
             Emails: []string{
                 "info@client.com",
             },
             Webhook: platform.String("https://webhook.client.com"),
         },
-        Type: "string",
+        Type: "DataConnectionStatusChanged",
     })
     if err != nil {
         log.Fatal(err)

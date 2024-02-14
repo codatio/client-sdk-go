@@ -327,12 +327,14 @@ func main() {
     res, err := s.Settings.UpdateProfile(ctx, &shared.Profile{
         AlertAuthHeader: platform.String("Bearer tXEiHiRK7XCtI8TNHbpGs1LI1pumdb4Cl1QIo7B2"),
         APIKey: platform.String("sartANTjHAkLdbyDfaynoTQb7pkmj6hXHmnQKMrB"),
+        ConfirmCompanyName: platform.Bool(true),
         IconURL: platform.String("https://client-images.codat.io/icon/042399f5-d104-4f38-9ce8-cac3524f4e88_3f5623af-d992-4c22-bc08-e58c520a8526.ico"),
         LogoURL: platform.String("https://client-images.codat.io/logo/042399f5-d104-4f38-9ce8-cac3524f4e88_5806cb1f-7342-4c0e-a0a8-99bfbc47b0ff.png"),
         Name: "Bob's Burgers",
         RedirectURL: "https://bobs-burgers.{countrySuffix}/{companyId}",
         WhiteListUrls: []string{
             "https://bobs-burgers.com",
+            "https://bobs-burgers.co.uk",
         },
     })
     if err != nil {
@@ -393,11 +395,12 @@ func main() {
         Settings: []shared.SyncSetting{
             shared.SyncSetting{
                 DataType: shared.DataTypeInvoices,
-                FetchOnFirstLink: false,
+                FetchOnFirstLink: true,
+                IsLocked: platform.Bool(true),
                 MonthsToSync: platform.Int64(24),
-                SyncFromUtc: platform.String("2022-10-23T00:00:00Z"),
+                SyncFromUtc: platform.String("2020-01-01T12:00:00.000Z"),
                 SyncFromWindow: platform.Int64(24),
-                SyncOrder: 334238,
+                SyncOrder: 0,
                 SyncSchedule: 24,
             },
         },
