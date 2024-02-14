@@ -2,7 +2,7 @@
 
 package shared
 
-type SyncRangeDateRange struct {
+type DateRange struct {
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -45,14 +45,14 @@ type SyncRangeDateRange struct {
 	Start string `json:"start"`
 }
 
-func (o *SyncRangeDateRange) GetFinish() string {
+func (o *DateRange) GetFinish() string {
 	if o == nil {
 		return ""
 	}
 	return o.Finish
 }
 
-func (o *SyncRangeDateRange) GetStart() string {
+func (o *DateRange) GetStart() string {
 	if o == nil {
 		return ""
 	}
@@ -60,12 +60,12 @@ func (o *SyncRangeDateRange) GetStart() string {
 }
 
 type SyncRange struct {
-	DateRange SyncRangeDateRange `json:"dateRange"`
+	DateRange DateRange `json:"dateRange"`
 }
 
-func (o *SyncRange) GetDateRange() SyncRangeDateRange {
+func (o *SyncRange) GetDateRange() DateRange {
 	if o == nil {
-		return SyncRangeDateRange{}
+		return DateRange{}
 	}
 	return o.DateRange
 }

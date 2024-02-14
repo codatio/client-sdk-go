@@ -25,11 +25,11 @@ Use the [List Integrations](https://docs.codat.io/sync-for-sync-for-commerce-api
 package main
 
 import(
-	"context"
-	"log"
-	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v2"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
+	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v2"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -41,9 +41,6 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Connections.Create(ctx, operations.CreateConnectionRequest{
-        RequestBody: &operations.CreateConnectionRequestBody{
-            PlatformKey: syncforcommerce.String("gbol"),
-        },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -58,17 +55,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
-| `request`                                                                                | [operations.CreateConnectionRequest](../../models/operations/createconnectionrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
-| `opts`                                                                                   | [][operations.Option](../../models/operations/option.md)                                 | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
+| `request`                                                                                    | [operations.CreateConnectionRequest](../../pkg/models/operations/createconnectionrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `opts`                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                 | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
 
 
 ### Response
 
-**[*operations.CreateConnectionResponse](../../models/operations/createconnectionresponse.md), error**
-
+**[*operations.CreateConnectionResponse](../../pkg/models/operations/createconnectionresponse.md), error**
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
 
 ## GetSyncFlowURL
 
@@ -80,11 +80,11 @@ Create a new company and connections. Get a URL for Sync Flow, including a one t
 package main
 
 import(
-	"context"
-	"log"
-	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v2"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
+	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v2"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -96,8 +96,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Connections.GetSyncFlowURL(ctx, operations.GetSyncFlowURLRequest{
-        AccountingKey: "Manager",
-        CommerceKey: "payment",
+        AccountingKey: "string",
+        CommerceKey: "string",
     })
     if err != nil {
         log.Fatal(err)
@@ -111,17 +111,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
-| `request`                                                                            | [operations.GetSyncFlowURLRequest](../../models/operations/getsyncflowurlrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
-| `opts`                                                                               | [][operations.Option](../../models/operations/option.md)                             | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
+| `request`                                                                                | [operations.GetSyncFlowURLRequest](../../pkg/models/operations/getsyncflowurlrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `opts`                                                                                   | [][operations.Option](../../pkg/models/operations/option.md)                             | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
 
 
 ### Response
 
-**[*operations.GetSyncFlowURLResponse](../../models/operations/getsyncflowurlresponse.md), error**
-
+**[*operations.GetSyncFlowURLResponse](../../pkg/models/operations/getsyncflowurlresponse.md), error**
+| Error Object                    | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
 
 ## List
 
@@ -133,11 +136,11 @@ func main() {
 package main
 
 import(
-	"context"
-	"log"
-	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v2"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
+	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v2"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -166,17 +169,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
-| `request`                                                                              | [operations.ListConnectionsRequest](../../models/operations/listconnectionsrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
-| `opts`                                                                                 | [][operations.Option](../../models/operations/option.md)                               | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
+| `request`                                                                                  | [operations.ListConnectionsRequest](../../pkg/models/operations/listconnectionsrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+| `opts`                                                                                     | [][operations.Option](../../pkg/models/operations/option.md)                               | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
 
 
 ### Response
 
-**[*operations.ListConnectionsResponse](../../models/operations/listconnectionsresponse.md), error**
-
+**[*operations.ListConnectionsResponse](../../pkg/models/operations/listconnectionsresponse.md), error**
+| Error Object                    | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
 
 ## UpdateAuthorization
 
@@ -188,11 +194,11 @@ Update data connection's authorization.
 package main
 
 import(
-	"context"
-	"log"
-	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v2"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
+	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v2"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -204,9 +210,6 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Connections.UpdateAuthorization(ctx, operations.UpdateConnectionAuthorizationRequest{
-        RequestBody: map[string]string{
-            "Neptunium": "Books",
-        },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -222,17 +225,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                          | Type                                                                                                               | Required                                                                                                           | Description                                                                                                        |
-| ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                                              | :heavy_check_mark:                                                                                                 | The context to use for the request.                                                                                |
-| `request`                                                                                                          | [operations.UpdateConnectionAuthorizationRequest](../../models/operations/updateconnectionauthorizationrequest.md) | :heavy_check_mark:                                                                                                 | The request object to use for the request.                                                                         |
-| `opts`                                                                                                             | [][operations.Option](../../models/operations/option.md)                                                           | :heavy_minus_sign:                                                                                                 | The options for this request.                                                                                      |
+| Parameter                                                                                                              | Type                                                                                                                   | Required                                                                                                               | Description                                                                                                            |
+| ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                                  | :heavy_check_mark:                                                                                                     | The context to use for the request.                                                                                    |
+| `request`                                                                                                              | [operations.UpdateConnectionAuthorizationRequest](../../pkg/models/operations/updateconnectionauthorizationrequest.md) | :heavy_check_mark:                                                                                                     | The request object to use for the request.                                                                             |
+| `opts`                                                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                                                           | :heavy_minus_sign:                                                                                                     | The options for this request.                                                                                          |
 
 
 ### Response
 
-**[*operations.UpdateConnectionAuthorizationResponse](../../models/operations/updateconnectionauthorizationresponse.md), error**
-
+**[*operations.UpdateConnectionAuthorizationResponse](../../pkg/models/operations/updateconnectionauthorizationresponse.md), error**
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
 
 ## UpdateConnection
 
@@ -244,11 +250,11 @@ Update a data connection
 package main
 
 import(
-	"context"
-	"log"
-	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v2"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
+	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v2"
+	"context"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -260,7 +266,6 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Connections.UpdateConnection(ctx, operations.UpdateConnectionRequest{
-        UpdateConnection: &shared.UpdateConnection{},
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -276,14 +281,17 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
-| `request`                                                                                | [operations.UpdateConnectionRequest](../../models/operations/updateconnectionrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
-| `opts`                                                                                   | [][operations.Option](../../models/operations/option.md)                                 | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
+| `request`                                                                                    | [operations.UpdateConnectionRequest](../../pkg/models/operations/updateconnectionrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `opts`                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                 | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
 
 
 ### Response
 
-**[*operations.UpdateConnectionResponse](../../models/operations/updateconnectionresponse.md), error**
-
+**[*operations.UpdateConnectionResponse](../../pkg/models/operations/updateconnectionresponse.md), error**
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |

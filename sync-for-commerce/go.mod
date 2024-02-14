@@ -1,6 +1,6 @@
 module github.com/codatio/client-sdk-go/sync-for-commerce/v2
 
-go 1.14
+go 1.20
 
 require (
 	github.com/cenkalti/backoff/v4 v4.2.0

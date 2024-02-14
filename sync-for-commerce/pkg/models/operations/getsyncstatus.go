@@ -20,12 +20,8 @@ func (o *GetSyncStatusRequest) GetCompanyID() string {
 }
 
 type GetSyncStatusResponse struct {
-	// Bad Request
-	BadRequest interface{}
 	// HTTP response content type for this operation
 	ContentType string
-	// Not Found
-	NotFound interface{}
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -34,25 +30,11 @@ type GetSyncStatusResponse struct {
 	SyncStatus *shared.SyncStatus
 }
 
-func (o *GetSyncStatusResponse) GetBadRequest() interface{} {
-	if o == nil {
-		return nil
-	}
-	return o.BadRequest
-}
-
 func (o *GetSyncStatusResponse) GetContentType() string {
 	if o == nil {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *GetSyncStatusResponse) GetNotFound() interface{} {
-	if o == nil {
-		return nil
-	}
-	return o.NotFound
 }
 
 func (o *GetSyncStatusResponse) GetStatusCode() int {

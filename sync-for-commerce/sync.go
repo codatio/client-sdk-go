@@ -14,20 +14,20 @@ import (
 	"net/http"
 )
 
-// sync - Initiate and monitor the sync of company data into accounting software.
-type sync struct {
+// Sync - Initiate and monitor the sync of company data into accounting software.
+type Sync struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newSync(sdkConfig sdkConfiguration) *sync {
-	return &sync{
+func newSync(sdkConfig sdkConfiguration) *Sync {
+	return &Sync{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // Get sync status
 // Get the sync status for a specified sync
-func (s *sync) Get(ctx context.Context, request operations.GetSyncByIDRequest, opts ...operations.Option) (*operations.GetSyncByIDResponse, error) {
+func (s *Sync) Get(ctx context.Context, request operations.GetSyncByIDRequest, opts ...operations.Option) (*operations.GetSyncByIDResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -80,6 +80,13 @@ func (s *sync) Get(ctx context.Context, request operations.GetSyncByIDRequest, o
 			"5XX",
 		},
 	}, func() (*http.Response, error) {
+		if req.Body != nil {
+			copyBody, err := req.GetBody()
+			if err != nil {
+				return nil, err
+			}
+			req.Body = copyBody
+		}
 		return client.Do(req)
 	})
 	if err != nil {
@@ -118,20 +125,31 @@ func (s *sync) Get(ctx context.Context, request operations.GetSyncByIDRequest, o
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -139,7 +157,7 @@ func (s *sync) Get(ctx context.Context, request operations.GetSyncByIDRequest, o
 
 // GetLastSuccessfulSync - Last successful sync
 // Gets the status of the last successful sync
-func (s *sync) GetLastSuccessfulSync(ctx context.Context, request operations.GetLastSuccessfulSyncRequest, opts ...operations.Option) (*operations.GetLastSuccessfulSyncResponse, error) {
+func (s *Sync) GetLastSuccessfulSync(ctx context.Context, request operations.GetLastSuccessfulSyncRequest, opts ...operations.Option) (*operations.GetLastSuccessfulSyncResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -192,6 +210,13 @@ func (s *sync) GetLastSuccessfulSync(ctx context.Context, request operations.Get
 			"5XX",
 		},
 	}, func() (*http.Response, error) {
+		if req.Body != nil {
+			copyBody, err := req.GetBody()
+			if err != nil {
+				return nil, err
+			}
+			req.Body = copyBody
+		}
 		return client.Do(req)
 	})
 	if err != nil {
@@ -230,20 +255,31 @@ func (s *sync) GetLastSuccessfulSync(ctx context.Context, request operations.Get
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -251,7 +287,7 @@ func (s *sync) GetLastSuccessfulSync(ctx context.Context, request operations.Get
 
 // GetLatestSync - Latest sync status
 // Gets the latest sync status
-func (s *sync) GetLatestSync(ctx context.Context, request operations.GetLatestSyncRequest, opts ...operations.Option) (*operations.GetLatestSyncResponse, error) {
+func (s *Sync) GetLatestSync(ctx context.Context, request operations.GetLatestSyncRequest, opts ...operations.Option) (*operations.GetLatestSyncResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -304,6 +340,13 @@ func (s *sync) GetLatestSync(ctx context.Context, request operations.GetLatestSy
 			"5XX",
 		},
 	}, func() (*http.Response, error) {
+		if req.Body != nil {
+			copyBody, err := req.GetBody()
+			if err != nil {
+				return nil, err
+			}
+			req.Body = copyBody
+		}
 		return client.Do(req)
 	})
 	if err != nil {
@@ -342,20 +385,31 @@ func (s *sync) GetLatestSync(ctx context.Context, request operations.GetLatestSy
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -363,7 +417,7 @@ func (s *sync) GetLatestSync(ctx context.Context, request operations.GetLatestSy
 
 // GetStatus - Get sync status
 // Gets a list of sync statuses.
-func (s *sync) GetStatus(ctx context.Context, request operations.GetSyncStatusRequest, opts ...operations.Option) (*operations.GetSyncStatusResponse, error) {
+func (s *Sync) GetStatus(ctx context.Context, request operations.GetSyncStatusRequest, opts ...operations.Option) (*operations.GetSyncStatusResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -416,6 +470,13 @@ func (s *sync) GetStatus(ctx context.Context, request operations.GetSyncStatusRe
 			"5XX",
 		},
 	}, func() (*http.Response, error) {
+		if req.Body != nil {
+			copyBody, err := req.GetBody()
+			if err != nil {
+				return nil, err
+			}
+			req.Body = copyBody
+		}
 		return client.Do(req)
 	})
 	if err != nil {
@@ -452,30 +513,33 @@ func (s *sync) GetStatus(ctx context.Context, request operations.GetSyncStatusRe
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
-	case httpRes.StatusCode == 400:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out interface{}
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			res.BadRequest = out
-		default:
-			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
-		}
+	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out interface{}
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.NotFound = out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -483,7 +547,7 @@ func (s *sync) GetStatus(ctx context.Context, request operations.GetSyncStatusRe
 
 // List sync statuses
 // Gets a list of sync statuses
-func (s *sync) List(ctx context.Context, request operations.ListSyncsRequest, opts ...operations.Option) (*operations.ListSyncsResponse, error) {
+func (s *Sync) List(ctx context.Context, request operations.ListSyncsRequest, opts ...operations.Option) (*operations.ListSyncsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -536,6 +600,13 @@ func (s *sync) List(ctx context.Context, request operations.ListSyncsRequest, op
 			"5XX",
 		},
 	}, func() (*http.Response, error) {
+		if req.Body != nil {
+			copyBody, err := req.GetBody()
+			if err != nil {
+				return nil, err
+			}
+			req.Body = copyBody
+		}
 		return client.Do(req)
 	})
 	if err != nil {
@@ -568,26 +639,37 @@ func (s *sync) List(ctx context.Context, request operations.ListSyncsRequest, op
 				return nil, err
 			}
 
-			res.CompanySyncStatuses = out
+			res.Classes = out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorMessage
+			var out sdkerrors.ErrorMessage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorMessage = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -595,7 +677,7 @@ func (s *sync) List(ctx context.Context, request operations.ListSyncsRequest, op
 
 // Request - Initiate new sync
 // Run a Commerce sync from the last successful sync up to the date provided (optional), otherwise UtcNow is used.\r\nIf there was no previously successful sync, the start date in the config is used.
-func (s *sync) Request(ctx context.Context, request operations.RequestSyncRequest, opts ...operations.Option) (*operations.RequestSyncResponse, error) {
+func (s *Sync) Request(ctx context.Context, request operations.RequestSyncRequest, opts ...operations.Option) (*operations.RequestSyncResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -655,6 +737,13 @@ func (s *sync) Request(ctx context.Context, request operations.RequestSyncReques
 			"5XX",
 		},
 	}, func() (*http.Response, error) {
+		if req.Body != nil {
+			copyBody, err := req.GetBody()
+			if err != nil {
+				return nil, err
+			}
+			req.Body = copyBody
+		}
 		return client.Do(req)
 	})
 	if err != nil {
@@ -691,6 +780,35 @@ func (s *sync) Request(ctx context.Context, request operations.RequestSyncReques
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode == 400:
+		fallthrough
+	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
+	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out sdkerrors.ErrorMessage
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+			return nil, &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -698,7 +816,7 @@ func (s *sync) Request(ctx context.Context, request operations.RequestSyncReques
 
 // RequestForDateRange - Initiate sync for specific range
 // Initiate a sync for the specified start date to the specified finish date in the request payload.
-func (s *sync) RequestForDateRange(ctx context.Context, request operations.RequestSyncForDateRangeRequest, opts ...operations.Option) (*operations.RequestSyncForDateRangeResponse, error) {
+func (s *Sync) RequestForDateRange(ctx context.Context, request operations.RequestSyncForDateRangeRequest, opts ...operations.Option) (*operations.RequestSyncForDateRangeResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -758,6 +876,13 @@ func (s *sync) RequestForDateRange(ctx context.Context, request operations.Reque
 			"5XX",
 		},
 	}, func() (*http.Response, error) {
+		if req.Body != nil {
+			copyBody, err := req.GetBody()
+			if err != nil {
+				return nil, err
+			}
+			req.Body = copyBody
+		}
 		return client.Do(req)
 	})
 	if err != nil {
@@ -794,6 +919,35 @@ func (s *sync) RequestForDateRange(ctx context.Context, request operations.Reque
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode == 400:
+		fallthrough
+	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
+	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out sdkerrors.ErrorMessage
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+			return nil, &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
