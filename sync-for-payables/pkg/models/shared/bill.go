@@ -7,202 +7,7 @@ import (
 	"github.com/ericlagergren/decimal"
 )
 
-type BillAllocation struct {
-	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
-	//
-	// ```
-	// 2020-10-08T22:40:50Z
-	// 2021-01-01T00:00:00
-	// ```
-	//
-	//
-	//
-	// When syncing data that contains `DateTime` fields from Codat, make sure you support the following cases when reading time information:
-	//
-	// - Coordinated Universal Time (UTC): `2021-11-15T06:00:00Z`
-	// - Unqualified local time: `2021-11-15T01:00:00`
-	// - UTC time offsets: `2021-11-15T01:00:00-05:00`
-	//
-	// > Time zones
-	// >
-	// > Not all dates from Codat will contain information about time zones.
-	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	AllocatedOnDate *string `json:"allocatedOnDate,omitempty"`
-	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code, e.g. _GBP_.
-	//
-	// ## Unknown currencies
-	//
-	// In line with the ISO 4217 specification, the code _XXX_ is used when the data source does not return a currency for a transaction.
-	//
-	// There are only a very small number of edge cases where this currency code is returned by the Codat system.
-	Currency *string `json:"currency,omitempty"`
-	// Rate to convert the total amount of the payment into the base currency for the company at the time of the payment.
-	//
-	// Currency rates in Codat are implemented as the multiple of foreign currency units to each base currency unit.
-	//
-	// It is not possible to perform the currency conversion with two or more non-base currencies participating in the transaction. For example, if a company's base currency is USD, and it has a bill issued in EUR, then the bill payment must happen in USD or EUR.
-	//
-	// Where the currency rate is provided by the underlying accounting platform, it will be available from Codat with the same precision (up to a maximum of 9 decimal places).
-	//
-	// For accounting platforms which do not provide an explicit currency rate, it is calculated as `baseCurrency / foreignCurrency` and will be returned to 9 decimal places.
-	//
-	// ## Examples with base currency of GBP
-	//
-	// | Foreign Currency | Foreign Amount | Currency Rate | Base Currency Amount (GBP) |
-	// | :--------------- | :------------- | :------------ | :------------------------- |
-	// | **USD**          | $20            | 0.781         | £15.62                     |
-	// | **EUR**          | €20            | 0.885         | £17.70                     |
-	// | **RUB**          | ₽20            | 0.011         | £0.22                      |
-	//
-	// ## Examples with base currency of USD
-	//
-	// | Foreign Currency | Foreign Amount | Currency Rate | Base Currency Amount (USD) |
-	// | :--------------- | :------------- | :------------ | :------------------------- |
-	// | **GBP**          | £20            | 1.277         | $25.54                     |
-	// | **EUR**          | €20            | 1.134         | $22.68                     |
-	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
-	//
-	//
-	// ### Integration-specific details
-	//
-	// | Integration       | Scenario                                        | System behavior                                                                                                                                                      |
-	// |-------------------|-------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-	// | QuickBooks Online | Transaction currency differs from base currency | If currency rate value is left `null`, a rate of 1 will be used by QBO by default. To override this, include the required currency rate in the expense transaction.  |
-	CurrencyRate *decimal.Big `decimal:"number" json:"currencyRate,omitempty"`
-	// The total amount that has been allocated.
-	TotalAmount *decimal.Big `decimal:"number" json:"totalAmount,omitempty"`
-}
-
-func (b BillAllocation) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(b, "", false)
-}
-
-func (b *BillAllocation) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &b, "", false, false); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *BillAllocation) GetAllocatedOnDate() *string {
-	if o == nil {
-		return nil
-	}
-	return o.AllocatedOnDate
-}
-
-func (o *BillAllocation) GetCurrency() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Currency
-}
-
-func (o *BillAllocation) GetCurrencyRate() *decimal.Big {
-	if o == nil {
-		return nil
-	}
-	return o.CurrencyRate
-}
-
-func (o *BillAllocation) GetTotalAmount() *decimal.Big {
-	if o == nil {
-		return nil
-	}
-	return o.TotalAmount
-}
-
-type AccountingPaymentAllocation struct {
-	Allocation BillAllocation           `json:"allocation"`
-	Payment    PaymentAllocationPayment `json:"payment"`
-}
-
-func (o *AccountingPaymentAllocation) GetAllocation() BillAllocation {
-	if o == nil {
-		return BillAllocation{}
-	}
-	return o.Allocation
-}
-
-func (o *AccountingPaymentAllocation) GetPayment() PaymentAllocationPayment {
-	if o == nil {
-		return PaymentAllocationPayment{}
-	}
-	return o.Payment
-}
-
-type PurchaseOrderReference struct {
-	// Identifier for the purchase order, unique for the company in the accounting platform.
-	ID *string `json:"id,omitempty"`
-	// Friendly reference for the purchase order, commonly generated by the accounting platform.
-	PurchaseOrderNumber *string `json:"purchaseOrderNumber,omitempty"`
-}
-
-func (o *PurchaseOrderReference) GetID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ID
-}
-
-func (o *PurchaseOrderReference) GetPurchaseOrderNumber() *string {
-	if o == nil {
-		return nil
-	}
-	return o.PurchaseOrderNumber
-}
-
-type WithholdingTax struct {
-	// Amount of tax withheld.
-	Amount *decimal.Big `decimal:"number" json:"amount"`
-	// Name assigned to withheld tax.
-	Name string `json:"name"`
-}
-
-func (w WithholdingTax) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(w, "", false)
-}
-
-func (w *WithholdingTax) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &w, "", false, false); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *WithholdingTax) GetAmount() *decimal.Big {
-	if o == nil {
-		return new(decimal.Big).SetFloat64(0.0)
-	}
-	return o.Amount
-}
-
-func (o *WithholdingTax) GetName() string {
-	if o == nil {
-		return ""
-	}
-	return o.Name
-}
-
-// Bill - > **Invoices or bills?**
-// >
-// > We distinguish between invoices where the company *owes money* vs. *is owed money*. If the company has received an invoice, and owes money to someone else (accounts payable) we call this a Bill.
-// >
-// > See [Invoices](https://docs.codat.io/sync-for-payables-api#/schemas/Invoice) for the accounts receivable equivalent of bills.
-//
-// View the coverage for bills in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bills" target="_blank">Data coverage explorer</a>.
-//
-// ## Overview
-//
-// In Codat, a bill contains details of:
-// * When the bill was recorded in the accounting system.
-// * How much the bill is for and the currency of the amount.
-// * Who the bill was received from — the *supplier*.
-// * What the bill is for — the *line items*.
-//
-// Some accounting platforms give a separate name to purchases where the payment is made immediately, such as something bought with a credit card or online payment. One example of this would be QuickBooks Online's *expenses*.
-//
-// You can find these types of transactions in our [Direct costs](https://docs.codat.io/sync-for-payables-api#/schemas/DirectCost) data model.
+// Bill - Bills are invoices that represent the SMB's financial obligations to their supplier for a purchase of goods or services.
 type Bill struct {
 	// Amount outstanding on the bill.
 	AmountDue *decimal.Big `decimal:"number" json:"amountDue,omitempty"`
@@ -214,70 +19,21 @@ type Bill struct {
 	//
 	// There are only a very small number of edge cases where this currency code is returned by the Codat system.
 	Currency *string `json:"currency,omitempty"`
-	// Rate to convert the total amount of the payment into the base currency for the company at the time of the payment.
-	//
-	// Currency rates in Codat are implemented as the multiple of foreign currency units to each base currency unit.
-	//
-	// It is not possible to perform the currency conversion with two or more non-base currencies participating in the transaction. For example, if a company's base currency is USD, and it has a bill issued in EUR, then the bill payment must happen in USD or EUR.
-	//
-	// Where the currency rate is provided by the underlying accounting platform, it will be available from Codat with the same precision (up to a maximum of 9 decimal places).
-	//
-	// For accounting platforms which do not provide an explicit currency rate, it is calculated as `baseCurrency / foreignCurrency` and will be returned to 9 decimal places.
-	//
-	// ## Examples with base currency of GBP
-	//
-	// | Foreign Currency | Foreign Amount | Currency Rate | Base Currency Amount (GBP) |
-	// | :--------------- | :------------- | :------------ | :------------------------- |
-	// | **USD**          | $20            | 0.781         | £15.62                     |
-	// | **EUR**          | €20            | 0.885         | £17.70                     |
-	// | **RUB**          | ₽20            | 0.011         | £0.22                      |
-	//
-	// ## Examples with base currency of USD
-	//
-	// | Foreign Currency | Foreign Amount | Currency Rate | Base Currency Amount (USD) |
-	// | :--------------- | :------------- | :------------ | :------------------------- |
-	// | **GBP**          | £20            | 1.277         | $25.54                     |
-	// | **EUR**          | €20            | 1.134         | $22.68                     |
-	// | **RUB**          | ₽20            | 0.015         | $0.30                      |
-	//
-	//
-	// ### Integration-specific details
-	//
-	// | Integration       | Scenario                                        | System behavior                                                                                                                                                      |
-	// |-------------------|-------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-	// | QuickBooks Online | Transaction currency differs from base currency | If currency rate value is left `null`, a rate of 1 will be used by QBO by default. To override this, include the required currency rate in the expense transaction.  |
-	CurrencyRate *decimal.Big `decimal:"number" json:"currencyRate,omitempty"`
-	DueDate      *string      `json:"dueDate,omitempty"`
+	DueDate  *string `json:"dueDate,omitempty"`
 	// Identifier for the bill, unique for the company in the accounting platform.
 	ID        *string `json:"id,omitempty"`
-	IssueDate string  `json:"issueDate"`
+	IssueDate *string `json:"issueDate,omitempty"`
 	// Array of Bill line items.
-	LineItems    []BillLineItem `json:"lineItems,omitempty"`
-	Metadata     *Metadata      `json:"metadata,omitempty"`
-	ModifiedDate *string        `json:"modifiedDate,omitempty"`
-	// Any private, company notes about the bill, such as payment information.
-	Note *string `json:"note,omitempty"`
-	// An array of payment allocations.
-	PaymentAllocations []AccountingPaymentAllocation `json:"paymentAllocations,omitempty"`
-	PurchaseOrderRefs  []PurchaseOrderReference      `json:"purchaseOrderRefs,omitempty"`
+	LineItems []BillLineItem `json:"lineItems,omitempty"`
 	// User-friendly reference for the bill.
 	Reference          *string `json:"reference,omitempty"`
 	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 	// Current state of the bill.
-	Status BillStatus `json:"status"`
-	// Total amount of the bill, excluding any taxes.
-	SubTotal *decimal.Big `decimal:"number" json:"subTotal"`
-	// Supplemental data is additional data you can include in our standard data types.
-	//
-	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
-	SupplementalData *SupplementalData `json:"supplementalData,omitempty"`
+	Status *BillStatus `json:"status,omitempty"`
 	// Reference to the supplier the record relates to.
 	SupplierRef *SupplierRef `json:"supplierRef,omitempty"`
-	// Amount of tax on the bill.
-	TaxAmount *decimal.Big `decimal:"number" json:"taxAmount"`
 	// Amount of the bill, including tax.
-	TotalAmount    *decimal.Big     `decimal:"number" json:"totalAmount"`
-	WithholdingTax []WithholdingTax `json:"withholdingTax,omitempty"`
+	TotalAmount *decimal.Big `decimal:"number" json:"totalAmount,omitempty"`
 }
 
 func (b Bill) MarshalJSON() ([]byte, error) {
@@ -305,13 +61,6 @@ func (o *Bill) GetCurrency() *string {
 	return o.Currency
 }
 
-func (o *Bill) GetCurrencyRate() *decimal.Big {
-	if o == nil {
-		return nil
-	}
-	return o.CurrencyRate
-}
-
 func (o *Bill) GetDueDate() *string {
 	if o == nil {
 		return nil
@@ -326,9 +75,9 @@ func (o *Bill) GetID() *string {
 	return o.ID
 }
 
-func (o *Bill) GetIssueDate() string {
+func (o *Bill) GetIssueDate() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.IssueDate
 }
@@ -338,41 +87,6 @@ func (o *Bill) GetLineItems() []BillLineItem {
 		return nil
 	}
 	return o.LineItems
-}
-
-func (o *Bill) GetMetadata() *Metadata {
-	if o == nil {
-		return nil
-	}
-	return o.Metadata
-}
-
-func (o *Bill) GetModifiedDate() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ModifiedDate
-}
-
-func (o *Bill) GetNote() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Note
-}
-
-func (o *Bill) GetPaymentAllocations() []AccountingPaymentAllocation {
-	if o == nil {
-		return nil
-	}
-	return o.PaymentAllocations
-}
-
-func (o *Bill) GetPurchaseOrderRefs() []PurchaseOrderReference {
-	if o == nil {
-		return nil
-	}
-	return o.PurchaseOrderRefs
 }
 
 func (o *Bill) GetReference() *string {
@@ -389,25 +103,11 @@ func (o *Bill) GetSourceModifiedDate() *string {
 	return o.SourceModifiedDate
 }
 
-func (o *Bill) GetStatus() BillStatus {
-	if o == nil {
-		return BillStatus("")
-	}
-	return o.Status
-}
-
-func (o *Bill) GetSubTotal() *decimal.Big {
-	if o == nil {
-		return new(decimal.Big).SetFloat64(0.0)
-	}
-	return o.SubTotal
-}
-
-func (o *Bill) GetSupplementalData() *SupplementalData {
+func (o *Bill) GetStatus() *BillStatus {
 	if o == nil {
 		return nil
 	}
-	return o.SupplementalData
+	return o.Status
 }
 
 func (o *Bill) GetSupplierRef() *SupplierRef {
@@ -417,23 +117,9 @@ func (o *Bill) GetSupplierRef() *SupplierRef {
 	return o.SupplierRef
 }
 
-func (o *Bill) GetTaxAmount() *decimal.Big {
-	if o == nil {
-		return new(decimal.Big).SetFloat64(0.0)
-	}
-	return o.TaxAmount
-}
-
 func (o *Bill) GetTotalAmount() *decimal.Big {
-	if o == nil {
-		return new(decimal.Big).SetFloat64(0.0)
-	}
-	return o.TotalAmount
-}
-
-func (o *Bill) GetWithholdingTax() []WithholdingTax {
 	if o == nil {
 		return nil
 	}
-	return o.WithholdingTax
+	return o.TotalAmount
 }
