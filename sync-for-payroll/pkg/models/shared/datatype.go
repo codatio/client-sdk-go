@@ -26,6 +26,7 @@ const (
 	DataTypeDirectCosts                  DataType = "directCosts"
 	DataTypeDirectIncomes                DataType = "directIncomes"
 	DataTypeInvoices                     DataType = "invoices"
+	DataTypeItemReceipts                 DataType = "itemReceipts"
 	DataTypeItems                        DataType = "items"
 	DataTypeJournalEntries               DataType = "journalEntries"
 	DataTypeJournals                     DataType = "journals"
@@ -94,6 +95,8 @@ func (e *DataType) UnmarshalJSON(data []byte) error {
 	case "directIncomes":
 		fallthrough
 	case "invoices":
+		fallthrough
+	case "itemReceipts":
 		fallthrough
 	case "items":
 		fallthrough

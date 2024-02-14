@@ -9,13 +9,13 @@ import (
 )
 
 type CreateJournalRequest struct {
-	Journal *shared.Journal `request:"mediaType=application/json"`
 	// Allow a sync upon push completion.
 	AllowSyncOnPushComplete *bool `default:"true" queryParam:"style=form,explode=true,name=allowSyncOnPushComplete"`
 	// Unique identifier for a company.
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	// Unique identifier for a connection.
-	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
+	ConnectionID     string                   `pathParam:"style=simple,explode=false,name=connectionId"`
+	JournalPrototype *shared.JournalPrototype `request:"mediaType=application/json"`
 	// Time limit for the push operation to complete before it is timed out.
 	TimeoutInMinutes *int `queryParam:"style=form,explode=true,name=timeoutInMinutes"`
 }
@@ -29,13 +29,6 @@ func (c *CreateJournalRequest) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
-}
-
-func (o *CreateJournalRequest) GetJournal() *shared.Journal {
-	if o == nil {
-		return nil
-	}
-	return o.Journal
 }
 
 func (o *CreateJournalRequest) GetAllowSyncOnPushComplete() *bool {
@@ -59,6 +52,13 @@ func (o *CreateJournalRequest) GetConnectionID() string {
 	return o.ConnectionID
 }
 
+func (o *CreateJournalRequest) GetJournalPrototype() *shared.JournalPrototype {
+	if o == nil {
+		return nil
+	}
+	return o.JournalPrototype
+}
+
 func (o *CreateJournalRequest) GetTimeoutInMinutes() *int {
 	if o == nil {
 		return nil
@@ -71,8 +71,6 @@ type CreateJournalResponse struct {
 	ContentType string
 	// Success
 	CreateJournalResponse *shared.CreateJournalResponse
-	// The request made is not valid.
-	ErrorMessage *shared.ErrorMessage
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -91,13 +89,6 @@ func (o *CreateJournalResponse) GetCreateJournalResponse() *shared.CreateJournal
 		return nil
 	}
 	return o.CreateJournalResponse
-}
-
-func (o *CreateJournalResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *CreateJournalResponse) GetStatusCode() int {
