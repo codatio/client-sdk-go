@@ -42,11 +42,6 @@ func main() {
     ctx := context.Background()
     res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
         Description: syncforexpenses.String("Requested early access to the new financing scheme."),
-        Groups: []shared.GroupItems{
-            shared.GroupItems{
-                ID: syncforexpenses.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
-            },
-        },
         Name: "Bank of Dave",
     })
     if err != nil {
@@ -277,15 +272,6 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Companies.Update(ctx, operations.UpdateCompanyRequest{
-        CompanyRequestBody: &shared.CompanyRequestBody{
-            Description: syncforexpenses.String("Requested early access to the new financing scheme."),
-            Groups: []shared.GroupItems{
-                shared.GroupItems{
-                    ID: syncforexpenses.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
-                },
-            },
-            Name: "Bank of Dave",
-        },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {

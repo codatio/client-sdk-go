@@ -141,13 +141,6 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Configuration.Set(ctx, operations.SetCompanyConfigurationRequest{
-        CompanyConfiguration: &shared.CompanyConfiguration{
-            BankAccount: shared.BankAccount{
-                ID: syncforexpenses.String("32"),
-            },
-            Customer: shared.CustomerDetails{},
-            Supplier: shared.SupplierDetails{},
-        },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {

@@ -48,21 +48,40 @@ func main() {
         Supplier: &shared.Supplier{
             Addresses: []shared.Items{
                 shared.Items{
+                    City: syncforexpenses.String("Bakersfield"),
+                    Country: syncforexpenses.String("USA"),
+                    Line1: syncforexpenses.String("Unit 51"),
+                    Line2: syncforexpenses.String("Bakersfield Industrial Estate"),
+                    Region: syncforexpenses.String("California"),
                     Type: shared.AccountingAddressTypeBilling,
                 },
             },
-            Metadata: &shared.Metadata{},
+            ContactName: syncforexpenses.String("Kelly's Industrial Supplies"),
+            DefaultCurrency: syncforexpenses.String("string"),
+            EmailAddress: syncforexpenses.String("sales@kellysupplies.com"),
+            ID: syncforexpenses.String("C520FFD4-F6F6-4FC2-A6D2-5D7088B2B14F"),
+            Metadata: &shared.Metadata{
+                IsDeleted: syncforexpenses.Bool(true),
+            },
             ModifiedDate: syncforexpenses.String("2022-10-23T00:00:00Z"),
-            Phone: syncforexpenses.String("(877) 492-8687"),
+            Phone: syncforexpenses.String("07999 999999"),
+            RegistrationNumber: syncforexpenses.String("string"),
             SourceModifiedDate: syncforexpenses.String("2022-10-23T00:00:00Z"),
-            Status: shared.SupplierStatusActive,
+            Status: shared.SupplierStatusUnknown,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "key": map[string]interface{}{
-                        "key": "string",
+                    "property1": map[string]interface{}{
+                        "property1": nil,
+                        "property2": nil,
+                    },
+                    "property2": map[string]interface{}{
+                        "property1": nil,
+                        "property2": nil,
                     },
                 },
             },
+            SupplierName: syncforexpenses.String("Kelly's Industrial Supplies"),
+            TaxNumber: syncforexpenses.String("string"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -252,25 +271,44 @@ func main() {
         Supplier: &shared.Supplier{
             Addresses: []shared.Items{
                 shared.Items{
-                    Type: shared.AccountingAddressTypeDelivery,
+                    City: syncforexpenses.String("Bakersfield"),
+                    Country: syncforexpenses.String("USA"),
+                    Line1: syncforexpenses.String("Unit 51"),
+                    Line2: syncforexpenses.String("Bakersfield Industrial Estate"),
+                    Region: syncforexpenses.String("California"),
+                    Type: shared.AccountingAddressTypeBilling,
                 },
             },
-            Metadata: &shared.Metadata{},
+            ContactName: syncforexpenses.String("Kelly's Industrial Supplies"),
+            DefaultCurrency: syncforexpenses.String("string"),
+            EmailAddress: syncforexpenses.String("sales@kellysupplies.com"),
+            ID: syncforexpenses.String("C520FFD4-F6F6-4FC2-A6D2-5D7088B2B14F"),
+            Metadata: &shared.Metadata{
+                IsDeleted: syncforexpenses.Bool(true),
+            },
             ModifiedDate: syncforexpenses.String("2022-10-23T00:00:00Z"),
-            Phone: syncforexpenses.String("(877) 492-8687"),
+            Phone: syncforexpenses.String("07999 999999"),
+            RegistrationNumber: syncforexpenses.String("string"),
             SourceModifiedDate: syncforexpenses.String("2022-10-23T00:00:00Z"),
-            Status: shared.SupplierStatusActive,
+            Status: shared.SupplierStatusUnknown,
             SupplementalData: &shared.SupplementalData{
                 Content: map[string]map[string]interface{}{
-                    "key": map[string]interface{}{
-                        "key": "string",
+                    "property1": map[string]interface{}{
+                        "property1": nil,
+                        "property2": nil,
+                    },
+                    "property2": map[string]interface{}{
+                        "property1": nil,
+                        "property2": nil,
                     },
                 },
             },
+            SupplierName: syncforexpenses.String("Kelly's Industrial Supplies"),
+            TaxNumber: syncforexpenses.String("string"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        SupplierID: "7110701885",
+        SupplierID: "EILBDVJVNUAGVKRQ",
     })
     if err != nil {
         log.Fatal(err)

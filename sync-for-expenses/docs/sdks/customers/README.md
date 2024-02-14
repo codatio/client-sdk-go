@@ -45,40 +45,6 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Customers.Create(ctx, operations.CreateCustomerRequest{
-        Customer: &shared.Customer{
-            Addresses: []shared.AccountingAddress{
-                shared.AccountingAddress{
-                    Type: shared.AccountingAddressTypeBilling,
-                },
-            },
-            Contacts: []shared.Contact{
-                shared.Contact{
-                    Address: &shared.Items{
-                        Type: shared.AccountingAddressTypeBilling,
-                    },
-                    ModifiedDate: syncforexpenses.String("2022-10-23T00:00:00Z"),
-                    Phone: []shared.Phone{
-                        shared.Phone{
-                            Number: "01224 658 999",
-                            Type: shared.PhoneNumberTypeMobile,
-                        },
-                    },
-                    Status: shared.CustomerStatusUnknown,
-                },
-            },
-            DefaultCurrency: syncforexpenses.String("GBP"),
-            Metadata: &shared.Metadata{},
-            ModifiedDate: syncforexpenses.String("2022-10-23T00:00:00Z"),
-            SourceModifiedDate: syncforexpenses.String("2022-10-23T00:00:00Z"),
-            Status: shared.CustomerStatusArchived,
-            SupplementalData: &shared.SupplementalData{
-                Content: map[string]map[string]interface{}{
-                    "key": map[string]interface{}{
-                        "key": "string",
-                    },
-                },
-            },
-        },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -264,40 +230,6 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Customers.Update(ctx, operations.UpdateCustomerRequest{
-        Customer: &shared.Customer{
-            Addresses: []shared.AccountingAddress{
-                shared.AccountingAddress{
-                    Type: shared.AccountingAddressTypeDelivery,
-                },
-            },
-            Contacts: []shared.Contact{
-                shared.Contact{
-                    Address: &shared.Items{
-                        Type: shared.AccountingAddressTypeUnknown,
-                    },
-                    ModifiedDate: syncforexpenses.String("2022-10-23T00:00:00Z"),
-                    Phone: []shared.Phone{
-                        shared.Phone{
-                            Number: "+44 25691 154789",
-                            Type: shared.PhoneNumberTypeLandline,
-                        },
-                    },
-                    Status: shared.CustomerStatusArchived,
-                },
-            },
-            DefaultCurrency: syncforexpenses.String("EUR"),
-            Metadata: &shared.Metadata{},
-            ModifiedDate: syncforexpenses.String("2022-10-23T00:00:00Z"),
-            SourceModifiedDate: syncforexpenses.String("2022-10-23T00:00:00Z"),
-            Status: shared.CustomerStatusArchived,
-            SupplementalData: &shared.SupplementalData{
-                Content: map[string]map[string]interface{}{
-                    "key": map[string]interface{}{
-                        "key": "string",
-                    },
-                },
-            },
-        },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
         CustomerID: "string",
