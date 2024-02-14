@@ -7,12 +7,12 @@ import (
 	"github.com/ericlagergren/decimal"
 )
 
-// JournalLineTracking - List of record refs associated with the tracking information for the line (eg to a Tracking Category, or customer etc.)
-type JournalLineTracking struct {
-	RecordRefs []RecordRef `json:"recordRefs,omitempty"`
+// Tracking - List of record refs associated with the tracking information for the line (eg to a Tracking Category, or customer etc.)
+type Tracking struct {
+	RecordRefs []TrackingRecordRef `json:"recordRefs,omitempty"`
 }
 
-func (o *JournalLineTracking) GetRecordRefs() []RecordRef {
+func (o *Tracking) GetRecordRefs() []TrackingRecordRef {
 	if o == nil {
 		return nil
 	}
@@ -29,7 +29,7 @@ type JournalLine struct {
 	// Amount for the journal line. Debit entries are considered positive, and credit entries are considered negative.
 	NetAmount *decimal.Big `decimal:"number" json:"netAmount"`
 	// List of record refs associated with the tracking information for the line (eg to a Tracking Category, or customer etc.)
-	Tracking *JournalLineTracking `json:"tracking,omitempty"`
+	Tracking *Tracking `json:"tracking,omitempty"`
 }
 
 func (j JournalLine) MarshalJSON() ([]byte, error) {
@@ -71,7 +71,7 @@ func (o *JournalLine) GetNetAmount() *decimal.Big {
 	return o.NetAmount
 }
 
-func (o *JournalLine) GetTracking() *JournalLineTracking {
+func (o *JournalLine) GetTracking() *Tracking {
 	if o == nil {
 		return nil
 	}

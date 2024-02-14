@@ -31,8 +31,6 @@ func (o *GetJournalRequest) GetJournalID() string {
 type GetJournalResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Your API request was not properly authorized.
-	ErrorMessage *shared.ErrorMessage
 	// Success
 	Journal *shared.Journal
 	// HTTP response status code for this operation
@@ -46,13 +44,6 @@ func (o *GetJournalResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *GetJournalResponse) GetErrorMessage() *shared.ErrorMessage {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorMessage
 }
 
 func (o *GetJournalResponse) GetJournal() *shared.Journal {

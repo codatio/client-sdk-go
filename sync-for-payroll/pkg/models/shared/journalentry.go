@@ -2,30 +2,6 @@
 
 package shared
 
-// JournalEntryRecordReference - Links the current record to the underlying record or data type that created it.
-//
-// For example, if a journal entry is generated based on an invoice, this property allows you to connect the journal entry to the underlying invoice in our data model.
-type JournalEntryRecordReference struct {
-	// Allowed name of the 'dataType'.
-	DataType *string `json:"dataType,omitempty"`
-	// 'id' of the underlying record or data type.
-	ID *string `json:"id,omitempty"`
-}
-
-func (o *JournalEntryRecordReference) GetDataType() *string {
-	if o == nil {
-		return nil
-	}
-	return o.DataType
-}
-
-func (o *JournalEntryRecordReference) GetID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ID
-}
-
 // JournalEntry - > **Language tip:** For the top-level record of a company's financial transactions, refer to the [Journals](https://docs.codat.io/sync-for-payroll-api#/schemas/Journal) data type
 //
 // > View the coverage for journal entries in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=journalEntries" target="_blank">Data coverage explorer</a>.
@@ -99,11 +75,9 @@ type JournalEntry struct {
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	PostedOn *string `json:"postedOn,omitempty"`
-	// Links the current record to the underlying record or data type that created it.
-	//
-	// For example, if a journal entry is generated based on an invoice, this property allows you to connect the journal entry to the underlying invoice in our data model.
-	RecordRef          *JournalEntryRecordReference `json:"recordRef,omitempty"`
-	SourceModifiedDate *string                      `json:"sourceModifiedDate,omitempty"`
+	// Links a journal entry to the underlying record that created it.
+	RecordRef          *JournalEntryRecordRef `json:"recordRef,omitempty"`
+	SourceModifiedDate *string                `json:"sourceModifiedDate,omitempty"`
 	// Supplemental data is additional data you can include in our standard data types.
 	//
 	// It is referenced as a configured dynamic key value pair that is unique to the accounting platform. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
@@ -186,7 +160,7 @@ func (o *JournalEntry) GetPostedOn() *string {
 	return o.PostedOn
 }
 
-func (o *JournalEntry) GetRecordRef() *JournalEntryRecordReference {
+func (o *JournalEntry) GetRecordRef() *JournalEntryRecordRef {
 	if o == nil {
 		return nil
 	}
