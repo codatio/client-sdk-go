@@ -36,12 +36,7 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: syncforexpenses.String("Requested early access to the new financing scheme."),
-		Groups: []shared.GroupItems{
-			shared.GroupItems{
-				ID: syncforexpenses.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
-			},
-		},
-		Name: "Bank of Dave",
+		Name:        "Bank of Dave",
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -169,12 +164,7 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: syncforexpenses.String("Requested early access to the new financing scheme."),
-		Groups: []shared.GroupItems{
-			shared.GroupItems{
-				ID: syncforexpenses.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
-			},
-		},
-		Name: "Bank of Dave",
+		Name:        "Bank of Dave",
 	}, operations.WithRetries(
 		utils.RetryConfig{
 			Strategy: "backoff",
@@ -228,12 +218,7 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: syncforexpenses.String("Requested early access to the new financing scheme."),
-		Groups: []shared.GroupItems{
-			shared.GroupItems{
-				ID: syncforexpenses.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
-			},
-		},
-		Name: "Bank of Dave",
+		Name:        "Bank of Dave",
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -279,12 +264,7 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: syncforexpenses.String("Requested early access to the new financing scheme."),
-		Groups: []shared.GroupItems{
-			shared.GroupItems{
-				ID: syncforexpenses.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
-			},
-		},
-		Name: "Bank of Dave",
+		Name:        "Bank of Dave",
 	})
 	if err != nil {
 
@@ -337,12 +317,7 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: syncforexpenses.String("Requested early access to the new financing scheme."),
-		Groups: []shared.GroupItems{
-			shared.GroupItems{
-				ID: syncforexpenses.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
-			},
-		},
-		Name: "Bank of Dave",
+		Name:        "Bank of Dave",
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -378,12 +353,7 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: syncforexpenses.String("Requested early access to the new financing scheme."),
-		Groups: []shared.GroupItems{
-			shared.GroupItems{
-				ID: syncforexpenses.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
-			},
-		},
-		Name: "Bank of Dave",
+		Name:        "Bank of Dave",
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -456,12 +426,7 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: syncforexpenses.String("Requested early access to the new financing scheme."),
-		Groups: []shared.GroupItems{
-			shared.GroupItems{
-				ID: syncforexpenses.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
-			},
-		},
-		Name: "Bank of Dave",
+		Name:        "Bank of Dave",
 	})
 	if err != nil {
 		log.Fatal(err)

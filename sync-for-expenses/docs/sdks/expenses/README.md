@@ -38,7 +38,6 @@ import(
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
 	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/types"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
 	"log"
 )
@@ -50,47 +49,6 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Expenses.Create(ctx, operations.CreateExpenseTransactionRequest{
-        CreateExpenseRequest: &shared.CreateExpenseRequest{
-            Items: []shared.ExpenseTransaction{
-                shared.ExpenseTransaction{
-                    BankAccountRef: &shared.BankAccountReference{
-                        ID: syncforexpenses.String("787dfb37-5707-4dc0-8a86-8d74e4cc78ea"),
-                    },
-                    ContactRef: &shared.ContactRef{
-                        ID: syncforexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                        Type: shared.TypeSupplier.ToPointer(),
-                    },
-                    Currency: "GBP",
-                    ID: "4d7c6929-7770-412b-91bb-44d3bc71d111",
-                    IssueDate: "2022-10-23T00:00:00Z",
-                    Lines: []shared.ExpenseTransactionLine{
-                        shared.ExpenseTransactionLine{
-                            AccountRef: shared.RecordRef{
-                                ID: syncforexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                            },
-                            InvoiceTo: &shared.InvoiceTo{
-                                DataType: shared.InvoiceToDataTypeCustomers.ToPointer(),
-                                ID: syncforexpenses.String("80000002-1674552702"),
-                            },
-                            NetAmount: types.MustNewDecimalFromString("110.42"),
-                            TaxAmount: types.MustNewDecimalFromString("14.43"),
-                            TaxRateRef: &shared.RecordRef{
-                                ID: syncforexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                            },
-                            TrackingRefs: []shared.TrackingRef{
-                                shared.TrackingRef{
-                                    DataType: shared.TrackingRefDataTypeTrackingCategories.ToPointer(),
-                                    ID: syncforexpenses.String("e9a1b63d-9ff0-40e7-8038-016354b987e6"),
-                                },
-                            },
-                        },
-                    },
-                    MerchantName: syncforexpenses.String("Amazon UK"),
-                    Notes: syncforexpenses.String("APPLE.COM/BILL - 09001077498 - Card Ending: 4590"),
-                    Type: shared.ExpenseTransactionTypePayment,
-                },
-            },
-        },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -140,7 +98,6 @@ import(
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
 	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/types"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
 	"log"
 )
@@ -152,42 +109,6 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Expenses.Update(ctx, operations.UpdateExpenseTransactionRequest{
-        UpdateExpenseRequest: &shared.UpdateExpenseRequest{
-            BankAccountRef: &shared.UpdateExpenseRequestBankAccountReference{
-                ID: syncforexpenses.String("787dfb37-5707-4dc0-8a86-8d74e4cc78ea"),
-            },
-            ContactRef: &shared.ContactRef{
-                ID: syncforexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                Type: shared.TypeSupplier.ToPointer(),
-            },
-            Currency: syncforexpenses.String("GBP"),
-            IssueDate: "2022-06-28T00:00:00.000Z",
-            Lines: []shared.ExpenseTransactionLine{
-                shared.ExpenseTransactionLine{
-                    AccountRef: shared.RecordRef{
-                        ID: syncforexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                    },
-                    InvoiceTo: &shared.InvoiceTo{
-                        DataType: shared.InvoiceToDataTypeCustomers.ToPointer(),
-                        ID: syncforexpenses.String("80000002-1674552702"),
-                    },
-                    NetAmount: types.MustNewDecimalFromString("110.42"),
-                    TaxAmount: types.MustNewDecimalFromString("14.43"),
-                    TaxRateRef: &shared.RecordRef{
-                        ID: syncforexpenses.String("40e3e57c-2322-4898-966c-ca41adfd23fd"),
-                    },
-                    TrackingRefs: []shared.TrackingRef{
-                        shared.TrackingRef{
-                            DataType: shared.TrackingRefDataTypeTrackingCategories.ToPointer(),
-                            ID: syncforexpenses.String("e9a1b63d-9ff0-40e7-8038-016354b987e6"),
-                        },
-                    },
-                },
-            },
-            MerchantName: syncforexpenses.String("Amazon UK"),
-            Notes: syncforexpenses.String("APPLE.COM/BILL - 09001077498 - Card Ending: 4590"),
-            Type: "string",
-        },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         TransactionID: "336694d8-2dca-4cb5-a28d-3ccb83e55eee",
     })
@@ -255,12 +176,6 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Expenses.UploadAttachment(ctx, operations.UploadExpenseAttachmentRequest{
-        AttachmentUpload: &shared.AttachmentUpload{
-            File: shared.CodatFile{
-                Content: []byte("0xE3ABc1980E"),
-                FileName: "elegant_producer_electric.jpeg",
-            },
-        },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         SyncID: "6fb40d5e-b13e-11ed-afa1-0242ac120002",
         TransactionID: "336694d8-2dca-4cb5-a28d-3ccb83e55eee",

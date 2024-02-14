@@ -32,7 +32,6 @@ import(
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
 	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/types"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
 	"log"
 )
@@ -44,31 +43,6 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Accounts.Create(ctx, operations.CreateAccountRequest{
-        AccountPrototype: &shared.AccountPrototype{
-            Currency: syncforexpenses.String("USD"),
-            CurrentBalance: types.MustNewDecimalFromString("0"),
-            Description: syncforexpenses.String("Invoices the business has issued but has not yet collected payment on."),
-            FullyQualifiedCategory: syncforexpenses.String("Asset.Current"),
-            FullyQualifiedName: syncforexpenses.String("Cash On Hand"),
-            Name: syncforexpenses.String("Accounts Receivable"),
-            NominalCode: syncforexpenses.String("610"),
-            Status: shared.AccountStatusActive.ToPointer(),
-            SupplementalData: &shared.SupplementalData{
-                Content: map[string]map[string]interface{}{
-                    "key": map[string]interface{}{
-                        "key": "string",
-                    },
-                },
-            },
-            Type: shared.AccountTypeAsset.ToPointer(),
-            ValidDatatypeLinks: []shared.ValidDataTypeLinks{
-                shared.ValidDataTypeLinks{
-                    Links: []string{
-                        "string",
-                    },
-                },
-            },
-        },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
