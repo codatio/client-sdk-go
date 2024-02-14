@@ -92,36 +92,10 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 type CodatSyncPayables struct {
 	// Create and manage your Codat companies.
 	Companies *Companies
-	// Manage your companies' data connections.
-	Connections *Connections
 	// Bills
 	Bills *Bills
-	// Bank accounts
-	BankAccounts *BankAccounts
-	// Bill credit notes
-	BillCreditNotes *BillCreditNotes
-	// Bill payments
-	BillPayments *BillPayments
-	// Accounts
-	Accounts *Accounts
-	// Journal entries
-	JournalEntries *JournalEntries
-	// Journals
-	Journals *Journals
-	// Suppliers
-	Suppliers *Suppliers
-	// Asynchronously retrieve data from an integration to refresh data in Codat.
-	ManageData *ManageData
-	// View company information fetched from the source platform.
-	CompanyInfo *CompanyInfo
-	// Payment methods
-	PaymentMethods *PaymentMethods
-	// Tax rates
-	TaxRates *TaxRates
-	// Tracking categories
-	TrackingCategories *TrackingCategories
-	// Access create, update and delete operations made to an SMB's data connection.
-	PushOperations *PushOperations
+	// Manage your companies' data connections.
+	Connections *Connections
 
 	sdkConfiguration sdkConfiguration
 }
@@ -198,9 +172,9 @@ func New(opts ...SDKOption) *CodatSyncPayables {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "3.1.0",
-			GenVersion:        "2.214.3",
-			UserAgent:         "speakeasy-sdk/go 3.1.0 2.214.3 3.0.0 github.com/codatio/client-sdk-go/sync-for-payables",
+			SDKVersion:        "3.2.0",
+			GenVersion:        "2.253.0",
+			UserAgent:         "speakeasy-sdk/go 3.2.0 2.253.0 3.0.0 github.com/codatio/client-sdk-go/sync-for-payables",
 		},
 	}
 	for _, opt := range opts {
@@ -221,35 +195,9 @@ func New(opts ...SDKOption) *CodatSyncPayables {
 
 	sdk.Companies = newCompanies(sdk.sdkConfiguration)
 
-	sdk.Connections = newConnections(sdk.sdkConfiguration)
-
 	sdk.Bills = newBills(sdk.sdkConfiguration)
 
-	sdk.BankAccounts = newBankAccounts(sdk.sdkConfiguration)
-
-	sdk.BillCreditNotes = newBillCreditNotes(sdk.sdkConfiguration)
-
-	sdk.BillPayments = newBillPayments(sdk.sdkConfiguration)
-
-	sdk.Accounts = newAccounts(sdk.sdkConfiguration)
-
-	sdk.JournalEntries = newJournalEntries(sdk.sdkConfiguration)
-
-	sdk.Journals = newJournals(sdk.sdkConfiguration)
-
-	sdk.Suppliers = newSuppliers(sdk.sdkConfiguration)
-
-	sdk.ManageData = newManageData(sdk.sdkConfiguration)
-
-	sdk.CompanyInfo = newCompanyInfo(sdk.sdkConfiguration)
-
-	sdk.PaymentMethods = newPaymentMethods(sdk.sdkConfiguration)
-
-	sdk.TaxRates = newTaxRates(sdk.sdkConfiguration)
-
-	sdk.TrackingCategories = newTrackingCategories(sdk.sdkConfiguration)
-
-	sdk.PushOperations = newPushOperations(sdk.sdkConfiguration)
+	sdk.Connections = newConnections(sdk.sdkConfiguration)
 
 	return sdk
 }
