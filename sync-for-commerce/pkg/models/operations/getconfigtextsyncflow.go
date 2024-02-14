@@ -7,6 +7,18 @@ import (
 	"net/http"
 )
 
+type GetConfigTextSyncFlowRequest struct {
+	// Localization identifier for English (US) or French.
+	Locale shared.Locale `queryParam:"style=form,explode=true,name=locale"`
+}
+
+func (o *GetConfigTextSyncFlowRequest) GetLocale() shared.Locale {
+	if o == nil {
+		return shared.Locale("")
+	}
+	return o.Locale
+}
+
 type GetConfigTextSyncFlowResponse struct {
 	// HTTP response content type for this operation
 	ContentType string

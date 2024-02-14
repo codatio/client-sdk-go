@@ -15,20 +15,20 @@ import (
 	"strings"
 )
 
-// syncFlowSettings - Configure preferences for any given Sync for Commerce company using sync flow.
-type syncFlowSettings struct {
+// SyncFlowSettings - Configure preferences for any given Sync for Commerce company using sync flow.
+type SyncFlowSettings struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newSyncFlowSettings(sdkConfig sdkConfiguration) *syncFlowSettings {
-	return &syncFlowSettings{
+func newSyncFlowSettings(sdkConfig sdkConfiguration) *SyncFlowSettings {
+	return &SyncFlowSettings{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // GetConfigTextSyncFlow - Get preferences for text fields
 // Return preferences set for the text fields on sync flow.
-func (s *syncFlowSettings) GetConfigTextSyncFlow(ctx context.Context, opts ...operations.Option) (*operations.GetConfigTextSyncFlowResponse, error) {
+func (s *SyncFlowSettings) GetConfigTextSyncFlow(ctx context.Context, request operations.GetConfigTextSyncFlowRequest, opts ...operations.Option) (*operations.GetConfigTextSyncFlowResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -48,6 +48,10 @@ func (s *syncFlowSettings) GetConfigTextSyncFlow(ctx context.Context, opts ...op
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("user-agent", s.sdkConfiguration.UserAgent)
+
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
 
 	client := s.sdkConfiguration.SecurityClient
 
@@ -78,6 +82,13 @@ func (s *syncFlowSettings) GetConfigTextSyncFlow(ctx context.Context, opts ...op
 			"5XX",
 		},
 	}, func() (*http.Response, error) {
+		if req.Body != nil {
+			copyBody, err := req.GetBody()
+			if err != nil {
+				return nil, err
+			}
+			req.Body = copyBody
+		}
 		return client.Do(req)
 	})
 	if err != nil {
@@ -114,6 +125,31 @@ func (s *syncFlowSettings) GetConfigTextSyncFlow(ctx context.Context, opts ...op
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
+	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out sdkerrors.ErrorMessage
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+			return nil, &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -121,7 +157,7 @@ func (s *syncFlowSettings) GetConfigTextSyncFlow(ctx context.Context, opts ...op
 
 // GetVisibleAccounts - List visible accounts
 // Return accounts which are visible on sync flow.
-func (s *syncFlowSettings) GetVisibleAccounts(ctx context.Context, request operations.GetVisibleAccountsRequest, opts ...operations.Option) (*operations.GetVisibleAccountsResponse, error) {
+func (s *SyncFlowSettings) GetVisibleAccounts(ctx context.Context, request operations.GetVisibleAccountsRequest, opts ...operations.Option) (*operations.GetVisibleAccountsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -174,6 +210,13 @@ func (s *syncFlowSettings) GetVisibleAccounts(ctx context.Context, request opera
 			"5XX",
 		},
 	}, func() (*http.Response, error) {
+		if req.Body != nil {
+			copyBody, err := req.GetBody()
+			if err != nil {
+				return nil, err
+			}
+			req.Body = copyBody
+		}
 		return client.Do(req)
 	})
 	if err != nil {
@@ -210,6 +253,33 @@ func (s *syncFlowSettings) GetVisibleAccounts(ctx context.Context, request opera
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
+	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out sdkerrors.ErrorMessage
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+			return nil, &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -217,7 +287,7 @@ func (s *syncFlowSettings) GetVisibleAccounts(ctx context.Context, request opera
 
 // UpdateConfigTextSyncFlow - Update preferences for text fields
 // Set preferences for the text fields on sync flow.
-func (s *syncFlowSettings) UpdateConfigTextSyncFlow(ctx context.Context, request map[string]shared.Localization, opts ...operations.Option) (*operations.UpdateConfigTextSyncFlowResponse, error) {
+func (s *SyncFlowSettings) UpdateConfigTextSyncFlow(ctx context.Context, request operations.UpdateConfigTextSyncFlowRequest, opts ...operations.Option) (*operations.UpdateConfigTextSyncFlowResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -231,7 +301,7 @@ func (s *syncFlowSettings) UpdateConfigTextSyncFlow(ctx context.Context, request
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/sync/commerce/config/ui/text"
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -244,6 +314,10 @@ func (s *syncFlowSettings) UpdateConfigTextSyncFlow(ctx context.Context, request
 	req.Header.Set("user-agent", s.sdkConfiguration.UserAgent)
 
 	req.Header.Set("Content-Type", reqContentType)
+
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
 
 	client := s.sdkConfiguration.SecurityClient
 
@@ -274,6 +348,13 @@ func (s *syncFlowSettings) UpdateConfigTextSyncFlow(ctx context.Context, request
 			"5XX",
 		},
 	}, func() (*http.Response, error) {
+		if req.Body != nil {
+			copyBody, err := req.GetBody()
+			if err != nil {
+				return nil, err
+			}
+			req.Body = copyBody
+		}
 		return client.Do(req)
 	})
 	if err != nil {
@@ -310,6 +391,33 @@ func (s *syncFlowSettings) UpdateConfigTextSyncFlow(ctx context.Context, request
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode == 400:
+		fallthrough
+	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
+	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out sdkerrors.ErrorMessage
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+			return nil, &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -317,7 +425,7 @@ func (s *syncFlowSettings) UpdateConfigTextSyncFlow(ctx context.Context, request
 
 // UpdateVisibleAccountsSyncFlow - Update visible accounts
 // Update which accounts are visible on sync flow.
-func (s *syncFlowSettings) UpdateVisibleAccountsSyncFlow(ctx context.Context, request operations.UpdateVisibleAccountsSyncFlowRequest, opts ...operations.Option) (*operations.UpdateVisibleAccountsSyncFlowResponse, error) {
+func (s *SyncFlowSettings) UpdateVisibleAccountsSyncFlow(ctx context.Context, request operations.UpdateVisibleAccountsSyncFlowRequest, opts ...operations.Option) (*operations.UpdateVisibleAccountsSyncFlowResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -377,6 +485,13 @@ func (s *syncFlowSettings) UpdateVisibleAccountsSyncFlow(ctx context.Context, re
 			"5XX",
 		},
 	}, func() (*http.Response, error) {
+		if req.Body != nil {
+			copyBody, err := req.GetBody()
+			if err != nil {
+				return nil, err
+			}
+			req.Body = copyBody
+		}
 		return client.Do(req)
 	})
 	if err != nil {
@@ -413,6 +528,35 @@ func (s *syncFlowSettings) UpdateVisibleAccountsSyncFlow(ctx context.Context, re
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode == 400:
+		fallthrough
+	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode == 402:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
+	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
+		fallthrough
+	case httpRes.StatusCode == 500:
+		fallthrough
+	case httpRes.StatusCode == 503:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out sdkerrors.ErrorMessage
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+			return nil, &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
