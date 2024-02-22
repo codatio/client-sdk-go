@@ -23,4 +23,4 @@ go:
   inputModelSuffix: input
   maxMethodParams: 0
   outputModelSuffix: output
-  packageName: github.com/codatio/client-sdk-go/sync-for-payables
+  packageName: github.com/codatio/client-sdk-go/previous-versions/sync-for-payables-version-1
