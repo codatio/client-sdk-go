@@ -1,0 +1,16 @@
+name: Release Sync for Payables version 1 library
+'on':
+  push:
+    paths:
+    - previous-versions/sync-for-payables-version-1/RELEASES.md
+    branches:
+    - main
+jobs:
+  publish:
+    uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-publish.yaml@v14
+    with:
+      create_release: true
+    secrets:
+      github_access_token: ${{ secrets.GITHUB_TOKEN }}
+      speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
+      slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}

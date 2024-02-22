@@ -1,0 +1,23 @@
+name: Generate Sync for Payables version 1 library
+'on':
+  workflow_dispatch:
+    inputs:
+      force:
+        description: Force generation of SDKs
+        type: boolean
+        default: false
+jobs:
+  generate:
+    uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-generation.yaml@v14
+    with:
+      speakeasy_version: latest
+      openapi_doc_location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Sync-Payables-v1.yaml
+      languages: |-
+        - go: ./previous-versions/sync-for-payables-version-1
+      create_release: true
+      mode: pr
+      force: ${{ github.event.inputs.force }}
+    secrets:
+      github_access_token: ${{ secrets.GITHUB_TOKEN }}
+      speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
+      slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
