@@ -59,6 +59,7 @@ To get your authorization header from the [Codat Portal](https://app.codat.io):
 | **[Assess](https://github.com/codatio/client-sdk-go/tree/main/previous-versions/assess)** | Make credit decisions backed by enhanced financials, metrics, reports, and data integrity features. | `github.com/codatio/client-sdk-go/previous-versions/assess` |
 | **[Sync for Commerce version 1](https://github.com/codatio/client-sdk-go/tree/main/previous-versions/sync-for-commerce-version-1)** | Push merchants' data from your ecommerce or point-of-sale (POS) platform into your merchants' accounting platform. | `github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1` |
 | **[Sync for Expenses version 1](https://github.com/codatio/client-sdk-go/tree/main/previous-versions/sync-for-expenses-version-1)** | Push expenses to accounting platforms. | `github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1` |
+| **[Sync for Payables version 1](https://github.com/codatio/client-sdk-go/tree/main/previous-versions/sync-for-payables-version-1)** | Push expenses to accounting platforms. | `github.com/codatio/client-sdk-go/previous-versions/sync-for-payables-version-1` |
 | **[Files](https://github.com/codatio/client-sdk-go/tree/main/previous-versions/files)** | Use Codat's Files API to upload your SMB customers' files. | `github.com/codatio/client-sdk-go/previous-versions/files` |
 <!-- End Codat Client Libraries -->
 
