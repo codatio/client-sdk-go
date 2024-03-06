@@ -1,6 +1,6 @@
 # DataType
 
-Available Data types
+Available data types
 
 
 ## Values

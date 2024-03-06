@@ -1,27 +1,28 @@
 lockVersion: 2.0.0
 id: f309bed8-ee34-4982-948d-d0a2535e6a36
 management:
-  docChecksum: 1c413a5d3d57588774d54236c89a147e
+  docChecksum: 6b9afa35a1ca4d8a1834643e80dd9a19
   docVersion: 3.0.0
   speakeasyVersion: internal
-  generationVersion: 2.253.0
-  releaseVersion: 3.0.1
-  configChecksum: d930a327cc8bc7d379e8b41dfaff675d
+  generationVersion: 2.277.0
+  releaseVersion: 3.1.0
+  configChecksum: c4662754c4197ab798581525569c525b
   repoURL: https://github.com/codatio/client-sdk-go.git
   repoSubDirectory: platform
   installationURL: https://github.com/codatio/client-sdk-go/platform
   published: true
 features:
   go:
-    constsAndDefaults: 0.1.3
-    core: 3.3.2
+    constsAndDefaults: 0.1.4
+    core: 3.4.3
     deprecations: 2.81.1
     examples: 2.81.3
-    globalSecurity: 2.82.6
+    globalSecurity: 2.82.8
     globalServerURLs: 2.82.1
     inputOutputModels: 2.83.0
     nameOverrides: 2.81.1
     retries: 2.82.2
+    webhooks: 1.0.0
 generatedFiles:
   - settings.go
   - companies.go
@@ -35,7 +36,6 @@ generatedFiles:
   - webhooks.go
   - codatplatform.go
   - go.mod
-  - go.sum
   - pkg/models/sdkerrors/sdkerror.go
   - pkg/types/bigint.go
   - pkg/types/date.go
@@ -92,8 +92,11 @@ generatedFiles:
   - /pkg/models/operations/configuresupplementaldata.go
   - /pkg/models/operations/getsupplementaldataconfiguration.go
   - /pkg/models/operations/createrule.go
+  - /pkg/models/operations/createwebhookconsumer.go
+  - /pkg/models/operations/deletewebhookconsumer.go
   - /pkg/models/operations/getwebhook.go
   - /pkg/models/operations/listrules.go
+  - /pkg/models/operations/listwebhookconsumers.go
   - /pkg/models/shared/apikeydetails.go
   - /pkg/models/shared/errorvalidation.go
   - /pkg/models/shared/errorvalidationitem.go
@@ -155,7 +158,10 @@ generatedFiles:
   - /pkg/models/shared/webhook.go
   - /pkg/models/shared/webhooknotifier.go
   - /pkg/models/shared/createrule.go
+  - /pkg/models/shared/webhookconsumer.go
+  - /pkg/models/shared/webhookconsumerprototype.go
   - /pkg/models/shared/webhooks.go
+  - /pkg/models/shared/webhookconsumers.go
   - /pkg/models/shared/security.go
   - /pkg/models/shared/clientratelimitreachedwebhook.go
   - /pkg/models/shared/clientratelimitreachedwebhookdata.go
@@ -258,10 +264,14 @@ generatedFiles:
   - docs/pkg/models/operations/getsupplementaldataconfigurationrequest.md
   - docs/pkg/models/operations/getsupplementaldataconfigurationresponse.md
   - docs/pkg/models/operations/createruleresponse.md
+  - docs/pkg/models/operations/createwebhookconsumerresponse.md
+  - docs/pkg/models/operations/deletewebhookconsumerrequest.md
+  - docs/pkg/models/operations/deletewebhookconsumerresponse.md
   - docs/pkg/models/operations/getwebhookrequest.md
   - docs/pkg/models/operations/getwebhookresponse.md
   - docs/pkg/models/operations/listrulesrequest.md
   - docs/pkg/models/operations/listrulesresponse.md
+  - docs/pkg/models/operations/listwebhookconsumersresponse.md
   - docs/pkg/models/shared/apikeydetails.md
   - docs/pkg/models/shared/errorvalidation.md
   - docs/pkg/models/shared/errorvalidationitem.md
@@ -328,7 +338,10 @@ generatedFiles:
   - docs/pkg/models/shared/webhook.md
   - docs/pkg/models/shared/webhooknotifier.md
   - docs/pkg/models/shared/createrule.md
+  - docs/pkg/models/shared/webhookconsumer.md
+  - docs/pkg/models/shared/webhookconsumerprototype.md
   - docs/pkg/models/shared/webhooks.md
+  - docs/pkg/models/shared/webhookconsumers.md
   - docs/pkg/models/shared/security.md
   - docs/pkg/models/shared/clientratelimitreachedwebhook.md
   - docs/pkg/models/shared/clientratelimitreachedwebhookdata.md
@@ -373,3 +386,4 @@ generatedFiles:
   - USAGE.md
   - pkg/models/operations/options.go
   - .gitattributes
+  - internal/hooks/hooks.go

@@ -11,7 +11,7 @@ type ClientRateLimitResetWebhook struct {
 	// Name of your client in Codat.
 	ClientName *string                          `json:"ClientName,omitempty"`
 	Data       *ClientRateLimitResetWebhookData `json:"Data,omitempty"`
-	// A human readable message about the webhook.
+	// A human-readable message about the webhook.
 	Message *string `json:"Message,omitempty"`
 	// Unique identifier for the rule.
 	RuleID *string `json:"RuleId,omitempty"`

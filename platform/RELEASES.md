@@ -79,3 +79,13 @@ Based on:
 - [go v3.0.1] platform
 ### Releases
 - [Go v3.0.1] https://github.com/codatio/client-sdk-go/releases/tag/platform/v3.0.1 - platform
+
+## 2024-03-06 11:07:29
+### Changes
+Based on:
+- OpenAPI Doc 3.0.0 https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Platform.yaml
+- Speakeasy CLI 1.201.1 (2.277.0) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [go v3.1.0] platform
+### Releases
+- [Go v3.1.0] https://github.com/codatio/client-sdk-go/releases/tag/platform/v3.1.0 - platform

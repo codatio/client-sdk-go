@@ -37,7 +37,7 @@ import(
 func main() {
     s := platform.New(
         platform.WithSecurity(shared.Security{
-            AuthHeader: "<YOUR_API_KEY_HERE>",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
@@ -98,7 +98,7 @@ import(
 func main() {
     s := platform.New(
         platform.WithSecurity(shared.Security{
-            AuthHeader: "<YOUR_API_KEY_HERE>",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
@@ -157,7 +157,7 @@ import(
 func main() {
     s := platform.New(
         platform.WithSecurity(shared.Security{
-            AuthHeader: "<YOUR_API_KEY_HERE>",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
@@ -215,7 +215,7 @@ import(
 func main() {
     s := platform.New(
         platform.WithSecurity(shared.Security{
-            AuthHeader: "<YOUR_API_KEY_HERE>",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
@@ -276,7 +276,7 @@ import(
 func main() {
     s := platform.New(
         platform.WithSecurity(shared.Security{
-            AuthHeader: "<YOUR_API_KEY_HERE>",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 

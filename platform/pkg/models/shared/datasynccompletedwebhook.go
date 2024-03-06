@@ -15,7 +15,7 @@ type DataSyncCompletedWebhook struct {
 	Data      *DataSyncCompletedWebhookData `json:"Data,omitempty"`
 	// Unique identifier for a company's data connection.
 	DataConnectionID *string `json:"DataConnectionId,omitempty"`
-	// A human readable message about the webhook.
+	// A human-readable message about the webhook.
 	Message *string `json:"Message,omitempty"`
 	// Unique identifier for the rule.
 	RuleID *string `json:"RuleId,omitempty"`
