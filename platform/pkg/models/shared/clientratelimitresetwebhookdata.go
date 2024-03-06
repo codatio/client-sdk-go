@@ -25,7 +25,7 @@ type ClientRateLimitResetWebhookData struct {
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	ExpiresUtc *string `json:"ExpiresUtc,omitempty"`
-	// Total number of request remaining for your client.
+	// Total number of requests remaining for your client.
 	QuotaRemaining *int64 `json:"QuotaRemaining,omitempty"`
 	// The reason for your rate limit quota being reset.
 	ResetReason *string `json:"ResetReason,omitempty"`

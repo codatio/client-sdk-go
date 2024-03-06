@@ -3,7 +3,7 @@
 package shared
 
 type DatasetStatusChangedErrorWebhookData struct {
-	// Available Data types
+	// Available data types
 	DataType *DataType `json:"dataType,omitempty"`
 	// Unique identifier for the dataset that completed its sync.
 	DatasetID *string `json:"datasetId,omitempty"`

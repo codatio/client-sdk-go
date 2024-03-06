@@ -31,7 +31,7 @@ import (
 func main() {
 	s := platform.New(
 		platform.WithSecurity(shared.Security{
-			AuthHeader: "<YOUR_API_KEY_HERE>",
+			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
 		}),
 	)
 
@@ -122,9 +122,12 @@ func main() {
 
 ### [Webhooks](docs/sdks/webhooks/README.md)
 
-* [Create](docs/sdks/webhooks/README.md#create) - Create webhook
-* [Get](docs/sdks/webhooks/README.md#get) - Get webhook
-* [List](docs/sdks/webhooks/README.md#list) - List webhooks
+* [~~Create~~](docs/sdks/webhooks/README.md#create) - Create webhook :warning: **Deprecated**
+* [CreateConsumer](docs/sdks/webhooks/README.md#createconsumer) - Create webhook consumer
+* [DeleteConsumer](docs/sdks/webhooks/README.md#deleteconsumer) - Delete webhook consumer
+* [~~Get~~](docs/sdks/webhooks/README.md#get) - Get webhook :warning: **Deprecated**
+* [~~List~~](docs/sdks/webhooks/README.md#list) - List webhooks :warning: **Deprecated**
+* [ListConsumers](docs/sdks/webhooks/README.md#listconsumers) - List webhook consumers
 <!-- End Available Resources and Operations [operations] -->
 
 
@@ -158,7 +161,7 @@ import (
 func main() {
 	s := platform.New(
 		platform.WithSecurity(shared.Security{
-			AuthHeader: "<YOUR_API_KEY_HERE>",
+			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
 		}),
 	)
 
@@ -213,7 +216,7 @@ func main() {
 				RetryConnectionErrors: false,
 			}),
 		platform.WithSecurity(shared.Security{
-			AuthHeader: "<YOUR_API_KEY_HERE>",
+			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
 		}),
 	)
 
@@ -260,7 +263,7 @@ import (
 func main() {
 	s := platform.New(
 		platform.WithSecurity(shared.Security{
-			AuthHeader: "<YOUR_API_KEY_HERE>",
+			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
 		}),
 	)
 
@@ -314,7 +317,7 @@ func main() {
 	s := platform.New(
 		platform.WithServerIndex(0),
 		platform.WithSecurity(shared.Security{
-			AuthHeader: "<YOUR_API_KEY_HERE>",
+			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
 		}),
 	)
 
@@ -351,7 +354,7 @@ func main() {
 	s := platform.New(
 		platform.WithServerURL("https://api.codat.io"),
 		platform.WithSecurity(shared.Security{
-			AuthHeader: "<YOUR_API_KEY_HERE>",
+			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
 		}),
 	)
 
@@ -425,7 +428,7 @@ import (
 func main() {
 	s := platform.New(
 		platform.WithSecurity(shared.Security{
-			AuthHeader: "<YOUR_API_KEY_HERE>",
+			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
 		}),
 	)
 

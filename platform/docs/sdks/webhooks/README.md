@@ -7,13 +7,18 @@ Manage webhooks, rules, and events.
 
 ### Available Operations
 
-* [Create](#create) - Create webhook
-* [Get](#get) - Get webhook
-* [List](#list) - List webhooks
+* [~~Create~~](#create) - Create webhook :warning: **Deprecated**
+* [CreateConsumer](#createconsumer) - Create webhook consumer
+* [DeleteConsumer](#deleteconsumer) - Delete webhook consumer
+* [~~Get~~](#get) - Get webhook :warning: **Deprecated**
+* [~~List~~](#list) - List webhooks :warning: **Deprecated**
+* [ListConsumers](#listconsumers) - List webhook consumers
 
-## Create
+## ~~Create~~
 
 Create a new webhook configuration
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
@@ -30,7 +35,7 @@ import(
 func main() {
     s := platform.New(
         platform.WithSecurity(shared.Security{
-            AuthHeader: "<YOUR_API_KEY_HERE>",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
@@ -72,9 +77,123 @@ func main() {
 | sdkerrors.ErrorMessage  | 401,402,403,429,500,503 | application/json        |
 | sdkerrors.SDKError      | 4xx-5xx                 | */*                     |
 
-## Get
+## CreateConsumer
+
+﻿Use the *Create webhook consumer* endpoint to create a new webhook consumer that will listen to messages we send you.
+
+[Webhook consumer](https://docs.codat.io/platform-api#/schemas/WebhookConsumer) is an HTTP endpoint that you configure to subscribe to specific events. See our documentation for more details on [Codat's webhook service](https://docs.codat.io/using-the-api/webhooks/overview).
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v3"
+	"context"
+	"log"
+)
+
+func main() {
+    s := platform.New(
+        platform.WithSecurity(shared.Security{
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
+        }),
+    )
+
+    ctx := context.Background()
+    res, err := s.Webhooks.CreateConsumer(ctx, &shared.WebhookConsumerPrototype{})
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.WebhookConsumer != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
+| `request`                                                                              | [shared.WebhookConsumerPrototype](../../pkg/models/shared/webhookconsumerprototype.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `opts`                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
+
+
+### Response
+
+**[*operations.CreateWebhookConsumerResponse](../../pkg/models/operations/createwebhookconsumerresponse.md), error**
+| Error Object            | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| sdkerrors.ErrorMessage  | 401,402,403,429,500,503 | application/json        |
+| sdkerrors.SDKError      | 4xx-5xx                 | */*                     |
+
+## DeleteConsumer
+
+﻿Use the *Delete webhook consumer* endpoint to delete an existing webhoook consumer, providing its valid `id` as a parameter.
+
+[Webhook consumer](https://docs.codat.io/platform-api#/schemas/WebhookConsumer) is an HTTP endpoint that you configure to subscribe to specific events. See our documentation for more details on [Codat's webhook service](https://docs.codat.io/using-the-api/webhooks/overview).
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v3"
+	"context"
+	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/operations"
+	"log"
+	"net/http"
+)
+
+func main() {
+    s := platform.New(
+        platform.WithSecurity(shared.Security{
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
+        }),
+    )
+
+    ctx := context.Background()
+    res, err := s.Webhooks.DeleteConsumer(ctx, operations.DeleteWebhookConsumerRequest{
+        WebhookID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.StatusCode == http.StatusOK {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                  | :heavy_check_mark:                                                                                     | The context to use for the request.                                                                    |
+| `request`                                                                                              | [operations.DeleteWebhookConsumerRequest](../../pkg/models/operations/deletewebhookconsumerrequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
+| `opts`                                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                                           | :heavy_minus_sign:                                                                                     | The options for this request.                                                                          |
+
+
+### Response
+
+**[*operations.DeleteWebhookConsumerResponse](../../pkg/models/operations/deletewebhookconsumerresponse.md), error**
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
+## ~~Get~~
 
 Get a single webhook
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
@@ -92,7 +211,7 @@ import(
 func main() {
     s := platform.New(
         platform.WithSecurity(shared.Security{
-            AuthHeader: "<YOUR_API_KEY_HERE>",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
@@ -127,9 +246,11 @@ func main() {
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
 | sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
 
-## List
+## ~~List~~
 
 List webhooks that you are subscribed to.
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
@@ -147,7 +268,7 @@ import(
 func main() {
     s := platform.New(
         platform.WithSecurity(shared.Security{
-            AuthHeader: "<YOUR_API_KEY_HERE>",
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
@@ -183,3 +304,56 @@ func main() {
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
 | sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
+## ListConsumers
+
+﻿Use the *List webhook consumers* endpoint to return a list of all webhook consumers that currently exist for your client.
+
+[Webhook consumer](https://docs.codat.io/platform-api#/schemas/WebhookConsumer) is an HTTP endpoint that you configure to subscribe to specific events. See our documentation for more details on [Codat's webhook service](https://docs.codat.io/using-the-api/webhooks/overview).
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v3"
+	"context"
+	"log"
+)
+
+func main() {
+    s := platform.New(
+        platform.WithSecurity(shared.Security{
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
+        }),
+    )
+
+    ctx := context.Background()
+    res, err := s.Webhooks.ListConsumers(ctx)
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.WebhookConsumers != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `ctx`                                                        | [context.Context](https://pkg.go.dev/context#Context)        | :heavy_check_mark:                                           | The context to use for the request.                          |
+| `opts`                                                       | [][operations.Option](../../pkg/models/operations/option.md) | :heavy_minus_sign:                                           | The options for this request.                                |
+
+
+### Response
+
+**[*operations.ListWebhookConsumersResponse](../../pkg/models/operations/listwebhookconsumersresponse.md), error**
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.ErrorMessage      | 400,401,402,403,429,500,503 | application/json            |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |

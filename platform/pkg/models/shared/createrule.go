@@ -2,7 +2,7 @@
 
 package shared
 
-// CreateRule - Create an event notification to a URL or list of email addresses based on the given type or condition.
+// CreateRule - Create a message that notifies a URL of an event based on its given type or condition.
 type CreateRule struct {
 	// Unique identifier for your SMB in Codat.
 	CompanyID *string         `json:"companyId,omitempty"`

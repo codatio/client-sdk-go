@@ -4,7 +4,7 @@ package shared
 
 // SyncSetting - Describes how often, and how much history, should be fetched for the given data type when a pull operation is queued.
 type SyncSetting struct {
-	// Available Data types
+	// Available data types
 	DataType DataType `json:"dataType"`
 	// Whether this data type should be queued after a company has authorized a connection.
 	FetchOnFirstLink bool `json:"fetchOnFirstLink"`

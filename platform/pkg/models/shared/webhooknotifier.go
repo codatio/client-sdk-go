@@ -4,7 +4,7 @@ package shared
 
 type WebhookNotifier struct {
 	Emails []string `json:"emails,omitempty"`
-	// The URI the webhook service will POST events.
+	// The URI the webhook service will use to post events.
 	Webhook *string `json:"webhook,omitempty"`
 }
 
