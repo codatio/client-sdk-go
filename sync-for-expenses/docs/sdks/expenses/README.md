@@ -8,7 +8,7 @@ Create expense datasets and upload receipts.
 ### Available Operations
 
 * [Create](#create) - Create expense transaction
-* [Update](#update) - Update expense-transactions
+* [Update](#update) - Update expense transactions
 * [UploadAttachment](#uploadattachment) - Upload attachment
 
 ## Create
@@ -54,7 +54,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.CreateExpenseResponse != nil {
         // handle response
     }
@@ -115,7 +114,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.UpdateExpenseResponse != nil {
         // handle response
     }
@@ -183,7 +181,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Attachment != nil {
         // handle response
     }

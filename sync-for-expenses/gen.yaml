@@ -7,9 +7,12 @@ generation:
     nameResolutionDec2023: false
     parameterOrderingFeb2024: false
     requestResponseComponentNamesFeb2024: false
+  auth:
+    oAuth2ClientCredentialsEnabled: false
   telemetryEnabled: true
 go:
-  version: 4.1.1
+  version: 4.2.0
+  additionalDependencies: {}
   clientServerStatusCodesAsErrors: true
   flattenGlobalSecurity: true
   imports:
@@ -24,3 +27,4 @@ go:
   maxMethodParams: 0
   outputModelSuffix: output
   packageName: github.com/codatio/client-sdk-go/sync-for-expenses
+  responseFormat: envelope

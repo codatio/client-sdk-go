@@ -51,7 +51,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.CreateCustomerResponse != nil {
         // handle response
     }
@@ -107,12 +106,11 @@ func main() {
     ctx := context.Background()
     res, err := s.Customers.Get(ctx, operations.GetCustomerRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        CustomerID: "string",
+        CustomerID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Customer != nil {
         // handle response
     }
@@ -173,7 +171,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Customers != nil {
         // handle response
     }
@@ -232,12 +229,11 @@ func main() {
     res, err := s.Customers.Update(ctx, operations.UpdateCustomerRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        CustomerID: "string",
+        CustomerID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.UpdateCustomerResponse != nil {
         // handle response
     }

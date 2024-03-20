@@ -3,7 +3,7 @@
 package shared
 
 type PushOperationRef struct {
-	// Available Data types
+	// Available data types
 	DataType *DataType `json:"dataType,omitempty"`
 	// Unique identifier for a push operation.
 	ID *string `json:"id,omitempty"`

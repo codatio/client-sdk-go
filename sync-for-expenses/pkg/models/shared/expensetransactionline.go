@@ -14,7 +14,7 @@ type ExpenseTransactionLine struct {
 	// Amount of the line, exclusive of tax.
 	NetAmount *decimal.Big `decimal:"number" json:"netAmount"`
 	// Amount of tax for the line.
-	TaxAmount    *decimal.Big  `decimal:"number" json:"taxAmount"`
+	TaxAmount    *decimal.Big  `decimal:"number" json:"taxAmount,omitempty"`
 	TaxRateRef   *RecordRef    `json:"taxRateRef,omitempty"`
 	TrackingRefs []TrackingRef `json:"trackingRefs,omitempty"`
 }
@@ -53,7 +53,7 @@ func (o *ExpenseTransactionLine) GetNetAmount() *decimal.Big {
 
 func (o *ExpenseTransactionLine) GetTaxAmount() *decimal.Big {
 	if o == nil {
-		return new(decimal.Big).SetFloat64(0.0)
+		return nil
 	}
 	return o.TaxAmount
 }

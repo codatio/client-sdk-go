@@ -89,7 +89,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.CreateSupplierResponse != nil {
         // handle response
     }
@@ -150,7 +149,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Supplier != nil {
         // handle response
     }
@@ -211,7 +209,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Suppliers != nil {
         // handle response
     }
@@ -313,7 +310,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.UpdateSupplierResponse != nil {
         // handle response
     }

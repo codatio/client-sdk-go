@@ -4,7 +4,7 @@ package shared
 
 type Phone struct {
 	// A phone number.
-	Number *string `json:"number"`
+	Number *string `json:"number,omitempty"`
 	// The type of phone number
 	Type PhoneNumberType `json:"type"`
 }

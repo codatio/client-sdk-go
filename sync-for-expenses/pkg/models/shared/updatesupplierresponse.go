@@ -165,7 +165,7 @@ type UpdateSupplierResponse struct {
 	Data           *UpdateSupplierResponseAccountingSupplier `json:"data,omitempty"`
 	// Unique identifier for a company's data connection.
 	DataConnectionKey string `json:"dataConnectionKey"`
-	// Available Data types
+	// Available data types
 	DataType *DataType `json:"dataType,omitempty"`
 	// A message about the error.
 	ErrorMessage *string `json:"errorMessage,omitempty"`

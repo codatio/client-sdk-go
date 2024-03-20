@@ -42,7 +42,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.DataStatuses != nil {
         // handle response
     }
@@ -96,7 +95,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.PullOperation != nil {
         // handle response
     }
@@ -152,7 +150,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.PullOperations != nil {
         // handle response
     }
@@ -195,7 +192,6 @@ import(
 	"context"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
 	"log"
-	"net/http"
 )
 
 func main() {
@@ -210,8 +206,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
-    if res.StatusCode == http.StatusOK {
+    if res != nil {
         // handle response
     }
 }
@@ -266,7 +261,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.PullOperation != nil {
         // handle response
     }

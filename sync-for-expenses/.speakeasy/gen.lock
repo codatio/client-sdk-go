@@ -1,27 +1,30 @@
 lockVersion: 2.0.0
 id: e2492906-821b-42bf-87aa-d2e0a13ba8fa
 management:
-  docChecksum: cd6fa6671764b38bed9a8592c0f117ad
+  docChecksum: f7909a451d1597b90dec569f16a52c39
   docVersion: prealpha
-  speakeasyVersion: internal
-  generationVersion: 2.253.0
-  releaseVersion: 4.1.1
-  configChecksum: dc4c6cde2d603a15f9c4b431424394cf
+  speakeasyVersion: 1.214.0
+  generationVersion: 2.286.2
+  releaseVersion: 4.2.0
+  configChecksum: 6ec9e1a1bd1d5e6b9a66c3fad3f5636b
   repoURL: https://github.com/codatio/client-sdk-go.git
   repoSubDirectory: sync-for-expenses
   installationURL: https://github.com/codatio/client-sdk-go/sync-for-expenses
   published: true
 features:
   go:
-    constsAndDefaults: 0.1.3
-    core: 3.3.2
+    constsAndDefaults: 0.1.4
+    core: 3.4.4
+    decimal: 0.1.0
     deprecations: 2.81.1
     examples: 2.81.3
-    globalSecurity: 2.82.6
-    globalServerURLs: 2.82.1
+    globalSecurity: 2.82.9
+    globalServerURLs: 2.82.2
     inputOutputModels: 2.83.0
     nameOverrides: 2.81.1
+    responseFormat: 0.1.0
     retries: 2.82.2
+    webhooks: 1.0.0
 generatedFiles:
   - companies.go
   - connections.go
@@ -36,7 +39,6 @@ generatedFiles:
   - transactionstatus.go
   - codatsyncexpenses.go
   - go.mod
-  - go.sum
   - pkg/models/sdkerrors/sdkerror.go
   - pkg/types/bigint.go
   - pkg/types/date.go
@@ -409,3 +411,4 @@ generatedFiles:
   - USAGE.md
   - pkg/models/operations/options.go
   - .gitattributes
+  - internal/hooks/hooks.go

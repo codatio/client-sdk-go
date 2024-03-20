@@ -5,6 +5,7 @@ package syncforexpenses
 import (
 	"context"
 	"fmt"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/internal/hooks"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/utils"
 	"net/http"
@@ -40,8 +41,7 @@ func Float32(f float32) *float32 { return &f }
 func Float64(f float64) *float64 { return &f }
 
 type sdkConfiguration struct {
-	DefaultClient     HTTPClient
-	SecurityClient    HTTPClient
+	Client            HTTPClient
 	Security          func(context.Context) (interface{}, error)
 	ServerURL         string
 	ServerIndex       int
@@ -51,6 +51,7 @@ type sdkConfiguration struct {
 	GenVersion        string
 	UserAgent         string
 	RetryConfig       *utils.RetryConfig
+	Hooks             *hooks.Hooks
 }
 
 func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
@@ -133,13 +134,13 @@ func WithServerIndex(serverIndex int) SDKOption {
 // WithClient allows the overriding of the default HTTP client used by the SDK
 func WithClient(client HTTPClient) SDKOption {
 	return func(sdk *CodatSyncExpenses) {
-		sdk.sdkConfiguration.DefaultClient = client
+		sdk.sdkConfiguration.Client = client
 	}
 }
 
 func withSecurity(security interface{}) func(context.Context) (interface{}, error) {
 	return func(context.Context) (interface{}, error) {
-		return &security, nil
+		return security, nil
 	}
 }
 
@@ -172,9 +173,10 @@ func New(opts ...SDKOption) *CodatSyncExpenses {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "prealpha",
-			SDKVersion:        "4.1.1",
-			GenVersion:        "2.253.0",
-			UserAgent:         "speakeasy-sdk/go 4.1.1 2.253.0 prealpha github.com/codatio/client-sdk-go/sync-for-expenses",
+			SDKVersion:        "4.2.0",
+			GenVersion:        "2.286.2",
+			UserAgent:         "speakeasy-sdk/go 4.2.0 2.286.2 prealpha github.com/codatio/client-sdk-go/sync-for-expenses",
+			Hooks:             hooks.New(),
 		},
 	}
 	for _, opt := range opts {
@@ -182,15 +184,15 @@ func New(opts ...SDKOption) *CodatSyncExpenses {
 	}
 
 	// Use WithClient to override the default client if you would like to customize the timeout
-	if sdk.sdkConfiguration.DefaultClient == nil {
-		sdk.sdkConfiguration.DefaultClient = &http.Client{Timeout: 60 * time.Second}
+	if sdk.sdkConfiguration.Client == nil {
+		sdk.sdkConfiguration.Client = &http.Client{Timeout: 60 * time.Second}
 	}
-	if sdk.sdkConfiguration.SecurityClient == nil {
-		if sdk.sdkConfiguration.Security != nil {
-			sdk.sdkConfiguration.SecurityClient = utils.ConfigureSecurityClient(sdk.sdkConfiguration.DefaultClient, sdk.sdkConfiguration.Security)
-		} else {
-			sdk.sdkConfiguration.SecurityClient = sdk.sdkConfiguration.DefaultClient
-		}
+
+	currentServerURL, _ := sdk.sdkConfiguration.GetServerDetails()
+	serverURL := currentServerURL
+	serverURL, sdk.sdkConfiguration.Client = sdk.sdkConfiguration.Hooks.SDKInit(currentServerURL, sdk.sdkConfiguration.Client)
+	if serverURL != currentServerURL {
+		sdk.sdkConfiguration.ServerURL = serverURL
 	}
 
 	sdk.Companies = newCompanies(sdk.sdkConfiguration)

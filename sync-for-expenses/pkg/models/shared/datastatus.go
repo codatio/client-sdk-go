@@ -7,7 +7,7 @@ import (
 	"fmt"
 )
 
-// DataTypes - Available Data types
+// DataTypes - Available data types
 type DataTypes string
 
 const (
@@ -162,7 +162,7 @@ func (e *DataTypes) UnmarshalJSON(data []byte) error {
 type DataStatus struct {
 	// The current status of the dataset in Codat's cache.
 	CurrentStatus string `json:"currentStatus"`
-	// Available Data types
+	// Available data types
 	DataType DataTypes `json:"dataType"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
