@@ -45,7 +45,7 @@ type GetSyncTransactionResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Success
-	Transaction *shared.Transaction
+	TransactionResponse []shared.Transaction
 }
 
 func (o *GetSyncTransactionResponse) GetContentType() string {
@@ -69,9 +69,9 @@ func (o *GetSyncTransactionResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetSyncTransactionResponse) GetTransaction() *shared.Transaction {
+func (o *GetSyncTransactionResponse) GetTransactionResponse() []shared.Transaction {
 	if o == nil {
 		return nil
 	}
-	return o.Transaction
+	return o.TransactionResponse
 }

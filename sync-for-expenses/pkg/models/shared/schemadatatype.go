@@ -7,7 +7,7 @@ import (
 	"fmt"
 )
 
-// SchemaDataType - Available Data types
+// SchemaDataType - Available data types
 type SchemaDataType string
 
 const (

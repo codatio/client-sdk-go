@@ -43,7 +43,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.CompanySyncStatus != nil {
         // handle response
     }
@@ -96,7 +95,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.CompanySyncStatus != nil {
         // handle response
     }
@@ -149,7 +147,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.CompanySyncStatus != nil {
         // handle response
     }
@@ -202,7 +199,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.SyncInitiated != nil {
         // handle response
     }
@@ -255,7 +251,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Classes != nil {
         // handle response
     }

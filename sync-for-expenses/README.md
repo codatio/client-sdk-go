@@ -41,7 +41,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.Company != nil {
 		// handle response
 	}
@@ -111,7 +110,7 @@ func main() {
 ### [Expenses](docs/sdks/expenses/README.md)
 
 * [Create](docs/sdks/expenses/README.md#create) - Create expense transaction
-* [Update](docs/sdks/expenses/README.md#update) - Update expense-transactions
+* [Update](docs/sdks/expenses/README.md#update) - Update expense transactions
 * [UploadAttachment](docs/sdks/expenses/README.md#uploadattachment) - Upload attachment
 
 ### [Sync](docs/sdks/sync/README.md)
@@ -179,7 +178,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.Company != nil {
 		// handle response
 	}
@@ -223,7 +221,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.Company != nil {
 		// handle response
 	}
@@ -322,7 +319,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.Company != nil {
 		// handle response
 	}
@@ -358,7 +354,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.Company != nil {
 		// handle response
 	}
@@ -431,7 +426,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.Company != nil {
 		// handle response
 	}

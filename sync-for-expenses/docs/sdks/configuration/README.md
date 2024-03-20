@@ -40,7 +40,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.CompanyConfiguration != nil {
         // handle response
     }
@@ -93,7 +92,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.MappingOptions != nil {
         // handle response
     }
@@ -146,7 +144,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.CompanyConfiguration != nil {
         // handle response
     }

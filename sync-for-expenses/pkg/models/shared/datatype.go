@@ -7,7 +7,7 @@ import (
 	"fmt"
 )
 
-// DataType - Available Data types
+// DataType - Available data types
 type DataType string
 
 const (

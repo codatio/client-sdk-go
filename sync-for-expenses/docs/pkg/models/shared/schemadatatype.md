@@ -1,6 +1,6 @@
 # SchemaDataType
 
-Available Data types
+Available data types
 
 
 ## Values
