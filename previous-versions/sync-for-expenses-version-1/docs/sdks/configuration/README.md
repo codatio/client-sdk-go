@@ -41,7 +41,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.CompanyConfiguration != nil {
         // handle response
     }
@@ -63,7 +62,7 @@ func main() {
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
 
 ## SaveCompanyConfiguration
 
@@ -91,23 +90,11 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Configuration.SaveCompanyConfiguration(ctx, operations.SaveCompanyConfigurationRequest{
-        CompanyConfiguration: &shared.CompanyConfiguration{
-            BankAccount: shared.BankAccount{
-                ID: syncforexpensesversion1.String("32"),
-            },
-            Customer: shared.Customer{
-                ID: syncforexpensesversion1.String("142"),
-            },
-            Supplier: shared.Supplier{
-                ID: syncforexpensesversion1.String("124"),
-            },
-        },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.CompanyConfiguration != nil {
         // handle response
     }
@@ -129,4 +116,4 @@ func main() {
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |

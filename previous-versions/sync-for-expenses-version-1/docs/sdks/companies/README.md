@@ -15,11 +15,12 @@ Create and manage your Codat companies.
 
 ## CreateCompany
 
-﻿Creates a new company that can be used to assign connections to. 
+﻿Use the *Create company* endpoint to create a new [company](https://docs.codat.io/sync-for-expenses-v1-api#/schemas/Company) that represents your customer in Codat. 
+
+A [company](https://docs.codat.io/sync-for-expenses-v1-api#/schemas/Company) represents a business sharing access to their data.
+Each company can have multiple [connections](https://docs.codat.io/sync-for-expenses-v1-api#/schemas/Connection) to different data sources, such as one connection to Xero for accounting data, two connections to Plaid for two bank accounts, and a connection to Zettle for POS data.
 
 If forbidden characters (see `name` pattern) are present in the request, a company will be created with the forbidden characters removed. For example, `Company (Codat[1])` with be created as `Company Codat1`.
-
-
 
 ### Example Usage
 
@@ -48,7 +49,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Company != nil {
         // handle response
     }
@@ -70,12 +70,15 @@ func main() {
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 400,401,402,403,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
 
 ## DeleteCompany
 
-﻿
-Permanently deletes a company, its connections and any cached data. This operation is irreversible. If the company ID does not exist an error is returned.
+﻿The *Delete company* endpoint permanently deletes a [company](https://docs.codat.io/sync-for-expenses-v1-api#/schemas/Company), its [connections](https://docs.codat.io/sync-for-expenses-v1-api#/schemas/Connection) and any cached data. This operation is irreversible.
+
+A [company](https://docs.codat.io/sync-for-expenses-v1-api#/schemas/Company) represents a business sharing access to their data.
+Each company can have multiple [connections](https://docs.codat.io/sync-for-expenses-v1-api#/schemas/Connection) to different data sources, such as one connection to Xero for accounting data, two connections to Plaid for two bank accounts, and a connection to Zettle for POS data.
+
 
 ### Example Usage
 
@@ -88,7 +91,6 @@ import(
 	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1/pkg/models/operations"
 	"log"
-	"net/http"
 )
 
 func main() {
@@ -105,8 +107,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
-    if res.StatusCode == http.StatusOK {
+    if res != nil {
         // handle response
     }
 }
@@ -127,11 +128,15 @@ func main() {
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
 
 ## GetCompany
 
-﻿Returns the company for a valid identifier. If the identifier is for a deleted company, a not found response is returned.
+﻿The *Get company* endpoint returns a single company for a given `companyId`.
+
+A [company](https://docs.codat.io/sync-for-expenses-v1-api#/schemas/Company) represents a business sharing access to their data.
+Each company can have multiple [connections](https://docs.codat.io/sync-for-expenses-v1-api#/schemas/Connection) to different data sources, such as one connection to Xero for accounting data, two connections to Plaid for two bank accounts, and a connection to Zettle for POS data.
+
 
 ### Example Usage
 
@@ -160,7 +165,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Company != nil {
         // handle response
     }
@@ -182,11 +186,14 @@ func main() {
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
 
 ## ListCompanies
 
-﻿Returns a list of your companies. The company schema contains a list of [connections](https://docs.codat.io/sync-for-expenses-v1-api#/schemas/Connection) related to the company.
+﻿The *List companies* endpoint returns a list of [companies] associated to your instances.
+
+A [company](https://docs.codat.io/sync-for-expenses-v1-api#/schemas/Company) represents a business sharing access to their data.
+Each company can have multiple [connections](https://docs.codat.io/sync-for-expenses-v1-api#/schemas/Connection) to different data sources, such as one connection to Xero for accounting data, two connections to Plaid for two bank accounts, and a connection to Zettle for POS data.
 
 ### Example Usage
 
@@ -217,7 +224,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Companies != nil {
         // handle response
     }
@@ -239,11 +245,15 @@ func main() {
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
 
 ## UpdateCompany
 
-﻿Updates both the name and description of the company.
+﻿Use the *Update company* endpoint to update both the name and description of the company. 
+If you use [groups](https://docs.codat.io/sync-for-expenses-v1-api#/schemas/Group) to manage a set of companies, use the [Add company](https://docs.codat.io/sync-for-expenses-v1-api#/operations/add-company-to-group) or [Remove company](https://docs.codat.io/sync-for-expenses-v1-api#/operations/remove-company-from-group) endpoints to add or remove a company from a group.
+
+A [company](https://docs.codat.io/sync-for-expenses-v1-api#/schemas/Company) represents a business sharing access to their data.
+Each company can have multiple [connections](https://docs.codat.io/sync-for-expenses-v1-api#/schemas/Connection) to different data sources, such as one connection to Xero for accounting data, two connections to Plaid for two bank accounts, and a connection to Zettle for POS data.
 
 ### Example Usage
 
@@ -267,16 +277,11 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Companies.UpdateCompany(ctx, operations.UpdateCompanyRequest{
-        CompanyRequestBody: &shared.CompanyRequestBody{
-            Description: syncforexpensesversion1.String("Requested early access to the new financing scheme."),
-            Name: "Bank of Dave",
-        },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Company != nil {
         // handle response
     }
@@ -298,4 +303,4 @@ func main() {
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |

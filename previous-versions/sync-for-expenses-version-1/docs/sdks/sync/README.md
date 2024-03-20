@@ -24,7 +24,6 @@ import(
 	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1/pkg/models/operations"
 	"log"
-	"net/http"
 )
 
 func main() {
@@ -36,18 +35,12 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Sync.InitiateSync(ctx, operations.InitiateSyncRequest{
-        PostSync: &shared.PostSync{
-            DatasetIds: []string{
-                "acce2362-83d6-4e3e-a27f-f4a08e7217d5",
-            },
-        },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
         log.Fatal(err)
     }
-
-    if res.StatusCode == http.StatusOK {
+    if res != nil {
         // handle response
     }
 }
@@ -68,4 +61,4 @@ func main() {
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | sdkerrors.ErrorMessage              | 400,401,402,403,404,422,429,500,503 | application/json                    |
-| sdkerrors.SDKError                  | 400-600                             | */*                                 |
+| sdkerrors.SDKError                  | 4xx-5xx                             | */*                                 |
