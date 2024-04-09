@@ -3,73 +3,25 @@
 package shared
 
 import (
-	"encoding/json"
-	"fmt"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
-type ExpenseTransactionBankAccountReference struct {
+type BankAccountReference struct {
 	// Identifier of the bank account.
 	ID *string `json:"id,omitempty"`
 }
 
-func (o *ExpenseTransactionBankAccountReference) GetID() *string {
+func (o *BankAccountReference) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-// ExpenseTransactionType - The type of transaction.
-type ExpenseTransactionType string
-
-const (
-	ExpenseTransactionTypePayment       ExpenseTransactionType = "Payment"
-	ExpenseTransactionTypeRefund        ExpenseTransactionType = "Refund"
-	ExpenseTransactionTypeReward        ExpenseTransactionType = "Reward"
-	ExpenseTransactionTypeChargeback    ExpenseTransactionType = "Chargeback"
-	ExpenseTransactionTypeTransferIn    ExpenseTransactionType = "TransferIn"
-	ExpenseTransactionTypeTransferOut   ExpenseTransactionType = "TransferOut"
-	ExpenseTransactionTypeAdjustmentIn  ExpenseTransactionType = "AdjustmentIn"
-	ExpenseTransactionTypeAdjustmentOut ExpenseTransactionType = "AdjustmentOut"
-)
-
-func (e ExpenseTransactionType) ToPointer() *ExpenseTransactionType {
-	return &e
-}
-
-func (e *ExpenseTransactionType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Payment":
-		fallthrough
-	case "Refund":
-		fallthrough
-	case "Reward":
-		fallthrough
-	case "Chargeback":
-		fallthrough
-	case "TransferIn":
-		fallthrough
-	case "TransferOut":
-		fallthrough
-	case "AdjustmentIn":
-		fallthrough
-	case "AdjustmentOut":
-		*e = ExpenseTransactionType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ExpenseTransactionType: %v", v)
-	}
-}
-
-type ExpenseTransaction struct {
-	BankAccountRef *ExpenseTransactionBankAccountReference `json:"bankAccountRef,omitempty"`
-	ContactRef     *ContactRef                             `json:"contactRef,omitempty"`
+type ReimbursableExpenseTransaction struct {
+	AllOf          interface{}           `json:"allOf,omitempty"`
+	BankAccountRef *BankAccountReference `json:"bankAccountRef,omitempty"`
 	// Currency the transaction was recorded in.
 	Currency string `json:"currency"`
 	// Rate to convert the total amount of the payment into the base currency for the company at the time of the payment.
@@ -105,6 +57,7 @@ type ExpenseTransaction struct {
 	// |-------------------|-------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 	// | QuickBooks Online | Transaction currency differs from base currency | If currency rate value is left `null`, a rate of 1 will be used by QBO by default. To override this, include the required currency rate in the expense transaction.  |
 	CurrencyRate *decimal.Big `decimal:"number" json:"currencyRate,omitempty"`
+	DueDate      interface{}  `json:"dueDate"`
 	// Your unique identifier for the transaction.
 	ID string `json:"id"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
@@ -128,101 +81,98 @@ type ExpenseTransaction struct {
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	IssueDate string `json:"issueDate"`
 	// Array of transaction lines.
-	Lines []ExpenseTransactionLine `json:"lines,omitempty"`
-	// Name of the merchant where the purchase took place
-	MerchantName *string `json:"merchantName,omitempty"`
+	Lines []ReimbursableExpenseTransactionLine `json:"lines,omitempty"`
 	// Any private, company notes about the transaction.
-	Notes *string `json:"notes,omitempty"`
-	// For supported accouting platforms, setting this optional property to true will post the transaction to a drafted state.
-	PostAsDraft *bool `json:"postAsDraft,omitempty"`
-	// The type of transaction.
-	Type ExpenseTransactionType `json:"type"`
+	Notes     *string     `json:"notes,omitempty"`
+	RecordRef *ContactRef `json:"recordRef,omitempty"`
+	// User-friendly reference for the reimbursable expense.
+	Reference *string `json:"reference,omitempty"`
 }
 
-func (e ExpenseTransaction) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(e, "", false)
+func (r ReimbursableExpenseTransaction) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
 }
 
-func (e *ExpenseTransaction) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, false); err != nil {
+func (r *ReimbursableExpenseTransaction) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, false); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *ExpenseTransaction) GetBankAccountRef() *ExpenseTransactionBankAccountReference {
+func (o *ReimbursableExpenseTransaction) GetAllOf() interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.AllOf
+}
+
+func (o *ReimbursableExpenseTransaction) GetBankAccountRef() *BankAccountReference {
 	if o == nil {
 		return nil
 	}
 	return o.BankAccountRef
 }
 
-func (o *ExpenseTransaction) GetContactRef() *ContactRef {
-	if o == nil {
-		return nil
-	}
-	return o.ContactRef
-}
-
-func (o *ExpenseTransaction) GetCurrency() string {
+func (o *ReimbursableExpenseTransaction) GetCurrency() string {
 	if o == nil {
 		return ""
 	}
 	return o.Currency
 }
 
-func (o *ExpenseTransaction) GetCurrencyRate() *decimal.Big {
+func (o *ReimbursableExpenseTransaction) GetCurrencyRate() *decimal.Big {
 	if o == nil {
 		return nil
 	}
 	return o.CurrencyRate
 }
 
-func (o *ExpenseTransaction) GetID() string {
+func (o *ReimbursableExpenseTransaction) GetDueDate() interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.DueDate
+}
+
+func (o *ReimbursableExpenseTransaction) GetID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ID
 }
 
-func (o *ExpenseTransaction) GetIssueDate() string {
+func (o *ReimbursableExpenseTransaction) GetIssueDate() string {
 	if o == nil {
 		return ""
 	}
 	return o.IssueDate
 }
 
-func (o *ExpenseTransaction) GetLines() []ExpenseTransactionLine {
+func (o *ReimbursableExpenseTransaction) GetLines() []ReimbursableExpenseTransactionLine {
 	if o == nil {
 		return nil
 	}
 	return o.Lines
 }
 
-func (o *ExpenseTransaction) GetMerchantName() *string {
-	if o == nil {
-		return nil
-	}
-	return o.MerchantName
-}
-
-func (o *ExpenseTransaction) GetNotes() *string {
+func (o *ReimbursableExpenseTransaction) GetNotes() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Notes
 }
 
-func (o *ExpenseTransaction) GetPostAsDraft() *bool {
+func (o *ReimbursableExpenseTransaction) GetRecordRef() *ContactRef {
 	if o == nil {
 		return nil
 	}
-	return o.PostAsDraft
+	return o.RecordRef
 }
 
-func (o *ExpenseTransaction) GetType() ExpenseTransactionType {
+func (o *ReimbursableExpenseTransaction) GetReference() *string {
 	if o == nil {
-		return ExpenseTransactionType("")
+		return nil
 	}
-	return o.Type
+	return o.Reference
 }

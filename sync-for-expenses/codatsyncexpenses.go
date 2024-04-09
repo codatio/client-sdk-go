@@ -90,12 +90,18 @@ type CodatSyncExpenses struct {
 	PushOperations *PushOperations
 	// Manage mapping options and sync configuration.
 	Configuration *Configuration
-	// Create expense datasets and upload receipts.
+	// Create expense transactions.
 	Expenses *Expenses
+	// Create reimbursable expense transactions.
+	Reimbursements *Reimbursements
 	// Trigger and monitor expense syncs to accounting software.
 	Sync *Sync
 	// Retrieve the status of transactions within a sync.
 	TransactionStatus *TransactionStatus
+	// Upload attachmens to expenses, transfers and reimbursable expense transactions.
+	Attachments *Attachments
+	// Create transfer transactions.
+	Transfers *Transfers
 
 	sdkConfiguration sdkConfiguration
 }
@@ -173,9 +179,9 @@ func New(opts ...SDKOption) *CodatSyncExpenses {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "prealpha",
-			SDKVersion:        "4.2.0",
-			GenVersion:        "2.286.2",
-			UserAgent:         "speakeasy-sdk/go 4.2.0 2.286.2 prealpha github.com/codatio/client-sdk-go/sync-for-expenses",
+			SDKVersion:        "4.2.1",
+			GenVersion:        "2.301.3",
+			UserAgent:         "speakeasy-sdk/go 4.2.1 2.301.3 prealpha github.com/codatio/client-sdk-go/sync-for-expenses",
 			Hooks:             hooks.New(),
 		},
 	}
@@ -213,9 +219,15 @@ func New(opts ...SDKOption) *CodatSyncExpenses {
 
 	sdk.Expenses = newExpenses(sdk.sdkConfiguration)
 
+	sdk.Reimbursements = newReimbursements(sdk.sdkConfiguration)
+
 	sdk.Sync = newSync(sdk.sdkConfiguration)
 
 	sdk.TransactionStatus = newTransactionStatus(sdk.sdkConfiguration)
+
+	sdk.Attachments = newAttachments(sdk.sdkConfiguration)
+
+	sdk.Transfers = newTransfers(sdk.sdkConfiguration)
 
 	return sdk
 }
