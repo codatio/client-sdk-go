@@ -16,36 +16,25 @@ import (
 	"net/http"
 )
 
-// Expenses - Create expense transactions.
-type Expenses struct {
+// Reimbursements - Create reimbursable expense transactions.
+type Reimbursements struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newExpenses(sdkConfig sdkConfiguration) *Expenses {
-	return &Expenses{
+func newReimbursements(sdkConfig sdkConfiguration) *Reimbursements {
+	return &Reimbursements{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
-// Create expense transaction
-// The *Create expense* endpoint creates an [expense transaction](https://docs.codat.io/sync-for-expenses-api#/schemas/ExpenseTransaction) in the accounting platform for a given company's connection.
+// CreateReimbursableExpenseTransaction - Create reimbursable expense transaction
+// Use the *Create reimbursable expense* endpoint to create a [reimbursement request](https://docs.codat.io/sync-for-expenses-api#/schemas/Reimburseable-Expense-Transactions) in the accounting platform for a given company's connection.
 //
-// [Expense transactions](https://docs.codat.io/sync-for-expenses-api#/schemas/ExpenseTransaction) represent transactions made with a company debit or credit card.
-//
-// **Integration-specific behaviour**
-//
-// Some accounting platforms support the option of pushing transactions to a draft state. This can be done by setting the postAsDraft property on the transaction to true. For platforms without this feature, the postAsDraft property should be ignored or set to false.
-//
-// | Integration | Draft State | Details                                                                                                      |
-// |-------------|-------------|--------------------------------------------------------------------------------------------------------------|
-// | Dynamics 365 Business Central | Yes   | Setting postAsDraft to true will push the transactions to a drafted state rather than posting directly to the ledger. For transactions in a draft state, they can then be approved and posted within the accounting platform. |
-// | Quickbooks Online | No | -  |
-// | Xero | No | - |
-// | NetSuite | No | - |
-func (s *Expenses) Create(ctx context.Context, request operations.CreateExpenseTransactionRequest, opts ...operations.Option) (*operations.CreateExpenseTransactionResponse, error) {
+// Employee reimbursement requests are reflected in the accounting system in the form of Bills against an employee, who is a supplier.
+func (s *Reimbursements) CreateReimbursableExpenseTransaction(ctx context.Context, request operations.CreateReimbursableExpenseTransactionRequest, opts ...operations.Option) (*operations.CreateReimbursableExpenseTransactionResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
-		OperationID:    "create-expense-transaction",
+		OperationID:    "create-reimbursable-expense-transaction",
 		OAuth2Scopes:   []string{},
 		SecuritySource: s.sdkConfiguration.Security,
 	}
@@ -61,12 +50,12 @@ func (s *Expenses) Create(ctx context.Context, request operations.CreateExpenseT
 		}
 	}
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/sync/expenses/data/expense-transactions", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/sync/expenses/reimbursable-expense-transactions", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "CreateExpenseRequest", "json", `request:"mediaType=application/json"`)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "CreateReimbursableExpenseRequest", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
 	}
@@ -144,7 +133,7 @@ func (s *Expenses) Create(ctx context.Context, request operations.CreateExpenseT
 		}
 	}
 
-	res := &operations.CreateExpenseTransactionResponse{
+	res := &operations.CreateReimbursableExpenseTransactionResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: httpRes.Header.Get("Content-Type"),
 		RawResponse: httpRes,
@@ -161,12 +150,12 @@ func (s *Expenses) Create(ctx context.Context, request operations.CreateExpenseT
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			var out shared.CreateExpenseResponse
+			var out shared.CreateReimbursableExpenseResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateExpenseResponse = &out
+			res.CreateReimbursableExpenseResponse = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -207,18 +196,14 @@ func (s *Expenses) Create(ctx context.Context, request operations.CreateExpenseT
 	return res, nil
 }
 
-// Update expense transactions
-// The *Update expense* endpoint updates an existing [expense transaction](https://docs.codat.io/sync-for-expenses-api#/schemas/ExpenseTransaction) in the accounting platform for a given company's connection.
+// UpdateReimbursableExpenseTransaction - Update reimbursable expense transaction
+// The *Update reimbursable expense* endpoint updates an existing [reimbursable expense transaction](https://docs.codat.io/sync-for-expenses-api#/operations/create-reimbursable-expense-transaction) in the accounting platform for a given company's connection.
 //
-// [Expense transactions](https://docs.codat.io/sync-for-expenses-api#/schemas/ExpenseTransaction) represent transactions made with a company debit or credit card.
-//
-// **Integration-specific behaviour**
-//
-// At the moment you can update expenses only for Xero ([Payment](https://docs.codat.io/expenses/sync-process/expense-transactions#transaction-types) transaction type only).
-func (s *Expenses) Update(ctx context.Context, request operations.UpdateExpenseTransactionRequest, opts ...operations.Option) (*operations.UpdateExpenseTransactionResponse, error) {
+// Employee reimbursement requests are reflected in the accounting system in the form of Bills against an employee, who is a supplier.
+func (s *Reimbursements) UpdateReimbursableExpenseTransaction(ctx context.Context, request operations.UpdateReimbursableExpenseTransactionRequest, opts ...operations.Option) (*operations.UpdateReimbursableExpenseTransactionResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
-		OperationID:    "update-expense-transaction",
+		OperationID:    "update-reimbursable-expense-transaction",
 		OAuth2Scopes:   []string{},
 		SecuritySource: s.sdkConfiguration.Security,
 	}
@@ -234,12 +219,12 @@ func (s *Expenses) Update(ctx context.Context, request operations.UpdateExpenseT
 		}
 	}
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/sync/expenses/expense-transactions/{transactionId}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/sync/expenses/reimbursable-expense-transactions/{transactionId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "UpdateExpenseRequest", "json", `request:"mediaType=application/json"`)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "CreateReimbursableExpenseRequest", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
 	}
@@ -317,7 +302,7 @@ func (s *Expenses) Update(ctx context.Context, request operations.UpdateExpenseT
 		}
 	}
 
-	res := &operations.UpdateExpenseTransactionResponse{
+	res := &operations.UpdateReimbursableExpenseTransactionResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: httpRes.Header.Get("Content-Type"),
 		RawResponse: httpRes,
@@ -331,15 +316,15 @@ func (s *Expenses) Update(ctx context.Context, request operations.UpdateExpenseT
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	switch {
-	case httpRes.StatusCode == 202:
+	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			var out shared.UpdateExpenseResponse
+			var out shared.CreateReimbursableExpenseResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateExpenseResponse = &out
+			res.CreateReimbursableExpenseResponse = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -352,8 +337,6 @@ func (s *Expenses) Update(ctx context.Context, request operations.UpdateExpenseT
 	case httpRes.StatusCode == 403:
 		fallthrough
 	case httpRes.StatusCode == 404:
-		fallthrough
-	case httpRes.StatusCode == 422:
 		fallthrough
 	case httpRes.StatusCode == 429:
 		fallthrough

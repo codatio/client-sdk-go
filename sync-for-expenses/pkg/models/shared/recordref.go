@@ -3,7 +3,7 @@
 package shared
 
 type RecordRef struct {
-	// identifier of linked reference from mapping options.
+	// Identifier of linked reference from mapping options.
 	ID *string `json:"id,omitempty"`
 }
 
