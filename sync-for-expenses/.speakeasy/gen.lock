@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: e2492906-821b-42bf-87aa-d2e0a13ba8fa
 management:
-  docChecksum: f7909a451d1597b90dec569f16a52c39
+  docChecksum: b84c137b488c9aa6b56fa6e53acdf2cc
   docVersion: prealpha
-  speakeasyVersion: 1.214.0
-  generationVersion: 2.286.2
-  releaseVersion: 4.2.0
-  configChecksum: 6ec9e1a1bd1d5e6b9a66c3fad3f5636b
+  speakeasyVersion: 1.244.2
+  generationVersion: 2.301.3
+  releaseVersion: 4.2.1
+  configChecksum: e0045777797ea423fc74f829f4b72247
   repoURL: https://github.com/codatio/client-sdk-go.git
   repoSubDirectory: sync-for-expenses
   installationURL: https://github.com/codatio/client-sdk-go/sync-for-expenses
@@ -14,14 +14,14 @@ management:
 features:
   go:
     constsAndDefaults: 0.1.4
-    core: 3.4.4
+    core: 3.4.6
     decimal: 0.1.0
     deprecations: 2.81.1
     examples: 2.81.3
     globalSecurity: 2.82.9
     globalServerURLs: 2.82.2
     inputOutputModels: 2.83.0
-    nameOverrides: 2.81.1
+    nameOverrides: 2.81.2
     responseFormat: 0.1.0
     retries: 2.82.2
     webhooks: 1.0.0
@@ -35,8 +35,11 @@ generatedFiles:
   - pushoperations.go
   - configuration.go
   - expenses.go
+  - reimbursements.go
   - sync.go
   - transactionstatus.go
+  - attachments.go
+  - transfers.go
   - codatsyncexpenses.go
   - go.mod
   - pkg/models/sdkerrors/sdkerror.go
@@ -88,7 +91,8 @@ generatedFiles:
   - /pkg/models/operations/setcompanyconfiguration.go
   - /pkg/models/operations/createexpensetransaction.go
   - /pkg/models/operations/updateexpensetransaction.go
-  - /pkg/models/operations/uploadexpenseattachment.go
+  - /pkg/models/operations/createreimbursableexpensetransaction.go
+  - /pkg/models/operations/updatereimbursableexpensetransaction.go
   - /pkg/models/operations/getsyncbyid.go
   - /pkg/models/operations/getlastsuccessfulsync.go
   - /pkg/models/operations/getlatestsync.go
@@ -96,6 +100,8 @@ generatedFiles:
   - /pkg/models/operations/listsyncs.go
   - /pkg/models/operations/getsynctransaction.go
   - /pkg/models/operations/listsynctransactions.go
+  - /pkg/models/operations/uploadexpenseattachment.go
+  - /pkg/models/operations/createtransfertransaction.go
   - /pkg/models/shared/company.go
   - /pkg/models/shared/connection.go
   - /pkg/models/shared/dataconnectionstatus.go
@@ -165,9 +171,10 @@ generatedFiles:
   - /pkg/models/shared/contactref.go
   - /pkg/models/shared/updateexpenseresponse.go
   - /pkg/models/shared/updateexpenserequest.go
-  - /pkg/models/shared/attachment.go
-  - /pkg/models/shared/attachmentupload.go
-  - /pkg/models/shared/codatfile.go
+  - /pkg/models/shared/createreimbursableexpenseresponse.go
+  - /pkg/models/shared/createreimbursableexpenserequest.go
+  - /pkg/models/shared/reimbursableexpensetransaction.go
+  - /pkg/models/shared/reimbursableexpensetransactionline.go
   - /pkg/models/shared/companysyncstatus.go
   - /pkg/models/shared/syncinitiated.go
   - /pkg/models/shared/initiatesync.go
@@ -175,6 +182,13 @@ generatedFiles:
   - /pkg/models/shared/transactionstatus.go
   - /pkg/models/shared/integrationtype.go
   - /pkg/models/shared/transactions.go
+  - /pkg/models/shared/attachment.go
+  - /pkg/models/shared/attachmentupload.go
+  - /pkg/models/shared/codatfile.go
+  - /pkg/models/shared/createtransferresponse.go
+  - /pkg/models/shared/createtransferrequest.go
+  - /pkg/models/shared/transferdetails.go
+  - /pkg/models/shared/accountref.go
   - /pkg/models/shared/security.go
   - /pkg/models/shared/clientratelimitreachedwebhook.go
   - /pkg/models/shared/clientratelimitreachedwebhookdata.go
@@ -258,8 +272,10 @@ generatedFiles:
   - docs/pkg/models/operations/createexpensetransactionresponse.md
   - docs/pkg/models/operations/updateexpensetransactionrequest.md
   - docs/pkg/models/operations/updateexpensetransactionresponse.md
-  - docs/pkg/models/operations/uploadexpenseattachmentrequest.md
-  - docs/pkg/models/operations/uploadexpenseattachmentresponse.md
+  - docs/pkg/models/operations/createreimbursableexpensetransactionrequest.md
+  - docs/pkg/models/operations/createreimbursableexpensetransactionresponse.md
+  - docs/pkg/models/operations/updatereimbursableexpensetransactionrequest.md
+  - docs/pkg/models/operations/updatereimbursableexpensetransactionresponse.md
   - docs/pkg/models/operations/getsyncbyidrequest.md
   - docs/pkg/models/operations/getsyncbyidresponse.md
   - docs/pkg/models/operations/getlastsuccessfulsyncrequest.md
@@ -274,6 +290,10 @@ generatedFiles:
   - docs/pkg/models/operations/getsynctransactionresponse.md
   - docs/pkg/models/operations/listsynctransactionsrequest.md
   - docs/pkg/models/operations/listsynctransactionsresponse.md
+  - docs/pkg/models/operations/uploadexpenseattachmentrequest.md
+  - docs/pkg/models/operations/uploadexpenseattachmentresponse.md
+  - docs/pkg/models/operations/createtransfertransactionrequest.md
+  - docs/pkg/models/operations/createtransfertransactionresponse.md
   - docs/pkg/models/shared/groupreference.md
   - docs/pkg/models/shared/company.md
   - docs/pkg/models/shared/sourcetype.md
@@ -354,7 +374,7 @@ generatedFiles:
   - docs/pkg/models/shared/accountmappinginfo.md
   - docs/pkg/models/shared/createexpenseresponse.md
   - docs/pkg/models/shared/createexpenserequest.md
-  - docs/pkg/models/shared/bankaccountreference.md
+  - docs/pkg/models/shared/expensetransactionbankaccountreference.md
   - docs/pkg/models/shared/expensetransactiontype.md
   - docs/pkg/models/shared/expensetransaction.md
   - docs/pkg/models/shared/expensetransactionline.md
@@ -368,9 +388,11 @@ generatedFiles:
   - docs/pkg/models/shared/updateexpenseresponse.md
   - docs/pkg/models/shared/updateexpenserequestbankaccountreference.md
   - docs/pkg/models/shared/updateexpenserequest.md
-  - docs/pkg/models/shared/attachment.md
-  - docs/pkg/models/shared/attachmentupload.md
-  - docs/pkg/models/shared/codatfile.md
+  - docs/pkg/models/shared/createreimbursableexpenseresponse.md
+  - docs/pkg/models/shared/createreimbursableexpenserequest.md
+  - docs/pkg/models/shared/bankaccountreference.md
+  - docs/pkg/models/shared/reimbursableexpensetransaction.md
+  - docs/pkg/models/shared/reimbursableexpensetransactionline.md
   - docs/pkg/models/shared/companysyncstatus.md
   - docs/pkg/models/shared/syncinitiated.md
   - docs/pkg/models/shared/initiatesync.md
@@ -378,6 +400,13 @@ generatedFiles:
   - docs/pkg/models/shared/transactionstatus.md
   - docs/pkg/models/shared/integrationtype.md
   - docs/pkg/models/shared/transactions.md
+  - docs/pkg/models/shared/attachment.md
+  - docs/pkg/models/shared/attachmentupload.md
+  - docs/pkg/models/shared/codatfile.md
+  - docs/pkg/models/shared/createtransferresponse.md
+  - docs/pkg/models/shared/createtransferrequest.md
+  - docs/pkg/models/shared/transferdetails.md
+  - docs/pkg/models/shared/accountref.md
   - docs/pkg/models/shared/security.md
   - docs/pkg/models/shared/clientratelimitreachedwebhook.md
   - docs/pkg/models/shared/clientratelimitreachedwebhookdata.md
@@ -406,8 +435,11 @@ generatedFiles:
   - docs/sdks/pushoperations/README.md
   - docs/sdks/configuration/README.md
   - docs/sdks/expenses/README.md
+  - docs/sdks/reimbursements/README.md
   - docs/sdks/sync/README.md
   - docs/sdks/transactionstatus/README.md
+  - docs/sdks/attachments/README.md
+  - docs/sdks/transfers/README.md
   - USAGE.md
   - pkg/models/operations/options.go
   - .gitattributes

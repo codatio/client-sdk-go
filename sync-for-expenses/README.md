@@ -111,7 +111,11 @@ func main() {
 
 * [Create](docs/sdks/expenses/README.md#create) - Create expense transaction
 * [Update](docs/sdks/expenses/README.md#update) - Update expense transactions
-* [UploadAttachment](docs/sdks/expenses/README.md#uploadattachment) - Upload attachment
+
+### [Reimbursements](docs/sdks/reimbursements/README.md)
+
+* [Create](docs/sdks/reimbursements/README.md#create) - Create reimbursable expense transaction
+* [Update](docs/sdks/reimbursements/README.md#update) - Update reimbursable expense transaction
 
 ### [Sync](docs/sdks/sync/README.md)
 
@@ -125,6 +129,14 @@ func main() {
 
 * [Get](docs/sdks/transactionstatus/README.md#get) - Get sync transaction
 * [List](docs/sdks/transactionstatus/README.md#list) - List sync transactions
+
+### [Attachments](docs/sdks/attachments/README.md)
+
+* [Upload](docs/sdks/attachments/README.md#upload) - Upload attachment
+
+### [Transfers](docs/sdks/transfers/README.md)
+
+* [Create](docs/sdks/transfers/README.md#create) - Create transfer transaction
 <!-- End Available Resources and Operations [operations] -->
 
 
