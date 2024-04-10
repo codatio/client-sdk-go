@@ -39,7 +39,7 @@ sources:
     sync-for-payables-source:
         inputs:
             - location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Sync-Payables.yaml
-    sync-for-payroll:
+    sync-for-payroll-source:
         inputs:
             - location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Sync-Payroll.yaml
 targets:
