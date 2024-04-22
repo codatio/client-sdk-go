@@ -3,7 +3,7 @@
 
 ## Overview
 
-Create and manage your Codat companies.
+Create and manage your SMB users' companies.
 
 ### Available Operations
 
@@ -49,7 +49,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Company != nil {
         // handle response
     }
@@ -92,7 +91,6 @@ import(
 	"context"
 	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/operations"
 	"log"
-	"net/http"
 )
 
 func main() {
@@ -109,8 +107,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
-    if res.StatusCode == http.StatusOK {
+    if res != nil {
         // handle response
     }
 }
@@ -168,7 +165,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Company != nil {
         // handle response
     }
@@ -228,7 +224,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Companies != nil {
         // handle response
     }
@@ -287,7 +282,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Company != nil {
         // handle response
     }

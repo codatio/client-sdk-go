@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: f309bed8-ee34-4982-948d-d0a2535e6a36
 management:
-  docChecksum: 6b9afa35a1ca4d8a1834643e80dd9a19
+  docChecksum: 8a586f934159d4380fca150eb7b55713
   docVersion: 3.0.0
-  speakeasyVersion: internal
-  generationVersion: 2.277.0
-  releaseVersion: 3.1.0
-  configChecksum: c4662754c4197ab798581525569c525b
+  speakeasyVersion: 1.267.1
+  generationVersion: 2.312.1
+  releaseVersion: 3.2.0
+  configChecksum: a46d7fe807c87027c17452ed5885beb7
   repoURL: https://github.com/codatio/client-sdk-go.git
   repoSubDirectory: platform
   installationURL: https://github.com/codatio/client-sdk-go/platform
@@ -14,18 +14,21 @@ management:
 features:
   go:
     constsAndDefaults: 0.1.4
-    core: 3.4.3
+    core: 3.4.6
     deprecations: 2.81.1
     examples: 2.81.3
-    globalSecurity: 2.82.8
-    globalServerURLs: 2.82.1
+    globalSecurity: 2.82.9
+    globalServerURLs: 2.82.2
+    ignores: 2.81.1
     inputOutputModels: 2.83.0
-    nameOverrides: 2.81.1
+    nameOverrides: 2.81.2
+    responseFormat: 0.1.0
     retries: 2.82.2
     webhooks: 1.0.0
 generatedFiles:
   - settings.go
   - companies.go
+  - connectionmanagement.go
   - connections.go
   - customdatatype.go
   - pushdata.go
@@ -64,6 +67,9 @@ generatedFiles:
   - /pkg/models/operations/getcompany.go
   - /pkg/models/operations/listcompanies.go
   - /pkg/models/operations/updatecompany.go
+  - /pkg/models/operations/getconnectionmanagementcorssettings.go
+  - /pkg/models/operations/setconnectionmanagementcorssettings.go
+  - /pkg/models/operations/getconnectionmanagementaccesstoken.go
   - /pkg/models/operations/createconnection.go
   - /pkg/models/operations/deleteconnection.go
   - /pkg/models/operations/getconnection.go
@@ -116,6 +122,8 @@ generatedFiles:
   - /pkg/models/shared/companies.go
   - /pkg/models/shared/links.go
   - /pkg/models/shared/halref.go
+  - /pkg/models/shared/connectionmanagementallowedorigins.go
+  - /pkg/models/shared/connectionmanagementaccesstoken.go
   - /pkg/models/shared/connections.go
   - /pkg/models/shared/updateconnectionstatus.go
   - /pkg/models/shared/customdatatypeconfiguration.go
@@ -137,7 +145,9 @@ generatedFiles:
   - /pkg/models/shared/pushchangetype.go
   - /pkg/models/shared/pushoperationref.go
   - /pkg/models/shared/pushoperations.go
+  - /pkg/models/shared/datastatuses.go
   - /pkg/models/shared/datastatus.go
+  - /pkg/models/shared/status.go
   - /pkg/models/shared/pulloperations.go
   - /pkg/models/shared/companygroupassignment.go
   - /pkg/models/shared/group.go
@@ -208,6 +218,10 @@ generatedFiles:
   - docs/pkg/models/operations/listcompaniesresponse.md
   - docs/pkg/models/operations/updatecompanyrequest.md
   - docs/pkg/models/operations/updatecompanyresponse.md
+  - docs/pkg/models/operations/getconnectionmanagementcorssettingsresponse.md
+  - docs/pkg/models/operations/setconnectionmanagementcorssettingsresponse.md
+  - docs/pkg/models/operations/getconnectionmanagementaccesstokenrequest.md
+  - docs/pkg/models/operations/getconnectionmanagementaccesstokenresponse.md
   - docs/pkg/models/operations/createconnectionrequestbody.md
   - docs/pkg/models/operations/createconnectionrequest.md
   - docs/pkg/models/operations/createconnectionresponse.md
@@ -291,6 +305,8 @@ generatedFiles:
   - docs/pkg/models/shared/companies.md
   - docs/pkg/models/shared/links.md
   - docs/pkg/models/shared/halref.md
+  - docs/pkg/models/shared/connectionmanagementallowedorigins.md
+  - docs/pkg/models/shared/connectionmanagementaccesstoken.md
   - docs/pkg/models/shared/connections.md
   - docs/pkg/models/shared/updateconnectionstatus.md
   - docs/pkg/models/shared/customdatatypeconfiguration.md
@@ -298,7 +314,7 @@ generatedFiles:
   - docs/pkg/models/shared/content.md
   - docs/pkg/models/shared/modifieddate.md
   - docs/pkg/models/shared/customdatatyperecord.md
-  - docs/pkg/models/shared/status.md
+  - docs/pkg/models/shared/datasetstatus.md
   - docs/pkg/models/shared/pulloperation.md
   - docs/pkg/models/shared/pushoption.md
   - docs/pkg/models/shared/pushvalidationinfo.md
@@ -315,8 +331,10 @@ generatedFiles:
   - docs/pkg/models/shared/pushchangetype.md
   - docs/pkg/models/shared/pushoperationref.md
   - docs/pkg/models/shared/pushoperations.md
+  - docs/pkg/models/shared/datastatuses.md
   - docs/pkg/models/shared/datatypes.md
   - docs/pkg/models/shared/datastatus.md
+  - docs/pkg/models/shared/status.md
   - docs/pkg/models/shared/pulloperations.md
   - docs/pkg/models/shared/companygroupassignment.md
   - docs/pkg/models/shared/group.md
@@ -375,6 +393,7 @@ generatedFiles:
   - docs/pkg/models/operations/option.md
   - docs/sdks/settings/README.md
   - docs/sdks/companies/README.md
+  - docs/sdks/connectionmanagement/README.md
   - docs/sdks/connections/README.md
   - docs/sdks/customdatatype/README.md
   - docs/sdks/pushdata/README.md

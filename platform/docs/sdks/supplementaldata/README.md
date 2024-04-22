@@ -3,7 +3,7 @@
 
 ## Overview
 
-View and configure supplemental data for supported data types.
+Configure and pull additional data you can include in Codat's standard data types.
 
 ### Available Operations
 
@@ -30,7 +30,6 @@ import(
 	"context"
 	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/operations"
 	"log"
-	"net/http"
 )
 
 func main() {
@@ -61,8 +60,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
-    if res.StatusCode == http.StatusOK {
+    if res != nil {
         // handle response
     }
 }
@@ -119,7 +117,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.SupplementalDataConfiguration != nil {
         // handle response
     }

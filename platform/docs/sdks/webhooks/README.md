@@ -3,7 +3,7 @@
 
 ## Overview
 
-Manage webhooks, rules, and events.
+Create and manage webhooks that listen to Codat's events.
 
 ### Available Operations
 
@@ -53,7 +53,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Webhook != nil {
         // handle response
     }
@@ -103,11 +102,12 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Webhooks.CreateConsumer(ctx, &shared.WebhookConsumerPrototype{})
+    res, err := s.Webhooks.CreateConsumer(ctx, &shared.WebhookConsumerPrototype{
+        CompanyID: platform.String("8a210b68-6988-11ed-a1eb-0242ac120002"),
+    })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.WebhookConsumer != nil {
         // handle response
     }
@@ -148,7 +148,6 @@ import(
 	"context"
 	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/operations"
 	"log"
-	"net/http"
 )
 
 func main() {
@@ -165,8 +164,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
-    if res.StatusCode == http.StatusOK {
+    if res != nil {
         // handle response
     }
 }
@@ -222,7 +220,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Webhook != nil {
         // handle response
     }
@@ -281,7 +278,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Webhooks != nil {
         // handle response
     }
@@ -335,7 +331,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.WebhookConsumers != nil {
         // handle response
     }

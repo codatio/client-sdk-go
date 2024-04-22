@@ -160,8 +160,8 @@ func (e *DataTypes) UnmarshalJSON(data []byte) error {
 
 // DataStatus - Describes the state of data in the Codat cache for a company and data type
 type DataStatus struct {
-	// The current status of the dataset in Codat's cache.
-	CurrentStatus string `json:"currentStatus"`
+	// The current status of the dataset.
+	CurrentStatus Status `json:"currentStatus"`
 	// Available data types
 	DataType DataTypes `json:"dataType"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
@@ -190,9 +190,9 @@ type DataStatus struct {
 	LatestSyncID *string `json:"latestSyncId,omitempty"`
 }
 
-func (o *DataStatus) GetCurrentStatus() string {
+func (o *DataStatus) GetCurrentStatus() Status {
 	if o == nil {
-		return ""
+		return Status("")
 	}
 	return o.CurrentStatus
 }

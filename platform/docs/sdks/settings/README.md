@@ -3,7 +3,7 @@
 
 ## Overview
 
-Manage your Codat instance.
+Manage company profile configuration, sync settings, and API keys.
 
 ### Available Operations
 
@@ -55,7 +55,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.APIKeyDetails != nil {
         // handle response
     }
@@ -119,7 +118,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.ErrorMessage != nil {
         // handle response
     }
@@ -171,7 +169,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Profile != nil {
         // handle response
     }
@@ -222,7 +219,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.SyncSettings != nil {
         // handle response
     }
@@ -277,7 +273,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.APIKeys != nil {
         // handle response
     }
@@ -340,7 +335,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Profile != nil {
         // handle response
     }
@@ -379,7 +373,6 @@ import(
 	"context"
 	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/operations"
 	"log"
-	"net/http"
 )
 
 func main() {
@@ -408,8 +401,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
-    if res.StatusCode == http.StatusOK {
+    if res != nil {
         // handle response
     }
 }

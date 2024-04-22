@@ -3,7 +3,7 @@
 
 ## Overview
 
-View push options and get push statuses.
+Initiate and monitor Create, Update, and Delete operations.
 
 ### Available Operations
 
@@ -53,7 +53,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.PushOption != nil {
         // handle response
     }
@@ -109,7 +108,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.PushOperation != nil {
         // handle response
     }
@@ -167,7 +165,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.PushOperations != nil {
         // handle response
     }

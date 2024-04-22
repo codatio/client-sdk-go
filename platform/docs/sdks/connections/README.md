@@ -3,7 +3,7 @@
 
 ## Overview
 
-Manage your companies' data connections.
+Create new and manage existing data connections for a company.
 
 ### Available Operations
 
@@ -47,7 +47,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Connection != nil {
         // handle response
     }
@@ -87,7 +86,6 @@ import(
 	"context"
 	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/operations"
 	"log"
-	"net/http"
 )
 
 func main() {
@@ -105,8 +103,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
-    if res.StatusCode == http.StatusOK {
+    if res != nil {
         // handle response
     }
 }
@@ -161,7 +158,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Connection != nil {
         // handle response
     }
@@ -219,7 +215,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Connections != nil {
         // handle response
     }
@@ -275,7 +270,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Connection != nil {
         // handle response
     }
@@ -331,7 +325,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Connection != nil {
         // handle response
     }

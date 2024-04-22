@@ -3,7 +3,7 @@
 
 ## Overview
 
-View and configure custom data types for supported integrations.
+Configure and pull additional data types that are not included in Codat's standardized data model.
 
 ### Available Operations
 
@@ -72,7 +72,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.CustomDataTypeConfiguration != nil {
         // handle response
     }
@@ -130,7 +129,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.CustomDataTypeRecords != nil {
         // handle response
     }
@@ -191,7 +189,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.CustomDataTypeRecords != nil {
         // handle response
     }
@@ -248,7 +245,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.PullOperation != nil {
         // handle response
     }
