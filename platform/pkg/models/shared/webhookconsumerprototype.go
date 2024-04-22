@@ -7,6 +7,8 @@ import (
 )
 
 type WebhookConsumerPrototype struct {
+	// Unique identifier of the company to indicate company-specific events. The associated webhook consumer will receive events only for the specified ID.
+	CompanyID *string `json:"companyId,omitempty"`
 	// Flag that enables or disables the endpoint from receiving events. Disabled when set to `true`.
 	Disabled *bool `default:"false" json:"disabled"`
 	// An array of event types the webhook consumer subscribes to.
@@ -24,6 +26,13 @@ func (w *WebhookConsumerPrototype) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (o *WebhookConsumerPrototype) GetCompanyID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CompanyID
 }
 
 func (o *WebhookConsumerPrototype) GetDisabled() *bool {

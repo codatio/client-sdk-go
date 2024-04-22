@@ -42,7 +42,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.APIKeyDetails != nil {
 		// handle response
 	}
@@ -71,6 +70,12 @@ func main() {
 * [Get](docs/sdks/companies/README.md#get) - Get company
 * [List](docs/sdks/companies/README.md#list) - List companies
 * [Update](docs/sdks/companies/README.md#update) - Update company
+
+### [ConnectionManagement](docs/sdks/connectionmanagement/README.md)
+
+* [ConnectionManagementCorsSettingsGet](docs/sdks/connectionmanagement/README.md#connectionmanagementcorssettingsget) - Get CORS settings
+* [ConnectionManagementCorsSettingsSet](docs/sdks/connectionmanagement/README.md#connectionmanagementcorssettingsset) - Set CORS settings
+* [Get](docs/sdks/connectionmanagement/README.md#get) - Get access token
 
 ### [Connections](docs/sdks/connections/README.md)
 
@@ -182,7 +187,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.APIKeyDetails != nil {
 		// handle response
 	}
@@ -227,7 +231,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.APIKeyDetails != nil {
 		// handle response
 	}
@@ -328,7 +331,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.APIKeyDetails != nil {
 		// handle response
 	}
@@ -365,7 +367,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.APIKeyDetails != nil {
 		// handle response
 	}
@@ -439,7 +440,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.APIKeyDetails != nil {
 		// handle response
 	}

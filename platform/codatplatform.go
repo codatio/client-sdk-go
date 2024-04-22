@@ -42,8 +42,7 @@ func Float32(f float32) *float32 { return &f }
 func Float64(f float64) *float64 { return &f }
 
 type sdkConfiguration struct {
-	DefaultClient     HTTPClient
-	SecurityClient    HTTPClient
+	Client            HTTPClient
 	Security          func(context.Context) (interface{}, error)
 	ServerURL         string
 	ServerIndex       int
@@ -69,29 +68,48 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 //
 // These end points cover creating and managing your companies, data connections, and integrations.
 //
-// [Read about the building blocks of Codat...](https://docs.codat.io/core-concepts/companies)
+// [Read about the building blocks of Codat...](https://docs.codat.io/core-concepts/companies) | [See our OpenAPI spec](https://github.com/codatio/oas)
 //
-// [See our OpenAPI spec](https://github.com/codatio/oas)
+// ---
+// <!-- Start Codat Tags Table -->
+// ## Endpoints
+//
+// | Endpoints | Description |
+// | :- |:- |
+// | Companies | Create and manage your SMB users' companies. |
+// | Connections | Create new and manage existing data connections for a company. |
+// | Connection management | Configure connection management UI and retrieve access tokens for authentication. |
+// | Groups | Define and manage sets of companies based on a chosen characteristic. |
+// | Webhooks | Create and manage webhooks that listen to Codat's events. |
+// | Integrations | Get a list of integrations supported by Codat and their logos. |
+// | Refresh data | Initiate data refreshes, view pull status and history. |
+// | Settings | Manage company profile configuration, sync settings, and API keys. |
+// | Push data | Initiate and monitor Create, Update, and Delete operations. |
+// | Supplemental data | Configure and pull additional data you can include in Codat's standard data types. |
+// | Custom data type | Configure and pull additional data types that are not included in Codat's standardized data model. |
+// <!-- End Codat Tags Table -->
 type CodatPlatform struct {
-	// Manage your Codat instance.
+	// Manage company profile configuration, sync settings, and API keys.
 	Settings *Settings
-	// Create and manage your Codat companies.
+	// Create and manage your SMB users' companies.
 	Companies *Companies
-	// Manage your companies' data connections.
+	// Configure connection management UI and retrieve access tokens for authentication.
+	ConnectionManagement *ConnectionManagement
+	// Create new and manage existing data connections for a company.
 	Connections *Connections
-	// View and configure custom data types for supported integrations.
+	// Configure and pull additional data types that are not included in Codat's standardized data model.
 	CustomDataType *CustomDataType
-	// View push options and get push statuses.
+	// Initiate and monitor Create, Update, and Delete operations.
 	PushData *PushData
-	// Asynchronously retrieve data from an integration to refresh data in Codat.
+	// Initiate data refreshes, view pull status and history.
 	RefreshData *RefreshData
-	// Create groups and link them to your Codat companies.
+	// Define and manage sets of companies based on a chosen characteristic.
 	Groups *Groups
-	// View and manage your available integrations in Codat.
+	// Get a list of integrations supported by Codat and their logos.
 	Integrations *Integrations
-	// View and configure supplemental data for supported data types.
+	// Configure and pull additional data you can include in Codat's standard data types.
 	SupplementalData *SupplementalData
-	// Manage webhooks, rules, and events.
+	// Create and manage webhooks that listen to Codat's events.
 	Webhooks *Webhooks
 
 	sdkConfiguration sdkConfiguration
@@ -131,7 +149,7 @@ func WithServerIndex(serverIndex int) SDKOption {
 // WithClient allows the overriding of the default HTTP client used by the SDK
 func WithClient(client HTTPClient) SDKOption {
 	return func(sdk *CodatPlatform) {
-		sdk.sdkConfiguration.DefaultClient = client
+		sdk.sdkConfiguration.Client = client
 	}
 }
 
@@ -169,9 +187,9 @@ func New(opts ...SDKOption) *CodatPlatform {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "3.1.0",
-			GenVersion:        "2.277.0",
-			UserAgent:         "speakeasy-sdk/go 3.1.0 2.277.0 3.0.0 github.com/codatio/client-sdk-go/platform",
+			SDKVersion:        "3.2.0",
+			GenVersion:        "2.312.1",
+			UserAgent:         "speakeasy-sdk/go 3.2.0 2.312.1 3.0.0 github.com/codatio/client-sdk-go/platform",
 			Hooks:             hooks.New(),
 		},
 	}
@@ -180,28 +198,22 @@ func New(opts ...SDKOption) *CodatPlatform {
 	}
 
 	// Use WithClient to override the default client if you would like to customize the timeout
-	if sdk.sdkConfiguration.DefaultClient == nil {
-		sdk.sdkConfiguration.DefaultClient = &http.Client{Timeout: 60 * time.Second}
+	if sdk.sdkConfiguration.Client == nil {
+		sdk.sdkConfiguration.Client = &http.Client{Timeout: 60 * time.Second}
 	}
 
 	currentServerURL, _ := sdk.sdkConfiguration.GetServerDetails()
 	serverURL := currentServerURL
-	serverURL, sdk.sdkConfiguration.DefaultClient = sdk.sdkConfiguration.Hooks.SDKInit(currentServerURL, sdk.sdkConfiguration.DefaultClient)
+	serverURL, sdk.sdkConfiguration.Client = sdk.sdkConfiguration.Hooks.SDKInit(currentServerURL, sdk.sdkConfiguration.Client)
 	if serverURL != currentServerURL {
 		sdk.sdkConfiguration.ServerURL = serverURL
-	}
-
-	if sdk.sdkConfiguration.SecurityClient == nil {
-		if sdk.sdkConfiguration.Security != nil {
-			sdk.sdkConfiguration.SecurityClient = utils.ConfigureSecurityClient(sdk.sdkConfiguration.DefaultClient, sdk.sdkConfiguration.Security)
-		} else {
-			sdk.sdkConfiguration.SecurityClient = sdk.sdkConfiguration.DefaultClient
-		}
 	}
 
 	sdk.Settings = newSettings(sdk.sdkConfiguration)
 
 	sdk.Companies = newCompanies(sdk.sdkConfiguration)
+
+	sdk.ConnectionManagement = newConnectionManagement(sdk.sdkConfiguration)
 
 	sdk.Connections = newConnections(sdk.sdkConfiguration)
 

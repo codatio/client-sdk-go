@@ -3,7 +3,7 @@
 
 ## Overview
 
-Create groups and link them to your Codat companies.
+Define and manage sets of companies based on a chosen characteristic.
 
 ### Available Operations
 
@@ -45,7 +45,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Company != nil {
         // handle response
     }
@@ -106,7 +105,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Group != nil {
         // handle response
     }
@@ -160,7 +158,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Groups != nil {
         // handle response
     }
@@ -200,7 +197,6 @@ import(
 	"context"
 	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/operations"
 	"log"
-	"net/http"
 )
 
 func main() {
@@ -218,8 +214,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
-    if res.StatusCode == http.StatusOK {
+    if res != nil {
         // handle response
     }
 }

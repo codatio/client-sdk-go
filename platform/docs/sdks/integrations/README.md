@@ -3,7 +3,7 @@
 
 ## Overview
 
-View and manage your available integrations in Codat.
+Get a list of integrations supported by Codat and their logos.
 
 ### Available Operations
 
@@ -42,7 +42,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Integration != nil {
         // handle response
     }
@@ -97,7 +96,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Branding != nil {
         // handle response
     }
@@ -154,7 +152,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Integrations != nil {
         // handle response
     }

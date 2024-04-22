@@ -7,40 +7,38 @@ import (
 	"fmt"
 )
 
-// Status - The current status of the pull operation.
-type Status string
+// DatasetStatus - The current status of the dataset.
+type DatasetStatus string
 
 const (
-	StatusInitial            Status = "Initial"
-	StatusQueued             Status = "Queued"
-	StatusFetching           Status = "Fetching"
-	StatusMapQueued          Status = "MapQueued"
-	StatusMapping            Status = "Mapping"
-	StatusComplete           Status = "Complete"
-	StatusFetchError         Status = "FetchError"
-	StatusMapError           Status = "MapError"
-	StatusInternalError      Status = "InternalError"
-	StatusProcessingQueued   Status = "ProcessingQueued"
-	StatusProcessing         Status = "Processing"
-	StatusProcessingError    Status = "ProcessingError"
-	StatusValidationQueued   Status = "ValidationQueued"
-	StatusValidating         Status = "Validating"
-	StatusValidationError    Status = "ValidationError"
-	StatusAuthError          Status = "AuthError"
-	StatusCancelled          Status = "Cancelled"
-	StatusRouting            Status = "Routing"
-	StatusRoutingError       Status = "RoutingError"
-	StatusNotSupported       Status = "NotSupported"
-	StatusRateLimitError     Status = "RateLimitError"
-	StatusPermissionsError   Status = "PermissionsError"
-	StatusPrerequisiteNotMet Status = "PrerequisiteNotMet"
+	DatasetStatusInitial            DatasetStatus = "Initial"
+	DatasetStatusQueued             DatasetStatus = "Queued"
+	DatasetStatusFetching           DatasetStatus = "Fetching"
+	DatasetStatusMapQueued          DatasetStatus = "MapQueued"
+	DatasetStatusMapping            DatasetStatus = "Mapping"
+	DatasetStatusComplete           DatasetStatus = "Complete"
+	DatasetStatusFetchError         DatasetStatus = "FetchError"
+	DatasetStatusMapError           DatasetStatus = "MapError"
+	DatasetStatusInternalError      DatasetStatus = "InternalError"
+	DatasetStatusProcessingQueued   DatasetStatus = "ProcessingQueued"
+	DatasetStatusProcessing         DatasetStatus = "Processing"
+	DatasetStatusProcessingError    DatasetStatus = "ProcessingError"
+	DatasetStatusValidationQueued   DatasetStatus = "ValidationQueued"
+	DatasetStatusValidating         DatasetStatus = "Validating"
+	DatasetStatusValidationError    DatasetStatus = "ValidationError"
+	DatasetStatusAuthError          DatasetStatus = "AuthError"
+	DatasetStatusCancelled          DatasetStatus = "Cancelled"
+	DatasetStatusNotSupported       DatasetStatus = "NotSupported"
+	DatasetStatusRateLimitError     DatasetStatus = "RateLimitError"
+	DatasetStatusPermissionsError   DatasetStatus = "PermissionsError"
+	DatasetStatusPrerequisiteNotMet DatasetStatus = "PrerequisiteNotMet"
 )
 
-func (e Status) ToPointer() *Status {
+func (e DatasetStatus) ToPointer() *DatasetStatus {
 	return &e
 }
 
-func (e *Status) UnmarshalJSON(data []byte) error {
+func (e *DatasetStatus) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -80,10 +78,6 @@ func (e *Status) UnmarshalJSON(data []byte) error {
 		fallthrough
 	case "Cancelled":
 		fallthrough
-	case "Routing":
-		fallthrough
-	case "RoutingError":
-		fallthrough
 	case "NotSupported":
 		fallthrough
 	case "RateLimitError":
@@ -91,10 +85,10 @@ func (e *Status) UnmarshalJSON(data []byte) error {
 	case "PermissionsError":
 		fallthrough
 	case "PrerequisiteNotMet":
-		*e = Status(v)
+		*e = DatasetStatus(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for Status: %v", v)
+		return fmt.Errorf("invalid value for DatasetStatus: %v", v)
 	}
 }
 
@@ -157,8 +151,8 @@ type PullOperation struct {
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	Requested string `json:"requested"`
-	// The current status of the pull operation.
-	Status Status `json:"status"`
+	// The current status of the dataset.
+	Status DatasetStatus `json:"status"`
 	// Additional information about the dataset status.
 	StatusDescription *string `json:"statusDescription,omitempty"`
 }
@@ -233,9 +227,9 @@ func (o *PullOperation) GetRequested() string {
 	return o.Requested
 }
 
-func (o *PullOperation) GetStatus() Status {
+func (o *PullOperation) GetStatus() DatasetStatus {
 	if o == nil {
-		return Status("")
+		return DatasetStatus("")
 	}
 	return o.Status
 }

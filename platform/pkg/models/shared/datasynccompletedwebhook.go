@@ -18,6 +18,8 @@ type DataSyncCompletedWebhook struct {
 	// A human-readable message about the webhook.
 	Message *string `json:"Message,omitempty"`
 	// Unique identifier for the rule.
+	//
+	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	RuleID *string `json:"RuleId,omitempty"`
 	// The type of rule.
 	RuleType *string `json:"RuleType,omitempty"`

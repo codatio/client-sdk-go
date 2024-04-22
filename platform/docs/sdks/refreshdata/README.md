@@ -3,7 +3,7 @@
 
 ## Overview
 
-Asynchronously retrieve data from an integration to refresh data in Codat.
+Initiate data refreshes, view pull status and history.
 
 ### Available Operations
 
@@ -32,7 +32,6 @@ import(
 	"context"
 	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/operations"
 	"log"
-	"net/http"
 )
 
 func main() {
@@ -49,8 +48,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
-    if res.StatusCode == http.StatusOK {
+    if res != nil {
         // handle response
     }
 }
@@ -107,7 +105,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.PullOperation != nil {
         // handle response
     }
@@ -162,7 +159,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.DataStatuses != nil {
         // handle response
     }
@@ -218,7 +214,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.PullOperation != nil {
         // handle response
     }
@@ -276,7 +271,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.PullOperations != nil {
         // handle response
     }
