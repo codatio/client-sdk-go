@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: f309bed8-ee34-4982-948d-d0a2535e6a36
 management:
-  docChecksum: 8a586f934159d4380fca150eb7b55713
+  docChecksum: 91b86a7707fc536ccbdc7b7345d775a0
   docVersion: 3.0.0
-  speakeasyVersion: 1.267.1
-  generationVersion: 2.312.1
-  releaseVersion: 3.2.0
-  configChecksum: a46d7fe807c87027c17452ed5885beb7
+  speakeasyVersion: 1.274.1
+  generationVersion: 2.314.0
+  releaseVersion: 3.3.0
+  configChecksum: 0c07b3ae3c9a76f1c3e7c7967a79b9f1
   repoURL: https://github.com/codatio/client-sdk-go.git
   repoSubDirectory: platform
   installationURL: https://github.com/codatio/client-sdk-go/platform
@@ -19,6 +19,7 @@ features:
     examples: 2.81.3
     globalSecurity: 2.82.9
     globalServerURLs: 2.82.2
+    groups: 2.81.2
     ignores: 2.81.1
     inputOutputModels: 2.83.0
     nameOverrides: 2.81.2
@@ -28,6 +29,7 @@ features:
 generatedFiles:
   - settings.go
   - companies.go
+  - corssettings.go
   - connectionmanagement.go
   - connections.go
   - customdatatype.go
@@ -67,9 +69,9 @@ generatedFiles:
   - /pkg/models/operations/getcompany.go
   - /pkg/models/operations/listcompanies.go
   - /pkg/models/operations/updatecompany.go
+  - /pkg/models/operations/getconnectionmanagementaccesstoken.go
   - /pkg/models/operations/getconnectionmanagementcorssettings.go
   - /pkg/models/operations/setconnectionmanagementcorssettings.go
-  - /pkg/models/operations/getconnectionmanagementaccesstoken.go
   - /pkg/models/operations/createconnection.go
   - /pkg/models/operations/deleteconnection.go
   - /pkg/models/operations/getconnection.go
@@ -122,8 +124,8 @@ generatedFiles:
   - /pkg/models/shared/companies.go
   - /pkg/models/shared/links.go
   - /pkg/models/shared/halref.go
-  - /pkg/models/shared/connectionmanagementallowedorigins.go
   - /pkg/models/shared/connectionmanagementaccesstoken.go
+  - /pkg/models/shared/connectionmanagementallowedorigins.go
   - /pkg/models/shared/connections.go
   - /pkg/models/shared/updateconnectionstatus.go
   - /pkg/models/shared/customdatatypeconfiguration.go
@@ -218,10 +220,10 @@ generatedFiles:
   - docs/pkg/models/operations/listcompaniesresponse.md
   - docs/pkg/models/operations/updatecompanyrequest.md
   - docs/pkg/models/operations/updatecompanyresponse.md
-  - docs/pkg/models/operations/getconnectionmanagementcorssettingsresponse.md
-  - docs/pkg/models/operations/setconnectionmanagementcorssettingsresponse.md
   - docs/pkg/models/operations/getconnectionmanagementaccesstokenrequest.md
   - docs/pkg/models/operations/getconnectionmanagementaccesstokenresponse.md
+  - docs/pkg/models/operations/getconnectionmanagementcorssettingsresponse.md
+  - docs/pkg/models/operations/setconnectionmanagementcorssettingsresponse.md
   - docs/pkg/models/operations/createconnectionrequestbody.md
   - docs/pkg/models/operations/createconnectionrequest.md
   - docs/pkg/models/operations/createconnectionresponse.md
@@ -305,8 +307,8 @@ generatedFiles:
   - docs/pkg/models/shared/companies.md
   - docs/pkg/models/shared/links.md
   - docs/pkg/models/shared/halref.md
-  - docs/pkg/models/shared/connectionmanagementallowedorigins.md
   - docs/pkg/models/shared/connectionmanagementaccesstoken.md
+  - docs/pkg/models/shared/connectionmanagementallowedorigins.md
   - docs/pkg/models/shared/connections.md
   - docs/pkg/models/shared/updateconnectionstatus.md
   - docs/pkg/models/shared/customdatatypeconfiguration.md
@@ -394,6 +396,7 @@ generatedFiles:
   - docs/sdks/settings/README.md
   - docs/sdks/companies/README.md
   - docs/sdks/connectionmanagement/README.md
+  - docs/sdks/corssettings/README.md
   - docs/sdks/connections/README.md
   - docs/sdks/customdatatype/README.md
   - docs/sdks/pushdata/README.md

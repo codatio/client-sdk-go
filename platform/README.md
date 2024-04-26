@@ -73,9 +73,12 @@ func main() {
 
 ### [ConnectionManagement](docs/sdks/connectionmanagement/README.md)
 
-* [ConnectionManagementCorsSettingsGet](docs/sdks/connectionmanagement/README.md#connectionmanagementcorssettingsget) - Get CORS settings
-* [ConnectionManagementCorsSettingsSet](docs/sdks/connectionmanagement/README.md#connectionmanagementcorssettingsset) - Set CORS settings
-* [Get](docs/sdks/connectionmanagement/README.md#get) - Get access token
+* [GetAccessToken](docs/sdks/connectionmanagement/README.md#getaccesstoken) - Get access token
+
+### [ConnectionManagement.CorsSettings](docs/sdks/corssettings/README.md)
+
+* [Get](docs/sdks/corssettings/README.md#get) - Get CORS settings
+* [Set](docs/sdks/corssettings/README.md#set) - Set CORS settings
 
 ### [Connections](docs/sdks/connections/README.md)
 
