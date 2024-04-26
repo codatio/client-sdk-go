@@ -187,9 +187,9 @@ func New(opts ...SDKOption) *CodatPlatform {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "3.2.0",
-			GenVersion:        "2.312.1",
-			UserAgent:         "speakeasy-sdk/go 3.2.0 2.312.1 3.0.0 github.com/codatio/client-sdk-go/platform",
+			SDKVersion:        "3.3.0",
+			GenVersion:        "2.314.0",
+			UserAgent:         "speakeasy-sdk/go 3.3.0 2.314.0 3.0.0 github.com/codatio/client-sdk-go/platform",
 			Hooks:             hooks.New(),
 		},
 	}
