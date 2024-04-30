@@ -1,0 +1,105 @@
+workflowVersion: 1.0.0
+sources:
+    accounting-source:
+        inputs:
+            - location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Accounting.yaml
+    assess-source:
+        inputs:
+            - location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Assess.yaml
+    bank-feeds-source:
+        inputs:
+            - location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Bank-Feeds.yaml
+    banking-source:
+        inputs:
+            - location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Banking.yaml
+    commerce-source:
+        inputs:
+            - location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Commerce.yaml
+    files-source:
+        inputs:
+            - location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Files.yaml
+    lending-source:
+        inputs:
+            - location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Lending.yaml
+    platform-source:
+        inputs:
+            - location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Platform.yaml
+    sync-for-commerce-source:
+        inputs:
+            - location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Sync-Commerce.yaml
+    sync-for-commerce-v1-source:
+        inputs:
+            - location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Sync-Commerce-v1.yaml
+    sync-for-expenses-source:
+        inputs:
+            - location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Sync-Expenses.yaml
+    sync-for-expenses-v1-source:
+        inputs:
+            - location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Sync-Expenses-v1.yaml
+    sync-for-payables-source:
+        inputs:
+            - location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Sync-Payables.yaml
+    sync-for-payroll-source:
+        inputs:
+            - location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Sync-Payroll.yaml
+targets:
+    accounting-library:
+        target: go
+        source: accounting-source
+        output: ./previous-versions/accounting
+    assess-library:
+        target: go
+        source: assess-source
+        output: ./previous-versions/assess
+    bank-feeds-library:
+        target: go
+        source: bank-feeds-source
+        output: ./bank-feeds
+    banking-library:
+        target: go
+        source: banking-source
+        output: ./previous-versions/banking
+    commerce-library:
+        target: go
+        source: commerce-source
+        output: ./previous-versions/commerce
+    common-library:
+        target: go
+        source: platform-source
+        output: ./previous-versions/common
+    files-library:
+        target: go
+        source: files-source
+        output: ./previous-versions/files
+    lending-library:
+        target: go
+        source: lending-source
+        output: ./lending
+    platform-library:
+        target: go
+        source: platform-source
+        output: ./platform
+    sync-for-commerce-library:
+        target: go
+        source: sync-for-commerce-source
+        output: ./sync-for-commerce
+    sync-for-commerce-v1-library:
+        target: go
+        source: sync-for-commerce-v1-source
+        output: ./previous-versions/sync-for-commerce-version-1
+    sync-for-expenses-library:
+        target: go
+        source: sync-for-expenses-source
+        output: ./sync-for-expenses
+    sync-for-expenses-v1-library:
+        target: go
+        source: sync-for-expenses-v1-source
+        output: ./previous-versions/sync-for-expenses-version-1
+    sync-for-payables-library:
+        target: go
+        source: sync-for-payables-source
+        output: ./sync-for-payables
+    sync-for-payroll-library:
+        target: go
+        source: sync-for-payroll-source
+        output: ./sync-for-payroll
