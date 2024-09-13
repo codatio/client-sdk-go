@@ -1,4 +1,4 @@
-speakeasyVersion: 1.396.7
+speakeasyVersion: 1.396.8
 sources:
     accounting-source:
         sourceNamespace: accounting-source
@@ -37,7 +37,7 @@ sources:
             - main
     common-source:
         sourceNamespace: common-source
-        sourceRevisionDigest: sha256:0930afa6b50ee05b9b3eb510949fa9059b94bd1c14d5271ff8657ea0d225745c
+        sourceRevisionDigest: sha256:fe2bb6cab589215db3bd3d276d904394d44e6b1a3f28d917b7f818528d7df119
         sourceBlobDigest: sha256:e1e3f4c3ed16022322bc656bb0e4ef28c04fff8c92c271cc859c6e2b32af5613
         tags:
             - latest
@@ -99,7 +99,7 @@ targets:
     common-library:
         source: common-source
         sourceNamespace: common-source
-        sourceRevisionDigest: sha256:0930afa6b50ee05b9b3eb510949fa9059b94bd1c14d5271ff8657ea0d225745c
+        sourceRevisionDigest: sha256:fe2bb6cab589215db3bd3d276d904394d44e6b1a3f28d917b7f818528d7df119
         sourceBlobDigest: sha256:e1e3f4c3ed16022322bc656bb0e4ef28c04fff8c92c271cc859c6e2b32af5613
     files-library:
         source: files-source
