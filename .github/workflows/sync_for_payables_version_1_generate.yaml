@@ -1,4 +1,4 @@
-name: Generate Sync for Expenses version 1 library
+name: Generate Sync for Payables version 1 library
 'on':
   workflow_dispatch:
     inputs:
@@ -17,7 +17,7 @@ jobs:
       mode: pr
       set_version: ${{ github.event.inputs.set_version }}
       speakeasy_version: latest
-      target: sync-for-expenses-version-1-library
+      target: sync-for-payables-version-1-library
     secrets:
       github_access_token: ${{ secrets.GITHUB_TOKEN }}
       speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}

@@ -7,7 +7,7 @@ name: Release Commerce library
     - main
 jobs:
   publish:
-    uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-publish.yaml@v14
+    uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-publish.yaml@v15
     with:
       create_release: true
     secrets:
