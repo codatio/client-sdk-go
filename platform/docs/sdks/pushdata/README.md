@@ -15,7 +15,7 @@ Initiate and monitor Create, Update, and Delete operations.
 
 This is the generic documentation for creation and updating of data. See the equivalent endpoint for a given data type for more specific information. 
 
-Before pushing data into accounting software, it is often necessary to collect some details from the user as to how they would like the data to be inserted. This includes names and amounts on transactional entities, but also factors such as categorisation of entities, which is often handled differently between different accounting packages. A good example of this is specifying where on the balance sheet/profit and loss reports the user would like a newly-created nominal account to appear.
+Before pushing data into accounting software, it is often necessary to collect some details from the user as to how they would like the data to be inserted. This includes names and amounts on transactional entities, but also factors such as categorisation of entities, which is often handled differently between different accounting software. A good example of this is specifying where on the balance sheet/profit and loss reports the user would like a newly-created nominal account to appear.
 
 Codat tries not to limit users to pushing to a very limited number of standard categories, so we have implemented "options" endpoints, which allow us to expose to our clients the fields which are required to be pushed for a specific linked company, and the options which may be selected for each field.
 
@@ -67,14 +67,17 @@ func main() {
 | `request`                                                                                                                              | [operations.GetCreateUpdateModelOptionsByDataTypeRequest](../../pkg/models/operations/getcreateupdatemodeloptionsbydatatyperequest.md) | :heavy_check_mark:                                                                                                                     | The request object to use for the request.                                                                                             |
 | `opts`                                                                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                                                                           | :heavy_minus_sign:                                                                                                                     | The options for this request.                                                                                                          |
 
-
 ### Response
 
 **[*operations.GetCreateUpdateModelOptionsByDataTypeResponse](../../pkg/models/operations/getcreateupdatemodeloptionsbydatatyperesponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
 | sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## GetOperation
 
@@ -122,14 +125,17 @@ func main() {
 | `request`                                                                                    | [operations.GetPushOperationRequest](../../pkg/models/operations/getpushoperationrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 | `opts`                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                 | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
 
-
 ### Response
 
 **[*operations.GetPushOperationResponse](../../pkg/models/operations/getpushoperationresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
 | sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## ListOperations
 
@@ -161,6 +167,7 @@ func main() {
         OrderBy: platform.String("-modifiedDate"),
         Page: platform.Int(1),
         PageSize: platform.Int(100),
+        Query: platform.String("id=e3334455-1aed-4e71-ab43-6bccf12092ee"),
     })
     if err != nil {
         log.Fatal(err)
@@ -179,10 +186,12 @@ func main() {
 | `request`                                                                                              | [operations.GetCompanyPushHistoryRequest](../../pkg/models/operations/getcompanypushhistoryrequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
 | `opts`                                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                                           | :heavy_minus_sign:                                                                                     | The options for this request.                                                                          |
 
-
 ### Response
 
 **[*operations.GetCompanyPushHistoryResponse](../../pkg/models/operations/getcompanypushhistoryresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |

@@ -4,9 +4,55 @@
 Manage the building blocks of Codat, including companies, connections, and more.
 <!-- End Codat Library Description -->
 
+<!-- Start Summary [summary] -->
+## Summary
+
+Platform API: Platform API
+
+An API for the common components of all of Codat's products.
+
+These end points cover creating and managing your companies, data connections, and integrations.
+
+[Read about the building blocks of Codat...](https://docs.codat.io/core-concepts/companies) | [See our OpenAPI spec](https://github.com/codatio/oas) 
+
+---
+<!-- Start Codat Tags Table -->
+## Endpoints
+
+| Endpoints | Description |
+| :- |:- |
+| Companies | Create and manage your SMB users' companies. |
+| Connections | Create new and manage existing data connections for a company. |
+| Connection management | Configure connection management UI and retrieve access tokens for authentication. |
+| Groups | Define and manage sets of companies based on a chosen characteristic. |
+| Webhooks | Create and manage webhooks that listen to Codat's events. |
+| Integrations | Get a list of integrations supported by Codat and their logos. |
+| Refresh data | Initiate data refreshes, view pull status and history. |
+| Settings | Manage company profile configuration, sync settings, and API keys. |
+| Push data | Initiate and monitor Create, Update, and Delete operations. |
+| Supplemental data | Configure and pull additional data you can include in Codat's standard data types. |
+| Custom data type | Configure and pull additional data types that are not included in Codat's standardized data model. |
+<!-- End Codat Tags Table -->
+<!-- End Summary [summary] -->
+
+<!-- Start Table of Contents [toc] -->
+## Table of Contents
+
+* [SDK Installation](#sdk-installation)
+* [SDK Example Usage](#sdk-example-usage)
+* [Available Resources and Operations](#available-resources-and-operations)
+* [Retries](#retries)
+* [Error Handling](#error-handling)
+* [Server Selection](#server-selection)
+* [Custom HTTP Client](#custom-http-client)
+* [Authentication](#authentication)
+* [Special Types](#special-types)
+<!-- End Table of Contents [toc] -->
+
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
 
+To add the SDK as a dependency to your project:
 ```bash
 go get github.com/codatio/client-sdk-go/platform
 ```
@@ -53,15 +99,9 @@ func main() {
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
 
-### [Settings](docs/sdks/settings/README.md)
+<details open>
+<summary>Available methods</summary>
 
-* [CreateAPIKey](docs/sdks/settings/README.md#createapikey) - Create API key
-* [DeleteAPIKey](docs/sdks/settings/README.md#deleteapikey) - Delete API key
-* [GetProfile](docs/sdks/settings/README.md#getprofile) - Get profile
-* [GetSyncSettings](docs/sdks/settings/README.md#getsyncsettings) - Get sync settings
-* [ListAPIKeys](docs/sdks/settings/README.md#listapikeys) - List API keys
-* [UpdateProfile](docs/sdks/settings/README.md#updateprofile) - Update profile
-* [UpdateSyncSettings](docs/sdks/settings/README.md#updatesyncsettings) - Update all sync settings
 
 ### [Companies](docs/sdks/companies/README.md)
 
@@ -75,7 +115,7 @@ func main() {
 
 * [GetAccessToken](docs/sdks/connectionmanagement/README.md#getaccesstoken) - Get access token
 
-### [ConnectionManagement.CorsSettings](docs/sdks/corssettings/README.md)
+#### [ConnectionManagement.CorsSettings](docs/sdks/corssettings/README.md)
 
 * [Get](docs/sdks/corssettings/README.md#get) - Get CORS settings
 * [Set](docs/sdks/corssettings/README.md#set) - Set CORS settings
@@ -96,6 +136,19 @@ func main() {
 * [List](docs/sdks/customdatatype/README.md#list) - List custom data type records
 * [Refresh](docs/sdks/customdatatype/README.md#refresh) - Refresh custom data type
 
+### [Groups](docs/sdks/groups/README.md)
+
+* [AddCompany](docs/sdks/groups/README.md#addcompany) - Add company
+* [Create](docs/sdks/groups/README.md#create) - Create group
+* [List](docs/sdks/groups/README.md#list) - List groups
+* [RemoveCompany](docs/sdks/groups/README.md#removecompany) - Remove company
+
+### [Integrations](docs/sdks/integrations/README.md)
+
+* [Get](docs/sdks/integrations/README.md#get) - Get integration
+* [GetBranding](docs/sdks/integrations/README.md#getbranding) - Get branding
+* [List](docs/sdks/integrations/README.md#list) - List integrations
+
 ### [PushData](docs/sdks/pushdata/README.md)
 
 * [GetModelOptions](docs/sdks/pushdata/README.md#getmodeloptions) - Get push options
@@ -110,18 +163,15 @@ func main() {
 * [GetPullOperation](docs/sdks/refreshdata/README.md#getpulloperation) - Get pull operation
 * [ListPullOperations](docs/sdks/refreshdata/README.md#listpulloperations) - List pull operations
 
-### [Groups](docs/sdks/groups/README.md)
+### [Settings](docs/sdks/settings/README.md)
 
-* [AddCompany](docs/sdks/groups/README.md#addcompany) - Add company
-* [Create](docs/sdks/groups/README.md#create) - Create group
-* [List](docs/sdks/groups/README.md#list) - List groups
-* [RemoveCompany](docs/sdks/groups/README.md#removecompany) - Remove company
-
-### [Integrations](docs/sdks/integrations/README.md)
-
-* [Get](docs/sdks/integrations/README.md#get) - Get integration
-* [GetBranding](docs/sdks/integrations/README.md#getbranding) - Get branding
-* [List](docs/sdks/integrations/README.md#list) - List integrations
+* [CreateAPIKey](docs/sdks/settings/README.md#createapikey) - Create API key
+* [DeleteAPIKey](docs/sdks/settings/README.md#deleteapikey) - Delete API key
+* [GetProfile](docs/sdks/settings/README.md#getprofile) - Get profile
+* [GetSyncSettings](docs/sdks/settings/README.md#getsyncsettings) - Get sync settings
+* [ListAPIKeys](docs/sdks/settings/README.md#listapikeys) - List API keys
+* [UpdateProfile](docs/sdks/settings/README.md#updateprofile) - Update profile
+* [UpdateSyncSettings](docs/sdks/settings/README.md#updatesyncsettings) - Update all sync settings
 
 ### [SupplementalData](docs/sdks/supplementaldata/README.md)
 
@@ -136,6 +186,8 @@ func main() {
 * [~~Get~~](docs/sdks/webhooks/README.md#get) - Get webhook :warning: **Deprecated**
 * [~~List~~](docs/sdks/webhooks/README.md#list) - List webhooks :warning: **Deprecated**
 * [ListConsumers](docs/sdks/webhooks/README.md#listconsumers) - List webhook consumers
+
+</details>
 <!-- End Available Resources and Operations [operations] -->
 
 
@@ -153,7 +205,7 @@ func main() {
 
 Some of the endpoints in this SDK support retries. If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API. However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
 
-To change the default retry strategy for a single API call, simply provide a `RetryConfig` object to the call by using the `WithRetries` option:
+To change the default retry strategy for a single API call, simply provide a `retry.Config` object to the call by using the `WithRetries` option:
 ```go
 package main
 
@@ -161,7 +213,7 @@ import (
 	"context"
 	platform "github.com/codatio/client-sdk-go/platform/v3"
 	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/platform/v3/pkg/utils"
+	"github.com/codatio/client-sdk-go/platform/v3/pkg/retry"
 	"log"
 	"pkg/models/operations"
 )
@@ -177,9 +229,9 @@ func main() {
 	res, err := s.Settings.CreateAPIKey(ctx, &shared.CreateAPIKey{
 		Name: platform.String("azure-invoice-finance-processor"),
 	}, operations.WithRetries(
-		utils.RetryConfig{
+		retry.Config{
 			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
+			Backoff: &retry.BackoffStrategy{
 				InitialInterval: 1,
 				MaxInterval:     50,
 				Exponent:        1.1,
@@ -205,16 +257,16 @@ import (
 	"context"
 	platform "github.com/codatio/client-sdk-go/platform/v3"
 	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/platform/v3/pkg/utils"
+	"github.com/codatio/client-sdk-go/platform/v3/pkg/retry"
 	"log"
 )
 
 func main() {
 	s := platform.New(
 		platform.WithRetryConfig(
-			utils.RetryConfig{
+			retry.Config{
 				Strategy: "backoff",
-				Backoff: &utils.BackoffStrategy{
+				Backoff: &retry.BackoffStrategy{
 					InitialInterval: 1,
 					MaxInterval:     50,
 					Exponent:        1.1,

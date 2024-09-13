@@ -56,14 +56,17 @@ func main() {
 | `request`                                                                                | [operations.GetIntegrationRequest](../../pkg/models/operations/getintegrationrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
 | `opts`                                                                                   | [][operations.Option](../../pkg/models/operations/option.md)                             | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
 
-
 ### Response
 
 **[*operations.GetIntegrationResponse](../../pkg/models/operations/getintegrationresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
 | sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## GetBranding
 
@@ -110,14 +113,17 @@ func main() {
 | `request`                                                                                                  | [operations.GetIntegrationsBrandingRequest](../../pkg/models/operations/getintegrationsbrandingrequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
 | `opts`                                                                                                     | [][operations.Option](../../pkg/models/operations/option.md)                                               | :heavy_minus_sign:                                                                                         | The options for this request.                                                                              |
 
-
 ### Response
 
 **[*operations.GetIntegrationsBrandingResponse](../../pkg/models/operations/getintegrationsbrandingresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
 | sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## List
 
@@ -148,6 +154,7 @@ func main() {
         OrderBy: platform.String("-modifiedDate"),
         Page: platform.Int(1),
         PageSize: platform.Int(100),
+        Query: platform.String("id=e3334455-1aed-4e71-ab43-6bccf12092ee"),
     })
     if err != nil {
         log.Fatal(err)
@@ -166,10 +173,12 @@ func main() {
 | `request`                                                                                    | [operations.ListIntegrationsRequest](../../pkg/models/operations/listintegrationsrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 | `opts`                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                 | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
 
-
 ### Response
 
 **[*operations.ListIntegrationsResponse](../../pkg/models/operations/listintegrationsresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 400,401,402,403,429,500,503 | application/json            |

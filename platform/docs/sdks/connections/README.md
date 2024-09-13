@@ -42,6 +42,9 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Connections.Create(ctx, operations.CreateConnectionRequest{
+        RequestBody: &operations.CreateConnectionRequestBody{
+            PlatformKey: platform.String("gbol"),
+        },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -61,14 +64,17 @@ func main() {
 | `request`                                                                                    | [operations.CreateConnectionRequest](../../pkg/models/operations/createconnectionrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 | `opts`                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                 | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
 
-
 ### Response
 
 **[*operations.CreateConnectionResponse](../../pkg/models/operations/createconnectionresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
 | sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## Delete
 
@@ -117,14 +123,17 @@ func main() {
 | `request`                                                                                    | [operations.DeleteConnectionRequest](../../pkg/models/operations/deleteconnectionrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 | `opts`                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                 | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
 
-
 ### Response
 
 **[*operations.DeleteConnectionResponse](../../pkg/models/operations/deleteconnectionresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
 | sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## Get
 
@@ -172,14 +181,17 @@ func main() {
 | `request`                                                                              | [operations.GetConnectionRequest](../../pkg/models/operations/getconnectionrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 | `opts`                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
-
 ### Response
 
 **[*operations.GetConnectionResponse](../../pkg/models/operations/getconnectionresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
 | sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## List
 
@@ -211,6 +223,7 @@ func main() {
         OrderBy: platform.String("-modifiedDate"),
         Page: platform.Int(1),
         PageSize: platform.Int(100),
+        Query: platform.String("id=e3334455-1aed-4e71-ab43-6bccf12092ee"),
     })
     if err != nil {
         log.Fatal(err)
@@ -229,14 +242,17 @@ func main() {
 | `request`                                                                                  | [operations.ListConnectionsRequest](../../pkg/models/operations/listconnectionsrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
 | `opts`                                                                                     | [][operations.Option](../../pkg/models/operations/option.md)                               | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
 
-
 ### Response
 
 **[*operations.ListConnectionsResponse](../../pkg/models/operations/listconnectionsresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
 | sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## Unlink
 
@@ -264,6 +280,9 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Connections.Unlink(ctx, operations.UnlinkConnectionRequest{
+        UpdateConnectionStatus: &shared.UpdateConnectionStatus{
+            Status: shared.DataConnectionStatusUnlinked.ToPointer(),
+        },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -284,14 +303,17 @@ func main() {
 | `request`                                                                                    | [operations.UnlinkConnectionRequest](../../pkg/models/operations/unlinkconnectionrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 | `opts`                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                 | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
 
-
 ### Response
 
 **[*operations.UnlinkConnectionResponse](../../pkg/models/operations/unlinkconnectionresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
 | sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## UpdateAuthorization
 
@@ -339,10 +361,12 @@ func main() {
 | `request`                                                                                                              | [operations.UpdateConnectionAuthorizationRequest](../../pkg/models/operations/updateconnectionauthorizationrequest.md) | :heavy_check_mark:                                                                                                     | The request object to use for the request.                                                                             |
 | `opts`                                                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                                                           | :heavy_minus_sign:                                                                                                     | The options for this request.                                                                                          |
 
-
 ### Response
 
 **[*operations.UpdateConnectionAuthorizationResponse](../../pkg/models/operations/updateconnectionauthorizationresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
