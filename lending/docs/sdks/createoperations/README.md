@@ -1,6 +1,8 @@
 # CreateOperations
 (*LoanWriteback.CreateOperations*)
 
+## Overview
+
 ### Available Operations
 
 * [Get](#get) - Get create operation
@@ -38,7 +40,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.PushOperation != nil {
         // handle response
     }
@@ -53,14 +54,17 @@ func main() {
 | `request`                                                                                        | [operations.GetCreateOperationRequest](../../pkg/models/operations/getcreateoperationrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
 | `opts`                                                                                           | [][operations.Option](../../pkg/models/operations/option.md)                                     | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
 
-
 ### Response
 
 **[*operations.GetCreateOperationResponse](../../pkg/models/operations/getcreateoperationresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
 | sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## List
 
@@ -92,11 +96,11 @@ func main() {
         OrderBy: lending.String("-modifiedDate"),
         Page: lending.Int(1),
         PageSize: lending.Int(100),
+        Query: lending.String("id=e3334455-1aed-4e71-ab43-6bccf12092ee"),
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.PushOperations != nil {
         // handle response
     }
@@ -111,10 +115,12 @@ func main() {
 | `request`                                                                                            | [operations.ListCreateOperationsRequest](../../pkg/models/operations/listcreateoperationsrequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
 | `opts`                                                                                               | [][operations.Option](../../pkg/models/operations/option.md)                                         | :heavy_minus_sign:                                                                                   | The options for this request.                                                                        |
 
-
 ### Response
 
 **[*operations.ListCreateOperationsResponse](../../pkg/models/operations/listcreateoperationsresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |

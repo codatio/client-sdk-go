@@ -1,6 +1,8 @@
 # Suppliers
 (*AccountsPayable.Suppliers*)
 
+## Overview
+
 ### Available Operations
 
 * [DownloadAttachment](#downloadattachment) - Download supplier attachment
@@ -43,12 +45,11 @@ func main() {
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        SupplierID: "string",
+        SupplierID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Data != nil {
         // handle response
     }
@@ -63,14 +64,17 @@ func main() {
 | `request`                                                                                                                            | [operations.DownloadAccountingSupplierAttachmentRequest](../../pkg/models/operations/downloadaccountingsupplierattachmentrequest.md) | :heavy_check_mark:                                                                                                                   | The request object to use for the request.                                                                                           |
 | `opts`                                                                                                                               | [][operations.Option](../../pkg/models/operations/option.md)                                                                         | :heavy_minus_sign:                                                                                                                   | The options for this request.                                                                                                        |
 
-
 ### Response
 
 **[*operations.DownloadAccountingSupplierAttachmentResponse](../../pkg/models/operations/downloadaccountingsupplierattachmentresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
 | sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## Get
 
@@ -106,12 +110,11 @@ func main() {
     ctx := context.Background()
     res, err := s.AccountsPayable.Suppliers.Get(ctx, operations.GetAccountingSupplierRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        SupplierID: "string",
+        SupplierID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.AccountingSupplier != nil {
         // handle response
     }
@@ -126,14 +129,17 @@ func main() {
 | `request`                                                                                              | [operations.GetAccountingSupplierRequest](../../pkg/models/operations/getaccountingsupplierrequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
 | `opts`                                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                                           | :heavy_minus_sign:                                                                                     | The options for this request.                                                                          |
 
-
 ### Response
 
 **[*operations.GetAccountingSupplierResponse](../../pkg/models/operations/getaccountingsupplierresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 401,402,403,404,409,429,500,503 | application/json                |
 | sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## GetAttachment
 
@@ -169,12 +175,11 @@ func main() {
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        SupplierID: "string",
+        SupplierID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.AccountingAttachment != nil {
         // handle response
     }
@@ -189,14 +194,17 @@ func main() {
 | `request`                                                                                                                  | [operations.GetAccountingSupplierAttachmentRequest](../../pkg/models/operations/getaccountingsupplierattachmentrequest.md) | :heavy_check_mark:                                                                                                         | The request object to use for the request.                                                                                 |
 | `opts`                                                                                                                     | [][operations.Option](../../pkg/models/operations/option.md)                                                               | :heavy_minus_sign:                                                                                                         | The options for this request.                                                                                              |
 
-
 ### Response
 
 **[*operations.GetAccountingSupplierAttachmentResponse](../../pkg/models/operations/getaccountingsupplierattachmentresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
 | sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## List
 
@@ -233,11 +241,11 @@ func main() {
         OrderBy: lending.String("-modifiedDate"),
         Page: lending.Int(1),
         PageSize: lending.Int(100),
+        Query: lending.String("id=e3334455-1aed-4e71-ab43-6bccf12092ee"),
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.AccountingSuppliers != nil {
         // handle response
     }
@@ -252,14 +260,17 @@ func main() {
 | `request`                                                                                                  | [operations.ListAccountingSuppliersRequest](../../pkg/models/operations/listaccountingsuppliersrequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
 | `opts`                                                                                                     | [][operations.Option](../../pkg/models/operations/option.md)                                               | :heavy_minus_sign:                                                                                         | The options for this request.                                                                              |
 
-
 ### Response
 
 **[*operations.ListAccountingSuppliersResponse](../../pkg/models/operations/listaccountingsuppliersresponse.md), error**
+
+### Errors
+
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | sdkerrors.ErrorMessage              | 400,401,402,403,404,409,429,500,503 | application/json                    |
 | sdkerrors.SDKError                  | 4xx-5xx                             | */*                                 |
+
 
 ## ListAttachments
 
@@ -294,12 +305,11 @@ func main() {
     res, err := s.AccountsPayable.Suppliers.ListAttachments(ctx, operations.ListAccountingSupplierAttachmentsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        SupplierID: "string",
+        SupplierID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Attachments != nil {
         // handle response
     }
@@ -314,10 +324,12 @@ func main() {
 | `request`                                                                                                                      | [operations.ListAccountingSupplierAttachmentsRequest](../../pkg/models/operations/listaccountingsupplierattachmentsrequest.md) | :heavy_check_mark:                                                                                                             | The request object to use for the request.                                                                                     |
 | `opts`                                                                                                                         | [][operations.Option](../../pkg/models/operations/option.md)                                                                   | :heavy_minus_sign:                                                                                                             | The options for this request.                                                                                                  |
 
-
 ### Response
 
 **[*operations.ListAccountingSupplierAttachmentsResponse](../../pkg/models/operations/listaccountingsupplierattachmentsresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 401,402,403,404,409,429,500,503 | application/json                |

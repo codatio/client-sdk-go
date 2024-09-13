@@ -1,6 +1,8 @@
 # BankTransactions
 (*LoanWriteback.BankTransactions*)
 
+## Overview
+
 ### Available Operations
 
 * [Create](#create) - Create bank account transactions
@@ -41,14 +43,21 @@ func main() {
 
     ctx := context.Background()
     res, err := s.LoanWriteback.BankTransactions.Create(ctx, operations.CreateBankTransactionsRequest{
-        AccountID: "string",
+        AccountingCreateBankTransactions: &shared.AccountingCreateBankTransactions{
+            AccountID: lending.String("7110701885"),
+            Transactions: []shared.CreateBankAccountTransaction{
+                shared.CreateBankAccountTransaction{
+                    Date: lending.String("2022-10-23T00:00:00Z"),
+                },
+            },
+        },
+        AccountID: "<value>",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.AccountingCreateBankTransactionsResponse != nil {
         // handle response
     }
@@ -63,14 +72,17 @@ func main() {
 | `request`                                                                                                | [operations.CreateBankTransactionsRequest](../../pkg/models/operations/createbanktransactionsrequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
 | `opts`                                                                                                   | [][operations.Option](../../pkg/models/operations/option.md)                                             | :heavy_minus_sign:                                                                                       | The options for this request.                                                                            |
 
-
 ### Response
 
 **[*operations.CreateBankTransactionsResponse](../../pkg/models/operations/createbanktransactionsresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
 | sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## GetCreateModel
 
@@ -107,14 +119,13 @@ func main() {
 
     ctx := context.Background()
     res, err := s.LoanWriteback.BankTransactions.GetCreateModel(ctx, operations.GetCreateBankTransactionsModelRequest{
-        AccountID: "string",
+        AccountID: "<value>",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.PushOption != nil {
         // handle response
     }
@@ -129,10 +140,12 @@ func main() {
 | `request`                                                                                                                | [operations.GetCreateBankTransactionsModelRequest](../../pkg/models/operations/getcreatebanktransactionsmodelrequest.md) | :heavy_check_mark:                                                                                                       | The request object to use for the request.                                                                               |
 | `opts`                                                                                                                   | [][operations.Option](../../pkg/models/operations/option.md)                                                             | :heavy_minus_sign:                                                                                                       | The options for this request.                                                                                            |
 
-
 ### Response
 
 **[*operations.GetCreateBankTransactionsModelResponse](../../pkg/models/operations/getcreatebanktransactionsmodelresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |

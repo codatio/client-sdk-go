@@ -1,6 +1,8 @@
 # Metrics
 (*Sales.Metrics*)
 
+## Overview
+
 ### Available Operations
 
 * [GetCustomerRetention](#getcustomerretention) - Get customer retention metrics
@@ -63,15 +65,14 @@ func main() {
     res, err := s.Sales.Metrics.GetCustomerRetention(ctx, operations.GetCommerceCustomerRetentionMetricsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        NumberOfPeriods: 497588,
-        PeriodLength: 613110,
-        PeriodUnit: shared.PeriodUnitWeek,
+        NumberOfPeriods: 431272,
+        PeriodLength: 497588,
+        PeriodUnit: shared.PeriodUnitDay,
         ReportDate: "29-09-2020",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.CommerceReport != nil {
         // handle response
     }
@@ -86,14 +87,17 @@ func main() {
 | `request`                                                                                                                          | [operations.GetCommerceCustomerRetentionMetricsRequest](../../pkg/models/operations/getcommercecustomerretentionmetricsrequest.md) | :heavy_check_mark:                                                                                                                 | The request object to use for the request.                                                                                         |
 | `opts`                                                                                                                             | [][operations.Option](../../pkg/models/operations/option.md)                                                                       | :heavy_minus_sign:                                                                                                                 | The options for this request.                                                                                                      |
 
-
 ### Response
 
 **[*operations.GetCommerceCustomerRetentionMetricsResponse](../../pkg/models/operations/getcommercecustomerretentionmetricsresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
 | sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## GetLifetimeValue
 
@@ -145,15 +149,14 @@ func main() {
     res, err := s.Sales.Metrics.GetLifetimeValue(ctx, operations.GetCommerceLifetimeValueMetricsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        NumberOfPeriods: 900865,
-        PeriodLength: 614777,
-        PeriodUnit: shared.PeriodUnitMonth,
+        NumberOfPeriods: 500610,
+        PeriodLength: 900865,
+        PeriodUnit: shared.PeriodUnitYear,
         ReportDate: "29-09-2020",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.CommerceReport != nil {
         // handle response
     }
@@ -168,14 +171,17 @@ func main() {
 | `request`                                                                                                                  | [operations.GetCommerceLifetimeValueMetricsRequest](../../pkg/models/operations/getcommercelifetimevaluemetricsrequest.md) | :heavy_check_mark:                                                                                                         | The request object to use for the request.                                                                                 |
 | `opts`                                                                                                                     | [][operations.Option](../../pkg/models/operations/option.md)                                                               | :heavy_minus_sign:                                                                                                         | The options for this request.                                                                                              |
 
-
 ### Response
 
 **[*operations.GetCommerceLifetimeValueMetricsResponse](../../pkg/models/operations/getcommercelifetimevaluemetricsresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
 | sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## GetRevenue
 
@@ -228,15 +234,14 @@ func main() {
     res, err := s.Sales.Metrics.GetRevenue(ctx, operations.GetCommerceRevenueMetricsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        NumberOfPeriods: 307462,
-        PeriodLength: 944219,
-        PeriodUnit: shared.PeriodUnitDay,
+        NumberOfPeriods: 120092,
+        PeriodLength: 307462,
+        PeriodUnit: shared.PeriodUnitYear,
         ReportDate: "29-09-2020",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.CommerceReport != nil {
         // handle response
     }
@@ -251,10 +256,12 @@ func main() {
 | `request`                                                                                                      | [operations.GetCommerceRevenueMetricsRequest](../../pkg/models/operations/getcommercerevenuemetricsrequest.md) | :heavy_check_mark:                                                                                             | The request object to use for the request.                                                                     |
 | `opts`                                                                                                         | [][operations.Option](../../pkg/models/operations/option.md)                                                   | :heavy_minus_sign:                                                                                             | The options for this request.                                                                                  |
 
-
 ### Response
 
 **[*operations.GetCommerceRevenueMetricsResponse](../../pkg/models/operations/getcommercerevenuemetricsresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |

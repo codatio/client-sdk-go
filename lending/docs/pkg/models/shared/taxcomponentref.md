@@ -1,6 +1,6 @@
 # TaxComponentRef
 
-Taxes rates reference object depending on the rates being available on source commerce package.
+Taxes rates reference object depending on the rates being available on source commerce software.
 
 
 ## Fields

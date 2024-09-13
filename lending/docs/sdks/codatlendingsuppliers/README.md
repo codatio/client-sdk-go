@@ -1,6 +1,8 @@
 # CodatLendingSuppliers
 (*LoanWriteback.Suppliers*)
 
+## Overview
+
 ### Available Operations
 
 * [Create](#create) - Create supplier
@@ -42,42 +44,13 @@ func main() {
     ctx := context.Background()
     res, err := s.LoanWriteback.Suppliers.Create(ctx, operations.CreateSupplierRequest{
         AccountingSupplier: &shared.AccountingSupplier{
-            Addresses: []shared.AccountingAddress{
-                shared.AccountingAddress{
-                    City: lending.String("Bakersfield"),
-                    Country: lending.String("USA"),
-                    Line1: lending.String("Unit 51"),
-                    Line2: lending.String("Bakersfield Industrial Estate"),
-                    Region: lending.String("California"),
-                    Type: shared.AccountingAddressTypeBilling,
-                },
-            },
-            ContactName: lending.String("Kelly's Industrial Supplies"),
-            DefaultCurrency: lending.String("string"),
-            EmailAddress: lending.String("sales@kellysupplies.com"),
-            ID: lending.String("C520FFD4-F6F6-4FC2-A6D2-5D7088B2B14F"),
-            Metadata: &shared.Metadata{
-                IsDeleted: lending.Bool(true),
-            },
+            ContactName: lending.String("Joe Bloggs"),
+            ID: lending.String("73593"),
             ModifiedDate: lending.String("2022-10-23T00:00:00Z"),
-            Phone: lending.String("07999 999999"),
-            RegistrationNumber: lending.String("string"),
+            Phone: lending.String("(877) 492-8687"),
             SourceModifiedDate: lending.String("2022-10-23T00:00:00Z"),
-            Status: shared.SupplierStatusUnknown,
-            SupplementalData: &shared.SupplementalData{
-                Content: map[string]map[string]interface{}{
-                    "property1": map[string]interface{}{
-                        "property1": nil,
-                        "property2": nil,
-                    },
-                    "property2": map[string]interface{}{
-                        "property1": nil,
-                        "property2": nil,
-                    },
-                },
-            },
-            SupplierName: lending.String("Kelly's Industrial Supplies"),
-            TaxNumber: lending.String("string"),
+            Status: shared.SupplierStatusActive,
+            SupplierName: lending.String("test 20230420 1004"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -85,7 +58,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.AccountingCreateSupplierResponse != nil {
         // handle response
     }
@@ -100,14 +72,17 @@ func main() {
 | `request`                                                                                | [operations.CreateSupplierRequest](../../pkg/models/operations/createsupplierrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
 | `opts`                                                                                   | [][operations.Option](../../pkg/models/operations/option.md)                             | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
 
-
 ### Response
 
 **[*operations.CreateSupplierResponse](../../pkg/models/operations/createsupplierresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
 | sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## GetCreateUpdateModel
 
@@ -150,7 +125,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.PushOption != nil {
         // handle response
     }
@@ -165,10 +139,12 @@ func main() {
 | `request`                                                                                                              | [operations.GetCreateUpdateSuppliersModelRequest](../../pkg/models/operations/getcreateupdatesuppliersmodelrequest.md) | :heavy_check_mark:                                                                                                     | The request object to use for the request.                                                                             |
 | `opts`                                                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                                                           | :heavy_minus_sign:                                                                                                     | The options for this request.                                                                                          |
 
-
 ### Response
 
 **[*operations.GetCreateUpdateSuppliersModelResponse](../../pkg/models/operations/getcreateupdatesuppliersmodelresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |

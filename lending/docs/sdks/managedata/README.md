@@ -1,6 +1,8 @@
 # ManageData
 (*ManageData*)
 
+## Overview
+
 ### Available Operations
 
 * [GetStatus](#getstatus) - Get data status
@@ -36,7 +38,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.DataStatuses != nil {
         // handle response
     }
@@ -51,10 +52,12 @@ func main() {
 | `request`                                                                              | [operations.GetDataStatusRequest](../../pkg/models/operations/getdatastatusrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 | `opts`                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
-
 ### Response
 
 **[*operations.GetDataStatusResponse](../../pkg/models/operations/getdatastatusresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |

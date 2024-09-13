@@ -1,7 +1,5 @@
 # ContactRef
 
-A customer or supplier associated with the direct cost.
-
 
 ## Fields
 

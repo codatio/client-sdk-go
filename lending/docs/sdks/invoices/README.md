@@ -1,6 +1,8 @@
 # Invoices
 (*AccountsReceivable.Invoices*)
 
+## Overview
+
 ### Available Operations
 
 * [DownloadAttachment](#downloadattachment) - Download invoice attachment
@@ -45,12 +47,11 @@ func main() {
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        InvoiceID: "string",
+        InvoiceID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Data != nil {
         // handle response
     }
@@ -65,14 +66,17 @@ func main() {
 | `request`                                                                                                                          | [operations.DownloadAccountingInvoiceAttachmentRequest](../../pkg/models/operations/downloadaccountinginvoiceattachmentrequest.md) | :heavy_check_mark:                                                                                                                 | The request object to use for the request.                                                                                         |
 | `opts`                                                                                                                             | [][operations.Option](../../pkg/models/operations/option.md)                                                                       | :heavy_minus_sign:                                                                                                                 | The options for this request.                                                                                                      |
 
-
 ### Response
 
 **[*operations.DownloadAccountingInvoiceAttachmentResponse](../../pkg/models/operations/downloadaccountinginvoiceattachmentresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
 | sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## DownloadPdf
 
@@ -101,12 +105,11 @@ func main() {
     ctx := context.Background()
     res, err := s.AccountsReceivable.Invoices.DownloadPdf(ctx, operations.DownloadAccountingInvoicePdfRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        InvoiceID: "string",
+        InvoiceID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Data != nil {
         // handle response
     }
@@ -121,14 +124,17 @@ func main() {
 | `request`                                                                                                            | [operations.DownloadAccountingInvoicePdfRequest](../../pkg/models/operations/downloadaccountinginvoicepdfrequest.md) | :heavy_check_mark:                                                                                                   | The request object to use for the request.                                                                           |
 | `opts`                                                                                                               | [][operations.Option](../../pkg/models/operations/option.md)                                                         | :heavy_minus_sign:                                                                                                   | The options for this request.                                                                                        |
 
-
 ### Response
 
 **[*operations.DownloadAccountingInvoicePdfResponse](../../pkg/models/operations/downloadaccountinginvoicepdfresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 401,402,403,404,409,429,500,503 | application/json                |
 | sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## Get
 
@@ -139,6 +145,11 @@ The *Get invoice* endpoint returns a single invoice for a given invoiceId.
 Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=invoices) for integrations that support getting a specific invoice.
 
 Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/lending-api#/operations/refresh-company-data).
+
+### Tips and traps
+
+To access the `paymentAllocations` property, ensure that the `payments` data type is queued and cached in Codat before retrieving `invoices` from Codat's cache.
+
 
 ### Example Usage
 
@@ -163,12 +174,11 @@ func main() {
     ctx := context.Background()
     res, err := s.AccountsReceivable.Invoices.Get(ctx, operations.GetAccountingInvoiceRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        InvoiceID: "string",
+        InvoiceID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.AccountingInvoice != nil {
         // handle response
     }
@@ -183,14 +193,17 @@ func main() {
 | `request`                                                                                            | [operations.GetAccountingInvoiceRequest](../../pkg/models/operations/getaccountinginvoicerequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
 | `opts`                                                                                               | [][operations.Option](../../pkg/models/operations/option.md)                                         | :heavy_minus_sign:                                                                                   | The options for this request.                                                                        |
 
-
 ### Response
 
 **[*operations.GetAccountingInvoiceResponse](../../pkg/models/operations/getaccountinginvoiceresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 401,402,403,404,409,429,500,503 | application/json                |
 | sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## GetAttachment
 
@@ -226,12 +239,11 @@ func main() {
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        InvoiceID: "string",
+        InvoiceID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.AccountingAttachment != nil {
         // handle response
     }
@@ -246,14 +258,17 @@ func main() {
 | `request`                                                                                                                | [operations.GetAccountingInvoiceAttachmentRequest](../../pkg/models/operations/getaccountinginvoiceattachmentrequest.md) | :heavy_check_mark:                                                                                                       | The request object to use for the request.                                                                               |
 | `opts`                                                                                                                   | [][operations.Option](../../pkg/models/operations/option.md)                                                             | :heavy_minus_sign:                                                                                                       | The options for this request.                                                                                            |
 
-
 ### Response
 
 **[*operations.GetAccountingInvoiceAttachmentResponse](../../pkg/models/operations/getaccountinginvoiceattachmentresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
 | sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## List
 
@@ -269,6 +284,11 @@ Before using this endpoint, you must have [retrieved data for the company](https
 - Invoices due after a certain date: `query = dueDate > 2021-01-28`
 
 [Read more about querying](https://docs.codat.io/using-the-api/querying).
+
+### Tips and traps
+
+To access the `paymentAllocations` property, ensure that the `payments` data type is queued and cached in Codat before retrieving `invoices` from Codat's cache.
+
 
 ### Example Usage
 
@@ -296,11 +316,11 @@ func main() {
         OrderBy: lending.String("-modifiedDate"),
         Page: lending.Int(1),
         PageSize: lending.Int(100),
+        Query: lending.String("id=e3334455-1aed-4e71-ab43-6bccf12092ee"),
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.AccountingInvoices != nil {
         // handle response
     }
@@ -315,14 +335,17 @@ func main() {
 | `request`                                                                                                | [operations.ListAccountingInvoicesRequest](../../pkg/models/operations/listaccountinginvoicesrequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
 | `opts`                                                                                                   | [][operations.Option](../../pkg/models/operations/option.md)                                             | :heavy_minus_sign:                                                                                       | The options for this request.                                                                            |
 
-
 ### Response
 
 **[*operations.ListAccountingInvoicesResponse](../../pkg/models/operations/listaccountinginvoicesresponse.md), error**
+
+### Errors
+
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | sdkerrors.ErrorMessage              | 400,401,402,403,404,409,429,500,503 | application/json                    |
 | sdkerrors.SDKError                  | 4xx-5xx                             | */*                                 |
+
 
 ## ListAttachments
 
@@ -357,12 +380,11 @@ func main() {
     res, err := s.AccountsReceivable.Invoices.ListAttachments(ctx, operations.ListAccountingInvoiceAttachmentsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        InvoiceID: "string",
+        InvoiceID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Attachments != nil {
         // handle response
     }
@@ -377,14 +399,17 @@ func main() {
 | `request`                                                                                                                    | [operations.ListAccountingInvoiceAttachmentsRequest](../../pkg/models/operations/listaccountinginvoiceattachmentsrequest.md) | :heavy_check_mark:                                                                                                           | The request object to use for the request.                                                                                   |
 | `opts`                                                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                                                 | :heavy_minus_sign:                                                                                                           | The options for this request.                                                                                                |
 
-
 ### Response
 
 **[*operations.ListAccountingInvoiceAttachmentsResponse](../../pkg/models/operations/listaccountinginvoiceattachmentsresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 401,402,403,404,409,429,500,503 | application/json                |
 | sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## ListReconciled
 
@@ -415,11 +440,11 @@ func main() {
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         Page: lending.Int(1),
         PageSize: lending.Int(100),
+        Query: lending.String("id=e3334455-1aed-4e71-ab43-6bccf12092ee"),
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.EnhancedInvoicesReport != nil {
         // handle response
     }
@@ -434,10 +459,12 @@ func main() {
 | `request`                                                                                                | [operations.ListReconciledInvoicesRequest](../../pkg/models/operations/listreconciledinvoicesrequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
 | `opts`                                                                                                   | [][operations.Option](../../pkg/models/operations/option.md)                                             | :heavy_minus_sign:                                                                                       | The options for this request.                                                                            |
 
-
 ### Response
 
 **[*operations.ListReconciledInvoicesResponse](../../pkg/models/operations/listreconciledinvoicesresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |

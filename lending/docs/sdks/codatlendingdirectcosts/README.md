@@ -1,6 +1,8 @@
 # CodatLendingDirectCosts
 (*Transactions.DirectCosts*)
 
+## Overview
+
 ### Available Operations
 
 * [DownloadAttachment](#downloadattachment) - Download direct cost attachment
@@ -43,12 +45,11 @@ func main() {
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        DirectCostID: "string",
+        DirectCostID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Data != nil {
         // handle response
     }
@@ -63,14 +64,17 @@ func main() {
 | `request`                                                                                                                                | [operations.DownloadAccountingDirectCostAttachmentRequest](../../pkg/models/operations/downloadaccountingdirectcostattachmentrequest.md) | :heavy_check_mark:                                                                                                                       | The request object to use for the request.                                                                                               |
 | `opts`                                                                                                                                   | [][operations.Option](../../pkg/models/operations/option.md)                                                                             | :heavy_minus_sign:                                                                                                                       | The options for this request.                                                                                                            |
 
-
 ### Response
 
 **[*operations.DownloadAccountingDirectCostAttachmentResponse](../../pkg/models/operations/downloadaccountingdirectcostattachmentresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
 | sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## Get
 
@@ -107,12 +111,11 @@ func main() {
     res, err := s.Transactions.DirectCosts.Get(ctx, operations.GetAccountingDirectCostRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        DirectCostID: "string",
+        DirectCostID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.AccountingDirectCost != nil {
         // handle response
     }
@@ -127,14 +130,17 @@ func main() {
 | `request`                                                                                                  | [operations.GetAccountingDirectCostRequest](../../pkg/models/operations/getaccountingdirectcostrequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
 | `opts`                                                                                                     | [][operations.Option](../../pkg/models/operations/option.md)                                               | :heavy_minus_sign:                                                                                         | The options for this request.                                                                              |
 
-
 ### Response
 
 **[*operations.GetAccountingDirectCostResponse](../../pkg/models/operations/getaccountingdirectcostresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 401,402,403,404,409,429,500,503 | application/json                |
 | sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## GetAttachment
 
@@ -170,12 +176,11 @@ func main() {
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        DirectCostID: "string",
+        DirectCostID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.AccountingAttachment != nil {
         // handle response
     }
@@ -190,14 +195,17 @@ func main() {
 | `request`                                                                                                                      | [operations.GetAccountingDirectCostAttachmentRequest](../../pkg/models/operations/getaccountingdirectcostattachmentrequest.md) | :heavy_check_mark:                                                                                                             | The request object to use for the request.                                                                                     |
 | `opts`                                                                                                                         | [][operations.Option](../../pkg/models/operations/option.md)                                                                   | :heavy_minus_sign:                                                                                                             | The options for this request.                                                                                                  |
 
-
 ### Response
 
 **[*operations.GetAccountingDirectCostAttachmentResponse](../../pkg/models/operations/getaccountingdirectcostattachmentresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
 | sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## List
 
@@ -235,11 +243,11 @@ func main() {
         OrderBy: lending.String("-modifiedDate"),
         Page: lending.Int(1),
         PageSize: lending.Int(100),
+        Query: lending.String("id=e3334455-1aed-4e71-ab43-6bccf12092ee"),
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.AccountingDirectCosts != nil {
         // handle response
     }
@@ -254,14 +262,17 @@ func main() {
 | `request`                                                                                                      | [operations.ListAccountingDirectCostsRequest](../../pkg/models/operations/listaccountingdirectcostsrequest.md) | :heavy_check_mark:                                                                                             | The request object to use for the request.                                                                     |
 | `opts`                                                                                                         | [][operations.Option](../../pkg/models/operations/option.md)                                                   | :heavy_minus_sign:                                                                                             | The options for this request.                                                                                  |
 
-
 ### Response
 
 **[*operations.ListAccountingDirectCostsResponse](../../pkg/models/operations/listaccountingdirectcostsresponse.md), error**
+
+### Errors
+
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | sdkerrors.ErrorMessage              | 400,401,402,403,404,409,429,500,503 | application/json                    |
 | sdkerrors.SDKError                  | 4xx-5xx                             | */*                                 |
+
 
 ## ListAttachments
 
@@ -296,12 +307,11 @@ func main() {
     res, err := s.Transactions.DirectCosts.ListAttachments(ctx, operations.ListAccountingDirectCostAttachmentsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        DirectCostID: "string",
+        DirectCostID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Attachments != nil {
         // handle response
     }
@@ -316,10 +326,12 @@ func main() {
 | `request`                                                                                                                          | [operations.ListAccountingDirectCostAttachmentsRequest](../../pkg/models/operations/listaccountingdirectcostattachmentsrequest.md) | :heavy_check_mark:                                                                                                                 | The request object to use for the request.                                                                                         |
 | `opts`                                                                                                                             | [][operations.Option](../../pkg/models/operations/option.md)                                                                       | :heavy_minus_sign:                                                                                                                 | The options for this request.                                                                                                      |
 
-
 ### Response
 
 **[*operations.ListAccountingDirectCostAttachmentsResponse](../../pkg/models/operations/listaccountingdirectcostattachmentsresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 401,402,403,404,409,429,500,503 | application/json                |

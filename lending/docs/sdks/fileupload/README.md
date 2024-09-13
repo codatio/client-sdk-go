@@ -43,7 +43,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Data != nil {
         // handle response
     }
@@ -58,14 +57,17 @@ func main() {
 | `request`                                                                              | [operations.DownloadFilesRequest](../../pkg/models/operations/downloadfilesrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 | `opts`                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
-
 ### Response
 
 **[*operations.DownloadFilesResponse](../../pkg/models/operations/downloadfilesresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
 | sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## ListUploaded
 
@@ -98,7 +100,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Files != nil {
         // handle response
     }
@@ -113,14 +114,17 @@ func main() {
 | `request`                                                                      | [operations.ListFilesRequest](../../pkg/models/operations/listfilesrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
 | `opts`                                                                         | [][operations.Option](../../pkg/models/operations/option.md)                   | :heavy_minus_sign:                                                             | The options for this request.                                                  |
 
-
 ### Response
 
 **[*operations.ListFilesResponse](../../pkg/models/operations/listfilesresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
 | sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## Upload
 
@@ -140,10 +144,10 @@ package main
 import(
 	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/shared"
 	lending "github.com/codatio/client-sdk-go/lending/v5"
+	"os"
 	"context"
 	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/operations"
 	"log"
-	"net/http"
 )
 
 func main() {
@@ -153,6 +157,11 @@ func main() {
         }),
     )
 
+    content, fileErr := os.Open("example.file")
+    if fileErr != nil {
+        panic(fileErr)
+    }
+
     ctx := context.Background()
     res, err := s.FileUpload.Upload(ctx, operations.UploadFilesRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
@@ -161,8 +170,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
-    if res.StatusCode == http.StatusOK {
+    if res != nil {
         // handle response
     }
 }
@@ -176,10 +184,12 @@ func main() {
 | `request`                                                                          | [operations.UploadFilesRequest](../../pkg/models/operations/uploadfilesrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
 | `opts`                                                                             | [][operations.Option](../../pkg/models/operations/option.md)                       | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
 
-
 ### Response
 
 **[*operations.UploadFilesResponse](../../pkg/models/operations/uploadfilesresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
