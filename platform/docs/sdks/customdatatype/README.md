@@ -49,18 +49,17 @@ func main() {
     ctx := context.Background()
     res, err := s.CustomDataType.Configure(ctx, operations.ConfigureCustomDataTypeRequest{
         CustomDataTypeConfiguration: &shared.CustomDataTypeConfiguration{
-            DataSource: platform.String("api/purchaseOrders?$filter=currencyCode eq 'NOK'"),
+            DataSource: platform.String("api/purchaseOrders"),
             KeyBy: []string{
                 "$[*].id",
             },
             RequiredData: map[string]string{
-                "currencyCode": "$[*].currencyCode",
-                "id": "$[*].id",
+                "currency": "$[*].currencyCode",
                 "number": "$[*].number",
-                "orderDate": "$[*].orderDate",
-                "totalAmountExcludingTax": "$[*].totalAmountExcludingTax",
-                "totalTaxAmount": "$[*].totalTaxAmount",
-                "vendorName": "$[*].number",
+                "date": "$[*].orderDate",
+                "totalexvat": "$[*].totalAmountExcludingTax",
+                "totaltax": "$[*].totalTaxAmount",
+                "vendor": "$[*].number",
             },
             SourceModifiedDate: []string{
                 "$[*].lastModifiedDateTime",
@@ -86,14 +85,17 @@ func main() {
 | `request`                                                                                                  | [operations.ConfigureCustomDataTypeRequest](../../pkg/models/operations/configurecustomdatatyperequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
 | `opts`                                                                                                     | [][operations.Option](../../pkg/models/operations/option.md)                                               | :heavy_minus_sign:                                                                                         | The options for this request.                                                                              |
 
-
 ### Response
 
 **[*operations.ConfigureCustomDataTypeResponse](../../pkg/models/operations/configurecustomdatatyperesponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
 | sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## GetConfiguration
 
@@ -143,14 +145,17 @@ func main() {
 | `request`                                                                                                                | [operations.GetCustomDataTypeConfigurationRequest](../../pkg/models/operations/getcustomdatatypeconfigurationrequest.md) | :heavy_check_mark:                                                                                                       | The request object to use for the request.                                                                               |
 | `opts`                                                                                                                   | [][operations.Option](../../pkg/models/operations/option.md)                                                             | :heavy_minus_sign:                                                                                                       | The options for this request.                                                                                            |
 
-
 ### Response
 
 **[*operations.GetCustomDataTypeConfigurationResponse](../../pkg/models/operations/getcustomdatatypeconfigurationresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
 | sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## List
 
@@ -203,14 +208,17 @@ func main() {
 | `request`                                                                                                      | [operations.ListCustomDataTypeRecordsRequest](../../pkg/models/operations/listcustomdatatyperecordsrequest.md) | :heavy_check_mark:                                                                                             | The request object to use for the request.                                                                     |
 | `opts`                                                                                                         | [][operations.Option](../../pkg/models/operations/option.md)                                                   | :heavy_minus_sign:                                                                                             | The options for this request.                                                                                  |
 
-
 ### Response
 
 **[*operations.ListCustomDataTypeRecordsResponse](../../pkg/models/operations/listcustomdatatyperecordsresponse.md), error**
+
+### Errors
+
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | sdkerrors.ErrorMessage              | 400,401,402,403,404,429,451,500,503 | application/json                    |
 | sdkerrors.SDKError                  | 4xx-5xx                             | */*                                 |
+
 
 ## Refresh
 
@@ -259,10 +267,12 @@ func main() {
 | `request`                                                                                              | [operations.RefreshCustomDataTypeRequest](../../pkg/models/operations/refreshcustomdatatyperequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
 | `opts`                                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                                           | :heavy_minus_sign:                                                                                     | The options for this request.                                                                          |
 
-
 ### Response
 
 **[*operations.RefreshCustomDataTypeResponse](../../pkg/models/operations/refreshcustomdatatyperesponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 401,402,403,404,429,451,500,503 | application/json                |

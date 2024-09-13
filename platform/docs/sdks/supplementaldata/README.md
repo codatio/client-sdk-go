@@ -41,19 +41,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.SupplementalData.Configure(ctx, operations.ConfigureSupplementalDataRequest{
-        SupplementalDataConfiguration: &shared.SupplementalDataConfiguration{
-            SupplementalDataConfig: map[string]shared.SupplementalDataSourceConfiguration{
-                "orders-supplemental-data": shared.SupplementalDataSourceConfiguration{
-                    DataSource: platform.String("/orders"),
-                    PullData: map[string]string{
-                        "orderNumber": "order_num",
-                    },
-                    PushData: map[string]string{
-                        "orderNumber": "order_num",
-                    },
-                },
-            },
-        },
+        SupplementalDataConfiguration: &shared.SupplementalDataConfiguration{},
         DataType: operations.DataTypeInvoices,
         PlatformKey: "gbol",
     })
@@ -74,14 +62,17 @@ func main() {
 | `request`                                                                                                      | [operations.ConfigureSupplementalDataRequest](../../pkg/models/operations/configuresupplementaldatarequest.md) | :heavy_check_mark:                                                                                             | The request object to use for the request.                                                                     |
 | `opts`                                                                                                         | [][operations.Option](../../pkg/models/operations/option.md)                                                   | :heavy_minus_sign:                                                                                             | The options for this request.                                                                                  |
 
-
 ### Response
 
 **[*operations.ConfigureSupplementalDataResponse](../../pkg/models/operations/configuresupplementaldataresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
 | sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## GetConfiguration
 
@@ -131,10 +122,12 @@ func main() {
 | `request`                                                                                                                    | [operations.GetSupplementalDataConfigurationRequest](../../pkg/models/operations/getsupplementaldataconfigurationrequest.md) | :heavy_check_mark:                                                                                                           | The request object to use for the request.                                                                                   |
 | `opts`                                                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                                                 | :heavy_minus_sign:                                                                                                           | The options for this request.                                                                                                |
 
-
 ### Response
 
 **[*operations.GetSupplementalDataConfigurationResponse](../../pkg/models/operations/getsupplementaldataconfigurationresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |

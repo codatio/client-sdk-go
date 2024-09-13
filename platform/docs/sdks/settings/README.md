@@ -69,14 +69,17 @@ func main() {
 | `request`                                                      | [shared.CreateAPIKey](../../pkg/models/shared/createapikey.md) | :heavy_check_mark:                                             | The request object to use for the request.                     |
 | `opts`                                                         | [][operations.Option](../../pkg/models/operations/option.md)   | :heavy_minus_sign:                                             | The options for this request.                                  |
 
-
 ### Response
 
 **[*operations.CreateAPIKeyResponse](../../pkg/models/operations/createapikeyresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,409,429,500,503 | application/json                |
 | sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## DeleteAPIKey
 
@@ -132,14 +135,17 @@ func main() {
 | `request`                                                                            | [operations.DeleteAPIKeyRequest](../../pkg/models/operations/deleteapikeyrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
 | `opts`                                                                               | [][operations.Option](../../pkg/models/operations/option.md)                         | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
 
-
 ### Response
 
 **[*operations.DeleteAPIKeyResponse](../../pkg/models/operations/deleteapikeyresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
 | sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## GetProfile
 
@@ -182,14 +188,17 @@ func main() {
 | `ctx`                                                        | [context.Context](https://pkg.go.dev/context#Context)        | :heavy_check_mark:                                           | The context to use for the request.                          |
 | `opts`                                                       | [][operations.Option](../../pkg/models/operations/option.md) | :heavy_minus_sign:                                           | The options for this request.                                |
 
-
 ### Response
 
 **[*operations.GetProfileResponse](../../pkg/models/operations/getprofileresponse.md), error**
+
+### Errors
+
 | Error Object            | Status Code             | Content Type            |
 | ----------------------- | ----------------------- | ----------------------- |
 | sdkerrors.ErrorMessage  | 401,402,403,429,500,503 | application/json        |
 | sdkerrors.SDKError      | 4xx-5xx                 | */*                     |
+
 
 ## GetSyncSettings
 
@@ -232,14 +241,17 @@ func main() {
 | `ctx`                                                        | [context.Context](https://pkg.go.dev/context#Context)        | :heavy_check_mark:                                           | The context to use for the request.                          |
 | `opts`                                                       | [][operations.Option](../../pkg/models/operations/option.md) | :heavy_minus_sign:                                           | The options for this request.                                |
 
-
 ### Response
 
 **[*operations.GetProfileSyncSettingsResponse](../../pkg/models/operations/getprofilesyncsettingsresponse.md), error**
+
+### Errors
+
 | Error Object            | Status Code             | Content Type            |
 | ----------------------- | ----------------------- | ----------------------- |
 | sdkerrors.ErrorMessage  | 401,402,403,429,500,503 | application/json        |
 | sdkerrors.SDKError      | 4xx-5xx                 | */*                     |
+
 
 ## ListAPIKeys
 
@@ -286,14 +298,17 @@ func main() {
 | `ctx`                                                        | [context.Context](https://pkg.go.dev/context#Context)        | :heavy_check_mark:                                           | The context to use for the request.                          |
 | `opts`                                                       | [][operations.Option](../../pkg/models/operations/option.md) | :heavy_minus_sign:                                           | The options for this request.                                |
 
-
 ### Response
 
 **[*operations.ListAPIKeysResponse](../../pkg/models/operations/listapikeysresponse.md), error**
+
+### Errors
+
 | Error Object            | Status Code             | Content Type            |
 | ----------------------- | ----------------------- | ----------------------- |
 | sdkerrors.ErrorMessage  | 401,402,403,429,500,503 | application/json        |
 | sdkerrors.SDKError      | 4xx-5xx                 | */*                     |
+
 
 ## UpdateProfile
 
@@ -321,7 +336,6 @@ func main() {
     ctx := context.Background()
     res, err := s.Settings.UpdateProfile(ctx, &shared.Profile{
         AlertAuthHeader: platform.String("Bearer tXEiHiRK7XCtI8TNHbpGs1LI1pumdb4Cl1QIo7B2"),
-        APIKey: platform.String("sartANTjHAkLdbyDfaynoTQb7pkmj6hXHmnQKMrB"),
         ConfirmCompanyName: platform.Bool(true),
         IconURL: platform.String("https://client-images.codat.io/icon/042399f5-d104-4f38-9ce8-cac3524f4e88_3f5623af-d992-4c22-bc08-e58c520a8526.ico"),
         LogoURL: platform.String("https://client-images.codat.io/logo/042399f5-d104-4f38-9ce8-cac3524f4e88_5806cb1f-7342-4c0e-a0a8-99bfbc47b0ff.png"),
@@ -349,14 +363,17 @@ func main() {
 | `request`                                                    | [shared.Profile](../../pkg/models/shared/profile.md)         | :heavy_check_mark:                                           | The request object to use for the request.                   |
 | `opts`                                                       | [][operations.Option](../../pkg/models/operations/option.md) | :heavy_minus_sign:                                           | The options for this request.                                |
 
-
 ### Response
 
 **[*operations.UpdateProfileResponse](../../pkg/models/operations/updateprofileresponse.md), error**
+
+### Errors
+
 | Error Object            | Status Code             | Content Type            |
 | ----------------------- | ----------------------- | ----------------------- |
 | sdkerrors.ErrorMessage  | 401,402,403,429,500,503 | application/json        |
 | sdkerrors.SDKError      | 4xx-5xx                 | */*                     |
+
 
 ## UpdateSyncSettings
 
@@ -415,10 +432,12 @@ func main() {
 | `request`                                                                                                              | [operations.UpdateProfileSyncSettingsRequestBody](../../pkg/models/operations/updateprofilesyncsettingsrequestbody.md) | :heavy_check_mark:                                                                                                     | The request object to use for the request.                                                                             |
 | `opts`                                                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                                                           | :heavy_minus_sign:                                                                                                     | The options for this request.                                                                                          |
 
-
 ### Response
 
 **[*operations.UpdateProfileSyncSettingsResponse](../../pkg/models/operations/updateprofilesyncsettingsresponse.md), error**
+
+### Errors
+
 | Error Object            | Status Code             | Content Type            |
 | ----------------------- | ----------------------- | ----------------------- |
 | sdkerrors.ErrorMessage  | 401,402,403,429,500,503 | application/json        |

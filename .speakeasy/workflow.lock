@@ -56,6 +56,13 @@ sources:
         tags:
             - latest
             - main
+    platform-source:
+        sourceNamespace: platform-source
+        sourceRevisionDigest: sha256:9d1b7d84cf409ce52032d4c8b3e484355297cdc001d4d9169d5df5301efecabc
+        sourceBlobDigest: sha256:e1e3f4c3ed16022322bc656bb0e4ef28c04fff8c92c271cc859c6e2b32af5613
+        tags:
+            - latest
+            - main
 targets:
     accounting-library:
         source: accounting-source
@@ -97,6 +104,11 @@ targets:
         sourceNamespace: lending-source
         sourceRevisionDigest: sha256:903cae2450004a2b3e025b71b499583cb0975e416f730ac3b8cef63524793e78
         sourceBlobDigest: sha256:11ae523963780dcf6d5f3e5d617b7d4f809c94c11f59f95202727916e51510f4
+    platform-library:
+        source: platform-source
+        sourceNamespace: platform-source
+        sourceRevisionDigest: sha256:9d1b7d84cf409ce52032d4c8b3e484355297cdc001d4d9169d5df5301efecabc
+        sourceBlobDigest: sha256:e1e3f4c3ed16022322bc656bb0e4ef28c04fff8c92c271cc859c6e2b32af5613
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
